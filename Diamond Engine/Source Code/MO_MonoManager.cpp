@@ -59,6 +59,7 @@ bool M_MonoManager::Init()
 
 	mono_add_internal_call("DiamondEngine.InternalCalls::Destroy", Destroy);
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreateBullet", CreateBullet);
+	mono_add_internal_call("DiamondEngine.InternalCalls::CreateRoom", CreateRoom);
 
 	mono_add_internal_call("DiamondEngine.GameObject::get_localPosition", SendPosition);
 	mono_add_internal_call("DiamondEngine.GameObject::get_globalPosition", SendGlobalPosition);

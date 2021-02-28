@@ -242,6 +242,17 @@ void CreateBullet(MonoObject* position, MonoObject* rotation, MonoObject* scale)
 	/*return mono_gchandle_get_target(cmp->noGCobject);*/
 }
 
+void CreateRoom(MonoObject* position, MonoObject* rotation, MonoObject* scale)
+{
+	if (EngineExternal == nullptr)
+		return /*nullptr*/;
+
+	GameObject* go = EngineExternal->moduleScene->CreateGameObject("Empty", EngineExternal->moduleScene->root);
+	float3 posVector = M_MonoManager::UnboxVector(position);
+	Quat rotQuat = M_MonoManager::UnboxQuat(rotation);
+	float3 scaleVector = M_MonoManager::UnboxVector(scale);
+}
+
 //---------- GLOBAL GETTERS ----------//
 MonoObject* SendGlobalPosition(MonoObject* obj) //Allows to send float3 as "objects" in C#, should find a way to move Vector3 as class
 {
