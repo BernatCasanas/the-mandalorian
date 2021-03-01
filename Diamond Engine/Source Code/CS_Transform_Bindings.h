@@ -388,11 +388,7 @@ void TempNewRoom(float3 posVector, Quat rotQuat, float3 scaleVector, float value
 	//----------------------------------------------------------------------------------------------------------------
 
 	
-	if (roomtype == RoomType::SOUTH_EAST || roomtype == RoomType::SOUTH_WEST)
-	{
-
-	}
-	else
+	if (roomtype != RoomType::SOUTH_EAST && roomtype != RoomType::SOUTH_WEST)
 	{
 		tempPos = posVector + addZ;
 		tempScale.x = scaleVector.x * value;
@@ -412,10 +408,7 @@ void TempNewRoom(float3 posVector, Quat rotQuat, float3 scaleVector, float value
 		
 	
 	//----------------------------------------------------------------------------------------------------------------
-	if (roomtype == RoomType::SOUTH_EAST || roomtype == RoomType::NORTH_EAST)
-	{
-	}
-	else
+	if (roomtype != RoomType::SOUTH_EAST && roomtype != RoomType::NORTH_EAST)
 	{
 
 		tempPos = posVector + addX;
