@@ -443,7 +443,7 @@ void CreateRoom(MonoObject* position, MonoObject* rotation, MonoObject* scale)
 	float3 posVector = M_MonoManager::UnboxVector(position);
 	Quat rotQuat = M_MonoManager::UnboxQuat(rotation);
 	float3 scaleVector = M_MonoManager::UnboxVector(scale);
-	float value = 20;
+	float value = 50;
 	TempNewRoom(posVector, rotQuat, scaleVector, value, RoomType::SOUTH_EAST);
 
 	float3 addVector(value * 2, 0, 0);
