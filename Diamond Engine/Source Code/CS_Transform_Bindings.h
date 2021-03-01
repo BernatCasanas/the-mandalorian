@@ -256,6 +256,7 @@ void TempNewRoom(float3 posVector, Quat rotQuat, float3 scaleVector, float value
 	float3 addX(value, 0, 0);
 	float3 addZ(0, 0, value);
 	float3 addY(0, value / 5, 0);
+	float3 offset(value/10 , 0, 0);
 
 	float3 tempPos = posVector - addY ;
 	float3 tempScale;
@@ -279,8 +280,8 @@ void TempNewRoom(float3 posVector, Quat rotQuat, float3 scaleVector, float value
 	if (roomtype == RoomType::NORTH_EAST || roomtype == RoomType::NORTH_WEST)
 	{
 		
-		tempPos = posVector - addZ;
-		tempScale.x = scaleVector.x * value / 2;
+		tempPos = posVector - addZ - addX / 2 - offset;
+		tempScale.x = scaleVector.x * value / 2 - value/10;
 		tempScale.y = scaleVector.y * value / 5;
 		tempScale.z = scaleVector.z;
 
@@ -294,8 +295,8 @@ void TempNewRoom(float3 posVector, Quat rotQuat, float3 scaleVector, float value
 			dynamic_cast<ResourceMesh*>(EngineExternal->moduleResources->RequestResource(1313575480, Resource::Type::MESH));
 		HalfMeshRen->SetRenderMesh(HalfResMesh);
 
-		tempPos = posVector - addZ / 2;
-		tempScale.x = scaleVector.x * value / 2;
+		tempPos = posVector - addZ + addX/ 2 + offset;
+		tempScale.x = scaleVector.x * value / 2 - value / 10;
 		tempScale.y = scaleVector.y * value / 5;
 		tempScale.z = scaleVector.z;
 
@@ -333,6 +334,37 @@ void TempNewRoom(float3 posVector, Quat rotQuat, float3 scaleVector, float value
 //----------------------------------------------------------------------------------------------------------------
 	if (roomtype == RoomType::SOUTH_WEST || roomtype == RoomType::NORTH_WEST)
 	{
+		offset.Set(0, 0, value / 10);
+
+		tempPos = posVector - addX - addZ / 2 - offset;
+		tempScale.x = scaleVector.x ;
+		tempScale.y = scaleVector.y * value / 5;
+		tempScale.z = scaleVector.z * value / 2 - value / 10;
+
+		GameObject* halfwall = EngineExternal->moduleScene->CreateGameObject("halfwall", EngineExternal->moduleScene->root);
+		halfwall->transform->SetTransformMatrix(tempPos, rotQuat, tempScale);
+		halfwall->transform->updateTransform = true;
+
+		C_MeshRenderer* HalfMeshRen = dynamic_cast<C_MeshRenderer*>(halfwall->AddComponent(Component::Type::MeshRenderer));
+
+		ResourceMesh* HalfResMesh =
+			dynamic_cast<ResourceMesh*>(EngineExternal->moduleResources->RequestResource(1313575480, Resource::Type::MESH));
+		HalfMeshRen->SetRenderMesh(HalfResMesh);
+
+		tempPos = posVector - addX +  addZ / 2 + offset;
+		tempScale.x = scaleVector.x;
+		tempScale.y = scaleVector.y * value / 5;
+		tempScale.z = scaleVector.z * value / 2 - value / 10;
+
+		GameObject* halfwall2 = EngineExternal->moduleScene->CreateGameObject("halfwall2", EngineExternal->moduleScene->root);
+		halfwall2->transform->SetTransformMatrix(tempPos, rotQuat, tempScale);
+		halfwall2->transform->updateTransform = true;
+
+		C_MeshRenderer* HalfMeshRen2 = dynamic_cast<C_MeshRenderer*>(halfwall2->AddComponent(Component::Type::MeshRenderer));
+
+		ResourceMesh* HalfResMesh2 =
+			dynamic_cast<ResourceMesh*>(EngineExternal->moduleResources->RequestResource(1313575480, Resource::Type::MESH));
+		HalfMeshRen2->SetRenderMesh(HalfResMesh2);
 	}
 	else 
 	{
