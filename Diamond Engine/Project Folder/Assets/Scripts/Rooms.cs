@@ -41,12 +41,13 @@ public class Rooms : DiamondComponent
         //if (Input.GetMouseY() != 0 && turret != null)
         //    turret.localRotation = turret.localRotation * Quaternion.RotateAroundAxis(Vector3.right, -Input.GetMouseY() * Time.deltaTime);
 
-        if (Input.GetMouseClick(MouseButton.LEFT) == KeyState.KEY_DOWN)
+        if (Input.GetKey(DEKeyCode.I) == KeyState.KEY_DOWN)
         {
             InternalCalls.CreateRoom(shootPoint.globalPosition, shootPoint.globalRotation, shootPoint.globalScale);
 		}
 	}
 }
+
 
 
 

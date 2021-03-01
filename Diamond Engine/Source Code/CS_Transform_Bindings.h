@@ -242,15 +242,190 @@ void CreateBullet(MonoObject* position, MonoObject* rotation, MonoObject* scale)
 	/*return mono_gchandle_get_target(cmp->noGCobject);*/
 }
 
+enum class RoomType
+{
+	SOUTH_EAST,
+	SOUTH_WEST,
+	NORTH_EAST,
+	NORTH_WEST,
+};
+
+void TempNewRoom(float3 posVector, Quat rotQuat, float3 scaleVector, float value, RoomType roomtype)
+{
+	
+	float3 addX(value, 0, 0);
+	float3 addZ(0, 0, value);
+	float3 addY(0, value / 5, 0);
+
+	float3 tempPos = posVector - addY ;
+	float3 tempScale;
+	tempScale.x = scaleVector.x * value;
+	tempScale.y = scaleVector.y;
+	tempScale.z = scaleVector.z * value;
+
+	GameObject* floor = EngineExternal->moduleScene->CreateGameObject("Floor", EngineExternal->moduleScene->root);
+	floor->transform->SetTransformMatrix(tempPos, rotQuat, tempScale);
+	floor->transform->updateTransform = true;
+
+	C_MeshRenderer* floormeshRenderer = dynamic_cast<C_MeshRenderer*>(floor->AddComponent(Component::Type::MeshRenderer));
+
+	ResourceMesh* floortest =
+		dynamic_cast<ResourceMesh*>(EngineExternal->moduleResources->RequestResource(1313575480, Resource::Type::MESH));
+	floormeshRenderer->SetRenderMesh(floortest);
+
+	//----------------------------------------------------------------------------------------------------------------
+	
+
+	if (roomtype == RoomType::NORTH_EAST || roomtype == RoomType::NORTH_WEST)
+	{
+		
+		tempPos = posVector - addZ;
+		tempScale.x = scaleVector.x * value / 2;
+		tempScale.y = scaleVector.y * value / 5;
+		tempScale.z = scaleVector.z;
+
+		GameObject* halfwall = EngineExternal->moduleScene->CreateGameObject("halfwall", EngineExternal->moduleScene->root);
+		halfwall->transform->SetTransformMatrix(tempPos, rotQuat, tempScale);
+		halfwall->transform->updateTransform = true;
+
+		C_MeshRenderer* HalfMeshRen = dynamic_cast<C_MeshRenderer*>(halfwall->AddComponent(Component::Type::MeshRenderer));
+
+		ResourceMesh* HalfResMesh =
+			dynamic_cast<ResourceMesh*>(EngineExternal->moduleResources->RequestResource(1313575480, Resource::Type::MESH));
+		HalfMeshRen->SetRenderMesh(HalfResMesh);
+
+		tempPos = posVector - addZ / 2;
+		tempScale.x = scaleVector.x * value / 2;
+		tempScale.y = scaleVector.y * value / 5;
+		tempScale.z = scaleVector.z;
+
+		GameObject* halfwall2 = EngineExternal->moduleScene->CreateGameObject("halfwall2", EngineExternal->moduleScene->root);
+		halfwall2->transform->SetTransformMatrix(tempPos, rotQuat, tempScale);
+		halfwall2->transform->updateTransform = true;
+
+		C_MeshRenderer* HalfMeshRen2 = dynamic_cast<C_MeshRenderer*>(halfwall2->AddComponent(Component::Type::MeshRenderer));
+
+		ResourceMesh* HalfResMesh2 =
+			dynamic_cast<ResourceMesh*>(EngineExternal->moduleResources->RequestResource(1313575480, Resource::Type::MESH));
+		HalfMeshRen2->SetRenderMesh(HalfResMesh2);
+
+	}
+
+	else
+	{
+		tempPos = posVector - addZ;
+		tempScale.x = scaleVector.x * value;
+		tempScale.y = scaleVector.y * value / 5;
+		tempScale.z = scaleVector.z;
+
+		GameObject* wall = EngineExternal->moduleScene->CreateGameObject("Wall1", EngineExternal->moduleScene->root);
+		wall->transform->SetTransformMatrix(tempPos, rotQuat, tempScale);
+		wall->transform->updateTransform = true;
+
+		C_MeshRenderer* meshRenderer = dynamic_cast<C_MeshRenderer*>(wall->AddComponent(Component::Type::MeshRenderer));
+
+		ResourceMesh* test =
+			dynamic_cast<ResourceMesh*>(EngineExternal->moduleResources->RequestResource(1313575480, Resource::Type::MESH));
+		meshRenderer->SetRenderMesh(test);
+	}
+	
+
+//----------------------------------------------------------------------------------------------------------------
+	if (roomtype == RoomType::SOUTH_WEST || roomtype == RoomType::NORTH_WEST)
+	{
+	}
+	else 
+	{
+		tempPos = posVector - addX;
+		tempScale.x = scaleVector.x;
+		tempScale.y = scaleVector.y * value / 5;
+		tempScale.z = scaleVector.z * value;
+
+		GameObject* wall2 = EngineExternal->moduleScene->CreateGameObject("Wall2", EngineExternal->moduleScene->root);
+		wall2->transform->SetTransformMatrix(tempPos, rotQuat, tempScale);
+		wall2->transform->updateTransform = true;
+
+		C_MeshRenderer* meshRenderer2 = dynamic_cast<C_MeshRenderer*>(wall2->AddComponent(Component::Type::MeshRenderer));
+
+		ResourceMesh* test2 =
+			dynamic_cast<ResourceMesh*>(EngineExternal->moduleResources->RequestResource(1313575480, Resource::Type::MESH));
+		meshRenderer2->SetRenderMesh(test2);
+	}
+		
+	
+	//----------------------------------------------------------------------------------------------------------------
+
+	
+	if (roomtype == RoomType::SOUTH_EAST || roomtype == RoomType::SOUTH_WEST)
+	{
+
+	}
+	else
+	{
+		tempPos = posVector + addZ;
+		tempScale.x = scaleVector.x * value;
+		tempScale.y = scaleVector.y * value / 5;
+		tempScale.z = scaleVector.z;
+
+		GameObject* wall3 = EngineExternal->moduleScene->CreateGameObject("Wall3", EngineExternal->moduleScene->root);
+		wall3->transform->SetTransformMatrix(tempPos, rotQuat, tempScale);
+		wall3->transform->updateTransform = true;
+
+		C_MeshRenderer* meshRenderer3 = dynamic_cast<C_MeshRenderer*>(wall3->AddComponent(Component::Type::MeshRenderer));
+
+		ResourceMesh* test3 =
+			dynamic_cast<ResourceMesh*>(EngineExternal->moduleResources->RequestResource(1313575480, Resource::Type::MESH));
+		meshRenderer3->SetRenderMesh(test3);
+	}
+		
+	
+	//----------------------------------------------------------------------------------------------------------------
+	if (roomtype == RoomType::SOUTH_EAST || roomtype == RoomType::NORTH_EAST)
+	{
+	}
+	else
+	{
+
+		tempPos = posVector + addX;
+		tempScale.x = scaleVector.x;
+		tempScale.y = scaleVector.y * value / 5;
+		tempScale.z = scaleVector.z * value;
+
+		GameObject* wall4 = EngineExternal->moduleScene->CreateGameObject("Wall4", EngineExternal->moduleScene->root);
+		wall4->transform->SetTransformMatrix(tempPos, rotQuat, tempScale);
+		wall4->transform->updateTransform = true;
+
+		C_MeshRenderer* meshRenderer4 = dynamic_cast<C_MeshRenderer*>(wall4->AddComponent(Component::Type::MeshRenderer));
+
+		ResourceMesh* test4 =
+			dynamic_cast<ResourceMesh*>(EngineExternal->moduleResources->RequestResource(1313575480, Resource::Type::MESH));
+		meshRenderer4->SetRenderMesh(test4);
+	}
+}
+
 void CreateRoom(MonoObject* position, MonoObject* rotation, MonoObject* scale)
 {
 	if (EngineExternal == nullptr)
 		return /*nullptr*/;
 
-	GameObject* go = EngineExternal->moduleScene->CreateGameObject("Empty", EngineExternal->moduleScene->root);
 	float3 posVector = M_MonoManager::UnboxVector(position);
 	Quat rotQuat = M_MonoManager::UnboxQuat(rotation);
 	float3 scaleVector = M_MonoManager::UnboxVector(scale);
+	float value = 50;
+	TempNewRoom(posVector, rotQuat, scaleVector, value, RoomType::SOUTH_EAST);
+
+	float3 addVector(value * 2, 0, 0);
+	addVector = posVector + addVector;
+	TempNewRoom(addVector, rotQuat, scaleVector, value, RoomType::SOUTH_WEST);
+	
+	addVector.Set(0, 0, value * 2);
+	addVector = posVector + addVector;
+	TempNewRoom(addVector, rotQuat, scaleVector, value, RoomType::NORTH_EAST);
+
+	addVector.Set(value * 2, 0, value * 2);
+	addVector = posVector + addVector;
+	TempNewRoom(addVector, rotQuat, scaleVector, value, RoomType::NORTH_WEST);
+
 }
 
 //---------- GLOBAL GETTERS ----------//
