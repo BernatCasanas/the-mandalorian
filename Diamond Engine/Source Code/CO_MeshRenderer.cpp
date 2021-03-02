@@ -233,3 +233,9 @@ ResourceMesh* C_MeshRenderer::GetRenderMesh()
 {
 	return _mesh;
 }
+
+void C_MeshRenderer::ChangeColor(float3 color)
+{
+	alternColor = color;
+}
+

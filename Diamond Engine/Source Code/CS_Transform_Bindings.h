@@ -269,6 +269,13 @@ void TempNewRoom(float3 posVector, Quat rotQuat, float3 scaleVector, float value
 	floor->transform->updateTransform = true;
 
 	C_MeshRenderer* floormeshRenderer = dynamic_cast<C_MeshRenderer*>(floor->AddComponent(Component::Type::MeshRenderer));
+	LCG();
+	LCG rand;
+	float3 rgb;
+	rgb.x = (float)rand.Int(0, 100);
+	rgb.y = (float)rand.Int(0, 100);
+	rgb.z = (float)rand.Int(0, 100);
+	floormeshRenderer->ChangeColor(rgb);
 
 	ResourceMesh* floortest =
 		dynamic_cast<ResourceMesh*>(EngineExternal->moduleResources->RequestResource(1313575480, Resource::Type::MESH));

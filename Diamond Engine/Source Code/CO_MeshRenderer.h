@@ -26,6 +26,7 @@ public:
 	bool IsInsideFrustum(Frustum* camFrustum);
 
 	void SetRenderMesh(ResourceMesh* mesh);
+	void ChangeColor(float3 color);
 	ResourceMesh* GetRenderMesh();
 
 	OBB globalOBB;
