@@ -28,61 +28,61 @@ public class Core : DiamondComponent
         Vector3 joyRot = new Vector3(Input.GetLeftAxisX(), Input.GetLeftAxisY(), 0);
         int joyStickSensibility = 30000;
 
-        //Calculate player rotation
-        Vector3 aX = new Vector3(joyRot.x, 0, -joyRot.y - 1);
-        Vector3 aY = new Vector3(0, 0, 1);
-        aX = Vector3.Normalize(aX);
-
-        if (aX.x >= 0)
-            angle = Math.Acos(Vector3.Dot(aX, aY) - 1);
-        else if (aX.x < 0)
-            angle = -Math.Acos(Vector3.Dot(aX, aY) - 1);
-
-        //Convert angle from world view to orthogonal view
-        angle += 0.785398f; //Rotate 45 degrees to the right
-
-        reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, (float)-angle);
-
-        if (Input.GetMouseX() != 0 && reference != null)
-            reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -Input.GetMouseX() * mouseSens * Time.deltaTime) * reference.localRotation;
-
-        //if (Input.GetKey(DEKeyCode.W) == KeyState.KEY_REPEAT || Input.GetLeftAxisY() < -30000)
-        //{
-        //    move += reference.GetForward();
-        //    //reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -1.0472f);
-        //}
-        //if (Input.GetKey(DEKeyCode.A) == KeyState.KEY_REPEAT || Input.GetLeftAxisX() < -30000)
-        //{
-        //    move += reference.GetForward();
-        //    //reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, 1.0472f);
-        //}
-        //if (Input.GetKey(DEKeyCode.S) == KeyState.KEY_REPEAT || Input.GetLeftAxisY() > 30000)
-        //{
-        //    move += reference.GetForward();
-        //    //reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, 2.61799f);
-        //}        
-        //if (Input.GetKey(DEKeyCode.D) == KeyState.KEY_REPEAT || Input.GetLeftAxisX() > 30000)
-        //{
-        //    move += reference.GetForward();
-        //    //reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -2.61799f);
-        //}
-
         if (joyRot.magnitude > joyStickSensibility)
         {
+            //Calculate player rotation
+            Vector3 aX = new Vector3(joyRot.x, 0, -joyRot.y - 1);
+            Vector3 aY = new Vector3(0, 0, 1);
+            aX = Vector3.Normalize(aX);
+
+            if (aX.x >= 0)
+                angle = Math.Acos(Vector3.Dot(aX, aY) - 1);
+            else if (aX.x < 0)
+                angle = -Math.Acos(Vector3.Dot(aX, aY) - 1);
+
+            //Convert angle from world view to orthogonal view
+            angle += 0.785398f; //Rotate 45 degrees to the right
+
+            reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, (float)-angle);
+
+            if (Input.GetMouseX() != 0 && reference != null)
+                reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -Input.GetMouseX() * mouseSens * Time.deltaTime) * reference.localRotation;
+
+            //if (Input.GetKey(DEKeyCode.W) == KeyState.KEY_REPEAT || Input.GetLeftAxisY() < -30000)
+            //{
+            //    move += reference.GetForward();
+            //    //reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -1.0472f);
+            //}
+            //if (Input.GetKey(DEKeyCode.A) == KeyState.KEY_REPEAT || Input.GetLeftAxisX() < -30000)
+            //{
+            //    move += reference.GetForward();
+            //    //reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, 1.0472f);
+            //}
+            //if (Input.GetKey(DEKeyCode.S) == KeyState.KEY_REPEAT || Input.GetLeftAxisY() > 30000)
+            //{
+            //    move += reference.GetForward();
+            //    //reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, 2.61799f);
+            //}        
+            //if (Input.GetKey(DEKeyCode.D) == KeyState.KEY_REPEAT || Input.GetLeftAxisX() > 30000)
+            //{
+            //    move += reference.GetForward();
+            //    //reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -2.61799f);
+            //}
+
             move += reference.GetForward();
         }
 
         reference.localPosition += move.normalized * movementSpeed * Time.deltaTime;
-        
+
         if (move != Vector3.zero)
-        { 
-            if(!walking)
+        {
+            if (!walking)
             {
                 Audio.PlayAudio(this.reference, "Play_Footstep");
             }
             walking = true;
         }
-        else 
+        else
         {
             if (walking)
             {
