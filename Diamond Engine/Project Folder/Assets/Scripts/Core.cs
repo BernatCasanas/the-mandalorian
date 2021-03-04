@@ -98,6 +98,7 @@ public class Core : DiamondComponent
 
         if ((Input.GetMouseClick(MouseButton.LEFT) == KeyState.KEY_REPEAT || Input.GetRightTrigger() > 0) && timePassed >= delayTime)
         {
+            Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot");
             InternalCalls.CreateBullet(shootPoint.globalPosition, shootPoint.globalRotation, shootPoint.globalScale);
             timePassed = 0.0f;
         }
