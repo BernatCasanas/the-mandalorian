@@ -39,7 +39,7 @@ public class Core : DiamondComponent
 
         Vector3 move = Vector3.zero;
         Vector3 joyRot = new Vector3(Input.GetLeftAxisX(), Input.GetLeftAxisY(), 0);
-        int joyStickSensibility = 30000;
+        int joyStickSensibility = 15000;
 
         if (joyRot.magnitude > joyStickSensibility)
         {
