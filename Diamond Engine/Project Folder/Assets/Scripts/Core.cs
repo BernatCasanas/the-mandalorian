@@ -61,27 +61,6 @@ public class Core : DiamondComponent
             if (Input.GetMouseX() != 0 && reference != null)
                 reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -Input.GetMouseX() * mouseSens * Time.deltaTime) * reference.localRotation;
 
-            //if (Input.GetKey(DEKeyCode.W) == KeyState.KEY_REPEAT || Input.GetLeftAxisY() < -30000)
-            //{
-            //    move += reference.GetForward();
-            //    //reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -1.0472f);
-            //}
-            //if (Input.GetKey(DEKeyCode.A) == KeyState.KEY_REPEAT || Input.GetLeftAxisX() < -30000)
-            //{
-            //    move += reference.GetForward();
-            //    //reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, 1.0472f);
-            //}
-            //if (Input.GetKey(DEKeyCode.S) == KeyState.KEY_REPEAT || Input.GetLeftAxisY() > 30000)
-            //{
-            //    move += reference.GetForward();
-            //    //reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, 2.61799f);
-            //}        
-            //if (Input.GetKey(DEKeyCode.D) == KeyState.KEY_REPEAT || Input.GetLeftAxisX() > 30000)
-            //{
-            //    move += reference.GetForward();
-            //    //reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -2.61799f);
-            //}
-
             lastDir = move += reference.GetForward();
         }
 
@@ -91,7 +70,6 @@ public class Core : DiamondComponent
             dashCD_counter = 0.0f;
             dashUp = true;
         }
-
 
         if ((Input.GetKey(DEKeyCode.SPACE) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN) && dashUp && !dashing)
         {
@@ -135,7 +113,6 @@ public class Core : DiamondComponent
             }
         }
     }
-
     private void Dash()
     {
         if (dashingCounter < dashDuration)
