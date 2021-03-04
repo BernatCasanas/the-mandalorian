@@ -16,6 +16,7 @@ public class Core : DiamondComponent
     private float timePassed = 0.0f;
     double angle = 0.0f;
     private bool walking = false;
+    private bool shooting = false;
 
     public bool dashUp = true;
     public float dashSpeed = 80.0f;
@@ -41,7 +42,7 @@ public class Core : DiamondComponent
         Vector3 joyRot = new Vector3(Input.GetLeftAxisX(), Input.GetLeftAxisY(), 0);
         int joyStickSensibility = 15000;
 
-        if (joyRot.magnitude > joyStickSensibility)
+        if (joyRot.magnitude > joyStickSensibility && !shooting)
         {
             //Calculate player rotation
             Vector3 aX = new Vector3(joyRot.x, 0, -joyRot.y - 1);
@@ -105,12 +106,15 @@ public class Core : DiamondComponent
             //if (Input.GetMouseY() != 0 && turret != null)
             //    turret.localRotation = turret.localRotation * Quaternion.RotateAroundAxis(Vector3.right, -Input.GetMouseY() * Time.deltaTime);         
 
+            //Shooting
             if ((Input.GetMouseClick(MouseButton.LEFT) == KeyState.KEY_REPEAT || Input.GetRightTrigger() > 0) && timePassed >= delayTime)
             {
+                shooting = true;
                 Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot");
                 InternalCalls.CreateBullet(shootPoint.globalPosition, shootPoint.globalRotation, shootPoint.globalScale);
                 timePassed = 0.0f;
             }
+            else if(timePassed >= delayTime) shooting = false; //Wait delayTime before moving again
         }
     }
     private void Dash()
