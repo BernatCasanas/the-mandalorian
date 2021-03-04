@@ -25,7 +25,7 @@ public class Core : DiamondComponent
             return;
 
         Vector3 move = Vector3.zero;
-        Vector3 joyRot = Vector3(Input.GetLeftAxisX(), Input.GetLeftAxisY(), 0);
+        Vector3 joyRot = new Vector3(Input.GetLeftAxisX(), Input.GetLeftAxisY(), 0);
         int joyStickSensibility = 30000;
 
         //Calculate player rotation
