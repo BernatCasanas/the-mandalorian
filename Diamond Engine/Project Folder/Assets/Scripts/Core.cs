@@ -19,7 +19,7 @@ public class Core : DiamondComponent
     private bool shooting = false;
 
     public bool dashUp = true;
-    public float dashSpeed = 80.0f;
+    public float dashSpeed = 70.0f;
     Vector3 lastDir = Vector3.zero;
     bool dashing = false;
     float dashCD = 0.33f;
