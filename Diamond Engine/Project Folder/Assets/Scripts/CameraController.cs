@@ -23,7 +23,7 @@ public class CameraController : DiamondComponent
         reference.localPosition = smoothPosition;
         if (Input.GetKey(DEKeyCode.N) == KeyState.KEY_DOWN)
         {
-            zoomingin = true;
+            zooming = true;
             pointA_zoom = CameraManager.GetOrthSize(reference);
         }
         if (zooming)
