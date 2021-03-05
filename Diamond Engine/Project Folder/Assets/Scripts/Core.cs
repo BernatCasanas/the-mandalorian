@@ -6,6 +6,7 @@ using DiamondEngine;
 
 public class Core : DiamondComponent
 {
+
     public GameObject reference = null;
     public GameObject shootPoint = null;
 
