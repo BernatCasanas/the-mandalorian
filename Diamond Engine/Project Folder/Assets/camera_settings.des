@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        -30.362049102783203,
-        67.795562744140625,
-        0.91901630163192749
+        17.297677993774414,
+        10.252769470214844,
+        17.738853454589844
     ],
     "EditorCameraZ": [
-        0.40869876742362976,
-        -0.91258543729782104,
-        -0.012370734475553036
+        -0.64509636163711548,
+        -0.38236486911773682,
+        -0.66154950857162476
     ],
     "EditorCameraY": [
-        0.91216760873794556,
-        0.40888595581054688,
-        -0.027610024437308311
+        -0.26694712042808533,
+        0.92401134967803955,
+        -0.27375558018684387
     ],
     "Game Objects": [
         {
@@ -46,8 +46,8 @@
             "name": "Player",
             "Active": true,
             "Position": [
-                -20.743518829345703,
-                64.621551513671875,
+                0,
+                2,
                 -2.2426132773034624e-07
             ],
             "Rotation": [
@@ -80,117 +80,32 @@
                     ]
                 },
                 {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FPS_Controller",
+                    "reference": 1661764735,
+                    "turret": 1661764735,
+                    "rotationSpeed": 2,
+                    "movementSpeed": 35,
+                    "mouseSens": 1,
+                    "dashUp": true,
+                    "X_dir": 0,
+                    "Z_dir": 0,
+                    "lastX_dir": 0,
+                    "lastZ_dir": 0,
+                    "dashing": true,
+                    "dashCD": 0,
+                    "dashCD_counter": 0,
+                    "dashDuration": 0,
+                    "dashingCounter": 0
+                },
+                {
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
                     "MaterialUID": 1051418604
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": false,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": true,
-                    "LockAngularY": true,
-                    "LockAngularZ": true,
-                    "Mass": 10,
-                    "Density": 1
-                },
-                {
-                    "Type": 15,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "Core",
-                    "reference": 1661764735,
-                    "shootPoint": 599320177,
-                    "rotationSpeed": 2,
-                    "movementSpeed": 35,
-                    "mouseSens": 1,
-                    "delayTime": 0.20000000298023224,
-                    "timePassed": 0,
-                    "angle": 0,
-                    "walking": false,
-                    "shooting": true,
-                    "dashUp": true,
-                    "dashSpeed": 70,
-                    "dashing": true,
-                    "dashCD": 0.33000001311302185,
-                    "dashCD_counter": 0,
-                    "dashDuration": 0.25,
-                    "dashingCounter": 0
-                },
-                {
-                    "Type": 13,
-                    "Active": true,
-                    "evName": "Empty",
-                    "audBankReference": "Mando",
-                    "volume": 50,
-                    "pitch": 50,
-                    "playOnAwake": false,
-                    "isMuted": false
-                }
-            ]
-        },
-        {
-            "name": "ShootingPoint",
-            "Active": true,
-            "Position": [
-                0,
-                0.6528167724609375,
-                1.6099375486373901
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                0.5,
-                1.0000720024108887
-            ],
-            "UID": 599320177,
-            "ParentUID": 1661764735,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 13,
-                    "Active": true,
-                    "evName": "Empty",
-                    "audBankReference": "Mando",
-                    "volume": 50,
-                    "pitch": 50,
-                    "playOnAwake": false,
-                    "isMuted": false
                 }
             ]
         },
@@ -263,41 +178,6 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 30.799999237060547,
-                    "Density": 1
-                },
-                {
-                    "Type": 15,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
                 }
             ]
         },
@@ -388,20 +268,20 @@
             "name": "Game Camera",
             "Active": true,
             "Position": [
-                28.337120056152344,
-                34.217071533203125,
-                -37.998661041259766
+                0,
+                3.4102449417114258,
+                -2.2426132773034624e-07
             ],
             "Rotation": [
-                0.28966295719146729,
-                -0.30951860547065735,
-                0.099594630300998688,
-                0.9002079963684082
+                0.5,
+                0,
+                0,
+                0.86602538824081421
             ],
             "Scale": [
-                0.9999997615814209,
-                1.999998927116394,
-                0.999927818775177
+                1,
+                2,
+                0.9999280571937561
             ],
             "UID": 188616957,
             "ParentUID": 143570472,
@@ -414,7 +294,7 @@
                     "Type": 4,
                     "Active": true,
                     "fType": 1,
-                    "fSize": 13.260000228881836,
+                    "fSize": 10,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 5000,
                     "vFOV": 1.0471975803375244,
@@ -427,16 +307,14 @@
                     "ScriptName": "CameraController",
                     "reference": 188616957,
                     "target": 1661764735,
-                    "x": 1,
-                    "y": 1,
-                    "z": 1,
-                    "smoothSpeed": 1
-                },
-                {
-                    "Type": 12,
-                    "Active": true,
-                    "isDefaultListener": true,
-                    "masterVolume": 50
+                    "x": 0,
+                    "y": 0,
+                    "z": 0,
+                    "smoothSpeed": 0.0099999997764825821,
+                    "zoomDesired": 20,
+                    "zooming": false,
+                    "time_easing": 60,
+                    "timer": 0
                 }
             ]
         }

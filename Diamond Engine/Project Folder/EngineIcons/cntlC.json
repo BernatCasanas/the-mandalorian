@@ -1,25 +1,25 @@
 {
     "Game Objects": [
         {
-            "name": "awdwdawda",
+            "name": "Game Camera",
             "Active": true,
             "Position": [
-                1.4847038984298706,
-                2.6636946201324463,
-                -1.0098497867584229
+                0,
+                50,
+                -2.2426132773034624e-07
             ],
             "Rotation": [
+                0.68835455179214478,
                 0,
                 0,
-                0,
-                1
+                0.72537440061569214
             ],
             "Scale": [
                 1,
-                1,
-                1
+                2,
+                0.9999280571937561
             ],
-            "UID": 920775840,
+            "UID": 188616957,
             "ParentUID": 143570472,
             "Components": [
                 {
@@ -27,24 +27,30 @@
                     "Active": true
                 },
                 {
-                    "Type": 2,
+                    "Type": 4,
                     "Active": true,
-                    "Path": "Library\/Meshes\/277778019.mmh",
-                    "UID": 277778019,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ]
+                    "fType": 1,
+                    "fSize": 10,
+                    "nearPlaneDist": 1,
+                    "farPlaneDist": 5000,
+                    "vFOV": 42.5,
+                    "hFOV": 57.799999237060547,
+                    "culling": false
                 },
                 {
-                    "Type": 14,
+                    "Type": 5,
                     "Active": true,
-                    "kinematic": true
-                },
-                {
-                    "Type": 15,
-                    "Active": true
+                    "ScriptName": "CameraController",
+                    "reference": 188616957,
+                    "target": 1661764735,
+                    "x": 0,
+                    "y": 0,
+                    "z": 0,
+                    "smoothSpeed": 0,
+                    "zoomDesired": 20,
+                    "zooming": false,
+                    "time_easing": 0,
+                    "timer": 0
                 }
             ]
         }
