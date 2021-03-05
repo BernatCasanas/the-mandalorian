@@ -669,3 +669,15 @@ public enum DEControllerButton
     DPAD_RIGHT,
     MAX
 }
+
+public class Ease
+{
+    public static float OutCubic(float t)
+    {
+        return (float)(1 - Math.Pow(1 - t, 3));
+    }
+    public static float PointLerp(float p1, float p2, float t)
+    {
+        return p1 + (p2 - p1) * t;
+    }
+}

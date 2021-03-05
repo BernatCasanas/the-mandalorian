@@ -11,7 +11,7 @@ public class CameraController : DiamondComponent
 	public float zoomDesired = 0.1f;
 
 	private bool zooming = false;
-	public float time_easing = 0.2f;
+	public float timer_easing_sec = 0.2f;
 	public float timer;
     private float pointA_zoom;
 
@@ -26,29 +26,22 @@ public class CameraController : DiamondComponent
             zooming = true;
             pointA_zoom = CameraManager.GetOrthSize(reference);
         }
-        if (zooming && time_easing!=0.0f)
+        if (zooming && timer_easing_sec!=0.0f)
         {
-            timer = timer + 1;
+            timer = timer + Time.deltaTime;
             float t = 0;
 
-            t = timer / time_easing;
+            t = timer / timer_easing_sec;
 
-            Debug.Log(time_easing.ToString());
-            if (timer >= time_easing)
+            Debug.Log(timer_easing_sec.ToString());
+            if (timer >= timer_easing_sec)
             {
                 timer = 0;
                 zooming = false;
             }
-            CameraManager.SetOrthSize(reference, PointLerp(pointA_zoom, zoomDesired, Ease(t)));
+            CameraManager.SetOrthSize(reference, Ease.PointLerp(pointA_zoom, zoomDesired, Ease.OutCubic(t)));
         }
     }
 
-	public float Ease(float t)
-	{
-		return (float)(1 - Math.Pow(1 - t, 3));
-    }
-	public float PointLerp(float p1, float p2, float t)
-    {
-		return p1 + (p2 - p1) * t;
-    }
+
 }
