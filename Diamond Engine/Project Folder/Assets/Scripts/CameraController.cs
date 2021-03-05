@@ -39,7 +39,7 @@ public class CameraController : DiamondComponent
                 timer = 0;
                 zooming = false;
             }
-            CameraManager.SetOrthSize(reference, PointLerp(pointA_zoom, zoomDesired, Ease(t)));
+           // CameraManager.SetOrthSize(reference, PointLerp(pointA_zoom, zoomDesired, Ease(t)));
         }
     }
 
