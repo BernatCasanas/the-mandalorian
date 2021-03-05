@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        5.9596900939941406,
-        13.386723518371582,
-        -5.0847797393798828
+        7.7422084808349609,
+        46.239036560058594,
+        -17.453041076660156
     ],
     "EditorCameraZ": [
-        -0.43074652552604675,
-        -0.75434619188308716,
-        0.4953988790512085
+        -0.5898817777633667,
+        -0.60832381248474121,
+        0.53101944923400879
     ],
     "EditorCameraY": [
-        -0.49496996402740479,
-        0.65647697448730469,
-        0.56924766302108765
+        -0.45212438702583313,
+        0.79368895292282104,
+        0.406990647315979
     ],
     "Game Objects": [
         {
@@ -677,12 +677,12 @@
                 -0.7071068286895752,
                 0,
                 0,
-                0.7071068286895752
+                0.70710670948028564
             ],
             "Scale": [
                 0.10000000149011612,
-                0.10000000149011612,
-                0.10000000149011612
+                0.10000001639127731,
+                0.10000001639127731
             ],
             "UID": 1458821998,
             "ParentUID": 478009558,
@@ -1498,6 +1498,86 @@
                     "Active": true,
                     "isDefaultListener": true,
                     "masterVolume": 50
+                }
+            ]
+        },
+        {
+            "name": "World limit",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                2520.26513671875,
+                2233.370361328125,
+                0.99999898672103882
+            ],
+            "UID": 434136680,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Respawn",
+                    "room": 1406013733
+                },
+                {
+                    "Type": 15,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }
