@@ -340,7 +340,7 @@ void CollisionDetector::onContact(const PxContactPairHeader& pairHeader,
 				GameObject* contact = static_cast<GameObject*>(pairHeader.actors[k]->userData);
 				C_Script* script =  dynamic_cast<C_Script*>(contact->GetComponent(Component::TYPE::SCRIPT));
 				if (script)
-					script->CollisionCallback();
+					script->CollisionCallback(false);
 			}
 
 			/*if ((pairHeader.actors[0] == mSubmarineActor) ||
@@ -354,19 +354,18 @@ void CollisionDetector::onTrigger(physx::PxTriggerPair* pairs, physx::PxU32 coun
 	LOG(LogType::L_NORMAL, "Trigger detected");
 	for (PxU32 i = 0; i < count; i++)
 	{
-		const PxTriggerPair& cp = pairs[i];
+		const PxTriggerPair& cp = pairs[i];	
 
-		
+		GameObject* contact = static_cast<GameObject*>(pairs->triggerActor->userData);
+		GameObject* contact2 = static_cast<GameObject*>(pairs->otherActor->userData);
 
-				GameObject* contact = static_cast<GameObject*>(pairs->triggerActor->userData);
-				GameObject* contact2 = static_cast<GameObject*>(pairs->otherActor->userData);
+		C_Script* script = dynamic_cast<C_Script*>(contact->GetComponent(Component::TYPE::SCRIPT));
+		if (script)
+			script->CollisionCallback(true);
 
-				C_Script* script = dynamic_cast<C_Script*>(contact->GetComponent(Component::TYPE::SCRIPT));
-				if (script)
-					script->CollisionCallback();
-				script = dynamic_cast<C_Script*>(contact2->GetComponent(Component::TYPE::SCRIPT));
-				if (script)
-					script->CollisionCallback();
+		script = dynamic_cast<C_Script*>(contact2->GetComponent(Component::TYPE::SCRIPT));
+		if (script)
+			script->CollisionCallback(false);
 		
 		
 	}
