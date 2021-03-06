@@ -80,6 +80,14 @@
                     ]
                 },
                 {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
+                    "MaterialUID": 1051418604
+                },
+                {
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "FPS_Controller",
@@ -93,19 +101,11 @@
                     "Z_dir": 0,
                     "lastX_dir": 0,
                     "lastZ_dir": 0,
-                    "dashing": true,
-                    "dashCD": 0,
+                    "dashing": false,
+                    "dashCD": 2,
                     "dashCD_counter": 0,
-                    "dashDuration": 0,
+                    "dashDuration": 0.25,
                     "dashingCounter": 0
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
-                    "MaterialUID": 1051418604
                 }
             ]
         },
@@ -313,8 +313,9 @@
                     "smoothSpeed": 0.0099999997764825821,
                     "zoomDesired": 20,
                     "zooming": false,
-                    "time_easing": 60,
-                    "timer": 0
+                    "timer_easing_sec": 0,
+                    "timer": 0,
+                    "pointA_zoom": 0
                 }
             ]
         }

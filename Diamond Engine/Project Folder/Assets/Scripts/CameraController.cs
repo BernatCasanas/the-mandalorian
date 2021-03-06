@@ -28,12 +28,11 @@ public class CameraController : DiamondComponent
         }
         if (zooming && timer_easing_sec!=0.0f)
         {
-            timer = timer + Time.deltaTime;
+            timer += Time.deltaTime;
             float t = 0;
 
             t = timer / timer_easing_sec;
 
-            Debug.Log(timer_easing_sec.ToString());
             if (timer >= timer_easing_sec)
             {
                 timer = 0;
