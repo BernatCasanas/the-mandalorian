@@ -87,7 +87,7 @@ C_RigidBody::C_RigidBody(GameObject* _gm): Component(_gm)
 	SetAngularDamping(angular_damping);
 
 	rigid_dynamic->setRigidDynamicLockFlags(physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_Z | physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_X | physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_Y);
-
+	rigid_dynamic->setRigidBodyFlag(physx::PxRigidBodyFlag::eENABLE_CCD, true);
 	rigid_dynamic->userData = this->gameObject;
 
 }

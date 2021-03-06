@@ -132,6 +132,7 @@ bool ModulePhysics::Init() {
 	sceneDesc.gravity = PxVec3(0.0f, -9.81f, 0.0f);
 	mDispatcher = PxDefaultCpuDispatcherCreate(2);
 	sceneDesc.cpuDispatcher = mDispatcher;
+	sceneDesc.flags |= PxSceneFlag::eENABLE_CCD;
 	sceneDesc.filterShader = contactReportFilterShader;
 
 	mScene = mPhysics->createScene(sceneDesc);
@@ -267,7 +268,6 @@ physx::PxShape* ModulePhysics::CreateCollider(float3 size, PxMaterial* material)
 
 	
 	colliderShape = mPhysics->createShape(PxBoxGeometry(size.x, size.y, size.z), *material, true);
-
 	return colliderShape;
 }
 
