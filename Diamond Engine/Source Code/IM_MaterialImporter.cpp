@@ -46,6 +46,7 @@ void MaterialImporter::Save(ResourceMaterial* material, char** fileBuffer)
 	//Default shader does not have a library path
 	//json_serialize_to_file_pretty(file, material->GetAssetPath());
 	json_serialize_to_file_pretty(file, material->GetAssetPath());
+	json_serialize_to_file_pretty(file, material->GetLibraryPath());
 
 	json_value_free(file);
 
