@@ -45,7 +45,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef AI_AABB_H_INC
 #define AI_AABB_H_INC
 
-#include "vector3.h"
+#include "Assimp/include/vector3.h"
 
 struct aiAABB {
     C_STRUCT aiVector3D mMin;
