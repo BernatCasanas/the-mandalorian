@@ -28,6 +28,11 @@ public class Core : DiamondComponent
     float dashDuration = 0.25f;
     float dashingCounter = 0.0f;
 
+    //Animation
+    public string idle_animation = "Idle";
+    public string run_animation = "Run";
+    public string shoot_animation = "Shoot";
+
     public void Start()
     {       
     }
@@ -92,6 +97,7 @@ public class Core : DiamondComponent
                 if (!walking)
                 {
                     Audio.PlayAudio(this.reference, "Play_Footstep");
+                    //Animator.Play();
                 }
                 walking = true;
             }
@@ -100,6 +106,7 @@ public class Core : DiamondComponent
                 if (walking)
                 {
                     Audio.StopAudio(this.reference);
+                    Animator.Play(reference, idle_animation);
                 }
                 walking = false;
             }
@@ -114,6 +121,7 @@ public class Core : DiamondComponent
                 Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot");
                 InternalCalls.CreateBullet(shootPoint.globalPosition, shootPoint.globalRotation, shootPoint.globalScale);
                 timePassed = 0.0f;
+                Animator.Play(reference, shoot_animation);
             }
             else if(timePassed >= delayTime) shooting = false; //Wait delayTime before moving again
         }
