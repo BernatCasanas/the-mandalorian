@@ -62,6 +62,15 @@ namespace DiamondEngine
         public static extern void LoadScene(int libraryPath);
     }
 
+    public class CameraManager
+    {
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public static extern void SetOrthSize(object go, float size);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public static extern float GetOrthSize(object go);
+    }
+
     public partial class Debug
     {
         [MethodImplAttribute(MethodImplOptions.InternalCall)]

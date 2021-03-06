@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        33.292034149169922,
-        271.10330200195313,
-        279.26467895507813
+        -30.362049102783203,
+        67.795562744140625,
+        0.91901630163192749
     ],
     "EditorCameraZ": [
-        -0.14877679944038391,
-        -0.58563262224197388,
-        0.79680603742599487
+        0.40869876742362976,
+        -0.91258543729782104,
+        -0.012370734475553036
     ],
     "EditorCameraY": [
-        -0.10748959332704544,
-        0.81057661771774292,
-        0.57568359375
+        0.91216760873794556,
+        0.40888595581054688,
+        -0.027610024437308311
     ],
     "Game Objects": [
         {
@@ -80,16 +80,6 @@
                     ]
                 },
                 {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "FPS_Controller",
-                    "reference": 1661764735,
-                    "turret": 1661764735,
-                    "rotationSpeed": 2,
-                    "movementSpeed": 35,
-                    "mouseSens": 1
-                },
-                {
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
@@ -131,6 +121,76 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Core",
+                    "reference": 1661764735,
+                    "shootPoint": 599320177,
+                    "rotationSpeed": 2,
+                    "movementSpeed": 35,
+                    "mouseSens": 1,
+                    "delayTime": 0.20000000298023224,
+                    "timePassed": 0,
+                    "angle": 0,
+                    "walking": false,
+                    "shooting": true,
+                    "dashUp": true,
+                    "dashSpeed": 70,
+                    "dashing": true,
+                    "dashCD": 0.33000001311302185,
+                    "dashCD_counter": 0,
+                    "dashDuration": 0.25,
+                    "dashingCounter": 0
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "Mando",
+                    "volume": 50,
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false
+                }
+            ]
+        },
+        {
+            "name": "ShootingPoint",
+            "Active": true,
+            "Position": [
+                0,
+                0.6528167724609375,
+                1.6099375486373901
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                0.5,
+                1.0000720024108887
+            ],
+            "UID": 599320177,
+            "ParentUID": 1661764735,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "Mando",
+                    "volume": 50,
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false
                 }
             ]
         },
@@ -333,10 +393,10 @@
                 -37.998661041259766
             ],
             "Rotation": [
-                0.28966298699378967,
-                -0.30951863527297974,
-                0.099594645202159882,
-                0.90020811557769775
+                0.28966295719146729,
+                -0.30951860547065735,
+                0.099594630300998688,
+                0.9002079963684082
             ],
             "Scale": [
                 0.9999997615814209,
@@ -371,6 +431,12 @@
                     "y": 1,
                     "z": 1,
                     "smoothSpeed": 1
+                },
+                {
+                    "Type": 12,
+                    "Active": true,
+                    "isDefaultListener": true,
+                    "masterVolume": 50
                 }
             ]
         }

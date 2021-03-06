@@ -17,6 +17,7 @@
 #include "CS_Input_Bindings.h"
 #include"CS_Scene_Bindings.h"
 #include "CS_Audio_Bindings.h"
+#include "CS_Camera_Bindings.h"
 
 #include <iostream>
 #include <fstream> 
@@ -108,6 +109,9 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.Audio::SetPitch", SetPitch);
 	mono_add_internal_call("DiamondEngine.Audio::GetMuted", GetMuted);
 	mono_add_internal_call("DiamondEngine.Audio::SetMuted", SetMuted);
+
+	mono_add_internal_call("DiamondEngine.CameraManager::SetOrthSize", SetOrthSize);
+	mono_add_internal_call("DiamondEngine.CameraManager::GetOrthSize", GetOrthSize);
 
 	InitMono();
 
