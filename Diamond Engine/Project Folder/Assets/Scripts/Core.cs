@@ -122,28 +122,27 @@ public class Core : DiamondComponent
         }
         else
         {
-            if(shooting == false)
-            {
+            if (shooting == false)
                 reference.localPosition += move.normalized * movementSpeed * Time.deltaTime;
 
-                if (move != Vector3.zero)
+            if (move != Vector3.zero && shooting == false)
+            {
+                if (walking == false)
                 {
-                    if (walking == false)
-                    {
-                        Audio.PlayAudio(this.reference, "Play_Footstep");
-                    }
-                    walking = true;
+                    Audio.PlayAudio(this.reference, "Play_Footstep");
                 }
-                else
-                {
-                    if (walking == true)
-                    {
-                        Audio.StopAudio(this.reference);
-                        Animator.Play(reference, idle_animation);
-                    }
-                    walking = false;
-                }
+                walking = true;
             }
+            else
+            {
+                if (walking == true)
+                {
+                    Audio.StopAudio(this.reference);
+                    Animator.Play(reference, idle_animation);
+                }
+                walking = false;
+            }
+
 
             timeSinceLastDash += Time.deltaTime;
 
@@ -204,6 +203,8 @@ public class Core : DiamondComponent
         float ret = fireRate;
 
         ret = (float)(Math.Log(timeSinceLastDash * fireRateAfterDashRecoverRatio) - Math.Log(0.01)) / fireRateRecoverCap;
+
+        ret = Math.Min(ret, fireRate * 2.5f);
 
         return ret;
     }

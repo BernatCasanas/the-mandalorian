@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        -7.513338565826416,
-        32.087326049804688,
-        -0.42812332510948181
+        -39.585662841796875,
+        31.378808975219727,
+        -21.492214202880859
     ],
     "EditorCameraZ": [
-        0.041374243795871735,
-        -0.97901278734207153,
-        -0.1995549201965332
+        0.54799360036849976,
+        -0.68507522344589233,
+        0.47997391223907471
     ],
     "EditorCameraY": [
-        0.19874492287635803,
-        0.20379894971847534,
-        -0.95862740278244019
+        0.51535499095916748,
+        0.72847235202789307,
+        0.45137268304824829
     ],
     "Game Objects": [
         {
@@ -4564,21 +4564,27 @@
                     "ScriptName": "Core",
                     "reference": 1318749756,
                     "shootPoint": 1153109671,
+                    "scriptStart": true,
                     "rotationSpeed": 2,
                     "movementSpeed": 5,
                     "mouseSens": 1,
-                    "delayTime": 0.20000000298023224,
-                    "timePassed": 0,
                     "angle": 0,
                     "walking": false,
-                    "shooting": false,
-                    "dashUp": true,
-                    "dashSpeed": 70,
                     "dashing": false,
-                    "dashCD": 0.33000001311302185,
-                    "dashCD_counter": 0,
-                    "dashDuration": 0.25,
+                    "timeSinceLastDash": 0,
+                    "dashAvaliable": true,
                     "dashingCounter": 0,
+                    "dashCD": 0.33000001311302185,
+                    "dashCDCounter": 0,
+                    "dashDuration": 0.20000000298023224,
+                    "dashDistance": 4.5,
+                    "dashSpeed": 70,
+                    "fireRate": 0.15000000596046448,
+                    "currFireRate": 0,
+                    "timeSinceLastBullet": 0,
+                    "shooting": false,
+                    "fireRateAfterDashRecoverRatio": 0.5,
+                    "fireRateRecoverCap": 0,
                     "idle_animation": "Empty",
                     "run_animation": "Empty",
                     "shoot_animation": "Empty"
@@ -4655,9 +4661,9 @@
                 1
             ],
             "Scale": [
-                1,
-                1,
-                1
+                0.10000000149011612,
+                0.10000000149011612,
+                0.80000001192092896
             ],
             "UID": 1153109671,
             "ParentUID": 1318749756,
@@ -6358,10 +6364,10 @@
                 17.078926086425781
             ],
             "Rotation": [
-                0.17129690945148468,
-                0.40555047988891602,
-                -0.057422444224357605,
-                0.89604073762893677
+                0.24263928830623627,
+                0.39558207988739014,
+                -0.10866379737854004,
+                0.87910926342010498
             ],
             "Scale": [
                 1.0000020265579224,
@@ -6379,7 +6385,7 @@
                     "Type": 4,
                     "Active": true,
                     "fType": 1,
-                    "fSize": 45,
+                    "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
                     "vFOV": 1.0471975803375244,

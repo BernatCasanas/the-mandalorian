@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        24.191801071166992,
-        48.634002685546875,
-        30.309665679931641
+        16.432949066162109,
+        42.709743499755859,
+        -50.315570831298828
     ],
     "EditorCameraZ": [
-        -0.35173630714416504,
-        -0.82186931371688843,
-        -0.44812095165252686
+        -0.057398863136768341,
+        -0.52654844522476196,
+        0.84820520877838135
     ],
     "EditorCameraY": [
-        -0.5074315071105957,
-        0.56967604160308838,
-        -0.64651566743850708
+        -0.035570830106735229,
+        0.85014510154724121,
+        0.52534562349319458
     ],
     "Game Objects": [
         {
@@ -1612,21 +1612,27 @@
                     "ScriptName": "Core",
                     "reference": 1532041381,
                     "shootPoint": 2113317947,
+                    "scriptStart": true,
                     "rotationSpeed": 2,
                     "movementSpeed": 5,
                     "mouseSens": 1,
-                    "delayTime": 0.20000000298023224,
-                    "timePassed": 0,
                     "angle": 0,
                     "walking": false,
-                    "shooting": false,
-                    "dashUp": true,
-                    "dashSpeed": 70,
                     "dashing": false,
-                    "dashCD": 0.33000001311302185,
-                    "dashCD_counter": 0,
-                    "dashDuration": 0.25,
+                    "timeSinceLastDash": 0,
+                    "dashAvaliable": true,
                     "dashingCounter": 0,
+                    "dashCD": 0.33000001311302185,
+                    "dashCDCounter": 0,
+                    "dashDuration": 0.20000000298023224,
+                    "dashDistance": 4.5,
+                    "dashSpeed": 70,
+                    "fireRate": 0.15000000596046448,
+                    "currFireRate": 0,
+                    "timeSinceLastBullet": 0,
+                    "shooting": false,
+                    "fireRateAfterDashRecoverRatio": 0.5,
+                    "fireRateRecoverCap": 0,
                     "idle_animation": "Empty",
                     "run_animation": "Empty",
                     "shoot_animation": "Empty"
@@ -1703,9 +1709,9 @@
                 1
             ],
             "Scale": [
-                1,
-                1,
-                1
+                0.10000000149011612,
+                0.10000000149011612,
+                0.80000001192092896
             ],
             "UID": 2113317947,
             "ParentUID": 1532041381,
@@ -3394,6 +3400,82 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
                     "MaterialUID": 1948688504
+                }
+            ]
+        },
+        {
+            "name": "ShootPoint",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                0.10000000149011612,
+                1,
+                1
+            ],
+            "UID": 756262029,
+            "ParentUID": 1532041381,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "Mando",
+                    "volume": 50,
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false
+                }
+            ]
+        },
+        {
+            "name": "ShootPoint",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                0.10000000149011612,
+                1,
+                1
+            ],
+            "UID": 984024320,
+            "ParentUID": 1532041381,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "Mando",
+                    "volume": 50,
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false
                 }
             ]
         },
