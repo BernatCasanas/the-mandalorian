@@ -43,12 +43,31 @@ public class Core : DiamondComponent
             Vector3 vectorRight = new Vector3(-0.5f, 0, -0.5f);
             reference.localPosition += vectorRight * movementSpeed * Time.deltaTime;
         }
+        else
+        {
+            if (shooting == false)
+                reference.localPosition += move.normalized * movementSpeed * Time.deltaTime;
 
-        if (Input.GetMouseX() != 0 && reference != null)
-            reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -Input.GetMouseX() * mouseSens * Time.deltaTime) * reference.localRotation;
+            if (move != Vector3.zero && shooting == false)
+            {
+                if (walking == false)
+                {
+                    Audio.PlayAudio(this.reference, "Play_Footstep");
+                }
+                walking = true;
+            }
+            else
+            {
+                if (walking == true)
+                {
+                    Audio.StopAudio(this.reference);
+                    Animator.Play(reference, idle_animation);
+                }
+                walking = false;
+            }
 
-        //if (Input.GetMouseY() != 0 && turret != null)
-        //    turret.localRotation = turret.localRotation * Quaternion.RotateAroundAxis(Vector3.right, -Input.GetMouseY() * Time.deltaTime);
+
+            timeSinceLastDash += Time.deltaTime;
 
         timePassed += Time.deltaTime;
 
@@ -57,5 +76,39 @@ public class Core : DiamondComponent
             InternalCalls.CreateBullet(shootPoint.globalPosition, shootPoint.globalRotation, shootPoint.globalScale);
             timePassed = 0.0f;
         }
-	}
+
+        Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot");
+        InternalCalls.CreateBullet(shootPoint.globalPosition, shootPoint.globalRotation, shootPoint.globalScale);
+        timeSinceLastBullet = 0.0f;
+        Animator.Play(reference, shoot_animation);
+
+    }
+
+    private void Dash()
+    {
+        if (dashingCounter < dashDuration)
+        {
+            dashingCounter += Time.deltaTime;
+            reference.localPosition += lastDir.normalized * dashSpeed * Time.deltaTime;
+
+        }
+        else
+        {
+            Debug.Log("Finished Dashing!");
+            timeSinceLastDash = 0.0f;
+            dashing = false;
+        }
+    }
+
+    private float GetCurrentFireRate()
+    {
+        float ret = fireRate;
+
+        ret = (float)(Math.Log(timeSinceLastDash * fireRateAfterDashRecoverRatio) - Math.Log(0.01)) / fireRateRecoverCap;
+
+        ret = Math.Min(ret, fireRate * 2.5f);
+
+        return ret;
+    }
+
 }
