@@ -14,6 +14,7 @@ void MaterialImporter::CreateBaseMaterialFile(const char* path)
 	JSON_Value* file = json_value_init_object();
 	DEConfig root_object(json_value_get_object(file));
 
+	root_object.WriteString("name", "default");;
 	root_object.WriteInt("ShaderUID", EngineExternal->moduleScene->defaultMaterial->shader->GetUID());
 
 	JSON_Value* uniformsArray = json_value_init_array();
@@ -36,6 +37,7 @@ void MaterialImporter::Save(ResourceMaterial* material, char** fileBuffer)
 	JSON_Value* file = json_value_init_object();
 	DEConfig root_object(json_value_get_object(file));
 
+	root_object.WriteString("name", material->name);
 	root_object.WriteInt("ShaderUID", material->shader->GetUID());
 
 	JSON_Value* uniformsArray = json_value_init_array();
@@ -45,7 +47,8 @@ void MaterialImporter::Save(ResourceMaterial* material, char** fileBuffer)
 	//TODO: Should be saving Assets material and not library but there is no assets path in the resource :(
 	//Default shader does not have a library path
 	//json_serialize_to_file_pretty(file, material->GetAssetPath());
-	json_serialize_to_file_pretty(file, material->GetAssetPath());
+	std::string assets_path = "Assets/Materials/" + std::string(material->name) + ".mat";
+	json_serialize_to_file_pretty(file, assets_path.c_str());
 	json_serialize_to_file_pretty(file, material->GetLibraryPath());
 
 	json_value_free(file);
