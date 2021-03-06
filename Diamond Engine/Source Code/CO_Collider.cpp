@@ -144,7 +144,6 @@ void C_Collider::Update()
 
 		float3 half_size = { boxCollider.halfExtents.x, boxCollider.halfExtents.y, boxCollider.halfExtents.z };
 		
-		
 		glPushMatrix();
 		glMultMatrixf(trans.Transposed().ptr());
 

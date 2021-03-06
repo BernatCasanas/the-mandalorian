@@ -50,7 +50,7 @@ MonoObject* DE_Box_Quat(MonoObject* obj, bool global)
 	Quat value;
 	GameObject* workGO = EngineExternal->moduleMono->GameObject_From_CSGO(obj);
 
-	if (global == true)
+	if (global == true) 
 	{
 		float3 pos, scale;
 		Quat globalRot;
