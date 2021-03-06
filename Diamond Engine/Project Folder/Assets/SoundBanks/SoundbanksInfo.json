@@ -5,11 +5,11 @@
   "SchemaVersion": "12",
   "SoundbankVersion": "135",
   "RootPaths": {
-   "ProjectRoot": "C:\\Users\\admin\\Documents\\WwiseProjects\\Virtual Ragnarok Audio\\",
-   "SourceFilesRoot": "C:\\Users\\admin\\Documents\\WwiseProjects\\Virtual Ragnarok Audio\\.cache\\Windows\\",
-   "SoundBanksRoot": "C:\\Users\\admin\\Documents\\WwiseProjects\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows\\",
+   "ProjectRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\",
+   "SourceFilesRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\.cache\\Windows\\",
+   "SoundBanksRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows\\",
    "ExternalSourcesInputFile": "",
-   "ExternalSourcesOutputRoot": "C:\\Users\\admin\\Documents\\WwiseProjects\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows"
+   "ExternalSourcesOutputRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows"
   },
   "DialogueEvents": [],
   "StreamedFiles": [],
@@ -18,7 +18,7 @@
    {
     "Id": "1093318992",
     "Language": "SFX",
-    "Hash": "2142774806",
+    "Hash": "1308704435",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Mando",
     "ShortName": "Mando",
     "Path": "Mando.bnk",
@@ -30,6 +30,22 @@
       "DurationType": "OneShot",
       "DurationMin": "0.000000",
       "DurationMax": "0.000000"
+     },
+     {
+      "Id": "2211787386",
+      "Name": "Play_Dash",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Dash",
+      "DurationType": "OneShot",
+      "DurationMin": "0.707298",
+      "DurationMax": "1.122766",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "729637962",
+        "Language": "SFX",
+        "ShortName": "Dash.wav",
+        "Path": "SFX\\Dash_10C4C929.wem"
+       }
+      ]
      },
      {
       "Id": "1602358412",
@@ -46,16 +62,16 @@
         "Path": "SFX\\Footstep stone 2_10C4C929.wem"
        },
        {
+        "Id": "222927635",
+        "Language": "SFX",
+        "ShortName": "Footstep sand 1.wav",
+        "Path": "SFX\\Footstep sand 1_10C4C929.wem"
+       },
+       {
         "Id": "342426643",
         "Language": "SFX",
         "ShortName": "Footstep stone sandy 2.wav",
         "Path": "SFX\\Footstep stone sandy 2_10C4C929.wem"
-       },
-       {
-        "Id": "358571324",
-        "Language": "SFX",
-        "ShortName": "Footstep sand 1.wav",
-        "Path": "SFX\\Footstep sand 1_D79FB2B7.wem"
        },
        {
         "Id": "470698696",
@@ -91,7 +107,7 @@
         "Id": "705521758",
         "Language": "SFX",
         "ShortName": "Footstep stone sandy 3.wav",
-        "Path": "SFX\\Footstep stone sandy 3_D79FB2B7.wem"
+        "Path": "SFX\\Footstep stone sandy 3_10C4C929.wem"
        },
        {
         "Id": "810029336",
@@ -121,7 +137,7 @@
         "Id": "991936097",
         "Language": "SFX",
         "ShortName": "Footstep stone sandy 4.wav",
-        "Path": "SFX\\Footstep stone sandy 4_D79FB2B7.wem"
+        "Path": "SFX\\Footstep stone sandy 4_10C4C929.wem"
        }
       ],
       "DefaultSwitchValue": "{2123237A-A2E2-4B52-9C72-5536BD8E71EA}",
@@ -183,7 +199,7 @@
         "SwitchValue": "{2123237A-A2E2-4B52-9C72-5536BD8E71EA}",
         "Media": [
          {
-          "Id": "358571324"
+          "Id": "222927635"
          },
          {
           "Id": "705521758"
@@ -325,11 +341,19 @@
    {
     "Id": "1229948536",
     "Language": "SFX",
-    "Hash": "1074631424",
+    "Hash": "3209250772",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Environment",
     "ShortName": "Environment",
     "Path": "Environment.bnk",
     "IncludedEvents": [
+     {
+      "Id": "192623117",
+      "Name": "Pause_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Pause_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
      {
       "Id": "3330097699",
       "Name": "Play_Broken_Box",
@@ -345,6 +369,22 @@
         "Path": "SFX\\Wood box broken_10C4C929.wem"
        }
       ]
+     },
+     {
+      "Id": "1931338186",
+      "Name": "Resume_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Resume_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "3318621861",
+      "Name": "Stop_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
      }
     ],
     "GameParameters": [
@@ -383,11 +423,19 @@
    {
     "Id": "3991942870",
     "Language": "SFX",
-    "Hash": "694692624",
+    "Hash": "138728057",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Music",
     "ShortName": "Music",
     "Path": "Music.bnk",
     "IncludedEvents": [
+     {
+      "Id": "192623117",
+      "Name": "Pause_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Pause_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
      {
       "Id": "2932040671",
       "Name": "Play_Music",
@@ -419,6 +467,22 @@
         "Path": "SFX\\Hud_10C4C929.wem"
        }
       ]
+     },
+     {
+      "Id": "1931338186",
+      "Name": "Resume_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Resume_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "3318621861",
+      "Name": "Stop_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
      }
     ],
     "GameParameters": [
