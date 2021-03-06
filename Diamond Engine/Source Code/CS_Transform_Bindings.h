@@ -50,18 +50,7 @@ MonoObject* DE_Box_Quat(MonoObject* obj, bool global)
 	Quat value;
 	GameObject* workGO = EngineExternal->moduleMono->GameObject_From_CSGO(obj);
 
-	if (global == true) 
-	{
-		float3 pos, scale;
-		Quat globalRot;
-		workGO->transform->globalTransform.Decompose(pos, globalRot, scale);
-
-		value = globalRot;
-	}
-	else
-	{
-		value = workGO->transform->rotation;
-	}
+	(global == true) ? value = workGO->transform->globalTransform.RotatePart().ToQuat().Normalized() : value = workGO->transform->rotation;
 
 
 	return EngineExternal->moduleMono->QuatToCS(value);
