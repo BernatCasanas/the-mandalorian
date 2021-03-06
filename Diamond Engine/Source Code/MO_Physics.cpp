@@ -356,18 +356,18 @@ void CollisionDetector::onTrigger(physx::PxTriggerPair* pairs, physx::PxU32 coun
 	{
 		const PxTriggerPair& cp = pairs[i];
 
-		if (PxPairFlag::eNOTIFY_TOUCH_FOUND)
-		{
+		
 
-			for (size_t k = 0; k < 2; ++k)
-			{
-				GameObject* contact = static_cast<GameObject*>(pairs->otherActor->userData);
+				GameObject* contact = static_cast<GameObject*>(pairs->triggerActor->userData);
+				GameObject* contact2 = static_cast<GameObject*>(pairs->otherActor->userData);
+
 				C_Script* script = dynamic_cast<C_Script*>(contact->GetComponent(Component::TYPE::SCRIPT));
 				if (script)
 					script->CollisionCallback();
-			}
-
+				script = dynamic_cast<C_Script*>(contact2->GetComponent(Component::TYPE::SCRIPT));
+				if (script)
+					script->CollisionCallback();
 		
-		}
+		
 	}
 }
