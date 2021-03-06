@@ -71,7 +71,7 @@ physx::PxFilterFlags contactReportFilterShader(physx::PxFilterObjectAttributes a
 	// all initial and persisting reports for everything, with per-point data
 	pairFlags = PxPairFlag::eSOLVE_CONTACT | PxPairFlag::eDETECT_DISCRETE_CONTACT
 		| PxPairFlag::eNOTIFY_TOUCH_FOUND
-		| PxPairFlag::eNOTIFY_TOUCH_PERSISTS
+		//| PxPairFlag::eNOTIFY_TOUCH_PERSISTS
 		| PxPairFlag::eNOTIFY_CONTACT_POINTS
 		| PxPairFlag::eTRIGGER_DEFAULT 
 		| PxPairFlag::eDETECT_CCD_CONTACT; 
@@ -359,13 +359,19 @@ void CollisionDetector::onTrigger(physx::PxTriggerPair* pairs, physx::PxU32 coun
 		GameObject* contact = static_cast<GameObject*>(pairs->triggerActor->userData);
 		GameObject* contact2 = static_cast<GameObject*>(pairs->otherActor->userData);
 
-		C_Script* script = dynamic_cast<C_Script*>(contact->GetComponent(Component::TYPE::SCRIPT));
-		if (script)
-			script->CollisionCallback(true);
+		if (contact != nullptr) 
+		{
+			C_Script* script = dynamic_cast<C_Script*>(contact->GetComponent(Component::TYPE::SCRIPT));
+			if (script)
+				script->CollisionCallback(true);
+		}
 
-		script = dynamic_cast<C_Script*>(contact2->GetComponent(Component::TYPE::SCRIPT));
-		if (script)
-			script->CollisionCallback(false);
+		if (contact2 != nullptr) 
+		{
+			C_Script* script = dynamic_cast<C_Script*>(contact2->GetComponent(Component::TYPE::SCRIPT));
+			if (script)
+				script->CollisionCallback(false);
+		}
 		
 		
 	}
