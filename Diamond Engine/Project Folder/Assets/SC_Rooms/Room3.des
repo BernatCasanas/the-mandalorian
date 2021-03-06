@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        16.432949066162109,
-        42.709743499755859,
-        -50.315570831298828
+        -27.310634613037109,
+        27.573968887329102,
+        29.484992980957031
     ],
     "EditorCameraZ": [
-        -0.057398863136768341,
-        -0.52654844522476196,
-        0.84820520877838135
+        0.83156782388687134,
+        -0.36759623885154724,
+        -0.4163748025894165
     ],
     "EditorCameraY": [
-        -0.035570830106735229,
-        0.85014510154724121,
-        0.52534562349319458
+        0.32869434356689453,
+        0.92998546361923218,
+        -0.16458138823509216
     ],
     "Game Objects": [
         {
@@ -96,7 +96,7 @@
                 {
                     "Type": 15,
                     "Active": true,
-                    "isTrigger": false,
+                    "isTrigger": true,
                     "Position": [
                         0,
                         0,
@@ -265,6 +265,12 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
                     "MaterialUID": 1051418604
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "BH_DestructBox",
+                    "thisReference": 2096843606
                 }
             ]
         },
@@ -347,6 +353,12 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
                     "MaterialUID": 1051418604
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "BH_DestructBox",
+                    "thisReference": 557853913
                 }
             ]
         },
@@ -429,6 +441,12 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "BH_DestructBox",
+                    "thisReference": 1105520978
                 }
             ]
         },
@@ -511,6 +529,12 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "BH_DestructBox",
+                    "thisReference": 1662100858
                 }
             ]
         },
@@ -593,6 +617,12 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "BH_DestructBox",
+                    "thisReference": 2114999870
                 }
             ]
         },
@@ -675,88 +705,12 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
                     "MaterialUID": 1051418604
-                }
-            ]
-        },
-        {
-            "name": "Obstacle2",
-            "Active": true,
-            "Position": [
-                -0.20000000298023224,
-                1.2717010974884033,
-                -1.3999999761581421
-            ],
-            "Rotation": [
-                -0.7071068286895752,
-                2.0816681711721685e-17,
-                -2.0579515869201259e-10,
-                0.70710670948028564
-            ],
-            "Scale": [
-                0.10000000149011612,
-                0.10000000894069672,
-                0.12969869375228882
-            ],
-            "UID": 1348034819,
-            "ParentUID": 478009558,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
                 },
                 {
-                    "Type": 2,
+                    "Type": 5,
                     "Active": true,
-                    "Path": "Library\/Meshes\/1295291641.mmh",
-                    "UID": 1295291641,
-                    "alternColor": [
-                        0.60392159223556519,
-                        0.60392159223556519,
-                        0.60392159223556519
-                    ]
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
-                },
-                {
-                    "Type": 15,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
-                    "MaterialUID": 1051418604
+                    "ScriptName": "BH_DestructBox",
+                    "thisReference": 1894725421
                 }
             ]
         },
@@ -1499,25 +1453,25 @@
             ]
         },
         {
-            "name": "Obstacle002",
+            "name": "Obstacle2",
             "Active": true,
             "Position": [
-                -0.19999998807907104,
-                1.0901229381561279,
-                -1.4799995422363281
+                -0.20000000298023224,
+                1.2717010974884033,
+                -1.3999999761581421
             ],
             "Rotation": [
-                1,
-                -2.9598642981021328e-10,
-                5.4569671004145448e-10,
-                -4.3711388286737929e-08
+                -0.7071068286895752,
+                2.0816681711721685e-17,
+                -2.0579515869201259e-10,
+                0.70710670948028564
             ],
             "Scale": [
-                0.010000000707805157,
-                0.012969870120286942,
-                0.010000000707805157
+                0.10000000149011612,
+                0.10000000894069672,
+                0.12969869375228882
             ],
-            "UID": 1559577466,
+            "UID": 1348034819,
             "ParentUID": 478009558,
             "Components": [
                 {
@@ -1527,12 +1481,12 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/1629953618.mmh",
-                    "UID": 1629953618,
+                    "Path": "Library\/Meshes\/1295291641.mmh",
+                    "UID": 1295291641,
                     "alternColor": [
-                        0.89803922176361084,
-                        0.40392157435417175,
-                        1
+                        0.60392159223556519,
+                        0.60392159223556519,
+                        0.60392159223556519
                     ]
                 },
                 {
