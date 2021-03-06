@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        -13.686680793762207,
-        37.110218048095703,
-        -19.79338264465332
+        -5.0516347885131836,
+        15.400278091430664,
+        2.9706268310546875
     ],
     "EditorCameraZ": [
-        0.39206451177597046,
-        -0.77831006050109863,
-        0.49042713642120361
+        0.77262783050537109,
+        -0.62008333206176758,
+        0.13617253303527832
     ],
     "EditorCameraY": [
-        0.48598763346672058,
-        0.62788009643554688,
-        0.60793304443359375
+        0.61067134141921997,
+        0.78453594446182251,
+        0.10762836039066315
     ],
     "Game Objects": [
         {
@@ -487,8 +487,8 @@
                         0
                     ],
                     "Rotation": [
-                        -9.627526014810428e-05,
-                        -0.00023829427664168179,
+                        -9.6275209216400981e-05,
+                        -0.00023829418933019042,
                         0.37460422515869141,
                         0.92718476057052612
                     ],
@@ -3564,10 +3564,10 @@
                 -7.4505805969238281e-09
             ],
             "Rotation": [
-                -0.0012510847300291061,
-                0.016178606078028679,
-                0.094913072884082794,
-                0.99535328149795532
+                -0.001251084846444428,
+                0.016178607940673828,
+                0.094913087785243988,
+                0.99535340070724487
             ],
             "Scale": [
                 1,
@@ -4255,10 +4255,10 @@
                 -19.997871398925781
             ],
             "Rotation": [
-                0.24263931810855865,
-                0.39558213949203491,
-                -0.10866381227970123,
-                0.87910938262939453
+                0.24263928830623627,
+                0.39558207988739014,
+                -0.10866379737854004,
+                0.87910926342010498
             ],
             "Scale": [
                 1,
@@ -4388,12 +4388,12 @@
             ]
         },
         {
-            "name": "Canvas",
+            "name": "Prop_Barrel",
             "Active": true,
             "Position": [
-                0,
-                0,
-                0
+                5.8460350036621094,
+                6.0797181129455566,
+                1.8927638530731201
             ],
             "Rotation": [
                 0,
@@ -4406,7 +4406,7 @@
                 1,
                 1
             ],
-            "UID": 2000622399,
+            "UID": 577629330,
             "ParentUID": 1676501951,
             "Components": [
                 {
@@ -4414,13 +4414,50 @@
                     "Active": true
                 },
                 {
-                    "Type": 10,
-                    "Active": true
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 15,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        1.2000000476837158,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        0.80000001192092896,
+                        1.5,
+                        0.80000001192092896
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "BH_DestructBox",
+                    "thisReference": 577629330
                 }
             ]
         },
         {
-            "name": "Image",
+            "name": "Barrel",
             "Active": true,
             "Position": [
                 0,
@@ -4438,24 +4475,22 @@
                 1,
                 1
             ],
-            "UID": 985011406,
-            "ParentUID": 2000622399,
+            "UID": 1809184689,
+            "ParentUID": 577629330,
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
                 },
                 {
-                    "Type": 6,
+                    "Type": 2,
                     "Active": true,
-                    "Position": [
-                        -90.400001525878906,
-                        81
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        3.7000000476837158,
-                        10.899999618530273
+                    "Path": "Library\/Meshes\/130262488.mmh",
+                    "UID": 130262488,
+                    "alternColor": [
+                        0.9999995231628418,
+                        0,
+                        1
                     ]
                 },
                 {
@@ -4463,20 +4498,82 @@
                     "Active": true,
                     "IsEmpty": true,
                     "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/651582956.dds",
-                    "UID": 651582956
+                    "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
+                    "MaterialUID": 1051418604
                 }
             ]
         },
         {
-            "name": "Image",
+            "name": "Prop_Barrel",
+            "Active": true,
+            "Position": [
+                4.0930585861206055,
+                6.0797181129455566,
+                4.2770438194274902
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 515259828,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 15,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        1.2000000476837158,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        0.80000001192092896,
+                        1.5,
+                        0.80000001192092896
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "BH_DestructBox",
+                    "thisReference": 515259828
+                }
+            ]
+        },
+        {
+            "name": "Barrel",
             "Active": true,
             "Position": [
                 0,
@@ -4494,24 +4591,22 @@
                 1,
                 1
             ],
-            "UID": 1879194849,
-            "ParentUID": 2000622399,
+            "UID": 1337645700,
+            "ParentUID": 515259828,
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
                 },
                 {
-                    "Type": 6,
+                    "Type": 2,
                     "Active": true,
-                    "Position": [
-                        84.300003051757813,
-                        -88.900001525878906
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        10.399999618530273,
-                        1.3999999761581421
+                    "Path": "Library\/Meshes\/130262488.mmh",
+                    "UID": 130262488,
+                    "alternColor": [
+                        0.9999995231628418,
+                        0,
+                        1
                     ]
                 },
                 {
@@ -4519,20 +4614,82 @@
                     "Active": true,
                     "IsEmpty": true,
                     "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/1834381926.dds",
-                    "UID": 1834381926
+                    "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
+                    "MaterialUID": 1051418604
                 }
             ]
         },
         {
-            "name": "Image",
+            "name": "Prop_Barrel",
+            "Active": true,
+            "Position": [
+                6.0637874603271484,
+                6.0797181129455566,
+                -0.79980814456939697
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 455443898,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 15,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        1.2000000476837158,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        0.80000001192092896,
+                        1.5,
+                        0.80000001192092896
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "BH_DestructBox",
+                    "thisReference": 455443898
+                }
+            ]
+        },
+        {
+            "name": "Barrel",
             "Active": true,
             "Position": [
                 0,
@@ -4550,24 +4707,22 @@
                 1,
                 1
             ],
-            "UID": 1022420866,
-            "ParentUID": 2000622399,
+            "UID": 863574703,
+            "ParentUID": 455443898,
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
                 },
                 {
-                    "Type": 6,
+                    "Type": 2,
                     "Active": true,
-                    "Position": [
-                        84.199996948242188,
-                        -81.400001525878906
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        12.100000381469727,
-                        10.699999809265137
+                    "Path": "Library\/Meshes\/130262488.mmh",
+                    "UID": 130262488,
+                    "alternColor": [
+                        0.9999995231628418,
+                        0,
+                        1
                     ]
                 },
                 {
@@ -4575,20 +4730,82 @@
                     "Active": true,
                     "IsEmpty": true,
                     "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/518783332.dds",
-                    "UID": 518783332
+                    "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
+                    "MaterialUID": 1051418604
                 }
             ]
         },
         {
-            "name": "Image",
+            "name": "Prop_Barrel",
+            "Active": true,
+            "Position": [
+                4.3502564430236816,
+                6.0797181129455566,
+                -2.738800048828125
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1982216151,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 15,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        1.2000000476837158,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        0.80000001192092896,
+                        1.5,
+                        0.80000001192092896
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "BH_DestructBox",
+                    "thisReference": 1982216151
+                }
+            ]
+        },
+        {
+            "name": "Barrel",
             "Active": true,
             "Position": [
                 0,
@@ -4606,24 +4823,22 @@
                 1,
                 1
             ],
-            "UID": 1080540038,
-            "ParentUID": 2000622399,
+            "UID": 129041610,
+            "ParentUID": 1982216151,
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
                 },
                 {
-                    "Type": 6,
+                    "Type": 2,
                     "Active": true,
-                    "Position": [
-                        -77.400001525878906,
-                        -73.5
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        13.199999809265137,
-                        2
+                    "Path": "Library\/Meshes\/130262488.mmh",
+                    "UID": 130262488,
+                    "alternColor": [
+                        0.9999995231628418,
+                        0,
+                        1
                     ]
                 },
                 {
@@ -4631,351 +4846,8 @@
                     "Active": true,
                     "IsEmpty": true,
                     "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/1267649818.dds",
-                    "UID": 1267649818
-                }
-            ]
-        },
-        {
-            "name": "Image",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 8973830,
-            "ParentUID": 2000622399,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -80,
-                        -73.400001525878906
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        17.399999618530273,
-                        3.7999999523162842
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/26374907.dds",
-                    "UID": 26374907
-                }
-            ]
-        },
-        {
-            "name": "Image",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1216687545,
-            "ParentUID": 2000622399,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -77.300003051757813,
-                        -85.300003051757813
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        13.100000381469727,
-                        3.2999999523162842
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/449336422.dds",
-                    "UID": 449336422
-                }
-            ]
-        },
-        {
-            "name": "Image",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1816490161,
-            "ParentUID": 2000622399,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -80,
-                        -85.300003051757813
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        17.399999618530273,
-                        5.1999998092651367
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/2060021866.dds",
-                    "UID": 2060021866
-                }
-            ]
-        },
-        {
-            "name": "Image",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 11101135,
-            "ParentUID": 2000622399,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -91.800003051757813,
-                        -59.099998474121094
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        4.5999999046325684,
-                        8.5
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/110938608.dds",
-                    "UID": 110938608
-                }
-            ]
-        },
-        {
-            "name": "Image",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 136945494,
-            "ParentUID": 2000622399,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -80.900001525878906,
-                        -59.099998474121094
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        4.5999999046325684,
-                        8.5
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/784219460.dds",
-                    "UID": 784219460
-                }
-            ]
-        },
-        {
-            "name": "Image",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 947642124,
-            "ParentUID": 2000622399,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        89.199996948242188,
-                        -69.199996948242188
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        7.0999999046325684,
-                        7.5999999046325684
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/1335091055.dds",
-                    "UID": 1335091055
+                    "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
+                    "MaterialUID": 1051418604
                 }
             ]
         }
