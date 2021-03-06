@@ -385,7 +385,8 @@ Resource* M_ResourceManager::CreateNewResource(const char* assetsFile, uint uid,
 		case Resource::Type::MESH: ret = (Resource*) new ResourceMesh(uid); break;
 		case Resource::Type::SCRIPT: App->moduleMono->ReCompileCS(); break;
 		case Resource::Type::SHADER: ret = (Resource*) new ResourceShader(uid); break;
-		case Resource::Type::MATERIAL: ret = (Resource*) new ResourceMaterial(uid); break;
+		case Resource::Type::MATERIAL: 
+			ret = (Resource*) new ResourceMaterial(uid); break;
 		case Resource::Type::ANIMATION: ret = (Resource*) new ResourceAnimation(uid); break;
 	}
 
@@ -395,6 +396,9 @@ Resource* M_ResourceManager::CreateNewResource(const char* assetsFile, uint uid,
 		ret->SetAssetsPath(assetsFile);
 		ret->SetLibraryPath(GenLibraryPath(ret->GetUID(), type).c_str());
 		ret->IncreaseReferenceCount();
+		std::string name;
+		FileSystem::GetFileName(assetsFile, name, false);
+		sprintf_s(ret->name, name.c_str());
 	}
 
 	return ret;

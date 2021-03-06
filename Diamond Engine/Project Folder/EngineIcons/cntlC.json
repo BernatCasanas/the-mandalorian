@@ -1,56 +1,76 @@
 {
     "Game Objects": [
         {
-            "name": "Game Camera",
+            "name": "Obstacle002",
             "Active": true,
             "Position": [
                 0,
-                50,
-                -2.2426132773034624e-07
+                0.79999512434005737,
+                -1.3999999761581421
             ],
             "Rotation": [
-                0.68835455179214478,
+                -0.7071068286895752,
                 0,
                 0,
-                0.72537440061569214
+                0.7071068286895752
             ],
             "Scale": [
-                1,
-                2,
-                0.9999280571937561
+                0.10000000149011612,
+                0.10000000149011612,
+                0.10000000149011612
             ],
-            "UID": 188616957,
-            "ParentUID": 143570472,
+            "UID": 664528341,
+            "ParentUID": 1449431167,
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
                 },
                 {
-                    "Type": 4,
+                    "Type": 2,
                     "Active": true,
-                    "fType": 1,
-                    "fSize": 10,
-                    "nearPlaneDist": 1,
-                    "farPlaneDist": 5000,
-                    "vFOV": 42.5,
-                    "hFOV": 57.799999237060547,
-                    "culling": false
+                    "Path": "Library\/Meshes\/1629953618.mmh",
+                    "UID": 1629953618,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 },
                 {
-                    "Type": 5,
+                    "Type": 14,
                     "Active": true,
-                    "ScriptName": "CameraController",
-                    "reference": 188616957,
-                    "target": 1661764735,
-                    "x": 0,
-                    "y": 0,
-                    "z": 0,
-                    "smoothSpeed": 0,
-                    "zoomDesired": 20,
-                    "zooming": false,
-                    "time_easing": 0,
-                    "timer": 0
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 15,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }
