@@ -218,19 +218,11 @@ ResourceMesh* MeshLoader::LoadMesh(aiMesh* importedMesh, uint oldUID)
 		_mesh->vertices[i * VERTEX_ATTRIBUTES + WEIGHTS_OFFSET + 2] = 0.0f;
 		_mesh->vertices[i * VERTEX_ATTRIBUTES + WEIGHTS_OFFSET + 3] = 0.0f;
 
-		//Colors
-		if (importedMesh->HasVertexColors(0))
-		{
-			_mesh->vertices[i * VERTEX_ATTRIBUTES + COLORS_OFFSET]	   = importedMesh->mColors[0]->r;
-			_mesh->vertices[i * VERTEX_ATTRIBUTES + COLORS_OFFSET + 1] = importedMesh->mColors[0]->g;
-			_mesh->vertices[i * VERTEX_ATTRIBUTES + COLORS_OFFSET + 2] = importedMesh->mColors[0]->b;
-		}
-		else
-		{
-			_mesh->vertices[i * VERTEX_ATTRIBUTES + COLORS_OFFSET]     = 0.0f;
-			_mesh->vertices[i * VERTEX_ATTRIBUTES + COLORS_OFFSET + 1] = 0.0f;
-			_mesh->vertices[i * VERTEX_ATTRIBUTES + COLORS_OFFSET + 2] = 0.0f;
-		}
+		//Empty Colors
+		_mesh->vertices[i * VERTEX_ATTRIBUTES + COLORS_OFFSET]     = 0.0f;
+		_mesh->vertices[i * VERTEX_ATTRIBUTES + COLORS_OFFSET + 1] = 0.0f;
+		_mesh->vertices[i * VERTEX_ATTRIBUTES + COLORS_OFFSET + 2] = 0.0f;
+	
 	}
 
 	
@@ -271,6 +263,19 @@ ResourceMesh* MeshLoader::LoadMesh(aiMesh* importedMesh, uint oldUID)
 		}		
 	}
 	
+	//Load Colors
+	for (size_t c = 0; c < AI_MAX_NUMBER_OF_COLOR_SETS; c++)
+	{
+		if (importedMesh->HasVertexColors(c))
+		{
+			for (size_t v = 0; v < _mesh->vertices_count; v++)
+			{
+				_mesh->vertices[v * VERTEX_ATTRIBUTES + COLORS_OFFSET]	   = importedMesh->mColors[c][v].r;
+				_mesh->vertices[v * VERTEX_ATTRIBUTES + COLORS_OFFSET + 1] = importedMesh->mColors[c][v].g;
+				_mesh->vertices[v * VERTEX_ATTRIBUTES + COLORS_OFFSET + 2] = importedMesh->mColors[c][v].b;
+			}
+		}
+	}
 
 	// Generate indices
 	if (importedMesh->HasFaces())
