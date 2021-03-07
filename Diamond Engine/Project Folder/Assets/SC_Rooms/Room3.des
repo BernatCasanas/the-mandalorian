@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        -26.056873321533203,
-        10.02119255065918,
-        -0.8589397668838501
+        -58.458877563476563,
+        21.311262130737305,
+        -17.850149154663086
     ],
     "EditorCameraZ": [
-        0.75255101919174194,
-        -0.33292779326438904,
-        -0.56817781925201416
+        0.80493497848510742,
+        -0.52913010120391846,
+        0.2685166597366333
     ],
     "EditorCameraY": [
-        0.26570230722427368,
-        0.94295233488082886,
-        -0.20060709118843079
+        0.50194013118743896,
+        0.84854072332382202,
+        0.16743598878383636
     ],
     "Game Objects": [
         {
@@ -1565,7 +1565,7 @@
                     "Active": true,
                     "ScriptName": "Core",
                     "reference": 1532041381,
-                    "shootPoint": 2113317947,
+                    "shootPoint": 984024320,
                     "scriptStart": true,
                     "rotationSpeed": 2,
                     "movementSpeed": 5,
@@ -1586,10 +1586,7 @@
                     "timeSinceLastBullet": 0,
                     "shooting": false,
                     "fireRateAfterDashRecoverRatio": 0.5,
-                    "fireRateRecoverCap": 0,
-                    "idle_animation": "Empty",
-                    "run_animation": "Empty",
-                    "shoot_animation": "Empty"
+                    "fireRateRecoverCap": 0
                 },
                 {
                     "Type": 14,
@@ -1654,9 +1651,9 @@
             "name": "ShootPoint",
             "Active": true,
             "Position": [
-                0,
-                0,
-                0
+                -0.25,
+                1.3999999761581421,
+                0.92000001668930054
             ],
             "Rotation": [
                 0,
@@ -1668,82 +1665,6 @@
                 0.10000000149011612,
                 0.10000000149011612,
                 0.80000001192092896
-            ],
-            "UID": 2113317947,
-            "ParentUID": 1532041381,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 13,
-                    "Active": true,
-                    "evName": "Empty",
-                    "audBankReference": "Mando",
-                    "volume": 50,
-                    "pitch": 50,
-                    "playOnAwake": false,
-                    "isMuted": false
-                }
-            ]
-        },
-        {
-            "name": "ShootPoint",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                0.10000000149011612,
-                1,
-                1
-            ],
-            "UID": 756262029,
-            "ParentUID": 1532041381,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 13,
-                    "Active": true,
-                    "evName": "Empty",
-                    "audBankReference": "Mando",
-                    "volume": 50,
-                    "pitch": 50,
-                    "playOnAwake": false,
-                    "isMuted": false
-                }
-            ]
-        },
-        {
-            "name": "ShootPoint",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                0.10000000149011612,
-                1,
-                1
             ],
             "UID": 984024320,
             "ParentUID": 1532041381,
@@ -3481,7 +3402,7 @@
                     "x": 0,
                     "y": 0,
                     "z": 0,
-                    "smoothSpeed": 0.0099999997764825821,
+                    "smoothSpeed": 0.125,
                     "zoomDesired": 0.10000000149011612,
                     "zooming": false,
                     "timer_easing_sec": 0,
