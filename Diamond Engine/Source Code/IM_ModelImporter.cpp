@@ -90,7 +90,6 @@ void ModelImporter::Import(char* buffer, int bSize, Resource* res)
 		if (scene->HasAnimations())
 			ImportAnimations(scene, animationsUIDs, animationsOnModel, res);
 
-
 		//Save custom format model
 		GameObject* root = new GameObject("First model GO", nullptr);
 
@@ -101,10 +100,19 @@ void ModelImporter::Import(char* buffer, int bSize, Resource* res)
 
 		SaveModelCustom(root->children[0], res->GetLibraryPath());
 		delete root;
+		root = nullptr;
 
+		for (size_t i = 0; i < meshesOnModel.size(); i++) {
+			meshesOnModel[i] = nullptr;
+		}
 		meshesOnModel.clear();
+
+		for (size_t i = 0; i < texturesOnModel.size(); i++) {
+			texturesOnModel[i] = nullptr;
+		}
 		texturesOnModel.clear();
-		for (size_t i = 0; i < animationsOnModel.size(); i++)
+
+		for (size_t i = 0; i < animationsOnModel.size(); i++) 
 		{
 			EngineExternal->moduleResources->UnloadResource(animationsOnModel[i]->GetUID());
 		}
@@ -113,6 +121,7 @@ void ModelImporter::Import(char* buffer, int bSize, Resource* res)
 		animationsUIDs.clear();
 
 		aiReleaseImport(scene);
+		scene = nullptr;
 	}
 	else
 		LOG(LogType::L_ERROR, "Error loading scene"/*, scene->name*/);

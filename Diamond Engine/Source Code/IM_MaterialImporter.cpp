@@ -23,7 +23,6 @@ void MaterialImporter::CreateBaseMaterialFile(const char* path)
 	json_object_set_value(root_object.nObj, "Uniforms", uniformsArray);
 
 	//Default shader does not have a library path
-	//json_serialize_to_file_pretty(file, material->GetAssetPath());
 	json_serialize_to_file_pretty(file, path);
 
 	json_value_free(file);

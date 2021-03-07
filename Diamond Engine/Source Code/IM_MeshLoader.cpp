@@ -248,8 +248,6 @@ ResourceMesh* MeshLoader::LoadMesh(aiMesh* importedMesh, uint oldUID)
 				                       aibone->mOffsetMatrix.c1, aibone->mOffsetMatrix.c2, aibone->mOffsetMatrix.c3, aibone->mOffsetMatrix.c4,
 				                       aibone->mOffsetMatrix.d1, aibone->mOffsetMatrix.d2, aibone->mOffsetMatrix.d3, aibone->mOffsetMatrix.d4);
 
-			//_mesh->bonesOffsets.push_back(offset);
-			//Joint* joint = new Joint(aibone->mName.C_Str(), b, offset);
 			_mesh->bonesOffsets.push_back(offset);
 
 			//iterate all bone weights
