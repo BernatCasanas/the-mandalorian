@@ -17,7 +17,6 @@ public class Core : DiamondComponent
     public float mouseSens = 1.0f;
     private double angle = 0.0f;
     private bool walking = false;
-    private Vector3 lastDir = Vector3.zero;
 
     // Dash
     private bool dashing = false;
@@ -29,7 +28,6 @@ public class Core : DiamondComponent
     public float dashDuration = 0.25f;
     public float dashDistance = 1.0f;
     private float dashSpeed = 0.0f;
-    private Vector3 dashTarget = Vector3.zero;
 
     // Shooting
     public const float fireRate = 0.2f;
@@ -90,7 +88,7 @@ public class Core : DiamondComponent
                 reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -Input.GetMouseX() * mouseSens * Time.deltaTime) * reference.localRotation;
             }
 
-            lastDir = move += reference.GetForward();
+            move = reference.GetForward();
         }
 
         if (dashAvaliable == false && dashing == false)
@@ -109,7 +107,6 @@ public class Core : DiamondComponent
             dashing = true;
             dashAvaliable = false;
             dashingCounter = 0.0f;
-            dashTarget = this.reference.localPosition + (lastDir.normalized * dashSpeed);
             Animator.Play(reference, "Dash");
         }
 
@@ -190,7 +187,7 @@ public class Core : DiamondComponent
         if (dashingCounter < dashDuration)
         {
             dashingCounter += Time.deltaTime;
-            reference.localPosition += lastDir.normalized * dashSpeed * Time.deltaTime;
+            reference.localPosition += reference.GetForward().normalized * dashSpeed * Time.deltaTime;
 
         }
         else
