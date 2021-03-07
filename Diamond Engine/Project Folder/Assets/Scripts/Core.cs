@@ -41,11 +41,9 @@ public class Core : DiamondComponent
 
 
     // Animation
-    public string idle_animation = "Idle";
-    public string run_animation = "Run";
-    public string shoot_animation = "Shoot";
-
-
+    //public string idle_animation = "Idle";
+    //public string run_animation = "Run";
+    //public string shoot_animation = "Shoot";
 
     public void Update(/*int x*/)
     {
@@ -112,6 +110,7 @@ public class Core : DiamondComponent
             dashAvaliable = false;
             dashingCounter = 0.0f;
             dashTarget = this.reference.localPosition + (lastDir.normalized * dashSpeed);
+            Animator.Play(reference, "Dash");
         }
 
         timeSinceLastBullet += Time.deltaTime; //Moved here to keep shoot cd counting while dashing
@@ -130,6 +129,7 @@ public class Core : DiamondComponent
                 if (walking == false)
                 {
                     Audio.PlayAudio(this.reference, "Play_Footstep");
+                    Animator.Play(reference, "Run");
                 }
                 walking = true;
             }
@@ -138,7 +138,8 @@ public class Core : DiamondComponent
                 if (walking == true)
                 {
                     Audio.StopAudio(this.reference);
-                    Animator.Play(reference, idle_animation);
+                    //Animator.Play(reference, idle_animation);
+                    Animator.Play(reference, "Idle");
                 }
                 walking = false;
             }
@@ -178,7 +179,8 @@ public class Core : DiamondComponent
         Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot");
         InternalCalls.CreateBullet(shootPoint.globalPosition, shootPoint.globalRotation, shootPoint.globalScale);
         timeSinceLastBullet = 0.0f;
-        Animator.Play(reference, shoot_animation);
+        //Animator.Play(reference, shoot_animation);
+        Animator.Play(reference, "Shoot");
 
     }
 
@@ -195,6 +197,10 @@ public class Core : DiamondComponent
             Debug.Log("Finished Dashing!");
             timeSinceLastDash = 0.0f;
             dashing = false;
+            if(walking)
+                Animator.Play(reference, "Run");
+            else
+                Animator.Play(reference, "Idle");
         }
     }
 
