@@ -19,7 +19,7 @@ public class CameraController : DiamondComponent
 	{
         Vector3 offset = new Vector3(x, y, z);
         Vector3 desiredPosition = target.localPosition + offset;
-        Vector3 smoothPosition = Vector3.Lerp(reference.localPosition, desiredPosition, smoothSpeed);
+        Vector3 smoothPosition = Vector3.Lerp(reference.localPosition, desiredPosition, 1.0f - (float)Math.Pow(smoothSpeed, Time.deltaTime));
         reference.localPosition = smoothPosition;
         if (Input.GetKey(DEKeyCode.N) == KeyState.KEY_DOWN)
         {
