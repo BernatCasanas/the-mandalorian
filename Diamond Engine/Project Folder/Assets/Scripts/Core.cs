@@ -157,6 +157,7 @@ public class Core : DiamondComponent
             else if ((Input.GetMouseClick(MouseButton.LEFT) == KeyState.KEY_UP || Input.GetRightTrigger() == 0) && shooting == true)
             {
                 shooting = false;
+                Animator.Play(reference, "Idle");
             }
 
             if (shooting == true)
