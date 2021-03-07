@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        0.62679886817932129,
-        8.6450786590576172,
-        5.6999735832214355
+        -1.9714025259017944,
+        7.8741497993469238,
+        2.5860593318939209
     ],
     "EditorCameraZ": [
-        0.0036107311025261879,
-        -0.38982367515563965,
-        -0.9208824634552002
+        0.99744105339050293,
+        -0.060070261359214783,
+        0.038768410682678223
     ],
     "EditorCameraY": [
-        0.0015286209527403116,
-        0.92088949680328369,
-        -0.38982069492340088
+        0.060025181621313095,
+        0.99819415807723999,
+        0.0023268628865480423
     ],
     "Game Objects": [
         {
@@ -487,8 +487,8 @@
                         0
                     ],
                     "Rotation": [
-                        -9.6275245596189052e-05,
-                        -0.00023829421843402088,
+                        -9.6275296527892351e-05,
+                        -0.00023829440760891885,
                         0.37460422515869141,
                         0.92718476057052612
                     ],
@@ -2338,7 +2338,7 @@
                     "Active": true,
                     "ScriptName": "Core",
                     "reference": 196363487,
-                    "shootPoint": 1579331010,
+                    "shootPoint": 386979481,
                     "scriptStart": true,
                     "rotationSpeed": 2,
                     "movementSpeed": 5,
@@ -2359,10 +2359,7 @@
                     "timeSinceLastBullet": 0,
                     "shooting": false,
                     "fireRateAfterDashRecoverRatio": 0.5,
-                    "fireRateRecoverCap": 0,
-                    "idle_animation": "Idle",
-                    "run_animation": "Run",
-                    "shoot_animation": "Shoot"
+                    "fireRateRecoverCap": 0
                 },
                 {
                     "Type": 13,
@@ -2427,9 +2424,9 @@
             "name": "ShootPoint",
             "Active": true,
             "Position": [
-                0,
-                0.84793615341186523,
-                0.70000004768371582
+                -0.25,
+                1.3999999761581421,
+                0.92000001668930054
             ],
             "Rotation": [
                 0,
@@ -2440,120 +2437,6 @@
             "Scale": [
                 0.10000000149011612,
                 0.10000000149011612,
-                0.80000001192092896
-            ],
-            "UID": 1579331010,
-            "ParentUID": 196363487,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 13,
-                    "Active": true,
-                    "evName": "Empty",
-                    "audBankReference": "Mando",
-                    "volume": 50,
-                    "pitch": 50,
-                    "playOnAwake": false,
-                    "isMuted": false
-                }
-            ]
-        },
-        {
-            "name": "ShootPoint",
-            "Active": true,
-            "Position": [
-                0,
-                0.84793615341186523,
-                0.70000004768371582
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                0.20000000298023224,
-                0.5,
-                0.5
-            ],
-            "UID": 1448020136,
-            "ParentUID": 196363487,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 13,
-                    "Active": true,
-                    "evName": "Empty",
-                    "audBankReference": "Mando",
-                    "volume": 50,
-                    "pitch": 50,
-                    "playOnAwake": false,
-                    "isMuted": false
-                }
-            ]
-        },
-        {
-            "name": "ShootPoint",
-            "Active": true,
-            "Position": [
-                0,
-                0.84793615341186523,
-                0.70000004768371582
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                0.20000000298023224,
-                0.5,
-                0.5
-            ],
-            "UID": 1272104535,
-            "ParentUID": 196363487,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 13,
-                    "Active": true,
-                    "evName": "Empty",
-                    "audBankReference": "Mando",
-                    "volume": 50,
-                    "pitch": 50,
-                    "playOnAwake": false,
-                    "isMuted": false
-                }
-            ]
-        },
-        {
-            "name": "ShootPoint",
-            "Active": true,
-            "Position": [
-                0,
-                0.84793615341186523,
-                0.70000004768371582
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                0.10000000149011612,
-                0.20000000298023224,
                 0.80000001192092896
             ],
             "UID": 386979481,
@@ -4298,7 +4181,7 @@
                     "x": 0,
                     "y": 0,
                     "z": 0,
-                    "smoothSpeed": 0.0099999997764825821,
+                    "smoothSpeed": 0.125,
                     "zoomDesired": 0.10000000149011612,
                     "zooming": false,
                     "timer_easing_sec": 0,
