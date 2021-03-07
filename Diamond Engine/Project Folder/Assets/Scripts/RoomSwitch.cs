@@ -6,7 +6,7 @@ public class RoomSwitch : DiamondComponent
 
 	static int[] rooms = { 1076838722,
 		1934547592,
-		1406013733,
+		1161673944,
 		1482507639};
 
 	//public static int index = 0;
