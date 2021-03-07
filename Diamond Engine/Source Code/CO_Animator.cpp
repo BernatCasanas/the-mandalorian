@@ -464,7 +464,7 @@ void C_Animator::SaveAnimation(ResourceAnimation* animation, const char* name)
 	//Save a copy in Assets 
 	std::string old_assets_path = "Assets/Animations/" + old_name + ".anim";
 	std::string new_assets_path = "Assets/Animations/" + std::string(name) + ".anim";
-
+	
 	if (!EngineExternal->moduleResources->RenameAsset(old_assets_path.c_str(), new_assets_path.c_str(), buffer, size, animation)) 
 	{
 		FileSystem::Save(new_assets_path.c_str(), buffer, size, false);
