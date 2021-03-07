@@ -104,6 +104,8 @@ public class Core : DiamondComponent
 
         if ((Input.GetKey(DEKeyCode.SPACE) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN) && dashAvaliable == true)
         {
+            Audio.StopAudio(this.reference);
+            Audio.PlayAudio(this.reference, "Play_Dash");
             dashing = true;
             dashAvaliable = false;
             dashingCounter = 0.0f;
