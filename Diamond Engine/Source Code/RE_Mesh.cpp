@@ -138,6 +138,10 @@ void ResourceMesh::RenderMesh(GLuint textureID, float3 color, bool renderTexture
 		modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "altColor");
 		glUniform3fv(modelLoc, 1, &color.x);
 
+		float3 lightPosition = float3(0.0f, 0.0f, 1.0f);
+		modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightPosition");
+		glUniform3fv(modelLoc, 1, &lightPosition.x);
+
 		if (boneTransforms.size() > 0)
 		{
 			modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "jointTransforms");
