@@ -176,7 +176,7 @@ public class Core : DiamondComponent
             return;
         }
 
-        Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot");
+        Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot_Mando");
         InternalCalls.CreateBullet(shootPoint.globalPosition, shootPoint.globalRotation, shootPoint.globalScale);
         timeSinceLastBullet = 0.0f;
         //Animator.Play(reference, shoot_animation);
