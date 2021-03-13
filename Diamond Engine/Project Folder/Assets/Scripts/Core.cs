@@ -6,7 +6,6 @@ using DiamondEngine;
 
 public class Core : DiamondComponent
 {
-    public GameObject reference = null;
     public GameObject shootPoint = null;
 
     private bool scriptStart = true;
@@ -45,9 +44,6 @@ public class Core : DiamondComponent
 
     public void Update(/*int x*/)
     {
-        if (this.reference == null)
-            return;
-
         // Placeholder for Start() function
         if (scriptStart == true)
         {
@@ -81,14 +77,14 @@ public class Core : DiamondComponent
             //Convert angle from world view to orthogonal view
             angle += 0.785398f; //Rotate 45 degrees to the right
 
-            reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, (float)-angle);
+            gameObject.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, (float)-angle);
 
-            if (Input.GetMouseX() != 0 && reference != null)
+            if (Input.GetMouseX() != 0)
             {
-                reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -Input.GetMouseX() * mouseSens * Time.deltaTime) * reference.localRotation;
+                gameObject.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -Input.GetMouseX() * mouseSens * Time.deltaTime) * gameObject.transform.localRotation;
             }
 
-            move = reference.GetForward();
+            move = gameObject.transform.GetForward();
         }
 
         if (dashAvaliable == false && dashing == false)
@@ -104,12 +100,12 @@ public class Core : DiamondComponent
 
         if ((Input.GetKey(DEKeyCode.SPACE) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN) && dashAvaliable == true)
         {
-            Audio.StopAudio(this.reference);
-            Audio.PlayAudio(this.reference, "Play_Dash");
+            Audio.StopAudio(gameObject);
+            Audio.PlayAudio(gameObject, "Play_Dash");
             dashing = true;
             dashAvaliable = false;
             dashingCounter = 0.0f;
-            Animator.Play(reference, "Dash");
+            Animator.Play(gameObject, "Dash");
         }
 
         timeSinceLastBullet += Time.deltaTime; //Moved here to keep shoot cd counting while dashing
@@ -121,14 +117,14 @@ public class Core : DiamondComponent
         else
         {
             if (shooting == false)
-                reference.localPosition += move.normalized * movementSpeed * Time.deltaTime;
+                gameObject.transform.localPosition += move.normalized * movementSpeed * Time.deltaTime;
 
             if (move != Vector3.zero && shooting == false)
             {
                 if (walking == false)
                 {
-                    Audio.PlayAudio(this.reference, "Play_Footstep");
-                    Animator.Play(reference, "Run");
+                    Audio.PlayAudio(gameObject, "Play_Footstep");
+                    Animator.Play(gameObject, "Run");
                 }
                 walking = true;
             }
@@ -136,9 +132,9 @@ public class Core : DiamondComponent
             {
                 if (walking == true)
                 {
-                    Audio.StopAudio(this.reference);
+                    Audio.StopAudio(gameObject);
                     //Animator.Play(reference, idle_animation);
-                    Animator.Play(reference, "Idle");
+                    Animator.Play(gameObject, "Idle");
                 }
                 walking = false;
             }
@@ -156,7 +152,7 @@ public class Core : DiamondComponent
             else if ((Input.GetMouseClick(MouseButton.LEFT) == KeyState.KEY_UP || Input.GetRightTrigger() == 0) && shooting == true)
             {
                 shooting = false;
-                Animator.Play(reference, "Idle");
+                Animator.Play(gameObject, "Idle");
             }
 
             if (shooting == true)
@@ -178,9 +174,11 @@ public class Core : DiamondComponent
 
         Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot_Mando");
         InternalCalls.CreateBullet(shootPoint.globalPosition, shootPoint.globalRotation, shootPoint.globalScale);
+        Input.PlayHaptic(1f,30);
+
         timeSinceLastBullet = 0.0f;
         //Animator.Play(reference, shoot_animation);
-        Animator.Play(reference, "Shoot");
+        Animator.Play(gameObject, "Shoot");
 
     }
 
@@ -189,7 +187,7 @@ public class Core : DiamondComponent
         if (dashingCounter < dashDuration)
         {
             dashingCounter += Time.deltaTime;
-            reference.localPosition += reference.GetForward().normalized * dashSpeed * Time.deltaTime;
+            gameObject.transform.localPosition += gameObject.transform.GetForward().normalized * dashSpeed * Time.deltaTime;
 
         }
         else
@@ -198,9 +196,9 @@ public class Core : DiamondComponent
             timeSinceLastDash = 0.0f;
             dashing = false;
             if(walking)
-                Animator.Play(reference, "Run");
+                Animator.Play(gameObject, "Run");
             else
-                Animator.Play(reference, "Idle");
+                Animator.Play(gameObject, "Idle");
         }
     }
 

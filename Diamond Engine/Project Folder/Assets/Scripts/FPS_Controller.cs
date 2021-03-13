@@ -76,7 +76,7 @@ public class FPS_Controller : DiamondComponent
         }
 
         if (Input.GetMouseX() != 0 && turret != null)
-            turret.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -Input.GetMouseX() * mouseSens * Time.deltaTime) * turret.localRotation;
+            turret.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -Input.GetMouseX() * mouseSens * Time.deltaTime) * turret.transform.localRotation;
     }
 
     private void Dash()
