@@ -3,7 +3,7 @@
 #include <mono/metadata/object-forward.h>
 #include "CO_Animator.h"
 
-void Play(MonoObject* goObj,  MonoString* animationString)
+void Play(MonoObject* goObj,  MonoString* animationString, float speed = 1.0f)
 {
 	if (animationString == NULL)
 		return;
@@ -14,7 +14,7 @@ void Play(MonoObject* goObj,  MonoString* animationString)
 	if (animator != nullptr)
 	{
 		char* animationName = mono_string_to_utf8(animationString);
-		animator->Play(std::string(animationName), 0.1f);
+		animator->Play(std::string(animationName), 0.1f, speed);
 		mono_free(animationName);
 	}
 }

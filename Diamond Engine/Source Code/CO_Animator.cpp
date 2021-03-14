@@ -27,7 +27,7 @@ C_Animator::C_Animator(GameObject* _gameobject) : Component(_gameobject),
 selectedClip(nullptr), currentAnimation(nullptr), previousAnimation(nullptr),
 rootBoneUID(0u), meshRendererUID(0u), currentTimeAnimation(0u), previousTimeAnimation(0u), 
 prevAnimTime(0.0f), time(0.0f), blendTime(0.0f), blendTimeDuration(0.0f), defaultBlend(0.2f),
-playing(false), started(false), showBones(false)
+playing(false), started(false), showBones(false),animSpeed(1.0f)
 {
 	gameObject = _gameobject;
 	name = "Animator";
@@ -88,7 +88,8 @@ void C_Animator::Start()
 
 void C_Animator::Update()
 {
-	float dt = DETime::deltaTime;
+	float dt = DETime::deltaTime * animSpeed;
+	
 	if (DETime::state == GameState::PLAY)
 	{
 		if (!started) {
@@ -486,7 +487,7 @@ void C_Animator::StoreBoneMapping(GameObject* gameObject)
 	}
 }
 
-void C_Animator::Play(std::string animName, float blendDuration)
+void C_Animator::Play(std::string animName, float blendDuration, float speed)
 {
 	std::map<std::string, ResourceAnimation*>::iterator it = animations.find(animName);
 	if (it == animations.end())
@@ -498,6 +499,7 @@ void C_Animator::Play(std::string animName, float blendDuration)
 	blendTimeDuration = blendDuration;
 	blendTime = 0.0f;
 	time = 0;
+	animSpeed = speed;
 }
 
 void C_Animator::Pause()

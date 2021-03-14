@@ -35,24 +35,32 @@ public class Core : DiamondComponent
     // Dash
     private bool dashing = false;
     private float timeSinceLastDash = 0.0f;
-    //private bool dashAvaliable = true;
+    public bool dashAvaliable = true;
     private float dashingCounter = 0.0f;
     public float dashCD = 0.33f;
+    private float dashTimer;
+    private float timeBetweenDashes = .5f;
+
     //private float dashCDCounter = 0.0f;
     public float dashDuration = 0.25f;
     public float dashDistance = 1.0f;
     private float dashSpeed = 0.0f;
 
     // Shooting
-    public const float fireRate = 0.2f;
+    public float fireRate;
+    public float baseFireRate;
     private float currFireRate = 0.0f;
     public float timeSinceLastBullet = 0.0f;
     private bool shooting = false;
     public float fireRateAfterDashRecoverRatio = 2.0f;
     private float fireRateRecoverCap = 0.0f;
-
+    private float boostTime;
+    public bool triggerPressed;
+    private float triggerTimer;
+    private bool acceptShoot;
     int deathZone = 15000;
-
+    private float recoverFireRateTime;
+    private float fireRateTimer;
     public string currentAnimation;
     // Animation
     //public string idle_animation = "Idle";
@@ -63,12 +71,14 @@ public class Core : DiamondComponent
     //private Vector3 faceDirection;
 
 
+
     //NEW VARIABLES
     int verticalInput = 0;
     int horizontalInput = 0;
     Vector3 gamepadInput;
     bool canRun = false;
     bool isIdle;
+    public float normalShootSpeed;
 
     public void Update(/*int x*/)
     {
@@ -78,14 +88,27 @@ public class Core : DiamondComponent
         // Placeholder for Start() function
         if (scriptStart == true)
         {
+            triggerPressed = false;
+            triggerTimer = 0f;
+            fireRate = 0.4f;
+            baseFireRate = 0.4f;
+            fireRateTimer = 0.0f;
+            recoverFireRateTime = 0.5f;
+            normalShootSpeed = 0.75f;
+            recoverFireRateTime = 1.0f;
+            dashTimer = 0f;
             _state = State.Idle;
             newAction += DebugSomeLog;
             dashSpeed = dashDistance / dashDuration;
             currFireRate = fireRate;
             scriptStart = false;
+            dashAvaliable = true;
             canRun = true;
+            timeBetweenDashes = .5f;
+            acceptShoot = false;
             shooting = false;
             deathZone = 15000;
+            boostTime = 1.0f;
             fireRateRecoverCap = 3.0f / fireRate;
             timeSinceLastBullet = 1f; //Can shoot in first instance
             Debug.Log("Start!");
@@ -94,6 +117,7 @@ public class Core : DiamondComponent
         //--------------NEW CODE------------------//
 
         timeSinceLastBullet += Time.deltaTime;
+        timeSinceLastDash += Time.deltaTime;
 
         //Check if user is moving joystick
         verticalInput = Input.GetLeftAxisX();
@@ -101,59 +125,88 @@ public class Core : DiamondComponent
 
         gamepadInput = new Vector3(horizontalInput, -verticalInput, 0f);
 
-
-
-
-
         switch (_state)
         {
             case State.Idle:
-                if(currentAnimation != "Idle") Animator.Play(reference, "Idle");
+                if (currentAnimation != "Idle") Animator.Play(reference, "Idle");
 
-                if (gamepadInput.magnitude > deathZone)
+                if (IsJoystickMoving())
                 {
                     _state = State.Run;
                     Debug.Log("Change to Run state");
                 }
-                CanShoot();
+                ShootInput();
+                InputDash();
+
                 break;
             case State.Run:
                 if (!canRun) return;
-                if (currentAnimation != "Run") Animator.Play(reference, "Run");
-                
-                CanShoot();
-                if (gamepadInput.magnitude > deathZone)
+                if (currentAnimation != "Run")
+                {
+                    Animator.Play(reference, "Run");
+                    Audio.PlayAudio(this.reference, "Play_Footstep");
+                };
+
+                if (IsJoystickMoving())
                 {
                     RotatePlayer(gamepadInput);
                     MovePlayer();
+                    if (_state != State.Run)
+                    {
+                        Audio.StopAudio(reference);
+                    }
                 }
                 else
                 {
+                    Audio.StopAudio(this.reference);
                     _state = State.Idle;
                 }
+
+                ShootInput();
+                InputDash();
+
                 break;
             case State.Dash:
                 if (currentAnimation != "Dash") Animator.Play(reference, "Dash");
                 HandleDash();
                 break;
             case State.Shoot:
-                if (currentAnimation != "Shoot") Animator.Play(reference, "Shoot");
-                Debug.Log("State shoot");
+                if (currentAnimation != "Shoot") Animator.Play(reference, "Shoot",normalShootSpeed);
+                if (IsJoystickMoving())
+                {
+                    RotatePlayer(gamepadInput);
+                }
+
+                ShootInput();
                 HandleShoot();
+                InputDash();
                 break;
         }
 
-        Debug.Log(_state.ToString());
+        //Recover Fire rate
+        if(fireRate != baseFireRate)
+        {
+            fireRateTimer += Time.deltaTime;
+            if(fireRateTimer > recoverFireRateTime)
+            {
+                fireRate = baseFireRate;
+                normalShootSpeed = 0.75f;
+                Animator.Play(reference, "Shoot", normalShootSpeed);
+            }
+        } 
+
+
+
+        //Debug.Log(_state.ToString());
         currentAnimation = Animator.GetCurrentAnimation(reference);
 
 
-        if(Input.GetLeftTrigger() > 0)
+        if (Input.GetLeftTrigger() > 0)
         {
             newAction?.Invoke();
         }
 
-
-
+       
 
         ////--------------OLD CODE-----------------//
         //faceDirection = Vector3.zero;
@@ -183,16 +236,6 @@ public class Core : DiamondComponent
 
         //}
 
-        if ((Input.GetKey(DEKeyCode.SPACE) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN)/* && dashAvaliable == true*/)
-        {
-            Audio.StopAudio(this.reference);
-            Audio.PlayAudio(this.reference, "Play_Dash");
-            dashing = true;
-            _state = State.Dash;
-            //dashAvaliable = false;
-            dashingCounter = 0.0f;
-            //Animator.Play(reference, "Dash");
-        }
 
         //timeSinceLastBullet += Time.deltaTime; //Moved here to keep shoot cd counting while dashing
 
@@ -249,27 +292,86 @@ public class Core : DiamondComponent
         //}
     }
 
-    private void CanShoot()
+    private void InputDash()
     {
-        if(Input.GetRightTrigger() > 0 && !shooting && timeSinceLastBullet > GetCurrentFireRate())
+        if (Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN && dashAvaliable == true)
         {
-            currFireRate = fireRate;
-            timeSinceLastBullet = 0f;
-            InternalCalls.CreateBullet(shootPoint.globalPosition, shootPoint.globalRotation, shootPoint.globalScale);
-            _state = State.Shoot;
+            Debug.Log("DAsh");
+            Audio.StopAudio(this.reference);
+            Audio.PlayAudio(this.reference, "Play_Dash");
+            dashing = true;
+            _state = State.Dash;
+            dashAvaliable = false;
+            dashingCounter = 0.0f;
+            dashTimer = 0f;
+            normalShootSpeed = 1.4f;
         }
+
+        if(dashTimer < timeBetweenDashes)
+        {
+            dashTimer += Time.deltaTime;
+        }
+        else
+        {
+            dashAvaliable = true;
+        }
+    }
+
+    private void ShootInput()
+    {
+        if (Input.GetRightTrigger() > 0 && !triggerPressed)
+        {
+            triggerPressed = true;
+            shooting = true;
+            _state = State.Shoot;
+            Debug.Log(triggerTimer.ToString());
+            triggerTimer = 0f;
+            //Debug.Log("Trigger pressed");
+        }
+        else if (Input.GetRightTrigger() == 0)
+        {
+            triggerPressed = false;
+            triggerTimer += Time.deltaTime;
+            //Debug.Log("Trigger released");
+        }
+
+
     }
     private void HandleDash()
     {
-        if (dashing)
-        {
-            Dash();
-        }
+
+        Dash();
+
     }
     private void HandleShoot()
     {
-        if(timeSinceLastBullet > 0.2f) {
-            _state = State.Idle;
+        if (triggerPressed || shooting)
+        {
+            if(timeSinceLastBullet > fireRate)
+            {
+                Audio.StopAudio(reference);
+                Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot");
+                InternalCalls.CreateBullet(shootPoint.globalPosition, shootPoint.globalRotation, shootPoint.globalScale);
+                timeSinceLastBullet = 0f;
+                shooting = false;
+            }
+        }
+        else if(!shooting) // Time to cancel animation
+        {
+            if(timeSinceLastBullet > .2f)
+            {
+                //Debug.Log(timeSinceLastBullet.ToString());
+                Debug.Log("Shoot Finished");
+                if (IsJoystickMoving())
+                {
+                    _state = State.Run;
+                }
+                else
+                {
+                    _state = State.Idle;
+
+                }
+            }
         }
     }
 
@@ -333,15 +435,25 @@ public class Core : DiamondComponent
         {
             Debug.Log("Finished Dashing!");
             timeSinceLastDash = 0.0f;
-            dashing = false;
-            if (IsJoystickMoving())
+            SetFireRate(0.15f);
+            
+            if (triggerPressed)
             {
-                _state = State.Run;
+                _state = State.Shoot;
+
             }
             else
             {
-                _state = State.Idle;
 
+                if (IsJoystickMoving())
+                {
+                    _state = State.Run;
+                }
+                else
+                {
+                    _state = State.Idle;
+
+                }
             }
         }
     }
@@ -353,8 +465,14 @@ public class Core : DiamondComponent
         ret = (float)(Math.Log(timeSinceLastDash * fireRateAfterDashRecoverRatio) - Math.Log(0.01)) / fireRateRecoverCap;
 
         ret = Math.Min(ret, fireRate * 2.5f);
-
+        Debug.Log(ret.ToString());
         return ret;
+    }
+
+    private void SetFireRate(float rate)
+    {
+        fireRate = rate;
+        fireRateTimer = 0.0f;
     }
 
     private bool IsJoystickMoving()
