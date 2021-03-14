@@ -14,5 +14,9 @@ namespace DiamondEngine
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern void Resume(object gameObject);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public static extern string GetCurrentAnimation(object gameObject);
+
     }
 }

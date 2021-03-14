@@ -64,6 +64,7 @@ public:
 	void Play(std::string animName, float blendDuration = 0.3f);
 	void Pause();
 	void Resume();
+	std::string GetCurrentAnimation();
 
 public:
 	GameObject* rootBone = nullptr;

@@ -510,6 +510,15 @@ void C_Animator::Resume()
 	active = true;
 }
 
+std::string C_Animator::GetCurrentAnimation()
+{
+	if (currentAnimation != nullptr) {
+		return currentAnimation->animationName;
+	}
+	return "";
+
+}
+
 void C_Animator::AddAnimation(ResourceAnimation* anim)
 {
 	if (anim != nullptr) 

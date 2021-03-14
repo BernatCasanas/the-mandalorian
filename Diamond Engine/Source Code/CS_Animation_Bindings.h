@@ -14,7 +14,7 @@ void Play(MonoObject* goObj,  MonoString* animationString)
 	if (animator != nullptr)
 	{
 		char* animationName = mono_string_to_utf8(animationString);
-		animator->Play(std::string(animationName), 0.2f);
+		animator->Play(std::string(animationName), 0.1f);
 		mono_free(animationName);
 	}
 }
@@ -40,4 +40,18 @@ void Resume(MonoObject* goObj)
 		animator->Resume();
 	}
 }
+MonoString* GetCurrentAnimation(MonoObject* goObj)
+{
+	GameObject* gameObject = EngineExternal->moduleMono->GameObject_From_CSGO(goObj);
+	C_Animator* animator = dynamic_cast<C_Animator*>(gameObject->GetComponent(Component::TYPE::Animator));
+
+	if (animator != nullptr)
+	{
+		std::string animationName = animator->GetCurrentAnimation();
+		return mono_string_new(EngineExternal->moduleMono->domain, animationName.c_str());
+		
+	}
+}
+
+
 
