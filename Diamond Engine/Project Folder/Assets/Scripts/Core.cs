@@ -173,7 +173,7 @@ public class Core : DiamondComponent
         }
 
         Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot_Mando");
-        InternalCalls.CreateBullet(shootPoint.globalPosition, shootPoint.globalRotation, shootPoint.globalScale);
+        InternalCalls.CreateBullet(shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         Input.PlayHaptic(1f,30);
 
         timeSinceLastBullet = 0.0f;
