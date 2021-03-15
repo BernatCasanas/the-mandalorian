@@ -32,9 +32,14 @@ public class Core : DiamondComponent
     public const float fireRate = 0.2f;
     private float currFireRate = 0.0f;
     private float timeSinceLastBullet = 0.0f;
+    public const float secondaryRate = 0.2f;
+    private float currSecondaryRate = 0.0f;
+    private float timeSinceLastSecondary = 0.0f;
+
     private bool shooting = false;
     public float fireRateAfterDashRecoverRatio = 2.0f;
     private float fireRateRecoverCap = 0.0f;
+    private float secondaryRateRecoverCap = 0.0f;
 
 
     // Animation
@@ -51,6 +56,10 @@ public class Core : DiamondComponent
             currFireRate = fireRate;
             scriptStart = false;
             fireRateRecoverCap = 3.0f / fireRate;
+
+            currSecondaryRate = secondaryRate;
+            scriptStart = false;
+            secondaryRateRecoverCap = 3.0f / secondaryRate;
             Debug.Log("Start!");
         }
 
@@ -109,6 +118,7 @@ public class Core : DiamondComponent
         }
 
         timeSinceLastBullet += Time.deltaTime; //Moved here to keep shoot cd counting while dashing
+        timeSinceLastSecondary += Time.deltaTime; //Moved here to keep shoot cd counting while dashing
 
         if (dashing == true)
         {
@@ -160,6 +170,12 @@ public class Core : DiamondComponent
                 Shoot();
             }
 
+            //secondary weapon
+            if ((Input.GetMouseClick(MouseButton.MIDDLE) == KeyState.KEY_DOWN || Input.GetLeftTrigger() > 0))
+            {
+                Debug.Log("fire");
+                Secondary();
+            }
         }
     }
 
@@ -177,6 +193,25 @@ public class Core : DiamondComponent
         Input.PlayHaptic(1f,30);
 
         timeSinceLastBullet = 0.0f;
+        //Animator.Play(reference, shoot_animation);
+        Animator.Play(gameObject, "Shoot");
+
+    }
+
+    private void Secondary()
+    {
+        currSecondaryRate = GetCurrentSecondaryRate();
+
+        if (timeSinceLastSecondary < currSecondaryRate)
+        {
+            return;
+        }
+
+        Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot_Mando");
+        InternalCalls.CreateBullet(shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+        Input.PlayHaptic(1f, 30);
+
+        timeSinceLastSecondary = 0.0f;
         //Animator.Play(reference, shoot_animation);
         Animator.Play(gameObject, "Shoot");
 
@@ -213,4 +248,15 @@ public class Core : DiamondComponent
         return ret;
     }
 
+    private float GetCurrentSecondaryRate()
+    {
+        float ret = secondaryRate;
+
+        ret = (float)(Math.Log(timeSinceLastDash * fireRateAfterDashRecoverRatio) - Math.Log(0.01)) / secondaryRateRecoverCap;
+
+        ret = Math.Min(ret, secondaryRate * 2.5f);
+
+        return ret;
+
+    }
 }
