@@ -48,6 +48,7 @@ public class Core : DiamondComponent
     private bool shooting = false;
     public float fireRateAfterDashRecoverRatio = 2.0f;
     private float fireRateRecoverCap = 0.0f;
+    public float fireRateMultCap;
     private bool rightTriggerPressed;
     private float rightTriggerTimer;
     private int deathZone;
@@ -70,24 +71,33 @@ public class Core : DiamondComponent
         // Placeholder for Start() function
         if (scriptStart == true)
         {
+            Debug.Log("Start!");
+            scriptStart = false;
+            _state = State.Idle;
+
+            //Animation
+            shootAnimationTotalTime = 0.175f;
+
+            //Shooting
             rightTriggerPressed = false;
             rightTriggerTimer = 0f;
             fireRate = 0.15f;
             baseFireRate = 0.15f;
-            shootAnimationTotalTime = 0.2f;
             normalShootSpeed = shootAnimationTotalTime / fireRate;
             fireRateAfterDashRecoverRatio = 2f;
-            dashTimer = 0f;
-            dashSpeed = dashDistance / dashDuration;
-            scriptStart = false;
-            dashAvaliable = true;
-            timeBetweenDashes = .5f;
             shooting = false;
-            deathZone = 15000;
             fireRateRecoverCap = 3.0f / baseFireRate;
             timeSinceLastBullet = 1f; //Can shoot in first instance
-            _state = State.Idle;
-            Debug.Log("Start!");
+            fireRateMultCap = 2.5f;
+
+            // Dash
+            dashTimer = 0f;
+            dashSpeed = dashDistance / dashDuration;
+            dashAvaliable = true;
+            timeBetweenDashes = .5f;
+
+            //Controller
+            deathZone = 15000;
         }
 
         //Timers
@@ -308,7 +318,7 @@ public class Core : DiamondComponent
 
         ret = (float)(Math.Log(timeSinceLastDash * fireRateAfterDashRecoverRatio) - Math.Log(0.01)) / fireRateRecoverCap;
 
-        ret = Math.Min(ret, baseFireRate * 2.5f);
+        ret = Math.Min(ret, baseFireRate * fireRateMultCap);
         Debug.Log("New fire rate: " + ret.ToString());
 
         return ret;
