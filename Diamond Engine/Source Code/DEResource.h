@@ -51,6 +51,8 @@ public:
 	char name[32];
 
 protected:
+
+protected:
 	int uid;
 	std::string assetsFile;
 	std::string libraryFile;
