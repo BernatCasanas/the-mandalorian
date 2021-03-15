@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 
 using DiamondEngine;
 
+
 public class Core : DiamondComponent
 {
     enum State
@@ -79,6 +80,7 @@ public class Core : DiamondComponent
     bool canRun = false;
     bool isIdle;
     public float normalShootSpeed;
+    private float shootAnimationTotalTime;
 
     public void Update(/*int x*/)
     {
@@ -90,12 +92,13 @@ public class Core : DiamondComponent
         {
             triggerPressed = false;
             triggerTimer = 0f;
-            fireRate = 0.4f;
-            baseFireRate = 0.4f;
+            fireRate = 0.15f;
+            baseFireRate = 0.15f;
             fireRateTimer = 0.0f;
             recoverFireRateTime = 0.5f;
-            normalShootSpeed = 0.75f;
-            recoverFireRateTime = 1.0f;
+            shootAnimationTotalTime = 0.2f;
+            normalShootSpeed = shootAnimationTotalTime / fireRate;
+            fireRateAfterDashRecoverRatio = 2f;
             dashTimer = 0f;
             _state = State.Idle;
             newAction += DebugSomeLog;
@@ -109,7 +112,7 @@ public class Core : DiamondComponent
             shooting = false;
             deathZone = 15000;
             boostTime = 1.0f;
-            fireRateRecoverCap = 3.0f / fireRate;
+            fireRateRecoverCap = 3.0f / baseFireRate;
             timeSinceLastBullet = 1f; //Can shoot in first instance
             Debug.Log("Start!");
         }
@@ -171,7 +174,7 @@ public class Core : DiamondComponent
                 HandleDash();
                 break;
             case State.Shoot:
-                if (currentAnimation != "Shoot") Animator.Play(reference, "Shoot",normalShootSpeed);
+                if (currentAnimation != "Shoot") Animator.Play(reference, "Shoot", normalShootSpeed);
                 if (IsJoystickMoving())
                 {
                     RotatePlayer(gamepadInput);
@@ -183,20 +186,6 @@ public class Core : DiamondComponent
                 break;
         }
 
-        //Recover Fire rate
-        if(fireRate != baseFireRate)
-        {
-            fireRateTimer += Time.deltaTime;
-            if(fireRateTimer > recoverFireRateTime)
-            {
-                fireRate = baseFireRate;
-                normalShootSpeed = 0.75f;
-                Animator.Play(reference, "Shoot", normalShootSpeed);
-            }
-        } 
-
-
-
         //Debug.Log(_state.ToString());
         currentAnimation = Animator.GetCurrentAnimation(reference);
 
@@ -206,90 +195,92 @@ public class Core : DiamondComponent
             newAction?.Invoke();
         }
 
-       
 
-        ////--------------OLD CODE-----------------//
-        //faceDirection = Vector3.zero;
-        //Vector3 joyRot = new Vector3(Input.GetLeftAxisY(), -Input.GetLeftAxisX(), 0);
-        //int joyStickSensibility = 15000;
+        {
+            ////--------------OLD CODE-----------------//
+            //faceDirection = Vector3.zero;
+            //Vector3 joyRot = new Vector3(Input.GetLeftAxisY(), -Input.GetLeftAxisX(), 0);
+            //int joyStickSensibility = 15000;
 
-        //if (joyRot.magnitude > joyStickSensibility && dashing == false)
-        //{
-        //    RotatePlayer(joyRot);
+            //if (joyRot.magnitude > joyStickSensibility && dashing == false)
+            //{
+            //    RotatePlayer(joyRot);
 
-        //    if (Input.GetMouseX() != 0 && reference != null)
-        //    {
-        //        reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -Input.GetMouseX() * mouseSens * Time.deltaTime) * reference.localRotation;
-        //    }
+            //    if (Input.GetMouseX() != 0 && reference != null)
+            //    {
+            //        reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -Input.GetMouseX() * mouseSens * Time.deltaTime) * reference.localRotation;
+            //    }
 
-        //    faceDirection = reference.GetForward();
-        //}
+            //    faceDirection = reference.GetForward();
+            //}
 
-        //if (dashAvaliable == false && dashing == false)
-        //{
-        //    dashCDCounter += Time.deltaTime;
-        //    if (dashCDCounter > dashCD)
-        //    {
-        //        dashCDCounter = 0.0f;
-        //        dashAvaliable = true;
-        //    }
+            //if (dashAvaliable == false && dashing == false)
+            //{
+            //    dashCDCounter += Time.deltaTime;
+            //    if (dashCDCounter > dashCD)
+            //    {
+            //        dashCDCounter = 0.0f;
+            //        dashAvaliable = true;
+            //    }
 
-        //}
-
-
-        //timeSinceLastBullet += Time.deltaTime; //Moved here to keep shoot cd counting while dashing
-
-        //if (dashing == true)
-        //{
-        //    Dash();
-        //}
-        //else
-        //{
-        //    if (shooting == false && timeSinceLastBullet > 0.3f)
-        //        reference.localPosition += faceDirection.normalized * movementSpeed * Time.deltaTime;
-
-        //    if (faceDirection != Vector3.zero && shooting == false)
-        //    {
-        //        if (walking == false)
-        //        {
-        //            Audio.PlayAudio(this.reference, "Play_Footstep");
-        //            Animator.Play(reference, "Run");
-        //        }
-        //        walking = true;
-        //    }
-        //    else
-        //    {
-        //        if (walking == true)
-        //        {
-        //            Audio.StopAudio(this.reference);
-        //            //Animator.Play(reference, idle_animation);
-        //            Animator.Play(reference, "Idle");
-        //        }
-        //        walking = false;
-        //    }
+            //}
 
 
-        //    timeSinceLastDash += Time.deltaTime;
+            //timeSinceLastBullet += Time.deltaTime; //Moved here to keep shoot cd counting while dashing
+
+            //if (dashing == true)
+            //{
+            //    Dash();
+            //}
+            //else
+            //{
+            //    if (shooting == false && timeSinceLastBullet > 0.3f)
+            //        reference.localPosition += faceDirection.normalized * movementSpeed * Time.deltaTime;
+
+            //    if (faceDirection != Vector3.zero && shooting == false)
+            //    {
+            //        if (walking == false)
+            //        {
+            //            Audio.PlayAudio(this.reference, "Play_Footstep");
+            //            Animator.Play(reference, "Run");
+            //        }
+            //        walking = true;
+            //    }
+            //    else
+            //    {
+            //        if (walking == true)
+            //        {
+            //            Audio.StopAudio(this.reference);
+            //            //Animator.Play(reference, idle_animation);
+            //            Animator.Play(reference, "Idle");
+            //        }
+            //        walking = false;
+            //    }
 
 
-        //    //Shooting
-        //    if ((Input.GetMouseClick(MouseButton.LEFT) == KeyState.KEY_DOWN || Input.GetRightTrigger() > 0) && shooting == false)
-        //    {
-        //        shooting = true;
-        //        currFireRate = fireRate;
-        //    }
-        //    else if ((Input.GetMouseClick(MouseButton.LEFT) == KeyState.KEY_UP || Input.GetRightTrigger() == 0) && shooting == true)
-        //    {
-        //        shooting = false;
-        //        Animator.Play(reference, "Idle");
-        //    }
+            //    timeSinceLastDash += Time.deltaTime;
 
-        //    if (shooting == true)
-        //    {
-        //        Shoot();
-        //    }
 
-        //}
+            //    //Shooting
+            //    if ((Input.GetMouseClick(MouseButton.LEFT) == KeyState.KEY_DOWN || Input.GetRightTrigger() > 0) && shooting == false)
+            //    {
+            //        shooting = true;
+            //        currFireRate = fireRate;
+            //    }
+            //    else if ((Input.GetMouseClick(MouseButton.LEFT) == KeyState.KEY_UP || Input.GetRightTrigger() == 0) && shooting == true)
+            //    {
+            //        shooting = false;
+            //        Animator.Play(reference, "Idle");
+            //    }
+
+            //    if (shooting == true)
+            //    {
+            //        Shoot();
+            //    }
+
+            //}
+        }
+
     }
 
     private void InputDash()
@@ -304,10 +295,9 @@ public class Core : DiamondComponent
             dashAvaliable = false;
             dashingCounter = 0.0f;
             dashTimer = 0f;
-            normalShootSpeed = 1.4f;
         }
 
-        if(dashTimer < timeBetweenDashes)
+        if (dashTimer < timeBetweenDashes)
         {
             dashTimer += Time.deltaTime;
         }
@@ -323,6 +313,7 @@ public class Core : DiamondComponent
         {
             triggerPressed = true;
             shooting = true;
+            fireRate = GetCurrentFireRate();
             _state = State.Shoot;
             Debug.Log(triggerTimer.ToString());
             triggerTimer = 0f;
@@ -347,18 +338,29 @@ public class Core : DiamondComponent
     {
         if (triggerPressed || shooting)
         {
-            if(timeSinceLastBullet > fireRate)
+            if (timeSinceLastBullet > fireRate)
             {
                 Audio.StopAudio(reference);
                 Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot");
                 InternalCalls.CreateBullet(shootPoint.globalPosition, shootPoint.globalRotation, shootPoint.globalScale);
                 timeSinceLastBullet = 0f;
+
+                fireRate = GetCurrentFireRate();
+                float newShootSpeed = shootAnimationTotalTime / fireRate;
+                Debug.Log("New shoot speed : " + newShootSpeed.ToString());
+
+                if (newShootSpeed != normalShootSpeed)
+                {
+                    normalShootSpeed = newShootSpeed;
+                    Animator.Play(reference, "Shoot", normalShootSpeed);
+                }
+
                 shooting = false;
             }
         }
-        else if(!shooting) // Time to cancel animation
+        else if (!shooting) // Time to cancel animation
         {
-            if(timeSinceLastBullet > .2f)
+            if (timeSinceLastBullet > fireRate * 0.5f)
             {
                 //Debug.Log(timeSinceLastBullet.ToString());
                 Debug.Log("Shoot Finished");
@@ -375,7 +377,8 @@ public class Core : DiamondComponent
         }
     }
 
-    private void DebugSomeLog() {
+    private void DebugSomeLog()
+    {
         Debug.Log("Im called from an action");
     }
 
@@ -435,8 +438,7 @@ public class Core : DiamondComponent
         {
             Debug.Log("Finished Dashing!");
             timeSinceLastDash = 0.0f;
-            SetFireRate(0.15f);
-            
+
             if (triggerPressed)
             {
                 _state = State.Shoot;
@@ -460,12 +462,13 @@ public class Core : DiamondComponent
 
     private float GetCurrentFireRate()
     {
-        float ret = fireRate;
+        float ret = baseFireRate;
 
         ret = (float)(Math.Log(timeSinceLastDash * fireRateAfterDashRecoverRatio) - Math.Log(0.01)) / fireRateRecoverCap;
 
-        ret = Math.Min(ret, fireRate * 2.5f);
-        Debug.Log(ret.ToString());
+        ret = Math.Min(ret, baseFireRate * 2.5f);
+        Debug.Log("New fire rate: " + ret.ToString());
+
         return ret;
     }
 
