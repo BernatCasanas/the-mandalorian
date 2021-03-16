@@ -206,9 +206,9 @@ public class Core : DiamondComponent
         {
             return;
         }
-
+        Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
         Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot_Mando");
-        InternalCalls.CreateBullet(shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+        InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, scale);
         Input.PlayHaptic(1f, 30);
 
         timeSinceLastSecondary = 0.0f;
