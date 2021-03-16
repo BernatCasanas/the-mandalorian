@@ -282,7 +282,6 @@ void C_Script::LoadScriptData(const char* scriptName)
 	methods.clear();
 	fields.clear();
 
-
 	MonoClass* klass = mono_class_from_name(EngineExternal->moduleMono->image, USER_SCRIPTS_NAMESPACE, scriptName);
 
 	if (klass == nullptr)

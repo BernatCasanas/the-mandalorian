@@ -16,13 +16,13 @@ namespace DiamondEngine
             pointer = UIntPtr.Zero;
         }
 
-        public GameObject(string _name, UIntPtr ptr, UIntPtr transPtr)
+        public GameObject(string _name, UIntPtr ptr, UIntPtr transPTR)
         {
             name = _name;
             pointer = ptr;
 
             transform = new Transform();
-            transform.pointer = transPtr;
+            transform.pointer = transPTR;
             //Debug.Log(transform.type.ToString());
             //Debug.Log(ptr.ToString());
             //Debug.Log("Created: " + UID.ToString());
@@ -37,6 +37,7 @@ namespace DiamondEngine
             {
                 retValue = DiamondComponent.componentTable[typeof(T)];
             }
+
             return TryGetComponent<T>(typeof(T).ToString(), (int)retValue);
         }
 

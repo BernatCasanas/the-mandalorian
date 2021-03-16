@@ -105,7 +105,6 @@ bool M_MonoManager::Init()
 
 	mono_add_internal_call("DiamondEngine.Time::get_deltaTime", GetDT);
 	
-
 	mono_add_internal_call("DiamondEngine.SceneManager::LoadScene", CS_LoadScene);
 	mono_add_internal_call("DiamondEngine.Audio::PlayAudio", PlayAudio);
 	mono_add_internal_call("DiamondEngine.Audio::StopAudio", StopAudio);
@@ -217,7 +216,9 @@ void M_MonoManager::DebugAllFields(const char* className, std::vector<Serialized
 		{
 			SerializedField pushField = SerializedField(field, obj, script);
 
-			_data.push_back(pushField);
+			if (pushField.displayName != "##pointer" && pushField.displayName != "##type" && pushField.displayName != "##componentTable")
+				_data.push_back(pushField);
+
 			//LOG(LogType::L_NORMAL, mono_field_full_name(method2));
 		}
 	}

@@ -24,6 +24,9 @@ namespace DiamondEngine
         RIGIDBODY,
         COLLIDER,
         ANIMATOR,
+        NAVIGATION,
+        BOXCOLLIDER,
+        MESHCOLLIDER,
         COUNT
     }
 

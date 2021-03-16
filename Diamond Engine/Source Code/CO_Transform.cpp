@@ -27,7 +27,7 @@ C_Transform::C_Transform() : Component(nullptr), updateTransform(false), sendCom
 
 	oldTransform.SetIdentity();
 
-	name = "Transform";
+	name = "TRANSFORM";
 }
 
 C_Transform::C_Transform(GameObject* _gm/*, float3 _position, Quat _rotation, float3 _localScale*/): Component(_gm), updateTransform(false), sendCommand(false)/*,
@@ -45,7 +45,7 @@ position(_position), rotation(_rotation), localScale(_localScale)*/
 
 	oldTransform.SetIdentity();
 
-	name = "Transform";
+	name = "TRANSFORM";
 }
 
 C_Transform::~C_Transform()
