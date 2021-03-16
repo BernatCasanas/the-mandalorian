@@ -19,8 +19,8 @@ public class BH_Bullet : DiamondComponent
 
         gameObject.transform.localPosition += gameObject.transform.GetForward() * (speed * Time.deltaTime);
 
-        yVel -= Time.deltaTime / 15.0f;
-        gameObject.transform.localPosition += (Vector3.up * yVel);
+        //yVel -= Time.deltaTime / 15.0f;
+        //gameObject.transform.localPosition += (Vector3.up * yVel);
 
         if (currentLifeTime >= maxLifeTime)
         {
