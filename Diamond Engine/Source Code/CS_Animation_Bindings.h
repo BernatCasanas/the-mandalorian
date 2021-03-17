@@ -43,7 +43,7 @@ void Resume(MonoObject* goObj)
 MonoString* GetCurrentAnimation(MonoObject* goObj)
 {
 	GameObject* gameObject = EngineExternal->moduleMono->GameObject_From_CSGO(goObj);
-	C_Animator* animator = dynamic_cast<C_Animator*>(gameObject->GetComponent(Component::TYPE::Animator));
+	C_Animator* animator = dynamic_cast<C_Animator*>(gameObject->GetComponent(Component::TYPE::ANIMATOR));
 
 	if (animator != nullptr)
 	{

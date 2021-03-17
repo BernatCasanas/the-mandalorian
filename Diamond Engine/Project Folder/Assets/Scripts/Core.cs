@@ -30,12 +30,12 @@ public class Core : DiamondComponent
     private bool walking = false;
 
     // Dash
-    private bool dashing = false;
+    //private bool dashing = false;
     private float timeSinceLastDash = 0.0f;
     private bool dashAvaliable = true;
     private float dashingCounter = 0.0f;
     public float dashCD = 0.33f;
-    private float dashCDCounter = 0.0f;
+    //private float dashCDCounter = 0.0f;
     public float dashDuration = 0.25f;
     public float dashDistance = 1.0f;
     private float dashSpeed = 0.0f;
@@ -43,11 +43,8 @@ public class Core : DiamondComponent
     private float dashTimer;
     private float timeBetweenDashes = .5f;
 
-    private float dashTimer;
-    private float timeBetweenDashes = .5f;
-
     // Shooting
-    public const float fireRate = 0.2f;
+    public float fireRate = 0.2f;
     public float baseFireRate;
     private float currFireRate = 0.0f;
     private float timeSinceLastBullet = 0.0f;
@@ -115,9 +112,6 @@ public class Core : DiamondComponent
             deathZone = 15000;
         }
 
-
-        int joyStickSensibility = 15000;
-
         //Check if user is moving joystick
         verticalInput = Input.GetLeftAxisX();
         horizontalInput = Input.GetLeftAxisY();
@@ -126,7 +120,7 @@ public class Core : DiamondComponent
         switch (_state)
         {
             case State.Idle:
-                if (currentAnimation != "Idle") Animator.Play(reference, "Idle");
+                if (currentAnimation != "Idle") Animator.Play(gameObject, "Idle");
 
                 if (IsJoystickMoving())
                 {
@@ -140,8 +134,8 @@ public class Core : DiamondComponent
             case State.Run:
                 if (currentAnimation != "Run")
                 {
-                    Animator.Play(reference, "Run");
-                    Audio.PlayAudio(this.reference, "Play_Footstep");
+                    Animator.Play(gameObject, "Run");
+                    Audio.PlayAudio(this.gameObject, "Play_Footstep");
                 };
 
                 if (IsJoystickMoving())
@@ -150,12 +144,12 @@ public class Core : DiamondComponent
                     MovePlayer();
                     if (_state != State.Run)
                     {
-                        Audio.StopAudio(reference);
+                        Audio.StopAudio(gameObject);
                     }
                 }
                 else
                 {
-                    Audio.StopAudio(this.reference);
+                    Audio.StopAudio(this.gameObject);
                     _state = State.Idle;
                 }
 
@@ -164,11 +158,11 @@ public class Core : DiamondComponent
 
                 break;
             case State.Dash:
-                if (currentAnimation != "Dash") Animator.Play(reference, "Dash");
+                if (currentAnimation != "Dash") Animator.Play(gameObject, "Dash");
                 HandleDash();
                 break;
             case State.Shoot:
-                if (currentAnimation != "Shoot") Animator.Play(reference, "Shoot", normalShootSpeed);
+                if (currentAnimation != "Shoot") Animator.Play(gameObject, "Shoot", normalShootSpeed);
                 if (IsJoystickMoving())
                 {
                     RotatePlayer(gamepadInput);
@@ -180,7 +174,7 @@ public class Core : DiamondComponent
                 break;
 
             case State.SecShoot:
-            if (currentAnimation != "Shoot") Animator.Play(reference, "Shoot", normalShootSpeed);
+            if (currentAnimation != "Shoot") Animator.Play(gameObject, "Shoot", normalShootSpeed);
                 Debug.Log("fire");
                 if (IsJoystickMoving())
                 {
@@ -190,7 +184,7 @@ public class Core : DiamondComponent
                 break;
         }
 
-        currentAnimation = Animator.GetCurrentAnimation(reference);
+        currentAnimation = Animator.GetCurrentAnimation(gameObject);
     }
 
     private void Shoot()
@@ -264,7 +258,7 @@ public class Core : DiamondComponent
         {
             Debug.Log("Finished Dashing!");
             timeSinceLastDash = 0.0f;
-            dashing = false;
+            //dashing = false;
             if(walking)
                 Animator.Play(gameObject, "Run");
             else
@@ -275,8 +269,8 @@ public class Core : DiamondComponent
     {
         if (Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN && dashAvaliable == true)
         {
-            Audio.StopAudio(this.reference);
-            Audio.PlayAudio(this.reference, "Play_Dash");
+            Audio.StopAudio(this.gameObject);
+            Audio.PlayAudio(this.gameObject, "Play_Dash");
             dashAvaliable = false;
             dashingCounter = 0.0f;
             dashTimer = 0f;
@@ -299,9 +293,9 @@ public class Core : DiamondComponent
         {
             if (timeSinceLastBullet > fireRate)
             {
-                Audio.StopAudio(reference);
+                Audio.StopAudio(gameObject);
                 Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot");
-                InternalCalls.CreateBullet(shootPoint.globalPosition, shootPoint.globalRotation, shootPoint.globalScale);
+                InternalCalls.CreateBullet(shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
                 timeSinceLastBullet = 0f;
 
                 fireRate = GetCurrentFireRate();
@@ -311,7 +305,7 @@ public class Core : DiamondComponent
                 if (newShootSpeed != normalShootSpeed)
                 {
                     normalShootSpeed = newShootSpeed;
-                    Animator.Play(reference, "Shoot", normalShootSpeed);
+                    Animator.Play(gameObject, "Shoot", normalShootSpeed);
                 }
 
                 shooting = false;
@@ -339,7 +333,7 @@ public class Core : DiamondComponent
         if (dashingCounter < dashDuration)
         {
             dashingCounter += Time.deltaTime;
-            reference.localPosition += reference.GetForward().normalized * dashSpeed * Time.deltaTime;
+            gameObject.transform.localPosition += gameObject.transform.GetForward().normalized * dashSpeed * Time.deltaTime;
 
         }
         else
@@ -369,7 +363,7 @@ public class Core : DiamondComponent
 
     private void MovePlayer()
     {
-        reference.localPosition += reference.GetForward() * movementSpeed * Time.deltaTime;
+        gameObject.transform.localPosition += gameObject.transform.GetForward() * movementSpeed * Time.deltaTime;
     }
     
     private void RotatePlayer(Vector3 gamepadInput)
@@ -391,7 +385,7 @@ public class Core : DiamondComponent
         //Convert angle from world view to orthogonal view
         angle += 0.785398f; //Rotate 45 degrees to the right
 
-        reference.localRotation = Quaternion.RotateAroundAxis(Vector3.up, (float)-angle);
+        gameObject.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, (float)-angle);
     }
 
     private float GetCurrentFireRate()
