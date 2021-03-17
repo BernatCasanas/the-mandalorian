@@ -857,7 +857,7 @@
    {
     "Id": "3157003241",
     "Language": "SFX",
-    "Hash": "2962570598",
+    "Hash": "1609461579",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Test",
     "ShortName": "Test",
     "Path": "Test.bnk",
@@ -872,29 +872,71 @@
         "Id": "130253113",
         "Language": "SFX",
         "ShortName": "ES_Hydra - Dream Cave.wav",
-        "Path": "SFX\\ES_Hydra - Dream Cave_D79FB2B7.wem"
+        "Path": "SFX\\ES_Hydra - Dream Cave_9EDFC787.wem"
        },
        {
         "Id": "252835323",
         "Language": "SFX",
         "ShortName": "OST 8- Percussion.wav",
-        "Path": "SFX\\OST 8- Percussion_D79FB2B7.wem"
+        "Path": "SFX\\OST 8- Percussion_9EDFC787.wem"
+       },
+       {
+        "Id": "296637589",
+        "Language": "SFX",
+        "ShortName": "OST Horns.wav",
+        "Path": "SFX\\OST Horns_9EDFC787.wem"
        }
       ],
       "SwitchContainers": [
        {
         "SwitchValue": "{D651359C-1684-4E02-8D22-5225AA612899}",
-        "Media": [
+        "Children": [
          {
-          "Id": "130253113"
+          "SwitchValue": "{BA4F0BB3-ECC2-4F1E-BDF6-D3A727FBFF1E}",
+          "Media": [
+           {
+            "Id": "130253113"
+           }
+          ]
          }
         ]
        },
        {
         "SwitchValue": "{3CD06F62-EFC8-4105-92E8-B8AFE607AE27}",
-        "Media": [
+        "Children": [
          {
-          "Id": "252835323"
+          "SwitchValue": "{BA4F0BB3-ECC2-4F1E-BDF6-D3A727FBFF1E}",
+          "Media": [
+           {
+            "Id": "252835323"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{D651359C-1684-4E02-8D22-5225AA612899}",
+        "Children": [
+         {
+          "SwitchValue": "{14FF8C72-F46D-4D5D-90BD-E12CD2053E44}",
+          "Media": [
+           {
+            "Id": "296637589"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{3CD06F62-EFC8-4105-92E8-B8AFE607AE27}",
+        "Children": [
+         {
+          "SwitchValue": "{14FF8C72-F46D-4D5D-90BD-E12CD2053E44}",
+          "Media": [
+           {
+            "Id": "130253113"
+           }
+          ]
          }
         ]
        }
@@ -937,6 +979,25 @@
         "Id": "2044049779",
         "Name": "Dead",
         "ObjectPath": "\\States\\Default Work Unit\\Player_State\\Dead"
+       }
+      ]
+     }
+    ],
+    "SwitchGroups": [
+     {
+      "Id": "3066061883",
+      "Name": "Player_Action",
+      "ObjectPath": "\\Switches\\Default Work Unit\\Player_Action",
+      "Switches": [
+       {
+        "Id": "2764240573",
+        "Name": "Combat",
+        "ObjectPath": "\\Switches\\Default Work Unit\\Player_Action\\Combat"
+       },
+       {
+        "Id": "1823678183",
+        "Name": "Exploring",
+        "ObjectPath": "\\Switches\\Default Work Unit\\Player_Action\\Exploring"
        }
       ]
      }
@@ -1455,7 +1516,7 @@
    {
     "Id": "3991942870",
     "Language": "SFX",
-    "Hash": "2580566428",
+    "Hash": "1381827299",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Music",
     "ShortName": "Music",
     "Path": "Music.bnk",
@@ -1698,7 +1759,7 @@
       "Id": "130253113",
       "Language": "SFX",
       "ShortName": "ES_Hydra - Dream Cave.wav",
-      "Path": "SFX\\ES_Hydra - Dream Cave_D79FB2B7.wem"
+      "Path": "SFX\\ES_Hydra - Dream Cave_9EDFC787.wem"
      }
     ],
     "GameParameters": [
