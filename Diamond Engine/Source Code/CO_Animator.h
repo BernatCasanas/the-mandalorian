@@ -63,9 +63,10 @@ private:
 	ResourceAnimation* ClipToAnimation(AnimationClip clip);
 
 public:
-	void Play(std::string animName, float blendDuration = 0.3f);
+	void Play(std::string animName, float blendDuration = 0.2f, float speed = 1.0f);
 	void Pause();
 	void Resume();
+	std::string GetCurrentAnimation();
 
 public:
 	GameObject* rootBone = nullptr;
@@ -79,6 +80,8 @@ public:
 private:
 	bool started;
 	bool showBones;
+
+	float animSpeed;
 
 	float prevAnimTime;
 	float time;
