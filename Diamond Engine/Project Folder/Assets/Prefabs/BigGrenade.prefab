@@ -1,0 +1,88 @@
+{
+    "assets_path": "Assets\/Prefabs\/BigGrenade.prefab",
+    "Game Objects": [
+        {
+            "name": "BigGrenade",
+            "Active": true,
+            "Position": [
+                -4.4951496124267578,
+                7.9846372604370117,
+                -1.4346048831939697
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                0.20000000298023224,
+                0.1999991238117218,
+                0.1999991238117218
+            ],
+            "UID": 309894154,
+            "PrefabID": 142833782,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/965117995.mmh",
+                    "UID": 965117995,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "bigGrenade",
+                    "speed": 10,
+                    "yVel": 0,
+                    "detonationTime": 2
+                }
+            ]
+        }
+    ]
+}

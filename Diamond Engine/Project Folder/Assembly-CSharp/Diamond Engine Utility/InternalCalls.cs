@@ -13,11 +13,18 @@ namespace DiamondEngine
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern void CreateBullet(object position, object rotation, object scale);
 
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public static extern void CreateBomb(object position, object rotation, object scale);
+
         //[MethodImplAttribute(MethodImplOptions.InternalCall)]
         //public static extern void UpdateCppGO(int UID, Vector3 position, Quaternion quat, Vector3 scale);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern void Destroy(object go);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public static extern void CreatePrefab(object prefab_path, object position, object rotation, object scale);
     }
     public class Input
     {
@@ -54,7 +61,10 @@ namespace DiamondEngine
         public static extern int GetLeftTrigger();
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public static extern int GetRightTrigger();
+        public static extern int GetRightTrigger();  
+        
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public static extern void PlayHaptic(float strength, int length);
     }
     public class SceneManager
     {

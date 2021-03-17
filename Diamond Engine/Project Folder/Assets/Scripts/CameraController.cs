@@ -18,9 +18,9 @@ public class CameraController : DiamondComponent
 	public void Update()
 	{
         Vector3 offset = new Vector3(x, y, z);
-        Vector3 desiredPosition = target.localPosition + offset;
-        Vector3 smoothPosition = Vector3.Lerp(reference.localPosition, desiredPosition, 1.0f - (float)Math.Pow(smoothSpeed, Time.deltaTime));
-        reference.localPosition = smoothPosition;
+        Vector3 desiredPosition = target.transform.localPosition + offset;
+        Vector3 smoothPosition = Vector3.Lerp(gameObject.transform.localPosition, desiredPosition, 1.0f - (float)Math.Pow(smoothSpeed, Time.deltaTime));
+        gameObject.transform.localPosition = smoothPosition;
         if (Input.GetKey(DEKeyCode.N) == KeyState.KEY_DOWN)
         {
             zooming = true;

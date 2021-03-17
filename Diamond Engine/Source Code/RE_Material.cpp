@@ -205,6 +205,8 @@ void ResourceMaterial::SetShader(ResourceShader* res)
 #ifndef STANDALONE
 void ResourceMaterial::DrawEditor()
 {
+	ImGui::InputText("Name", name, IM_ARRAYSIZE(name));
+
 	ImGui::Text("Drop here to change shader");
 	if (ImGui::BeginDragDropTarget())
 	{

@@ -19,11 +19,19 @@ public:
 	void Draw() override;
 
 	void DrawFileTree(AssetDir& file);
+	void DrawCreationWindow();
 	void DrawCreationPopup(const char* popName, const char* dotExtension, std::function<void(const char*)> f);
+
+	void DrawPathButtons();
+	void DrawCurrentFolder();
+	void SetFilePayload(AssetDir& file);
 
 	AssetDir* selectedFile;
 	AssetDir* bigDisplayFolder;
 	AssetDir* displayFolder;
+
+private:
+	float tree_window_width;
 };
 
 

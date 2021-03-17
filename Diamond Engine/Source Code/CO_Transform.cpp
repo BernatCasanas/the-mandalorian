@@ -27,7 +27,7 @@ C_Transform::C_Transform() : Component(nullptr), updateTransform(false), sendCom
 
 	oldTransform.SetIdentity();
 
-	name = "Transform";
+	name = "TRANSFORM";
 }
 
 C_Transform::C_Transform(GameObject* _gm/*, float3 _position, Quat _rotation, float3 _localScale*/): Component(_gm), updateTransform(false), sendCommand(false)/*,
@@ -45,7 +45,7 @@ position(_position), rotation(_rotation), localScale(_localScale)*/
 
 	oldTransform.SetIdentity();
 
-	name = "Transform";
+	name = "TRANSFORM";
 }
 
 C_Transform::~C_Transform()
@@ -63,7 +63,6 @@ bool C_Transform::OnEditor()
 {
 	if (Component::OnEditor() == true)
 	{
-
 		int offset = ImGui::CalcTextSize("Local Position: ").x + 16;
 		ImGui::Text("Local Position: "); 
 		ImGui::SameLine(); 
@@ -207,6 +206,11 @@ void C_Transform::UpdateBoxes()
 		mesh->globalAABB.SetNegativeInfinity();
 		mesh->globalAABB.Enclose(mesh->globalOBB);
 	}
+}
+
+void C_Transform::LookAt(float3 pointToLook)
+{	
+	localTransform = localTransform.LookAt(GetNormalizeAxis(2), pointToLook, GetNormalizeAxis(1), localTransform.WorldY());
 }
 
 

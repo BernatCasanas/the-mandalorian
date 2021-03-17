@@ -213,16 +213,20 @@
     <ClInclude Include="Source Code\COMM_Transform2D.h" />
     <ClInclude Include="Source Code\Component.h" />
     <ClInclude Include="Source Code\CO_Animator.h" />
+    <ClInclude Include="Source Code\CO_BoxCollider.h" />
     <ClInclude Include="Source Code\CO_Button.h" />
     <ClInclude Include="Source Code\CO_AudioListener.h" />
     <ClInclude Include="Source Code\CO_AudioSource.h" />
     <ClInclude Include="Source Code\CO_Camera.h" />
     <ClInclude Include="Source Code\CO_Canvas.h" />
     <ClInclude Include="Source Code\CO_Checkbox.h" />
+    <ClInclude Include="Source Code\CO_CubeCollider.h" />
     <ClInclude Include="Source Code\CO_Image2D.h" />
     <ClInclude Include="Source Code\CO_Collider.h" />
+    <ClInclude Include="Source Code\CO_MeshCollider.h" />
     <ClInclude Include="Source Code\CO_MeshRenderer.h" />
     <ClInclude Include="Source Code\CO_Material.h" />
+    <ClInclude Include="Source Code\CO_Navigation.h" />
     <ClInclude Include="Source Code\CO_RigidBody.h" />
     <ClInclude Include="Source Code\CO_Script.h" />
     <ClInclude Include="Source Code\CO_Text.h" />
@@ -351,6 +355,7 @@
     <ClInclude Include="Source Code\IM_FontImporter.h" />
     <ClInclude Include="Source Code\IM_MaterialImporter.h" />
     <ClInclude Include="Source Code\IM_ModelImporter.h" />
+    <ClInclude Include="Source Code\IM_PrefabImporter.h" />
     <ClInclude Include="Source Code\IM_ShaderImporter.h" />
     <ClInclude Include="Source Code\IM_TextureImporter.h" />
     <ClInclude Include="Source Code\INC_EditorWindows.h" />
@@ -408,6 +413,7 @@
     <ClCompile Include="Source Code\COMM_Transform2D.cpp" />
     <ClCompile Include="Source Code\Component.cpp" />
     <ClCompile Include="Source Code\CO_Animator.cpp" />
+    <ClCompile Include="Source Code\CO_BoxCollider.cpp" />
     <ClCompile Include="Source Code\CO_Button.cpp" />
     <ClCompile Include="Source Code\CO_AudioListener.cpp" />
     <ClCompile Include="Source Code\CO_AudioSource.cpp" />
@@ -417,7 +423,9 @@
     <ClCompile Include="Source Code\CO_Image2D.cpp" />
     <ClCompile Include="Source Code\CO_Collider.cpp" />
     <ClCompile Include="Source Code\CO_Material.cpp" />
+    <ClCompile Include="Source Code\CO_MeshCollider.cpp" />
     <ClCompile Include="Source Code\CO_MeshRenderer.cpp" />
+    <ClCompile Include="Source Code\CO_Navigation.cpp" />
     <ClCompile Include="Source Code\CO_RigidBody.cpp" />
     <ClCompile Include="Source Code\CO_Script.cpp" />
     <ClCompile Include="Source Code\CO_Text.cpp" />
@@ -490,6 +498,7 @@
     <ClCompile Include="Source Code\IM_FontImporter.cpp" />
     <ClCompile Include="Source Code\IM_MaterialImporter.cpp" />
     <ClCompile Include="Source Code\IM_ModelImporter.cpp" />
+    <ClCompile Include="Source Code\IM_PrefabImporter.cpp" />
     <ClCompile Include="Source Code\IM_ShaderImporter.cpp" />
     <ClCompile Include="Source Code\IM_TextureImporter.cpp" />
     <ClCompile Include="Source Code\MA_IconSystem.cpp" />

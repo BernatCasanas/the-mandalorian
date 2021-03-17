@@ -51,22 +51,22 @@ public class FPS_Controller : DiamondComponent
 
             if (Input.GetKey(DEKeyCode.W) == KeyState.KEY_REPEAT)
             {
-                reference.localPosition += reference.GetForward() * movementSpeed * Time.deltaTime;
+                gameObject.transform.localPosition += gameObject.transform.GetForward() * movementSpeed * Time.deltaTime;
                 lastZ_dir = Z_dir = 1;
             }
             if (Input.GetKey(DEKeyCode.S) == KeyState.KEY_REPEAT)
             {
-                reference.localPosition += reference.GetForward() * -movementSpeed * Time.deltaTime;
+                gameObject.transform.localPosition += gameObject.transform.GetForward() * -movementSpeed * Time.deltaTime;
                 lastZ_dir = Z_dir = -1;
             }
             if (Input.GetKey(DEKeyCode.A) == KeyState.KEY_REPEAT)
             {
-                reference.localPosition += reference.GetRight() * movementSpeed * Time.deltaTime;
+                gameObject.transform.localPosition += gameObject.transform.GetRight() * movementSpeed * Time.deltaTime;
                 lastX_dir = X_dir = 1;
             }
             if (Input.GetKey(DEKeyCode.D) == KeyState.KEY_REPEAT)
             {
-                reference.localPosition += reference.GetRight() * -movementSpeed * Time.deltaTime;
+                gameObject.transform.localPosition += gameObject.transform.GetRight() * -movementSpeed * Time.deltaTime;
                 lastX_dir = X_dir = -1;
             }
 
@@ -76,7 +76,7 @@ public class FPS_Controller : DiamondComponent
         }
 
         if (Input.GetMouseX() != 0 && turret != null)
-            turret.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -Input.GetMouseX() * mouseSens * Time.deltaTime) * turret.localRotation;
+            turret.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -Input.GetMouseX() * mouseSens * Time.deltaTime) * turret.transform.localRotation;
     }
 
     private void Dash()
@@ -91,24 +91,24 @@ public class FPS_Controller : DiamondComponent
                 //Use last known direction
                 if (lastZ_dir == 0 || lastX_dir == 0)
                 {
-                    if (lastZ_dir == 0) reference.localPosition += reference.GetRight() * (movementSpeed * 2) * Time.deltaTime * lastX_dir;
-                    else reference.localPosition += reference.GetForward() * (movementSpeed * 2) * Time.deltaTime * lastZ_dir;
+                    if (lastZ_dir == 0) gameObject.transform.localPosition += gameObject.transform.GetRight() * (movementSpeed * 2) * Time.deltaTime * lastX_dir;
+                    else gameObject.transform.localPosition += gameObject.transform.GetForward() * (movementSpeed * 2) * Time.deltaTime * lastZ_dir;
                 }
                 else
                 {
-                    reference.localPosition += reference.GetForward() * (movementSpeed * 1.3f) * Time.deltaTime * lastZ_dir;
-                    reference.localPosition += reference.GetRight() * (movementSpeed * 1.3f) * Time.deltaTime * lastX_dir;
+                    gameObject.transform.localPosition += gameObject.transform.GetForward() * (movementSpeed * 1.3f) * Time.deltaTime * lastZ_dir;
+                    gameObject.transform.localPosition += gameObject.transform.GetRight() * (movementSpeed * 1.3f) * Time.deltaTime * lastX_dir;
                 }
             }
             else if(Z_dir == 0 || X_dir == 0)
             {
-                if(Z_dir == 0) reference.localPosition += reference.GetRight() * (movementSpeed * 2) * Time.deltaTime * X_dir;
-                else reference.localPosition += reference.GetForward() * (movementSpeed * 2) * Time.deltaTime * Z_dir;
+                if(Z_dir == 0) gameObject.transform.localPosition += gameObject.transform.GetRight() * (movementSpeed * 2) * Time.deltaTime * X_dir;
+                else gameObject.transform.localPosition += gameObject.transform.GetForward() * (movementSpeed * 2) * Time.deltaTime * Z_dir;
             }
             else
             {
-                reference.localPosition += reference.GetForward() * (movementSpeed * 1.3f) * Time.deltaTime * Z_dir;
-                reference.localPosition += reference.GetRight() * (movementSpeed * 1.3f) * Time.deltaTime * X_dir;
+                gameObject.transform.localPosition += gameObject.transform.GetForward() * (movementSpeed * 1.3f) * Time.deltaTime * Z_dir;
+                gameObject.transform.localPosition += gameObject.transform.GetRight() * (movementSpeed * 1.3f) * Time.deltaTime * X_dir;
             }
         }
         else

@@ -14,6 +14,11 @@
 #include"CO_Script.h"
 #include"RE_Material.h"
 
+//todelete
+#include "Application.h"
+#include "MO_Physics.h"
+#include "IM_PrefabImporter.h"
+
 W_Inspector::W_Inspector() : Window(), selectedGO(nullptr), editingRes(nullptr)
 {
 	name = "Inspector";
@@ -108,7 +113,21 @@ void W_Inspector::Draw()
 			if (ImGui::Button("Delete")) {
 				selectedGO->Destroy();}
 
+			ImGui::SameLine();
 			ImGui::Text("UID: %d", selectedGO->UID);
+
+			if (selectedGO->prefabID != 0u) 
+			{
+				ImGui::Text("Prefab ID: %d", selectedGO->prefabID);
+				if (ImGui::Button("Override Prefab")){
+					PrefabImporter::OverridePrefabGameObjects(selectedGO->prefabID, selectedGO);
+				}
+
+				ImGui::SameLine();
+				if (ImGui::Button("Revert Changes")) {
+					PrefabImporter::OverrideGameObject(selectedGO->prefabID, selectedGO);
+				}
+			}
 
 			ImGui::GreySeparator();
 
@@ -139,13 +158,19 @@ void W_Inspector::Draw()
 				}
 				if (ImGui::Selectable("RigidBody3D"))
 				{
-					if (selectedGO->GetComponent(Component::TYPE::RigidBody) == nullptr)
-						selectedGO->AddComponent(Component::TYPE::RigidBody);
+					if (selectedGO->GetComponent(Component::TYPE::RIGIDBODY) == nullptr)
+						selectedGO->AddComponent(Component::TYPE::RIGIDBODY);
 				}
-				if (ImGui::Selectable("Collider"))
+				if (ImGui::Selectable("Box Collider"))
 				{
-					if (selectedGO->GetComponent(Component::TYPE::Collider) == nullptr)
-						selectedGO->AddComponent(Component::TYPE::Collider);
+					if (selectedGO->GetComponent(Component::TYPE::BOXCOLLIDER) == nullptr)
+						selectedGO->AddComponent(Component::TYPE::BOXCOLLIDER);
+				}
+				if (ImGui::Selectable("Mesh Collider"))
+				{
+					if (selectedGO->GetComponent(Component::TYPE::MESHCOLLIDER) == nullptr)
+						selectedGO->AddComponent(Component::TYPE::MESHCOLLIDER);
+
 				}
 				if (ImGui::Selectable("AudioListener"))
 				{
@@ -159,10 +184,10 @@ void W_Inspector::Draw()
 				}
 				if (ImGui::Selectable("Animator"))
 				{
-					if (selectedGO->GetComponent(Component::TYPE::Animator) == nullptr)
-						selectedGO->AddComponent(Component::TYPE::Animator);
+					if (selectedGO->GetComponent(Component::TYPE::ANIMATOR) == nullptr)
+						selectedGO->AddComponent(Component::TYPE::ANIMATOR);
 				}
-
+				
 				for (int i = 0; i < EngineExternal->moduleMono->userScripts.size(); i++)
 				{
 					if (ImGui::Selectable(mono_class_get_name(EngineExternal->moduleMono->userScripts[i]))) 

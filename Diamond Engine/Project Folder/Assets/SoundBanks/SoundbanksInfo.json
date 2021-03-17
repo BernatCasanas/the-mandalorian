@@ -5,20 +5,94 @@
   "SchemaVersion": "12",
   "SoundbankVersion": "135",
   "RootPaths": {
-   "ProjectRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\",
-   "SourceFilesRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\.cache\\Windows\\",
-   "SoundBanksRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows\\",
+   "ProjectRoot": "C:\\Users\\roger\\OneDrive\\Documentos\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\",
+   "SourceFilesRoot": "C:\\Users\\roger\\OneDrive\\Documentos\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\.cache\\Windows\\",
+   "SoundBanksRoot": "C:\\Users\\roger\\OneDrive\\Documentos\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows\\",
    "ExternalSourcesInputFile": "",
-   "ExternalSourcesOutputRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows"
+   "ExternalSourcesOutputRoot": "C:\\Users\\roger\\OneDrive\\Documentos\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows"
   },
   "DialogueEvents": [],
   "StreamedFiles": [],
   "MediaFilesNotInAnyBank": [],
   "SoundBanks": [
    {
+    "Id": "833070093",
+    "Language": "SFX",
+    "Hash": "68801063",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Stormtrooper",
+    "ShortName": "Stormtrooper",
+    "Path": "Stormtrooper.bnk",
+    "IncludedEvents": [
+     {
+      "Id": "192623117",
+      "Name": "Pause_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Pause_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "4180674362",
+      "Name": "Play_Enemy_Detection",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Enemy_Detection",
+      "DurationType": "OneShot",
+      "DurationMin": "0.645042",
+      "DurationMax": "1.101500",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "356289844",
+        "Language": "SFX",
+        "ShortName": "Stormtrooper enemy detection 2.wav",
+        "Path": "SFX\\Stormtrooper enemy detection 2_10C4C929.wem"
+       },
+       {
+        "Id": "390628259",
+        "Language": "SFX",
+        "ShortName": "Stormtrooper enemy detection 3.wav",
+        "Path": "SFX\\Stormtrooper enemy detection 3_10C4C929.wem"
+       },
+       {
+        "Id": "936066558",
+        "Language": "SFX",
+        "ShortName": "Stormtrooper enemy detection 1.wav",
+        "Path": "SFX\\Stormtrooper enemy detection 1_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1931338186",
+      "Name": "Resume_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Resume_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "3318621861",
+      "Name": "Stop_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     }
+    ],
+    "GameParameters": [
+     {
+      "Id": "467158820",
+      "Name": "SourceVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
+     },
+     {
+      "Id": "2704707011",
+      "Name": "BusVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\BusVolume"
+     }
+    ]
+   },
+   {
     "Id": "1093318992",
     "Language": "SFX",
-    "Hash": "1877373608",
+    "Hash": "2201628583",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Mando",
     "ShortName": "Mando",
     "Path": "Mando.bnk",
@@ -48,11 +122,11 @@
       ]
      },
      {
-      "Id": "1602358412",
-      "Name": "Play_Footstep",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_Footstep",
+      "Id": "3123219165",
+      "Name": "Play_Footsteps_Mando",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Footsteps_Mando",
       "DurationType": "Mixed",
-      "DurationMin": "0.302461",
+      "DurationMin": "0.339501",
       "DurationMax": "Infinite",
       "IncludedMemoryFiles": [
        {
@@ -221,12 +295,40 @@
       ]
      },
      {
-      "Id": "2045397714",
-      "Name": "Play_Weapon_Shoot",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_Weapon_Shoot",
+      "Id": "3609957406",
+      "Name": "Play_Mando_Voice",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Mando_Voice",
       "DurationType": "OneShot",
-      "DurationMin": "0.168277",
-      "DurationMax": "0.731042",
+      "DurationMin": "0.777551",
+      "DurationMax": "0.823832",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "236232383",
+        "Language": "SFX",
+        "ShortName": "Mando voice 2.wav",
+        "Path": "SFX\\Mando voice 2_10C4C929.wem"
+       },
+       {
+        "Id": "715733657",
+        "Language": "SFX",
+        "ShortName": "Mando voice 3.wav",
+        "Path": "SFX\\Mando voice 3_10C4C929.wem"
+       },
+       {
+        "Id": "1039797385",
+        "Language": "SFX",
+        "ShortName": "Mando voice 1.wav",
+        "Path": "SFX\\Mando voice 1_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "471661148",
+      "Name": "Play_Weapon_Shoot_Mando",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Weapon_Shoot_Mando",
+      "DurationType": "OneShot",
+      "DurationMin": "0.614731",
+      "DurationMax": "1.070525",
       "IncludedMemoryFiles": [
        {
         "Id": "163793026",
@@ -235,27 +337,27 @@
         "Path": "SFX\\Sniper shot_10C4C929.wem"
        },
        {
-        "Id": "575059296",
+        "Id": "713708188",
         "Language": "SFX",
-        "ShortName": "blaster wav.wav",
-        "Path": "SFX\\blaster wav_10C4C929.wem"
+        "ShortName": "2Star Wars DC-15A Blaster Rifle Sound Effect.wav",
+        "Path": "SFX\\2Star Wars DC-15A Blaster Rifle Sound Effect_10C4C929.wem"
        }
       ],
       "DefaultSwitchValue": "{21D5D886-05F7-4F0D-AA11-6F543FC38106}",
       "SwitchContainers": [
        {
-        "SwitchValue": "{21D5D886-05F7-4F0D-AA11-6F543FC38106}",
-        "Media": [
-         {
-          "Id": "575059296"
-         }
-        ]
-       },
-       {
         "SwitchValue": "{D9D7BAE3-FEAF-489E-A93F-E360579A008C}",
         "Media": [
          {
           "Id": "163793026"
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{21D5D886-05F7-4F0D-AA11-6F543FC38106}",
+        "Media": [
+         {
+          "Id": "713708188"
          }
         ]
        }
@@ -350,7 +452,7 @@
    {
     "Id": "1229948536",
     "Language": "SFX",
-    "Hash": "3209250772",
+    "Hash": "1719035451",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Environment",
     "ShortName": "Environment",
     "Path": "Environment.bnk",
@@ -417,7 +519,7 @@
    {
     "Id": "1355168291",
     "Language": "SFX",
-    "Hash": "3789941178",
+    "Hash": "2053192790",
     "ObjectPath": "Init",
     "ShortName": "Init",
     "Path": "Init.bnk",
@@ -430,12 +532,85 @@
     ]
    },
    {
-    "Id": "3991942870",
+    "Id": "1551306167",
     "Language": "SFX",
-    "Hash": "138728057",
-    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Music",
-    "ShortName": "Music",
-    "Path": "Music.bnk",
+    "Hash": "2265036729",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI",
+    "ShortName": "UI",
+    "Path": "UI.bnk",
+    "IncludedEvents": [
+     {
+      "Id": "310530060",
+      "Name": "Play_UI_Button_Hover",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_UI_Button_Hover",
+      "DurationType": "OneShot",
+      "DurationMin": "0.095521",
+      "DurationMax": "0.095521",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "504086665",
+        "Language": "SFX",
+        "ShortName": "UI Button Hover.wav",
+        "Path": "SFX\\UI Button Hover_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1624273028",
+      "Name": "Play_UI_Button_Play",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_UI_Button_Play",
+      "DurationType": "OneShot",
+      "DurationMin": "0.645719",
+      "DurationMax": "0.645719",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "1056819870",
+        "Language": "SFX",
+        "ShortName": "UI Button click.wav",
+        "Path": "SFX\\UI Button click_10C4C929.wem"
+       }
+      ]
+     }
+    ],
+    "GameParameters": [
+     {
+      "Id": "467158820",
+      "Name": "SourceVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
+     },
+     {
+      "Id": "2704707011",
+      "Name": "BusVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\BusVolume"
+     }
+    ],
+    "SwitchGroups": [
+     {
+      "Id": "1551306167",
+      "Name": "UI",
+      "ObjectPath": "\\Switches\\Default Work Unit\\UI",
+      "Switches": [
+       {
+        "Id": "1394085446",
+        "Name": "Button_play",
+        "ObjectPath": "\\Switches\\Default Work Unit\\UI\\Button_play"
+       },
+       {
+        "Id": "1701177942",
+        "Name": "Button_hover",
+        "ObjectPath": "\\Switches\\Default Work Unit\\UI\\Button_hover"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "Id": "3795682265",
+    "Language": "SFX",
+    "Hash": "477363039",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Bantha",
+    "ShortName": "Bantha",
+    "Path": "Bantha.bnk",
     "IncludedEvents": [
      {
       "Id": "192623117",
@@ -446,34 +621,92 @@
       "DurationMax": "0.000000"
      },
      {
-      "Id": "2932040671",
-      "Name": "Play_Music",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_Music",
+      "Id": "2176463949",
+      "Name": "Play_Bantha_Attack",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Bantha_Attack",
       "DurationType": "OneShot",
-      "DurationMin": "95.049500",
-      "DurationMax": "95.049500",
+      "DurationMin": "0.512354",
+      "DurationMax": "0.517187",
       "IncludedMemoryFiles": [
        {
-        "Id": "209390670",
+        "Id": "228824925",
         "Language": "SFX",
-        "ShortName": "Empire Music.wav",
-        "Path": "SFX\\Empire Music_10C4C929.wem"
+        "ShortName": "Bantha attack 2.wav",
+        "Path": "SFX\\Bantha attack 2_10C4C929.wem"
+       },
+       {
+        "Id": "291424242",
+        "Language": "SFX",
+        "ShortName": "Bantha attack 1.wav",
+        "Path": "SFX\\Bantha attack 1_10C4C929.wem"
        }
       ]
      },
      {
-      "Id": "4068124964",
-      "Name": "Play_Music_2",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_Music_2",
+      "Id": "3912954324",
+      "Name": "Play_Growl_Bantha",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Growl_Bantha",
       "DurationType": "OneShot",
-      "DurationMin": "78.746101",
-      "DurationMax": "78.746101",
+      "DurationMin": "0.405292",
+      "DurationMax": "1.032969",
       "IncludedMemoryFiles": [
        {
-        "Id": "739659711",
+        "Id": "197876092",
         "Language": "SFX",
-        "ShortName": "Hud.wav",
-        "Path": "SFX\\Hud_10C4C929.wem"
+        "ShortName": "Bantha hit 4.wav",
+        "Path": "SFX\\Bantha hit 4_10C4C929.wem"
+       },
+       {
+        "Id": "210317130",
+        "Language": "SFX",
+        "ShortName": "Bantha Dead Roar.wav",
+        "Path": "SFX\\Bantha Dead Roar_10C4C929.wem"
+       },
+       {
+        "Id": "787605823",
+        "Language": "SFX",
+        "ShortName": "Bantha hit.wav",
+        "Path": "SFX\\Bantha hit_10C4C929.wem"
+       },
+       {
+        "Id": "927501018",
+        "Language": "SFX",
+        "ShortName": "Bantha hit 2.wav",
+        "Path": "SFX\\Bantha hit 2_10C4C929.wem"
+       },
+       {
+        "Id": "1062067289",
+        "Language": "SFX",
+        "ShortName": "Bantha hit 3.wav",
+        "Path": "SFX\\Bantha hit 3_10C4C929.wem"
+       }
+      ],
+      "DefaultSwitchValue": "{9B3D5D53-69E5-4767-B78E-8F25A24D6C8B}",
+      "SwitchContainers": [
+       {
+        "SwitchValue": "{9B3D5D53-69E5-4767-B78E-8F25A24D6C8B}",
+        "Media": [
+         {
+          "Id": "197876092"
+         },
+         {
+          "Id": "787605823"
+         },
+         {
+          "Id": "927501018"
+         },
+         {
+          "Id": "1062067289"
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{C6831CAA-E9CB-452B-9F17-B70C43C98F66}",
+        "Media": [
+         {
+          "Id": "210317130"
+         }
+        ]
        }
       ]
      },
@@ -501,10 +734,97 @@
       "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
      },
      {
-      "Id": "1547598200",
-      "Name": "SourcePitch",
-      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourcePitch"
+      "Id": "2704707011",
+      "Name": "BusVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\BusVolume"
+     }
+    ],
+    "SwitchGroups": [
+     {
+      "Id": "1239559603",
+      "Name": "Growl_Bantha",
+      "ObjectPath": "\\Switches\\Default Work Unit\\Growl_Bantha",
+      "Switches": [
+       {
+        "Id": "1116398592",
+        "Name": "Hit",
+        "ObjectPath": "\\Switches\\Default Work Unit\\Growl_Bantha\\Hit"
+       },
+       {
+        "Id": "2110808665",
+        "Name": "Roar",
+        "ObjectPath": "\\Switches\\Default Work Unit\\Growl_Bantha\\Roar"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "Id": "3991942870",
+    "Language": "SFX",
+    "Hash": "1984471106",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Music",
+    "ShortName": "Music",
+    "Path": "Music.bnk",
+    "IncludedEvents": [
+     {
+      "Id": "192623117",
+      "Name": "Pause_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Pause_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
      },
+     {
+      "Id": "2932040671",
+      "Name": "Play_Music",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Music",
+      "DurationType": "OneShot",
+      "DurationMin": "83.746101",
+      "DurationMax": "83.746101",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "333225371",
+        "Language": "SFX",
+        "ShortName": "Hud.wav",
+        "Path": "SFX\\Hud_D79FB2B7.wem"
+       }
+      ]
+     },
+     {
+      "Id": "4068124964",
+      "Name": "Play_Music_2",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Music_2",
+      "DurationType": "OneShot",
+      "DurationMin": "147.824005",
+      "DurationMax": "147.824005",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "1058672754",
+        "Language": "SFX",
+        "ShortName": "Combat Music.wav",
+        "Path": "SFX\\Combat Music_D79FB2B7.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1931338186",
+      "Name": "Resume_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Resume_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "3318621861",
+      "Name": "Stop_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     }
+    ],
+    "GameParameters": [
      {
       "Id": "2704707011",
       "Name": "BusVolume",

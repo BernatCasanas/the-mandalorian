@@ -5,15 +5,36 @@ Event	ID	Name			Wwise Object Path	Notes
 	3318621861	Stop_Object			\Default Work Unit\Stop_Object	
 	4068124964	Play_Music_2			\Default Work Unit\Play_Music_2	
 
+Switch Group	ID	Name			Wwise Object Path	Notes
+	3380466154	Mando_State			\Default Work Unit\Mando_State	
+
+Switch	ID	Name	Switch Group			Notes
+	67072339	NoMando	Mando_State			
+	1823678183	Exploring	Mando_State			
+	2764240573	Combat	Mando_State			
+
+State Group	ID	Name			Wwise Object Path	Notes
+	3826569560	Music_State			\Default Work Unit\Music_State	
+	4071417932	Player_State			\Default Work Unit\Player_State	
+
+State	ID	Name	State Group			Notes
+	89505537	Gameplay	Music_State			
+	748895195	None	Music_State			
+	2607556080	Menu	Music_State			
+	748895195	None	Player_State			
+	1823678183	Exploring	Player_State			
+	2764240573	Combat	Player_State			
+
 Game Parameter	ID	Name			Wwise Object Path	Notes
-	467158820	SourceVolume			\Default Work Unit\SourceVolume	
-	1547598200	SourcePitch			\Default Work Unit\SourcePitch	
 	2704707011	BusVolume			\Default Work Unit\BusVolume	
 
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
 
+Effect plug-ins	ID	Name	Type				Notes
+	465100510	Holy (Custom)	Wwise RoomVerb			
+
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	209390670	Empire Music	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Empire Music_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Music\Empire Music		18249568
-	739659711	Hud	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Hud_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Music\Hud		13893676
+	333225371	Hud	C:\Users\roger\OneDrive\Documentos\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Hud_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Transitions\Menu Music\Hud\Hud		13893676
+	1058672754	Combat Music	C:\Users\roger\OneDrive\Documentos\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Combat Music_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Transitions\Combat Music\Combat Music\Combat Music		27422272
 
