@@ -35,5 +35,8 @@ namespace DiamondEngine
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern void SetMuted(object go, bool muted);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public static extern void SetState(string stateGroup, string state);
     }
 }

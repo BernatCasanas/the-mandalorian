@@ -78,7 +78,7 @@ public class Core : DiamondComponent
         // Placeholder for Start() function
         if (scriptStart == true)
         {
-
+            Audio.SetState("Player_State", "Alive");
             #region VARIABLES WITH DEPENDENCIES
 
             // INIT VARIABLES WITH DEPENDENCIES //
@@ -155,6 +155,18 @@ public class Core : DiamondComponent
         #endregion
 
         #region UPDATE STUFF
+
+        if(Input.GetKey(DEKeyCode.SPACE) == KeyState.KEY_DOWN)
+        {
+            Audio.SetState("Player_State", "Alive");
+
+        }
+        if(Input.GetKey(DEKeyCode.K) == KeyState.KEY_DOWN)
+        {
+            Audio.SetState("Player_State", "Dead");
+        }
+
+
         UpdateTimers();
 
         UpdateControllerInputs();

@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "CO_AudioSource.h"
 #include "Component.h"
+#include "MO_AudioManager.h"
 
 void PlayAudio(MonoObject* go, MonoString* eventAudio)
 {
@@ -78,6 +79,15 @@ void StopAudio(MonoObject* go)
 	{
 		LOG(LogType::L_WARNING, "Couldn't stop the audio. Component was null pointer");
 	}
+}
+
+void SetState(MonoString* stateGroupString, MonoString* stateString)
+{
+	if (EngineExternal == nullptr)
+		return;
+	std::string stateGroup = mono_string_to_utf8(stateGroupString);
+	std::string state = mono_string_to_utf8(stateString);
+	EngineExternal->moduleAudio->SetState(stateGroup, state);
 }
 
 float GetVolume(MonoObject* go)
