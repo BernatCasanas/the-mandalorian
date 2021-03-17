@@ -10,27 +10,29 @@ namespace DiamondEngine
     {
         public virtual void Use()
         {
+        }
+    }
+
+    //Each time you kill an enemy heal +1 HP. - Bo Katan’s resilience
+    public class LifeStealBoon : Boon
+    {
+        public override void Use()
+        {
+            int currentLifeSteal = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementHealingWhenKillingEnemy(1);
+            Debug.Log("LifeSteal increased to: " + currentLifeSteal);
 
         }
     }
 
-    public class MaxHpBoon : Boon
+    //+20% max HP. - Wrecker’s resilience
+    public class IncrementMaxHpBoon : Boon
     {
         public override void Use()
         {
-            //actual functionallity
-            Debug.Log("Max HP increased");
-            //Core.instance.adadsa
-        }
-    }
 
+            int currentMaxHp = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementMaxHpPercent(0.2f);
+            Debug.Log("Current HP increased to: " + currentMaxHp);
 
-    public class IncrementHpBoon : Boon
-    {
-        public override void Use()
-        {
-            //actual functionallity
-            Debug.Log("Current HP increased");
         }
     }
 
@@ -38,8 +40,8 @@ namespace DiamondEngine
     {
         public static Dictionary<string, Type> boonType = new Dictionary<string, Type>
         {
-            {"MaxHP", typeof(MaxHpBoon)},
-            {"IncHP", typeof(IncrementHpBoon)},
+            {"LifeSteal", typeof(LifeStealBoon)},
+            {"IncMaxHp", typeof(IncrementMaxHpBoon)},
             //TODO Add boons here
         };
     }

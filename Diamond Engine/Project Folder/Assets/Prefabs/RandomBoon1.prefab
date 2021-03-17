@@ -5,22 +5,22 @@
             "name": "RandomBoon1",
             "Active": true,
             "Position": [
-                0,
-                0,
-                0
+                -2,
+                0.95283401012420654,
+                13.563361167907715
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                6.1350739599674853e-08,
+                -0.78847670555114746,
+                6.1350739599674853e-08,
+                -0.61506462097167969
             ],
             "Scale": [
-                0.99999988079071045,
+                1.0000008344650269,
                 1,
-                0.99999988079071045
+                1.0000008344650269
             ],
-            "UID": 1717498012,
+            "UID": 233027904,
             "PrefabID": 456478384,
             "ParentUID": 1455450912,
             "Components": [
@@ -78,7 +78,10 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "BoonInstance",
-                    "myType": "MaxHP"
+                    "myType": "MaxHP",
+                    "verticalMovementAmount": 1,
+                    "rotSpeedDegSec": 20,
+                    "verticalSpeedMultiplier": 0.40000000596046448
                 }
             ]
         }
