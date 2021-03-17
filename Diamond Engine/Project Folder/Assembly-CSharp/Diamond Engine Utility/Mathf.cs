@@ -12,6 +12,13 @@ namespace DiamondEngine
             return distance.magnitude;
         }
 
+
+        public static float Lerp(float from, float to, float t)
+        {
+            return (1.0f - t) * from + to * t;
+        }
+
+
         public static float LerpAngle(float from, float to, float t)
         {
             float delta = Repeat((to - from), 360);

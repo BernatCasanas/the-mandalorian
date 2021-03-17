@@ -12,7 +12,7 @@ public class BabyYoda : DiamondComponent
 	//Horizontal Movement
 	public GameObject followPoint = null;
 
-	public float horizontalSpeed = 5.0f;
+	public float horizontalSpeed = 4f;
 
 	public void Update()
 	{
@@ -30,7 +30,9 @@ public class BabyYoda : DiamondComponent
     {
         if (followPoint != null)
         {
-			gameObject.transform.localPosition = new Vector3(followPoint.transform.globalPosition.x, gameObject.transform.localPosition.y, followPoint.transform.globalPosition.z);
+			float x = Mathf.Lerp(gameObject.transform.localPosition.x, followPoint.transform.globalPosition.x, horizontalSpeed * Time.deltaTime);
+			float z = Mathf.Lerp(gameObject.transform.localPosition.z, followPoint.transform.globalPosition.z, horizontalSpeed * Time.deltaTime);
+			gameObject.transform.localPosition = new Vector3(x, gameObject.transform.localPosition.y, z);
 		}
     }
 
