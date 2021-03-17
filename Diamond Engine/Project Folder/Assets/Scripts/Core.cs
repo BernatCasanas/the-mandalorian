@@ -6,6 +6,7 @@ using DiamondEngine;
 
 public class Core : DiamondComponent
 {
+    public static Core instance;
     enum State
     {
         Idle,
@@ -135,6 +136,9 @@ public class Core : DiamondComponent
             #endregion
 
             #region OTHERS
+
+            //player instance
+            instance = this;
 
             //Controller
             deathZone = 15000;
