@@ -29,7 +29,7 @@ namespace DiamondEngine
         }
 
         
-        public T GetComponent<T>() where T : DiamondComponent
+        public T GetComponent<T>() //where T : DiamondComponent
         {
             //ComponentType type = T.get;
             ComponentType retValue = ComponentType.SCRIPT;

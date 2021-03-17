@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
 
 namespace DiamondEngine
 {
     class InternalCalls
     {
-
+        
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern void CreateGameObject(object name, object position);
 
