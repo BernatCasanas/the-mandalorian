@@ -222,6 +222,11 @@ void C_AudioSource::StopEvent()
 	EngineExternal->moduleAudio->StopEvent(this->id, this->evName);
 }
 
+void C_AudioSource::SetSwitch(std::string groupSwitch, std::string stateSwitch)
+{
+	EngineExternal->moduleAudio->SetSwitch(this->id, groupSwitch, stateSwitch);
+}
+
 bool C_AudioSource::IsMuted()
 {
 	return this->isMuted;

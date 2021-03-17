@@ -39,6 +39,8 @@ public:
 	void ResumeEvent();
 	void StopEvent();
 
+	void SetSwitch(std::string groupSwitch, std::string stateSwitch);
+
 	bool IsMuted();
 	void SetMuted(bool muted);
 

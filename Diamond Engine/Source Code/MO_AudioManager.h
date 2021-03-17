@@ -49,6 +49,7 @@ public:
 	void ResumeEvent(unsigned int id, std::string& eventName) const;
 
 	void SetState(std::string& groupState, std::string& state);
+	void SetSwitch(unsigned int id, std::string& groupSwitch, std::string& stateSwitch);
 
 	void StopComponent(unsigned int id) const;
 	void PauseComponent(unsigned int id) const;

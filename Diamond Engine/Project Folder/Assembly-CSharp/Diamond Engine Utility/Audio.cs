@@ -38,5 +38,8 @@ namespace DiamondEngine
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern void SetState(string stateGroup, string state);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public static extern void SetSwitch(object go, string switchGroup, string stateSwitch);
     }
 }

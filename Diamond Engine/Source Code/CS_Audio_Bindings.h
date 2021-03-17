@@ -90,6 +90,20 @@ void SetState(MonoString* stateGroupString, MonoString* stateString)
 	EngineExternal->moduleAudio->SetState(stateGroup, state);
 }
 
+void SetSwitch(MonoObject* go, MonoString* switchGroupString, MonoString* stateSwitchString)
+{
+	if (EngineExternal == nullptr)
+		return;
+	GameObject* GO = EngineExternal->moduleMono->GameObject_From_CSGO(go);
+	C_AudioSource* audSource = dynamic_cast<C_AudioSource*>(GO->GetComponent(Component::TYPE::AUDIO_SOURCE));
+
+	std::string stateGroupSwitch = mono_string_to_utf8(switchGroupString);
+	std::string stateSwitch = mono_string_to_utf8(stateSwitchString);
+
+	audSource->SetSwitch(stateGroupSwitch, stateSwitch);
+	
+}
+
 float GetVolume(MonoObject* go)
 {
 	if (EngineExternal == nullptr)

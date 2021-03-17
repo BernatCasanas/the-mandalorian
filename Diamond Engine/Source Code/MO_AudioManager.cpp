@@ -271,6 +271,11 @@ void ModuleAudioManager::SetState(std::string& groupState, std::string& state)
 	AK::SoundEngine::SetState(groupState.c_str(), state.c_str());
 }
 
+void ModuleAudioManager::SetSwitch(unsigned int id, std::string& groupSwitch, std::string& stateSwitch)
+{
+	AK::SoundEngine::SetSwitch(groupSwitch.c_str(), stateSwitch.c_str(), id);
+}
+
 
 void ModuleAudioManager::StopComponent(unsigned int id) const
 {
