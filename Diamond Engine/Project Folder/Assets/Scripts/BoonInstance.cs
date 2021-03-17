@@ -3,7 +3,8 @@ using DiamondEngine;
 
 public class BoonInstance : DiamondComponent
 {
-    Boon whatever;
+    Boon myBoon = null;
+    BoonSpawn boonSpawner = null;
     public string myType;
     bool firstFrame = true;
     public void Update()
@@ -13,13 +14,23 @@ public class BoonInstance : DiamondComponent
             firstFrame = !firstFrame;
 
             Type t = Boon_Data_Holder.boonType[myType];
-            whatever = (Boon)Activator.CreateInstance(t);
-            whatever.Use();
+            myBoon = (Boon)Activator.CreateInstance(t);
+            boonSpawner = Core.instance.gameObject.GetComponent<BoonSpawn>();
+
         }
+
+        //TODO animate boon here (UP-DOwN + rotation movement)
 
     }
 
-    //OnCollision whatever.use()
 
+    public void OnCollisionEnter()
+    {
+        myBoon.Use();
+        if (boonSpawner != null)
+        {
+            //boonSpawner boon spawner.destroy instantiatet prefabs TODO
+        }
 
+    }
 }
