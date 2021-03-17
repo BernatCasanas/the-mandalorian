@@ -4,10 +4,15 @@ using DiamondEngine;
 public class BabyYoda : DiamondComponent
 {
 	//Vertical Movement
-	public float verticalSpeed = 0.5f;
-	public float verticalTimeInterval = 0.8f;
+	public float verticalSpeed = 0.8f;
+	public float verticalTimeInterval = 1.2f;
 	private float verticalTimer = 0.0f;
 	private bool moveDown = true;
+
+	//Horizontal Movement
+	public GameObject followPoint = null;
+
+	public float horizontalSpeed = 5.0f;
 
 	public void Update()
 	{
@@ -16,8 +21,19 @@ public class BabyYoda : DiamondComponent
 
 	private void Move()
     {
+		FollowPoint();
 		MoveVertically();
 	}
+
+
+	private void FollowPoint()
+    {
+        if (followPoint != null)
+        {
+			gameObject.transform.localPosition = new Vector3(followPoint.transform.globalPosition.x, gameObject.transform.localPosition.y, followPoint.transform.globalPosition.z);
+		}
+    }
+
 
 	private void MoveVertically()
     {
