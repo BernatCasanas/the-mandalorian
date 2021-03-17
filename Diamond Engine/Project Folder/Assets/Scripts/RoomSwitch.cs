@@ -13,11 +13,10 @@ public class RoomSwitch : DiamondComponent
 	//public static int index = 0;
 	static Random test = new Random();
 	private bool start = true;
+
     public void OnCollisionEnter()
     {
-		searchroom = true;
-
-		Debug.Log(currentroom.ToString());
+	//	searchroom = true;
 
 	}
 
@@ -26,8 +25,9 @@ public class RoomSwitch : DiamondComponent
 		if (start)
         {
 			start = false;
+			Debug.Log("CURRENT ROOM = " + currentroom.ToString());
 
-        }
+		}
 
 		if (Input.GetKey(DEKeyCode.I) == KeyState.KEY_DOWN)
 		{
@@ -35,8 +35,7 @@ public class RoomSwitch : DiamondComponent
 			if (roomID != currentroom)
 			{
 				currentroom = roomID;
-				Debug.Log("CURRENT ROOM = " + roomID.ToString());
-				SceneManager.LoadScene(rooms[test.Next(0, rooms.Length)]);
+				SceneManager.LoadScene(currentroom);
 			}
 		}
 
@@ -45,9 +44,8 @@ public class RoomSwitch : DiamondComponent
 			roomID = rooms[test.Next(0, rooms.Length)];
 			if (roomID != currentroom)
 			{
-				Debug.Log("CURRENT ROOM = " + roomID.ToString());
-				Debug.Log(roomID.ToString());
-				SceneManager.LoadScene(rooms[test.Next(0, rooms.Length)]);
+				currentroom = roomID;
+				SceneManager.LoadScene(rooms[currentroom]);
 			}
 		}
 	}
