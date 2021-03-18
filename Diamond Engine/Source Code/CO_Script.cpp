@@ -335,7 +335,7 @@ void C_Script::CollisionCallback(bool isTrigger, GameObject* collidedGameObject)
 {
 	void* params[1];
 
-	LOG(LogType::L_WARNING, "Collided object: %s, Collider object: %s", gameObject->tag, collidedGameObject->tag);
+	//LOG(LogType::L_WARNING, "Collided object: %s, Collider object: %s", gameObject->tag, collidedGameObject->tag);
 	params[0] = EngineExternal->moduleMono->GoToCSGO(collidedGameObject);
 
 	if (onCollisionEnter != nullptr)

@@ -22,8 +22,8 @@ public class RoomSwitch : DiamondComponent
 
 	public void OnTriggerEnter(GameObject triggeringObject)
     {
-		//if (!triggeringObject.CompareTag("Player"))
-			//return;
+		if (!triggeringObject.CompareTag("Player"))
+			return;
 
 		if (visited.Count > 0)
 		{
