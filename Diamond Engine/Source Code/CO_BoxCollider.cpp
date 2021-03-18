@@ -19,27 +19,21 @@
 C_BoxCollider::C_BoxCollider() : C_Collider(nullptr)
 {
 	name = "Box Collider";
-
-
 }
 
 
 C_BoxCollider::C_BoxCollider(GameObject* _gm/*, float3 _position, Quat _rotation, float3 _localScale*/) : C_Collider(_gm)/*,
 position(_position), rotation(_rotation), localScale(_localScale)*/
 {
-
 	name = "Box Collider";
 	isTrigger = false;
 	shape = ColliderShape::CUBE;
 
 	//Checks if component does have any owner and get additional data to be created
 
-
 	transform = dynamic_cast<C_Transform*>(_gm->GetComponent(Component::TYPE::TRANSFORM));
 	rigidbody = dynamic_cast<C_RigidBody*>(_gm->GetComponent(Component::TYPE::RIGIDBODY));
 	mesh = dynamic_cast<C_MeshRenderer*>(_gm->GetComponent(Component::TYPE::MESH_RENDERER));
-
-
 
 	//We first initialize material to create shape later
 	colliderMaterial = EngineExternal->modulePhysics->CreateMaterial();

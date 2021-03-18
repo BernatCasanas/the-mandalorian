@@ -374,31 +374,29 @@ CollisionDetector::CollisionDetector()
 
 }
 CollisionDetector::~CollisionDetector()
-{
+{}
 
-}
-
-void CollisionDetector::onContact(const PxContactPairHeader& pairHeader,
-	const PxContactPair* pairs, PxU32 nbPairs)
+void CollisionDetector::onContact(const PxContactPairHeader& pairHeader, const PxContactPair* pairs, PxU32 nbPairs)
 {
-	
 	for (PxU32 i = 0; i < nbPairs; i++)
 	{
 		const PxContactPair& cp = pairs[i];
 
 		if (cp.events & PxPairFlag::eNOTIFY_TOUCH_FOUND)
 		{
-
-			for (size_t k= 0; k < 2; ++k)
+			for (size_t k = 0; k < 2; ++k)
 			{
 				GameObject* contact = static_cast<GameObject*>(pairHeader.actors[k]->userData);
 
-				std::vector< Component*> scripts = contact->GetComponentsOfType(Component::TYPE::SCRIPT);
-				for (size_t i = 0; i < scripts.size(); i++)
+				std::vector<Component*> scripts = contact->GetComponentsOfType(Component::TYPE::SCRIPT);
+				for (size_t l = 0; l < scripts.size(); l++)
 				{
-					C_Script* script = dynamic_cast<C_Script*>(scripts[i]);
+					C_Script* script = dynamic_cast<C_Script*>(scripts[l]);
 					if (script)
-						script->CollisionCallback(true);
+					{
+						GameObject* contact2 = static_cast<GameObject*>(pairHeader.actors[ k == 0 ? 1 : 0]->userData);
+						script->CollisionCallback(false, contact2);
+					}
 				}
 			}
 
@@ -410,7 +408,7 @@ void CollisionDetector::onContact(const PxContactPairHeader& pairHeader,
 
 void CollisionDetector::onTrigger(physx::PxTriggerPair* pairs, physx::PxU32 count)
 {
-	LOG(LogType::L_NORMAL, "trigger detected");
+	//LOG(LogType::L_NORMAL, "trigger detected");
 	for (PxU32 i = 0; i < count; i++)
 	{
 		const PxTriggerPair& cp = pairs[i];
@@ -424,11 +422,9 @@ void CollisionDetector::onTrigger(physx::PxTriggerPair* pairs, physx::PxU32 coun
 			for (size_t i = 0; i < scripts.size(); i++)
 			{
 				C_Script* script = dynamic_cast<C_Script*>(scripts[i]);
-				if (script)
-					script->CollisionCallback(true);
+				if (script && contact2 != nullptr)
+					script->CollisionCallback(true, contact2);
 			}
-		
-			
 		}
 
 		if (contact2 != nullptr) 
@@ -437,10 +433,9 @@ void CollisionDetector::onTrigger(physx::PxTriggerPair* pairs, physx::PxU32 coun
 			for (size_t i = 0; i < scripts.size(); i++)
 			{
 				C_Script* script = dynamic_cast<C_Script*>(scripts[i]);
-				if (script)
-					script->CollisionCallback(true);
+				if (script && contact != nullptr)
+					script->CollisionCallback(true, contact);
 			}
 		}
-		
 	}
 }

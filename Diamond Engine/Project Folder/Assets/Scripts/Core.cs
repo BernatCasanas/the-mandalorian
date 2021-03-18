@@ -39,12 +39,12 @@ public class Core : DiamondComponent
     public float dashDuration = 0.25f;
     public float dashDistance = 1.0f;
     private float dashSpeed = 0.0f;
-    private float dashTimer=0.0f;
+    private float dashTimer = 0.0f;
     private float timeBetweenDashes = .5f;
 
     // Shooting
     public float fireRate = 0.2f;
-    public float baseFireRate=0.0f;
+    public float baseFireRate = 0.0f;
     private float currFireRate = 0.0f;
     private float timeSinceLastNormalShoot = 0.0f;
     public float secondaryRate = 0.2f;
@@ -56,12 +56,12 @@ public class Core : DiamondComponent
     private float fireRateRecoverCap = 0.0f;
     private float secondaryRateRecoverCap = 0.0f;
 
-    public float fireRateMultCap=0.0f;
+    public float fireRateMultCap = 0.0f;
     private bool rightTriggerPressed = false;
     private bool leftTriggerPressed = false;
-    private float rightTriggerTimer=0.0f;
+    private float rightTriggerTimer = 0.0f;
     private float leftTriggerTimer = 0.0f;
-    private int deathZone=0;
+    private int deathZone = 15000;
     public float normalShootSpeed = 0.0f;
 
     //Animations
@@ -269,9 +269,9 @@ public class Core : DiamondComponent
                 if (newShootSpeed != normalShootSpeed)
                 {
                     normalShootSpeed = newShootSpeed;
-                    Animator.Play(gameObject, "Shoot", normalShootSpeed);
                 }
 
+                Animator.Play(gameObject, "Shoot", normalShootSpeed);
                 InternalCalls.CreateBullet(shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
                 shooting = false;
             }
@@ -418,7 +418,7 @@ public class Core : DiamondComponent
     {
         gameObject.transform.localPosition += gameObject.transform.GetForward() * movementSpeed * Time.deltaTime;
     }
-    
+
     private void RotatePlayer(Vector3 gamepadInput)
     {
         //Calculate player rotation
@@ -505,7 +505,7 @@ public class Core : DiamondComponent
         ret = (float)(Math.Log(timeSinceLastDash * fireRateAfterDashRecoverRatio) - Math.Log(0.01)) / fireRateRecoverCap;
 
         ret = Math.Min(ret, baseFireRate * fireRateMultCap);
-        Debug.Log("New fire rate: " + ret.ToString());
+        //Debug.Log("New fire rate: " + ret.ToString());
 
         return ret;
     }
@@ -517,7 +517,7 @@ public class Core : DiamondComponent
         ret = (float)(Math.Log(timeSinceLastDash * fireRateAfterDashRecoverRatio) - Math.Log(0.01)) / secondaryRateRecoverCap;
 
         ret = Math.Min(ret, secondaryRate * fireRateMultCap);
-        Debug.Log("New fire rate: " + ret.ToString());
+        //Debug.Log("New fire rate: " + ret.ToString());
 
         return ret;
 

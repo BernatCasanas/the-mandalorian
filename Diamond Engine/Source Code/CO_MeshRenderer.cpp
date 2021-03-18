@@ -79,7 +79,8 @@ void C_MeshRenderer::RenderMesh(bool rTex)
 		id = material->GetTextureID();
 
 	//Mesh array with transform matrix of each bone
-	if (rootBone != nullptr) {
+	if (rootBone != nullptr) 
+	{
 		//Get all the bones
 		std::map<std::string, GameObject*> bonesMap;
 		GetBoneMapping(bonesMap);

@@ -33,6 +33,8 @@ public:
 		NAVIGATION,
 		BOXCOLLIDER,
 		MESHCOLLIDER,
+		PARTICLE_SYSTEM,
+		BILLBOARD,
 		COUNT
 	};
 
@@ -75,5 +77,4 @@ protected:
 	bool active;
 	GameObject* gameObject;
 	std::string name;
-
 };

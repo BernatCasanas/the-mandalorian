@@ -19,6 +19,8 @@
 #include "CO_Canvas.h"
 #include "CO_Image2D.h"
 #include "CO_Checkbox.h"
+#include "CO_ParticleSystem.h"
+#include "CO_Billboard.h"
 #include "CO_Navigation.h"
 
 #include"MO_Scene.h"
@@ -32,7 +34,7 @@
 
 
 GameObject::GameObject(const char* _name, GameObject* parent, int _uid) : parent(parent), name(_name), showChildren(false),
-active(true), isStatic(false), toDelete(false), UID(_uid), transform(nullptr), dumpComponent(nullptr), prefabID(0u)
+active(true), isStatic(false), toDelete(false), UID(_uid), transform(nullptr), dumpComponent(nullptr), prefabID(0u), tag("Untagged"), layer("Default")
 {
 
 	if(parent != nullptr)
@@ -45,7 +47,7 @@ active(true), isStatic(false), toDelete(false), UID(_uid), transform(nullptr), d
 	{
 		UID = EngineExternal->GetRandomInt();
 	}
-		//UID = MaykMath::Random(0, INT_MAX);
+	//UID = MaykMath::Random(0, INT_MAX);
 }
 
 
@@ -186,8 +188,14 @@ Component* GameObject::AddComponent(Component::TYPE _type, const char* params)
 	case Component::TYPE::IMAGE_2D:
 		ret = new C_Image2D(this);
 		break;
-	}
 
+	case Component::TYPE::PARTICLE_SYSTEM:
+		ret = new C_ParticleSystem(this);
+		break;
+	case Component::TYPE::BILLBOARD:
+		ret = new C_Billboard(this);
+		break;
+	}
 
 	if (ret != nullptr)
 	{		
@@ -287,6 +295,28 @@ void GameObject::Disable()
 	//}
 }
 
+void GameObject::EnableTopDown()
+{
+	Enable();
+	for (int i = 0;i< children.size(); i++) {
+		children[i]->EnableTopDown();
+	}
+	for (int i = 0; i < components.size(); i++) {
+		components[i]->Enable();
+	}
+}
+
+void GameObject::DisableTopDown()
+{
+	Disable();
+	for (int i = 0; i < children.size(); i++) {
+		children[i]->DisableTopDown();
+	}
+	for (int i = 0; i < components.size(); i++) {
+		components[i]->Disable();
+	}
+}
+
 
 bool GameObject::IsRoot()
 {
@@ -307,6 +337,8 @@ void GameObject::SaveToJson(JSON_Array* _goArray)
 
 	//Save all gameObject data
 	json_object_set_string(goData, "name", name.c_str());
+	json_object_set_string(goData, "tag", tag);
+	json_object_set_string(goData, "layer", layer);
 
 	DEJson::WriteBool(goData, "Active", active);
 	DEJson::WriteVector3(goData, "Position", &transform->position[0]);
@@ -350,6 +382,16 @@ void GameObject::LoadFromJson(JSON_Object* _obj)
 	transform->SetTransformMatrix(DEJson::ReadVector3(_obj, "Position"), DEJson::ReadQuat(_obj, "Rotation"), DEJson::ReadVector3(_obj, "Scale"));
 	prefabID = DEJson::ReadInt(_obj, "PrefabID");
 	LoadComponents(json_object_get_array(_obj, "Components"));
+
+	const char* json_tag = DEJson::ReadString(_obj, "tag");
+
+	if (json_tag == nullptr) sprintf_s(tag, "Untagged");
+	else sprintf_s(tag, json_tag);
+
+	const char* json_layer = DEJson::ReadString(_obj, "layer");
+
+	if (json_layer == nullptr) sprintf_s(layer, "Default");
+	else sprintf_s(layer, json_layer);
 }
 
 
@@ -440,7 +482,7 @@ void GameObject::CollectChilds(std::vector<GameObject*>& vector)
 		children[i]->CollectChilds(vector);
 }
 
-bool GameObject::CompareTag(char* _tag)
+bool GameObject::CompareTag(const char* _tag)
 {
 	return strcmp(tag, _tag) == 0;
 }
