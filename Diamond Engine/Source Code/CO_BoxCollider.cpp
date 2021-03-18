@@ -103,8 +103,6 @@ position(_position), rotation(_rotation), localScale(_localScale)*/
 
 	}
 
-
-
 	colliderShape->setFlag(physx::PxShapeFlag::eVISUALIZATION, true);
 
 }
