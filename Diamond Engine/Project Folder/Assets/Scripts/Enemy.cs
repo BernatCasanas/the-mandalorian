@@ -37,7 +37,7 @@ public class Enemy : DiamondComponent
 
 	public virtual bool Shoot()
 	{
-		InternalCalls.CreateBullet(shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
+		InternalCalls.CreateBullet(shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
 		timePassed = 0.0f;
 		shotTimes++;
 
