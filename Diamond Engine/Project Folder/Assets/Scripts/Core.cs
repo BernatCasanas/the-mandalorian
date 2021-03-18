@@ -9,6 +9,7 @@ public class Core : DiamondComponent
     public static Core instance;
     enum State
     {
+        None,
         Idle,
         Run,
         Dash,
@@ -21,7 +22,8 @@ public class Core : DiamondComponent
     private bool scriptStart = true;
 
     //State
-    private State _state;
+    private State _currentState;
+    private State _previousState;
 
     // Movement
     public float rotationSpeed = 2.0f;
@@ -64,7 +66,7 @@ public class Core : DiamondComponent
 
     //Animations
     private float shootAnimationTotalTime = 0.0f;
-    public string currentAnimation = "";
+    public string currentStateString = "";
 
     //Controller Variables
     int verticalInput = 0;
@@ -144,7 +146,8 @@ public class Core : DiamondComponent
 
             scriptStart = false;
 
-            _state = State.Idle;
+            _previousState = State.None;
+            _currentState = State.Idle;
 
             Debug.Log("Start!");
 
@@ -162,15 +165,16 @@ public class Core : DiamondComponent
 
         #region STATE MACHINE
 
-        switch (_state)
-        {
-            case State.Idle:
-                if (currentAnimation != "Idle") Animator.Play(gameObject, "Idle");
 
+        switch (_currentState)
+        {
+            case State.None:
+                ChangeState(State.Idle);
+                break;
+            case State.Idle:
                 if (IsJoystickMoving())
                 {
-                    _state = State.Run;
-                    //Debug.Log("Change to Run state");
+                    ChangeState(State.Run);
                 }
                 ShootInput();
                 SecondaryShootInput();
@@ -178,17 +182,12 @@ public class Core : DiamondComponent
 
                 break;
             case State.Run:
-                if (currentAnimation != "Run")
-                {
-                    Animator.Play(gameObject, "Run");
-                    Audio.PlayAudio(this.gameObject, "Play_Footsteps_Mando");
-                };
 
                 if (IsJoystickMoving())
                 {
                     RotatePlayer(gamepadInput);
                     MovePlayer();
-                    if (_state != State.Run)
+                    if (_currentState != State.Run)
                     {
                         Audio.StopAudio(gameObject);
                     }
@@ -196,7 +195,7 @@ public class Core : DiamondComponent
                 else
                 {
                     Audio.StopAudio(this.gameObject);
-                    _state = State.Idle;
+                    ChangeState(State.Idle);
                 }
 
                 ShootInput();
@@ -205,23 +204,20 @@ public class Core : DiamondComponent
 
                 break;
             case State.Dash:
-                if (currentAnimation != "Dash") Animator.Play(gameObject, "Dash");
                 HandleDash();
                 break;
             case State.Shoot:
-                if (currentAnimation != "Shoot") Animator.Play(gameObject, "Shoot", normalShootSpeed);
                 if (IsJoystickMoving())
                 {
                     RotatePlayer(gamepadInput);
                 }
 
                 ShootInput();
-                HandleShoot();
                 InputDash();
+                HandleShoot();
                 break;
 
             case State.SecShoot:
-                if (currentAnimation != "Shoot") Animator.Play(gameObject, "Shoot", normalShootSpeed);
                 Debug.Log("fire");
                 if (IsJoystickMoving())
                 {
@@ -233,7 +229,7 @@ public class Core : DiamondComponent
                 break;
         }
 
-        currentAnimation = Animator.GetCurrentAnimation(gameObject);
+        currentStateString = _currentState.ToString();
         #endregion
     }
 
@@ -248,7 +244,7 @@ public class Core : DiamondComponent
             rightTriggerPressed = true;
             shooting = true;
             rightTriggerTimer = 0f;
-            _state = State.Shoot;
+            ChangeState(State.Shoot);
         }
         else if (Input.GetRightTrigger() == 0)
         {
@@ -286,11 +282,11 @@ public class Core : DiamondComponent
             {
                 if (IsJoystickMoving())
                 {
-                    _state = State.Run;
+                    ChangeState(State.Run);
                 }
                 else
                 {
-                    _state = State.Idle;
+                    ChangeState(State.Idle);
 
                 }
             }
@@ -308,7 +304,7 @@ public class Core : DiamondComponent
             shooting = true;
             leftTriggerPressed = true;
             leftTriggerTimer = 0f;
-            _state = State.SecShoot;
+            ChangeState(State.SecShoot);
         }
         else if (Input.GetLeftTrigger() == 0)
         {
@@ -340,11 +336,11 @@ public class Core : DiamondComponent
             {
                 if (IsJoystickMoving())
                 {
-                    _state = State.Run;
+                    ChangeState(State.Run);
                 }
                 else
                 {
-                    _state = State.Idle;
+                    ChangeState(State.Idle);
 
                 }
             }
@@ -365,7 +361,7 @@ public class Core : DiamondComponent
             dashAvaliable = false;
             dashingCounter = 0.0f;
             dashTimer = 0f;
-            _state = State.Dash;
+            ChangeState(State.Dash);
         }
 
         if (dashTimer < timeBetweenDashes)
@@ -392,23 +388,23 @@ public class Core : DiamondComponent
 
             if (rightTriggerPressed)
             {
-                _state = State.Shoot;
+                ChangeState(State.Shoot);
 
             }
             else if (leftTriggerPressed)
             {
-                _state = State.SecShoot;
+                ChangeState(State.SecShoot);
             }
             else
             {
 
                 if (IsJoystickMoving())
                 {
-                    _state = State.Run;
+                    ChangeState(State.Run);
                 }
                 else
                 {
-                    _state = State.Idle;
+                    ChangeState(State.Idle);
 
                 }
             }
@@ -448,6 +444,44 @@ public class Core : DiamondComponent
     #endregion
 
     #region UTILITIES
+
+    private void ChangeState(State newState)
+    {
+        if (_currentState == newState) return;
+
+        _previousState = _currentState;
+        _currentState = newState;
+
+        HandleAnimation();
+    }
+
+    private void HandleAnimation()
+    {
+        if (_previousState == _currentState) return; 
+
+        switch (_currentState)
+        {
+            case State.None:
+                Animator.Play(gameObject, "Idle");
+                break;
+            case State.Idle:
+                Animator.Play(gameObject, "Idle");
+                break;
+            case State.Run:
+                Animator.Play(gameObject, "Run");
+                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Mando");
+                break;
+            case State.Dash:
+                Animator.Play(gameObject, "Dash");
+                break;
+            case State.Shoot:
+                Animator.Play(gameObject, "Shoot", normalShootSpeed);
+                break;
+            case State.SecShoot:
+                Animator.Play(gameObject, "Shoot", normalShootSpeed);
+                break;
+        }
+    }
     private void UpdateTimers()
     {
         //Timers
