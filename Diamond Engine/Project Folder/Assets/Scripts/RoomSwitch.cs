@@ -20,8 +20,11 @@ public class RoomSwitch : DiamondComponent
 	};
 	private int finalScene = 1482507639;
 
-	public void OnTriggerEnter()
+	public void OnTriggerEnter(GameObject triggeringObject)
     {
+		if (!triggeringObject.CompareTag("Player"))
+			return;
+
 		if (visited.Count > 0)
 		{
 			int roomnumber = test.Next(0, visited.Count);

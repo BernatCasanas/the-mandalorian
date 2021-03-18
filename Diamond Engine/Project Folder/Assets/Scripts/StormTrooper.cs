@@ -1,7 +1,7 @@
 using System;
 using DiamondEngine;
 
-public class Stormtrooper : Enemy
+public class StormTrooper : Enemy
 {
 	private int shotSequences = 0;
 	public int maxShots = 2;
@@ -65,7 +65,7 @@ public class Stormtrooper : Enemy
 
 				if (Mathf.Distance(gameObject.transform.localPosition, targetPosition) < stoppingDistance)
 				{
-					Animator.Play(gameObject, "Idle");
+					Animator.Play(gameObject, "ST_Idle");
 					currentState = STATES.IDLE;
 					timePassed = 0.0f;
 				}
@@ -83,7 +83,7 @@ public class Stormtrooper : Enemy
 				if (InRange(player.transform.globalPosition, range))
 				{
 					currentState = STATES.SHOOT;
-					Animator.Play(gameObject, "Shoot");
+					Animator.Play(gameObject, "ST_Shoot");
 					timePassed = timeBewteenShots;
 				}
 				else  //if not, keep wandering
@@ -98,7 +98,7 @@ public class Stormtrooper : Enemy
 					{
 						//targetPosition = CalculateNewPosition(wanderRange);
 						currentState = STATES.IDLE;
-						Animator.Play(gameObject, "Idle");
+						Animator.Play(gameObject, "ST_Idle");
 						timePassed = 0.0f;
 					}
 				}
@@ -115,7 +115,7 @@ public class Stormtrooper : Enemy
 				if (timePassed > timeBewteenShots)
 				{
 					Shoot();
-					Animator.Play(gameObject, "Shoot");
+					Animator.Play(gameObject, "ST_Shoot");
 
 					if (shotTimes >= maxShots)
 					{
@@ -125,13 +125,13 @@ public class Stormtrooper : Enemy
 						if (shotSequences >= maxSequences)
 						{
 							currentState = STATES.RUN;
-							Animator.Play(gameObject, "Run");
+							Animator.Play(gameObject, "ST_Run");
 							targetPosition = CalculateNewPosition(runningRange);
 							shotSequences = 0;
 						}
 						else
 						{
-							Animator.Play(gameObject, "Idle");
+							Animator.Play(gameObject, "ST_Idle");
 							currentState = STATES.IDLE;
                         }
 					}
@@ -142,7 +142,7 @@ public class Stormtrooper : Enemy
 				break;
 
 			case STATES.DIE:
-				Debug.Log("Die");
+				Debug.Log("ST_Die");
 				InternalCalls.Destroy(gameObject);
 				break;
 		}
@@ -153,6 +153,11 @@ public class Stormtrooper : Enemy
 	{
 		//Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + collidedGameObject.tag);
 		//Debug.Log("Collided by tag: " + collidedGameObject.tag);
+
+		if (collidedGameObject.CompareTag("Bullet"))
+		{
+			InternalCalls.Destroy(gameObject);
+		}
 	}
 
 	public void OnTriggerEnter(GameObject triggeredGameObject)

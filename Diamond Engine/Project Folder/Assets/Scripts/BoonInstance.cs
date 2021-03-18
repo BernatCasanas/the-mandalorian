@@ -44,12 +44,16 @@ public class BoonInstance : DiamondComponent
     }
 
 
-    public void OnCollisionEnter()
+    public void OnTriggerEnter(GameObject collidedGameObject)
     {
-        if (boonSpawner != null && myBoon != null)
+        if (collidedGameObject != null && collidedGameObject.CompareTag("Player"))//TODO sort this by UID
         {
-            myBoon.Use();
-            //boonSpawner boon spawner.destroy instantiatet prefabs TODO
+            //Debug.Log("COLLISION DETECTED WITH: " + collidedGameObject.name);
+            if (boonSpawner != null && myBoon != null)
+            {
+                myBoon.Use();
+                boonSpawner.DestroyAllCreatedBoons();
+            }
         }
 
     }
@@ -65,18 +69,18 @@ public class BoonInstance : DiamondComponent
             animTime -= Time.deltaTime * verticalSpeedMultiplier;
         }
 
-        if(animTime>1.0f)
+        if (animTime > 1.0f)
         {
             goingUp = false;
             animTime = 1.0f;
         }
-        else if(animTime<0.0f)
+        else if (animTime < 0.0f)
         {
             goingUp = true;
             animTime = 0.0f;
 
         }
-        float yPos =ParametricBlend(animTime);
+        float yPos = ParametricBlend(animTime);
 
 
 

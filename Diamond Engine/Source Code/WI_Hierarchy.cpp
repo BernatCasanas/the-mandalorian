@@ -73,7 +73,7 @@ void W_Hierarchy::DrawGameObjectsTree(GameObject* node, bool drawAsDisabled)
 	if (drawAsDisabled == false)
 		drawAsDisabled = !node->isActive();
 
-	ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_DefaultOpen;
+	ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow;// | ImGuiTreeNodeFlags_DefaultOpen;
 
 	if (node->children.size() == 0)
 		flags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen;
