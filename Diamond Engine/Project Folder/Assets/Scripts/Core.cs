@@ -37,7 +37,7 @@ public class Core : DiamondComponent
     public float dashDuration = 0.25f;
     public float dashDistance = 1.0f;
     private float dashSpeed = 0.0f;
-    private float dashTimer;
+    private float dashTimer = 0.0f;
     private float timeBetweenDashes = .5f;
 
     // Shooting
@@ -89,7 +89,7 @@ public class Core : DiamondComponent
             baseFireRate = 0.15f;
 
             //Animation
-            shootAnimationTotalTime = 0.175f;
+            shootAnimationTotalTime = 0.288f;
 
             //Dash - if scene doesnt have its values
             dashDuration = 0.2f;
@@ -122,7 +122,6 @@ public class Core : DiamondComponent
             fireRateMultCap = 2.5f;
             currSecondaryRate = secondaryRate;
             secondaryRateRecoverCap = 3.0f / secondaryRate;
-
             #endregion
 
             #region DASH
@@ -266,12 +265,10 @@ public class Core : DiamondComponent
             {
                 Audio.StopAudio(gameObject);
                 Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot_Mando");
-                InternalCalls.CreateBullet(shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
                 timeSinceLastNormalShoot = 0f;
                 Input.PlayHaptic(.3f, 10);
                 fireRate = GetCurrentFireRate();
                 float newShootSpeed = shootAnimationTotalTime / fireRate;
-                Debug.Log("New shoot speed : " + newShootSpeed.ToString());
 
                 if (newShootSpeed != normalShootSpeed)
                 {
@@ -279,6 +276,7 @@ public class Core : DiamondComponent
                     Animator.Play(gameObject, "Shoot", normalShootSpeed);
                 }
 
+                InternalCalls.CreateBullet(shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
                 shooting = false;
             }
         }
