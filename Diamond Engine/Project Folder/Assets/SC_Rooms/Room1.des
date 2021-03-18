@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        -6.9042978286743164,
-        17.670520782470703,
-        9.9213409423828125
+        6.0573105812072754,
+        10.598079681396484,
+        0.25874197483062744
     ],
     "EditorCameraZ": [
-        0.4681323766708374,
-        -0.59570318460464478,
-        -0.6526789665222168
+        -0.92398405075073242,
+        -0.3431071937084198,
+        0.16891109943389893
     ],
     "EditorCameraY": [
-        0.34714651107788086,
-        0.80320465564727783,
-        -0.48409873247146606
+        -0.33751440048217773,
+        0.93929624557495117,
+        0.061697483062744141
     ],
     "tags": [
         "Enemy",
@@ -168,7 +168,7 @@
                 },
                 {
                     "Type": 15,
-                    "Active": true,
+                    "Active": false,
                     "isTrigger": false,
                     "Position": [
                         0,
@@ -423,7 +423,7 @@
                 },
                 {
                     "Type": 15,
-                    "Active": true,
+                    "Active": false,
                     "isTrigger": false,
                     "Position": [
                         -2,
@@ -517,8 +517,8 @@
                     ],
                     "Rotation": [
                         -9.6275412943214178e-05,
-                        -0.00023829522251617163,
-                        0.37460422515869141,
+                        -0.00023829528072383255,
+                        0.37460425496101379,
                         0.92718476057052612
                     ],
                     "Scale": [
@@ -593,7 +593,7 @@
                 },
                 {
                     "Type": 15,
-                    "Active": true,
+                    "Active": false,
                     "isTrigger": false,
                     "Position": [
                         4,
@@ -763,7 +763,7 @@
                 },
                 {
                     "Type": 15,
-                    "Active": true,
+                    "Active": false,
                     "isTrigger": false,
                     "Position": [
                         0,
@@ -1353,7 +1353,7 @@
                 },
                 {
                     "Type": 15,
-                    "Active": true,
+                    "Active": false,
                     "isTrigger": false,
                     "Position": [
                         0,
@@ -1444,7 +1444,7 @@
                 },
                 {
                     "Type": 15,
-                    "Active": true,
+                    "Active": false,
                     "isTrigger": false,
                     "Position": [
                         0,
@@ -1717,7 +1717,7 @@
                 },
                 {
                     "Type": 15,
-                    "Active": true,
+                    "Active": false,
                     "isTrigger": false,
                     "Position": [
                         0,
@@ -2081,7 +2081,7 @@
                 },
                 {
                     "Type": 15,
-                    "Active": true,
+                    "Active": false,
                     "isTrigger": true,
                     "Position": [
                         0,
@@ -2163,7 +2163,7 @@
                     "fireRateAfterDashRecoverRatio": 0.5,
                     "fireRateMultCap": 0,
                     "normalShootSpeed": 0,
-                    "currentAnimation": "Empty"
+                    "currentStateString": "Empty"
                 },
                 {
                     "Type": 13,
@@ -3804,6 +3804,37 @@
             ]
         },
         {
+            "name": "GroguFollowPoint",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.58572781085968018,
+                0.90269899368286133,
+                -0.4430774450302124
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 2059214845,
+            "PrefabID": 0,
+            "ParentUID": 196363487,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
             "name": "Game Camera",
             "tag": "Untagged",
             "layer": "Default",
@@ -3927,7 +3958,7 @@
                 },
                 {
                     "Type": 15,
-                    "Active": true,
+                    "Active": false,
                     "isTrigger": false,
                     "Position": [
                         0,
@@ -4237,7 +4268,7 @@
                 },
                 {
                     "Type": 15,
-                    "Active": true,
+                    "Active": false,
                     "isTrigger": false,
                     "Position": [
                         0,
@@ -5351,7 +5382,7 @@
                 },
                 {
                     "Type": 18,
-                    "Active": true,
+                    "Active": false,
                     "isTrigger": false,
                     "Position": [
                         0,
@@ -5428,7 +5459,7 @@
                 },
                 {
                     "Type": 18,
-                    "Active": true,
+                    "Active": false,
                     "isTrigger": false,
                     "Position": [
                         0,
@@ -5494,8 +5525,8 @@
                     "MeshRendererUID": 1896130690,
                     "Animations": [
                         5952510,
-                        961511436,
-                        62587842
+                        62587842,
+                        961511436
                     ]
                 },
                 {
@@ -5514,7 +5545,7 @@
                 },
                 {
                     "Type": 18,
-                    "Active": true,
+                    "Active": false,
                     "isTrigger": false,
                     "Position": [
                         0,
@@ -7596,8 +7627,8 @@
                     "MeshRendererUID": 1281038494,
                     "Animations": [
                         5952510,
-                        961511436,
-                        62587842
+                        62587842,
+                        961511436
                     ]
                 },
                 {
@@ -9659,6 +9690,245 @@
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Grogu",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                7.6824569702148438,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 735933672,
+            "PrefabID": 2124140914,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "BabyYoda",
+                    "verticalSpeed": 0.80000001192092896,
+                    "verticalTimeInterval": 1.2000000476837158,
+                    "followPoint": 2059214845,
+                    "horizontalSpeed": 4
+                }
+            ]
+        },
+        {
+            "name": "GroguMesh",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1773328186,
+            "PrefabID": 0,
+            "ParentUID": 735933672,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "GrogusBody",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 2046771476,
+            "PrefabID": 0,
+            "ParentUID": 1773328186,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1009925764.mmh",
+                    "UID": 1009925764,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CapsuleDoor",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1999533911,
+            "PrefabID": 0,
+            "ParentUID": 1773328186,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1279529017.mmh",
+                    "UID": 1279529017,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Capsule",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1070484603,
+            "PrefabID": 0,
+            "ParentUID": 1773328186,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/173047703.mmh",
+                    "UID": 173047703,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Capsule",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1936059975,
+            "PrefabID": 0,
+            "ParentUID": 1773328186,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/370870893.mmh",
+                    "UID": 370870893,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }
