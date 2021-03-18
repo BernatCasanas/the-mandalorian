@@ -379,6 +379,7 @@ void CreateBullet(MonoObject* position, MonoObject* rotation, MonoObject* scale)
 		return /*nullptr*/;
 
 	GameObject* go = EngineExternal->moduleScene->CreateGameObject("Empty", EngineExternal->moduleScene->root);
+	sprintf_s(go->tag, "Bullet");
 	////go->name = std::to_string(go->UID);
 
 	float3 posVector = M_MonoManager::UnboxVector(position);

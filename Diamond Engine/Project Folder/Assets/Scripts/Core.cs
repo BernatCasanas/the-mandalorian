@@ -170,7 +170,7 @@ public class Core : DiamondComponent
                 if (IsJoystickMoving())
                 {
                     _state = State.Run;
-                    Debug.Log("Change to Run state");
+                    //Debug.Log("Change to Run state");
                 }
                 ShootInput();
                 SecondaryShootInput();
@@ -471,7 +471,7 @@ public class Core : DiamondComponent
         ret = (float)(Math.Log(timeSinceLastDash * fireRateAfterDashRecoverRatio) - Math.Log(0.01)) / fireRateRecoverCap;
 
         ret = Math.Min(ret, baseFireRate * fireRateMultCap);
-        Debug.Log("New fire rate: " + ret.ToString());
+        //Debug.Log("New fire rate: " + ret.ToString());
 
         return ret;
     }
@@ -483,7 +483,7 @@ public class Core : DiamondComponent
         ret = (float)(Math.Log(timeSinceLastDash * fireRateAfterDashRecoverRatio) - Math.Log(0.01)) / secondaryRateRecoverCap;
 
         ret = Math.Min(ret, secondaryRate * fireRateMultCap);
-        Debug.Log("New fire rate: " + ret.ToString());
+        //Debug.Log("New fire rate: " + ret.ToString());
 
         return ret;
 

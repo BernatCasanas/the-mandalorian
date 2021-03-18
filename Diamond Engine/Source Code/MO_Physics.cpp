@@ -443,6 +443,5 @@ void CollisionDetector::onTrigger(physx::PxTriggerPair* pairs, physx::PxU32 coun
 					script->CollisionCallback(true, contact2);
 			}
 		}
-		
 	}
 }
