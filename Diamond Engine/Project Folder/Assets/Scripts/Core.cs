@@ -37,12 +37,12 @@ public class Core : DiamondComponent
     public float dashDuration = 0.25f;
     public float dashDistance = 1.0f;
     private float dashSpeed = 0.0f;
-    private float dashTimer;
+    private float dashTimer=0.0f;
     private float timeBetweenDashes = .5f;
 
     // Shooting
     public float fireRate = 0.2f;
-    public float baseFireRate;
+    public float baseFireRate=0.0f;
     private float currFireRate = 0.0f;
     private float timeSinceLastNormalShoot = 0.0f;
     public float secondaryRate = 0.2f;
@@ -54,17 +54,17 @@ public class Core : DiamondComponent
     private float fireRateRecoverCap = 0.0f;
     private float secondaryRateRecoverCap = 0.0f;
 
-    public float fireRateMultCap;
-    private bool rightTriggerPressed;
-    private bool leftTriggerPressed;
-    private float rightTriggerTimer;
-    private float leftTriggerTimer;
-    private int deathZone;
-    public float normalShootSpeed;
+    public float fireRateMultCap=0.0f;
+    private bool rightTriggerPressed = false;
+    private bool leftTriggerPressed = false;
+    private float rightTriggerTimer=0.0f;
+    private float leftTriggerTimer = 0.0f;
+    private int deathZone=0;
+    public float normalShootSpeed = 0.0f;
 
     //Animations
-    private float shootAnimationTotalTime;
-    public string currentAnimation;
+    private float shootAnimationTotalTime = 0.0f;
+    public string currentAnimation="";
 
     //Controller Variables
     int verticalInput = 0;
