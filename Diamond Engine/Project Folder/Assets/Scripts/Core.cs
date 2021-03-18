@@ -66,6 +66,7 @@ public class Core : DiamondComponent
 
     //Animations
     private float shootAnimationTotalTime = 0.0f;
+    public string currentStateString = "";
 
     //Controller Variables
     int verticalInput = 0;
@@ -146,7 +147,7 @@ public class Core : DiamondComponent
             scriptStart = false;
 
             _previousState = State.None;
-            _currentState = State.None;
+            _currentState = State.Idle;
 
             Debug.Log("Start!");
 
@@ -174,7 +175,6 @@ public class Core : DiamondComponent
                 if (IsJoystickMoving())
                 {
                     ChangeState(State.Run);
-                    Debug.Log("Change to Run state");
                 }
                 ShootInput();
                 SecondaryShootInput();
@@ -228,6 +228,8 @@ public class Core : DiamondComponent
                 InputDash();
                 break;
         }
+
+        currentStateString = _currentState.ToString();
         #endregion
     }
 
@@ -473,7 +475,7 @@ public class Core : DiamondComponent
                 Animator.Play(gameObject, "Dash");
                 break;
             case State.Shoot:
-                Animator.Play(gameObject, "Shoot",normalShootSpeed);
+                Animator.Play(gameObject, "Shoot", normalShootSpeed);
                 break;
             case State.SecShoot:
                 Animator.Play(gameObject, "Shoot", normalShootSpeed);
