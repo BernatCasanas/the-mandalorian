@@ -31,6 +31,9 @@ faceNormals(false), vertexNormals(false), showAABB(false), showOBB(false), drawD
 
 C_MeshRenderer::~C_MeshRenderer()
 {
+	rootBone = nullptr;
+	bonesMap.clear();
+
 	if (_mesh != nullptr) 
 	{
 		EngineExternal->moduleResources->UnloadResource(_mesh->GetUID());
@@ -82,13 +85,12 @@ void C_MeshRenderer::RenderMesh(bool rTex)
 	if (rootBone != nullptr) 
 	{
 		//Get all the bones
-		std::map<std::string, GameObject*> bonesMap;
 		GetBoneMapping(bonesMap);
 
 		//Set bone Transforms array size using original bones transform array size
 		_mesh->boneTransforms.resize(_mesh->bonesOffsets.size());
 
-		if(bonesMap.size() != _mesh->bonesMap.size())
+		if (bonesMap.size() != _mesh->bonesMap.size())
 		{
 			for (size_t i = 0; i < _mesh->boneTransforms.size(); i++)
 			{
@@ -111,24 +113,11 @@ void C_MeshRenderer::RenderMesh(bool rTex)
 				_mesh->boneTransforms[it->second] = Delta.Transposed();
 			}
 		}
-
-		/*
-		if (bonesMap.size() != _mesh->bonesMap.size())
-		{
-			for (size_t i = 0; i < _mesh->boneTransforms.size(); i++)
-			{
-				if (_mesh->boneTransforms[i].Equals(float4x4::identity) && i > 0)
-				{
-					_mesh->boneTransforms[i] = _mesh->boneTransforms[i - 1];
-				}
-			}
-		}
-		*/
-		bonesMap.clear();
 	}
 	else
 	{
-		for (size_t i = 0; i < _mesh->boneTransforms.size(); i++) {
+		for (size_t i = 0; i < _mesh->boneTransforms.size(); i++) 
+		{
 			_mesh->boneTransforms[i] = float4x4::identity;
 		}
 	}
@@ -266,6 +255,32 @@ bool C_MeshRenderer::IsInsideFrustum(Frustum* camFrustum)
 		return true;
 
 	return true;
+}
+
+void C_MeshRenderer::SetRootBone(GameObject* _rootBone)
+{
+	if (_rootBone == nullptr) {
+		LOG(LogType::L_ERROR, "Trying to assign null root bone");
+		return;
+	}
+
+	rootBone = _rootBone;
+
+	/*
+	//Get all the bones
+	GetBoneMapping(bonesMap);
+
+	//Set bone Transforms array size using original bones transform array size
+	_mesh->boneTransforms.resize(_mesh->bonesOffsets.size());
+
+	if (bonesMap.size() != _mesh->bonesMap.size())
+	{
+		for (size_t i = 0; i < _mesh->boneTransforms.size(); i++)
+		{
+			_mesh->boneTransforms[i] = float4x4::identity;
+		}
+	}
+	*/
 }
 
 void C_MeshRenderer::SetRenderMesh(ResourceMesh* mesh)

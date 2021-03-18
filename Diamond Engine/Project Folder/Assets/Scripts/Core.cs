@@ -495,4 +495,30 @@ public class Core : DiamondComponent
     }
 
     #endregion
+
+    /*
+    public void OnCollisionEnter(GameObject collidedGameObject)
+    {
+        //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + collidedGameObject.tag);
+        //Debug.Log("Collided by tag: " + collidedGameObject.tag);
+
+        if (collidedGameObject.CompareTag("Bullet"))
+        {
+            //InternalCalls.Destroy(gameObject);
+            gameObject.GetComponent<PlayerHealth>().TakeDamage(5);
+        }
+    }
+
+    public void OnTriggerEnter(GameObject triggeredGameObject)
+    {
+        //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + triggeredGameObject.tag);
+        if (triggeredGameObject.CompareTag("Bullet"))
+        {
+            // InternalCalls.Destroy(gameObject);
+            gameObject.GetComponent<PlayerHealth>().TakeDamage(5);
+        }
+
+        //Debug.Log("Triggered by tag: " + triggeredGameObject.tag);
+    }
+    */
 }

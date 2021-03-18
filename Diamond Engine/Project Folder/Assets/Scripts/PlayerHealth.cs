@@ -114,6 +114,8 @@ public class PlayerHealth : DiamondComponent
         {
             Die();
         }
+
+        Debug.Log("Current health: " + currHealth);
     }
 
     

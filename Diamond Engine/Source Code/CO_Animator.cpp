@@ -210,7 +210,7 @@ void C_Animator::OnRecursiveUIDChange(std::map<uint, GameObject*> gameObjects)
 				{
 					C_MeshRenderer* meshRenderer = dynamic_cast<C_MeshRenderer*>(meshRendererIt->second->GetComponent(Component::TYPE::MESH_RENDERER));
 					if (meshRenderer != nullptr) {
-						meshRenderer->rootBone = rootBone;
+						meshRenderer->SetRootBone(rootBone);
 						meshRendererUID = meshRendererIt->second->UID;
 					}
 				}
@@ -277,7 +277,7 @@ bool C_Animator::OnEditor()
 				if (rootBone != nullptr) {
 					C_MeshRenderer* meshRenderer = dynamic_cast<C_MeshRenderer*>(dropGO->GetComponent(Component::TYPE::MESH_RENDERER));
 					if (meshRenderer != nullptr) {
-						meshRenderer->rootBone = rootBone;
+						meshRenderer->SetRootBone(rootBone);
 						meshRendererUID = dropGO->UID;
 					}
 				}
@@ -486,6 +486,8 @@ void C_Animator::SaveAnimation(ResourceAnimation* animation, const char* name)
 
 	char* buffer;
 	uint size = currentAnimation->SaveCustomFormat(currentAnimation, &buffer);
+
+	FileSystem::Save(currentAnimation->GetLibraryPath(), buffer, size, false);
 
 	//Save a copy in Assets 
 	std::string old_assets_path = "Assets/Animations/" + old_name + ".anim";
@@ -709,7 +711,7 @@ bool C_Animator::FindRootBone()
 			GameObject* meshRendererObject = EngineExternal->moduleScene->GetGOFromUID(EngineExternal->moduleScene->root, meshRendererUID);
 			if (meshRendererObject != nullptr)
 			{
-				dynamic_cast<C_MeshRenderer*>(meshRendererObject->GetComponent(Component::TYPE::MESH_RENDERER))->rootBone = rootBone;
+				dynamic_cast<C_MeshRenderer*>(meshRendererObject->GetComponent(Component::TYPE::MESH_RENDERER))->SetRootBone(rootBone);
 			}
 		}
 

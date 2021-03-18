@@ -8,7 +8,7 @@ public class Enemy : DiamondComponent
 	public GameObject shootPoint;
 
 	public float wanderSpeed = 3.5f;
-	public float runningSpeed = 12.5f;
+	public float runningSpeed = 7.5f;
 	public float range = 20.0f;
 	public float damage = 20.0f;
 	public float bulletSpeed = 10.0f;
