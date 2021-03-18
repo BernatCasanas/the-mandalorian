@@ -131,8 +131,8 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.Config::ControllerVibrationEnable", CS_ControllerEnableVibration);
 #pragma endregion
 
-
 	mono_add_internal_call("DiamondEngine.DiamondComponent::get_gameObject", CS_Component_Get_GO);
+
 
 	mono_add_internal_call("DiamondEngine.GameObject::TryGetComponent", CS_GetComponent);
 	mono_add_internal_call("DiamondEngine.GameObject::get_Name", CS_Get_GO_Name);

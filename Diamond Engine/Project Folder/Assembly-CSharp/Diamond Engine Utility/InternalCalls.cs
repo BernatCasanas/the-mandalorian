@@ -26,8 +26,7 @@ namespace DiamondEngine
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern void CloseGame();
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public static extern void CreatePrefab(object prefab_path, object position, object rotation, object scale);
+
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern GameObject CreatePrefab(object prefab_path, object position, object rotation, object scale);
     }
