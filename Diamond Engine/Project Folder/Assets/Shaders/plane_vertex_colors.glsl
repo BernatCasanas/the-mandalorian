@@ -28,8 +28,8 @@ void main()
 {
 	vertexColor = colors;
 	
-	lightColor = vec3(0.225, 0.150, 0.120);
-	vec3 lightDirection = vec3(lightPosition - position);
+	lightColor = vec3(0.425, 0.350, 0.320);
+	vec3 lightDirection = normalize(vec3(lightPosition - position));
 	diffuseColor = vec3(max(dot(lightDirection, -normals), 0) * lightColor);
 	
 	gl_Position = projection * view * model_matrix * vec4(position, 1.0);
@@ -51,6 +51,8 @@ void main()
  	color = vec4(vertexColor + diffuseColor, 1.0);
 }
 #endif
+
+
 
 
 
