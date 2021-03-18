@@ -23,6 +23,7 @@ public class BabyYoda : DiamondComponent
     {
 		FollowPoint();
 		MoveVertically();
+		LookAtMando();
 	}
 
 
@@ -39,8 +40,10 @@ public class BabyYoda : DiamondComponent
 
 	private void MoveVertically()
     {
-        if (moveDown == true)
+		if (moveDown == true)
+		{
 			gameObject.transform.localPosition -= new Vector3(0.0f, 1.0f, 0.0f) * verticalSpeed * Time.deltaTime;
+		}
 
 		else
 			gameObject.transform.localPosition += new Vector3(0.0f, 1.0f, 0.0f) * verticalSpeed * Time.deltaTime;
@@ -54,4 +57,19 @@ public class BabyYoda : DiamondComponent
 		}
 	}
 
+
+	private void LookAtMando()
+    {
+		Vector3 worldForward = new Vector3(0, 0, 1);
+
+		Vector3 vec = Core.instance.gameObject.transform.localPosition + Core.instance.gameObject.transform.GetForward() * 2 - gameObject.transform.globalPosition;
+		vec = vec.normalized;
+
+		float dotProduct = vec.x * worldForward.x + vec.z * worldForward.z;
+		float determinant = vec.x * worldForward.z - vec.z * worldForward.x;
+
+		float angle = (float)Math.Atan2(determinant, dotProduct);
+
+		gameObject.transform.localRotation = Quaternion.RotateAroundAxis(new Vector3(0, 1, 0), angle);
+	}
 }
