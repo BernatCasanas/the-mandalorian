@@ -31,6 +31,10 @@ public:
 
 	void Enable();
 	void Disable();
+
+	void EnableTopDown();
+	void DisableTopDown();
+
 	bool IsRoot();
 
 	void Destroy();
@@ -47,7 +51,7 @@ public:
 	void RemoveChild(GameObject*);
 	void CollectChilds(std::vector<GameObject*>& vector);
 
-	bool CompareTag(char* _tag);
+	bool CompareTag(const char* _tag);
 
 	template<typename A>
 	A* GetComponent()
@@ -76,6 +80,7 @@ public:
 	uint prefabID;
 
 	char tag[32];
+	char layer[32];
 
 private:
 	Component* dumpComponent;
