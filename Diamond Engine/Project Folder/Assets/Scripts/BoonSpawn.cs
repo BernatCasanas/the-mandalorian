@@ -122,8 +122,8 @@ public class BoonSpawn : DiamondComponent
     //TODO this has to be hardcoded for now (we do not have support for arrays of prefabs nor prefab drop on script editor)
     void CreateAllBoonProbabilities()
     {
-        AddBoonToPool("927301658", 1.0f);
-        AddBoonToPool("1681563592", 1.0f);
+        AddBoonToPool("1993886225", 1.0f);
+        AddBoonToPool("1714074184", 1.0f);
     }
     
     void AddBoonToPool(string boonLibID, float weight)

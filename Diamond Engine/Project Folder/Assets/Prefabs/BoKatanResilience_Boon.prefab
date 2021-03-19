@@ -1,8 +1,8 @@
 {
-    "assets_path": "Assets\/Prefabs\/BoonLifeSteal.prefab",
+    "assets_path": "Assets\/Prefabs\/BoKatanResilience_Boon.prefab",
     "Game Objects": [
         {
-            "name": "BoonLifeSteal",
+            "name": "BoKatanResilience_Boon",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -22,8 +22,8 @@
                 1,
                 1
             ],
-            "UID": 836987814,
-            "PrefabID": 1681563592,
+            "UID": 1100142528,
+            "PrefabID": 1993886225,
             "ParentUID": 1676501951,
             "Components": [
                 {
@@ -33,13 +33,21 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/1361317498.mmh",
-                    "UID": 1361317498,
+                    "Path": "Library\/Meshes\/1517354842.mmh",
+                    "UID": 1517354842,
                     "alternColor": [
                         1,
                         1,
                         1
                     ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/520652826.mat",
+                    "MaterialUID": 520652826
                 },
                 {
                     "Type": 5,
@@ -49,20 +57,6 @@
                     "verticalMovementAmount": 1,
                     "rotSpeedDegSec": 20,
                     "verticalSpeedMultiplier": 0.40000000596046448
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": false,
-                    "Gravity": false,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
                 },
                 {
                     "Type": 18,
@@ -84,6 +78,20 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
                 }
             ]
         }
