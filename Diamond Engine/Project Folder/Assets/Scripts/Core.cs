@@ -53,6 +53,7 @@ public class Core : DiamondComponent
     private float timeSinceLastSpecialShoot = 0.0f;
 
     private bool shooting = false;
+    private bool fireButtonPressed = false;
     public float fireRateAfterDashRecoverRatio = 2.0f;
     private float fireRateRecoverCap = 0.0f;
     private float secondaryRateRecoverCap = 0.0f;
@@ -95,8 +96,8 @@ public class Core : DiamondComponent
             shootAnimationTotalTime = 0.288f;
 
             //Dash - if scene doesnt have its values
-            dashDuration = 0.2f;
-            dashDistance = 4.5f;
+            //dashDuration = 0.2f;
+            //dashDistance = 4.5f;
 
             // END INIT VARIABLES WITH DEPENDENCIES //
 
@@ -120,9 +121,9 @@ public class Core : DiamondComponent
             //Shooting Rates
             currFireRate = fireRate;
             normalShootSpeed = shootAnimationTotalTime / fireRate;
-            fireRateAfterDashRecoverRatio = 2f;
+            //fireRateAfterDashRecoverRatio = 2f;
             fireRateRecoverCap = 3.0f / baseFireRate;
-            fireRateMultCap = 2.5f;
+            //fireRateMultCap = 2.5f;
             currSecondaryRate = secondaryRate;
             secondaryRateRecoverCap = 3.0f / secondaryRate;
             #endregion
@@ -133,7 +134,7 @@ public class Core : DiamondComponent
             dashTimer = 0f;
             dashSpeed = dashDistance / dashDuration;
             dashAvaliable = true;
-            timeBetweenDashes = .5f;
+            timeBetweenDashes = dashCD;
 
             #endregion
 
@@ -217,8 +218,8 @@ public class Core : DiamondComponent
                 }
 
                 ShootInput();
-                InputDash();
                 HandleShoot();
+                InputDash();
                 break;
 
             case State.SecShoot:
@@ -242,24 +243,24 @@ public class Core : DiamondComponent
 
     private void ShootInput()
     {
-        if (Input.GetRightTrigger() > 0 && !rightTriggerPressed)
+        KeyState fireButton = Input.GetGamepadButton(DEControllerButton.A);
+
+        if ((fireButton == KeyState.KEY_REPEAT || fireButton == KeyState.KEY_DOWN) && fireButtonPressed == false)
         {
             fireRate = GetCurrentFireRate();
-            rightTriggerPressed = true;
             shooting = true;
-            rightTriggerTimer = 0f;
+            fireButtonPressed = true;
             ChangeState(State.Shoot);
         }
-        else if (Input.GetRightTrigger() == 0)
+        else if (fireButton == KeyState.KEY_UP || fireButton == KeyState.KEY_IDLE)
         {
-            rightTriggerPressed = false;
-            rightTriggerTimer += Time.deltaTime;
+            fireButtonPressed = false;
         }
     }
 
     private void HandleShoot()
     {
-        if (rightTriggerPressed || shooting)
+        if (fireButtonPressed || shooting)
         {
             if (timeSinceLastNormalShoot > fireRate)
             {
@@ -358,14 +359,23 @@ public class Core : DiamondComponent
     #region DASH
     private void InputDash()
     {
-        if (Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN && dashAvaliable == true)
+        if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false && dashAvaliable == true)
         {
+            rightTriggerPressed = true;
+            rightTriggerTimer = 0f;
+
             Audio.StopAudio(this.gameObject);
             Audio.PlayAudio(this.gameObject, "Play_Dash");
+
             dashAvaliable = false;
             dashingCounter = 0.0f;
             dashTimer = 0f;
             ChangeState(State.Dash);
+        }
+        else if(Input.GetRightTrigger() == 0)
+        {
+            rightTriggerPressed = false;
+            rightTriggerTimer += Time.deltaTime;
         }
 
         if (dashTimer < timeBetweenDashes)
@@ -388,14 +398,15 @@ public class Core : DiamondComponent
         }
         else
         {
-            timeSinceLastDash = 0.0f;
 
-            if (rightTriggerPressed)
+            timeSinceLastDash = 0.0f;
+            dashingCounter = 0.0f;
+
+            if (fireButtonPressed == true)
             {
                 ChangeState(State.Shoot);
-
             }
-            else if (leftTriggerPressed)
+            else if (leftTriggerPressed == true)
             {
                 ChangeState(State.SecShoot);
             }
