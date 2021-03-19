@@ -5,11 +5,11 @@
   "SchemaVersion": "12",
   "SoundbankVersion": "135",
   "RootPaths": {
-   "ProjectRoot": "C:\\Users\\roger\\OneDrive\\Documentos\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\",
-   "SourceFilesRoot": "C:\\Users\\roger\\OneDrive\\Documentos\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\.cache\\Windows\\",
-   "SoundBanksRoot": "C:\\Users\\roger\\OneDrive\\Documentos\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows\\",
+   "ProjectRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\",
+   "SourceFilesRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\.cache\\Windows\\",
+   "SoundBanksRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows\\",
    "ExternalSourcesInputFile": "",
-   "ExternalSourcesOutputRoot": "C:\\Users\\roger\\OneDrive\\Documentos\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows"
+   "ExternalSourcesOutputRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows"
   },
   "DialogueEvents": [],
   "StreamedFiles": [],
@@ -18,7 +18,7 @@
    {
     "Id": "833070093",
     "Language": "SFX",
-    "Hash": "68801063",
+    "Hash": "1946764169",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Stormtrooper",
     "ShortName": "Stormtrooper",
     "Path": "Stormtrooper.bnk",
@@ -32,12 +32,28 @@
       "DurationMax": "0.000000"
      },
      {
+      "Id": "1601696560",
+      "Name": "Play_Blaster_Stormtrooper",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stormtrooper\\Play_Blaster_Stormtrooper",
+      "DurationType": "OneShot",
+      "DurationMin": "0.894172",
+      "DurationMax": "0.894172",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "1058641518",
+        "Language": "SFX",
+        "ShortName": "Stormtrooper blaster.wav",
+        "Path": "SFX\\Stormtrooper blaster_10C4C929.wem"
+       }
+      ]
+     },
+     {
       "Id": "4180674362",
       "Name": "Play_Enemy_Detection",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_Enemy_Detection",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stormtrooper\\Play_Enemy_Detection",
       "DurationType": "OneShot",
-      "DurationMin": "0.645042",
-      "DurationMax": "1.101500",
+      "DurationMin": "0.540125",
+      "DurationMax": "0.909583",
       "IncludedMemoryFiles": [
        {
         "Id": "356289844",
@@ -56,6 +72,100 @@
         "Language": "SFX",
         "ShortName": "Stormtrooper enemy detection 1.wav",
         "Path": "SFX\\Stormtrooper enemy detection 1_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1095147418",
+      "Name": "Play_Footsteps_Stormtrooper",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stormtrooper\\Play_Footsteps_Stormtrooper",
+      "DurationType": "Infinite",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "222927635",
+        "Language": "SFX",
+        "ShortName": "Footstep sand 1.wav",
+        "Path": "SFX\\Footstep sand 1_10C4C929.wem"
+       },
+       {
+        "Id": "326576311",
+        "Language": "SFX",
+        "ShortName": "Footstep sand 2.wav",
+        "Path": "SFX\\Footstep sand 2_10C4C929.wem"
+       },
+       {
+        "Id": "793534180",
+        "Language": "SFX",
+        "ShortName": "Footstep sand 3.wav",
+        "Path": "SFX\\Footstep sand 3_10C4C929.wem"
+       },
+       {
+        "Id": "925297908",
+        "Language": "SFX",
+        "ShortName": "Footstep sand 4.wav",
+        "Path": "SFX\\Footstep sand 4_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "614214837",
+      "Name": "Play_Stormtrooper_Death",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stormtrooper\\Play_Stormtrooper_Death",
+      "DurationType": "OneShot",
+      "DurationMin": "0.450656",
+      "DurationMax": "0.475302",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "296902962",
+        "Language": "SFX",
+        "ShortName": "Stormtrooper death 2.wav",
+        "Path": "SFX\\Stormtrooper death 2_10C4C929.wem"
+       },
+       {
+        "Id": "520687832",
+        "Language": "SFX",
+        "ShortName": "Stormtrooper death 1.wav",
+        "Path": "SFX\\Stormtrooper death 1_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "4171809812",
+      "Name": "Play_Stormtrooper_Hit",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stormtrooper\\Play_Stormtrooper_Hit",
+      "DurationType": "OneShot",
+      "DurationMin": "0.271990",
+      "DurationMax": "0.327312",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "152306303",
+        "Language": "SFX",
+        "ShortName": "Stormtrooper hit 2.wav",
+        "Path": "SFX\\Stormtrooper hit 2_10C4C929.wem"
+       },
+       {
+        "Id": "220722716",
+        "Language": "SFX",
+        "ShortName": "Stormtrooper hit 1.wav",
+        "Path": "SFX\\Stormtrooper hit 1_10C4C929.wem"
+       },
+       {
+        "Id": "353870287",
+        "Language": "SFX",
+        "ShortName": "Stormtrooper hit 3.wav",
+        "Path": "SFX\\Stormtrooper hit 3_10C4C929.wem"
+       },
+       {
+        "Id": "401471880",
+        "Language": "SFX",
+        "ShortName": "Stormtrooper armor hit 1.wav",
+        "Path": "SFX\\Stormtrooper armor hit 1_10C4C929.wem"
+       },
+       {
+        "Id": "872361266",
+        "Language": "SFX",
+        "ShortName": "Stormtrooper armor hit 3.wav",
+        "Path": "SFX\\Stormtrooper armor hit 3_10C4C929.wem"
        }
       ]
      },
@@ -83,6 +193,11 @@
       "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
      },
      {
+      "Id": "1547598200",
+      "Name": "SourcePitch",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourcePitch"
+     },
+     {
       "Id": "2704707011",
       "Name": "BusVolume",
       "ObjectPath": "\\Game Parameters\\Default Work Unit\\BusVolume"
@@ -92,7 +207,7 @@
    {
     "Id": "1093318992",
     "Language": "SFX",
-    "Hash": "2201628583",
+    "Hash": "2107700707",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Mando",
     "ShortName": "Mando",
     "Path": "Mando.bnk",
@@ -106,12 +221,28 @@
       "DurationMax": "0.000000"
      },
      {
+      "Id": "3416257419",
+      "Name": "Play_Blaster_Shoot_Mando",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Blaster_Shoot_Mando",
+      "DurationType": "OneShot",
+      "DurationMin": "1.070525",
+      "DurationMax": "1.070525",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "713708188",
+        "Language": "SFX",
+        "ShortName": "2Star Wars DC-15A Blaster Rifle Sound Effect.wav",
+        "Path": "SFX\\2Star Wars DC-15A Blaster Rifle Sound Effect_10C4C929.wem"
+       }
+      ]
+     },
+     {
       "Id": "2211787386",
       "Name": "Play_Dash",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_Dash",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Dash",
       "DurationType": "OneShot",
-      "DurationMin": "0.793396",
-      "DurationMax": "0.793396",
+      "DurationMin": "0.667279",
+      "DurationMax": "0.667279",
       "IncludedMemoryFiles": [
        {
         "Id": "390903921",
@@ -122,9 +253,25 @@
       ]
      },
      {
+      "Id": "373760516",
+      "Name": "Play_Dash_Transition",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Dash_Transition",
+      "DurationType": "OneShot",
+      "DurationMin": "1.000272",
+      "DurationMax": "1.000272",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "409049906",
+        "Language": "SFX",
+        "ShortName": "Dash Transition.wav",
+        "Path": "SFX\\Dash Transition_10C4C929.wem"
+       }
+      ]
+     },
+     {
       "Id": "3123219165",
       "Name": "Play_Footsteps_Mando",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_Footsteps_Mando",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Footsteps_Mando",
       "DurationType": "Mixed",
       "DurationMin": "0.339501",
       "DurationMax": "Infinite",
@@ -295,9 +442,99 @@
       ]
      },
      {
+      "Id": "2270035798",
+      "Name": "Play_Mando_Death",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Death",
+      "DurationType": "OneShot",
+      "DurationMin": "0.943333",
+      "DurationMax": "0.943333",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "565054485",
+        "Language": "SFX",
+        "ShortName": "Mando death 1.wav",
+        "Path": "SFX\\Mando death 1_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "2982021530",
+      "Name": "Play_Mando_Grenade",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Grenade",
+      "DurationType": "OneShot",
+      "DurationMin": "5.772177",
+      "DurationMax": "5.772177",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "199357886",
+        "Language": "SFX",
+        "ShortName": "Grenade nail 1.wav",
+        "Path": "SFX\\Grenade nail 1_10C4C929.wem"
+       },
+       {
+        "Id": "287122511",
+        "Language": "SFX",
+        "ShortName": "Grenade explosion 2.wav",
+        "Path": "SFX\\Grenade explosion 2_10C4C929.wem"
+       },
+       {
+        "Id": "371786017",
+        "Language": "SFX",
+        "ShortName": "Grenade charge 1.wav",
+        "Path": "SFX\\Grenade charge 1_10C4C929.wem"
+       },
+       {
+        "Id": "401317078",
+        "Language": "SFX",
+        "ShortName": "Grenade nail 2.wav",
+        "Path": "SFX\\Grenade nail 2_10C4C929.wem"
+       },
+       {
+        "Id": "531979089",
+        "Language": "SFX",
+        "ShortName": "Grenade explosion 1.wav",
+        "Path": "SFX\\Grenade explosion 1_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "2203710711",
+      "Name": "Play_Mando_Hit",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Hit",
+      "DurationType": "OneShot",
+      "DurationMin": "0.301010",
+      "DurationMax": "0.539456",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "218041158",
+        "Language": "SFX",
+        "ShortName": "Mando hit 1.wav",
+        "Path": "SFX\\Mando hit 1_10C4C929.wem"
+       },
+       {
+        "Id": "790055825",
+        "Language": "SFX",
+        "ShortName": "Mando armor hit 2.wav",
+        "Path": "SFX\\Mando armor hit 2_10C4C929.wem"
+       },
+       {
+        "Id": "1010296783",
+        "Language": "SFX",
+        "ShortName": "Mando hit 2.wav",
+        "Path": "SFX\\Mando hit 2_10C4C929.wem"
+       },
+       {
+        "Id": "1062142312",
+        "Language": "SFX",
+        "ShortName": "Mando armor hit 4.wav",
+        "Path": "SFX\\Mando armor hit 4_10C4C929.wem"
+       }
+      ]
+     },
+     {
       "Id": "3609957406",
       "Name": "Play_Mando_Voice",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_Mando_Voice",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Voice",
       "DurationType": "OneShot",
       "DurationMin": "0.777551",
       "DurationMax": "0.823832",
@@ -323,43 +560,18 @@
       ]
      },
      {
-      "Id": "471661148",
-      "Name": "Play_Weapon_Shoot_Mando",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_Weapon_Shoot_Mando",
+      "Id": "2559120509",
+      "Name": "Play_Sniper_Shoot_Mando",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Sniper_Shoot_Mando",
       "DurationType": "OneShot",
       "DurationMin": "0.614731",
-      "DurationMax": "1.070525",
+      "DurationMax": "0.614731",
       "IncludedMemoryFiles": [
        {
         "Id": "163793026",
         "Language": "SFX",
         "ShortName": "Sniper shot.wav",
         "Path": "SFX\\Sniper shot_10C4C929.wem"
-       },
-       {
-        "Id": "713708188",
-        "Language": "SFX",
-        "ShortName": "2Star Wars DC-15A Blaster Rifle Sound Effect.wav",
-        "Path": "SFX\\2Star Wars DC-15A Blaster Rifle Sound Effect_10C4C929.wem"
-       }
-      ],
-      "DefaultSwitchValue": "{21D5D886-05F7-4F0D-AA11-6F543FC38106}",
-      "SwitchContainers": [
-       {
-        "SwitchValue": "{D9D7BAE3-FEAF-489E-A93F-E360579A008C}",
-        "Media": [
-         {
-          "Id": "163793026"
-         }
-        ]
-       },
-       {
-        "SwitchValue": "{21D5D886-05F7-4F0D-AA11-6F543FC38106}",
-        "Media": [
-         {
-          "Id": "713708188"
-         }
-        ]
        }
       ]
      },
@@ -452,7 +664,7 @@
    {
     "Id": "1229948536",
     "Language": "SFX",
-    "Hash": "1719035451",
+    "Hash": "1098853243",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Environment",
     "ShortName": "Environment",
     "Path": "Environment.bnk",
@@ -468,7 +680,7 @@
      {
       "Id": "3330097699",
       "Name": "Play_Broken_Box",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_Broken_Box",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\Play_Broken_Box",
       "DurationType": "OneShot",
       "DurationMin": "0.511503",
       "DurationMax": "0.682775",
@@ -478,6 +690,52 @@
         "Language": "SFX",
         "ShortName": "Wood box broken.wav",
         "Path": "SFX\\Wood box broken_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "260317159",
+      "Name": "Play_Enemy_Respawn",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\Play_Enemy_Respawn",
+      "DurationType": "OneShot",
+      "DurationMin": "1.609333",
+      "DurationMax": "1.609333",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "419693254",
+        "Language": "SFX",
+        "ShortName": "Spawn Enemies.wav",
+        "Path": "SFX\\Spawn Enemies_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "3935346668",
+      "Name": "Play_Mando_Respawn",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\Play_Mando_Respawn",
+      "DurationType": "OneShot",
+      "DurationMin": "1.088885",
+      "DurationMax": "1.088885",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "575047190",
+        "Language": "SFX",
+        "ShortName": "Spawn Mando.wav",
+        "Path": "SFX\\Spawn Mando_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "3984843485",
+      "Name": "Play_Wind_Exterior",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\Play_Wind_Exterior",
+      "DurationType": "Infinite",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "420370470",
+        "Language": "SFX",
+        "ShortName": "Wind Exterior.wav",
+        "Path": "SFX\\Wind Exterior_D79FB2B7.wem"
        }
       ]
      },
@@ -519,7 +777,7 @@
    {
     "Id": "1355168291",
     "Language": "SFX",
-    "Hash": "2053192790",
+    "Hash": "1364815003",
     "ObjectPath": "Init",
     "ShortName": "Init",
     "Path": "Init.bnk",
@@ -534,15 +792,23 @@
    {
     "Id": "1551306167",
     "Language": "SFX",
-    "Hash": "2265036729",
+    "Hash": "3429386044",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI",
     "ShortName": "UI",
     "Path": "UI.bnk",
     "IncludedEvents": [
      {
+      "Id": "192623117",
+      "Name": "Pause_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Pause_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
       "Id": "310530060",
       "Name": "Play_UI_Button_Hover",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_UI_Button_Hover",
+      "ObjectPath": "\\Events\\Default Work Unit\\UI\\Play_UI_Button_Hover",
       "DurationType": "OneShot",
       "DurationMin": "0.095521",
       "DurationMax": "0.095521",
@@ -558,7 +824,7 @@
      {
       "Id": "1624273028",
       "Name": "Play_UI_Button_Play",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_UI_Button_Play",
+      "ObjectPath": "\\Events\\Default Work Unit\\UI\\Play_UI_Button_Play",
       "DurationType": "OneShot",
       "DurationMin": "0.645719",
       "DurationMax": "0.645719",
@@ -570,6 +836,22 @@
         "Path": "SFX\\UI Button click_10C4C929.wem"
        }
       ]
+     },
+     {
+      "Id": "1931338186",
+      "Name": "Resume_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Resume_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "3318621861",
+      "Name": "Stop_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
      }
     ],
     "GameParameters": [
@@ -607,7 +889,7 @@
    {
     "Id": "3795682265",
     "Language": "SFX",
-    "Hash": "477363039",
+    "Hash": "4220554066",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Bantha",
     "ShortName": "Bantha",
     "Path": "Bantha.bnk",
@@ -623,7 +905,7 @@
      {
       "Id": "2176463949",
       "Name": "Play_Bantha_Attack",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_Bantha_Attack",
+      "ObjectPath": "\\Events\\Default Work Unit\\Bantha\\Play_Bantha_Attack",
       "DurationType": "OneShot",
       "DurationMin": "0.512354",
       "DurationMax": "0.517187",
@@ -643,12 +925,82 @@
       ]
      },
      {
-      "Id": "3912954324",
-      "Name": "Play_Growl_Bantha",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_Growl_Bantha",
+      "Id": "1950875304",
+      "Name": "Play_Bantha_Ramming",
+      "ObjectPath": "\\Events\\Default Work Unit\\Bantha\\Play_Bantha_Ramming",
       "DurationType": "OneShot",
-      "DurationMin": "0.405292",
+      "DurationMin": "0.332240",
+      "DurationMax": "0.686802",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "166122849",
+        "Language": "SFX",
+        "ShortName": "Bantha attack ramming 3.wav",
+        "Path": "SFX\\Bantha attack ramming 3_10C4C929.wem"
+       },
+       {
+        "Id": "426481162",
+        "Language": "SFX",
+        "ShortName": "Bantha attack ramming 2.wav",
+        "Path": "SFX\\Bantha attack ramming 2_10C4C929.wem"
+       },
+       {
+        "Id": "647876168",
+        "Language": "SFX",
+        "ShortName": "Bantha attack ramming 1.wav",
+        "Path": "SFX\\Bantha attack ramming 1_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "2466961974",
+      "Name": "Play_Footsteps_Bantha",
+      "ObjectPath": "\\Events\\Default Work Unit\\Bantha\\Play_Footsteps_Bantha",
+      "DurationType": "Infinite",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "491745401",
+        "Language": "SFX",
+        "ShortName": "Bantha Footstep 3.wav",
+        "Path": "SFX\\Bantha Footstep 3_10C4C929.wem"
+       },
+       {
+        "Id": "502347880",
+        "Language": "SFX",
+        "ShortName": "Bantha Footstep 2.wav",
+        "Path": "SFX\\Bantha Footstep 2_10C4C929.wem"
+       },
+       {
+        "Id": "656291019",
+        "Language": "SFX",
+        "ShortName": "Bantha Footstep.wav",
+        "Path": "SFX\\Bantha Footstep_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "560345259",
+      "Name": "Play_Growl_Bantha_Death",
+      "ObjectPath": "\\Events\\Default Work Unit\\Bantha\\Play_Growl_Bantha_Death",
+      "DurationType": "OneShot",
+      "DurationMin": "1.032969",
       "DurationMax": "1.032969",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "210317130",
+        "Language": "SFX",
+        "ShortName": "Bantha Dead Roar.wav",
+        "Path": "SFX\\Bantha Dead Roar_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "2594154506",
+      "Name": "Play_Growl_Bantha_Hit",
+      "ObjectPath": "\\Events\\Default Work Unit\\Bantha\\Play_Growl_Bantha_Hit",
+      "DurationType": "OneShot",
+      "DurationMin": "0.300969",
+      "DurationMax": "0.543367",
       "IncludedMemoryFiles": [
        {
         "Id": "197876092",
@@ -657,10 +1009,10 @@
         "Path": "SFX\\Bantha hit 4_10C4C929.wem"
        },
        {
-        "Id": "210317130",
+        "Id": "358269163",
         "Language": "SFX",
-        "ShortName": "Bantha Dead Roar.wav",
-        "Path": "SFX\\Bantha Dead Roar_10C4C929.wem"
+        "ShortName": "Bantha body hit 1.wav",
+        "Path": "SFX\\Bantha body hit 1_10C4C929.wem"
        },
        {
         "Id": "787605823",
@@ -669,44 +1021,28 @@
         "Path": "SFX\\Bantha hit_10C4C929.wem"
        },
        {
+        "Id": "857968306",
+        "Language": "SFX",
+        "ShortName": "Bantha body hit 3.wav",
+        "Path": "SFX\\Bantha body hit 3_10C4C929.wem"
+       },
+       {
         "Id": "927501018",
         "Language": "SFX",
         "ShortName": "Bantha hit 2.wav",
         "Path": "SFX\\Bantha hit 2_10C4C929.wem"
        },
        {
+        "Id": "947249758",
+        "Language": "SFX",
+        "ShortName": "Bantha body hit 2.wav",
+        "Path": "SFX\\Bantha body hit 2_10C4C929.wem"
+       },
+       {
         "Id": "1062067289",
         "Language": "SFX",
         "ShortName": "Bantha hit 3.wav",
         "Path": "SFX\\Bantha hit 3_10C4C929.wem"
-       }
-      ],
-      "DefaultSwitchValue": "{9B3D5D53-69E5-4767-B78E-8F25A24D6C8B}",
-      "SwitchContainers": [
-       {
-        "SwitchValue": "{9B3D5D53-69E5-4767-B78E-8F25A24D6C8B}",
-        "Media": [
-         {
-          "Id": "197876092"
-         },
-         {
-          "Id": "787605823"
-         },
-         {
-          "Id": "927501018"
-         },
-         {
-          "Id": "1062067289"
-         }
-        ]
-       },
-       {
-        "SwitchValue": "{C6831CAA-E9CB-452B-9F17-B70C43C98F66}",
-        "Media": [
-         {
-          "Id": "210317130"
-         }
-        ]
        }
       ]
      },
@@ -762,7 +1098,7 @@
    {
     "Id": "3991942870",
     "Language": "SFX",
-    "Hash": "1984471106",
+    "Hash": "491633168",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Music",
     "ShortName": "Music",
     "Path": "Music.bnk",
@@ -776,34 +1112,210 @@
       "DurationMax": "0.000000"
      },
      {
-      "Id": "2932040671",
-      "Name": "Play_Music",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_Music",
-      "DurationType": "OneShot",
-      "DurationMin": "83.746101",
-      "DurationMax": "83.746101",
+      "Id": "1808211714",
+      "Name": "Play_Music_V02",
+      "ObjectPath": "\\Events\\Default Work Unit\\Music\\Play_Music_V02",
+      "DurationType": "Infinite",
       "IncludedMemoryFiles": [
        {
-        "Id": "333225371",
+        "Id": "11002483",
+        "Language": "SFX",
+        "ShortName": "Combat Music A\\OST A-Reverb.wav",
+        "Path": "SFX\\Combat Music A\\OST A-Reverb_4811579D.wem"
+       },
+       {
+        "Id": "72485731",
+        "Language": "SFX",
+        "ShortName": "OST 12-17-Strings and Brass 2.wav",
+        "Path": "SFX\\OST 12-17-Strings and Brass 2_4811579D.wem"
+       },
+       {
+        "Id": "366591278",
         "Language": "SFX",
         "ShortName": "Hud.wav",
-        "Path": "SFX\\Hud_D79FB2B7.wem"
-       }
-      ]
-     },
-     {
-      "Id": "4068124964",
-      "Name": "Play_Music_2",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_Music_2",
-      "DurationType": "OneShot",
-      "DurationMin": "147.824005",
-      "DurationMax": "147.824005",
-      "IncludedMemoryFiles": [
+        "Path": "SFX\\Hud_4811579D.wem"
+       },
        {
-        "Id": "1058672754",
+        "Id": "422689495",
         "Language": "SFX",
-        "ShortName": "Combat Music.wav",
-        "Path": "SFX\\Combat Music_D79FB2B7.wem"
+        "ShortName": "EXP STRINGS 2.wav",
+        "Path": "SFX\\EXP STRINGS 2_4811579D.wem"
+       },
+       {
+        "Id": "435793512",
+        "Language": "SFX",
+        "ShortName": "Combat Music A\\OST Horns.wav",
+        "Path": "SFX\\Combat Music A\\OST Horns_4811579D.wem"
+       },
+       {
+        "Id": "437014933",
+        "Language": "SFX",
+        "ShortName": "OST 15-19-Strings.wav",
+        "Path": "SFX\\OST 15-19-Strings_4811579D.wem"
+       },
+       {
+        "Id": "560818724",
+        "Language": "SFX",
+        "ShortName": "EXP FLUTE 2.wav",
+        "Path": "SFX\\EXP FLUTE 2_4811579D.wem"
+       },
+       {
+        "Id": "634176552",
+        "Language": "SFX",
+        "ShortName": "OST 13-18-Strings and Brass 3.wav",
+        "Path": "SFX\\OST 13-18-Strings and Brass 3_4811579D.wem"
+       },
+       {
+        "Id": "635566548",
+        "Language": "SFX",
+        "ShortName": "EXP FLUTE 1.wav",
+        "Path": "SFX\\EXP FLUTE 1_4811579D.wem"
+       },
+       {
+        "Id": "649407591",
+        "Language": "SFX",
+        "ShortName": "OST 7-Cymbal.wav",
+        "Path": "SFX\\OST 7-Cymbal_4811579D.wem"
+       },
+       {
+        "Id": "760582766",
+        "Language": "SFX",
+        "ShortName": "OST 14-17-Strings and Brass 4.wav",
+        "Path": "SFX\\OST 14-17-Strings and Brass 4_4811579D.wem"
+       },
+       {
+        "Id": "789354063",
+        "Language": "SFX",
+        "ShortName": "Combat Music A\\OST Flute.wav",
+        "Path": "SFX\\Combat Music A\\OST Flute_4811579D.wem"
+       },
+       {
+        "Id": "842200687",
+        "Language": "SFX",
+        "ShortName": "EXP STRINGS.wav",
+        "Path": "SFX\\EXP STRINGS_4811579D.wem"
+       },
+       {
+        "Id": "914423924",
+        "Language": "SFX",
+        "ShortName": "OST 11-16-Strings and Brass 1.wav",
+        "Path": "SFX\\OST 11-16-Strings and Brass 1_4811579D.wem"
+       },
+       {
+        "Id": "929528731",
+        "Language": "SFX",
+        "ShortName": "Explore Music A\\EXPLORER THEME A-Reverb.wav",
+        "Path": "SFX\\Explore Music A\\EXPLORER THEME A-Reverb_4811579D.wem"
+       },
+       {
+        "Id": "947589288",
+        "Language": "SFX",
+        "ShortName": "EXP STRINGS 1.wav",
+        "Path": "SFX\\EXP STRINGS 1_4811579D.wem"
+       },
+       {
+        "Id": "1069201538",
+        "Language": "SFX",
+        "ShortName": "OST 8-Percussion.wav",
+        "Path": "SFX\\OST 8-Percussion_4811579D.wem"
+       }
+      ],
+      "SwitchContainers": [
+       {
+        "SwitchValue": "{D651359C-1684-4E02-8D22-5225AA612899}",
+        "Children": [
+         {
+          "SwitchValue": "{78F63364-E080-40AA-B010-A5E50DF18F86}",
+          "Children": [
+           {
+            "SwitchValue": "{BA4F0BB3-ECC2-4F1E-BDF6-D3A727FBFF1E}",
+            "Media": [
+             {
+              "Id": "11002483"
+             },
+             {
+              "Id": "72485731"
+             },
+             {
+              "Id": "435793512"
+             },
+             {
+              "Id": "437014933"
+             },
+             {
+              "Id": "634176552"
+             },
+             {
+              "Id": "649407591"
+             },
+             {
+              "Id": "760582766"
+             },
+             {
+              "Id": "789354063"
+             },
+             {
+              "Id": "914423924"
+             },
+             {
+              "Id": "1069201538"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{D651359C-1684-4E02-8D22-5225AA612899}",
+        "Children": [
+         {
+          "SwitchValue": "{78F63364-E080-40AA-B010-A5E50DF18F86}",
+          "Children": [
+           {
+            "SwitchValue": "{14FF8C72-F46D-4D5D-90BD-E12CD2053E44}",
+            "Media": [
+             {
+              "Id": "422689495"
+             },
+             {
+              "Id": "560818724"
+             },
+             {
+              "Id": "635566548"
+             },
+             {
+              "Id": "842200687"
+             },
+             {
+              "Id": "929528731"
+             },
+             {
+              "Id": "947589288"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{409BC8C4-0CBE-4013-9D58-927CDA350096}",
+        "Children": [
+         {
+          "SwitchValue": "{9FB3B783-6554-4159-8ED7-7CBE608ADBBC}",
+          "Children": [
+           {
+            "SwitchValue": "{979A83A1-5FD3-4444-AB96-1ABEDBCBCCEC}",
+            "Media": [
+             {
+              "Id": "366591278"
+             }
+            ]
+           }
+          ]
+         }
+        ]
        }
       ]
      },
@@ -826,9 +1338,106 @@
     ],
     "GameParameters": [
      {
+      "Id": "467158820",
+      "Name": "SourceVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
+     },
+     {
       "Id": "2704707011",
       "Name": "BusVolume",
       "ObjectPath": "\\Game Parameters\\Default Work Unit\\BusVolume"
+     }
+    ],
+    "StateGroups": [
+     {
+      "Id": "766723505",
+      "Name": "Game_State",
+      "ObjectPath": "\\States\\Default Work Unit\\Game_State",
+      "States": [
+       {
+        "Id": "748895195",
+        "Name": "None",
+        "ObjectPath": "\\States\\Default Work Unit\\Game_State\\None"
+       },
+       {
+        "Id": "2607556080",
+        "Name": "Menu",
+        "ObjectPath": "\\States\\Default Work Unit\\Game_State\\Menu"
+       },
+       {
+        "Id": "646625282",
+        "Name": "HUB",
+        "ObjectPath": "\\States\\Default Work Unit\\Game_State\\HUB"
+       },
+       {
+        "Id": "712161704",
+        "Name": "Run",
+        "ObjectPath": "\\States\\Default Work Unit\\Game_State\\Run"
+       }
+      ]
+     },
+     {
+      "Id": "4071417932",
+      "Name": "Player_State",
+      "ObjectPath": "\\States\\Default Work Unit\\Player_State",
+      "States": [
+       {
+        "Id": "748895195",
+        "Name": "None",
+        "ObjectPath": "\\States\\Default Work Unit\\Player_State\\None"
+       },
+       {
+        "Id": "655265632",
+        "Name": "Alive",
+        "ObjectPath": "\\States\\Default Work Unit\\Player_State\\Alive"
+       },
+       {
+        "Id": "2044049779",
+        "Name": "Dead",
+        "ObjectPath": "\\States\\Default Work Unit\\Player_State\\Dead"
+       }
+      ]
+     }
+    ],
+    "SwitchGroups": [
+     {
+      "Id": "215992295",
+      "Name": "Player_Health",
+      "ObjectPath": "\\Switches\\Default Work Unit\\Player_Health",
+      "Switches": [
+       {
+        "Id": "2874639328",
+        "Name": "Healthy",
+        "ObjectPath": "\\Switches\\Default Work Unit\\Player_Health\\Healthy"
+       },
+       {
+        "Id": "2860195132",
+        "Name": "Injured",
+        "ObjectPath": "\\Switches\\Default Work Unit\\Player_Health\\Injured"
+       },
+       {
+        "Id": "2534871658",
+        "Name": "Critical",
+        "ObjectPath": "\\Switches\\Default Work Unit\\Player_Health\\Critical"
+       }
+      ]
+     },
+     {
+      "Id": "3066061883",
+      "Name": "Player_Action",
+      "ObjectPath": "\\Switches\\Default Work Unit\\Player_Action",
+      "Switches": [
+       {
+        "Id": "2764240573",
+        "Name": "Combat",
+        "ObjectPath": "\\Switches\\Default Work Unit\\Player_Action\\Combat"
+       },
+       {
+        "Id": "1823678183",
+        "Name": "Exploring",
+        "ObjectPath": "\\Switches\\Default Work Unit\\Player_Action\\Exploring"
+       }
+      ]
      }
     ]
    }
