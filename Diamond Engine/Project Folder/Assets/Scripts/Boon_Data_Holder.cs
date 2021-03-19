@@ -38,9 +38,12 @@ namespace DiamondEngine
         {
             if (Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
             {
+                int toIncrement = 20;
+                int currentMaxHp = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementMaxHpValue(toIncrement);
+                int currentHp = Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-toIncrement);
+                Debug.Log("Max HP increased to: " + currentMaxHp);
+                Debug.Log("Curr HP increased to: " + currentHp);
 
-                int currentMaxHp = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementMaxHpPercent(0.2f);
-                Debug.Log("Current HP increased to: " + currentMaxHp);
             }
             else
             {
