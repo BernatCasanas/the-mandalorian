@@ -106,7 +106,7 @@ public class PlayerHealth : DiamondComponent
     }
 
     //Also works as a HEAL AMOUNT when taking negative damage ;) When current HP drops to 0, Die() Method is called
-    public void TakeDamage(int damage)
+    public int TakeDamage(int damage)
     {
         currHealth -= damage;
 
@@ -116,6 +116,7 @@ public class PlayerHealth : DiamondComponent
         }
 
         Debug.Log("Current health: " + currHealth);
+        return currHealth;
     }
 
     
