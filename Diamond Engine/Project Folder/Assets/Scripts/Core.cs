@@ -67,6 +67,10 @@ public class Core : DiamondComponent
     private int deathZone = 15000;
     public float normalShootSpeed = 0.0f;
 
+    //Grenades
+    public float grenadesFireRate = 0.0f;
+    private float grenadesTimer = 0.0f;
+
     //Animations
     private float shootAnimationTotalTime = 0.0f;
     public string currentStateString = "";
@@ -211,6 +215,7 @@ public class Core : DiamondComponent
                 SecondaryShootInput();
                 InputDash();
 
+
                 break;
 
             case State.Dash:
@@ -224,18 +229,21 @@ public class Core : DiamondComponent
 
                 ShootInput();
                 HandleShoot();
+                SecondaryShootInput();
                 InputDash();
                 break;
 
             case State.SecShoot:
-                Debug.Log("fire");
+                Debug.Log("Grenade Fire!");
                 if (IsJoystickMoving())
                 {
                     RotatePlayer(gamepadInput);
                 }
-                SecondaryShootInput();
-                HandleSecondaryShoot();
-                InputDash();
+
+                grenadesTimer += Time.deltaTime;
+
+                if (grenadesTimer > grenadesFireRate)
+                    HandleSecondaryShoot();
                 break;
         }
 
@@ -308,61 +316,48 @@ public class Core : DiamondComponent
     #region SPECIAL SHOOT
     private void SecondaryShootInput()
     {
-        if(BigGrenades.Count == 0)
-        Debug.Log(BigGrenades.Count.ToString());
-        if (Input.GetLeftTrigger() > 0 && !leftTriggerPressed && smallGrenades.Count == 0 && BigGrenades.Count == 0)
+        if (BigGrenades.Count == 0)
+            Debug.Log(BigGrenades.Count.ToString());
+
+        if (Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_DOWN && smallGrenades.Count == 0 && BigGrenades.Count == 0)
         {
-            fireRate = GetCurrentSecondaryRate();
-            shooting = true;
-            leftTriggerPressed = true;
-            leftTriggerTimer = 0f;
             ChangeState(State.SecShoot);
         }
-        else if (Input.GetLeftTrigger() == 0)
-        {
-            leftTriggerPressed = false;
-            leftTriggerTimer += Time.deltaTime;
-        }
+
     }
 
     private void HandleSecondaryShoot()
     {
-        if (leftTriggerPressed || shooting)
+        Audio.StopAudio(gameObject);
+        Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
+        Vector3 rot = new Vector3(0f, 1f, 0f);
+        Quaternion rotation = Quaternion.RotateAroundAxis(rot, 0.383972f);
+
+        Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot_Mando");
+        InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation * rotation, scale);
+        rotation = Quaternion.RotateAroundAxis(rot, -0.383972f);
+        InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation * rotation, scale);
+
+        grenadesTimer = 0.0f;
+
+        Input.PlayHaptic(2f, 30);
+
+        if (fireButtonPressed == true)
         {
-            currSecondaryRate = GetCurrentSecondaryRate();
-
-            
-                Audio.StopAudio(gameObject);
-                Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
-                Vector3 rot = new Vector3(0f, 1f, 0f);
-                Quaternion rotation = Quaternion.RotateAroundAxis(rot, 0.383972f);
-
-                Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot_Mando");
-                InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation * rotation, scale);
-                rotation = Quaternion.RotateAroundAxis(rot, -0.383972f);
-                InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation * rotation, scale);
-
-                Input.PlayHaptic(1f, 30);
-                timeSinceLastSpecialShoot = 0.0f;
-                shooting = false;
-           
+            ChangeState(State.Shoot);
         }
-        else if (!shooting) // Time to cancel animation
+        else
         {
-            if (timeSinceLastSpecialShoot > currSecondaryRate * 0.5f)
+            if (IsJoystickMoving())
             {
-                if (IsJoystickMoving())
-                {
-                    ChangeState(State.Run);
-                }
-                else
-                {
-                    ChangeState(State.Idle);
+                ChangeState(State.Run);
+            }
+            else
+            {
+                ChangeState(State.Idle);
 
-                }
             }
         }
-
 
     }
 
@@ -384,7 +379,7 @@ public class Core : DiamondComponent
             dashTimer = 0f;
             ChangeState(State.Dash);
         }
-        else if(Input.GetRightTrigger() == 0)
+        else if (Input.GetRightTrigger() == 0)
         {
             rightTriggerPressed = false;
             rightTriggerTimer += Time.deltaTime;
@@ -417,10 +412,6 @@ public class Core : DiamondComponent
             if (fireButtonPressed == true)
             {
                 ChangeState(State.Shoot);
-            }
-            else if (leftTriggerPressed == true)
-            {
-                ChangeState(State.SecShoot);
             }
             else
             {
@@ -484,7 +475,7 @@ public class Core : DiamondComponent
 
     private void HandleAnimation()
     {
-        if (_previousState == _currentState) return; 
+        if (_previousState == _currentState) return;
 
         switch (_currentState)
         {
@@ -557,7 +548,7 @@ public class Core : DiamondComponent
 
     #endregion
 
- 
+
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
         //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + collidedGameObject.tag);
@@ -571,17 +562,17 @@ public class Core : DiamondComponent
         }
     }
 
-     /*
-     public void OnTriggerEnter(GameObject triggeredGameObject)
-     {
-         //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + triggeredGameObject.tag);
-         if (triggeredGameObject.CompareTag("Bullet"))
-         {
-             // InternalCalls.Destroy(gameObject);
-             gameObject.GetComponent<PlayerHealth>().TakeDamage(5);
-         }
+    /*
+    public void OnTriggerEnter(GameObject triggeredGameObject)
+    {
+        //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + triggeredGameObject.tag);
+        if (triggeredGameObject.CompareTag("Bullet"))
+        {
+            // InternalCalls.Destroy(gameObject);
+            gameObject.GetComponent<PlayerHealth>().TakeDamage(5);
+        }
 
-         //Debug.Log("Triggered by tag: " + triggeredGameObject.tag);
-     }
-     */
+        //Debug.Log("Triggered by tag: " + triggeredGameObject.tag);
+    }
+    */
 }
