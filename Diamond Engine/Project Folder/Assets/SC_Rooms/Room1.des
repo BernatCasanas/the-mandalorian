@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        9.4310684204101563,
-        16.295515060424805,
-        7.8712692260742188
+        -27.004024505615234,
+        33.305328369140625,
+        2.953855037689209
     ],
     "EditorCameraZ": [
-        -0.64398050308227539,
-        -0.5654977560043335,
-        -0.51526826620101929
+        0.76109343767166138,
+        -0.64862746000289917,
+        -0.0043903589248657227
     ],
     "EditorCameraY": [
-        -0.44157546758651733,
-        0.82474982738494873,
-        -0.35326874256134033
+        0.64861619472503662,
+        0.76110607385635376,
+        -0.003817141056060791
     ],
     "tags": [
         "Enemy",
@@ -517,13 +517,13 @@
                         0
                     ],
                     "Rotation": [
-                        -9.6275522082578391e-05,
-                        -0.00023829549900256097,
-                        0.37460425496101379,
-                        0.92718476057052612
+                        -9.6275529358536005e-05,
+                        -0.00023829552810639143,
+                        0.37460422515869141,
+                        0.92718487977981567
                     ],
                     "Scale": [
-                        0.99998587369918823,
+                        0.99998581409454346,
                         1.3999999761581421,
                         1
                     ]
@@ -2164,7 +2164,10 @@
                     "fireRateAfterDashRecoverRatio": 0.5,
                     "fireRateMultCap": 2,
                     "normalShootSpeed": 2,
-                    "currentStateString": "Empty"
+                    "grenadesFireRate": 0,
+                    "currentStateString": "Empty",
+                    "smallGrenades": 0,
+                    "BigGrenades": 0
                 },
                 {
                     "Type": 13,
@@ -7485,7 +7488,7 @@
                     "verticalTimeInterval": 1.2000000476837158,
                     "followPoint": 2059214845,
                     "horizontalSpeed": 4,
-                    "skillPushDuration": 0
+                    "skillPushDuration": 1
                 }
             ]
         },
@@ -7762,6 +7765,72 @@
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "GroguPushSkill",
+            "tag": "PushSkill",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                18.620338439941406,
+                0.11761793494224548
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 694872885,
+            "PrefabID": 541990364,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 0,
+                    "Density": 0
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        2.5,
+                        1,
+                        0.5
+                    ]
                 }
             ]
         }
