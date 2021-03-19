@@ -8,8 +8,11 @@ public class Respawn : DiamondComponent
     public int room;
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
-          Debug.Log("Respawn");
-        SceneManager.LoadScene(room);
+        if (collidedGameObject.CompareTag("Player"))
+        {
+            Debug.Log("Respawn");
+            SceneManager.LoadScene(room);
+        }
 
     }
 
