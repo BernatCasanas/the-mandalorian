@@ -4,6 +4,7 @@ using DiamondEngine;
 public class bigGrenade : DiamondComponent
 {
     public GameObject thisReference = null; //This is needed until i make all this be part of a component base class
+   
 
     public float speed = 30.0f;
 
@@ -15,16 +16,25 @@ public class bigGrenade : DiamondComponent
 
     private bool move = true;
 
+    private bool detonate = false;
 
-    public void OnCollisionEnter(GameObject collidedGameObject)
+
+    public void OnTriggerEnter(GameObject collidedGameObject)
     {
-
-        move = false;
+        if (collidedGameObject.CompareTag("Enemy"))
+        {
+            detonate = true;
+        }
 
     }
 
     public void Update()
     {
+        if(thisReference.transform.globalPosition.y < Core.instance.gameObject.transform.globalPosition.y + 0.5)
+        {
+            move = false;
+        }
+
         if (move)
         {
             gameObject.transform.localPosition += gameObject.transform.GetForward() * (speed * Time.deltaTime);
@@ -38,7 +48,7 @@ public class bigGrenade : DiamondComponent
 
         }
 
-        if (Timer > detonationTime)
+        if (Timer > detonationTime || detonate)
         {
             InternalCalls.Destroy(thisReference);
             Vector3 scale = new Vector3(0.07f, 0.07f, 0.07f);
