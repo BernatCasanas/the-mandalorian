@@ -21,7 +21,7 @@ public class FPS_Controller : DiamondComponent
     float dashCD_counter = 0.0f;
     float dashDuration = 0.25f;
     float dashingCounter = 0.0f;
-    //public void OnCollisionEnter()
+    //public void OnCollisionEnter(GameObject collidedGameObject)
     //{
     //    Debug.Log("Ayo i've been called.");
     //    InternalCalls.Destroy(reference);

@@ -27,7 +27,7 @@ public class BH_Bullet : DiamondComponent
         }
     }
 
-    public void OnTriggerEnter()
+    public void OnTriggerEnter(GameObject triggeredGameObject)
     {
         InternalCalls.Destroy(gameObject);
     }

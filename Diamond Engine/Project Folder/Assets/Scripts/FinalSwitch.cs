@@ -3,7 +3,7 @@ using DiamondEngine;
 
 public class FinalSwitch : DiamondComponent
 {
-	public void OnTriggerEnter()
+	public void OnTriggerEnter(GameObject triggeredGameObject)
 	{
 		SceneManager.LoadScene(1076838722);
 

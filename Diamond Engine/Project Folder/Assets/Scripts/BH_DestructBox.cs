@@ -10,7 +10,7 @@ public class BH_DestructBox : DiamondComponent
 
 	}
 
-	public void OnTriggerEnter()
+	public void OnTriggerEnter(GameObject triggeredGameObject)
 	{
 		InternalCalls.Destroy(thisReference);
 	}

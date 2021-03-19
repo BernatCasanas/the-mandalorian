@@ -13,7 +13,7 @@ public class smallGrenade : DiamondComponent
     private bool move = true;
 
 
-    public void OnCollisionEnter()
+    public void OnCollisionEnter(GameObject collidedGameObject)
     {
 
         move = false;
