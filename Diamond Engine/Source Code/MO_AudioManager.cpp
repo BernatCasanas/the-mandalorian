@@ -11,7 +11,7 @@
 CAkFilePackageLowLevelIOBlocking g_lowLevelIO;
 
 
-ModuleAudioManager::ModuleAudioManager(Application* app, bool start_enabled) : Module(app, start_enabled), wwiseListenerHasToUpdate(false), defaultListener(nullptr), masterVolume(50.0f), musicVolume(100.0f), fxVolume(100.0f), musicSource(nullptr)
+ModuleAudioManager::ModuleAudioManager(Application* app, bool start_enabled) : Module(app, start_enabled), wwiseListenerHasToUpdate(false), defaultListener(nullptr), masterVolume(50.0f), musicVolume(50.0f), fxVolume(50.0f), musicSource(nullptr)
 {
 	//TODO listener code here
 #ifdef STANDALONE
