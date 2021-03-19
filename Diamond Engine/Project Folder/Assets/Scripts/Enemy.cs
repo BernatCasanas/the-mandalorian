@@ -75,14 +75,6 @@ public class Enemy : DiamondComponent
 
 	public void LookAt(Vector3 pointToLook)
 	{
-		//Vector3 direction = pointToLook - gameObject.transform.globalPosition;
-
-		//direction = direction.normalized;
-
-
-		//gameObject.transform.localRotation = new Quaternion(0, Mathf.LerpAngle(gameObject.transform.localRotation.y, angle, 0.01f), 0);
-
-
 		Vector3 direction = pointToLook - gameObject.transform.globalPosition;
 		direction = direction.normalized;
 		float angle = (float)Math.Atan2(direction.x, direction.z);
@@ -94,8 +86,9 @@ public class Enemy : DiamondComponent
 
 		Quaternion dir = Quaternion.RotateAroundAxis(Vector3.up, angle);
 
-		float rotationSpeed = Time.deltaTime * slerpSpeed * 1000.0f;
-		//Debug.Log("Rotation speed: " + rotationSpeed.ToString());
+		float rotationSpeed = Time.deltaTime * slerpSpeed;
+		//Debug.Log("CS: Rotation speed: " + rotationSpeed.ToString());
+		//Debug.Log("CS: Time: " + Time.deltaTime);
 
 		Quaternion desiredRotation = Quaternion.Slerp(gameObject.transform.localRotation, dir, rotationSpeed);
 

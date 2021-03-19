@@ -451,8 +451,10 @@ MonoObject* SendGlobalScale(MonoObject* transform) //Allows to send float3 as "o
 
 MonoObject* MonoSlerp(MonoObject* cs_q1, MonoObject* cs_q2, float t)
 {
+	//LOG(LogType::L_NORMAL, "CPP: Desired angle: %.2f", t);
 	Quat q1 = M_MonoManager::UnboxQuat(cs_q1);
 	Quat q2 = M_MonoManager::UnboxQuat(cs_q2);
+
 	return  EngineExternal->moduleMono->QuatToCS(Slerp(q1, q2, t)); 
 }
 
