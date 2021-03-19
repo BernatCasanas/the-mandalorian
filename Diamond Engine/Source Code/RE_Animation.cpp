@@ -10,9 +10,7 @@ ResourceAnimation::ResourceAnimation(unsigned int _uid) : Resource(_uid, Resourc
 }
 
 ResourceAnimation::~ResourceAnimation()
-{
-	channels.clear();
-}
+{}
 
 bool ResourceAnimation::LoadToMemory()
 {
@@ -25,6 +23,8 @@ bool ResourceAnimation::LoadToMemory()
 
 bool ResourceAnimation::UnloadFromMemory()
 {
+	channels.clear();
+
 	return false;
 }
 

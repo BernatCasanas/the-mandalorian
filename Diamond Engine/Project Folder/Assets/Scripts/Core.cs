@@ -7,6 +7,7 @@ using DiamondEngine;
 public class Core : DiamondComponent
 {
     public static Core instance;
+
     enum State
     {
         None,
@@ -22,8 +23,8 @@ public class Core : DiamondComponent
     private bool scriptStart = true;
 
     //State
-    private State _currentState;
-    private State _previousState;
+    private State _currentState = State.None;
+    private State _previousState = State.None;
 
     // Movement
     public float rotationSpeed = 2.0f;
@@ -171,6 +172,7 @@ public class Core : DiamondComponent
             case State.None:
                 ChangeState(State.Idle);
                 break;
+
             case State.Idle:
                 if (IsJoystickMoving())
                 {
@@ -181,6 +183,7 @@ public class Core : DiamondComponent
                 InputDash();
 
                 break;
+
             case State.Run:
 
                 if (IsJoystickMoving())
@@ -203,6 +206,7 @@ public class Core : DiamondComponent
                 InputDash();
 
                 break;
+
             case State.Dash:
                 HandleDash();
                 break;
@@ -530,7 +534,7 @@ public class Core : DiamondComponent
 
     #endregion
 
-    /*
+ 
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
         //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + collidedGameObject.tag);
@@ -539,20 +543,22 @@ public class Core : DiamondComponent
         if (collidedGameObject.CompareTag("Bullet"))
         {
             //InternalCalls.Destroy(gameObject);
-            gameObject.GetComponent<PlayerHealth>().TakeDamage(5);
+            float damage = collidedGameObject.GetComponent<BH_Bullet>().damage;
+            gameObject.GetComponent<PlayerHealth>().TakeDamage((int)damage);
         }
     }
 
-    public void OnTriggerEnter(GameObject triggeredGameObject)
-    {
-        //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + triggeredGameObject.tag);
-        if (triggeredGameObject.CompareTag("Bullet"))
-        {
-            // InternalCalls.Destroy(gameObject);
-            gameObject.GetComponent<PlayerHealth>().TakeDamage(5);
-        }
+     /*
+     public void OnTriggerEnter(GameObject triggeredGameObject)
+     {
+         //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + triggeredGameObject.tag);
+         if (triggeredGameObject.CompareTag("Bullet"))
+         {
+             // InternalCalls.Destroy(gameObject);
+             gameObject.GetComponent<PlayerHealth>().TakeDamage(5);
+         }
 
-        //Debug.Log("Triggered by tag: " + triggeredGameObject.tag);
-    }
-    */
+         //Debug.Log("Triggered by tag: " + triggeredGameObject.tag);
+     }
+     */
 }

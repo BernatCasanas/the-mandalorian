@@ -142,8 +142,15 @@ public class StormTrooper : Enemy
 				break;
 
 			case STATES.DIE:
-				Debug.Log("ST_Die");
-				InternalCalls.Destroy(gameObject);
+				//Debug.Log("ST_Die");
+
+				timePassed += Time.deltaTime;
+
+				if(timePassed > 3.0f)
+                {
+					InternalCalls.Destroy(gameObject);
+
+                }
 				break;
 		}
 		
@@ -156,18 +163,28 @@ public class StormTrooper : Enemy
 
 		if (collidedGameObject.CompareTag("Bullet"))
 		{
-			InternalCalls.Destroy(gameObject);
+			Debug.Log("Collision bullet");
+
+			if(currentState != STATES.DIE)
+            {
+				currentState = STATES.DIE;
+				timePassed = 0.0f;
+				Animator.Play(gameObject, "ST_Run");
+			}
 		}
 	}
 
+	/*
 	public void OnTriggerEnter(GameObject triggeredGameObject)
 	{
 		//Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + triggeredGameObject.tag);
 		if(triggeredGameObject.CompareTag("Bullet"))
         {
+			Debug.Log("Trigger bullet");
 			InternalCalls.Destroy(gameObject);
         }
 
 		//Debug.Log("Triggered by tag: " + triggeredGameObject.tag);
 	}
+	*/
 }

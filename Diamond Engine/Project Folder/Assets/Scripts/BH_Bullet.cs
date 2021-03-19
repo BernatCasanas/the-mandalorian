@@ -10,6 +10,7 @@ public class BH_Bullet : DiamondComponent
     public float currentLifeTime = 0.0f;
 
     public float yVel = 0.0f;
+    public float damage = 5.0f;
 
     public void Update()
     {

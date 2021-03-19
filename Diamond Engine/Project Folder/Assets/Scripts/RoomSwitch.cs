@@ -60,8 +60,6 @@ public class RoomSwitch : DiamondComponent
 
 		if (Input.GetKey(DEKeyCode.I) == KeyState.KEY_DOWN)
 		{
-			
-          
 				if (visited.Count > 0)
 				{
 					int roomnumber = test.Next(0, visited.Count);
