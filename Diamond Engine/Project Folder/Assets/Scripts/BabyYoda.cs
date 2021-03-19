@@ -1,75 +1,181 @@
 using System;
+using System.Collections.Generic;
 using DiamondEngine;
 
 public class BabyYoda : DiamondComponent
 {
-	//Vertical Movement
-	public float verticalSpeed = 0.8f;
-	public float verticalTimeInterval = 1.2f;
-	private float verticalTimer = 0.0f;
-	private bool moveDown = true;
+    //Vertical Movement
+    public float verticalSpeed = 0.8f;
+    public float verticalTimeInterval = 1.2f;
+    private float verticalTimer = 0.0f;
+    private bool moveDown = true;
 
-	//Horizontal Movement
-	public GameObject followPoint = null;
+    //Horizontal Movement
+    public GameObject followPoint = null;
+    public float horizontalSpeed = 4f;
 
-	public float horizontalSpeed = 4f;
+    //State
+    private STATE state = STATE.MOVE;
+    private INPUTS input = INPUTS.NONE;
 
-	public void Update()
-	{
-		Move();
-	}
+    public float skillPushDuration = 0.8f;
+    private float skillPushTimer = 0.0f;
 
-	private void Move()
+    private const float INIT_TIMER = 0.0001f;
+
+    #region STATE_ENUMS
+    enum STATE
     {
-		FollowPoint();
-		MoveVertically();
-		LookAtMando();
-	}
+        NONE = -1,
+        MOVE,
+        SKILL_PUSH
+    }
 
-
-	private void FollowPoint()
+    enum INPUTS
     {
-        if (followPoint != null)
-        {
-			float x = Mathf.Lerp(gameObject.transform.localPosition.x, followPoint.transform.globalPosition.x, horizontalSpeed * Time.deltaTime);
-			float z = Mathf.Lerp(gameObject.transform.localPosition.z, followPoint.transform.globalPosition.z, horizontalSpeed * Time.deltaTime);
-			gameObject.transform.localPosition = new Vector3(x, gameObject.transform.localPosition.y, z);
-		}
+        NONE = -1,
+        IN_SKILL_PUSH,
+        IN_SKILL_PUSH_END,
+    }
+    #endregion
+
+    public void Update()
+    {
+        UpdateState();
+        Move();
+    }
+
+    #region MOVEMENT
+    private void Move()
+    {
+        FollowPoint();
+        MoveVertically();
+        LookAtMando();
     }
 
 
-	private void MoveVertically()
+    private void FollowPoint()
     {
-		if (moveDown == true)
-		{
-			gameObject.transform.localPosition -= new Vector3(0.0f, 1.0f, 0.0f) * verticalSpeed * Time.deltaTime;
-		}
-
-		else
-			gameObject.transform.localPosition += new Vector3(0.0f, 1.0f, 0.0f) * verticalSpeed * Time.deltaTime;
-
-		verticalTimer += Time.deltaTime;
-
-		if (verticalTimer >= verticalTimeInterval)
+        if (followPoint != null)
         {
-			moveDown = !moveDown;
-			verticalTimer = 0.0f;
-		}
-	}
+            float x = Mathf.Lerp(gameObject.transform.localPosition.x, followPoint.transform.globalPosition.x, horizontalSpeed * Time.deltaTime);
+            float z = Mathf.Lerp(gameObject.transform.localPosition.z, followPoint.transform.globalPosition.z, horizontalSpeed * Time.deltaTime);
+            gameObject.transform.localPosition = new Vector3(x, gameObject.transform.localPosition.y, z);
+        }
+    }
 
 
-	private void LookAtMando()
+    private void MoveVertically()
     {
-		Vector3 worldForward = new Vector3(0, 0, 1);
+        if (moveDown == true)
+        {
+            gameObject.transform.localPosition -= new Vector3(0.0f, 1.0f, 0.0f) * verticalSpeed * Time.deltaTime;
+        }
 
-		Vector3 vec = Core.instance.gameObject.transform.localPosition + Core.instance.gameObject.transform.GetForward() * 2 - gameObject.transform.globalPosition;
-		vec = vec.normalized;
+        else
+            gameObject.transform.localPosition += new Vector3(0.0f, 1.0f, 0.0f) * verticalSpeed * Time.deltaTime;
 
-		float dotProduct = vec.x * worldForward.x + vec.z * worldForward.z;
-		float determinant = vec.x * worldForward.z - vec.z * worldForward.x;
+        verticalTimer += Time.deltaTime;
 
-		float angle = (float)Math.Atan2(determinant, dotProduct);
+        if (verticalTimer >= verticalTimeInterval)
+        {
+            moveDown = !moveDown;
+            verticalTimer = 0.0f;
+        }
+    }
 
-		gameObject.transform.localRotation = Quaternion.RotateAroundAxis(new Vector3(0, 1, 0), angle);
-	}
+
+    private void LookAtMando()
+    {
+        Vector3 worldForward = new Vector3(0, 0, 1);
+
+        Vector3 vec = Core.instance.gameObject.transform.localPosition + Core.instance.gameObject.transform.GetForward() * 2 - gameObject.transform.globalPosition;
+        vec = vec.normalized;
+
+        float dotProduct = vec.x * worldForward.x + vec.z * worldForward.z;
+        float determinant = vec.x * worldForward.z - vec.z * worldForward.x;
+
+        float angle = (float)Math.Atan2(determinant, dotProduct);
+
+        gameObject.transform.localRotation = Quaternion.RotateAroundAxis(new Vector3(0, 1, 0), angle);
+    }
+    #endregion
+
+    private void UpdateState()
+    {
+        input = INPUTS.NONE;
+
+        ProcessInternalInput();
+        ProcessExternalInput();
+
+        ProcessState();
+
+        switch (state)
+        {
+            case STATE.MOVE:
+                //Do animation / play sounds / whathever
+                break;
+            case STATE.SKILL_PUSH:
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    //All button inputs must be handled here
+    private void ProcessExternalInput()
+    {
+        if (Input.GetGamepadButton(DEControllerButton.RIGHTSHOULDER) == KeyState.KEY_DOWN)
+        {
+            if (input == INPUTS.NONE)
+                input = INPUTS.IN_SKILL_PUSH;
+        }
+    }
+
+
+    //All timer things must be updated here
+    private void ProcessInternalInput()
+    {
+        if (skillPushTimer > 0.0f)
+        {
+            skillPushTimer += Time.deltaTime;
+
+            if (skillPushTimer >= skillPushDuration && input == INPUTS.NONE)
+            {
+                input = INPUTS.IN_SKILL_PUSH_END;
+                skillPushTimer = 0.0f;
+            }
+        }
+    }
+
+    private void ProcessState()
+    {
+        switch (state)
+        {
+            case STATE.NONE:
+                break;
+            case STATE.MOVE:
+                switch (input)
+                {
+                    case INPUTS.IN_SKILL_PUSH:
+                        skillPushTimer += INIT_TIMER;
+                        state = STATE.SKILL_PUSH;
+                        break;
+                }
+                break;
+
+            case STATE.SKILL_PUSH:
+                switch (input)
+                {
+                    case INPUTS.IN_SKILL_PUSH_END:
+                        state = STATE.MOVE;
+                        break;
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
 }

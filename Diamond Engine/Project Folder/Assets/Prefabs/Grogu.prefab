@@ -3,10 +3,12 @@
     "Game Objects": [
         {
             "name": "Grogu",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
-                6.6717729568481445,
+                7.6824569702148438,
                 0
             ],
             "Rotation": [
@@ -20,7 +22,7 @@
                 1,
                 1
             ],
-            "UID": 720325615,
+            "UID": 735933672,
             "PrefabID": 2124140914,
             "ParentUID": 1676501951,
             "Components": [
@@ -34,12 +36,16 @@
                     "ScriptName": "BabyYoda",
                     "verticalSpeed": 0.80000001192092896,
                     "verticalTimeInterval": 1.2000000476837158,
-                    "horizontalSpeed": 4
+                    "followPoint": 2059214845,
+                    "horizontalSpeed": 4,
+                    "skillPushDuration": 0.5
                 }
             ]
         },
         {
             "name": "GroguMesh",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -57,9 +63,9 @@
                 1,
                 1
             ],
-            "UID": 1751517171,
+            "UID": 1773328186,
             "PrefabID": 0,
-            "ParentUID": 720325615,
+            "ParentUID": 735933672,
             "Components": [
                 {
                     "Type": 1,
@@ -69,6 +75,8 @@
         },
         {
             "name": "GrogusBody",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -86,9 +94,9 @@
                 1,
                 1
             ],
-            "UID": 1813034590,
+            "UID": 2046771476,
             "PrefabID": 0,
-            "ParentUID": 1751517171,
+            "ParentUID": 1773328186,
             "Components": [
                 {
                     "Type": 1,
@@ -104,11 +112,21 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
                 }
             ]
         },
         {
             "name": "CapsuleDoor",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -126,9 +144,9 @@
                 1,
                 1
             ],
-            "UID": 487387024,
+            "UID": 1999533911,
             "PrefabID": 0,
-            "ParentUID": 1751517171,
+            "ParentUID": 1773328186,
             "Components": [
                 {
                     "Type": 1,
@@ -144,11 +162,21 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
                 }
             ]
         },
         {
             "name": "Capsule",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -166,9 +194,9 @@
                 1,
                 1
             ],
-            "UID": 2130375304,
+            "UID": 1070484603,
             "PrefabID": 0,
-            "ParentUID": 1751517171,
+            "ParentUID": 1773328186,
             "Components": [
                 {
                     "Type": 1,
@@ -184,11 +212,21 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
                 }
             ]
         },
         {
             "name": "Capsule",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -206,9 +244,9 @@
                 1,
                 1
             ],
-            "UID": 753476082,
+            "UID": 1936059975,
             "PrefabID": 0,
-            "ParentUID": 1751517171,
+            "ParentUID": 1773328186,
             "Components": [
                 {
                     "Type": 1,
@@ -224,6 +262,14 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
                 }
             ]
         }
