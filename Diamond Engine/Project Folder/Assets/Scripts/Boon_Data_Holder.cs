@@ -18,9 +18,16 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            int currentLifeSteal = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementHealingWhenKillingEnemy(1);
-            Debug.Log("LifeSteal increased to: " + currentLifeSteal);
+            if (Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
+            {
+                int currentLifeSteal = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementHealingWhenKillingEnemy(1);
+                Debug.Log("LifeSteal increased to: " + currentLifeSteal);
+            }
+            else
+            {
+                Debug.Log("ERROR!! Din Djarin has no player health component");
 
+            }
         }
     }
 
@@ -29,9 +36,16 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            if (Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
+            {
 
-            int currentMaxHp = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementMaxHpPercent(0.2f);
-            Debug.Log("Current HP increased to: " + currentMaxHp);
+                int currentMaxHp = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementMaxHpPercent(0.2f);
+                Debug.Log("Current HP increased to: " + currentMaxHp);
+            }
+            else
+            {
+                Debug.Log("ERROR!! Din Djarin has no player health component");
+            }
 
         }
     }

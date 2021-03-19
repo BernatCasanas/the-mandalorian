@@ -7,59 +7,133 @@ using System.Collections.Generic;
 
 public class BoonSpawn : DiamondComponent
 {
-   
+    struct BoonWeight
+    {
+        public string boonLibID;
+        public float weight; //weight to take into account for the random pick
+    }
+
     public GameObject boonSpawnPosGO;
+    public int boonsToSpawn = 1;
     Vector3 boonScale = new Vector3(1.0f, 1.0f, 1.0f);
+    Vector3 spawnPos = new Vector3(0.0f, 0.0f, 0.0f);
+    Vector3 spawnDir = new Vector3(0.0f, 0.0f, 0.0f);
     public float separation = 2.0f;
     bool firstFrame = true;
-    List<GameObject> instancedPrefabs=new List<GameObject>();
+    List<GameObject> instancedPrefabs = new List<GameObject>();
+    List<BoonWeight> myRandomPool = new List<BoonWeight>();
+
+    float totalweight = 0.0f;
 
     public void Update()
     {
         if (firstFrame)
         {
             firstFrame = false;
+            totalweight = 0.0f;
 
-            SpawnBoons();
+            if (boonSpawnPosGO != null)
+            {
+                spawnPos = new Vector3(boonSpawnPosGO.transform.localPosition.x, boonSpawnPosGO.transform.localPosition.y, boonSpawnPosGO.transform.localPosition.z);
+                spawnDir = boonSpawnPosGO.transform.GetRight();
+                spawnDir = spawnDir * separation;
+            }
+
+            CreateAllBoonProbabilities();
+
+            SpawnBoons();//TODO this method must be called from the place where the level is considered ended not from here
         }
     }
 
+    //USE THIS WHEN THE LEVEL IS FINISHED
+    //Spawns the number of boons requested with no repeating ones 
     public void SpawnBoons()
     {
-        //TODO this has to be hardcoded for now (we do not have support for arrays of prefabs nor prefab drop on script editor)
+        int newBoonsToSpawn = boonsToSpawn;
 
-        if (boonSpawnPosGO != null)
+        if (newBoonsToSpawn > myRandomPool.Count) //this ensures that we do not end in an infinite bucle if we need to spawn more boons han random boons exist
         {
-            Vector3 pos = boonSpawnPosGO.transform.globalPosition;
-            Vector3 spawnDir = boonSpawnPosGO.transform.GetRight();
-            spawnDir = spawnDir * separation;
-            Vector3 spawnPos = pos - spawnDir;
-            Debug.Log("Left SpawnPos:" + spawnPos.ToString());
-            instancedPrefabs.Add(InternalCalls.CreatePrefab(PrefabPathFromID("456478384"), spawnPos, boonSpawnPosGO.transform.globalRotation, boonScale));
-            Debug.Log("Center SpawnPos:" + pos.ToString());
-            instancedPrefabs.Add(InternalCalls.CreatePrefab(PrefabPathFromID("977900791"), pos, boonSpawnPosGO.GetComponent<Transform>().globalRotation, boonScale));
-            spawnPos = pos + spawnDir;
-            Debug.Log("Right SpawnPos:" + spawnPos.ToString());
-            instancedPrefabs.Add(InternalCalls.CreatePrefab(PrefabPathFromID("1833518684"), spawnPos, boonSpawnPosGO.GetComponent<Transform>().globalRotation, boonScale));
+            newBoonsToSpawn = myRandomPool.Count;
         }
+
+        List<int> requestedBoonList = new List<int>();
+
+        for (int i = 0; i < newBoonsToSpawn; ++i)
+        {
+            int newBoonIndex = RequestRandomBoon();
+
+            if (requestedBoonList.Contains(newBoonIndex))//This ensures that no index is repeated
+            {
+                --i;
+            }
+            else
+            {
+                requestedBoonList.Add(newBoonIndex);
+            }
+
+        }
+
+        for (int i = 0; i < requestedBoonList.Count; ++i)
+        {
+
+            instancedPrefabs.Add(InternalCalls.CreatePrefab(PrefabPathFromID(myRandomPool[requestedBoonList[i]].boonLibID), spawnPos, boonSpawnPosGO.transform.globalRotation, boonScale));
+            spawnPos += spawnDir;
+        }
+
+        requestedBoonList.Clear();
 
     }
 
     string PrefabPathFromID(string prefabID)
     {
-        string ret= "Library/Prefabs/";
+        string ret = "Library/Prefabs/";
         ret = ret + prefabID + ".prefab";
         return ret;
     }
 
     public void DestroyAllCreatedBoons()
     {
-        for (int i = instancedPrefabs.Count-1; i >=0; --i)
+        for (int i = instancedPrefabs.Count - 1; i >= 0; --i)
         {
             InternalCalls.Destroy(instancedPrefabs[i]);
             //instancedPrefabs.RemoveAt(i);
         }
         instancedPrefabs.Clear();
+    }
+
+
+    //returns the index of the boonWeight that has been chosen, returns -1 if the pool is empty
+    int RequestRandomBoon()
+    {
+        Random r = new Random();
+        float randomPick = (float)(r.NextDouble() * totalweight);
+
+        for (int i = 0; i < myRandomPool.Count; i++)
+        {
+            if (randomPick < myRandomPool[i].weight)
+            {
+                return i - 1;
+            }
+        }
+        return (myRandomPool.Count - 1);
+    }
+
+    //Harcoded boons with their probabilities TODO consider exposing a dynamic list on the editor if we have any
+    //TODO this has to be hardcoded for now (we do not have support for arrays of prefabs nor prefab drop on script editor)
+    void CreateAllBoonProbabilities()
+    {
+        AddBoonToPool("927301658", 1.0f);
+        AddBoonToPool("1681563592", 1.0f);
+    }
+    
+    void AddBoonToPool(string boonLibID, float weight)
+    {
+        BoonWeight newWeight;
+        newWeight.boonLibID = boonLibID;
+        newWeight.weight = totalweight;
+        totalweight += weight;
+
+        myRandomPool.Add(newWeight);
     }
 
 }

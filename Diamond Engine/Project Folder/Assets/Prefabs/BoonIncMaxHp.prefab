@@ -1,8 +1,10 @@
 {
-    "assets_path": "Assets\/Prefabs\/RandomBoon3.prefab",
+    "assets_path": "Assets\/Prefabs\/BoonIncMaxHp.prefab",
     "Game Objects": [
         {
-            "name": "RandomBoon3",
+            "name": "BoonIncMaxHp",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -16,13 +18,13 @@
                 1
             ],
             "Scale": [
-                0.99999988079071045,
                 1,
-                0.99999988079071045
+                1,
+                1
             ],
-            "UID": 34832318,
-            "PrefabID": 1833518684,
-            "ParentUID": 1455450912,
+            "UID": 39630139,
+            "PrefabID": 927301658,
+            "ParentUID": 1676501951,
             "Components": [
                 {
                     "Type": 1,
@@ -31,8 +33,8 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/1293201949.mmh",
-                    "UID": 1293201949,
+                    "Path": "Library\/Meshes\/1528379279.mmh",
+                    "UID": 1528379279,
                     "alternColor": [
                         1,
                         1,
@@ -40,9 +42,18 @@
                     ]
                 },
                 {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "BoonInstance",
+                    "myType": "IncMaxHp",
+                    "verticalMovementAmount": 1,
+                    "rotSpeedDegSec": 20,
+                    "verticalSpeedMultiplier": 0.40000000596046448
+                },
+                {
                     "Type": 14,
                     "Active": true,
-                    "kinematic": true,
+                    "kinematic": false,
                     "Gravity": false,
                     "LockLinearX": false,
                     "LockLinearY": false,
