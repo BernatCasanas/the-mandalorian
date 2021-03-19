@@ -1,40 +1,52 @@
 Event	ID	Name			Wwise Object Path	Notes
 	192623117	Pause_Object			\Default Work Unit\Pause_Object	
+	1808211714	Play_Music_V02			\Default Work Unit\Music\Play_Music_V02	
 	1931338186	Resume_Object			\Default Work Unit\Resume_Object	
-	2932040671	Play_Music			\Default Work Unit\Play_Music	
 	3318621861	Stop_Object			\Default Work Unit\Stop_Object	
-	4068124964	Play_Music_2			\Default Work Unit\Play_Music_2	
 
 Switch Group	ID	Name			Wwise Object Path	Notes
-	3380466154	Mando_State			\Default Work Unit\Mando_State	
+	3066061883	Player_Action			\Default Work Unit\Player_Action	
 
 Switch	ID	Name	Switch Group			Notes
-	67072339	NoMando	Mando_State			
-	1823678183	Exploring	Mando_State			
-	2764240573	Combat	Mando_State			
+	1823678183	Exploring	Player_Action			
+	2764240573	Combat	Player_Action			
 
 State Group	ID	Name			Wwise Object Path	Notes
-	3826569560	Music_State			\Default Work Unit\Music_State	
+	766723505	Game_State			\Default Work Unit\Game_State	
 	4071417932	Player_State			\Default Work Unit\Player_State	
 
 State	ID	Name	State Group			Notes
-	89505537	Gameplay	Music_State			
-	748895195	None	Music_State			
-	2607556080	Menu	Music_State			
+	646625282	HUB	Game_State			
+	712161704	Run	Game_State			
+	748895195	None	Game_State			
+	2607556080	Menu	Game_State			
+	655265632	Alive	Player_State			
 	748895195	None	Player_State			
-	1823678183	Exploring	Player_State			
-	2764240573	Combat	Player_State			
+	2044049779	Dead	Player_State			
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
+	467158820	SourceVolume			\Default Work Unit\SourceVolume	
 	2704707011	BusVolume			\Default Work Unit\BusVolume	
 
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
 
-Effect plug-ins	ID	Name	Type				Notes
-	465100510	Holy (Custom)	Wwise RoomVerb			
-
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	333225371	Hud	C:\Users\roger\OneDrive\Documentos\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Hud_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Transitions\Menu Music\Hud\Hud		13893676
-	1058672754	Combat Music	C:\Users\roger\OneDrive\Documentos\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Combat Music_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Transitions\Combat Music\Combat Music\Combat Music		27422272
+	11002483	OST A-Reverb	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Combat Music A\OST A-Reverb_4811579D.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat\Combat Music A\OST A-Reverb		7781248
+	72485731	OST 12-17-Strings and Brass 2	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\OST 12-17-Strings and Brass 2_4811579D.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat\Combat Music A\OST 12-17-Strings and Brass 2		2190592
+	366591278	Hud	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Hud_4811579D.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\HUB\Hud\Hud		3909656
+	422689495	EXPLORER THEME Strings 2	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\EXP STRINGS 2_4811579D.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Explore\Explore Music A\EXPLORER THEME Strings 2		7591600
+	435793512	OST Horns	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Combat Music A\OST Horns_4811579D.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat\Combat Music A\OST Horns		7781248
+	437014933	OST 15-19-Strings	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\OST 15-19-Strings_4811579D.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat\Combat Music A\OST 15-19-Strings		2195848
+	560818724	EXPLORER THEME FLUTE 2	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\EXP FLUTE 2_4811579D.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Explore\Explore Music A\EXPLORER THEME FLUTE 2		5599792
+	634176552	OST 13-18-Strings and Brass 3	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\OST 13-18-Strings and Brass 3_4811579D.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat\Combat Music A\OST 13-18-Strings and Brass 3		2190592
+	635566548	EXPLORER THEME FLUTE 1	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\EXP FLUTE 1_4811579D.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Explore\Explore Music A\EXPLORER THEME FLUTE 1		5600440
+	649407591	OST  7-Cymbal	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\OST 7-Cymbal_4811579D.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat\Combat Music A\OST  7-Cymbal		184672
+	760582766	OST 14-17-Strings and Brass 4	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\OST 14-17-Strings and Brass 4_4811579D.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat\Combat Music A\OST 14-17-Strings and Brass 4		1211824
+	789354063	OST Flute	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Combat Music A\OST Flute_4811579D.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat\Combat Music A\OST Flute		7781248
+	842200687	EXPLORER THEME Strings 1	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\EXP STRINGS_4811579D.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Explore\Explore Music A\EXPLORER THEME Strings 1		9229672
+	914423924	OST 11-16-Strings and Brass 1	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\OST 11-16-Strings and Brass 1_4811579D.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat\Combat Music A\OST 11-16-Strings and Brass 1		2183248
+	929528731	EXPLORER THEME A-Reverb	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Explore Music A\EXPLORER THEME A-Reverb_4811579D.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Explore\Explore Music A\EXPLORER THEME A-Reverb		16907680
+	947589288	EXPLORER THEME Strings 1	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\EXP STRINGS 1_4811579D.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Explore\Explore Music A\EXPLORER THEME Strings 1		3521944
+	1069201538	OST 8- Percussion	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\OST 8-Percussion_4811579D.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat\Combat Music A\OST 8- Percussion		2554912
 
