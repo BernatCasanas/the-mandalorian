@@ -2,7 +2,7 @@
 #include "Component.h"
 
 class ResourceTexture;
-class C_AudioSource;
+class C_Script;
 
 enum class BUTTONSTATE {
 	BUTTONPRESSED,
@@ -22,25 +22,16 @@ public:
 
 	void ChangeTexture(BUTTONSTATE new_num_sprite);
 
-	void SaveData(JSON_Object* nObj) override;
-	void LoadData(DEConfig& nObj) override;
-
 #ifndef STANDALONE
 	void ChangeSprite(BUTTONSTATE num_sprite, ResourceTexture* sprite);
-	void ChangeScript(const char* script_name);
+	void ChangeScript(C_Script* script);
 	bool OnEditor() override;
-
-private:
-	bool sprites_freezed;
 #endif // !STANDALONE
 
-public:
-	bool is_selected;
 private:
 	ResourceTexture* sprite_button_pressed;
 	ResourceTexture* sprite_button_hovered;
 	ResourceTexture* sprite_button_unhovered;
 	BUTTONSTATE num_sprite_used;
-	std::string script_name;
-	C_AudioSource* thisAudSource;
+	C_Script* script;
 };

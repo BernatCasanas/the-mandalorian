@@ -40,8 +40,8 @@ public:
 	float orthoSize;
 	bool cullingState;
 
-	float windowWidth;
-	float windowHeight;
+	int windowWidth;
+	int windowHeight;
 
 //Movement logic
 public: 

@@ -13,13 +13,14 @@
 #include"IM_MaterialImporter.h"
 
 ResourceMaterial::ResourceMaterial(unsigned int _uid) : Resource(_uid, Resource::Type::MATERIAL), shader(nullptr) 
-{}
+{
+
+}
 
 ResourceMaterial::~ResourceMaterial()
 {
 	uniforms.clear();
 	attributes.clear();
-	shader = nullptr;
 }
 
 bool ResourceMaterial::LoadToMemory()
@@ -28,7 +29,6 @@ bool ResourceMaterial::LoadToMemory()
 	JSON_Value* file = json_parse_file(this->libraryFile.c_str());
 	DEConfig base(json_value_get_object(file));
 
-	strcpy(name, base.ReadString("name"));
 	int shUID = base.ReadInt("ShaderUID");
 
 	//Request shader [DONE]
@@ -47,13 +47,6 @@ bool ResourceMaterial::LoadToMemory()
 			{	
 				if(strcmp(val.ReadString("name"), uniforms[k].name) == 0)
 					uniforms[k].data.textureValue = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(val.ReadInt("value"), Resource::Type::TEXTURE));
-			}
-		}
-		else if (val.ReadInt("type") == GL_FLOAT) {
-			for (size_t k = 0; k < uniforms.size(); ++k)
-			{
-				if (strcmp(val.ReadString("name"), uniforms[k].name) == 0)
-					uniforms[k].data.floatValue=val.ReadFloat("value");
 			}
 		}
 
@@ -212,8 +205,6 @@ void ResourceMaterial::SetShader(ResourceShader* res)
 #ifndef STANDALONE
 void ResourceMaterial::DrawEditor()
 {
-	ImGui::InputText("Name", name, IM_ARRAYSIZE(name));
-
 	ImGui::Text("Drop here to change shader");
 	if (ImGui::BeginDragDropTarget())
 	{
@@ -338,7 +329,6 @@ void ResourceMaterial::DrawEditor()
 	{
 		char* fileBuffer = nullptr;
 		MaterialImporter::Save(this, &fileBuffer);
-		RELEASE_ARRAY(fileBuffer);
 	}
 }
 #endif // !STANDALONE

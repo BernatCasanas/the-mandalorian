@@ -40,8 +40,6 @@ public:
 	bool resizable;
 	bool fullScreenDesktop;
 
-	int windowMode;
-
 };
 
 #endif // __ModuleWindow_H__

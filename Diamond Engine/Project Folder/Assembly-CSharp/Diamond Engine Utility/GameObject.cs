@@ -4,70 +4,84 @@ using System.Runtime.InteropServices;
 
 namespace DiamondEngine
 {
+
     public sealed class GameObject
     {
-        public string name;
-        public UIntPtr pointer; //Searching all the GO's with UID's? Nah boy we cast stuff here
-        public Transform transform;
-
         public GameObject()
         {
             name = "Empty";
             pointer = UIntPtr.Zero;
         }
-
-        public GameObject(string _name, UIntPtr ptr, UIntPtr transPtr)
+        public GameObject(string _name, UIntPtr ptr)
         {
             name = _name;
             pointer = ptr;
-
-            transform = new Transform();
-            transform.pointer = transPtr;
-            //Debug.Log(transform.type.ToString());
             //Debug.Log(ptr.ToString());
             //Debug.Log("Created: " + UID.ToString());
         }
 
-        
-        public T GetComponent<T>() where T : DiamondComponent
+        public string name;
+        public UIntPtr pointer; //Searching all the GO's with UID's? Nah boy we cast stuff here
+        public extern Vector3 localPosition
         {
-            //ComponentType type = T.get;
-            ComponentType retValue = ComponentType.SCRIPT;
-            if(DiamondComponent.componentTable.ContainsKey(typeof(T)))
-            {
-                retValue = DiamondComponent.componentTable[typeof(T)];
-            }
-            return TryGetComponent<T>(typeof(T).ToString(), (int)retValue);
+            [MethodImplAttribute(MethodImplOptions.InternalCall)]
+            get;
+
+            [MethodImplAttribute(MethodImplOptions.InternalCall)]
+            set;
         }
 
-        public extern string tag
+        public extern Vector3 globalPosition
         {
             [MethodImplAttribute(MethodImplOptions.InternalCall)]
             get;
         }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern internal T TryGetComponent<T>(string type, int inputType = 0);
+        public extern Quaternion localRotation
+        {
+            [MethodImplAttribute(MethodImplOptions.InternalCall)]
+            get;
 
+            [MethodImplAttribute(MethodImplOptions.InternalCall)]
+            set;
+        }
+
+        public extern Quaternion globalRotation
+        {
+            [MethodImplAttribute(MethodImplOptions.InternalCall)]
+            get;
+        }
+
+        public extern Vector3 localScale
+        {
+            [MethodImplAttribute(MethodImplOptions.InternalCall)]
+            get;
+
+            [MethodImplAttribute(MethodImplOptions.InternalCall)]
+            set;
+        }
+
+        public extern Vector3 globalScale
+        {
+            [MethodImplAttribute(MethodImplOptions.InternalCall)]
+            get;
+        }
+
+
+        int GetHash()
+        {
+            return this.GetHashCode();
+        }
+
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern Vector3 GetForward();
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern Vector3 GetRight();
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern void AddComponent(int componentType);
-        public extern string Name
-        {
-            [MethodImplAttribute(MethodImplOptions.InternalCall)]
-            get;
-        }
-        public extern GameObject parent
-        {
-            [MethodImplAttribute(MethodImplOptions.InternalCall)]
-            get;
-        }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public extern void Enable(bool enable);
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public extern bool IsEnabled();
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public extern bool CompareTag(string tag);
     }
 }

@@ -1,7 +1,5 @@
 #pragma once
 #include "Module.h"
-#include"SDL/include/SDL_gamecontroller.h"
-#include "SDL/include/SDL_haptic.h"
 
 #define MAX_MOUSE_BUTTONS 5
 
@@ -100,12 +98,6 @@ public:
 		return SDL_GameControllerGetAxis(controller_player, SDL_CONTROLLER_AXIS_TRIGGERLEFT);
 	}
 
-	//Execute haptic
-	void PlayHaptic(float strength, int length);
-
-public:
-	bool hapticEnabled;
-
 private:
 	KEY_STATE* keyboard;
 	KEY_STATE mouse_buttons[MAX_MOUSE_BUTTONS];
@@ -113,9 +105,6 @@ private:
 	//Gamepad control
 	KEY_STATE game_pad[SDL_CONTROLLER_BUTTON_MAX];
 	SDL_GameController* controller_player = nullptr;
-
-	//Haptic
-	SDL_Haptic* haptic;
 
 	int mouse_x;
 	int mouse_y;

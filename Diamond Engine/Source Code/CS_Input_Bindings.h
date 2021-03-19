@@ -74,9 +74,3 @@ int GetGamepadRightTrigger()
 	return 0;
 }
 
-void PlayHaptic(float strength, int length) {
-	if (EngineExternal != nullptr) {
-		EngineExternal->moduleInput->PlayHaptic(strength,length);
-	}
-}
-

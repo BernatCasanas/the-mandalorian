@@ -62,7 +62,6 @@ void COMM_DeleteGO::Undo()
 		parent = EngineExternal->moduleScene->LoadGOData(json_array_get_object(arrayGO, i), parent);
 	}
 
-	EngineExternal->moduleScene->LoadNavigationData();
 	EngineExternal->moduleScene->LoadScriptsData();
 }
 

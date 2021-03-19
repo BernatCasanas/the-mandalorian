@@ -4,7 +4,6 @@
 #include "Component.h"
 
 class ResourceTexture;
-class ResourceMaterial;
 
 class C_Image2D : public Component
 {
@@ -16,12 +15,10 @@ public:
 	bool OnEditor() override;
 #endif // !STANDALONE
 
-	void RenderImage(float* transform, ResourceMaterial* material, unsigned int VAO);
+	void RenderImage(float* transform, unsigned int shaderId);
 
 	ResourceTexture* GetTexture() const;
 	void SetTexture(ResourceTexture* tex);
-	void SetTexture(int UID, const char* library_path);
-
 
 	void SaveData(JSON_Object* nObj) override;
 	void LoadData(DEConfig& nObj) override;

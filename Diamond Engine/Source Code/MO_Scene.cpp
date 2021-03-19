@@ -20,7 +20,6 @@
 #include"CO_Transform.h"
 #include"CO_Camera.h"
 #include"CO_Script.h"
-#include"CO_Navigation.h"
 
 #include"RE_Texture.h"
 #include"DETime.h"
@@ -33,18 +32,10 @@ defaultMaterial(nullptr), holdUID(0)
 {
 	current_scene[0] = '\0';
 	current_scene_name[0] = '\0';
-
-	tags = { "Untagged"};
-	layers = { "Default" };
 }
 
 M_Scene::~M_Scene()
 {
-	root = nullptr;
-	defaultMaterial = nullptr;
-
-	tags.clear();
-	layers.clear();
 }
 
 bool M_Scene::Init()
@@ -57,19 +48,15 @@ bool M_Scene::Init()
 bool M_Scene::Start()
 {
 	CreateGameCamera("Main Camera");
-	//LoadScene("Library/Scenes/1726826608.des");
-	LoadScene("Library/Scenes/1482507639.des");
 
-	//LoadScene("Library/Scenes/884741631.des");
-	//LoadScene("Library/Scenes/tmp.des");
-	
+	LoadScene("Library/Scenes/884741631.des");
+
 #ifndef STANDALONE
 	//TODO IMPORTANT: This is why we should save icons .meta, or we could generate them every time
 	//But this will introduce some randomized problems with ID duplications
 	// TODO: Maybe this should be handled on the editor module? texture #include is stupid
 	App->moduleEditor->editorIcons.LoadPreDefinedIcons();
 #endif // !STANDALONE
-
 
 	return true;
 }
@@ -117,22 +104,16 @@ update_status M_Scene::Update(float dt)
 			//TODO: Duplicated code from scene loading && delete command, move to method
 			if (scene != NULL) 
 			{
+
 				JSON_Object* sceneObj = json_value_get_object(scene);
 				JSON_Array* sceneGO = json_object_get_array(sceneObj, "Game Objects");
 
 				GameObject* parent = (App->moduleEditor->GetSelectedGO() == nullptr) ? root : App->moduleEditor->GetSelectedGO();
-				GameObject* gameObjectRoot = nullptr;
 				for (size_t i = 0; i < json_array_get_count(sceneGO); i++)
 				{
 					parent = LoadGOData(json_array_get_object(sceneGO, i), parent);
-					
-					if (i == 0)
-						gameObjectRoot = parent;
 				}
 
-				gameObjectRoot->RecursiveUIDRegeneration();
-
-				LoadNavigationData();
 				LoadScriptsData();
 
 				//Free memory
@@ -212,11 +193,6 @@ GameObject* M_Scene::CreateGameObject(const char* name, GameObject* parent, int 
 	return gm;
 }
 
-void M_Scene::GetAllGameObjects(std::vector<GameObject*>& gameObjects)
-{
-	root->CollectChilds(gameObjects);
-}
-
 void M_Scene::LoadScriptsData()
 {
 	for (auto i = referenceMap.begin(); i != referenceMap.end(); ++i)
@@ -240,57 +216,6 @@ void M_Scene::LoadScriptsData()
 	}
 
 	referenceMap.clear();
-}
-
-
-void M_Scene::LoadNavigationData()
-{
-	for (auto i = navigationReferenceMap.begin(); i != navigationReferenceMap.end(); ++i)
-	{
-		// Get the range of the current key
-		auto range = navigationReferenceMap.equal_range(i->first);
-		
-		GameObject* ref = GetGOFromUID(EngineExternal->moduleScene->root, i->first);
-		// Now render out that whole range
-		for (auto d = range.first; d != range.second; ++d)
-		{
-			d->second->referenceGO = ref;			
-		}
-	}
-
-	navigationReferenceMap.clear();
-}
-
-GameObject* M_Scene::FindObjectWithTag(GameObject* rootGameObject, const char* tag)
-{
-	if (rootGameObject->CompareTag(tag))
-		return rootGameObject;
-
-	GameObject* ret = nullptr;
-	for (size_t i = 0; i < rootGameObject->children.size(); i++)
-	{
-		ret = FindObjectWithTag(rootGameObject->children[i], tag);
-		if (ret != nullptr)
-			return ret;
-	}
-
-	return nullptr;
-}
-
-void M_Scene::FindGameObjectsWithTag(const char* tag, std::vector<GameObject*>& taggedObjects)
-{
-	std::vector<GameObject*> gameObjects;
-	root->CollectChilds(gameObjects);
-
-	for (size_t i = 0; i < gameObjects.size(); i++)
-	{
-		if (gameObjects[i]->CompareTag(tag))
-		{
-			taggedObjects.push_back(gameObjects[i]);
-		}
-	}
-
-	gameObjects.clear();
 }
 
 void M_Scene::SetGameCamera(C_Camera* cam)
@@ -391,6 +316,7 @@ void M_Scene::OnGUI()
 		ImGui::Text("Game state %s", DETime::GetStateString());
 	}
 }
+#endif // !STANDALONE
 
 void M_Scene::SaveScene(const char* name)
 {
@@ -400,26 +326,6 @@ void M_Scene::SaveScene(const char* name)
 	root_object.WriteVector3("EditorCameraPosition", &App->moduleCamera->editorCamera.camFrustrum.pos.x);
 	root_object.WriteVector3("EditorCameraZ", &App->moduleCamera->editorCamera.camFrustrum.front.x);
 	root_object.WriteVector3("EditorCameraY", &App->moduleCamera->editorCamera.camFrustrum.up.x);
-
-	//Tags ===================================================================
-	JSON_Value* tagsValue = json_value_init_array();
-	JSON_Array* tagsArray = json_value_get_array(tagsValue);
-	for (size_t t = 0; t < tags.size(); t++)
-	{
-		if(strcmp(tags[t].c_str(), "Untagged") != 0)
-			json_array_append_string(tagsArray, tags[t].c_str());
-	}
-	json_object_set_value(root_object.nObj, "tags", tagsValue);
-
-	//Layers =================================================================
-	JSON_Value* layersValue = json_value_init_array();
-	JSON_Array* layersArray = json_value_get_array(layersValue);
-	for (size_t l = 0; l < layers.size(); l++)
-	{
-		if (strcmp(layers[l].c_str(), "Default") != 0)
-			json_array_append_string(layersArray, layers[l].c_str());
-	}
-	json_object_set_value(root_object.nObj, "layers", layersValue);
 
 	JSON_Value* goArray = json_value_init_array();
 	root->SaveToJson(json_value_get_array(goArray));
@@ -432,7 +338,6 @@ void M_Scene::SaveScene(const char* name)
 	json_value_free(file);
 	LOG(LogType::L_NORMAL, "Scene saved at: %s", name);
 }
-#endif // !STANDALONE
 
 void M_Scene::LoadScene(const char* name)
 {
@@ -452,29 +357,9 @@ void M_Scene::LoadScene(const char* name)
 	RELEASE(root); //Had to remove root to create it later
 
 	JSON_Object* sceneObj = json_value_get_object(scene);
-
-#ifndef STANDALONE
-
 	MaykMath::GeneralDataSet(&App->moduleCamera->editorCamera.camFrustrum.pos.x, &DEJson::ReadVector3(sceneObj, "EditorCameraPosition")[0], 3);
 	MaykMath::GeneralDataSet(&App->moduleCamera->editorCamera.camFrustrum.front.x, &DEJson::ReadVector3(sceneObj, "EditorCameraZ")[0], 3);
 	MaykMath::GeneralDataSet(&App->moduleCamera->editorCamera.camFrustrum.up.x, &DEJson::ReadVector3(sceneObj, "EditorCameraY")[0], 3);
-#endif // !STANDALONE
-
-	tags.clear();
-	tags = { "Untagged" };
-	JSON_Array* tagsArray = json_object_get_array(sceneObj, "tags");
-	for (size_t t = 0; t < json_array_get_count(tagsArray); t++)
-	{
-		tags.push_back(json_array_get_string(tagsArray, t));
-	}
-
-	layers.clear();
-	layers = { "Default" };
-	JSON_Array* layersArray = json_object_get_array(sceneObj, "layers");
-	for (size_t l = 0; l < json_array_get_count(layersArray); l++)
-	{
-		layers.push_back(json_array_get_string(layersArray, l));
-	}
 
 	JSON_Array* sceneGO = json_object_get_array(sceneObj, "Game Objects");
 	JSON_Object* goJsonObj = json_array_get_object(sceneGO, 0);
@@ -487,7 +372,6 @@ void M_Scene::LoadScene(const char* name)
 		parent = LoadGOData(json_array_get_object(sceneGO, i), parent);
 	}
 
-	LoadNavigationData();
 	LoadScriptsData();
 
 	//Free memory
@@ -542,10 +426,13 @@ void M_Scene::CleanScene()
 #endif
 
 	root = CreateGameObject("Scene root", nullptr);
+	current_scene[0] = '\0';
+	current_scene_name[0] = '\0';
 }
 
 GameObject* M_Scene::LoadGOData(JSON_Object* goJsonObj, GameObject* parent)
 {
+	//goJsonObj = json_array_get_object(sceneGO, i);
 	GameObject* originalParent = parent;
 
 	while (parent != nullptr && json_object_get_number(goJsonObj, "ParentUID") != parent->UID)

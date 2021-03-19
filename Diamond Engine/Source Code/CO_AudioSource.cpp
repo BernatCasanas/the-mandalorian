@@ -9,7 +9,7 @@
 C_AudioSource::C_AudioSource(GameObject* _gm) : Component(_gm), audBankReference(nullptr), evName(""), isMuted(false), pitch(50.0f), playOnAwake(false), volume(50.0f), audBankName("")
 {
 	name = "Audio Source";
-	id = static_cast<unsigned int>(EngineExternal->GetRandomInt());
+	this->id = static_cast<unsigned int>(EngineExternal->GetRandomInt());
 	gameObjectTransform = dynamic_cast<C_Transform*>(gameObject->GetComponent(Component::TYPE::TRANSFORM));
 	EngineExternal->moduleAudio->RegisterNewAudioObject(id);
 	EngineExternal->moduleAudio->AddAudioSource(this);
@@ -17,7 +17,7 @@ C_AudioSource::C_AudioSource(GameObject* _gm) : Component(_gm), audBankReference
 
 C_AudioSource::~C_AudioSource()
 {
-	EngineExternal->moduleAudio->StopComponent(id);
+	EngineExternal->moduleAudio->StopComponent(this->id);
 	EngineExternal->moduleAudio->RemoveAudioSource(this);
 	EngineExternal->moduleAudio->UnRegisterAudioObject(id);
 	gameObjectTransform = nullptr;
@@ -104,8 +104,7 @@ bool C_AudioSource::OnEditor()
 
 void C_AudioSource::Update()
 {
-	float3 pos = gameObjectTransform->globalTransform.TranslatePart();
-	EngineExternal->moduleAudio->SetAudioObjTransform(this->id, pos, gameObjectTransform->GetForward(), gameObjectTransform->GetUp());
+	EngineExternal->moduleAudio->SetAudioObjTransform(this->id, gameObjectTransform->position, gameObjectTransform->GetForward(), gameObjectTransform->GetUp());
 }
 
 void C_AudioSource::SaveData(JSON_Object* nObj)
@@ -156,9 +155,7 @@ void C_AudioSource::LoadData(DEConfig& nObj)
 
 std::string& C_AudioSource::GetEventName(AudioBank* reference)
 {
-	reference = nullptr;
-	if (audBankReference != nullptr)
-		reference = audBankReference;
+	reference = audBankReference;
 	return evName;
 }
 
@@ -181,7 +178,7 @@ void C_AudioSource::SetVolume(float newVol)
 {
 	this->volume = MIN(newVol, 99.99f);
 	this->volume = MAX(newVol, 0.0f);
-	if (!isMuted && evName != "")
+	if (!isMuted)
 		EngineExternal->moduleAudio->ChangeRTPCValue(this->id, std::string("SourceVolume"), this->volume);
 }
 
@@ -222,11 +219,6 @@ void C_AudioSource::ResumeEvent()
 void C_AudioSource::StopEvent()
 {
 	EngineExternal->moduleAudio->StopEvent(this->id, this->evName);
-}
-
-unsigned int C_AudioSource::GetWwiseID()
-{
-	return id;
 }
 
 bool C_AudioSource::IsMuted()

@@ -226,8 +226,6 @@ void M_Editor::DrawMenuBar()
 			{
 				//Do something
 				App->moduleScene->CleanScene();
-				App->moduleScene->current_scene[0] = '\0';
-				App->moduleScene->current_scene_name[0] = '\0';
 			}
 			if (ImGui::MenuItem("Save scene", "CTRL+S"))
 			{
@@ -426,13 +424,7 @@ void M_Editor::DrawTopBar()
 					DETime::Stop();
 					EngineExternal->moduleAudio->StopAllSounds();
 					EngineExternal->moduleAudio->UnLoadAllBanks();
-
-					char scene_name[64];
-					strcpy(scene_name, App->moduleScene->current_scene_name);
-
 					App->moduleScene->LoadScene("Library/Scenes/tmp.des");
-					strcpy(App->moduleScene->current_scene_name, scene_name);
-
 					App->moduleFileSystem->DeleteAssetFile("Library/Scenes/tmp.des");
 				}
 			}
@@ -537,13 +529,6 @@ void M_Editor::DrawCreateMenu()
 			EngineExternal->moduleGui->CreateText();
 		
 		ImGui::EndMenu();
-	}
-
-	if (ImGui::MenuItem("Particle System", nullptr))
-	{
-		GameObject* auxObj= App->moduleScene->CreateGameObject("Particle System", App->moduleScene->root);
-		auxObj->AddComponent(Component::TYPE::MATERIAL);
-		auxObj->AddComponent(Component::TYPE::PARTICLE_SYSTEM);
 	}
 
 	if (ImGui::MenuItem("Game Camera", nullptr))

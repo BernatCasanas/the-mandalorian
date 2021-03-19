@@ -35,9 +35,7 @@ Application::Application() : quitApplicationState(false), fpsCap(60)
 	moduleScene = new M_Scene(this);
 	moduleGui = new M_Gui(this);
 	moduleRenderer3D = new ModuleRenderer3D(this);
-#ifndef STANDALONE
 	moduleCamera = new ModuleCamera3D(this);
-#endif
 	modulePhysics = new ModulePhysics(this);
 	moduleAudio = new ModuleAudioManager(this);
 	moduleMono = new M_MonoManager(this);
@@ -66,9 +64,8 @@ Application::Application() : quitApplicationState(false), fpsCap(60)
 	AddModule(moduleGui);
 
 	// Renderer last!
-#ifndef STANDALONE
 	AddModule(moduleCamera);
-#endif
+
 	AddModule(moduleMono);
 
 	AddModule(moduleResources);
@@ -170,30 +167,6 @@ float Application::GetFrameRate() const
 int Application::GetRandomInt() //TODO: We could add iconCount here to make sure we don't get duplicated id's?
 {
 	return randomizer.Int();
-}
-
-int Application::GetRandomInt(int a, int b)
-{
-	int newMin = a;
-	int newMax = b;
-
-	if (a > b)
-	{
-		newMin = b;
-		newMax = a;
-	}
-	
-	return randomizer.Int(newMin, newMax);
-}
-
-int Application::GetRandomIntFast(int min, int max)
-{
-	return randomizer.Int(min, max);
-}
-
-float Application::GetRandomFloat(float min, float max)
-{
-	return randomizer.Float(min, max);
 }
 
 // Call PreUpdate, Update and PostUpdate on all modules

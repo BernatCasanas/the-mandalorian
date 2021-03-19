@@ -24,8 +24,6 @@ public:
 
 #ifndef STANDALONE
 	void OnGUI() override;
-	Resource* RequestFromAssets(const char* assets_path);
-	bool RenameAsset(const char* old_assets_path, const char* new_assets_path, char* buffer, uint size, Resource* resource);
 #endif // !STANDALONE
 
 
@@ -37,6 +35,7 @@ public:
 
 	void PopulateFileArray();
 	void UnloadResource(int uid);
+	Resource* RequestFromAssets(const char* assets_path);
 	void GenerateMeta(const char* aPath, const char* lPath, unsigned int uid, Resource::Type type);
 
 	Resource* RequestResource(int uid, Resource::Type type);
@@ -54,7 +53,6 @@ public:
 	std::string GenLibraryPath(uint _uid, Resource::Type _type);
 
 	void UpdateMeshesDisplay();
-	void UpdateAnimationsDisplay();
 	void NeedsDirsUpdate(AssetDir& dir);
 
 private:
@@ -74,5 +72,4 @@ private:
 public:
 	AssetDir assetsRoot;
 	AssetDir meshesLibraryRoot;
-	AssetDir animationsLibraryRoot;
 };

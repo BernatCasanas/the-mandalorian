@@ -19,6 +19,8 @@ namespace MeshLoader
 	void logCallback(const char* message, char* user);
 #endif // !STANDALONE
 
+
+
 	void NodeToGameObject(aiMesh** meshArray, std::vector<ResourceTexture*>& sceneTextures, std::vector<ResourceMesh*>& _sceneMeshes, aiNode* node, GameObject* gmParent, const char* holderName);
 	ResourceMesh* LoadMesh(aiMesh* importedMesh, uint oldUID = 0);
 

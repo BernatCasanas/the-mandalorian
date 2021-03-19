@@ -16,9 +16,7 @@ public:
 		SCRIPT,
 		SHADER,
 		MATERIAL,
-		ANIMATION,
 		FONT,
-		PREFAB,
 		UNKNOWN
 	};
 
@@ -46,9 +44,6 @@ public:
 	//Can't be pure virtual "=0" until there is a resoruce model class
 	virtual bool LoadToMemory() { return false; }
 	virtual bool UnloadFromMemory() { return false; }
-
-public:
-	char name[32];
 
 protected:
 

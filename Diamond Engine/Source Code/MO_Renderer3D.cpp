@@ -8,7 +8,6 @@
 #include "MO_Scene.h"
 #include "MO_Input.h"
 #include "MO_GUI.h"
-#include"MO_Window.h"
 
 #include "RE_Mesh.h"
 #include "RE_Texture.h"
@@ -18,10 +17,9 @@
 
 #include"GameObject.h"
 
-#include "CO_MeshRenderer.h"
-#include "CO_Camera.h"
-#include "CO_Transform.h"
-#include "CO_ParticleSystem.h"
+#include"CO_MeshRenderer.h"
+#include"CO_Camera.h"
+#include"CO_Transform.h"
 
 #include"Primitive.h"
 #include"MathGeoLib/include/Geometry/Triangle.h"
@@ -39,7 +37,7 @@
 
 
 ModuleRenderer3D::ModuleRenderer3D(Application* app, bool start_enabled) : Module(app, start_enabled), str_CAPS(""),
-vsync(false), wireframe(false), gameCamera(nullptr),resolution(2)
+vsync(false), wireframe(false), gameCamera(nullptr)
 {
 	GetCAPS(str_CAPS);
 	/*depth =*/ cull = lightng = color_material = texture_2d = true;
@@ -61,13 +59,6 @@ bool ModuleRenderer3D::Init()
 	//ASK: Can i do this inside the MM namespace?
 	MaykMath::Init();
 	LOG(LogType::L_NORMAL, "Init: MaykMath");
-
-#ifdef STANDALONE
-	vsync = true;
-	SDL_SetWindowFullscreen(App->moduleWindow->window, SDL_WINDOW_FULLSCREEN_DESKTOP);
-	SDL_GetWindowSize(App->moduleWindow->window, &App->moduleWindow->s_width, &App->moduleWindow->s_height);
-	App->moduleRenderer3D->OnResize(App->moduleWindow->s_width, App->moduleWindow->s_height);
-#endif // STANDALONE
 
 	//Create context
 	context = SDL_GL_CreateContext(App->moduleWindow->window);
@@ -206,7 +197,6 @@ bool ModuleRenderer3D::Init()
 	skybox.CreateGLData();
 	glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
 
-
 	return ret;
 }
 
@@ -253,7 +243,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 		(wireframe) ? glPolygonMode(GL_FRONT_AND_BACK, GL_FILL) : glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
 
-	DrawParticleSystems();
+
 	skybox.DrawAsSkybox(&App->moduleCamera->editorCamera);
 
 	DebugLine(pickingDebug);
@@ -281,7 +271,6 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 			RenderWithOrdering(true);
 		}
 
-		DrawParticleSystems();
 		skybox.DrawAsSkybox(gameCamera);
 		glClear(GL_DEPTH_BUFFER_BIT);
 		App->moduleGui->RenderCanvas2D();
@@ -308,8 +297,6 @@ bool ModuleRenderer3D::CleanUp()
 {
 	LOG(LogType::L_NORMAL, "Destroying 3D Renderer");
 	skybox.ClearMemory();
-
-	glDeleteTextures(1, &checkersTexture);
 
 	SDL_GL_DeleteContext(context);
 	ClearAllRenderData();
@@ -577,19 +564,4 @@ void ModuleRenderer3D::ClearAllRenderData()
 {
 	renderQueueMap.clear();
 	renderQueue.clear();
-	particleSystemQueue.clear();
-}
-
-
-void ModuleRenderer3D::DrawParticleSystems()
-{
-	int systemCount = particleSystemQueue.size();
-
-	for (int i = 0; i < systemCount; ++i)
-	{
-		Component* partSy = particleSystemQueue[i]->GetComponent(Component::TYPE::PARTICLE_SYSTEM);
-		
-		if (partSy != nullptr)
-			static_cast<C_ParticleSystem*>(partSy)->Draw();
-	}
 }
