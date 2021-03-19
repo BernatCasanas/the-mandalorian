@@ -34,6 +34,7 @@ public class Enemy : DiamondComponent
 		RUN,
 		WANDER,
 		SHOOT,
+		PUSHED,
 		HIT,
 		DIE
 	}

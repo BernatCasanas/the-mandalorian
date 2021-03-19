@@ -54,7 +54,7 @@ public class BabyYoda : DiamondComponent
 
         if (pushCollider != null)
         {
-            pushCollider.transform.localPosition += pushCollider.transform.GetForward() * (5 * Time.deltaTime);
+            pushCollider.transform.localPosition += pushCollider.transform.GetForward() * (10 * Time.deltaTime);
         }
 
         

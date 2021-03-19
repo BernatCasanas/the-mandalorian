@@ -145,6 +145,10 @@ public class StormTrooper : Enemy
 				}
 				break;
 
+			case STATES.PUSHED:
+
+				break;
+
 			case STATES.HIT:
 				break;
 
@@ -189,10 +193,12 @@ public class StormTrooper : Enemy
 		{
 			Debug.Log("Skill collision");
 
-		/*	Vector3 pushDirection = Core.instance.gameObject.transform.localPosition - gameObject.transform.globalPosition;
+
+
+			Vector3 pushDirection = Core.instance.gameObject.transform.localPosition - gameObject.transform.globalPosition;
 			pushDirection = pushDirection.normalized;
 
-			gameObject.transform.localPosition += pushDirection * 5;*/
+			gameObject.transform.localPosition += pushDirection * 5;
 		}
 
 		//Debug.Log("Triggered by tag: " + triggeredGameObject.tag);
