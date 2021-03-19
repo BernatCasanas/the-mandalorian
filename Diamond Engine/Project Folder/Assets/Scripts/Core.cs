@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
 
 using DiamondEngine;
 
@@ -75,6 +76,9 @@ public class Core : DiamondComponent
     int horizontalInput = 0;
     Vector3 gamepadInput;
 
+    public List<smallGrenade> smallGrenades = new List<smallGrenade>();
+    public List<bigGrenade> BigGrenades = new List<bigGrenade>();
+
     public void Update()
     {
 
@@ -100,7 +104,8 @@ public class Core : DiamondComponent
             //dashDistance = 4.5f;
 
             // END INIT VARIABLES WITH DEPENDENCIES //
-
+            smallGrenades = new List<smallGrenade>();
+            BigGrenades = new List<bigGrenade>();
             #endregion
 
             #region SHOOT
@@ -303,7 +308,9 @@ public class Core : DiamondComponent
     #region SPECIAL SHOOT
     private void SecondaryShootInput()
     {
-        if (Input.GetLeftTrigger() > 0 && !leftTriggerPressed)
+        if(BigGrenades.Count == 0)
+        Debug.Log(BigGrenades.Count.ToString());
+        if (Input.GetLeftTrigger() > 0 && !leftTriggerPressed && smallGrenades.Count == 0 && BigGrenades.Count == 0)
         {
             fireRate = GetCurrentSecondaryRate();
             shooting = true;
@@ -324,16 +331,21 @@ public class Core : DiamondComponent
         {
             currSecondaryRate = GetCurrentSecondaryRate();
 
-            if (timeSinceLastSpecialShoot > currSecondaryRate)
-            {
+            
                 Audio.StopAudio(gameObject);
                 Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
+                Vector3 rot = new Vector3(0f, 1f, 0f);
+                Quaternion rotation = Quaternion.RotateAroundAxis(rot, 0.383972f);
+
                 Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot_Mando");
-                InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, scale);
+                InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation * rotation, scale);
+                rotation = Quaternion.RotateAroundAxis(rot, -0.383972f);
+                InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation * rotation, scale);
+
                 Input.PlayHaptic(1f, 30);
                 timeSinceLastSpecialShoot = 0.0f;
                 shooting = false;
-            }
+           
         }
         else if (!shooting) // Time to cancel animation
         {

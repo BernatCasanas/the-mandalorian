@@ -18,8 +18,9 @@ public class bigGrenade : DiamondComponent
 
     private bool detonate = false;
 
+    private bool start = true;
 
-    public void OnTriggerEnter(GameObject collidedGameObject)
+    public void OnCollisionEnter(GameObject collidedGameObject)
     {
         if (collidedGameObject.CompareTag("Enemy"))
         {
@@ -30,7 +31,13 @@ public class bigGrenade : DiamondComponent
 
     public void Update()
     {
-        if(thisReference.transform.globalPosition.y < Core.instance.gameObject.transform.globalPosition.y + 0.5)
+        if (start)
+        {
+            start = false;
+            Core.instance.BigGrenades.Add(this);
+        }
+
+        if (thisReference.transform.globalPosition.y < Core.instance.gameObject.transform.globalPosition.y + 0.5)
         {
             move = false;
         }
@@ -50,23 +57,63 @@ public class bigGrenade : DiamondComponent
 
         if (Timer > detonationTime || detonate)
         {
+            Core.instance.BigGrenades.Remove(this);
             InternalCalls.Destroy(thisReference);
             Vector3 scale = new Vector3(0.07f, 0.07f, 0.07f);
           
-            for (int i = -1; i <= 1; i++)
-            {
-                for (int j = -1; j <= 1; j++)
-                {
-                    Vector3 position = thisReference.transform.globalPosition;
-                    position.x += i * 0.1f;
-                    position.z += j * 0.1f;
-                    InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab", position, thisReference.transform.globalRotation, scale);
-                }
+          
+               
+            Vector3 position = new Vector3(0.0f, 0.0f, 0.0f); ;
+            position.y = 0.25f;
 
-                
-            }
+            position.x = 0.45f;
+            position.z = 0f;
+            //  InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab", position, thisReference.transform.globalRotation, scale);
+            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
+            
+            position.x = 0f;
+            position.z = -0.45f;
+            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
 
+            position.x = -0.45f;
+            position.z = 0f;
+            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
 
+            position.x  = 0f;
+            position.z  = 0.45f;
+            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
+
+            position.x = 0f;
+            position.z = 0.9f;
+            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale); 
+            
+            position.x = 0.675f;
+            position.z = 0.675f;
+            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab", thisReference.transform.globalPosition +  position, thisReference.transform.globalRotation, scale);
+
+            position.x = 0.9f;
+            position.z = 0f;
+            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
+
+            position.x = 0.675f;
+            position.z = -0.675f;
+            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
+
+            position.x = 0f;
+            position.z = -0.9f;
+            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
+
+            position.x = -0.675f;
+            position.z = -0.675f;
+            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
+
+            position.x = -0.9f;
+            position.z = 0f;
+            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
+
+            position.x = -0.675f;
+            position.z = 0.675f;
+            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
         }
 
     }
