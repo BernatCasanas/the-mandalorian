@@ -14,14 +14,17 @@ public class BabyYoda : DiamondComponent
     public GameObject followPoint = null;
     public float horizontalSpeed = 4f;
 
-    //State
+    //State (INPUT AND STATE LOGIC)
+    #region STATE
     private STATE state = STATE.MOVE;
     private INPUTS input = INPUTS.NONE;
 
     public float skillPushDuration = 0.8f;
     private float skillPushTimer = 0.0f;
 
-    private const float INIT_TIMER = 0.0001f;
+    private float INIT_TIMER = 0.0001f;
+
+   
 
     #region STATE_ENUMS
     enum STATE
@@ -38,6 +41,11 @@ public class BabyYoda : DiamondComponent
         IN_SKILL_PUSH_END,
     }
     #endregion
+
+    #endregion
+
+    //Push skill
+    private GameObject pushCollider = null;
 
     public void Update()
     {
@@ -101,6 +109,7 @@ public class BabyYoda : DiamondComponent
     }
     #endregion
 
+    #region STATE
     private void UpdateState()
     {
         input = INPUTS.NONE;
@@ -159,7 +168,7 @@ public class BabyYoda : DiamondComponent
                 switch (input)
                 {
                     case INPUTS.IN_SKILL_PUSH:
-                        skillPushTimer += INIT_TIMER;
+                        ExecutePushSkill();
                         state = STATE.SKILL_PUSH;
                         break;
                 }
@@ -169,6 +178,7 @@ public class BabyYoda : DiamondComponent
                 switch (input)
                 {
                     case INPUTS.IN_SKILL_PUSH_END:
+                        EndPushSkill();
                         state = STATE.MOVE;
                         break;
                 }
@@ -177,5 +187,23 @@ public class BabyYoda : DiamondComponent
             default:
                 break;
         }
+    }
+    #endregion
+
+    private void ExecutePushSkill()
+    {
+        skillPushTimer += INIT_TIMER;
+
+        Transform mandoTransform = Core.instance.gameObject.transform;
+        pushCollider = InternalCalls.CreatePrefab("Library/Prefabs/541990364.prefab", mandoTransform.globalPosition, mandoTransform.globalRotation, new Vector3(1, 1, 1));
+
+
+    }
+
+    private void EndPushSkill()
+    {
+       
+
+        InternalCalls.Destroy(pushCollider);
     }
 }

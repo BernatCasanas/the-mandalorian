@@ -3,6 +3,8 @@
     "Game Objects": [
         {
             "name": "Bullet",
+            "tag": "Bullet",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0.58448731899261475,
@@ -20,7 +22,7 @@
                 0.20000000298023224,
                 0.20000000298023224
             ],
-            "UID": 268909172,
+            "UID": 1795532602,
             "PrefabID": 346087333,
             "ParentUID": 1676501951,
             "Components": [
@@ -43,11 +45,11 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "BH_Bullet",
-                    "thisReference": 268909172,
                     "speed": 60,
                     "maxLifeTime": 10,
                     "currentLifeTime": 0,
-                    "yVel": 0
+                    "yVel": 0,
+                    "damage": 0
                 },
                 {
                     "Type": 14,
