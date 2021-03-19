@@ -51,6 +51,13 @@ public class BabyYoda : DiamondComponent
     {
         UpdateState();
         Move();
+
+        if (pushCollider != null)
+        {
+            pushCollider.transform.localPosition += pushCollider.transform.GetForward() * (5 * Time.deltaTime);
+        }
+
+        
     }
 
     #region MOVEMENT
@@ -195,15 +202,14 @@ public class BabyYoda : DiamondComponent
         skillPushTimer += INIT_TIMER;
 
         Transform mandoTransform = Core.instance.gameObject.transform;
-        pushCollider = InternalCalls.CreatePrefab("Library/Prefabs/541990364.prefab", mandoTransform.globalPosition, mandoTransform.globalRotation, new Vector3(1, 1, 1));
+        pushCollider = InternalCalls.CreatePrefab("Library/Prefabs/541990364.prefab", new Vector3(mandoTransform.globalPosition.x, mandoTransform.globalPosition.y + 1, mandoTransform.globalPosition.z), mandoTransform.globalRotation, new Vector3(1, 1, 1));
 
 
     }
 
     private void EndPushSkill()
     {
-       
-
         InternalCalls.Destroy(pushCollider);
+        pushCollider = null;
     }
 }

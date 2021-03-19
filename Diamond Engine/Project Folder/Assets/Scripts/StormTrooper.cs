@@ -181,17 +181,21 @@ public class StormTrooper : Enemy
 		}
 	}
 
-	/*
+	
 	public void OnTriggerEnter(GameObject triggeredGameObject)
 	{
 		//Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + triggeredGameObject.tag);
-		if(triggeredGameObject.CompareTag("Bullet"))
-        {
-			Debug.Log("Trigger bullet");
-			InternalCalls.Destroy(gameObject);
-        }
+		if (triggeredGameObject.CompareTag("PushSkill"))
+		{
+			Debug.Log("Skill collision");
+
+		/*	Vector3 pushDirection = Core.instance.gameObject.transform.localPosition - gameObject.transform.globalPosition;
+			pushDirection = pushDirection.normalized;
+
+			gameObject.transform.localPosition += pushDirection * 5;*/
+		}
 
 		//Debug.Log("Triggered by tag: " + triggeredGameObject.tag);
 	}
-	*/
+	
 }
