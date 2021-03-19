@@ -61,6 +61,7 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath)
 	}
 
 	//rootObject->RecursiveUIDRegeneration();
+	EngineExternal->moduleScene->LoadScriptsData(rootObject);
 
 	//Save all references to game objects with their old UID
 	std::map<uint, GameObject*> gameObjects;
@@ -142,8 +143,6 @@ void PrefabImporter::OverridePrefabGameObjects(uint prefabID, GameObject* gameOb
 		if(prefabObjects[i] != gameObject)
 			OverrideGameObject(prefabID, prefabObjects[i], gameObject);
 	}
-
-	EngineExternal->moduleScene->LoadScriptsData();
 }
 
 void PrefabImporter::OverrideGameObject(uint prefabID, GameObject* objectToReplace, GameObject* referenceObject)
