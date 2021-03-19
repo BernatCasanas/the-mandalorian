@@ -12,30 +12,34 @@ public class smallGrenade : DiamondComponent
 
     private bool move = true;
 
+    private bool detonate = false;
 
-    public void OnCollisionEnter(GameObject collidedGameObject)
+    public void OnTriggerEnter(GameObject collidedGameObject)
     {
 
-        move = false;
-        Debug.Log("Collision");
-
+        
+        if (collidedGameObject.CompareTag("Enemy"))
+        {
+            detonate = true;
+        }
     }
 
     public void Update()
     {
+        if (thisReference.transform.globalPosition.y < Core.instance.gameObject.transform.globalPosition.y + 0.5)
+        {
+            move = false;
+        }
+
         if (!move)
         {
             Timer += Time.deltaTime;
 
         }
 
-        if (Timer > detonationTime)
+        if (Timer > detonationTime || detonate)
         {
             InternalCalls.Destroy(thisReference);
-           
-
-            
-
 
         }
 

@@ -3,11 +3,13 @@
     "Game Objects": [
         {
             "name": "SmallGrenade",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
-                -1.0540981292724609,
-                8.2889471054077148,
-                0.085410542786121368
+                -0.44604617357254028,
+                9.8492097854614258,
+                0.23909361660480499
             ],
             "Rotation": [
                 -0.7071068286895752,
@@ -17,10 +19,10 @@
             ],
             "Scale": [
                 0.070000000298023224,
-                0.069998003542423248,
-                0.069998003542423248
+                0.069992832839488983,
+                0.069992832839488983
             ],
-            "UID": 2010479796,
+            "UID": 910303836,
             "PrefabID": 1968664915,
             "ParentUID": 1676501951,
             "Components": [
@@ -54,7 +56,31 @@
                     "Density": 1
                 },
                 {
-                    "Type": 18,
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "smallGrenade",
+                    "thisReference": 910303836,
+                    "detonationTime": 2.5
+                },
+                {
+                    "Type": 22,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Radius": 0.69999998807907104
+                },
+                {
+                    "Type": 22,
                     "Active": true,
                     "isTrigger": false,
                     "Position": [
@@ -68,18 +94,7 @@
                         0,
                         1
                     ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "smallGrenade",
-                    "thisReference": 2010479796,
-                    "detonationTime": 2
+                    "Radius": 0.069992825388908386
                 }
             ]
         }
