@@ -37,7 +37,8 @@ public class Enemy : DiamondComponent
 
 	public virtual bool Shoot()
 	{
-		InternalCalls.CreateBullet(shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+		InternalCalls.CreatePrefab("Library/Prefabs/346087333.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+
 		timePassed = 0.0f;
 		shotTimes++;
 
