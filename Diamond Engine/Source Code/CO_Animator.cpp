@@ -57,7 +57,7 @@ void C_Animator::Start()
 {
 	if (rootBone == nullptr)
 	{
-		if(!FindRootBone())
+		if (!FindRootBone())
 			return;
 	}
 
