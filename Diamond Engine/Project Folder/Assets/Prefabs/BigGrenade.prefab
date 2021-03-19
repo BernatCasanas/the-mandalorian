@@ -3,11 +3,13 @@
     "Game Objects": [
         {
             "name": "BigGrenade",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
-                -4.4951496124267578,
-                7.9846372604370117,
-                -1.4346048831939697
+                -2.4522366523742676,
+                10.435736656188965,
+                -0.54049134254455566
             ],
             "Rotation": [
                 0,
@@ -20,7 +22,7 @@
                 0.1999991238117218,
                 0.1999991238117218
             ],
-            "UID": 309894154,
+            "UID": 1501839488,
             "PrefabID": 142833782,
             "ParentUID": 1676501951,
             "Components": [
@@ -54,7 +56,33 @@
                     "Density": 1
                 },
                 {
-                    "Type": 18,
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "bigGrenade",
+                    "thisReference": 1501839488,
+                    "speed": 10,
+                    "yVel": 0,
+                    "detonationTime": 2
+                },
+                {
+                    "Type": 22,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Radius": 1.5
+                },
+                {
+                    "Type": 22,
                     "Active": true,
                     "isTrigger": false,
                     "Position": [
@@ -68,19 +96,7 @@
                         0,
                         1
                     ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "bigGrenade",
-                    "speed": 10,
-                    "yVel": 0,
-                    "detonationTime": 2
+                    "Radius": 0.1999991238117218
                 }
             ]
         }
