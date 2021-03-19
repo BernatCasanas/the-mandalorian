@@ -54,4 +54,7 @@ namespace DiamondEngine
 
         public const float Rad2Deg = 57.29578f;
     }
+
+
 }
+
