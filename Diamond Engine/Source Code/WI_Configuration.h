@@ -23,6 +23,9 @@ public:
 private:
 	std::vector<float> fps_log;
 	std::vector<float> ms_log;
+
+	
+
 };
 
 

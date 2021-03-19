@@ -2,7 +2,6 @@
 #define __MO_GUI_H__
 
 #include "Module.h"
-#include <vector>
 
 class GameObject;
 
@@ -28,18 +27,13 @@ public:
 	void SetCanvas(int uid);
 	void EraseCanvas();
 
-public:
-	std::vector<int> uid_gameobject_of_ui_selected;
 
 private:
 	int canvas = -1;
 	unsigned int VAO = 0;
-
-	unsigned int textVAO = 0;
-	unsigned int textVBO = 0;
 };
 
-const float arrayUiVAO[] = {
+const float uiVAO[] = {
 -1, -1,
 1, -1,
 -1, 1,

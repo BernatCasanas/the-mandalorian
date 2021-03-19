@@ -68,8 +68,6 @@ public:
 	void SetAudioObjTransform(unsigned int id, float3& pos, float3& forward, float3& up);
 
 	void SetBusVolume(float volume);
-	void SetMusicVolume(float volume);
-	void SetSFXVolume(float volume);
 
 private:
 	void UpdateWwiseListener();
@@ -78,11 +76,6 @@ public:
 	std::vector<AudioBank*> banks;
 	std::vector<C_AudioSource*> audio_sources;
 	C_AudioListener* defaultListener;
-	C_AudioSource* musicSource;
-
-	float masterVolume;
-	float musicVolume;
-	float fxVolume;
 
 private:
 	bool wwiseListenerHasToUpdate;

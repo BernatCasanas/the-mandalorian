@@ -6,12 +6,8 @@
 #include "CO_Material.h"
 #include "CO_Camera.h"
 #include "CO_Script.h"
-#include "CO_Animator.h"
 #include "CO_RigidBody.h"
 #include "CO_Collider.h"
-#include "CO_BoxCollider.h"
-#include "CO_SphereCollider.h"
-#include "CO_MeshCollider.h"
 #include "CO_AudioListener.h"
 #include "CO_AudioSource.h"
 #include "CO_Transform2D.h"
@@ -20,9 +16,6 @@
 #include "CO_Canvas.h"
 #include "CO_Image2D.h"
 #include "CO_Checkbox.h"
-#include "CO_ParticleSystem.h"
-#include "CO_Billboard.h"
-#include "CO_Navigation.h"
 
 #include"MO_Scene.h"
 
@@ -35,7 +28,7 @@
 
 
 GameObject::GameObject(const char* _name, GameObject* parent, int _uid) : parent(parent), name(_name), showChildren(false),
-active(true), isStatic(false), toDelete(false), UID(_uid), transform(nullptr), dumpComponent(nullptr), prefabID(0u), tag("Untagged"), layer("Default")
+active(true), isStatic(false), toDelete(false), UID(_uid), transform(nullptr), dumpComponent(nullptr)
 {
 
 	if(parent != nullptr)
@@ -48,7 +41,7 @@ active(true), isStatic(false), toDelete(false), UID(_uid), transform(nullptr), d
 	{
 		UID = EngineExternal->GetRandomInt();
 	}
-	//UID = MaykMath::Random(0, INT_MAX);
+		//UID = MaykMath::Random(0, INT_MAX);
 }
 
 
@@ -134,24 +127,12 @@ Component* GameObject::AddComponent(Component::TYPE _type, const char* params)
 		ret = new C_Camera(this);
 		EngineExternal->moduleScene->SetGameCamera(dynamic_cast<C_Camera*>(ret));
 		break;
-	case Component::TYPE::ANIMATOR:
-		ret = new C_Animator(this);
-      break;
-	case Component::TYPE::RIGIDBODY:
+	case Component::TYPE::RigidBody:
 		ret = new C_RigidBody(this);
 		break;
-	case Component::TYPE::COLLIDER:
-		ret = new C_BoxCollider(this);
-		break;
-	case Component::TYPE::BOXCOLLIDER:
-		ret = new C_BoxCollider(this);
+	case Component::TYPE::Collider:
+		ret = new C_Collider(this);
       break;
-	case Component::TYPE::SPHERECOLLIDER:
-		ret = new C_SphereCollider(this);
-		break;
-	case Component::TYPE::MESHCOLLIDER:
-		ret = new C_MeshCollider(this);
-		break;
 	case Component::TYPE::AUDIO_LISTENER:
 		ret = new C_AudioListener(this);
 		break;
@@ -171,16 +152,6 @@ Component* GameObject::AddComponent(Component::TYPE _type, const char* params)
 		ret = new C_Checkbox(this);
 		break;
 
-	case Component::TYPE::NAVIGATION:
-		assert(params != nullptr, "You need to specify the type of ui");
-		if ("Button" == params)
-			ret = new C_Navigation(this, Component::TYPE::BUTTON);
-		else if ("Checkbox" == params)
-			ret = new C_Navigation(this, Component::TYPE::CHECKBOX);
-		else 
-			LOG(LogType::L_WARNING, "The Navigation component hasn't been created because the type wasn't correct");
-		break;
-
 	case Component::TYPE::TEXT_UI:
 		ret = new C_Text(this);
 		break;
@@ -192,14 +163,8 @@ Component* GameObject::AddComponent(Component::TYPE _type, const char* params)
 	case Component::TYPE::IMAGE_2D:
 		ret = new C_Image2D(this);
 		break;
-
-	case Component::TYPE::PARTICLE_SYSTEM:
-		ret = new C_ParticleSystem(this);
-		break;
-	case Component::TYPE::BILLBOARD:
-		ret = new C_Billboard(this);
-		break;
 	}
+
 
 	if (ret != nullptr)
 	{		
@@ -211,37 +176,17 @@ Component* GameObject::AddComponent(Component::TYPE _type, const char* params)
 }
 
 
-Component* GameObject::GetComponent(Component::TYPE _type, const char* scriptName)
+Component* GameObject::GetComponent(Component::TYPE _type)
 {
 	for (size_t i = 0; i < components.size(); i++)
 	{
-		if (components[i] && components[i]->type == _type)
-		{
-			if (_type == Component::TYPE::SCRIPT)
-			{
-				if (scriptName != nullptr && strcmp(components[i]->GetName().c_str(), scriptName) == 0)
-					return components[i];
-			}
-			else
-			{
-				return components[i];
-			}
-		}
+		if (components[i]->type == _type)
+			return components[i];
 	}
 
 	return nullptr;
 }
 
-std::vector<Component*> GameObject::GetComponentsOfType(Component::TYPE type)
-{
-	std::vector< Component*> ret;
-	for (size_t i = 0; i < components.size(); ++i)
-	{
-		if (components[i]->type == type)
-			ret.push_back(components[i]);
-	}
-	return ret;
-}
 
 //When we load models from model trees the UID should get regenerated
 //because the .model UID are not unique.
@@ -254,19 +199,6 @@ void GameObject::RecursiveUIDRegeneration()
 		this->children[i]->RecursiveUIDRegeneration();
 	}
 }
-
-
-void GameObject::RecursiveUIDRegenerationSavingReferences(std::map<uint, GameObject*>& gameObjects)
-{
-	gameObjects[UID] = this;
-	UID = EngineExternal->GetRandomInt();
-
-	for (size_t i = 0; i < this->children.size(); i++)
-	{
-		this->children[i]->RecursiveUIDRegenerationSavingReferences(gameObjects);
-	}
-}
-
 
 
 bool GameObject::isActive() const
@@ -299,28 +231,6 @@ void GameObject::Disable()
 	//}
 }
 
-void GameObject::EnableTopDown()
-{
-	Enable();
-	for (int i = 0;i< children.size(); i++) {
-		children[i]->EnableTopDown();
-	}
-	for (int i = 0; i < components.size(); i++) {
-		components[i]->Enable();
-	}
-}
-
-void GameObject::DisableTopDown()
-{
-	Disable();
-	for (int i = 0; i < children.size(); i++) {
-		children[i]->DisableTopDown();
-	}
-	for (int i = 0; i < components.size(); i++) {
-		components[i]->Disable();
-	}
-}
-
 
 bool GameObject::IsRoot()
 {
@@ -341,8 +251,6 @@ void GameObject::SaveToJson(JSON_Array* _goArray)
 
 	//Save all gameObject data
 	json_object_set_string(goData, "name", name.c_str());
-	json_object_set_string(goData, "tag", tag);
-	json_object_set_string(goData, "layer", layer);
 
 	DEJson::WriteBool(goData, "Active", active);
 	DEJson::WriteVector3(goData, "Position", &transform->position[0]);
@@ -350,7 +258,6 @@ void GameObject::SaveToJson(JSON_Array* _goArray)
 	DEJson::WriteVector3(goData, "Scale", &transform->localScale[0]);
 
 	DEJson::WriteInt(goData, "UID", UID);
-	DEJson::WriteInt(goData, "PrefabID", prefabID);
 
 	if (parent)
 		DEJson::WriteInt(goData, "ParentUID", parent->UID);
@@ -382,20 +289,10 @@ void GameObject::SaveToJson(JSON_Array* _goArray)
 
 void GameObject::LoadFromJson(JSON_Object* _obj)
 {
+
 	active = DEJson::ReadBool(_obj, "Active");
 	transform->SetTransformMatrix(DEJson::ReadVector3(_obj, "Position"), DEJson::ReadQuat(_obj, "Rotation"), DEJson::ReadVector3(_obj, "Scale"));
-	prefabID = DEJson::ReadInt(_obj, "PrefabID");
 	LoadComponents(json_object_get_array(_obj, "Components"));
-
-	const char* json_tag = DEJson::ReadString(_obj, "tag");
-
-	if (json_tag == nullptr) sprintf_s(tag, "Untagged");
-	else sprintf_s(tag, json_tag);
-
-	const char* json_layer = DEJson::ReadString(_obj, "layer");
-
-	if (json_layer == nullptr) sprintf_s(layer, "Default");
-	else sprintf_s(layer, json_layer);
 }
 
 
@@ -407,22 +304,9 @@ void GameObject::LoadComponents(JSON_Array* componentArray)
 		conf.nObj = json_array_get_object(componentArray, i);
 
 		const char* scName = conf.ReadString("ScriptName");
-		int num_type = conf.ReadInt("Type Of UI");
-		if (num_type != 0) {
-			switch (static_cast<Component::TYPE>(num_type)) {
-			case Component::TYPE::BUTTON:
-				scName = "Button";
-				break;
-			case Component::TYPE::CHECKBOX:
-				scName = "Checkbox";
-				break;
-			}
-
-		}
 		Component* comp = AddComponent((Component::TYPE)conf.ReadInt("Type"), scName);
 
-		if(comp != nullptr)
-			comp->LoadData(conf);
+		comp->LoadData(conf);
 	}
 }
 
@@ -477,16 +361,4 @@ bool GameObject::IsChild(GameObject* _toFind)
 void GameObject::RemoveChild(GameObject* child)
 {
 	children.erase(std::find(children.begin(), children.end(), child));
-}
-
-void GameObject::CollectChilds(std::vector<GameObject*>& vector)
-{
-	vector.push_back(this);
-	for (uint i = 0; i < children.size(); i++)
-		children[i]->CollectChilds(vector);
-}
-
-bool GameObject::CompareTag(const char* _tag)
-{
-	return strcmp(tag, _tag) == 0;
 }

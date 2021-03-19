@@ -24,4 +24,5 @@ public:
 
 	GLuint textureID;
 	Color color;
+
 };

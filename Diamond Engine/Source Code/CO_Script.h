@@ -30,21 +30,13 @@ public:
 
 	void LoadScriptData(const char*);
 
-	void CollisionCallback(bool isTrigger, GameObject* collidedGameObject);
-
-	void ExecuteButton();
-	void ExecuteCheckbox(bool checkbox_active);
+	void CollisionCallback();
 
 	std::vector<std::string> methods;
 	std::vector<SerializedField> fields;
 
 	MonoMethod* updateMethod;
-
 	MonoMethod* onCollisionEnter;
-	MonoMethod* onTriggerEnter;
-	
-	MonoMethod* onExecuteButton;
-	MonoMethod* onExecuteCheckbox;
 	uint32_t noGCobject;
 
 	static C_Script* runningScript;
