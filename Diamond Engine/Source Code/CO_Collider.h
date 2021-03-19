@@ -9,6 +9,13 @@ class C_Transform;
 class C_RigidBody;
 class C_MeshRenderer;
 
+enum class ColliderShape
+{
+	CUBE,
+	MESH,
+	SPHERE,
+};
+
 class C_Collider : public Component
 {
 public:
@@ -43,7 +50,6 @@ public:
 	bool isTrigger;
 
 	physx::PxShape* colliderShape;
-	physx::PxRigidStatic* rigidStatic;
 	physx::PxMaterial* colliderMaterial;
 	C_Transform* transform;
 	C_RigidBody* rigidbody;
@@ -55,6 +61,8 @@ public:
 	float3 colliderEuler = float3::zero;
 	float  colliderRadius = 3.0f; //SPHERE AND CAPSULE 
 
+
+	ColliderShape shape;
 
 
 };

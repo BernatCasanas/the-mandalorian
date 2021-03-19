@@ -10,6 +10,7 @@ class C_Camera;
 typedef unsigned int uint;
 struct SerializedField;
 class ResourceMaterial;
+struct ActionToRealize;
 
 class M_Scene : public Module
 {
@@ -26,16 +27,21 @@ public:
 
 	bool CleanUp() override;
 
-
 	GameObject* GetGOFromUID(GameObject* n, uint sUID);
 	GameObject* CreateGameObject(const char* name, GameObject* parent, int _uid = -1);
+	void GetAllGameObjects(std::vector<GameObject*>& gameObjects);
+
 	void LoadScriptsData();
+	void LoadNavigationData();
+
+	GameObject* FindObjectWithTag(GameObject* rootGameObject, const char* tag);
+	void FindGameObjectsWithTag(const char* tag, std::vector<GameObject*>& taggedObjects);
 
 #ifndef STANDALONE
 	void OnGUI() override;
-#endif // !STANDALONE
 
 	void SaveScene(const char* name);
+#endif // !STANDALONE
 	void LoadScene(const char* name);
 
 	void SetGameCamera(C_Camera* cam);
@@ -51,10 +57,13 @@ public:
 	GameObject* root;
 	std::vector<GameObject*> destroyList;
 	std::multimap<uint, SerializedField*> referenceMap;
+	std::multimap<uint, ActionToRealize*> navigationReferenceMap;
 	ResourceMaterial* defaultMaterial;
 	char current_scene[64];
 	char current_scene_name[32];
 
+	std::vector<std::string> tags;
+	std::vector<std::string> layers;
 
 	void LoadHoldScene();
 private:
@@ -65,4 +74,5 @@ private:
 	void RecursiveUpdate(GameObject* parent);
 
 	void RecursivePostUpdate(GameObject* parent);
+
 };

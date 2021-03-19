@@ -10,6 +10,14 @@
 
 #include "CO_Collider.h"
 #include "CO_RigidBody.h"
+#include "CO_MeshRenderer.h"
+
+#include "RE_Mesh.h"
+
+
+//todelete
+#include "MO_Renderer3D.h"
+
 
 #ifndef _DEBUG
 #        pragma comment(lib, "Physx/libx86/_release/PhysX_32.lib")
@@ -71,7 +79,7 @@ physx::PxFilterFlags contactReportFilterShader(physx::PxFilterObjectAttributes a
 	// all initial and persisting reports for everything, with per-point data
 	pairFlags = PxPairFlag::eSOLVE_CONTACT | PxPairFlag::eDETECT_DISCRETE_CONTACT
 		| PxPairFlag::eNOTIFY_TOUCH_FOUND
-		| PxPairFlag::eNOTIFY_TOUCH_PERSISTS
+		//| PxPairFlag::eNOTIFY_TOUCH_PERSISTS
 		| PxPairFlag::eNOTIFY_CONTACT_POINTS
 		| PxPairFlag::eTRIGGER_DEFAULT 
 		| PxPairFlag::eDETECT_CCD_CONTACT; 
@@ -151,12 +159,13 @@ bool ModulePhysics::Init() {
 	//Initialize Material with default values staticFric 0.5  DynamicFric 0.5  restitution 0.1
 	mMaterial = CreateMaterial();
 
-//	PxRigidStatic* groundPlane = PxCreatePlane(*mPhysics, PxPlane(0, 1, 0, 0), *mMaterial);
-//	mScene->addActor(*groundPlane);
+
 
 	mScene->setSimulationEventCallback(&detector);
 	mScene->setGravity(PxVec3(gravity.x, gravity.y, gravity.z));
-	
+	mScene->setVisualizationParameter(PxVisualizationParameter::eSCALE, 1.0f);
+	mScene->setVisualizationParameter(PxVisualizationParameter::eCOLLISION_SHAPES, 1.0f);
+
 	return true;
 }
 
@@ -165,18 +174,35 @@ update_status ModulePhysics::PreUpdate(float dt)
 	if (DETime::state == GameState::PLAY)
 		SceneSimulation(DETime::deltaTime);
 
+
+	
 	return update_status::UPDATE_CONTINUE;
 }
 
 update_status ModulePhysics::Update(float gameTimestep) {
 
 	//RenderGeometry();
+	const PxRenderBuffer& rb = mScene->getRenderBuffer();
+	for (PxU32 i = 0; i < rb.getNbLines(); i++)
+	{
+		const PxDebugLine& line = rb.getLines()[i];
 
+
+	/*	glLineWidth(2.0f);
+		glColor3f(0.0f, 1.0f, 0.0f);
+		glBegin(GL_LINES);
+		glVertex3f(line.pos0.x, line.pos0.y, line.pos0.z);
+		glVertex3f(line.pos1.x, line.pos1.y, line.pos1.z);
+		
+		glEnd();
+		glColor3f(1.0f, 1.0f, 1.0f);*/
+
+	}
 	return update_status::UPDATE_CONTINUE;
 }
 
 void ModulePhysics::SceneSimulation(double gameTimestep, bool fetchResults) {
-	PxReal step = DETime::deltaTime;
+	PxReal step = gameTimestep;
 	//if(step < 0.002)
 	//step = 0.002;
 	mScene->simulate(step);
@@ -190,12 +216,11 @@ void ModulePhysics::SceneSimulation(double gameTimestep, bool fetchResults) {
 		for (int i = 0; i < actors.size(); i++)
 		{
 			GameObject* contact = static_cast<GameObject*>(actors[i]->userData);
-			C_RigidBody* body = dynamic_cast<C_RigidBody*>(contact->GetComponent(Component::TYPE::RigidBody));
+			C_RigidBody* body = dynamic_cast<C_RigidBody*>(contact->GetComponent(Component::TYPE::RIGIDBODY));
 			body->Step();
 		}
 	}
 	
-
 
 }
 
@@ -235,16 +260,6 @@ void ModulePhysics::RenderGeometry() {
 }
 
 
-physx::PxRigidStatic* ModulePhysics::CreateRigidStatic(float3 pos) {
-
-	PxTransform position(pos.x, pos.y, pos.z);
-
-	PxRigidStatic* staticBody = nullptr;
-	staticBody = mPhysics->createRigidStatic(position);
-
-	mScene->addActor(*staticBody);
-	return staticBody;
-}
 
 physx::PxRigidDynamic* ModulePhysics::CreateRigidDynamic(float3 pos, Quat rot) {
 	
@@ -258,7 +273,7 @@ physx::PxRigidDynamic* ModulePhysics::CreateRigidDynamic(float3 pos, Quat rot) {
 	return dynamicBody;
 }
 //
-physx::PxShape* ModulePhysics::CreateCollider(float3 size, PxMaterial* material) {
+physx::PxShape* ModulePhysics::CreateBoxCollider(float3 size, PxMaterial* material) {
 
 	PxShape* colliderShape = nullptr;
 
@@ -269,6 +284,58 @@ physx::PxShape* ModulePhysics::CreateCollider(float3 size, PxMaterial* material)
 	colliderShape = mPhysics->createShape(PxBoxGeometry(size.x, size.y, size.z), *material, true);
 
 	return colliderShape;
+}
+
+physx::PxShape* ModulePhysics::CreateSphereCollider(float radius, PxMaterial* material) {
+
+	PxShape* colliderShape = nullptr;
+
+	if (material == nullptr)
+		material = mMaterial;
+
+
+	colliderShape = mPhysics->createShape(PxSphereGeometry(radius), *material, true);
+
+	return colliderShape;
+}
+
+physx::PxShape* ModulePhysics::CreateMeshCollider(PxRigidActor* aConvexActor, GameObject* parent)
+{
+	C_MeshRenderer* mesh = dynamic_cast<C_MeshRenderer*>(parent->GetComponent(Component::TYPE::MESH_RENDERER));
+	ResourceMesh* resMesh = mesh->GetRenderMesh();
+
+	PxVec3* convexVerts = new PxVec3[resMesh->vertices_count];
+	for (int i = 0; i < resMesh->vertices_count; i++)
+	{
+		PxVec3 vertex;
+		vertex.x = resMesh->vertices[VERTEX_ATTRIBUTES * i];
+		vertex.y = resMesh->vertices[VERTEX_ATTRIBUTES * i + 1];
+		vertex.z = resMesh->vertices[VERTEX_ATTRIBUTES * i + 2];
+		
+		convexVerts[i] = vertex;
+	}
+
+	
+	PxConvexMeshDesc convexDesc;
+	convexDesc.points.count = resMesh->vertices_count;
+	convexDesc.points.stride = sizeof(PxVec3);
+	convexDesc.points.data = convexVerts;
+	convexDesc.flags = PxConvexFlag::eCOMPUTE_CONVEX;
+
+#ifdef _DEBUG
+	// mesh should be validated before cooking without the mesh cleaning
+	//bool res = mCooking->validateConvexMesh(convexDesc);
+	//PX_ASSERT(res);
+#endif
+
+	PxConvexMesh* aConvexMesh = mCooking->createConvexMesh(convexDesc,
+		mPhysics->getPhysicsInsertionCallback());
+
+	PxShape* aConvexShape = mPhysics->createShape(PxConvexMeshGeometry(aConvexMesh), *mMaterial);
+	delete[] convexVerts;
+
+	return aConvexShape;
+	//aConvexShape->getGeometry().convexMesh().convexMesh->getVertices(;
 }
 
 physx::PxMaterial* ModulePhysics::CreateMaterial(float staticFriction, float dynamicFriction, float restitution) {
@@ -334,13 +401,20 @@ void CollisionDetector::onContact(const PxContactPairHeader& pairHeader,
 
 		if (cp.events & PxPairFlag::eNOTIFY_TOUCH_FOUND)
 		{
-
 			for (size_t k= 0; k < 2; ++k)
 			{
 				GameObject* contact = static_cast<GameObject*>(pairHeader.actors[k]->userData);
-				C_Script* script =  dynamic_cast<C_Script*>(contact->GetComponent(Component::TYPE::SCRIPT));
-				if (script)
-					script->CollisionCallback();
+
+				std::vector< Component*> scripts = contact->GetComponentsOfType(Component::TYPE::SCRIPT);
+				for (size_t l = 0; l < scripts.size(); l++)
+				{
+					C_Script* script = dynamic_cast<C_Script*>(scripts[l]);
+					if (script)
+					{
+						GameObject* contact2 = static_cast<GameObject*>(pairHeader.actors[ k == 0 ? 1 : 0]->userData);
+						script->CollisionCallback(false, contact2);
+					}
+				}
 			}
 
 			/*if ((pairHeader.actors[0] == mSubmarineActor) ||
@@ -351,23 +425,37 @@ void CollisionDetector::onContact(const PxContactPairHeader& pairHeader,
 
 void CollisionDetector::onTrigger(physx::PxTriggerPair* pairs, physx::PxU32 count)
 {
-	LOG(LogType::L_NORMAL, "Trigger detected");
+	LOG(LogType::L_NORMAL, "trigger detected");
 	for (PxU32 i = 0; i < count; i++)
 	{
 		const PxTriggerPair& cp = pairs[i];
 
-		if (PxPairFlag::eNOTIFY_TOUCH_FOUND)
+		GameObject* contact = static_cast<GameObject*>(pairs->triggerActor->userData);
+		GameObject* contact2 = static_cast<GameObject*>(pairs->otherActor->userData);
+
+		if (contact != nullptr) 
 		{
-
-			for (size_t k = 0; k < 2; ++k)
+			std::vector< Component*> scripts = contact->GetComponentsOfType(Component::TYPE::SCRIPT);
+			for (size_t i = 0; i < scripts.size(); i++)
 			{
-				GameObject* contact = static_cast<GameObject*>(pairs->otherActor->userData);
-				C_Script* script = dynamic_cast<C_Script*>(contact->GetComponent(Component::TYPE::SCRIPT));
+				C_Script* script = dynamic_cast<C_Script*>(scripts[i]);
 				if (script)
-					script->CollisionCallback();
+					script->CollisionCallback(true, contact2);
 			}
-
 		
+			
 		}
+
+		if (contact2 != nullptr) 
+		{
+			std::vector< Component*> scripts = contact2->GetComponentsOfType(Component::TYPE::SCRIPT);
+			for (size_t i = 0; i < scripts.size(); i++)
+			{
+				C_Script* script = dynamic_cast<C_Script*>(scripts[i]);
+				if (script)
+					script->CollisionCallback(true, contact);
+			}
+		}
+		
 	}
 }

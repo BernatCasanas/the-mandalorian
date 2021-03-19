@@ -24,6 +24,8 @@ namespace StringLogic {
 #define SHADERS_PATH "Library/Shaders/"
 #define MATERIALS_PATH "Library/Materials/"
 #define SOUNDS_PATH "Library/Sounds/"
+#define ANIMATIONS_PATH "Library/Animations/"
+#define PREFABS_PATH "Library/Prefabs/"
 
 namespace FileSystem
 {
@@ -41,6 +43,7 @@ namespace FileSystem
 	bool CreateDir(const char* dir);
 	bool IsDirectory(const char* file) /*const*/;
 	bool AddPath(const char* path_or_zip);
+	int Delete(const char* file_to_delete); //Deletes a file if it exists. Returns nonzero on success, zero on failure
 
 	std::string NormalizePath(const char* path) /*const*/;
 	std::string UnNormalizePath(const char* full_path);

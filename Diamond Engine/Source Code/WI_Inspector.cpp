@@ -14,6 +14,11 @@
 #include"CO_Script.h"
 #include"RE_Material.h"
 
+//todelete
+#include "Application.h"
+#include "MO_Physics.h"
+#include "IM_PrefabImporter.h"
+
 W_Inspector::W_Inspector() : Window(), selectedGO(nullptr), editingRes(nullptr)
 {
 	name = "Inspector";
@@ -61,43 +66,80 @@ void W_Inspector::Draw()
 			ImGui::Checkbox("Static", &selectedGO->isStatic);
 
 			ImGui::Text("Tag"); ImGui::SameLine();
-			const char* items[] = { "AAAA", "BBBB", "CCCC", "DDDD", "EEEE", "FFFF", "GGGG", "HHHH", "IIII", "JJJJ", "KKKK", "LLLLLLL", "MMMM", "OOOOOOO", "PPPP", "QQQQQQQQQQ", "RRR", "SSSS" };
-			static const char* current_item = NULL;
 
 			ImGuiStyle& style = ImGui::GetStyle();
 			float w = ImGui::CalcItemWidth();
 			float spacing = style.ItemInnerSpacing.x;
 			float button_sz = ImGui::GetFrameHeight();
 			ImGui::PushItemWidth((w - spacing * 2.0f - button_sz * 2.0f) * 0.5f);
-			if (ImGui::BeginCombo("##custom combo", current_item))
+
+			std::vector<std::string> tags = EngineExternal->moduleScene->tags;
+
+			if (ImGui::BeginCombo("##tags", selectedGO->tag))
 			{
-				for (int n = 0; n < IM_ARRAYSIZE(items); n++)
+				for (int t = 0; t < tags.size(); t++)
 				{
-					bool is_selected = (current_item == items[n]);
-					if (ImGui::Selectable(items[n], is_selected))
-						current_item = items[n];
+					bool is_selected = strcmp(selectedGO->tag, tags[t].c_str()) == 0;
+					if (ImGui::Selectable(tags[t].c_str(), is_selected)) {
+						strcpy(selectedGO->tag, tags[t].c_str());
+					}
+
 					if (is_selected)
 						ImGui::SetItemDefaultFocus();
 				}
+				if (ImGui::BeginMenu("Add Tag")) 
+				{
+					static char newTag[32];
+					ImGui::InputText("", newTag, IM_ARRAYSIZE(newTag));
+					
+					if (ImGui::Button("Save Tag")) {
+						char* tagToAdd = new char[IM_ARRAYSIZE(newTag)];
+						strcpy(tagToAdd, newTag);
+						EngineExternal->moduleScene->tags.push_back(tagToAdd);
+						newTag[0] = '\0';
+					}
+					ImGui::EndMenu();
+				}
+
+				int tag_to_remove = -1;
+				if (ImGui::BeginMenu("Remove Tag"))
+				{
+					for (int t = 0; t < tags.size(); t++)
+					{
+						if (ImGui::Selectable(tags[t].c_str(), false)) {
+							tag_to_remove = t;
+							//Remove Tag
+						}
+					}
+					ImGui::EndMenu();
+				}
+
+				if (tag_to_remove != -1)
+					EngineExternal->moduleScene->tags.erase(EngineExternal->moduleScene->tags.begin() + tag_to_remove);
+
 				ImGui::EndCombo();
 			}
 			ImGui::PopItemWidth();
 
 			ImGui::SameLine();
 
+			std::vector<std::string> layers = EngineExternal->moduleScene->layers;
+
 			ImGui::Text("Layer"); ImGui::SameLine();
-			 style = ImGui::GetStyle();
-			 w = ImGui::CalcItemWidth();
-			 spacing = style.ItemInnerSpacing.x;
-			 button_sz = ImGui::GetFrameHeight();
+			style = ImGui::GetStyle();
+			w = ImGui::CalcItemWidth();
+			spacing = style.ItemInnerSpacing.x;
+			button_sz = ImGui::GetFrameHeight();
 			ImGui::PushItemWidth((w - spacing * 2.0f - button_sz * 2.0f) * 0.5f);
-			if (ImGui::BeginCombo("##custom combo 2", current_item))
+			if (ImGui::BeginCombo("##layers", selectedGO->layer))
 			{
-				for (int n = 0; n < IM_ARRAYSIZE(items); n++)
+				for (int n = 0; n < layers.size(); n++)
 				{
-					bool is_selected = (current_item == items[n]);
-					if (ImGui::Selectable(items[n], is_selected))
-						current_item = items[n];
+					bool is_selected = strcmp(selectedGO->layer, layers[n].c_str()) == 0;
+					if (ImGui::Selectable(layers[n].c_str(), is_selected)) {
+						strcpy(selectedGO->layer, layers[n].c_str());
+					}
+
 					if (is_selected)
 						ImGui::SetItemDefaultFocus();
 				}
@@ -106,7 +148,22 @@ void W_Inspector::Draw()
 			ImGui::PopItemWidth();
 
 			if (ImGui::Button("Delete")) {
-				selectedGO->Destroy();
+				selectedGO->Destroy();}
+
+			ImGui::SameLine();
+			ImGui::Text("UID: %d", selectedGO->UID);
+
+			if (selectedGO->prefabID != 0u) 
+			{
+				ImGui::Text("Prefab ID: %d", selectedGO->prefabID);
+				if (ImGui::Button("Override Prefab")){
+					PrefabImporter::OverridePrefabGameObjects(selectedGO->prefabID, selectedGO);
+				}
+
+				ImGui::SameLine();
+				if (ImGui::Button("Revert Changes")) {
+					PrefabImporter::OverrideGameObject(selectedGO->prefabID, selectedGO);
+				}
 			}
 
 			ImGui::GreySeparator();
@@ -138,13 +195,24 @@ void W_Inspector::Draw()
 				}
 				if (ImGui::Selectable("RigidBody3D"))
 				{
-					if (selectedGO->GetComponent(Component::TYPE::RigidBody) == nullptr)
-						selectedGO->AddComponent(Component::TYPE::RigidBody);
+					if (selectedGO->GetComponent(Component::TYPE::RIGIDBODY) == nullptr)
+						selectedGO->AddComponent(Component::TYPE::RIGIDBODY);
 				}
-				if (ImGui::Selectable("Collider"))
+				if (ImGui::Selectable("Box Collider"))
 				{
-					if (selectedGO->GetComponent(Component::TYPE::Collider) == nullptr)
-						selectedGO->AddComponent(Component::TYPE::Collider);
+					//if (selectedGO->GetComponent(Component::TYPE::BOXCOLLIDER) == nullptr)
+						selectedGO->AddComponent(Component::TYPE::BOXCOLLIDER);
+				}
+				if (ImGui::Selectable("Mesh Collider"))
+				{
+					if (selectedGO->GetComponent(Component::TYPE::RIGIDBODY) != nullptr)
+						selectedGO->AddComponent(Component::TYPE::MESHCOLLIDER);
+
+				}
+				if (ImGui::Selectable("Sphere Collider"))
+				{
+					selectedGO->AddComponent(Component::TYPE::SPHERECOLLIDER);
+
 				}
 				if (ImGui::Selectable("AudioListener"))
 				{
@@ -155,6 +223,22 @@ void W_Inspector::Draw()
 				{
 					if (selectedGO->GetComponent(Component::TYPE::AUDIO_SOURCE) == nullptr)
 						selectedGO->AddComponent(Component::TYPE::AUDIO_SOURCE);
+				}
+				if (ImGui::Selectable("Animator"))
+				{
+					if (selectedGO->GetComponent(Component::TYPE::ANIMATOR) == nullptr)
+						selectedGO->AddComponent(Component::TYPE::ANIMATOR);
+				}
+				
+				if (ImGui::Selectable("Particle System"))
+				{
+					if (selectedGO->GetComponent(Component::TYPE::PARTICLE_SYSTEM) == nullptr)
+						selectedGO->AddComponent(Component::TYPE::PARTICLE_SYSTEM);
+				}
+				if (ImGui::Selectable("Billboard"))
+				{
+					if (selectedGO->GetComponent(Component::TYPE::BILLBOARD) == nullptr)
+						selectedGO->AddComponent(Component::TYPE::BILLBOARD);
 				}
 
 				for (int i = 0; i < EngineExternal->moduleMono->userScripts.size(); i++)

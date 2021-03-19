@@ -13,6 +13,8 @@
 #include"CO_Transform.h"
 #include"GameObject.h"
 
+#include "IM_PrefabImporter.h"
+
 #include "COMM_Transform.h"
 
 #include"MathGeoLib/include/Geometry/LineSegment.h"
@@ -78,6 +80,19 @@ void W_Scene::Draw()
 				//EngineExternal->moduleResources->AssetsToScene((*name).c_str());
 				LOG(LogType::L_WARNING, "Texture %s did nothing", (*name).c_str());
 			}
+
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("_PREFAB"))
+			{
+				std::string* name = (std::string*)payload->Data;
+
+				std::string libraryPath = EngineExternal->moduleResources->LibraryFromMeta((*name).c_str());
+				GameObject* rootObject = PrefabImporter::LoadPrefab(libraryPath.c_str());
+
+				//if(rootObject != nullptr)
+					//EngineExternal->moduleScene->
+				LOG(LogType::L_WARNING, "Prefab %s loaded to resource manager", (*name).c_str());
+			}
+
 			ImGui::EndDragDropTarget();
 		}
 
@@ -121,6 +136,16 @@ ImVec2 W_Scene::NormalizeOnWindow(float x, float y, float w, float h, ImVec2 poi
 	normalizedPoint.y = (point.y - y) / ((y + h) - y);
 
 	return normalizedPoint;
+}
+
+ImVec2 W_Scene::GetRegionAvailable()
+{
+	ImVec2 size;
+
+	size.x = ImGui::GetContentRegionAvail().x;
+	size.y = ImGui::GetContentRegionAvail().y;
+
+	return size;
 }
 
 

@@ -45,7 +45,7 @@ void IconManager::LoadPreDefinedIcons()
 void IconManager::LoadEditorIcon(const char* iconID, const char* path)
 {
 	//TODO: Maybe hard-coding id's is stupid, find a better way
-	icons.emplace(iconID, dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(iconCount, path)));
+	icons[iconID] = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(iconCount + 1, path));
 	iconCount++;
 }
 
@@ -78,6 +78,13 @@ GLuint IconManager::GetIconTextureID(Resource::Type iconType)
 	case Resource::Type::SHADER:
 		ret = "SHADER";
 		break;
+	/*case Resource::Type::MATERIAL:
+		ret = "MATERIAL";
+		break;
+	case Resource::Type::ANIMATION:
+		ret = "ANIMATION";
+		break;
+	*/
 	case Resource::Type::FONT:
 		ret = "FONT";
 		break;

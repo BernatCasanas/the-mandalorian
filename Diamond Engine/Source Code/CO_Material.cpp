@@ -97,6 +97,8 @@ bool C_Material::OnEditor()
 		//	}
 		//}
 
+		ImGui::Text("Current material: ");
+
 		ImGui::Text("Drop here to change material");
 		if (ImGui::BeginDragDropTarget())
 		{
@@ -112,11 +114,16 @@ bool C_Material::OnEditor()
 			ImGui::EndDragDropTarget();
 		}
 
-		if (material) 
+		ImGui::SameLine();
+		if (material == nullptr)
+			ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "No material");
+		else
+			material->DrawEditor();
+
+		if (material && material->shader) 
 		{
 			ImGui::Dummy(ImVec2(0, 15));
 			ImGui::Text("Using shader: %s", material->shader->GetAssetPath());
-			material->DrawEditor();
 		}
 
 		return true;

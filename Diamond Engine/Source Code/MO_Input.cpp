@@ -10,7 +10,7 @@
 
 #define MAX_KEYS 300
 
-ModuleInput::ModuleInput(Application* app, bool start_enabled) : Module(app, start_enabled)
+ModuleInput::ModuleInput(Application* app, bool start_enabled) : Module(app, start_enabled), haptic(nullptr), hapticEnabled(true)
 {
 	keyboard = new KEY_STATE[MAX_KEYS];
 	memset(keyboard, KEY_IDLE, sizeof(KEY_STATE) * MAX_KEYS);
@@ -31,6 +31,7 @@ ModuleInput::ModuleInput(Application* app, bool start_enabled) : Module(app, sta
 ModuleInput::~ModuleInput()
 {
 	delete[] keyboard;
+	keyboard = nullptr;
 }
 
 // Called before render is available
@@ -50,6 +51,31 @@ bool ModuleInput::Init()
 
 	//Gamepad init
 	SDL_Init(SDL_INIT_GAMECONTROLLER);
+
+	//Haptic init
+	SDL_Init(SDL_INIT_HAPTIC);
+
+	//Open Joystick for haptic usage
+	if (SDL_NumJoysticks() > 0) {
+		SDL_Joystick* joystick = SDL_JoystickOpen(0);
+		if (joystick)
+			LOG(LogType::L_NORMAL, "Opened Joystick 0");
+
+		//Check if is haptic
+		if (SDL_JoystickIsHaptic(joystick) == 1) {
+			LOG(LogType::L_NORMAL, "Is Haptic");
+		}
+
+		//Open the device
+		haptic = SDL_HapticOpenFromJoystick(joystick);
+		if (haptic == nullptr) return ret;
+
+		if (SDL_HapticRumbleInit(haptic) == 0) {
+			LOG(LogType::L_NORMAL, "Rumlbe Init Innit");
+		}
+
+	}
+
 
 #ifdef STANDALONE
 	SDL_SetRelativeMouseMode(SDL_TRUE);
@@ -232,8 +258,10 @@ bool ModuleInput::CleanUp()
 {
 	LOG(LogType::L_NORMAL, "Quitting SDL input event subsystem");
 	SDL_GameControllerClose(controller_player);
+	SDL_HapticClose(haptic);
 	SDL_QuitSubSystem(SDL_INIT_EVENTS);
 	SDL_QuitSubSystem(SDL_INIT_GAMECONTROLLER);
+	SDL_QuitSubSystem(SDL_INIT_HAPTIC);
 	return true;
 }
 
@@ -281,3 +309,8 @@ void ModuleInput::OnGUI()
 	}
 }
 #endif // !STANDALONE
+void ModuleInput::PlayHaptic(float strength, int length)
+{
+	if (hapticEnabled)
+		SDL_HapticRumblePlay(haptic, strength, length);
+}

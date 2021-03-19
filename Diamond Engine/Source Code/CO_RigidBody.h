@@ -70,9 +70,10 @@ public:
 public:
 
 	C_Transform* goTransform;
-	C_Collider* collider_info;
-	C_MeshRenderer* mesh;
+	std::vector<Component*> collider_info;
 
+	C_MeshRenderer* mesh;
+	
 	physx::PxRigidDynamic* rigid_dynamic;
 
 	bool use_gravity = true;
@@ -94,4 +95,5 @@ public:
 	float angular_damping = 0.0f;
 	
 	float4x4 global_to_pivot;
+	float3 offset;
 };

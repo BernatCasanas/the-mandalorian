@@ -46,8 +46,9 @@ C_Script::~C_Script()
 	{
 		if (fields[i].type == MonoTypeEnum::MONO_TYPE_CLASS && fields[i].fiValue.goValue != nullptr && fields[i].fiValue.goValue->csReferences.size() != 0)
 		{
+			//fields[i].fiValue.goValue->csReferences.erase(std::find(fields[i].fiValue.goValue->csReferences.begin(), fields[i].fiValue.goValue->csReferences.end(), &fields[i]));
 			auto ptr = std::find(fields[i].fiValue.goValue->csReferences.begin(), fields[i].fiValue.goValue->csReferences.end(), &fields[i]);
-			if(ptr != fields[i].fiValue.goValue->csReferences.end())
+			if (ptr != fields[i].fiValue.goValue->csReferences.end())
 				fields[i].fiValue.goValue->csReferences.erase(ptr);
 		}
 	}
@@ -201,7 +202,7 @@ void C_Script::SaveData(JSON_Object* nObj)
 			break;
 
 		case MonoTypeEnum::MONO_TYPE_CLASS:
-			if(fields[i].fiValue.goValue != nullptr)
+			if (fields[i].fiValue.goValue != nullptr)
 				DEJson::WriteInt(nObj, mono_field_get_name(fields[i].field), fields[i].fiValue.goValue->UID);
 			break;
 
@@ -220,6 +221,7 @@ void C_Script::SaveData(JSON_Object* nObj)
 		}
 	}
 }
+
 void C_Script::LoadData(DEConfig& nObj)
 {
 	Component::LoadData(nObj);
@@ -228,6 +230,9 @@ void C_Script::LoadData(DEConfig& nObj)
 	for (int i = 0; i < fields.size(); i++) //TODO IMPORTANT ASK: There must be a better way to do this... too much use of switches with this stuff, look at MONOMANAGER
 	{
 		_field = &fields[i];
+
+		//if (_field->displayName == "##pointer")
+			//continue;
 
 		switch (_field->type)
 		{
@@ -280,10 +285,9 @@ void C_Script::LoadScriptData(const char* scriptName)
 	methods.clear();
 	fields.clear();
 
-
 	MonoClass* klass = mono_class_from_name(EngineExternal->moduleMono->image, USER_SCRIPTS_NAMESPACE, scriptName);
 
-	if (klass == nullptr) 
+	if (klass == nullptr)
 	{
 		LOG(LogType::L_ERROR, "Script %s was deleted and can't be loaded", scriptName);
 		name = "Missing script reference";
@@ -295,6 +299,11 @@ void C_Script::LoadScriptData(const char* scriptName)
 	noGCobject = mono_gchandle_new(mono_object_new(EngineExternal->moduleMono->domain, klass), false);
 	mono_runtime_object_init(mono_gchandle_get_target(noGCobject));
 
+
+	MonoClass* goClass = mono_object_get_class(mono_gchandle_get_target(noGCobject));
+	uintptr_t ptr = reinterpret_cast<uintptr_t>(this);
+	mono_field_set_value(mono_gchandle_get_target(noGCobject), mono_class_get_field_from_name(goClass, "pointer"), &ptr);
+
 	MonoMethodDesc* mdesc = mono_method_desc_new(":Update", false);
 	updateMethod = mono_method_desc_search_in_class(mdesc, klass);
 	mono_method_desc_free(mdesc);
@@ -303,14 +312,58 @@ void C_Script::LoadScriptData(const char* scriptName)
 	onCollisionEnter = mono_method_desc_search_in_class(oncDesc, klass);
 	mono_method_desc_free(oncDesc);
 
+	oncDesc = mono_method_desc_new(":OnTriggerEnter", false);
+	onTriggerEnter = mono_method_desc_search_in_class(oncDesc, klass);
+	mono_method_desc_free(oncDesc);
 
-	EngineExternal->moduleMono->DebugAllFields(scriptName, fields, mono_gchandle_get_target(noGCobject), this);
+	MonoMethodDesc* oncBut = mono_method_desc_new(":OnExecuteButton", false);
+	onExecuteButton = mono_method_desc_search_in_class(oncBut, klass);
+	mono_method_desc_free(oncBut);
+
+	MonoMethodDesc* oncChck = mono_method_desc_new(":OnExecuteCheckbox", false);
+	onExecuteCheckbox = mono_method_desc_search_in_class(oncChck, klass);
+	mono_method_desc_free(oncChck);
+
+	MonoClass* baseClass = mono_class_get_parent(klass);
+	if (baseClass != nullptr)
+		EngineExternal->moduleMono->DebugAllFields(mono_class_get_name(baseClass), fields, mono_gchandle_get_target(noGCobject), this, mono_class_get_namespace(baseClass));
+
+	EngineExternal->moduleMono->DebugAllFields(scriptName, fields, mono_gchandle_get_target(noGCobject), this, mono_class_get_namespace(goClass));
 }
 
-void C_Script::CollisionCallback()
+void C_Script::CollisionCallback(bool isTrigger, GameObject* collidedGameObject)
 {
-	if(onCollisionEnter != nullptr)
-		mono_runtime_invoke(onCollisionEnter, mono_gchandle_get_target(noGCobject), NULL, NULL);
+	void* params[1];
+	//LOG(LogType::L_WARNING, "Collided object: %s, Collider object: %s", gameObject->tag, collidedGameObject->tag);
+	
+	params[0] = EngineExternal->moduleMono->GoToCSGO(collidedGameObject);
+
+	if (onCollisionEnter != nullptr)
+		mono_runtime_invoke(onCollisionEnter, mono_gchandle_get_target(noGCobject), params, NULL);
+	
+	if (isTrigger)
+	{
+		if (onTriggerEnter != nullptr)
+			mono_runtime_invoke(onTriggerEnter, mono_gchandle_get_target(noGCobject), params, NULL);
+	}
+	//else
+	//{
+	//	if (onCollisionEnter != nullptr)
+	//		mono_runtime_invoke(onCollisionEnter, mono_gchandle_get_target(noGCobject), NULL, NULL);
+	//}
+}
+
+void C_Script::ExecuteButton()
+{
+	mono_runtime_invoke(onExecuteButton, mono_gchandle_get_target(noGCobject), NULL, NULL);
+}
+
+void C_Script::ExecuteCheckbox(bool checkbox_active)
+{
+	void* args[1];
+	args[0] = &checkbox_active;
+
+	mono_runtime_invoke(onExecuteCheckbox, mono_gchandle_get_target(noGCobject), args, NULL);
 }
 
 void C_Script::SetField(MonoClassField* field, GameObject* value)

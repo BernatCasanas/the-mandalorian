@@ -2,6 +2,7 @@
 
 #include<vector>
 #include<string>
+#include <map>
 
 #include "Component.h"
 #include"parson/parson.h"
@@ -20,14 +21,20 @@ public:
 	void PostUpdate();
 
 	Component* AddComponent(Component::TYPE _type, const char* params = nullptr);
-	Component* GetComponent(Component::TYPE _type);
+	Component* GetComponent(Component::TYPE _type, const char* scriptName = nullptr);
+	std::vector<Component*> GetComponentsOfType(Component::TYPE type);
 
 	void RecursiveUIDRegeneration();
+	void RecursiveUIDRegenerationSavingReferences(std::map<uint, GameObject*>& gameObjects);
 
 	bool isActive() const;
 
 	void Enable();
 	void Disable();
+
+	void EnableTopDown();
+	void DisableTopDown();
+
 	bool IsRoot();
 
 	void Destroy();
@@ -42,6 +49,15 @@ public:
 	bool IsChild(GameObject*);
 
 	void RemoveChild(GameObject*);
+	void CollectChilds(std::vector<GameObject*>& vector);
+
+	bool CompareTag(const char* _tag);
+
+	template<typename A>
+	A* GetComponent()
+	{
+		return (A*)GetComponent(A::GetType());
+	}
 
 	GameObject* parent;
 	C_Transform* transform;
@@ -61,6 +77,10 @@ public:
 	bool toDelete;
 
 	int UID;
+	uint prefabID;
+
+	char tag[32];
+	char layer[32];
 
 private:
 	Component* dumpComponent;

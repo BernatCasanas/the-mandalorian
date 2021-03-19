@@ -23,7 +23,8 @@ resourceType(Resource::Type::UNKNOWN), parentDir(nullptr)
 		}
 		else if(!isDir)
 		{
-			resourceType = Resource::Type::MESH;
+			//resourceType = Resource::Type::MESH;
+			resourceType = EngineExternal->moduleResources->GetTypeFromLibraryExtension(_imPath);
 		}
 	}
 }
@@ -36,6 +37,7 @@ AssetDir::~AssetDir()
 	metaFileDir.clear();
 	libraryPath.clear();
 	lastModTime = 0;
+	parentDir = nullptr;
 }
 
 void AssetDir::ClearData()
@@ -164,7 +166,9 @@ void AssetDir::DeletePermanent()
 		if (resourceType == Resource::Type::SCRIPT)
 		{
 			EngineExternal->moduleMono->RemoveScriptFromSLN(this->importPath.c_str());
+#ifndef STANDALONE
 			EngineExternal->moduleMono->ReCompileCS();
+#endif // !STANDALONE
 		}
 	}
 
@@ -172,3 +176,5 @@ void AssetDir::DeletePermanent()
 
 	ClearData();
 }
+
+
