@@ -27,7 +27,7 @@ namespace DiamondEngine
         NAVIGATION,
         BOXCOLLIDER,
         MESHCOLLIDER,
-        COUNT
+        COUNT,
     }
 
     public class DiamondComponent

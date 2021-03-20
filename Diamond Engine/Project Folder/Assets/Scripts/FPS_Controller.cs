@@ -83,25 +83,13 @@ public class FPS_Controller : DiamondComponent
         if (Input.GetMouseX() != 0 && turret != null)
             turret.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -Input.GetMouseX() * mouseSens * Time.deltaTime) * turret.transform.localRotation;
 
-        if (Input.GetKey(DEKeyCode.B) == KeyState.KEY_DOWN)
-            Counter.SumToCounterType(Counter.CounterTypes.BOKATAN_RES);
-        if (Input.GetKey(DEKeyCode.X) == KeyState.KEY_DOWN)
-            Counter.SumToCounterType(Counter.CounterTypes.WRECKER_RES);
-        if (Input.GetKey(DEKeyCode.Y) == KeyState.KEY_DOWN)
-            Counter.SumToCounterType(Counter.CounterTypes.ENEMY_BANTHA);
-        if (Input.GetKey(DEKeyCode.H) == KeyState.KEY_DOWN)
-            Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
-        if (Input.GetKey(DEKeyCode.Z) == KeyState.KEY_DOWN)
-            Show();
-        if (Input.GetKey(DEKeyCode.R) == KeyState.KEY_DOWN)
-            Counter.ResetCounters();
-
         if (Input.GetGamepadButton(DEControllerButton.START) == KeyState.KEY_DOWN)
         {
             if (quitMenu.IsEnabled())
                 quitMenu.Enable(false);
             else {
                 quitMenu.Enable(true);
+                quitMenu.GetComponent<Pause>().DisplayBoons();
                 background.Enable(true);
                 Time.PauseGame();
                 if (default_selected != null)
@@ -161,12 +149,5 @@ public class FPS_Controller : DiamondComponent
             dashing = false;          
         }
     }
-    
-    void Show()
-    {
-        Debug.Log(Counter.GameCounters[Counter.CounterTypes.BOKATAN_RES].amount.ToString());
-        Debug.Log(Counter.GameCounters[Counter.CounterTypes.WRECKER_RES].amount.ToString());
-        Debug.Log(Counter.GameCounters[Counter.CounterTypes.ENEMY_STORMTROOP].amount.ToString());
-        Debug.Log(Counter.GameCounters[Counter.CounterTypes.ENEMY_BANTHA].amount.ToString());
-    }
+   
 }

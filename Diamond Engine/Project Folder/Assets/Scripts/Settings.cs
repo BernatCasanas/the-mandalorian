@@ -98,6 +98,11 @@ public class Settings : DiamondComponent
 		else if (gameObject.Name == "Return")
         {
 			bigBrother.Enable(true);
+			bigBrother.Enable(true);
+			if (bigBrother.Name == "PauseMenu")
+			{
+				bigBrother.GetComponent<Pause>().DisplayBoons();
+			}
 			settingsWindow.Enable(false);
 		}
 	}
