@@ -7,10 +7,18 @@ public class StartMenu : DiamondComponent
 	public GameObject options = null;
 	public GameObject background = null;
 	public GameObject default_selected = null;
+
+	private bool musicplayed = false;
+
 	public void OnExecuteButton()
 	{
 		if (gameObject.Name == "Play")
+		{
 			SceneManager.LoadScene(1406013733);
+			Audio.SetState("Player_State", "Alive");
+			Audio.SetState("Game_State", "Run");
+			Audio.SetSwitch(gameObject, "Player_Action", "Exploring");
+		}
 		else if (gameObject.Name == "Options")
 		{
 			menuButtons.Enable(false);
@@ -27,7 +35,11 @@ public class StartMenu : DiamondComponent
 	}
 	public void Update()
 	{
-
+		if (!musicplayed)
+        {
+			Audio.SetState("Player_State", "Alive");
+			Audio.SetState("Game_State", "HUB");
+		}
 	}
 
 }
