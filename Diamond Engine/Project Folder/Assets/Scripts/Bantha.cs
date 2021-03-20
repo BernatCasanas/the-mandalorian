@@ -103,7 +103,7 @@ public class Bantha : Enemy
 
 			case STATES.DIE:
 				Debug.Log("Dying");
-
+				Counter.SumToCounterType(Counter.CounterTypes.ENEMY_BANTHA);
 				InternalCalls.Destroy(gameObject);
 				break;
 		}

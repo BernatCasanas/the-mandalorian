@@ -22,6 +22,7 @@ namespace DiamondEngine
             {
                 int currentLifeSteal = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementHealingWhenKillingEnemy(1);
                 Debug.Log("LifeSteal increased to: " + currentLifeSteal);
+                Counter.SumToCounterType(Counter.CounterTypes.BOKATAN_RES);
             }
             else
             {
@@ -43,7 +44,7 @@ namespace DiamondEngine
                 int currentHp = Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-toIncrement);
                 Debug.Log("Max HP increased to: " + currentMaxHp);
                 Debug.Log("Curr HP increased to: " + currentHp);
-
+                Counter.SumToCounterType(Counter.CounterTypes.WRECKER_RES);
             }
             else
             {

@@ -159,8 +159,8 @@ public class StormTrooper : Enemy
 
 				if(timePassed > 3.0f)
                 {
+					Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
 					InternalCalls.Destroy(gameObject);
-
                 }
 				break;
 		}
