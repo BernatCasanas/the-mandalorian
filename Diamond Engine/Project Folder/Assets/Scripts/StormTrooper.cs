@@ -7,8 +7,8 @@ public class StormTrooper : Enemy
 	public int maxShots = 2;
 	public int maxSequences = 2;
 
-	private float pushSkillTimer = 0.25f;
-	private float pushSkillSpeed = 0.08f;
+	private float pushSkillTimer = 0.15f;
+	private float pushSkillSpeed = 0.2f;
 
 	public void Start()
 	{
@@ -102,7 +102,7 @@ public class StormTrooper : Enemy
                     }
 
 					LookAt(targetPosition);
-					MoveToPosition(targetPosition, wanderSpeed);
+					//MoveToPosition(targetPosition, wanderSpeed);
 
 					if (Mathf.Distance(gameObject.transform.localPosition, targetPosition) < stoppingDistance)
 					{
@@ -151,6 +151,8 @@ public class StormTrooper : Enemy
 			case STATES.PUSHED:
 				Vector3 pushDirection = Core.instance.gameObject.transform.localPosition - gameObject.transform.localPosition;
 				pushDirection = pushDirection.normalized;
+
+				pushDirection.y = 0.0f;
 
 				gameObject.transform.localPosition -= pushDirection * pushSkillSpeed;
 
