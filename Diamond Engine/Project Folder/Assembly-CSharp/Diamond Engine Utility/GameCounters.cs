@@ -20,6 +20,7 @@ namespace DiamondEngine
         public int place;
         public int amount;
         public CounterTypes type;
+        public static int roomEnemies = 0;
 
         public Counter()
         {
