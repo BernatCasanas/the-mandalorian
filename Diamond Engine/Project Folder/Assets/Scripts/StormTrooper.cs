@@ -157,7 +157,7 @@ public class StormTrooper : Enemy
 
 				timePassed += Time.deltaTime;
 
-				if(timePassed > 3.0f)
+				if(timePassed > 1.2f)
                 {
 					Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
 					Counter.roomEnemies -= 1;
@@ -181,7 +181,7 @@ public class StormTrooper : Enemy
             {
 				currentState = STATES.DIE;
 				timePassed = 0.0f;
-				Animator.Play(gameObject, "ST_Run");
+				Animator.Play(gameObject, "ST_Die", 1.0f);
 			}
 		}
 	}

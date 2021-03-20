@@ -43,9 +43,10 @@ void main()
 	float intensity = dot(normalize(cameraPosition - FragPos), Normal);
 	intensity += (sin(time * 1.25) + 1.0) * 0.4;
     FragColor = vec4(altColor + intensity * 0.25, 1.0);
-    //FragColor = vec4(altColor, 1.0);
+    FragColor = vec4(altColor, 1.0);
 }
 #endif
+
 
 
 
