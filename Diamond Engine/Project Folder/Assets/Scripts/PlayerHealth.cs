@@ -12,6 +12,7 @@ public class PlayerHealth : DiamondComponent
     public static int healWhenKillingAnEnemy { get; private set; }
 
     static bool firstFrame = true;//Only Once in the game?
+    private bool die = false;
     public void Update()
     {
         if (firstFrame)
@@ -19,6 +20,11 @@ public class PlayerHealth : DiamondComponent
             firstFrame = false;
             ResetMaxAndCurrentHPToDefault();
 
+        }
+        if(die)
+        {
+            die = false;
+            Die();
         }
     }
 
@@ -99,8 +105,14 @@ public class PlayerHealth : DiamondComponent
     public void HealPercent(float percent)
     {
         currHealth += (int)(currHealth * percent);
+
         if (Core.instance.hud != null)
             Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
+
+        if (currHealth <= 0)
+        {
+            die = true;
+        }
     }
 
     //When current HP drops to 0, Die() Method is called
@@ -113,7 +125,7 @@ public class PlayerHealth : DiamondComponent
 
         if (currHealth <= 0)
         {
-            Die();
+            die=true;
         }
     }
 
@@ -127,7 +139,7 @@ public class PlayerHealth : DiamondComponent
 
         if (currHealth<=0)
         {
-            Die();
+            die = true;
         }
 
         Debug.Log("Current health: " + currHealth);
