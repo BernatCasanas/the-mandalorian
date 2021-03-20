@@ -232,8 +232,7 @@ void M_Scene::LoadScriptsData(GameObject* rootObject)
 				GameObject* gameObject = GetGOFromUID(rootObject, d->first);
 
 				if (gameObject != nullptr)
-					d->second->fiValue.goValue = gameObject;
-				
+					d->second->fiValue.goValue = gameObject;	
 				else
 					d->second->fiValue.goValue = GetGOFromUID(EngineExternal->moduleScene->root, d->first);
 			}
