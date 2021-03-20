@@ -11,6 +11,11 @@ public class Pause : DiamondComponent
 	public GameObject background = null;
 	public GameObject default_selected = null;
 
+	public GameObject leftImage = null;
+	public GameObject rightImage = null;
+	public GameObject leftText = null;
+	public GameObject rightText = null;
+
 	public void OnExecuteButton()
 	{
 		if (gameObject.Name == "Continue")
@@ -53,6 +58,23 @@ public class Pause : DiamondComponent
 	}
 	public void Update()
 	{
-
+		if (gameObject.Name == "PauseMenu")
+		{
+			if (Counter.GameCounters[Counter.CounterTypes.BOKATAN_RES].place < Counter.GameCounters[Counter.CounterTypes.WRECKER_RES].place)
+			{
+				rightImage.GetComponent<Image2D>().SwapTwoImages(leftImage);
+				if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.BOKATAN_RES))
+					leftText.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.BOKATAN_RES].amount.ToString();
+				if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.WRECKER_RES))
+					rightText.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.WRECKER_RES].amount.ToString();
+			}
+			else
+			{
+				if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.BOKATAN_RES))
+					rightText.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.BOKATAN_RES].amount.ToString();
+				if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.WRECKER_RES))
+					leftText.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.WRECKER_RES].amount.ToString();
+			}
+		}
 	}
 }

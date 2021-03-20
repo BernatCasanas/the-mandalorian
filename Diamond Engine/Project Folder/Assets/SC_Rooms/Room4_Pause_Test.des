@@ -94,13 +94,12 @@
                     "reference": 63506331,
                     "turret": 63506331,
                     "quitMenu": 8278228,
-                    "win": 1480717871,
-                    "lose": 1253906303,
                     "default_selected": 1869991841,
                     "background": 1712249114,
                     "rotationSpeed": 2,
                     "movementSpeed": 35,
-                    "mouseSens": 1
+                    "mouseSens": 1,
+                    "dashUp": true
                 },
                 {
                     "Type": 14,
@@ -189,7 +188,7 @@
                     "nearPlaneDist": 1,
                     "farPlaneDist": 5000,
                     "vFOV": 1.0471975803375244,
-                    "hFOV": 1.5994620323181152,
+                    "hFOV": 1.6415077447891235,
                     "culling": false
                 }
             ]
@@ -458,7 +457,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "RoomSwitch",
-                    "rooms": 0
+                    "currentroom": 0,
+                    "visited": 0
                 }
             ]
         },
@@ -787,6 +787,15 @@
                 {
                     "Type": 1,
                     "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Pause",
+                    "leftImage": 1470847181,
+                    "rightImage": 19114394,
+                    "leftText": 858217894,
+                    "rightText": 912571809
                 }
             ]
         },
@@ -2087,7 +2096,7 @@
             ]
         },
         {
-            "name": "Image",
+            "name": "LeftImage",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -2146,7 +2155,7 @@
             ]
         },
         {
-            "name": "Text",
+            "name": "LeftText",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -2198,7 +2207,7 @@
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "1",
+                    "text": "0",
                     "maxTextLenght": 0,
                     "fontName": "Assets\/Fonts\/renner-medium.ttf",
                     "textColor": [
@@ -2274,7 +2283,7 @@
             ]
         },
         {
-            "name": "Image",
+            "name": "RightImage",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -2333,7 +2342,7 @@
             ]
         },
         {
-            "name": "Text",
+            "name": "RightText",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -2385,7 +2394,7 @@
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "1",
+                    "text": "0",
                     "maxTextLenght": 0,
                     "fontName": "Assets\/Fonts\/renner-medium.ttf",
                     "textColor": [
@@ -7551,314 +7560,6 @@
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/153313718.dds",
                     "UID": 153313718
-                }
-            ]
-        },
-        {
-            "name": "You Loose",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1253906303,
-            "PrefabID": 1749598922,
-            "ParentUID": 116952909,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Image",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 852986966,
-            "PrefabID": 0,
-            "ParentUID": 1253906303,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        0,
-                        0
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        38.200000762939453,
-                        30
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/1381190712.dds",
-                    "UID": 1381190712
-                }
-            ]
-        },
-        {
-            "name": "Text",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1440269395,
-            "PrefabID": 0,
-            "ParentUID": 852986966,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -31.5,
-                        -3.0999999046325684
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        20,
-                        20
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
-                },
-                {
-                    "Type": 9,
-                    "Active": true,
-                    "text": "You Loose lolo",
-                    "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/arial.ttf",
-                    "textColor": [
-                        1,
-                        1,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "You Win",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1480717871,
-            "PrefabID": 1406607075,
-            "ParentUID": 116952909,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Image",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 2048720382,
-            "PrefabID": 0,
-            "ParentUID": 1480717871,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        0,
-                        0
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        38.200000762939453,
-                        30
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/1381190712.dds",
-                    "UID": 1381190712
-                }
-            ]
-        },
-        {
-            "name": "Text",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 245365129,
-            "PrefabID": 0,
-            "ParentUID": 2048720382,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -26,
-                        -4.3000001907348633
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        20,
-                        20
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
-                },
-                {
-                    "Type": 9,
-                    "Active": true,
-                    "text": "You Win lolo",
-                    "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/arial.ttf",
-                    "textColor": [
-                        1,
-                        1,
-                        1
-                    ]
                 }
             ]
         }

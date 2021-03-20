@@ -23,7 +23,7 @@ namespace DiamondEngine
 
         public Counter()
         {
-            place = 0;
+            place = 6;
             amount = 0;
             type = CounterTypes.NONE;
         }
