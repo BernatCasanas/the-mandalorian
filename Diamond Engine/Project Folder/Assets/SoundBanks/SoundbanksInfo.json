@@ -18,7 +18,7 @@
    {
     "Id": "833070093",
     "Language": "SFX",
-    "Hash": "1678882457",
+    "Hash": "3180830749",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Stormtrooper",
     "ShortName": "Stormtrooper",
     "Path": "Stormtrooper.bnk",
@@ -30,22 +30,6 @@
       "DurationType": "OneShot",
       "DurationMin": "0.000000",
       "DurationMax": "0.000000"
-     },
-     {
-      "Id": "1485359980",
-      "Name": "Play_Blaster_Shell_Hit",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_Blaster_Shell_Hit",
-      "DurationType": "OneShot",
-      "DurationMin": "0.327312",
-      "DurationMax": "0.327312",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "365530627",
-        "Language": "SFX",
-        "ShortName": "Blaster hit 1.wav",
-        "Path": "SFX\\Blaster hit 1_10C4C929.wem"
-       }
-      ]
      },
      {
       "Id": "1601696560",
@@ -170,6 +154,18 @@
         "Language": "SFX",
         "ShortName": "Stormtrooper hit 3.wav",
         "Path": "SFX\\Stormtrooper hit 3_10C4C929.wem"
+       },
+       {
+        "Id": "401471880",
+        "Language": "SFX",
+        "ShortName": "Stormtrooper armor hit 1.wav",
+        "Path": "SFX\\Stormtrooper armor hit 1_10C4C929.wem"
+       },
+       {
+        "Id": "872361266",
+        "Language": "SFX",
+        "ShortName": "Stormtrooper armor hit 3.wav",
+        "Path": "SFX\\Stormtrooper armor hit 3_10C4C929.wem"
        }
       ]
      },
@@ -211,7 +207,7 @@
    {
     "Id": "1093318992",
     "Language": "SFX",
-    "Hash": "1403992934",
+    "Hash": "321093846",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Mando",
     "ShortName": "Mando",
     "Path": "Mando.bnk",
@@ -223,22 +219,6 @@
       "DurationType": "OneShot",
       "DurationMin": "0.000000",
       "DurationMax": "0.000000"
-     },
-     {
-      "Id": "1485359980",
-      "Name": "Play_Blaster_Shell_Hit",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play_Blaster_Shell_Hit",
-      "DurationType": "OneShot",
-      "DurationMin": "0.327312",
-      "DurationMax": "0.327312",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "365530627",
-        "Language": "SFX",
-        "ShortName": "Blaster hit 1.wav",
-        "Path": "SFX\\Blaster hit 1_10C4C929.wem"
-       }
-      ]
      },
      {
       "Id": "3416257419",
@@ -261,8 +241,8 @@
       "Name": "Play_Dash",
       "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Dash",
       "DurationType": "OneShot",
-      "DurationMin": "0.793396",
-      "DurationMax": "0.793396",
+      "DurationMin": "0.667279",
+      "DurationMax": "0.667279",
       "IncludedMemoryFiles": [
        {
         "Id": "390903921",
@@ -277,8 +257,8 @@
       "Name": "Play_Dash_Transition",
       "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Dash_Transition",
       "DurationType": "OneShot",
-      "DurationMin": "1.000271",
-      "DurationMax": "1.000271",
+      "DurationMin": "1.000272",
+      "DurationMax": "1.000272",
       "IncludedMemoryFiles": [
        {
         "Id": "409049906",
@@ -478,11 +458,51 @@
       ]
      },
      {
+      "Id": "2982021530",
+      "Name": "Play_Mando_Grenade",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Grenade",
+      "DurationType": "OneShot",
+      "DurationMin": "5.772177",
+      "DurationMax": "5.772177",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "199357886",
+        "Language": "SFX",
+        "ShortName": "Grenade nail 1.wav",
+        "Path": "SFX\\Grenade nail 1_10C4C929.wem"
+       },
+       {
+        "Id": "287122511",
+        "Language": "SFX",
+        "ShortName": "Grenade explosion 2.wav",
+        "Path": "SFX\\Grenade explosion 2_10C4C929.wem"
+       },
+       {
+        "Id": "371786017",
+        "Language": "SFX",
+        "ShortName": "Grenade charge 1.wav",
+        "Path": "SFX\\Grenade charge 1_10C4C929.wem"
+       },
+       {
+        "Id": "401317078",
+        "Language": "SFX",
+        "ShortName": "Grenade nail 2.wav",
+        "Path": "SFX\\Grenade nail 2_10C4C929.wem"
+       },
+       {
+        "Id": "531979089",
+        "Language": "SFX",
+        "ShortName": "Grenade explosion 1.wav",
+        "Path": "SFX\\Grenade explosion 1_10C4C929.wem"
+       }
+      ]
+     },
+     {
       "Id": "2203710711",
       "Name": "Play_Mando_Hit",
       "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Hit",
       "DurationType": "OneShot",
-      "DurationMin": "0.340680",
+      "DurationMin": "0.301010",
       "DurationMax": "0.539456",
       "IncludedMemoryFiles": [
        {
@@ -492,10 +512,22 @@
         "Path": "SFX\\Mando hit 1_10C4C929.wem"
        },
        {
+        "Id": "790055825",
+        "Language": "SFX",
+        "ShortName": "Mando armor hit 2.wav",
+        "Path": "SFX\\Mando armor hit 2_10C4C929.wem"
+       },
+       {
         "Id": "1010296783",
         "Language": "SFX",
         "ShortName": "Mando hit 2.wav",
         "Path": "SFX\\Mando hit 2_10C4C929.wem"
+       },
+       {
+        "Id": "1062142312",
+        "Language": "SFX",
+        "ShortName": "Mando armor hit 4.wav",
+        "Path": "SFX\\Mando armor hit 4_10C4C929.wem"
        }
       ]
      },
@@ -632,7 +664,7 @@
    {
     "Id": "1229948536",
     "Language": "SFX",
-    "Hash": "3069121248",
+    "Hash": "3650808935",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Environment",
     "ShortName": "Environment",
     "Path": "Environment.bnk",
@@ -855,366 +887,9 @@
     ]
    },
    {
-    "Id": "3157003241",
-    "Language": "SFX",
-    "Hash": "2473533877",
-    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Test",
-    "ShortName": "Test",
-    "Path": "Test.bnk",
-    "IncludedEvents": [
-     {
-      "Id": "3723609877",
-      "Name": "Play_Segment",
-      "ObjectPath": "\\Events\\Default Work Unit\\Music\\Play_Segment",
-      "DurationType": "Infinite",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "130253113",
-        "Language": "SFX",
-        "ShortName": "ES_Hydra - Dream Cave.wav",
-        "Path": "SFX\\ES_Hydra - Dream Cave_3555D221.wem"
-       }
-      ]
-     },
-     {
-      "Id": "3187507146",
-      "Name": "Play_Test",
-      "ObjectPath": "\\Events\\Default Work Unit\\Music\\Play_Test",
-      "DurationType": "OneShot",
-      "DurationMin": "120.643753",
-      "DurationMax": "120.643753",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "626887047",
-        "Language": "SFX",
-        "ShortName": "ES_Hydra - Dream Cave.wav",
-        "Path": "SFX\\ES_Hydra - Dream Cave_10C4C929.wem"
-       }
-      ]
-     }
-    ]
-   },
-   {
-    "Id": "3734989563",
-    "Language": "SFX",
-    "Hash": "4168952106",
-    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Interactive_Music",
-    "ShortName": "Interactive_Music",
-    "Path": "Interactive_Music.bnk",
-    "IncludedEvents": [
-     {
-      "Id": "1808211714",
-      "Name": "Play_Music_V02",
-      "ObjectPath": "\\Events\\Default Work Unit\\Music\\Play_Music_V02",
-      "DurationType": "Infinite",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "3171606",
-        "Language": "SFX",
-        "ShortName": "Explore Music A\\EXPLORER THEME FLUTE 2.wav",
-        "Path": "SFX\\Explore Music A\\EXPLORER THEME FLUTE 2_3555D221.wem"
-       },
-       {
-        "Id": "11002483",
-        "Language": "SFX",
-        "ShortName": "Combat Music A\\OST A-Reverb.wav",
-        "Path": "SFX\\Combat Music A\\OST A-Reverb_3555D221.wem"
-       },
-       {
-        "Id": "98122398",
-        "Language": "SFX",
-        "ShortName": "Combat Music A\\OST 14-17-Strings and Brass 4.wav",
-        "Path": "SFX\\Combat Music A\\OST 14-17-Strings and Brass 4_3555D221.wem"
-       },
-       {
-        "Id": "175787775",
-        "Language": "SFX",
-        "ShortName": "Explore Music A\\EXPLORER THEME Strings 2.wav",
-        "Path": "SFX\\Explore Music A\\EXPLORER THEME Strings 2_3555D221.wem"
-       },
-       {
-        "Id": "177807224",
-        "Language": "SFX",
-        "ShortName": "Combat Music A\\OST  7-Cymbal.wav",
-        "Path": "SFX\\Combat Music A\\OST  7-Cymbal_3555D221.wem"
-       },
-       {
-        "Id": "205580739",
-        "Language": "SFX",
-        "ShortName": "Combat Music A\\OST 12-17-Strings and Brass 2.wav",
-        "Path": "SFX\\Combat Music A\\OST 12-17-Strings and Brass 2_3555D221.wem"
-       },
-       {
-        "Id": "366591278",
-        "Language": "SFX",
-        "ShortName": "Hud.wav",
-        "Path": "SFX\\Hud_3555D221.wem"
-       },
-       {
-        "Id": "413932924",
-        "Language": "SFX",
-        "ShortName": "Combat Music A\\OST 13-18-Strings and Brass 3.wav",
-        "Path": "SFX\\Combat Music A\\OST 13-18-Strings and Brass 3_3555D221.wem"
-       },
-       {
-        "Id": "435793512",
-        "Language": "SFX",
-        "ShortName": "Combat Music A\\OST Horns.wav",
-        "Path": "SFX\\Combat Music A\\OST Horns_3555D221.wem"
-       },
-       {
-        "Id": "526842667",
-        "Language": "SFX",
-        "ShortName": "Combat Music A\\OST 15-19-Strings.wav",
-        "Path": "SFX\\Combat Music A\\OST 15-19-Strings_3555D221.wem"
-       },
-       {
-        "Id": "624624934",
-        "Language": "SFX",
-        "ShortName": "Combat Music A\\OST 11-16-Strings and Brass 1.wav",
-        "Path": "SFX\\Combat Music A\\OST 11-16-Strings and Brass 1_3555D221.wem"
-       },
-       {
-        "Id": "661863985",
-        "Language": "SFX",
-        "ShortName": "Explore Music A\\EXPLORER THEME Strings 1.wav",
-        "Path": "SFX\\Explore Music A\\EXPLORER THEME Strings 1_3555D221.wem"
-       },
-       {
-        "Id": "688775909",
-        "Language": "SFX",
-        "ShortName": "Combat Music A\\OST 8- Percussion.wav",
-        "Path": "SFX\\Combat Music A\\OST 8- Percussion_3555D221.wem"
-       },
-       {
-        "Id": "789354063",
-        "Language": "SFX",
-        "ShortName": "Combat Music A\\OST Flute.wav",
-        "Path": "SFX\\Combat Music A\\OST Flute_3555D221.wem"
-       },
-       {
-        "Id": "817390936",
-        "Language": "SFX",
-        "ShortName": "Explore Music A\\EXPLORER THEME Strings.wav",
-        "Path": "SFX\\Explore Music A\\EXPLORER THEME Strings_3555D221.wem"
-       },
-       {
-        "Id": "929528731",
-        "Language": "SFX",
-        "ShortName": "Explore Music A\\EXPLORER THEME A-Reverb.wav",
-        "Path": "SFX\\Explore Music A\\EXPLORER THEME A-Reverb_3555D221.wem"
-       },
-       {
-        "Id": "1068132881",
-        "Language": "SFX",
-        "ShortName": "Explore Music A\\EXPLORER THEME FLUTE 1.wav",
-        "Path": "SFX\\Explore Music A\\EXPLORER THEME FLUTE 1_3555D221.wem"
-       }
-      ],
-      "SwitchContainers": [
-       {
-        "SwitchValue": "{D651359C-1684-4E02-8D22-5225AA612899}",
-        "Children": [
-         {
-          "SwitchValue": "{78F63364-E080-40AA-B010-A5E50DF18F86}",
-          "Children": [
-           {
-            "SwitchValue": "{BA4F0BB3-ECC2-4F1E-BDF6-D3A727FBFF1E}",
-            "Media": [
-             {
-              "Id": "11002483"
-             },
-             {
-              "Id": "98122398"
-             },
-             {
-              "Id": "177807224"
-             },
-             {
-              "Id": "205580739"
-             },
-             {
-              "Id": "413932924"
-             },
-             {
-              "Id": "435793512"
-             },
-             {
-              "Id": "526842667"
-             },
-             {
-              "Id": "624624934"
-             },
-             {
-              "Id": "688775909"
-             },
-             {
-              "Id": "789354063"
-             }
-            ]
-           }
-          ]
-         }
-        ]
-       },
-       {
-        "SwitchValue": "{D651359C-1684-4E02-8D22-5225AA612899}",
-        "Children": [
-         {
-          "SwitchValue": "{78F63364-E080-40AA-B010-A5E50DF18F86}",
-          "Children": [
-           {
-            "SwitchValue": "{14FF8C72-F46D-4D5D-90BD-E12CD2053E44}",
-            "Media": [
-             {
-              "Id": "3171606"
-             },
-             {
-              "Id": "175787775"
-             },
-             {
-              "Id": "661863985"
-             },
-             {
-              "Id": "817390936"
-             },
-             {
-              "Id": "929528731"
-             },
-             {
-              "Id": "1068132881"
-             }
-            ]
-           }
-          ]
-         }
-        ]
-       },
-       {
-        "SwitchValue": "{409BC8C4-0CBE-4013-9D58-927CDA350096}",
-        "Children": [
-         {
-          "SwitchValue": "{9FB3B783-6554-4159-8ED7-7CBE608ADBBC}",
-          "Children": [
-           {
-            "SwitchValue": "{979A83A1-5FD3-4444-AB96-1ABEDBCBCCEC}",
-            "Media": [
-             {
-              "Id": "366591278"
-             }
-            ]
-           }
-          ]
-         }
-        ]
-       }
-      ]
-     }
-    ],
-    "GameParameters": [
-     {
-      "Id": "467158820",
-      "Name": "SourceVolume",
-      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
-     }
-    ],
-    "StateGroups": [
-     {
-      "Id": "766723505",
-      "Name": "Game_State",
-      "ObjectPath": "\\States\\Default Work Unit\\Game_State",
-      "States": [
-       {
-        "Id": "748895195",
-        "Name": "None",
-        "ObjectPath": "\\States\\Default Work Unit\\Game_State\\None"
-       },
-       {
-        "Id": "2607556080",
-        "Name": "Menu",
-        "ObjectPath": "\\States\\Default Work Unit\\Game_State\\Menu"
-       },
-       {
-        "Id": "646625282",
-        "Name": "HUB",
-        "ObjectPath": "\\States\\Default Work Unit\\Game_State\\HUB"
-       },
-       {
-        "Id": "712161704",
-        "Name": "Run",
-        "ObjectPath": "\\States\\Default Work Unit\\Game_State\\Run"
-       }
-      ]
-     },
-     {
-      "Id": "4071417932",
-      "Name": "Player_State",
-      "ObjectPath": "\\States\\Default Work Unit\\Player_State",
-      "States": [
-       {
-        "Id": "748895195",
-        "Name": "None",
-        "ObjectPath": "\\States\\Default Work Unit\\Player_State\\None"
-       },
-       {
-        "Id": "655265632",
-        "Name": "Alive",
-        "ObjectPath": "\\States\\Default Work Unit\\Player_State\\Alive"
-       },
-       {
-        "Id": "2044049779",
-        "Name": "Dead",
-        "ObjectPath": "\\States\\Default Work Unit\\Player_State\\Dead"
-       }
-      ]
-     }
-    ],
-    "SwitchGroups": [
-     {
-      "Id": "215992295",
-      "Name": "Player_Health",
-      "ObjectPath": "\\Switches\\Default Work Unit\\Player_Health",
-      "Switches": [
-       {
-        "Id": "2874639328",
-        "Name": "Healthy",
-        "ObjectPath": "\\Switches\\Default Work Unit\\Player_Health\\Healthy"
-       },
-       {
-        "Id": "2860195132",
-        "Name": "Injured",
-        "ObjectPath": "\\Switches\\Default Work Unit\\Player_Health\\Injured"
-       },
-       {
-        "Id": "2534871658",
-        "Name": "Critical",
-        "ObjectPath": "\\Switches\\Default Work Unit\\Player_Health\\Critical"
-       }
-      ]
-     },
-     {
-      "Id": "3066061883",
-      "Name": "Player_Action",
-      "ObjectPath": "\\Switches\\Default Work Unit\\Player_Action",
-      "Switches": [
-       {
-        "Id": "2764240573",
-        "Name": "Combat",
-        "ObjectPath": "\\Switches\\Default Work Unit\\Player_Action\\Combat"
-       },
-       {
-        "Id": "1823678183",
-        "Name": "Exploring",
-        "ObjectPath": "\\Switches\\Default Work Unit\\Player_Action\\Exploring"
-       }
-      ]
-     }
-    ]
-   },
-   {
     "Id": "3795682265",
     "Language": "SFX",
-    "Hash": "1569457169",
+    "Hash": "2842525525",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Bantha",
     "ShortName": "Bantha",
     "Path": "Bantha.bnk",
@@ -1281,9 +956,7 @@
       "Id": "2466961974",
       "Name": "Play_Footsteps_Bantha",
       "ObjectPath": "\\Events\\Default Work Unit\\Bantha\\Play_Footsteps_Bantha",
-      "DurationType": "OneShot",
-      "DurationMin": "0.336009",
-      "DurationMax": "0.360703",
+      "DurationType": "Infinite",
       "IncludedMemoryFiles": [
        {
         "Id": "491745401",
@@ -1326,7 +999,7 @@
       "Name": "Play_Growl_Bantha_Hit",
       "ObjectPath": "\\Events\\Default Work Unit\\Bantha\\Play_Growl_Bantha_Hit",
       "DurationType": "OneShot",
-      "DurationMin": "0.405292",
+      "DurationMin": "0.300969",
       "DurationMax": "0.543367",
       "IncludedMemoryFiles": [
        {
@@ -1336,16 +1009,34 @@
         "Path": "SFX\\Bantha hit 4_10C4C929.wem"
        },
        {
+        "Id": "358269163",
+        "Language": "SFX",
+        "ShortName": "Bantha body hit 1.wav",
+        "Path": "SFX\\Bantha body hit 1_10C4C929.wem"
+       },
+       {
         "Id": "787605823",
         "Language": "SFX",
         "ShortName": "Bantha hit.wav",
         "Path": "SFX\\Bantha hit_10C4C929.wem"
        },
        {
+        "Id": "857968306",
+        "Language": "SFX",
+        "ShortName": "Bantha body hit 3.wav",
+        "Path": "SFX\\Bantha body hit 3_10C4C929.wem"
+       },
+       {
         "Id": "927501018",
         "Language": "SFX",
         "ShortName": "Bantha hit 2.wav",
         "Path": "SFX\\Bantha hit 2_10C4C929.wem"
+       },
+       {
+        "Id": "947249758",
+        "Language": "SFX",
+        "ShortName": "Bantha body hit 2.wav",
+        "Path": "SFX\\Bantha body hit 2_10C4C929.wem"
        },
        {
         "Id": "1062067289",
@@ -1407,7 +1098,7 @@
    {
     "Id": "3991942870",
     "Language": "SFX",
-    "Hash": "1745795054",
+    "Hash": "3652380187",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Music",
     "ShortName": "Music",
     "Path": "Music.bnk",
@@ -1427,106 +1118,106 @@
       "DurationType": "Infinite",
       "IncludedMemoryFiles": [
        {
-        "Id": "3171606",
-        "Language": "SFX",
-        "ShortName": "Explore Music A\\EXPLORER THEME FLUTE 2.wav",
-        "Path": "SFX\\Explore Music A\\EXPLORER THEME FLUTE 2_3555D221.wem"
-       },
-       {
         "Id": "11002483",
         "Language": "SFX",
         "ShortName": "Combat Music A\\OST A-Reverb.wav",
-        "Path": "SFX\\Combat Music A\\OST A-Reverb_3555D221.wem"
+        "Path": "SFX\\Combat Music A\\OST A-Reverb_4811579D.wem"
        },
        {
-        "Id": "98122398",
+        "Id": "72485731",
         "Language": "SFX",
-        "ShortName": "Combat Music A\\OST 14-17-Strings and Brass 4.wav",
-        "Path": "SFX\\Combat Music A\\OST 14-17-Strings and Brass 4_3555D221.wem"
-       },
-       {
-        "Id": "175787775",
-        "Language": "SFX",
-        "ShortName": "Explore Music A\\EXPLORER THEME Strings 2.wav",
-        "Path": "SFX\\Explore Music A\\EXPLORER THEME Strings 2_3555D221.wem"
-       },
-       {
-        "Id": "177807224",
-        "Language": "SFX",
-        "ShortName": "Combat Music A\\OST  7-Cymbal.wav",
-        "Path": "SFX\\Combat Music A\\OST  7-Cymbal_3555D221.wem"
-       },
-       {
-        "Id": "205580739",
-        "Language": "SFX",
-        "ShortName": "Combat Music A\\OST 12-17-Strings and Brass 2.wav",
-        "Path": "SFX\\Combat Music A\\OST 12-17-Strings and Brass 2_3555D221.wem"
+        "ShortName": "OST 12-17-Strings and Brass 2.wav",
+        "Path": "SFX\\OST 12-17-Strings and Brass 2_4811579D.wem"
        },
        {
         "Id": "366591278",
         "Language": "SFX",
         "ShortName": "Hud.wav",
-        "Path": "SFX\\Hud_3555D221.wem"
+        "Path": "SFX\\Hud_4811579D.wem"
        },
        {
-        "Id": "413932924",
+        "Id": "422689495",
         "Language": "SFX",
-        "ShortName": "Combat Music A\\OST 13-18-Strings and Brass 3.wav",
-        "Path": "SFX\\Combat Music A\\OST 13-18-Strings and Brass 3_3555D221.wem"
+        "ShortName": "EXP STRINGS 2.wav",
+        "Path": "SFX\\EXP STRINGS 2_4811579D.wem"
        },
        {
         "Id": "435793512",
         "Language": "SFX",
         "ShortName": "Combat Music A\\OST Horns.wav",
-        "Path": "SFX\\Combat Music A\\OST Horns_3555D221.wem"
+        "Path": "SFX\\Combat Music A\\OST Horns_4811579D.wem"
        },
        {
-        "Id": "526842667",
+        "Id": "437014933",
         "Language": "SFX",
-        "ShortName": "Combat Music A\\OST 15-19-Strings.wav",
-        "Path": "SFX\\Combat Music A\\OST 15-19-Strings_3555D221.wem"
+        "ShortName": "OST 15-19-Strings.wav",
+        "Path": "SFX\\OST 15-19-Strings_4811579D.wem"
        },
        {
-        "Id": "624624934",
+        "Id": "560818724",
         "Language": "SFX",
-        "ShortName": "Combat Music A\\OST 11-16-Strings and Brass 1.wav",
-        "Path": "SFX\\Combat Music A\\OST 11-16-Strings and Brass 1_3555D221.wem"
+        "ShortName": "EXP FLUTE 2.wav",
+        "Path": "SFX\\EXP FLUTE 2_4811579D.wem"
        },
        {
-        "Id": "661863985",
+        "Id": "634176552",
         "Language": "SFX",
-        "ShortName": "Explore Music A\\EXPLORER THEME Strings 1.wav",
-        "Path": "SFX\\Explore Music A\\EXPLORER THEME Strings 1_3555D221.wem"
+        "ShortName": "OST 13-18-Strings and Brass 3.wav",
+        "Path": "SFX\\OST 13-18-Strings and Brass 3_4811579D.wem"
        },
        {
-        "Id": "688775909",
+        "Id": "635566548",
         "Language": "SFX",
-        "ShortName": "Combat Music A\\OST 8- Percussion.wav",
-        "Path": "SFX\\Combat Music A\\OST 8- Percussion_3555D221.wem"
+        "ShortName": "EXP FLUTE 1.wav",
+        "Path": "SFX\\EXP FLUTE 1_4811579D.wem"
+       },
+       {
+        "Id": "649407591",
+        "Language": "SFX",
+        "ShortName": "OST 7-Cymbal.wav",
+        "Path": "SFX\\OST 7-Cymbal_4811579D.wem"
+       },
+       {
+        "Id": "760582766",
+        "Language": "SFX",
+        "ShortName": "OST 14-17-Strings and Brass 4.wav",
+        "Path": "SFX\\OST 14-17-Strings and Brass 4_4811579D.wem"
        },
        {
         "Id": "789354063",
         "Language": "SFX",
         "ShortName": "Combat Music A\\OST Flute.wav",
-        "Path": "SFX\\Combat Music A\\OST Flute_3555D221.wem"
+        "Path": "SFX\\Combat Music A\\OST Flute_4811579D.wem"
        },
        {
-        "Id": "817390936",
+        "Id": "842200687",
         "Language": "SFX",
-        "ShortName": "Explore Music A\\EXPLORER THEME Strings.wav",
-        "Path": "SFX\\Explore Music A\\EXPLORER THEME Strings_3555D221.wem"
+        "ShortName": "EXP STRINGS.wav",
+        "Path": "SFX\\EXP STRINGS_4811579D.wem"
+       },
+       {
+        "Id": "914423924",
+        "Language": "SFX",
+        "ShortName": "OST 11-16-Strings and Brass 1.wav",
+        "Path": "SFX\\OST 11-16-Strings and Brass 1_4811579D.wem"
        },
        {
         "Id": "929528731",
         "Language": "SFX",
         "ShortName": "Explore Music A\\EXPLORER THEME A-Reverb.wav",
-        "Path": "SFX\\Explore Music A\\EXPLORER THEME A-Reverb_3555D221.wem"
+        "Path": "SFX\\Explore Music A\\EXPLORER THEME A-Reverb_4811579D.wem"
        },
        {
-        "Id": "1068132881",
+        "Id": "947589288",
         "Language": "SFX",
-        "ShortName": "Explore Music A\\EXPLORER THEME FLUTE 1.wav",
-        "Path": "SFX\\Explore Music A\\EXPLORER THEME FLUTE 1_3555D221.wem"
+        "ShortName": "EXP STRINGS 1.wav",
+        "Path": "SFX\\EXP STRINGS 1_4811579D.wem"
+       },
+       {
+        "Id": "1069201538",
+        "Language": "SFX",
+        "ShortName": "OST 8-Percussion.wav",
+        "Path": "SFX\\OST 8-Percussion_4811579D.wem"
        }
       ],
       "SwitchContainers": [
@@ -1543,31 +1234,31 @@
               "Id": "11002483"
              },
              {
-              "Id": "98122398"
-             },
-             {
-              "Id": "177807224"
-             },
-             {
-              "Id": "205580739"
-             },
-             {
-              "Id": "413932924"
+              "Id": "72485731"
              },
              {
               "Id": "435793512"
              },
              {
-              "Id": "526842667"
+              "Id": "437014933"
              },
              {
-              "Id": "624624934"
+              "Id": "634176552"
              },
              {
-              "Id": "688775909"
+              "Id": "649407591"
+             },
+             {
+              "Id": "760582766"
              },
              {
               "Id": "789354063"
+             },
+             {
+              "Id": "914423924"
+             },
+             {
+              "Id": "1069201538"
              }
             ]
            }
@@ -1585,22 +1276,22 @@
             "SwitchValue": "{14FF8C72-F46D-4D5D-90BD-E12CD2053E44}",
             "Media": [
              {
-              "Id": "3171606"
+              "Id": "422689495"
              },
              {
-              "Id": "175787775"
+              "Id": "560818724"
              },
              {
-              "Id": "661863985"
+              "Id": "635566548"
              },
              {
-              "Id": "817390936"
+              "Id": "842200687"
              },
              {
               "Id": "929528731"
              },
              {
-              "Id": "1068132881"
+              "Id": "947589288"
              }
             ]
            }
@@ -1643,14 +1334,6 @@
       "DurationType": "OneShot",
       "DurationMin": "0.000000",
       "DurationMax": "0.000000"
-     }
-    ],
-    "IncludedMemoryFiles": [
-     {
-      "Id": "130253113",
-      "Language": "SFX",
-      "ShortName": "ES_Hydra - Dream Cave.wav",
-      "Path": "SFX\\ES_Hydra - Dream Cave_3555D221.wem"
      }
     ],
     "GameParameters": [
