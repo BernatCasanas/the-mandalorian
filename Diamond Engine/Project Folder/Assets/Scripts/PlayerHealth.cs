@@ -35,6 +35,8 @@ public class PlayerHealth : DiamondComponent
             currHealth = currMaxHealth;
         }
 
+        if(Core.instance.hud!=null)
+            Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
         return currMaxHealth;
     }
 
@@ -51,6 +53,8 @@ public class PlayerHealth : DiamondComponent
             currHealth = currMaxHealth;
         }
 
+        if (Core.instance.hud != null)
+            Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
         return currMaxHealth;
     }
 
@@ -66,6 +70,8 @@ public class PlayerHealth : DiamondComponent
         {
             currHealth = currMaxHealth;
         }
+        if (Core.instance.hud != null)
+            Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
     }
 
 
@@ -93,12 +99,18 @@ public class PlayerHealth : DiamondComponent
     public void HealPercent(float percent)
     {
         currHealth += (int)(currHealth * percent);
+        if (Core.instance.hud != null)
+            Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
     }
 
     //When current HP drops to 0, Die() Method is called
     public void SetCurrentHP(int newCurrentHP)
     {
         currHealth = newCurrentHP;
+
+        if (Core.instance.hud != null)
+            Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
+
         if (currHealth <= 0)
         {
             Die();
@@ -110,7 +122,10 @@ public class PlayerHealth : DiamondComponent
     {
         currHealth -= damage;
 
-        if(currHealth<=0)
+        if (Core.instance.hud != null)
+            Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
+
+        if (currHealth<=0)
         {
             Die();
         }
@@ -138,6 +153,8 @@ public class PlayerHealth : DiamondComponent
             startHealth = 1;
 
         currHealth = currMaxHealth = startHealth;
+        if (Core.instance.hud != null)
+            Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
     }
 
 }

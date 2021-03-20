@@ -20,6 +20,7 @@ public class Core : DiamondComponent
     }
 
     public GameObject shootPoint = null;
+    public GameObject hud = null;
 
     private bool scriptStart = true;
 
