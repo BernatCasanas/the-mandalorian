@@ -14,6 +14,10 @@ public class BabyYoda : DiamondComponent
     public GameObject followPoint = null;
     public float horizontalSpeed = 4f;
 
+    //HUD variables
+    private bool force_updating = false;
+    private float final_timer_force = 0.0f;
+
     //State (INPUT AND STATE LOGIC)
     #region STATE
     private STATE state = STATE.MOVE;
@@ -44,10 +48,30 @@ public class BabyYoda : DiamondComponent
 
     #endregion
 
+
+    #region HUD
+    private void UpdateHUD()
+    {
+        if (!force_updating || Core.instance.hud == null)
+            return;
+        if (Time.totalTime >= final_timer_force)
+        {
+            Core.instance.hud.GetComponent<HUD>().UpdateForce(100, 100);
+            Core.instance.hud.GetComponent<HUD>().ChangeAlphaSkillPush(true);
+            force_updating = false;
+        }
+        else
+        {
+            float force_bar_normalized = (1-(final_timer_force - Time.totalTime)/1)*100;
+            Core.instance.hud.GetComponent<HUD>().UpdateForce((int)force_bar_normalized, 100);
+        }
+    }
+    #endregion
     public void Update()
     {
         UpdateState();
         Move();
+        UpdateHUD();
     }
 
     #region MOVEMENT
@@ -188,6 +212,13 @@ public class BabyYoda : DiamondComponent
 
     private void ExecutePushSkill()
     {
+        if (Core.instance.hud != null)
+        {
+            force_updating = true;
+            final_timer_force = Time.totalTime + 1;
+            Core.instance.hud.GetComponent<HUD>().UpdateForce(0, 100);
+            Core.instance.hud.GetComponent<HUD>().ChangeAlphaSkillPush(false);
+        }
         skillPushTimer += INIT_TIMER;
 
         Transform mandoTransform = Core.instance.gameObject.transform;
