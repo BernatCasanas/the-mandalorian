@@ -16,6 +16,8 @@ public class Spawn : DiamondComponent
 	int spawnPointAmount = 0;
 	//private int[] spawnedPoints;
 
+	float timePassed = 0.0f;
+	float timeBetweenSpawns = 0.5f;
 
 	public void Update()
 	{
@@ -24,37 +26,37 @@ public class Spawn : DiamondComponent
 			//spawnedPoints = new int[spawnPointAmount];
 			if(spawnPoint0 != null)
             {
-				SpawnPrefab(spawnPoint0.transform.globalPosition);
+				//SpawnPrefab(spawnPoint0.transform.globalPosition);
             }
 
 			if (spawnPoint1 != null)
 			{
-				SpawnPrefab(spawnPoint1.transform.globalPosition);
+				//SpawnPrefab(spawnPoint1.transform.globalPosition);
 			}
 
 			if (spawnPoint2 != null)
 			{
-				SpawnPrefab(spawnPoint2.transform.globalPosition);
+				//SpawnPrefab(spawnPoint2.transform.globalPosition);
 			}
 
 			if (spawnPoint3 != null)
 			{
-				SpawnPrefab(spawnPoint3.transform.globalPosition);
+				//SpawnPrefab(spawnPoint3.transform.globalPosition);
 			}
 
 			if (spawnPoint4 != null)
 			{
-				SpawnPrefab(spawnPoint4.transform.globalPosition);
+				//SpawnPrefab(spawnPoint4.transform.globalPosition);
 			}
 
 			if (spawnPoint5 != null)
 			{
-				SpawnPrefab(spawnPoint5.transform.globalPosition);
+				//SpawnPrefab(spawnPoint5.transform.globalPosition);
 			}
 
 			if (spawnPoint6 != null)
 			{
-				SpawnPrefab(spawnPoint6.transform.globalPosition);
+				//SpawnPrefab(spawnPoint6.transform.globalPosition);
 			}
 
 			spawned = true;

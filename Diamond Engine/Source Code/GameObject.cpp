@@ -37,7 +37,6 @@
 GameObject::GameObject(const char* _name, GameObject* parent, int _uid) : parent(parent), name(_name), showChildren(false),
 active(true), isStatic(false), toDelete(false),dontDestroy(false), UID(_uid), transform(nullptr), dumpComponent(nullptr), prefabID(0u), tag("Untagged"), layer("Default")
 {
-
 	if(parent != nullptr)
 		parent->children.push_back(this);
 
@@ -388,7 +387,7 @@ void GameObject::LoadFromJson(JSON_Object* _obj)
 	transform->SetTransformMatrix(DEJson::ReadVector3(_obj, "Position"), DEJson::ReadQuat(_obj, "Rotation"), DEJson::ReadVector3(_obj, "Scale"));
 	prefabID = DEJson::ReadInt(_obj, "PrefabID");
 	LoadComponents(json_object_get_array(_obj, "Components"));
-	dontDestroy = DEJson::ReadBool(_obj, "DontDestroy");
+	//dontDestroy = DEJson::ReadBool(_obj, "DontDestroy");
 
 	const char* json_tag = DEJson::ReadString(_obj, "tag");
 
@@ -428,6 +427,7 @@ void GameObject::LoadComponents(JSON_Array* componentArray)
 			comp->LoadData(conf);
 	}
 }
+
 
 
 void GameObject::RemoveComponent(Component* ptr)
