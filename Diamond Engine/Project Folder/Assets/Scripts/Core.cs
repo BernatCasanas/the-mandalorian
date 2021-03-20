@@ -63,7 +63,7 @@ public class Core : DiamondComponent
     private bool rightTriggerPressed = false;
     //private bool leftTriggerPressed = false;
     private float rightTriggerTimer = 0.0f;
-   // private float leftTriggerTimer = 0.0f;
+    // private float leftTriggerTimer = 0.0f;
     private int deathZone = 15000;
     public float normalShootSpeed = 0.0f;
 
@@ -177,17 +177,17 @@ public class Core : DiamondComponent
 
         #region UPDATE STUFF
 
-        if(Input.GetKey(DEKeyCode.SPACE) == KeyState.KEY_DOWN)
+        if (Input.GetKey(DEKeyCode.SPACE) == KeyState.KEY_DOWN)
         {
             Audio.SetState("Player_State", "Alive");
 
         }
-        if(Input.GetKey(DEKeyCode.K) == KeyState.KEY_DOWN)
+        if (Input.GetKey(DEKeyCode.K) == KeyState.KEY_DOWN)
         {
             Audio.SetState("Player_State", "Dead");
-        }   
-        
-        if(Input.GetKey(DEKeyCode.L) == KeyState.KEY_DOWN)
+        }
+
+        if (Input.GetKey(DEKeyCode.L) == KeyState.KEY_DOWN)
         {
             Audio.SetSwitch(gameObject, "Player_Action", "Exploring");
         }
@@ -589,7 +589,7 @@ public class Core : DiamondComponent
             //InternalCalls.Destroy(gameObject);
             float damage = collidedGameObject.GetComponent<BH_Bullet>().damage;
             gameObject.GetComponent<PlayerHealth>().TakeDamage((int)damage);
-            
+
         }
     }
 
@@ -609,12 +609,20 @@ public class Core : DiamondComponent
 
     public void RespawnOnFall()
     {
-       
+
         gameObject.transform.localPosition = mySpawnPos;
-        PlayerHealth myHealth= gameObject.GetComponent<PlayerHealth>();
-        if(myHealth!=null)
+        PlayerHealth myHealth = gameObject.GetComponent<PlayerHealth>();
+        if (myHealth != null)
         {
-            myHealth.TakeDamage(10); //TODO whats the right amount we have to substract?
+            int finalHealthSubstract = (int)(PlayerHealth.currMaxHealth * 0.25f);
+
+            if (PlayerHealth.currHealth - finalHealthSubstract <= 0)
+            {
+                finalHealthSubstract = PlayerHealth.currHealth - 1;
+            }
+
+            myHealth.TakeDamage(finalHealthSubstract); //TODO whats the right amount we have to substract?
+
         }
     }
 
