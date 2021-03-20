@@ -341,8 +341,6 @@ public class Core : DiamondComponent
     #region SPECIAL SHOOT
     private void SecondaryShootInput()
     {
-        if (BigGrenades.Count == 0)
-            Debug.Log(BigGrenades.Count.ToString());
 
         if (Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_DOWN && smallGrenades.Count == 0 && BigGrenades.Count == 0)
         {
