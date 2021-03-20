@@ -74,6 +74,7 @@ public class Pause : DiamondComponent
 			rightImage.Enable(true);
 			rightText.Enable(true);
 			rightX.Enable(true);
+
 			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.BOKATAN_RES) || Counter.GameCounters.ContainsKey(Counter.CounterTypes.WRECKER_RES))
 			{
 				if (Counter.GameCounters[Counter.CounterTypes.BOKATAN_RES].place < Counter.GameCounters[Counter.CounterTypes.WRECKER_RES].place)

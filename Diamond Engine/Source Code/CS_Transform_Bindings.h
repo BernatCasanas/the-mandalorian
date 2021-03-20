@@ -163,7 +163,7 @@ void CSLog(MonoString* x)
 		return;
 
 	char* msg = mono_string_to_utf8(x);
-	//LOG(LogType::L_WARNING, msg);
+	LOG(LogType::L_WARNING, msg);
 	mono_free(msg);
 }
 
