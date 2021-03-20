@@ -539,6 +539,7 @@ public class Core : DiamondComponent
         gamepadInput = new Vector3(horizontalInput, -verticalInput, 0f);
         if (Input.GetGamepadButton(DEControllerButton.START) == KeyState.KEY_DOWN)
         {
+            Audio.StopAudio(gameObject);
             pause.Enable(true);
             background.Enable(true);
             Time.PauseGame();
