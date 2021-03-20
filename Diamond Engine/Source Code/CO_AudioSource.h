@@ -40,6 +40,7 @@ public:
 	void StopEvent();
 
 	unsigned int GetWwiseID();
+	void SetSwitch(std::string groupSwitch, std::string stateSwitch);
 
 	bool IsMuted();
 	void SetMuted(bool muted);

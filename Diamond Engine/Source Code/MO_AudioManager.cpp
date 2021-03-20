@@ -277,6 +277,16 @@ void ModuleAudioManager::ResumeEvent(unsigned int id, std::string& eventName) co
 	AK::SoundEngine::ExecuteActionOnEvent(eventName.c_str(), AK::SoundEngine::AkActionOnEventType::AkActionOnEventType_Resume, id);
 }
 
+void ModuleAudioManager::SetState(std::string& groupState, std::string& state)
+{
+	AK::SoundEngine::SetState(groupState.c_str(), state.c_str());
+}
+
+void ModuleAudioManager::SetSwitch(unsigned int id, std::string& groupSwitch, std::string& stateSwitch)
+{
+	AK::SoundEngine::SetSwitch(groupSwitch.c_str(), stateSwitch.c_str(), id);
+}
+
 
 void ModuleAudioManager::StopComponent(unsigned int id) const
 {
@@ -300,6 +310,8 @@ void ModuleAudioManager::ChangeRTPCValue(unsigned int id, std::string& RTPCname,
 {
 	AK::SoundEngine::SetRTPCValue(RTPCname.c_str(), value, id);
 }
+
+
 
 bool ModuleAudioManager::LoadBanksInfo()
 {
