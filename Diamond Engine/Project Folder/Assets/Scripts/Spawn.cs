@@ -14,46 +14,31 @@ public class Spawn : DiamondComponent
 
 	public int maxSpawnPoints = 0;
 	public int maxEnemies = 0;
-	//private int[] spawnedPoints;
-	int wave = 0;
+	public int enemyIncreasePerWave = 0;
 
-	float timePassed = 0.0f;
-	public float timeBetweenSpawns = 5.0f;
+	public int wave = 0;
+	public int maxWaves = 1;
+
+	public float timePassed = 0.0f;
+	public float timeBetweenSpawns = 8.0f;
 
 	public void Update()
 	{
-		//timePassed += Time.deltaTime;
+		timePassed += Time.deltaTime;
 		if(!doneSpawning)
         {
-			int[] spawnPoints = new int[maxSpawnPoints];
-			int spawnEnemies = 0;
+			if(timePassed > timeBetweenSpawns)
+            {
+				SpawnWave();
+				wave++;
+				maxEnemies += enemyIncreasePerWave;
 
-			for (int i = 0; i < maxSpawnPoints; i++)
-			{
-				spawnPoints[i] = 0;
+				if(wave >= maxWaves)
+					doneSpawning = true;
 			}
 
-			for (int j = 0; j < maxEnemies; j++)
-			{
-				Random randomizer = new Random();
-
-				for(int tries = 0; tries < 15; tries++)  //15 is max tries to not overwhelm the engine
-                {
-					int randomIndex = randomizer.Next(maxSpawnPoints);
-
-					if (spawnPoints[randomIndex] == 0)
-					{
-						GameObject spawnPoint = IntToGameObject(randomIndex);
-						SpawnPrefab(spawnPoint.transform.globalPosition);
-						spawnPoints[randomIndex] = 1;
-						spawnEnemies++;
-						break;
-					}
-				}
-			}
-
-			Debug.Log("Spawn enemies: " + spawnEnemies.ToString());
-			doneSpawning = true;
+			//Debug.Log("Spawn enemies: " + spawnEnemies.ToString());
+		
 		}
 	}
 
@@ -92,6 +77,36 @@ public class Spawn : DiamondComponent
 
 		return spawnPoint;
     }
+
+	void SpawnWave()
+    {
+		int[] spawnPoints = new int[maxSpawnPoints];
+		int spawnEnemies = 0;
+
+		for (int i = 0; i < maxSpawnPoints; i++)
+		{
+			spawnPoints[i] = 0;
+		}
+
+		for (int j = 0; j < maxEnemies; j++)
+		{
+			Random randomizer = new Random();
+
+			for (int tries = 0; tries < 15; tries++)  //15 is max tries to not overwhelm the engine
+			{
+				int randomIndex = randomizer.Next(maxSpawnPoints);
+
+				if (spawnPoints[randomIndex] == 0)
+				{
+					GameObject spawnPoint = IntToGameObject(randomIndex);
+					SpawnPrefab(spawnPoint.transform.globalPosition);
+					spawnPoints[randomIndex] = 1;
+					spawnEnemies++;
+					break;
+				}
+			}
+		}
+	}
 }
 
 
