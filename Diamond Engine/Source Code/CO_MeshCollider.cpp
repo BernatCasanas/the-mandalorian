@@ -60,7 +60,7 @@ position(_position), rotation(_rotation), localScale(_localScale)*/
 
 C_MeshCollider::~C_MeshCollider()
 {
-	LOG(LogType::L_NORMAL, "Deleting Mesh Collider");
+	//LOG(LogType::L_NORMAL, "Deleting Mesh Collider");
 
 	if (colliderMaterial != nullptr)
 		colliderMaterial->release();

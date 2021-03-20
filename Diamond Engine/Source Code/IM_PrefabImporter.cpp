@@ -83,6 +83,7 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath)
 
 	//Free memory
 	json_value_free(prefab);
+	gameObjects.clear();
 
 	return rootObject;
 }
@@ -143,6 +144,9 @@ void PrefabImporter::OverridePrefabGameObjects(uint prefabID, GameObject* gameOb
 		if(prefabObjects[i] != gameObject)
 			OverrideGameObject(prefabID, prefabObjects[i], gameObject);
 	}
+
+	sceneObjects.clear();
+	prefabObjects.clear();
 }
 
 void PrefabImporter::OverrideGameObject(uint prefabID, GameObject* objectToReplace, GameObject* referenceObject)

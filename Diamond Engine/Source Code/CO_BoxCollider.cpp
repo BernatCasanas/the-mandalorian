@@ -109,7 +109,7 @@ position(_position), rotation(_rotation), localScale(_localScale)*/
 
 C_BoxCollider::~C_BoxCollider()
 {
-	LOG(LogType::L_NORMAL, "Deleting Box Collider");
+	//LOG(LogType::L_NORMAL, "Deleting Box Collider");
 
 	if (colliderMaterial != nullptr)
 		colliderMaterial->release();

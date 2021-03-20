@@ -301,7 +301,7 @@ public class Core : DiamondComponent
             if (timeSinceLastNormalShoot > fireRate)
             {
                 Audio.StopAudio(gameObject);
-                Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot_Mando");
+                Audio.PlayAudio(shootPoint, "Play_Blaster_Shoot_Mando");
                 timeSinceLastNormalShoot = 0f;
                 Input.PlayHaptic(.3f, 10);
                 fireRate = GetCurrentFireRate();
@@ -588,6 +588,7 @@ public class Core : DiamondComponent
             //InternalCalls.Destroy(gameObject);
             float damage = collidedGameObject.GetComponent<BH_Bullet>().damage;
             gameObject.GetComponent<PlayerHealth>().TakeDamage((int)damage);
+            
         }
     }
 
