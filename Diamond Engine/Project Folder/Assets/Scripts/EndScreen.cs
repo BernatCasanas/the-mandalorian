@@ -31,11 +31,6 @@ public class EndScreen : DiamondComponent
 		if (firstFrame && gameObject.Name == "End Scene")
         {
 			firstFrame = false;
-			Counter.SumToCounterType(Counter.CounterTypes.WRECKER_RES);
-			Counter.SumToCounterType(Counter.CounterTypes.WRECKER_RES);
-			Counter.SumToCounterType(Counter.CounterTypes.BOKATAN_RES);
-			Counter.SumToCounterType(Counter.CounterTypes.ENEMY_BANTHA);
-			Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
 			DisplayResults();
 		}
 	}
