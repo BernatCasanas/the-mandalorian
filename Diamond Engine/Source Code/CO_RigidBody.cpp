@@ -135,7 +135,7 @@ C_RigidBody::C_RigidBody(GameObject* _gm): Component(_gm)
 
 C_RigidBody::~C_RigidBody()
 {
-	LOG(LogType::L_NORMAL, "Deleting Rigidbody");
+	//LOG(LogType::L_NORMAL, "Deleting Rigidbody");
 	for (int i = 0; i < collider_info.size(); i++)
 	{
 		C_Collider* colliderComponent = dynamic_cast<C_Collider*>(collider_info[i]);
