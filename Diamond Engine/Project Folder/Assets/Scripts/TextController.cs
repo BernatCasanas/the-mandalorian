@@ -12,6 +12,7 @@ public class TextController : DiamondComponent
 
 
 	private int index = 0;
+	private bool gui_not_enabled = true;
 
 	private List<string> texts = new List<string>()
 	{
@@ -63,12 +64,13 @@ public class TextController : DiamondComponent
 			
 
 		}
-       
-		if(index >= texts.Count)
+
+		if (index >= texts.Count && gui_not_enabled)
         {
 			dialog.Enable(false);
 			gui.Enable(true);
-
+			gui.GetComponent<HUD>().UpdateCombo(0, 0, 0);
+			gui_not_enabled = false;
 		}
 	}
 
