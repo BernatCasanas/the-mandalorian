@@ -13,11 +13,11 @@ public class RoomSwitch : DiamondComponent
 	static List<int> visited = new List<int>() 
 	{
 						   1934547592,
-						  1076838722,
 						   1482507639,
+						   1143112058,
 
 	};
-	private static int finalScene = 1143112058;
+	private static int finalScene = 1076838722;
 
 	public static void SwitchRooms()
     {
@@ -32,12 +32,11 @@ public class RoomSwitch : DiamondComponent
 		}
 		else
 		{
-			Debug.Log("No more room in hell");
 			visited = new List<int>()
 				{
-						   1934547592,
-						  1076838722,
+						  1934547592,
 						   1482507639,
+						   1143112058,
 
 				};
 			currentroom = 0;
