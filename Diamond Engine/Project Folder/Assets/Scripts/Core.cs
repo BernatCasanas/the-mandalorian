@@ -61,9 +61,9 @@ public class Core : DiamondComponent
 
     public float fireRateMultCap = 0.0f;
     private bool rightTriggerPressed = false;
-    private bool leftTriggerPressed = false;
+    //private bool leftTriggerPressed = false;
     private float rightTriggerTimer = 0.0f;
-    private float leftTriggerTimer = 0.0f;
+   // private float leftTriggerTimer = 0.0f;
     private int deathZone = 15000;
     public float normalShootSpeed = 0.0f;
 
@@ -121,9 +121,9 @@ public class Core : DiamondComponent
             #region SHOOT
 
             //Shooting Triggers
-            leftTriggerTimer = 0f;
+            //leftTriggerTimer = 0f;
             rightTriggerTimer = 0f;
-            leftTriggerPressed = false;
+            //leftTriggerPressed = false;
             rightTriggerPressed = false;
 
             //Shooting bools

@@ -3,7 +3,7 @@ using DiamondEngine;
 
 public class Spawn : DiamondComponent
 {
-	bool spawned = false;
+	bool doneSpawning = false;
 
 	public GameObject spawnPoint0 = null;
 	public GameObject spawnPoint1 = null;
@@ -13,54 +13,81 @@ public class Spawn : DiamondComponent
 	public GameObject spawnPoint5 = null;
 	public GameObject spawnPoint6 = null;
 
-	int spawnPointAmount = 0;
+	//int spawnPointAmount = 0;
 	//private int[] spawnedPoints;
+	int wave = 0;
 
 	float timePassed = 0.0f;
-	float timeBetweenSpawns = 0.5f;
+	float timeBetweenSpawns = 5.0f;
 
 	public void Update()
 	{
-		if(!spawned)
+		timePassed += Time.deltaTime;
+
+		//please don't judge this code, I hope it disappears soon
+		if(timePassed > timeBetweenSpawns)
         {
-			//spawnedPoints = new int[spawnPointAmount];
-			if(spawnPoint0 != null)
-            {
-				//SpawnPrefab(spawnPoint0.transform.globalPosition);
-            }
-
-			if (spawnPoint1 != null)
+			if (!doneSpawning)
 			{
-				//SpawnPrefab(spawnPoint1.transform.globalPosition);
-			}
+				Debug.Log("Spawning wave: " + wave.ToString());
+				if (wave == 0)
+                {
+					if (spawnPoint0 != null)
+					{
+						SpawnPrefab(spawnPoint0.transform.globalPosition);
+						Counter.roomEnemies++;
+					}
 
-			if (spawnPoint2 != null)
-			{
-				//SpawnPrefab(spawnPoint2.transform.globalPosition);
-			}
+					if (spawnPoint1 != null)
+					{
+						SpawnPrefab(spawnPoint1.transform.globalPosition);
+						Counter.roomEnemies++;
+					}
 
-			if (spawnPoint3 != null)
-			{
-				//SpawnPrefab(spawnPoint3.transform.globalPosition);
-			}
+					if (spawnPoint2 != null)
+					{
+						SpawnPrefab(spawnPoint2.transform.globalPosition);
+						Counter.roomEnemies++;
+					}
+					timePassed = 0.0f;
+				}
+				else if(wave == 1)
+                {
+					if (spawnPoint3 != null)
+					{
+						SpawnPrefab(spawnPoint3.transform.globalPosition);
+						Counter.roomEnemies++;
+					}
 
-			if (spawnPoint4 != null)
-			{
-				//SpawnPrefab(spawnPoint4.transform.globalPosition);
-			}
+					if (spawnPoint4 != null)
+					{
+						SpawnPrefab(spawnPoint4.transform.globalPosition);
+						Counter.roomEnemies++;
+					}
 
-			if (spawnPoint5 != null)
-			{
-				//SpawnPrefab(spawnPoint5.transform.globalPosition);
-			}
+					timePassed = 0.0f;
+				}
+				else
+                {
+					if (spawnPoint5 != null)
+					{
+						SpawnPrefab(spawnPoint5.transform.globalPosition);
+						Counter.roomEnemies++;
+					}
 
-			if (spawnPoint6 != null)
-			{
-				//SpawnPrefab(spawnPoint6.transform.globalPosition);
-			}
+					if (spawnPoint6 != null)
+					{
+						SpawnPrefab(spawnPoint6.transform.globalPosition);
+						Counter.roomEnemies++;
+					}
 
-			spawned = true;
-        }
+					timePassed = 0.0f;
+					doneSpawning = true;
+				}
+
+				wave++;
+			}
+		}
 	}
 
 	private void SpawnPrefab(Vector3 position)
