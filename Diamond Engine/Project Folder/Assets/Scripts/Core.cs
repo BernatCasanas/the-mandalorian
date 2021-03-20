@@ -87,6 +87,8 @@ public class Core : DiamondComponent
     public GameObject background;
     public GameObject pause;
 
+    private Vector3 mySpawnPos = new Vector3(0.0f, 0.0f, 0.0f);
+
     public void Update()
     {
 
@@ -167,7 +169,7 @@ public class Core : DiamondComponent
             _currentState = State.Idle;
 
             Debug.Log("Start!");
-
+            mySpawnPos = new Vector3(gameObject.transform.globalPosition.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z);
             #endregion
         }
 
@@ -606,4 +608,24 @@ public class Core : DiamondComponent
         //Debug.Log("Triggered by tag: " + triggeredGameObject.tag);
     }
     */
+
+    public void RespawnOnFall()
+    {
+        Debug.Log("Have to respawn");
+        Debug.Log(mySpawnPos.x.ToString());
+        Debug.Log(mySpawnPos.y.ToString());
+        Debug.Log(mySpawnPos.z.ToString());
+        gameObject.transform.localPosition = mySpawnPos;
+        PlayerHealth myHealth= gameObject.GetComponent<PlayerHealth>();
+        if(myHealth!=null)
+        {
+            Debug.Log("auch");
+            Debug.Log(gameObject.transform.localPosition.x.ToString());
+            Debug.Log(gameObject.transform.localPosition.y.ToString());
+            Debug.Log(gameObject.transform.localPosition.z.ToString());
+
+            myHealth.TakeDamage(10); //TODO whats the right amount we have to substract?
+        }
+    }
+
 }

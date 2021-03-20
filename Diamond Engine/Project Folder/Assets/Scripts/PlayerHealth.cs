@@ -122,6 +122,7 @@ public class PlayerHealth : DiamondComponent
     
     public void Die()
     {
+        ResetMaxAndCurrentHPToDefault();
         //TODO die
         //TODO: Add die sound
         // Set as defeat:
