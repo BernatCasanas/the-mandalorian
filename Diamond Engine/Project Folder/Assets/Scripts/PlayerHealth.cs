@@ -123,8 +123,7 @@ public class PlayerHealth : DiamondComponent
     public void Die()
     {
         //TODO die
-
-
+        //TODO: Add die sound
         // Set as defeat:
         Counter.gameResult = Counter.GameResult.DEFEAT;
         // When the player has died load the scene:
