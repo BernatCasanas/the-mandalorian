@@ -83,6 +83,10 @@ public class Core : DiamondComponent
     public List<smallGrenade> smallGrenades = new List<smallGrenade>();
     public List<bigGrenade> BigGrenades = new List<bigGrenade>();
 
+    //For Pause
+    public GameObject background;
+    public GameObject pause;
+
     public void Update()
     {
 
@@ -514,6 +518,12 @@ public class Core : DiamondComponent
         verticalInput = Input.GetLeftAxisX();
         horizontalInput = Input.GetLeftAxisY();
         gamepadInput = new Vector3(horizontalInput, -verticalInput, 0f);
+        if (Input.GetGamepadButton(DEControllerButton.START) == KeyState.KEY_DOWN)
+        {
+            pause.Enable(true);
+            background.Enable(true);
+            Time.PauseGame();
+        }
     }
 
     private float GetCurrentFireRate()
