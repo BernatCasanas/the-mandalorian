@@ -11,20 +11,92 @@ public class Spawn : DiamondComponent
 	public GameObject spawnPoint3 = null;
 	public GameObject spawnPoint4 = null;
 	public GameObject spawnPoint5 = null;
-	public GameObject spawnPoint6 = null;
 
-	//int spawnPointAmount = 0;
+	public int maxSpawnPoints = 0;
+	public int maxEnemies = 0;
 	//private int[] spawnedPoints;
 	int wave = 0;
 
 	float timePassed = 0.0f;
-	float timeBetweenSpawns = 5.0f;
+	public float timeBetweenSpawns = 5.0f;
 
 	public void Update()
 	{
-		timePassed += Time.deltaTime;
+		//timePassed += Time.deltaTime;
+		if(!doneSpawning)
+        {
+			int[] spawnPoints = new int[maxSpawnPoints];
+			int spawnEnemies = 0;
 
-		//please don't judge this code, I hope it disappears soon
+			for (int i = 0; i < maxSpawnPoints; i++)
+			{
+				spawnPoints[i] = 0;
+			}
+
+			for (int j = 0; j < maxEnemies; j++)
+			{
+				Random randomizer = new Random();
+
+				for(int tries = 0; tries < 15; tries++)  //15 is max tries to not overwhelm the engine
+                {
+					int randomIndex = randomizer.Next(maxSpawnPoints);
+
+					if (spawnPoints[randomIndex] == 0)
+					{
+						GameObject spawnPoint = IntToGameObject(randomIndex);
+						SpawnPrefab(spawnPoint.transform.globalPosition);
+						spawnPoints[randomIndex] = 1;
+						spawnEnemies++;
+						break;
+					}
+				}
+			}
+
+			Debug.Log("Spawn enemies: " + spawnEnemies.ToString());
+			doneSpawning = true;
+		}
+	}
+
+	private void SpawnPrefab(Vector3 position)
+	{
+		InternalCalls.CreatePrefab("Library/Prefabs/44509991.prefab", position, Quaternion.identity, Vector3.one);
+	}
+
+	private GameObject IntToGameObject(int index)
+    {
+		GameObject spawnPoint = null;
+
+		switch(index)
+        {
+			case 0:
+				spawnPoint = spawnPoint0;
+				break;
+			case 1:
+				spawnPoint = spawnPoint1;
+				break;
+			case 2:
+				spawnPoint = spawnPoint2;
+				break;
+			case 3:
+				spawnPoint = spawnPoint3;
+				break;
+			case 4:
+				spawnPoint = spawnPoint4;
+				break;
+			case 5:
+				spawnPoint = spawnPoint5;
+				break;
+			default:
+				break;
+        }
+
+		return spawnPoint;
+    }
+}
+
+
+/*
+ //please don't judge this code, I hope it disappears soon
 		if(timePassed > timeBetweenSpawns)
         {
 			if (!doneSpawning)
@@ -87,11 +159,5 @@ public class Spawn : DiamondComponent
 
 				wave++;
 			}
-		}
-	}
-
-	private void SpawnPrefab(Vector3 position)
-	{
-		InternalCalls.CreatePrefab("Library/Prefabs/44509991.prefab", position, Quaternion.identity, Vector3.one);
-	}
-}
+		} 
+ */
