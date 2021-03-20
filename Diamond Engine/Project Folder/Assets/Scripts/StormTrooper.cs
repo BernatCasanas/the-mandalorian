@@ -58,7 +58,7 @@ public class StormTrooper : Enemy
 						else
                         {
 							Animator.Play(gameObject, "ST_Run");
-							//Stop Sound("Run")
+							Audio.StopAudio(this.gameObject);
 						}
 					}
 				}
@@ -76,7 +76,7 @@ public class StormTrooper : Enemy
 					Animator.Play(gameObject, "ST_Idle");
 					currentState = STATES.IDLE;
 					timePassed = 0.0f;
-					//Stop Sound("Run")
+					Audio.StopAudio(this.gameObject);
 				}
 
 				break;
@@ -95,6 +95,7 @@ public class StormTrooper : Enemy
 					Animator.Play(gameObject, "ST_Shoot");
 					timePassed = timeBewteenShots;
 					//Play Sound("Shoot")
+					Audio.PlayAudio(gameObject, "Play_Blaster_Stormtrooper");
 				}
 				else  //if not, keep wandering
 				{
@@ -103,6 +104,7 @@ public class StormTrooper : Enemy
 						targetPosition = CalculateNewPosition(wanderRange);
 						Animator.Play(gameObject, "ST_Run");
 						//Play Sound("Run")
+						Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
 					}
 
 					LookAt(targetPosition);
@@ -114,7 +116,7 @@ public class StormTrooper : Enemy
 						currentState = STATES.IDLE;
 						Animator.Play(gameObject, "ST_Idle");
 						timePassed = 0.0f;
-						//Stop Sound("Run")
+						Audio.StopAudio(this.gameObject);
 					}
 				}
 				
@@ -132,6 +134,7 @@ public class StormTrooper : Enemy
 					Shoot();
 					//Play Sound("Shoot")
 					Animator.Play(gameObject, "ST_Shoot");
+					Audio.PlayAudio(gameObject, "PLay_Blaster_Stormtrooper");
 
 					if (shotTimes >= maxShots)
 					{
@@ -145,12 +148,13 @@ public class StormTrooper : Enemy
 							targetPosition = CalculateNewPosition(runningRange);
 							shotSequences = 0;
 							//Play Sound("Run")
+							Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
 						}
 						else
 						{
 							Animator.Play(gameObject, "ST_Idle");
 							currentState = STATES.IDLE;
-							//Stop Sound("Run")
+							Audio.StopAudio(this.gameObject);
 						}
 					}
 				}
@@ -212,6 +216,7 @@ public class StormTrooper : Enemy
 				timePassed = 0.0f;
 				Animator.Play(gameObject, "ST_Die", 1.0f);
 				//Play Sound("Die")
+				Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
 			}
 		}
 	}
