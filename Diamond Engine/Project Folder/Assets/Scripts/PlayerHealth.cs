@@ -123,6 +123,13 @@ public class PlayerHealth : DiamondComponent
     public void Die()
     {
         //TODO die
+
+
+        // Set as defeat:
+        Counter.gameResult = Counter.GameResult.DEFEAT;
+        // When the player has died load the scene:
+        SceneManager.LoadScene(821370213);
+
     }
 
     public void ResetMaxAndCurrentHPToDefault()

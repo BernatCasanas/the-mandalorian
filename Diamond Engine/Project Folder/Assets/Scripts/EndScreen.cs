@@ -31,6 +31,7 @@ public class EndScreen : DiamondComponent
 		if (firstFrame && gameObject.Name == "End Scene")
         {
 			firstFrame = false;
+			Counter.isFinalScene = false;
 			DisplayResults();
 		}
 	}

@@ -21,6 +21,7 @@ namespace DiamondEngine
         public int amount;
         public CounterTypes type;
         public static int roomEnemies = 0;
+        public static bool isFinalScene = false;
 
         public Counter()
         {
