@@ -9,7 +9,7 @@ public class TextController : DiamondComponent
 	public GameObject text = null;
 	public GameObject mandoimage = null;
 	public GameObject groguimage = null;
-	public GameObject name = null;
+
 
 	private int index = 0;
 
@@ -52,13 +52,11 @@ public class TextController : DiamondComponent
 			text.GetComponent<Text>().text = texts[index];
 			if(images[index] == "Mando")
             {
-				name.GetComponent<Text>().text = "Mando";
 				mandoimage.Enable(true);
 				groguimage.Enable(false);
 			}
 			else
             {
-				name.GetComponent<Text>().text = "Grogu";
 				mandoimage.Enable(false);
 				groguimage.Enable(true);
 			}
