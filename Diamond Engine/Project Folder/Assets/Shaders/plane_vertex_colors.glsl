@@ -13,18 +13,18 @@ uniform mat4 view;
 uniform mat4 projection;
 
 uniform vec3 lightPosition;
-vec3 lightColor = vec3(0.45, 0.35, 0.30);
+vec3 lightColor = vec3(0.55, 0.35, 0.35);
 
 void main()
 {
-	vertexColor = colors;
-	
-	vec3 fPosition = (model_matrix * vec4(position, 1.0)).xyz;
-	vec3 lightDirection = normalize(vec3(lightPosition - fPosition));
-	diffuseColor = vec3(max(dot(lightDirection, normals), 0) * lightColor);
-	
-	gl_Position = projection * view * model_matrix * vec4(position, 1.0);
-    
+    vertexColor = colors;
+
+    vec3 fPosition = (model_matrix * vec4(position, 1.0)).xyz;
+    vec3 lightDirection = normalize(vec3(lightPosition - fPosition));
+    diffuseColor = vec3(max(dot(lightDirection, normals), 0) * lightColor);
+
+    gl_Position = projection * view * model_matrix * vec4(position, 1.0);
+
 }
 #endif
 
@@ -40,9 +40,12 @@ out vec4 color;
 
 void main()
 {
- 	color = mix (vec4(diffuseColor + ambientLight, 1.0), vec4(vertexColor, 1.0), 0.65);
+     color = mix (vec4(diffuseColor + ambientLight, 1.0), vec4(vertexColor, 1.0), 0.7);
 }
 #endif
+
+
+
 
 
 

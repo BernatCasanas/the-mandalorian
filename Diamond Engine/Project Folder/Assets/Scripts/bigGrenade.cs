@@ -10,7 +10,7 @@ public class bigGrenade : DiamondComponent
 
     public float yVel = 0.0f;
 
-    public float detonationTime = 2.0f;
+    public float detonationTime = 1.5f;
 
     private float Timer = 0.0f;
 
