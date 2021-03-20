@@ -188,8 +188,8 @@ public class StormTrooper : Enemy
 					Counter.roomEnemies -= 1;
 					if (Counter.roomEnemies <= 0)
 					{
-						// TODO: Hook boons here
-					}
+                       Core.instance.gameObject.GetComponent<BoonSpawn>().SpawnBoons();
+                    }
 					InternalCalls.Destroy(gameObject);
                 }
 				break;

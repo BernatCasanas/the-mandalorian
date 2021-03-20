@@ -41,8 +41,9 @@ public class BoonSpawn : DiamondComponent
 
             CreateAllBoonProbabilities();
 
-            SpawnBoons();//TODO this method must be called from the place where the level is considered ended not from here
+           // SpawnBoons();//this method must be called from the place where the level is considered ended not from here
         }
+
     }
 
     //USE THIS WHEN THE LEVEL IS FINISHED
@@ -99,6 +100,8 @@ public class BoonSpawn : DiamondComponent
             //instancedPrefabs.RemoveAt(i);
         }
         instancedPrefabs.Clear();
+
+        //TODO add timer here ?????
         if (!Counter.isFinalScene)
             RoomSwitch.SwitchRooms();
         else

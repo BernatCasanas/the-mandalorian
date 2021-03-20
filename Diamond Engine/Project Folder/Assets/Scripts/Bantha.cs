@@ -106,10 +106,10 @@ public class Bantha : Enemy
 				Counter.SumToCounterType(Counter.CounterTypes.ENEMY_BANTHA);
 				Counter.roomEnemies--;
 				if (Counter.roomEnemies <= 0)
-				{ 
-					// TODO: Hook boons here
-				}
-				InternalCalls.Destroy(gameObject);
+				{
+                    Core.instance.gameObject.GetComponent<BoonSpawn>().SpawnBoons();
+                }
+                InternalCalls.Destroy(gameObject);
 				break;
 		}
 
