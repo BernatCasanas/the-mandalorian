@@ -10,7 +10,7 @@ public class StartMenu : DiamondComponent
 	public void OnExecuteButton()
 	{
 		if (gameObject.Name == "Play")
-			SceneManager.LoadScene(1482507639);
+			SceneManager.LoadScene(1076838722);
 		else if (gameObject.Name == "Options")
 		{
 			menuButtons.Enable(false);

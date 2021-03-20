@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DiamondEngine 
 {
-    public sealed class Counter
+    public class Counter
     {
         public enum CounterTypes
         {
@@ -52,6 +52,14 @@ namespace DiamondEngine
         {
             GameCounters.Clear();
         }
-    }
+        public enum GameResult
+        {
+            NONE,
+            VICTORY,
+            DEFEAT,
+        }
 
+        public static GameResult gameResult = GameResult.NONE;
+
+    }
 }

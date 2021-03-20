@@ -83,7 +83,7 @@
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
                     "vFOV": 1.0471975803375244,
-                    "hFOV": 1.6763339042663574,
+                    "hFOV": 1.6415077447891235,
                     "culling": true
                 }
             ]
@@ -151,6 +151,18 @@
                 {
                     "Type": 1,
                     "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "EndScreen",
+                    "result": 917288620,
+                    "banthaKills": 1092938150,
+                    "stormsKills": 1806360646,
+                    "leftImage": 675362497,
+                    "leftMultiplier": 257952572,
+                    "rightImage": 663647262,
+                    "rightMultiplier": 1657758998
                 }
             ]
         },
@@ -275,6 +287,7 @@
                     "Unhovered_AssetsPath": "Assets\/UI\/MENU\/second_button.png",
                     "Unhovered_LibraryPath": "Library\/Textures\/1618474496.dds",
                     "Unhovered_UID": 1618474496,
+                    "Script_Name": "EndScreen",
                     "ButtonState": 1,
                     "Is Selected": true
                 },
@@ -342,6 +355,11 @@
                     "Button Being Used": -1,
                     "Type Of UI": 7,
                     "Is Selected": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "EndScreen"
                 }
             ]
         },
@@ -391,7 +409,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
@@ -471,6 +489,7 @@
                     "Unhovered_AssetsPath": "Assets\/UI\/MENU\/second_button.png",
                     "Unhovered_LibraryPath": "Library\/Textures\/1618474496.dds",
                     "Unhovered_UID": 1618474496,
+                    "Script_Name": "EndScreen",
                     "ButtonState": 2,
                     "Is Selected": false
                 },
@@ -538,6 +557,11 @@
                     "Button Being Used": -1,
                     "Type Of UI": 7,
                     "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "EndScreen"
                 }
             ]
         },
@@ -587,7 +611,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
@@ -710,7 +734,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
@@ -833,7 +857,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
@@ -897,7 +921,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
@@ -916,7 +940,7 @@
             ]
         },
         {
-            "name": "Text",
+            "name": "BanthaKills",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -948,7 +972,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        60.299999237060547,
+                        56,
                         0
                     ],
                     "Rotation": 0,
@@ -961,7 +985,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
@@ -1025,7 +1049,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
@@ -1044,7 +1068,7 @@
             ]
         },
         {
-            "name": "Text",
+            "name": "StormKills",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -1076,7 +1100,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        60.299999237060547,
+                        56,
                         0
                     ],
                     "Rotation": 0,
@@ -1089,7 +1113,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
@@ -1212,7 +1236,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
@@ -1290,7 +1314,7 @@
             ]
         },
         {
-            "name": "Image",
+            "name": "RightImage",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -1394,7 +1418,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
@@ -1458,14 +1482,14 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "1",
+                    "text": "0",
                     "maxTextLenght": 0,
                     "fontName": "Assets\/Fonts\/renner-medium.ttf",
                     "textColor": [
@@ -1477,7 +1501,7 @@
             ]
         },
         {
-            "name": "Image",
+            "name": "LeftImage",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -1581,7 +1605,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
@@ -1645,14 +1669,14 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "1",
+                    "text": "0",
                     "maxTextLenght": 0,
                     "fontName": "Assets\/Fonts\/renner-medium.ttf",
                     "textColor": [
