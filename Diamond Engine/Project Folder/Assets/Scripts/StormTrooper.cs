@@ -7,8 +7,8 @@ public class StormTrooper : Enemy
 	public int maxShots = 2;
 	public int maxSequences = 2;
 
-	private float pushSkillTimer = 0.25f;
-	private float pushSkillSpeed = 0.08f;
+	private float pushSkillTimer = 0.15f;
+	private float pushSkillSpeed = 0.2f;
 
 	public void Start()
 	{
@@ -58,7 +58,8 @@ public class StormTrooper : Enemy
 						else
                         {
 							Animator.Play(gameObject, "ST_Run");
-                        }
+							//Stop Sound("Run")
+						}
 					}
 				}
 
@@ -75,8 +76,9 @@ public class StormTrooper : Enemy
 					Animator.Play(gameObject, "ST_Idle");
 					currentState = STATES.IDLE;
 					timePassed = 0.0f;
+					//Stop Sound("Run")
 				}
-			
+
 				break;
 
 			case STATES.WANDER:
@@ -92,6 +94,7 @@ public class StormTrooper : Enemy
 					currentState = STATES.SHOOT;
 					Animator.Play(gameObject, "ST_Shoot");
 					timePassed = timeBewteenShots;
+					//Play Sound("Shoot")
 				}
 				else  //if not, keep wandering
 				{
@@ -99,10 +102,11 @@ public class StormTrooper : Enemy
                     {
 						targetPosition = CalculateNewPosition(wanderRange);
 						Animator.Play(gameObject, "ST_Run");
-                    }
+						//Play Sound("Run")
+					}
 
 					LookAt(targetPosition);
-					MoveToPosition(targetPosition, wanderSpeed);
+					//MoveToPosition(targetPosition, wanderSpeed);
 
 					if (Mathf.Distance(gameObject.transform.localPosition, targetPosition) < stoppingDistance)
 					{
@@ -110,6 +114,7 @@ public class StormTrooper : Enemy
 						currentState = STATES.IDLE;
 						Animator.Play(gameObject, "ST_Idle");
 						timePassed = 0.0f;
+						//Stop Sound("Run")
 					}
 				}
 				
@@ -125,6 +130,7 @@ public class StormTrooper : Enemy
 				if (timePassed > timeBewteenShots)
 				{
 					Shoot();
+					//Play Sound("Shoot")
 					Animator.Play(gameObject, "ST_Shoot");
 
 					if (shotTimes >= maxShots)
@@ -138,12 +144,14 @@ public class StormTrooper : Enemy
 							Animator.Play(gameObject, "ST_Run");
 							targetPosition = CalculateNewPosition(runningRange);
 							shotSequences = 0;
+							//Play Sound("Run")
 						}
 						else
 						{
 							Animator.Play(gameObject, "ST_Idle");
 							currentState = STATES.IDLE;
-                        }
+							//Stop Sound("Run")
+						}
 					}
 				}
 				break;
@@ -151,6 +159,8 @@ public class StormTrooper : Enemy
 			case STATES.PUSHED:
 				Vector3 pushDirection = Core.instance.gameObject.transform.localPosition - gameObject.transform.localPosition;
 				pushDirection = pushDirection.normalized;
+
+				pushDirection.y = 0.0f;
 
 				gameObject.transform.localPosition -= pushDirection * pushSkillSpeed;
 
@@ -201,6 +211,7 @@ public class StormTrooper : Enemy
 				currentState = STATES.DIE;
 				timePassed = 0.0f;
 				Animator.Play(gameObject, "ST_Die", 1.0f);
+				//Play Sound("Die")
 			}
 		}
 	}
