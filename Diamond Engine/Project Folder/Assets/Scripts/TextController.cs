@@ -41,17 +41,17 @@ public class TextController : DiamondComponent
 	private bool startMenu = true;
 	public void Update()
 	{
-		if(startMenu == true)
+		if (startMenu == true)
         {
 			gui.Enable(false);
 			startMenu = false;
 		}
 
-		if (Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN && index < texts.Count)
+		if (Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN && ++index < texts.Count)
 		{
-			index++;
+
 			text.GetComponent<Text>().text = texts[index];
-			if(images[index] == "Mando")
+			if (images[index] == "Mando")
             {
 				mandoimage.Enable(true);
 				groguimage.Enable(false);
@@ -61,7 +61,6 @@ public class TextController : DiamondComponent
 				mandoimage.Enable(false);
 				groguimage.Enable(true);
 			}
-			
 
 		}
 
