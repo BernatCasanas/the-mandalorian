@@ -124,7 +124,7 @@ public class PlayerHealth : DiamondComponent
     {
         ResetMaxAndCurrentHPToDefault();
         //TODO die
-        //TODO: Add die sound
+        Audio.PlayAudio(gameObject, "Play_Mando_Death");
         // Set as defeat:
         Counter.gameResult = Counter.GameResult.DEFEAT;
         // When the player has died load the scene:
