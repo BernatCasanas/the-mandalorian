@@ -95,12 +95,19 @@ void SetSwitch(MonoObject* go, MonoString* switchGroupString, MonoString* stateS
 	if (EngineExternal == nullptr)
 		return;
 	GameObject* GO = EngineExternal->moduleMono->GameObject_From_CSGO(go);
+
+	if (GO == nullptr) 
+		return;
+
 	C_AudioSource* audSource = dynamic_cast<C_AudioSource*>(GO->GetComponent(Component::TYPE::AUDIO_SOURCE));
 
-	std::string stateGroupSwitch = mono_string_to_utf8(switchGroupString);
-	std::string stateSwitch = mono_string_to_utf8(stateSwitchString);
+	if (audSource == nullptr)
+		return;
 
-	audSource->SetSwitch(stateGroupSwitch, stateSwitch);
+		std::string stateGroupSwitch = mono_string_to_utf8(switchGroupString);
+		std::string stateSwitch = mono_string_to_utf8(stateSwitchString);
+
+		audSource->SetSwitch(stateGroupSwitch, stateSwitch);
 	
 }
 

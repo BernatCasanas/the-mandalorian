@@ -185,7 +185,7 @@ public class Core : DiamondComponent
         }
         if (Input.GetKey(DEKeyCode.K) == KeyState.KEY_DOWN)
         {
-            Audio.SetState("Player_State", "Dead");
+            Audio.SetState("Game_State", "HUB");
         }
 
         if (Input.GetKey(DEKeyCode.L) == KeyState.KEY_DOWN)
