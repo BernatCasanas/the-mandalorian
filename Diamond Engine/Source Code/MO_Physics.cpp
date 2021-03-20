@@ -205,7 +205,7 @@ void ModulePhysics::SceneSimulation(double gameTimestep, bool fetchResults) {
 	PxReal step = gameTimestep;
 	//if(step < 0.002)
 	//step = 0.002;
-	mScene->simulate(step);
+	mScene->simulate(0.013f);
 		mScene->fetchResults(fetchResults);
 
 	PxU32 nbActors = mScene->getNbActors(PxActorTypeFlag::eRIGID_DYNAMIC | PxActorTypeFlag::eRIGID_STATIC);

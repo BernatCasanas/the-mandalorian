@@ -4,33 +4,29 @@ using DiamondEngine;
 
 public class RoomSwitch : DiamondComponent
 {
-	private int roomID = 0;
+	private static int roomID = 0;
 
-	static int currentroom = 1076838722;
+	static int currentroom = 0;
 
 	//public static int index = 0;
 	static Random test = new Random();
-	private bool start = true;
 	static List<int> visited = new List<int>() 
 	{
-							1076838722,
 						   1934547592,
-						   1406013733,
-						   
+						  1076838722,
+						   1482507639,
+
 	};
-	private int finalScene = 1482507639;
+	private static int finalScene = 1143112058;
 
-	public void OnTriggerEnter(GameObject triggeringObject)
+	public static void SwitchRooms()
     {
-		if (!triggeringObject.CompareTag("Player"))
-			return;
-
 		if (visited.Count > 0)
 		{
 			int roomnumber = test.Next(0, visited.Count);
 			roomID = visited[roomnumber];
 			currentroom = roomID;
-
+			visited.Remove(currentroom);
 			SceneManager.LoadScene(roomID);
 
 		}
@@ -39,68 +35,15 @@ public class RoomSwitch : DiamondComponent
 			Debug.Log("No more room in hell");
 			visited = new List<int>()
 				{
-							1076838722,
 						   1934547592,
-						   1406013733,
+						  1076838722,
+						   1482507639,
 
 				};
-			currentroom = 1076838722;
-
+			currentroom = 0;
 			//IMPORTANT: isFinalScene is needed to know when to change from a room to the end scene to show statistics
 			Counter.isFinalScene = true;
 			SceneManager.LoadScene(finalScene);
 		}
 	}
-
-    public void Update()
-	{
-		if (start)
-        {
-			start = false;
-			visited.Remove(currentroom);
-
-		}
-
-		if (Input.GetKey(DEKeyCode.I) == KeyState.KEY_DOWN)
-		{
-				if (visited.Count > 0)
-				{
-					int roomnumber = test.Next(0, visited.Count);
-					roomID = visited[roomnumber];
-					currentroom = roomID;
-
-					SceneManager.LoadScene(roomID);
-
-				}
-				else
-				{
-					Debug.Log("No more room in hell");
-					visited = new List<int>()
-				{
-							1076838722,
-						   1934547592,
-						   1406013733,
-
-				};
-					currentroom = 1076838722;
-					SceneManager.LoadScene(finalScene);
-				}
-
-		}
-
-		//if (searchroom)
-  //      {
-			
-			
-		//		roomID = rooms[test.Next(0, rooms.Length)];
-		//		if (roomID != currentroom)
-		//		{
-		//			currentroom = roomID;
-		//			visited.Add(roomID);
-		//			SceneManager.LoadScene(roomID);
-		//		}
-			
-		//}
-	}
-
 }

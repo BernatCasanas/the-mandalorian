@@ -161,6 +161,10 @@ public class StormTrooper : Enemy
                 {
 					Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
 					Counter.roomEnemies -= 1;
+					if (Counter.roomEnemies <= 0)
+					{
+						// TODO: Hook boons here
+					}
 					InternalCalls.Destroy(gameObject);
                 }
 				break;
