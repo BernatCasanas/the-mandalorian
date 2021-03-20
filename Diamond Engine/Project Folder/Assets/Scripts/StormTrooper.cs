@@ -7,6 +7,9 @@ public class StormTrooper : Enemy
 	public int maxShots = 2;
 	public int maxSequences = 2;
 
+	private float pushSkillTimer = 0.25f;
+	private float pushSkillSpeed = 0.08f;
+
 	public void Start()
 	{
 		currentState = STATES.WANDER;
@@ -146,6 +149,18 @@ public class StormTrooper : Enemy
 				break;
 
 			case STATES.PUSHED:
+				Vector3 pushDirection = Core.instance.gameObject.transform.localPosition - gameObject.transform.localPosition;
+				pushDirection = pushDirection.normalized;
+
+				gameObject.transform.localPosition -= pushDirection * pushSkillSpeed;
+
+				timePassed += Time.deltaTime;
+
+                if (timePassed >= pushSkillTimer)
+                {
+					currentState = STATES.WANDER;
+					timePassed = 0.0f;
+				}
 
 				break;
 
@@ -198,12 +213,11 @@ public class StormTrooper : Enemy
 		{
 			Debug.Log("Skill collision");
 
-
-
-			Vector3 pushDirection = Core.instance.gameObject.transform.localPosition - gameObject.transform.globalPosition;
-			pushDirection = pushDirection.normalized;
-
-			gameObject.transform.localPosition += pushDirection * 5;
+            if (currentState != STATES.DIE && currentState != STATES.PUSHED)
+            {
+				currentState = STATES.PUSHED;
+				timePassed = 0.0f;
+            }
 		}
 
 		//Debug.Log("Triggered by tag: " + triggeredGameObject.tag);
