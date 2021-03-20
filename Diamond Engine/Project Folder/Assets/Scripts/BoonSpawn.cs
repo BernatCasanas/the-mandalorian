@@ -99,6 +99,13 @@ public class BoonSpawn : DiamondComponent
             //instancedPrefabs.RemoveAt(i);
         }
         instancedPrefabs.Clear();
+        if (!Counter.isFinalScene)
+            RoomSwitch.SwitchRooms();
+        else
+        {
+            Counter.gameResult = Counter.GameResult.VICTORY;
+            SceneManager.LoadScene(821370213);
+        }
     }
 
 

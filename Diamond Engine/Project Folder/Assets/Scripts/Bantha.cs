@@ -104,7 +104,11 @@ public class Bantha : Enemy
 			case STATES.DIE:
 				Debug.Log("Dying");
 				Counter.SumToCounterType(Counter.CounterTypes.ENEMY_BANTHA);
-				Counter.roomEnemies -= 1;
+				Counter.roomEnemies--;
+				if (Counter.roomEnemies <= 0)
+				{ 
+					// TODO: Hook boons here
+				}
 				InternalCalls.Destroy(gameObject);
 				break;
 		}
