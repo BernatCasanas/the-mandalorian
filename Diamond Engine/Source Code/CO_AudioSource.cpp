@@ -229,6 +229,11 @@ unsigned int C_AudioSource::GetWwiseID()
 	return id;
 }
 
+void C_AudioSource::SetSwitch(std::string groupSwitch, std::string stateSwitch)
+{
+	EngineExternal->moduleAudio->SetSwitch(this->id, groupSwitch, stateSwitch);
+}
+
 bool C_AudioSource::IsMuted()
 {
 	return this->isMuted;

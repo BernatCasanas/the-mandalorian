@@ -8,6 +8,9 @@
 #include "IM_FileSystem.h"
 #include "MO_Scene.h"
 
+//Remove from here
+#include "MO_AudioManager.h"
+
 #define MAX_KEYS 300
 
 ModuleInput::ModuleInput(Application* app, bool start_enabled) : Module(app, start_enabled), haptic(nullptr), hapticEnabled(true)
@@ -246,6 +249,7 @@ update_status ModuleInput::PreUpdate(float dt)
 
 	if (keyboard[SDL_SCANCODE_ESCAPE] == KEY_UP)
 		SDL_SetRelativeMouseMode(SDL_FALSE);
+
 
 	if(quit == true)
 		return UPDATE_STOP;
