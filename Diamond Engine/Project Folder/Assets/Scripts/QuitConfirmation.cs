@@ -20,7 +20,10 @@ public class QuitConfirmation : DiamondComponent
 		if (gameObject.Name == "QuittoDesktop")
 			InternalCalls.CloseGame();
 		if (gameObject.Name == "QuittoMenu")
-			SceneManager.LoadScene(1726826608);
+		{
+			Counter.gameResult = Counter.GameResult.NONE;
+			SceneManager.LoadScene(821370213);
+		}
 	}
 	public void Update()
 	{

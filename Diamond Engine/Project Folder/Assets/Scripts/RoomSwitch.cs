@@ -45,6 +45,9 @@ public class RoomSwitch : DiamondComponent
 
 				};
 			currentroom = 1076838722;
+
+			//IMPORTANT: isFinalScene is needed to know when to change from a room to the end scene to show statistics
+			Counter.isFinalScene = true;
 			SceneManager.LoadScene(finalScene);
 		}
 	}
