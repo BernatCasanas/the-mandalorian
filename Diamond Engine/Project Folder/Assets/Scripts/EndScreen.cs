@@ -16,9 +16,15 @@ public class EndScreen : DiamondComponent
 	public void OnExecuteButton()
 	{
 		if (gameObject.Name == "Continue")
+		{
+			Counter.ResetCounters();
 			SceneManager.LoadScene(1076838722);
+		}
 		else if (gameObject.Name == "Quit")
+		{
+			Counter.ResetCounters();
 			SceneManager.LoadScene(1726826608);
+		}
 	}
 	public void Update()
 	{
