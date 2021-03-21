@@ -1,21 +1,22 @@
 {
     "EditorCameraPosition": [
-        -8.6183090209960938,
-        36.673309326171875,
-        -26.684391021728516
+        -174.33164978027344,
+        131.85783386230469,
+        -168.34361267089844
     ],
     "EditorCameraZ": [
-        0.31689530611038208,
-        -0.75491416454315186,
-        0.57417941093444824
+        0.58581054210662842,
+        -0.44648143649101257,
+        0.67637300491333008
     ],
     "EditorCameraY": [
-        0.3648381233215332,
-        0.65582358837127686,
-        0.66089975833892822
+        0.2923491895198822,
+        0.89479291439056396,
+        0.3374575674533844
     ],
     "tags": [
-        "Player"
+        "Player",
+        "WorldLimit"
     ],
     "layers": [],
     "Game Objects": [
@@ -1687,7 +1688,7 @@
         },
         {
             "name": "World limit",
-            "tag": "Untagged",
+            "tag": "WorldLimit",
             "layer": "Default",
             "Active": true,
             "Position": [
@@ -1707,7 +1708,7 @@
                 0.99999898672103882
             ],
             "UID": 434136680,
-            "PrefabID": 0,
+            "PrefabID": 2043639852,
             "DontDestroy": false,
             "ParentUID": 1676501951,
             "Components": [
@@ -10697,18 +10698,18 @@
                     "shootPoint": 252037409,
                     "hud": 188057911,
                     "rotationSpeed": 2,
-                    "movementSpeed": 5,
+                    "movementSpeed": 5.5,
                     "mouseSens": 1,
-                    "dashCD": 0.33000001311302185,
+                    "dashCD": 0.30000001192092896,
                     "dashDuration": 0.20000000298023224,
-                    "dashDistance": 4.5,
+                    "dashDistance": 4.75,
                     "fireRate": 0.15000000596046448,
                     "baseFireRate": 1,
                     "secondaryRate": 1,
-                    "fireRateAfterDashRecoverRatio": 0.5,
+                    "fireRateAfterDashRecoverRatio": 1.75,
                     "fireRateMultCap": 2,
                     "normalShootSpeed": 2,
-                    "grenadesFireRate": 0,
+                    "grenadesFireRate": 0.125,
                     "currentStateString": "Empty",
                     "smallGrenades": 0,
                     "BigGrenades": 0,
