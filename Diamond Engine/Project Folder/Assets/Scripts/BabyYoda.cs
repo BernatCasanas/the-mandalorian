@@ -27,8 +27,8 @@ public class BabyYoda : DiamondComponent
     private float skillPushTimer = 0.0f;
 
     private float INIT_TIMER = 0.0001f;
+    private bool lefttTriggerPressed = false;
 
-   
 
     #region STATE_ENUMS
     enum STATE
@@ -156,10 +156,17 @@ public class BabyYoda : DiamondComponent
     //All button inputs must be handled here
     private void ProcessExternalInput()
     {
-        if (Input.GetGamepadButton(DEControllerButton.RIGHTSHOULDER) == KeyState.KEY_DOWN)
+        if (Input.GetLeftTrigger() > 0 && lefttTriggerPressed == false)
         {
             if (input == INPUTS.NONE)
+            {
                 input = INPUTS.IN_SKILL_PUSH;
+                lefttTriggerPressed = true;
+            }
+        }
+        else if (Input.GetLeftTrigger() == 0)
+        {
+            lefttTriggerPressed = false;
         }
     }
 
