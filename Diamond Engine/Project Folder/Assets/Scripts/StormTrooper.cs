@@ -12,7 +12,7 @@ public class StormTrooper : Enemy
 
 	public void Start()
 	{
-		currentState = STATES.WANDER;
+		currentState = STATES.IDLE;
 		targetPosition = CalculateNewPosition(wanderRange);
 		shotTimes = 0;
 	}
@@ -21,10 +21,8 @@ public class StormTrooper : Enemy
 	{
 		if (player == null)
         {
-			player = Scene.FindObjectWithTag("Player");
-			
-			if (player == null)
-				Debug.Log("Null player");
+			Debug.Log("Null player");
+			player = Core.instance.gameObject;
         }
 
 		switch (currentState)
@@ -46,7 +44,7 @@ public class StormTrooper : Enemy
 				}
 				else
                 {
-					if (timePassed > idleTime)
+					if (timePassed > idleTime && !turretMode)
 					{
 						currentState = STATES.WANDER;
 						timePassed = 0.0f;
@@ -97,7 +95,7 @@ public class StormTrooper : Enemy
 					//Play Sound("Shoot")
 					Audio.PlayAudio(gameObject, "Play_Blaster_Stormtrooper");
 				}
-				else  //if not, keep wandering
+				else if(!turretMode) //if not, keep wandering
 				{
 					if (targetPosition == null)
                     {
@@ -118,6 +116,13 @@ public class StormTrooper : Enemy
 						timePassed = 0.0f;
 						Audio.StopAudio(this.gameObject);
 					}
+				}
+				else
+                {
+					currentState = STATES.IDLE;
+					Animator.Play(gameObject, "ST_Idle");
+					timePassed = 0.0f;
+					Audio.StopAudio(this.gameObject);
 				}
 				
 				break;
@@ -141,7 +146,7 @@ public class StormTrooper : Enemy
 						shotTimes = 0;
 						shotSequences++;
 						
-						if (shotSequences >= maxSequences)
+						if (shotSequences >= maxSequences && !turretMode)
 						{
 							currentState = STATES.RUN;
 							Animator.Play(gameObject, "ST_Run");

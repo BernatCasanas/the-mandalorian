@@ -24,6 +24,13 @@ public class Spawn : DiamondComponent
 
 	private bool fightEndMusicPlayed = false;
 
+	public bool turretSpawnPoint0 = false;
+	public bool turretSpawnPoint1 = false;
+	public bool turretSpawnPoint2 = false;
+	public bool turretSpawnPoint3 = false;
+	public bool turretSpawnPoint4 = false;
+	public bool turretSpawnPoint5 = false;
+
 	public void Update()
 	{
 		timePassed += Time.deltaTime;
@@ -45,15 +52,16 @@ public class Spawn : DiamondComponent
 		
 			if(Counter.roomEnemies <= 0 && !fightEndMusicPlayed && MusicSourceLocate.instance != null)
             {
-				Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+				//Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
 			}
 		}
 	}
 
-	private void SpawnPrefab(Vector3 position)
+	GameObject SpawnPrefab(Vector3 position)
 	{
-		InternalCalls.CreatePrefab("Library/Prefabs/489054570.prefab", position, Quaternion.identity, Vector3.one);
+		GameObject enemy = InternalCalls.CreatePrefab("Library/Prefabs/489054570.prefab", position, Quaternion.identity, Vector3.one);
 		Counter.roomEnemies++;
+		return enemy;
 	}
 
 	private GameObject IntToGameObject(int index)
@@ -93,8 +101,8 @@ public class Spawn : DiamondComponent
 		
 		if (wave == 0 && MusicSourceLocate.instance != null)
         {
-			Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Combat");
-			Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Healthy");
+			//Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Combat");
+			//Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Healthy");
 		}
 	
 
@@ -121,12 +129,53 @@ public class Spawn : DiamondComponent
 					if (spawnPoint == null)
 						Debug.Log("Null spawn");
 
-					SpawnPrefab(spawnPoint.transform.globalPosition);
+					GameObject enemy = SpawnPrefab(spawnPoint.transform.globalPosition);
 					spawnPoints[randomIndex] = 1;
 					spawnEnemies++;
+
+					if(enemy != null)
+                    {
+						Enemy enemyScript = enemy.GetComponent<StormTrooper>();
+
+						if (enemyScript != null)
+							enemyScript.turretMode = TurretSpawnPoint(randomIndex);
+					}
+					
 					break;
 				}
 			}
 		}
+	}
+
+	private bool TurretSpawnPoint(int index)
+	{
+		bool turret = false;
+
+		switch (index)
+		{
+			case 0:
+				turret = turretSpawnPoint0;
+				break;
+			case 1:
+				turret = turretSpawnPoint1;
+				break;
+			case 2:
+				turret = turretSpawnPoint2;
+				break;
+			case 3:
+				turret = turretSpawnPoint3;
+				break;
+			case 4:
+				turret = turretSpawnPoint4;
+				break;
+			case 5:
+				turret = turretSpawnPoint5;
+				break;
+			default:
+				turret = false;
+				break;
+		}
+
+		return turret;
 	}
 }

@@ -4,8 +4,8 @@ using DiamondEngine;
 
 public class Enemy : DiamondComponent
 {
-	public GameObject player;
-	public GameObject shootPoint;
+	public GameObject player = null;
+	public GameObject shootPoint = null;
 
 	public float wanderSpeed = 3.5f;
 	public float runningSpeed = 7.5f;
@@ -25,6 +25,7 @@ public class Enemy : DiamondComponent
 
 	public float slerpSpeed = 1000.5f;
 	//private float timeCount = 0.0f;
+	public bool turretMode = false;
 
 	protected STATES currentState = STATES.WANDER;
 
