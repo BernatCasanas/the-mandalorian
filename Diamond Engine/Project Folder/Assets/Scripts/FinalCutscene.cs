@@ -52,9 +52,9 @@ public class FinalCutscene : DiamondComponent
 		"Bo Katan",
 		"Mando",
 		"Bo Katan",
-		"Mando",
 		"Bo Katan",
 		"Mando",
+		"Bo Katan",
 		"Mando",
 		"Bo Katan",
 		"Mando",
@@ -62,15 +62,10 @@ public class FinalCutscene : DiamondComponent
 	};
 
 	private bool startMenu = true;
-	public void Update()
-	{
-		if (startMenu == true)
-		{
-			gui.Enable(false);
-			startMenu = false;
-		}
 
-		if (Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN && ++index < texts.Count)
+	public void OnExecuteButton()
+    {
+		if (++index < texts.Count)
 		{
 
 			text.GetComponent<Text>().text = texts[index];
@@ -93,7 +88,20 @@ public class FinalCutscene : DiamondComponent
 			gui.Enable(true);
 			gui.GetComponent<HUD>().UpdateCombo(0, 0, 0);
 			gui_not_enabled = false;
+			Time.ResumeGame();
+
 		}
+	}
+	public void Update()
+	{
+		if (startMenu == true)
+		{
+			gui.Enable(false);
+			startMenu = false;
+			Time.PauseGame();
+		}
+
+
 	}
 
 

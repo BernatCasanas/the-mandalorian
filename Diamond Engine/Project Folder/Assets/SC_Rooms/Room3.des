@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        -19.76335334777832,
-        41.261680603027344,
-        -28.991212844848633
+        -25.740453720092773,
+        33.914768218994141,
+        -27.076593399047852
     ],
     "EditorCameraZ": [
-        0.21636137366294861,
-        -0.77182632684707642,
-        0.59788954257965088
+        0.34845632314682007,
+        -0.81429934501647949,
+        0.46421420574188232
     ],
     "EditorCameraY": [
-        0.26271218061447144,
-        0.63583338260650635,
-        0.72573977708816528
+        0.48891717195510864,
+        0.58044517040252686,
+        0.65118622779846191
     ],
     "tags": [
         "Player",
@@ -1628,20 +1628,20 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                0,
+                -31.576152801513672,
                 18,
-                -20
+                -21.931879043579102
             ],
             "Rotation": [
-                0.24263928830623627,
+                0.24263931810855865,
                 0.39558207988739014,
-                -0.10866379737854004,
-                0.87910926342010498
+                -0.10866367816925049,
+                0.87910932302474976
             ],
             "Scale": [
+                0.99999988079071045,
                 1,
-                1,
-                0.99999994039535522
+                0.99999964237213135
             ],
             "UID": 476066538,
             "PrefabID": 0,
@@ -10579,6 +10579,173 @@
             ]
         },
         {
+            "name": "Button",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1215076780,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1662765934,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        54.099998474121094,
+                        -22.100000381469727
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7.0999999046325684,
+                        10.800000190734863
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/356214008.dds",
+                    "Pressed_UID": 356214008,
+                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/828696110.dds",
+                    "Hovered_UID": 828696110,
+                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/861183043.dds",
+                    "Unhovered_UID": 861183043,
+                    "Script_Name": "TextController",
+                    "ButtonState": 1,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/button_hover.png",
+                    "LibraryPath": "Library\/Textures\/828696110.dds",
+                    "UID": 828696110
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1215076780,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "TextController",
+                    "gui": 188057911,
+                    "dialog": 162634475,
+                    "text": 233430036,
+                    "mandoimage": 1438875911,
+                    "groguimage": 565022676
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 45620147,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1215076780,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -2.5999999046325684,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        20,
+                        20
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "A",
+                    "maxTextLenght": 0,
+                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
             "name": "XWing",
             "tag": "Untagged",
             "layer": "Default",
@@ -12483,48 +12650,6 @@
                 {
                     "Type": 1,
                     "Active": true
-                }
-            ]
-        },
-        {
-            "name": "TextController",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1916175676,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 1676501951,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "TextController",
-                    "gui": 188057911,
-                    "dialog": 162634475,
-                    "text": 233430036,
-                    "mandoimage": 1438875911,
-                    "groguimage": 565022676
                 }
             ]
         },
