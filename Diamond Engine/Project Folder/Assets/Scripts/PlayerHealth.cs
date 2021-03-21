@@ -3,7 +3,6 @@ using DiamondEngine;
 
 public class PlayerHealth : DiamondComponent
 {
-    public int startHealth;
     public static int currMaxHealth { get; private set; }
     public static int currHealth { get; private set; }
 
@@ -11,17 +10,12 @@ public class PlayerHealth : DiamondComponent
     //0 means this boon is not working else heal the amount stored here
     public static int healWhenKillingAnEnemy { get; private set; }
 
-    static bool firstFrame = true;//Only Once in the game?
+   
     private bool die = false;
+
     public void Update()
     {
-        if (firstFrame)
-        {
-            firstFrame = false;
-            ResetMaxAndCurrentHPToDefault();
-
-        }
-        if(die)
+        if (die)
         {
             die = false;
             Die();
@@ -29,19 +23,19 @@ public class PlayerHealth : DiamondComponent
     }
 
     //Increments the max Hp by the percentatge given as a parameter (1 = 100% 0 = 0%) It can also be negative to substract HP
-    public int IncrementMaxHpPercent(float percent,bool alsoRestoreAllHP=false)
+    public int IncrementMaxHpPercent(float percent, bool alsoRestoreAllHP = false)
     {
         currMaxHealth += (int)(currMaxHealth * percent);
 
         if (currMaxHealth < 1)
             currMaxHealth = 1;
 
-        if(alsoRestoreAllHP)
+        if (alsoRestoreAllHP)
         {
             currHealth = currMaxHealth;
         }
 
-        if(Core.instance.hud!=null)
+        if (Core.instance.hud != null)
             Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
         return currMaxHealth;
     }
@@ -125,7 +119,7 @@ public class PlayerHealth : DiamondComponent
 
         if (currHealth <= 0)
         {
-            die=true;
+            die = true;
         }
     }
 
@@ -137,12 +131,12 @@ public class PlayerHealth : DiamondComponent
         if (Core.instance.hud != null)
             Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
 
-        if (currHealth<=0)
+        if (currHealth <= 0)
         {
             die = true;
         }
 
-        if (currHealth < 75 && currHealth >= 50 && MusicSourceLocate.instance!=null)
+        if (currHealth < 75 && currHealth >= 50 && MusicSourceLocate.instance != null)
         {
             Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Injured");
         }
@@ -156,7 +150,7 @@ public class PlayerHealth : DiamondComponent
         return currHealth;
     }
 
-    
+
     public void Die()
     {
         ResetMaxAndCurrentHPToDefault();
@@ -170,16 +164,13 @@ public class PlayerHealth : DiamondComponent
 
     }
 
-    public void ResetMaxAndCurrentHPToDefault()
+    public static void ResetMaxAndCurrentHPToDefault()
     {
-        if (startHealth <= 0)
-            startHealth = 1;
 
         healWhenKillingAnEnemy = 0;
 
-        currHealth = currMaxHealth = startHealth;
-        if (Core.instance.hud != null)
-            Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
+        currHealth = currMaxHealth = 50;//TODO set the starting heath here for now
+
     }
 
 }
