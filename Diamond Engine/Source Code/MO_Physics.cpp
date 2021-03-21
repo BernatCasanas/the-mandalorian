@@ -58,7 +58,7 @@ ModulePhysics::ModulePhysics(Application* app, bool start_enabled) : Module(app,
 	mScene = nullptr;
 	mDispatcher = nullptr;
 
-	gravity = float3(0.0f, -9.81f, 0.0f);
+	gravity = float3(0.0f, -150.81f, 0.0f);
 }
 
 ModulePhysics::~ModulePhysics() {
