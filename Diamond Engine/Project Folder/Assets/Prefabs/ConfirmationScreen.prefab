@@ -3,6 +3,8 @@
     "Game Objects": [
         {
             "name": "ConfirmationScreen",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -20,9 +22,10 @@
                 1,
                 1
             ],
-            "UID": 1187901384,
-            "PrefabID": 0,
-            "ParentUID": 35833098,
+            "UID": 1453379877,
+            "PrefabID": 831126668,
+            "DontDestroy": false,
+            "ParentUID": 1596603939,
             "Components": [
                 {
                     "Type": 1,
@@ -32,6 +35,8 @@
         },
         {
             "name": "Image",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -49,9 +54,10 @@
                 1,
                 1
             ],
-            "UID": 1507601691,
+            "UID": 625937271,
             "PrefabID": 0,
-            "ParentUID": 1187901384,
+            "DontDestroy": false,
+            "ParentUID": 1453379877,
             "Components": [
                 {
                     "Type": 1,
@@ -80,15 +86,14 @@
                 },
                 {
                     "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Assets\/Jet\/atlasjet-black.png",
-                    "LibraryPath": "Library\/Textures\/934250681.dds",
-                    "UID": 934250681
+                    "Active": true
                 }
             ]
         },
         {
             "name": "Yes",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -106,9 +111,10 @@
                 1,
                 1
             ],
-            "UID": 326598339,
+            "UID": 1640579367,
             "PrefabID": 0,
-            "ParentUID": 1507601691,
+            "DontDestroy": false,
+            "ParentUID": 625937271,
             "Components": [
                 {
                     "Type": 1,
@@ -138,25 +144,13 @@
                 {
                     "Type": 7,
                     "Active": true,
-                    "Pressed_AssetsPath": "Assets\/Jet\/atlasjet-black.png",
-                    "Pressed_LibraryPath": "Library\/Textures\/934250681.dds",
-                    "Pressed_UID": 934250681,
-                    "Hovered_AssetsPath": "Assets\/Jet\/atlasjet-white.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/481961565.dds",
-                    "Hovered_UID": 481961565,
-                    "Unhovered_AssetsPath": "Assets\/Jet\/window.png",
-                    "Unhovered_LibraryPath": "Library\/Textures\/1721814459.dds",
-                    "Unhovered_UID": 1721814459,
                     "Script_Name": "Confirmation",
                     "ButtonState": 1,
                     "Is Selected": true
                 },
                 {
                     "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Assets\/Jet\/atlasjet-white.png",
-                    "LibraryPath": "Library\/Textures\/481961565.dds",
-                    "UID": 481961565
+                    "Active": true
                 },
                 {
                     "Type": 17,
@@ -164,49 +158,49 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 326598339,
+                            "UID": 0,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 13,
-                            "UID": 546105083,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 14,
-                            "UID": 546105083,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 17,
-                            "UID": 546105083,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 18,
-                            "UID": 546105083,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 21,
-                            "UID": 546105083,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 22,
-                            "UID": 546105083,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -220,14 +214,14 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Confirmation",
-                    "confirmationWindow": 1187901384,
-                    "toDisable": false,
-                    "firstFrame": true
+                    "confirmationWindow": 1453379877
                 }
             ]
         },
         {
             "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -245,9 +239,10 @@
                 1,
                 1
             ],
-            "UID": 1331497055,
+            "UID": 563376918,
             "PrefabID": 0,
-            "ParentUID": 326598339,
+            "DontDestroy": false,
+            "ParentUID": 1640579367,
             "Components": [
                 {
                     "Type": 1,
@@ -290,6 +285,8 @@
         },
         {
             "name": "No",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -307,9 +304,10 @@
                 1,
                 1
             ],
-            "UID": 546105083,
+            "UID": 1223079270,
             "PrefabID": 0,
-            "ParentUID": 1507601691,
+            "DontDestroy": false,
+            "ParentUID": 625937271,
             "Components": [
                 {
                     "Type": 1,
@@ -339,25 +337,13 @@
                 {
                     "Type": 7,
                     "Active": true,
-                    "Pressed_AssetsPath": "Assets\/Jet\/atlasjet-black.png",
-                    "Pressed_LibraryPath": "Library\/Textures\/934250681.dds",
-                    "Pressed_UID": 934250681,
-                    "Hovered_AssetsPath": "Assets\/Jet\/atlasjet-white.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/481961565.dds",
-                    "Hovered_UID": 481961565,
-                    "Unhovered_AssetsPath": "Assets\/Jet\/window.png",
-                    "Unhovered_LibraryPath": "Library\/Textures\/1721814459.dds",
-                    "Unhovered_UID": 1721814459,
                     "Script_Name": "Confirmation",
                     "ButtonState": 2,
                     "Is Selected": false
                 },
                 {
                     "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Assets\/Jet\/window.png",
-                    "LibraryPath": "Library\/Textures\/1721814459.dds",
-                    "UID": 1721814459
+                    "Active": true
                 },
                 {
                     "Type": 17,
@@ -365,49 +351,49 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 546105083,
+                            "UID": 0,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 13,
-                            "UID": 326598339,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 14,
-                            "UID": 326598339,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 17,
-                            "UID": 326598339,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 18,
-                            "UID": 326598339,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 21,
-                            "UID": 326598339,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 22,
-                            "UID": 326598339,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -421,14 +407,14 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Confirmation",
-                    "confirmationWindow": 1187901384,
-                    "toDisable": false,
-                    "firstFrame": true
+                    "confirmationWindow": 1453379877
                 }
             ]
         },
         {
             "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -446,9 +432,10 @@
                 1,
                 1
             ],
-            "UID": 1877359753,
+            "UID": 2127769473,
             "PrefabID": 0,
-            "ParentUID": 546105083,
+            "DontDestroy": false,
+            "ParentUID": 1223079270,
             "Components": [
                 {
                     "Type": 1,
@@ -491,6 +478,8 @@
         },
         {
             "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -508,9 +497,10 @@
                 1,
                 1
             ],
-            "UID": 1366156252,
+            "UID": 1869026026,
             "PrefabID": 0,
-            "ParentUID": 1507601691,
+            "DontDestroy": false,
+            "ParentUID": 625937271,
             "Components": [
                 {
                     "Type": 1,
