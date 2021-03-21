@@ -44,6 +44,7 @@ public class Core : DiamondComponent
     private float dashSpeed = 0.0f;
     private float dashTimer = 0.0f;
     private float timeBetweenDashes = .5f;
+    private float dashStartYPos = 0.0f;
 
     // Shooting
     public float fireRate = 0.2f;
@@ -392,6 +393,7 @@ public class Core : DiamondComponent
             dashAvaliable = false;
             dashingCounter = 0.0f;
             dashTimer = 0f;
+            dashStartYPos = this.gameObject.transform.localPosition.y;
             ChangeState(State.Dash);
         }
         else if (Input.GetRightTrigger() == 0)
@@ -417,6 +419,7 @@ public class Core : DiamondComponent
             dashingCounter += Time.deltaTime;
             gameObject.transform.localPosition += gameObject.transform.GetForward().normalized * dashSpeed * Time.deltaTime;
 
+            gameObject.transform.localPosition.y = dashStartYPos;
         }
         else
         {
