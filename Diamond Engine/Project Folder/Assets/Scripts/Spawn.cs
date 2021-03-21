@@ -23,12 +23,13 @@ public class Spawn : DiamondComponent
 	public float timeBetweenSpawns = 8.0f;
 
 	bool fightEndMusicPlayed = false;
+
 	public void Update()
 	{
 		timePassed += Time.deltaTime;
 		if(!doneSpawning)
         {
-			if(timePassed > timeBetweenSpawns)
+			if (timePassed > timeBetweenSpawns)
             {
 				SpawnWave();
 				wave++;
@@ -36,7 +37,6 @@ public class Spawn : DiamondComponent
 
 				if (wave >= maxWaves)
 					doneSpawning = true;
-				
 			}
 
 			//Debug.Log("Spawn enemies: " + spawnEnemies.ToString());
@@ -50,7 +50,8 @@ public class Spawn : DiamondComponent
 
 	private void SpawnPrefab(Vector3 position)
 	{
-		InternalCalls.CreatePrefab("Library/Prefabs/44509991.prefab", position, Quaternion.identity, Vector3.one);
+		InternalCalls.CreatePrefab("Library/Prefabs/489054570.prefab", position, Quaternion.identity, Vector3.one);
+		Counter.roomEnemies++;
 	}
 
 	private GameObject IntToGameObject(int index)
@@ -78,19 +79,22 @@ public class Spawn : DiamondComponent
 				spawnPoint = spawnPoint5;
 				break;
 			default:
+				spawnPoint = spawnPoint0;
 				break;
         }
 
 		return spawnPoint;
     }
 
-	void SpawnWave()
+	private void SpawnWave()
     {
-		if(wave == 0)
+		/*
+		if (wave == 0)
         {
 			Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Combat");
 			Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Healthy");
 		}
+		*/
 
 		int[] spawnPoints = new int[maxSpawnPoints];
 		int spawnEnemies = 0;
@@ -111,6 +115,10 @@ public class Spawn : DiamondComponent
 				if (spawnPoints[randomIndex] == 0)
 				{
 					GameObject spawnPoint = IntToGameObject(randomIndex);
+
+					if (spawnPoint == null)
+						Debug.Log("Null spawn");
+
 					SpawnPrefab(spawnPoint.transform.globalPosition);
 					spawnPoints[randomIndex] = 1;
 					spawnEnemies++;
@@ -120,71 +128,3 @@ public class Spawn : DiamondComponent
 		}
 	}
 }
-
-
-/*
- //please don't judge this code, I hope it disappears soon
-		if(timePassed > timeBetweenSpawns)
-        {
-			if (!doneSpawning)
-			{
-				Debug.Log("Spawning wave: " + wave.ToString());
-				if (wave == 0)
-                {
-					if (spawnPoint0 != null)
-					{
-						SpawnPrefab(spawnPoint0.transform.globalPosition);
-						Counter.roomEnemies++;
-					}
-
-					if (spawnPoint1 != null)
-					{
-						SpawnPrefab(spawnPoint1.transform.globalPosition);
-						Counter.roomEnemies++;
-					}
-
-					if (spawnPoint2 != null)
-					{
-						SpawnPrefab(spawnPoint2.transform.globalPosition);
-						Counter.roomEnemies++;
-					}
-					timePassed = 0.0f;
-				}
-				else if(wave == 1)
-                {
-					if (spawnPoint3 != null)
-					{
-						SpawnPrefab(spawnPoint3.transform.globalPosition);
-						Counter.roomEnemies++;
-					}
-
-					if (spawnPoint4 != null)
-					{
-						SpawnPrefab(spawnPoint4.transform.globalPosition);
-						Counter.roomEnemies++;
-					}
-
-					timePassed = 0.0f;
-				}
-				else
-                {
-					if (spawnPoint5 != null)
-					{
-						SpawnPrefab(spawnPoint5.transform.globalPosition);
-						Counter.roomEnemies++;
-					}
-
-					if (spawnPoint6 != null)
-					{
-						SpawnPrefab(spawnPoint6.transform.globalPosition);
-						Counter.roomEnemies++;
-					}
-
-					timePassed = 0.0f;
-					doneSpawning = true;
-				}
-
-				wave++;
-			}
-		} 
- */
