@@ -9,7 +9,7 @@ public class Settings : DiamondComponent
 	public GameObject aux_bar_1 = null;
 	public GameObject aux_bar_2 = null;
 	public GameObject aux_bar_3 = null;
-
+	private Pause aux = null;
 
 	public void OnExecuteCheckbox(bool active)
 	{
@@ -101,7 +101,8 @@ public class Settings : DiamondComponent
 			bigBrother.Enable(true);
 			if (bigBrother.Name == "PauseMenu")
 			{
-				bigBrother.GetComponent<Pause>().DisplayBoons();
+				aux = bigBrother.GetComponent<Pause>();
+				aux.DisplayBoons();
 			}
 			settingsWindow.Enable(false);
 		}

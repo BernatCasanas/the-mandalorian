@@ -5,6 +5,7 @@ public class QuitConfirmation : DiamondComponent
 {
 	public GameObject confirmScreen = null;
 	public GameObject bigBrother = null;
+	private Pause aux = null;
 	public void OnExecuteButton()
 	{
 		if (gameObject.Name == "Cancel")
@@ -12,7 +13,8 @@ public class QuitConfirmation : DiamondComponent
 			bigBrother.Enable(true);
 			if (bigBrother.Name == "PauseMenu")
 			{
-				bigBrother.GetComponent<Pause>().DisplayBoons();
+				aux = bigBrother.GetComponent<Pause>();
+				aux.DisplayBoons();
 			}
 			confirmScreen.Enable(false);
 		}

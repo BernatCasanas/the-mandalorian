@@ -90,6 +90,7 @@ public class Core : DiamondComponent
     public GameObject pause;
 
     private Vector3 mySpawnPos = new Vector3(0.0f, 0.0f, 0.0f);
+    private Pause aux = null;
 
     public void Update()
     {
@@ -537,6 +538,8 @@ public class Core : DiamondComponent
         {
             Audio.StopAudio(gameObject);
             pause.Enable(true);
+            aux = pause.GetComponent<Pause>();
+            aux.DisplayBoons();
             background.Enable(true);
             Time.PauseGame();
         }

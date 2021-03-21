@@ -5,6 +5,7 @@ public class Return : DiamondComponent
 {
 	public GameObject controlsWindow = null;
 	public GameObject bigBrother = null;
+	private Pause aux = null;
 	public void OnExecuteButton()
 	{
 		if (gameObject.Name == "Return")
@@ -13,7 +14,8 @@ public class Return : DiamondComponent
 			bigBrother.Enable(true);
 			if (bigBrother.Name == "PauseMenu")
 			{
-				bigBrother.GetComponent<Pause>().DisplayBoons();
+				aux = bigBrother.GetComponent<Pause>();
+				aux.DisplayBoons();
 			}
 			controlsWindow.Enable(false);
 		}
