@@ -93,9 +93,9 @@ public class Pause : DiamondComponent
 					}
 					else
 					{
-						leftImage.Enable(false);
-						leftText.Enable(false);
-						leftX.Enable(false);
+						rightImage.Enable(false);
+						rightText.Enable(false);
+						rightX.Enable(false);
 					}
 
 					if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.WRECKER_RES))
@@ -105,9 +105,9 @@ public class Pause : DiamondComponent
 					}
 					else
 					{
-						rightImage.Enable(false);
-						rightText.Enable(false);
-						rightX.Enable(false);
+						leftImage.Enable(false);
+						leftText.Enable(false);
+						leftX.Enable(false);
 					}
 				}
 
