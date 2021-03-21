@@ -17,13 +17,12 @@ public class EndScreen : DiamondComponent
 	{
 		if (gameObject.Name == "Continue")
 		{
-			Counter.ResetCounters();
+			StaticVariablesInit.InitStaticVars();
 			Time.ResumeGame();
 			SceneManager.LoadScene(1406013733);
 		}
 		else if (gameObject.Name == "Quit")
 		{
-			Counter.ResetCounters();
 			Time.ResumeGame();
 			SceneManager.LoadScene(1726826608);
 		}
@@ -31,7 +30,7 @@ public class EndScreen : DiamondComponent
 	public void Update()
 	{
 		if (firstFrame && gameObject.Name == "End Scene")
-        {
+		{
 			firstFrame = false;
 			Counter.isFinalScene = false;
 			DisplayResults();
@@ -39,7 +38,8 @@ public class EndScreen : DiamondComponent
 	}
 
 	void DisplayResults()
-    {
+	{
+		int bo, wr, boPlace, wrPlace;
 		Debug.Log("Intro display results");
 		if (Counter.gameResult == Counter.GameResult.VICTORY)
 			result.GetComponent<Text>().text = "            VICTORY!";
@@ -53,15 +53,20 @@ public class EndScreen : DiamondComponent
 		if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_STORMTROOP))
 			stormsKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_STORMTROOP].amount.ToString();
 
-		if (Counter.GameCounters[Counter.CounterTypes.BOKATAN_RES].place < Counter.GameCounters[Counter.CounterTypes.WRECKER_RES].place)
-        {
+		bo = Counter.GameCounters.ContainsKey(Counter.CounterTypes.BOKATAN_RES) ? 1 : 0;
+		wr = Counter.GameCounters.ContainsKey(Counter.CounterTypes.WRECKER_RES) ? 1 : 0;
+		boPlace = Counter.GameCounters.ContainsKey(Counter.CounterTypes.BOKATAN_RES) ? Counter.GameCounters[Counter.CounterTypes.BOKATAN_RES].place : 0;
+		wrPlace = Counter.GameCounters.ContainsKey(Counter.CounterTypes.WRECKER_RES) ? Counter.GameCounters[Counter.CounterTypes.WRECKER_RES].place : 0;
+
+		if (bo * boPlace < wr * wrPlace)
+		{
 			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.BOKATAN_RES))
 				leftMultiplier.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.BOKATAN_RES].amount.ToString();
 			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.WRECKER_RES))
 				rightMultiplier.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.WRECKER_RES].amount.ToString();
 		}
-        else
-        {
+		else
+		{
 			leftImage.GetComponent<Image2D>().SwapTwoImages(rightImage);
 
 			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.BOKATAN_RES))
@@ -70,5 +75,5 @@ public class EndScreen : DiamondComponent
 				leftMultiplier.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.WRECKER_RES].amount.ToString();
 		}
 		Debug.Log("End display results");
-    }
+	}
 }
