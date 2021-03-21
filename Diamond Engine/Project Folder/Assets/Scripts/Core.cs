@@ -423,6 +423,7 @@ public class Core : DiamondComponent
         }
         else
         {
+            gameObject.transform.localPosition.y = dashStartYPos;
 
             timeSinceLastDash = 0.0f;
             dashingCounter = 0.0f;
