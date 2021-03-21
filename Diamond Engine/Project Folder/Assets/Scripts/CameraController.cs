@@ -3,7 +3,6 @@ using DiamondEngine;
 
 public class CameraController : DiamondComponent
 {
-	public GameObject reference = null;
 	public GameObject target;
 
 	public float x, y, z;
@@ -15,31 +14,39 @@ public class CameraController : DiamondComponent
 	public float timer;
     private float pointA_zoom;
 
+	public float cornerTopLeftX = -100.0f;
+	public float cornerTopLeftY = -100.0f;
+	public float cornerBotRightX = 100.0f;
+	public float cornerBotRightY = 100.0f;
+
 	public void Update()
 	{
         Vector3 offset = new Vector3(x, y, z);
         Vector3 desiredPosition = target.transform.localPosition + offset;
         Vector3 smoothPosition = Vector3.Lerp(gameObject.transform.localPosition, desiredPosition, 1.0f - (float)Math.Pow(smoothSpeed, Time.deltaTime));
-        gameObject.transform.localPosition = smoothPosition;
-        if (Input.GetKey(DEKeyCode.N) == KeyState.KEY_DOWN)
-        {
-            zooming = true;
-            pointA_zoom = CameraManager.GetOrthSize(reference);
-        }
-        if (zooming && timer_easing_sec!=0.0f)
-        {
-            timer += Time.deltaTime;
-            float t = 0;
+		Vector3 finalPos = new Vector3(Mathf.Clamp(smoothPosition.x, cornerTopLeftX, cornerBotRightX), smoothPosition.y, Mathf.Clamp(smoothPosition.z, cornerTopLeftY, cornerBotRightY));
+		gameObject.transform.localPosition = finalPos;
 
-            t = timer / timer_easing_sec;
+        //ZOOM ALGORITHM || WORKING 
+        //if (Input.GetKey(DEKeyCode.N) == KeyState.KEY_DOWN)
+        //{
+        //    zooming = true;
+        //    pointA_zoom = CameraManager.GetOrthSize(reference);
+        //}
+        //if (zooming && timer_easing_sec!=0.0f)
+        //{
+        //    timer += Time.deltaTime;
+        //    float t = 0;
 
-            if (timer >= timer_easing_sec)
-            {
-                timer = 0;
-                zooming = false;
-            }
-            CameraManager.SetOrthSize(reference, Ease.PointLerp(pointA_zoom, zoomDesired, Ease.OutCubic(t)));
-        }
+        //    t = timer / timer_easing_sec;
+
+        //    if (timer >= timer_easing_sec)
+        //    {
+        //        timer = 0;
+        //        zooming = false;
+        //    }
+        //    CameraManager.SetOrthSize(reference, Ease.PointLerp(pointA_zoom, zoomDesired, Ease.OutCubic(t)));
+        //}
     }
 
 
