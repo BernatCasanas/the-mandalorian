@@ -227,6 +227,25 @@ public class StormTrooper : Enemy
                 }
 			}
 		}
+		else if (collidedGameObject.CompareTag("Grenade"))
+		{
+			Debug.Log("Collision Grenade");
+
+			if (currentState != STATES.DIE)
+			{
+				currentState = STATES.DIE;
+				timePassed = 0.0f;
+				Animator.Play(gameObject, "ST_Die", 1.0f);
+				//Play Sound("Die")
+				Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
+				if (Core.instance.hud != null)
+				{
+					Core.instance.hud.GetComponent<HUD>().ComboIncrease(++Core.instance.hud.GetComponent<HUD>().combo_number, 5);
+				}
+			}
+		}
+
+
 	}
 
 	

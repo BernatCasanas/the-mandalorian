@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        2.4063401222229004,
-        9.7614946365356445,
-        0.74949765205383301
+        -6.5102763175964355,
+        16.795032501220703,
+        1.0806288719177246
     ],
     "EditorCameraZ": [
-        0.74159127473831177,
-        -0.23267802596092224,
-        -0.62920844554901123
+        0.4205823540687561,
+        -0.58715730905532837,
+        0.69163382053375244
     ],
     "EditorCameraY": [
-        0.17722272872924805,
-        0.9725537896156311,
-        -0.15076887607574463
+        0.30540060997009277,
+        0.80947279930114746,
+        0.50148206949234009
     ],
     "tags": [
         "Enemy",
@@ -49,133 +49,6 @@
                 {
                     "Type": 1,
                     "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Room1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 684293915,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 1676501951,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Portal",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                9.6806926727294922,
-                7.788670539855957
-            ],
-            "Rotation": [
-                -0.70713216066360474,
-                0,
-                0,
-                0.7070813775062561
-            ],
-            "Scale": [
-                3.1256139278411865,
-                0.99986422061920166,
-                3.2228374481201172
-            ],
-            "UID": 785570981,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 684293915,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/1313575480.mmh",
-                    "UID": 1313575480,
-                    "alternColor": [
-                        1,
-                        0.92857116460800171,
-                        0
-                    ]
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
-                },
-                {
-                    "Type": 15,
-                    "Active": true,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "RoomSwitch",
-                    "roomID": 0,
-                    "currentroom": 0,
-                    "visited": 0,
-                    "finalScene": 0
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
-                    "MaterialUID": 1051418604
                 }
             ]
         },
@@ -10012,6 +9885,283 @@
             ]
         },
         {
+            "name": "Dialog",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 2127558681,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 272055130,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 562775364,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 2127558681,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -45.299999237060547,
+                        -52.599998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        8.8000001907348633,
+                        14.200000762939453
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Look who we got here. I honestly didn’t know if you were going to make it.",
+                    "maxTextLenght": 1120,
+                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Mando",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 903949909,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 2127558681,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76.599998474121094,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/270516236.dds",
+                    "UID": 270516236
+                }
+            ]
+        },
+        {
+            "name": "BoKata",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1999432693,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 2127558681,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -84.599998474121094,
+                        -15.699999809265137
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.400001525878906,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1201843441.dds",
+                    "UID": 1201843441
+                }
+            ]
+        },
+        {
+            "name": "TextBox",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 4082169,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 2127558681,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        3.4000000953674316,
+                        -66.199996948242188
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        58.600002288818359,
+                        32.599998474121094
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1848582122.dds",
+                    "UID": 1848582122
+                }
+            ]
+        },
+        {
             "name": "Grogu",
             "tag": "Untagged",
             "layer": "Default",
@@ -10448,7 +10598,13 @@
                     "wave": 0,
                     "maxWaves": 1,
                     "timePassed": 0,
-                    "timeBetweenSpawns": 0.20000000298023224
+                    "timeBetweenSpawns": 0.20000000298023224,
+                    "turretSpawnPoint0": true,
+                    "turretSpawnPoint1": true,
+                    "turretSpawnPoint2": true,
+                    "turretSpawnPoint3": true,
+                    "turretSpawnPoint4": true,
+                    "turretSpawnPoint5": true
                 }
             ]
         },
@@ -10459,7 +10615,7 @@
             "Active": true,
             "Position": [
                 6.4454240798950195,
-                0,
+                -1.7079999446868896,
                 -4.5393295288085938
             ],
             "Rotation": [
@@ -10491,7 +10647,7 @@
             "Active": true,
             "Position": [
                 -6.3114132881164551,
-                0,
+                -1.7079999446868896,
                 -4.7920198440551758
             ],
             "Rotation": [
@@ -10523,7 +10679,7 @@
             "Active": true,
             "Position": [
                 7.0727901458740234,
-                0,
+                -1.7079999446868896,
                 4.0835075378417969
             ],
             "Rotation": [
@@ -10555,7 +10711,7 @@
             "Active": true,
             "Position": [
                 -7.7097911834716797,
-                0,
+                -1.7079999446868896,
                 2.2287373542785645
             ],
             "Rotation": [
@@ -10587,7 +10743,7 @@
             "Active": true,
             "Position": [
                 -5.0800423622131348,
-                0,
+                -1.7079999446868896,
                 -14.946985244750977
             ],
             "Rotation": [
@@ -10619,7 +10775,7 @@
             "Active": true,
             "Position": [
                 11.622203826904297,
-                0,
+                -1.7079999446868896,
                 -7.3401031494140625
             ],
             "Rotation": [
@@ -17621,6 +17777,48 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "TextController",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 2133487539,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FinalCutscene",
+                    "gui": 2023668719,
+                    "dialog": 2127558681,
+                    "text": 562775364,
+                    "mandoimage": 903949909,
+                    "boimage": 1999432693
                 }
             ]
         }

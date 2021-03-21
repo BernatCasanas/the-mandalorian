@@ -3,7 +3,7 @@ using DiamondEngine;
 
 public class Spawn : DiamondComponent
 {
-	bool doneSpawning = false;
+	private bool doneSpawning = false;
 
 	public GameObject spawnPoint0 = null;
 	public GameObject spawnPoint1 = null;
@@ -22,7 +22,7 @@ public class Spawn : DiamondComponent
 	public float timePassed = 0.0f;
 	public float timeBetweenSpawns = 8.0f;
 
-	bool fightEndMusicPlayed = false;
+	private bool fightEndMusicPlayed = false;
 
 	public bool turretSpawnPoint0 = false;
 	public bool turretSpawnPoint1 = false;
@@ -50,7 +50,7 @@ public class Spawn : DiamondComponent
 
 			//Debug.Log("Spawn enemies: " + spawnEnemies.ToString());
 		
-			if(Counter.roomEnemies <= 0 && !fightEndMusicPlayed)
+			if(Counter.roomEnemies <= 0 && !fightEndMusicPlayed && MusicSourceLocate.instance != null)
             {
 				//Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
 			}
