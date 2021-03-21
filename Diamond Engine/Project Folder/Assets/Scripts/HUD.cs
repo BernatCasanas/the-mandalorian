@@ -29,8 +29,14 @@ public class HUD : DiamondComponent
 
 	private float combo_time_limit;
 	private float combo_time;
+	private bool start = true;
 	public void Update()
 	{
+        if (start)
+        {
+			UpdateHP(PlayerHealth.currHealth, PlayerHealth.currMaxHealth);
+			start = false;
+        }
 		if(Input.GetKey(DEKeyCode.C) == KeyState.KEY_DOWN)
         {
 			currency++;
@@ -41,7 +47,7 @@ public class HUD : DiamondComponent
 			if (hp < max_hp)
 			{
 				hp+=5;
-				UpdateHP(hp, max_hp);
+				//UpdateHP(hp, max_hp);
 			}
 		}
 		if (Input.GetKey(DEKeyCode.D) == KeyState.KEY_DOWN)
@@ -49,7 +55,7 @@ public class HUD : DiamondComponent
 			if (hp > 0)
 			{
 				hp-=5;
-				UpdateHP(hp, max_hp);
+				//UpdateHP(hp, max_hp);
 			}
 		}
 		if (Input.GetKey(DEKeyCode.F) == KeyState.KEY_DOWN)

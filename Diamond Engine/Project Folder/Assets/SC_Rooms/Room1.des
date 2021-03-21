@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        -17.844635009765625,
-        36.770069122314453,
-        -7.1721057891845703
+        -13.132884979248047,
+        23.133438110351563,
+        -18.158164978027344
     ],
     "EditorCameraZ": [
-        0.36667412519454956,
-        -0.82369667291641235,
-        0.43252062797546387
+        0.56548500061035156,
+        -0.46880415081977844,
+        0.67856431007385254
     ],
     "EditorCameraY": [
-        0.53308063745498657,
-        0.56703066825866699,
-        0.62793415784835815
+        0.30040937662124634,
+        0.88330209255218506,
+        0.35990503430366516
     ],
     "tags": [
         "Enemy",
@@ -9888,7 +9888,7 @@
             "name": "Dialog",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "Position": [
                 0,
                 0,
@@ -9970,7 +9970,7 @@
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "Look who we got here. I honestly didn’t know if you were going to make it.",
+                    "text": "Look who we got here. I honestly didn’t know if you     were going to make it.",
                     "maxTextLenght": 1120,
                     "fontName": "Assets\/Fonts\/renner-medium.ttf",
                     "textColor": [
@@ -10158,6 +10158,173 @@
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1848582122.dds",
                     "UID": 1848582122
+                }
+            ]
+        },
+        {
+            "name": "Button",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1195526494,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 4082169,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        50.200000762939453,
+                        -14.600000381469727
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7.9000000953674316,
+                        12.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/356214008.dds",
+                    "Pressed_UID": 356214008,
+                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/828696110.dds",
+                    "Hovered_UID": 828696110,
+                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/861183043.dds",
+                    "Unhovered_UID": 861183043,
+                    "Script_Name": "FinalCutscene",
+                    "ButtonState": 1,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/button_hover.png",
+                    "LibraryPath": "Library\/Textures\/828696110.dds",
+                    "UID": 828696110
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1195526494,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FinalCutscene",
+                    "gui": 2023668719,
+                    "dialog": 2127558681,
+                    "text": 562775364,
+                    "mandoimage": 903949909,
+                    "boimage": 1999432693
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 2050364413,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1195526494,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -3.2000000476837158,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        20,
+                        20
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "A",
+                    "maxTextLenght": 0,
+                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
@@ -17801,7 +17968,7 @@
                 1,
                 1
             ],
-            "UID": 2133487539,
+            "UID": 638031395,
             "PrefabID": 0,
             "DontDestroy": false,
             "ParentUID": 1676501951,
@@ -17813,12 +17980,8 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "FinalCutscene",
-                    "gui": 2023668719,
-                    "dialog": 2127558681,
-                    "text": 562775364,
-                    "mandoimage": 903949909,
-                    "boimage": 1999432693
+                    "ScriptName": "R1TextController",
+                    "dialog": 2127558681
                 }
             ]
         }
