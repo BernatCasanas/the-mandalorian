@@ -27,6 +27,7 @@ public class Spawn : DiamondComponent
 	public void Update()
 	{
 		timePassed += Time.deltaTime;
+
 		if(!doneSpawning)
         {
 			if (timePassed > timeBetweenSpawns)
@@ -34,6 +35,7 @@ public class Spawn : DiamondComponent
 				SpawnWave();
 				wave++;
 				maxEnemies += enemyIncreasePerWave;
+				timePassed = 0.0f;
 
 				if (wave >= maxWaves)
 					doneSpawning = true;
@@ -88,13 +90,13 @@ public class Spawn : DiamondComponent
 
 	private void SpawnWave()
     {
-		/*
-		if (wave == 0)
+		
+		if (wave == 0 && MusicSourceLocate.instance != null)
         {
 			Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Combat");
 			Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Healthy");
 		}
-		*/
+	
 
 		int[] spawnPoints = new int[maxSpawnPoints];
 		int spawnEnemies = 0;
