@@ -1905,10 +1905,10 @@
                     "zoomDesired": 0.10000000149011612,
                     "timer_easing_sec": 0,
                     "timer": 0,
-                    "cornerTopLeftX": -100,
-                    "cornerTopLeftY": -100,
-                    "cornerBotRightX": 100,
-                    "cornerBotRightY": 100
+                    "cornerTopLeftX": 0,
+                    "cornerTopLeftY": 0,
+                    "cornerBotRightX": 0,
+                    "cornerBotRightY": 0
                 }
             ]
         },
@@ -3938,8 +3938,7 @@
                     "displayWindow": 418747098,
                     "controlsWindow": 283754907,
                     "quitWindow": 1819838501,
-                    "background": 1123945215,
-                    "default_selected": 304222915
+                    "background": 1123945215
                 }
             ]
         },
@@ -8785,7 +8784,7 @@
             "name": "Image",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": false,
+            "Active": true,
             "Position": [
                 0,
                 0,
@@ -8802,7 +8801,7 @@
                 1,
                 1
             ],
-            "UID": 598311494,
+            "UID": 1266307605,
             "PrefabID": 0,
             "DontDestroy": false,
             "ParentUID": 283754907,
@@ -8820,7 +8819,7 @@
                     ],
                     "Rotation": 0,
                     "Size": [
-                        56,
+                        60,
                         67.900001525878906
                     ]
                 },
@@ -8845,7 +8844,7 @@
             "name": "Return",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": false,
+            "Active": true,
             "Position": [
                 0,
                 0,
@@ -8862,10 +8861,10 @@
                 1,
                 1
             ],
-            "UID": 304222915,
+            "UID": 955607414,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 598311494,
+            "ParentUID": 1266307605,
             "Components": [
                 {
                     "Type": 1,
@@ -8921,14 +8920,14 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 0,
+                            "UID": 955607414,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 1,
-                            "UID": 0,
+                            "UID": 955607414,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -8941,9 +8940,652 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "Return",
-                    "controlsWindow": 283754907,
-                    "bigBrother": 184396232
+                    "ScriptName": "Return"
+                }
+            ]
+        },
+        {
+            "name": "Image",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1300386034,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1266307605,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        -6
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        39.099998474121094,
+                        44.599998474121094
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1464914427.dds",
+                    "UID": 1464914427
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 560482888,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1300386034,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -56.599998474121094,
+                        -10.399999618530273
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        12,
+                        20
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "MOVE",
+                    "maxTextLenght": 0,
+                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1601279458,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1300386034,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -5.0999999046325684,
+                        46.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        13.100000381469727,
+                        18.700000762939453
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "PAUSE",
+                    "maxTextLenght": 0,
+                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 358578707,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1300386034,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        39.099998474121094,
+                        33.900001525878906
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        13.100000381469727,
+                        20
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "DASH",
+                    "maxTextLenght": 0,
+                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 110763672,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1300386034,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -56.700000762939453,
+                        15.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        10.5,
+                        14.399999618530273
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "GROGU SKILL 2",
+                    "maxTextLenght": 180,
+                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 2011315582,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1300386034,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        39,
+                        18.700000762939453
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7.0999999046325684,
+                        12.899999618530273
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "SECONDARY ATTACK",
+                    "maxTextLenght": 288,
+                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 983448140,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1300386034,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        38.799999237060547,
+                        -13.300000190734863
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7.3000001907348633,
+                        11.399999618530273
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "SPECIAL ATTACK",
+                    "maxTextLenght": 185,
+                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 421837639,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1300386034,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        38.700000762939453,
+                        -35.200000762939453
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        10.5,
+                        14.399999618530273
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "PRIMARY ATTACK",
+                    "maxTextLenght": 189,
+                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1919392094,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1300386034,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -56.700000762939453,
+                        36.799999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        10.5,
+                        14.399999618530273
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "GROGU SKILL 1",
+                    "maxTextLenght": 180,
+                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 679558152,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1300386034,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -56.700000762939453,
+                        36.799999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        10.5,
+                        14.399999618530273
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "GROGU SKILL 1",
+                    "maxTextLenght": 180,
+                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
@@ -10198,13 +10840,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        50.200000762939453,
-                        -14.600000381469727
+                        53.599998474121094,
+                        -16.899999618530273
                     ],
                     "Rotation": 0,
                     "Size": [
-                        7.9000000953674316,
-                        12.5
+                        3.0999999046325684,
+                        6.1999998092651367
                     ]
                 },
                 {
@@ -10218,15 +10860,15 @@
                 {
                     "Type": 7,
                     "Active": true,
-                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/button_pressed.png",
-                    "Pressed_LibraryPath": "Library\/Textures\/356214008.dds",
-                    "Pressed_UID": 356214008,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/button_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/828696110.dds",
-                    "Hovered_UID": 828696110,
-                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/button.png",
-                    "Unhovered_LibraryPath": "Library\/Textures\/861183043.dds",
-                    "Unhovered_UID": 861183043,
+                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_right_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/70978250.dds",
+                    "Pressed_UID": 70978250,
+                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1505315464.dds",
+                    "Hovered_UID": 1505315464,
+                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1346482548.dds",
+                    "Unhovered_UID": 1346482548,
                     "Script_Name": "FinalCutscene",
                     "ButtonState": 1,
                     "Is Selected": true
@@ -10234,9 +10876,9 @@
                 {
                     "Type": 11,
                     "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/button_hover.png",
-                    "LibraryPath": "Library\/Textures\/828696110.dds",
-                    "UID": 828696110
+                    "AssetPath": "Assets\/UI\/MENU\/arrow_right_hover.png",
+                    "LibraryPath": "Library\/Textures\/1505315464.dds",
+                    "UID": 1505315464
                 },
                 {
                     "Type": 17,
@@ -10263,71 +10905,6 @@
                     "text": 562775364,
                     "mandoimage": 903949909,
                     "boimage": 1999432693
-                }
-            ]
-        },
-        {
-            "name": "Text",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 2050364413,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 1195526494,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -3.2000000476837158,
-                        0
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        20,
-                        20
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
-                },
-                {
-                    "Type": 9,
-                    "Active": true,
-                    "text": "A",
-                    "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
-                    "textColor": [
-                        1,
-                        1,
-                        1
-                    ]
                 }
             ]
         },
