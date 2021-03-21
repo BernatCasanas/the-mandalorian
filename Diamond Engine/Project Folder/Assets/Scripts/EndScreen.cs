@@ -18,11 +18,13 @@ public class EndScreen : DiamondComponent
 		if (gameObject.Name == "Continue")
 		{
 			Counter.ResetCounters();
+			Time.ResumeGame();
 			SceneManager.LoadScene(1406013733);
 		}
 		else if (gameObject.Name == "Quit")
 		{
 			Counter.ResetCounters();
+			Time.ResumeGame();
 			SceneManager.LoadScene(1726826608);
 		}
 	}
