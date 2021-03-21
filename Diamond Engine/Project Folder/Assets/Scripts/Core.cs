@@ -584,7 +584,6 @@ public class Core : DiamondComponent
             //InternalCalls.Destroy(gameObject);
             float damage = collidedGameObject.GetComponent<BH_Bullet>().damage;
             gameObject.GetComponent<PlayerHealth>().TakeDamage((int)damage);
-
         }
     }
 
