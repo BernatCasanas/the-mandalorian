@@ -21,10 +21,8 @@ public class StormTrooper : Enemy
 	{
 		if (player == null)
         {
-			player = Scene.FindObjectWithTag("Player");
-			
-			if (player == null)
-				Debug.Log("Null player");
+			Debug.Log("Null player");
+			player = Core.instance.gameObject;
         }
 
 		switch (currentState)
@@ -141,7 +139,7 @@ public class StormTrooper : Enemy
 						shotTimes = 0;
 						shotSequences++;
 						
-						if (shotSequences >= maxSequences)
+						if (shotSequences >= maxSequences && !turretMode)
 						{
 							currentState = STATES.RUN;
 							Animator.Play(gameObject, "ST_Run");
