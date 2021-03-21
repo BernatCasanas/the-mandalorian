@@ -5,11 +5,11 @@
   "SchemaVersion": "12",
   "SoundbankVersion": "135",
   "RootPaths": {
-   "ProjectRoot": "C:\\Users\\roger\\OneDrive\\Documentos\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\",
-   "SourceFilesRoot": "C:\\Users\\roger\\OneDrive\\Documentos\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\.cache\\Windows\\",
-   "SoundBanksRoot": "C:\\Users\\roger\\OneDrive\\Documentos\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows\\",
+   "ProjectRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\",
+   "SourceFilesRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\.cache\\Windows\\",
+   "SoundBanksRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows\\",
    "ExternalSourcesInputFile": "",
-   "ExternalSourcesOutputRoot": "C:\\Users\\roger\\OneDrive\\Documentos\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows"
+   "ExternalSourcesOutputRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows"
   },
   "DialogueEvents": [],
   "StreamedFiles": [],
@@ -18,7 +18,7 @@
    {
     "Id": "833070093",
     "Language": "SFX",
-    "Hash": "3180830749",
+    "Hash": "3903376156",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Stormtrooper",
     "ShortName": "Stormtrooper",
     "Path": "Stormtrooper.bnk",
@@ -207,7 +207,7 @@
    {
     "Id": "1093318992",
     "Language": "SFX",
-    "Hash": "321093846",
+    "Hash": "435317850",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Mando",
     "ShortName": "Mando",
     "Path": "Mando.bnk",
@@ -664,7 +664,7 @@
    {
     "Id": "1229948536",
     "Language": "SFX",
-    "Hash": "3650808935",
+    "Hash": "3054327861",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Environment",
     "ShortName": "Environment",
     "Path": "Environment.bnk",
@@ -792,7 +792,7 @@
    {
     "Id": "1551306167",
     "Language": "SFX",
-    "Hash": "1929019777",
+    "Hash": "3429386044",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI",
     "ShortName": "UI",
     "Path": "UI.bnk",
@@ -889,7 +889,7 @@
    {
     "Id": "3795682265",
     "Language": "SFX",
-    "Hash": "2842525525",
+    "Hash": "4220554066",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Bantha",
     "ShortName": "Bantha",
     "Path": "Bantha.bnk",
@@ -1098,7 +1098,7 @@
    {
     "Id": "3991942870",
     "Language": "SFX",
-    "Hash": "1166860754",
+    "Hash": "562557650",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Music",
     "ShortName": "Music",
     "Path": "Music.bnk",
@@ -1438,6 +1438,84 @@
         "ObjectPath": "\\Switches\\Default Work Unit\\Player_Action\\Exploring"
        }
       ]
+     }
+    ]
+   },
+   {
+    "Id": "4179269225",
+    "Language": "SFX",
+    "Hash": "4208834724",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Grogu",
+    "ShortName": "Grogu",
+    "Path": "Grogu.bnk",
+    "IncludedEvents": [
+     {
+      "Id": "192623117",
+      "Name": "Pause_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Pause_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "1559593303",
+      "Name": "Play_Force_Pull",
+      "ObjectPath": "\\Events\\Default Work Unit\\Grogu\\Play_Force_Pull",
+      "DurationType": "OneShot",
+      "DurationMin": "0.640454",
+      "DurationMax": "0.640454",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "220532221",
+        "Language": "SFX",
+        "ShortName": "Force pull.wav",
+        "Path": "SFX\\Force pull_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1240818490",
+      "Name": "Play_Force_Push",
+      "ObjectPath": "\\Events\\Default Work Unit\\Grogu\\Play_Force_Push",
+      "DurationType": "OneShot",
+      "DurationMin": "0.640454",
+      "DurationMax": "0.640454",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "927955603",
+        "Language": "SFX",
+        "ShortName": "Force push.wav",
+        "Path": "SFX\\Force push_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1931338186",
+      "Name": "Resume_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Resume_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "3318621861",
+      "Name": "Stop_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     }
+    ],
+    "GameParameters": [
+     {
+      "Id": "467158820",
+      "Name": "SourceVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
+     },
+     {
+      "Id": "2704707011",
+      "Name": "BusVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\BusVolume"
      }
     ]
    }
