@@ -68,7 +68,6 @@ public class Pause : DiamondComponent
     {
 		if (gameObject.Name == "PauseMenu")
 		{
-			Debug.Log("Displaying boons");
 			int bo, wr, boPlace, wrPlace;
 			leftImage.Enable(true);
 			leftText.Enable(true);
@@ -86,35 +85,11 @@ public class Pause : DiamondComponent
 			{
 				if (bo * boPlace < wr * wrPlace)
 				{
-					rightImage.GetComponent<Image2D>().SwapTwoImages(leftImage);
-					if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.BOKATAN_RES))
-					{
-						leftText.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.BOKATAN_RES].amount.ToString();
-					}
-					else
-					{
-						leftImage.Enable(false);
-						leftText.Enable(false);
-						leftX.Enable(false);
-					}
 
-					if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.WRECKER_RES))
-					{
-						rightText.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.WRECKER_RES].amount.ToString();
-					}
-					else
-					{
-						rightImage.Enable(false);
-						rightText.Enable(false);
-						rightX.Enable(false);
-					}
-				}
-
-				else
-				{
 					if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.BOKATAN_RES))
 					{
 						rightText.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.BOKATAN_RES].amount.ToString();
+						Debug.Log(Counter.GameCounters[Counter.CounterTypes.BOKATAN_RES].amount.ToString());
 					}
 					else
 					{
@@ -126,6 +101,35 @@ public class Pause : DiamondComponent
 					if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.WRECKER_RES))
 					{
 						leftText.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.WRECKER_RES].amount.ToString();
+						Debug.Log(Counter.GameCounters[Counter.CounterTypes.WRECKER_RES].amount.ToString());
+					}
+					else
+					{
+						rightImage.Enable(false);
+						rightText.Enable(false);
+						rightX.Enable(false);
+					}
+				}
+
+				else
+				{
+					rightImage.GetComponent<Image2D>().SwapTwoImages(leftImage);
+					if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.BOKATAN_RES))
+					{
+						leftText.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.BOKATAN_RES].amount.ToString();
+						Debug.Log(Counter.GameCounters[Counter.CounterTypes.BOKATAN_RES].amount.ToString());
+					}
+					else
+					{
+						leftImage.Enable(false);
+						leftText.Enable(false);
+						leftX.Enable(false);
+					}
+
+					if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.WRECKER_RES))
+					{
+						rightText.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.WRECKER_RES].amount.ToString();
+						Debug.Log(Counter.GameCounters[Counter.CounterTypes.WRECKER_RES].amount.ToString());
 					}
 					else
 					{

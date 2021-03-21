@@ -5,6 +5,7 @@ public class DisSett : DiamondComponent
 {
 	public GameObject displayScreen = null;
 	public GameObject bigBrother = null;
+	private Pause aux = null;
 
 	public void OnExecuteCheckbox(bool active)
     {
@@ -20,7 +21,8 @@ public class DisSett : DiamondComponent
 			bigBrother.Enable(true);
 			if (bigBrother.Name == "PauseMenu")
             {
-				bigBrother.GetComponent<Pause>().DisplayBoons();
+				aux = bigBrother.GetComponent<Pause>();
+				aux.DisplayBoons();
             }
 			displayScreen.Enable(false);
 		}
