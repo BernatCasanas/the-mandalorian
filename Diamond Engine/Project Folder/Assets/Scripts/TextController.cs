@@ -47,7 +47,7 @@ public class TextController : DiamondComponent
 			startMenu = false;
 		}
 
-		if (Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN && ++index < texts.Count)
+		if (Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN && ++index < texts.Count)
 		{
 
 			text.GetComponent<Text>().text = texts[index];

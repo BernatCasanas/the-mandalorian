@@ -17,8 +17,8 @@ namespace DiamondEngine
             MAX,
         }
 
-        public int place;
-        public int amount;
+        public int place = 6;
+        public int amount = 0;
         public CounterTypes type;
         public static int roomEnemies = 0;
         public static bool isFinalScene = false;

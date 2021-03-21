@@ -193,7 +193,8 @@ public class StormTrooper : Enemy
 				if(timePassed > 1.2f)
                 {
 					Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
-					Counter.roomEnemies -= 1;
+					Counter.roomEnemies--;
+					Debug.Log("Enemies: " + Counter.roomEnemies.ToString());
 					if (Counter.roomEnemies <= 0)
 					{
                        Core.instance.gameObject.GetComponent<BoonSpawn>().SpawnBoons();

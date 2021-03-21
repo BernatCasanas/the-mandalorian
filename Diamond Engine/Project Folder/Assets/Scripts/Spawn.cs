@@ -52,7 +52,7 @@ public class Spawn : DiamondComponent
 		
 			if(Counter.roomEnemies <= 0 && !fightEndMusicPlayed && MusicSourceLocate.instance != null)
             {
-				//Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+				Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
 			}
 		}
 	}
@@ -98,11 +98,10 @@ public class Spawn : DiamondComponent
 
 	private void SpawnWave()
     {
-		
 		if (wave == 0 && MusicSourceLocate.instance != null)
         {
-			//Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Combat");
-			//Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Healthy");
+			Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Combat");
+			Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Healthy");
 		}
 	
 

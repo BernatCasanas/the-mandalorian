@@ -582,8 +582,10 @@ public class Core : DiamondComponent
         if (collidedGameObject.CompareTag("Bullet"))
         {
             //InternalCalls.Destroy(gameObject);
-            float damage = collidedGameObject.GetComponent<BH_Bullet>().damage;
-            gameObject.GetComponent<PlayerHealth>().TakeDamage((int)damage);
+            BH_Bullet bulletScript = collidedGameObject.GetComponent<BH_Bullet>();
+            
+            if(bulletScript != null)
+                gameObject.GetComponent<PlayerHealth>().TakeDamage((int)bulletScript.damage);
         }
     }
 
