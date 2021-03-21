@@ -20,6 +20,7 @@ public class QuitConfirmation : DiamondComponent
 			InternalCalls.CloseGame();
 		if (gameObject.Name == "QuittoMenu")
 		{
+			Time.ResumeGame();
 			Audio.SetState("Game_State", "HUB");
 			Counter.gameResult = Counter.GameResult.NONE;
 			SceneManager.LoadScene(821370213);
