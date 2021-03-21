@@ -57,15 +57,17 @@ public class Enemy : DiamondComponent
 
 	public virtual Vector3 CalculateNewPosition(float maxPos)
 	{
-		Vector3 newPosition = new Vector3(0, 0, 0);
-		Random random = new Random();
+        Vector3 newPosition = new Vector3(0, 0, 0);
+        Random random = new Random();
 
-		newPosition.x = random.Next((int)maxPos);
-		newPosition.y = gameObject.transform.localPosition.y;
-		newPosition.z = random.Next((int)maxPos);
+        newPosition.x = random.Next((int)maxPos);
+        newPosition.y = gameObject.transform.localPosition.y;
+        newPosition.z = random.Next((int)maxPos);
 
-		return newPosition;
-	}
+        return newPosition;
+
+        //return InternalCalls.GetWalkablePointAround(gameObject.transform.globalPosition, maxPos);
+    }
 
 	public void MoveToPosition(Vector3 positionToReach, float speed)
 	{

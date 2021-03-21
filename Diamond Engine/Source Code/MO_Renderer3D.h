@@ -49,6 +49,9 @@ public:
 	void SetGameRenderTarget(C_Camera* cam);
 
 	void ClearAllRenderData();
+
+	bool IsWalkable(float3 pointToCheck);
+
 private:
 
 	void RenderWithOrdering(bool rTex = false);
@@ -67,6 +70,8 @@ public:
 	std::multimap<float, C_MeshRenderer*> renderQueueMap;
 
 	std::vector<GameObject*> particleSystemQueue;
+
+	std::vector<LineSegment> walkablePoints;
 
 	Light lights[MAX_LIGHTS];
 	SDL_GLContext context;
