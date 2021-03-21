@@ -450,6 +450,25 @@ MonoObject* SendGlobalScale(MonoObject* transform) //Allows to send float3 as "o
 
 #pragma endregion
 
+MonoObject* GetWalkablePointAround(MonoObject* position, float radius)
+{
+	float3 posVector = M_MonoManager::UnboxVector(position);
+	int randomStartingDegrees = EngineExternal->GetRandomInt() % 360;
+
+	for (size_t degrees = 0; degrees < 360; degrees += 45)
+	{
+		float3 walkablePoint = posVector;
+		walkablePoint.x += radius * Cos(degrees + randomStartingDegrees);
+		walkablePoint.z += radius * Sin(degrees + randomStartingDegrees);
+
+		if (EngineExternal->moduleRenderer3D->IsWalkable(walkablePoint));
+		{
+			return EngineExternal->moduleMono->Float3ToCS(walkablePoint);
+		}
+	}
+
+	return nullptr;
+}
 
 MonoObject* MonoSlerp(MonoObject* cs_q1, MonoObject* cs_q2, float t)
 {

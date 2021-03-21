@@ -258,7 +258,15 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 		skybox.DrawAsSkybox(&App->moduleCamera->editorCamera);
 
 	DebugLine(pickingDebug);
+	
+	/*for (size_t i = 0; i < walkablePoints.size(); i++)
+	{
+		DebugLine(walkablePoints[i]);
+	}*/
+
 	App->moduleCamera->editorCamera.EndDraw();
+
+
 #endif // !STANDALONE
 
 	//Draw game camera
@@ -535,8 +543,8 @@ void ModuleRenderer3D::DebugLine(LineSegment& line)
 	glColor3f(1.f, 0.f, 0.f);
 	glLineWidth(2.f);
 	glBegin(GL_LINES);
-	glVertex3fv(&pickingDebug.a.x);
-	glVertex3fv(&pickingDebug.b.x);
+	glVertex3fv(&line.a.x);
+	glVertex3fv(&line.b.x);
 	glEnd();
 	glLineWidth(1.f);
 	glColor3f(1.f, 1.f, 1.f);
@@ -582,6 +590,49 @@ void ModuleRenderer3D::ClearAllRenderData()
 	renderQueueMap.clear();
 	renderQueue.clear();
 	particleSystemQueue.clear();
+}
+
+bool ModuleRenderer3D::IsWalkable(float3 pointToCheck)
+{
+	LineSegment walkablePoint = LineSegment(float3(pointToCheck.x, -20.0, pointToCheck.z), float3(pointToCheck.x, 20.0, pointToCheck.z));
+
+	float nHit = 0;
+	float fHit = 0;
+
+	for (std::vector<C_MeshRenderer*>::iterator i = renderQueue.begin(); i != renderQueue.end(); ++i)
+	{
+		if (walkablePoint.Intersects((*i)->globalAABB, nHit, fHit))
+		{
+			return true;
+		}
+	}
+
+	walkablePoints.push_back(walkablePoint);
+
+	/*if (walkable)
+	{
+		glColor3f(0.f, 1.f, 0.f);
+		glLineWidth(2.f);
+		glBegin(GL_LINES);
+		glVertex3fv(&walkablePoint.a.x);
+		glVertex3fv(&walkablePoint.b.x);
+		glEnd();
+		glLineWidth(1.f);
+		glColor3f(1.f, 1.f, 1.f);
+	}
+	else
+	{
+		glColor3f(1.f, 0.f, 0.f);
+		glLineWidth(2.f);
+		glBegin(GL_LINES);
+		glVertex3fv(&walkablePoint.a.x);
+		glVertex3fv(&walkablePoint.b.x);
+		glEnd();
+		glLineWidth(1.f);
+		glColor3f(1.f, 1.f, 1.f);
+	}*/
+
+	return false;
 }
 
 

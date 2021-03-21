@@ -101,14 +101,13 @@ public class StormTrooper : Enemy
                     {
 						targetPosition = CalculateNewPosition(wanderRange);
 						Animator.Play(gameObject, "ST_Run");
-						//Play Sound("Run")
 						Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
 					}
 
 					LookAt(targetPosition);
-					//MoveToPosition(targetPosition, wanderSpeed);
+					MoveToPosition(targetPosition, wanderSpeed);
 
-					if (Mathf.Distance(gameObject.transform.localPosition, targetPosition) < stoppingDistance)
+					if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) < stoppingDistance)
 					{
 						//targetPosition = CalculateNewPosition(wanderRange);
 						currentState = STATES.IDLE;
