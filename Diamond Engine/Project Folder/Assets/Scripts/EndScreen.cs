@@ -38,6 +38,7 @@ public class EndScreen : DiamondComponent
 
 	void DisplayResults()
     {
+		Debug.Log("Intro display results");
 		if (Counter.gameResult == Counter.GameResult.VICTORY)
 			result.GetComponent<Text>().text = "            VICTORY!";
 		else if (Counter.gameResult == Counter.GameResult.DEFEAT)
@@ -66,5 +67,6 @@ public class EndScreen : DiamondComponent
 			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.WRECKER_RES))
 				leftMultiplier.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.WRECKER_RES].amount.ToString();
 		}
+		Debug.Log("End display results");
     }
 }

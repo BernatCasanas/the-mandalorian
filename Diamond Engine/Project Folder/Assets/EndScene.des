@@ -40,6 +40,7 @@
             ],
             "UID": 2076234472,
             "PrefabID": 0,
+            "DontDestroy": false,
             "Components": [
                 {
                     "Type": 1,
@@ -70,6 +71,7 @@
             ],
             "UID": 1530138418,
             "PrefabID": 0,
+            "DontDestroy": false,
             "ParentUID": 2076234472,
             "Components": [
                 {
@@ -83,8 +85,15 @@
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
                     "vFOV": 1.0471975803375244,
-                    "hFOV": 1.6415077447891235,
-                    "culling": true
+                    "hFOV": 1.5973347425460815,
+                    "culling": true,
+                    "drawSkybox": true
+                },
+                {
+                    "Type": 12,
+                    "Active": true,
+                    "isDefaultListener": true,
+                    "masterVolume": 50
                 }
             ]
         },
@@ -111,6 +120,7 @@
             ],
             "UID": 248411895,
             "PrefabID": 0,
+            "DontDestroy": false,
             "ParentUID": 2076234472,
             "Components": [
                 {
@@ -146,6 +156,7 @@
             ],
             "UID": 998732504,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 248411895,
             "Components": [
                 {
@@ -189,6 +200,7 @@
             ],
             "UID": 682318534,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 998732504,
             "Components": [
                 {
@@ -248,6 +260,7 @@
             ],
             "UID": 1022745932,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 682318534,
             "Components": [
                 {
@@ -386,6 +399,7 @@
             ],
             "UID": 192343998,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 1022745932,
             "Components": [
                 {
@@ -450,6 +464,7 @@
             ],
             "UID": 726965814,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 682318534,
             "Components": [
                 {
@@ -588,6 +603,7 @@
             ],
             "UID": 1620945713,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 726965814,
             "Components": [
                 {
@@ -652,6 +668,7 @@
             ],
             "UID": 1595834923,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 682318534,
             "Components": [
                 {
@@ -711,6 +728,7 @@
             ],
             "UID": 917288620,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 1595834923,
             "Components": [
                 {
@@ -775,6 +793,7 @@
             ],
             "UID": 1409212991,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 682318534,
             "Components": [
                 {
@@ -834,6 +853,7 @@
             ],
             "UID": 1693006496,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 1409212991,
             "Components": [
                 {
@@ -898,6 +918,7 @@
             ],
             "UID": 2017808774,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 1409212991,
             "Components": [
                 {
@@ -962,6 +983,7 @@
             ],
             "UID": 1092938150,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 2017808774,
             "Components": [
                 {
@@ -1026,6 +1048,7 @@
             ],
             "UID": 1687829289,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 1409212991,
             "Components": [
                 {
@@ -1090,6 +1113,7 @@
             ],
             "UID": 1806360646,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 1687829289,
             "Components": [
                 {
@@ -1154,6 +1178,7 @@
             ],
             "UID": 1932758148,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 682318534,
             "Components": [
                 {
@@ -1213,6 +1238,7 @@
             ],
             "UID": 1360383974,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 1932758148,
             "Components": [
                 {
@@ -1277,6 +1303,7 @@
             ],
             "UID": 114639979,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 682318534,
             "Components": [
                 {
@@ -1336,6 +1363,7 @@
             ],
             "UID": 663647262,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 114639979,
             "Components": [
                 {
@@ -1395,6 +1423,7 @@
             ],
             "UID": 1553847345,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 663647262,
             "Components": [
                 {
@@ -1459,6 +1488,7 @@
             ],
             "UID": 1657758998,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 663647262,
             "Components": [
                 {
@@ -1523,6 +1553,7 @@
             ],
             "UID": 675362497,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 114639979,
             "Components": [
                 {
@@ -1582,6 +1613,7 @@
             ],
             "UID": 2074402502,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 675362497,
             "Components": [
                 {
@@ -1646,6 +1678,7 @@
             ],
             "UID": 257952572,
             "PrefabID": 0,
+            "DontDestroy": true,
             "ParentUID": 675362497,
             "Components": [
                 {

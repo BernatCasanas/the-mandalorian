@@ -1,9 +1,8 @@
 ﻿using DiamondEngine;
 
-
 class MusicSourceLocate : DiamondComponent 
 {
-    public static MusicSourceLocate instance;
+    public static MusicSourceLocate instance = null;
 
     bool started = false;
 
@@ -11,9 +10,18 @@ class MusicSourceLocate : DiamondComponent
     {
         if (!started)
         {
-            instance = this;
+            if (instance != null)
+            {
+                InternalCalls.Destroy(gameObject);
+            }
+            else
+            {
+                instance = this;
+            }
             started = true;
+
         }
+
     }
 }
 

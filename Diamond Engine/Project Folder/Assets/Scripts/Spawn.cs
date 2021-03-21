@@ -43,7 +43,7 @@ public class Spawn : DiamondComponent
 		
 			if(Counter.roomEnemies <= 0 && !fightEndMusicPlayed)
             {
-				Audio.SetSwitch(gameObject, "Player_Action", "Exploring");
+				Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
 			}
 		}
 	}
@@ -88,8 +88,8 @@ public class Spawn : DiamondComponent
     {
 		if(wave == 0)
         {
-			Audio.SetSwitch(gameObject, "Player_Action", "Combat");
-			Audio.SetSwitch(gameObject, "Player_Health", "Healthy");
+			Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Combat");
+			Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Healthy");
 		}
 
 		int[] spawnPoints = new int[maxSpawnPoints];

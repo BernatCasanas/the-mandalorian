@@ -142,6 +142,16 @@ public class PlayerHealth : DiamondComponent
             die = true;
         }
 
+        if (currHealth < 75 && currHealth >= 50)
+        {
+            Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Injured");
+        }
+        else if (currHealth < 50 && currHealth > 0)
+        {
+            Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Critical");
+        }
+
+
         Debug.Log("Current health: " + currHealth);
         return currHealth;
     }

@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        -6.8610677719116211,
-        5.5584964752197266,
-        21.695747375488281
+        0.41587936878204346,
+        0.4872780442237854,
+        -2.9308032989501953
     ],
     "EditorCameraZ": [
-        -0.13862645626068115,
-        -0.16242600977420807,
-        0.97693443298339844
+        -0.13862642645835876,
+        -0.16242597997188568,
+        0.97693419456481934
     ],
     "EditorCameraY": [
-        -0.022819891571998596,
-        0.9867207407951355,
-        0.16081498563289642
+        -0.022819561883807182,
+        0.98672068119049072,
+        0.16081500053405762
     ],
     "tags": [],
     "layers": [],
@@ -7302,9 +7302,15 @@
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
                     "vFOV": 1.0471975803375244,
-                    "hFOV": 1.6842085123062134,
+                    "hFOV": 1.5655050277709961,
                     "culling": true,
                     "drawSkybox": false
+                },
+                {
+                    "Type": 12,
+                    "Active": true,
+                    "isDefaultListener": true,
+                    "masterVolume": 50
                 }
             ]
         },
@@ -7339,12 +7345,6 @@
                     "Active": true
                 },
                 {
-                    "Type": 12,
-                    "Active": true,
-                    "isDefaultListener": true,
-                    "masterVolume": 20.166000366210938
-                },
-                {
                     "Type": 13,
                     "Active": true,
                     "evName": "Play_Music_V02",
@@ -7353,6 +7353,11 @@
                     "pitch": 50,
                     "playOnAwake": true,
                     "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "MusicSourceLocate"
                 }
             ]
         }

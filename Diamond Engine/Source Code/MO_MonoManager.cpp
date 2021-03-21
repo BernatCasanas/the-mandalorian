@@ -302,6 +302,12 @@ void M_MonoManager::DebugAllMethods(const char* nsName, const char* className, s
 
 MonoObject* M_MonoManager::GoToCSGO(GameObject* inGo) const
 {
+
+	if (inGo == nullptr) {
+		LOG(LogType::L_ERROR, "GoTOCSGO inGo doesn't exist");
+		return nullptr;
+	}
+
 	MonoClass* goClass = mono_class_from_name(image, DE_SCRIPTS_NAMESPACE, "GameObject");
 	uintptr_t goPtr = reinterpret_cast<uintptr_t>(inGo);
 

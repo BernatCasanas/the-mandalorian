@@ -6,6 +6,8 @@
 #include "MO_Input.h"
 #include "MO_Editor.h"
 
+#include "DETime.h"
+
 #include "GameObject.h"
 #include "CO_Button.h"
 #include "CO_Checkbox.h"
@@ -52,7 +54,7 @@ void C_Navigation::Disable()
 
 void C_Navigation::Update()
 {
-	if (!is_selected || map_of_buttons_and_joysticks.size() == 0)
+	if (!is_selected || map_of_buttons_and_joysticks.size()  == 0 || DETime::state == GameState::STOP)
 		return;
 	KEY_STATE state;
 	for (std::map<BUTTONSANDJOYSTICKS, ActionToRealize>::iterator it = map_of_buttons_and_joysticks.begin(); it != map_of_buttons_and_joysticks.end(); ++it) {

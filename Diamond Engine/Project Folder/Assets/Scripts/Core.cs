@@ -97,9 +97,6 @@ public class Core : DiamondComponent
         // Placeholder for Start() function
         if (scriptStart == true)
         {
-            Audio.SetState("Player_State", "Alive");
-            Audio.SetSwitch(gameObject, "Player_Action", "Combat");
-
             #region VARIABLES WITH DEPENDENCIES
 
             // INIT VARIABLES WITH DEPENDENCIES //
@@ -180,19 +177,16 @@ public class Core : DiamondComponent
 
         if (Input.GetKey(DEKeyCode.SPACE) == KeyState.KEY_DOWN)
         {
-            Audio.SetState("Player_State", "Alive");
-
+            SceneManager.LoadScene(1076838722);
+           
         }
-        if (Input.GetKey(DEKeyCode.K) == KeyState.KEY_DOWN)
+
+        if(Input.GetKey(DEKeyCode.C) == KeyState.KEY_DOWN)
         {
-            Audio.SetState("Game_State", "HUB");
+            Audio.SetState("Game_State", "Run");
+            Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Combat");
+            Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Healthy");
         }
-
-        if (Input.GetKey(DEKeyCode.L) == KeyState.KEY_DOWN)
-        {
-            Audio.SetSwitch(gameObject, "Player_Action", "Exploring");
-        }
-
 
         UpdateTimers();
 
