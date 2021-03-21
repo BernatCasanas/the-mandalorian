@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        -27.148599624633789,
-        19.756423950195313,
-        -1.625995397567749
+        -34.922622680664063,
+        33.590785980224609,
+        -14.853362083435059
     ],
     "EditorCameraZ": [
-        0.9150272011756897,
-        -0.40175005793571472,
-        -0.03636246919631958
+        0.70461851358413696,
+        -0.64529329538345337,
+        0.29514265060424805
     ],
     "EditorCameraY": [
-        0.40142843127250671,
-        0.91574937105178833,
-        -0.016072660684585571
+        0.59524571895599365,
+        0.7639349102973938,
+        0.24917061626911163
     ],
     "tags": [
         "Player"
@@ -3472,70 +3472,6 @@
                     "Active": true,
                     "ScriptName": "BH_DestructBox",
                     "thisReference": 710192778
-                }
-            ]
-        },
-        {
-            "name": "Game Camera",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                10.388557434082031,
-                0,
-                27.430717468261719
-            ],
-            "Rotation": [
-                0.24263933300971985,
-                0.39558202028274536,
-                -0.10866383463144302,
-                0.87910932302474976
-            ],
-            "Scale": [
-                1,
-                1,
-                0.99999994039535522
-            ],
-            "UID": 23092561,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 1676501951,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 4,
-                    "Active": true,
-                    "fType": 1,
-                    "fSize": 50,
-                    "nearPlaneDist": 1,
-                    "farPlaneDist": 100,
-                    "vFOV": 1.0471975803375244,
-                    "hFOV": 1.5521194934844971,
-                    "culling": false,
-                    "drawSkybox": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "CameraController",
-                    "reference": 23092561,
-                    "target": 449007420,
-                    "x": 0,
-                    "y": 0,
-                    "z": 0,
-                    "smoothSpeed": 0.125,
-                    "zoomDesired": 0.10000000149011612,
-                    "timer_easing_sec": 0,
-                    "timer": 0
-                },
-                {
-                    "Type": 12,
-                    "Active": true,
-                    "isDefaultListener": true,
-                    "masterVolume": 50
                 }
             ]
         },
@@ -14599,6 +14535,73 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "Game Camera",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -25.435388565063477,
+                18.808589935302734,
+                -4.3505616188049316
+            ],
+            "Rotation": [
+                0.24263942241668701,
+                0.39558225870132446,
+                -0.10866371542215347,
+                0.87910920381546021
+            ],
+            "Scale": [
+                1,
+                0.9999997615814209,
+                0.9999997615814209
+            ],
+            "UID": 656946265,
+            "PrefabID": 1599948487,
+            "DontDestroy": false,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 4,
+                    "Active": true,
+                    "fType": 1,
+                    "fSize": 50,
+                    "nearPlaneDist": 1,
+                    "farPlaneDist": 100,
+                    "vFOV": 1.0471975803375244,
+                    "hFOV": 1.5521194934844971,
+                    "culling": false,
+                    "drawSkybox": true
+                },
+                {
+                    "Type": 12,
+                    "Active": true,
+                    "isDefaultListener": true,
+                    "masterVolume": 50
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "CameraController",
+                    "target": 449007420,
+                    "x": 0,
+                    "y": 0,
+                    "z": 0,
+                    "smoothSpeed": 0.10000000149011612,
+                    "zoomDesired": 0.10000000149011612,
+                    "timer_easing_sec": 0,
+                    "timer": 0,
+                    "cornerTopLeftX": -100,
+                    "cornerTopLeftY": -100,
+                    "cornerBotRightX": 100,
+                    "cornerBotRightY": 100
                 }
             ]
         }
