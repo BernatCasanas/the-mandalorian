@@ -3,6 +3,8 @@
     "Game Objects": [
         {
             "name": "You Win",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": false,
             "Position": [
                 0,
@@ -20,9 +22,10 @@
                 1,
                 1
             ],
-            "UID": 1480717871,
-            "PrefabID": 0,
-            "ParentUID": 116952909,
+            "UID": 333913830,
+            "PrefabID": 1406607075,
+            "DontDestroy": false,
+            "ParentUID": 160272769,
             "Components": [
                 {
                     "Type": 1,
@@ -32,6 +35,8 @@
         },
         {
             "name": "Image",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -49,9 +54,10 @@
                 1,
                 1
             ],
-            "UID": 2048720382,
+            "UID": 904279655,
             "PrefabID": 0,
-            "ParentUID": 1480717871,
+            "DontDestroy": false,
+            "ParentUID": 333913830,
             "Components": [
                 {
                     "Type": 1,
@@ -80,15 +86,14 @@
                 },
                 {
                     "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/124612374.dds",
-                    "UID": 124612374
+                    "Active": true
                 }
             ]
         },
         {
             "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -106,9 +111,10 @@
                 1,
                 1
             ],
-            "UID": 245365129,
+            "UID": 1223265303,
             "PrefabID": 0,
-            "ParentUID": 2048720382,
+            "DontDestroy": false,
+            "ParentUID": 904279655,
             "Components": [
                 {
                     "Type": 1,
@@ -131,7 +137,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },

@@ -3,6 +3,8 @@
     "Game Objects": [
         {
             "name": "ControlsScreen",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": false,
             "Position": [
                 0,
@@ -20,9 +22,10 @@
                 1,
                 1
             ],
-            "UID": 385927616,
-            "PrefabID": 794533013,
-            "ParentUID": 1598806799,
+            "UID": 2139202902,
+            "PrefabID": 1076342540,
+            "DontDestroy": false,
+            "ParentUID": 1791913646,
             "Components": [
                 {
                     "Type": 1,
@@ -32,6 +35,8 @@
         },
         {
             "name": "Image",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -49,9 +54,10 @@
                 1,
                 1
             ],
-            "UID": 1498645919,
+            "UID": 1159353398,
             "PrefabID": 0,
-            "ParentUID": 385927616,
+            "DontDestroy": false,
+            "ParentUID": 2139202902,
             "Components": [
                 {
                     "Type": 1,
@@ -80,15 +86,14 @@
                 },
                 {
                     "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/124612374.dds",
-                    "UID": 124612374
+                    "Active": true
                 }
             ]
         },
         {
             "name": "Return",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -106,9 +111,10 @@
                 1,
                 1
             ],
-            "UID": 1734537204,
+            "UID": 22566016,
             "PrefabID": 0,
-            "ParentUID": 1498645919,
+            "DontDestroy": false,
+            "ParentUID": 1159353398,
             "Components": [
                 {
                     "Type": 1,
@@ -138,25 +144,13 @@
                 {
                     "Type": 7,
                     "Active": true,
-                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/button_return_pressed.png",
-                    "Pressed_LibraryPath": "Library\/Textures\/570273064.dds",
-                    "Pressed_UID": 570273064,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/button_return_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/1177961007.dds",
-                    "Hovered_UID": 1177961007,
-                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/button_return.png",
-                    "Unhovered_LibraryPath": "Library\/Textures\/1583215856.dds",
-                    "Unhovered_UID": 1583215856,
                     "Script_Name": "Return",
                     "ButtonState": 1,
                     "Is Selected": true
                 },
                 {
                     "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/button_return_hover.png",
-                    "LibraryPath": "Library\/Textures\/1177961007.dds",
-                    "UID": 1177961007
+                    "Active": true
                 },
                 {
                     "Type": 17,
@@ -164,7 +158,7 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 1734537204,
+                            "UID": 0,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -178,10 +172,7 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Return",
-                    "controlsWindow": 385927616,
-                    "bigBrother": 8278228,
-                    "toDisable": false,
-                    "firstFrame": true
+                    "controlsWindow": 2139202902
                 }
             ]
         }

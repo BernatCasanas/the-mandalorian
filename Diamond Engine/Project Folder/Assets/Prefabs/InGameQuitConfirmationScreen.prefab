@@ -3,6 +3,8 @@
     "Game Objects": [
         {
             "name": "InGameQuitConfirmationScreen",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": false,
             "Position": [
                 0,
@@ -20,9 +22,10 @@
                 1,
                 1
             ],
-            "UID": 119655247,
-            "PrefabID": 1605132840,
-            "ParentUID": 1598806799,
+            "UID": 4560159,
+            "PrefabID": 1733982637,
+            "DontDestroy": false,
+            "ParentUID": 1073559014,
             "Components": [
                 {
                     "Type": 1,
@@ -32,6 +35,8 @@
         },
         {
             "name": "Image",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -49,9 +54,10 @@
                 1,
                 1
             ],
-            "UID": 428884674,
+            "UID": 1802733630,
             "PrefabID": 0,
-            "ParentUID": 119655247,
+            "DontDestroy": false,
+            "ParentUID": 4560159,
             "Components": [
                 {
                     "Type": 1,
@@ -80,15 +86,14 @@
                 },
                 {
                     "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/124612374.dds",
-                    "UID": 124612374
+                    "Active": true
                 }
             ]
         },
         {
             "name": "QuittoDesktop",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -106,9 +111,10 @@
                 1,
                 1
             ],
-            "UID": 767260666,
+            "UID": 583788962,
             "PrefabID": 0,
-            "ParentUID": 428884674,
+            "DontDestroy": false,
+            "ParentUID": 1802733630,
             "Components": [
                 {
                     "Type": 1,
@@ -138,25 +144,13 @@
                 {
                     "Type": 7,
                     "Active": true,
-                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/button_pressed.png",
-                    "Pressed_LibraryPath": "Library\/Textures\/454775637.dds",
-                    "Pressed_UID": 454775637,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/button_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/571138909.dds",
-                    "Hovered_UID": 571138909,
-                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/button.png",
-                    "Unhovered_LibraryPath": "Library\/Textures\/1757514175.dds",
-                    "Unhovered_UID": 1757514175,
                     "Script_Name": "QuitConfirmation",
                     "ButtonState": 1,
                     "Is Selected": true
                 },
                 {
                     "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/button_hover.png",
-                    "LibraryPath": "Library\/Textures\/571138909.dds",
-                    "UID": 571138909
+                    "Active": true
                 },
                 {
                     "Type": 17,
@@ -164,91 +158,91 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 767260666,
+                            "UID": 0,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 704018843,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 704018843,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 13,
-                            "UID": 710991932,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 14,
-                            "UID": 710991932,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 704018843,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 704018843,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 17,
-                            "UID": 710991932,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 18,
-                            "UID": 710991932,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 704018843,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 704018843,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 21,
-                            "UID": 710991932,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 22,
-                            "UID": 710991932,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -262,15 +256,14 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "QuitConfirmation",
-                    "confirmScreen": 119655247,
-                    "bigBrother": 8278228,
-                    "toDisable": false,
-                    "firstFrame": true
+                    "confirmScreen": 4560159
                 }
             ]
         },
         {
             "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -288,9 +281,10 @@
                 1,
                 1
             ],
-            "UID": 946592108,
+            "UID": 695820280,
             "PrefabID": 0,
-            "ParentUID": 767260666,
+            "DontDestroy": false,
+            "ParentUID": 583788962,
             "Components": [
                 {
                     "Type": 1,
@@ -313,7 +307,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
@@ -333,6 +327,8 @@
         },
         {
             "name": "QuittoMenu",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -350,9 +346,10 @@
                 1,
                 1
             ],
-            "UID": 710991932,
+            "UID": 767604854,
             "PrefabID": 0,
-            "ParentUID": 428884674,
+            "DontDestroy": false,
+            "ParentUID": 1802733630,
             "Components": [
                 {
                     "Type": 1,
@@ -382,25 +379,13 @@
                 {
                     "Type": 7,
                     "Active": true,
-                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/button_pressed.png",
-                    "Pressed_LibraryPath": "Library\/Textures\/454775637.dds",
-                    "Pressed_UID": 454775637,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/button_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/571138909.dds",
-                    "Hovered_UID": 571138909,
-                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/button.png",
-                    "Unhovered_LibraryPath": "Library\/Textures\/1757514175.dds",
-                    "Unhovered_UID": 1757514175,
                     "Script_Name": "QuitConfirmation",
                     "ButtonState": 2,
                     "Is Selected": false
                 },
                 {
                     "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/button.png",
-                    "LibraryPath": "Library\/Textures\/1757514175.dds",
-                    "UID": 1757514175
+                    "Active": true
                 },
                 {
                     "Type": 17,
@@ -408,91 +393,91 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 710991932,
+                            "UID": 0,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 704018843,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 704018843,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 13,
-                            "UID": 767260666,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 14,
-                            "UID": 767260666,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 704018843,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 704018843,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 17,
-                            "UID": 767260666,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 18,
-                            "UID": 767260666,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 704018843,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 704018843,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 21,
-                            "UID": 767260666,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 22,
-                            "UID": 767260666,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -506,15 +491,14 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "QuitConfirmation",
-                    "confirmScreen": 119655247,
-                    "bigBrother": 8278228,
-                    "toDisable": false,
-                    "firstFrame": true
+                    "confirmScreen": 4560159
                 }
             ]
         },
         {
             "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -532,9 +516,10 @@
                 1,
                 1
             ],
-            "UID": 471234422,
+            "UID": 1286984739,
             "PrefabID": 0,
-            "ParentUID": 710991932,
+            "DontDestroy": false,
+            "ParentUID": 767604854,
             "Components": [
                 {
                     "Type": 1,
@@ -557,7 +542,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
@@ -577,6 +562,8 @@
         },
         {
             "name": "Cancel",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -594,9 +581,10 @@
                 1,
                 1
             ],
-            "UID": 704018843,
+            "UID": 1704310138,
             "PrefabID": 0,
-            "ParentUID": 428884674,
+            "DontDestroy": false,
+            "ParentUID": 1802733630,
             "Components": [
                 {
                     "Type": 1,
@@ -626,25 +614,13 @@
                 {
                     "Type": 7,
                     "Active": true,
-                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/button_pressed.png",
-                    "Pressed_LibraryPath": "Library\/Textures\/454775637.dds",
-                    "Pressed_UID": 454775637,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/button_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/571138909.dds",
-                    "Hovered_UID": 571138909,
-                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/button.png",
-                    "Unhovered_LibraryPath": "Library\/Textures\/1757514175.dds",
-                    "Unhovered_UID": 1757514175,
                     "Script_Name": "QuitConfirmation",
                     "ButtonState": 2,
                     "Is Selected": false
                 },
                 {
                     "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/button.png",
-                    "LibraryPath": "Library\/Textures\/1757514175.dds",
-                    "UID": 1757514175
+                    "Active": true
                 },
                 {
                     "Type": 17,
@@ -652,7 +628,7 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 704018843,
+                            "UID": 0,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -666,42 +642,42 @@
                         },
                         {
                             "Index": 11,
-                            "UID": 767260666,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 767260666,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 767260666,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 767260666,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 767260666,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 767260666,
+                            "UID": 0,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -715,15 +691,14 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "QuitConfirmation",
-                    "confirmScreen": 119655247,
-                    "bigBrother": 8278228,
-                    "toDisable": false,
-                    "firstFrame": true
+                    "confirmScreen": 4560159
                 }
             ]
         },
         {
             "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -741,9 +716,10 @@
                 1,
                 1
             ],
-            "UID": 329109375,
+            "UID": 862170007,
             "PrefabID": 0,
-            "ParentUID": 704018843,
+            "DontDestroy": false,
+            "ParentUID": 1704310138,
             "Components": [
                 {
                     "Type": 1,
@@ -766,7 +742,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
@@ -786,6 +762,8 @@
         },
         {
             "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
             "Active": true,
             "Position": [
                 0,
@@ -803,9 +781,10 @@
                 1,
                 1
             ],
-            "UID": 1420767032,
+            "UID": 822640050,
             "PrefabID": 0,
-            "ParentUID": 428884674,
+            "DontDestroy": false,
+            "ParentUID": 1802733630,
             "Components": [
                 {
                     "Type": 1,
@@ -828,7 +807,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
