@@ -68,6 +68,8 @@ public class Pause : DiamondComponent
     {
 		if (gameObject.Name == "PauseMenu")
 		{
+			Debug.Log("Displaying boons");
+			int bo, wr, boPlace, wrPlace;
 			leftImage.Enable(true);
 			leftText.Enable(true);
 			leftX.Enable(true);
@@ -75,9 +77,14 @@ public class Pause : DiamondComponent
 			rightText.Enable(true);
 			rightX.Enable(true);
 
+			bo = Counter.GameCounters.ContainsKey(Counter.CounterTypes.BOKATAN_RES) ? 1 : 0;
+			wr = Counter.GameCounters.ContainsKey(Counter.CounterTypes.WRECKER_RES) ? 1 : 0;
+			boPlace = Counter.GameCounters.ContainsKey(Counter.CounterTypes.BOKATAN_RES) ? Counter.GameCounters[Counter.CounterTypes.BOKATAN_RES].place : 0;
+			wrPlace = Counter.GameCounters.ContainsKey(Counter.CounterTypes.WRECKER_RES) ? Counter.GameCounters[Counter.CounterTypes.WRECKER_RES].place : 0;
+
 			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.BOKATAN_RES) || Counter.GameCounters.ContainsKey(Counter.CounterTypes.WRECKER_RES))
 			{
-				if (Counter.GameCounters[Counter.CounterTypes.BOKATAN_RES].place < Counter.GameCounters[Counter.CounterTypes.WRECKER_RES].place)
+				if (bo * boPlace < wr * wrPlace)
 				{
 					rightImage.GetComponent<Image2D>().SwapTwoImages(leftImage);
 					if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.BOKATAN_RES))
