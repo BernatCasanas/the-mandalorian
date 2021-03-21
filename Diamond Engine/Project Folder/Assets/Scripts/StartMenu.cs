@@ -16,8 +16,11 @@ public class StartMenu : DiamondComponent
 		{
 			SceneManager.LoadScene(1406013733);
 			Audio.SetState("Game_State", "Run");
-			Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
-			Debug.Log("Exploring");
+			if (MusicSourceLocate.instance != null)
+			{
+				Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+				Debug.Log("Exploring");
+			}
 		}
 		else if (gameObject.Name == "Options")
 		{

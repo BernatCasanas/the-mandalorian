@@ -184,8 +184,11 @@ public class Core : DiamondComponent
         if(Input.GetKey(DEKeyCode.C) == KeyState.KEY_DOWN)
         {
             Audio.SetState("Game_State", "Run");
-            Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Combat");
-            Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Healthy");
+            if (MusicSourceLocate.instance != null)
+            {
+                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Combat");
+                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Healthy");
+            }
         }
 
         UpdateTimers();
