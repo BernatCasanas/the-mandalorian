@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        -8.9220342636108398,
-        26.232046127319336,
-        -28.739761352539063
+        -24.867099761962891,
+        21.834295272827148,
+        -24.2071533203125
     ],
     "EditorCameraZ": [
-        0.19398313760757446,
-        -0.64178800582885742,
-        0.7419426441192627
+        0.74570083618164063,
+        -0.46059364080429077,
+        0.48143947124481201
     ],
     "EditorCameraY": [
-        0.16244688630104065,
-        0.76688212156295776,
-        0.62088871002197266
+        0.38701051473617554,
+        0.88761115074157715,
+        0.24973857402801514
     ],
     "tags": [
         "Player"
@@ -4285,90 +4285,6 @@
                     "zoomDesired": 0.10000000149011612,
                     "timer_easing_sec": 0,
                     "timer": 0
-                }
-            ]
-        },
-        {
-            "name": "World limit",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                -10.355358123779297,
-                0
-            ],
-            "Rotation": [
-                -0.7071068286895752,
-                0,
-                0,
-                0.70710670948028564
-            ],
-            "Scale": [
-                1764.6956787109375,
-                1988.8787841796875,
-                0.99998974800109863
-            ],
-            "UID": 614086358,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 1676501951,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": false,
-                    "Path": "Library\/Meshes\/1313575480.mmh",
-                    "UID": 1313575480,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "Respawn",
-                    "room": 1934547592
-                },
-                {
-                    "Type": 15,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
                 }
             ]
         },
@@ -13381,18 +13297,18 @@
                     "shootPoint": 1772087900,
                     "hud": 153618290,
                     "rotationSpeed": 2,
-                    "movementSpeed": 5,
+                    "movementSpeed": 5.5,
                     "mouseSens": 1,
-                    "dashCD": 0.33000001311302185,
+                    "dashCD": 0.30000001192092896,
                     "dashDuration": 0.20000000298023224,
-                    "dashDistance": 4.5,
+                    "dashDistance": 4.75,
                     "fireRate": 0.15000000596046448,
                     "baseFireRate": 1,
                     "secondaryRate": 1,
-                    "fireRateAfterDashRecoverRatio": 0.5,
+                    "fireRateAfterDashRecoverRatio": 1.75,
                     "fireRateMultCap": 2,
                     "normalShootSpeed": 2,
-                    "grenadesFireRate": 0,
+                    "grenadesFireRate": 0.125,
                     "currentStateString": "Empty",
                     "smallGrenades": 0,
                     "BigGrenades": 0,
@@ -15414,6 +15330,90 @@
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "World limit",
+            "tag": "WorldLimit",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                -10.354999542236328,
+                0
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                2520.26513671875,
+                2233.370361328125,
+                0.99999898672103882
+            ],
+            "UID": 1026311423,
+            "PrefabID": 2043639852,
+            "DontDestroy": false,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Respawn",
+                    "room": 1934547592
+                },
+                {
+                    "Type": 15,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }

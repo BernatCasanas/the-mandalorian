@@ -244,6 +244,23 @@ public class StormTrooper : Enemy
 				}
 			}
 		}
+		else if (collidedGameObject.CompareTag("WorldLimit"))
+		{
+			Debug.Log("Collision w/ The End");
+
+			if (currentState != STATES.DIE)
+			{
+				currentState = STATES.DIE;
+				timePassed = 0.0f;
+				Animator.Play(gameObject, "ST_Die", 1.0f);
+				Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
+				if (Core.instance.hud != null)
+				{
+					Core.instance.hud.GetComponent<HUD>().ComboIncrease(++Core.instance.hud.GetComponent<HUD>().combo_number, 5);
+				}
+			}
+		}
+
 
 
 	}
@@ -262,6 +279,7 @@ public class StormTrooper : Enemy
 				timePassed = 0.0f;
             }
 		}
+
 
 		//Debug.Log("Triggered by tag: " + triggeredGameObject.tag);
 	}
