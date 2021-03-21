@@ -142,11 +142,11 @@ public class PlayerHealth : DiamondComponent
             die = true;
         }
 
-        if (currHealth < 75 && currHealth >= 50)
+        if (currHealth < 75 && currHealth >= 50 && MusicSourceLocate.instance!=null)
         {
             Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Injured");
         }
-        else if (currHealth < 50 && currHealth > 0)
+        else if (currHealth < 50 && currHealth > 0 && MusicSourceLocate.instance != null)
         {
             Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Critical");
         }
@@ -166,6 +166,7 @@ public class PlayerHealth : DiamondComponent
         Counter.gameResult = Counter.GameResult.DEFEAT;
         // When the player has died load the scene:
         SceneManager.LoadScene(821370213);
+
 
     }
 
