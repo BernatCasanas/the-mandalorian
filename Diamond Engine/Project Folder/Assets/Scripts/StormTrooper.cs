@@ -199,6 +199,7 @@ public class StormTrooper : Enemy
 					{
                        Core.instance.gameObject.GetComponent<BoonSpawn>().SpawnBoons();
                     }
+					player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
 					InternalCalls.Destroy(gameObject);
                 }
 				break;

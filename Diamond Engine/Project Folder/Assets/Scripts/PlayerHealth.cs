@@ -175,6 +175,8 @@ public class PlayerHealth : DiamondComponent
         if (startHealth <= 0)
             startHealth = 1;
 
+        healWhenKillingAnEnemy = 0;
+
         currHealth = currMaxHealth = startHealth;
         if (Core.instance.hud != null)
             Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);

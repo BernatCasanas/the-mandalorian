@@ -395,7 +395,7 @@ void M_Scene::RecursiveDontDestroy(GameObject* child, std::vector<GameObject*>& 
 		child->parent->RemoveChild(child);
 	}
 	else {
-		for (size_t i = 0; i < child->children.size(); ++i)
+		for (int i = child->children.size()-1; i >= 0; --i)
 		{
 			RecursiveDontDestroy(child->children[i],dontDestroyList);
 		}
@@ -482,8 +482,8 @@ void M_Scene::LoadScene(const char* name)
 		RecursiveDontDestroy(root, dontDestroyList);
 	}
 	//Clear all current scene memory
-	CleanScene();
 	destroyList.clear();
+	CleanScene();
 	RELEASE(root); //Had to remove root to create it later
 
 	JSON_Object* sceneObj = json_value_get_object(scene);
