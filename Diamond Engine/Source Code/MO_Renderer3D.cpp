@@ -609,7 +609,6 @@ bool ModuleRenderer3D::IsWalkable(float3 pointToCheck)
 		}
 	}
 
-
 	/*if (walkable)
 	{
 		glColor3f(0.f, 1.f, 0.f);
