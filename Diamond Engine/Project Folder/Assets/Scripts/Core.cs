@@ -276,7 +276,7 @@ public class Core : DiamondComponent
 
     private void ShootInput()
     {
-        KeyState fireButton = Input.GetGamepadButton(DEControllerButton.A);
+        KeyState fireButton = Input.GetGamepadButton(DEControllerButton.X);
 
         if ((fireButton == KeyState.KEY_REPEAT || fireButton == KeyState.KEY_DOWN) && fireButtonPressed == false)
         {
