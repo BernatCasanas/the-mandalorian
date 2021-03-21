@@ -482,8 +482,8 @@ void M_Scene::LoadScene(const char* name)
 		RecursiveDontDestroy(root, dontDestroyList);
 	}
 	//Clear all current scene memory
-	destroyList.clear();
 	CleanScene();
+	destroyList.clear();
 	RELEASE(root); //Had to remove root to create it later
 
 	JSON_Object* sceneObj = json_value_get_object(scene);

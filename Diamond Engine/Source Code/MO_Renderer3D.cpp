@@ -259,11 +259,12 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 	DebugLine(pickingDebug);
 	
-	/*for (size_t i = 0; i < walkablePoints.size(); i++)
+	/*
+	for (size_t i = 0; i < walkablePoints.size(); i++)
 	{
 		DebugLine(walkablePoints[i]);
-	}*/
-
+	}
+	*/
 	App->moduleCamera->editorCamera.EndDraw();
 
 
@@ -603,11 +604,11 @@ bool ModuleRenderer3D::IsWalkable(float3 pointToCheck)
 	{
 		if (walkablePoint.Intersects((*i)->globalAABB, nHit, fHit))
 		{
+			//walkablePoints.push_back(walkablePoint);
 			return true;
 		}
 	}
 
-	walkablePoints.push_back(walkablePoint);
 
 	/*if (walkable)
 	{

@@ -12,12 +12,10 @@ class MusicSourceLocate : DiamondComponent
         {
             if (instance != null)
             {
-                InternalCalls.Destroy(gameObject);
+                InternalCalls.Destroy(instance);
             }
-            else
-            {
-                instance = this;
-            }
+            
+            instance = this;
             started = true;
 
         }
