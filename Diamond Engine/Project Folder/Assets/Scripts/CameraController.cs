@@ -9,10 +9,10 @@ public class CameraController : DiamondComponent
 	public float smoothSpeed = 0.0f;
 	public float zoomDesired = 0.1f;
 
-	private bool zooming = false;
+	//private bool zooming = false;
 	public float timer_easing_sec = 0.2f;
 	public float timer;
-    private float pointA_zoom;
+    //private float pointA_zoom;
 
 	public float cornerTopLeftX = -100.0f;
 	public float cornerTopLeftY = -100.0f;

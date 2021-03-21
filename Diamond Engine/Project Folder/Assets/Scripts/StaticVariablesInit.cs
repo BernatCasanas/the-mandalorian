@@ -3,11 +3,10 @@ using DiamondEngine;
 
 public class StaticVariablesInit : DiamondComponent
 {
-    public bool InitVariablesOnStart = true;
     bool start = true;
 	public void Update()
 	{
-        if(InitVariablesOnStart && start)
+        if(start)
         {
             InitStaticVars();
             start = false;
@@ -15,8 +14,9 @@ public class StaticVariablesInit : DiamondComponent
 	}
 
 
-    public void InitStaticVars()
+    public static void InitStaticVars()
     {
         PlayerHealth.ResetMaxAndCurrentHPToDefault();
+        Counter.ResetCounters();
     }
 }

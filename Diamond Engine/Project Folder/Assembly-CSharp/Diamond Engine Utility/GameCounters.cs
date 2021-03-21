@@ -53,6 +53,8 @@ namespace DiamondEngine
         public static void ResetCounters()
         {
             GameCounters.Clear();
+            roomEnemies = 0;
+            isFinalScene = false;
         }
         public enum GameResult
         {
