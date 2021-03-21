@@ -6,7 +6,7 @@ public class bigGrenade : DiamondComponent
     public GameObject thisReference = null; //This is needed until i make all this be part of a component base class
    
 
-    public float speed = 30.0f;
+    public float speed = 25.0f;
 
     public float yVel = 0.0f;
 
@@ -46,7 +46,7 @@ public class bigGrenade : DiamondComponent
         {
             gameObject.transform.localPosition += gameObject.transform.GetForward() * (speed * Time.deltaTime);
 
-            yVel -= Time.deltaTime / 15.0f;
+            yVel -= Time.deltaTime * 0.102f;
             gameObject.transform.localPosition += (Vector3.up * yVel);
         }
         else
