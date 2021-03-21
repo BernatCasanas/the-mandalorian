@@ -169,7 +169,7 @@ public class PlayerHealth : DiamondComponent
 
         healWhenKillingAnEnemy = 0;
 
-        currHealth = currMaxHealth = 50;//TODO set the starting heath here for now
+        currHealth = currMaxHealth = 100;//TODO set the starting heath here for now
 
     }
 

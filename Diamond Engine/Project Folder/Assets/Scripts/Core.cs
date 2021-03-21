@@ -175,12 +175,6 @@ public class Core : DiamondComponent
 
         #region UPDATE STUFF
 
-        if (Input.GetKey(DEKeyCode.SPACE) == KeyState.KEY_DOWN)
-        {
-            SceneManager.LoadScene(1076838722);
-           
-        }
-
         if(Input.GetKey(DEKeyCode.C) == KeyState.KEY_DOWN)
         {
             Audio.SetState("Game_State", "Run");

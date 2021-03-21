@@ -19,6 +19,11 @@ public class EndScreen : DiamondComponent
 		{
 			StaticVariablesInit.InitStaticVars();
 			Time.ResumeGame();
+			Audio.SetState("Game_State", "Run");
+			if (MusicSourceLocate.instance != null)
+			{
+				Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+			}
 			SceneManager.LoadScene(1406013733);
 		}
 		else if (gameObject.Name == "Quit")
