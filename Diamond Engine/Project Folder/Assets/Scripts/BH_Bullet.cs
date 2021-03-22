@@ -12,8 +12,16 @@ public class BH_Bullet : DiamondComponent
     public float yVel = 0.0f;
     public float damage = 5.0f;
 
+    private bool started = false;
+
     public void Update()
     {
+        if (started == false)
+        {
+            started = true;
+            InternalCalls.CreatePrefab("Library/Prefabs/150008798.prefab", gameObject.transform.globalPosition, gameObject.transform.globalRotation, gameObject.transform.globalScale);
+        }
+
         currentLifeTime += Time.deltaTime;
 
         gameObject.transform.localPosition += gameObject.transform.GetForward() * (speed * Time.deltaTime);

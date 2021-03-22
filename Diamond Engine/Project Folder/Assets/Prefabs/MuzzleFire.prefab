@@ -1,8 +1,8 @@
 {
-    "assets_path": "Assets\/Prefabs\/Muzzle Fire.prefab",
+    "assets_path": "Assets\/Prefabs\/MuzzleFire.prefab",
     "Game Objects": [
         {
-            "name": "Muzzle Fire",
+            "name": "MuzzleFire",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -22,42 +22,10 @@
                 1,
                 1
             ],
-            "UID": 42160606,
-            "PrefabID": 1604751915,
+            "UID": 692197654,
+            "PrefabID": 150008798,
             "DontDestroy": false,
-            "ParentUID": 621070814,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Muzzle",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1800888524,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 42160606,
+            "ParentUID": 738685494,
             "Components": [
                 {
                     "Type": 1,
@@ -137,7 +105,7 @@
                                 {
                                     "paEffectType": 4,
                                     "paSizeOLTStartSize": 0.0010000000474974513,
-                                    "paSizeOLTEndSize": 0.10000000149011612
+                                    "paSizeOLTEndSize": 0.5
                                 }
                             ]
                         }
@@ -148,6 +116,11 @@
                     "Active": true,
                     "billboardAlignment": 0,
                     "horizantalAligned": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "MuzleFire"
                 }
             ]
         }
