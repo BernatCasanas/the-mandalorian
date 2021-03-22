@@ -96,13 +96,20 @@ public class BabyYoda : DiamondComponent
 
     private void MoveVertically()
     {
+
+        Vector3 movement = gameObject.transform.localPosition;
         if (moveDown == true)
         {
-            gameObject.transform.localPosition -= new Vector3(0.0f, 1.0f, 0.0f) * verticalSpeed * Time.deltaTime;
+            movement -= new Vector3(0.0f, 1.0f, 0.0f) * verticalSpeed * Time.deltaTime;
+            if (movement.y >= followPoint.transform.globalPosition.y - 2)
+                gameObject.transform.localPosition = movement;
         }
-
         else
-            gameObject.transform.localPosition += new Vector3(0.0f, 1.0f, 0.0f) * verticalSpeed * Time.deltaTime;
+        {
+            movement += new Vector3(0.0f, 1.0f, 0.0f) * verticalSpeed * Time.deltaTime;
+            if (movement.y <= followPoint.transform.globalPosition.y + 2)
+                gameObject.transform.localPosition = movement;
+        }
 
         verticalTimer += Time.deltaTime;
 
