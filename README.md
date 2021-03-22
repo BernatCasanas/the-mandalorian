@@ -6,9 +6,8 @@ Disclaimer: play using headphones & a controller.
 
 This project is made as a 3rd year assigment in Bachelor’s Degree in Video Games by UPC at CITM, Terrassa, under the supervision of lecturer [Marc Garrigó](www.linkedin.com/in/mgarrigo/), [Joan Pons](https://www.linkedin.com/in/joanjoseppons/) & [Marc Ripoll](https://www.linkedin.com/in/marc-ripoll-tarr%C3%A9-2625303b/?originalSubdomain=es).
 
-
 ## What to do
-Start the game, use the control keys below to navigate trough the levels: shoot the enemies (red boxes) & the explosive barrels. Press Alt+F4 to quit.
+Start the game: in the main menu, start the run; use the control keys below to navigate trough the levels: shoot the enemies & advance though the levels grabbing the Boons!. Once you finished you can go back to the Main Menu & try again!
 
 ## Team
 Game developed by Virtual Ragnarok:
