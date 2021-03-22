@@ -223,6 +223,7 @@ public class StormTrooper : Enemy
 				Animator.Play(gameObject, "ST_Die", 1.0f);
 				//Play Sound("Die")
 				Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
+				Audio.PlayAudio(gameObject, "Play_Mando_Voice");
 				if (Core.instance.hud != null)
                 {
 					Core.instance.hud.GetComponent<HUD>().ComboIncrease(++Core.instance.hud.GetComponent<HUD>().combo_number, 5);
@@ -240,6 +241,7 @@ public class StormTrooper : Enemy
 				Animator.Play(gameObject, "ST_Die", 1.0f);
 				//Play Sound("Die")
 				Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
+				Audio.PlayAudio(gameObject, "Play_Mando_Voice");
 				if (Core.instance.hud != null)
 				{
 					Core.instance.hud.GetComponent<HUD>().ComboIncrease(++Core.instance.hud.GetComponent<HUD>().combo_number, 5);
