@@ -27,8 +27,12 @@ namespace DiamondEngine
         NAVIGATION,
         BOXCOLLIDER,
         MESHCOLLIDER,
-        COUNT,
+        PARTICLE_SYSTEM,
+        BILLBOARD,
+        SPHERECOLLIDER,
+        COUNT
     }
+
 
     public class DiamondComponent
     {
@@ -40,6 +44,7 @@ namespace DiamondEngine
             { typeof(Material), ComponentType.MATERIAL  },
             { typeof(Image2D), ComponentType.IMAGE_2D  },
             { typeof(Navigation), ComponentType.NAVIGATION  },
+            { typeof(ParticleSystem), ComponentType.PARTICLE_SYSTEM  },
         };
 
         public DiamondComponent()
