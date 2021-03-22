@@ -461,7 +461,9 @@ MonoObject* GetWalkablePointAround(MonoObject* position, float radius)
 		walkablePoint.x += radius * Cos(degrees + randomStartingDegrees);
 		walkablePoint.z += radius * Sin(degrees + randomStartingDegrees);
 
-		float3 midPoint = posVector * 0.5f;
+		float3 midPoint = posVector;
+		walkablePoint.x += (radius * Cos(degrees + randomStartingDegrees) * 0.5f);
+		walkablePoint.z += (radius * Sin(degrees + randomStartingDegrees) * 0.5f);
 
 		if (EngineExternal->moduleRenderer3D->IsWalkable(walkablePoint) && EngineExternal->moduleRenderer3D->IsWalkable(midPoint));
 		{
