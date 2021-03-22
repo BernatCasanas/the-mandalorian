@@ -39,7 +39,7 @@ Game developed by Virtual Ragnarok:
 	- [Ferran-Roger Basart i Bosch](https://www.linkedin.com/in/ferran-roger-basart-i-bosch-606b5a195/)
 	- [Roger Pérez](https://github.com/Rugiacreed)
 	- [Óscar Royo](https://github.com/oscarroyo4)
-	- [Pol Galán](https://github.com/pgalmor)
+	- [Pol Galan](https://www.linkedin.com/in/pol-galan-i-morales-884a8a209/)
 	- [Martí Torras](https://www.linkedin.com/in/mart%C3%AD-torras-640466185/)
 
 * Art
