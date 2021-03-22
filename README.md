@@ -121,7 +121,7 @@ YouTube:	https://www.youtube.com/channel/UCzwLxtTAxGMVG1belis7tkw
 	- Added combo system with UI (everytime an enemy takes damage you get a combo counter that fades with time).
 	- Added Particle System to enemies & Shoot.
 	- Added Audio & Music with Wwise.
-	- FULL LoOP: you can die, go through the levels and finish the 1st level.
+	- FULL Loop: you can die, go through the levels and finish the 1st level.
 	- Boons & Items: each time you finish a level a random boon appears, you obtain its benefits & advance to the next level.
 	- Dialogue System: added dialogues that can be skipped pressing A, at the start & the end of the run.
 	
