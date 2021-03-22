@@ -24,5 +24,10 @@ class MusicSourceLocate : DiamondComponent
         }
 
     }
+
+    public void OnApplicationQuit()
+    {
+        instance = null;
+    }
 }
 
