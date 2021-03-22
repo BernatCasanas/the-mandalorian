@@ -23,6 +23,7 @@
 #include "CS_Material_Bindings.h"
 #include "CS_Image2D_Bindings.h"
 #include "CS_Navigation_Bindings.h"
+#include "CS_ParticleSystem_Bindings.h"
 
 #include <iostream>
 #include <fstream> 
@@ -127,6 +128,15 @@ bool M_MonoManager::Init()
 
 #pragma region Navigation
 	mono_add_internal_call("DiamondEngine.Navigation::Select", SelectNavigation);
+#pragma endregion
+
+#pragma region ParticleSystem
+	mono_add_internal_call("DiamondEngine.ParticleSystem::Play", PlayParticles);
+	mono_add_internal_call("DiamondEngine.ParticleSystem::Stop", StopParticles);
+	mono_add_internal_call("DiamondEngine.ParticleSystem::get_playing", IsPlayingParticles);
+	mono_add_internal_call("DiamondEngine.ParticleSystem::get_looping", GetLoopingParticles);
+
+
 #pragma endregion
 
 #pragma region Settings
