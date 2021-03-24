@@ -583,7 +583,7 @@ public class Core : DiamondComponent
         //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + collidedGameObject.tag);
         //Debug.Log("Collided by tag: " + collidedGameObject.tag);
 
-        if (collidedGameObject.CompareTag("Bullet"))
+        if (collidedGameObject.CompareTag("StormTrooperBullet"))
         {
             //InternalCalls.Destroy(gameObject);
             BH_Bullet bulletScript = collidedGameObject.GetComponent<BH_Bullet>();

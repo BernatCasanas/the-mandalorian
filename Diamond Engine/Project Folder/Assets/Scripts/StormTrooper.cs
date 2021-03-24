@@ -9,12 +9,16 @@ public class StormTrooper : Enemy
 
 	private float pushSkillTimer = 0.15f;
 	private float pushSkillSpeed = 0.2f;
+    public float stormTrooperDamage = 9.0f;
+    
 
 	public void Start()
 	{
 		currentState = STATES.IDLE;
 		targetPosition = CalculateNewPosition(wanderRange);
 		shotTimes = 0;
+        stormTrooperDamage = 1.0f;
+   
 	}
 
 	public void Update()
@@ -135,7 +139,7 @@ public class StormTrooper : Enemy
 
 				if (timePassed > timeBewteenShots)
 				{
-					Shoot();
+					Shoot(stormTrooperDamage);
 					//Play Sound("Shoot")
 					Animator.Play(gameObject, "ST_Shoot");
 					Audio.PlayAudio(gameObject, "PLay_Blaster_Stormtrooper");
@@ -215,8 +219,8 @@ public class StormTrooper : Enemy
 		if (collidedGameObject.CompareTag("Bullet"))
 		{
 			Debug.Log("Collision bullet");
-
-			if(currentState != STATES.DIE)
+            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+            if (currentState != STATES.DIE && healthPoints <= 0.0f )
             {
 				currentState = STATES.DIE;
 				timePassed = 0.0f;
@@ -224,11 +228,12 @@ public class StormTrooper : Enemy
 				//Play Sound("Die")
 				Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
 				Audio.PlayAudio(gameObject, "Play_Mando_Voice");
+
 				if (Core.instance.hud != null)
                 {
 					Core.instance.hud.GetComponent<HUD>().ComboIncrease(++Core.instance.hud.GetComponent<HUD>().combo_number, 5);
                 }
-			}
+			}            
 		}
 		else if (collidedGameObject.CompareTag("Grenade"))
 		{

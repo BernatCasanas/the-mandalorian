@@ -12,7 +12,9 @@ public class Enemy : DiamondComponent
 	public float range = 20.0f;
 	public float damage = 20.0f;
 	public float bulletSpeed = 10.0f;
+    public float healthPoints = 60.0f;
 	protected int shotTimes = 0;
+
 
 	protected float timeBewteenShots = 0.5f;
 	protected float timePassed = 0.0f;
@@ -40,11 +42,11 @@ public class Enemy : DiamondComponent
 		DIE
 	}
 
-	public virtual bool Shoot()
+	public virtual bool Shoot(float damage)
 	{
-		InternalCalls.CreatePrefab("Library/Prefabs/346087333.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
-
-		timePassed = 0.0f;
+        GameObject bullet =	InternalCalls.CreatePrefab("Library/Prefabs/373530213.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+        bullet.GetComponent<BH_Bullet>().damage = damage;
+        timePassed = 0.0f;
 		shotTimes++;
 
 		return true;
