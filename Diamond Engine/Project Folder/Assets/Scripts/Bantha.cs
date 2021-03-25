@@ -3,6 +3,7 @@ using DiamondEngine;
 
 public class Bantha : Enemy
 {
+
 	public void Start()
 	{
 		currentState = STATES.WANDER;
@@ -11,6 +12,10 @@ public class Bantha : Enemy
 	}
 	public void Update()
 	{
+        if (player == null)
+        {
+            return;
+        }
         switch (currentState)
         {
 			case STATES.IDLE:
@@ -105,7 +110,7 @@ public class Bantha : Enemy
 				Debug.Log("Dying");
 				Counter.SumToCounterType(Counter.CounterTypes.ENEMY_BANTHA);
 				Counter.roomEnemies--;
-				if (Counter.roomEnemies <= 0)
+				if (Counter.roomEnemies <= 0 && Core.instance != null)
 				{
                     Core.instance.gameObject.GetComponent<BoonSpawn>().SpawnBoons();
                 }

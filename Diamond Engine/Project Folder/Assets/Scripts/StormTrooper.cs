@@ -9,7 +9,7 @@ public class StormTrooper : Enemy
 
 	private float pushSkillTimer = 0.15f;
 	private float pushSkillSpeed = 0.2f;
-    public float stormTrooperDamage = 9.0f;
+    public float stormTrooperDamage = 5.0f;
     
 
 	public void Start()
