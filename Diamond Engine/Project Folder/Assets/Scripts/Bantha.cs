@@ -3,6 +3,13 @@ using DiamondEngine;
 
 public class Bantha : Enemy
 {
+	public float chargeSpeed = 60.0f;
+	public float chargeRange = 25.0f;
+	public float chargeTime = 1.5f;
+	public float chargeDuration = 1.0f;
+
+	private float chargeCounter = 0.0f;
+	private float chargeStartYPos = 0.0f;
 
 	public void Start()
 	{
@@ -30,7 +37,7 @@ public class Bantha : Enemy
 					if (timePassed > idleTime)
 					{
 						currentState = STATES.SHOOT;
-						timePassed = timeBewteenShots;
+						//timePassed = timeBewteenShots;
 					}
 				}
 				else
@@ -47,23 +54,31 @@ public class Bantha : Enemy
 			case STATES.RUN:
 				Debug.Log("Running");
 
-				LookAt(targetPosition);
-				MoveToPosition(targetPosition, runningSpeed);
+				LookAt(player.transform.globalPosition);
+				MoveToPosition(player.transform.localPosition, runningSpeed);
 
-				if (Mathf.Distance(gameObject.transform.localPosition, targetPosition) < stoppingDistance)
+				// If the player is in range attack him
+				if (InRange(player.transform.globalPosition, chargeRange))
+				{
+					currentState = STATES.SHOOT;
+					//timePassed = timeBewteenShots;
+				}
+
+				if (Mathf.Distance(gameObject.transform.localPosition, player.transform.localPosition) < stoppingDistance)
 				{
 					currentState = STATES.IDLE;
 					timePassed = 0.0f;
 				}
 				break;
+
 			case STATES.WANDER:
 				Debug.Log("Wander");
 
-				// If the player is in range attack him
+				// If the player is in range run to him
 				if (InRange(player.transform.globalPosition, range))
 				{
-					currentState = STATES.SHOOT;
-					timePassed = timeBewteenShots;
+					currentState = STATES.RUN;
+					//timePassed = timeBewteenShots;
 				}
 				else  //if not, keep wandering
 				{
@@ -87,20 +102,44 @@ public class Bantha : Enemy
 
 				timePassed += Time.deltaTime;
 
-				LookAt(player.transform.globalPosition);
-				
-				Debug.Log(player.transform.localPosition.ToString());
-				Debug.Log(gameObject.transform.localPosition.ToString());
+                //LookAt(player.transform.globalPosition);
 
-				MoveToPosition(player.transform.localPosition, bulletSpeed);
+                //Debug.Log(player.transform.localPosition.ToString());
+                //Debug.Log(gameObject.transform.localPosition.ToString());
+
+                if (timePassed < chargeTime)
+                {
+					LookAt(player.transform.globalPosition);
+                }
+                else
+                {
+					if (chargeCounter < chargeDuration)
+					{
+						chargeCounter += Time.deltaTime;
+						gameObject.transform.localPosition += gameObject.transform.GetForward().normalized * chargeSpeed * Time.deltaTime;
+
+						gameObject.transform.localPosition.y = chargeStartYPos;
+
+					}
+					else
+					{
+						gameObject.transform.localPosition.y = chargeStartYPos;
+
+						chargeCounter = 0.0f;
+						currentState = STATES.RUN;
+						timePassed = 0.0f;
+					}
+				}
 
 				if (Mathf.Distance(gameObject.transform.localPosition, player.transform.localPosition) < stoppingDistance)
 				{
-					currentState = STATES.IDLE;
+					chargeCounter = 0.0f;
+					currentState = STATES.RUN;
 					timePassed = 0.0f;
 				}
-
+				
 				break;
+
 			case STATES.HIT:
 				Debug.Log("Being Hit");
 
@@ -117,12 +156,5 @@ public class Bantha : Enemy
                 InternalCalls.Destroy(gameObject);
 				break;
 		}
-
-
 	}
-	public void Charge()
-    {
-
-	}
-
 }
