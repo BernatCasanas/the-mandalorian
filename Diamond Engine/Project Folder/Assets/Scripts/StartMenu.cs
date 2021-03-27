@@ -24,16 +24,16 @@ public class StartMenu : DiamondComponent
 		}
 		else if (gameObject.Name == "Options")
 		{
-			menuButtons.Enable(false);
-			options.Enable(true);
-			background.Enable(true);
+			menuButtons.EnableNav(false);
+			options.EnableNav(true);
+			background.EnableNav(true);
 			if (default_selected != null)
 				default_selected.GetComponent<Navigation>().Select();
 		}
 		else if (gameObject.Name == "Quit")
 		{
-			options.Enable(true);
-			menuButtons.Enable(false);
+			options.EnableNav(true);
+			menuButtons.EnableNav(false);
 		}
 	}
 	public void Update()

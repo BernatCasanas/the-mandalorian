@@ -10,14 +10,8 @@ public class Return : DiamondComponent
 	{
 		if (gameObject.Name == "Return")
         {
-			bigBrother.Enable(true);
-			bigBrother.Enable(true);
-			if (bigBrother.Name == "PauseMenu")
-			{
-				aux = bigBrother.GetComponent<Pause>();
-				aux.DisplayBoons();
-			}
-			controlsWindow.Enable(false);
+			bigBrother.EnableNav(true);
+			controlsWindow.EnableNav(false);
 		}
 	}
 	public void Update()

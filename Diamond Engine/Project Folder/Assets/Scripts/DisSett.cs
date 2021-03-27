@@ -18,13 +18,8 @@ public class DisSett : DiamondComponent
 	{
 		if (gameObject.Name == "Return")
 		{
-			bigBrother.Enable(true);
-			if (bigBrother.Name == "PauseMenu")
-            {
-				aux = bigBrother.GetComponent<Pause>();
-				aux.DisplayBoons();
-            }
-			displayScreen.Enable(false);
+			bigBrother.EnableNav(true);
+			displayScreen.EnableNav(false);
 		}
 		else if (gameObject.Name == "ResolutionUp")
 			Config.SetResolution(Config.GetResolution() + 1);

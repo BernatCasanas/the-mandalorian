@@ -41,10 +41,15 @@
 		<StartupObject />
 	</PropertyGroup>
 	<ItemGroup>
-		<Compile Include="Assembly-CSharp\DefaultComponents\ParticleSystem.cs" />
 		<Compile Include="Assembly-CSharp\DefaultComponents\DiamondComponent.cs" />
+		<Compile Include="Assembly-CSharp\DefaultComponents\Image2D.cs" />
+		<Compile Include="Assembly-CSharp\DefaultComponents\Material.cs" />
+		<Compile Include="Assembly-CSharp\DefaultComponents\Navigation.cs" />
+		<Compile Include="Assembly-CSharp\DefaultComponents\ParticleSystem.cs" />
+		<Compile Include="Assembly-CSharp\DefaultComponents\Text.cs" />
 		<Compile Include="Assembly-CSharp\DefaultComponents\Transform.cs" />
 		<Compile Include="Assembly-CSharp\Diamond Engine Utility\Audio.cs" />
+		<Compile Include="Assembly-CSharp\Diamond Engine Utility\GameCounters.cs" />
 		<Compile Include="Assembly-CSharp\Diamond Engine Utility\GameObject.cs" />
 		<Compile Include="Assembly-CSharp\Diamond Engine Utility\InternalCalls.cs" />
 		<Compile Include="Assembly-CSharp\Diamond Engine Utility\Mathf.cs" />
@@ -52,14 +57,11 @@
 		<Compile Include="Assembly-CSharp\Diamond Engine Utility\Time.cs" />
 		<Compile Include="Assembly-CSharp\Diamond Engine Utility\Animator.cs" />
 		<Compile Include="Assembly-CSharp\Diamond Engine Utility\Vector3.cs" />
-		<Compile Include="Assembly-CSharp\DefaultComponents\Image2D.cs" />
-		<Compile Include="Assembly-CSharp\DefaultComponents\Material.cs" />
-		<Compile Include="Assembly-CSharp\DefaultComponents\Navigation.cs" />
-		<Compile Include="Assembly-CSharp\DefaultComponents\Text.cs" />
+		<Compile Include="Assets\Scripts\Boon_Data_Holder.cs" />
 		<Compile Include="Assets\Scripts\BH_Bullet.cs" />
 		<Compile Include="Assets\Scripts\BH_Plane.cs" />
-		<Compile Include="Assets\Scripts\Boon_Data_Holder.cs" />
 		<Compile Include="Assets\Scripts\Core.cs" />
+		<Compile Include="Assets\Scripts\DisSett.cs" />
 		<Compile Include="Assets\Scripts\main.cs" />
 		<Compile Include="Assets\Scripts\Hello.cs" />
 		<Compile Include="Assets\Scripts\HumanWalk.cs" />
@@ -89,10 +91,7 @@
 		<Compile Include="Assets\Scripts\HUD.cs" />
 		<Compile Include="Assets\Scripts\Enemy.cs" />
 		<Compile Include="Assets\Scripts\Stormtrooper.cs" />
-		<Compile Include="Assets\Scripts\Bantha.cs" />
-		<Compile Include="Assets\Scripts\ColliderTest.cs" />
 		<Compile Include="Assets\Scripts\PushSkill.cs" />
-		<Compile Include="Assembly-CSharp\Diamond Engine Utility\GameCounters.cs" />
 		<Compile Include="Assets\Scripts\EndScreen.cs" />
 		<Compile Include="Assets\Scripts\Spawn.cs" />
 		<Compile Include="Assets\Scripts\TextController.cs" />
@@ -105,6 +104,9 @@
 		<Compile Include="Assets\Scripts\GroguFollowPoints.cs" />
 		<Compile Include="Assets\Scripts\GroguFPManager.cs" />
 		<Compile Include="Assets\Scripts\AimBot.cs" />
+		<Compile Include="Assets\Scripts\Bantha.cs" />
+		<Compile Include="Assets\Scripts\ColliderTest.cs" />
+		<Compile Include="Assets\Scripts\VelocityTest.cs" />
 	</ItemGroup>
 	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10,13 +10,8 @@ public class QuitConfirmation : DiamondComponent
 	{
 		if (gameObject.Name == "Cancel")
 		{
-			bigBrother.Enable(true);
-			if (bigBrother.Name == "PauseMenu")
-			{
-				aux = bigBrother.GetComponent<Pause>();
-				aux.DisplayBoons();
-			}
-			confirmScreen.Enable(false);
+			bigBrother.EnableNav(true);
+			confirmScreen.EnableNav(false);
 		}
 		if (gameObject.Name == "QuittoDesktop")
 			InternalCalls.CloseGame();

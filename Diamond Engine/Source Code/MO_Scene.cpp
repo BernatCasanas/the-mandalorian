@@ -15,6 +15,7 @@
 #include"MaykMath.h"
 
 #include "IM_FileSystem.h"
+#include "IM_PrefabImporter.h"
 
 #include"DEJsonSupport.h"
 #include"CO_Transform.h"
@@ -28,6 +29,7 @@
 
 #include "COMM_DeleteGO.h"
 
+extern bool LOADING_SCENE = false;
 M_Scene::M_Scene(Application* app, bool start_enabled) : Module(app, start_enabled), root(nullptr),
 defaultMaterial(nullptr), holdUID(0)
 {
@@ -475,6 +477,8 @@ void M_Scene::LoadScene(const char* name)
 	App->moduleEditor->ClearConsole();
 #endif // !STANDALONE
 
+	LOADING_SCENE = true;
+
 	//TODO Save gameobjects to dont destroy list
 	std::vector<GameObject*> dontDestroyList;
 
@@ -541,6 +545,9 @@ void M_Scene::LoadScene(const char* name)
 	FileSystem::GetFileName(name, scene_name, false);
 
 	strcpy(current_scene_name, scene_name.c_str());
+	App->moduleResources->ZeroReferenceCleanUp();
+
+	LOADING_SCENE = false;
 
 }
 
@@ -597,6 +604,24 @@ GameObject* M_Scene::LoadGOData(JSON_Object* goJsonObj, GameObject* parent)
 
 	if (parent == nullptr)
 		parent = originalParent;
+
+	int prefabID = json_object_get_number(goJsonObj, "PrefabID");
+
+	if(prefabID != 0)
+	{
+		std::string prefabPath = EngineExternal->moduleResources->GenLibraryPath(prefabID, Resource::Type::PREFAB);
+
+		if (FileSystem::Exists(prefabPath.c_str()))
+		{
+			GameObject* prefabObject = PrefabImporter::LoadPrefab(prefabPath.c_str());
+			
+			if (prefabObject != nullptr)
+			{
+				prefabObject->parent = parent;
+				return parent;
+			}
+		}
+	}
 
 	parent = CreateGameObject(json_object_get_string(goJsonObj, "name"), parent, json_object_get_number(goJsonObj, "UID"));
 	parent->LoadFromJson(goJsonObj);
