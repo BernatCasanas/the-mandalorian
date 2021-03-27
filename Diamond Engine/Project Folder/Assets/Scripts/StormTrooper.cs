@@ -229,6 +229,8 @@ public class StormTrooper : Enemy
 				Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
 				Audio.PlayAudio(gameObject, "Play_Mando_Voice");
 
+                RemoveFromSpawner();
+
 				if (Core.instance.hud != null)
                 {
 					Core.instance.hud.GetComponent<HUD>().ComboIncrease(++Core.instance.hud.GetComponent<HUD>().combo_number, 5);
@@ -247,7 +249,11 @@ public class StormTrooper : Enemy
 				//Play Sound("Die")
 				Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
 				Audio.PlayAudio(gameObject, "Play_Mando_Voice");
-				if (Core.instance.hud != null)
+
+                RemoveFromSpawner();
+
+
+                if (Core.instance.hud != null)
 				{
 					Core.instance.hud.GetComponent<HUD>().ComboIncrease(++Core.instance.hud.GetComponent<HUD>().combo_number, 5);
 				}
@@ -292,5 +298,6 @@ public class StormTrooper : Enemy
 
 		//Debug.Log("Triggered by tag: " + triggeredGameObject.tag);
 	}
-	
+
+   
 }

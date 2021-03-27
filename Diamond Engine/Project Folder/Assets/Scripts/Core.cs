@@ -92,6 +92,7 @@ public class Core : DiamondComponent
     private Vector3 mySpawnPos = new Vector3(0.0f, 0.0f, 0.0f);
     private Pause aux = null;
 
+    AimBot myAimbot = null;
     public void Update()
     {
 
@@ -143,6 +144,7 @@ public class Core : DiamondComponent
             //fireRateMultCap = 2.5f;
             currSecondaryRate = secondaryRate;
             secondaryRateRecoverCap = 3.0f / secondaryRate;
+            myAimbot = gameObject.GetComponent<AimBot>();
             #endregion
 
             #region DASH
@@ -177,7 +179,7 @@ public class Core : DiamondComponent
 
         #region UPDATE STUFF
 
-        if(Input.GetKey(DEKeyCode.C) == KeyState.KEY_DOWN)
+        if (Input.GetKey(DEKeyCode.C) == KeyState.KEY_DOWN)
         {
             Audio.SetState("Game_State", "Run");
             if (MusicSourceLocate.instance != null)
@@ -241,10 +243,20 @@ public class Core : DiamondComponent
                 HandleDash();
                 break;
             case State.Shoot:
-                if (IsJoystickMoving())
+
+                if (myAimbot != null && myAimbot.HasObjective())
                 {
-                    RotatePlayer(gamepadInput);
+                    myAimbot.RotateToObjective();
                 }
+                else if (IsJoystickMoving())
+                {
+                    if (myAimbot != null && !myAimbot.HasObjective())
+                        RotatePlayer(gamepadInput);
+                    else if (myAimbot == null)
+                        RotatePlayer(gamepadInput);
+
+                }
+
 
                 ShootInput();
                 HandleShoot();
@@ -267,6 +279,7 @@ public class Core : DiamondComponent
         }
 
         currentStateString = _currentState.ToString();
+        Debug.Log("MY CURRENT STATE: "+currentStateString);
         #endregion
     }
 
@@ -283,10 +296,19 @@ public class Core : DiamondComponent
             shooting = true;
             fireButtonPressed = true;
             ChangeState(State.Shoot);
+            if (myAimbot != null)
+            {
+                myAimbot.isShooting = true;
+                myAimbot.SearchForNewObjective();
+            }
         }
         else if (fireButton == KeyState.KEY_UP || fireButton == KeyState.KEY_IDLE)
         {
             fireButtonPressed = false;
+            if (myAimbot != null)
+            {
+                myAimbot.isShooting = false;
+            }
         }
     }
 
@@ -587,8 +609,8 @@ public class Core : DiamondComponent
         {
             //InternalCalls.Destroy(gameObject);
             BH_Bullet bulletScript = collidedGameObject.GetComponent<BH_Bullet>();
-            
-            if(bulletScript != null)
+
+            if (bulletScript != null)
                 gameObject.GetComponent<PlayerHealth>().TakeDamage((int)bulletScript.damage);
         }
     }
