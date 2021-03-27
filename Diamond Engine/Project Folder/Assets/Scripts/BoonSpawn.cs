@@ -113,7 +113,7 @@ public class BoonSpawn : DiamondComponent
 
 
     //returns the index of the boonWeight that has been chosen, returns -1 if the pool is empty
-    int RequestRandomBoon()
+    public int RequestRandomBoon()
     {
         Random r = new Random();
         float randomPick = (float)(r.NextDouble() * totalweight);
