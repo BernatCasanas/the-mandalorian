@@ -7,9 +7,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                0,
+                -20.707479476928711,
                 6.6007509231567383,
-                2.4384112358093262
+                -12.930102348327637
             ],
             "Rotation": [
                 0,
@@ -22,10 +22,10 @@
                 1,
                 1
             ],
-            "UID": 1910179459,
+            "UID": 511481103,
             "PrefabID": 1075888511,
             "DontDestroy": false,
-            "ParentUID": 1791913646,
+            "ParentUID": 1676501951,
             "Components": [
                 {
                     "Type": 1,
@@ -35,7 +35,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Core",
-                    "shootPoint": 1384307270,
+                    "shootPoint": 252037409,
+                    "hud": 188057911,
                     "rotationSpeed": 2,
                     "movementSpeed": 5.5,
                     "mouseSens": 1,
@@ -51,7 +52,9 @@
                     "grenadesFireRate": 0.125,
                     "currentStateString": "Empty",
                     "smallGrenades": 0,
-                    "BigGrenades": 0
+                    "BigGrenades": 0,
+                    "background": 1383816799,
+                    "pause": 1369759560
                 },
                 {
                     "Type": 13,
@@ -101,8 +104,8 @@
                 {
                     "Type": 16,
                     "Active": true,
-                    "RootBone UID": 2085334604,
-                    "MeshRendererUID": 731066465,
+                    "RootBone UID": 7572352,
+                    "MeshRendererUID": 713750560,
                     "Animations": [
                         1169846379,
                         2130902709,
@@ -114,16 +117,15 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "PlayerHealth",
-                    "startHealth": 100,
                     "<currMaxHealth>k__BackingField": 0,
                     "<currHealth>k__BackingField": 0,
-                    "<healWhenKillingAnEnemy>k__BackingField": 0,
-                    "firstFrame": false
+                    "<healWhenKillingAnEnemy>k__BackingField": 0
                 },
                 {
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "BoonSpawn",
+                    "boonSpawnPosGO": 1295957895,
                     "boonsToSpawn": 1,
                     "separation": 3.5
                 }
@@ -150,10 +152,10 @@
                 0.05000000074505806,
                 0.60000002384185791
             ],
-            "UID": 1384307270,
+            "UID": 252037409,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1910179459,
+            "ParentUID": 511481103,
             "Components": [
                 {
                     "Type": 1,
@@ -192,10 +194,10 @@
                 1,
                 1
             ],
-            "UID": 2085334604,
+            "UID": 7572352,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1910179459,
+            "ParentUID": 511481103,
             "Components": [
                 {
                     "Type": 1,
@@ -224,10 +226,10 @@
                 0.99999994039535522,
                 1
             ],
-            "UID": 301026002,
+            "UID": 1061225077,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 2085334604,
+            "ParentUID": 7572352,
             "Components": [
                 {
                     "Type": 1,
@@ -256,10 +258,10 @@
                 0.99999994039535522,
                 1
             ],
-            "UID": 438374169,
+            "UID": 1523694429,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 301026002,
+            "ParentUID": 1061225077,
             "Components": [
                 {
                     "Type": 1,
@@ -288,10 +290,10 @@
                 1,
                 1
             ],
-            "UID": 10428785,
+            "UID": 1880130550,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 438374169,
+            "ParentUID": 1523694429,
             "Components": [
                 {
                     "Type": 1,
@@ -320,10 +322,10 @@
                 1,
                 1
             ],
-            "UID": 212967799,
+            "UID": 998285959,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 10428785,
+            "ParentUID": 1880130550,
             "Components": [
                 {
                     "Type": 1,
@@ -352,10 +354,10 @@
                 1,
                 1
             ],
-            "UID": 804035291,
+            "UID": 506000031,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 212967799,
+            "ParentUID": 998285959,
             "Components": [
                 {
                     "Type": 1,
@@ -384,10 +386,10 @@
                 1,
                 1
             ],
-            "UID": 1432252009,
+            "UID": 906412863,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 804035291,
+            "ParentUID": 506000031,
             "Components": [
                 {
                     "Type": 1,
@@ -416,10 +418,10 @@
                 0.99999994039535522,
                 1
             ],
-            "UID": 708937438,
+            "UID": 1562967828,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 301026002,
+            "ParentUID": 1061225077,
             "Components": [
                 {
                     "Type": 1,
@@ -448,10 +450,10 @@
                 1,
                 1
             ],
-            "UID": 1316711997,
+            "UID": 239276051,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 708937438,
+            "ParentUID": 1562967828,
             "Components": [
                 {
                     "Type": 1,
@@ -480,10 +482,10 @@
                 1,
                 1
             ],
-            "UID": 1171503648,
+            "UID": 607296892,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1316711997,
+            "ParentUID": 239276051,
             "Components": [
                 {
                     "Type": 1,
@@ -512,10 +514,10 @@
                 1,
                 1
             ],
-            "UID": 1974047995,
+            "UID": 958875796,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1171503648,
+            "ParentUID": 607296892,
             "Components": [
                 {
                     "Type": 1,
@@ -544,10 +546,10 @@
                 1,
                 1
             ],
-            "UID": 537019189,
+            "UID": 1215142674,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1974047995,
+            "ParentUID": 958875796,
             "Components": [
                 {
                     "Type": 1,
@@ -576,10 +578,10 @@
                 1,
                 1
             ],
-            "UID": 122663099,
+            "UID": 1477316636,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 537019189,
+            "ParentUID": 1215142674,
             "Components": [
                 {
                     "Type": 1,
@@ -608,10 +610,10 @@
                 1,
                 1
             ],
-            "UID": 1532635007,
+            "UID": 679725538,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1974047995,
+            "ParentUID": 958875796,
             "Components": [
                 {
                     "Type": 1,
@@ -640,10 +642,10 @@
                 0.99999988079071045,
                 1
             ],
-            "UID": 1561853858,
+            "UID": 1222035806,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1532635007,
+            "ParentUID": 679725538,
             "Components": [
                 {
                     "Type": 1,
@@ -672,10 +674,10 @@
                 1,
                 1
             ],
-            "UID": 2140465620,
+            "UID": 347722680,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1561853858,
+            "ParentUID": 1222035806,
             "Components": [
                 {
                     "Type": 1,
@@ -704,10 +706,10 @@
                 0.99999994039535522,
                 0.99999994039535522
             ],
-            "UID": 1024213749,
+            "UID": 217551649,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 2140465620,
+            "ParentUID": 347722680,
             "Components": [
                 {
                     "Type": 1,
@@ -736,10 +738,10 @@
                 1,
                 1
             ],
-            "UID": 1738404141,
+            "UID": 2108676385,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1024213749,
+            "ParentUID": 217551649,
             "Components": [
                 {
                     "Type": 1,
@@ -768,10 +770,10 @@
                 1,
                 1
             ],
-            "UID": 1551322935,
+            "UID": 1881523871,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1738404141,
+            "ParentUID": 2108676385,
             "Components": [
                 {
                     "Type": 1,
@@ -800,10 +802,10 @@
                 1,
                 1
             ],
-            "UID": 1258999064,
+            "UID": 1365923185,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1551322935,
+            "ParentUID": 1881523871,
             "Components": [
                 {
                     "Type": 1,
@@ -832,10 +834,10 @@
                 1,
                 1
             ],
-            "UID": 1081298792,
+            "UID": 2067206431,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1024213749,
+            "ParentUID": 217551649,
             "Components": [
                 {
                     "Type": 1,
@@ -864,10 +866,10 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 1063952247,
+            "UID": 919878005,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1081298792,
+            "ParentUID": 2067206431,
             "Components": [
                 {
                     "Type": 1,
@@ -896,10 +898,10 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 265952416,
+            "UID": 569265271,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1063952247,
+            "ParentUID": 919878005,
             "Components": [
                 {
                     "Type": 1,
@@ -928,10 +930,10 @@
                 1,
                 1
             ],
-            "UID": 269149902,
+            "UID": 1006726906,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1024213749,
+            "ParentUID": 217551649,
             "Components": [
                 {
                     "Type": 1,
@@ -960,10 +962,10 @@
                 1,
                 1
             ],
-            "UID": 1690507067,
+            "UID": 1910135487,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 269149902,
+            "ParentUID": 1006726906,
             "Components": [
                 {
                     "Type": 1,
@@ -992,10 +994,10 @@
                 1,
                 1
             ],
-            "UID": 1951237772,
+            "UID": 470416305,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1690507067,
+            "ParentUID": 1910135487,
             "Components": [
                 {
                     "Type": 1,
@@ -1024,10 +1026,10 @@
                 0.99999994039535522,
                 0.99999994039535522
             ],
-            "UID": 1604382486,
+            "UID": 1727953655,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1974047995,
+            "ParentUID": 958875796,
             "Components": [
                 {
                     "Type": 1,
@@ -1056,10 +1058,10 @@
                 0.99999994039535522,
                 0.99999994039535522
             ],
-            "UID": 1646126395,
+            "UID": 1974993462,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1604382486,
+            "ParentUID": 1727953655,
             "Components": [
                 {
                     "Type": 1,
@@ -1088,10 +1090,10 @@
                 0.99999994039535522,
                 1
             ],
-            "UID": 205956846,
+            "UID": 1936867786,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1646126395,
+            "ParentUID": 1974993462,
             "Components": [
                 {
                     "Type": 1,
@@ -1120,10 +1122,10 @@
                 1,
                 1
             ],
-            "UID": 173264347,
+            "UID": 1878966682,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 205956846,
+            "ParentUID": 1936867786,
             "Components": [
                 {
                     "Type": 1,
@@ -1152,10 +1154,10 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 421457288,
+            "UID": 1573010517,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 173264347,
+            "ParentUID": 1878966682,
             "Components": [
                 {
                     "Type": 1,
@@ -1184,10 +1186,10 @@
                 1,
                 1
             ],
-            "UID": 1208778887,
+            "UID": 1489141645,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 421457288,
+            "ParentUID": 1573010517,
             "Components": [
                 {
                     "Type": 1,
@@ -1216,10 +1218,10 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 805733191,
+            "UID": 1462440326,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1208778887,
+            "ParentUID": 1489141645,
             "Components": [
                 {
                     "Type": 1,
@@ -1248,10 +1250,10 @@
                 1,
                 1
             ],
-            "UID": 1530147324,
+            "UID": 63264882,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 173264347,
+            "ParentUID": 1878966682,
             "Components": [
                 {
                     "Type": 1,
@@ -1280,10 +1282,10 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 165567475,
+            "UID": 75389725,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1530147324,
+            "ParentUID": 63264882,
             "Components": [
                 {
                     "Type": 1,
@@ -1312,10 +1314,10 @@
                 1,
                 1
             ],
-            "UID": 1428443526,
+            "UID": 258010957,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 165567475,
+            "ParentUID": 75389725,
             "Components": [
                 {
                     "Type": 1,
@@ -1344,10 +1346,10 @@
                 1,
                 1
             ],
-            "UID": 1846514723,
+            "UID": 1427613789,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 173264347,
+            "ParentUID": 1878966682,
             "Components": [
                 {
                     "Type": 1,
@@ -1376,10 +1378,10 @@
                 1,
                 1
             ],
-            "UID": 1387969622,
+            "UID": 2061453515,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1846514723,
+            "ParentUID": 1427613789,
             "Components": [
                 {
                     "Type": 1,
@@ -1408,10 +1410,10 @@
                 1,
                 1
             ],
-            "UID": 1511389203,
+            "UID": 1975555158,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1387969622,
+            "ParentUID": 2061453515,
             "Components": [
                 {
                     "Type": 1,
@@ -1440,10 +1442,10 @@
                 0.99999994039535522,
                 0.99999988079071045
             ],
-            "UID": 2023966357,
+            "UID": 240515709,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 301026002,
+            "ParentUID": 1061225077,
             "Components": [
                 {
                     "Type": 1,
@@ -1472,10 +1474,10 @@
                 1,
                 1
             ],
-            "UID": 1274759145,
+            "UID": 1014180630,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 2023966357,
+            "ParentUID": 240515709,
             "Components": [
                 {
                     "Type": 1,
@@ -1504,10 +1506,10 @@
                 1,
                 0.99999988079071045
             ],
-            "UID": 949754476,
+            "UID": 1154811517,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1274759145,
+            "ParentUID": 1014180630,
             "Components": [
                 {
                     "Type": 1,
@@ -1536,10 +1538,10 @@
                 1,
                 1
             ],
-            "UID": 1834882466,
+            "UID": 1639848671,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 949754476,
+            "ParentUID": 1154811517,
             "Components": [
                 {
                     "Type": 1,
@@ -1568,10 +1570,10 @@
                 1,
                 1
             ],
-            "UID": 1139939944,
+            "UID": 1231198230,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1834882466,
+            "ParentUID": 1639848671,
             "Components": [
                 {
                     "Type": 1,
@@ -1600,10 +1602,10 @@
                 1,
                 1
             ],
-            "UID": 1353182692,
+            "UID": 442200825,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 301026002,
+            "ParentUID": 1061225077,
             "Components": [
                 {
                     "Type": 1,
@@ -1632,10 +1634,10 @@
                 0.99999994039535522,
                 1
             ],
-            "UID": 1972089489,
+            "UID": 138073933,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1353182692,
+            "ParentUID": 442200825,
             "Components": [
                 {
                     "Type": 1,
@@ -1664,10 +1666,10 @@
                 1,
                 1
             ],
-            "UID": 1622826371,
+            "UID": 708485421,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1972089489,
+            "ParentUID": 138073933,
             "Components": [
                 {
                     "Type": 1,
@@ -1696,14 +1698,495 @@
                 1,
                 1
             ],
-            "UID": 1532623074,
+            "UID": 2059091145,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1622826371,
+            "ParentUID": 708485421,
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "GroguFollowPoint",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.50180244445800781,
+                0.90269899368286133,
+                -0.44307708740234375
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1370247042,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 511481103,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "GroguFPManager",
+                    "point1": 303260401,
+                    "point2": 1380644364,
+                    "point3": 473226324,
+                    "point4": 1943274577,
+                    "point5": 1249564317,
+                    "point6": 1354773887
+                }
+            ]
+        },
+        {
+            "name": "FP_Back",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -0.53475379943847656,
+                0.046333789825439453,
+                -1.2218532562255859
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 303260401,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1370247042,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 0,
+                    "Density": 0
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "GroguFollowPoints",
+                    "priority": 2
+                }
+            ]
+        },
+        {
+            "name": "FP_BackLeft",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.75781059265136719,
+                0.046333789825439453,
+                -0.77125072479248047
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1380644364,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1370247042,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 0,
+                    "Density": 0
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "GroguFollowPoints",
+                    "priority": 1
+                }
+            ]
+        },
+        {
+            "name": "FP_BackRight",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -1.8636245727539063,
+                0.046333789825439453,
+                -0.77125072479248047
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 473226324,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1370247042,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 0,
+                    "Density": 0
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "GroguFollowPoints",
+                    "priority": 1
+                }
+            ]
+        },
+        {
+            "name": "FP_Right",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -1.8636245727539063,
+                0.046333789825439453,
+                0.86050128936767578
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1943274577,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1370247042,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 0,
+                    "Density": 0
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "GroguFollowPoints",
+                    "priority": 3
+                }
+            ]
+        },
+        {
+            "name": "FP_Left",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.76593399047851563,
+                0.046333789825439453,
+                0.86050128936767578
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1249564317,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1370247042,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 0,
+                    "Density": 0
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "GroguFollowPoints",
+                    "priority": 3
+                }
+            ]
+        },
+        {
+            "name": "FP_Front",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -0.53475379943847656,
+                0.046333789825439453,
+                2.1109142303466797
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1354773887,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1370247042,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 0,
+                    "Density": 0
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "GroguFollowPoints",
+                    "priority": 4
                 }
             ]
         },
@@ -1728,10 +2211,10 @@
                 1,
                 1
             ],
-            "UID": 731066465,
+            "UID": 713750560,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1910179459,
+            "ParentUID": 511481103,
             "Components": [
                 {
                     "Type": 1,
@@ -1755,38 +2238,6 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
                     "MaterialUID": 1948688504
-                }
-            ]
-        },
-        {
-            "name": "GroguFollowPoint",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0.58572781085968018,
-                0.90269899368286133,
-                -0.4430774450302124
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 68442218,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 1910179459,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
                 }
             ]
         }

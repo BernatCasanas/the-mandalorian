@@ -87,9 +87,22 @@ public class BabyYoda : DiamondComponent
     {
         if (followPoint != null)
         {
-            float x = Mathf.Lerp(gameObject.transform.localPosition.x, followPoint.transform.globalPosition.x, horizontalSpeed * Time.deltaTime);
-            float z = Mathf.Lerp(gameObject.transform.localPosition.z, followPoint.transform.globalPosition.z, horizontalSpeed * Time.deltaTime);
-            gameObject.transform.localPosition = new Vector3(x, gameObject.transform.localPosition.y, z);
+            GroguFPManager fpManager = followPoint.GetComponent<GroguFPManager>();
+            if (fpManager == null)
+            {
+                Debug.Log("Need to add Follow points manager to Grogu!");
+                return;
+            }
+
+            Vector3 point = fpManager.GetPointToFollow(gameObject.transform.globalPosition);
+
+            if (point != Vector3.zero)
+            {
+                float x = Mathf.Lerp(gameObject.transform.localPosition.x, point.x, horizontalSpeed * Time.deltaTime);
+                float z = Mathf.Lerp(gameObject.transform.localPosition.z, point.z, horizontalSpeed * Time.deltaTime);
+                gameObject.transform.localPosition = new Vector3(x, gameObject.transform.localPosition.y, z);
+            }
+
         }
     }
 

@@ -134,6 +134,14 @@ namespace DiamondEngine
             return (this.x.ToString() + ", " + this.y.ToString() + ", " + this.z.ToString());
         }
 
+        public float Distance(Vector3 point)
+        {
+            return (float)Math.Sqrt(Math.Pow((point.x - this.x), 2) + Math.Pow((point.y - this.y), 2) + Math.Pow((point.z - this.z), 2));
+        }
 
+        public float DistanceNoSqrt(Vector3 point)
+        {
+            return (float)(Math.Pow((point.x - this.x), 2) + Math.Pow((point.y - this.y), 2) + Math.Pow((point.z - this.z), 2));
+        }
     }
 }
