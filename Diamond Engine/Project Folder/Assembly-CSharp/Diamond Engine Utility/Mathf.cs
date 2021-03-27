@@ -18,6 +18,11 @@ namespace DiamondEngine
             return (1.0f - t) * from + to * t;
         }
 
+        //given 2 numbers and a number between them, inverse lerp returns a value between 0 and 1
+        public static float InvLerp(float from,float to,float value)
+        {
+            return (value - from) / (to - from);
+        }
 
         public static float LerpAngle(float from, float to, float t)
         {

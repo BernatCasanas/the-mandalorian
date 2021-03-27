@@ -31,6 +31,8 @@ public class Enemy : DiamondComponent
 
 	protected STATES currentState = STATES.WANDER;
 
+    public Spawn dieCallBack = null;
+
 	protected enum STATES
 	{
 		IDLE,
@@ -105,4 +107,11 @@ public class Enemy : DiamondComponent
     {
 		return Mathf.Distance(gameObject.transform.globalPosition, point) < givenRange;
 	}
+    public void RemoveFromSpawner()
+    {
+        if (dieCallBack != null)
+        {
+            dieCallBack.currentEnemies.Remove(gameObject);
+        }
+    }
 }
