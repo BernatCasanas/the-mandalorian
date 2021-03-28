@@ -86,17 +86,17 @@ void C_Image2D::RenderImage(float* transform, ResourceMaterial* material, unsign
 
 	glBindBuffer(GL_ARRAY_BUFFER, VAO);
 	//glVertexPointer(2, GL_FLOAT, 0, NULL);
-	glEnableVertexAttribArray(0);            
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, (GLvoid*)0);
 
 	glDrawArrays(GL_TRIANGLES, 0, 6);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	//glActiveTexture(GL_TEXTURE0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
-	if (material->shader)
-		material->shader->Unbind();
+	
+	material->shader->Unbind();
 }
 
 
