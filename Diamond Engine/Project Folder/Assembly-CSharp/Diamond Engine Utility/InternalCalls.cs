@@ -29,6 +29,10 @@ namespace DiamondEngine
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern Vector3 GetWalkablePointAround(object position, float radius);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public static extern GameObject FindObjectWithName(string name);
+
     }
     public class Config
     {
