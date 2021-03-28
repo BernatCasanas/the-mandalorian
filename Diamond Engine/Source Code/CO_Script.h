@@ -31,6 +31,7 @@ public:
 	void LoadScriptData(const char*);
 
 	void CollisionCallback(bool isTrigger, GameObject* collidedGameObject);
+	void CollisionPersistCallback( GameObject* collidedGameObject);
 
 	void ExecuteButton();
 	void ExecuteCheckbox(bool checkbox_active);
@@ -43,6 +44,7 @@ public:
 	MonoMethod* updateMethod;
 
 	MonoMethod* onCollisionEnter;
+	MonoMethod* onCollisionStay;
 	MonoMethod* onTriggerEnter;
 
 	MonoMethod* onApplicationQuit;
