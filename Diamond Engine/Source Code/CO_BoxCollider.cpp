@@ -143,7 +143,7 @@ void C_BoxCollider::Update()
 {
 #ifndef STANDALONE
 
-	if(rigidbody == nullptr)
+	if (rigidbody == nullptr)
 		rigidbody = dynamic_cast<C_RigidBody*>(gameObject->GetComponent(Component::TYPE::RIGIDBODY));
 
 	if (colliderShape != nullptr)
@@ -162,54 +162,35 @@ void C_BoxCollider::Update()
 
 		physx::PxBoxGeometry boxCollider;
 
-
-
 		colliderShape->getBoxGeometry(boxCollider);
 
 		float3 half_size = { boxCollider.halfExtents.x, boxCollider.halfExtents.y, boxCollider.halfExtents.z };
+		//half_size = half_size.Mul(transform->globalTransform.GetScale());
 
-			glPushMatrix();
-			glMultMatrixf(trans.Transposed().ptr());
+		glLineWidth(2.0f);
 
+		EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(float3(-half_size.x, -half_size.y, +-half_size.z)), trans.MulPos(float3(half_size.x, -half_size.y, +-half_size.z)), float3(0.0f, 1.0f, 0.0f));
+		EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(float3(half_size.x, -half_size.y, +-half_size.z)), trans.MulPos(float3(half_size.x, -half_size.y, +half_size.z)), float3(0.0f, 1.0f, 0.0f));
+		EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(float3(half_size.x, -half_size.y, +half_size.z)), trans.MulPos(float3(-half_size.x, -half_size.y, +half_size.z)), float3(0.0f, 1.0f, 0.0f));
+		EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(float3(-half_size.x, -half_size.y, +half_size.z)), trans.MulPos(float3(-half_size.x, -half_size.y, +-half_size.z)), float3(0.0f, 1.0f, 0.0f));
 
-			glLineWidth(2.0f);
-			glColor3f(0.0f, 1.0f, 0.0f);
-			glBegin(GL_LINE_LOOP);
-			glVertex3f(-half_size.x, half_size.y, -half_size.z);
-			glVertex3f(half_size.x, half_size.y, -half_size.z);
-			glVertex3f(half_size.x, half_size.y, half_size.z);
-			glVertex3f(-half_size.x, half_size.y, half_size.z);
-			glEnd();
+		EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(float3(-half_size.x, -half_size.y, +-half_size.z)), trans.MulPos(float3(-half_size.x, half_size.y, -half_size.z)), float3(0.0f, 1.0f, 0.0f));
+		EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(float3(half_size.x, -half_size.y, +-half_size.z)), trans.MulPos(float3(half_size.x, half_size.y, -half_size.z)), float3(0.0f, 1.0f, 0.0f));
+		EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(float3(half_size.x, -half_size.y, +half_size.z)), trans.MulPos(float3(half_size.x, half_size.y, half_size.z)), float3(0.0f, 1.0f, 0.0f));
+		EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(float3(-half_size.x, -half_size.y, +half_size.z)), trans.MulPos(float3(-half_size.x, half_size.y, half_size.z)), float3(0.0f, 1.0f, 0.0f));
 
-			glBegin(GL_LINE_LOOP);
-			glVertex3f(-half_size.x, -half_size.y, -half_size.z);
-			glVertex3f(half_size.x, -half_size.y, -half_size.z);
-			glVertex3f(half_size.x, -half_size.y, half_size.z);
-			glVertex3f(-half_size.x, -half_size.y, half_size.z);
-			glEnd();
-
-			glBegin(GL_LINES);
-			glVertex3f(-half_size.x, half_size.y, -half_size.z);
-			glVertex3f(-half_size.x, -half_size.y, -half_size.z);
-			glVertex3f(half_size.x, half_size.y, -half_size.z);
-			glVertex3f(half_size.x, -half_size.y, -half_size.z);
-			glVertex3f(half_size.x, half_size.y, half_size.z);
-			glVertex3f(half_size.x, -half_size.y, half_size.z);
-			glVertex3f(-half_size.x, half_size.y, half_size.z);
-			glVertex3f(-half_size.x, -half_size.y, half_size.z);
-			glEnd();
+		EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(float3(-half_size.x, half_size.y, +-half_size.z)), trans.MulPos(float3(half_size.x, half_size.y, -half_size.z)), float3(0.0f, 1.0f, 0.0f));
+		EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(float3(half_size.x, half_size.y, +-half_size.z)), trans.MulPos(float3(half_size.x, half_size.y, half_size.z)), float3(0.0f, 1.0f, 0.0f));
+		EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(float3(half_size.x, half_size.y, +half_size.z)), trans.MulPos(float3(-half_size.x, half_size.y, half_size.z)), float3(0.0f, 1.0f, 0.0f));
+		EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(float3(-half_size.x, half_size.y, +half_size.z)), trans.MulPos(float3(-half_size.x, half_size.y, -half_size.z)), float3(0.0f, 1.0f, 0.0f));
 
 		glColor3f(1.0f, 1.0f, 1.0f);
-		glPopMatrix();
+
 
 	}
 #endif // !STANDALONE
 
 }
-
-
-
-
 
 void C_BoxCollider::SaveData(JSON_Object* nObj)
 {
