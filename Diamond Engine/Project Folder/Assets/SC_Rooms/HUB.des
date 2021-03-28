@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        -15.336822509765625,
-        8.4857378005981445,
-        5.3158178329467773
+        27.155927658081055,
+        5.6888637542724609,
+        22.469020843505859
     ],
     "EditorCameraZ": [
-        0.84862780570983887,
-        -0.39048850536346436,
-        -0.35686081647872925
+        -0.56850212812423706,
+        -0.37427797913551331,
+        -0.73261260986328125
     ],
     "EditorCameraY": [
-        0.35996586084365845,
-        0.9206078052520752,
-        -0.15134686231613159
+        -0.22943723201751709,
+        0.92731654644012451,
+        -0.29570689797401428
     ],
     "tags": [
         "Enemy",
@@ -58,20 +58,20 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                18.13905143737793,
-                0.13202908635139465,
-                -2.9484405517578125
+                0,
+                6.6007509231567383,
+                2.4384112358093262
             ],
             "Rotation": [
-                2.8039118249445494e-10,
-                -0.043401263654232025,
-                1.1261183825717058e-11,
-                0.99905771017074585
+                0,
+                0,
+                0,
+                1
             ],
             "Scale": [
-                0.99999916553497314,
                 1,
-                0.99999916553497314
+                1,
+                1
             ],
             "UID": 196363487,
             "PrefabID": 1075888511,
@@ -1845,9 +1845,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -1.8411099910736084,
-                17.617837905883789,
-                -19.001256942749023
+                -8.12689208984375,
+                18.808589935302734,
+                -10.831701278686523
             ],
             "Rotation": [
                 0.24263942241668701,
@@ -1912,9 +1912,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                19.853847503662109,
-                2.2317354679107666,
-                -3.1025996208190918
+                0,
+                7.6824569702148438,
+                0
             ],
             "Rotation": [
                 0,
@@ -2336,6 +2336,41 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 19,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        -16.5,
+                        -4.5,
+                        14
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
@@ -2395,13 +2430,13 @@
                     "Density": 1
                 },
                 {
-                    "Type": 22,
+                    "Type": 19,
                     "Active": true,
                     "isTrigger": false,
                     "Position": [
-                        0,
-                        0,
-                        0
+                        -16.5,
+                        -0.40000000596046448,
+                        14
                     ],
                     "Rotation": [
                         0,
@@ -2409,7 +2444,11 @@
                         0,
                         1
                     ],
-                    "Radius": 2.0947766304016113
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
@@ -3001,24 +3040,24 @@
                     "Density": 1
                 },
                 {
-                    "Type": 18,
+                    "Type": 19,
                     "Active": true,
                     "isTrigger": false,
                     "Position": [
-                        0,
-                        0,
-                        0
+                        -9.8000001907348633,
+                        -0.69999998807907104,
+                        2.2999999523162842
                     ],
                     "Rotation": [
                         0,
-                        0.00022894168796483427,
+                        0,
                         0,
                         1
                     ],
                     "Scale": [
-                        0.999991774559021,
                         1,
-                        0.999991774559021
+                        1,
+                        1
                     ]
                 }
             ]
@@ -7316,13 +7355,13 @@
                     "Density": 1
                 },
                 {
-                    "Type": 18,
+                    "Type": 19,
                     "Active": true,
                     "isTrigger": false,
                     "Position": [
-                        0,
-                        0,
-                        0
+                        12.850000381469727,
+                        -0.89999997615814209,
+                        2.3499999046325684
                     ],
                     "Rotation": [
                         0,
@@ -7512,13 +7551,13 @@
                     "Density": 1
                 },
                 {
-                    "Type": 18,
+                    "Type": 19,
                     "Active": true,
                     "isTrigger": false,
                     "Position": [
-                        0,
-                        0,
-                        0
+                        12.899999618530273,
+                        -0.89999997615814209,
+                        2.3499999046325684
                     ],
                     "Rotation": [
                         0,
@@ -7622,13 +7661,13 @@
                     "Density": 1
                 },
                 {
-                    "Type": 18,
+                    "Type": 19,
                     "Active": true,
                     "isTrigger": false,
                     "Position": [
-                        0,
-                        0,
-                        0
+                        12.899999618530273,
+                        -0.89999997615814209,
+                        2.3499999046325684
                     ],
                     "Rotation": [
                         0,
@@ -7775,13 +7814,13 @@
                     "Density": 1
                 },
                 {
-                    "Type": 18,
+                    "Type": 19,
                     "Active": true,
                     "isTrigger": false,
                     "Position": [
-                        0,
-                        0,
-                        0
+                        12.899999618530273,
+                        -0.89999997615814209,
+                        2.3499999046325684
                     ],
                     "Rotation": [
                         0,
@@ -7928,13 +7967,13 @@
                     "Density": 1
                 },
                 {
-                    "Type": 18,
+                    "Type": 19,
                     "Active": true,
                     "isTrigger": false,
                     "Position": [
-                        0,
-                        0,
-                        0
+                        12.899999618530273,
+                        -0.89999997615814209,
+                        2.3499999046325684
                     ],
                     "Rotation": [
                         0,
@@ -8081,13 +8120,13 @@
                     "Density": 1
                 },
                 {
-                    "Type": 18,
+                    "Type": 19,
                     "Active": true,
                     "isTrigger": false,
                     "Position": [
-                        0,
-                        0,
-                        0
+                        12.899999618530273,
+                        -0.89999997615814209,
+                        2.3499999046325684
                     ],
                     "Rotation": [
                         0,
@@ -8234,13 +8273,13 @@
                     "Density": 1
                 },
                 {
-                    "Type": 18,
+                    "Type": 19,
                     "Active": true,
                     "isTrigger": false,
                     "Position": [
-                        0,
-                        0,
-                        0
+                        12.899999618530273,
+                        -0.89999997615814209,
+                        2.3499999046325684
                     ],
                     "Rotation": [
                         0,
@@ -8403,6 +8442,41 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
@@ -8517,6 +8591,41 @@
                     "Path": "Library\/Meshes\/1608013470.mmh",
                     "UID": 1608013470,
                     "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
                         1,
                         1,
                         1
@@ -8639,6 +8748,41 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
@@ -8757,6 +8901,41 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
@@ -8871,8 +9050,8 @@
                     "Path": "Library\/Meshes\/924298692.mmh",
                     "UID": 924298692,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -8914,8 +9093,8 @@
                     "Path": "Library\/Meshes\/1251753377.mmh",
                     "UID": 1251753377,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -8957,8 +9136,8 @@
                     "Path": "Library\/Meshes\/1287981210.mmh",
                     "UID": 1287981210,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9000,8 +9179,8 @@
                     "Path": "Library\/Meshes\/212657278.mmh",
                     "UID": 212657278,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9043,8 +9222,8 @@
                     "Path": "Library\/Meshes\/660089220.mmh",
                     "UID": 660089220,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9086,8 +9265,8 @@
                     "Path": "Library\/Meshes\/2069023467.mmh",
                     "UID": 2069023467,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9129,8 +9308,8 @@
                     "Path": "Library\/Meshes\/722206188.mmh",
                     "UID": 722206188,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9172,8 +9351,8 @@
                     "Path": "Library\/Meshes\/1682387537.mmh",
                     "UID": 1682387537,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9215,8 +9394,8 @@
                     "Path": "Library\/Meshes\/1449638803.mmh",
                     "UID": 1449638803,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9258,8 +9437,8 @@
                     "Path": "Library\/Meshes\/14145604.mmh",
                     "UID": 14145604,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9301,8 +9480,8 @@
                     "Path": "Library\/Meshes\/1283585758.mmh",
                     "UID": 1283585758,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9344,8 +9523,8 @@
                     "Path": "Library\/Meshes\/1287055107.mmh",
                     "UID": 1287055107,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9387,8 +9566,8 @@
                     "Path": "Library\/Meshes\/160949725.mmh",
                     "UID": 160949725,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9430,8 +9609,8 @@
                     "Path": "Library\/Meshes\/2058617826.mmh",
                     "UID": 2058617826,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9473,8 +9652,8 @@
                     "Path": "Library\/Meshes\/2120546813.mmh",
                     "UID": 2120546813,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9516,8 +9695,8 @@
                     "Path": "Library\/Meshes\/1531387564.mmh",
                     "UID": 1531387564,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9559,8 +9738,8 @@
                     "Path": "Library\/Meshes\/612970635.mmh",
                     "UID": 612970635,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9602,8 +9781,8 @@
                     "Path": "Library\/Meshes\/833546151.mmh",
                     "UID": 833546151,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9645,8 +9824,8 @@
                     "Path": "Library\/Meshes\/865985890.mmh",
                     "UID": 865985890,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9688,8 +9867,8 @@
                     "Path": "Library\/Meshes\/200258165.mmh",
                     "UID": 200258165,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9731,8 +9910,8 @@
                     "Path": "Library\/Meshes\/709869141.mmh",
                     "UID": 709869141,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9774,8 +9953,8 @@
                     "Path": "Library\/Meshes\/1758297150.mmh",
                     "UID": 1758297150,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9817,8 +9996,8 @@
                     "Path": "Library\/Meshes\/1395550209.mmh",
                     "UID": 1395550209,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9860,8 +10039,8 @@
                     "Path": "Library\/Meshes\/998459568.mmh",
                     "UID": 998459568,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9903,8 +10082,8 @@
                     "Path": "Library\/Meshes\/1855413985.mmh",
                     "UID": 1855413985,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9946,8 +10125,8 @@
                     "Path": "Library\/Meshes\/340715341.mmh",
                     "UID": 340715341,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -9989,8 +10168,8 @@
                     "Path": "Library\/Meshes\/1985874646.mmh",
                     "UID": 1985874646,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -10032,8 +10211,8 @@
                     "Path": "Library\/Meshes\/1434051659.mmh",
                     "UID": 1434051659,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -10075,8 +10254,8 @@
                     "Path": "Library\/Meshes\/1448318562.mmh",
                     "UID": 1448318562,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -10118,8 +10297,8 @@
                     "Path": "Library\/Meshes\/439443764.mmh",
                     "UID": 439443764,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -10161,8 +10340,8 @@
                     "Path": "Library\/Meshes\/1462258282.mmh",
                     "UID": 1462258282,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -10204,8 +10383,8 @@
                     "Path": "Library\/Meshes\/274081440.mmh",
                     "UID": 274081440,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -10247,8 +10426,8 @@
                     "Path": "Library\/Meshes\/1431730645.mmh",
                     "UID": 1431730645,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -10290,6 +10469,41 @@
                     "Path": "Library\/Meshes\/918276393.mmh",
                     "UID": 918276393,
                     "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 19,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        -17.809999465942383,
+                        -0.5,
+                        -8.6400003433227539
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
                         1,
                         1,
                         1
@@ -10419,8 +10633,8 @@
                     "Path": "Library\/Meshes\/1948399946.mmh",
                     "UID": 1948399946,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -10462,8 +10676,8 @@
                     "Path": "Library\/Meshes\/1600594064.mmh",
                     "UID": 1600594064,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -10505,8 +10719,8 @@
                     "Path": "Library\/Meshes\/2032886914.mmh",
                     "UID": 2032886914,
                     "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -10548,1556 +10762,8 @@
                     "Path": "Library\/Meshes\/1710084059.mmh",
                     "UID": 1710084059,
                     "alternColor": [
-                        0.18039216101169586,
-                        0.25098040699958801,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1220693180,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1362038402,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 40185063,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1700562729,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1956812952,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1059449159,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 289075230,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1637331793,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 2097294046,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1853166095,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 606671882,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 394727526,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 2124340634,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1520510824,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1425182486,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 295431818,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1807713659,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1553520804,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1805497776,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1900353045,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 159337922,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1512430807,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1527034443,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 339527721,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 906961212,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1084867911,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 441483094,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1708531510,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 553050380,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1686198917,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 513753555,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1696111870,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1321203681,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 354422950,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 693097920,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Npc_PlaceHolder1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 212740230,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 71772755,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2032886914.mmh",
-                    "UID": 2032886914,
-                    "alternColor": [
-                        0.17931032180786133,
-                        0.25268393754959106,
+                        1,
+                        1,
                         1
                     ]
                 }
@@ -12117,12 +10783,12 @@
                 -0.7071068286895752,
                 0,
                 0,
-                0.7071068286895752
+                0.70710670948028564
             ],
             "Scale": [
                 6.0650973320007324,
-                6.0650973320007324,
-                6.0650973320007324
+                6.0650982856750488,
+                6.0650982856750488
             ],
             "UID": 1331974386,
             "PrefabID": 0,
