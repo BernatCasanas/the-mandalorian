@@ -50,6 +50,8 @@ bool M_Gui::Start()
 	glBindBuffer(GL_ARRAY_BUFFER, VAO);
 
 	glBufferData(GL_ARRAY_BUFFER, sizeof(arrayUiVAO), arrayUiVAO, GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, (GLvoid*)0);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
