@@ -304,12 +304,20 @@ void C_Script::LoadScriptData(const char* scriptName)
 	onCollisionEnter = mono_method_desc_search_in_class(oncDesc, klass);
 	mono_method_desc_free(oncDesc);
 
+	oncDesc = mono_method_desc_new(":OnTriggerEnter", false);
+	onTriggerEnter = mono_method_desc_search_in_class(oncDesc, klass);
+	mono_method_desc_free(oncDesc);
+
 	oncDesc = mono_method_desc_new(":OnCollisionStay", false);
 	onCollisionStay = mono_method_desc_search_in_class(oncDesc, klass);
 	mono_method_desc_free(oncDesc);
 
-	oncDesc = mono_method_desc_new(":OnTriggerEnter", false);
-	onTriggerEnter = mono_method_desc_search_in_class(oncDesc, klass);
+	oncDesc = mono_method_desc_new(":OnCollisionExit", false);
+	onCollisionExit = mono_method_desc_search_in_class(oncDesc, klass);
+	mono_method_desc_free(oncDesc);
+
+	oncDesc = mono_method_desc_new(":OnTriggerExit", false);
+	onTriggerExit = mono_method_desc_search_in_class(oncDesc, klass);
 	mono_method_desc_free(oncDesc);
 
 	MonoMethodDesc* onaQuit = mono_method_desc_new(":OnApplicationQuit", false);
@@ -334,7 +342,6 @@ void C_Script::LoadScriptData(const char* scriptName)
 void C_Script::CollisionCallback(bool isTrigger, GameObject* collidedGameObject)
 {
 	void* params[1];
-	//LOG(LogType::L_WARNING, "Collided object: %s, Collider object: %s", gameObject->tag, collidedGameObject->tag);
 	
 	params[0] = EngineExternal->moduleMono->GoToCSGO(collidedGameObject);
 
@@ -346,11 +353,7 @@ void C_Script::CollisionCallback(bool isTrigger, GameObject* collidedGameObject)
 		if (onTriggerEnter != nullptr)
 			mono_runtime_invoke(onTriggerEnter, mono_gchandle_get_target(noGCobject), params, NULL);
 	}
-	//else
-	//{
-	//	if (onCollisionEnter != nullptr)
-	//		mono_runtime_invoke(onCollisionEnter, mono_gchandle_get_target(noGCobject), NULL, NULL);
-	//}
+	
 }
 void C_Script::CollisionPersistCallback(GameObject* collidedGameObject)
 {
@@ -364,6 +367,22 @@ void C_Script::CollisionPersistCallback(GameObject* collidedGameObject)
 
 }
 
+void C_Script::CollisionExitCallback(bool isTrigger, GameObject* collidedGameObject)
+{
+	void* params[1];
+
+	params[0] = EngineExternal->moduleMono->GoToCSGO(collidedGameObject);
+
+	if (onCollisionExit != nullptr)
+		mono_runtime_invoke(onCollisionExit, mono_gchandle_get_target(noGCobject), params, NULL);
+
+	if (isTrigger)
+	{
+		if (onTriggerExit != nullptr)
+			mono_runtime_invoke(onTriggerExit, mono_gchandle_get_target(noGCobject), params, NULL);
+	}
+
+}
 void C_Script::ExecuteButton()
 {
 	if (onExecuteButton != nullptr)

@@ -444,6 +444,29 @@ void CollisionDetector::onContact(const PxContactPairHeader& pairHeader,
 					}
 				}
 			}
+
+			if (cp.events == PxPairFlag::eNOTIFY_TOUCH_LOST)
+			{
+				for (size_t k = 0; k < 2; ++k)
+				{
+					GameObject* contact = static_cast<GameObject*>(pairHeader.actors[k]->userData);
+					if (contact)
+					{
+						std::vector< Component*> scripts = contact->GetComponentsOfType(Component::TYPE::SCRIPT);
+						for (size_t l = 0; l < scripts.size(); l++)
+						{
+							C_Script* script = dynamic_cast<C_Script*>(scripts[l]);
+							if (script)
+							{
+								GameObject* contact2 = static_cast<GameObject*>(pairHeader.actors[k == 0 ? 1 : 0]->userData);
+								if (contact2)
+									script->CollisionExitCallback(false, contact2);
+							}
+						}
+					}
+					
+				}
+			}
 				
 		}
 		
@@ -453,38 +476,59 @@ void CollisionDetector::onContact(const PxContactPairHeader& pairHeader,
 
 void CollisionDetector::onTrigger(physx::PxTriggerPair* pairs, physx::PxU32 count)
 {
-	LOG(LogType::L_NORMAL, "trigger detected");
 	for (PxU32 i = 0; i < count; i++)
 	{
 		const PxTriggerPair& cp = pairs[i];
 		GameObject* contact = static_cast<GameObject*>(pairs->triggerActor->userData);
 		GameObject* contact2 = static_cast<GameObject*>(pairs->otherActor->userData);
 
+		if (cp.status == PxPairFlag::eNOTIFY_TOUCH_FOUND)
+		{
+			if (contact != nullptr && pairs->flags)
+			{
+				std::vector< Component*> scripts = contact->GetComponentsOfType(Component::TYPE::SCRIPT);
+				for (size_t i = 0; i < scripts.size(); i++)
+				{
+					C_Script* script = dynamic_cast<C_Script*>(scripts[i]);
+					if (script)
+						script->CollisionCallback(true, contact2);
+				}
+
+			}
+
+			if (contact2 != nullptr)
+			{
+				std::vector< Component*> scripts = contact2->GetComponentsOfType(Component::TYPE::SCRIPT);
+				for (size_t i = 0; i < scripts.size(); i++)
+				{
+					C_Script* script = dynamic_cast<C_Script*>(scripts[i]);
+					if (script)
+						script->CollisionCallback(true, contact);
+				}
+			}
+		}
 		if (cp.status == PxPairFlag::eNOTIFY_TOUCH_LOST)
-			LOG(LogType::L_NORMAL, "Contact lost");
-
-		if (contact != nullptr && pairs->flags)
 		{
-			std::vector< Component*> scripts = contact->GetComponentsOfType(Component::TYPE::SCRIPT);
-			for (size_t i = 0; i < scripts.size(); i++)
+			if (contact && contact2)
 			{
-				C_Script* script = dynamic_cast<C_Script*>(scripts[i]);
-				if (script)
-					script->CollisionCallback(true, contact2);
+				std::vector< Component*> scripts = contact->GetComponentsOfType(Component::TYPE::SCRIPT);
+				for (size_t i = 0; i < scripts.size(); i++)
+				{
+					C_Script* script = dynamic_cast<C_Script*>(scripts[i]);
+					if (script)
+						script->CollisionExitCallback(true, contact2);
+				}
+
+				scripts = contact2->GetComponentsOfType(Component::TYPE::SCRIPT);
+				for (size_t i = 0; i < scripts.size(); i++)
+				{
+					C_Script* script = dynamic_cast<C_Script*>(scripts[i]);
+					if (script)
+						script->CollisionExitCallback(true, contact);
+				}
 			}
 
 		}
-
-		if (contact2 != nullptr) 
-		{
-			std::vector< Component*> scripts = contact2->GetComponentsOfType(Component::TYPE::SCRIPT);
-			for (size_t i = 0; i < scripts.size(); i++)
-			{
-				C_Script* script = dynamic_cast<C_Script*>(scripts[i]);
-				if (script)
-					script->CollisionCallback(true, contact);
-			}
-		}
-		
+			
 	}
 }

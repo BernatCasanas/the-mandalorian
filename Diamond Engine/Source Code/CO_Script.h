@@ -32,6 +32,7 @@ public:
 
 	void CollisionCallback(bool isTrigger, GameObject* collidedGameObject);
 	void CollisionPersistCallback( GameObject* collidedGameObject);
+	void CollisionExitCallback(bool isTrigger, GameObject* collidedGameObject);
 
 	void ExecuteButton();
 	void ExecuteCheckbox(bool checkbox_active);
@@ -44,8 +45,11 @@ public:
 	MonoMethod* updateMethod;
 
 	MonoMethod* onCollisionEnter;
-	MonoMethod* onCollisionStay;
 	MonoMethod* onTriggerEnter;
+	MonoMethod* onCollisionStay;
+	MonoMethod* onCollisionExit;
+	MonoMethod* onTriggerExit;
+
 
 	MonoMethod* onApplicationQuit;
 	
