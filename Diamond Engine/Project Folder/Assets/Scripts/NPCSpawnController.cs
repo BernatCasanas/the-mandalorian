@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class NPCSpawnController : DiamondComponent
 {
     //NPC Spawn Controller
-    public int maxSpawnPoints = 0;
+    private int maxSpawnPoints = 0;
     public int maxNPCs = 0;
     private Dictionary<int, int> alreadyAppeared = new Dictionary<int, int>(); //<int,int> <number, timesAppeared>
 
@@ -14,10 +14,8 @@ public class NPCSpawnController : DiamondComponent
     public GameObject spawnPoint3 = null;
     public GameObject spawnPoint4 = null;
     public GameObject spawnPoint5 = null;
-    public List<Vector3> spawnPoints = null; //maybe Vector3 array? We only need to store positions
-    //public Vector3[] spawnPointsVec;
-    public List<GameObject> currentEnemies = null;
-
+    private List<Vector3> spawnPoints = new List<Vector3>(); //maybe Vector3 array? We only need to store positions
+ 
     bool start = true;
     public void Update()
     {
@@ -25,22 +23,28 @@ public class NPCSpawnController : DiamondComponent
         if (start)
         {
             GenerateSpawnPointsList();
-            SpawnNPCs(maxNPCs);
+            SpawnNPCs();
             start = false;
         }
     }
 
-    private void SpawnNPCs(int maxAmount)
+    private void SpawnNPCs()
     {
         //Get coordinates from a random spawnPoint
         //Generate a prefab on those coordinates
 
-        for (int i = 0; i < maxSpawnPoints; i++)
+        if(maxNPCs > maxSpawnPoints)
+        {
+            Debug.Log("Error. There are more NPCs than spawn points available");
+            return;
+        }
+
+        for (int i = 0; i < maxSpawnPoints; i++)//Initialize map
         {
             alreadyAppeared[i] = 0;
         }
 
-        for (int i = 0; i < maxAmount; i++)
+        for (int i = 0; i < maxNPCs; i++)
         {
             Random randomizer = new Random();
             int randomIndex = randomizer.Next(maxSpawnPoints);
@@ -50,6 +54,7 @@ public class NPCSpawnController : DiamondComponent
                 randomIndex = randomizer.Next(maxSpawnPoints);
             } while (alreadyAppeared[randomIndex] > 0);
             alreadyAppeared[randomIndex]++;
+
             SpawnUnit("Library/Prefabs/2028292522.prefab", GetCoordinatesFromSpawnPoint(randomIndex));
         }
     }
@@ -60,30 +65,22 @@ public class NPCSpawnController : DiamondComponent
 
     private Vector3 GetCoordinatesFromSpawnPoint(int index)
     {
-        switch (index)
-        {
-            case 0:
-                return spawnPoint1.transform.globalPosition;
-            case 1:
-                return spawnPoint2.transform.globalPosition;
-            case 2:
-                return spawnPoint3.transform.globalPosition;
-            case 3:
-                return spawnPoint4.transform.globalPosition;
-            case 4:
-                return spawnPoint5.transform.globalPosition;
-            default:
-                return spawnPoint1.transform.globalPosition;
-        }
-        /*if (spawnPoints[index] != null)
+        if (spawnPoints[index] != null)
             return spawnPoints[index];
         
         Vector3 defaultVal = new Vector3(0,0,0);
-        return defaultVal;*/
+        return defaultVal;
     }
 
     private void GenerateSpawnPointsList()
     {
         //Load spawnPoints position into a List or other data structure to handle information more efficiently
+        if(spawnPoint1 != null) spawnPoints.Add(spawnPoint1.transform.globalPosition);
+        if(spawnPoint2 != null) spawnPoints.Add(spawnPoint2.transform.globalPosition);
+        if(spawnPoint3 != null) spawnPoints.Add(spawnPoint3.transform.globalPosition);
+        if(spawnPoint4 != null) spawnPoints.Add(spawnPoint4.transform.globalPosition);
+        if(spawnPoint5 != null) spawnPoints.Add(spawnPoint5.transform.globalPosition);
+
+        maxSpawnPoints = spawnPoints.Count;
     }
 }
