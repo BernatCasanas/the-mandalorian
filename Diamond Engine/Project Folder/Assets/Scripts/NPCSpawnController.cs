@@ -7,6 +7,7 @@ public class NPCSpawnController : DiamondComponent
     //NPC Spawn Controller
     public int maxSpawnPoints = 0;
     public int maxNPCs = 0;
+    private Dictionary<int, int> alreadyAppeared = new Dictionary<int, int>(); //<int,int> <number, timesAppeared>
 
     public GameObject spawnPoint1 = null;
     public GameObject spawnPoint2 = null;
@@ -24,9 +25,7 @@ public class NPCSpawnController : DiamondComponent
         if (start)
         {
             GenerateSpawnPointsList();
-            maxNPCs = 2;
-            maxSpawnPoints = 5;
-            //SpawnNPCs(maxNPCs);            
+            SpawnNPCs(maxNPCs);
             start = false;
         }
     }
@@ -35,12 +34,23 @@ public class NPCSpawnController : DiamondComponent
     {
         //Get coordinates from a random spawnPoint
         //Generate a prefab on those coordinates
+
+        for (int i = 0; i < maxSpawnPoints; i++)
+        {
+            alreadyAppeared[i] = 0;
+        }
+
         for (int i = 0; i < maxAmount; i++)
         {
             Random randomizer = new Random();
             int randomIndex = randomizer.Next(maxSpawnPoints);
 
-            //SpawnUnit("Library/Prefabs/489054570.prefab", GetCoordinatesFromSpawnPoint(randomIndex));
+            do
+            {
+                randomIndex = randomizer.Next(maxSpawnPoints);
+            } while (alreadyAppeared[randomIndex] > 0);
+            alreadyAppeared[randomIndex]++;
+            SpawnUnit("Library/Prefabs/2028292522.prefab", GetCoordinatesFromSpawnPoint(randomIndex));
         }
     }
     private void SpawnUnit(string prefab, Vector3 pos)
@@ -50,28 +60,30 @@ public class NPCSpawnController : DiamondComponent
 
     private Vector3 GetCoordinatesFromSpawnPoint(int index)
     {
-        if (spawnPoints[index] != null)
+        switch (index)
+        {
+            case 0:
+                return spawnPoint1.transform.globalPosition;
+            case 1:
+                return spawnPoint2.transform.globalPosition;
+            case 2:
+                return spawnPoint3.transform.globalPosition;
+            case 3:
+                return spawnPoint4.transform.globalPosition;
+            case 4:
+                return spawnPoint5.transform.globalPosition;
+            default:
+                return spawnPoint1.transform.globalPosition;
+        }
+        /*if (spawnPoints[index] != null)
             return spawnPoints[index];
-
-        Vector3 defaultVal = new Vector3(0, 0, 0);
-        return defaultVal;
+        
+        Vector3 defaultVal = new Vector3(0,0,0);
+        return defaultVal;*/
     }
 
     private void GenerateSpawnPointsList()
     {
-        /*Vector3 testPos = spawnPoint1;
-        Debug.Log("PositionX:" + testPos.x);
-        Debug.Log("PositionY:" + testPos.y);
-        Debug.Log("PositionZ:" + testPos.z);
-        spawnPointsVec = new Vector3[maxSpawnPoints];*/
-
-        //spawnPoints[0] = spawnPoint1.transform.globalPosition;
-        //if (testPos != null) spawnPoints.Add(testPos);
-        //if (spawnPoint1 != null) spawnPoints.Add(spawnPoint1.transform.globalPosition);
-
-        /*if (spawnPoint2 != null)spawnPoints.SetValue(spawnPoint2, index); index++;
-        if (spawnPoint3 != null)spawnPoints.SetValue(spawnPoint3, index); index++;
-        if (spawnPoint4 != null)spawnPoints.SetValue(spawnPoint4, index); index++;
-        if (spawnPoint5 != null)spawnPoints.SetValue(spawnPoint5, index); index++;*/
+        //Load spawnPoints position into a List or other data structure to handle information more efficiently
     }
 }
