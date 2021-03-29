@@ -1,14 +1,14 @@
 {
     "Game Objects": [
         {
-            "name": "FP_Back",
+            "name": "Floor153",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
-                -0.53475379943847656,
-                0.046333789825439453,
-                -1.2218532562255859
+                2.1570730209350586,
+                -2.4336791038513184,
+                -19.519336700439453
             ],
             "Rotation": [
                 0,
@@ -21,14 +21,25 @@
                 1,
                 1
             ],
-            "UID": 1910947023,
+            "UID": 1649538388,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1403629827,
+            "ParentUID": 565757249,
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1745688022.mmh",
+                    "UID": 1745688022,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 },
                 {
                     "Type": 14,
@@ -41,13 +52,13 @@
                     "LockAngularX": false,
                     "LockAngularY": false,
                     "LockAngularZ": false,
-                    "Mass": 0,
-                    "Density": 0
+                    "Mass": 10,
+                    "Density": 1
                 },
                 {
                     "Type": 18,
                     "Active": true,
-                    "isTrigger": true,
+                    "isTrigger": false,
                     "Position": [
                         0,
                         0,
@@ -64,12 +75,6 @@
                         1,
                         1
                     ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "GroguFollowPoints",
-                    "priority": 2
                 }
             ]
         }
