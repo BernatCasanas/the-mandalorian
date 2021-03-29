@@ -5,19 +5,20 @@
         -10.037433624267578
     ],
     "EditorCameraZ": [
-        0.34687572717666626,
-        -0.85700881481170654,
-        0.38106846809387207
+        -0.053910460323095322,
+        -0.90245294570922852,
+        0.42740190029144287
     ],
     "EditorCameraY": [
-        0.57688164710998535,
-        0.51530176401138306,
-        0.63377571105957031
+        -0.11295926570892334,
+        0.43078839778900146,
+        0.89535558223724365
     ],
     "tags": [
         "Enemy",
         "Player",
-        "Bullet"
+        "Bullet",
+        "SpawnPoint"
     ],
     "layers": [],
     "Game Objects": [
@@ -9011,12 +9012,24 @@
                 {
                     "Type": 1,
                     "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnController",
+                    "spawnPointsSize": 0,
+                    "spawnPoint1": 1844012933,
+                    "spawnPoint2": 1157023439,
+                    "spawnPoint3": 1017247649,
+                    "spawnPoint4": 2082860263,
+                    "spawnPoint5": 1981106648,
+                    "spawnPoints": 0
                 }
             ]
         },
         {
             "name": "Npc_PlaceHolder3",
-            "tag": "Untagged",
+            "tag": "SpawnPoint",
             "layer": "Default",
             "Active": true,
             "Position": [
@@ -9059,7 +9072,7 @@
         },
         {
             "name": "Npc_PlaceHolder4",
-            "tag": "Untagged",
+            "tag": "SpawnPoint",
             "layer": "Default",
             "Active": true,
             "Position": [
@@ -9102,7 +9115,7 @@
         },
         {
             "name": "Npc_PlaceHolder5",
-            "tag": "Untagged",
+            "tag": "SpawnPoint",
             "layer": "Default",
             "Active": true,
             "Position": [
@@ -9145,7 +9158,7 @@
         },
         {
             "name": "Npc_PlaceHolder6",
-            "tag": "Untagged",
+            "tag": "SpawnPoint",
             "layer": "Default",
             "Active": true,
             "Position": [
