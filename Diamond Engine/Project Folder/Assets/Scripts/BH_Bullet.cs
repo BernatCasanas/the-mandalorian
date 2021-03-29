@@ -24,8 +24,8 @@ public class BH_Bullet : DiamondComponent
 
         currentLifeTime += Time.deltaTime;
 
-        gameObject.transform.localPosition += gameObject.transform.GetForward() * (speed * Time.deltaTime);
-
+        // gameObject.transform.localPosition += gameObject.transform.GetForward() * (speed * Time.deltaTime);
+        gameObject.SetVelocity(gameObject.transform.GetForward() * speed);
         //yVel -= Time.deltaTime / 15.0f;
         //gameObject.transform.localPosition += (Vector3.up * yVel);
 
@@ -37,6 +37,7 @@ public class BH_Bullet : DiamondComponent
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
+        if(triggeredGameObject.tag != "Player")
         InternalCalls.Destroy(gameObject);
     }
 }
