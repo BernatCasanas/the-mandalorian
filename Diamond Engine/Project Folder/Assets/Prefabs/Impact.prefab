@@ -1,14 +1,15 @@
 {
+    "assets_path": "Assets\/Prefabs\/Impact.prefab",
     "Game Objects": [
         {
-            "name": "Spurns",
+            "name": "Impact",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
                 0,
-                1.1169999837875366,
-                -6.7199997901916504
+                2.5074894428253174,
+                0.73476916551589966
             ],
             "Rotation": [
                 0,
@@ -21,10 +22,42 @@
                 1,
                 1
             ],
-            "UID": 1033974947,
+            "UID": 1742515435,
+            "PrefabID": 760525760,
+            "DontDestroy": false,
+            "ParentUID": 781778154,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Impact Beam",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1882705303,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1946602066,
+            "ParentUID": 1742515435,
             "Components": [
                 {
                     "Type": 1,
@@ -41,9 +74,9 @@
                 {
                     "Type": 20,
                     "Active": true,
-                    "systemActive": true,
-                    "looping": true,
-                    "maxDuration": 1.003000020980835,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 0.20800000429153442,
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
@@ -51,11 +84,11 @@
                             "texUID": 1551010652,
                             "paEmitterName": "Empty",
                             "paLifeTime": [
-                                0.5,
-                                1
+                                0.40000000596046448,
+                                0.60000002384185791
                             ],
                             "paSize": [
-                                0.10000000149011612,
+                                0.0010000000474974513,
                                 0.10000000149011612
                             ],
                             "paColor": [
@@ -64,26 +97,14 @@
                                 0,
                                 1
                             ],
-                            "paPerSec": 25,
+                            "paPerSec": 400,
                             "ParticleEffects": [
-                                {
-                                    "paEffectType": 0,
-                                    "paFOLT_direction": [
-                                        0,
-                                        0,
-                                        0
-                                    ],
-                                    "paFOLT_magnitude": 0,
-                                    "paFOLT_gravityMod": 0.0010000000474974513,
-                                    "paFOLT_gravity": -0.0098000010475516319,
-                                    "paFOLT_forceType": 2
-                                },
                                 {
                                     "paEffectType": 2,
                                     "Gradients": [
                                         {
                                             "paColorOLTcolor": [
-                                                0,
+                                                1,
                                                 0,
                                                 0,
                                                 0
@@ -93,18 +114,27 @@
                                         {
                                             "paColorOLTcolor": [
                                                 1,
-                                                0.10546875,
-                                                0.10546875,
-                                                0.47450980544090271
+                                                0,
+                                                0,
+                                                0.43648898601531982
                                             ],
-                                            "paColorOLTposition": 0.47466665506362915
+                                            "paColorOLTposition": 0.50933331251144409
                                         },
                                         {
                                             "paColorOLTcolor": [
                                                 1,
-                                                0.32773101329803467,
                                                 0,
-                                                1
+                                                0,
+                                                0.43866598606109619
+                                            ],
+                                            "paColorOLTposition": 0.77599877119064331
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.9921875,
+                                                0.58135986328125,
+                                                0,
+                                                0.6796875
                                             ],
                                             "paColorOLTposition": 1
                                         }
@@ -113,11 +143,10 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 2,
+                                    "paShapePartSpeed": 3,
                                     "paShapeRandSpeed": 0,
-                                    "PaShapeConeRadius": 1.5,
-                                    "PaShapeConeHeight": 2,
-                                    "paShapeType": 2,
+                                    "PaShapeSphereRadius": 0.20000000298023224,
+                                    "paShapeType": 1,
                                     "PaShapeOffset": [
                                         0,
                                         0,
