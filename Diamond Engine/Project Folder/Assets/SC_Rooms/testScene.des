@@ -1,20 +1,22 @@
 {
     "EditorCameraPosition": [
-        0,
-        0,
-        -3
+        -38.292690277099609,
+        18.998142242431641,
+        3.3476438522338867
     ],
     "EditorCameraZ": [
-        0,
-        0,
-        1
+        0.76636219024658203,
+        -0.59054452180862427,
+        -0.2528759241104126
     ],
     "EditorCameraY": [
-        0,
-        1,
-        0
+        0.56073343753814697,
+        0.80700504779815674,
+        -0.18525902926921844
     ],
-    "tags": [],
+    "tags": [
+        "Player"
+    ],
     "layers": [],
     "Game Objects": [
         {
@@ -38,8 +40,9 @@
                 1,
                 1
             ],
-            "UID": 621070814,
+            "UID": 1434048679,
             "PrefabID": 0,
+            "DontDestroy": false,
             "Components": [
                 {
                     "Type": 1,
@@ -48,14 +51,40 @@
             ]
         },
         {
+            "name": "DinDjarin",
+            "tag": "Player",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -20.707479476928711,
+                6.6007509231567383,
+                -12.930102348327637
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 208418583,
+            "PrefabID": 1075888511,
+            "DontDestroy": false,
+            "ParentUID": 1434048679
+        },
+        {
             "name": "Cube",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
                 0,
-                0,
-                0
+                0.70690155029296875,
+                -4.3203334598729271e-07
             ],
             "Rotation": [
                 -0.7071068286895752,
@@ -64,13 +93,14 @@
                 0.70710670948028564
             ],
             "Scale": [
-                1,
-                1,
-                1
+                50.601577758789063,
+                33.05078125,
+                0.99998921155929565
             ],
-            "UID": 1509501198,
+            "UID": 842755565,
             "PrefabID": 0,
-            "ParentUID": 621070814,
+            "DontDestroy": false,
+            "ParentUID": 1434048679,
             "Components": [
                 {
                     "Type": 1,
@@ -88,51 +118,9 @@
                     ]
                 },
                 {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
                     "Type": 14,
                     "Active": true,
-                    "kinematic": false,
+                    "kinematic": true,
                     "Gravity": true,
                     "LockLinearX": false,
                     "LockLinearY": false,
@@ -142,8 +130,55 @@
                     "LockAngularZ": false,
                     "Mass": 10,
                     "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
+        },
+        {
+            "name": "Game Camera",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -8.12689208984375,
+                18.808589935302734,
+                -10.831701278686523
+            ],
+            "Rotation": [
+                0.24263942241668701,
+                0.39558225870132446,
+                -0.10866371542215347,
+                0.87910920381546021
+            ],
+            "Scale": [
+                1,
+                0.9999997615814209,
+                0.9999997615814209
+            ],
+            "UID": 1950146932,
+            "PrefabID": 1599948487,
+            "DontDestroy": false,
+            "ParentUID": 1434048679
         }
     ]
 }

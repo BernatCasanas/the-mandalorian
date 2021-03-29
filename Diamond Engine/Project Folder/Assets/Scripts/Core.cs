@@ -41,6 +41,7 @@ public class Core : DiamondComponent
     public float dashCD = 0.33f;
     public float dashDuration = 0.25f;
     public float dashDistance = 1.0f;
+    public float dashforce = 1000f;
     private float dashSpeed = 0.0f;
     private float dashTimer = 0.0f;
     private float timeBetweenDashes = .5f;
@@ -229,6 +230,7 @@ public class Core : DiamondComponent
                 else
                 {
                     Audio.StopAudio(this.gameObject);
+                    StopPlayer();
                     ChangeState(State.Idle);
                 }
 
@@ -439,13 +441,22 @@ public class Core : DiamondComponent
     {
         if (dashingCounter < dashDuration)
         {
-            dashingCounter += Time.deltaTime;
-            gameObject.transform.localPosition += gameObject.transform.GetForward().normalized * dashSpeed * Time.deltaTime;
+            //dashingCounter += Time.deltaTime;
+            //gameObject.transform.localPosition += gameObject.transform.GetForward().normalized * dashSpeed * Time.deltaTime;
 
-            gameObject.transform.localPosition.y = dashStartYPos;
+            //gameObject.transform.localPosition.y = dashStartYPos;
+            if(dashingCounter == 0)
+            {
+                StopPlayer();
+                gameObject.AddForce(gameObject.transform.GetForward().normalized * dashforce);
+
+            }
+
+            dashingCounter += Time.deltaTime;
         }
         else
         {
+            StopPlayer();
             gameObject.transform.localPosition.y = dashStartYPos;
 
             timeSinceLastDash = 0.0f;
@@ -476,9 +487,15 @@ public class Core : DiamondComponent
     #region MOVE AND ROTATE PLAYER
     private void MovePlayer()
     {
-        gameObject.transform.localPosition += gameObject.transform.GetForward() * movementSpeed * Time.deltaTime;
+        // gameObject.transform.localPosition += gameObject.transform.GetForward() * movementSpeed * Time.deltaTime;
+       gameObject.SetVelocity(gameObject.transform.GetForward() * movementSpeed);
     }
 
+    private void StopPlayer()
+    {
+        Debug.Log("Stoping");
+        gameObject.SetVelocity(new Vector3(0, 0, 0));
+    }
     private void RotatePlayer(Vector3 gamepadInput)
     {
         //Calculate player rotation
