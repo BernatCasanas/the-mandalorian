@@ -27,22 +27,25 @@ void main() {
 		fragmentColor=vec4(0,0,0,0);
 		}
 	else if(combo_number<10){
-		fragmentColor = texture(ourTexture,textureCoords)+vec4(0,0.8,1,1);
+		fragmentColor = texture(ourTexture,textureCoords)*vec4(0,0.8,1,1);
 	}
 	else if(combo_number<25){
-		fragmentColor = texture(ourTexture,textureCoords)+vec4(0,1,0,1);
+		fragmentColor = texture(ourTexture,textureCoords)*vec4(0,1,0,1);
 	}
 	else if(combo_number<45){
-		fragmentColor = texture(ourTexture,textureCoords)+vec4(1,1,0,1);
+		fragmentColor = texture(ourTexture,textureCoords)*vec4(1,1,0,1);
 	}
 	else if(combo_number<77){
-		fragmentColor = texture(ourTexture,textureCoords)+vec4(0.79,0.28,0.96,1);
+		fragmentColor = texture(ourTexture,textureCoords)*vec4(0.79,0.28,0.96,1);
 	}
 	else{
-		fragmentColor = texture(ourTexture,textureCoords)+vec4(1,1,1,1);
+		fragmentColor = texture(ourTexture,textureCoords)*vec4(1,1,1,1);
 	}
 }
 
 #endif
+
+
+
 
 
