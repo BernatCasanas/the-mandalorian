@@ -1,15 +1,15 @@
 {
-    "assets_path": "Assets\/Prefabs\/Torch.prefab",
+    "assets_path": "Assets\/Prefabs\/Combo Bar.prefab",
     "Game Objects": [
         {
-            "name": "Torch",
+            "name": "Combo Bar",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
                 0,
-                0,
-                0
+                3.334968090057373,
+                13.292732238769531
             ],
             "Rotation": [
                 0,
@@ -22,8 +22,8 @@
                 1,
                 1
             ],
-            "UID": 2035414371,
-            "PrefabID": 903546305,
+            "UID": 52089622,
+            "PrefabID": 1579177126,
             "DontDestroy": false,
             "ParentUID": 1056916476,
             "Components": [
@@ -34,158 +34,57 @@
             ]
         },
         {
-            "name": "Flame",
+            "name": "Cylinder",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
                 0,
-                1.1170148849487305,
-                -6.7719001770019531
+                -0.4064638614654541,
+                17.89111328125
             ],
             "Rotation": [
+                -0.69903022050857544,
                 0,
                 0,
-                0,
-                1
+                0.71509212255477905
             ],
             "Scale": [
-                1,
-                1,
-                1
+                0.90916842222213745,
+                21.670190811157226,
+                0.90917587280273438
             ],
-            "UID": 1580508802,
+            "UID": 2138662627,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 2035414371,
+            "ParentUID": 52089622,
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
                 },
                 {
-                    "Type": 3,
+                    "Type": 2,
                     "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
-                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
-                    "MaterialUID": 355756108
-                },
-                {
-                    "Type": 20,
-                    "Active": true,
-                    "systemActive": true,
-                    "looping": true,
-                    "maxDuration": 3.4600000381469727,
-                    "ParticleEmitters": [
-                        {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1551010652.dds",
-                            "texUID": 1551010652,
-                            "paEmitterName": "Flame",
-                            "paLifeTime": [
-                                1,
-                                1
-                            ],
-                            "paSize": [
-                                0.10000000149011612,
-                                0.40000000596046448
-                            ],
-                            "paColor": [
-                                1,
-                                1,
-                                1,
-                                1
-                            ],
-                            "paPerSec": 750,
-                            "ParticleEffects": [
-                                {
-                                    "paEffectType": 0,
-                                    "paFOLT_direction": [
-                                        0,
-                                        5,
-                                        -6.7220001220703125
-                                    ],
-                                    "paFOLT_magnitude": 5,
-                                    "paFOLT_gravityMod": 0,
-                                    "paFOLT_gravity": -0,
-                                    "paFOLT_forceType": 1
-                                },
-                                {
-                                    "paEffectType": 2,
-                                    "Gradients": [
-                                        {
-                                            "paColorOLTcolor": [
-                                                0,
-                                                0,
-                                                0,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 0
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0,
-                                                0,
-                                                0
-                                            ],
-                                            "paColorOLTposition": 0
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0.17578125,
-                                                0.17578125,
-                                                0.75390625
-                                            ],
-                                            "paColorOLTposition": 0.23733420670032501
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0.84979522228240967,
-                                                0.2578125,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 0.74133473634719849
-                                        }
-                                    ]
-                                },
-                                {
-                                    "paEffectType": 5,
-                                    "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 0.0099999997764825821,
-                                    "paShapeRandSpeed": 0,
-                                    "PaShapeSphereRadius": 0.30000001192092896,
-                                    "paShapeType": 1,
-                                    "PaShapeOffset": [
-                                        0,
-                                        0,
-                                        0
-                                    ]
-                                }
-                            ]
-                        }
+                    "Path": "Library\/Meshes\/1363974311.mmh",
+                    "UID": 1363974311,
+                    "alternColor": [
+                        1,
+                        0.99998998641967773,
+                        0.99998998641967773
                     ]
-                },
-                {
-                    "Type": 21,
-                    "Active": true,
-                    "billboardAlignment": 0,
-                    "horizantalAligned": true
                 }
             ]
         },
         {
-            "name": "Spurns",
+            "name": "Force Particles",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
-                0,
-                1.1169999837875366,
-                -6.7199997901916504
+                -0.46176493167877197,
+                0.20128965377807617,
+                -3.6186904907226562
             ],
             "Rotation": [
                 0,
@@ -198,10 +97,10 @@
                 1,
                 1
             ],
-            "UID": 1688715409,
+            "UID": 2098434439,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 2035414371,
+            "ParentUID": 52089622,
             "Components": [
                 {
                     "Type": 1,
@@ -226,10 +125,73 @@
                             "AssetPath": "Empty",
                             "LibraryPath": "Library\/Textures\/1551010652.dds",
                             "texUID": 1551010652,
-                            "paEmitterName": "Empty",
+                            "paEmitterName": "Near Bar",
+                            "paLifeTime": [
+                                1,
+                                1
+                            ],
+                            "paSize": [
+                                0.10000000149011612,
+                                0.20000000298023224
+                            ],
+                            "paColor": [
+                                0.99998998641967773,
+                                1,
+                                0.99999910593032837,
+                                1
+                            ],
+                            "paPerSec": 2000,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0.99998998641967773,
+                                                0.99998998641967773,
+                                                0.64453125
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                1,
+                                                1,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 0.5,
+                                    "paShapeRandSpeed": 2,
+                                    "PaShapeAreaDimensions": [
+                                        0.0099999997764825821,
+                                        0.0099999997764825821,
+                                        0.0099999997764825821
+                                    ],
+                                    "paShapeType": 0,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1551010652.dds",
+                            "texUID": 1551010652,
+                            "paEmitterName": "Particles 2",
                             "paLifeTime": [
                                 0.5,
-                                1
+                                0.5
                             ],
                             "paSize": [
                                 0.10000000149011612,
@@ -237,8 +199,8 @@
                             ],
                             "paColor": [
                                 1,
-                                0,
-                                0,
+                                0.99998998641967773,
+                                0.99998998641967773,
                                 1
                             ],
                             "paPerSec": 25,
@@ -251,36 +213,27 @@
                                         0
                                     ],
                                     "paFOLT_magnitude": 0,
-                                    "paFOLT_gravityMod": 0.0010000000474974513,
-                                    "paFOLT_gravity": -0.0098000010475516319,
-                                    "paFOLT_forceType": 2
+                                    "paFOLT_gravityMod": 0.20000000298023224,
+                                    "paFOLT_gravity": -1.9600000381469727,
+                                    "paFOLT_forceType": 0
                                 },
                                 {
                                     "paEffectType": 2,
                                     "Gradients": [
                                         {
                                             "paColorOLTcolor": [
-                                                0,
-                                                0,
-                                                0,
-                                                0
+                                                1,
+                                                0.99998998641967773,
+                                                0.99998998641967773,
+                                                0.26171875
                                             ],
                                             "paColorOLTposition": 0
                                         },
                                         {
                                             "paColorOLTcolor": [
                                                 1,
-                                                0.10546875,
-                                                0.10546875,
-                                                0.47450980544090271
-                                            ],
-                                            "paColorOLTposition": 0.47466665506362915
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
                                                 1,
-                                                0.32773101329803467,
-                                                0,
+                                                1,
                                                 1
                                             ],
                                             "paColorOLTposition": 1
@@ -288,13 +241,17 @@
                                     ]
                                 },
                                 {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0.5,
+                                    "paSizeOLTEndSize": 0.10000000149011612
+                                },
+                                {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
                                     "paShapePartSpeed": 2,
-                                    "paShapeRandSpeed": 0,
-                                    "PaShapeConeRadius": 1.5,
-                                    "PaShapeConeHeight": 2,
-                                    "paShapeType": 2,
+                                    "paShapeRandSpeed": 4,
+                                    "PaShapeSphereRadius": 0.20000000298023224,
+                                    "paShapeType": 1,
                                     "PaShapeOffset": [
                                         0,
                                         0,
