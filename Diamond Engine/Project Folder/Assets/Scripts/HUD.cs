@@ -1,276 +1,300 @@
 using System;
 using DiamondEngine;
+using System.Collections.Generic;
 
 public class HUD : DiamondComponent
 {
-	public int hp = 0;
-	public int max_hp = 0;
-	public int force = 0;
-	public int max_force = 0;
-	public int currency = 10000;
-	public int bullets_main_weapon = 0;
-	public int max_bullets_main_weapon = 0;
-	public int bullets_secondary_weapon = 0;
-	public int max_bullets_secondary_weapon = 0;
-	public int combo_number = 0;
-	public int combo_seconds = 0;
-	public bool main_weapon = true;
-	public GameObject hp_bar = null;
-	public GameObject hp_number_gameobject = null;
-	public GameObject force_bar = null;
-	public GameObject skill_push = null;
-	public GameObject weapon_bar = null;
-	public GameObject primary_weapon = null;
-	public GameObject secondary_weapon = null;
-	public GameObject currency_number_gameobject = null;
-	public GameObject combo_bar = null;
-	public GameObject combo_text = null;
-	public GameObject combo_gameobject = null;
+    public int hp = 0;
+    public int max_hp = 0;
+    public int force = 0;
+    public int max_force = 0;
+    public int currency = 10000;
+    public int bullets_main_weapon = 0;
+    public int max_bullets_main_weapon = 0;
+    public int bullets_secondary_weapon = 0;
+    public int max_bullets_secondary_weapon = 0;
+    public bool main_weapon = true;
+    public GameObject hp_bar = null;
+    public GameObject hp_number_gameobject = null;
+    public GameObject force_bar = null;
+    public GameObject skill_push = null;
+    public GameObject weapon_bar = null;
+    public GameObject primary_weapon = null;
+    public GameObject secondary_weapon = null;
+    public GameObject currency_number_gameobject = null;
+    public GameObject combo_bar = null;
+    public GameObject combo_text = null;
+    public GameObject combo_gameobject = null;
+    private bool start = true;
 
-	private float combo_time_limit;
-	private float combo_time;
-	private bool start = true;
-	public void Update()
-	{
+
+
+    private float fullComboTime = 0.0f;
+    private float currComboTime = 0.0f;
+    public int comboNumber = 0;
+
+    //stores the level as a key and the color as a value
+    Dictionary<int, Vector3> comboLvlColors = new Dictionary<int, Vector3>
+    {
+        { 0, new Vector3(0.0f,0.8f,1.0f)},
+        { 10, new Vector3(0.0f,1.0f,0.0f)},
+        { 25, new Vector3(1.0f,1.0f,0.0f)},
+        { 45, new Vector3(0.79f,0.28f,0.96f)},
+        { 77, new Vector3(1.0f,1.0f,1.0f)},
+            //TODO Add colors here
+    };
+
+
+    public void Update()
+    {
         if (start)
         {
-			UpdateHP(PlayerHealth.currHealth, PlayerHealth.currMaxHealth);
-			start = false;
+            UpdateHP(PlayerHealth.currHealth, PlayerHealth.currMaxHealth);
+            start = false;
         }
-		if(Input.GetKey(DEKeyCode.C) == KeyState.KEY_DOWN)
+        if (Input.GetKey(DEKeyCode.C) == KeyState.KEY_DOWN)
         {
-			currency++;
-			UpdateCurrency(currency);
+            currency++;
+            UpdateCurrency(currency);
         }
-		if (Input.GetKey(DEKeyCode.H) == KeyState.KEY_DOWN)
-		{
-			if (hp < max_hp)
-			{
-				hp+=5;
-				//UpdateHP(hp, max_hp);
-			}
-		}
-		if (Input.GetKey(DEKeyCode.D) == KeyState.KEY_DOWN)
-		{
-			if (hp > 0)
-			{
-				hp-=5;
-				//UpdateHP(hp, max_hp);
-			}
-		}
-		if (Input.GetKey(DEKeyCode.F) == KeyState.KEY_DOWN)
-		{
-			if (force > 0)
-			{
-				force-=10;
+        if (Input.GetKey(DEKeyCode.H) == KeyState.KEY_DOWN)
+        {
+            if (hp < max_hp)
+            {
+                hp += 5;
+                //UpdateHP(hp, max_hp);
+            }
+        }
+        if (Input.GetKey(DEKeyCode.D) == KeyState.KEY_DOWN)
+        {
+            if (hp > 0)
+            {
+                hp -= 5;
+                //UpdateHP(hp, max_hp);
+            }
+        }
+        if (Input.GetKey(DEKeyCode.F) == KeyState.KEY_DOWN)
+        {
+            if (force > 0)
+            {
+                force -= 10;
                 if (force == 0)
                 {
-					ChangeAlphaSkillPush(false);
+                    ChangeAlphaSkillPush(false);
 
-				}
-				UpdateForce(force, max_force);
-			}
-		}
-		if (Input.GetKey(DEKeyCode.M) == KeyState.KEY_DOWN)
-		{
-			if (force < max_force)
-			{
-				if (force == 0)
-				{
-					ChangeAlphaSkillPush(true);
-
-				}
-				force +=10;
-				UpdateForce(force, max_force);
-
-			}
-		}
-		if (Input.GetKey(DEKeyCode.S) == KeyState.KEY_DOWN)
-		{
-			if (main_weapon)
+                }
+                UpdateForce(force, max_force);
+            }
+        }
+        if (Input.GetKey(DEKeyCode.M) == KeyState.KEY_DOWN)
+        {
+            if (force < max_force)
             {
-				if (bullets_main_weapon > 0)
-				{
-					bullets_main_weapon--;
-					UpdateBullets(bullets_main_weapon, max_bullets_main_weapon);
-				}
-			}
+                if (force == 0)
+                {
+                    ChangeAlphaSkillPush(true);
+
+                }
+                force += 10;
+                UpdateForce(force, max_force);
+
+            }
+        }
+        if (Input.GetKey(DEKeyCode.S) == KeyState.KEY_DOWN)
+        {
+            if (main_weapon)
+            {
+                if (bullets_main_weapon > 0)
+                {
+                    bullets_main_weapon--;
+                    UpdateBullets(bullets_main_weapon, max_bullets_main_weapon);
+                }
+            }
             else
             {
-				if (bullets_secondary_weapon > 0)
-				{
-					bullets_secondary_weapon--;
-					UpdateBullets(bullets_secondary_weapon, max_bullets_secondary_weapon);
+                if (bullets_secondary_weapon > 0)
+                {
+                    bullets_secondary_weapon--;
+                    UpdateBullets(bullets_secondary_weapon, max_bullets_secondary_weapon);
 
-				}
-			}
-			
-			
-		}
-		if (Input.GetKey(DEKeyCode.R) == KeyState.KEY_DOWN)
-		{
-			if (main_weapon)
-			{
-				if (bullets_main_weapon < 10)
-				{
-					bullets_main_weapon++;
-					UpdateBullets(bullets_main_weapon, max_bullets_main_weapon);
-
-				}
-			}
-            else
-            {
-				if (bullets_secondary_weapon < 10)
-				{
-					bullets_secondary_weapon++;
-					UpdateBullets(bullets_secondary_weapon, max_bullets_secondary_weapon);
-				}
-			}
-				
-		}
-		if (Input.GetKey(DEKeyCode.W) == KeyState.KEY_DOWN)
-		{
-			SwapWeapons();
-		}
-        if (Input.GetKey(DEKeyCode.B) == KeyState.KEY_DOWN)
-        {
-			combo_number++;
-			ComboIncrease(combo_number, combo_seconds);
-		}
-        if (combo_bar != null && combo_number > 0)
-        {
-			if(!UpdateCombo(combo_number, combo_seconds, combo_time_limit))
-            {
-				combo_number = 0;
+                }
             }
 
-		}
-	}
 
-	public void ComboIncrease(int number_combo, int seconds)
+        }
+        if (Input.GetKey(DEKeyCode.R) == KeyState.KEY_DOWN)
+        {
+            if (main_weapon)
+            {
+                if (bullets_main_weapon < 10)
+                {
+                    bullets_main_weapon++;
+                    UpdateBullets(bullets_main_weapon, max_bullets_main_weapon);
+
+                }
+            }
+            else
+            {
+                if (bullets_secondary_weapon < 10)
+                {
+                    bullets_secondary_weapon++;
+                    UpdateBullets(bullets_secondary_weapon, max_bullets_secondary_weapon);
+                }
+            }
+
+        }
+        if (Input.GetKey(DEKeyCode.W) == KeyState.KEY_DOWN)
+        {
+            SwapWeapons();
+        }
+        if (Input.GetKey(DEKeyCode.B) == KeyState.KEY_DOWN)
+        {
+            IncrementCombo(1, 1.0f);
+        }
+        if (combo_bar != null && comboNumber > 0)
+        {
+            UpdateCombo();
+        }
+    }
+
+    public void IncrementCombo(int levelsToAdd, float weaponTimeMultiplier)
     {
-		if (number_combo == 1)
-		{
-			combo_gameobject.Enable(true);
-			combo_text.GetComponent<Text>().color_red = 0;
-			combo_text.GetComponent<Text>().color_green = 0.8f;
-			combo_text.GetComponent<Text>().color_blue = 1;
-		}
+        comboNumber += levelsToAdd;
+        //TODO make full combo time not a linear function
+        currComboTime = fullComboTime = (100 - comboNumber) * weaponTimeMultiplier;
 
-		combo_time_limit = Time.totalTime + seconds;
+        if (comboNumber == 1)
+        {
+            combo_gameobject.Enable(true);
+        }
 
-		if (combo_bar != null)
-		{
-			combo_bar.GetComponent<Material>().SetIntUniform("combo_number", number_combo);
-			combo_bar.GetComponent<Material>().SetFloatUniform("length_used", combo_time_limit / seconds);
-		}
-		if (combo_text == null)
-			return;
-		combo_text.GetComponent<Text>().text = "x" + number_combo.ToString();
-		if (number_combo == 10)
-		{
-			combo_text.GetComponent<Text>().color_red = 0;
-			combo_text.GetComponent<Text>().color_green = 1;
-			combo_text.GetComponent<Text>().color_blue = 0;
-		}
-		else if (number_combo == 25)
-		{
-			combo_text.GetComponent<Text>().color_red = 1;
-			combo_text.GetComponent<Text>().color_green = 1;
-			combo_text.GetComponent<Text>().color_blue = 0;
-		}
-		else if (number_combo == 45)
-		{
-			combo_text.GetComponent<Text>().color_red = 0.79f;
-			combo_text.GetComponent<Text>().color_green = 0.28f;
-			combo_text.GetComponent<Text>().color_blue = 0.96f;
-		}
-		else if (number_combo == 77)
-		{
-			combo_text.GetComponent<Text>().color_red = 1;
-			combo_text.GetComponent<Text>().color_green = 1;
-			combo_text.GetComponent<Text>().color_blue = 1;
-		}
-	}
+        if (combo_bar != null)
+        {
+            combo_bar.GetComponent<Material>().SetIntUniform("combo_number", comboNumber);
+            combo_bar.GetComponent<Material>().SetFloatUniform("length_used", Mathf.InvLerp(0, fullComboTime, currComboTime));
+        }
+        if (combo_text == null)
+            return;
+        combo_text.GetComponent<Text>().text = "x" + comboNumber.ToString();
 
-	public bool UpdateCombo(int number_combo, int seconds, float limit)
+        ChangeComboColor();
+    }
+
+    public bool UpdateCombo()
     {
-		combo_time = Time.totalTime;
-		if (combo_time > limit)
-		{
-			number_combo = 0;
-			combo_bar.GetComponent<Material>().SetIntUniform("combo_number", number_combo);
-			combo_gameobject.Enable(false);
-			return false;
-		}
-		combo_bar.GetComponent<Material>().SetFloatUniform("length_used", (limit - combo_time) / seconds);
-		return true;
-	}
-	public void UpdateHP(int new_hp, int max_hp)
-    {
-		if(hp_number_gameobject!=null)
-			hp_number_gameobject.GetComponent<Text>().text = new_hp.ToString();
-		if (hp_bar == null)
-			return;
-		float hp_float = new_hp;
-		hp_float /= max_hp;
-		hp_bar.GetComponent<Material>().SetFloatUniform("length_used", hp_float);
-	}
+        currComboTime -= Time.deltaTime * 100;
+        if (currComboTime <= 0.0f)
+        {
+            currComboTime = 0.0f;
+            ResetCombo();
+            return false;
+        }
+        Material mat = combo_bar.GetComponent<Material>();
+        if (mat != null)
+            mat.SetFloatUniform("length_used", Mathf.InvLerp(0, fullComboTime, currComboTime));
+        return true;
+    }
 
-	public void UpdateForce(int new_force, int max_force)
+    public void ResetCombo()
     {
-		if (force_bar == null)
-			return;
-		float force_float = new_force;
-		force_float /= max_force;
-		force_bar.GetComponent<Material>().SetFloatUniform("length_used", force_float);
-	}
+        comboNumber = 0;
+        Material comboMat = combo_bar.GetComponent<Material>();
 
-	public void ChangeAlphaSkillPush(bool alpha_full)
-    {
-		if (skill_push == null)
-			return;
-		if(alpha_full)
-			skill_push.GetComponent<Material>().SetFloatUniform("alpha", 1.0f);
-		else
-			skill_push.GetComponent<Material>().SetFloatUniform("alpha", 0.5f);
-	}
+        if (comboMat != null)
+            comboMat.SetIntUniform("combo_number", comboNumber);
 
-	public void SwapWeapons()
-    {
-		if (primary_weapon != null && secondary_weapon != null)
-			primary_weapon.GetComponent<Image2D>().SwapTwoImages(secondary_weapon);
-		main_weapon = !main_weapon;
-		if (weapon_bar == null)
-			return;
-		if (main_weapon)
-		{
-			float bullets_float = bullets_main_weapon;
-			bullets_float /= max_bullets_main_weapon;
-			weapon_bar.GetComponent<Material>().SetFloatUniform("length_used", bullets_float);
-		}
-		else
-		{
-			float bullets_float = bullets_secondary_weapon;
-			bullets_float /= max_bullets_secondary_weapon;
-			weapon_bar.GetComponent<Material>().SetFloatUniform("length_used", bullets_float);
-		}
-	}
+        if (combo_gameobject != null)
+            combo_gameobject.Enable(false);
+    }
 
-	public void UpdateBullets(int num_bullets, int max_bullets)
+    void ChangeComboColor()
     {
-		if (weapon_bar == null)
-			return;
-		float bullets_float = num_bullets;
-		bullets_float /= max_bullets;
-		weapon_bar.GetComponent<Material>().SetFloatUniform("length_used", bullets_float);
-	}
+        Vector3 newColor = new Vector3(0.0f, 0.8f, 1.0f); //default color in case the dictionary is empty
 
-	public void UpdateCurrency(int total_currency)
+        foreach (KeyValuePair<int, Vector3> lvlColor in comboLvlColors)
+        {
+            int key = lvlColor.Key;
+            Vector3 value = new Vector3(lvlColor.Value.x, lvlColor.Value.y, lvlColor.Value.z);
+            if (comboNumber >= key)
+            {
+                newColor = value;
+            }
+        }
+
+        Text t = combo_text.GetComponent<Text>();
+        if (t != null)
+        {
+            t.color_red = newColor.x;
+            t.color_green = newColor.y;
+            t.color_blue = newColor.z;
+        }
+    }
+
+    public void UpdateHP(int new_hp, int max_hp)
     {
-		if (currency_number_gameobject == null)
-			return;
-		currency_number_gameobject.GetComponent<Text>().text = total_currency.ToString();
-	}
+        if (hp_number_gameobject != null)
+            hp_number_gameobject.GetComponent<Text>().text = new_hp.ToString();
+        if (hp_bar == null)
+            return;
+        float hp_float = new_hp;
+        hp_float /= max_hp;
+        hp_bar.GetComponent<Material>().SetFloatUniform("length_used", hp_float);
+    }
+
+    public void UpdateForce(int new_force, int max_force)
+    {
+        if (force_bar == null)
+            return;
+        float force_float = new_force;
+        force_float /= max_force;
+        force_bar.GetComponent<Material>().SetFloatUniform("length_used", force_float);
+    }
+
+    public void ChangeAlphaSkillPush(bool alpha_full)
+    {
+        if (skill_push == null)
+            return;
+        if (alpha_full)
+            skill_push.GetComponent<Material>().SetFloatUniform("alpha", 1.0f);
+        else
+            skill_push.GetComponent<Material>().SetFloatUniform("alpha", 0.5f);
+    }
+
+    public void SwapWeapons()
+    {
+        if (primary_weapon != null && secondary_weapon != null)
+            primary_weapon.GetComponent<Image2D>().SwapTwoImages(secondary_weapon);
+        main_weapon = !main_weapon;
+        if (weapon_bar == null)
+            return;
+        if (main_weapon)
+        {
+            float bullets_float = bullets_main_weapon;
+            bullets_float /= max_bullets_main_weapon;
+            weapon_bar.GetComponent<Material>().SetFloatUniform("length_used", bullets_float);
+        }
+        else
+        {
+            float bullets_float = bullets_secondary_weapon;
+            bullets_float /= max_bullets_secondary_weapon;
+            weapon_bar.GetComponent<Material>().SetFloatUniform("length_used", bullets_float);
+        }
+    }
+
+    public void UpdateBullets(int num_bullets, int max_bullets)
+    {
+        if (weapon_bar == null)
+            return;
+        float bullets_float = num_bullets;
+        bullets_float /= max_bullets;
+        weapon_bar.GetComponent<Material>().SetFloatUniform("length_used", bullets_float);
+    }
+
+    public void UpdateCurrency(int total_currency)
+    {
+        if (currency_number_gameobject == null)
+            return;
+        currency_number_gameobject.GetComponent<Text>().text = total_currency.ToString();
+    }
 
 }

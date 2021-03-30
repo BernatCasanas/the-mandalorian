@@ -88,7 +88,7 @@ public class FinalCutscene : DiamondComponent
 		{
 			dialog.Enable(false);
 			gui.Enable(true);
-			gui.GetComponent<HUD>().UpdateCombo(0, 0, 0);
+            gui.GetComponent<HUD>().ResetCombo();
 			gui_not_enabled = false;
 			Time.ResumeGame();
 

@@ -233,7 +233,7 @@ public class StormTrooper : Enemy
 
 				if (Core.instance.hud != null)
                 {
-					Core.instance.hud.GetComponent<HUD>().ComboIncrease(++Core.instance.hud.GetComponent<HUD>().combo_number, 5);
+					Core.instance.hud.GetComponent<HUD>().IncrementCombo(1, 1.0f);
                 }
 			}            
 		}
@@ -255,7 +255,7 @@ public class StormTrooper : Enemy
 
                 if (Core.instance.hud != null)
 				{
-					Core.instance.hud.GetComponent<HUD>().ComboIncrease(++Core.instance.hud.GetComponent<HUD>().combo_number, 5);
+					Core.instance.hud.GetComponent<HUD>().IncrementCombo(1, 2.0f);
 				}
 			}
 		}
@@ -269,10 +269,6 @@ public class StormTrooper : Enemy
 				timePassed = 0.0f;
 				Animator.Play(gameObject, "ST_Die", 1.0f);
 				Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
-				if (Core.instance.hud != null)
-				{
-					Core.instance.hud.GetComponent<HUD>().ComboIncrease(++Core.instance.hud.GetComponent<HUD>().combo_number, 5);
-				}
 			}
 		}
 
