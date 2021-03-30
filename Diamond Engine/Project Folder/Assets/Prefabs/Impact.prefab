@@ -14,18 +14,18 @@
             "Rotation": [
                 0,
                 0,
-                0,
-                1
+                -0.7071068286895752,
+                0.70710670948028564
             ],
             "Scale": [
-                1,
-                1,
+                1.0000001192092896,
+                1.0000001192092896,
                 1
             ],
-            "UID": 1742515435,
+            "UID": 398165327,
             "PrefabID": 760525760,
             "DontDestroy": false,
-            "ParentUID": 781778154,
+            "ParentUID": 923108899,
             "Components": [
                 {
                     "Type": 1,
@@ -54,10 +54,10 @@
                 1,
                 1
             ],
-            "UID": 1882705303,
+            "UID": 949315591,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1742515435,
+            "ParentUID": 398165327,
             "Components": [
                 {
                     "Type": 1,
@@ -67,7 +67,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -76,7 +76,7 @@
                     "Active": true,
                     "systemActive": false,
                     "looping": false,
-                    "maxDuration": 0.20800000429153442,
+                    "maxDuration": 0.44999998807907104,
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
@@ -88,17 +88,29 @@
                                 0.60000002384185791
                             ],
                             "paSize": [
-                                0.0010000000474974513,
+                                0,
                                 0.10000000149011612
                             ],
                             "paColor": [
                                 1,
-                                0,
+                                0.92473107576370239,
                                 0,
                                 1
                             ],
-                            "paPerSec": 400,
+                            "paPerSec": 200,
                             "ParticleEffects": [
+                                {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    "paFOLT_magnitude": 0,
+                                    "paFOLT_gravityMod": 4.8000001907348633,
+                                    "paFOLT_gravity": -47.040000915527344,
+                                    "paFOLT_forceType": 0
+                                },
                                 {
                                     "paEffectType": 2,
                                     "Gradients": [
@@ -109,44 +121,27 @@
                                                 0,
                                                 0
                                             ],
-                                            "paColorOLTposition": 0
+                                            "paColorOLTposition": 0.013333529233932495
                                         },
                                         {
                                             "paColorOLTcolor": [
                                                 1,
+                                                0.79545438289642334,
                                                 0,
-                                                0,
-                                                0.43648898601531982
+                                                1
                                             ],
-                                            "paColorOLTposition": 0.50933331251144409
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0,
-                                                0,
-                                                0.43866598606109619
-                                            ],
-                                            "paColorOLTposition": 0.77599877119064331
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                0.9921875,
-                                                0.58135986328125,
-                                                0,
-                                                0.6796875
-                                            ],
-                                            "paColorOLTposition": 1
+                                            "paColorOLTposition": 0.570667564868927
                                         }
                                     ]
                                 },
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 3,
+                                    "paShapePartSpeed": 2,
                                     "paShapeRandSpeed": 0,
-                                    "PaShapeSphereRadius": 0.20000000298023224,
-                                    "paShapeType": 1,
+                                    "PaShapeConeRadius": 1,
+                                    "PaShapeConeHeight": 1,
+                                    "paShapeType": 2,
                                     "PaShapeOffset": [
                                         0,
                                         0,
