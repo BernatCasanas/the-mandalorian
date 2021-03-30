@@ -7,8 +7,9 @@ public class Bantha : Enemy
 	public float chargeRange = 25.0f;
 	public float chargeTime = 1.5f;
 	public float chargeDuration = 1.0f;
+    
 
-	private float chargeCounter = 0.0f;
+    private float chargeCounter = 0.0f;
 	private float chargeStartYPos = 0.0f;
 
 	public void Start()
@@ -116,14 +117,14 @@ public class Bantha : Enemy
 					if (chargeCounter < chargeDuration)
 					{
 						chargeCounter += Time.deltaTime;
-						gameObject.transform.localPosition += gameObject.transform.GetForward().normalized * chargeSpeed * Time.deltaTime;
+						gameObject.SetVelocity(gameObject.transform.GetForward().normalized * chargeSpeed);
 
-						gameObject.transform.localPosition.y = chargeStartYPos;
+						
 
 					}
 					else
 					{
-						gameObject.transform.localPosition.y = chargeStartYPos;
+						
 
 						chargeCounter = 0.0f;
 						currentState = STATES.RUN;
@@ -157,4 +158,68 @@ public class Bantha : Enemy
 				break;
 		}
 	}
+    public void OnCollisionEnter(GameObject collidedGameObject)
+    {
+       
+        if (collidedGameObject.CompareTag("Bullet"))
+        {
+            Debug.Log("Collision bullet");
+            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+            if (currentState != STATES.DIE && healthPoints <= 0.0f)
+            {
+                currentState = STATES.DIE;
+                timePassed = 0.0f;
+                Animator.Play(gameObject, "ST_Die", 1.0f);
+                //Play Sound("Die")
+                Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
+                Audio.PlayAudio(gameObject, "Play_Mando_Voice");
+
+                RemoveFromSpawner();
+
+                if (Core.instance.hud != null)
+                {
+                    Core.instance.hud.GetComponent<HUD>().ComboIncrease(++Core.instance.hud.GetComponent<HUD>().combo_number, 5);
+                }
+            }
+        }
+        else if (collidedGameObject.CompareTag("Grenade"))
+        {
+            Debug.Log("Collision Grenade");
+
+            if (currentState != STATES.DIE)
+            {
+                currentState = STATES.DIE;
+                timePassed = 0.0f;
+                Animator.Play(gameObject, "ST_Die", 1.0f);
+                //Play Sound("Die")
+                Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
+                Audio.PlayAudio(gameObject, "Play_Mando_Voice");
+
+                RemoveFromSpawner();
+
+
+                if (Core.instance.hud != null)
+                {
+                    Core.instance.hud.GetComponent<HUD>().ComboIncrease(++Core.instance.hud.GetComponent<HUD>().combo_number, 5);
+                }
+            }
+        }
+        else if (collidedGameObject.CompareTag("WorldLimit"))
+        {
+            Debug.Log("Collision w/ The End");
+
+            if (currentState != STATES.DIE)
+            {
+                currentState = STATES.DIE;
+                timePassed = 0.0f;
+                Animator.Play(gameObject, "ST_Die", 1.0f);
+                Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
+                if (Core.instance.hud != null)
+                {
+                    Core.instance.hud.GetComponent<HUD>().ComboIncrease(++Core.instance.hud.GetComponent<HUD>().combo_number, 5);
+                }
+            }
+        }
+
+    }
 }

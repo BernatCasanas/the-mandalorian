@@ -630,6 +630,16 @@ public class Core : DiamondComponent
             if (bulletScript != null)
                 gameObject.GetComponent<PlayerHealth>().TakeDamage((int)bulletScript.damage);
         }
+        if (collidedGameObject.CompareTag("Bantha"))
+        {
+            //InternalCalls.Destroy(gameObject);
+            float damage = collidedGameObject.GetComponent<Enemy>().damage;
+            Debug.Log("Me cago en diamond engine");
+            
+
+            if (damage != 0)
+                gameObject.GetComponent<PlayerHealth>().TakeDamage((int)damage);
+        }
     }
 
     /*
