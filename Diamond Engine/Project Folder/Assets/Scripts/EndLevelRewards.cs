@@ -32,25 +32,6 @@ public class EndLevelRewards : DiamondComponent
     EndLevelReward thirdReward;
     GameObject rewardsMenu;
 
-    public void OnExecuteButton()
-    {
-        if (gameObject.name == "1st reward")
-        {
-
-        }
-
-        if (gameObject.name == "2nd reward")
-        {
-
-        }
-
-        if (gameObject.name == "3rd reward")
-        {
-
-        }
-
-    }
-
     public void Update()
     {
 
@@ -59,14 +40,16 @@ public class EndLevelRewards : DiamondComponent
             enemiesHaveSpawned = true;
         }
 
-        if (gameObject.name == "EndLevelRewardMenu" && Counter.roomEnemies <= 0 && enemiesHaveSpawned)  // This probably will be called from somewhere else
+//        if (gameObject.name == "EndLevelRewardMenu" && Counter.roomEnemies <= 0 && enemiesHaveSpawned)  // This probably will be called from somewhere else
         {
             Time.PauseGame();
             firstReward = SelectRewards();
             secondReward = SelectRewards();
             thirdReward = SelectRewards();
             // If index = -1, there is no boon
-            rewardsMenu = InternalCalls.CreatePrefab("Library/Prefabs/.prefab", new Vector3(0.0f, 0.0f, 0.0f), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
+
+            rewardsMenu = CreatePopUpGameObject();
+            // This instantiation works
         }
 
     }
@@ -124,6 +107,77 @@ public class EndLevelRewards : DiamondComponent
         newReward = new EndLevelReward(boonSpawner.RequestRandomBoon(), EndLevelRewardType.REWARD_BOON); // Spawn boon, just in case
         return newReward;   // We should always quit from the previous return, ignore this
 
+    }
+
+    GameObject CreatePopUpGameObject()
+    {
+        // We can't make a whole prefab for this, because we would need to access gameObject's child to set the generated rewards, and we don't have that functionality
+
+        InternalCalls.CreateGameObject("FirstRewardText", new Vector3(0.0f, 0.0f, 0.0f));
+        InternalCalls.CreateGameObject("SecondRewardText", new Vector3(0.0f, 0.0f, 0.0f));
+        InternalCalls.CreateGameObject("ThirdRewardText", new Vector3(0.0f, 0.0f, 0.0f));
+
+        GameObject firstText = InternalCalls.FindObjectWithName("FirstRewardText");
+        GameObject secondText = InternalCalls.FindObjectWithName("SecondRewardText");
+        GameObject thirdText = InternalCalls.FindObjectWithName("ThirdRewardText");
+        GameObject rewardMenu = InternalCalls.CreatePrefab("Library/Prefabs/18131542.prefab", new Vector3(0.0f, 0.0f, 0.0f), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
+
+        GameObject canvas = InternalCalls.FindObjectWithName("Canvas");
+
+        if (canvas == null) {
+            canvas = InternalCalls.CreatePrefab("Library/Prefabs/1965121116.prefab", new Vector3(0.0f, 0.0f, 0.0f), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
+        }
+
+        firstText.SetParent(InternalCalls.FindObjectWithName("FirstRewardButton"));
+        secondText.SetParent(InternalCalls.FindObjectWithName("SecondRewardButton"));
+        thirdText.SetParent(InternalCalls.FindObjectWithName("ThirdRewardButton"));
+        rewardMenu.SetParent(canvas);
+
+        firstText.AddComponent(9);
+        Text firstTextComponent = firstText.GetComponent<Text>();
+        firstTextComponent.text = RewardText(firstReward);
+
+        secondText.AddComponent(9);
+        Text secondTextComponent = secondText.GetComponent<Text>();
+        secondTextComponent.text = RewardText(secondReward);
+        
+        thirdText.AddComponent(9);
+        Text thirdTextComponent = thirdText.GetComponent<Text>();
+        thirdTextComponent.text = RewardText(thirdReward);
+        
+        return rewardMenu;
+
+    }
+
+    string RewardText(EndLevelReward reward)
+    {
+        string text = null;
+
+        switch (reward.type)
+        {
+            case EndLevelRewardType.REWARD_BOON:
+
+                break;
+
+            case EndLevelRewardType.REWARD_BESKAR:
+                text = "The metal of the mandalorian people, second to none in the galaxy.";
+                break;
+
+            case EndLevelRewardType.REWARD_MACARON:
+                text = "Just a macaron. Grogu does love them, though.";
+                break;
+
+            case EndLevelRewardType.REWARD_SCRAP:
+                text = "Remains of powerful imperial technology.";
+                break;
+
+            case EndLevelRewardType.REWARD_MILK:
+                text = "Sweet and tasty blue milk, a true delicacy.";
+                break;
+
+        }
+
+        return text;
     }
 
 }
