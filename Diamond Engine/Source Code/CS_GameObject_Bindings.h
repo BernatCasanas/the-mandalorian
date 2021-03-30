@@ -78,3 +78,16 @@ void CS_SetParent(MonoObject* gameObject, MonoObject* newParent) {
 	cpp_gameObject->ChangeParent(cpp_parent);
 
 }
+
+int GetUID(MonoObject* cs_Object)
+{
+	GameObject* cpp_gameObject = EngineExternal->moduleMono->GameObject_From_CSGO(cs_Object);
+	int ret = -1;
+
+	if (cpp_gameObject != nullptr)
+	{
+		ret = cpp_gameObject->UID;
+	}
+
+	return ret;
+}
