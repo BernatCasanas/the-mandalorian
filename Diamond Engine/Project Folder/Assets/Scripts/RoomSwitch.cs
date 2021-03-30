@@ -45,12 +45,4 @@ public class RoomSwitch : DiamondComponent
 			SceneManager.LoadScene(finalScene);
 		}
 	}
-
-    public void OnCollisionEnter(GameObject collidedGameObject)
-    {
-        if (collidedGameObject.CompareTag("Player"))
-        {
-            SceneManager.LoadScene(1406013733);
-        }
-    }
 }
