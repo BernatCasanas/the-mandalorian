@@ -608,7 +608,7 @@ GameObject* M_Scene::LoadGOData(JSON_Object* goJsonObj, GameObject* parent)
 
 	int prefabID = json_object_get_number(goJsonObj, "PrefabID");
 
-	if(prefabID != 0)
+	/*if(prefabID != 0)
 	{
 		std::string prefabPath = EngineExternal->moduleResources->GenLibraryPath(prefabID, Resource::Type::PREFAB);
 
@@ -622,7 +622,7 @@ GameObject* M_Scene::LoadGOData(JSON_Object* goJsonObj, GameObject* parent)
 				return parent;
 			}
 		}
-	}
+	}*/
 
 	parent = CreateGameObject(json_object_get_string(goJsonObj, "name"), parent, json_object_get_number(goJsonObj, "UID"));
 	parent->LoadFromJson(goJsonObj);
