@@ -147,9 +147,13 @@ public class HUD : DiamondComponent
         {
             SwapWeapons();
         }
-        if (Input.GetKey(DEKeyCode.B) == KeyState.KEY_DOWN)
+        if (Input.GetKey(DEKeyCode.B) == KeyState.KEY_DOWN) //test key
         {
             IncrementCombo(1, 1.0f);
+        }
+        if (Input.GetKey(DEKeyCode.N) == KeyState.KEY_DOWN) //test key
+        {
+            DecreaseComboPercentage(0.5f);
         }
         if (combo_bar != null && comboNumber > 0)
         {
@@ -228,6 +232,17 @@ public class HUD : DiamondComponent
             t.color_green = newColor.y;
             t.color_blue = newColor.z;
         }
+    }
+
+    //percentage between 0 and 1 (0%-100%) decreases the time left for the current combo to deplete
+    public void DecreaseComboPercentage(float percentageOfTotal)
+    {
+        currComboTime -= fullComboTime * percentageOfTotal;
+
+        if (currComboTime > fullComboTime)
+            currComboTime = fullComboTime;
+        else if (currComboTime < 0.0f)
+            currComboTime = 0.0f;
     }
 
     public void UpdateHP(int new_hp, int max_hp)
