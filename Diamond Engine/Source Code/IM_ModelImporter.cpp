@@ -87,7 +87,8 @@ void ModelImporter::Import(char* buffer, int bSize, Resource* res)
 		if (FileSystem::Exists(EngineExternal->moduleResources->GetMetaPath(res->GetAssetPath()).c_str()))
 			GetAnimationsFromMeta(res->GetAssetPath(), animationsUIDs);
 
-		ImportAnimations(scene, animationsUIDs, animationsOnModel, res);
+		if (scene->HasAnimations())
+			ImportAnimations(scene, animationsUIDs, animationsOnModel, res);
 
 		//Save custom format model
 		GameObject* root = new GameObject("First model GO", nullptr);
@@ -99,10 +100,19 @@ void ModelImporter::Import(char* buffer, int bSize, Resource* res)
 
 		SaveModelCustom(root->children[0], res->GetLibraryPath());
 		delete root;
+		root = nullptr;
 
+		for (size_t i = 0; i < meshesOnModel.size(); i++) {
+			meshesOnModel[i] = nullptr;
+		}
 		meshesOnModel.clear();
+
+		for (size_t i = 0; i < texturesOnModel.size(); i++) {
+			texturesOnModel[i] = nullptr;
+		}
 		texturesOnModel.clear();
-		for (size_t i = 0; i < animationsOnModel.size(); i++)
+
+		for (size_t i = 0; i < animationsOnModel.size(); i++) 
 		{
 			EngineExternal->moduleResources->UnloadResource(animationsOnModel[i]->GetUID());
 		}
@@ -111,6 +121,7 @@ void ModelImporter::Import(char* buffer, int bSize, Resource* res)
 		animationsUIDs.clear();
 
 		aiReleaseImport(scene);
+		scene = nullptr;
 	}
 	else
 		LOG(LogType::L_ERROR, "Error loading scene"/*, scene->name*/);
@@ -118,24 +129,17 @@ void ModelImporter::Import(char* buffer, int bSize, Resource* res)
 
 void ModelImporter::ImportAnimations(const aiScene* scene, std::vector<uint>& animationsUIDs, std::vector<ResourceAnimation*>& animationsOnModelUIDs, Resource* res)
 {
-	if (scene->HasAnimations())
+	for (unsigned int i = 0; i < scene->mNumAnimations; i++)
 	{
-		for (unsigned int i = 0; i < scene->mNumAnimations; i++)
-		{
-			if (animationsUIDs.size() > 0 && FileSystem::Exists(EngineExternal->moduleResources->GenLibraryPath(animationsUIDs[i], Resource::Type::ANIMATION).c_str())) {
-				continue;
-			}
-
-			aiAnimation* anim = scene->mAnimations[i];
-			if (animationsUIDs.size() != 0)
-				animationsOnModelUIDs.push_back(AnimationLoader::ImportAnimation(anim, animationsUIDs[i]));
-			else
-				animationsOnModelUIDs.push_back(AnimationLoader::ImportAnimation(anim));
-		}
-
-		SaveAnimationsToMeta(res->GetAssetPath(), animationsOnModelUIDs);
-		EngineExternal->moduleResources->UpdateAnimationsDisplay();
+		aiAnimation* anim = scene->mAnimations[i];
+		if (animationsUIDs.size() != 0)
+			animationsOnModelUIDs.push_back(AnimationLoader::ImportAnimation(anim, animationsUIDs[i]));
+		else
+			animationsOnModelUIDs.push_back(AnimationLoader::ImportAnimation(anim));
 	}
+
+	SaveAnimationsToMeta(res->GetAssetPath(), animationsOnModelUIDs);
+	EngineExternal->moduleResources->UpdateAnimationsDisplay();	
 }
 
 void ModelImporter::SaveModelCustom(GameObject* root, const char* nameWithExtension)

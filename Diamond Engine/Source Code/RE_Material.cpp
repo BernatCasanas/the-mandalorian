@@ -232,7 +232,7 @@ void ResourceMaterial::DrawEditor()
 	ImGui::Text("Attributes");
 	for (size_t i = 0; i < attributes.size(); i++)
 	{
-		ImGui::TextColored(ImVec4(1.f, 1.f, 0.f, 1.f), "%s: ", attributes[i].name);
+		ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s: ", attributes[i].name);
 	}
 
 	ImGui::Dummy(ImVec2(0, 5));
@@ -242,7 +242,7 @@ void ResourceMaterial::DrawEditor()
 		if (IsDefaultUniform(uniforms[i].name))
 			continue;
 
-		ImGui::TextColored(ImVec4(1.f, 1.f, 0.f, 1.f), "%s: ", uniforms[i].name);
+		ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s: ", uniforms[i].name);
 
 		//ImGui::SameLine();
 		switch (uniforms[i].vType)

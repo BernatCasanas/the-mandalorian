@@ -196,12 +196,12 @@ bool ModuleRenderer3D::Init()
 	OnResize(App->moduleWindow->s_width, App->moduleWindow->s_height);
 
 	std::vector<std::string> faces = {
-		"EngineIcons/Skybox/right.png",
-		"EngineIcons/Skybox/left.png",
-		"EngineIcons/Skybox/top.png",
-		"EngineIcons/Skybox/bottom.png",
-		"EngineIcons/Skybox/front.png",
-		"EngineIcons/Skybox/back.png"
+		"EngineIcons/Skybox/right.jpg",
+		"EngineIcons/Skybox/left.jpg",
+		"EngineIcons/Skybox/top.jpg",
+		"EngineIcons/Skybox/bottom.jpg",
+		"EngineIcons/Skybox/front.jpg",
+		"EngineIcons/Skybox/back.jpg"
 	};
 
 	TextureImporter::LoadCubeMap(faces, skybox);
