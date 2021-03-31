@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        -4.6857476234436035,
-        7.6929574012756348,
-        16.83439826965332
+        4.1588048934936523,
+        3.2969236373901367,
+        -1.1975008249282837
     ],
     "EditorCameraZ": [
-        0.33445072174072266,
-        -0.23145264387130737,
-        -0.91354936361312866
+        0.95430636405944824,
+        -0.29875963926315308,
+        -0.0064907073974609375
     ],
     "EditorCameraY": [
-        0.079411357641220093,
-        0.97284615039825439,
-        -0.21740329265594482
+        0.29875147342681885,
+        0.95432835817337036,
+        -0.002213597297668457
     ],
     "tags": [],
     "layers": [],
@@ -2111,6 +2111,47 @@
                 {
                     "Type": 1,
                     "Active": true
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        25,
+                        0,
+                        -5.3000001907348633
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        2.2999999523162842,
+                        1.2999999523162842
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "HubRoomSwitch",
+                    "nextRoomUID": 457155595
                 }
             ]
         },
@@ -2849,7 +2890,7 @@
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
                     "vFOV": 1.0471975803375244,
-                    "hFOV": 1.5139168500900269,
+                    "hFOV": 1.8232308626174927,
                     "culling": true,
                     "drawSkybox": true
                 }
