@@ -3,6 +3,8 @@ using DiamondEngine;
 
 public class StormTrooper : Enemy
 {
+	public GameObject hitParticles;
+
 	private int shotSequences = 0;
 	public int maxShots = 2;
 	public int maxSequences = 2;
@@ -229,11 +231,14 @@ public class StormTrooper : Enemy
 				Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
 				Audio.PlayAudio(gameObject, "Play_Mando_Voice");
 
-                RemoveFromSpawner();
+				if(hitParticles != null)
+				hitParticles.GetComponent<ParticleSystem>().Play();
+
+				RemoveFromSpawner();
 
 				if (Core.instance.hud != null)
                 {
-					Core.instance.hud.GetComponent<HUD>().ComboIncrease(++Core.instance.hud.GetComponent<HUD>().combo_number, 5);
+					Core.instance.hud.GetComponent<HUD>().IncrementCombo(1, 1.0f);
                 }
 			}            
 		}
@@ -255,7 +260,7 @@ public class StormTrooper : Enemy
 
                 if (Core.instance.hud != null)
 				{
-					Core.instance.hud.GetComponent<HUD>().ComboIncrease(++Core.instance.hud.GetComponent<HUD>().combo_number, 5);
+					Core.instance.hud.GetComponent<HUD>().IncrementCombo(1, 2.0f);
 				}
 			}
 		}
@@ -269,10 +274,6 @@ public class StormTrooper : Enemy
 				timePassed = 0.0f;
 				Animator.Play(gameObject, "ST_Die", 1.0f);
 				Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
-				if (Core.instance.hud != null)
-				{
-					Core.instance.hud.GetComponent<HUD>().ComboIncrease(++Core.instance.hud.GetComponent<HUD>().combo_number, 5);
-				}
 			}
 		}
 
