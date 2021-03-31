@@ -49,7 +49,6 @@ private:
 	void UpdateTransform();
 	C_Transform* GetRecursiveTransforms(C_Transform* node, std::vector<C_Transform*>& transforms);
 
-
 	float4x4 globalTransformTRANS;
 	float4x4 oldTransform;
 
