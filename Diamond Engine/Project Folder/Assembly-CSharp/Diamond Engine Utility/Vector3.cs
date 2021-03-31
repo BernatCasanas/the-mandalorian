@@ -51,13 +51,25 @@ namespace DiamondEngine
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Vector3(float x, float y) { this.x = x; this.y = y; z = 0F; }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Set(float newX, float newY, float newZ) { x = newX; y = newY; z = newZ;}
+        public void Set(float newX, float newY, float newZ) { x = newX; y = newY; z = newZ; }
 
+        //Mult
+        public static Vector3 operator *(Vector3 a, Vector3 b) { return new Vector3(a.x * b.x, a.y * b.y, a.z * b.z); }
         public static Vector3 operator *(Vector3 a, float d) { return new Vector3(a.x * d, a.y * d, a.z * d); }
+        public static Vector3 operator *(float d, Vector3 a) { return new Vector3(a.x * d, a.y * d, a.z * d); }
+
+        //Sum
         public static Vector3 operator +(Vector3 a, Vector3 b) { return new Vector3(a.x + b.x, a.y + b.y, a.z + b.z); }
+        public static Vector3 operator +(Vector3 a, float d) { return new Vector3(a.x + d, a.y + d, a.z + d); }
+        public static Vector3 operator +(float d, Vector3 a) { return new Vector3(d + a.x, d + a.y, d + a.z); }
+        //Div
+        public static Vector3 operator /(Vector3 a, Vector3 b) { return new Vector3(a.x / b.x, a.y / b.y, a.z / b.z); }
         public static Vector3 operator /(Vector3 a, float d) { return new Vector3(a.x / d, a.y / d, a.z / d); }
-        public static Vector3 operator -(Vector3 a, float d) { return new Vector3(a.x - d, a.y - d, a.z - d); }
+        public static Vector3 operator /(float d, Vector3 a) { return new Vector3(d / a.x, d / a.y, d / a.z); }
+        //Diff
         public static Vector3 operator -(Vector3 a, Vector3 b) { return new Vector3(a.x - b.x, a.y - b.y, a.z - b.z); }
+        public static Vector3 operator -(Vector3 a, float d) { return new Vector3(a.x - d, a.y - d, a.z - d); }
+        public static Vector3 operator -(float d, Vector3 a) { return new Vector3(d - a.x, d - a.y, d - a.z); }
 
         static readonly Vector3 zeroVector = new Vector3(0F, 0F, 0F);
         static readonly Vector3 oneVector = new Vector3(1F, 1F, 1F);
@@ -105,7 +117,7 @@ namespace DiamondEngine
 
         public static Vector3 Lerp(Vector3 a, Vector3 b, float t)
         {
-            return (a+ (b - a)*t);
+            return (a + (b - a) * t);
         }
 
         public static Vector3 SlerpVector(Vector3 start, Vector3 end, float percent)

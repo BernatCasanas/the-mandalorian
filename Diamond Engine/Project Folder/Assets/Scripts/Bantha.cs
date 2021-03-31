@@ -10,7 +10,7 @@ public class Bantha : Enemy
     
 
     private float chargeCounter = 0.0f;
-	private float chargeStartYPos = 0.0f;
+	//private float chargeStartYPos = 0.0f;
 
 	public void Start()
 	{

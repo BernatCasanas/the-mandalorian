@@ -24,7 +24,7 @@ public class EndLevelRewards : DiamondComponent
         public EndLevelRewardType type;
     }
 
-    bool enemiesHaveSpawned = false;
+    //bool enemiesHaveSpawned = false;
     int[] rewardChances = new int[5] { 80, 5, 5, 5, 5 }; // Reward chances, by order being boons, beskar, macarons, scraps and milk
     BoonSpawn boonSpawner = new BoonSpawn();
     EndLevelReward firstReward;
@@ -37,7 +37,7 @@ public class EndLevelRewards : DiamondComponent
 
         if (Counter.roomEnemies > 0)
         {
-            enemiesHaveSpawned = true;
+            //enemiesHaveSpawned = true;
         }
 
 //        if (gameObject.name == "EndLevelRewardMenu" && Counter.roomEnemies <= 0 && enemiesHaveSpawned)  // This probably will be called from somewhere else
