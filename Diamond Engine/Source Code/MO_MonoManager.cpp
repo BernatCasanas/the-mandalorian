@@ -77,20 +77,88 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.InternalCalls::Destroy", Destroy);
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreateBullet", CreateBullet);
 
+
+#pragma endregion
+
+
+#pragma region Text
+	mono_add_internal_call("DiamondEngine.Text::get_text", GetText);
+	mono_add_internal_call("DiamondEngine.Text::set_text", SetText);
+	mono_add_internal_call("DiamondEngine.Text::get_color_red", GetTextRed);
+	mono_add_internal_call("DiamondEngine.Text::set_color_red", SetTextRed);
+	mono_add_internal_call("DiamondEngine.Text::get_color_green", GetTextGreen);
+	mono_add_internal_call("DiamondEngine.Text::set_color_green", SetTextGreen);
+	mono_add_internal_call("DiamondEngine.Text::get_color_blue", GetTextBlue);
+	mono_add_internal_call("DiamondEngine.Text::set_color_blue", SetTextBlue);
+#pragma endregion
+
+#pragma region Material
+	mono_add_internal_call("DiamondEngine.Material::SetFloatUniform", SetFloatUniform);
+	mono_add_internal_call("DiamondEngine.Material::SetIntUniform", SetIntUniform);
+#pragma endregion
+
+#pragma region Image2D
+	mono_add_internal_call("DiamondEngine.Image2D::SwapTwoImages", SwapTwoImages);
+	mono_add_internal_call("DiamondEngine.Image2D::AssignLibrary2DTexture", AssignLibrary2DTexture);
+
+#pragma endregion
+
+#pragma region Navigation
+	mono_add_internal_call("DiamondEngine.Navigation::Select", SelectNavigation);
+#pragma endregion
+
+#pragma region ParticleSystem
+	mono_add_internal_call("DiamondEngine.ParticleSystem::Play", PlayParticles);
+	mono_add_internal_call("DiamondEngine.ParticleSystem::Stop", StopParticles);
+	mono_add_internal_call("DiamondEngine.ParticleSystem::get_playing", IsPlayingParticles);
+	mono_add_internal_call("DiamondEngine.ParticleSystem::get_looping", GetLoopingParticles);
+
+
+#pragma endregion
+
+#pragma region Settings
+	mono_add_internal_call("DiamondEngine.Config::VSYNCEnable", CS_Enable_VSYNC);
+	mono_add_internal_call("DiamondEngine.Config::SetResolution", CS_SetResolution);
+	mono_add_internal_call("DiamondEngine.Config::GetResolution", CS_GetResolution);
+	mono_add_internal_call("DiamondEngine.Config::SetWindowMode", CS_SetWindowMode);
+	mono_add_internal_call("DiamondEngine.Config::GetWindowMode", CS_GetWindowMode);
+	mono_add_internal_call("DiamondEngine.Config::SetBrightness", CS_SetBrightness);
+	mono_add_internal_call("DiamondEngine.Config::GetBrightness", CS_GetBrightness);
+	mono_add_internal_call("DiamondEngine.Config::SetMasterVolume", CS_SetMasterVolume);
+	mono_add_internal_call("DiamondEngine.Config::GetMasterVolume", CS_GetMasterVolume);
+	mono_add_internal_call("DiamondEngine.Config::SetMusciVolume", CS_SetMusicVolume);
+	mono_add_internal_call("DiamondEngine.Config::GetMusicVolume", CS_GetMusicVolume);
+	mono_add_internal_call("DiamondEngine.Config::SetSFXVolume", CS_SetSFXVolume);
+	mono_add_internal_call("DiamondEngine.Config::GetSFXVolume", CS_GetSFXVolume);
+	mono_add_internal_call("DiamondEngine.Config::ControllerVibrationEnable", CS_ControllerEnableVibration);
+#pragma endregion
+
+
+	mono_add_internal_call("DiamondEngine.DiamondComponent::get_gameObject", CS_Component_Get_GO);
+
+	mono_add_internal_call("DiamondEngine.GameObject::TryGetComponent", CS_GetComponent);
+	mono_add_internal_call("DiamondEngine.GameObject::get_Name", CS_Get_GO_Name);
+	mono_add_internal_call("DiamondEngine.GameObject::get_parent", CS_Get_GO_Parent);
+	mono_add_internal_call("DiamondEngine.GameObject::Enable", CS_EnableGO);
+	mono_add_internal_call("DiamondEngine.GameObject::EnableNav", CS_EnableGONav);
+	mono_add_internal_call("DiamondEngine.GameObject::IsEnabled", CS_IsGOEnabled);
+	mono_add_internal_call("DiamondEngine.GameObject::CompareTag", CompareTag);
+	mono_add_internal_call("DiamondEngine.GameObject::get_tag", GetTag);
+	mono_add_internal_call("DiamondEngine.GameObject::SetVelocity", SetVelocity);
+	mono_add_internal_call("DiamondEngine.GameObject::AddForce", AddForce);
+	mono_add_internal_call("DiamondEngine.GameObject::SetParent", CS_SetParent);
+	mono_add_internal_call("DiamondEngine.GameObject::GetUID", GetUID);
 	mono_add_internal_call("DiamondEngine.GameObject::get_localPosition", SendPosition);
 	mono_add_internal_call("DiamondEngine.GameObject::get_globalPosition", SendGlobalPosition);
 	mono_add_internal_call("DiamondEngine.GameObject::set_localPosition", RecievePosition);
-
-	mono_add_internal_call("DiamondEngine.GameObject::GetForward", GetForward);
-	mono_add_internal_call("DiamondEngine.GameObject::GetRight", GetRight);
-
 	mono_add_internal_call("DiamondEngine.GameObject::get_localRotation", SendRotation);
 	mono_add_internal_call("DiamondEngine.GameObject::get_globalRotation", SendGlobalRotation);
 	mono_add_internal_call("DiamondEngine.GameObject::set_localRotation", RecieveRotation);
-
 	mono_add_internal_call("DiamondEngine.GameObject::get_localScale", SendScale);
 	mono_add_internal_call("DiamondEngine.GameObject::get_globalScale", SendGlobalScale);
 	mono_add_internal_call("DiamondEngine.GameObject::set_localScale", RecieveScale);
+	mono_add_internal_call("DiamondEngine.GameObject::GetForward", GetForward);
+	mono_add_internal_call("DiamondEngine.GameObject::GetRight", GetRight);
 
 	mono_add_internal_call("DiamondEngine.Animator::Play", Play);
 	mono_add_internal_call("DiamondEngine.Animator::Pause", Pause);
@@ -110,9 +178,6 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.Audio::SetPitch", SetPitch);
 	mono_add_internal_call("DiamondEngine.Audio::GetMuted", GetMuted);
 	mono_add_internal_call("DiamondEngine.Audio::SetMuted", SetMuted);
-
-	mono_add_internal_call("DiamondEngine.Image2D::SwapTwoImages", SwapTwoImages);
-	mono_add_internal_call("DiamondEngine.Image2D::AssignLibrary2DTexture", AssignLibrary2DTexture);
 
 	mono_add_internal_call("DiamondEngine.CameraManager::SetOrthSize", SetOrthSize);
 	mono_add_internal_call("DiamondEngine.CameraManager::GetOrthSize", GetOrthSize);

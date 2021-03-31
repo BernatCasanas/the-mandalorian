@@ -10,6 +10,7 @@
 #include "CO_MeshCollider.h"
 #include "CO_Transform.h"
 #include "CO_MeshRenderer.h"
+#include"RE_Mesh.h"
 
 #include <vector>
 
@@ -89,20 +90,31 @@ C_MeshCollider::~C_MeshCollider()
 
 void C_MeshCollider::Update()
 {
+
+	float4x4 trans;
+	if (rigidbody != nullptr && rigidbody->rigid_dynamic)
+		trans = EngineExternal->modulePhysics->PhysXTransformToF4F(rigidbody->rigid_dynamic->getGlobalPose());
+	else
+		trans = transform->globalTransform;
+
+	trans = trans * localTransform;
+
+
+	//float3 pos, scale;
+	//Quat globalRot;
+	//trans.Decompose(pos, globalRot, scale);
+
+	////colliderShape->getGeometry().convexMesh().scale.rotation = physx::PxQuat(globalRot.x, globalRot.y, globalRot.z, globalRot.w);
+	//scale.x = colliderSize.x * scale.x;
+	//scale.y = colliderSize.y * scale.y;
+	//scale.z = colliderSize.z * scale.z;
+	//colliderShape->getGeometry().convexMesh().scale.scale = physx::PxVec3(scale.x, scale.y, scale.z);
+
 #ifndef STANDALONE
 
 	if (colliderShape != nullptr )
 	{
-		//EngineExternal->modulePhysics->DrawCollider(this);
-
-		float4x4 trans;
-		if (rigidbody != nullptr && rigidbody->rigid_dynamic)
-		trans = EngineExternal->modulePhysics->PhysXTransformToF4F(rigidbody->rigid_dynamic->getGlobalPose());
-		else
-			trans = transform->globalTransform;
-
-		trans = trans * localTransform;
-		
+		//EngineExternal->modulePhysics->DrawCollider(this);	
 
 		const physx::PxVec3* convexVerts = colliderShape->getGeometry().convexMesh().convexMesh->getVertices();
 		float size = colliderShape->getGeometry().convexMesh().convexMesh->getNbVertices();
@@ -110,11 +122,10 @@ void C_MeshCollider::Update()
 		physx::PxU32 nbPolygons = colliderShape->getGeometry().convexMesh().convexMesh->getNbPolygons();
 
 		
-		glPushMatrix();
-		glMultMatrixf(trans.Transposed().ptr());
+		//glPushMatrix();
+		//glMultMatrixf(trans.Transposed().ptr());
 		glLineWidth(2.0f);
-		glColor3f(0.0f, 1.0f, 0.0f);
-	
+		//glColor3f(0.0f, 1.0f, 0.0f);
 		
 		for (physx::PxU32 i = 0; i < nbPolygons; i++)
 		{
@@ -122,21 +133,38 @@ void C_MeshCollider::Update()
 			bool status = colliderShape->getGeometry().convexMesh().convexMesh->getPolygonData(i, face);
 			PX_ASSERT(status);
 			PX_UNUSED(status);
-			glBegin(GL_LINES);
+
+			//glBegin(GL_LINES);
 			const physx::PxU8* faceIndices = indexBuffer + face.mIndexBase;
-			for (physx::PxU32 j = 0; j < face.mNbVerts; j++)
+
+			physx::PxVec3 startPos = convexVerts[faceIndices[0]];
+			
+			LineSegment drawLine;
+			for (physx::PxU32 j = 1; j < face.mNbVerts; j++)
 			{
 				physx::PxVec3 vec = convexVerts[faceIndices[j]];
-				glVertex3f(vec.x, vec.y, vec.z);
+				drawLine.a.Set(&vec.x);
+
+				physx::PxVec3 secondPos = startPos;
+				if (j + 1 < face.mNbVerts)
+					secondPos = convexVerts[faceIndices[j + 1]];
+
+				drawLine.b.Set(&secondPos.x);
+
+				drawLine.Transform(trans);
+
+				//glVertex3f(vec.x, vec.y, vec.z);
+				EngineExternal->moduleRenderer3D->AddDebugLines(drawLine.a, drawLine.b, float3(0.0f, 1.0f, 0.0f));
 				
 			}
-			glEnd();
+			//glEnd();
 	
 
 		}
 		
-		glColor3f(1.0f, 1.0f, 1.0f);
-		glPopMatrix();
+		glLineWidth(1.0f);
+		//glColor3f(1.0f, 1.0f, 1.0f);
+		//glPopMatrix();
 
 	}
 	#endif // !STANDALONE
@@ -192,6 +220,32 @@ void C_MeshCollider::LoadData(DEConfig& nObj)
 	newSize.x = colliderSize.x * scale.x;
 	newSize.y = colliderSize.y * scale.y;
 	newSize.z = colliderSize.z * scale.z;
+
+#pragma region Delete or somthing
+	//C_MeshRenderer* mesh = dynamic_cast<C_MeshRenderer*>(this->gameObject->GetComponent(Component::TYPE::MESH_RENDERER));
+	//ResourceMesh* resMesh = mesh->GetRenderMesh();
+	//physx::PxVec3* convexVerts = new physx::PxVec3[resMesh->vertices_count];
+	//for (int i = 0; i < resMesh->vertices_count; i++)
+	//{
+	//	physx::PxVec3 vertex;
+	//	vertex.x = resMesh->vertices[VERTEX_ATTRIBUTES * i];
+	//	vertex.y = resMesh->vertices[VERTEX_ATTRIBUTES * i + 1];
+	//	vertex.z = resMesh->vertices[VERTEX_ATTRIBUTES * i + 2];
+
+	//	convexVerts[i] = vertex;
+	//}
+	//physx::PxConvexMeshDesc convexDesc;
+	//convexDesc.points.count = resMesh->vertices_count;
+	//convexDesc.points.stride = sizeof(physx::PxVec3);
+	//convexDesc.points.data = convexVerts;
+	//convexDesc.flags = physx::PxConvexFlag::eCOMPUTE_CONVEX;
+	//physx::PxConvexMesh* aConvexMesh = EngineExternal->modulePhysics->mCooking->createConvexMesh(convexDesc,
+	//	EngineExternal->modulePhysics->mPhysics->getPhysicsInsertionCallback());
+#pragma endregion
+
+
+
+	//colliderShape->setGeometry(physx::PxConvexMeshGeometry(aConvexMesh));
 	colliderShape->setGeometry(physx::PxBoxGeometry(newSize.x, newSize.y, newSize.z));
 	colliderShape->setLocalPose(physTrans);
 

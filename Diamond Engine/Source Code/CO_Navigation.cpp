@@ -24,7 +24,13 @@ type_of_ui(type_of_ui)
 C_Navigation::~C_Navigation()
 {
 	if (is_selected)
-		EngineExternal->moduleGui->uid_gameobject_of_ui_selected.erase(std::find(EngineExternal->moduleGui->uid_gameobject_of_ui_selected.begin(), EngineExternal->moduleGui->uid_gameobject_of_ui_selected.end(), gameObject->UID));
+	{
+		std::vector<int>::iterator it = std::find(EngineExternal->moduleGui->uid_gameobject_of_ui_selected.begin(), EngineExternal->moduleGui->uid_gameobject_of_ui_selected.end(), gameObject->UID);
+
+		if (it != EngineExternal->moduleGui->uid_gameobject_of_ui_selected.end())
+			EngineExternal->moduleGui->uid_gameobject_of_ui_selected.erase(it);
+	}
+
 	map_of_buttons_and_joysticks.clear();
 }
 
