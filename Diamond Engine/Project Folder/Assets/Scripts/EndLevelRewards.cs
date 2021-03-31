@@ -1,17 +1,17 @@
 using System;
 using DiamondEngine;
 
+public enum EndLevelRewardType
+{
+    REWARD_BOON,
+    REWARD_BESKAR,
+    REWARD_MACARON,
+    REWARD_SCRAP,
+    REWARD_MILK
+}
+
 public class EndLevelRewards : DiamondComponent
 {
-    public enum EndLevelRewardType
-    {
-        REWARD_BOON,
-        REWARD_BESKAR,
-        REWARD_MACARON,
-        REWARD_SCRAP,
-        REWARD_MILK
-    }
-
     public struct EndLevelReward
     {
         public EndLevelReward(int index, EndLevelRewardType rewardType)
@@ -125,7 +125,7 @@ public class EndLevelRewards : DiamondComponent
 
         rewardMenu.SetParent(canvas);
 
-        //        firstImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardPath(firstReward));    // Have the function re-entered or something...
+        //        firstImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardPath(firstReward));    // Have the function re-entered or something... --> THIS MAY BE POINTLESS, BECAUSE WE ALREADY SAVE THE INFO AT GAMERESOURCE.CS
         //       secondImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardPath(secondReward));
         //      thirdImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardPath(thirdReward));
 

@@ -3,6 +3,7 @@ using DiamondEngine;
 
 public class GameSceneManager : DiamondComponent
 {
+
     bool enemiesHaveSpawned = false;
     EndLevelRewards rewardMenu = new EndLevelRewards();
 
@@ -20,6 +21,7 @@ public class GameSceneManager : DiamondComponent
 
         }
 
+        // We should have a single reward prefab, and we only change its texture, which is the ID we store
 
     }
 
