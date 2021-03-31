@@ -307,6 +307,16 @@ float3 C_Camera::GetPosition()
 	return camFrustrum.pos;
 }
 
+void C_Camera::SetOrthSize(float size)
+{
+	orthoSize = size;
+}
+
+float C_Camera::GetOrthSize()
+{
+	return orthoSize;
+}
+
 float4x4 C_Camera::ViewMatrixOpenGL() const
 {
 	math::float4x4 mat = camFrustrum.ViewMatrix();

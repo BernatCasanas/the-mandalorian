@@ -4,6 +4,9 @@
 #include "MO_MonoManager.h"
 #include "GameObject.h"
 #include "CS_Transform_Bindings.h"
+#include "CO_Material.h"
+#include "RE_Material.h"
+#include "RE_Texture.h"
 
 #include "CO_RigidBody.h"
 
@@ -76,6 +79,44 @@ void CS_SetParent(MonoObject* gameObject, MonoObject* newParent) {
 	GameObject* cpp_gameObject = EngineExternal->moduleMono->GameObject_From_CSGO(gameObject);
 	GameObject* cpp_parent = EngineExternal->moduleMono->GameObject_From_CSGO(newParent);
 	cpp_gameObject->ChangeParent(cpp_parent);
+
+}
+
+void AssignLibraryTexture(MonoObject* obj, int _id, MonoString* textureName)
+{
+
+	GameObject* cpp_gameObject = EngineExternal->moduleMono->GameObject_From_CSGO(obj);
+	C_Material* imageMaterial = dynamic_cast<C_Material*>(cpp_gameObject->GetComponent(Component::TYPE::MATERIAL));
+
+	if (imageMaterial == nullptr) {
+		return;
+	}
+
+	ResourceMaterial* resource = imageMaterial->material;
+
+	if (resource != nullptr) {
+
+		char* uniformName = mono_string_to_utf8(textureName);
+
+		for (int i = 0; i < resource->uniforms.size(); i++) {
+
+			if (strcmp(resource->uniforms[i].name, uniformName) == 0) {
+
+				if (resource->uniforms[i].data.textureValue != nullptr) {
+
+					EngineExternal->moduleResources->UnloadResource(resource->uniforms[i].data.textureValue->GetUID());
+
+				}
+
+				resource->uniforms[i].data.textureValue = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(_id, Resource::Type::TEXTURE));
+
+			}
+
+		}
+
+		mono_free(uniformName);
+
+	}
 
 }
 
