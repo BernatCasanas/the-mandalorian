@@ -16,9 +16,9 @@ public class FPS_Controller : DiamondComponent
     public float mouseSens = 1.0f;
 
     int X_dir = 0, Z_dir = 0, lastX_dir = 0, lastZ_dir = 0;
-    bool dashing = false;
-    float dashCD = 0.33f;
-    float dashCD_counter = 0.0f;
+    //bool dashing = false;
+    //float dashCD = 0.33f;
+    //float dashCD_counter = 0.0f;
     float dashDuration = 0.25f;
     float dashingCounter = 0.0f;
     //public void OnCollisionEnter(GameObject collidedGameObject)
@@ -52,8 +52,8 @@ public class FPS_Controller : DiamondComponent
             Counter.SumToCounterType(Counter.CounterTypes.ENEMY_BANTHA);
         if (Input.GetKey(DEKeyCode.H) == KeyState.KEY_DOWN)
             Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
-        if (Input.GetKey(DEKeyCode.Z) == KeyState.KEY_DOWN)
-            Show();
+        //if (Input.GetKey(DEKeyCode.Z) == KeyState.KEY_DOWN)
+        //    Show();
         if (Input.GetKey(DEKeyCode.R) == KeyState.KEY_DOWN)
             Counter.ResetCounters();
 
@@ -77,8 +77,6 @@ public class FPS_Controller : DiamondComponent
                 gameObject.transform.localPosition += gameObject.transform.GetRight() * -movementSpeed * Time.deltaTime;
                 lastX_dir = X_dir = -1;
             }
-
-        }
 
         if (Input.GetMouseX() != 0 && turret != null)
             turret.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -Input.GetMouseX() * mouseSens * Time.deltaTime) * turret.transform.localRotation;

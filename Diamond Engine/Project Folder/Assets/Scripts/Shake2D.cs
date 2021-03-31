@@ -12,7 +12,7 @@ public class Shake2D : DiamondComponent
     PerlinNoise2D shakeNoiseY = new PerlinNoise2D();
     Vector3 initialPos = new Vector3(0.0f, 0.0f, 0.0f);
 
-    float shake = 1.0f;//value between 0 and 1 that will control the amount of shake performed in the future
+    //float shake = 1.0f;//value between 0 and 1 that will control the amount of shake performed in the future
 
     bool start = true;
     public void Update()

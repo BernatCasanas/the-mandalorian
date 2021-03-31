@@ -18,7 +18,7 @@
 #include "CS_Input_Bindings.h"
 #include"CS_Scene_Bindings.h"
 #include "CS_Audio_Bindings.h"
-#include "CS_Camera_Bindings.h"
+//#include"cam"
 #include "CS_Text_Bindings.h"
 #include "CS_Material_Bindings.h"
 #include "CS_Image2D_Bindings.h"
