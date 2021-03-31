@@ -26,7 +26,8 @@ M_FileSystem::M_FileSystem(Application* app, bool start_enabled) : Module(app, s
 }
 
 M_FileSystem::~M_FileSystem()
-{}
+{
+}
 
 bool M_FileSystem::Init()
 {

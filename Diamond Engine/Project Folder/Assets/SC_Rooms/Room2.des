@@ -56,20 +56,20 @@
             "layer": "Default",
             "Active": false,
             "Position": [
-                2.6289916038513184,
-                7.3519635200500488,
-                -17.897956848144531
+                0,
+                10.636103630065918,
+                0
             ],
             "Rotation": [
-                -0.70713555812835693,
-                -5.9556346059252974e-06,
-                5.956120730843395e-06,
-                0.70707798004150391
+                0,
+                0,
+                0,
+                1
             ],
             "Scale": [
-                3.1256215572357178,
-                0.99986559152603149,
-                3.222841739654541
+                1,
+                2,
+                1
             ],
             "UID": 785570981,
             "PrefabID": 0,
@@ -87,44 +87,24 @@
                     "UID": 1313575480,
                     "alternColor": [
                         1,
-                        0.92857116460800171,
-                        0
+                        1,
+                        1
                     ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FPS_Controller",
+                    "reference": 63506331,
+                    "turret": 63506331,
+                    "rotationSpeed": 2,
+                    "movementSpeed": 35,
+                    "mouseSens": 1
                 },
                 {
                     "Type": 14,
                     "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
-                },
-                {
-                    "Type": 15,
-                    "Active": true,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
+                    "kinematic": false
                 },
                 {
                     "Type": 5,
@@ -139,9 +119,9 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
-                    "MaterialUID": 1051418604
+                    "MaterialAssetPath": "Assets\/Materials\/default.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/715565838.mat",
+                    "MaterialUID": 715565838
                 }
             ]
         },
@@ -152,19 +132,19 @@
             "Active": true,
             "Position": [
                 0,
-                0,
+                0.70499998331069946,
                 0
             ],
             "Rotation": [
-                -2.1901769287069328e-10,
-                -0.70960760116577148,
-                -2.1901769287069328e-10,
-                0.70459705591201782
+                0,
+                0,
+                0,
+                1
             ],
             "Scale": [
-                0.99999964237213135,
                 1,
-                0.99999964237213135
+                0.5,
+                1
             ],
             "UID": 846503698,
             "PrefabID": 0,
@@ -174,6 +154,16 @@
                 {
                     "Type": 1,
                     "Active": true
+                },
+                {
+                    "Type": 4,
+                    "Active": true,
+                    "fType": 2,
+                    "nearPlaneDist": 1,
+                    "farPlaneDist": 5000,
+                    "vFOV": 1.0471975803375244,
+                    "hFOV": 1.6568517684936523,
+                    "culling": false
                 }
             ]
         },
@@ -194,9 +184,9 @@
                 1
             ],
             "Scale": [
-                7.5999999046325684,
-                7.5999999046325684,
-                7.5999999046325684
+                1,
+                1,
+                1
             ],
             "UID": 1040233837,
             "PrefabID": 0,
@@ -215,20 +205,20 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -1.7999999523162842,
-                0,
-                0.40000000596046448
+                -50.89898681640625,
+                3.2579998970031738,
+                -6.3833078911557095e-07
             ],
             "Rotation": [
-                -0.7071068286895752,
+                -0.70713216066360474,
                 0,
                 0,
-                0.7071068286895752
+                0.7070813775062561
             ],
             "Scale": [
-                0.10000000149011612,
-                0.10000000149011612,
-                0.10000000149011612
+                1,
+                49.996749877929688,
+                5.4995937347412109
             ],
             "UID": 381454349,
             "PrefabID": 0,
@@ -242,56 +232,22 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/1437939925.mmh",
-                    "UID": 1437939925,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
                     "alternColor": [
+                        0.13877546787261963,
                         1,
-                        1,
-                        1
+                        0
                     ]
                 },
                 {
                     "Type": 14,
                     "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
+                    "kinematic": true
                 },
                 {
                     "Type": 15,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
-                    "MaterialUID": 1051418604
+                    "Active": true
                 }
             ]
         },
@@ -301,20 +257,20 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                2.4000000953674316,
                 0,
-                0.60000002384185791
+                3.258328914642334,
+                50.980846405029297
             ],
             "Rotation": [
-                -0.7071068286895752,
+                -0.70713216066360474,
                 0,
                 0,
-                0.7071068286895752
+                0.7070813775062561
             ],
             "Scale": [
-                0.10000000149011612,
-                0.10000000149011612,
-                0.10000000149011612
+                50,
+                0.99986779689788818,
+                5.4994978904724121
             ],
             "UID": 1450452927,
             "PrefabID": 0,
@@ -328,56 +284,22 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/1570346226.mmh",
-                    "UID": 1570346226,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
                     "alternColor": [
+                        0.13877546787261963,
                         1,
-                        1,
-                        1
+                        0
                     ]
                 },
                 {
                     "Type": 14,
                     "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
+                    "kinematic": true
                 },
                 {
                     "Type": 15,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
-                    "MaterialUID": 1051418604
+                    "Active": true
                 }
             ]
         },
@@ -387,20 +309,20 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -0.60000002384185791,
-                0,
-                -0.40000000596046448
+                50.546199798583984,
+                3.2579998970031738,
+                -6.3833078911557095e-07
             ],
             "Rotation": [
-                -0.7071068286895752,
+                -0.70713216066360474,
                 0,
                 0,
-                0.7071068286895752
+                0.7070813775062561
             ],
             "Scale": [
-                0.10000000149011612,
-                0.10000000149011612,
-                0.10000000149011612
+                1,
+                49.999992370605469,
+                5.4999990463256836
             ],
             "UID": 859697786,
             "PrefabID": 0,
@@ -414,56 +336,22 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/682131576.mmh",
-                    "UID": 682131576,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
                     "alternColor": [
+                        0.13877546787261963,
                         1,
-                        1,
-                        1
+                        0
                     ]
                 },
                 {
                     "Type": 14,
                     "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
+                    "kinematic": true
                 },
                 {
                     "Type": 15,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
-                    "MaterialUID": 1051418604
+                    "Active": true
                 }
             ]
         },
@@ -473,20 +361,20 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -0.80000001192092896,
                 0,
-                -2.7999999523162842
+                3.2583203315734863,
+                -50.911586761474609
             ],
             "Rotation": [
-                -0.7071068286895752,
+                -0.70713216066360474,
                 0,
                 0,
-                0.7071068286895752
+                0.7070813775062561
             ],
             "Scale": [
-                0.10000000149011612,
-                0.10000000149011612,
-                0.10000000149011612
+                50,
+                0.99980670213699341,
+                5.4990086555480957
             ],
             "UID": 502833569,
             "PrefabID": 0,
@@ -500,35 +388,11 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/1229082938.mmh",
-                    "UID": 1229082938,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
                     "alternColor": [
+                        0.13877546787261963,
                         1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
-                },
-                {
-                    "Type": 15,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0,
                         0
                     ],
                     "Rotation": [
@@ -597,45 +461,11 @@
                 {
                     "Type": 14,
                     "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
+                    "kinematic": true
                 },
                 {
                     "Type": 15,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
-                    "MaterialUID": 1051418604
+                    "Active": true
                 }
             ]
         },
@@ -645,20 +475,20 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                3.2000000476837158,
                 0,
-                -2.7999999523162842
+                3.4848313331604004,
+                47.782619476318359
             ],
             "Rotation": [
-                -0.7071068286895752,
+                -0.70713216066360474,
                 0,
                 0,
-                0.7071068286895752
+                0.7070813775062561
             ],
             "Scale": [
-                0.10000000149011612,
-                0.10000000149011612,
-                0.10000000149011612
+                3.1256139278411865,
+                0.99990683794021606,
+                3.2230079174041748
             ],
             "UID": 1830217979,
             "PrefabID": 0,
@@ -672,56 +502,28 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/352780089.mmh",
-                    "UID": 352780089,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
                     "alternColor": [
                         1,
-                        1,
-                        1
+                        0.92857116460800171,
+                        0
                     ]
                 },
                 {
                     "Type": 14,
                     "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
+                    "kinematic": true
                 },
                 {
                     "Type": 15,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
+                    "Active": true
                 },
                 {
-                    "Type": 3,
+                    "Type": 5,
                     "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
-                    "MaterialUID": 1051418604
+                    "ScriptName": "RoomSwitch",
+                    "rooms": 0
                 }
             ]
         },
@@ -731,20 +533,20 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -1,
                 0,
-                -2.2000000476837158
+                -1.1999502182006836,
+                0
             ],
             "Rotation": [
-                -0.7071068286895752,
                 0,
                 0,
-                0.7071068286895752
+                0,
+                1
             ],
             "Scale": [
-                0.10000000149011612,
-                0.10000000149011612,
-                0.10000000149011612
+                50,
+                0.99999988079071045,
+                50
             ],
             "UID": 663721214,
             "PrefabID": 0,
@@ -758,35 +560,11 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/132105530.mmh",
-                    "UID": 132105530,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
                     "alternColor": [
+                        0.13877546787261963,
                         1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
-                },
-                {
-                    "Type": 15,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0,
                         0
                     ],
                     "Rotation": [
@@ -855,16 +633,7 @@
                 {
                     "Type": 14,
                     "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
+                    "kinematic": true
                 },
                 {
                     "Type": 15,

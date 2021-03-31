@@ -14,7 +14,6 @@ public class FPS_Controller : DiamondComponent
     public float rotationSpeed = 2.0f;
     public float movementSpeed = 35.0f;
     public float mouseSens = 1.0f;
-    public bool dashUp = true;
 
     int X_dir = 0, Z_dir = 0, lastX_dir = 0, lastZ_dir = 0;
     bool dashing = false;
@@ -33,26 +32,30 @@ public class FPS_Controller : DiamondComponent
         if (this.reference == null)
             return;
 
+        if (Input.GetKey(DEKeyCode.W) == KeyState.KEY_REPEAT)
+            gameObject.transform.localPosition += gameObject.transform.GetForward() * movementSpeed * Time.deltaTime;
+        if (Input.GetKey(DEKeyCode.S) == KeyState.KEY_REPEAT)
+            gameObject.transform.localPosition += gameObject.transform.GetForward() * -movementSpeed * Time.deltaTime;
+        if (Input.GetKey(DEKeyCode.A) == KeyState.KEY_REPEAT)
+            gameObject.transform.localPosition += gameObject.transform.GetRight() * movementSpeed * Time.deltaTime;
+        if (Input.GetKey(DEKeyCode.D) == KeyState.KEY_REPEAT)
+            gameObject.transform.localPosition += gameObject.transform.GetRight() * -movementSpeed * Time.deltaTime;
 
-        if (dashCD_counter < dashCD && !dashUp && !dashing) dashCD_counter += Time.deltaTime;
-        else 
-        {
-            dashCD_counter = 0.0f;
-            dashUp = true;
-        }
-    
- 
-        if (Input.GetKey(DEKeyCode.SPACE) == KeyState.KEY_DOWN && dashUp && !dashing)
-        {
-            dashing = true;
-            dashUp = false;
-            dashingCounter = 0.0f;
-        }
+        if (Input.GetMouseX() != 0 && turret != null)
+            turret.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, -Input.GetMouseX() * mouseSens * Time.deltaTime) * turret.transform.localRotation;
 
-        if (dashing) Dash();                   
-        else 
-        {
-            X_dir = Z_dir = 0;
+        if (Input.GetKey(DEKeyCode.B) == KeyState.KEY_DOWN)
+            Counter.SumToCounterType(Counter.CounterTypes.BOKATAN_RES);
+        if (Input.GetKey(DEKeyCode.X) == KeyState.KEY_DOWN)
+            Counter.SumToCounterType(Counter.CounterTypes.WRECKER_RES);
+        if (Input.GetKey(DEKeyCode.Y) == KeyState.KEY_DOWN)
+            Counter.SumToCounterType(Counter.CounterTypes.ENEMY_BANTHA);
+        if (Input.GetKey(DEKeyCode.H) == KeyState.KEY_DOWN)
+            Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
+        if (Input.GetKey(DEKeyCode.Z) == KeyState.KEY_DOWN)
+            Show();
+        if (Input.GetKey(DEKeyCode.R) == KeyState.KEY_DOWN)
+            Counter.ResetCounters();
 
             if (Input.GetKey(DEKeyCode.W) == KeyState.KEY_REPEAT)
             {
@@ -75,9 +78,6 @@ public class FPS_Controller : DiamondComponent
                 lastX_dir = X_dir = -1;
             }
 
-            //Update las direction if not axis input received
-            if (X_dir != 0 && Z_dir == 0) lastZ_dir = 0;
-            if (Z_dir != 0 && X_dir == 0) lastX_dir = 0;
         }
 
         if (Input.GetMouseX() != 0 && turret != null)
@@ -144,9 +144,9 @@ public class FPS_Controller : DiamondComponent
                 gameObject.transform.localPosition += gameObject.transform.GetRight() * (movementSpeed * 1.3f) * Time.deltaTime * X_dir;
             }
         }
-        else
+        if (Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN && (win.IsEnabled() || lose.IsEnabled()))
         {
-            dashing = false;          
+            SceneManager.LoadScene(1726826608);
         }
     }
    

@@ -219,10 +219,10 @@ ResourceMesh* MeshLoader::LoadMesh(aiMesh* importedMesh, uint oldUID)
 		_mesh->vertices[i * VERTEX_ATTRIBUTES + WEIGHTS_OFFSET + 3] = 0.0f;
 
 		//Empty Colors
-		_mesh->vertices[i * VERTEX_ATTRIBUTES + COLORS_OFFSET]     = 0.0f;
+		_mesh->vertices[i * VERTEX_ATTRIBUTES + COLORS_OFFSET] = 0.0f;
 		_mesh->vertices[i * VERTEX_ATTRIBUTES + COLORS_OFFSET + 1] = 0.0f;
 		_mesh->vertices[i * VERTEX_ATTRIBUTES + COLORS_OFFSET + 2] = 0.0f;
-	
+
 	}
 
 

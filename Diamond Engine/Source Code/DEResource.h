@@ -18,6 +18,7 @@ public:
 		MATERIAL,
 		ANIMATION,
 		FONT,
+		PREFAB,
 		UNKNOWN
 	};
 
@@ -50,6 +51,7 @@ public:
 	char name[32];
 
 protected:
+
 	int uid;
 	std::string assetsFile;
 	std::string libraryFile;

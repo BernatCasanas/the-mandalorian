@@ -328,7 +328,6 @@ bool ModuleAudioManager::LoadBanksInfo()
 	DEConfig banksData(banksObject.ReadObject("SoundBanksInfo"));
 	JSON_Array* banksArray = banksData.ReadArray("SoundBanks");
 
-	
 	for (unsigned int cursor = 0; cursor < json_array_get_count(banksArray); ++cursor)
 	{
 		DEConfig tmp(json_array_get_object(banksArray, cursor));
@@ -357,7 +356,6 @@ bool ModuleAudioManager::LoadBanksInfo()
 			banks.push_back(tmpBank);
 		}
 	}
-	
 	return true;
 }
 

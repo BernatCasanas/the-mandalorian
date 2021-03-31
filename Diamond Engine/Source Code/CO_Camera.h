@@ -50,8 +50,6 @@ public:
 
 	void Move(const float3& Movement);
 	float3 GetPosition();
-	void SetOrthSize(float size);
-	float GetOrthSize();
 
 private:
 	int msaaSamples;
