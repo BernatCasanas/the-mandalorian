@@ -2,12 +2,7 @@
 
 #include "CO_Image2D.h"
 #include "RE_Texture.h"
-#include "CO_Material.h"
-#include "MO_MonoManager.h"
-#include "Application.h"
 #include "CS_Transform_Bindings.h"
-#include "GameObject.h"
-#include "RE_Material.h"
 
 void SwapTwoImages(MonoObject* obj, MonoObject* other_image)
 {
