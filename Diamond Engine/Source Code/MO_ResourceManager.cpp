@@ -226,22 +226,6 @@ void M_ResourceManager::NeedsDirsUpdate(AssetDir& dir)
 	fileCheckTime = 0.f;
 }
 
-void M_ResourceManager::ZeroReferenceCleanUp()
-{
-	std::vector<Resource*> toDelete;
-	for (auto i = resources.begin(); i != resources.end(); i++)
-	{
-		if (i->second->GetReferenceCount() <= 0)
-			toDelete.push_back(i->second);
-	}
-
-	for (size_t j = 0; j < toDelete.size(); ++j)
-	{
-		ReleaseResource(toDelete[j]->GetUID());
-	}
-	toDelete.clear();
-}
-
 void M_ResourceManager::UpdateMeshesDisplay()
 {
 	meshesLibraryRoot.childDirs.clear();
@@ -280,7 +264,7 @@ Resource* M_ResourceManager::RequestResource(int uid, const char* libraryPath)
 	{
 		Resource* ret = nullptr;
 
-		static_assert(static_cast<int>(Resource::Type::UNKNOWN) == 10, "Update all switches with new type");
+		static_assert(static_cast<int>(Resource::Type::UNKNOWN) == 9, "Update all switches with new type");
 
 		//Save check
 		if (FileSystem::Exists(libraryPath))
@@ -306,7 +290,7 @@ Resource* M_ResourceManager::RequestResource(int uid, const char* libraryPath)
 
 				ret->LoadToMemory();
 			}
-			LOG(LogType::L_NORMAL, "Requested resource loaded as new"); //UNCOMMENTrec
+			LOG(LogType::L_NORMAL, "Requested resource loaded as new"); //UNCOMMENT
 		}
 		else
 			LOG(LogType::L_ERROR, "Requested resource does not exist");
@@ -358,7 +342,7 @@ int M_ResourceManager::ImportFile(const char* assetsFile, Resource::Type type)
 	char* fileBuffer = nullptr;
 	unsigned int size = FileSystem::LoadToBuffer(assetsFile, &fileBuffer);
 
-	static_assert(static_cast<int>(Resource::Type::UNKNOWN) == 10, "Update all switches with new type");
+	static_assert(static_cast<int>(Resource::Type::UNKNOWN) == 9, "Update all switches with new type");
 	switch (resource->GetType()) 
 	{
 		case Resource::Type::TEXTURE: TextureImporter::Import(fileBuffer, size, resource); break;
@@ -368,7 +352,6 @@ int M_ResourceManager::ImportFile(const char* assetsFile, Resource::Type type)
 		case Resource::Type::SHADER: ShaderImporter::Import(fileBuffer, size, dynamic_cast<ResourceShader*>(resource), assetsFile); break;
 		case Resource::Type::MATERIAL: FileSystem::Save(resource->GetLibraryPath(), fileBuffer, size, false); break;
 		case Resource::Type::ANIMATION: FileSystem::Save(resource->GetLibraryPath(), fileBuffer, size, false); break;
-		case Resource::Type::PREFAB: FileSystem::Save(resource->GetLibraryPath(), fileBuffer, size, false); break;
 	}
 
 	//Save the resource to custom format
@@ -393,25 +376,18 @@ Resource* M_ResourceManager::CreateNewResource(const char* assetsFile, uint uid,
 {
 	Resource* ret = nullptr;
 
-	if (uid == 0) 
-		uid = GenerateNewUID();
-	
-
-	static_assert(static_cast<int>(Resource::Type::UNKNOWN) == 10, "Update all switches with new type");
+	static_assert(static_cast<int>(Resource::Type::UNKNOWN) == 9, "Update all switches with new type");
 	switch (type) 
 	{
+		case Resource::Type::SCENE : ret = new Resource(uid, Resource::Type::SCENE); break;
 		case Resource::Type::TEXTURE: ret = (Resource*) new ResourceTexture(uid); break;
 		case Resource::Type::MODEL: ret = new Resource(uid, Resource::Type::MODEL); break;
 		case Resource::Type::MESH: ret = (Resource*) new ResourceMesh(uid); break;
-		case Resource::Type::SCENE : ret = new Resource(uid, Resource::Type::SCENE); break;
-#ifndef STANDALONE
 		case Resource::Type::SCRIPT: App->moduleMono->ReCompileCS(); break;
-#endif // !STANDALONE
 		case Resource::Type::SHADER: ret = (Resource*) new ResourceShader(uid); break;
 		case Resource::Type::MATERIAL: 
 			ret = (Resource*) new ResourceMaterial(uid); break;
 		case Resource::Type::ANIMATION: ret = (Resource*) new ResourceAnimation(uid); break;
-		case Resource::Type::PREFAB: ret = new Resource(uid, Resource::Type::PREFAB); break;
 	}
 
 	if (ret != nullptr)
@@ -432,7 +408,7 @@ Resource* M_ResourceManager::LoadFromLibrary(const char* libraryFile, Resource::
 {
 	Resource* ret = nullptr;
 
-	static_assert(static_cast<int>(Resource::Type::UNKNOWN) == 10, "Update all switches with new type");
+	static_assert(static_cast<int>(Resource::Type::UNKNOWN) == 9, "Update all switches with new type");
 
 	int uid = _uid;
 	switch (type)
@@ -501,7 +477,6 @@ std::string M_ResourceManager::GenLibraryPath(uint _uid, Resource::Type _type)
 		case Resource::Type::SHADER : ret = SHADERS_PATH; ret += nameNoExt; ret += ".shdr"; break;
 		case Resource::Type::MATERIAL : ret = MATERIALS_PATH; ret += nameNoExt; ret += ".mat"; break;
 		case Resource::Type::ANIMATION : ret = ANIMATIONS_PATH; ret += nameNoExt; ret += ".anim"; break;
-		case Resource::Type::PREFAB : ret = PREFABS_PATH; ret += nameNoExt; ret += ".prefab"; break;
 	}
 
 	return ret;
@@ -563,7 +538,7 @@ void M_ResourceManager::LoadResource(int uid)
 
 }
 
-void M_ResourceManager::UnloadResource(int uid, bool releaseAtZero)
+void M_ResourceManager::UnloadResource(int uid)
 {
 	Resource* res = nullptr;
 	
@@ -574,7 +549,7 @@ void M_ResourceManager::UnloadResource(int uid, bool releaseAtZero)
 	res = it->second;
 	res->DecreaseReferenceCount();
 
-	if (releaseAtZero == true && res->GetReferenceCount() <= 0)
+	if (res->GetReferenceCount() <= 0) 
 		ReleaseResource(res->GetUID());
 
 }
@@ -621,8 +596,6 @@ Resource::Type M_ResourceManager::GetTypeFromAssetExtension(const char* assetFil
 		return Resource::Type::ANIMATION;
 	if (ext == "ttf")
 		return Resource::Type::FONT;
-	if (ext == "prefab")
-		return Resource::Type::PREFAB;
 
 	return Resource::Type::UNKNOWN;
 }
@@ -650,9 +623,7 @@ Resource::Type M_ResourceManager::GetTypeFromLibraryExtension(const char* librar
 	else if (ext == "mat")
 		return Resource::Type::MATERIAL;
 	else if (ext == "anim")
-		return Resource::Type::ANIMATION;
-	else if (ext == "prefab")
-		return Resource::Type::PREFAB;
+		return Resource::Type::ANIMATION;	
 
 	return Resource::Type::UNKNOWN;
 }

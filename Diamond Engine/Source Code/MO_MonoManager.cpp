@@ -12,7 +12,6 @@
 
 #include"GameObject.h"
 #include"CO_Script.h"
-#include "CS_GameObject_Bindings.h"
 #include"CS_Transform_Bindings.h"
 #include "CS_Animation_Bindings.h"
 #include "CS_Input_Bindings.h"
@@ -24,6 +23,7 @@
 #include "CS_Image2D_Bindings.h"
 #include "CS_Navigation_Bindings.h"
 #include "CS_ParticleSystem_Bindings.h"
+#include "CS_Image2D_Bindings.h"
 
 #include <iostream>
 #include <fstream> 
@@ -36,9 +36,11 @@
 #pragma comment( lib, "mono/libx86/mono-2.0-boehm.lib" )
 #pragma comment( lib, "mono/libx86/mono-2.0-sgen.lib" )
 
-M_MonoManager::M_MonoManager(Application* app, bool start_enabled) : Module(app, start_enabled), domain(nullptr), domainThread(nullptr), assembly(nullptr), image(nullptr),
-jitDomain(nullptr)
-{}
+M_MonoManager::M_MonoManager(Application* app, bool start_enabled) : Module(app, start_enabled), domain(nullptr), domainThread(nullptr), assembly(nullptr), image(nullptr)
+,jitDomain(nullptr)
+{
+
+}
 
 M_MonoManager::~M_MonoManager()
 {}
@@ -60,12 +62,9 @@ bool M_MonoManager::Init()
 	jitDomain = mono_jit_init("myapp");
 
 	mono_add_internal_call("DiamondEngine.Debug::Log", CSLog);
-
 	mono_add_internal_call("DiamondEngine.Input::GetKey", GetKey);
 	mono_add_internal_call("DiamondEngine.Input::GetMouseClick", GetMouseClick);
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreateGameObject", CSCreateGameObject);
-	mono_add_internal_call("DiamondEngine.InternalCalls::FindObjectWithName", FindObjectWithName);
-	mono_add_internal_call("DiamondEngine.InternalCalls::CloseGame", CSCloseGame);
 	mono_add_internal_call("DiamondEngine.Input::GetMouseX", MouseX);
 	mono_add_internal_call("DiamondEngine.Input::GetMouseY", MouseY);
 	
@@ -78,7 +77,6 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.Input::GetLeftAxisY", GetLeftAxisY);
 	mono_add_internal_call("DiamondEngine.Input::GetRightAxisY", GetRightAxisY);
 	mono_add_internal_call("DiamondEngine.Input::GetRightAxisX", GetRightAxisX);
-	mono_add_internal_call("DiamondEngine.Input::PlayHaptic", PlayHaptic);
 	// --- Controller gamepad end --- //
 
 	mono_add_internal_call("DiamondEngine.InternalCalls::Destroy", Destroy);
@@ -89,20 +87,6 @@ bool M_MonoManager::Init()
 
 #pragma region Transform
 
-	mono_add_internal_call("DiamondEngine.Transform::GetForward", GetForward);
-	mono_add_internal_call("DiamondEngine.Transform::GetRight", GetRight);
-
-	mono_add_internal_call("DiamondEngine.Transform::get_localPosition", SendPosition);
-	mono_add_internal_call("DiamondEngine.Transform::get_globalPosition", SendGlobalPosition);
-	mono_add_internal_call("DiamondEngine.Transform::set_localPosition", RecievePosition);
-
-	mono_add_internal_call("DiamondEngine.Transform::get_localRotation", SendRotation);
-	mono_add_internal_call("DiamondEngine.Transform::get_globalRotation", SendGlobalRotation);
-	mono_add_internal_call("DiamondEngine.Transform::set_localRotation", RecieveRotation);
-
-	mono_add_internal_call("DiamondEngine.Transform::get_localScale", SendScale);
-	mono_add_internal_call("DiamondEngine.Transform::get_globalScale", SendGlobalScale);
-	mono_add_internal_call("DiamondEngine.Transform::set_localScale", RecieveScale);
 
 #pragma endregion
 
@@ -125,6 +109,8 @@ bool M_MonoManager::Init()
 
 #pragma region Image2D
 	mono_add_internal_call("DiamondEngine.Image2D::SwapTwoImages", SwapTwoImages);
+	mono_add_internal_call("DiamondEngine.Image2D::AssignLibrary2DTexture", AssignLibrary2DTexture);
+
 #pragma endregion
 
 #pragma region Navigation
@@ -171,6 +157,18 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.GameObject::SetVelocity", SetVelocity);
 	mono_add_internal_call("DiamondEngine.GameObject::AddForce", AddForce);
 	mono_add_internal_call("DiamondEngine.GameObject::SetParent", CS_SetParent);
+	mono_add_internal_call("DiamondEngine.GameObject::GetUID", GetUID);
+	mono_add_internal_call("DiamondEngine.GameObject::get_localPosition", SendPosition);
+	mono_add_internal_call("DiamondEngine.GameObject::get_globalPosition", SendGlobalPosition);
+	mono_add_internal_call("DiamondEngine.GameObject::set_localPosition", RecievePosition);
+	mono_add_internal_call("DiamondEngine.GameObject::get_localRotation", SendRotation);
+	mono_add_internal_call("DiamondEngine.GameObject::get_globalRotation", SendGlobalRotation);
+	mono_add_internal_call("DiamondEngine.GameObject::set_localRotation", RecieveRotation);
+	mono_add_internal_call("DiamondEngine.GameObject::get_localScale", SendScale);
+	mono_add_internal_call("DiamondEngine.GameObject::get_globalScale", SendGlobalScale);
+	mono_add_internal_call("DiamondEngine.GameObject::set_localScale", RecieveScale);
+	mono_add_internal_call("DiamondEngine.GameObject::GetForward", GetForward);
+	mono_add_internal_call("DiamondEngine.GameObject::GetRight", GetRight);
 
 	mono_add_internal_call("DiamondEngine.Animator::Play", Play);
 	mono_add_internal_call("DiamondEngine.Animator::Pause", Pause);
@@ -178,13 +176,7 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.Animator::GetCurrentAnimation", GetCurrentAnimation);
 
 	mono_add_internal_call("DiamondEngine.Time::get_deltaTime", GetDT);
-	mono_add_internal_call("DiamondEngine.Time::get_totalTime", GetTotalTime);
-	mono_add_internal_call("DiamondEngine.Time::PauseGame", CS_PauseGame);
-	mono_add_internal_call("DiamondEngine.Time::ResumeGame", CS_ResumeGame);
-  
-	mono_add_internal_call("DiamondEngine.Quaternion::Slerp", MonoSlerp);
-  
-	mono_add_internal_call("DiamondEngine.Scene::FindObjectWithTag", FindObjectWithTag);
+
 
 	mono_add_internal_call("DiamondEngine.SceneManager::LoadScene", CS_LoadScene);
 	mono_add_internal_call("DiamondEngine.Audio::PlayAudio", PlayAudio);
@@ -228,7 +220,7 @@ void M_MonoManager::OnGUI()
 		
 	}
 }
-
+#endif // !STANDALONE
 
 void M_MonoManager::ReCompileCS() 
 {
@@ -254,54 +246,51 @@ void M_MonoManager::ReCompileCS()
 	App->moduleScene->LoadScene("Library/Scenes/tmp.des");
 	App->moduleFileSystem->DeleteAssetFile("Library/Scenes/tmp.des"); //TODO: Duplicated code from editor, mmove to method
 
+#ifndef STANDALONE
 	W_TextEditor* txtEditor = dynamic_cast<W_TextEditor*>(App->moduleEditor->GetEditorWindow(EditorWindow::TEXTEDITOR));
 	if (txtEditor != nullptr)
 		txtEditor->SetTextFromFile(txtEditor->txtName.c_str());
-}
 #endif // !STANDALONE
+
+}
 
 //ASK: Is this the worst idea ever? TOO SLOW
 float3 M_MonoManager::UnboxVector(MonoObject* _obj)
 {
 	float3 ret;
-	MonoClass* klass = mono_object_get_class(_obj);
 
+	MonoClass* klass = mono_object_get_class(_obj);
 	mono_field_get_value(_obj, mono_class_get_field_from_name(klass, "x"), &ret.x);
 	mono_field_get_value(_obj, mono_class_get_field_from_name(klass, "y"), &ret.y);
 	mono_field_get_value(_obj, mono_class_get_field_from_name(klass, "z"), &ret.z);
-
 	return ret;
 }
 //ASK: Is this the worst idea ever? TOO SLOW
 Quat M_MonoManager::UnboxQuat(MonoObject* _obj)
 {
 	Quat ret;
-	MonoClass* klass = mono_object_get_class(_obj);
 
+	MonoClass* klass = mono_object_get_class(_obj);
 	mono_field_get_value(_obj, mono_class_get_field_from_name(klass, "x"), &ret.x);
 	mono_field_get_value(_obj, mono_class_get_field_from_name(klass, "y"), &ret.y);
 	mono_field_get_value(_obj, mono_class_get_field_from_name(klass, "z"), &ret.z);
 	mono_field_get_value(_obj, mono_class_get_field_from_name(klass, "w"), &ret.w);
-
 	return ret;
 }
 
-void M_MonoManager::DebugAllFields(const char* className, std::vector<SerializedField>& _data, MonoObject* obj, C_Script* script, const char* namespace_name)
+void M_MonoManager::DebugAllFields(const char* className, std::vector<SerializedField>& _data, MonoObject* obj, C_Script* script)
 {
 	void* iter = NULL;
 	MonoClassField* field;
-	MonoClass* klass = mono_class_from_name(mono_assembly_get_image(EngineExternal->moduleMono->assembly), namespace_name, className);
-	
+	MonoClass* klass = mono_class_from_name(mono_assembly_get_image(EngineExternal->moduleMono->assembly), USER_SCRIPTS_NAMESPACE, className);
 	while (field = mono_class_get_fields(klass, &iter))
 	{
-		if (mono_field_get_flags(field) != 1) // Private = 1, public = 6, static = 22
-		{
-			SerializedField pushField = SerializedField(field, obj, script);
+		SerializedField pushField = SerializedField(field, obj, script);
 
-			if (pushField.displayName != "##pointer" && pushField.displayName != "##type" && pushField.displayName != "##componentTable")
-				_data.push_back(pushField);
-			//LOG(LogType::L_NORMAL, mono_field_full_name(method2));
-		}
+
+
+		_data.push_back(pushField);
+		//LOG(LogType::L_NORMAL, mono_field_full_name(method2));
 	}
 }
 
@@ -328,14 +317,12 @@ MonoObject* M_MonoManager::GoToCSGO(GameObject* inGo) const
 	MonoClass* goClass = mono_class_from_name(image, DE_SCRIPTS_NAMESPACE, "GameObject");
 	uintptr_t goPtr = reinterpret_cast<uintptr_t>(inGo);
 
-	void* args[3];
+	void* args[2];
 	args[0] = &inGo->name;
 	args[1] = &goPtr;
-
-	uintptr_t transPTR = reinterpret_cast<uintptr_t>(inGo->transform);
-	args[2] = &transPTR;
 	
-	MonoMethodDesc* constructorDesc = mono_method_desc_new("DiamondEngine.GameObject:.ctor(string,uintptr,uintptr)", true);
+
+	MonoMethodDesc* constructorDesc = mono_method_desc_new("DiamondEngine.GameObject:.ctor(string,uintptr)", true);
 	MonoMethod* method = mono_method_desc_search_in_class(constructorDesc, goClass);
 	MonoObject* goObj = mono_object_new(domain, goClass);
 	mono_runtime_invoke(method, goObj, args, NULL);
@@ -347,6 +334,7 @@ MonoObject* M_MonoManager::GoToCSGO(GameObject* inGo) const
 
 MonoObject* M_MonoManager::Float3ToCS(float3& inVec) const
 {
+
 	MonoClass* vecClass = mono_class_from_name(image, DE_SCRIPTS_NAMESPACE, "Vector3");
 
 	MonoObject* vecObject = mono_object_new(domain, vecClass);
@@ -430,18 +418,6 @@ GameObject* M_MonoManager::GameObject_From_CSGO(MonoObject* goObj)
 	return reinterpret_cast<GameObject*>(ptr);
 }
 
-GameObject* M_MonoManager::GameObject_From_CSCOMP(MonoObject* goComponent)
-{
-	uintptr_t ptr = 0;
-	MonoClass* goClass = mono_class_from_name(image, DE_SCRIPTS_NAMESPACE, "DiamondComponent");
-
-	mono_field_get_value(goComponent, mono_class_get_field_from_name(goClass, "pointer"), &ptr);
-
-	return reinterpret_cast<Component*>(ptr)->GetGO();
-}
-
-
-
 SerializedField::SerializedField() : field(nullptr), parentSC(nullptr)
 {
 	fiValue.iValue = 0;
@@ -461,12 +437,14 @@ SerializedField::SerializedField(MonoClassField* _field, MonoObject* _object, C_
 
 void M_MonoManager::CreateAssetsScript(const char* localPath) 
 {
-	std::string unnormalizedPath(localPath);
+	std::string unnormalizedPath("Assets/");
+	unnormalizedPath += localPath;
 	unnormalizedPath = FileSystem::UnNormalizePath(unnormalizedPath.c_str());
 
 	std::ofstream outfile(unnormalizedPath.c_str());
 
-	std::string className(localPath);
+	std::string className("Assets/");
+	className += localPath;
 	className = className.substr(className.find_last_of("/") + 1);
 	className = className.substr(0, className.find_last_of("."));
 
@@ -476,9 +454,7 @@ void M_MonoManager::CreateAssetsScript(const char* localPath)
 	outfile.close();
 
 	AddScriptToSLN(unnormalizedPath.c_str());
-#ifndef STANDALONE
 	ReCompileCS();
-#endif // !STANDALONE
 }
 
 void M_MonoManager::AddScriptToSLN(const char* scriptLocalPath)
@@ -564,6 +540,8 @@ void M_MonoManager::InitMono()
 		LOG(LogType::L_ERROR, "ERROR");
 
 	image = mono_assembly_get_image(assembly);
+
+
 
 	const MonoTableInfo* table_info = mono_image_get_table_info(image, MONO_TABLE_TYPEDEF);
 	int rows = mono_table_info_get_rows(table_info);
