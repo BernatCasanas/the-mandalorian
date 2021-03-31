@@ -622,8 +622,6 @@
                     "max_bullets_main_weapon": 10,
                     "bullets_secondary_weapon": 10,
                     "max_bullets_secondary_weapon": 10,
-                    "combo_number": 0,
-                    "combo_seconds": 5,
                     "main_weapon": true,
                     "hp_bar": 355798737,
                     "hp_number_gameobject": 1987484179,
@@ -635,7 +633,8 @@
                     "currency_number_gameobject": 568565417,
                     "combo_bar": 1397296727,
                     "combo_text": 186221367,
-                    "combo_gameobject": 1278066025
+                    "combo_gameobject": 1278066025,
+                    "comboNumber": 0
                 }
             ]
         },
@@ -1336,7 +1335,7 @@
             "name": "Combo ",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": false,
+            "Active": true,
             "Position": [
                 0,
                 0,
@@ -1514,6 +1513,14 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Shake2D",
+                    "shakeXMax": 10,
+                    "shakeYMax": 10,
+                    "maxShakeTime": 1
                 }
             ]
         },
@@ -11792,7 +11799,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/default.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/715565838.mat",
                     "MaterialUID": 715565838
                 }
@@ -11843,7 +11850,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/default.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/715565838.mat",
                     "MaterialUID": 715565838
                 }
@@ -11894,7 +11901,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/default.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/715565838.mat",
                     "MaterialUID": 715565838
                 }

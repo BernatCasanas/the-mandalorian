@@ -3,6 +3,8 @@ using DiamondEngine;
 
 public class StormTrooper : Enemy
 {
+	public GameObject hitParticles;
+
 	private int shotSequences = 0;
 	public int maxShots = 2;
 	public int maxSequences = 2;
@@ -229,7 +231,10 @@ public class StormTrooper : Enemy
 				Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
 				Audio.PlayAudio(gameObject, "Play_Mando_Voice");
 
-                RemoveFromSpawner();
+				if(hitParticles != null)
+				hitParticles.GetComponent<ParticleSystem>().Play();
+
+				RemoveFromSpawner();
 
 				if (Core.instance.hud != null)
                 {

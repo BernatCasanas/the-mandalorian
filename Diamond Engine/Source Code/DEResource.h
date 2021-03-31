@@ -18,7 +18,6 @@ public:
 		MATERIAL,
 		ANIMATION,
 		FONT,
-		PREFAB,
 		UNKNOWN
 	};
 
@@ -49,8 +48,6 @@ public:
 
 public:
 	char name[32];
-
-protected:
 
 protected:
 	int uid;
