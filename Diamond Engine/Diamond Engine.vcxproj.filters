@@ -1,0 +1,1426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{8b7ed093-66ce-4096-96d2-fbb9faa4bf52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Modules">
+      <UniqueIdentifier>{7b418be2-1631-4a31-9ef2-8a8b234a7339}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Containers">
+      <UniqueIdentifier>{afc36133-f401-499a-aa33-0da1e500fb52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Tools">
+      <UniqueIdentifier>{7e4dfaf7-022c-4f7d-92aa-f3b3fa9d6248}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Helpers">
+      <UniqueIdentifier>{121f8e6b-df36-4ab0-be0d-601ddfc9e503}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals">
+      <UniqueIdentifier>{01460cb6-69f9-406c-ad49-001d06e0e28c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals\ImGui">
+      <UniqueIdentifier>{d0532e0a-949f-4fa2-9ca1-3c0c2e4f3512}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Tools\MMath">
+      <UniqueIdentifier>{df17df8b-ee01-4043-8b01-4df44a76c89d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Editor">
+      <UniqueIdentifier>{75a56bd2-2f1a-414c-a33f-34ff4b8dd012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Editor\Windows">
+      <UniqueIdentifier>{42c4372c-1c8f-42f2-b33a-54b02dd58a09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Editor\Windows\Base">
+      <UniqueIdentifier>{b095445e-5215-4de2-a6ef-15a348ff7cae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals\MathGeoLib">
+      <UniqueIdentifier>{ea1362cf-f0e8-4042-b766-f00c500c6979}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals\MathGeoLib\Math">
+      <UniqueIdentifier>{6d1c0066-8f2e-4902-9edb-d9df24cd0dd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals\MathGeoLib\Geometry">
+      <UniqueIdentifier>{40d5f29e-10b3-440e-adb6-c5002a6ffa8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals\MathGeoLib\Algorithm">
+      <UniqueIdentifier>{e0c08ae8-73d8-4629-9446-13e70164998c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals\MathGeoLib\Algorithm\Random">
+      <UniqueIdentifier>{15176629-d637-47cb-9585-27372e936ae6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals\parson">
+      <UniqueIdentifier>{c53631bc-2e0b-4503-8068-fe913a4ad9f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals\MathGeoLib\Time">
+      <UniqueIdentifier>{75fae213-4124-4a96-8de4-38995df8f67b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals\mmgr">
+      <UniqueIdentifier>{ef59a8dd-bb30-4bee-9d9d-f62fb227a945}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals\DevIL">
+      <UniqueIdentifier>{cb133ab9-b09f-4895-aac5-d948b36bd6cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Components">
+      <UniqueIdentifier>{1263112b-eb02-40d3-afae-a7d961c5d761}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Components\Base">
+      <UniqueIdentifier>{9d72356e-e550-43e2-a87c-2575d9fac8fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Editor\Windows\Derived">
+      <UniqueIdentifier>{3ddf461c-663f-41e9-afb5-dba7922c1012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Components\Derived">
+      <UniqueIdentifier>{76379e01-ba21-4f85-a2ac-ca1926df69f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Tools\Importers">
+      <UniqueIdentifier>{219884b0-c806-4d25-acf8-24c82ca49677}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Tools\MMath\MMJsonSupport">
+      <UniqueIdentifier>{96d10592-fd8f-4103-95e3-e97d6d69fe2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals\ImGuizmo">
+      <UniqueIdentifier>{586ecdee-f747-46ab-b2d9-6813de66fb5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Resources">
+      <UniqueIdentifier>{23844b4e-cab4-4cba-aff6-3bb865bd7c1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals\ImTextEditor">
+      <UniqueIdentifier>{0c8d2baa-8e1d-4d91-bfec-cee46e78021c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals\PugiXML">
+      <UniqueIdentifier>{8d7a61ce-5fc5-4d64-a398-1e455f4ea9b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Editor\Commands">
+      <UniqueIdentifier>{1d5af797-4186-4643-8d93-2e85833ea05c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Editor\Commands\Base">
+      <UniqueIdentifier>{83f489fd-bf58-4c85-a4c1-7d2483bf9cb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Editor\Commands\Derived">
+      <UniqueIdentifier>{12e4d68c-af1f-4fd1-b95b-d8f9b218305b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\INC_Packs">
+      <UniqueIdentifier>{12122256-3bca-491b-ac7f-4c11604e8310}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals\AK">
+      <UniqueIdentifier>{da294add-da4b-439d-964d-5247e15b029d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals\AK\LowLevelIO">
+      <UniqueIdentifier>{dabae39a-3e64-4aa8-b0f1-127c4822ce97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Components\Derived\UI">
+      <UniqueIdentifier>{56cdc8d7-06f2-4c96-a910-b224a496a1b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Externals\FreeType">
+      <UniqueIdentifier>{c4e4d1f5-fadb-4402-a089-768ce08d95b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Components\Derived\ParticleSystem">
+      <UniqueIdentifier>{bb32799f-8b53-4f4e-8bf7-5d88265959e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Containers\ParticleSystem">
+      <UniqueIdentifier>{dbea5857-b556-45ef-98b4-cf2a0608c4e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Containers\ParticleSystem\ParticleEffects">
+      <UniqueIdentifier>{9903d21d-3ba4-42e1-8337-de939850b9af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Containers\ParticleSystem\ParticleEffects\Base">
+      <UniqueIdentifier>{17f41652-b7df-494e-83b0-d35a1fde8d3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Containers\ParticleSystem\ParticleEffects\Derived">
+      <UniqueIdentifier>{07b9d3d2-333e-4609-a6a8-7b0139d23b20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Tools\Bindings">
+      <UniqueIdentifier>{631c7505-17bf-407e-86ce-a4705f3ed055}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Components\Derived\Physics">
+      <UniqueIdentifier>{59fc5c3b-3544-4a28-b3b5-586bbbd669c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Containers\ParticleSystem\ParticleEffects\Derived\SpawnShapes">
+      <UniqueIdentifier>{c43e0dc4-b248-46ee-a199-e3a95e1b3b46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Containers\ParticleSystem\ParticleEffects\Derived\SpawnShapes\Base">
+      <UniqueIdentifier>{98de4383-cd87-4b90-b8c0-4254c4bfb778}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Containers\ParticleSystem\ParticleEffects\Derived\SpawnShapes\Derived">
+      <UniqueIdentifier>{e6778b85-dd88-4592-bbf1-8270129fd73e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Components\Derived\Lights">
+      <UniqueIdentifier>{c98e8e11-450d-4034-a302-147ded921540}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source Code\Globals.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Application.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Timer.h">
+      <Filter>Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Color.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\glmath.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Primitive.h">
+      <Filter>Sources\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Module.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\EngineVersion.h">
+      <Filter>Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\ImGui\imgui_impl_opengl3.h">
+      <Filter>Externals\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\ImGui\imgui_impl_sdl.h">
+      <Filter>Externals\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\ImGui\imgui_internal.h">
+      <Filter>Externals\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\ImGui\imstb_rectpack.h">
+      <Filter>Externals\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\ImGui\imstb_textedit.h">
+      <Filter>Externals\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\ImGui\imstb_truetype.h">
+      <Filter>Externals\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\ImGui\imconfig.h">
+      <Filter>Externals\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\ImGui\imgui.h">
+      <Filter>Externals\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MaykMath.h">
+      <Filter>Sources\Tools\MMath</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\OpenGL.h">
+      <Filter>Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Window.h">
+      <Filter>Sources\Editor\Windows\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Light.h">
+      <Filter>Sources\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\MathBuildConfig.h">
+      <Filter>Externals\MathGeoLib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\MathGeoLib.h">
+      <Filter>Externals\MathGeoLib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\MathGeoLibFwd.h">
+      <Filter>Externals\MathGeoLib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Time\Clock.h">
+      <Filter>Externals\MathGeoLib\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\MatrixProxy.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\myassert.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\Polynomial.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\Quat.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\quat_simd.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\Rect.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\Reinterpret.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\sse_mathfun.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\SSEMath.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\TransformOps.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\assume.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\BitOps.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\Complex.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\CoordinateAxisConvention.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\FixedPoint.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\float2.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\float3.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\float3x3.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\float3x4.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\float4.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\float4_neon.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\float4_sse.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\float4x4.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\float4x4_neon.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\float4x4_sse.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\FloatCmp.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\MathAll.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\MathConstants.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\MathFunc.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\MathLog.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\MathNamespace.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Math\MathTypes.h">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Ray.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Sphere.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Triangle.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\TriangleMesh.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\AABB.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\AABB2D.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Capsule.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Circle.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Cone.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Cylinder.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Frustum.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\GeometryAll.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\GeomType.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\HitInfo.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\KDTree.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Line.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\LineSegment.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\OBB.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\PBVolume.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Plane.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Polygon.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Polyhedron.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Geometry\QuadTree.h">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\MathGeoLib\include\Algorithm\Random\LCG.h">
+      <Filter>Externals\MathGeoLib\Algorithm\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\parson\parson.h">
+      <Filter>Externals\parson</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\ImGui\ImGuiUtils.h">
+      <Filter>Externals\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\mmgr\mmgr.h">
+      <Filter>Externals\mmgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\mmgr\nommgr.h">
+      <Filter>Externals\mmgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MMGui.h">
+      <Filter>Sources\Tools\MMath</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MeshArrays.h">
+      <Filter>Sources\Tools\MMath</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\DevIL\include\il.h">
+      <Filter>Externals\DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\DevIL\include\il_wrap.h">
+      <Filter>Externals\DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\DevIL\include\ilu.h">
+      <Filter>Externals\DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\DevIL\include\ilu_region.h">
+      <Filter>Externals\DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\DevIL\include\ilut.h">
+      <Filter>Externals\DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\DevIL\include\ilut_config.h">
+      <Filter>Externals\DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\DevIL\include\devil_cpp_wrapper.hpp">
+      <Filter>Externals\DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\DevIL\include\devil_internal_exports.h">
+      <Filter>Externals\DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\GameObject.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Component.h">
+      <Filter>Sources\Components\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Source Code\DEJsonSupport.h">
+      <Filter>Sources\Tools\MMath\MMJsonSupport</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\ImGuizmo\ImGradient.h">
+      <Filter>Externals\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\ImGuizmo\ImGuizmo.h">
+      <Filter>Externals\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\ImGuizmo\ImSequencer.h">
+      <Filter>Externals\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\ImGuizmo\ImZoomSlider.h">
+      <Filter>Externals\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\ImGuizmo\ImCurveEdit.h">
+      <Filter>Externals\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\DETime.h">
+      <Filter>Sources\Tools\MMath</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\DEResource.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\RE_Texture.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\IM_FileSystem.h">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\IM_MeshLoader.h">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\IM_ModelImporter.h">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\IM_TextureImporter.h">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\RE_Mesh.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MO_Editor.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MO_FileSystem.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MO_ResourceManager.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MO_Scene.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MO_Camera3D.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MO_Input.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MO_Renderer3D.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MO_Window.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\AssetDir.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\DEModelNode.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\WI_Scene.h">
+      <Filter>Sources\Editor\Windows\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\WI_Inspector.h">
+      <Filter>Sources\Editor\Windows\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\WI_Hierarchy.h">
+      <Filter>Sources\Editor\Windows\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\WI_Game.h">
+      <Filter>Sources\Editor\Windows\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\WI_Console.h">
+      <Filter>Sources\Editor\Windows\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\WI_Configuration.h">
+      <Filter>Sources\Editor\Windows\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\WI_Assets.h">
+      <Filter>Sources\Editor\Windows\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\WI_About.h">
+      <Filter>Sources\Editor\Windows\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_Camera.h">
+      <Filter>Sources\Components\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_Material.h">
+      <Filter>Sources\Components\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_MeshRenderer.h">
+      <Filter>Sources\Components\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_Transform.h">
+      <Filter>Sources\Components\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MO_MonoManager.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_Script.h">
+      <Filter>Sources\Components\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CS_Transform_Bindings.h">
+      <Filter>Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\ImTextEditor\TextEditor.h">
+      <Filter>Externals\ImTextEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\WI_TextEditor.h">
+      <Filter>Sources\Editor\Windows\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\PugiXML\pugiconfig.hpp">
+      <Filter>Externals\PugiXML</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\PugiXML\pugixml.hpp">
+      <Filter>Externals\PugiXML</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\RE_Shader.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\IM_ShaderImporter.h">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\DE_FrameBuffer.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\DERect.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\DE_Cubemap.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MA_IconSystem.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MO_Physics\Header.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MO_Physics.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\RE_Material.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\IM_MaterialImporter.h">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_Animator.h">
+      <Filter>Sources\Components\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\RE_Animation.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\IM_AnimationImporter.h">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CS_Animation_Bindings.h">
+      <Filter>Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Command.h">
+      <Filter>Sources\Editor\Commands\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\COMM_Transform.h">
+      <Filter>Sources\Editor\Commands\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\COMM_DeleteGO.h">
+      <Filter>Sources\Editor\Commands\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MA_ShortcutManager.h">
+      <Filter>Sources\Editor\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CS_Input_Bindings.h">
+      <Filter>Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\INC_EditorWindows.h">
+      <Filter>Sources\INC_Packs</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Wwise_Includes.h">
+      <Filter>Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MO_AudioManager.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\Wwise\low_level_IO\Win32\AkDefaultIOHookBlocking.h">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\Wwise\low_level_IO\Win32\AkDefaultIOHookDeferred.h">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\Wwise\low_level_IO\Win32\AkFileHelpers.h">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\Wwise\low_level_IO\Win32\AkFilePackageLowLevelIOBlocking.h">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\Wwise\low_level_IO\Win32\AkFilePackageLowLevelIODeferred.h">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\Wwise\low_level_IO\Win32\stdafx.h">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\Wwise\low_level_IO\Common\AkDefaultLowLevelIODispatcher.h">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\Wwise\low_level_IO\Common\AkFileLocationBase.h">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\Wwise\low_level_IO\Common\AkFilePackage.h">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\Wwise\low_level_IO\Common\AkFilePackageLowLevelIO.h">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\Wwise\low_level_IO\Common\AkFilePackageLUT.h">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\Wwise\low_level_IO\Common\AkMultipleFileLocation.h">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkDynamicDialogue.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkDynamicSequence.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkFPUtilities.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkMemoryMgr.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkMidiTypes.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkModule.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkQueryParameters.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkSimd.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkSimdMath.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkSoundEngine.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkSoundEngineExport.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkSpeakerConfig.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkSpeakerVolumes.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkStreamMgrModule.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkTypes.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkVirtualAcoustics.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\IAkMixerPlugin.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\IAkPlatformContext.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\IAkPlugin.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\IAkPluginMemAlloc.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\IAkProcessorFeatures.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\IAkRTPCSubscriber.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\IAkStreamMgr.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkAtomic.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkBytesCount.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkBytesMem.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkCallback.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Program Files (x86)\Audiokinetic\Wwise 2019.2.9.7459\SDK\include\AK\SoundEngine\Common\AkCommonDefs.h">
+      <Filter>Externals\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_AudioListener.h">
+      <Filter>Sources\Components\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_AudioSource.h">
+      <Filter>Sources\Components\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\AudioBank.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MO_GUI.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_Transform2D.h">
+      <Filter>Sources\Components\Derived\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\IM_FontImporter.h">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_Button.h">
+      <Filter>Sources\Components\Derived\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_Canvas.h">
+      <Filter>Sources\Components\Derived\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_Text.h">
+      <Filter>Sources\Components\Derived\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\FreeType\include\freetype\config\ftheader.h">
+      <Filter>Externals\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\FreeType\include\freetype\freetype.h">
+      <Filter>Externals\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\FreeType\include\ft2build.h">
+      <Filter>Externals\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\FreeType\include\freetype\config\ftconfig.h">
+      <Filter>Externals\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_Image2D.h">
+      <Filter>Sources\Components\Derived\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_Checkbox.h">
+      <Filter>Sources\Components\Derived\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\COMM_Transform2D.h">
+      <Filter>Sources\Editor\Commands\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CS_Scene_Bindings.h" />
+    <ClInclude Include="Source Code\CS_Animation_Bindings.h">
+      <Filter>Sources\Tools\Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CS_Audio_Bindings.h">
+      <Filter>Sources\Tools\Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CS_Input_Bindings.h">
+      <Filter>Sources\Tools\Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CS_Transform_Bindings.h">
+      <Filter>Sources\Tools\Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_Navigation.h">
+      <Filter>Sources\Components\Derived\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CS_Scene_Bindings.h">
+      <Filter>Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_RigidBody.h">
+      <Filter>Sources\Components\Derived\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_Collider.h">
+      <Filter>Sources\Components\Derived\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_MeshCollider.h">
+      <Filter>Sources\Components\Derived\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_BoxCollider.h">
+      <Filter>Sources\Components\Derived\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_Navigation.h" />
+    <ClInclude Include="Source Code\IM_PrefabImporter.h">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_ParticleSystem.h">
+      <Filter>Sources\Components\Derived\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\ParticleEmitter.h">
+      <Filter>Sources\Containers\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Particle.h">
+      <Filter>Sources\Containers\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_Billboard.h">
+      <Filter>Sources\Components\Derived\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\ParticleEffects.h">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\PE_Rotate_Over_Lifetime.h">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\PE_Force_Over_Lifetime.h">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\PE_Color_Over_Lifetime.h">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\PE_Size_Over_Lifetime.h">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\External Libraries\ImGui\imgui_color_gradient.h">
+      <Filter>Externals\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\PE_Velocity_Over_Lifetime.h">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CS_Text_Bindings.h">
+      <Filter>Sources\Tools\Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CS_Material_Bindings.h">
+      <Filter>Sources\Tools\Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CS_Image2D_Bindings.h">
+      <Filter>Sources\Tools\Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CS_Navigation_Bindings.h">
+      <Filter>Sources\Tools\Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CS_GameObject_Bindings.h">
+      <Filter>Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_Collider.h">
+      <Filter>Sources\Components\Derived\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_RigidBody.h">
+      <Filter>Sources\Components\Derived\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_SphereCollider.h">
+      <Filter>Sources\Components\Derived\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\PE_Spawn_Sphere.h">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived\SpawnShapes\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\PE_Spawn_Cone.h">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived\SpawnShapes\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\PE_Spawn_Area.h">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived\SpawnShapes\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\PE__Spawn_Shape_Base.h">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived\SpawnShapes\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\PE_Shape.h">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CS_ParticleSystem_Bindings.h">
+      <Filter>Sources\Tools\Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CS_Camera_Bindings.h" />
+    <ClInclude Include="Source Code\CO_DirectionalLight.h">
+      <Filter>Sources\Components\Derived\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_CubeCollider.h">
+      <Filter>Sources\Components\Derived\Physics</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source Code\Main.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\Application.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\log.cpp">
+      <Filter>Sources\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\Timer.cpp">
+      <Filter>Sources\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\Color.cpp">
+      <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\glmath.cpp">
+      <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\Primitive.cpp">
+      <Filter>Sources\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\EngineVersion.cpp">
+      <Filter>Sources\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\ImGui\imgui_impl_opengl3.cpp">
+      <Filter>Externals\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\ImGui\imgui_impl_sdl.cpp">
+      <Filter>Externals\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\ImGui\imgui_widgets.cpp">
+      <Filter>Externals\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\ImGui\imgui.cpp">
+      <Filter>Externals\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\ImGui\imgui_demo.cpp">
+      <Filter>Externals\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\ImGui\imgui_draw.cpp">
+      <Filter>Externals\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\MaykMath.cpp">
+      <Filter>Sources\Tools\MMath</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\Window.cpp">
+      <Filter>Sources\Editor\Windows\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\Light.cpp">
+      <Filter>Sources\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Time\Clock.cpp">
+      <Filter>Externals\MathGeoLib\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Math\Polynomial.cpp">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Math\Quat.cpp">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Math\SSEMath.cpp">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Math\TransformOps.cpp">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Math\BitOps.cpp">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Math\float2.cpp">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Math\float3.cpp">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Math\float3x3.cpp">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Math\float3x4.cpp">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Math\float4.cpp">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Math\float4x4.cpp">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Math\MathFunc.cpp">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Math\MathLog.cpp">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Math\MathOps.cpp">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Ray.cpp">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Sphere.cpp">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Triangle.cpp">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Geometry\TriangleMesh.cpp">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Geometry\AABB.cpp">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Capsule.cpp">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Circle.cpp">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Cone.cpp">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Cylinder.cpp">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Frustum.cpp">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Line.cpp">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Geometry\LineSegment.cpp">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Geometry\OBB.cpp">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Plane.cpp">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Polygon.cpp">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Geometry\Polyhedron.cpp">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\MathGeoLib\include\Algorithm\Random\LCG.cpp">
+      <Filter>Externals\MathGeoLib\Algorithm\Random</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\parson\parson.c">
+      <Filter>Externals\parson</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\mmgr\mmgr.cpp">
+      <Filter>Externals\mmgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\GameObject.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\Component.cpp">
+      <Filter>Sources\Components\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\DEJsonSupport.cpp">
+      <Filter>Sources\Tools\MMath\MMJsonSupport</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\ImGuizmo\ImGuizmo.cpp">
+      <Filter>Externals\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\ImGuizmo\ImSequencer.cpp">
+      <Filter>Externals\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\ImGuizmo\ImCurveEdit.cpp">
+      <Filter>Externals\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\ImGuizmo\ImGradient.cpp">
+      <Filter>Externals\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\DETime.cpp">
+      <Filter>Sources\Tools\MMath</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\DEResource.cpp">
+      <Filter>Sources\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\RE_Texture.cpp">
+      <Filter>Sources\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\IM_FileSystem.cpp">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\IM_MeshLoader.cpp">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\IM_ModelImporter.cpp">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\IM_TextureImporter.cpp">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\RE_Mesh.cpp">
+      <Filter>Sources\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\MO_Editor.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\MO_FileSystem.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\MO_ResourceManager.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\MO_Scene.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\MO_Camera3D.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\MO_Input.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\MO_Renderer3D.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\MO_Window.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\AssetDir.cpp">
+      <Filter>Sources\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\WI_Scene.cpp">
+      <Filter>Sources\Editor\Windows\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\WI_Inspector.cpp">
+      <Filter>Sources\Editor\Windows\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\WI_Hierarchy.cpp">
+      <Filter>Sources\Editor\Windows\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\WI_Game.cpp">
+      <Filter>Sources\Editor\Windows\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\WI_Console.cpp">
+      <Filter>Sources\Editor\Windows\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\WI_Configuration.cpp">
+      <Filter>Sources\Editor\Windows\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\WI_Assets.cpp">
+      <Filter>Sources\Editor\Windows\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\WI_About.cpp">
+      <Filter>Sources\Editor\Windows\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_Camera.cpp">
+      <Filter>Sources\Components\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_Material.cpp">
+      <Filter>Sources\Components\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_MeshRenderer.cpp">
+      <Filter>Sources\Components\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_Transform.cpp">
+      <Filter>Sources\Components\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\MO_MonoManager.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\ImTextEditor\TextEditor.cpp">
+      <Filter>Externals\ImTextEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\WI_TextEditor.cpp">
+      <Filter>Sources\Editor\Windows\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\PugiXML\pugixml.cpp">
+      <Filter>Externals\PugiXML</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\MMGui.cpp">
+      <Filter>Sources\Tools\MMath</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\RE_Shader.cpp">
+      <Filter>Sources\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\IM_ShaderImporter.cpp">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\DE_FrameBuffer.cpp">
+      <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\DERect.cpp">
+      <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\DE_Cubemap.cpp">
+      <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\MA_IconSystem.cpp">
+      <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\MO_Physics.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\RE_Material.cpp">
+      <Filter>Sources\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\IM_MaterialImporter.cpp">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\RE_Animation.cpp">
+      <Filter>Sources\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\IM_AnimationImporter.cpp">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\Command.cpp">
+      <Filter>Sources\Editor\Commands\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\COMM_DeleteGO.cpp">
+      <Filter>Sources\Editor\Commands\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\COMM_Transform.cpp">
+      <Filter>Sources\Editor\Commands\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\MA_ShortcutManager.cpp">
+      <Filter>Sources\Editor\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\Wwise_Includes.cpp">
+      <Filter>Sources\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\MO_AudioManager.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\Wwise\low_level_IO\Win32\AkDefaultIOHookBlocking.cpp">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\Wwise\low_level_IO\Win32\AkDefaultIOHookDeferred.cpp">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\Wwise\low_level_IO\Win32\stdafx.cpp">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\Wwise\low_level_IO\Common\AkDefaultLowLevelIODispatcher.cpp">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\Wwise\low_level_IO\Common\AkFileLocationBase.cpp">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\Wwise\low_level_IO\Common\AkFilePackage.cpp">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\Wwise\low_level_IO\Common\AkFilePackageLUT.cpp">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\Wwise\low_level_IO\Common\AkMultipleFileLocation.cpp">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_AudioListener.cpp">
+      <Filter>Sources\Components\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_AudioSource.cpp">
+      <Filter>Sources\Components\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_Script.cpp">
+      <Filter>Sources\Components\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\MO_GUI.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_Transform2D.cpp">
+      <Filter>Sources\Components\Derived\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\IM_FontImporter.cpp">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_Button.cpp">
+      <Filter>Sources\Components\Derived\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_Canvas.cpp">
+      <Filter>Sources\Components\Derived\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_Text.cpp">
+      <Filter>Sources\Components\Derived\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_Image2D.cpp">
+      <Filter>Sources\Components\Derived\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_Checkbox.cpp">
+      <Filter>Sources\Components\Derived\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\COMM_Transform2D.cpp">
+      <Filter>Sources\Editor\Commands\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_ParticleSystem.cpp">
+      <Filter>Sources\Components\Derived\ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\Particle.cpp">
+      <Filter>Sources\Containers\ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\ParticleEmitter.cpp">
+      <Filter>Sources\Containers\ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_Billboard.cpp">
+      <Filter>Sources\Components\Derived\ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\ParticleEffects.cpp">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_Navigation.cpp">
+      <Filter>Sources\Components\Derived\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_RigidBody.cpp">
+      <Filter>Sources\Components\Derived\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_Collider.cpp">
+      <Filter>Sources\Components\Derived\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_MeshCollider.cpp">
+      <Filter>Sources\Components\Derived\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_BoxCollider.cpp">
+      <Filter>Sources\Components\Derived\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_Navigation.cpp" />
+    <ClCompile Include="Source Code\IM_PrefabImporter.cpp">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\PE_Rotate_Over_Lifetime.cpp">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\PE_Force_Over_Lifetime.cpp">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\PE_Color_Over_Lifetime.cpp">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\PE_Size_Over_Lifetime.cpp">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\External Libraries\ImGui\imgui_color_gradient.cpp">
+      <Filter>Externals\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\PE_Velocity_Over_Lifetime.cpp">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_Collider.cpp">
+      <Filter>Sources\Components\Derived\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_RigidBody.cpp">
+      <Filter>Sources\Components\Derived\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_SphereCollider.cpp">
+      <Filter>Sources\Components\Derived\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\PE_Spawn_Area.cpp">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived\SpawnShapes\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\PE_Spawn_Sphere.cpp">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived\SpawnShapes\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\PE_Spawn_Cone.cpp">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived\SpawnShapes\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\PE__Spawn_Shape_Base.cpp">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived\SpawnShapes\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\PE_Shape.cpp">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_Animator.cpp">
+      <Filter>Sources\Components\Derived</Filter>
+       </ClCompile>
+    <ClCompile Include="Source Code\CO_DirectionalLight.cpp">
+      <Filter>Sources\Components\Derived\Lights</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source Code\External Libraries\MathGeoLib\include\Math\Matrix.inl">
+      <Filter>Externals\MathGeoLib\Math</Filter>
+    </None>
+    <None Include="Source Code\External Libraries\MathGeoLib\include\Geometry\QuadTree.inl">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </None>
+    <None Include="Source Code\External Libraries\MathGeoLib\include\Geometry\TriangleMesh_IntersectRay_AVX.inl">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </None>
+    <None Include="Source Code\External Libraries\MathGeoLib\include\Geometry\TriangleMesh_IntersectRay_CPP.inl">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </None>
+    <None Include="Source Code\External Libraries\MathGeoLib\include\Geometry\TriangleMesh_IntersectRay_SSE.inl">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </None>
+    <None Include="Source Code\External Libraries\MathGeoLib\include\Geometry\KDTree.inl">
+      <Filter>Externals\MathGeoLib\Geometry</Filter>
+    </None>
+    <None Include="Source Code\External Libraries\DevIL\include\config.h.win">
+      <Filter>Externals\DevIL</Filter>
+    </None>
+    <None Include="Source Code\External Libraries\Wwise\low_level_IO\Common\AkFilePackageLowLevelIO.inl">
+      <Filter>Externals\AK\LowLevelIO</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Diamond Engine.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DiamondIcon.ico" />
+  </ItemGroup>
+</Project>
