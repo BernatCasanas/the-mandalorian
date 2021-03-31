@@ -24,7 +24,6 @@ public class EndLevelRewards : DiamondComponent
         public EndLevelRewardType type;
     }
 
-    //bool enemiesHaveSpawned = false;
     int[] rewardChances = new int[5] { 80, 5, 5, 5, 5 }; // Reward chances, by order being boons, beskar, macarons, scraps and milk
     BoonSpawn boonSpawner = new BoonSpawn();
     EndLevelReward firstReward;
@@ -35,12 +34,8 @@ public class EndLevelRewards : DiamondComponent
     public void Update()
     {
 
-        if (Counter.roomEnemies > 0)
-        {
-            //enemiesHaveSpawned = true;
-        }
-
-//        if (gameObject.name == "EndLevelRewardMenu" && Counter.roomEnemies <= 0 && enemiesHaveSpawned)  // This probably will be called from somewhere else
+        // This probably will be called from somewhere else; keep the gameObject.name because this script will be in the buttons
+        //        if (gameObject.name == "EndLevelRewardMenu" && Counter.roomEnemies <= 0 && enemiesHaveSpawned)
         {
             Time.PauseGame();
             firstReward = SelectRewards();
@@ -57,7 +52,7 @@ public class EndLevelRewards : DiamondComponent
     public EndLevelReward SelectRewards()
     {
 
-        // Do logic about dynamic percentage change
+        // Do logic about dynamic percentage change (need the player stats to know)
 
         EndLevelReward newReward;
         Random random = new Random();
@@ -111,40 +106,33 @@ public class EndLevelRewards : DiamondComponent
 
     GameObject CreatePopUpGameObject()
     {
-        // We can't make a whole prefab for this, because we would need to access gameObject's child to set the generated rewards, and we don't have that functionality
-
-        InternalCalls.CreateGameObject("FirstRewardText", new Vector3(0.0f, 0.0f, 0.0f));
-        InternalCalls.CreateGameObject("SecondRewardText", new Vector3(0.0f, 0.0f, 0.0f));
-        InternalCalls.CreateGameObject("ThirdRewardText", new Vector3(0.0f, 0.0f, 0.0f));
+        GameObject rewardMenu = InternalCalls.CreatePrefab("Library/Prefabs/18131542.prefab", new Vector3(0.0f, 0.0f, 0.0f), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
+        GameObject canvas = InternalCalls.FindObjectWithName("Canvas");
 
         GameObject firstText = InternalCalls.FindObjectWithName("FirstRewardText");
         GameObject secondText = InternalCalls.FindObjectWithName("SecondRewardText");
         GameObject thirdText = InternalCalls.FindObjectWithName("ThirdRewardText");
-        GameObject rewardMenu = InternalCalls.CreatePrefab("Library/Prefabs/18131542.prefab", new Vector3(0.0f, 0.0f, 0.0f), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
 
-        GameObject canvas = InternalCalls.FindObjectWithName("Canvas");
+        GameObject firstImage = InternalCalls.FindObjectWithName("FirstRewardImage");
+        GameObject secondImage = InternalCalls.FindObjectWithName("SecondRewardImage");
+        GameObject thirdImage = InternalCalls.FindObjectWithName("ThirdRewardImage");
 
-        if (canvas == null) {
+
+        if (canvas == null)
+        {
             canvas = InternalCalls.CreatePrefab("Library/Prefabs/1965121116.prefab", new Vector3(0.0f, 0.0f, 0.0f), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
         }
 
-        firstText.SetParent(InternalCalls.FindObjectWithName("FirstRewardButton"));
-        secondText.SetParent(InternalCalls.FindObjectWithName("SecondRewardButton"));
-        thirdText.SetParent(InternalCalls.FindObjectWithName("ThirdRewardButton"));
         rewardMenu.SetParent(canvas);
 
-        firstText.AddComponent(9);
-        Text firstTextComponent = firstText.GetComponent<Text>();
-        firstTextComponent.text = RewardText(firstReward);
+        //        firstImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardPath(firstReward));    // Have the function re-entered or something...
+        //       secondImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardPath(secondReward));
+        //      thirdImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardPath(thirdReward));
 
-        secondText.AddComponent(9);
-        Text secondTextComponent = secondText.GetComponent<Text>();
-        secondTextComponent.text = RewardText(secondReward);
-        
-        thirdText.AddComponent(9);
-        Text thirdTextComponent = thirdText.GetComponent<Text>();
-        thirdTextComponent.text = RewardText(thirdReward);
-        
+        firstText.GetComponent<Text>().text = RewardText(firstReward);
+        secondText.GetComponent<Text>().text = RewardText(secondReward);
+        thirdText.GetComponent<Text>().text = RewardText(thirdReward);
+
         return rewardMenu;
 
     }
@@ -156,7 +144,7 @@ public class EndLevelRewards : DiamondComponent
         switch (reward.type)
         {
             case EndLevelRewardType.REWARD_BOON:
-
+                text = "Undefined.";    // Stablish a function for this
                 break;
 
             case EndLevelRewardType.REWARD_BESKAR:
@@ -178,6 +166,62 @@ public class EndLevelRewards : DiamondComponent
         }
 
         return text;
+    }
+
+    public int GetRewardPath(EndLevelReward reward)
+    {
+
+        int textureId = 0;
+
+        switch (reward.type)
+        {
+            case EndLevelRewardType.REWARD_BOON:
+                // Stablish a function for this
+                break;
+
+            case EndLevelRewardType.REWARD_BESKAR:  // When I can compile, and texture IDs are generated, put them properly
+                textureId = 1083690418;
+                break;
+
+            case EndLevelRewardType.REWARD_MACARON:
+                textureId = 222418542;
+                break;
+
+            case EndLevelRewardType.REWARD_SCRAP:
+                textureId = 594177043;
+                break;
+
+            case EndLevelRewardType.REWARD_MILK:
+                textureId = 67621527;
+                break;
+
+        }
+
+        return textureId;
+
+    }
+
+    public void OnExecuteButton()
+    {
+        if (gameObject.name == "FirstRewardButton")
+        {
+            Debug.Log("Tot va començar");
+        }
+
+        else if (gameObject.name == "SecondRewardButton")
+        {
+            Debug.Log("quan Caos va");
+        }
+
+        else if (gameObject.name == "ThirdRewardButton")
+        {
+            Debug.Log("crear a Gea");
+        }
+
+        // Spawn object
+
+        Time.ResumeGame();
+
     }
 
 }
