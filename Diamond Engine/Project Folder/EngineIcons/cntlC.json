@@ -1,14 +1,14 @@
 {
     "Game Objects": [
         {
-            "name": "Floor153",
+            "name": "BarrelVertexColors",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
-                2.1570730209350586,
-                -2.4336791038513184,
-                -19.519336700439453
+                1.5574421882629395,
+                0.2856714129447937,
+                -18.399288177490234
             ],
             "Rotation": [
                 0,
@@ -21,10 +21,74 @@
                 1,
                 1
             ],
-            "UID": 1649538388,
+            "UID": 2029497990,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 565757249,
+            "ParentUID": 1351574458,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "back1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -177.15391540527344,
+                127.77200317382813,
+                -1058.2115478515625
+            ],
+            "Rotation": [
+                0,
+                0.70710670948028564,
+                0,
+                -0.7071068286895752
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1993007425,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 2029497990,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Barrel",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1956535961,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 2029497990,
             "Components": [
                 {
                     "Type": 1,
@@ -33,8 +97,8 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/1745688022.mmh",
-                    "UID": 1745688022,
+                    "Path": "Library\/Meshes\/581641131.mmh",
+                    "UID": 581641131,
                     "alternColor": [
                         1,
                         1,
@@ -72,9 +136,15 @@
                     ],
                     "Scale": [
                         1,
-                        1,
+                        1.5,
                         1
                     ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "BH_DestructBox",
+                    "thisReference": 1956535961
                 }
             ]
         }
