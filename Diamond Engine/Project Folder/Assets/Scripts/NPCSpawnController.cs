@@ -17,8 +17,15 @@ public class NPCSpawnController : DiamondComponent
     public GameObject spawnPoint3 = null;
     public GameObject spawnPoint4 = null;
     public GameObject spawnPoint5 = null;
-    private List<Vector3> spawnPoints = new List<Vector3>();
+    private List<Tuple<Vector3, Quaternion, int>> spawnPoints = new List<Tuple<Vector3, Quaternion, int>>();
  
+    enum State
+    {
+        SIT = 0,
+        IDLE,
+        BAR
+    }
+
     bool start = true;
     public void Update()
     {
@@ -36,7 +43,6 @@ public class NPCSpawnController : DiamondComponent
     {
         //Get coordinates from a random spawnPoint
         //Generate a prefab on those coordinates
-
         if(charactersUID.Count > spawnPoints.Count)
         {
             Debug.Log("Error. There are more NPCs than spawn points available");
@@ -63,31 +69,80 @@ public class NPCSpawnController : DiamondComponent
             string prefabPath = "Library/Prefabs/";
             prefabPath += charactersUID[i];
             prefabPath += ".prefab";
-            SpawnUnit(prefabPath, GetCoordinatesFromSpawnPoint(randomIndex));
+            SpawnUnit(prefabPath, GetCoordinatesFromSpawnPoint(randomIndex), GetRotationFromSpawnPoint(randomIndex));
         }
     }
-    private void SpawnUnit(string prefab, Vector3 pos)
+    private void SpawnUnit(string prefab, Vector3 pos, Quaternion rot)
     {
-        InternalCalls.CreatePrefab(prefab, pos, Quaternion.identity, Vector3.one);
+        InternalCalls.CreatePrefab(prefab, pos, rot, Vector3.one);
     }
 
     private Vector3 GetCoordinatesFromSpawnPoint(int index)
     {
         if (spawnPoints[index] != null)
-            return spawnPoints[index];
+            return spawnPoints[index].Item1;
         
         Vector3 defaultVal = new Vector3(0,1,0);
+        return defaultVal;
+    }
+
+    private Quaternion GetRotationFromSpawnPoint(int index)
+    {
+        if (spawnPoints[index] != null)
+            return spawnPoints[index].Item2;
+
+        Quaternion defaultVal = new Quaternion(0, 0, 0, 1);
         return defaultVal;
     }
 
     private void GenerateSpawnPointsList()
     {
         //Load spawnPoints position into a List or other data structure to handle information more efficiently
-        if(spawnPoint1 != null) spawnPoints.Add(spawnPoint1.transform.globalPosition);
-        if(spawnPoint2 != null) spawnPoints.Add(spawnPoint2.transform.globalPosition);
-        if(spawnPoint3 != null) spawnPoints.Add(spawnPoint3.transform.globalPosition);
-        if(spawnPoint4 != null) spawnPoints.Add(spawnPoint4.transform.globalPosition);
-        if(spawnPoint5 != null) spawnPoints.Add(spawnPoint5.transform.globalPosition);
+        Vector3 positionAux = new Vector3(1,1,1);
+        Quaternion rotationAux = new Quaternion(0,0,0,1);
+        int stateAux = (int)State.IDLE;
+        Tuple<Vector3, Quaternion, int> TupleAux = new Tuple<Vector3, Quaternion, int>(positionAux, rotationAux, 1);
+
+        if (spawnPoint1 != null)
+        {
+            positionAux = spawnPoint1.transform.globalPosition;
+            rotationAux = spawnPoint1.transform.globalRotation;
+            stateAux = (int)State.IDLE;
+            TupleAux = Tuple.Create(positionAux, rotationAux, stateAux);
+            spawnPoints.Add(TupleAux); 
+        }
+        if (spawnPoint2 != null)
+        {
+            positionAux = spawnPoint2.transform.globalPosition;
+            rotationAux = spawnPoint2.transform.globalRotation;
+            stateAux = (int)State.IDLE;
+            TupleAux = Tuple.Create(positionAux, rotationAux, stateAux);
+            spawnPoints.Add(TupleAux);
+        }
+        if (spawnPoint3 != null)
+        {
+            positionAux = spawnPoint3.transform.globalPosition;
+            rotationAux = spawnPoint3.transform.globalRotation;
+            stateAux = (int)State.IDLE;
+            TupleAux = Tuple.Create(positionAux, rotationAux, stateAux);
+            spawnPoints.Add(TupleAux);
+        }
+        if (spawnPoint4 != null)
+        {
+            positionAux = spawnPoint4.transform.globalPosition;
+            rotationAux = spawnPoint4.transform.globalRotation;
+            stateAux = (int)State.IDLE;
+            TupleAux = Tuple.Create(positionAux, rotationAux, stateAux);
+            spawnPoints.Add(TupleAux);
+        }
+        if (spawnPoint5 != null)
+        {
+            positionAux = spawnPoint5.transform.globalPosition;
+            rotationAux = spawnPoint5.transform.globalRotation;
+            stateAux = (int)State.IDLE;
+            TupleAux = Tuple.Create(positionAux, rotationAux, stateAux);
+            spawnPoints.Add(TupleAux);
+        }
     }
 
     private void GenerateCharactersList()
