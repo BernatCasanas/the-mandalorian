@@ -50,7 +50,7 @@ void W_Assets::Draw()
 
 		ImGui::EndChild();
 
-		if (selectedFile != nullptr && /*ImGui::IsWindowHovered() &&*/ EngineExternal->moduleInput->GetKey(SDL_SCANCODE_DELETE) == KEY_DOWN) 
+		if (selectedFile != nullptr && ImGui::IsWindowFocused() && EngineExternal->moduleInput->GetKey(SDL_SCANCODE_DELETE) == KEY_DOWN) 
 		{ //This prevents mesh removal because mesh files have no dirName
 			if (EngineExternal->moduleResources->GetTypeFromLibraryExtension(selectedFile->libraryPath.c_str()) != Resource::Type::UNKNOWN && strcmp(selectedFile->dirName.c_str(), "Meshes") != 0) 
 			{

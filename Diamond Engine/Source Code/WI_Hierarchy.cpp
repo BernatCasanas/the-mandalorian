@@ -24,13 +24,15 @@ W_Hierarchy::~W_Hierarchy()
 
 void W_Hierarchy::Draw()
 {
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
 	if (ImGui::Begin(name.c_str(), NULL /*| ImGuiWindowFlags_NoResize*/)) 
 	{
 		selected = ImGui::IsWindowFocused();
 
-		//if (ImGui::IsMouseReleased(ImGuiMouseButton_::ImGuiMouseButton_Left)) {
-		//	dropTarget = nullptr;
-		//}
+		ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0, 0));
+		ImGui::Columns(2, "HierarchyColumns", false);
+		ImGui::SetColumnWidth(0, ImGui::GetWindowContentRegionMax().x - 30.0f);
+
 		bool tree_open = false;
 		ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_Selected;
 
@@ -48,6 +50,33 @@ void W_Hierarchy::Draw()
 			ImGui::TreePop();
 		}
 
+		ImGui::NextColumn();
+
+		ImGui::BeginChild("Empty space");
+		ImGui::EndChild();
+		if (ImGui::IsItemHovered())
+		{
+			ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(5, 5));
+			ImGui::BeginTooltip();
+			ImGui::Text("Drop an item here to unparent them");
+			ImGui::EndTooltip();
+			ImGui::PopStyleVar();
+		}
+		ImGui::PopStyleVar();
+
+		if (ImGui::BeginDragDropTarget())
+		{
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("_GAMEOBJECT"))
+			{
+				dropTarget->ChangeParent(EngineExternal->moduleScene->root);
+				LOG(LogType::L_NORMAL, "%s", dropTarget->name.c_str());
+				dropTarget = nullptr;
+			}
+			ImGui::EndDragDropTarget();
+		}
+
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(5, 5));
+
 		if (ImGui::BeginPopupContextWindow())
 		{
 			EngineExternal->moduleEditor->DrawCreateMenu();
@@ -60,8 +89,10 @@ void W_Hierarchy::Draw()
 			}
 			ImGui::EndPopup();
 		}
+		ImGui::PopStyleVar();
 	}
 	ImGui::End();
+	ImGui::PopStyleVar();
 }
 
 void W_Hierarchy::SetCurrentScene(M_Scene* _scene)
