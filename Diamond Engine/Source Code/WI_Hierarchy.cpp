@@ -26,6 +26,8 @@ void W_Hierarchy::Draw()
 {
 	if (ImGui::Begin(name.c_str(), NULL /*| ImGuiWindowFlags_NoResize*/)) 
 	{
+		selected = ImGui::IsWindowFocused();
+
 		//if (ImGui::IsMouseReleased(ImGuiMouseButton_::ImGuiMouseButton_Left)) {
 		//	dropTarget = nullptr;
 		//}

@@ -33,11 +33,12 @@ W_Inspector::~W_Inspector()
 
 void W_Inspector::Draw()
 {
-
 	//ImGui::PushStyleVar(ImGuiStyleVar_WindowMinSize, ImVec2(1000, 1000));
 
 	if (ImGui::Begin(name.c_str(), NULL /*| ImGuiWindowFlags_NoResize*/)) 
 	{
+		selected = ImGui::IsWindowFocused();
+
 		if (editingRes != nullptr && editingRes->GetType() == Resource::Type::MATERIAL)
 		{
 			dynamic_cast<ResourceMaterial*>(editingRes)->DrawEditor();

@@ -24,6 +24,8 @@ void W_Console::Draw()
 {
 	if (ImGui::Begin(name.c_str(), NULL, ImGuiWindowFlags_::ImGuiWindowFlags_NoCollapse /*| ImGuiWindowFlags_NoResize*/ | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoScrollbar)) 
 	{
+		selected = ImGui::IsWindowFocused();
+
 		if(ImGui::Checkbox("Info", &showMessage[0]))
 			FilterLogs();
 		ImGui::SameLine();

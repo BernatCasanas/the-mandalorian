@@ -36,6 +36,8 @@ void W_Assets::Draw()
 	static float width = ImGui::GetContentRegionAvail().x * 0.45f;
 	if (ImGui::Begin(name.c_str(), NULL/*, ImGuiWindowFlags_::ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize*/))
 	{
+		selected = ImGui::IsWindowFocused();
+
 		ImGuiWindowFlags window_flags = ImGuiWindowFlags_AlwaysVerticalScrollbar;
 		ImGui::BeginChild("Tree", ImVec2(ImGui::GetWindowContentRegionWidth() * tree_window_width, ImGui::GetContentRegionAvail().y), false, window_flags);
 
@@ -259,6 +261,28 @@ void W_Assets::DrawCurrentFolder()
 					SetFilePayload(*it._Ptr);
 					ImGui::Text("Import asset: %s", it->importPath.c_str());
 					ImGui::EndDragDropSource();
+				}
+
+				if (ImGui::IsItemClicked())
+				{
+					selectedFile = it._Ptr;
+
+					if (it->isDir == false && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_::ImGuiMouseButton_Left))
+					{
+						Resource::Type type = EngineExternal->moduleResources->GetTypeFromAssetExtension(it->importPath.c_str());
+						if (type == Resource::Type::SHADER)
+						{
+							W_TextEditor* txtEditor = dynamic_cast<W_TextEditor*>(EngineExternal->moduleEditor->GetEditorWindow(EditorWindow::TEXTEDITOR));
+							txtEditor->SetTextFromFile(it->importPath.c_str());
+							ImGui::SetWindowFocus("Text Editor");
+							selectedFile = nullptr;
+						}
+						else if (type == Resource::Type::MATERIAL)
+						{
+							W_Inspector* inspector = dynamic_cast<W_Inspector*>(EngineExternal->moduleEditor->GetEditorWindow(EditorWindow::INSPECTOR));
+							inspector->SetEditingResource(EngineExternal->moduleResources->RequestFromAssets(selectedFile->importPath.c_str()));
+						}
+					}
 				}
 			}
 			else
