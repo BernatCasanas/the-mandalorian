@@ -12,7 +12,7 @@ public class Shake2D : DiamondComponent
     PerlinNoise2D shakeNoiseY = new PerlinNoise2D();
     Vector2 initialPos = new Vector2(0.0f, 0.0f);
 
-   float shake = 1.0f;//value between 0 and 1 that will control the amount of shake performed in the future
+    float shake = 1.0f;//value between 0 and 1 that will control the amount of shake performed in the future
 
     bool start = true;
     public void Update()
@@ -23,23 +23,21 @@ public class Shake2D : DiamondComponent
             Transform2D trans2D = null;
             if (elementShake == null)
             {
-                trans2D = elementShake.GetComponent<Transform2D>();
-                if(trans2D!=null)
-                elementShake = gameObject;
+                trans2D = gameObject.GetComponent<Transform2D>();
+                if (trans2D != null)
+                    elementShake = gameObject;
             }
             else
             {
                 trans2D = elementShake.GetComponent<Transform2D>();
-                if(trans2D==null)
-                elementShake = null;
+                if (trans2D == null)
+                    elementShake = null;
             }
 
             if (elementShake != null)
             {
-
                 initialPos = new Vector2(trans2D.lPos.x, trans2D.lPos.y);
             }
-
 
             start = false;
         }
@@ -58,24 +56,20 @@ public class Shake2D : DiamondComponent
         {
             StartShake(1.0f);
         }
+        if (Input.GetKey(DEKeyCode.K) == KeyState.KEY_DOWN) //test key
+        {
+            StartShake(1.0f, 2);
+        }
 
     }
 
-    public void StartShake(float duration, int seed = -1)
+    public void StartShake(float duration, int seed = int.MinValue)
     {
         maxShakeTime = Math.Abs(duration);
         currShakeTime = 0.0f;
 
-        if (seed != -1)
-        {
-            shakeNoiseX.GenerateNoise(seed, 4, 10.0f);
-            shakeNoiseY.GenerateNoise(seed + 1, 4, 10.0f);
-        }
-        else
-        {
-            shakeNoiseX.GenerateNoise(4, 1.0f);
-            shakeNoiseY.GenerateNoise(4, 100.0f);
-        }
+        shakeNoiseX.GenerateNoise(seed, 4, 10.0f);
+        shakeNoiseY.GenerateNoise(seed, 4, 100.0f);
 
     }
     public void StopShake()
@@ -90,12 +84,12 @@ public class Shake2D : DiamondComponent
 
         Transform2D trans2D = elementShake.GetComponent<Transform2D>();
 
-        trans2D.lPos = new Vector3(initialPos.x + shakeXMax * shake * shakeNoiseX.GetNoiseAt(new Vector2(0, currShakeTime)), initialPos.y + shakeYMax * shake * shakeNoiseY.GetNoiseAt(new Vector2(0, currShakeTime)),0.0f);
+        trans2D.lPos = new Vector3(initialPos.x + shakeXMax * shake * shakeNoiseX.GetNoiseAt(new Vector2(0, currShakeTime)), initialPos.y + shakeYMax * shake * shakeNoiseY.GetNoiseAt(new Vector2(currShakeTime, 0)), 0.0f);
         //trans2D.lPos.x = initialPos.x + shakeXMax * shake * shakeNoiseX.GetNoiseAt(0, currShakeTime);
         //trans2D.lPos.y = initialPos.y + shakeYMax * shake * shakeNoiseY.GetNoiseAt(0, currShakeTime);
 
         //Debug.Log("NOISE X: " + shakeNoiseX.GetNoiseAt(0, currShakeTime).ToString() + " =================================");
-        Debug.Log("NOISE Y: " + shakeNoiseY.GetNoiseAt(new Vector2(0, currShakeTime)).ToString() + " =================================");
+        Debug.Log("NOISE Y: " + shakeNoiseY.GetNoiseAt(new Vector2(currShakeTime, 0)).ToString() + " =================================");
 
         currShakeTime += Time.deltaTime;
 
