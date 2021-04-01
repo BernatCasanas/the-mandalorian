@@ -228,6 +228,300 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<string> Ahsoka_1_2 = new List<string>()
+    {
+        "You keep saying you're not a Jedi. Still, you fight with lightsabers, you use the force, and you're on the good guys' side. I have never met a Jedi, but from the stories I've heard, you tick all the boxes... Help me understand.",
+        "Since I was a child, I was raised by Jedi in the Jedi ways... Eventually, I realized that things are not as black and white as they had taught me. While in The Order, I was so naively blinded by our just cause, that I was unable to see the dark shadows our bright light had casted. Then I understood; there lies darkness in light, and likewise, one can find light in darkness.",
+        "Am I supposed to understand what all this means? Now I’m even more confused.",
+        "There is no such thing as simply good and bad people, we are far more complex. I was not sure we were the 'good guys' anymore. What I had once considered my home, became unfamiliar, and where before I had seen friendly faces, I could only see strangers. It became clear to me that I no longer belonged in The Order.",
+        "I'm going to pretend that this was more clarifying than before... You make it sound as if Jedi were bad people. Why should Grogu become one then? It doesn't seem like a good idea anymore.",
+        "No, do not get me wrong. The Jedi were definitely trying to do good, it is just... those were hard times, and they had to make a lot of difficult decisions. I do not think it has ever been tougher for the members of the Jedi council. I even considered rejoining after a while, but then order 66 was issued and... Well, it was too late…",
+    };
+
+    private List<bool> Ahsoka_1_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Ahsoka_1_3 = new List<string>()
+    {
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+    };
+
+    private List<bool> Ahsoka_1_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Ahsoka_2_1 = new List<string>()
+    {
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+    };
+
+    private List<bool> Ahsoka_2_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Ahsoka_2_2 = new List<string>()
+    {
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+    };
+
+    private List<bool> Ahsoka_2_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Ahsoka_2_3 = new List<string>()
+    {
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+    };
+
+    private List<bool> Ahsoka_2_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Ahsoka_3_1 = new List<string>()
+    {
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+    };
+
+    private List<bool> Ahsoka_3_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Ahsoka_3_2 = new List<string>()
+    {
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+    };
+
+    private List<bool> Ahsoka_3_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Ahsoka_3_3 = new List<string>()
+    {
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+    };
+
+    private List<bool> Ahsoka_3_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Ahsoka_4_1 = new List<string>()
+    {
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+    };
+
+    private List<bool> Ahsoka_4_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Ahsoka_4_2 = new List<string>()
+    {
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+    };
+
+    private List<bool> Ahsoka_4_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Ahsoka_4_3 = new List<string>()
+    {
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+    };
+
+    private List<bool> Ahsoka_4_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Ahsoka_5_1 = new List<string>()
+    {
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+    };
+
+    private List<bool> Ahsoka_5_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Ahsoka_5_2 = new List<string>()
+    {
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+    };
+
+    private List<bool> Ahsoka_5_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Ahsoka_5_3 = new List<string>()
+    {
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+    };
+
+    private List<bool> Ahsoka_5_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
     public List<String> GetListOfDialog(uint index)
 	{
         switch (index)
