@@ -58,7 +58,7 @@ public class HubTextController : DiamondComponent
 			start = false;
         }
 
-		if (mando == null && Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN && textController != null) 
+		if (mando == null && Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN && textController != null && textController.IsEnabled() == false) 
 			return;
 
 		interaction = Interaction.NONE;
