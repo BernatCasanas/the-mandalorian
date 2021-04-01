@@ -1138,8 +1138,6 @@
                     "max_bullets_main_weapon": 10,
                     "bullets_secondary_weapon": 10,
                     "max_bullets_secondary_weapon": 10,
-                    "combo_number": 0,
-                    "combo_seconds": 5,
                     "main_weapon": true,
                     "hp_bar": 355798737,
                     "hp_number_gameobject": 1987484179,
@@ -1151,7 +1149,8 @@
                     "currency_number_gameobject": 568565417,
                     "combo_bar": 1397296727,
                     "combo_text": 186221367,
-                    "combo_gameobject": 1278066025
+                    "combo_gameobject": 1278066025,
+                    "comboNumber": 0
                 }
             ]
         },
@@ -9735,7 +9734,7 @@
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "Well kid, we should get going if we want to kill that     Rancor before nightfall. You know this desert can get  really dangerous at night, with all those Tusken           Raiders creeping around.",
+                    "text": " ",
                     "maxTextLenght": 1120,
                     "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
@@ -9750,7 +9749,7 @@
             "name": "Dababy Yoda",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": false,
+            "Active": true,
             "Position": [
                 0,
                 0,
@@ -9964,7 +9963,9 @@
                     "dialog": 162634475,
                     "text": 233430036,
                     "mandoimage": 1438875911,
-                    "groguimage": 565022676
+                    "otherimage": 565022676,
+                    "list_of_dialogs": 449674616,
+                    "dialog_index": 0
                 }
             ]
         },
@@ -10093,8 +10094,8 @@
                     "dashCD": 0.30000001192092896,
                     "dashDuration": 0.20000000298023224,
                     "dashDistance": 4.75,
+                    "dashforce": 0,
                     "fireRate": 0.15000000596046448,
-                    "baseFireRate": 1,
                     "secondaryRate": 1,
                     "fireRateAfterDashRecoverRatio": 1.75,
                     "fireRateMultCap": 2,
@@ -12968,6 +12969,43 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1051418604.mat",
                     "MaterialUID": 1051418604
+                }
+            ]
+        },
+        {
+            "name": "List Of Dialogs",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 449674616,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "List_Of_Dialogs"
                 }
             ]
         }
