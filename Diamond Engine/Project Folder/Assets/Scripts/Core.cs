@@ -41,8 +41,11 @@ public class Core : DiamondComponent
     private bool scriptStart = true;
 
     //State
-    private STATE currentState = STATE.NONE;   //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS, I IF ANYONE DOES SOMETHIG BAD TO THIS STATE MACHINE I WILL KILL EVERYONE INVOLVED IN THE PROJECT AND THEN I WILL KILL MYSELF - Jose :)
+    private STATE currentState = STATE.NONE;   //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS
+                                               //Setting states directlly will break the behaviour  -Jose
     private List<INPUT> inputsList = new List<INPUT>();
+
+    private bool rightTriggerPressed = false;
 
     // Movement
     public float rotationSpeed = 2.0f;
@@ -233,8 +236,13 @@ public class Core : DiamondComponent
         else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
             inputsList.Add(INPUT.IN_IDLE);
 
-        if (Input.GetRightTrigger() > 0)
+        if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false)
+        {
             inputsList.Add(INPUT.IN_DASH);
+            rightTriggerPressed = true;
+        }
+        else if (Input.GetRightTrigger() == 0 && rightTriggerPressed == true)
+            rightTriggerPressed = false;
 
         if (Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_DOWN && smallGrenades.Count == 0 && BigGrenades.Count == 0)
             inputsList.Add(INPUT.IN_SEC_SHOOT);
