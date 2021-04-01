@@ -1,5 +1,6 @@
 using System;
 using DiamondEngine;
+using System.Collections.Generic;
 
 public enum EndLevelRewardType
 {
@@ -10,7 +11,7 @@ public enum EndLevelRewardType
     REWARD_MILK
 }
 
-public class EndLevelRewards : DiamondComponent
+public class EndLevelRewards : DiamondComponent // This can probably stop being a component
 {
     public struct EndLevelReward
     {
@@ -26,27 +27,25 @@ public class EndLevelRewards : DiamondComponent
 
     int[] rewardChances = new int[5] { 80, 5, 5, 5, 5 }; // Reward chances, by order being boons, beskar, macarons, scraps and milk
     BoonSpawn boonSpawner = new BoonSpawn();
-    EndLevelReward firstReward;
+    EndLevelReward firstReward; // Could probably make an array for this... UwU
     EndLevelReward secondReward;
     EndLevelReward thirdReward;
     GameObject rewardsMenu;
+    DiamondEngineResources.GameResources selectedReward = null;
+    DiamondEngineResources.BoonDataHolder boonGenerator = new DiamondEngineResources.BoonDataHolder();
+    float boonTotalWeights = 0.0f;
 
-    public void Update()
+    public DiamondEngineResources.GameResources GenerateRewardPipeline()
     {
 
-        // This probably will be called from somewhere else; keep the gameObject.name because this script will be in the buttons
-        //        if (gameObject.name == "EndLevelRewardMenu" && Counter.roomEnemies <= 0 && enemiesHaveSpawned)
-        {
-            Time.PauseGame();
-            firstReward = SelectRewards();
-            secondReward = SelectRewards();
-            thirdReward = SelectRewards();
-            // If index = -1, there is no boon
+        firstReward = SelectRewards();
+        secondReward = SelectRewards();
+        thirdReward = SelectRewards();
 
-            rewardsMenu = CreatePopUpGameObject();
-            // This instantiation works
-        }
+        rewardsMenu = CreatePopUpGameObject();
+        // Do nazi things with buttons to assign a value to selectedReward; we may want to control the OnExecuteButton from the script instead of attaching this script as a component (it probably shouldn't a component, and instead, controlled by SceneManager
 
+        return selectedReward;
     }
 
     public EndLevelReward SelectRewards()
@@ -99,9 +98,22 @@ public class EndLevelRewards : DiamondComponent
 
         }
 
-        newReward = new EndLevelReward(boonSpawner.RequestRandomBoon(), EndLevelRewardType.REWARD_BOON); // Spawn boon, just in case
-        return newReward;   // We should always quit from the previous return, ignore this
+        newReward = new EndLevelReward(boonSpawner.RequestRandomBoon(), EndLevelRewardType.REWARD_BOON); // Spawn boon, just in case, but we should always quit from the previous return
+        return newReward;
 
+    }
+
+    public int RequestRandomBoon()
+    {
+        float randomPick = (float)(new Random().NextDouble() * boonTotalWeights);
+        for (int i = 0; i < boonGenerator.boonType.Length; i++)
+        {
+            if (randomPick > boonGenerator.boonType[i].rngChanceWeight)
+            {
+                return i;
+            }
+        }
+        return boonGenerator.boonType.Length - 1;
     }
 
     GameObject CreatePopUpGameObject()
@@ -125,7 +137,7 @@ public class EndLevelRewards : DiamondComponent
 
         rewardMenu.SetParent(canvas);
 
-        //        firstImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardPath(firstReward));    // Have the function re-entered or something... --> THIS MAY BE POINTLESS, BECAUSE WE ALREADY SAVE THE INFO AT GAMERESOURCE.CS
+        //        firstImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardPath(firstReward));    // Have the function re-entered or something...
         //       secondImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardPath(secondReward));
         //      thirdImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardPath(thirdReward));
 
@@ -144,7 +156,7 @@ public class EndLevelRewards : DiamondComponent
         switch (reward.type)
         {
             case EndLevelRewardType.REWARD_BOON:
-                text = "Undefined.";    // Stablish a function for this
+                text = boonGenerator.boonType[reward.boonIndex].boonDescription;
                 break;
 
             case EndLevelRewardType.REWARD_BESKAR:
@@ -176,10 +188,10 @@ public class EndLevelRewards : DiamondComponent
         switch (reward.type)
         {
             case EndLevelRewardType.REWARD_BOON:
-                // Stablish a function for this
+                textureId = boonGenerator.boonType[reward.boonIndex].libraryTextureID;
                 break;
 
-            case EndLevelRewardType.REWARD_BESKAR:  // When I can compile, and texture IDs are generated, put them properly
+            case EndLevelRewardType.REWARD_BESKAR:
                 textureId = 1083690418;
                 break;
 
@@ -217,10 +229,6 @@ public class EndLevelRewards : DiamondComponent
         {
             Debug.Log("crear a Gea");
         }
-
-        // Spawn object
-
-        Time.ResumeGame();
 
     }
 

@@ -2,7 +2,7 @@ using System;
 using DiamondEngine;
 using System.Collections.Generic;
 
-namespace DiamonEngineResources
+namespace DiamondEngineResources
 {
     public class GameResources
     {
@@ -15,6 +15,7 @@ namespace DiamonEngineResources
         // Yes, we could have those only used in spawn functionality like we used to, but I think the cost memory-wise is worth to make adding boons way easier and more intuitive
         public int libraryTextureID;
         public EndLevelRewardType resourceType;
+        // Probably add text here
     }
 
     public class BeskarResource : GameResources
@@ -39,14 +40,16 @@ namespace DiamonEngineResources
 
     public class BoonResource : GameResources
     {
-        public BoonResource(int _id, EndLevelRewardType _type, float _weight) : base(_id, _type)
+        public BoonResource(int _id, EndLevelRewardType _type, float _weight, string _description) : base(_id, _type)
         {
             rngChanceWeight = _weight;
+            boonDescription = _description;
         }
 
         public virtual void Use() { }
 
         public float rngChanceWeight;
+        public string boonDescription;
     }
 
     // WE SHOULD PROBABLY CHANGE THE NAMES TO THE BOON'S ACTUAL NAME
@@ -54,7 +57,7 @@ namespace DiamonEngineResources
     //Each time you kill an enemy heal +1 HP. - Bo Katan’s resilience
     public class LifeStealBoon : BoonResource
     {
-        public LifeStealBoon() : base(1240646973, EndLevelRewardType.REWARD_BOON, 1.0f) { }
+        public LifeStealBoon() : base(1240646973, EndLevelRewardType.REWARD_BOON, 1.0f, "Health increases by each enemy kill") { }
 
         public override void Use()
         {
@@ -75,7 +78,7 @@ namespace DiamonEngineResources
     //+20% max HP. - Wrecker’s resilience
     public class IncrementMaxHpBoon : BoonResource
     {
-        public IncrementMaxHpBoon() : base(1143141246, EndLevelRewardType.REWARD_BOON, 1.0f) { }
+        public IncrementMaxHpBoon() : base(1143141246, EndLevelRewardType.REWARD_BOON, 1.0f, "Increments +20 health") { }
 
         public override void Use()
         {
@@ -98,12 +101,25 @@ namespace DiamonEngineResources
 
     public class BoonDataHolder
     {
-        public static Dictionary<string, Type> boonType = new Dictionary<string, Type>
+
+        public BoonDataHolder()
         {
-            {"LifeSteal", typeof(LifeStealBoon)},
-            {"IncMaxHp", typeof(IncrementMaxHpBoon)},
-            //TODO Add boons here
-        };
+            for (int i = 0; i < boonType.Length; i++)
+            {
+                boonType[i].rngChanceWeight = boonTotalWeights;
+                boonTotalWeights += boonType[i].rngChanceWeight;
+            }
+        }
+
+        public BoonResource[] boonType = new BoonResource[] // There's probably a better way to organize this data, can't take care of it right now
+            {
+            new LifeStealBoon(),
+            new IncrementMaxHpBoon(),
+                //TODO Add boons here
+            };
+
+        public float boonTotalWeights = 0.0f;
+
     }
 
 }
