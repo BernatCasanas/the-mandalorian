@@ -50,6 +50,7 @@ public class HUD : DiamondComponent
         if (start)
         {
             UpdateHP(PlayerHealth.currHealth, PlayerHealth.currMaxHealth);
+            UpdateForce(force, max_force);
             start = false;
         }
         if (Input.GetKey(DEKeyCode.C) == KeyState.KEY_DOWN)
@@ -159,6 +160,8 @@ public class HUD : DiamondComponent
         {
             UpdateCombo();
         }
+        force_bar.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
+        force_bar.GetComponent<Material>().SetFloatUniform("rate", -0.3f);
     }
 
     public void IncrementCombo(int levelsToAdd, float weaponTimeMultiplier)
