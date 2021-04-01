@@ -12,7 +12,7 @@ public class Shake2D : DiamondComponent
     PerlinNoise2D shakeNoiseY = new PerlinNoise2D();
     Vector3 initialPos = new Vector3(0.0f, 0.0f, 0.0f);
 
-    //float shake = 1.0f;//value between 0 and 1 that will control the amount of shake performed in the future
+   float shake = 1.0f;//value between 0 and 1 that will control the amount of shake performed in the future
 
     bool start = true;
     public void Update()
@@ -20,24 +20,24 @@ public class Shake2D : DiamondComponent
         if (start)
         {
             //TODO need to have Transform2D as a c# component to continue
-            //Transform2D trans2D = null;
+            Transform2D trans2D = null;
             if (elementShake == null)
             {
-                //trans2D = elementShake.GetComponent<Transform2D>();
-                //if(trans2D!=null)
+                trans2D = elementShake.GetComponent<Transform2D>();
+                if(trans2D!=null)
                 elementShake = gameObject;
             }
             else
             {
-                //trans2D = elementShake.GetComponent<Transform2D>();
-                //if(trans2D==null)
-                //elementShake = null;
+                trans2D = elementShake.GetComponent<Transform2D>();
+                if(trans2D==null)
+                elementShake = null;
             }
 
             if (elementShake != null)
             {
 
-                //initialPos = new Vector3(trans2D.position.x, trans2D.position.y, trans2D.position.z);
+                initialPos = new Vector3(trans2D.lPos.x, trans2D.lPos.y, 0.0f);
             }
 
 
@@ -88,9 +88,11 @@ public class Shake2D : DiamondComponent
     {
         //TODO need to have Transform2D as a c# component to continue
 
-        //Transform2D trans2D = elementShake.GetComponent<Transform2D>();
-        //trans2D.position.x = initialPos.x + shakeXMax * shake * shakeNoiseX.GetNoiseAt(0, currShakeTime);
-        //trans2D.position.y = initialPos.y + shakeYMax * shake * shakeNoiseY.GetNoiseAt(0, currShakeTime);
+        Transform2D trans2D = elementShake.GetComponent<Transform2D>();
+
+        trans2D.lPos = new Vector3(initialPos.x + shakeXMax * shake * shakeNoiseX.GetNoiseAt(0, currShakeTime), initialPos.y + shakeYMax * shake * shakeNoiseY.GetNoiseAt(0, currShakeTime),0.0f);
+        //trans2D.lPos.x = initialPos.x + shakeXMax * shake * shakeNoiseX.GetNoiseAt(0, currShakeTime);
+        //trans2D.lPos.y = initialPos.y + shakeYMax * shake * shakeNoiseY.GetNoiseAt(0, currShakeTime);
 
         Debug.Log("NOISE X: " + shakeNoiseX.GetNoiseAt(0, currShakeTime).ToString() + " =================================");
         Debug.Log("NOISE Y: " + shakeNoiseY.GetNoiseAt(0, currShakeTime).ToString() + " =================================");
