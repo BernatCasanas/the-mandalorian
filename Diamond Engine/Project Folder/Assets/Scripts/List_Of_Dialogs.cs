@@ -388,6 +388,92 @@ public class List_Of_Dialogs : DiamondComponent
 	};
 
 	public List<String> GetListOfDialog(uint index)
+
+    private List<string> Ahsoka_0_1 = new List<string>()
+    {
+       "Ahsoka Tano… You are here too? That’s unexpected. This canteen is starting to get crowded.",
+       "It is nice to meet you again, Mandalorian. I am glad to see that you and Grogu are fine. Since we parted ways in Dathomir, you two had me worried.",
+       "There's no need for that, rest assured that I’m perfectly capable of fending both myself and the kid.",
+       "I know, and it was not my intention to offend you, I apologize if I did so, you are quite competent. However, going against a Moff is a dangerous endeavour, even for somebody like you.",
+       "Well, we survived. I appreciate your concern, but it was unnecessary. What brings you here Jedi?",
+       "I have been wanting to discuss with Bo-Katan the whole Mandalore affair. I do not know if I could speak of her as a friend, but we go back a long time… I do not want to lose her too. Furthermore, I wanted to check on Grogu.",
+    };
+
+    private List<bool> Ahsoka_0_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Ahsoka_0_2 = new List<string>()
+    {
+       "So, have you changed your mind about training the kid? I still need to find him a Jedi master.",
+       "I am sorry, my answer is still no. I am not a Jedi, I left the Order a long time ago. And I know that Grogu's place lies not with me.",
+       "I don't know any other person who can teach him. Are there really any Jedi left nowadays? Because it doesn't look like it. I have the feeling I'm chasing ghosts.",
+       "I am afraid these feelings you have are not without foundation. The Jedi Order disappeared at the end of the clone wars, and most of its survivors died shortly afterwards. I admit, yours is not an easy task Mandalorian.",
+       "Then it's true. There are no longer any Jedi left...",
+       "The Jedi Order might be no more, but for the past years, there has been balance in the force. There are some out there who are still following the old Jedi ways. The light side of the force is strong with them. If it is Grogu's fate to be trained, you will find them... or perchance... they will find you.",
+    };
+
+    private List<bool> Ahsoka_0_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Ahsoka_0_3 = new List<string>()
+    {
+       "Why haven't you tried to find any of these Jedi? The light side is the good side, right? They could prove valuable allies.",
+       "As a matter of fact, I have spent these last years searching for one of them in particular. He was a friend of mine. Last time we met he saved my life, and before splitting up, I promised I would find him later. However, he vanished.",
+       "Maybe I should help you. If we found him, could he be able to train Grogu?",
+       "Thanks, but this is something I have to do by myself. At that time Ezra was good, though not a fully-fledged Jedi Knight. I do not know how much he has improved during this time, but he might not be ready to become a master yet.",
+       "Great, another dead end, my odds are only getting better... Do you have any lead on where you could find him?",
+       "Only one. If I want to find him, I must find another man. He was a grand admiral and the most brilliant strategist the old Galactic Empire ever possessed... He was best known as Thrawn.",
+    };
+
+    private List<bool> Ahsoka_0_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Ahsoka_1_1 = new List<string>()
+    {
+       "Blue milk... Why are you giving me this Mandalorian? It was one of the most popular beverages among the Jedi, did you know that?",
+       "Sure, sure, that's why I'm giving it to you. Enjoy it.",
+       "I can sense you are lying.",
+       "Hey, don't play mind tricks on me Jedi...",
+       "I am not a Jedi, and I do not need to use the force to see through you. You are not a particularly good liar.",
+       "Ok, alright... Honestly, I didn't know what to do with it, so I figured maybe you would like it.",
+       "It is fine. I appreciate it. In the future, should you offer me more, I will gladly accept it.",
+    };
+
+    private List<bool> Ahsoka_1_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+		false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    public List<String> GetListOfDialog(uint index)
 	{
         switch (index)
         {
