@@ -64,7 +64,8 @@ public class Core : DiamondComponent
     public float fireRate = 0.2f;
     private float shootingTimer = 0.0f;
     public float secondaryRate = 0.2f;
-    private float currSecondaryRate = 0.0f;
+
+    private bool hasShot = false;
 
     public float fireRateAfterDashRecoverRatio = 2.0f;
     private float secondaryRateRecoverCap = 0.0f;
@@ -124,7 +125,6 @@ public class Core : DiamondComponent
         normalShootSpeed = shootAnimationTotalTime / fireRate;
         //fireRateAfterDashRecoverRatio = 2f;
         //fireRateMultCap = 2.5f;
-        currSecondaryRate = secondaryRate;
         secondaryRateRecoverCap = 3.0f / secondaryRate;
         myAimbot = gameObject.GetComponent<AimBot>();
         #endregion
@@ -221,8 +221,11 @@ public class Core : DiamondComponent
         if (Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT)
             inputsList.Add(INPUT.IN_SHOOTING);
 
-        else if (Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP)
+        else if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE) && hasShot == true && CanStopShooting() == true)
+        {
             inputsList.Add(INPUT.IN_SHOOTING_END);
+            hasShot = false;
+        }
 
         if (IsJoystickMoving() == true)
             inputsList.Add(INPUT.IN_MOVE);
@@ -427,6 +430,11 @@ public class Core : DiamondComponent
             myAimbot.isShooting = false;
     }
 
+    private bool CanStopShooting()
+    {
+         return shootingTimer > fireRate * 0.5 ? true : false;
+    }
+
     private void StartShoot()
     {
         Audio.StopAudio(gameObject);
@@ -436,6 +444,7 @@ public class Core : DiamondComponent
         InternalCalls.CreatePrefab("Library/Prefabs/346087333.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
 
         inputsList.Add(INPUT.IN_SHOOT_END);
+        hasShot = true;
     }
     #endregion
 
