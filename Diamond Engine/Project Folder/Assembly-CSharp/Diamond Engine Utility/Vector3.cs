@@ -50,6 +50,7 @@ namespace DiamondEngine
         public Vector3(float x, float y, float z) { this.x = x; this.y = y; this.z = z; /*Debug.Log("Setting: " + x + ", " + y + ", " + z);*/ }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Vector3(float x, float y) { this.x = x; this.y = y; z = 0F; }
+        public Vector3(Vector2 a) { x = a.x; y = a.y; z = 0F; }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Set(float newX, float newY, float newZ) { x = newX; y = newY; z = newZ; }
 
@@ -66,6 +67,10 @@ namespace DiamondEngine
         public static Vector3 operator /(Vector3 a, Vector3 b) { return new Vector3(a.x / b.x, a.y / b.y, a.z / b.z); }
         public static Vector3 operator /(Vector3 a, float d) { return new Vector3(a.x / d, a.y / d, a.z / d); }
         public static Vector3 operator /(float d, Vector3 a) { return new Vector3(d / a.x, d / a.y, d / a.z); }
+        //Mod
+        public static Vector3 operator %(Vector3 a, Vector3 b) { return new Vector3(a.x % b.x, a.y % b.y, a.z % b.z); }
+        public static Vector3 operator %(Vector3 a, float d) { return new Vector3(a.x % d, a.y % d, a.z % d); }
+        public static Vector3 operator %(float d, Vector3 a) { return new Vector3(d % a.x, d % a.y, d % a.z); }
         //Diff
         public static Vector3 operator -(Vector3 a, Vector3 b) { return new Vector3(a.x - b.x, a.y - b.y, a.z - b.z); }
         public static Vector3 operator -(Vector3 a, float d) { return new Vector3(a.x - d, a.y - d, a.z - d); }
