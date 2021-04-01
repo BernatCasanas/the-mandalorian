@@ -25,6 +25,7 @@ namespace DiamondEngine
             this.seed = seed;
         }
 
+        //Returns a value between 0 and 1
         public float GetNoiseAt(Vector2 coords)
         {
             float value = 0.0f;
