@@ -1,5 +1,7 @@
 using System;
 using DiamondEngine;
+using System.Collections.Generic;
+
 
 public class List_Of_Dialogs : DiamondComponent
 {
@@ -141,9 +143,41 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 	};
 
-	public void Update()
+	public List<String> GetListOfDialog(uint index)
 	{
+        switch (index)
+        {
+			case 0:
+				return Initial_Cutscene;
+			case 1:
+				return Bo_Katan_0_1;
+			case 2:
+				return Bo_Katan_0_2;
+			case 3:
+				return Bo_Katan_0_3;
+			case 4:
+				return Final_Cutscene;
+		}
+		return Initial_Cutscene;
 
+	}
+
+	public List<bool> GetListOfOrder(uint index)
+	{
+		switch (index)
+		{
+			case 0:
+				return Initial_Cutscene_bool;
+			case 1:
+				return Bo_Katan_0_1_bool;
+			case 2:
+				return Bo_Katan_0_2_bool;
+			case 3:
+				return Bo_Katan_0_3_bool;
+			case 4:
+				return Final_Cutscene_bool;
+		}
+		return Initial_Cutscene_bool;
 	}
 
 }
