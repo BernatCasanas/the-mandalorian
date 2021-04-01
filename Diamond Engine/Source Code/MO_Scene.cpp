@@ -220,8 +220,20 @@ void M_Scene::GetAllGameObjects(std::vector<GameObject*>& gameObjects)
 	root->CollectChilds(gameObjects);
 }
 
+void M_Scene::ReplaceScriptsReferences(uint oldUID, uint newUID)
+{
+	std::multimap<uint, SerializedField*>::iterator referenceIt = referenceMap.find(oldUID);
+
+	if (referenceIt != referenceMap.end())
+	{
+		referenceMap.emplace(newUID, referenceIt->second);
+		referenceMap.erase(oldUID);
+	}
+}
+
 void M_Scene::LoadScriptsData(GameObject* rootObject)
 {
+	std::multimap<uint, SerializedField*> referenceMapCopy;
 	for (auto i = referenceMap.begin(); i != referenceMap.end(); ++i)
 	{
 		// Get the range of the current key
@@ -250,9 +262,21 @@ void M_Scene::LoadScriptsData(GameObject* rootObject)
 					d->second->fiValue.goValue->csReferences.push_back(d->second);
 
 				d->second->parentSC->SetField(d->second->field, d->second->fiValue.goValue);
+
+				//d->second = nullptr;
 			}
 		}
 	}
+
+	//for (auto i = referenceMap.begin(); i != referenceMap.end(); ++i)
+	//{
+	//	if (i->second != nullptr)
+	//	{
+	//		referenceMapCopy.emplace(i->first, i->second);
+	//	}
+	//}
+
+	//referenceMap = referenceMapCopy;
 
 	referenceMap.clear();
 }
@@ -452,7 +476,7 @@ void M_Scene::SaveScene(const char* name)
 	json_object_set_value(root_object.nObj, "layers", layersValue);
 
 	JSON_Value* goArray = json_value_init_array();
-	root->SaveToJson(json_value_get_array(goArray));
+	root->SaveToJson(json_value_get_array(goArray), true);
 	json_object_set_value(root_object.nObj, "Game Objects", goArray);
 
 	//Save file 
@@ -607,7 +631,7 @@ GameObject* M_Scene::LoadGOData(JSON_Object* goJsonObj, GameObject* parent)
 
 	int prefabID = json_object_get_number(goJsonObj, "PrefabID");
 
-	if(prefabID != 0)
+	/*if(prefabID != 0)
 	{
 		std::string prefabPath = EngineExternal->moduleResources->GenLibraryPath(prefabID, Resource::Type::PREFAB);
 
@@ -617,11 +641,11 @@ GameObject* M_Scene::LoadGOData(JSON_Object* goJsonObj, GameObject* parent)
 			
 			if (prefabObject != nullptr)
 			{
-				prefabObject->parent = parent;
+				prefabObject->ChangeParent(parent);
 				return parent;
 			}
 		}
-	}
+	}*/
 
 	parent = CreateGameObject(json_object_get_string(goJsonObj, "name"), parent, json_object_get_number(goJsonObj, "UID"));
 	parent->LoadFromJson(goJsonObj);

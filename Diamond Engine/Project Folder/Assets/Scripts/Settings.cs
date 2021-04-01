@@ -9,7 +9,7 @@ public class Settings : DiamondComponent
 	public GameObject aux_bar_1 = null;
 	public GameObject aux_bar_2 = null;
 	public GameObject aux_bar_3 = null;
-	private Pause aux = null;
+	//private Pause aux = null;
 
 	public void OnExecuteCheckbox(bool active)
 	{

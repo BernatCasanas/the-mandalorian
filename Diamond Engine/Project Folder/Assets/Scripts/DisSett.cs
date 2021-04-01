@@ -5,7 +5,7 @@ public class DisSett : DiamondComponent
 {
 	public GameObject displayScreen = null;
 	public GameObject bigBrother = null;
-	private Pause aux = null;
+	//private Pause aux = null;
 
 	public void OnExecuteCheckbox(bool active)
     {
