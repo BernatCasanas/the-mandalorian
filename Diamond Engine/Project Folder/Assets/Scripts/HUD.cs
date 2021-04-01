@@ -32,6 +32,7 @@ public class HUD : DiamondComponent
     private float fullComboTime = 0.0f;
     private float currComboTime = 0.0f;
     public int comboNumber = 0;
+    public float force_bar_rate = 0.0f;
 
     //stores the level as a key and the color as a value
     Dictionary<int, Vector3> comboLvlColors = new Dictionary<int, Vector3>
@@ -51,6 +52,7 @@ public class HUD : DiamondComponent
         {
             UpdateHP(PlayerHealth.currHealth, PlayerHealth.currMaxHealth);
             UpdateForce(force, max_force);
+            force_bar_rate = -0.15f;
             start = false;
         }
         if (Input.GetKey(DEKeyCode.C) == KeyState.KEY_DOWN)
@@ -161,7 +163,7 @@ public class HUD : DiamondComponent
             UpdateCombo();
         }
         force_bar.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
-        force_bar.GetComponent<Material>().SetFloatUniform("rate", -0.3f);
+        force_bar.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate);
     }
 
     public void IncrementCombo(int levelsToAdd, float weaponTimeMultiplier)
