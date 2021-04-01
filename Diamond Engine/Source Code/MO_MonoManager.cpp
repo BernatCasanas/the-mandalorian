@@ -24,6 +24,7 @@
 #include "CS_Image2D_Bindings.h"
 #include "CS_Navigation_Bindings.h"
 #include "CS_ParticleSystem_Bindings.h"
+#include "CS_Transform2D_Bindings.h"
 
 #include <iostream>
 #include <fstream> 
@@ -136,6 +137,23 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.ParticleSystem::Stop", StopParticles);
 	mono_add_internal_call("DiamondEngine.ParticleSystem::get_playing", IsPlayingParticles);
 	mono_add_internal_call("DiamondEngine.ParticleSystem::get_looping", GetLoopingParticles);
+
+
+#pragma endregion
+
+
+#pragma region Transform2D
+	mono_add_internal_call("DiamondEngine.Transform2D::get_pos", Get2Dpos);
+	mono_add_internal_call("DiamondEngine.Transform2D::get_rot", Get2Drot);
+	mono_add_internal_call("DiamondEngine.Transform2D::get_lPos", Get2DlPos);
+	mono_add_internal_call("DiamondEngine.Transform2D::set_lPos", Set2DlPos);
+	mono_add_internal_call("DiamondEngine.Transform2D::get_lRot", Get2DlRot);
+	mono_add_internal_call("DiamondEngine.Transform2D::set_lRot", Set2DlRot);
+	mono_add_internal_call("DiamondEngine.Transform2D::get_size", Get2Dsize);
+	mono_add_internal_call("DiamondEngine.Transform2D::set_size", Set2DSize);
+	mono_add_internal_call("DiamondEngine.Transform2D::SetLocalTransform", SetLocalTransform2D);
+
+
 
 
 #pragma endregion

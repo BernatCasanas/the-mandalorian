@@ -30,6 +30,7 @@ namespace DiamondEngine
         PARTICLE_SYSTEM,
         BILLBOARD,
         SPHERECOLLIDER,
+        DIRECTIONAL_LIGHT,
         COUNT
     }
 
@@ -45,6 +46,7 @@ namespace DiamondEngine
             { typeof(Image2D), ComponentType.IMAGE_2D  },
             { typeof(Navigation), ComponentType.NAVIGATION  },
             { typeof(ParticleSystem), ComponentType.PARTICLE_SYSTEM  },
+            { typeof(Transform2D), ComponentType.TRANSFORM_2D  },
         };
 
         public DiamondComponent()
