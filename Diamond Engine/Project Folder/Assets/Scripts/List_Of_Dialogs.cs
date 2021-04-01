@@ -87,8 +87,8 @@ public class List_Of_Dialogs : DiamondComponent
 		"What a coincidence. Taking a break from your reclaiming of Mandalore?",
 		"Do not speak as if you knew what it means to be a Mandalorian, bounty hunter. You are just a member of a cult of zealots who got lost in an ancient faith.",
 		"It is nice to see you too.",
-		"Whatever, you wouldn’t understand.",
-		"What’s there to understand? There’s nothing on that planet worth fighting for. All the stories I’ve heard tell that Mandalore is cursed.",
+		"Whatever, you wouldn't understand.",
+		"What's there to understand? There's nothing on that planet worth fighting for. All the stories I've heard tell that Mandalore is cursed.",
 		"These stories you have been fed are lies. It is true that nowadays little remains of what once was, but one day Mandalore will regain its splendour, and I will be there to see it.",
 	};
 
@@ -107,7 +107,7 @@ public class List_Of_Dialogs : DiamondComponent
 	{
 		"Why did you really come here? Was it to convince me to help you in your campaign?",
 		"Maybe. You made a promise, remember? I helped you find Moff Gideon.",
-		"You only pointed me in the direction of Ahsoka Tano. Helping in reclaiming a planet for telling where somebody is… not a very fair deal to be honest.",
+		"You only pointed me in the direction of Ahsoka Tano. Helping in reclaiming a planet for telling where somebody is... not a very fair deal to be honest.",
 		"A deal is a deal. Are you backing out from your word?",
 		"No, a deal is a deal. I always honour my word.",
 	};
@@ -124,15 +124,259 @@ public class List_Of_Dialogs : DiamondComponent
 
 	private List<string> Bo_Katan_0_3 = new List<string>()
 	{
-		"Isn’t there some other way I could help you?",
+		"Isn't there some other way I could help you?",
 		"If you are not going to fight with us, you could give your beskar armour to a real Mandalorian who is willing to fight.",
-		"You know that’s never going to happen.",
+		"You know that's never going to happen.",
 		"Then this means you will fight with us, right?",
-		"Argh… I guess so. You are relentless. What other choice do I have?",
+		"Argh... I guess so. You are relentless. What other choice do I have?",
 		"If you consider yourself to be a Mandalorian, none-other.",
 	};
 
 	private List<bool> Bo_Katan_0_3_bool = new List<bool>()
+	{
+		// Mando true, other false
+		true,
+		false,
+		true,
+		false,
+		true,
+		false,
+	};
+
+	private List<string> Bo_Katan_1_1 = new List<string>()
+	{
+		"I hope you didn't give me this thinking that I would drink it bounty hunter. It is unapologetically disgusting.",
+		"Oh, excuse me your majesty. Is this not sophisticated enough to be worthy of your royal stomach?",
+		"Very funny. Nobody would have guessed you were capable of having a sense of humour. But for your information, I am actually the last in the line of clan Kryze, a clan of rulers. I was once the Mand'alor, which is the title bestowed upon the sole leader of the Mandalorian people. Therefore, you can call me majesty if you wish.",
+		"I'm definitely not doing that... If you were so great, what happened?",
+		"Well, the great purge happened. And I lo... we lost everything. We fought with all our might, but nobody could have faced the full power of the Empire. That was not a battle, it was an execution for our people.",
+		"I've heard about that from The Tribe. They say it was the worst that had ever happened to Mandalore, a complete genocide.",
+		"Yes, it was... It really was...",
+
+	};
+
+	private List<bool> Bo_Katan_1_1_bool = new List<bool>()
+	{
+		// Mando true, other false
+		false,
+		true,
+		false,
+		true,
+		false,
+		true,
+		false,
+	};
+
+	private List<string> Bo_Katan_1_2 = new List<string>()
+	{
+		"Say Bo-Katan, if you already were the leader of Mandalore, why don't you unite all the mandalorians once again and take the planet? Now that the Empire has been defeated it should be possible.",
+		"And what do you exactly think I've been trying to do all this time boy? You do not know about our culture, it is not that easy. Besides, do you really think that the Empire has been defeated?",
+		"No... I guess not. If it had been defeated, I would have had half the trouble protecting Grogu.",
+		"Exactly. They are still lurking in the shadows, waiting for the right opportunity to strike. Moff Gideon was only one of many, and something much worse is still to come. An impending doom is looming in this galaxy, you should have realized it by now.",
+	};
+
+	private List<bool> Bo_Katan_1_2_bool = new List<bool>()
+	{
+		// Mando true, other false
+		true,
+		false,
+		true,
+		false,
+	};
+
+	private List<string> Bo_Katan_1_3 = new List<string>()
+	{
+		"Why did you say that it's not that easy to bring all the mandalorians together. Doesn't being the leader give you any kind of authority?",
+		"I am not the leader anymore. The title of Mand'alor is not given, it is earned, and in the same way as it is earned, it can be lost. When we were defeated by the empire in the great purge and Moff Gideon took the Darksaber from me I lost the title.",
+		"The Darksaber?",
+		"It is a powerful ancient weapon that belongs to the mandalorians, a black lightsaber. The one who wields it will have a claim to the title of Mand'alor. I must get it back, and this time the right way.",
+	};
+
+	private List<bool> Bo_Katan_1_3_bool = new List<bool>()
+	{
+		// Mando true, other false
+		true,
+		false,
+		true,
+		false,
+	};
+
+	private List<string> Bo_Katan_2_1 = new List<string>()
+	{
+		"Another one? I already told you I cannot drink this, just looking at it is unpleasant.",
+		"You are welcome. What happened the last time you acquired the Darksaber?",
+		"I was blinded by the chance of becoming the leader of Mandalore. I had longed for that moment for a long time, and since everyone seemed to agree, I accepted the Darksaber from Sabine Wren, a fellow Mandalorian and rightful owner of the blade. That was naive of me.",
+		"I see nothing wrong with that. If everyone agreed, you did the right thing.",
+		"They surely agreed at that time. However, when the great purge occurred and I lost Mandalore, they changed their mind. Given that I had not really earned the weapon, they thought I had been an illegitimate ruler and we had lost because of my weakness.",
+		"It was not your fault. The moment the Empire put its gaze on Mandalore, your fate was sealed.",
+		"I do not need your consolation words bounty hunter! But thanks...",
+	};
+
+	private List<bool> Bo_Katan_2_1_bool = new List<bool>()
+	{
+		// Mando true, other false
+		false,
+		true,
+		false,
+		true,
+		false,
+		true,
+		false,
+	};
+
+	private List<string> Bo_Katan_2_2 = new List<string>()
+	{
+		"How did you gain the people's approval to become their new leader? I'm guessing not thanks to your charming skills...",
+		"Like you are one to talk. Stop trying to develop a sense of humour, thanks. That is a long story.",
+		"I have time.",
+		"*Sigh*, Then, long story short: my sister had been the leader of Mandalore for a long time and after her death, I was next in line. I helped defeat a dark lord of the Sith who had usurped the position. I had already been appointed regent for a small period of time. I also helped reclaim Mandalore from the hands of a clan that had bowed to the empire and ruled Mandalore under their supervision. And there were other things...",
+		"You really didn't make that up right now did you? And here I thought I had lived an exciting life...",
+		"I already told you; you know nothing of Mandalore.",
+	};
+
+	private List<bool> Bo_Katan_2_2_bool = new List<bool>()
+	{
+		// Mando true, other false
+		true,
+		false,
+		true,
+		false,
+		true,
+		false,
+	};
+
+	private List<string> Bo_Katan_2_3 = new List<string>()
+	{
+		"Hold on a second, to have lived through so much... How old are you?",
+		"Well, that is rude. But coming from you, should I be surprised? I assume they do not teach manners in your cult.",
+		"*Tsch* The Tribe is not a cult. If not for them I would be dead, you know?! I owe them everything. They are good people... But seriously, when were you born?",
+		"You are hopeless. I will not tell you.",
+		"Ohh pleaseee.",
+		"Stop being annoying.",
+		"Ok, I'll guess then. You must be... in your mid-forties... No, early fifties?",
+		"You impertinent cheeky...",
+		"Aha, so I did get it right. It's incredible what cosmetic surgery can do these days...",
+		"If I ever meet you alone, you are dead.",
+	};
+
+	private List<bool> Bo_Katan_2_3_bool = new List<bool>()
+	{
+		// Mando true, other false
+		true,
+		false,
+		true,
+		false,
+		true,
+		false,
+		true,
+		false,
+		true,
+		false,
+	};
+
+	private List<string> Grogu_0_1 = new List<string>()
+	{
+		"Hey kid, how are you doing? We've been quite busy lately, haven't we? Almost no time to slow down and have a chat.",
+		"(Little Grogu looks at Mando perplexed, though he is 50 years old and wiser than what most would expect, he has yet to entangle the mysteries of the spoken language.)",
+		"Of course... For some reason I tend to forget you can't talk.",
+		"(An innocent and pure smile is outlined in the thin, green, almost non-existent lips of the child.)",
+		"For a second I almost imagined that you would start talking as if you had always known how, but chose not to do it.",
+		"(Unable to understand what his beloved caretaker is telling him, Grogu cannot but look puzzled and utter a short array of unintelligible though unfairly cute baby noises...)",
+		"Well, hit me up when you learn some words.",
+	};
+
+	private List<bool> Grogu_0_1_bool = new List<bool>()
+	{
+		// Mando true, other false
+		true,
+		false,
+		true,
+		false,
+		true,
+		false,
+		true,
+	};
+
+	private List<string> Grogu_0_2 = new List<string>()
+	{
+		"Anything new you want to tell me about?",
+		"(The adorable creature extends his arm while opening and closing his three short fingers, he definitely wants something, but his hand can only grasp thin air.)",
+		"Sorry kid, I don’'t have your ball on me right now. It's in the ship. And before you ask me, the answer is no; I'm not going back there to get it for you.",
+		"(The long and pointy ears of the child start lowering down, a small cry of sadness escapes his little mouse.)",
+		"I told you I'm not going back for a stupid little ball. Next time, remind me about it before we leave the ship. If you are so sad, you can go and get it yourself.",
+		"(The kid starts sitting up. It seems like, surprisingly he has understood what Din just said.)",
+		"Argh... Ok you win.Here you go... Yes, I know I lied to you. I just didn't want you dropping it somewhere, because then it is me who has to go looking around everywhere for the darn ball. So, don't drop it, or next time there will be no ball.",
+		"(Little Grogu, who appeared to be listening carefully to what Mando was saying, in reality has not understood a single thing. Therefore, he gives his big silver friend an adorable smile to whom no one in the galaxy could say no, and joyfully takes the ball in his hands.)",
+	};
+
+	private List<bool> Grogu_0_2_bool = new List<bool>()
+	{
+		// Mando true, other false
+		true,
+		false,
+		true,
+		false,
+		true,
+		false,
+		true,
+		false,
+	};
+
+	private List<string> Greef_0_1 = new List<string>()
+	{
+		"Ahh, if it isn't the great Mando himself. How is my best bounty hunter doing these days?",
+		"I no longer work for you Greef. I'm doing fine, thanks.",
+		"Isn't this nice? All of us, together again, here sharing old memories... I've been rather busy these past months, but now, I'm feeling much better.",
+		"What have you been up to? Don't tell me you've got meddled up in business with another nasty client.",
+		"On the contrary my friend. I've been trying to make Nevarro a better place. I find your lack of trust in me quite painful. Now that I'm the magistrate once again, and with Cara's help, we are going to turn that hole into something decent.",
+		"Ah yes, I remember you were trying to do something like that. And since you turned your canteen into a school, now you have to go to other planets to get boozed-up.",
+		"One can still enjoy a drink in Nevarro, but places like this one are often a den for ruffians. We've just made it safer for kids and stuff. Pay us a visit next time you fly close to the planet. You'll be surprised to see how it is changed.",
+	};
+
+	private List<bool> Greef_0_1_bool = new List<bool>()
+	{
+		// Mando true, other false
+		false,
+		true,
+		false,
+		true,
+		false,
+		true,
+		false,
+	};
+
+	private List<string> Greef_0_2 = new List<string>()
+	{
+		"I bet you are enjoying your new position as magistrate Greef. You've always liked to order people around.",
+		"You're right, I like this job, but I prefer to think I got back what was mine. You know I'd already been the magistrate for a long time before those nerf herders from the New Republic came to power and unfairly fired me.",
+		"Sure, sure... Because you wouldn't happen to be running some underground business of questionable ethicality, which included illegal trafficking, assassination contracts...",
+		"Hey, as far as I can remember, you and your Mandalorian friends greatly benefited from such contracts.",
+		"I didn't kill anyone who didn't deserve it. And I usually brought my targets alive.",
+		"Tell yourself that if it makes you sleep any better. We did what we had to do to survive, and if it hadn’t been me, someone else would have taken my place. It is just how it is. Under the rule of the Empire, this was the way. But well, as you can see, this has changed now.",
+	};
+
+	private List<bool> Greef_0_2_bool = new List<bool>()
+	{
+		// Mando true, other false
+		true,
+		false,
+		true,
+		false,
+		true,
+		false,
+	};
+
+	private List<string> Greef_0_3 = new List<string>()
+	{
+		"There's one thing that still doesn't convince me. What you are doing in Nevarro... do you really believe in it? Or are you just doing it to keep your new job?",
+		"You genuinely think that low of me... Look, I could have just cleaned the place up a bit and buried all the bad stuff, because it doesn't matter. Nobody is going to look twice to a planet like Nevarro. But I'm honestly trying. I'm really making an effort to change things. I want people to know that they can safely grow their kids there, and live comfortable lives.",
+		"Alright, I believe you. Now that Cara is helping you, I think you might actually be able to achieve what you're saying. It's not that I don't trust you, but I know you're only loyal to yourself.",
+		"My days of messing around with wrongdoers are over. It is painful to admit it, but one has already a certain age here. What I want now is peace and tranquillity.",
+		"It is quite amusing to imagine the infamous Greef Karga as an old gramps, in a park, seated on a bench while watching the children play.",
+		"Very funny. Be careful with what you say. I might not be in my golden years, but I still have a lot in me. I'm still an agent of the Guild and he who underestimates me will find himself in a bad spot. But well, you just watch Mando, next time you come to Nevarro you won't be able to recognize it.",
+	};
+
+	private List<bool> Greef_0_3_bool = new List<bool>()
 	{
 		// Mando true, other false
 		true,
@@ -156,7 +400,35 @@ public class List_Of_Dialogs : DiamondComponent
 			case 3:
 				return Bo_Katan_0_3;
 			case 4:
+				return Bo_Katan_1_1;
+			case 5:
+				return Bo_Katan_1_2;
+			case 6:
+				return Bo_Katan_1_3;
+			case 7:
+				return Bo_Katan_2_1;
+			case 8:
+				return Bo_Katan_2_2;
+			case 9:
+				return Bo_Katan_2_3;
+			case 10:
 				return Final_Cutscene;
+			case 11:
+				return Greef_0_1;
+			case 12:
+				return Greef_0_2;
+			case 13:
+				return Greef_0_3;
+			case 14:
+				return Ahsoka_0_1;
+			case 15:
+				return Ahsoka_0_2;
+			case 16:
+				return Ahsoka_0_3;
+			case 17:
+				return Grogu_0_1;
+			case 18:
+				return Grogu_0_1;
 		}
 		return Initial_Cutscene;
 
@@ -175,7 +447,35 @@ public class List_Of_Dialogs : DiamondComponent
 			case 3:
 				return Bo_Katan_0_3_bool;
 			case 4:
+				return Bo_Katan_1_1_bool;
+			case 5:
+				return Bo_Katan_1_2_bool;
+			case 6:
+				return Bo_Katan_1_3_bool;
+			case 7:
+				return Bo_Katan_2_1_bool;
+			case 8:
+				return Bo_Katan_2_2_bool;
+			case 9:
+				return Bo_Katan_2_3_bool;
+			case 10:
 				return Final_Cutscene_bool;
+			case 11:
+				return Greef_0_1_bool;
+			case 12:
+				return Greef_0_2_bool;
+			case 13:
+				return Greef_0_3_bool;
+			case 14:
+				return Ahsoka_0_1_bool;
+			case 15:
+				return Ahsoka_0_2_bool;
+			case 16:
+				return Ahsoka_0_3_bool;
+			case 17:
+				return Grogu_0_1_bool;
+			case 18:
+				return Grogu_0_1_bool;
 		}
 		return Initial_Cutscene_bool;
 	}
