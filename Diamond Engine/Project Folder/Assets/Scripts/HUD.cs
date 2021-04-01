@@ -33,6 +33,7 @@ public class HUD : DiamondComponent
     private float currComboTime = 0.0f;
     public int comboNumber = 0;
     public float force_bar_rate = 0.0f;
+    public float last_hp = 0;
 
     //stores the level as a key and the color as a value
     Dictionary<int, Vector3> comboLvlColors = new Dictionary<int, Vector3>
@@ -51,6 +52,7 @@ public class HUD : DiamondComponent
         if (start)
         {
             UpdateHP(PlayerHealth.currHealth, PlayerHealth.currMaxHealth);
+            last_hp = (float)PlayerHealth.currHealth;
             UpdateForce(force, max_force);
             force_bar_rate = -0.15f;
             start = false;
@@ -65,15 +67,17 @@ public class HUD : DiamondComponent
             if (hp < max_hp)
             {
                 hp += 5;
-                //UpdateHP(hp, max_hp);
+                UpdateHP(hp, max_hp);
+                last_hp = hp;
             }
         }
         if (Input.GetKey(DEKeyCode.D) == KeyState.KEY_DOWN)
         {
             if (hp > 0)
             {
+                last_hp = hp;
                 hp -= 5;
-                //UpdateHP(hp, max_hp);
+                UpdateHP(hp, max_hp);
             }
         }
         if (Input.GetKey(DEKeyCode.F) == KeyState.KEY_DOWN)
@@ -161,6 +165,11 @@ public class HUD : DiamondComponent
         if (combo_bar != null && comboNumber > 0)
         {
             UpdateCombo();
+        }
+        if (last_hp > hp)
+        {
+            hp_bar.GetComponent<Material>().SetFloatUniform("last_hp", last_hp/max_hp);
+            last_hp -= 0.025f;
         }
         force_bar.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
         force_bar.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate);
@@ -259,6 +268,7 @@ public class HUD : DiamondComponent
         float hp_float = new_hp;
         hp_float /= max_hp;
         hp_bar.GetComponent<Material>().SetFloatUniform("length_used", hp_float);
+        hp_bar.GetComponent<Material>().SetFloatUniform("last_hp", last_hp / max_hp);
     }
 
     public void UpdateForce(int new_force, int max_force)
