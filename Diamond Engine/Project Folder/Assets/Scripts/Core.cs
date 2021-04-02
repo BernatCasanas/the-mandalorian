@@ -229,7 +229,6 @@ public class Core : DiamondComponent
             inputsList.Add(INPUT.IN_SHOOTING_END);
             hasShot = false;
         }
-    }
 
         if (IsJoystickMoving() == true)
             inputsList.Add(INPUT.IN_MOVE);
@@ -441,7 +440,7 @@ public class Core : DiamondComponent
 
     private bool CanStopShooting()
     {
-         return shootingTimer > fireRate * 0.5 ? true : false;
+        return shootingTimer > fireRate * 0.5 ? true : false;
     }
 
     private void StartShoot()
@@ -561,7 +560,6 @@ public class Core : DiamondComponent
         {
             angle = -Math.Acos(Vector3.Dot(aX, aY) - 1);
         }
-    }
 
         //Convert angle from world view to orthogonal view
         angle += 0.785398f; //Rotate 45 degrees to the right
@@ -653,45 +651,6 @@ public class Core : DiamondComponent
             if (damage != 0)
                 gameObject.GetComponent<PlayerHealth>().TakeDamage((int)damage);
         }
-
-        //Convert angle from world view to orthogonal view
-        angle += 0.785398f; //Rotate 45 degrees to the right
-
-        gameObject.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, (float)-angle);
-    }
-
-    private void StartIdle()
-    {
-        Animator.Play(gameObject, "Idle");
-    }
-
-    #endregion
-
-    #region UTILITIES
-
-    private void UpdateControllerInputs()
-    {
-        //Check if user is moving joystick
-        //if (IsJoystickMoving() == true)
-        //{
-        verticalInput = Input.GetLeftAxisX();
-        horizontalInput = Input.GetLeftAxisY();
-
-        gamepadInput = new Vector3(horizontalInput, -verticalInput, 0f);
-        //}
-
-        //else
-        //gamepadInput = new Vector3(0f, 0f, 0f);
-
-        /*if (Input.GetGamepadButton(DEControllerButton.START) == KeyState.KEY_DOWN)
-        {
-            Audio.StopAudio(gameObject);
-            pause.Enable(true);
-            aux = pause.GetComponent<Pause>();
-            aux.DisplayBoons();
-            background.Enable(true);
-            Time.PauseGame();
-        }*/
     }
 
     /*
