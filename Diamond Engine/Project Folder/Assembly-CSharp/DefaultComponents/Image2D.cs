@@ -15,6 +15,9 @@ namespace DiamondEngine
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern void SwapTwoImages(GameObject other_image);
 
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern void ChangeImageForAnotherOne(GameObject other_image);
+
     }
 
 
