@@ -80,9 +80,12 @@ public class AimBot : DiamondComponent
         //Debug.Log("Searching for a new objective!");
         KeyValuePair<float, GameObject> weightedObj = new KeyValuePair<float, GameObject>(float.NegativeInfinity, null);
 
+        Debug.Log("Enemies searching num: " + spawnComponent.currentEnemies.Count.ToString());
         for (int i = 0; i < spawnComponent.currentEnemies.Count; ++i)
         {
             float targetWeight = GetTargetWeight(spawnComponent.currentEnemies[i]);
+
+
             if (targetWeight > weightedObj.Key)
             {
                 weightedObj = new KeyValuePair<float, GameObject>(targetWeight, spawnComponent.currentEnemies[i]);
@@ -93,9 +96,11 @@ public class AimBot : DiamondComponent
         {
             myCurrentObjective = weightedObj.Value;
             //Debug.Log("Objective found: " + myCurrentObjective.name);
+            //Debug.Log("New Objecte! Position: " + weightedObj.Value.Name.ToString());
         }
         else
         {
+            Debug.Log("No Objective found!!");
             myCurrentObjective = null;
             //Debug.Log("No suitable objective found!");
         }
@@ -146,13 +151,13 @@ public class AimBot : DiamondComponent
 
         //Debug.Log("Rotating to the objective!");
 
-        Vector3 targetDire = (myCurrentObjective.transform.globalPosition-gameObject.transform.globalPosition);
+        Vector3 targetDire = (myCurrentObjective.transform.globalPosition - gameObject.transform.globalPosition);
         targetDire.y = 0.0f;
         targetDire = targetDire.normalized;
         float angle = (float)Math.Atan2(targetDire.x, targetDire.z);
         Quaternion dir = Quaternion.RotateAroundAxis(Vector3.up, angle);
         gameObject.transform.localRotation = dir;
         //Debug.Log("ROTATE ANGLE: " + angle.ToString());
-        
+
     }
 }

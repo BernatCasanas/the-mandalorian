@@ -274,6 +274,7 @@ public class StormTrooper : Enemy
 				timePassed = 0.0f;
 				Animator.Play(gameObject, "ST_Die", 1.0f);
 				Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
+				RemoveFromSpawner();
 			}
 		}
 

@@ -111,7 +111,15 @@ public class Enemy : DiamondComponent
     {
         if (dieCallBack != null)
         {
-            dieCallBack.currentEnemies.Remove(gameObject);
-        }
+			foreach (GameObject item in dieCallBack.currentEnemies)
+			{
+				if (item.GetUid() == gameObject.GetUid())
+				{
+					dieCallBack.currentEnemies.Remove(item);
+					//Debug.Log("Enemy Killed!");
+					break;
+				}
+			}
+		}
     }
 }
