@@ -387,8 +387,6 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 	};
 
-	public List<String> GetListOfDialog(uint index)
-
     private List<string> Ahsoka_0_1 = new List<string>()
     {
        "Ahsoka Tano… You are here too? That’s unexpected. This canteen is starting to get crowded.",
@@ -760,6 +758,123 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
 		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    //////////////////////////////////////////////////////////////////////////////////////// CARA DUNE ////////////////////////////////////////////////////////////////////////////////////////
+
+    private List<string> Cara_0_1 = new List<string>()
+    {
+        "How are you doing Cara?",
+        "You know... here, chatting about old times. I feel like an old granny.",
+        "What are you talking about? It hasn't even been that long since we met that day in Sorgan.",
+        "I guess not, but seems like it was ages ago, doesn't it? We have been through enough trouble; a damn fine novel could be written out of us.",
+        "I guess we've had our own fair share of action. You surprise me, I didn't take you for the reader type.",
+        "Well, while hiding in Sorgan I had a lot of time to kill. And one needs to entertain herself in-between beating up storm troopers and curious mandalorians, you know.",
+        "Sure, dreaming is free.",
+    };
+
+    private List<bool> Cara_0_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+    };
+
+    private List<string> Cara_0_2 = new List<string>()
+    {
+        "Do you really think you can beat me?",
+        "Why not? I already did once. The first time we met, we didn't have what you would call a very friendly introduction.",
+        "Maybe your memory is a little bit rusty. As far as I can remember, that ended in a draw. And I was not even fighting seriously...",
+        "That only ended in a draw because of the child. I wouldn't want to beat his daddy in front of him. Also, you were wearing a full suit of armour, that's cheating.",
+        "You can make all the excuses you want. We can solve this right now, no blasters, what do you say?",
+        "Are you going to take off your armour and fight fair and square?",
+        "I can't remove my helmet.",
+        "That's what I thought.",
+    };
+
+    private List<bool> Cara_0_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Cara_0_3 = new List<string>()
+    {
+        "Seriously, is it that bad to remove your helmet? I promise not to tell anyone.",
+        "That's not how it works. The moment someone sees my face, I will stop being a member of the Tribe.",
+        "But they don't need to know, it's not like they are watching every step you make right?",
+        "I don't think so, but to be part of the Tribe is a choice, and an honour. I wouldn't have joined if I wasn't entirely sure that this is what I wanted. To always wear a helmet is a small price to pay.",
+        "Do you realize this whole Tribe stuff sounds pretty obscure? It's not good to blindly follow rules without ever questioning them. That's why I left the Alliance.",
+        "You are starting to sound like Bo-Katan… The Tribe is not like the New Republic, we look for ourselves and swear allegiance to no one. I only pick the contracts I like so I don't have to do anything I don't want to do.",
+        "I too used to think like you.",
+    };
+
+    private List<bool> Cara_0_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Cara_1_1 = new List<string>()
+    {
+        "Wow, Bantha milk? Thanks! It's been a long time since I drank it. I used to like it a lot when I was younger. Then, in the military, we only got field rations and water. That basically killed my taste buds.",
+        "Glad you like it. I’ll try and bring you more if I can. Was it tough there?",
+        "At the beginning it was, when I was fighting in the Alliance to Restore the Republic. We had to fight against the full force of the empire's troops. After winning the war it became a completely different thing.",
+        "I suppose it became much easier. Hunting the remnants of the empire doesn’t sound as dangerous.",
+        "Well, they didn't use to just surrender without putting up a fight, but yes, your odds of coming out alive were much higher.",
+        "I don't understand why you decided to resign at that point, the hard work had already been done. Were the new missions not exciting enough for you?",
+        "They were exciting alright. But the New Republic Defence Force had more purposes than just hunting leftovers. We also had to escort important delegates and pacify riots. I had not signed for that. I felt like I wasn't fighting for a cause I believed in anymore.",
+    };
+
+    private List<bool> Cara_1_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+		false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Cara_1_2 = new List<string>()
+    {
+        "Now you are working for the New Republic again. Have you changed your mind on the nature of its cause?",
+        "Hmm… It's not really the same thing. I'm just a Marshall now, it's true that I'm employed by the New Republic, but I don't have to do anything for them. I just make sure there's peace and order in Nevarro and report in case there's any trouble. I like it.",
+        "Well, it's nice you've found something you like to do. Is Nevarro starting to feel like home?",
+        "My home does not exist anymore, and nothing will ever be able to replace it… But Nevarro is… not too bad, I could get used to it. Life is fine and people are nice.",
+        "I’ve lived most of my life in Nevarro, does this mean you think I’m nice?",
+        "Hah… don’t push your luck Mandalorian.",
+    };
+
+    private List<bool> Cara_1_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
         false,
         true,
         false,
