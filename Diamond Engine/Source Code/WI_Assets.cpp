@@ -41,6 +41,9 @@ void W_Assets::Draw()
 		ImGuiWindowFlags window_flags = ImGuiWindowFlags_AlwaysVerticalScrollbar;
 		ImGui::BeginChild("Tree", ImVec2(ImGui::GetWindowContentRegionWidth() * tree_window_width, ImGui::GetContentRegionAvail().y), false, window_flags);
 
+		if (ImGui::IsWindowFocused())
+			selected = true;
+
 		DrawFileTree(*displayFolder);
 		DrawCreationWindow();
 		DrawFileTree(EngineExternal->moduleResources->meshesLibraryRoot);
@@ -50,25 +53,44 @@ void W_Assets::Draw()
 
 		ImGui::EndChild();
 
-		if (selectedFile != nullptr && ImGui::IsWindowFocused() && EngineExternal->moduleInput->GetKey(SDL_SCANCODE_DELETE) == KEY_DOWN) 
-		{ //This prevents mesh removal because mesh files have no dirName
-			if (EngineExternal->moduleResources->GetTypeFromLibraryExtension(selectedFile->libraryPath.c_str()) != Resource::Type::UNKNOWN && strcmp(selectedFile->dirName.c_str(), "Meshes") != 0) 
-			{
-				EngineExternal->moduleEditor->SetSelectedGO(nullptr);
-
-				selectedFile->DeletePermanent();
-				selectedFile = nullptr;
-
-				EngineExternal->moduleResources->PopulateFileArray();
-			}
-		}
-
 		ImGui::SameLine();
 		ImGui::BeginChild("Folder", ImVec2(0, ImGui::GetContentRegionAvail().y), true);
+
+		if (ImGui::IsWindowFocused())
+			selected = true;
+
 		DrawCurrentFolder();
 
 		ImGui::EndChild();
 
+		if (ImGui::BeginDragDropTarget())
+		{
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("_GAMEOBJECT"))
+			{
+				int uid = *(int*)payload->Data;
+
+				GameObject* droppedGO = EngineExternal->moduleScene->GetGOFromUID(EngineExternal->moduleScene->root, uid);
+
+				std::string assets_path = bigDisplayFolder->importPath.c_str();
+				assets_path += "/" + std::string(droppedGO->name) + ".prefab";
+				droppedGO->prefabID = PrefabImporter::SavePrefab(assets_path.c_str(), droppedGO);
+			}
+			ImGui::EndDragDropTarget();
+		}
+
+	}
+
+	if (selectedFile != nullptr && selected && EngineExternal->moduleInput->GetKey(SDL_SCANCODE_DELETE) == KEY_DOWN)
+	{ //This prevents mesh removal because mesh files have no dirName
+		if (EngineExternal->moduleResources->GetTypeFromLibraryExtension(selectedFile->libraryPath.c_str()) != Resource::Type::UNKNOWN && strcmp(selectedFile->dirName.c_str(), "Meshes") != 0)
+		{
+			EngineExternal->moduleEditor->SetSelectedGO(nullptr);
+
+			selectedFile->DeletePermanent();
+			selectedFile = nullptr;
+
+			EngineExternal->moduleResources->PopulateFileArray();
+		}
 	}
 
 	ImGui::End();
@@ -229,14 +251,17 @@ void W_Assets::DrawCurrentFolder()
 
 	for (std::vector<AssetDir>::const_iterator it = bigDisplayFolder->childDirs.begin(); it != bigDisplayFolder->childDirs.end(); ++it)
 	{
-		bool selected = selectedFile == it._Ptr;
-		if(selected)
+		bool isSelected = selectedFile == it._Ptr;
+		if(isSelected)
 			ImGui::PushStyleColor(ImGuiCol_ChildBg, IM_COL32(60, 110, 170, 255));
 
 		if (ImGui::BeginChild(it->dirName.c_str(), ImVec2(70, cellSize), false, ImGuiWindowFlags_NoScrollbar))
 		{
+			if (ImGui::IsWindowFocused())
+				selected = true;
+
 			ImVec4 backgroundColor = ImVec4(0,0,0,1);
-			if (selected)
+			if (isSelected)
 				backgroundColor = ImVec4(0, 0, 0, 0);
 
 
@@ -275,7 +300,6 @@ void W_Assets::DrawCurrentFolder()
 							W_TextEditor* txtEditor = dynamic_cast<W_TextEditor*>(EngineExternal->moduleEditor->GetEditorWindow(EditorWindow::TEXTEDITOR));
 							txtEditor->SetTextFromFile(it->importPath.c_str());
 							ImGui::SetWindowFocus("Text Editor");
-							selectedFile = nullptr;
 						}
 						else if (type == Resource::Type::MATERIAL)
 						{
@@ -307,7 +331,7 @@ void W_Assets::DrawCurrentFolder()
 		}
 		ImGui::EndChild();
 
-		if(selected)
+		if(isSelected)
 			ImGui::PopStyleColor();
 
 		counter++;
