@@ -96,28 +96,28 @@ public class HubTextController : DiamondComponent
         {
 			case Interaction.BO_KATAN:
 				if (bo_katan_portrait != null)
-					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().SwapTwoImages(bo_katan_portrait); //ARNAU: WILL BE NEEDED TO BE CHANGED
+					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().ChangeImageForAnotherOne(bo_katan_portrait);
 				textController.GetComponent<TextController>().dialog_index = bo_katan_interaction_num;
 				if (bo_katan_interaction_num % 3 != 0)
 					bo_katan_interaction_num++;
 				break;
 			case Interaction.GREEF:
 				if (greef_portrait != null)
-					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().SwapTwoImages(greef_portrait); //ARNAU: WILL BE NEEDED TO BE CHANGED
+					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().ChangeImageForAnotherOne(greef_portrait);
 				textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages) + greef_interaction_num;
 				if (greef_interaction_num % 3 != 0)
 					greef_interaction_num++;
 				break;
 			case Interaction.ASHOKA:
 				if (ashoka_portrait != null)
-					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().SwapTwoImages(ashoka_portrait); //ARNAU: WILL BE NEEDED TO BE CHANGED
+					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().ChangeImageForAnotherOne(ashoka_portrait);
 				textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages * 2) + ashoka_interaction_num;
 				if (ashoka_interaction_num % 3 != 0)
 					ashoka_interaction_num++;
 				break;
 			case Interaction.GROGU:
 				if (grogu_portrait != null)
-					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().SwapTwoImages(grogu_portrait); //ARNAU: WILL BE NEEDED TO BE CHANGED
+					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().ChangeImageForAnotherOne(grogu_portrait);
 				textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages * 3) + grogu_interaction_num;
 				if (grogu_interaction_num % 2 != 0)
 					grogu_interaction_num++;
