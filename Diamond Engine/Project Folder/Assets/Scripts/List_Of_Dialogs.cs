@@ -850,7 +850,7 @@ public class List_Of_Dialogs : DiamondComponent
         "But they don't need to know, it's not like they are watching every step you make right?",
         "I don't think so, but to be part of the Tribe is a choice, and an honour. I wouldn't have joined if I wasn't entirely sure that this is what I wanted. To always wear a helmet is a small price to pay.",
         "Do you realize this whole Tribe stuff sounds pretty obscure? It's not good to blindly follow rules without ever questioning them. That's why I left the Alliance.",
-        "You are starting to sound like Bo-Katan… The Tribe is not like the New Republic, we look for ourselves and swear allegiance to no one. I only pick the contracts I like so I don't have to do anything I don't want to do.",
+        "You are starting to sound like Bo-Katan... The Tribe is not like the New Republic, we look for ourselves and swear allegiance to no one. I only pick the contracts I like so I don't have to do anything I don't want to do.",
         "I too used to think like you.",
     };
 
@@ -869,9 +869,9 @@ public class List_Of_Dialogs : DiamondComponent
     private List<string> Cara_1_1 = new List<string>()
     {
         "Wow, Bantha milk? Thanks! It's been a long time since I drank it. I used to like it a lot when I was younger. Then, in the military, we only got field rations and water. That basically killed my taste buds.",
-        "Glad you like it. I’ll try and bring you more if I can. Was it tough there?",
+        "Glad you like it. I'll try and bring you more if I can. Was it tough there?",
         "At the beginning it was, when I was fighting in the Alliance to Restore the Republic. We had to fight against the full force of the empire's troops. After winning the war it became a completely different thing.",
-        "I suppose it became much easier. Hunting the remnants of the empire doesn’t sound as dangerous.",
+        "I suppose it became much easier. Hunting the remnants of the empire doesn't sound as dangerous.",
         "Well, they didn't use to just surrender without putting up a fight, but yes, your odds of coming out alive were much higher.",
         "I don't understand why you decided to resign at that point, the hard work had already been done. Were the new missions not exciting enough for you?",
         "They were exciting alright. But the New Republic Defence Force had more purposes than just hunting leftovers. We also had to escort important delegates and pacify riots. I had not signed for that. I felt like I wasn't fighting for a cause I believed in anymore.",
@@ -892,11 +892,11 @@ public class List_Of_Dialogs : DiamondComponent
     private List<string> Cara_1_2 = new List<string>()
     {
         "Now you are working for the New Republic again. Have you changed your mind on the nature of its cause?",
-        "Hmm… It's not really the same thing. I'm just a Marshall now, it's true that I'm employed by the New Republic, but I don't have to do anything for them. I just make sure there's peace and order in Nevarro and report in case there's any trouble. I like it.",
+        "Hmm... It's not really the same thing. I'm just a Marshall now, it's true that I'm employed by the New Republic, but I don't have to do anything for them. I just make sure there's peace and order in Nevarro and report in case there's any trouble. I like it.",
         "Well, it's nice you've found something you like to do. Is Nevarro starting to feel like home?",
-        "My home does not exist anymore, and nothing will ever be able to replace it… But Nevarro is… not too bad, I could get used to it. Life is fine and people are nice.",
-        "I’ve lived most of my life in Nevarro, does this mean you think I’m nice?",
-        "Hah… don’t push your luck Mandalorian.",
+        "My home does not exist anymore, and nothing will ever be able to replace it... But Nevarro is... not too bad, I could get used to it. Life is fine and people are nice.",
+        "I've lived most of my life in Nevarro, does this mean you think I'm nice?",
+        "Hah... don't push your luck Mandalorian.",
     };
 
     private List<bool> Cara_1_2_bool = new List<bool>()
@@ -908,6 +908,308 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+    };
+    private List<string> Cara_1_3 = new List<string>()
+    {
+        "Was your homeworld much different from Nevarro?",
+        "Alderaan was a beautiful planet. It had amazing landscapes of every color you could imagine. There were advanced cities with the most elaborate architecture that blended harmoniously with nature. Its inhabitants were peaceful people who tried to live their lives without conflict and despised war.",
+        "But they were one of the supporters of the republic, weren't they? Therefore, they were in war against the Confederacy.",
+        "Alderaan had been a member of the Republic since ancient times. They didn't want a war against anybody. During those times of turmoil they tried to make peace and help innocent people as much as possible. And they were targeted for that.",
+        "So that's why afterwards, the empire destroyed the planet?",
+        "No, they destroyed it just because they could. It's true that Senator Organa, who was from Alderaan, was one of the leaders of the resistance, but they didn't need to destroy the whole planet. I was offworld when that happened and I lost everyone, that's why I joined the rebellion.",
+        "I'm sorry for your loss. Seems that people losing their planets is a recurring theme nowadays...",
+    };
+
+    private List<bool> Cara_1_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+    };
+
+    private List<string> Cara_2_1 = new List<string>()
+    {
+        "Another one? Are you trying to get something from me?",
+        "Ugh, it hurts that you would think that of me. I'm just giving a present to a friend. Something wrong with that?",
+        "Of course not. Friend? It's just, uh... weird, coming from you. You are not exactly the friends-are-the-most-important-thing-in-the-world type of guy.",
+        "What kind of guy am I then?",
+        "More like the lone wolf type, no offense.",
+        "Non taken. Well, the thing is... I don't trust just everyone; it would be foolish. In our line of work, people have a tendency to backstab and double-cross each other for the smallest amount of credits. But I can see the value in having associates and partnerships.",
+        "Associates and friends are not the same thing.",
+    };
+
+    private List<bool> Cara_2_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+		false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Cara_2_2 = new List<string>()
+    {
+        "Say, have you been up to something interesting later?",
+        "Nothing worth mentioning. You know... saving a village from Klatooinian raiders, making a suicidal last stand against an entire squadron of storm troopers, being chased by a Moff...",
+        "I... didn't mean that. But well, at least you were in good company.",
+        "I wouldn't have been in those situations if I hadn't been in this 'good company'.",
+        "Do you regret getting involved with my things?",
+        "Nah, I actually had a good time. It always feels good to beat up some Imps. Especially if they are ex-empire. Although it tends to be even better if there are some credits waiting for you once the job has been done.",
+        "You will have to settle for my gratitude and some Bantha milk. That isn't so bad, right?",
+        "...",
+    };
+
+    private List<bool> Cara_2_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Cara_2_3 = new List<string>()
+    {
+        "Look Cara, I promised Bo-Katan I would help her reclaim Mandalore. I'm not sure if I should do it but if I did, would you help us?",
+        "You want to drag me into one of your dangerous missions again?",
+        "It's not my mission, it's Bo-Katan's, we would be there just to provide support. But yes, chances are it's going to be dangerous. We don't know what the empire left there.",
+        "I don't know much about this Bo-Katan. She doesn't strike me as a very trustworthy character. I have the feeling she is hiding something.",
+        "Give her a chance, you can't know that if you haven't talked to her. Think about it. If we help her, she will probably reward us, you will get your cherished credits for once.",
+        "I'll consider it. But if I help, it will not be for her. I will do it for all the innocents who got slaughtered there. I have a soft spot for people whose planet got decimated by the empire.",
+        "I know. Thank you",
+    };
+
+    private List<bool> Cara_2_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+    };
+    
+    private List<string> Cara_3_1 = new List<string>()
+    {
+        "Here you go. Now don't complain you don't get anything from me.",
+        "Alright, you win. I appreciate your gifts. Still, credits would be better...",
+        "You can't drink credits. And blue milk isn't so easy to get, you know.",
+        "You should give it to Grogu. He needs it to grow and become a strong jedi. He's so tiny...",
+        "I already do, the kid loves blue milk, but if I give him too much, he is going to get stuffed. He doesn't know when to stop. Do you really think he should become a jedi? He's supposed to be over fifty years old, still he's completely helpless.",
+        "I'm sure he'll do fine. I remember stories from my time as a shock trooper. They were convinced we would win the war because a jedi knight was fighting alongside us. I never got to see this Jedi myself, but apparently, he was the one who defeated Darth Vader and the Emperor at the end of the war. If Grogu turns out to be half as good, there's nothing to be afraid of.",
+    };
+
+    private List<bool> Cara_3_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Cara_3_2 = new List<string>()
+    {
+        "Do you remember who this jedi was? He might be the answer I've been looking for. If he is still alive, maybe he could train the kid.",
+        "I haven't heard anything from him since I left the army. After the battle of Endor, he was supposedly still fighting against the remnants of the empire here and there. I never found out if he was real or just a legend to keep our morale in high spirits. But if he really existed, he could very well be alive.",
+        "That's great! When I met Ahsoka, I thought my mission was over, but she wouldn't take the kid, so I found myself at the starting point once again. Right now, I'll settle for a legend, it is better than having nothing.",
+        "Don't get too excited. I never believed it, but... even if he really existed... He could be dead by now.",
+        "I don't lose anything for trying. Do you remember what he was called?",
+        "Sure, the name of someone like that isn't easily forgotten. His name was... Skywalker.",
+    };
+
+    private List<bool> Cara_3_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Cara_3_3 = new List<string>()
+    {
+        "Tell me Cara, do you have any idea of how I can find this Skywalker?",
+        "Hmm... Maybe, but it will probably turn out to be a dead end.",
+        "Nevermind about that, please tell me.",
+        "If the stories they told about the jedi were true, he must have been in contact with the high officers and commanders of the Rebel Alliance, most of whom became leaders of the New Republic afterwards. Since in my new job I work for the republic, I can try to find someone up in the chain of command who might have met him.",
+        "That would be great, but slow. And I don't think anyone who knows something about him is willing to tell it to a simple Marshall from who knows what planet...",
+        "Well thanks, that didn't hurt at all... See, I already told you it was probably not a good idea.",
+        "No, I mean... Your idea was good, just a little too, uh... bureaucratic. Why don't you give me a name and I will pay him or her a formal visit myself.",
+        "Why do I have a bad feeling about this? ... Alright, but don't mention me. I just got this job, and I would like to keep it for now.",
+        "Don't worry, you can trust me. First comes Mandalore though, then we'll have enough time to figure all the bits and pieces",
+    };
+
+    private List<bool> Cara_3_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+    };
+
+    private List<string> Cara_4_1 = new List<string>()
+    {
+        "I think I could get used to this, you know. Sitting here, chatting and drinking, you bringing me gift... After all we've been through, we deserve some peace and quiet.",
+        "Yeah, I agree. However, in my book, things don't tend to stay peaceful and quiet for a long time.",
+        "Oh please, don't jinx it. I'm sure you'll have plenty of shooting and killing to do in no time. Babysitting a force-sensitive-last-of-its-kind-cute-little creature... trouble is sure to come knocking at your door. No need to search for it.",
+        "Poor kid, I wish it were different... He is not going to have it easy in his life.",
+        "He seems to be having fun for the time being. And he knows he can count on you. Sure he's going to have to beat up a lot of imps in his life, but he will get used to it. I did, and so did you. He'll just need to up the game a little bit.",
+        "I guess you're right. (To Grogu) Someday you're going to be so strong, we'll look like baby porgs next to you. Until that day comes, I'll be here...",
+    };
+
+    private List<bool> Cara_4_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+    };
+
+    private List<string> Cara_4_2 = new List<string>()
+    {
+        "Were you like this in your civilian life in Alderaan?",
+        "What do you mean 'like this'?",
+        "You know... uh...",
+        "Built and strong?",
+        "No, yes, strong... One of your punches could K.O. a wookie. It's not something one would expect from an Alderaanian girl.",
+        "You were trained by mercenaries; I was trained by soldiers in a period of war. Shock troopers were always the first to engage the enemy in battle. It was not enough to be able to know how to shoot. Being so close to the enemy lines, more often than not the fights got physical, and if you want to knock out a stormtrooper in his armour, you've got to hit hard.",
+    };
+
+    private List<bool> Cara_4_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Cara_4_3 = new List<string>()
+    {
+        "I was also trained in hand-to-hand combat. The members of the Tribe are not only mercenaries, most of them were also warriors of Mandalore back in the day.",
+        "But now they're just mercenaries. Besides, your suits don't seem to be very practical for this kind of stuff. In the military, we had a training program where we entered a cage and fought one another without any protections or equipment. I never lost a single fight.",
+        "The armour is better than it seems, it's pretty flexible. But what was the point of that? Who would go into a fight without equipment?",
+        "Forget it... Ah, I just remembered we never finished our arm-wrestling match. That would settle things, right? Surely the great and respected Mandalorian wouldn't lose to a 'poor alderaanian girl'. This time though, tell the child he's not allowed to help you.",
+        "You are no 'poor alderaanian girl'. And I didn't ask Grogu to help me last time, he did it by himself. I... I don't have time for that right now, maybe another day.",
+        "Sure, maybe another day. I think somebody's a sore loser...",
+    };
+
+    private List<bool> Cara_4_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Cara_5_1 = new List<string>()
+    {
+        "Thanks Mando, I appreciate your kindness, but I must ask you not to give me more of this blue milk.",
+        "Why? I thought you liked it. You said it made you remember when you were little.",
+        "Yeah, that's the problem, I like it too much. Since you brought me some the first time, I've been wanting to drink more. So, I recklessly spent all of my credits on a shipment of blue milk.",
+        "You did what?? This stuff is really expensive. How much did it cost you?",
+        "Too much... ohh, don't make me think about it. Please accept this as a sign of gratitude and never mention blue milk again when speaking to me.",
+        "Geez, I'm sorry. And thanks. I didn't know it would get you so addicted. If I'd known...",
+        "It's ok, not your fault. Now please, stop talking about the drink.",
+    };
+
+    private List<bool> Cara_5_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Cara_5_2 = new List<string>()
+    {
+        "This is outrageous!",
+        "Whoa, what happened? You seem agitated.",
+        "Agitated? Agitated is nothing, I'm furious. They've fired me, you know. They really did it. Those vuvrian toydarian wretched...",
+        "Fired? You? When? How? Why?",
+        "It's not right, they can't do that. They can't fire me if we don't let them. You'll help me, right? We'll show them what we did to corrupt empire officers back in the rebellion army.",
+        "Please, calm down and speak slower. You're not making any sense. I can't help you like this.",
+        "Argh... fine. Ok, I'm alright now. The thing is, I'm not the Marshall anymore. They've taken my badge. But I'm not going to stand still and do nothing while they sit on their comfortable golden thrones up in their floating privileged mansions toying with us like marionettes. I'm starting a new rebellion.",
+    };
+
+    private List<bool> Cara_5_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Cara_5_3 = new List<string>()
+    {
+        "You are going to rebel against the former rebellion? This makes no sense. You fought for their cause.",
+        "I fought for my home world. And they're no longer the Rebel Alliance, now they're just a bunch of corrupt politicians who are trying to take out our rights.",
+        "I don't get it. What did you do to get fired? Did you tell them all this?",
+        "No, not this. My shipment of blue milk was confiscated in a control point of the republic. I contacted one of my superiors and reclaimed my shipment, but she declined my petition. Then I got into an argument with her and she had me fired.",
+        "Oh no, don't tell me you bought the milk from smugglers...",
+        "You're missing the point here. I spent all of my money in that shipment, I am... was the Marshall, they should have turned it over to me.",
+        "And what did you say to that superior?",
+        "I just compared what they were doing with the way the empire treated underdeveloped planets that refused to submit to their authority. They put blockades so that they couldn't get any food or medicine from the outside. They were doing the same thing to me! It's very unfair, right?",
+        "Well, uh... maybe?",
+        "After all I've done for you, you're not even on my side here? Fine, I'll find others who will join my cause, but don't expect any more help from me, you are alone in that Mandalore business of yours, and you'll have to find that jedi by yourself. Just wait and see... I'll show them a new rebellion.",
+        "No, but I just... Well, I hope it goes well for you. (To Grogu) Honestly, it's not that difficult to see why they fired her.",
+    };
+
+    private List<bool> Cara_5_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
     };
 
     public List<String> GetListOfDialog(uint index)
@@ -949,10 +1251,46 @@ public class List_Of_Dialogs : DiamondComponent
 			case 16:
 				return Ahsoka_0_3;
 			case 17:
-				return Grogu_0_1;
+				return Cara_0_1;
 			case 18:
-				return Grogu_0_1;
-		}
+				return Cara_0_2;
+            case 19:
+				return Cara_0_3;
+            case 20:
+                return Cara_1_1;
+            case 21:
+                return Cara_1_2;
+            case 22:
+                return Cara_1_3;
+            case 23:
+                return Cara_2_1;
+            case 24:
+                return Cara_2_2;
+            case 25:
+                return Cara_2_3;
+            case 26:
+                return Cara_3_1;
+            case 27:
+                return Cara_3_2;
+            case 28:
+                return Cara_3_3;
+            case 29:
+                return Cara_4_1;
+            case 30:
+                return Cara_4_2;
+            case 31:
+                return Cara_4_3;
+            case 32:
+                return Cara_5_1;
+            case 33:
+                return Cara_5_2;
+            case 34:
+                return Cara_5_3;
+            case 35:
+                return Grogu_0_1;
+            case 36:
+                return Grogu_0_2;
+        }
 		return Initial_Cutscene;
 
 	}
@@ -995,11 +1333,47 @@ public class List_Of_Dialogs : DiamondComponent
 				return Ahsoka_0_2_bool;
 			case 16:
 				return Ahsoka_0_3_bool;
-			case 17:
-				return Grogu_0_1_bool;
-			case 18:
-				return Grogu_0_1_bool;
-		}
+            case 17:
+                return Cara_0_1_bool;
+            case 18:
+                return Cara_0_2_bool;
+            case 19:
+                return Cara_0_3_bool;
+            case 20:
+                return Cara_1_1_bool;
+            case 21:
+                return Cara_1_2_bool;
+            case 22:
+                return Cara_1_3_bool;
+            case 23:
+                return Cara_2_1_bool;
+            case 24:
+                return Cara_2_2_bool;
+            case 25:
+                return Cara_2_3_bool;
+            case 26:
+                return Cara_3_1_bool;
+            case 27:
+                return Cara_3_2_bool;
+            case 28:
+                return Cara_3_3_bool;
+            case 29:
+                return Cara_4_1_bool;
+            case 30:
+                return Cara_4_2_bool;
+            case 31:
+                return Cara_4_3_bool;
+            case 32:
+                return Cara_5_1_bool;
+            case 33:
+                return Cara_5_2_bool;
+            case 34:
+                return Cara_5_3_bool;
+            case 35:
+                return Grogu_0_1_bool;
+            case 36:
+                return Grogu_0_2_bool;
+        }
 		return Initial_Cutscene_bool;
 	}
 
