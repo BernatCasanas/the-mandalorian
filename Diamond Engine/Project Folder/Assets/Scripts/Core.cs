@@ -428,7 +428,7 @@ public class Core : DiamondComponent
 
     private void UpdateShooting()
     {
-        if (IsJoystickMoving() == true)
+        if (IsJoystickMoving() == true && myAimbot.HasObjective() == false)
             RotatePlayer();
     }
 
