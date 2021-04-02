@@ -207,7 +207,12 @@ public class HUD : DiamondComponent
 
     bool UpdateCombo()
     {
-        currComboTime -= Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier*10.0f;
+        float toSubstract = currComboTime - Mathf.Lerp(currComboTime, -0.0f, Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier);
+
+        toSubstract = Math.Max(toSubstract, Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier*1.5f);
+        toSubstract = Math.Min(toSubstract, Time.deltaTime * (1/comboDecrementMultiplier) * fullComboTime * 0.25f);
+        currComboTime -= toSubstract;
+
         if (currComboTime <= 0.0f)
         {
             currComboTime = 0.0f;
