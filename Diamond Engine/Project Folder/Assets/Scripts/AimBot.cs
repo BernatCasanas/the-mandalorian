@@ -10,7 +10,6 @@ public class AimBot : DiamondComponent
     public float distanceWeight = 0.5f;
     public GameObject spawnGameObject = null;
     float dotMin = 0;
-    Core player = null;
     Spawn spawnComponent = null;
     bool start = true;
 
@@ -26,8 +25,6 @@ public class AimBot : DiamondComponent
             if (spawnGameObject != null)
                 spawnComponent = spawnGameObject.GetComponent<Spawn>();
 
-            player = gameObject.GetComponent<Core>();
-
             ChangeConeAngle(startAimConeAngle);
             start = false;
         }
@@ -37,15 +34,18 @@ public class AimBot : DiamondComponent
 
         if (spawnComponent != null)
         {
-            if (isShooting && myCurrentObjective == null)
+            if (isShooting)
             {
-                SearchForNewObjective();
-            }
-            else if (lastFrameEnemyCount != spawnComponent.currentEnemies.Count && isShooting)//change in enemies! if targeting an enemy make sure it hasn't died
-            {
-                if (myCurrentObjective != null && !spawnComponent.currentEnemies.Contains(myCurrentObjective))//if the target is not in the list anymore search for a new objective
+                if (myCurrentObjective == null)
                 {
                     SearchForNewObjective();
+                }
+                else if (lastFrameEnemyCount != spawnComponent.currentEnemies.Count)//change in enemies! if targeting an enemy make sure it hasn't died
+                {
+                    if (myCurrentObjective != null && !spawnComponent.currentEnemies.Contains(myCurrentObjective))//if the target is not in the list anymore search for a new objective
+                    {
+                        SearchForNewObjective();
+                    }
                 }
             }
 
