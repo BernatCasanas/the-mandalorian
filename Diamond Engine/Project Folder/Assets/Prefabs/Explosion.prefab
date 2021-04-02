@@ -7,9 +7,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
+                -6.740105152130127,
                 0,
-                0,
-                0
+                19.903480529785156
             ],
             "Rotation": [
                 0,
@@ -22,10 +22,10 @@
                 1,
                 1
             ],
-            "UID": 300928186,
+            "UID": 148249570,
             "PrefabID": 537622611,
             "DontDestroy": false,
-            "ParentUID": 1056916476,
+            "ParentUID": 1788292978,
             "Components": [
                 {
                     "Type": 1,
@@ -54,10 +54,10 @@
                 1,
                 1
             ],
-            "UID": 70777374,
+            "UID": 476905488,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 300928186,
+            "ParentUID": 148249570,
             "Components": [
                 {
                     "Type": 1,
@@ -67,7 +67,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -84,7 +84,7 @@
                             "texUID": 1551010652,
                             "paEmitterName": "Main Explosion",
                             "paLifeTime": [
-                                0.30000001192092896,
+                                0.10000000149011612,
                                 0.5
                             ],
                             "paSize": [
@@ -153,28 +153,6 @@
                                     ]
                                 }
                             ]
-                        },
-                        {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/198178459.dds",
-                            "texUID": 198178459,
-                            "paEmitterName": "Wave",
-                            "paLifeTime": [
-                                0,
-                                0
-                            ],
-                            "paSize": [
-                                1,
-                                1
-                            ],
-                            "paColor": [
-                                1,
-                                1,
-                                1,
-                                1
-                            ],
-                            "paPerSec": 0,
-                            "ParticleEffects": []
                         }
                     ]
                 },
@@ -207,10 +185,10 @@
                 1,
                 1
             ],
-            "UID": 1264069036,
+            "UID": 392313781,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 300928186,
+            "ParentUID": 148249570,
             "Components": [
                 {
                     "Type": 1,
@@ -220,7 +198,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -357,10 +335,10 @@
                 1,
                 1
             ],
-            "UID": 1870501296,
+            "UID": 1580724455,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 300928186,
+            "ParentUID": 148249570,
             "Components": [
                 {
                     "Type": 1,
@@ -370,7 +348,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -379,8 +357,60 @@
                     "Active": true,
                     "systemActive": false,
                     "looping": false,
-                    "maxDuration": 0.72699999809265137,
-                    "ParticleEmitters": []
+                    "maxDuration": 0.55400002002716064,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/198178459.dds",
+                            "texUID": 198178459,
+                            "paEmitterName": "Empty",
+                            "paLifeTime": [
+                                0.69999998807907104,
+                                0.69999998807907104
+                            ],
+                            "paSize": [
+                                1,
+                                1
+                            ],
+                            "paColor": [
+                                1,
+                                0.15412187576293945,
+                                0.15412187576293945,
+                                1
+                            ],
+                            "paPerSec": 2,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0,
+                                                0,
+                                                0.51171875
+                                            ],
+                                            "paColorOLTposition": 0.21333335340023041
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0.421875,
+                                                0,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 1,
+                                    "paSizeOLTEndSize": 15
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "Type": 21,
@@ -411,10 +441,10 @@
                 1,
                 1
             ],
-            "UID": 614891089,
+            "UID": 1670307393,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 300928186,
+            "ParentUID": 148249570,
             "Components": [
                 {
                     "Type": 1,
@@ -424,7 +454,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },

@@ -22,10 +22,10 @@
                 1,
                 1
             ],
-            "UID": 52089622,
+            "UID": 498622422,
             "PrefabID": 1579177126,
             "DontDestroy": false,
-            "ParentUID": 1056916476,
+            "ParentUID": 878779282,
             "Components": [
                 {
                     "Type": 1,
@@ -54,10 +54,10 @@
                 21.670190811157226,
                 0.90917587280273438
             ],
-            "UID": 2138662627,
+            "UID": 518488307,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 52089622,
+            "ParentUID": 498622422,
             "Components": [
                 {
                     "Type": 1,
@@ -97,10 +97,10 @@
                 1,
                 1
             ],
-            "UID": 2098434439,
+            "UID": 621799224,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 52089622,
+            "ParentUID": 498622422,
             "Components": [
                 {
                     "Type": 1,
@@ -110,7 +110,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -123,8 +123,8 @@
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1551010652.dds",
-                            "texUID": 1551010652,
+                            "LibraryPath": "Library\/Textures\/448338431.dds",
+                            "texUID": 448338431,
                             "paEmitterName": "Near Bar",
                             "paLifeTime": [
                                 1,
@@ -142,6 +142,17 @@
                             ],
                             "paPerSec": 2000,
                             "ParticleEffects": [
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        0,
+                                        180
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        -1,
+                                        10
+                                    ]
+                                },
                                 {
                                     "paEffectType": 2,
                                     "Gradients": [
@@ -168,8 +179,8 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 0.5,
-                                    "paShapeRandSpeed": 2,
+                                    "paShapePartSpeed": 0.30000001192092896,
+                                    "paShapeRandSpeed": 6,
                                     "PaShapeAreaDimensions": [
                                         0.0099999997764825821,
                                         0.0099999997764825821,
@@ -186,8 +197,8 @@
                         },
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1551010652.dds",
-                            "texUID": 1551010652,
+                            "LibraryPath": "Library\/Textures\/448338431.dds",
+                            "texUID": 448338431,
                             "paEmitterName": "Particles 2",
                             "paLifeTime": [
                                 0.5,
@@ -203,7 +214,7 @@
                                 0.99998998641967773,
                                 1
                             ],
-                            "paPerSec": 25,
+                            "paPerSec": 50,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 0,

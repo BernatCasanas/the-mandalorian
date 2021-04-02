@@ -7,9 +7,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                4.518162727355957,
+                -8.7846546173095703,
                 0,
-                0
+                10.795595169067383
             ],
             "Rotation": [
                 0,
@@ -22,10 +22,10 @@
                 1,
                 1
             ],
-            "UID": 42160606,
+            "UID": 2045358607,
             "PrefabID": 1604751915,
             "DontDestroy": false,
-            "ParentUID": 621070814,
+            "ParentUID": 1633804072,
             "Components": [
                 {
                     "Type": 1,
@@ -40,8 +40,8 @@
             "Active": true,
             "Position": [
                 0,
-                0,
-                0
+                6.0685935020446777,
+                37.4622802734375
             ],
             "Rotation": [
                 0,
@@ -54,10 +54,10 @@
                 1,
                 1
             ],
-            "UID": 1800888524,
+            "UID": 270945377,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 42160606,
+            "ParentUID": 2045358607,
             "Components": [
                 {
                     "Type": 1,
@@ -67,7 +67,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -82,13 +82,10 @@
                             "AssetPath": "Empty",
                             "LibraryPath": "Library\/Textures\/2081821201.dds",
                             "texUID": 2081821201,
+                            "paEmitterName": "Muzzle",
                             "paLifeTime": [
                                 0.10000000149011612,
                                 0.10000000149011612
-                            ],
-                            "paSpeed": [
-                                0,
-                                0
                             ],
                             "paSize": [
                                 0.0010000000474974513,
@@ -104,40 +101,176 @@
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0,
+                                    "paSizeOLTEndSize": 0
+                                },
+                                {
+                                    "paEffectType": 4,
+                                    "paVelocityOLTVelocity": [
+                                        1,
+                                        1,
+                                        1
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "Muzzle Bién",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0.7071068286895752,
+                0,
+                0,
+                0.7071068286895752
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 631307134,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 2045358607,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 0.068999998271465302,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1551010652.dds",
+                            "texUID": 1551010652,
+                            "paEmitterName": "Muzzle Flash",
+                            "paLifeTime": [
+                                0.10000000149011612,
+                                0.20000000298023224
+                            ],
+                            "paSize": [
+                                0.10000000149011612,
+                                0.30000001192092896
+                            ],
+                            "paColor": [
+                                1,
+                                0.79928314685821533,
+                                0.79928314685821533,
+                                1
+                            ],
+                            "paPerSec": 10000,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
                                     "Gradients": [
                                         {
                                             "paColorOLTcolor": [
                                                 1,
                                                 0.99998998641967773,
                                                 0.99998998641967773,
-                                                1
+                                                0.76953125
                                             ],
                                             "paColorOLTposition": 0
                                         },
                                         {
                                             "paColorOLTcolor": [
-                                                0.9686274528503418,
-                                                0.015686275437474251,
-                                                0.015686275437474251,
-                                                1
+                                                1,
+                                                0.125,
+                                                0.125,
+                                                0.60188418626785278
                                             ],
-                                            "paColorOLTposition": 0.48791918158531189
+                                            "paColorOLTposition": 0.59733331203460693
                                         },
                                         {
                                             "paColorOLTcolor": [
-                                                0.9686274528503418,
-                                                0.015686275437474251,
-                                                0.015686275437474251,
-                                                0.25590550899505615
+                                                1,
+                                                0.53125,
+                                                0.53125,
+                                                0.48828125
                                             ],
-                                            "paColorOLTposition": 0.99516934156417847
+                                            "paColorOLTposition": 1
                                         }
                                     ]
                                 },
                                 {
-                                    "paEffectType": 4,
-                                    "paSizeOLTStartSize": 0.0010000000474974513,
-                                    "paSizeOLTEndSize": 0.10000000149011612
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 1,
+                                    "paShapeRandSpeed": 5,
+                                    "PaShapeSphereRadius": 1,
+                                    "paShapeType": 1,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1551010652.dds",
+                            "texUID": 1551010652,
+                            "paEmitterName": "Fire trail",
+                            "paLifeTime": [
+                                0.30000001192092896,
+                                0.30000001192092896
+                            ],
+                            "paSize": [
+                                0.10000000149011612,
+                                0.30000001192092896
+                            ],
+                            "paColor": [
+                                0.99641579389572144,
+                                0.20356880128383636,
+                                0.20356880128383636,
+                                1
+                            ],
+                            "paPerSec": 450,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 2,
+                                    "paShapeRandSpeed": 3,
+                                    "PaShapeConeRadius": 4,
+                                    "PaShapeConeHeight": 3,
+                                    "paShapeType": 2,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0.20000000298023224,
+                                        0
+                                    ]
                                 }
                             ]
                         }

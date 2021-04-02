@@ -1,0 +1,245 @@
+{
+    "assets_path": "Assets\/Prefabs\/Dead Effect.prefab",
+    "Game Objects": [
+        {
+            "name": "Dead Effect",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1693157909,
+            "PrefabID": 77855806,
+            "DontDestroy": false,
+            "ParentUID": 878779282,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Dead Particle",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1821915012,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1693157909,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 0.62300002574920654,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/88911285.dds",
+                            "texUID": 88911285,
+                            "paEmitterName": "Smoke",
+                            "paLifeTime": [
+                                0.5,
+                                0.69999998807907104
+                            ],
+                            "paSize": [
+                                0.5,
+                                1.5
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 25,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        0,
+                                        45
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        -1,
+                                        2
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.17578125,
+                                                0.17577949166297913,
+                                                0.17577949166297913,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.12492340058088303,
+                                                0.12492215633392334,
+                                                0.12492215633392334,
+                                                0.87890625
+                                            ],
+                                            "paColorOLTposition": 0.65333330631256104
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.09765625,
+                                                0.097655273973941803,
+                                                0.097655273973941803,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 1,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeConeRadius": 1,
+                                    "PaShapeConeHeight": 1,
+                                    "paShapeType": 2,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1044702331.dds",
+                            "texUID": 1044702331,
+                            "paEmitterName": "Smoke 2",
+                            "paLifeTime": [
+                                0.5,
+                                0.69999998807907104
+                            ],
+                            "paSize": [
+                                0.5,
+                                1.5
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 25,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.25390625,
+                                                0.25390371680259705,
+                                                0.25390371680259705,
+                                                0.87112897634506226
+                                            ],
+                                            "paColorOLTposition": 0.87733334302902222
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.2850707471370697,
+                                                0.28506788611412048,
+                                                0.28506788611412048,
+                                                0.87925428152084351
+                                            ],
+                                            "paColorOLTposition": 0.88266664743423462
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.21875,
+                                                0.2187478095293045,
+                                                0.2187478095293045,
+                                                0.89019608497619629
+                                            ],
+                                            "paColorOLTposition": 0.88266670703887939
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.32421875,
+                                                0.32421550154685974,
+                                                0.32421550154685974,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        }
+    ]
+}
