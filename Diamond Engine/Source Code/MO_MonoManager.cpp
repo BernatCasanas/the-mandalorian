@@ -126,6 +126,7 @@ bool M_MonoManager::Init()
 
 #pragma region Image2D
 	mono_add_internal_call("DiamondEngine.Image2D::SwapTwoImages", SwapTwoImages);
+	mono_add_internal_call("DiamondEngine.Image2D::AssignLibrary2DTexture", AssignLibrary2DTexture);
 #pragma endregion
 
 #pragma region Navigation
@@ -190,6 +191,7 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.GameObject::AddForce", AddForce);
 	mono_add_internal_call("DiamondEngine.GameObject::SetParent", CS_SetParent);
 	mono_add_internal_call("DiamondEngine.GameObject::GetUid", GetUid);
+	mono_add_internal_call("DiamondEngine.GameObject::AssignLibraryTextureToMaterial", AssignLibraryTextureToMaterial);
 
 	mono_add_internal_call("DiamondEngine.Animator::Play", Play);
 	mono_add_internal_call("DiamondEngine.Animator::Pause", Pause);
