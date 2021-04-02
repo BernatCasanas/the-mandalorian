@@ -22,10 +22,10 @@
                 1,
                 1
             ],
-            "UID": 1122310622,
+            "UID": 1817267883,
             "PrefabID": 587421754,
             "DontDestroy": false,
-            "ParentUID": 1056916476,
+            "ParentUID": 680513141,
             "Components": [
                 {
                     "Type": 1,
@@ -54,10 +54,10 @@
                 0.034000005573034286,
                 0.034000005573034286
             ],
-            "UID": 1467289855,
+            "UID": 1008219338,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1122310622,
+            "ParentUID": 1817267883,
             "Components": [
                 {
                     "Type": 1,
@@ -86,10 +86,10 @@
                 100,
                 100
             ],
-            "UID": 537390812,
+            "UID": 588045056,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1467289855,
+            "ParentUID": 1008219338,
             "Components": [
                 {
                     "Type": 1,
@@ -118,10 +118,10 @@
                 1,
                 1
             ],
-            "UID": 225624218,
+            "UID": 656597368,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 537390812,
+            "ParentUID": 588045056,
             "Components": [
                 {
                     "Type": 1,
@@ -150,10 +150,10 @@
                 1,
                 1
             ],
-            "UID": 1488287220,
+            "UID": 1628447486,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 225624218,
+            "ParentUID": 656597368,
             "Components": [
                 {
                     "Type": 1,
@@ -182,10 +182,10 @@
                 1,
                 1
             ],
-            "UID": 2106059517,
+            "UID": 2038246735,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1488287220,
+            "ParentUID": 1628447486,
             "Components": [
                 {
                     "Type": 1,
@@ -214,10 +214,10 @@
                 1,
                 1
             ],
-            "UID": 81183191,
+            "UID": 1204027322,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 2106059517,
+            "ParentUID": 2038246735,
             "Components": [
                 {
                     "Type": 1,
@@ -246,10 +246,10 @@
                 279.00125122070312,
                 279.00125122070312
             ],
-            "UID": 2025465354,
+            "UID": 709507964,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1467289855,
+            "ParentUID": 1008219338,
             "Components": [
                 {
                     "Type": 1,
@@ -289,10 +289,10 @@
                 100,
                 100
             ],
-            "UID": 409730579,
+            "UID": 235113350,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1467289855,
+            "ParentUID": 1008219338,
             "Components": [
                 {
                     "Type": 1,
@@ -332,10 +332,10 @@
                 1,
                 1
             ],
-            "UID": 1409560156,
+            "UID": 706182916,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1122310622,
+            "ParentUID": 1817267883,
             "Components": [
                 {
                     "Type": 1,
@@ -358,8 +358,8 @@
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1551010652.dds",
-                            "texUID": 1551010652,
+                            "LibraryPath": "Library\/Textures\/580320597.dds",
+                            "texUID": 580320597,
                             "paEmitterName": "Fire",
                             "paLifeTime": [
                                 0.10000000149011612,
@@ -377,6 +377,17 @@
                             ],
                             "paPerSec": 5000,
                             "ParticleEffects": [
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        -1,
+                                        1
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        -1,
+                                        1
+                                    ]
+                                },
                                 {
                                     "paEffectType": 2,
                                     "Gradients": [
@@ -431,7 +442,7 @@
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
                                     "paShapePartSpeed": 30,
-                                    "paShapeRandSpeed": 0,
+                                    "paShapeRandSpeed": 0.5,
                                     "PaShapeConeRadius": 0.10000000149011612,
                                     "PaShapeConeHeight": 1,
                                     "paShapeType": 2,
@@ -445,25 +456,36 @@
                         },
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1551010652.dds",
-                            "texUID": 1551010652,
+                            "LibraryPath": "Library\/Textures\/88911285.dds",
+                            "texUID": 88911285,
                             "paEmitterName": "Smoke",
                             "paLifeTime": [
                                 0.10000000149011612,
-                                0.10000000149011612
+                                1
                             ],
                             "paSize": [
                                 0.10000000149011612,
-                                0.20000000298023224
+                                0.5
                             ],
                             "paColor": [
-                                0.43727600574493408,
-                                0.43727162480354309,
-                                0.43727162480354309,
+                                1,
+                                0.99998998641967773,
+                                0.99998998641967773,
                                 1
                             ],
-                            "paPerSec": 500,
+                            "paPerSec": 100,
                             "ParticleEffects": [
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        -1,
+                                        1
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        -1,
+                                        1
+                                    ]
+                                },
                                 {
                                     "paEffectType": 2,
                                     "Gradients": [
@@ -490,10 +512,11 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 0.5,
-                                    "paShapeRandSpeed": 1,
-                                    "PaShapeSphereRadius": 0.10000000149011612,
-                                    "paShapeType": 1,
+                                    "paShapePartSpeed": 0.10000000149011612,
+                                    "paShapeRandSpeed": 5,
+                                    "PaShapeConeRadius": 0.69999998807907104,
+                                    "PaShapeConeHeight": 0.5,
+                                    "paShapeType": 2,
                                     "PaShapeOffset": [
                                         0,
                                         0,

@@ -22,105 +22,14 @@
                 1,
                 1
             ],
-            "UID": 2045358607,
+            "UID": 1946919920,
             "PrefabID": 1604751915,
             "DontDestroy": false,
-            "ParentUID": 1633804072,
+            "ParentUID": 680513141,
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Muzzle",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                6.0685935020446777,
-                37.4622802734375
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 270945377,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 2045358607,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
-                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
-                    "MaterialUID": 355756108
-                },
-                {
-                    "Type": 20,
-                    "Active": true,
-                    "systemActive": false,
-                    "looping": false,
-                    "maxDuration": 1.0099999904632568,
-                    "ParticleEmitters": [
-                        {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/2081821201.dds",
-                            "texUID": 2081821201,
-                            "paEmitterName": "Muzzle",
-                            "paLifeTime": [
-                                0.10000000149011612,
-                                0.10000000149011612
-                            ],
-                            "paSize": [
-                                0.0010000000474974513,
-                                0.10000000149011612
-                            ],
-                            "paColor": [
-                                1,
-                                0.77256315946578979,
-                                0.77256315946578979,
-                                1
-                            ],
-                            "paPerSec": 2,
-                            "ParticleEffects": [
-                                {
-                                    "paEffectType": 3,
-                                    "paSizeOLTStartSize": 0,
-                                    "paSizeOLTEndSize": 0
-                                },
-                                {
-                                    "paEffectType": 4,
-                                    "paVelocityOLTVelocity": [
-                                        1,
-                                        1,
-                                        1
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "Type": 21,
-                    "Active": true,
-                    "billboardAlignment": 0,
-                    "horizantalAligned": true
                 }
             ]
         },
@@ -145,10 +54,10 @@
                 1,
                 1
             ],
-            "UID": 631307134,
+            "UID": 929272803,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 2045358607,
+            "ParentUID": 1946919920,
             "Components": [
                 {
                     "Type": 1,
@@ -171,8 +80,8 @@
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1551010652.dds",
-                            "texUID": 1551010652,
+                            "LibraryPath": "Library\/Textures\/1044702331.dds",
+                            "texUID": 1044702331,
                             "paEmitterName": "Muzzle Flash",
                             "paLifeTime": [
                                 0.10000000149011612,
@@ -191,16 +100,27 @@
                             "paPerSec": 10000,
                             "ParticleEffects": [
                                 {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        -1,
+                                        1
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        -1,
+                                        1
+                                    ]
+                                },
+                                {
                                     "paEffectType": 2,
                                     "Gradients": [
                                         {
                                             "paColorOLTcolor": [
-                                                1,
-                                                0.99998998641967773,
-                                                0.99998998641967773,
+                                                0.9921875,
+                                                0.771270751953125,
+                                                0.771270751953125,
                                                 0.76953125
                                             ],
-                                            "paColorOLTposition": 0
+                                            "paColorOLTposition": 0.49333235621452332
                                         },
                                         {
                                             "paColorOLTcolor": [
@@ -213,9 +133,9 @@
                                         },
                                         {
                                             "paColorOLTcolor": [
-                                                1,
-                                                0.53125,
-                                                0.53125,
+                                                0.74609375,
+                                                0.3876190185546875,
+                                                0.3876190185546875,
                                                 0.48828125
                                             ],
                                             "paColorOLTposition": 1
@@ -239,8 +159,8 @@
                         },
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1551010652.dds",
-                            "texUID": 1551010652,
+                            "LibraryPath": "Library\/Textures\/580320597.dds",
+                            "texUID": 580320597,
                             "paEmitterName": "Fire trail",
                             "paLifeTime": [
                                 0.30000001192092896,

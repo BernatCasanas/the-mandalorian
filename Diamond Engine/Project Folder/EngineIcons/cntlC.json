@@ -1,14 +1,14 @@
 {
     "Game Objects": [
         {
-            "name": "Spurns",
+            "name": "Wave",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
                 0,
-                1.1169999837875366,
-                -6.7199997901916504
+                0,
+                0
             ],
             "Rotation": [
                 0,
@@ -21,10 +21,10 @@
                 1,
                 1
             ],
-            "UID": 1033974947,
+            "UID": 701342965,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1946602066,
+            "ParentUID": 679358624,
             "Components": [
                 {
                     "Type": 1,
@@ -34,75 +34,54 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
                 {
                     "Type": 20,
                     "Active": true,
-                    "systemActive": true,
-                    "looping": true,
-                    "maxDuration": 1.003000020980835,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 0.55400002002716064,
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1551010652.dds",
-                            "texUID": 1551010652,
+                            "LibraryPath": "Library\/Textures\/198178459.dds",
+                            "texUID": 198178459,
                             "paEmitterName": "Empty",
                             "paLifeTime": [
-                                0.5,
-                                1
+                                0.69999998807907104,
+                                0.69999998807907104
                             ],
                             "paSize": [
-                                0.10000000149011612,
-                                0.10000000149011612
+                                1,
+                                1
                             ],
                             "paColor": [
                                 1,
-                                0,
-                                0,
+                                0.15412187576293945,
+                                0.15412187576293945,
                                 1
                             ],
-                            "paPerSec": 25,
+                            "paPerSec": 2,
                             "ParticleEffects": [
-                                {
-                                    "paEffectType": 0,
-                                    "paFOLT_direction": [
-                                        0,
-                                        0,
-                                        0
-                                    ],
-                                    "paFOLT_magnitude": 0,
-                                    "paFOLT_gravityMod": 0.0010000000474974513,
-                                    "paFOLT_gravity": -0.0098000010475516319,
-                                    "paFOLT_forceType": 2
-                                },
                                 {
                                     "paEffectType": 2,
                                     "Gradients": [
                                         {
                                             "paColorOLTcolor": [
+                                                1,
                                                 0,
                                                 0,
-                                                0,
-                                                0
+                                                0.51171875
                                             ],
-                                            "paColorOLTposition": 0
+                                            "paColorOLTposition": 0.21333335340023041
                                         },
                                         {
                                             "paColorOLTcolor": [
                                                 1,
-                                                0.10546875,
-                                                0.10546875,
-                                                0.47450980544090271
-                                            ],
-                                            "paColorOLTposition": 0.47466665506362915
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0.32773101329803467,
+                                                0.421875,
                                                 0,
                                                 1
                                             ],
@@ -111,18 +90,9 @@
                                     ]
                                 },
                                 {
-                                    "paEffectType": 5,
-                                    "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 2,
-                                    "paShapeRandSpeed": 0,
-                                    "PaShapeConeRadius": 1.5,
-                                    "PaShapeConeHeight": 2,
-                                    "paShapeType": 2,
-                                    "PaShapeOffset": [
-                                        0,
-                                        0,
-                                        0
-                                    ]
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 1,
+                                    "paSizeOLTEndSize": 15
                                 }
                             ]
                         }
@@ -131,7 +101,7 @@
                 {
                     "Type": 21,
                     "Active": true,
-                    "billboardAlignment": 0,
+                    "billboardAlignment": 3,
                     "horizantalAligned": true
                 }
             ]
