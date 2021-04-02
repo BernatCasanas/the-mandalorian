@@ -238,7 +238,7 @@ public class StormTrooper : Enemy
 
 				if (Core.instance.hud != null)
                 {
-					Core.instance.hud.GetComponent<HUD>().IncrementCombo(1, 1.0f);
+					Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 1.0f);
                 }
 			}            
 		}
@@ -260,7 +260,7 @@ public class StormTrooper : Enemy
 
                 if (Core.instance.hud != null)
 				{
-					Core.instance.hud.GetComponent<HUD>().IncrementCombo(1, 2.0f);
+					Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 0.5f);
 				}
 			}
 		}
