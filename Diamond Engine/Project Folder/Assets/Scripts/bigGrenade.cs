@@ -18,8 +18,6 @@ public class bigGrenade : DiamondComponent
 
     private bool detonate = false;
 
-    private bool start = true;
-
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
         if (collidedGameObject.CompareTag("Enemy"))
@@ -31,12 +29,6 @@ public class bigGrenade : DiamondComponent
 
     public void Update()
     {
-        if (start)
-        {
-            start = false;
-            Core.instance.BigGrenades.Add(this);
-        }
-
         if (thisReference.transform.globalPosition.y < Core.instance.gameObject.transform.globalPosition.y + 0.5)
         {
             move = false;
@@ -57,11 +49,8 @@ public class bigGrenade : DiamondComponent
 
         if (Timer > detonationTime || detonate)
         {
-            Core.instance.BigGrenades.Remove(this);
             InternalCalls.Destroy(thisReference);
             Vector3 scale = new Vector3(0.07f, 0.07f, 0.07f);
-          
-          
                
             Vector3 position = new Vector3(0.0f, 0.0f, 0.0f); ;
             position.y = 0.25f;

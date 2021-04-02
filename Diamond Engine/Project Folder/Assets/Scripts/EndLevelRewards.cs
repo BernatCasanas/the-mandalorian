@@ -30,19 +30,19 @@ public class EndLevelRewards : DiamondComponent // This can probably stop being 
     EndLevelReward firstReward; // Could probably make an array for this... UwU
     EndLevelReward secondReward;
     EndLevelReward thirdReward;
-    GameObject rewardsMenu;
     DiamondEngineResources.GameResources selectedReward = null;
     DiamondEngineResources.BoonDataHolder boonGenerator = new DiamondEngineResources.BoonDataHolder();
     float boonTotalWeights = 0.0f;
 
     public DiamondEngineResources.GameResources GenerateRewardPipeline()
     {
-
+        // This probably needs to be done only once
         firstReward = SelectRewards();
         secondReward = SelectRewards();
         thirdReward = SelectRewards();
 
-        rewardsMenu = CreatePopUpGameObject();
+        CreatePopUpGameObject();
+
         // Do nazi things with buttons to assign a value to selectedReward; we may want to control the OnExecuteButton from the script instead of attaching this script as a component (it probably shouldn't a component, and instead, controlled by SceneManager
 
         return selectedReward;
@@ -118,6 +118,7 @@ public class EndLevelRewards : DiamondComponent // This can probably stop being 
 
     GameObject CreatePopUpGameObject()
     {
+        // This maybe should be a find, and if not, then we instantiate; this will mean enabling and disabling the GO constantly from SceneManager
         GameObject rewardMenu = InternalCalls.CreatePrefab("Library/Prefabs/18131542.prefab", new Vector3(0.0f, 0.0f, 0.0f), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
         GameObject canvas = InternalCalls.FindObjectWithName("Canvas");
 
@@ -137,9 +138,9 @@ public class EndLevelRewards : DiamondComponent // This can probably stop being 
 
         rewardMenu.SetParent(canvas);
 
-        //        firstImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardPath(firstReward));    // Have the function re-entered or something...
-        //       secondImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardPath(secondReward));
-        //      thirdImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardPath(thirdReward));
+        //        firstImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardTexture(firstReward));    // Have the function re-entered or something...
+        //       secondImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardTexture(secondReward));
+        //      thirdImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardTexture(thirdReward));
 
         firstText.GetComponent<Text>().text = RewardText(firstReward);
         secondText.GetComponent<Text>().text = RewardText(secondReward);
@@ -156,23 +157,23 @@ public class EndLevelRewards : DiamondComponent // This can probably stop being 
         switch (reward.type)
         {
             case EndLevelRewardType.REWARD_BOON:
-                text = boonGenerator.boonType[reward.boonIndex].boonDescription;
+                text = boonGenerator.boonType[reward.boonIndex].rewardDescription;
                 break;
 
             case EndLevelRewardType.REWARD_BESKAR:
-                text = "The metal of the mandalorian people, second to none in the galaxy.";
+                text = new DiamondEngineResources.BeskarResource().rewardDescription;
                 break;
 
             case EndLevelRewardType.REWARD_MACARON:
-                text = "Just a macaron. Grogu does love them, though.";
+                text = new DiamondEngineResources.MacaronResource().rewardDescription;
                 break;
 
             case EndLevelRewardType.REWARD_SCRAP:
-                text = "Remains of powerful imperial technology.";
+                text = new DiamondEngineResources.ScrapResource().rewardDescription;
                 break;
 
             case EndLevelRewardType.REWARD_MILK:
-                text = "Sweet and tasty blue milk, a true delicacy.";
+                text = new DiamondEngineResources.MilkResource().rewardDescription;
                 break;
 
         }
@@ -180,7 +181,7 @@ public class EndLevelRewards : DiamondComponent // This can probably stop being 
         return text;
     }
 
-    public int GetRewardPath(EndLevelReward reward)
+    public int GetRewardTexture(EndLevelReward reward)
     {
 
         int textureId = 0;
@@ -192,19 +193,19 @@ public class EndLevelRewards : DiamondComponent // This can probably stop being 
                 break;
 
             case EndLevelRewardType.REWARD_BESKAR:
-                textureId = 1083690418;
+                textureId = new DiamondEngineResources.BeskarResource().libraryTextureID;
                 break;
 
             case EndLevelRewardType.REWARD_MACARON:
-                textureId = 222418542;
+                textureId = new DiamondEngineResources.MacaronResource().libraryTextureID;
                 break;
 
             case EndLevelRewardType.REWARD_SCRAP:
-                textureId = 594177043;
+                textureId = new DiamondEngineResources.ScrapResource().libraryTextureID;
                 break;
 
             case EndLevelRewardType.REWARD_MILK:
-                textureId = 67621527;
+                textureId = new DiamondEngineResources.MilkResource().libraryTextureID;
                 break;
 
         }

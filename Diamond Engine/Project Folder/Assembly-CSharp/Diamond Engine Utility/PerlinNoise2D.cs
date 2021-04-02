@@ -4,7 +4,8 @@ namespace DiamondEngine
 {
     class PerlinNoise2D
     {
-        Random rand = new Random();
+        Random rand = null;
+        int seed= int.MinValue;
         int octaves = 1;
         float scale = 1.0f;
         float lacunarity = 0.5f;
@@ -14,16 +15,17 @@ namespace DiamondEngine
             this.octaves = (int)Mathf.Clamp(octaves, 1.0f, 12.0f);
             this.scale = scale;
             this.lacunarity = lacunarity;
-            rand = new Random();
+            seed = int.MinValue;
         }
         public void GenerateNoise(int seed, int octaves, float scale, float lacunarity = 2.0f)
         {
             this.octaves = (int)Mathf.Clamp(octaves, 1.0f, 12.0f);
             this.scale = scale;
             this.lacunarity = lacunarity;
-            rand = new Random(seed);
+            this.seed = seed;
         }
 
+        //Returns a value between 0 and 1
         public float GetNoiseAt(Vector2 coords)
         {
             float value = 0.0f;
@@ -94,17 +96,19 @@ namespace DiamondEngine
         {
             // prevents randomness decreasing from coordinates too large
             coord = coord % 10000.0f;
+            RegenerateSeed();
             // returns "random" float between 0 and 1
-            return Fract((float)Math.Sin(Vector2.Dot(coord, new Vector2(12.9898f, 78.233f))) * 43758.5453f);
+            return Fract((float)Math.Sin(Vector2.Dot(coord, new Vector2(12.9898f, 78.233f))) * 43758.5453f) * (float)rand.NextDouble();
         }
 
         Vector2 Rand2(Vector2 coord)
         {
             // prevents randomness decreasing from coordinates too large
             coord = coord % 10000.0f;
+            RegenerateSeed();
             // returns "random" vec2 with x and y between 0 and 1
             Vector2 res = new Vector2(Vector2.Dot(coord, new Vector2(127.1f, 311.7f)), Vector2.Dot(coord, new Vector2(269.5f, 183.3f)));
-            return Fract(new Vector2((float)Math.Sin(res.x), (float)Math.Sin(res.y)) * 43758.5453f);
+            return Fract(new Vector2((float)Math.Sin(res.x), (float)Math.Sin(res.y)) * 43758.5453f) * (float)rand.NextDouble();
         }
 
         float Fract(float f)
@@ -117,6 +121,14 @@ namespace DiamondEngine
             int floorFX = (int)Math.Floor(f.x);
             int floorFY = (int)Math.Floor(f.y);
             return new Vector2(f.x - floorFX, f.y - floorFY);
+        }
+
+        void RegenerateSeed()
+        {
+            if (seed != int.MinValue)
+                rand = new Random(seed);
+            else
+                rand = new Random();
         }
     }
 }

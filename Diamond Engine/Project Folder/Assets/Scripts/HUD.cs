@@ -32,6 +32,8 @@ public class HUD : DiamondComponent
     private float fullComboTime = 0.0f;
     private float currComboTime = 0.0f;
     public int comboNumber = 0;
+    float comboDecrementMultiplier = 1.0f;
+    float lastWeaponDecrementMultiplier = 1.0f;
 
     //stores the level as a key and the color as a value
     Dictionary<int, Vector3> comboLvlColors = new Dictionary<int, Vector3>
@@ -50,6 +52,7 @@ public class HUD : DiamondComponent
         if (start)
         {
             UpdateHP(PlayerHealth.currHealth, PlayerHealth.currMaxHealth);
+            ResetCombo();
             start = false;
         }
         if (Input.GetKey(DEKeyCode.C) == KeyState.KEY_DOWN)
@@ -149,11 +152,11 @@ public class HUD : DiamondComponent
         }
         if (Input.GetKey(DEKeyCode.B) == KeyState.KEY_DOWN) //test key
         {
-            IncrementCombo(1, 1.0f);
+            AddToCombo(20, 1.0f);
         }
         if (Input.GetKey(DEKeyCode.N) == KeyState.KEY_DOWN) //test key
         {
-            DecreaseComboPercentage(0.5f);
+            DecreaseComboPercentage(0.3f);
         }
         if (combo_bar != null && comboNumber > 0)
         {
@@ -161,32 +164,55 @@ public class HUD : DiamondComponent
         }
     }
 
-    public void IncrementCombo(int levelsToAdd, float weaponTimeMultiplier)
+    public void AddToCombo(float comboUnitsToAdd, float weaponDecreaseTimeMultiplier)
     {
-        comboNumber += levelsToAdd;
-        //TODO make full combo time not a linear function
-        currComboTime = fullComboTime = (100 - comboNumber) * weaponTimeMultiplier;
+        if (comboNumber == 0)
+            ++comboNumber;
 
-        if (comboNumber == 1)
+        lastWeaponDecrementMultiplier = weaponDecreaseTimeMultiplier;
+        currComboTime += comboUnitsToAdd * (1 / (lastWeaponDecrementMultiplier * comboDecrementMultiplier));
+
+        if (currComboTime > fullComboTime)
+        {
+            float extraCombo = currComboTime - fullComboTime;
+            IncrementCombo();
+            AddToCombo(extraCombo, weaponDecreaseTimeMultiplier);
+        }
+
+        if (comboNumber > 0 && !combo_gameobject.IsEnabled())
         {
             combo_gameobject.Enable(true);
         }
 
-        if (combo_bar != null)
-        {
-            combo_bar.GetComponent<Material>().SetIntUniform("combo_number", comboNumber);
-            combo_bar.GetComponent<Material>().SetFloatUniform("length_used", Mathf.InvLerp(0, fullComboTime, currComboTime));
-        }
+        if (combo_bar == null)
+            return;
+
+        combo_bar.GetComponent<Material>().SetIntUniform("combo_number", comboNumber);
+        combo_bar.GetComponent<Material>().SetFloatUniform("length_used", Mathf.InvLerp(0, fullComboTime, currComboTime));
+
         if (combo_text == null)
             return;
-        combo_text.GetComponent<Text>().text = "x" + comboNumber.ToString();
 
+        combo_text.GetComponent<Text>().text = "x" + comboNumber.ToString();
         ChangeComboColor();
     }
 
-    public bool UpdateCombo()
+    void IncrementCombo()
     {
-        currComboTime -= Time.deltaTime * 100;
+        //TODO make full combo time not a linear function
+        ++comboNumber;
+        currComboTime = 0.0f;
+        comboDecrementMultiplier += 0.2f;
+    }
+
+    bool UpdateCombo()
+    {
+        float toSubstract = currComboTime - Mathf.Lerp(currComboTime, -0.0f, Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier);
+
+        toSubstract = Math.Max(toSubstract, Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier*1.5f);
+        toSubstract = Math.Min(toSubstract, Time.deltaTime * (1/comboDecrementMultiplier) * fullComboTime * 0.25f);
+        currComboTime -= toSubstract;
+
         if (currComboTime <= 0.0f)
         {
             currComboTime = 0.0f;
@@ -202,6 +228,11 @@ public class HUD : DiamondComponent
     public void ResetCombo()
     {
         comboNumber = 0;
+        comboDecrementMultiplier = 1.0f;
+        lastWeaponDecrementMultiplier = 1.0f;
+        fullComboTime = 100.0f;
+        currComboTime = 0.0f;
+
         Material comboMat = combo_bar.GetComponent<Material>();
 
         if (comboMat != null)
@@ -239,9 +270,7 @@ public class HUD : DiamondComponent
     {
         currComboTime -= fullComboTime * percentageOfTotal;
 
-        if (currComboTime > fullComboTime)
-            currComboTime = fullComboTime;
-        else if (currComboTime < 0.0f)
+        if (currComboTime < 0.0f)
             currComboTime = 0.0f;
     }
 

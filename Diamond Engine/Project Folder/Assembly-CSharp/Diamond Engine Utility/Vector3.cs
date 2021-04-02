@@ -111,6 +111,8 @@ namespace DiamondEngine
         public static float Magnitude(Vector3 vector) { return (float)Math.Sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z); }
         public float magnitude { get { return (float)Math.Sqrt(x * x + y * y + z * z); } }
 
+        public bool IsEqual(Vector3 a) { return (this.x == a.x && this.y == a.y && this.z == a.z); }
+
         public static Vector3 Normalize(Vector3 value)
         {
             float mag = Magnitude(value);

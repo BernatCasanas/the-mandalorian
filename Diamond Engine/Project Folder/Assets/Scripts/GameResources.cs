@@ -6,50 +6,48 @@ namespace DiamondEngineResources
 {
     public class GameResources
     {
-        public GameResources(int _id, EndLevelRewardType _type)
+        public GameResources(int _id, EndLevelRewardType _type, string _description)
         {
             libraryTextureID = _id;
             resourceType = _type;
+            rewardDescription = _description;
         }
 
-        // Yes, we could have those only used in spawn functionality like we used to, but I think the cost memory-wise is worth to make adding boons way easier and more intuitive
         public int libraryTextureID;
         public EndLevelRewardType resourceType;
-        // Probably add text here
+        public string rewardDescription;
     }
 
     public class BeskarResource : GameResources
     {
-        public BeskarResource() : base(1083690418, EndLevelRewardType.REWARD_BESKAR) { }
+        public BeskarResource() : base(1083690418, EndLevelRewardType.REWARD_BESKAR, "The metal of the mandalorian people, second to none in the galaxy.") { }
     }
 
     public class MacaronResource : GameResources
     {
-        public MacaronResource() : base(222418542, EndLevelRewardType.REWARD_MACARON) { }
+        public MacaronResource() : base(222418542, EndLevelRewardType.REWARD_MACARON, "Just a macaron. Grogu does love them, though.") { }
     }
 
     public class ScrapResource : GameResources
     {
-        public ScrapResource() : base(594177043, EndLevelRewardType.REWARD_SCRAP) { }
+        public ScrapResource() : base(594177043, EndLevelRewardType.REWARD_SCRAP, "Remains of powerful imperial technology.") { }
     }
 
     public class MilkResource : GameResources
     {
-        public MilkResource() : base(67621527, EndLevelRewardType.REWARD_MILK) { }
+        public MilkResource() : base(67621527, EndLevelRewardType.REWARD_MILK, "Sweet and tasty blue milk, a true delicacy.") { }
     }
 
     public class BoonResource : GameResources
     {
-        public BoonResource(int _id, EndLevelRewardType _type, float _weight, string _description) : base(_id, _type)
+        public BoonResource(int _id, EndLevelRewardType _type, float _weight, string _description) : base(_id, _type, _description)
         {
             rngChanceWeight = _weight;
-            boonDescription = _description;
         }
 
         public virtual void Use() { }
 
         public float rngChanceWeight;
-        public string boonDescription;
     }
 
     // WE SHOULD PROBABLY CHANGE THE NAMES TO THE BOON'S ACTUAL NAME
