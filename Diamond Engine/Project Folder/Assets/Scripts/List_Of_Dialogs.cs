@@ -301,7 +301,7 @@ public class List_Of_Dialogs : DiamondComponent
 	{
 		"Anything new you want to tell me about?",
 		"(The adorable creature extends his arm while opening and closing his three short fingers, he definitely wants something, but his hand can only grasp thin air.)",
-		"Sorry kid, I don’'t have your ball on me right now. It's in the ship. And before you ask me, the answer is no; I'm not going back there to get it for you.",
+		"Sorry kid, I don't have your ball on me right now. It's in the ship. And before you ask me, the answer is no; I'm not going back there to get it for you.",
 		"(The long and pointy ears of the child start lowering down, a small cry of sadness escapes his little mouse.)",
 		"I told you I'm not going back for a stupid little ball. Next time, remind me about it before we leave the ship. If you are so sad, you can go and get it yourself.",
 		"(The kid starts sitting up. It seems like, surprisingly he has understood what Din just said.)",
@@ -352,7 +352,7 @@ public class List_Of_Dialogs : DiamondComponent
 		"Sure, sure... Because you wouldn't happen to be running some underground business of questionable ethicality, which included illegal trafficking, assassination contracts...",
 		"Hey, as far as I can remember, you and your Mandalorian friends greatly benefited from such contracts.",
 		"I didn't kill anyone who didn't deserve it. And I usually brought my targets alive.",
-		"Tell yourself that if it makes you sleep any better. We did what we had to do to survive, and if it hadn’t been me, someone else would have taken my place. It is just how it is. Under the rule of the Empire, this was the way. But well, as you can see, this has changed now.",
+        "Tell yourself that if it makes you sleep any better. We did what we had to do to survive, and if it hadn't been me, someone else would have taken my place. It is just how it is. Under the rule of the Empire, this was the way. But well, as you can see, this has changed now.",
 	};
 
 	private List<bool> Greef_0_2_bool = new List<bool>()
@@ -389,12 +389,12 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<string> Ahsoka_0_1 = new List<string>()
     {
-       "Ahsoka Tano… You are here too? That’s unexpected. This canteen is starting to get crowded.",
+       "Ahsoka Tano... You are here too? That's unexpected. This canteen is starting to get crowded.",
        "It is nice to meet you again, Mandalorian. I am glad to see that you and Grogu are fine. Since we parted ways in Dathomir, you two had me worried.",
-       "There's no need for that, rest assured that I’m perfectly capable of fending both myself and the kid.",
+       "There's no need for that, rest assured that I'm perfectly capable of fending both myself and the kid.",
        "I know, and it was not my intention to offend you, I apologize if I did so, you are quite competent. However, going against a Moff is a dangerous endeavour, even for somebody like you.",
        "Well, we survived. I appreciate your concern, but it was unnecessary. What brings you here Jedi?",
-       "I have been wanting to discuss with Bo-Katan the whole Mandalore affair. I do not know if I could speak of her as a friend, but we go back a long time… I do not want to lose her too. Furthermore, I wanted to check on Grogu.",
+       "I have been wanting to discuss with Bo-Katan the whole Mandalore affair. I do not know if I could speak of her as a friend, but we go back a long time... I do not want to lose her too. Furthermore, I wanted to check on Grogu.",
     };
 
     private List<bool> Ahsoka_0_1_bool = new List<bool>()
@@ -475,10 +475,10 @@ public class List_Of_Dialogs : DiamondComponent
     {
         "You keep saying you're not a Jedi. Still, you fight with lightsabers, you use the force, and you're on the good guys' side. I have never met a Jedi, but from the stories I've heard, you tick all the boxes... Help me understand.",
         "Since I was a child, I was raised by Jedi in the Jedi ways... Eventually, I realized that things are not as black and white as they had taught me. While in The Order, I was so naively blinded by our just cause, that I was unable to see the dark shadows our bright light had casted. Then I understood; there lies darkness in light, and likewise, one can find light in darkness.",
-        "Am I supposed to understand what all this means? Now I’m even more confused.",
+        "Am I supposed to understand what all this means? Now I'm even more confused.",
         "There is no such thing as simply good and bad people, we are far more complex. I was not sure we were the 'good guys' anymore. What I had once considered my home, became unfamiliar, and where before I had seen friendly faces, I could only see strangers. It became clear to me that I no longer belonged in The Order.",
         "I'm going to pretend that this was more clarifying than before... You make it sound as if Jedi were bad people. Why should Grogu become one then? It doesn't seem like a good idea anymore.",
-        "No, do not get me wrong. The Jedi were definitely trying to do good, it is just... those were hard times, and they had to make a lot of difficult decisions. I do not think it has ever been tougher for the members of the Jedi council. I even considered rejoining after a while, but then order 66 was issued and... Well, it was too late…",
+        "No, do not get me wrong. The Jedi were definitely trying to do good, it is just... those were hard times, and they had to make a lot of difficult decisions. I do not think it has ever been tougher for the members of the Jedi council. I even considered rejoining after a while, but then order 66 was issued and... Well, it was too late...",
     };
 
     private List<bool> Ahsoka_1_2_bool = new List<bool>()
@@ -494,12 +494,12 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<string> Ahsoka_1_3 = new List<string>()
     {
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
+        "So, Grogu should become a Jedi. Are you sure this is the right way?",
+        "I cannot tell you if it is the right way or not. That, only time can tell. But if he is to be trained in the force, he must have a true Jedi knight for a teacher. Someone who can help him embrace the light side of the force and get rid of all his negative emotions.",
+        "Last time we met you mentioned the dark side is strong within him. Is this the reason why he can only be trained by a Jedi?",
+        "Yes, he has to learn to let go of his fears. He is too attached to you, and this makes him vulnerable. I have witnessed such feelings consume one of the greatest Jedi knights... and this is something that must be avoided at all cost.",
+        "I know I'm not one to talk, but to remove all attachments to other people doesn't sound right.",
+        "I am not saying that he cannot have any friends, however the way of a Jedi is a lonely one. If he is willing to walk that path, it is his duty to accept certain responsibilities. It may look cruel or unfair, but he will eventually understand.",
     };
 
     private List<bool> Ahsoka_1_3_bool = new List<bool>()
@@ -515,18 +515,20 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<string> Ahsoka_2_1 = new List<string>()
     {
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
+        "Oh, I did not think you would actually take my petition seriously. Thank you anyway.",
+        "I had one to spare... There is one thing that's been bugging me; how long does it take to train a Jedi? From what I understand, Grogu is around 50. I keep thinking of him as a kid, but in reality, could he be too old?",
+        "He really is a remarkable being. I have only met one other like him in my life. Perhaps the greatest Jedi master who ever lived. He was more than 800 years old... You need not worry about these things, every species ages at its own rhythm. He may be 50, but he is still a youngling.",
+        "More than 800 years?! By the time I die he'll probably still be too young to even get a speeder licence. I hope at least he'll have learned to talk...",
+        "Do not underestimate Grogu. The fact that you cannot understand him does not mean he is unable to communicate with others. I can speak with him through the force for example.",
+        "But the kid is so helpless. He'll have to rely on others for his protection for who knows how many years...",
+        "I was 14 the first time I went into battle. And you would be surprised how capable force-sensitive kids can be. I used to think like you too, but one day a small group of younglings I was supposed to take care of proved me otherwise.",
     };
 
     private List<bool> Ahsoka_2_1_bool = new List<bool>()
     {
 		// Mando true, other false
-		true,
+		false,
+        true,
         false,
         true,
         false,
@@ -536,12 +538,12 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<string> Ahsoka_2_2 = new List<string>()
     {
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
+        "Grogu will live more than 800 years... Do you think he'll remember any of us in a couple of centuries?",
+        "I am not going to pretend to know how living for such a long time affects someone's mind. Nonetheless, what I can assure you is that Grogu is not just anyone. His kind are very special. The old master I told you about always had an answer for every question, and all the Jedi turned to him every time they needed counsel. He was the wisest one in the Jedi council and most of the other members had learned from him.",
+        "That doesn't really answer my question. What would have been for him a few years when he was a kid compared to almost a millennium of experience studying the mysteries of the universe?",
+        "Memories are powerful, the mind can decide to keep or to erase them based on their nature and the impact they had on you, but they always stay in your subconscious. The Jedi have a deeper connection between their mind and their subconscious, for we cannot allow repressed emotions to cloud our judgement and affect our actions. In the same way, we can access old memories that are buried deep in our subconscious.",
+        "Does this mean he will remember us?",
+        "To answer what is really troubling you... Yes, he will remember you.",
     };
 
     private List<bool> Ahsoka_2_2_bool = new List<bool>()
@@ -557,18 +559,20 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<string> Ahsoka_2_3 = new List<string>()
     {
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
+        "I wanted to ask you Mandalorian, why do you care so much for Grogu? I have encountered a fair amount of people like you in my life. Bounty hunters with good reputations who prefer to work alone and would stop at nothing to get their mission done, so that they can earn their desired credits at the end... None of them would have broken a deal to save the child.",
+        "I suppose I'm not like the other bounty hunters you've met. I just... I felt it was the right thing to do.",
+        "That might be what you tell yourself, but I sense there is something more. Something that makes you care for him and has created a strong bond between you two...",
+        "I told you I don't like these Jedi tricks. Get out of my mind!",
+        "My apologies, but this time I needed to be sure. Even if I do not accept to take him, I must know he is in good hands. I already told you that he is very special. ",
+        "Alright, but don't do it again. I guess... Yes. That day, on my homeplanet. I was a child too... alone, under that hatch... I know. He reminds me of myself.",
+        "Thank you for telling the truth.",
     };
 
     private List<bool> Ahsoka_2_3_bool = new List<bool>()
     {
 		// Mando true, other false
-		true,
+		false,
+        true,
         false,
         true,
         false,
@@ -578,18 +582,20 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<string> Ahsoka_3_1 = new List<string>()
     {
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
+        "Another one to spare? Where do you get all this Bantha milk?",
+        "You know... here and there. Doesn't matter. Have you spoken with Bo-Katan about the Mandalore business yet?",
+        "I have indeed. I knew she would try to reclaim Mandalore once again, and I agree with her, the time has come. There are still vestiges of The Empire scattered around the galaxy, but they are the weakest they have ever been.",
+        "What do you think is looming in there? I was always told that the planet was cursed, but nobody knew exactly what that meant.",
+        "I am also clueless here. My guess is that either there is an old Empire stronghold, or it has become a den for fugitives, low-life mobsters, and criminals.",
+        "I hope it's the later one, I'm more used to dealing with this type of scoundrels.",
+        "Whatever it may be, I am certain that they are not going to just hand over the planet and leave. You should never underestimate the enemy. Bo-Katan has been planning this for a long time. This time, I hope she can return to stay once and for all.",
     };
 
     private List<bool> Ahsoka_3_1_bool = new List<bool>()
     {
 		// Mando true, other false
-		true,
+		false,
+        true,
         false,
         true,
         false,
@@ -599,12 +605,12 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<string> Ahsoka_3_2 = new List<string>()
     {
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
+        "What went wrong the last time you two tried to claim Mandalore?",
+        "Nothing went wrong. It was certainly difficult, and we had a lot of casualties, but we were ultimately successful. You can ask Bo-Katan for the details. The problem was that the Republic fell hours later, and since she had claimed Mandalore with their aid, the planet was targeted by The Empire. She could not keep her position for long.",
+        "Well, you already did it once. I'm sure you can do it again.",
+        "Last time I had an entire division of troopers from the Republic with me and Bo-Katan had a lot of Mandalorian warriors with her.",
+        "I'm sure that we can do without the boys in white; their only purpose is to add bulk. One Mandalorian counts for twenty of them. We can find the numbers elsewhere.",
+        "You do not know what you are talking about, you are too young. Those were not your usual storm troopers; those were clone troopers. They were created specifically to become soldiers in the Grand Army of the Republic. Fighting was in their blood. I have never met any army as brave and disciplined as them.",
     };
 
     private List<bool> Ahsoka_3_2_bool = new List<bool>()
@@ -620,12 +626,14 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<string> Ahsoka_3_3 = new List<string>()
     {
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
+        "I think you exaggerate a bit. If clones were so good, why did The Empire stop using them?",
+        "There was no need for that amount of manpower anymore, they were expensive to produce, and could be programmed to do anything, such as betraying their commanding officers.",
+        "That's what happened to the Jedi right?... They put too much trust in them.",
+        "That is sadly true... However, I would not have fought with anyone else during the clone wars. When they turned against the Jedi... it was not their fault. They could not help it. Even if it was against their will.",
+        "Seems like you were really fond of them.",
+        "We went through so much together... They saved my life countless times. Some of them became dear friends. I was able to save one at least, my second in command. His name is Rex, the finest soldier I have ever known. He was beside me during our mission in Mandalore. He was beside me from the beginning until the very last moment...",
+        "The way you talk about him, I'd have liked to meet this man. He would have been a great addition to our team now.",
+        "Oh, you misunderstood me, he is still alive. That geezer, he last saw action during the battle of Endor, despite me advising him not to do it because of his age. I am sure if I told him, he would come without hesitation. I am not going to do it though. He has earned a well-deserved retirement. After a life full of war, I want him to spend his last years in peace..",
     };
 
     private List<bool> Ahsoka_3_3_bool = new List<bool>()
@@ -637,22 +645,30 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+        true,
+        false,
     };
 
     private List<string> Ahsoka_4_1 = new List<string>()
     {
-        "",
-        "",
-        "",
-        "",
-        "",
+        "You are spoiling me Mandalorian. I am sure other people would profit from this. Consider giving some to them.",
+        "I'll give it to whom I want. I have quite a bit so don't worry. After the fall of the Republic, didn't you consider joining the Rebellion? They would have benefited from someone with your skills.",
+        "Have you ever heard the word Fulcrum?",
+        "Sounds familiar... Wasn't he supposed to be some kind of secret agent working for the Rebellion?",
+        "Close, but it was not a he.",
+        "It was you? So, you never stopped working for the Republic side.",
+        "Several people became Fulcrum during the war, but I was the first one. I directly worked with senator Bail Organa to create what became the Alliance to Restore the Republic, and I was in charge of the Intelligence Service.",
+        "Then, you could use your contacts there to get us some help from the New Republic. With their aid, reclaiming Mandalore is going to be no trouble.",
         "",
     };
 
     private List<bool> Ahsoka_4_1_bool = new List<bool>()
     {
 		// Mando true, other false
-		true,
+		false,
+        true,
+        false,
+        true,
         false,
         true,
         false,
@@ -662,12 +678,12 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<string> Ahsoka_4_2 = new List<string>()
     {
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
+        "It amazes me that you did so much for the Rebellion and still, your involvement has remained a secret. The Republic owes you part of their existence, but your name will be forgotten after you die.",
+        "I did not do what I did to get a medal or expecting to become a hero at the end. I did what I felt was right, and to know I helped those who needed it the most, is the greatest reward I can get. I know this is not your way, bounty hunter, and yet I think that by now, you might be able to understand it.",
+        "Yes, I think I can understand.",
+        "I spent the first half of my life fighting for the Republic. During those years, I tasted victory and defeat, glory and condemnation, I was given respect and criticism... All those moments are lost in time, they are meaningless, for few now live who remember them. However, when I look in the eyes of the people who suffered under the Empire, who are living peacefully and with freedom today, and I see them sparkling with happiness and joy... I cannot ask for more.",
+        "Maybe you aren't a Jedi, and it is too late for you to go back and become one. But from all the stories I've heard, if there's one thing I'm certain about, is that you embody all the great things a Jedi master is supposed to stand for. I'm sure that if they were alive now, they would be proud of you...",
+        "Thank you Mandalorian. This means a lot to me...",
     };
 
     private List<bool> Ahsoka_4_2_bool = new List<bool>()
@@ -683,39 +699,45 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<string> Ahsoka_4_3 = new List<string>()
     {
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
+        "I have realized I owe you an apology Mandalorian. I read you wrong the first time we met.",
+        "Well, uh... apology accepted. What do you mean?",
+        "The first time, I decided to leave Grogu with you because I thought that, as he was your mission, you would protect him and keep him safe. But now that I know you better, there is no doubt in my mind that it was the right choice. He is more than your mission, and you are more than just a bounty hunter.",
+        "I'll take that as a compliment, I guess. But hold on a second, are you saying that if you had considered me untrustworthy, you would have taken Grogu? You know I wouldn't have let you, right?",
+        "There is no need to think about that, it did not happen. However, there is a chance I might have done it. But do not worry, I would not have harmed you. You treated Grogu well.",
+        "You really think I wouldn't stand any chance against you... Your lightsabers can't cut through my beskar armour, and not to brag but I'm a good fighter. You wouldn't have it so easy...",
+        "Fine. I remember our small fight the first time we met. If it makes you feel any better, I acknowledge you were surprisingly capable, and fairly resourceful. You reminded me of a certain bounty hunter, a blue skinned gunslinger who caused us a lot of trouble when I was still a Padaw--",
+        "Alright, ok I get it... Thank you, that definitely made me feel better.",
     };
 
     private List<bool> Ahsoka_4_3_bool = new List<bool>()
     {
 		// Mando true, other false
-		true,
-        false,
+		false,
         true,
         false,
         true,
         false,
+        true,
+        false,
+        true,
     };
 
     private List<string> Ahsoka_5_1 = new List<string>()
     {
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
+        "Please, let this be the last time you give me blue milk. I am grateful, but I cannot help but wonder whether others might benefit from it more than me. Now, instead, accept this as a gift from me.",
+        "Thanks, and ok, I'll do as you ask. I've got to tell you, I know you've already refused many times, but now more than ever, I think you would make a great master. I wouldn't have any complaints if you decided to take the kid with you.",
+        "And I must continue to refuse. I am glad that you feel that way about me. But the kid belongs with real Jedi, and I do not see myself as a master. In fact, I do not think I will ever be able to be a master.",
+        "But why? I honestly think I'm right here. As a master--",
+        "Please... Stop talking about being a master, this brings back painful memories.",
+        "Sorry, I didn't know... But please try to see it from my point of view...",
+        "I know you think it is right, but there are a lot of things you do not know about me. I am become who I am, as a result of how I was taught, and the person who taught me was the best master I could have ever asked for; still... he was not good enough...",
     };
 
     private List<bool> Ahsoka_5_1_bool = new List<bool>()
     {
 		// Mando true, other false
-		true,
+		false,
+        true,
         false,
         true,
         false,
@@ -725,12 +747,12 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<string> Ahsoka_5_2 = new List<string>()
     {
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
+        "Can I ask you what happened with your master?",
+        "I suppose I should be able to talk about him. What happened belongs to the past, and I need to move on. You see, when I was young, I was quite different from how I am now.",
+        "This is true for everyone.",
+        "What I mean is, I was not as calm and collected as I am today, and I was very inexperienced. I was eager to prove myself and I often acted hastily and carelessly, without thinking much or considering the consequences of my actions.",
+        "Kids tend to be like this, it is not something to be ashamed of.",
+        "But I was not just any kid, I was a Jedi Padawan. It was expected from us to be disciplined, focused and obedient to our masters. Any Jedi master would have deemed me a lost cause, any but Skyguy. He taught me a lot, and little by little, I changed into what I am today. Everything was going well, until one day everything started to change. I left the Order, and shortly after, he became someone else.",
     };
 
     private List<bool> Ahsoka_5_2_bool = new List<bool>()
@@ -746,12 +768,15 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<string> Ahsoka_5_3 = new List<string>()
     {
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
+        "What do you mean by that your master became someone else?",
+        "Exactly that. I lost track of him, and for a few years I thought he had disappeared. Then, one day, I met him again. He was no longer my master, he was someone... or something else, something vile. Where once I had seen kindness, now there was just an overwhelming sense of hollowness and misery... He had taken me under his wing, had looked out and cared for me, and had taught me so much... and I, in the end... I was incapable of helping him...",
+        "Now I understand why you said these were painful memories. I'm sorry I asked you about it. Most of us have a dark past, I guess overcoming it and being able to see the light at the end of the tunnel is what makes us be better persons.",
+        "You know Mandalorian... I think there is a wise master hidden deep down inside you too.",
+        "Oh please, I was being sincere for once... Don't make fun of me.",
+        "I was being sincere too. I can rest easy knowing that Grogu is in really good hands, and this makes me happy.",
+        "I appreciate that... So now, what's next?",
+        "Well, I think now we have a planet to reclaim, don't you agree? It is time for a new episode; meet old friends, make some new ones, get betrayed by them, forgive... and tell the story to the next generation. And most important: may the force be with you.",
+        "I couldn't agree more. And, whoever or whatever it is that we will find in Mandalore, they better be prepared, because we are coming for them.",
     };
 
     private List<bool> Ahsoka_5_3_bool = new List<bool>()
@@ -763,6 +788,9 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+        true,
+        false,
+        true,
     };
 
     //////////////////////////////////////////////////////////////////////////////////////// CARA DUNE ////////////////////////////////////////////////////////////////////////////////////////
