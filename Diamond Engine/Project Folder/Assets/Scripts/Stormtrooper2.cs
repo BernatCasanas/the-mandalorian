@@ -93,11 +93,11 @@ public class StormTrooper2 : Enemy
 
         #region STATE MACHINE
 
-        ProcessInternalInput();
+        /*ProcessInternalInput();
         ProcessExternalInput();
         ProcessState();
 
-        UpdateState();
+        UpdateState();*/
 
 
         #endregion
@@ -166,7 +166,7 @@ public class StormTrooper2 : Enemy
     //Manages state changes throught inputs
     private void ProcessState()
     {
-        while (inputsList.Count > 0)
+        /*while (inputsList.Count > 0)
         {
             INPUT input = inputsList[0];
 
@@ -275,13 +275,13 @@ public class StormTrooper2 : Enemy
                     break;
             }
             inputsList.RemoveAt(0);
-        }
+        }*/
     }
 
 
     private void UpdateState()
     {
-        switch (currentState)
+        /*switch (currentState)
         {
             case STATE.NONE:
                 break;
@@ -300,7 +300,7 @@ public class StormTrooper2 : Enemy
             default:
                 Debug.Log("NEED TO ADD STATE TO CORE");
                 break;
-        }
+        }*/
     }
 
 
@@ -308,7 +308,7 @@ public class StormTrooper2 : Enemy
 
     private void StartShooting()
     {
-        fireRate = GetCurrentFireRate();
+       /* fireRate = GetCurrentFireRate();
         Animator.Play(gameObject, "Shoot", normalShootSpeed);
 
         shootingTimer = fireRate;
@@ -319,63 +319,64 @@ public class StormTrooper2 : Enemy
         {
             myAimbot.isShooting = true;
             myAimbot.SearchForNewObjective();
-        }
+        }*/
     }
 
 
     private void UpdateShooting()
     {
-        if (myAimbot != null && myAimbot.HasObjective())
+        /*if (myAimbot != null && myAimbot.HasObjective())
             myAimbot.RotateToObjective();
         else if (IsJoystickMoving() == true)
-            RotatePlayer();
+            RotatePlayer();*/
     }
 
     private void EndShooting()
     {
-        if (myAimbot != null)
-            myAimbot.isShooting = false;
+        /*if (myAimbot != null)
+            myAimbot.isShooting = false;*/
     }
 
     private bool CanStopShooting()
     {
-        return shootingTimer > fireRate * 0.5 ? true : false;
+        return true;
+        //return shootingTimer > fireRate * 0.5 ? true : false;
     }
 
     private void StartShoot()
     {
-        Audio.StopAudio(gameObject);
+       /* Audio.StopAudio(gameObject);
         Audio.PlayAudio(shootPoint, "Play_Blaster_Shoot_Mando");
         Input.PlayHaptic(.3f, 10);
 
         InternalCalls.CreatePrefab("Library/Prefabs/346087333.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
 
         inputsList.Add(INPUT.IN_SHOOT_END);
-        hasShot = true;
+        hasShot = true;*/
     }
     #endregion
 
     #region RUN
     private void StartDash()
     {
-        Audio.StopAudio(gameObject);
+       /* Audio.StopAudio(gameObject);
         Audio.PlayAudio(gameObject, "Play_Dash");
         Animator.Play(gameObject, "Dash");
 
         dashTimer = dashDuration;
-        dashStartYPos = gameObject.transform.localPosition.y;
+        dashStartYPos = gameObject.transform.localPosition.y;*/
     }
 
     private void UpdateDash()
     {
-        StopPlayer();
-        gameObject.AddForce(gameObject.transform.GetForward().normalized * dashforce);
+       // StopPlayer();
+       // gameObject.AddForce(gameObject.transform.GetForward().normalized * dashforce);
     }
 
     private void EndDash()
     {
-        StopPlayer();
-        gameObject.transform.localPosition.y = dashStartYPos;
+        //StopPlayer();
+       // gameObject.transform.localPosition.y = dashStartYPos;
     }
 
     #endregion
@@ -390,7 +391,7 @@ public class StormTrooper2 : Enemy
     private void UpdateMove()
     {
         RotatePlayer();
-        gameObject.SetVelocity(gameObject.transform.GetForward() * movementSpeed);
+        //gameObject.SetVelocity(gameObject.transform.GetForward() * movementSpeed);
     }
 
     private void StopPlayer()
@@ -401,7 +402,7 @@ public class StormTrooper2 : Enemy
 
     private void RotatePlayer()
     {
-        //Calculate player rotation
+       /* //Calculate player rotation
         Vector3 aX = new Vector3(gamepadInput.x, 0, -gamepadInput.y - 1);
         Vector3 aY = new Vector3(0, 0, 1);
         aX = Vector3.Normalize(aX);
@@ -418,7 +419,7 @@ public class StormTrooper2 : Enemy
         //Convert angle from world view to orthogonal view
         angle += 0.785398f; //Rotate 45 degrees to the right
 
-        gameObject.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, (float)-angle);
+        gameObject.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, (float)-angle);*/
     }
 
     private void StartIdle()
@@ -434,7 +435,7 @@ public class StormTrooper2 : Enemy
         //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + collidedGameObject.tag);
         //Debug.Log("Collided by tag: " + collidedGameObject.tag);
 
-        if (collidedGameObject.CompareTag("Bullet"))
+       /* if (collidedGameObject.CompareTag("Bullet"))
         {
             Debug.Log("Collision bullet");
             healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
@@ -492,7 +493,7 @@ public class StormTrooper2 : Enemy
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
                 RemoveFromSpawner();
             }
-        }
+        }*/
 
     }
 
@@ -500,11 +501,11 @@ public class StormTrooper2 : Enemy
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
         //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + triggeredGameObject.tag);
-        if (triggeredGameObject.CompareTag("Bullet"))
+       /* if (triggeredGameObject.CompareTag("Bullet"))
         {
             // InternalCalls.Destroy(gameObject);
             gameObject.GetComponent<PlayerHealth>().TakeDamage(5);
-        }
+        }*/
 
         //Debug.Log("Triggered by tag: " + triggeredGameObject.tag);
     }
