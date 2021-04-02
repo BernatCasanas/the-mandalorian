@@ -23,7 +23,7 @@ uniform float length_used;
 uniform int combo_number;
 
 void main() {
-	if(textureCoords.x>length_used){
+	if(textureCoords.x<1-length_used){
 		fragmentColor=vec4(0,0,0,0);
 		}
 	else if(combo_number<10){
@@ -44,6 +44,7 @@ void main() {
 }
 
 #endif
+
 
 
 

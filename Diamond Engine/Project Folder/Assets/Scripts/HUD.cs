@@ -66,7 +66,7 @@ public class HUD : DiamondComponent
         {
             if (hp < max_hp)
             {
-                hp += 5;
+                hp += 1;
                 UpdateHP(hp, max_hp);
                 last_hp = hp;
             }
@@ -76,7 +76,7 @@ public class HUD : DiamondComponent
             if (hp > 0)
             {
                 last_hp = hp;
-                hp -= 5;
+                hp -= 1;
                 UpdateHP(hp, max_hp);
             }
         }
