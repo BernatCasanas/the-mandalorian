@@ -1,0 +1,142 @@
+{
+    "EditorCameraPosition": [
+        -4.523536205291748,
+        13.674294471740723,
+        -14.849416732788086
+    ],
+    "EditorCameraZ": [
+        0.20207659900188446,
+        -0.62044775485992432,
+        0.7577662467956543
+    ],
+    "EditorCameraY": [
+        0.15984201431274414,
+        0.7842477560043335,
+        0.59950470924377441
+    ],
+    "tags": [],
+    "layers": [],
+    "Game Objects": [
+        {
+            "name": "Scene root",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 178763901,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Empty",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1053817156,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 178763901,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 1.2070000171661377,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/920411250.dds",
+                            "texUID": 920411250,
+                            "paEmitterName": "Test",
+                            "paLifeTime": [
+                                2.2999999523162842,
+                                4.3000001907348633
+                            ],
+                            "paSize": [
+                                1,
+                                1
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 17,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        0,
+                                        2.5999999046325684,
+                                        0
+                                    ],
+                                    "paFOLT_magnitude": 10,
+                                    "paFOLT_gravityMod": 1,
+                                    "paFOLT_gravity": -9.8000001907348633,
+                                    "paFOLT_forceType": 0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": false,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                }
+            ]
+        }
+    ]
+}

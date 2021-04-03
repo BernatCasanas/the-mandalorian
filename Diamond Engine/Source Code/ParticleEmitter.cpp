@@ -42,7 +42,8 @@ Emitter::Emitter() :
 	objTransform(nullptr),
 	delaying(false),
 	maxDelay(0.0f),
-	emitterName("")
+	emitterName(""),
+	lastTimeSinceParticle(0.0f)
 {
 	memset(particlesLifeTime, 0.1f, sizeof(particlesLifeTime));
 	memset(particlesSize, 1.0f, sizeof(particlesSize));
@@ -136,7 +137,7 @@ void Emitter::Update(float dt, bool systemActive)
 			myEffects[i]->PrepareEffect();
 		}
 
-
+		lastTimeSinceParticle += dt;
 		if (systemActive)
 			ThrowParticles(dt);
 
@@ -229,7 +230,15 @@ void Emitter::Draw(unsigned int shaderId, Quat newRotation)
 	vboInfo.clear();
 }
 
-
+bool Emitter::CheckActiveParticles()
+{
+	bool ret = true;
+	if (lastTimeSinceParticle >= particlesLifeTime[1])
+	{
+		ret = false;
+	}
+	return ret;
+}
 #ifndef STANDALONE
 void Emitter::OnEditor(int emitterIndex)
 {
@@ -317,6 +326,7 @@ void Emitter::OnEditor(int emitterIndex)
 
 		guiName = "Start Size" + suffixLabel;
 		ImGui::DragFloatRange2(guiName.c_str(), &particlesSize[0], &particlesSize[1], 0.25f, 0.01f, 5.0f, "Min: %.01f", "Max: %.01f");
+
 
 		//It doesn't make sense to have Start Speed when we have the velocity effect
 		//guiName = "Start Speed" + suffixLabel;
@@ -543,6 +553,7 @@ void Emitter::CreateParticles(unsigned int particlesToAdd)
 void Emitter::ThrowParticles(float dt)
 {
 	//find particles to spawn this frame
+	lastTimeSinceParticle = 0.0f;
 	float myDT = min(dt, 0.016f);
 
 	float timeSinceLastThrow = myDT + lastParticeTime;
