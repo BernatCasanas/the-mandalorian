@@ -1,14 +1,14 @@
 {
     "Game Objects": [
         {
-            "name": "Grogu",
+            "name": "Empty",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
-                0,
-                7.6824569702148438,
-                0
+                -20.55561637878418,
+                0.8038598895072937,
+                2.4295742511749268
             ],
             "Rotation": [
                 0,
@@ -21,10 +21,10 @@
                 1,
                 1
             ],
-            "UID": 735933672,
-            "PrefabID": 2124140914,
+            "UID": 937252279,
+            "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1676501951,
+            "ParentUID": 1481651339,
             "Components": [
                 {
                     "Type": 1,
@@ -33,197 +33,12 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "BabyYoda",
-                    "verticalSpeed": 0.80000001192092896,
-                    "verticalTimeInterval": 1.2000000476837158,
-                    "followPoint": 2059214845,
-                    "horizontalSpeed": 4,
-                    "skillPushDuration": 1
-                }
-            ]
-        },
-        {
-            "name": "GroguMesh",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 2084330241,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 735933672,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "GrogusBody",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1243229930,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 2084330241,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2081829869.mmh",
-                    "UID": 2081829869,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
-                }
-            ]
-        },
-        {
-            "name": "CapsuleDoor",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 582564195,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 2084330241,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/1111006325.mmh",
-                    "UID": 1111006325,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
-                }
-            ]
-        },
-        {
-            "name": "Capsule",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1568791594,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 2084330241,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/772459766.mmh",
-                    "UID": 772459766,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
+                    "ScriptName": "HubRoomSwitch",
+                    "nextRoomUID": 1406013733,
+                    "colliderPosition": 937252279,
+                    "player": 1032451305,
+                    "maxDistance": 5,
+                    "insideCollider": false
                 }
             ]
         }
