@@ -176,7 +176,7 @@ void C_RigidBody::PostUpdate()
 
 		rotatedOffset.Set(offsetQuat.x, offsetQuat.y, offsetQuat.z);
 		if (DETime::state == GameState::PLAY)
-		pos += offset;
+		pos += rotatedOffset;
 		else
 		pos += rotatedOffset;
 
@@ -240,8 +240,10 @@ void C_RigidBody::Step()
 			offsetrot.Set(offset.x, offset.y, offset.z, 0);
 			offsetrot = rot * offsetrot * rot.Conjugated();
 			offset.Set(offsetrot.x, offsetrot.y, offsetrot.z);*/
+			
+
 			if (DETime::state == GameState::PLAY)
-			worldtrans = float4x4::FromTRS(pos - offset, rot, scale);
+			worldtrans = float4x4::FromTRS(pos - rotatedOffset, rot, scale);
 			else
 				worldtrans = float4x4::FromTRS(pos - rotatedOffset, rot, scale);
 			goTransform->SetTransformWithGlobal(worldtrans);
