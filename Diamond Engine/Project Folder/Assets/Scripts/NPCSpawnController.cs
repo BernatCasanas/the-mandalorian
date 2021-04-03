@@ -11,6 +11,10 @@ public class NPCSpawnController : DiamondComponent
     public bool BoKatan = true;
     public bool Ahsoka = true;
     public bool CaraDune = true;
+    private const int GroguUID = 1453817131;
+    private const int BoKatanUID = 653387112;
+    private const int AhsokaUID = 1082641369;
+    private const int CaraDuneUID = 2028292522;
     private List<int> charactersUID = new List<int>();
 
     public GameObject spawnPoint1 = null;
@@ -25,8 +29,8 @@ public class NPCSpawnController : DiamondComponent
  
     enum State
     {
-        SIT = 0,
-        IDLE,
+        IDLE = 0,
+        SIT,
         BAR
     }
 
@@ -70,15 +74,44 @@ public class NPCSpawnController : DiamondComponent
             alreadyAppeared[randomIndex]++;
 
             //We update the coordinates of the already existing character
-            string prefabPath = "Library/Prefabs/";
-            prefabPath += charactersUID[i];
-            prefabPath += ".prefab";
-            SpawnUnit(prefabPath, GetCoordinatesFromSpawnPoint(randomIndex), GetRotationFromSpawnPoint(randomIndex));
+            
+            SpawnUnit(charactersUID[i], GetCoordinatesFromSpawnPoint(randomIndex), GetRotationFromSpawnPoint(randomIndex), spawnPoints[randomIndex].Item3);
         }
     }
-    private void SpawnUnit(string prefab, Vector3 pos, Quaternion rot)
+    private void SpawnUnit(int prefabUID, Vector3 pos, Quaternion rot, int animation)
     {
-        InternalCalls.CreatePrefab(prefab, pos, rot, Vector3.one);
+        string prefabPath = "Library/Prefabs/";
+        prefabPath += prefabUID;
+        prefabPath += ".prefab";
+
+        GameObject unit = InternalCalls.CreatePrefab(prefabPath, pos, rot, Vector3.one);
+        //Animator animatorComponent = unit.GetComponent<Animator>();
+
+        switch(prefabUID)
+        {
+            case GroguUID:
+                if(animation == 1) Animator.Play(unit, "Idle");
+                else if(animation == 2) Animator.Play(unit, "Sit");
+                else if(animation == 3) Animator.Play(unit, "Bar");
+                break;
+            case BoKatanUID:
+                if (animation == 1) Animator.Play(unit, "Idle");
+                else if (animation == 2) Animator.Play(unit, "Sit");
+                else if (animation == 3) Animator.Play(unit, "Bar");
+                break;
+            case AhsokaUID:
+                if (animation == 1) Animator.Play(unit, "Idle");
+                else if (animation == 2) Animator.Play(unit, "Sit");
+                else if (animation == 3) Animator.Play(unit, "Bar");
+                break;
+            case CaraDuneUID:
+                if (animation == 1) Animator.Play(unit, "Idle");
+                else if (animation == 2) Animator.Play(unit, "Sit");
+                else if (animation == 3) Animator.Play(unit, "Bar");
+                break;
+            default:
+                break;
+        }
     }
 
     private Vector3 GetCoordinatesFromSpawnPoint(int index)
@@ -147,13 +180,37 @@ public class NPCSpawnController : DiamondComponent
             TupleAux = Tuple.Create(positionAux, rotationAux, stateAux);
             spawnPoints.Add(TupleAux);
         }
+        if (spawnPoint6 != null)
+        {
+            positionAux = spawnPoint6.transform.globalPosition;
+            rotationAux = spawnPoint6.transform.globalRotation;
+            stateAux = (int)State.IDLE;
+            TupleAux = Tuple.Create(positionAux, rotationAux, stateAux);
+            spawnPoints.Add(TupleAux);
+        }
+        if (spawnPoint7 != null)
+        {
+            positionAux = spawnPoint7.transform.globalPosition;
+            rotationAux = spawnPoint7.transform.globalRotation;
+            stateAux = (int)State.IDLE;
+            TupleAux = Tuple.Create(positionAux, rotationAux, stateAux);
+            spawnPoints.Add(TupleAux);
+        }
+        if (spawnPoint8 != null)
+        {
+            positionAux = spawnPoint8.transform.globalPosition;
+            rotationAux = spawnPoint8.transform.globalRotation;
+            stateAux = (int)State.IDLE;
+            TupleAux = Tuple.Create(positionAux, rotationAux, stateAux);
+            spawnPoints.Add(TupleAux);
+        }
     }
 
     private void GenerateCharactersList()
     {
-        if (Grogu) charactersUID.Add(1453817131); //Grogu's UID
-        if (BoKatan) charactersUID.Add(653387112); //BoKatan's UID
-        if (Ahsoka) charactersUID.Add(1082641369); //Ahsoka's UID
-        if (CaraDune) charactersUID.Add(2028292522); //CaraDune's UID
+        if (Grogu) charactersUID.Add(GroguUID); //Grogu's UID
+        if (BoKatan) charactersUID.Add(BoKatanUID); //BoKatan's UID
+        if (Ahsoka) charactersUID.Add(AhsokaUID); //Ahsoka's UID
+        if (CaraDune) charactersUID.Add(CaraDuneUID); //CaraDune's UID
     }
 }
