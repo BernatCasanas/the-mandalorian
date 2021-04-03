@@ -10,6 +10,7 @@ public class NPCSpawnController : DiamondComponent
     public bool Grogu = true;
     public bool BoKatan = true;
     public bool Ahsoka = true;
+    public bool CaraDune = true;
     private List<int> charactersUID = new List<int>();
 
     public GameObject spawnPoint1 = null;
@@ -17,6 +18,9 @@ public class NPCSpawnController : DiamondComponent
     public GameObject spawnPoint3 = null;
     public GameObject spawnPoint4 = null;
     public GameObject spawnPoint5 = null;
+    public GameObject spawnPoint6 = null;
+    public GameObject spawnPoint7 = null;
+    public GameObject spawnPoint8 = null;
     private List<Tuple<Vector3, Quaternion, int>> spawnPoints = new List<Tuple<Vector3, Quaternion, int>>();
  
     enum State
@@ -148,7 +152,8 @@ public class NPCSpawnController : DiamondComponent
     private void GenerateCharactersList()
     {
         if (Grogu) charactersUID.Add(1453817131); //Grogu's UID
-        if (BoKatan) charactersUID.Add(1346158143); //BoKatan's UID
-        if (Ahsoka) charactersUID.Add(2028292522); //Ahsoka's UID
+        if (BoKatan) charactersUID.Add(653387112); //BoKatan's UID
+        if (Ahsoka) charactersUID.Add(1082641369); //Ahsoka's UID
+        if (CaraDune) charactersUID.Add(2028292522); //CaraDune's UID
     }
 }
