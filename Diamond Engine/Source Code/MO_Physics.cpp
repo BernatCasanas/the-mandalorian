@@ -10,6 +10,7 @@
 
 #include "CO_Collider.h"
 #include "CO_RigidBody.h"
+#include "CO_Transform.h"
 #include "CO_MeshRenderer.h"
 
 #include "RE_Mesh.h"
@@ -304,19 +305,40 @@ physx::PxShape* ModulePhysics::CreateSphereCollider(float radius, PxMaterial* ma
 	return colliderShape;
 }
 
-physx::PxShape* ModulePhysics::CreateMeshCollider(PxRigidActor* aConvexActor, GameObject* parent)
+physx::PxShape* ModulePhysics::CreateMeshCollider(C_RigidBody* rigidBody, GameObject* parent)
 {
 	C_MeshRenderer* mesh = dynamic_cast<C_MeshRenderer*>(parent->GetComponent(Component::TYPE::MESH_RENDERER));
+	C_Transform* transform = dynamic_cast<C_Transform*>(parent->GetComponent(Component::TYPE::TRANSFORM));
+
 	ResourceMesh* resMesh = mesh->GetRenderMesh();
 
 	PxVec3* convexVerts = new PxVec3[resMesh->vertices_count];
+	float3 tempscale, tempos;
+	Quat temprot;
+	tempscale.Set(1, 1, 1);
+	temprot = Quat::identity;
+
 	for (int i = 0; i < resMesh->vertices_count; i++)
 	{
-		PxVec3 vertex;
-		vertex.x = resMesh->vertices[VERTEX_ATTRIBUTES * i];
-		vertex.y = resMesh->vertices[VERTEX_ATTRIBUTES * i + 1];
-		vertex.z = resMesh->vertices[VERTEX_ATTRIBUTES * i + 2];
+
 		
+		
+		
+		tempos.x = resMesh->vertices[VERTEX_ATTRIBUTES * i];
+		tempos.y = resMesh->vertices[VERTEX_ATTRIBUTES * i + 1];
+		tempos.z = resMesh->vertices[VERTEX_ATTRIBUTES * i + 2];
+		tempos.x -= rigidBody->offset.x;
+		tempos.y -= rigidBody->offset.y;
+		tempos.z -= rigidBody->offset.z;
+		float4x4 objecttrans = float4x4::FromTRS(tempos, temprot, tempscale);
+
+		objecttrans = objecttrans * transform->GetCurrentGlobalMatrix().Transposed();
+		objecttrans.Decompose(tempos, temprot, tempscale);
+		PxVec3 vertex;
+		vertex.x = tempos.x;
+		vertex.y = tempos.y;
+		vertex.z = tempos.z;
+
 		convexVerts[i] = vertex;
 	}
 
@@ -336,7 +358,13 @@ physx::PxShape* ModulePhysics::CreateMeshCollider(PxRigidActor* aConvexActor, Ga
 	PxConvexMesh* aConvexMesh = mCooking->createConvexMesh(convexDesc,
 		mPhysics->getPhysicsInsertionCallback());
 
-	PxShape* aConvexShape = mPhysics->createShape(PxConvexMeshGeometry(aConvexMesh), *mMaterial);
+	transform->GetCurrentGlobalMatrix().Decompose(tempos, temprot, tempscale);
+	PxMeshScale meshScale;
+	meshScale.scale.x = tempscale.x;
+	meshScale.scale.y = tempscale.y;
+	meshScale.scale.z = tempscale.z;
+
+	PxShape* aConvexShape = mPhysics->createShape(PxConvexMeshGeometry(aConvexMesh, meshScale), *mMaterial);
 	delete[] convexVerts;
 
 	return aConvexShape;

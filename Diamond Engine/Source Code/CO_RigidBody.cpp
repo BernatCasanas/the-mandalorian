@@ -62,8 +62,12 @@ C_RigidBody::C_RigidBody(GameObject* _gm): Component(_gm)
 	pivotpos = pos;
 	offset = pivotpos - objectpos;
 
+	Quat offsetQuat;
+	offsetQuat.Set(offset.x, offset.y, offset.z, 0);
+	offsetQuat = rot.Conjugated() * offsetQuat * rot;
 
-	
+	offset.Set(offsetQuat.x, offsetQuat.y, offsetQuat.z);
+
 
 	rigid_dynamic = EngineExternal->modulePhysics->CreateRigidDynamic(pos, rot);
 
@@ -165,7 +169,17 @@ void C_RigidBody::PostUpdate()
 				pos[i] = Round(pos[i] * 100) / 100;
 			}
 		}
+		
+		Quat offsetQuat;
+		offsetQuat.Set(offset.x, offset.y, offset.z, 0);
+		offsetQuat = rot * offsetQuat* rot.Conjugated();
+
+		rotatedOffset.Set(offsetQuat.x, offsetQuat.y, offsetQuat.z);
+		if (DETime::state == GameState::PLAY)
 		pos += offset;
+		else
+		pos += rotatedOffset;
+
 		physx::PxQuat rotation = { rot.x,  rot.y, rot.z, rot.w };
 		rigid_dynamic->setGlobalPose(physx::PxTransform({ pos.x, pos.y, pos.z }, rotation));
 			
@@ -222,8 +236,14 @@ void C_RigidBody::Step()
 		else
 		{
 			float4x4 pivotrans = global_to_pivot.Inverted() * worldtrans;
-
+	/*		Quat offsetrot;
+			offsetrot.Set(offset.x, offset.y, offset.z, 0);
+			offsetrot = rot * offsetrot * rot.Conjugated();
+			offset.Set(offsetrot.x, offsetrot.y, offsetrot.z);*/
+			if (DETime::state == GameState::PLAY)
 			worldtrans = float4x4::FromTRS(pos - offset, rot, scale);
+			else
+				worldtrans = float4x4::FromTRS(pos - rotatedOffset, rot, scale);
 			goTransform->SetTransformWithGlobal(worldtrans);
 		}
 				
