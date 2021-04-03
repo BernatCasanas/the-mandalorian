@@ -81,8 +81,8 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 		true,
 	};
-
-	private List<string> Bo_Katan_0_1 = new List<string>()
+    //////////////////////////////////////////////////////////////////////////////////////// BO KATAN ////////////////////////////////////////////////////////////////////////////////////////
+    private List<string> Bo_Katan_0_1 = new List<string>()
 	{
 		"What a coincidence. Taking a break from your reclaiming of Mandalore?",
 		"Do not speak as if you knew what it means to be a Mandalorian, bounty hunter. You are just a member of a cult of zealots who got lost in an ancient faith.",
@@ -274,7 +274,203 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 	};
 
-	private List<string> Grogu_0_1 = new List<string>()
+    private List<string> Bo_Katan_3_1 = new List<string>()
+    {
+        "Stop giving me this awful beverage. I am starting to think you want to poison me.",
+        "Tempting, but poison is not the way of the Mandalore. Besides, Bantha Milk is very nutritious, essential for a healthy diet.",
+        "I can't tell if you are joking or you really believe this crap. Point is, I am not drinking it.",
+        "How do you expect to become leader of Mandalore with that attitude? Aren't good leaders charming and charismatic?",
+        "My sister was a nice and charming leader. Her dream was for Mandalore to become a peaceful and egalitarian nation. That killed her.",
+        "Damn, that got dark.",
+        "Mandalore does not need a compassionate and gentle ruler. It has always been a civilization of warriors. It must be ruled by a strong and unyielding hand.",
+    };
+
+    private List<bool> Bo_Katan_3_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Bo_Katan_3_2 = new List<string>()
+    {
+        "Say Bo-katan, how was your relationship with your sister? It seems to me you didn't agree much with her.",
+        "We were never very close. We had different views on how the nation should be ruled. Mandalore has been through a lot of wars that have rendered the planet inhospitable, and life is only possible inside domed cities. To break with all this devastation, she envisioned a peaceful and fair society that would make peace with the planet.",
+        "Sounds nice. But I guess that was a bad time to be an idealist.",
+        "Exactly, that was my position. Moreover, that was incompatible with our culture and traditions... When she became ruler, I was still young and wanted to rebel, so along with my Nite Owls, I joined an organization called the Death Watch, which planned to bring back Mandalore to its former way of life.",
+        "So, you went against your sister. What was the Death Watch exactly?",
+        "At that time, I thought we were doing something good, but now I see we were just a bunch of terrorists. With the help of a powerful Sith Lord, we seized power from my sister and our leader Pre Vizsla became the new Ruler.",
+        "From the stories I've heard, it was better to stay as far away as possible from Sith Lords.",
+        "In this, you are not wrong.",
+    };
+
+    private List<bool> Bo_Katan_3_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false, 
+        true,
+        false,
+    };
+
+    private List<string> Bo_Katan_3_3 = new List<string>()
+    {
+        "So, what happened with that Sith Lord?",
+        "His name was Darth Maul. A powerful creature filled with rage and hatred, but with a very cunning mind. We thought we were using him... We were wrong. You cannot toy with a Sith Lord. He killed Vizsla and my sister. Then, he appointed a puppet leader and governed Mandalore from within the shadows.",
+        "I'm glad there are no more of those. I have enough with my Rancors and Gideons. I Don't need an extra maniac running around who might want to hurt Grogu. Did you beat Maul in the end?",
+        "I did not stand a chance; it was only thanks to the help of the armies from the republic and Ahsoka Tano herself that we reclaimed Mandalore. She defeated Maul. Then I became regent for a short period of time.",
+        "I briefly faced against Ahsoka once, is she really that skilled?",
+        "If you are still alive, it is because she did not aim to kill you.",
+    };
+
+    private List<bool> Bo_Katan_3_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Bo_Katan_4_1 = new List<string>()
+    {
+        "You are doing it on purpose, aren't you? I give up, maybe if I give it to the bartender he will exchange it for something potable.",
+        "Come on, I know you secretly like it. What can you tell me about the Jedi? During republic times there were a few of them around, right? You must have encountered some.",
+        "Ahsoka could tell you more than me about them. She was once one. During the clone wars, Mandalore was a neutral state, so they tried to avoid us as much as possible. However, there was one who became really close with my sister, his name was Kenobi or something like that.",
+        "Do you think it is a good life for someone like Grogu? I mean... Look at him, they were supposed to fight against the toughest foes in the galaxy, he looks completely harmless. I don't know if he should take that path, it seems too dangerous.",
+        "The first time I met Ahsoka she looked like an innocent little girl, but when I fought her, she gave me a round for my money.",
+        "Did she beat you?",
+        "I would not go so far as to say that...",
+        "I see... She beat you.",
+        "...",
+    };
+
+    private List<bool> Bo_Katan_4_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Bo_Katan_4_2 = new List<string>()
+    {
+        "Your stories of Mandalore intrigue me, they are so different from what I was told. Tell me more about the culture and society.",
+        "Mandalore has always been divided by clans. I am, for example, from clan Kryze, and there are others such as Wren, Saxon, Vizsla...",
+        "I remember one of the members in the Tribe was called Vizsla, not a very friendly fellow I should say.",
+        "Haha well, Vizslas were known to be rather cold and ambitious. They were one of the clans that wished to return to the old ways and consequently were exiled to Concordia, one of Mandalore's moons, I sided with them during my sister's reign.",
+        "So, the Mandalorian people were not very united?",
+        "In politics each clan had their best interests in mind and tended to work pretty often against each other, this caused quite a few civil wars. But when going to battle against an external threat this was entirely different. We worked as a unit; all our differences were gone and we became an unstoppable force. That is why I supported our warring culture.",
+    };
+
+    private List<bool> Bo_Katan_4_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Bo_Katan_4_3 = new List<string>()
+    {
+        "How was it to go to battle alongside the whole Mandalorian army? I guess it had to feel amazing.",
+        "Indeed, it felt incredible... I remember people coming out of their houses, standing on the wide streets of Sundari, looking up to see thousands of flying warriors in their shining beskar armours. Real mandalorian soldiers glittering in the sky, like shooting stars under a bright full moon night, it was truly a sight to behold...",
+        "I would like to have seen it at least once in my life. Now I feel like I want to help you restore Mandalore to that former glory.",
+        "I would very much appreciate your help. From what I have seen, you fight as well as the most veteran Mandalorian soldiers. And believe me, if seeing the army was impressive, flying with it felt even greater.",
+        "I can imagine it. But I must be careful; your compliments might make me blush.",
+        "Sure, make fun of it if you want, and you can turn yourself blue for what I care. Since you never take your helmet off, I will never have to see your ugly face, and I am sure you have not even seen yourself in a mirror since you were a child.",
+        "How do you know I'm ugly if you've never seen me either. I think I'm actually quite handsome... Probably.",
+        "Sure.",
+    };
+
+    private List<bool> Bo_Katan_4_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Bo_Katan_5_1 = new List<string>()
+    {
+        "How about we make a deal: I give you this and you promise to never ever, for the rest of your life, give me more of this horrible drink.",
+        "Wow, are you sure you want to give me that? Thanks, I think we have a deal.",
+        "I have never been so happy in my life.",
+    };
+
+    private List<bool> Bo_Katan_5_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Bo_Katan_5_2 = new List<string>()
+    {
+        "You know, after hearing all your stories of Mandalore during this time, I've decided I will help you in your mission. I don't know if it is the right thing to do but it is what I want to do. After calling myself a mandalorian for so long, I think this is the way.",
+        "I am glad to hear that. Thank you for honouring your word. Will you not get in trouble with your friends in the Children of the Watch?",
+        "Maybe, but I will explain it to them, I'm sure they will understand. I also did not say I would become one of you, I'm still a member of the Tribe, I'll be eternally indebted to them.",
+        "I am not so sure they will like it, but this is for you to decide. I hope one day you change your mind. There will always be a place for you among us.",
+    };
+
+    private List<bool> Bo_Katan_5_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Bo_Katan_5_3 = new List<string>()
+    {
+        "So, what happens now?",
+        "I will leave and make the necessary arrangements. I took Mandalore once by force, but I did not succeed in keeping it for very long. The second time I was humiliatingly defeated by the empire. I do not want to make the same mistakes.",
+        "What will you change?",
+        "This time I will not come to seize power as an aspirant to the throne. I will come as a rightful ruler and I will be accompanied by mandalorians. Beskar armours will step onto the sands of Mandalore once again, and we will show the galaxy we are still alive.",
+        "Nice speech. Did you practice it beforehand in front of a mirror?",
+        "You are impossible. Why did you have to spoil the moment? Ahhh, whatever, I will contact you when everything is ready. See you soon Mandalorian.",
+        "So long Krize... I also have a bad feeling about this Grogu, but she doesn't seem so bad. I'll trust her... For now.",
+
+    };
+
+    private List<bool> Bo_Katan_5_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+    };
+
+    //////////////////////////////////////////////////////////////////////////////////////// GROGU ////////////////////////////////////////////////////////////////////////////////////////
+    private List<string> Grogu_0_1 = new List<string>()
 	{
 		"Hey kid, how are you doing? We've been quite busy lately, haven't we? Almost no time to slow down and have a chat.",
 		"(Little Grogu looks at Mando perplexed, though he is 50 years old and wiser than what most would expect, he has yet to entangle the mysteries of the spoken language.)",
@@ -322,7 +518,213 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 	};
 
-	private List<string> Greef_0_1 = new List<string>()
+    private List<string> Grogu_1_1 = new List<string>()
+    {
+        "Here's a little present for you kid. You better drink this, it will help you grow big and strong, like me. Drink it slowly.",
+        "(With a mixture of curiosity and excitement, the little one takes the Bantha milk and starts drinking it. With just a couple of gulps he is finished. One wouldn't be able to say whether there is more milk inside his belly or onto himself.)",
+        "Well, I'm definitely not cleaning you up. Next time drink like a normal 'whatever your species is' being. And you are not boarding my ship like this either.",
+        "(The charming youngling tries, futilely, to wipe the mess he has made of himself with his small hands. He articulates babbles of frustration, and then looks at Mando with sparkling eyes.)",
+        "No, no, and no. I told you to drink it slowly, and you didn't listen to me. Come on, you're like fifty years old! When I was your age... Anyhow, you should have learned how to behave yourself by now.",
+        "(The adorable infant starts taking his tunic off. It seems like he pretends to use it to clean himself up and then throw it away.)",
+        "What do you think you are doing? There are a lot of people here watching. Put your tunic on again, they don't want to see a 50-year-old child naked... Fine, I'll let you on the ship. But let this be the last time you do something like this, otherwise I'll put you in charge of cleaning the Crest for an entire week",
+    };
+
+    private List<bool> Grogu_1_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+    };
+
+    private List<string> Grogu_1_2 = new List<string>()
+    {
+        "How did you do it before I found you? I really doubt those Nikto mercenaries cared to tend to all your urges and whims.",
+        "(Mando's words are lost in the air. Little Grogu is too busy trying to shoo a big tatooinian fly that has camped on his head and is enjoying a feast of delicious Bantha milk.)",
+        "Sometimes I have the feeling I'm talking to a wall... I guess they didn't have much of a choice. You were probably too relentless for them.",
+        "(At last, Grogu has been able to scare the fly that had him so concerned. He lets out a sigh of relief and closes his eyes. The thrilling battle against this daunting enemy has left him too exhausted and needs some time to rest.)",
+        "Sorry, am I boring you? Fine, I won't bother you anymore. Next time you want some attention though, try with this interesting fly you've just befriended.",
+        "(The kid, who had apparently fallen asleep, suddenly opens his eyes and stares at Mando while frowning his wrinkled forehead and uttering a displeased cry of protest. Moreover, he waves his tiny arms in the air in sign of consternation.)",
+        "Attaboy.",
+    };
+
+    private List<bool> Grogu_1_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+    };
+
+    private List<string> Grogu_2_1 = new List<string>()
+    {
+        "Here you have, but if you make another mess, I'm leaving you in Tatooine, I promise.",
+        "(Carefully, Grogu grabs the milk and starts drinking it. He succeeds in not spilling any drop. However he cannot avoid getting a blue moustache that makes him look even cuter than before, if this is even possible)",
+        "Congratulations, you've learned to drink like a normal person. I'm proud of you.",
+        "(The youngling smiles at Mando with his blue moustache. The whole canteen is looking at him like a child would look at a piece of candy. Grogu is enjoying the attention he's getting and starts waving at everyone while making happy noises.)",
+        "Stop moving and come here, I need to wipe this thing off of your lips, you are making a spectacle out of us. Maybe instead of a Jedi knight you should become a little clown, that would certainly make it easier for me. No more danger and, without a doubt, a lot of credits.",
+    };
+
+    private List<bool> Grogu_2_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+    };
+
+    private List<string> Grogu_2_2 = new List<string>()
+    {
+        "There is one thing that bothers me, kid. How come that, after all we've been through, you haven't even said a real word to me, and the first time we meet Ahsoka Tano, you tell her all your life story you little traitor. It's very unfair, she doesn't even have ears...",
+        "(Little Grogu closes his unproportionally big eyes and attempts to concentrate, then he puts his small hands on his head. Now it seems he is really making an effort. After a few seconds of nothing happening, he gives up. He lays down on his seat and lets out a sigh.)",
+        "What was that supposed to mean? Were you trying to communicate with me? If so, you gave up rather quickly. Here I've been trying for the past few months and you give up after a couple of seconds. Thank you for your enormous efforts.",
+        "(The mischievous little one, waves one fist in the air and touches his face with the other hand while mumbling something incomprehensible. However, any person with a minimum of experience interacting with other intelligent beings could have guessed that it certainly was not something nice.)",
+        "Ok, ok, no need to get angry. Is it because of the helmet? Sorry but I can't take it off. I can't do anything about it. By the way... watch your mouth kid.",
+    };
+
+    private List<bool> Grogu_2_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+    };
+
+    private List<string> Grogu_3_1 = new List<string>()
+    {
+        "Like the last time, huh? Taking the enemy's stronghold is the easy part, keeping it is what's complicated, but I'm sure I can count on you.",
+        "(The adorable little creature takes the Blue milk and drinks until the very last drop. He drinks the whole thing in one gulp. Inexplicably he has successfully completed the operation without making a mess.)",
+        "Good, you'll make a fine Jedi if you follow this path. Do you really want to become one though? I'm not going to force you to do anything you don't want.",
+        "(Mando is faced against an impassable visage. Behind that innocent and cute face, lies a potential that not even the very own little one can begin to fathom. And yet, it seems that he understands it in some strange way.)",
+        "I know... That's your duty. Especially to the ones that saved your life while sentencing theirs. But how did they do it? It's a miracle they didn't discover you.",
+        "(Grogu lowers his head and his ears. Clearly something has troubled his mind and a sad whisper escapes his fragile lungs.)",
+        "I understand if you don't want to talk about it. It's ok kid. We are all running away from our past in some way or another",
+    };
+
+    private List<bool> Grogu_3_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+    };
+
+    private List<string> Grogu_3_2 = new List<string>()
+    {
+        "I'm not sure if going with Bo-Katan is a good idea. She seems to really care about her home and people but there's something that seems off. What do you think kid?",
+        "(Right now, Grogu is too concerned with his metallic ball. He has put it in his mouth and is trying to chew it. He then discovers that apparently his species is unable to chew metal, which comes to him as a surprise to be sure, but an unwelcome one. Therefore, frustrated, he spits the ball.)",
+        "Oh great. Now, every time I touch the dang ball on the lever, I'll remember the coat of saliva you so kindly gave it.",
+        "(The clueless child utters a joyful cry. It seems like he perchance thinks that he has just been complimented.)",
+        "Sure, sure, very well done. Thank you very much for your service. Well... I'll take this as your way of telling me to help Bo-Katan. I will trust you, but then it will be your fault if she turns out to be no good.",
+        "(The kid has put the ball in his mouth again. It appears he has not given up on the potential of his tiny jaw, and is going to try to chew the ball once more. He miserably fails in this endeavour; the ball has defeated him.)",
+    };
+
+    private List<bool> Grogu_3_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Grogu_4_1 = new List<string>()
+    {
+        "Another one for you kid. You already know the deal. Nice and easy all right?",
+        "(Without wasting a single second, little Grogu drinks the milk. Afterwards he seems somewhat uneasy, could it have been the milk? He lies down to rest.)",
+        "It's nice to be able to rest. I know we've had it rough these past months. However, you've proven your value. The truth is, I always wonder what would have happened to you if I hadn't shown up, but I also don't know what would have become of me without you. You've saved me too, even if I don't like to admit it...",
+        "(The child is sleeping safe and sound. Nobody would be able to guess that in a couple hundred years, this youngling might become the most powerful being in the galaxy. Right now, it looks like he can't even hurt a fly.)",
+        "Have a nice sleep kid, you've earned it. And don't worry, as long as I'm beside you, nobody will lay a hand on you.",
+    };
+
+    private List<bool> Grogu_4_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+    };
+
+    private List<string> Grogu_4_2 = new List<string>()
+    {
+        "Say kid, did you really have some training back in the Jedi days? From what Ahsoka told me that's what I understood, but I don't get how they were able to teach you anything, considering the troubles I have now trying to teach you to just drink normally...",
+        "(After a short, delightful nap, the kid opens his eyes. With renewed energy starts playing with his ball. Now it seems that his new challenge is to get it to fit into his nose).",
+        "You have probably forgotten all about it. I understand. All your friends during that time, all your teachers, everyone... they are probably dead. And yet they were able to save you.",
+        "(Suddenly, little Grogu raises the ball and with the force he drives it to Mando. He looks at his caretaker with confidence and then demands the ball back.)",
+        "You are full of surprises, kid. Catch it! I need to learn not to underestimate you. You are stronger than you seem.",
+    };
+
+    private List<bool> Grogu_4_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+    };
+
+    private List<string> Grogu_5_1 = new List<string>()
+    {
+        "(The kid, who is not baby Yoda but looks like baby Yoda, drinks once again all the milk in one gulp. Now something is going wrong for real. His green skin starts to turn blue. He holds on until he can no longer bear it and throws up everything, making a mess once again, and thanks to the smell, this time a stinky mess.).",
+        "Why? You were doing so well... That's because you drink too fast. I told you from the beginning; slow-ly. Now you've really done it kid... What's this?",
+        "(Among all the nasty visual inventory of the things Grogu had eaten during the last 24 hours, there is a little chip. Mando grabs it.)",
+        "Well, you never know... What am I going to do with you now? If you don't like blue milk you could have told me from the beginning.",
+        "(Little Grogu's pointy ears start angling down, a tiny tear rounds down his cheek from one of his big eyes. He doesn't even try to wipe himself up this time, he knows it is pointless.)",
+        "Oh, stop it. Please, don't cry kid, come on, don't cry. Do you want your ball? Look, here is your ball, grab it and eat it or whatever you want but don't do this to me... Ok, next time I'm going to buy you an ice-cream, no two ice-creams. Have you ever tried an ice-cream? Kids love this stuff, and there are ice-creams with all the tastes in the galaxy, you're going to love it... Ugh, I'm not good at this.",
+    };
+
+    private List<bool> Grogu_5_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+    };
+
+    private List<string> Grogu_5_2 = new List<string>()
+    {
+        "Tell me kid, when all this is over... us I mean. When we find you this wise master... Am I ever going to see you again? ... Another fifty years from now, will you remember an old and grumpy geezer the face of whom you never saw?",
+        "(Grogu reaches to Mando with his arms, but they are too short. Mando gets close and the kid puts one hand on the helmet, then he closes his big eyes. A warm funny sensation tickles Mando's face. Then The kid opens his eyes again and smiles at his tall tin-friend while bubbling some sounds beyond comprehension.).",
+        "I don't know what you just did but it feels like... like you've just been in my head. And in some weird way, I feel at ease. I haven't even found you a master yet and you can already do things I can't understand... You know, I'm going to be sad when you are gone.",
+        "(The youngling tilts his head and raises his ears. Then he returns the ball to Mando, who grabs it, looks at it, and gives it back to the child. Behind Grogu's black eyes, one can only but see a deep, daunting void. However, in this very moment, Mando could swear that he is having a glimpse into the entire universe.)",
+        "Thank you, but you keep it, there's very little I can give you, so at least keep this. Oh, don't act all tough and strong all of a sudden, I know you'll be sad too. Just pay me a visit whenever your master gives you a little bit of free time. And if he doesn't let you, I will personally come wherever you are and beat him up. Jedis are no match for me, but don't tell Ahsoka what I just said... You already know this, but there will always be a place for you on my ship.",
+    };
+
+    private List<bool> Grogu_5_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+        true,
+        false,
+        true,
+    };
+    //////////////////////////////////////////////////////////////////////////////////////// GREEF KARGA ////////////////////////////////////////////////////////////////////////////////////////
+    private List<string> Greef_0_1 = new List<string>()
 	{
 		"Ahh, if it isn't the great Mando himself. How is my best bounty hunter doing these days?",
 		"I no longer work for you Greef. I'm doing fine, thanks.",
@@ -386,6 +788,8 @@ public class List_Of_Dialogs : DiamondComponent
 		true,
 		false,
 	};
+
+    //////////////////////////////////////////////////////////////////////////////////////// AHSOKA ////////////////////////////////////////////////////////////////////////////////////////
 
     private List<string> Ahsoka_0_1 = new List<string>()
     {
@@ -1193,7 +1597,8 @@ public class List_Of_Dialogs : DiamondComponent
         "I just compared what they were doing with the way the empire treated underdeveloped planets that refused to submit to their authority. They put blockades so that they couldn't get any food or medicine from the outside. They were doing the same thing to me! It's very unfair, right?",
         "Well, uh... maybe?",
         "After all I've done for you, you're not even on my side here? Fine, I'll find others who will join my cause, but don't expect any more help from me, you are alone in that Mandalore business of yours, and you'll have to find that jedi by yourself. Just wait and see... I'll show them a new rebellion.",
-        "No, but I just... Well, I hope it goes well for you. (To Grogu) Honestly, it's not that difficult to see why they fired her.",
+        "No, but I just... Well, I hope it goes well for you...",
+        // "No, but I just... Well, I hope it goes well for you. (To Grogu) Honestly, it's not that difficult to see why they fired her.",
     };
 
     private List<bool> Cara_5_3_bool = new List<bool>()
