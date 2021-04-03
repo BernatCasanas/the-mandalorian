@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        12.650991439819336,
-        9.8916454315185547,
-        -6.6675229072570801
+        -0.96285408735275269,
+        20.454288482666016,
+        -20.143665313720703
     ],
     "EditorCameraZ": [
-        -0.91782057285308838,
-        -0.28195598721504211,
-        0.27947556972503662
+        -0.012044894509017467,
+        -0.75901192426681519,
+        0.65096545219421387
     ],
     "EditorCameraY": [
-        -0.26975250244140625,
-        0.9594273567199707,
-        0.082053489983081818
+        -0.014169123023748398,
+        0.6510767936706543,
+        0.75887972116470337
     ],
     "tags": [],
     "layers": [],
@@ -6079,7 +6079,7 @@
             "Active": true,
             "Position": [
                 0,
-                0,
+                2.2779407501220703,
                 0
             ],
             "Rotation": [
@@ -6101,6 +6101,23 @@
                 {
                     "Type": 1,
                     "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "NPCSpawnController",
+                    "Grogu": true,
+                    "BoKatan": true,
+                    "Ahsoka": true,
+                    "CaraDune": true,
+                    "spawnPoint1": 452928562,
+                    "spawnPoint2": 1837026101,
+                    "spawnPoint3": 58096989,
+                    "spawnPoint4": 1058763868,
+                    "spawnPoint5": 1970554400,
+                    "spawnPoint6": 2122577452,
+                    "spawnPoint7": 1172584681,
+                    "spawnPoint8": 2074718843
                 }
             ]
         },
@@ -6141,8 +6158,8 @@
                     "UID": 518061100,
                     "alternColor": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ]
                 }
             ]
@@ -6184,8 +6201,8 @@
                     "UID": 518061100,
                     "alternColor": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ]
                 }
             ]
@@ -6227,8 +6244,8 @@
                     "UID": 518061100,
                     "alternColor": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ]
                 }
             ]
@@ -6270,8 +6287,8 @@
                     "UID": 518061100,
                     "alternColor": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ]
                 }
             ]
@@ -6313,8 +6330,8 @@
                     "UID": 518061100,
                     "alternColor": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ]
                 }
             ]
@@ -6356,8 +6373,8 @@
                     "UID": 518061100,
                     "alternColor": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ]
                 }
             ]
@@ -6399,8 +6416,8 @@
                     "UID": 518061100,
                     "alternColor": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ]
                 }
             ]
@@ -6442,8 +6459,8 @@
                     "UID": 518061100,
                     "alternColor": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ]
                 }
             ]
@@ -9622,487 +9639,6 @@
             ]
         },
         {
-            "name": "GroguFollowPoint",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0.50180244445800781,
-                0.90269899368286133,
-                -0.44307708740234375
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 417855067,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 1032451305,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "GroguFPManager",
-                    "point1": 1674137345,
-                    "point2": 441155320,
-                    "point3": 363414326,
-                    "point4": 1763945139,
-                    "point5": 1624684977,
-                    "point6": 2081612580
-                }
-            ]
-        },
-        {
-            "name": "FP_Back",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                -0.53475379943847656,
-                0.046333789825439453,
-                -1.2218532562255859
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1674137345,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 417855067,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 0,
-                    "Density": 0
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "GroguFollowPoints",
-                    "priority": 2
-                }
-            ]
-        },
-        {
-            "name": "FP_BackLeft",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0.75781059265136719,
-                0.046333789825439453,
-                -0.77125072479248047
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 441155320,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 417855067,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 0,
-                    "Density": 0
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "GroguFollowPoints",
-                    "priority": 1
-                }
-            ]
-        },
-        {
-            "name": "FP_BackRight",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                -1.8636245727539063,
-                0.046333789825439453,
-                -0.77125072479248047
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 363414326,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 417855067,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 0,
-                    "Density": 0
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "GroguFollowPoints",
-                    "priority": 1
-                }
-            ]
-        },
-        {
-            "name": "FP_Right",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                -1.8636245727539063,
-                0.046333789825439453,
-                0.86050128936767578
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1763945139,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 417855067,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 0,
-                    "Density": 0
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "GroguFollowPoints",
-                    "priority": 3
-                }
-            ]
-        },
-        {
-            "name": "FP_Left",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0.76593399047851563,
-                0.046333789825439453,
-                0.86050128936767578
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1624684977,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 417855067,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 0,
-                    "Density": 0
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "GroguFollowPoints",
-                    "priority": 3
-                }
-            ]
-        },
-        {
-            "name": "FP_Front",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                -0.53475379943847656,
-                0.046333789825439453,
-                2.1109142303466797
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 2081612580,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 417855067,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 0,
-                    "Density": 0
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "GroguFollowPoints",
-                    "priority": 4
-                }
-            ]
-        },
-        {
             "name": "Game Camera",
             "tag": "Untagged",
             "layer": "Default",
@@ -10166,233 +9702,6 @@
                     "cornerTopLeftY": -100,
                     "cornerBotRightX": 100,
                     "cornerBotRightY": 100
-                }
-            ]
-        },
-        {
-            "name": "Grogu",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                -13.110090255737305,
-                3.4720916748046875,
-                -2.0814967155456543
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 861297545,
-            "PrefabID": 2124140914,
-            "DontDestroy": false,
-            "ParentUID": 1481651339,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "BabyYoda",
-                    "verticalSpeed": 0.80000001192092896,
-                    "verticalTimeInterval": 1.2000000476837158,
-                    "followPoint": 417855067,
-                    "horizontalSpeed": 4,
-                    "skillPushDuration": 1
-                }
-            ]
-        },
-        {
-            "name": "GroguMesh",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 210505264,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 861297545,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "GrogusBody",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1158577816,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 210505264,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2081829869.mmh",
-                    "UID": 2081829869,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/715565838.mat",
-                    "MaterialUID": 715565838
-                }
-            ]
-        },
-        {
-            "name": "CapsuleDoor",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1860346416,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 210505264,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/1111006325.mmh",
-                    "UID": 1111006325,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/715565838.mat",
-                    "MaterialUID": 715565838
-                }
-            ]
-        },
-        {
-            "name": "Capsule",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 144110472,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 210505264,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/772459766.mmh",
-                    "UID": 772459766,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/715565838.mat",
-                    "MaterialUID": 715565838
                 }
             ]
         },
@@ -10972,11 +10281,9 @@
                     "Active": true,
                     "ScriptName": "HubTextController",
                     "textController": 694046767,
-                    "otherImage": 1059935834,
                     "dialog": 206711398,
                     "mando": 1032451305,
                     "bo_katan": 411438600,
-                    "grogu": 861297545,
                     "bo_katan_portrait": 1739106671,
                     "grogu_portrait": 1366491156,
                     "total_interactions": 2,
