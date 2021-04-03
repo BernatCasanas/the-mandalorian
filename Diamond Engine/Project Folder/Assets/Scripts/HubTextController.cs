@@ -14,6 +14,7 @@ public class HubTextController : DiamondComponent
 	}
 
 	public GameObject textController = null;
+	public GameObject dialog = null;
 
 	public GameObject mando = null;
 	public GameObject bo_katan = null;
@@ -45,7 +46,8 @@ public class HubTextController : DiamondComponent
 
 	private bool showtext = true;
 	private int total_interactions_and_stages = 0;
-	private bool start = false;
+	private bool start = true;
+	private bool dialog_finished = false;
 
 	
 
@@ -58,75 +60,91 @@ public class HubTextController : DiamondComponent
 			start = false;
         }
 
-		if (mando == null && Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN && textController != null && textController.IsEnabled() == false) 
+		if (mando == null || Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN || textController == null || dialog == null || textController.IsEnabled() == false) 
 			return;
-
+        if (dialog_finished)
+        {
+			dialog_finished = false;
+			return;
+        }
 		interaction = Interaction.NONE;
 
-		if (bo_katan != null)
+        if (bo_katan != null)
         {
-			if (mando.GetComponent<Transform>().localPosition.DistanceNoSqrt(bo_katan.GetComponent<Transform>().localPosition) < maximum_distance_to_interact_squared)
-				interaction = Interaction.BO_KATAN;
+            if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(bo_katan.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
+            {
+                interaction = Interaction.BO_KATAN;
+            }
         }
 
-		if (interaction == Interaction.NONE && greef != null)
-		{
-			if (mando.GetComponent<Transform>().localPosition.DistanceNoSqrt(greef.GetComponent<Transform>().localPosition) < maximum_distance_to_interact_squared)
+        if (interaction == Interaction.NONE && greef != null)
+        {
+            if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(greef.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
+            {
 				interaction = Interaction.GREEF;
-		}
+            }
+        }
 
-		if (interaction == Interaction.NONE && ashoka != null)
-		{
-			if(mando.GetComponent<Transform>().localPosition.DistanceNoSqrt(ashoka.GetComponent<Transform>().localPosition) < maximum_distance_to_interact_squared)
-				interaction = Interaction.ASHOKA;
-		}
+        if (interaction == Interaction.NONE && ashoka != null)
+        {
+            if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(ashoka.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
+            {
+                interaction = Interaction.ASHOKA;
+            }
+        }
 
-		if (interaction == Interaction.NONE && grogu != null)
-		{
-			if(mando.GetComponent<Transform>().localPosition.DistanceNoSqrt(grogu.GetComponent<Transform>().localPosition) < maximum_distance_to_interact_squared)
-				interaction = Interaction.GROGU;
-		}
+        if (interaction == Interaction.NONE && grogu != null)
+        {
+			if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(grogu.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
+            {
+                interaction = Interaction.GROGU;
+            }
+        }
 
-		if (interaction == Interaction.NONE)
+        if (interaction == Interaction.NONE)
+        {
 			return;
+		}
 
 		showtext = true;
+        //return;
 
         switch (interaction)
         {
-			case Interaction.BO_KATAN:
-				if (bo_katan_portrait != null)
+            case Interaction.BO_KATAN:
+                if (bo_katan_portrait != null)
 					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().ChangeImageForAnotherOne(bo_katan_portrait);
-				textController.GetComponent<TextController>().dialog_index = bo_katan_interaction_num;
-				if (bo_katan_interaction_num % 3 != 0)
-					bo_katan_interaction_num++;
-				break;
-			case Interaction.GREEF:
-				if (greef_portrait != null)
+                textController.GetComponent<TextController>().dialog_index = bo_katan_interaction_num;
+                if (bo_katan_interaction_num % 3 != 0)
+                    bo_katan_interaction_num++;
+                break;
+            case Interaction.GREEF:
+                if (greef_portrait != null)
 					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().ChangeImageForAnotherOne(greef_portrait);
-				textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages) + greef_interaction_num;
-				if (greef_interaction_num % 3 != 0)
-					greef_interaction_num++;
-				break;
-			case Interaction.ASHOKA:
-				if (ashoka_portrait != null)
+                textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages) + greef_interaction_num;
+                if (greef_interaction_num % 3 != 0)
+                    greef_interaction_num++;
+                break;
+            case Interaction.ASHOKA:
+                if (ashoka_portrait != null)
 					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().ChangeImageForAnotherOne(ashoka_portrait);
-				textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages * 2) + ashoka_interaction_num;
-				if (ashoka_interaction_num % 3 != 0)
-					ashoka_interaction_num++;
-				break;
-			case Interaction.GROGU:
-				if (grogu_portrait != null)
+                textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages * 2) + ashoka_interaction_num;
+                if (ashoka_interaction_num % 3 != 0)
+                    ashoka_interaction_num++;
+                break;
+            case Interaction.GROGU:
+                if (grogu_portrait != null)
 					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().ChangeImageForAnotherOne(grogu_portrait);
 				textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages * 3) + grogu_interaction_num;
-				if (grogu_interaction_num % 2 != 0)
-					grogu_interaction_num++;
-				break;
-		}
+                if (grogu_interaction_num % 2 != 0)
+                    grogu_interaction_num++;
+                break;
+        }
 
-		if (showtext)
+        if (showtext)
         {
-			textController.Enable(true);
+			dialog_finished = true;
+			dialog.Enable(true);
 			showtext = false;
         }
 	}

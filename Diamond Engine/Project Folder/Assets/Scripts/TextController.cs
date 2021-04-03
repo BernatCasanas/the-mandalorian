@@ -22,6 +22,7 @@ public class TextController : DiamondComponent
 	
 
 	private bool startMenu = true;
+	private bool finished = false;
 	public void OnExecuteButton()
     {
 		if (++index < texts.Count)
@@ -43,8 +44,12 @@ public class TextController : DiamondComponent
 
 		if (index >= texts.Count && gui_not_enabled)
 		{
+			index = -1;
+			mandoimage.Enable(true);
+			otherimage.Enable(true);
+			text.GetComponent<Text>().text = " ";
 			dialog.Enable(false);
-			startMenu = true;
+			finished = true;
             if (gui != null)
             {
 				gui.Enable(true);
@@ -67,8 +72,14 @@ public class TextController : DiamondComponent
 			texts = list_of_dialogs.GetComponent<List_Of_Dialogs>().GetListOfDialog((uint)dialog_index);
 			images = list_of_dialogs.GetComponent<List_Of_Dialogs>().GetListOfOrder((uint)dialog_index);
 		}
+		else if (finished == true)
+        {
+			startMenu = true;
+			finished = false;
 
-		
+		}
+
+
 	}
 
 }

@@ -94,16 +94,13 @@
                     "dashCD": 0.30000001192092896,
                     "dashDuration": 0.20000000298023224,
                     "dashDistance": 4.75,
+                    "dashforce": 0,
                     "fireRate": 0.15000000596046448,
-                    "baseFireRate": 1,
-                    "secondaryRate": 1,
+                    "gadgetFireRate": 0,
                     "fireRateAfterDashRecoverRatio": 1.75,
                     "fireRateMultCap": 2,
-                    "normalShootSpeed": 2,
                     "grenadesFireRate": 0.125,
                     "currentStateString": "Empty",
-                    "smallGrenades": 0,
-                    "BigGrenades": 0,
                     "background": 1123945215,
                     "pause": 184396232
                 },
@@ -2073,8 +2070,6 @@
                     "max_bullets_main_weapon": 10,
                     "bullets_secondary_weapon": 10,
                     "max_bullets_secondary_weapon": 10,
-                    "combo_number": 0,
-                    "combo_seconds": 5,
                     "main_weapon": true,
                     "hp_bar": 2035585471,
                     "hp_number_gameobject": 607760020,
@@ -2086,7 +2081,8 @@
                     "currency_number_gameobject": 1571401837,
                     "combo_bar": 2035999929,
                     "combo_text": 1545453027,
-                    "combo_gameobject": 1204940890
+                    "combo_gameobject": 1204940890,
+                    "comboNumber": 0
                 }
             ]
         },
@@ -10617,7 +10613,7 @@
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "Look who we got here. I honestly didn’t know if you     were going to make it.",
+                    "text": " ",
                     "maxTextLenght": 1120,
                     "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
@@ -10632,7 +10628,7 @@
             "name": "Mando",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": false,
+            "Active": true,
             "Position": [
                 0,
                 0,
@@ -10871,7 +10867,7 @@
                     "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
                     "Unhovered_LibraryPath": "Library\/Textures\/1346482548.dds",
                     "Unhovered_UID": 1346482548,
-                    "Script_Name": "FinalCutscene",
+                    "Script_Name": "TextController",
                     "ButtonState": 1,
                     "Is Selected": true
                 },
@@ -10901,12 +10897,14 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "FinalCutscene",
+                    "ScriptName": "TextController",
                     "gui": 2023668719,
                     "dialog": 2127558681,
                     "text": 562775364,
                     "mandoimage": 903949909,
-                    "boimage": 1999432693
+                    "otherimage": 1999432693,
+                    "list_of_dialogs": 1760015568,
+                    "dialog_index": 10
                 }
             ]
         },
@@ -11288,7 +11286,8 @@
                     "turretSpawnPoint2": false,
                     "turretSpawnPoint3": false,
                     "turretSpawnPoint4": false,
-                    "turretSpawnPoint5": false
+                    "turretSpawnPoint5": false,
+                    "currentEnemies": 0
                 }
             ]
         },
@@ -17913,7 +17912,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "BH_DestructBox",
-                    "thisReference": 1187154067
+                    "thisReference": 1187154067,
+                    "explosionTime": 0
                 }
             ]
         },
@@ -18037,7 +18037,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "BH_DestructBox",
-                    "thisReference": 1982216151
+                    "thisReference": 1982216151,
+                    "explosionTime": 0
                 }
             ]
         },
@@ -18161,7 +18162,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "BH_DestructBox",
-                    "thisReference": 455443898
+                    "thisReference": 455443898,
+                    "explosionTime": 0
                 }
             ]
         },
@@ -18285,7 +18287,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "BH_DestructBox",
-                    "thisReference": 515259828
+                    "thisReference": 515259828,
+                    "explosionTime": 0
                 }
             ]
         },
@@ -18409,7 +18412,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "BH_DestructBox",
-                    "thisReference": 577629330
+                    "thisReference": 577629330,
+                    "explosionTime": 0
                 }
             ]
         },
@@ -18499,6 +18503,43 @@
                     "Active": true,
                     "ScriptName": "R1TextController",
                     "dialog": 2127558681
+                }
+            ]
+        },
+        {
+            "name": "List of Dialogs",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1760015568,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "List_Of_Dialogs"
                 }
             ]
         }
