@@ -21,7 +21,7 @@ C_RigidBody::C_RigidBody() : Component(nullptr)
 }
 
 
-C_RigidBody::C_RigidBody(GameObject* _gm): Component(_gm)
+C_RigidBody::C_RigidBody(GameObject* _gm): Component(_gm), rotatedOffset(float3::zero)
 
 {
 	goTransform = dynamic_cast<C_Transform*>(_gm->GetComponent(Component::TYPE::TRANSFORM));
@@ -57,8 +57,8 @@ C_RigidBody::C_RigidBody(GameObject* _gm): Component(_gm)
 	float3 pos, scale, objectpos, pivotpos;
 	goTransform->globalTransform.Decompose(pos, rot, scale);
 	objectpos = pos;
-	if(mesh != nullptr)
-	pos = mesh->globalOBB.pos;
+	if (mesh != nullptr)
+		pos = mesh->globalOBB.pos;
 	pivotpos = pos;
 	offset = pivotpos - objectpos;
 
@@ -67,6 +67,9 @@ C_RigidBody::C_RigidBody(GameObject* _gm): Component(_gm)
 	offsetQuat = rot.Conjugated() * offsetQuat * rot;
 
 	offset.Set(offsetQuat.x, offsetQuat.y, offsetQuat.z);
+
+	offsetQuat = rot * offsetQuat * rot.Conjugated();
+	rotatedOffset.Set(offsetQuat.x, offsetQuat.y, offsetQuat.z);
 
 
 	rigid_dynamic = EngineExternal->modulePhysics->CreateRigidDynamic(pos, rot);
@@ -213,13 +216,9 @@ void C_RigidBody::Step()
 		pos = { rigid_dynamic->getGlobalPose().p.x, rigid_dynamic->getGlobalPose().p.y, rigid_dynamic->getGlobalPose().p.z };
 		rot = { rigid_dynamic->getGlobalPose().q.x, rigid_dynamic->getGlobalPose().q.y, rigid_dynamic->getGlobalPose().q.z,  rigid_dynamic->getGlobalPose().q.w };
 
-
-		if (DETime::state == GameState::PLAY)
+		for (size_t i = 0; i < pos.Size; i++)
 		{
-			for (size_t i = 0; i < pos.Size; i++)
-			{
-				pos[i] = Round(pos[i] * 100) / 100;
-			}
+			pos[i] = Round(pos[i] * 100) / 100;
 		}
 
 		worldtrans = float4x4::FromTRS(pos, rot, scale);
@@ -242,10 +241,7 @@ void C_RigidBody::Step()
 			offset.Set(offsetrot.x, offsetrot.y, offsetrot.z);*/
 			
 
-			if (DETime::state == GameState::PLAY)
 			worldtrans = float4x4::FromTRS(pos - rotatedOffset, rot, scale);
-			else
-				worldtrans = float4x4::FromTRS(pos - rotatedOffset, rot, scale);
 			goTransform->SetTransformWithGlobal(worldtrans);
 		}
 				
