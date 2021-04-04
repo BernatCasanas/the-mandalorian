@@ -510,7 +510,7 @@ void CollisionDetector::onTrigger(physx::PxTriggerPair* pairs, physx::PxU32 coun
 
 		if (cp.status == PxPairFlag::eNOTIFY_TOUCH_FOUND)
 		{
-			if (contact != nullptr && pairs->flags)
+			if (contact != nullptr /*&& pairs->flags*/)
 			{
 				std::vector< Component*> scripts = contact->GetComponentsOfType(Component::TYPE::SCRIPT);
 				for (size_t i = 0; i < scripts.size(); i++)
