@@ -1,14 +1,14 @@
 {
     "Game Objects": [
         {
-            "name": "Empty",
+            "name": "Button",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
-                -20.55561637878418,
-                0.8038598895072937,
-                2.4295742511749268
+                0,
+                0,
+                0
             ],
             "Rotation": [
                 0,
@@ -21,24 +21,56 @@
                 1,
                 1
             ],
-            "UID": 937252279,
+            "UID": 1324189369,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1481651339,
+            "ParentUID": 1009255034,
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
                 },
                 {
-                    "Type": 5,
+                    "Type": 6,
                     "Active": true,
-                    "ScriptName": "HubRoomSwitch",
-                    "nextRoomUID": 1406013733,
-                    "colliderPosition": 937252279,
-                    "player": 1032451305,
-                    "maxDistance": 5,
-                    "insideCollider": false
+                    "Position": [
+                        0,
+                        35.900001525878906
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        35.5,
+                        14.399999618530273
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/715565838.mat",
+                    "MaterialUID": 715565838
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1274458902.dds",
+                    "UID": 1274458902
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
                 }
             ]
         }
