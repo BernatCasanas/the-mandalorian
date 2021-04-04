@@ -22,7 +22,7 @@ public class List_Of_Dialogs : DiamondComponent
 		"No, you cannot. I need her help with the kid, that's     what you need to know.",
 		"Fair enough, I guess it's none of my business. She is   at Dathomir, last thing I heard she was investigating    something about the Force in a Nightsisters temple.    But you know what they say about that planet; if you   think Mandalore is cursed you won't like Dathomir.",
 		"Stories of dead people walking, deadly creatures...     and not to mention the Nightbrothers. I still vividly       remember the only two I've known... and how they      overthrew Mandalore's government once.",
-		"*Snaps out* Look I don0t want to bore you with old    stories. The important thing is that you should be        careful there.",
+		"*Snaps out* Look I don't want to bore you with old    stories. The important thing is that you should be        careful there.",
 		"It's ok, I'll be fine. Thanks for everything, Bo-Katan.",
 		"You're welcome. Can I ask for one last thing before    you go?",
 		"I hope it's not another one of your deals.",
@@ -456,7 +456,7 @@ public class List_Of_Dialogs : DiamondComponent
         "This time I will not come to seize power as an aspirant to the throne. I will come as a rightful ruler and I will be accompanied by mandalorians. Beskar armours will step onto the sands of Mandalore once again, and we will show the galaxy we are still alive.",
         "Nice speech. Did you practice it beforehand in front of a mirror?",
         "You are impossible. Why did you have to spoil the moment? Ahhh, whatever, I will contact you when everything is ready. See you soon Mandalorian.",
-        "So long Krize... I also have a bad feeling about this Grogu, but she doesn't seem so bad. I'll trust her... For now.",
+        "So long Kryze... I also have a bad feeling about this Grogu, but she doesn't seem so bad. I'll trust her... For now.",
 
     };
 
@@ -686,7 +686,7 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<string> Grogu_5_1 = new List<string>()
     {
-        "(The kid, who is not baby Yoda but looks like baby Yoda, drinks once again all the milk in one gulp. Now something is going wrong for real. His green skin starts to turn blue. He holds on until he can no longer bear it and throws up everything, making a mess once again, and thanks to the smell, this time a stinky mess.).",
+        "(The kid, who is not baby Yoda but looks like baby Yoda, drinks once again all the milk in one gulp. Now something is going wrong for real. His green skin starts to turn blue. He holds on until he can no longer bear it and throws up everything, making a mess once again, and thanks to the smell, this time a stinky mess).",
         "Why? You were doing so well... That's because you drink too fast. I told you from the beginning; slow-ly. Now you've really done it kid... What's this?",
         "(Among all the nasty visual inventory of the things Grogu had eaten during the last 24 hours, there is a little chip. Mando grabs it.)",
         "Well, you never know... What am I going to do with you now? If you don't like blue milk you could have told me from the beginning.",
