@@ -127,6 +127,7 @@ bool M_MonoManager::Init()
 #pragma region Image2D
 	mono_add_internal_call("DiamondEngine.Image2D::SwapTwoImages", SwapTwoImages);
 	mono_add_internal_call("DiamondEngine.Image2D::AssignLibrary2DTexture", AssignLibrary2DTexture);
+	mono_add_internal_call("DiamondEngine.Image2D::ChangeImageForAnotherOne", ChangeImageForAnotherOne);
 #pragma endregion
 
 #pragma region Navigation
