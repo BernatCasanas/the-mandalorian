@@ -724,6 +724,7 @@ public class List_Of_Dialogs : DiamondComponent
         true,
     };
     //////////////////////////////////////////////////////////////////////////////////////// GREEF KARGA ////////////////////////////////////////////////////////////////////////////////////////
+    
     private List<string> Greef_0_1 = new List<string>()
 	{
 		"Ahh, if it isn't the great Mando himself. How is my best bounty hunter doing these days?",
@@ -788,6 +789,347 @@ public class List_Of_Dialogs : DiamondComponent
 		true,
 		false,
 	};
+
+    private List<string> Greef_1_1 = new List<string>()
+    {
+        "Oh, is this your way of showing how much you appreciate my friendship? You're welcome Mando.",
+        "Don't get too full of yourself. I had one to spare. I can give it to someone else.",
+        "No, I appreciate this, and I'll take it. Say, have you reconsidered my proposition? There's still a place for you in the Guild if you want. Since you left, I can't cash any of the big boy bounties. The other bounty hunters are not as good as you, except for maybe Cara, but she's too busy being Marshall and has no time for chasing miscreants around the galaxy.",
+        "The kid is my mission now. As long as I have to take care of him, it's better to avoid all conflicts. Therefore no, I can't return to the Guild right now. You'll have to settle for the small fish.",
+        "Well, maybe when you have delivered the kid to whoever it is that's supposed to take him, you'll reconsider. You've been a bounty hunter all your life and you don't know anything else, once the kid is gone, I know you'll come back.",
+        "You don't know what I will do. Maybe I'll come back, maybe I won't. Right now, there's the whole Mandalore affair we'll have to take care of, so I'll be busy for quite a while.",
+    };
+
+    private List<bool> Greef_1_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+    };
+
+    private List<string> Greef_1_2 = new List<string>()
+    {
+        "Speaking of Mandalore. Have you considered joining us? Bo-Katan has been planning it for a long time, and Ahsoka Tano will help. Cara will probably join too. It will be an interesting experience to say the least.",
+        "Why should I come, next to all you monsters, I will be of little help.",
+        "Come on, it's not like you aren't a terrific gunslinger too. You alone can take a dozen of bucketheads on your own. And you are an agent of the Guild. I'm sure you can get a few fellow hunters to help with our cause.",
+        "Well, if you put it like that, it sure is tempting. I like you throwing me compliments. You should do it more often. But what's in it for me?",
+        "Is it not enough to go on a new adventure with your friends? And aren't you curious to know what we'll find there?",
+        "I'm glad to see that you finally recognize me as your friend, especially when you are trying to get something from me... I don't know if I need any more adventures... I've already seen a lot of action in my life, and age is unforgiving you know... My knees are not what they used to be, my hips hurt, and my sight is--",
+        "Alright you old geezer, I get it. I'm sure that if you ask her, Bo-Katan would be willing to reward you with a reasonable amount of credits for your service. After all, she is going to become the ruler of Mandalore.",
+        "I don't know how you did it, but I think you have convinced me. If this Bo-Katan is kind enough to give us a little reward as you say, you can count me in. It is strange, but my knees and my hips are feeling so much better now...",
+    };
+
+    private List<bool> Greef_1_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Greef_1_3 = new List<string>()
+    {
+        "Tell me Mando, what is this Mandalore campaign all about?",
+        "The thing is, we don't really know. The objective is to take the planet, so that Bo-Katan can restore Mandalore to the nation it used to be before the Empire decimated it. But how we are going to take it is kind of a mystery, because we don't know what is waiting for us down there.",
+        "So, we are going to go there completely blind. We don't know who or what we are going to face, and how many of them there will be.",
+        "More or less, that's it.",
+        "Sounds like my kind of weekend.",
+        "Bo-Katan hasn't told me what her plan is. Though from what I have gathered, I don't think we are just going to land there and hope we don't get instantly killed. She must have some friends from before they had to leave the planet, some real Mandalorian warriors I would expect.",
+        "I'm going to join you, but let me say, I have a bad feeling about this.",
+    };
+
+    private List<bool> Greef_1_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Greef_2_1 = new List<string>()
+    {
+        "I suppose I shouldn't take this as a token of our beautiful friendship either, should I?",
+        "No, you shouldn't. I had another one to spare.",
+        "I saved your butt many times Mando, and you have helped me a lot. No other bounty hunter has ever made me earn so much money. Hasn't our partnership been mutually beneficial.",
+        "Yes, it has. But that's what it is, a strategic partnership. You betrayed me not too long ago, remember?",
+        "No, it was longer ago. And shall I remind you that you broke a contract? This goes against the Guild's rules, I had no other choice.",
+        "I didn't break the contract, I delivered the child as I was expected to do. Afterwards I got it back.",
+        "Details, details... Such petty details don't matter to the Guild. And you almost killed me then, remember? Anyway, whatever happened is in the past. Later, I helped you many times. You know I appreciate you. Losing my best bounty hunter is not something I would want.",
+    };
+
+    private List<bool> Greef_2_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Greef_2_2 = new List<string>()
+    {
+        "You did help me a lot, I have to admit it. And that day, against all the troopers and Moff Gideon, you almost got killed for getting involved with me. We're lucky IG saved the day, I'll never come to like droids, but if not for him... Well, we wouldn't be talking right now.",
+        "I know you don't hate me Mando... Out of all the group, we two go back the longest. I'm the one who knows you best. By the way, speaking about IG. I tried to rebuild him.",
+        "What? But how? He blew himself up. I'd be surprised if there was even a single screw left of him.",
+        "You know I'm resourceful. With the help of a few members of the Guild, we tried to find as many parts as possible. After five days we found enough. Turns out his memory drive was kept in a small and very hard metal container. It was not beskar, but was hard enough to withstand the explosion. We used some of the pieces we had found with new ones and we built him a new body.",
+        "Why would you do that? You went through a lot of work for just a droid. If you were in need, buying a new one would have been cheaper.",
+        "Hey, that IG saved my life too, plus was a fellow member of the Guild. I kind of felt I owed it to him. I thought he would be useful too, so I sent him to help in several businesses in Nevarro... it was not a good idea. He almost trashed a whole village.",
+        "What were you expecting, he was made for combat.. You know I appreciate you. Losing my best bounty hunter is not something I would want.",
+        "I know. That's why I directed him towards you. Maybe he can help you in some way or another. So, don't be surprised if one of these days you encounter him.",
+        "Why does this have to happen to me? ...",
+    };
+
+    private List<bool> Greef_2_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Greef_2_3 = new List<string>()
+    {
+        "You never told me what happened after we destroyed that imperial base in Nevarro.",
+        "Ah, nothing worth mentioning. I reported it to some high charges in the New Republic, they came to take a look and then they left. Afterwards, we got the licence to join the trade network in Nevarro's sector. This has brought a few investors, which is nice.",
+        "Looks like it ended up being profitable for you. For me, discovering that Moff Gideon was alive was quite the opposite, a pretty unpleasant surprise I must say. Didn't they tell you what was all that genetic stuff about? That was not a normal base, it's purpose must have been scientific research or something like that...",
+        "We didn't leave much to be investigated there. Either way, they couldn't tell me anything. But I think it's for the best. They were doing something scary, and the kid was part of their plans in some way. It was right for you to go after Moff Gideon. Otherwise, the kid would still be in danger.",
+        "I doubt that was their only base, they had a lot of resources and staff, if all that stuff was so important for the imperials, I bet they had more labs just in case. Going after Moff Gideon was my only choice, I had to go to the root of all this and end it once and for all. Although, something tells me that it is not yet over.",
+        "What makes you say that?",
+        " I don't know. But it seems to me that Moff Gideon was not the brains of all this. He had to be working under someone we still don't know. Someone even more dangerous...",
+    };
+
+    private List<bool> Greef_2_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+    };
+
+    private List<string> Greef_3_1 = new List<string>()
+    {
+        "I know, I know... you had another one to spare.",
+        "Nah, this time it actually is a token of appreciation. Sure, we've had our differences, but it's true that you've helped me a lot.",
+        "Wow, where did you get this new empathy of yours? It's unlike you.",
+        "Don't make me regret saying those words.",
+        "Fine, fine, I won't complain. You know, I used to be like you when I was younger... without the whole Mandalorian thing, of course... I mean I was a bounty hunter too. I preferred to work alone and kept most to myself. My aim was to become the best bounty hunter in the galaxy, and I didn't have time for other things.",
+        "The best in the galaxy? That's more on the impossible side of things. You are good, no offense, but there are a lot of beings out there who don't care about blasters and tricks. If they want to kill you, you don't stand any chance.",
+        "I know, I eventually learned that. But I had an idol. You are too young to have known about him. He was a Duros bounty hunter. Like me, he didn't have any psychic powers, superhuman strength or an impenetrable armour. Just two guns, a few tricks up his sleeve and a very cool hat. And despite that, he became the number one bounty hunter during the clone wars era.",
+    };
+
+    private List<bool> Greef_3_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+		false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Greef_3_2 = new List<string>()
+    {
+        "It's hard to believe a man like that bounty hunter could thrive in an era filled with Jedi and war. I guess it makes sense that you wanted to be like him. Although it seems like you were missing the cool hat.",
+        "Hahaha, I tried some, but I quickly discovered hats are not my thing. I always dropped them, and I had to buy new ones all the time. Plus, I have a big head and it was difficult to find hats that--Wait, why am I telling you all this? It is irrelevant to what I was trying to say.",
+        "I don't know, it was you who mentioned he wore a cool hat...",
+        "Stop trying to make fun of me. Anyway, what was I trying to tell you? ... Ah yes, I remember. I admired that bounty hunter and I thought I could be like him. I trained myself, I improved my accuracy as much as I could, and I got the latest gadgets...",
+        "Let me guess. Then you faced some simple goons, they kicked your butt and they made you realize you were not a superhero.",
+        "I find your lack of faith in me slightly disturbing, but it's ok, I'm used to it. It was actually rather the opposite. I started to get a lot of contracts which I always closed successfully, and eventually, the Empire noticed me. I suppose they thought I could be of use, so I started working for them, one thing led to another and I ended up becoming the magistrate of Nevarro.",
+        "I was really not expecting that ending. But hold on, then, what was the point of your story?",
+        "I couldn't have become a magistrate if I had just continued to be a lone wolf working for myself. I didn't become that legendary bounty hunter that I admired, instead I became something better. And for that, I had to make new partners and learn to appreciate them. It is difficult to get anywhere if you are not willing to establish new friendships",
+    };
+
+    private List<bool> Greef_3_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Greef_3_3 = new List<string>()
+    {
+        "I knew you worked for the empire, but I had never thought about your past with them. I just imagined that they had let you be magistrate as long as you didn't give them any problems. But with all that talk about partners and friendships... How deep did you go into their rabbit hole?",
+        "I guess that by telling you that story, it was inevitable that you would ask me about this... Look Mando, I'm not proud of a lot of the things I did for the Empire, but I also don't regret doing them. All those choices I made, in the end, led me to become magistrate of Nevarro.",
+        "But how many people had to suffer so that you could get your precious position? The Empire's methods were ruthless, and you became their puppet.",
+        "The Empire might have been ruthless and cruel, but this was because of those who ruled it. For people like us, in the lower ranks, we were fighting for a good cause. The methods were wrong, no doubt about it, but the ultimate goal was to establish order and peace in the galaxy.",
+        "Are you trying to justify what the Empire did? Look at what they did to Bo-Katan's nation, look at Cara's homeplanet Alderaan... In fact, you can't, because they destroyed it.",
+        "No, I'm not trying to justify them. What I'm trying to tell you is that there was a dream; after the Empire had total control over the galaxy, there would be no more suffering. Ordinary people fought for that dream, but halfway towards it, we started forgetting what it was. And when we realized what we had done and tried to go back, it was too late; the dream was already over.",
+    };
+
+    private List<bool> Greef_3_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Greef_4_1 = new List<string>()
+    {
+        "What now? Token of appreciation or one to spare?",
+        "You are starting to give too much importance to this. Anyway, there's something I want to ask you. You've been around longer than most of us...",
+        "If this is your way of telling me that I'm old, nice job; you were successful in making me feel like the grandpa of the band.",
+        "You don't need me to tell you that you are old, you can just go to the mirror and look at yourself when you have some time. But this isn't what I was trying to say. I wanted to ask you what you remember about the jedi. You were around when they were still alive.",
+        "If I could borrow one from you I would do it, but since you don't take your helmet off to spare us seeing your ugly face, I guess you don't have any mirrors. Regarding the Jedi, I can't tell you much, I think I saw one or two from afar, but I never talked with any of them.",
+        "If only you were as good with blasters as you are with words... Still, you must have heard stories. From what I understand, Jedis were a big deal back then.",
+        "I had no time for stories, I was too busy working and training to become a bounty hunter. Hmm, I remember that Jango Fett, the best bounty hunter during the last years of the Republic, was killed by a Jedi when I was just a kid. Maybe that's why later, I tried to stay away from them as much as possible.",
+    };
+
+    private List<bool> Greef_4_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Greef_4_2 = new List<string>()
+    {
+        "About the Jedi. Remember the other bounty hunter I told you about? The one I used to admire. He became number one after Jango's death. He meddled with Jedi many times and yet, always seemed to come out unscratched. So, I don't know, maybe they weren't that good, or he was too smart.",
+        "It's nice to know that, but it doesn't help me. What I was wondering is whether it is right for Grogu to become a Jedi.",
+        "Does he have any other choice? He has the gift. Do you know how much would most people be willing to sacrifice to be able to wield the force? He has a chance to become what most of us can only dream about, and he must learn to defend himself too. Moff Gideon was not the only one out there who would go to great lengths to get him.",
+        "I know all that, but isn't becoming a Jedi even more dangerous? Now, not many people know about his existence. However, being a Jedi would immediately put him on the spot.",
+        "You need to trust in him. Jedi were anything but weaklings. Once he is fully trained, it will be those who want to harm him who are going to have to start worrying. He will be stronger than the whole Guild combined.",
+    };
+
+    private List<bool> Greef_4_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Greef_4_3 = new List<string>()
+    {
+        "I briefly fought Ahsoka once. She is extremely good, more than anyone I've ever met, but she is not invincible. A shot from behind, a knife while sleeping, or enough manpower... All these things could kill her. If Grogu becomes a Jedi, he will have to keep an eye open during all his life.",
+        "Don't we all Mando? You avoid having partners so that they cannot backstab you, and when was the last time you slept without having your blaster next to you and ready to fire? Let me tell you, I do the same and I bet so does Cara and even our Mythrol friend. It's just the way it is.",
+        "Yes, you're right... Sorry I can't help it. The kid has me worried all the time. What would have happened to him if I had not shown up that day at the Nikto hideout on Aravala-7? He would surely be dead, or serving as guinea pig for that crazy maniac...",
+        "You shouldn't think about that, the important thing is that you found him and saved him. Maybe it was fate, have you thought about that?",
+        "I don't believe in fate.",
+        "Well let me tell you one thing, one can never be sure of anything when getting involved with Jedi stuff. The force works in mysterious ways...",
+    };
+
+    private List<bool> Greef_4_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Greef_5_1 = new List<string>()
+    {
+        "Now don't tell me that you had that much to spare. I don't care what you say, after five times I'm definitely going to take this as a kind gesture from you, and thus I'm going to do the same. Here you go, take this and use it when you need it.",
+        "Thank you, Greef. I certainly will. I think I agree with what you said at the beginning. It's been nice these days. I've learned things I didn't know about you and you've given me some good advice.",
+        "You know you can count on me Mando. As long as you don't backstab me again, I'm not going to send all of the Guild after you.",
+        "Fair enough. Now that we are past that Gideon problem there's not much we have to worry about. After our Mandalore mission, what are you planning to do?",
+        "First, we have to get back from that cursed planet. Something tells me things are not going to go as smooth as Bo-Katan has planned. Afterwards, I will consider what is my next move. I'm probably going to keep my position as magistrate, trying to improve things in Nevarro.",
+        "I suppose that's what makes most sense for you. Haven't you considered retiring though?",
+        "If you try to remind me of my age one more time. I'm going to put a price on your head so high, the whole galaxy is going to be after you.",
+    };
+
+    private List<bool> Greef_5_1_bool = new List<bool>()
+    {
+		// Mando true, other false
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
+
+    private List<string> Greef_5_2 = new List<string>()
+    {
+        "For reclaiming Mandalore, will you ask the members of the Guild for help?",
+        "I can ask, but except for a couple of goons who owe me credits, I don't think anyone is going to join if there isn't a reward in the end. You said Bo-Katan would compensate us, but you can't know if she will actually do it. And even if she did, it can't be a lot, she has probably already spent most of her credits preparing the mission, and she is going to need even more if she wants to rebuild Mandalore.",
+        "You're right, I hadn't thought about that. Since the Empire made hell rain over the planet, everything must be in ruins. It will take years to restore the cities to their former glory...",
+        "I don't know what you had pictured in your mind. But when we land in the middle of all that decay, the only thing that you are going to see are dunes of earth and sand stretching far away.",
+        "I admit that after hearing so much about Mandalore and... Well, believing myself a Mandalorian, I had imagined shining cities of silver hidden inside colossal domes.",
+        "Don't be disillusioned Mando. Mandalore might not be that utopia you had dreamed of. But, from the ashes the empire left there, a new civilization will arise, and Mandalore will belong to the mandalorians once again. This is the way.",
+        "This is the way.",
+    };
+
+    private List<bool> Greef_5_2_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+    };
+
+    private List<string> Greef_5_3 = new List<string>()
+    {
+        "Have you suddenly grown wiser? Lately I have the feeling that what you say is actually worth listening to.",
+        "Maybe the problem is that you hadn't listened to me before. When was the last time we talked about anything that wasn't business? You always came with your bounties, dropped a few one-liners, collected your rewards, and immediately left.",
+        "I thought I didn't have time to stick around and listen to your banal speeches. I admit I misjudged you.",
+        "You may think you have everything figured out, but nothing beats experience, and I assure you, I outrank you a lot in that aspect.",
+        "You told me not to mention your old age anymore, now I see why. There is no need for me to do so, you already do it yourself.",
+        "Hey Mando, when was the last time we two faced each other in a duel?",
+        "Now that's the Greef I'm familiar with. Please, don't ever change.",
+    };
+
+    private List<bool> Greef_5_3_bool = new List<bool>()
+    {
+		// Mando true, other false
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+    };
 
     //////////////////////////////////////////////////////////////////////////////////////// AHSOKA ////////////////////////////////////////////////////////////////////////////////////////
 
