@@ -7,6 +7,8 @@ public class NPCSpawnController : DiamondComponent
     //NPC Spawn Controller
     private Dictionary<int, int> alreadyAppeared = new Dictionary<int, int>(); //<int,int> <number, timesAppeared>
 
+    public GameObject HubTextController = null;
+
     public bool Grogu = true;
     public bool BoKatan = true;
     public bool Ahsoka = true;
@@ -102,16 +104,35 @@ public class NPCSpawnController : DiamondComponent
                 if(animation == 0) Animator.Play(unit, "Idle");
                 else if(animation == 1) Animator.Play(unit, "Sit");
                 else if(animation == 2) Animator.Play(unit, "Bar");
+
+                if(HubTextController != null) {
+                    HubTextController.GetComponent<HubTextController>().grogu = unit;
+                    Debug.Log("Grogu");
+                }
+
                 break;
             case BoKatanUID:
                 if (animation == 0) Animator.Play(unit, "BoKatan_Idle");
                 else if (animation == 1) Animator.Play(unit, "BoKatan_Sit");
                 else if (animation == 2) Animator.Play(unit, "BoKatan_Lean");
+
+                if (HubTextController != null) { 
+                    HubTextController.GetComponent<HubTextController>().bo_katan = unit;
+                    Debug.Log("BoKatan");
+                }
+
                 break;
             case AhsokaUID:
                 if (animation == 0) Animator.Play(unit, "Ahsoka_Idle");
                 else if (animation == 1) Animator.Play(unit, "Ahsoka_Sit");
                 else if (animation == 2) Animator.Play(unit, "Ahsoka_Lean");
+
+                if (HubTextController != null)
+                {
+                    HubTextController.GetComponent<HubTextController>().ashoka = unit;
+                    Debug.Log("Ahsoka");
+                }
+
                 break;
             case CaraDuneUID:
                 if (animation == 0) Animator.Play(unit, "Idle");
