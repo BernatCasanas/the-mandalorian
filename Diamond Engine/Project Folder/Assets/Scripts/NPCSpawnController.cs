@@ -107,7 +107,6 @@ public class NPCSpawnController : DiamondComponent
 
                 if(HubTextController != null) {
                     HubTextController.GetComponent<HubTextController>().grogu = unit;
-                    Debug.Log("Grogu");
                 }
 
                 break;
@@ -118,7 +117,6 @@ public class NPCSpawnController : DiamondComponent
 
                 if (HubTextController != null) { 
                     HubTextController.GetComponent<HubTextController>().bo_katan = unit;
-                    Debug.Log("BoKatan");
                 }
 
                 break;
@@ -130,7 +128,6 @@ public class NPCSpawnController : DiamondComponent
                 if (HubTextController != null)
                 {
                     HubTextController.GetComponent<HubTextController>().ashoka = unit;
-                    Debug.Log("Ahsoka");
                 }
 
                 break;

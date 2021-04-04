@@ -1983,60 +1983,158 @@ public class List_Of_Dialogs : DiamondComponent
 				return Bo_Katan_2_2;
 			case 9:
 				return Bo_Katan_2_3;
-			case 10:
-				return Final_Cutscene;
-			case 11:
-				return Greef_0_1;
-			case 12:
-				return Greef_0_2;
-			case 13:
-				return Greef_0_3;
-			case 14:
-				return Ahsoka_0_1;
-			case 15:
-				return Ahsoka_0_2;
-			case 16:
-				return Ahsoka_0_3;
-			case 17:
-				return Cara_0_1;
-			case 18:
-				return Cara_0_2;
+            case 10:
+                return Bo_Katan_3_1;
+            case 11:
+                return Bo_Katan_3_2;
+            case 12:
+                return Bo_Katan_3_3;
+            case 13:
+                return Bo_Katan_4_1;
+            case 14:
+                return Bo_Katan_4_2;
+            case 15:
+                return Bo_Katan_4_3;
+            case 16:
+                return Bo_Katan_5_1;
+            case 17:
+                return Bo_Katan_5_2;
+            case 18:
+                return Bo_Katan_5_3;
             case 19:
-				return Cara_0_3;
-            case 20:
-                return Cara_1_1;
-            case 21:
-                return Cara_1_2;
+				return Greef_0_1;
+			case 20:
+				return Greef_0_2;
+			case 21:
+				return Greef_0_3;
             case 22:
-                return Cara_1_3;
+                return Greef_1_1;
             case 23:
-                return Cara_2_1;
+                return Greef_1_2;
             case 24:
-                return Cara_2_2;
+                return Greef_1_3;
             case 25:
-                return Cara_2_3;
+                return Greef_2_1;
             case 26:
-                return Cara_3_1;
+                return Greef_2_2;
             case 27:
-                return Cara_3_2;
+                return Greef_2_3;
             case 28:
-                return Cara_3_3;
+                return Greef_3_1;
             case 29:
-                return Cara_4_1;
+                return Greef_3_2;
             case 30:
-                return Cara_4_2;
+                return Greef_3_3;
             case 31:
-                return Cara_4_3;
+                return Greef_4_1;
             case 32:
-                return Cara_5_1;
+                return Greef_4_2;
             case 33:
-                return Cara_5_2;
+                return Greef_4_3;
             case 34:
-                return Cara_5_3;
+                return Greef_5_1;
             case 35:
-                return Grogu_0_1;
+                return Greef_5_2;
             case 36:
+                return Greef_5_3;
+            case 37:
+				return Ahsoka_0_1;
+			case 38:
+				return Ahsoka_0_2;
+			case 39:
+				return Ahsoka_0_3;
+            case 40:
+                return Ahsoka_1_1;
+            case 41:
+                return Ahsoka_1_2;
+            case 42:
+                return Ahsoka_1_3;
+            case 43:
+                return Ahsoka_2_1;
+            case 44:
+                return Ahsoka_2_2;
+            case 45:
+                return Ahsoka_2_3;
+            case 46:
+                return Ahsoka_3_1;
+            case 47:
+                return Ahsoka_3_2;
+            case 48:
+                return Ahsoka_3_3;
+            case 49:
+                return Ahsoka_4_1;
+            case 50:
+                return Ahsoka_4_2;
+            case 51:
+                return Ahsoka_4_3;
+            case 52:
+                return Ahsoka_5_1;
+            case 53:
+                return Ahsoka_5_2;
+            case 54:
+                return Ahsoka_5_3;
+            case 55:
+				return Cara_0_1;
+			case 56:
+				return Cara_0_2;
+            case 57:
+				return Cara_0_3;
+            case 58:
+                return Cara_1_1;
+            case 59:
+                return Cara_1_2;
+            case 60:
+                return Cara_1_3;
+            case 61:
+                return Cara_2_1;
+            case 62:
+                return Cara_2_2;
+            case 63:
+                return Cara_2_3;
+            case 64:
+                return Cara_3_1;
+            case 65:
+                return Cara_3_2;
+            case 66:
+                return Cara_3_3;
+            case 67:
+                return Cara_4_1;
+            case 68:
+                return Cara_4_2;
+            case 69:
+                return Cara_4_3;
+            case 70:
+                return Cara_5_1;
+            case 71:
+                return Cara_5_2;
+            case 72:
+                return Cara_5_3;
+            case 73:
+                return Grogu_0_1;
+            case 74:
                 return Grogu_0_2;
+            case 75:
+                return Grogu_1_1;
+            case 76:
+                return Grogu_1_2;
+            case 77:
+                return Grogu_2_1;
+            case 78:
+                return Grogu_2_2;
+            case 79:
+                return Grogu_3_1;
+            case 80:
+                return Grogu_3_2;
+            case 81:
+                return Grogu_4_1;
+            case 82:
+                return Grogu_4_2;
+            case 83:
+                return Grogu_5_1;
+            case 84:
+                return Grogu_5_2;
+            case 85:
+                return Final_Cutscene;
         }
 		return Initial_Cutscene;
 

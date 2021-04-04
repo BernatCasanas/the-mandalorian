@@ -135,7 +135,7 @@ public class HubTextController : DiamondComponent
             case Interaction.GROGU:
                 if (grogu_portrait != null)
 					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().ChangeImageForAnotherOne(grogu_portrait);
-				textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages * 3) + grogu_interaction_num;
+				textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages * 4) + grogu_interaction_num;
                 if (grogu_interaction_num % 2 != 0)
                     grogu_interaction_num++;
                 break;
