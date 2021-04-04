@@ -51,19 +51,20 @@ struct ActionToRealize {
     bool is_key_up;
 };
 
+
 class C_Navigation :public Component {
 public:
-	C_Navigation(GameObject* gameObject, Component::TYPE type_of_ui);
-	~C_Navigation() override;
+    C_Navigation(GameObject* gameObject, Component::TYPE type_of_ui);
+    ~C_Navigation() override;
 
     void Enable() override;
     void Disable() override;
 
-	void Update() override;
+    void Update() override;
 
-    void CheckIfButtonOrJoystickIsBeingUsed(BUTTONSANDJOYSTICKS button_or_joystick_to_check, KEY_STATE& state);
+    void CheckIfButtonOrJoystickIsBeingUsed(BUTTONSANDJOYSTICKS button_or_joystick_to_check, KEY_STATE& state, bool& is_key_down, bool& is_key_up);
 
-    void DoTheAction(GameObject* gameobject, BUTTONSANDJOYSTICKS button_or_joystick_used, ACTIONSNAVIGATION action, bool is_key_released);
+    void DoTheAction(GameObject* gameobject, ACTIONSNAVIGATION action, bool is_key_released);
 
     void Select();
     void Deselect();
@@ -71,17 +72,17 @@ public:
     void SaveData(JSON_Object* nObj) override;
     void LoadData(DEConfig& nObj) override;
 
-    void SaveMapData(JSON_Object* nObj, ActionToRealize& action, BUTTONSANDJOYSTICKS map_index);
+    void SaveMapData(JSON_Object* nObj, const ActionToRealize& action, BUTTONSANDJOYSTICKS map_index);
     void LoadMapaData(DEConfig& nObj);
 
 #ifndef STANDALONE
     bool OnEditor() override;
-    void WriteButtonOrJoystickOnEditor(const char* text,BUTTONSANDJOYSTICKS button_or_joystick);
+    void WriteButtonOrJoystickOnEditor(const char* text, BUTTONSANDJOYSTICKS button_or_joystick);
 #endif // !STANDALONE
 
 private:
     std::map< BUTTONSANDJOYSTICKS, ActionToRealize> map_of_buttons_and_joysticks;
     bool is_selected;
     BUTTONSANDJOYSTICKS button_or_joystick_being_used;
-    Component::TYPE type_of_ui;
+    const Component::TYPE type_of_ui;
 };

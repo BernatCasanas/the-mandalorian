@@ -64,6 +64,9 @@ update_status ModuleCamera3D::Update(float dt)
 
 void ModuleCamera3D::ProcessSceneKeyboard()
 {
+	if (!EngineExternal->moduleEditor->IsWindowSelected(EditorWindow::SCENE))
+		return;
+
 	cameraMovement.Set(0.f, 0.f, 0.f);
 	const float dt = App->GetDT();
 

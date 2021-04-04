@@ -17,6 +17,7 @@ public:
 
 	std::string name;
 	bool active;
+	bool selected;
 
 };
 
