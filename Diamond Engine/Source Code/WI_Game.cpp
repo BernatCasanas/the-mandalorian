@@ -28,6 +28,8 @@ void W_Game::Draw()
 	//TODO: Could we call this from the base Window class? Like with components? Maybe to avoid duplicated code?
 	if (ImGui::Begin(name.c_str(), NULL/*, ImGuiWindowFlags_::ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize*/))
 	{
+		selected = ImGui::IsWindowFocused();
+
 		//Can't use if(true) return; because we need to call ImGui::End();
 		if (targetCamera != nullptr && targetCamera->resolvedFBO.GetFrameBuffer() != 0) {
 			//LOG(LogType::L_WARNING, "Frame buffer game id: %d", targetCamera->framebuffer);

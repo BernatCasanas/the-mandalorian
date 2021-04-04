@@ -171,8 +171,11 @@ update_status M_Scene::Update(float dt)
 	App->moduleEditor->shortcutManager.HandleInput();
 	if (App->moduleInput->GetKey(SDL_SCANCODE_DELETE) == KEY_DOWN && App->moduleEditor->GetSelectedGO() != nullptr && App->moduleEditor->GetSelectedAsset() == nullptr)
 	{
-		App->moduleEditor->shortcutManager.PushCommand(new COMM_DeleteGO(App->moduleEditor->GetSelectedGO()));
-		App->moduleEditor->GetSelectedGO()->Destroy();
+		if (EngineExternal->moduleEditor->IsWindowSelected(EditorWindow::SCENE) || EngineExternal->moduleEditor->IsWindowSelected(EditorWindow::HIERARCHY))
+		{
+			App->moduleEditor->shortcutManager.PushCommand(new COMM_DeleteGO(App->moduleEditor->GetSelectedGO()));
+			App->moduleEditor->GetSelectedGO()->Destroy();
+		}
 	}
 #endif // !STANDALONE
 
