@@ -25,6 +25,7 @@ public class HUD : DiamondComponent
     public GameObject combo_bar = null;
     public GameObject combo_text = null;
     public GameObject combo_gameobject = null;
+    public GameObject force_wave = null;
     private bool start = true;
 
 
@@ -172,7 +173,9 @@ public class HUD : DiamondComponent
             last_hp -= 0.025f;
         }
         force_bar.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
+        force_wave.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
         force_bar.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate);
+        force_wave.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate);
     }
 
     public void IncrementCombo(int levelsToAdd, float weaponTimeMultiplier)
@@ -278,6 +281,7 @@ public class HUD : DiamondComponent
         float force_float = new_force;
         force_float /= max_force;
         force_bar.GetComponent<Material>().SetFloatUniform("length_used", force_float);
+        force_wave.GetComponent<Material>().SetFloatUniform("length_used", force_float);
     }
 
     public void ChangeAlphaSkillPush(bool alpha_full)
