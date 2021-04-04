@@ -2,6 +2,7 @@
 #version 330 core
 
 layout (location = 0) in vec3 position;
+layout (location = 1) in vec2 texCoord;
 layout (location = 2) in vec3 normals;
 layout (location = 6) in vec3 colors;
 
@@ -112,3 +113,4 @@ void main()
     //color = mix (vec4(diffuseColor + ambientLight, 1.0), vec4(vertexColor, 1.0), 0.7);
 }
 #endif
+
