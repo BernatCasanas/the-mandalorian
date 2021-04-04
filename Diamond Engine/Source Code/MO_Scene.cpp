@@ -392,7 +392,7 @@ void M_Scene::RecursiveUpdate(GameObject* parent)
 	}
 }
 
-	void M_Scene::LoadHoldScene()
+void M_Scene::LoadHoldScene()
 {
 	if (holdUID != 0)
 	{
