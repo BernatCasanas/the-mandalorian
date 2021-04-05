@@ -11,15 +11,15 @@ public class SHOP : DiamondComponent
     
     public void Update()
     {
-
-        if (Input.GetKey(DEKeyCode.E) == KeyState.KEY_DOWN)
-        {
+        if (!shopUI.IsEnabled() && Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN)
+        { 
             if (InRange(player.transform.globalPosition, interactionRange))
             {
-                shopUI.Enable(!shopUI.IsEnabled());
+                shopUI.Enable(true);
+                Time.PauseGame();
             }
         }
-       
+
     }
 
     public bool InRange(Vector3 point, float givenRange)
@@ -34,28 +34,28 @@ public class SHOP : DiamondComponent
         switch (item)
         {
             case 0:
-                if(currency > 150)
+                if(currency >= 150)
                 {
                     Debug.Log("Bought Item 1");
                     cost = currency - 150;
                 }
                 break;
             case 1:
-                if (currency > 200)
+                if (currency >= 200)
                 {
                     Debug.Log("Bought Item 2");
                     cost = currency - 200;
                 }
                 break;
             case 2:
-                if (currency > 250)
+                if (currency >= 250)
                 {
                     Debug.Log("Bought Item 3");
                     cost = currency - 250;
                 }
                 break;
             case 3:
-                if (currency > 75)
+                if (currency >= 75)
                 {
                     Debug.Log("Bought Health");
                     cost = currency - 75;
@@ -63,11 +63,10 @@ public class SHOP : DiamondComponent
                 break;
         }
 
-        if (cost == -1) DiamondEngine.Debug.Log("Not enough money");
+        if (cost == -1) Debug.Log("Not enough money");
         else
         {
-            currency -= cost;
-            hud.GetComponent<HUD>().UpdateCurrency(currency);
+            hud.GetComponent<HUD>().UpdateCurrency(cost);
         }
 
     }
@@ -93,6 +92,7 @@ public class SHOP : DiamondComponent
         else if (gameObject.Name == "ButtonBack")
         {
             shopUI.Enable(!shopUI.IsEnabled());
+            Time.ResumeGame();
         }
     }
 
