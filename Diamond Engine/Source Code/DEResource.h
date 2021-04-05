@@ -19,6 +19,7 @@ public:
 		ANIMATION,
 		FONT,
 		PREFAB,
+		NAVMESH,
 		UNKNOWN
 	};
 

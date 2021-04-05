@@ -22,9 +22,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "Recast.h"
-#include "RecastAlloc.h"
-#include "RecastAssert.h"
+#include "RecastNavigation/Recast/Recast.h"
+#include "RecastNavigation/Recast/RecastAlloc.h"
+#include "RecastNavigation/Recast/RecastAssert.h"
 
 
 static const int RC_MAX_LAYERS = RC_NOT_CONNECTED;
@@ -85,9 +85,9 @@ bool rcBuildHeightfieldLayers(rcContext* ctx, rcCompactHeightfield& chf,
 							  const int borderSize, const int walkableHeight,
 							  rcHeightfieldLayerSet& lset)
 {
-	rcAssert(ctx);
+	//rcAssert(ctx);
 	
-	rcScopedTimer timer(ctx, RC_TIMER_BUILD_LAYERS);
+	//rcScopedTimer timer(ctx, RC_TIMER_BUILD_LAYERS);
 	
 	const int w = chf.width;
 	const int h = chf.height;

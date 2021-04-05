@@ -19,9 +19,10 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <stdio.h>
-#include "Recast.h"
-#include "RecastAlloc.h"
-#include "RecastAssert.h"
+#include "RecastNavigation/Recast/Include/Recast.h"
+#include "RecastNavigation/Recast/Include/RecastAlloc.h"
+#include "RecastNavigation/Recast/Include/RecastAssert.h"
+#include "../Globals.h"
 
 inline bool overlapBounds(const float* amin, const float* amax, const float* bmin, const float* bmax)
 {
@@ -169,7 +170,7 @@ bool rcAddSpan(rcContext* ctx, rcHeightfield& hf, const int x, const int y,
 			   const unsigned short smin, const unsigned short smax,
 			   const unsigned char area, const int flagMergeThr)
 {
-	rcAssert(ctx);
+	//rcAssert(ctx);
 
 	if (!addSpan(hf, x, y, smin, smax, area, flagMergeThr))
 	{
@@ -343,9 +344,9 @@ bool rcRasterizeTriangle(rcContext* ctx, const float* v0, const float* v1, const
 						 const unsigned char area, rcHeightfield& solid,
 						 const int flagMergeThr)
 {
-	rcAssert(ctx);
+	//rcAssert(ctx);
 
-	rcScopedTimer timer(ctx, RC_TIMER_RASTERIZE_TRIANGLES);
+	//rcScopedTimer timer(ctx, RC_TIMER_RASTERIZE_TRIANGLES);
 
 	const float ics = 1.0f/solid.cs;
 	const float ich = 1.0f/solid.ch;
@@ -367,9 +368,9 @@ bool rcRasterizeTriangles(rcContext* ctx, const float* verts, const int /*nv*/,
 						  const int* tris, const unsigned char* areas, const int nt,
 						  rcHeightfield& solid, const int flagMergeThr)
 {
-	rcAssert(ctx);
+	//rcAssert(ctx);
 
-	rcScopedTimer timer(ctx, RC_TIMER_RASTERIZE_TRIANGLES);
+	//rcScopedTimer timer(ctx, RC_TIMER_RASTERIZE_TRIANGLES);
 	
 	const float ics = 1.0f/solid.cs;
 	const float ich = 1.0f/solid.ch;
@@ -382,7 +383,7 @@ bool rcRasterizeTriangles(rcContext* ctx, const float* verts, const int /*nv*/,
 		// Rasterize.
 		if (!rasterizeTri(v0, v1, v2, areas[i], solid, solid.bmin, solid.bmax, solid.cs, ics, ich, flagMergeThr))
 		{
-			ctx->log(RC_LOG_ERROR, "rcRasterizeTriangles: Out of memory.");
+			LOG(LogType::L_ERROR, "rcRasterizeTriangles: Out of memory.");
 			return false;
 		}
 	}
@@ -399,9 +400,9 @@ bool rcRasterizeTriangles(rcContext* ctx, const float* verts, const int /*nv*/,
 						  const unsigned short* tris, const unsigned char* areas, const int nt,
 						  rcHeightfield& solid, const int flagMergeThr)
 {
-	rcAssert(ctx);
+	//rcAssert(ctx);
 
-	rcScopedTimer timer(ctx, RC_TIMER_RASTERIZE_TRIANGLES);
+	//rcScopedTimer timer(ctx, RC_TIMER_RASTERIZE_TRIANGLES);
 	
 	const float ics = 1.0f/solid.cs;
 	const float ich = 1.0f/solid.ch;
@@ -430,9 +431,9 @@ bool rcRasterizeTriangles(rcContext* ctx, const float* verts, const int /*nv*/,
 bool rcRasterizeTriangles(rcContext* ctx, const float* verts, const unsigned char* areas, const int nt,
 						  rcHeightfield& solid, const int flagMergeThr)
 {
-	rcAssert(ctx);
+	//rcAssert(ctx);
 	
-	rcScopedTimer timer(ctx, RC_TIMER_RASTERIZE_TRIANGLES);
+	//rcScopedTimer timer(ctx, RC_TIMER_RASTERIZE_TRIANGLES);
 	
 	const float ics = 1.0f/solid.cs;
 	const float ich = 1.0f/solid.ch;

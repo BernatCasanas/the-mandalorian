@@ -17,6 +17,7 @@ class M_ResourceManager;
 class M_MonoManager;
 class M_Gui;
 class ModulePhysics;
+class M_Pathfinding;
 
 #include"MathGeoLib/include/Algorithm/Random/LCG.h"
 
@@ -35,6 +36,7 @@ public:
 	M_ResourceManager* moduleResources = nullptr;
 	M_MonoManager* moduleMono = nullptr;
 	ModulePhysics* modulePhysics = nullptr;
+	M_Pathfinding* modulePathfinding = nullptr;
 	std::vector<Module*> list_modules;
 
 private:
