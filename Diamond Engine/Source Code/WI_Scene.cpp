@@ -108,7 +108,7 @@ void W_Scene::Draw()
 		//Draw gizmo
 		DrawGuizmo();
 
-		if (EngineExternal->moduleInput->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN || EngineExternal->moduleInput->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
+		if (EngineExternal->moduleInput->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
 		{
 			if (ImGui::IsWindowHovered())
 			{
