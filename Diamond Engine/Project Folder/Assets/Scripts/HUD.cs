@@ -27,7 +27,8 @@ public class HUD : DiamondComponent
     public GameObject combo_gameobject = null;
     public GameObject force_wave = null;
     private bool start = true;
-
+    private float pulsation_rate = 0.0f;
+    private bool pulsation_forward = true;
 
 
     private float fullComboTime = 0.0f;
@@ -53,7 +54,7 @@ public class HUD : DiamondComponent
         if (start)
         {
             UpdateHP(PlayerHealth.currHealth, PlayerHealth.currMaxHealth);
-            last_hp = (float)PlayerHealth.currHealth;
+            last_hp = hp;
             UpdateForce(force, max_force);
             force_bar_rate = -0.15f;
             start = false;
@@ -67,7 +68,7 @@ public class HUD : DiamondComponent
         {
             if (hp < max_hp)
             {
-                hp += 1;
+                hp += 5;
                 UpdateHP(hp, max_hp);
                 last_hp = hp;
             }
@@ -76,8 +77,9 @@ public class HUD : DiamondComponent
         {
             if (hp > 0)
             {
-                last_hp = hp;
-                hp -= 1;
+                if (!(last_hp > hp))
+                    last_hp = hp;
+                hp -= 5;
                 UpdateHP(hp, max_hp);
             }
         }
@@ -172,10 +174,21 @@ public class HUD : DiamondComponent
             hp_bar.GetComponent<Material>().SetFloatUniform("last_hp", last_hp/max_hp);
             last_hp -= 0.025f;
         }
+        if (pulsation_forward)
+        {
+            pulsation_rate += (Time.deltaTime/3);
+            if (pulsation_rate > 1.0f) pulsation_forward = false;
+        }
+        else if (!pulsation_forward)
+        {
+            pulsation_rate -= (Time.deltaTime/3);
+            if (pulsation_rate < 0.5f) pulsation_forward = true;
+        }
         force_bar.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
         force_wave.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
         force_bar.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate);
         force_wave.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate);
+        hp_bar.GetComponent<Material>().SetFloatUniform("t", pulsation_rate);
     }
 
     public void IncrementCombo(int levelsToAdd, float weaponTimeMultiplier)
