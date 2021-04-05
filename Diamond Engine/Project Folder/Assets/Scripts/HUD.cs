@@ -172,7 +172,7 @@ public class HUD : DiamondComponent
         if (last_hp > hp)
         {
             hp_bar.GetComponent<Material>().SetFloatUniform("last_hp", last_hp/max_hp);
-            last_hp -= 0.025f;
+            last_hp -= 0.05f;
         }
         if (pulsation_forward)
         {
@@ -182,7 +182,7 @@ public class HUD : DiamondComponent
         else if (!pulsation_forward)
         {
             pulsation_rate -= (Time.deltaTime/3);
-            if (pulsation_rate < 0.5f) pulsation_forward = true;
+            if (pulsation_rate < 0.6f) pulsation_forward = true;
         }
         force_bar.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
         force_wave.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
