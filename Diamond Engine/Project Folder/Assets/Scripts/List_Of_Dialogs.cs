@@ -1161,7 +1161,8 @@ public class List_Of_Dialogs : DiamondComponent
        "I don't know any other person who can teach him. Are there really any Jedi left nowadays? Because it doesn't look like it. I have the feeling I'm chasing ghosts.",
        "I am afraid these feelings you have are not without foundation. The Jedi Order disappeared at the end of the clone wars, and most of its survivors died shortly afterwards. I admit, yours is not an easy task Mandalorian.",
        "Then it's true. There are no longer any Jedi left...",
-       "The Jedi Order might be no more, but for the past years, there has been balance in the force. There are some out there who are still following the old Jedi ways. The light side of the force is strong with them. If it is Grogu's fate to be trained, you will find them... or perchance... they will find you.",
+       "The Jedi Order might be no more, but for the past years, there has been balance in the force. There are some out there who are still following the old Jedi ways. The light side of the force is strong with them. If it is Grogu's fate to be trained, you will find them...",/**/
+       "or perchance... they will find you.",
     };
 
     private List<bool> Ahsoka_0_2_bool = new List<bool>()
@@ -1172,6 +1173,7 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         false,
         true,
+        false,
         false,
     };
 
