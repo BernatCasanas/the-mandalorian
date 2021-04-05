@@ -15,8 +15,8 @@
 #include <mono/metadata/debug-helpers.h>
 
 C_Script* C_Script::runningScript = nullptr;
-C_Script::C_Script(GameObject* _gm, const char* scriptName) : Component(_gm), noGCobject(0), updateMethod(nullptr),onCollisionEnter(nullptr),onTriggerEnter(nullptr),onApplicationQuit(nullptr)
-,onExecuteButton(nullptr),onExecuteCheckbox(nullptr)
+C_Script::C_Script(GameObject* _gm, const char* scriptName) : Component(_gm), noGCobject(0), updateMethod(nullptr), onCollisionEnter(nullptr), onTriggerEnter(nullptr), onApplicationQuit(nullptr)
+, onExecuteButton(nullptr), onExecuteCheckbox(nullptr)
 {
 	name = scriptName;
 	//strcpy(name, scriptName);
@@ -60,13 +60,13 @@ void C_Script::Update()
 	MonoObject* exec = nullptr;
 	mono_runtime_invoke(updateMethod, mono_gchandle_get_target(noGCobject), NULL, &exec);
 
-	if (exec != nullptr) 
+	if (exec != nullptr)
 	{
-		if (strcmp(mono_class_get_name(mono_object_get_class(exec)), "NullReferenceException") == 0) 
+		if (strcmp(mono_class_get_name(mono_object_get_class(exec)), "NullReferenceException") == 0)
 		{
 			LOG(LogType::L_ERROR, "Null reference exception detected");
 		}
-		else 
+		else
 		{
 			LOG(LogType::L_ERROR, "Something went wrong");
 		}
@@ -250,7 +250,7 @@ void C_Script::LoadData(DEConfig& nObj)
 			mono_field_set_value(mono_gchandle_get_target(noGCobject), _field->field, &_field->fiValue.fValue);
 			break;
 
-		case MonoTypeEnum::MONO_TYPE_STRING: 
+		case MonoTypeEnum::MONO_TYPE_STRING:
 		{
 			const char* ret = nObj.ReadString(mono_field_get_name(_field->field));
 
@@ -343,15 +343,18 @@ void C_Script::CollisionCallback(bool isTrigger, GameObject* collidedGameObject)
 {
 	void* params[1];
 
-	params[0] = EngineExternal->moduleMono->GoToCSGO(collidedGameObject);
-
-	if (onCollisionEnter != nullptr)
-		mono_runtime_invoke(onCollisionEnter, mono_gchandle_get_target(noGCobject), params, NULL);
-	
-	if (isTrigger)
+	if (collidedGameObject != nullptr)
 	{
-		if (onTriggerEnter != nullptr)
-			mono_runtime_invoke(onTriggerEnter, mono_gchandle_get_target(noGCobject), params, NULL);
+		params[0] = EngineExternal->moduleMono->GoToCSGO(collidedGameObject);
+
+		if (onCollisionEnter != nullptr)
+			mono_runtime_invoke(onCollisionEnter, mono_gchandle_get_target(noGCobject), params, NULL);
+
+		if (isTrigger)
+		{
+			if (onTriggerEnter != nullptr)
+				mono_runtime_invoke(onTriggerEnter, mono_gchandle_get_target(noGCobject), params, NULL);
+		}
 	}
 }
 
