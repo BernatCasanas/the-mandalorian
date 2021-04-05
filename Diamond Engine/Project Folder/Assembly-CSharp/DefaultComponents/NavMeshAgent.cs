@@ -7,6 +7,11 @@ namespace DiamondEngine
 {
     public class NavMeshAgent : DiamondComponent
     {
+        public NavMeshAgent()
+        {
+            type = ComponentType.NAVMESHAGENT;
+        }
+
         public extern float speed
         {
             [MethodImplAttribute(MethodImplOptions.InternalCall)]
@@ -36,18 +41,18 @@ namespace DiamondEngine
 
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public extern void CalculateRandomPath(object go, object startPos, float radius);
+        public extern void CalculateRandomPath(object startPos, float radius);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public extern void CalculatePath(object go, object startPos, object endPos);
+        public extern void CalculatePath(object startPos, object endPos);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public extern Vector3 GetDestination(object go);
+        public extern Vector3 GetDestination();
 
-        public void MoveToCalculatedPos(GameObject go, float speed)
+        public void MoveToCalculatedPos(float speed)
         {
-            Vector3 pos = go.transform.localPosition;
-            Vector3 direction = GetDestination(go) - pos;
+            Vector3 pos = gameObject.transform.localPosition;
+            Vector3 direction = GetDestination() - pos;
 
             pos += direction.normalized * speed * Time.deltaTime;
         }

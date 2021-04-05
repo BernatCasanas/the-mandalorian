@@ -10,6 +10,8 @@ C_NavMeshAgent::C_NavMeshAgent(GameObject* _gm) : Component(_gm)
 
 C_NavMeshAgent::~C_NavMeshAgent()
 {
+	selectedNav = nullptr;
+	path.clear();
 }
 
 bool C_NavMeshAgent::OnEditor()

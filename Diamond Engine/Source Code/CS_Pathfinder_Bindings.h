@@ -7,7 +7,7 @@
 #include <math.h>
 #include <vector>
 
-void CS_CalculateRandomPath(MonoObject* test, MonoObject* go, MonoObject* startPos, float radius)
+void CS_CalculateRandomPath(MonoObject* go, MonoObject* startPos, float radius)
 {
 	if (EngineExternal == nullptr || go == nullptr)
 		return;

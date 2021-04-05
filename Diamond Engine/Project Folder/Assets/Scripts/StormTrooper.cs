@@ -25,7 +25,7 @@ public class StormTrooper : Enemy
 		player = InternalCalls.FindObjectWithName("Cube");
 		agent = gameObject.GetComponent<NavMeshAgent>();
 		Debug.Log("gola1");
-		agent.CalculateRandomPath(gameObject, gameObject.transform.localPosition, wanderRange);
+		agent.CalculateRandomPath(gameObject.transform.localPosition, wanderRange);
 		Debug.Log("gola2");
 	}
 
@@ -52,7 +52,7 @@ public class StormTrooper : Enemy
 
 				if (InRange(player.transform.globalPosition, range))
 				{
-					LookAt(agent.GetDestination(gameObject));
+					LookAt(agent.GetDestination());
 
 					if(timePassed > idleTime)
                     {
@@ -66,7 +66,7 @@ public class StormTrooper : Enemy
 					{
 						currentState = STATES.WANDER;
 						timePassed = 0.0f;
-						agent.CalculateRandomPath(gameObject, gameObject.transform.localPosition, wanderRange);
+						agent.CalculateRandomPath(gameObject.transform.localPosition, wanderRange);
 						if (shotSequences == 1)
                         {
 							currentState = STATES.SHOOT;
@@ -85,9 +85,9 @@ public class StormTrooper : Enemy
 				//Debug.Log("Run");
 				agent.speed = 12.5f;
 
-				LookAt(agent.GetDestination(gameObject));
-				LookAt(agent.GetDestination(gameObject));
-				agent.MoveToCalculatedPos(gameObject, agent.speed);
+				LookAt(agent.GetDestination());
+				LookAt(agent.GetDestination());
+				agent.MoveToCalculatedPos(agent.speed);
 
 				if (Mathf.Distance(gameObject.transform.localPosition, targetPosition) < stoppingDistance)
 				{
@@ -120,13 +120,13 @@ public class StormTrooper : Enemy
 				{
 					if (targetPosition == null)
                     {
-						agent.CalculateRandomPath(gameObject, gameObject.transform.localPosition, wanderRange);
+						agent.CalculateRandomPath(gameObject.transform.localPosition, wanderRange);
 						Animator.Play(gameObject, "ST_Run");
 						Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
 					}
 
-					LookAt(agent.GetDestination(gameObject));
-					agent.MoveToCalculatedPos(gameObject, agent.speed);
+					LookAt(agent.GetDestination());
+					agent.MoveToCalculatedPos(agent.speed);
 
 					if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) < stoppingDistance)
 					{
