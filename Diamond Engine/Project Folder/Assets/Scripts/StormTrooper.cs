@@ -12,6 +12,8 @@ public class StormTrooper : Enemy
 	private float pushSkillTimer = 0.15f;
 	private float pushSkillSpeed = 0.2f;
     public float stormTrooperDamage = 5.0f;
+
+	private bool start = true;
     
 
 	public void Start()
@@ -20,7 +22,11 @@ public class StormTrooper : Enemy
 		targetPosition = CalculateNewPosition(wanderRange);
 		shotTimes = 0;
         stormTrooperDamage = 1.0f;
-   
+		player = InternalCalls.FindObjectWithName("Cube");
+		agent = gameObject.GetComponent<NavMeshAgent>();
+		Debug.Log("gola1");
+		agent.CalculateRandomPath(gameObject.transform.localPosition, wanderRange);
+		Debug.Log("gola2");
 	}
 
 	public void Update()
@@ -28,7 +34,13 @@ public class StormTrooper : Enemy
 		if (player == null)
         {
 			Debug.Log("Null player");
-			player = Core.instance.gameObject;
+			//player = Core.instance.gameObject;
+        }
+
+        if (start)
+        {
+			Start();
+			start = false;
         }
 
 		switch (currentState)
@@ -40,7 +52,7 @@ public class StormTrooper : Enemy
 
 				if (InRange(player.transform.globalPosition, range))
 				{
-					LookAt(player.transform.globalPosition);
+					LookAt(agent.GetDestination());
 
 					if(timePassed > idleTime)
                     {
@@ -54,8 +66,8 @@ public class StormTrooper : Enemy
 					{
 						currentState = STATES.WANDER;
 						timePassed = 0.0f;
-						targetPosition = CalculateNewPosition(wanderRange);
-                        if (shotSequences == 1)
+						agent.CalculateRandomPath(gameObject.transform.localPosition, wanderRange);
+						if (shotSequences == 1)
                         {
 							currentState = STATES.SHOOT;
                         }
@@ -71,9 +83,11 @@ public class StormTrooper : Enemy
 
 			case STATES.RUN:
 				//Debug.Log("Run");
+				agent.speed = 12.5f;
 
-				LookAt(targetPosition);
-				MoveToPosition(targetPosition, runningSpeed);
+				LookAt(agent.GetDestination());
+				LookAt(agent.GetDestination());
+				agent.MoveToCalculatedPos(agent.speed);
 
 				if (Mathf.Distance(gameObject.transform.localPosition, targetPosition) < stoppingDistance)
 				{
@@ -88,6 +102,7 @@ public class StormTrooper : Enemy
 			case STATES.WANDER:
 
 				//Debug.Log("Wander");
+				agent.speed = 3.5f;
 
 				if (player == null)
 					Debug.Log("Null player");
@@ -105,13 +120,13 @@ public class StormTrooper : Enemy
 				{
 					if (targetPosition == null)
                     {
-						targetPosition = CalculateNewPosition(wanderRange);
+						agent.CalculateRandomPath(gameObject.transform.localPosition, wanderRange);
 						Animator.Play(gameObject, "ST_Run");
 						Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
 					}
 
-					LookAt(targetPosition);
-					MoveToPosition(targetPosition, wanderSpeed);
+					LookAt(agent.GetDestination());
+					agent.MoveToCalculatedPos(agent.speed);
 
 					if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) < stoppingDistance)
 					{
@@ -192,7 +207,7 @@ public class StormTrooper : Enemy
 				break;
 
 			case STATES.DIE:
-				//Debug.Log("ST_Die");
+				Debug.Log("ST_Die");
 
 				timePassed += Time.deltaTime;
 

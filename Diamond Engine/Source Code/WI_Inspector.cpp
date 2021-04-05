@@ -10,6 +10,7 @@
 #include "MO_Scene.h"
 #include"MO_ResourceManager.h"
 #include"MO_MonoManager.h"
+#include "CO_NavMeshAgent.h"
 
 #include "CO_Material.h"
 #include"CO_Script.h"
@@ -254,6 +255,11 @@ void W_Inspector::Draw()
 					{
 						if (selectedGO->GetComponent(Component::TYPE::DIRECTIONAL_LIGHT) == nullptr)
 							selectedGO->AddComponent(Component::TYPE::DIRECTIONAL_LIGHT);
+					}
+					if (ImGui::Selectable("Nav Mesh Agent"))
+					{
+						if (selectedGO->GetComponent(Component::TYPE::NAVMESHAGENT) == nullptr)
+							selectedGO->AddComponent(Component::TYPE::NAVMESHAGENT);
 					}
 
 					for (int i = 0; i < EngineExternal->moduleMono->userScripts.size(); i++)

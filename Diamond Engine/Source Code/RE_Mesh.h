@@ -37,6 +37,8 @@ public:
 	void RenderMeshDebug(bool* vertexNormals, bool* faceNormals, const float*);
 
 	vec3 GetVectorFromIndex(float* startValue);
+	void GetVertices(float* verticesArray);
+	int* GetTriangles() const;
 
 	void OGL_GPU_Render();
 

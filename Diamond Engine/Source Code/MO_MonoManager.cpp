@@ -25,6 +25,7 @@
 #include "CS_Navigation_Bindings.h"
 #include "CS_ParticleSystem_Bindings.h"
 #include "CS_Transform2D_Bindings.h"
+#include "CS_Pathfinder_Bindings.h"
 
 #include <iostream>
 #include <fstream> 
@@ -175,6 +176,19 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.Config::SetSFXVolume", CS_SetSFXVolume);
 	mono_add_internal_call("DiamondEngine.Config::GetSFXVolume", CS_GetSFXVolume);
 	mono_add_internal_call("DiamondEngine.Config::ControllerVibrationEnable", CS_ControllerEnableVibration);
+#pragma endregion
+
+#pragma region Pathfinder
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::CalculateRandomPath", CS_CalculateRandomPath);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::CalculatePath", CS_CalculatePath);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::GetDestination", CS_GetDestination);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::get_speed", CS_GetSpeed);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::set_speed", CS_SetSpeed);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::get_angularSpeed", CS_GetAngularSpeed);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::set_angularSpeed", CS_SetAngularSpeed);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::get_stoppingDistance", CS_GetStoppingDistance);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::set_stoppingDistance", CS_SetStoppingDistance);
+
 #pragma endregion
 
 	mono_add_internal_call("DiamondEngine.DiamondComponent::get_gameObject", CS_Component_Get_GO);

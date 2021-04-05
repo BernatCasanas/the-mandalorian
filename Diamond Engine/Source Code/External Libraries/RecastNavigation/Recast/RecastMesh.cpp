@@ -20,9 +20,9 @@
 #include <math.h>
 #include <string.h>
 #include <stdio.h>
-#include "Recast.h"
-#include "RecastAlloc.h"
-#include "RecastAssert.h"
+#include "RecastNavigation/Recast/Recast.h"
+#include "RecastNavigation/Recast/RecastAlloc.h"
+#include "RecastNavigation/Recast/RecastAssert.h"
 
 struct rcEdge
 {
@@ -991,9 +991,9 @@ static bool removeVertex(rcContext* ctx, rcPolyMesh& mesh, const unsigned short 
 /// @see rcAllocPolyMesh, rcContourSet, rcPolyMesh, rcConfig
 bool rcBuildPolyMesh(rcContext* ctx, rcContourSet& cset, const int nvp, rcPolyMesh& mesh)
 {
-	rcAssert(ctx);
+	//rcAssert(ctx);
 	
-	rcScopedTimer timer(ctx, RC_TIMER_BUILD_POLYMESH);
+	//rcScopedTimer timer(ctx, RC_TIMER_BUILD_POLYMESH);
 
 	rcVcopy(mesh.bmin, cset.bmin);
 	rcVcopy(mesh.bmax, cset.bmax);
@@ -1310,12 +1310,12 @@ bool rcBuildPolyMesh(rcContext* ctx, rcContourSet& cset, const int nvp, rcPolyMe
 /// @see rcAllocPolyMesh, rcPolyMesh
 bool rcMergePolyMeshes(rcContext* ctx, rcPolyMesh** meshes, const int nmeshes, rcPolyMesh& mesh)
 {
-	rcAssert(ctx);
+	//rcAssert(ctx);
 	
 	if (!nmeshes || !meshes)
 		return true;
 
-	rcScopedTimer timer(ctx, RC_TIMER_MERGE_POLYMESH);
+	//rcScopedTimer timer(ctx, RC_TIMER_MERGE_POLYMESH);
 
 	mesh.nvp = meshes[0]->nvp;
 	mesh.cs = meshes[0]->cs;
@@ -1488,7 +1488,7 @@ bool rcMergePolyMeshes(rcContext* ctx, rcPolyMesh** meshes, const int nmeshes, r
 
 bool rcCopyPolyMesh(rcContext* ctx, const rcPolyMesh& src, rcPolyMesh& dst)
 {
-	rcAssert(ctx);
+	//rcAssert(ctx);
 	
 	// Destination must be empty.
 	rcAssert(dst.verts == 0);

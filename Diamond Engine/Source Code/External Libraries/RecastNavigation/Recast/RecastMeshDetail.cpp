@@ -22,9 +22,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "Recast.h"
-#include "RecastAlloc.h"
-#include "RecastAssert.h"
+#include "RecastNavigation/Recast/Recast.h"
+#include "RecastNavigation/Recast/RecastAlloc.h"
+#include "RecastNavigation/Recast/RecastAssert.h"
 
 
 static const unsigned RC_UNSET_HEIGHT = 0xffff;
@@ -1171,9 +1171,9 @@ bool rcBuildPolyMeshDetail(rcContext* ctx, const rcPolyMesh& mesh, const rcCompa
 						   const float sampleDist, const float sampleMaxError,
 						   rcPolyMeshDetail& dmesh)
 {
-	rcAssert(ctx);
+	//rcAssert(ctx);
 	
-	rcScopedTimer timer(ctx, RC_TIMER_BUILD_POLYMESHDETAIL);
+	//rcScopedTimer timer(ctx, RC_TIMER_BUILD_POLYMESHDETAIL);
 	
 	if (mesh.nverts == 0 || mesh.npolys == 0)
 		return true;
@@ -1388,9 +1388,9 @@ bool rcBuildPolyMeshDetail(rcContext* ctx, const rcPolyMesh& mesh, const rcCompa
 /// @see rcAllocPolyMeshDetail, rcPolyMeshDetail
 bool rcMergePolyMeshDetails(rcContext* ctx, rcPolyMeshDetail** meshes, const int nmeshes, rcPolyMeshDetail& mesh)
 {
-	rcAssert(ctx);
+	//rcAssert(ctx);
 	
-	rcScopedTimer timer(ctx, RC_TIMER_MERGE_POLYMESHDETAIL);
+	//rcScopedTimer timer(ctx, RC_TIMER_MERGE_POLYMESHDETAIL);
 	
 	int maxVerts = 0;
 	int maxTris = 0;

@@ -18,7 +18,7 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include "RecastAlloc.h"
+#include "RecastNavigation/Recast/RecastAlloc.h"
 
 static void *rcAllocDefault(size_t size, rcAllocHint)
 {
