@@ -22,7 +22,7 @@ public:
 
 	void SaveData(JSON_Object* nObj) override;
 	void LoadData(DEConfig& nObj) override;
-	std::vector<float3> targetPosition;
+	std::vector<float3> path;
 	NavAgentProperties properties;
 
 private:

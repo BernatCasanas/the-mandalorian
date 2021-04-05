@@ -7,7 +7,7 @@
 #include <math.h>
 #include <vector>
 
-void CS_CalculateRandomPath(MonoObject* go, MonoObject* startPos, float radius)
+void CS_CalculateRandomPath(MonoObject* test, MonoObject* go, MonoObject* startPos, float radius)
 {
 	if (EngineExternal == nullptr || go == nullptr)
 		return;
@@ -16,12 +16,12 @@ void CS_CalculateRandomPath(MonoObject* go, MonoObject* startPos, float radius)
 
 	if (comp == nullptr)
 		return;
-	//ho faig fora? esq nose. q collons
-	comp->targetPosition.clear();
+	comp->path.clear();
 	MonoClass* klass = mono_object_get_class(startPos);
 
 	const char* name = mono_class_get_name(klass);
-	comp->targetPosition.push_back(EngineExternal->modulePathfinding->FindRandomPointAround(EngineExternal->moduleMono->UnboxVector(startPos), radius));
+	float3 destination = EngineExternal->modulePathfinding->FindRandomPointAround(EngineExternal->moduleMono->UnboxVector(startPos), radius);
+	EngineExternal->modulePathfinding->FindPath(EngineExternal->moduleMono->UnboxVector(startPos), destination, comp->path);
 }
 
 void CS_CalculatePath(MonoObject* go, MonoObject* startPos, MonoObject* endPos)
@@ -34,8 +34,8 @@ void CS_CalculatePath(MonoObject* go, MonoObject* startPos, MonoObject* endPos)
 	if (comp == nullptr)
 		return;
 
-	comp->targetPosition.clear();
-	EngineExternal->modulePathfinding->FindPath(EngineExternal->moduleMono->UnboxVector(startPos), EngineExternal->moduleMono->UnboxVector(endPos), comp->targetPosition);
+	comp->path.clear();
+	EngineExternal->modulePathfinding->FindPath(EngineExternal->moduleMono->UnboxVector(startPos), EngineExternal->moduleMono->UnboxVector(endPos), comp->path);
 }
 
 MonoObject* CS_GetDestination(MonoObject* go)
@@ -50,12 +50,14 @@ MonoObject* CS_GetDestination(MonoObject* go)
 	if (comp == nullptr)
 		return nullptr;
 
-	float3 distance = comp->targetPosition[0] - trans->position;
+	if (comp->path.size() <= 0) return EngineExternal->moduleMono->Float3ToCS(trans->position);
+
+	float3 distance = comp->path.front() - trans->position;
 	if (Sqrt(distance.x * distance.x + distance.y * distance.y + distance.z * distance.z) < comp->properties.stoppingDistance) {
-		assert(!comp->targetPosition.empty());
-		comp->targetPosition.erase(comp->targetPosition.begin());
+		assert(!comp->path.empty());
+		comp->path.erase(comp->path.begin());
 	}
-	return EngineExternal->moduleMono->Float3ToCS(comp->targetPosition.front());
+	return EngineExternal->moduleMono->Float3ToCS(comp->path.front());
 }
 
 float CS_GetSpeed(MonoObject* obj)

@@ -22,7 +22,11 @@ public class StormTrooper : Enemy
 		targetPosition = CalculateNewPosition(wanderRange);
 		shotTimes = 0;
         stormTrooperDamage = 1.0f;
-   
+		player = InternalCalls.FindObjectWithName("Cube");
+		agent = gameObject.GetComponent<NavMeshAgent>();
+		Debug.Log("gola1");
+		agent.CalculateRandomPath(gameObject, gameObject.transform.localPosition, wanderRange);
+		Debug.Log("gola2");
 	}
 
 	public void Update()
@@ -30,7 +34,7 @@ public class StormTrooper : Enemy
 		if (player == null)
         {
 			Debug.Log("Null player");
-			player = Core.instance.gameObject;
+			//player = Core.instance.gameObject;
         }
 
         if (start)
@@ -42,7 +46,7 @@ public class StormTrooper : Enemy
 		switch (currentState)
 		{
 			case STATES.IDLE:
-				//Debug.Log("Idle");
+				Debug.Log("Idle");
 
 				timePassed += Time.deltaTime;
 
@@ -78,11 +82,11 @@ public class StormTrooper : Enemy
 				break;
 
 			case STATES.RUN:
-				//Debug.Log("Run");
+				Debug.Log("Run");
 				agent.speed = 12.5f;
 
 				LookAt(agent.GetDestination(gameObject));
-				LookAt(targetPosition);
+				LookAt(agent.GetDestination(gameObject));
 				agent.MoveToCalculatedPos(gameObject, agent.speed);
 
 				if (Mathf.Distance(gameObject.transform.localPosition, targetPosition) < stoppingDistance)
@@ -97,7 +101,7 @@ public class StormTrooper : Enemy
 
 			case STATES.WANDER:
 
-				//Debug.Log("Wander");
+				Debug.Log("Wander");
 				agent.speed = 3.5f;
 
 				if (player == null)
@@ -121,7 +125,7 @@ public class StormTrooper : Enemy
 						Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
 					}
 
-					LookAt(targetPosition);
+					LookAt(agent.GetDestination(gameObject));
 					agent.MoveToCalculatedPos(gameObject, agent.speed);
 
 					if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) < stoppingDistance)
@@ -144,7 +148,7 @@ public class StormTrooper : Enemy
 				break;
 
 			case STATES.SHOOT:
-				//Debug.Log("Shoot");
+				Debug.Log("Shoot");
 				
 				timePassed += Time.deltaTime;
 
@@ -203,7 +207,7 @@ public class StormTrooper : Enemy
 				break;
 
 			case STATES.DIE:
-				//Debug.Log("ST_Die");
+				Debug.Log("ST_Die");
 
 				timePassed += Time.deltaTime;
 

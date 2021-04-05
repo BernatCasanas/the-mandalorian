@@ -67,8 +67,17 @@ bool C_NavMeshAgent::OnEditor()
 
 void C_NavMeshAgent::SaveData(JSON_Object* nObj)
 {
+	DEJson::WriteInt(nObj, "Type", (int)type);
+	DEJson::WriteBool(nObj, "Active", active);
+	DEJson::WriteFloat(nObj, "Speed", properties.speed);
+	DEJson::WriteFloat(nObj, "Angular Speed", properties.angularSpeed);
+	DEJson::WriteFloat(nObj, "Stopping Distance", properties.stoppingDistance);
 }
 
 void C_NavMeshAgent::LoadData(DEConfig& nObj)
 {
+	active = nObj.ReadBool("Active");
+	properties.speed = nObj.ReadFloat("Speed");
+	properties.angularSpeed = nObj.ReadFloat("Angular Speed");
+	properties.stoppingDistance = nObj.ReadFloat("Stopping Distance");
 }

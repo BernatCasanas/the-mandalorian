@@ -179,15 +179,15 @@ bool M_MonoManager::Init()
 #pragma endregion
 
 #pragma region Pathfinder
-	mono_add_internal_call("DiamondEngine.Pathfinder::CalculateRandomPath", CS_CalculateRandomPath);
-	mono_add_internal_call("DiamondEngine.Pathfinder::CalculatePath", CS_CalculatePath);
-	mono_add_internal_call("DiamondEngine.Pathfinder::GetDestination", CS_GetDestination);
-	mono_add_internal_call("DiamondEngine.Pathfinder::get_speed", CS_GetSpeed);
-	mono_add_internal_call("DiamondEngine.Pathfinder::set_speed", CS_SetSpeed);
-	mono_add_internal_call("DiamondEngine.Pathfinder::get_angularSpeed", CS_GetAngularSpeed);
-	mono_add_internal_call("DiamondEngine.Pathfinder::set_angularSpeed", CS_SetAngularSpeed);
-	mono_add_internal_call("DiamondEngine.Pathfinder::get_stoppingDistance", CS_GetStoppingDistance);
-	mono_add_internal_call("DiamondEngine.Pathfinder::set_stoppingDistance", CS_SetStoppingDistance);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::CalculateRandomPath", CS_CalculateRandomPath);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::CalculatePath", CS_CalculatePath);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::GetDestination", CS_GetDestination);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::get_speed", CS_GetSpeed);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::set_speed", CS_SetSpeed);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::get_angularSpeed", CS_GetAngularSpeed);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::set_angularSpeed", CS_SetAngularSpeed);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::get_stoppingDistance", CS_GetStoppingDistance);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::set_stoppingDistance", CS_SetStoppingDistance);
 
 #pragma endregion
 
