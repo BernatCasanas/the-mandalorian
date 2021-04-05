@@ -2164,60 +2164,158 @@ public class List_Of_Dialogs : DiamondComponent
 				return Bo_Katan_2_2_bool;
 			case 9:
 				return Bo_Katan_2_3_bool;
-			case 10:
-				return Final_Cutscene_bool;
-			case 11:
-				return Greef_0_1_bool;
-			case 12:
-				return Greef_0_2_bool;
-			case 13:
-				return Greef_0_3_bool;
-			case 14:
-				return Ahsoka_0_1_bool;
-			case 15:
-				return Ahsoka_0_2_bool;
-			case 16:
-				return Ahsoka_0_3_bool;
+            case 10:
+                return Bo_Katan_3_1_bool;
+            case 11:
+                return Bo_Katan_3_2_bool;
+            case 12:
+                return Bo_Katan_3_3_bool;
+            case 13:
+                return Bo_Katan_4_1_bool;
+            case 14:
+                return Bo_Katan_4_2_bool;
+            case 15:
+                return Bo_Katan_4_3_bool;
+            case 16:
+                return Bo_Katan_5_1_bool;
             case 17:
-                return Cara_0_1_bool;
+                return Bo_Katan_5_2_bool;
             case 18:
-                return Cara_0_2_bool;
+                return Bo_Katan_5_3_bool;
             case 19:
-                return Cara_0_3_bool;
+                return Greef_0_1_bool;
             case 20:
-                return Cara_1_1_bool;
+                return Greef_0_2_bool;
             case 21:
-                return Cara_1_2_bool;
+                return Greef_0_3_bool;
             case 22:
-                return Cara_1_3_bool;
+                return Greef_1_1_bool;
             case 23:
-                return Cara_2_1_bool;
+                return Greef_1_2_bool;
             case 24:
-                return Cara_2_2_bool;
+                return Greef_1_3_bool;
             case 25:
-                return Cara_2_3_bool;
+                return Greef_2_1_bool;
             case 26:
-                return Cara_3_1_bool;
+                return Greef_2_2_bool;
             case 27:
-                return Cara_3_2_bool;
+                return Greef_2_3_bool;
             case 28:
-                return Cara_3_3_bool;
+                return Greef_3_1_bool;
             case 29:
-                return Cara_4_1_bool;
+                return Greef_3_2_bool;
             case 30:
-                return Cara_4_2_bool;
+                return Greef_3_3_bool;
             case 31:
-                return Cara_4_3_bool;
+                return Greef_4_1_bool;
             case 32:
-                return Cara_5_1_bool;
+                return Greef_4_2_bool;
             case 33:
-                return Cara_5_2_bool;
+                return Greef_4_3_bool;
             case 34:
-                return Cara_5_3_bool;
+                return Greef_5_1_bool;
             case 35:
-                return Grogu_0_1_bool;
+                return Greef_5_2_bool;
             case 36:
+                return Greef_5_3_bool;
+            case 37:
+                return Ahsoka_0_1_bool;
+            case 38:
+                return Ahsoka_0_2_bool;
+            case 39:
+                return Ahsoka_0_3_bool;
+            case 40:
+                return Ahsoka_1_1_bool;
+            case 41:
+                return Ahsoka_1_2_bool;
+            case 42:
+                return Ahsoka_1_3_bool;
+            case 43:
+                return Ahsoka_2_1_bool;
+            case 44:
+                return Ahsoka_2_2_bool;
+            case 45:
+                return Ahsoka_2_3_bool;
+            case 46:
+                return Ahsoka_3_1_bool;
+            case 47:
+                return Ahsoka_3_2_bool;
+            case 48:
+                return Ahsoka_3_3_bool;
+            case 49:
+                return Ahsoka_4_1_bool;
+            case 50:
+                return Ahsoka_4_2_bool;
+            case 51:
+                return Ahsoka_4_3_bool;
+            case 52:
+                return Ahsoka_5_1_bool;
+            case 53:
+                return Ahsoka_5_2_bool;
+            case 54:
+                return Ahsoka_5_3_bool;
+            case 55:
+                return Cara_0_1_bool;
+            case 56:
+                return Cara_0_2_bool;
+            case 57:
+                return Cara_0_3_bool;
+            case 58:
+                return Cara_1_1_bool;
+            case 59:
+                return Cara_1_2_bool;
+            case 60:
+                return Cara_1_3_bool;
+            case 61:
+                return Cara_2_1_bool;
+            case 62:
+                return Cara_2_2_bool;
+            case 63:
+                return Cara_2_3_bool;
+            case 64:
+                return Cara_3_1_bool;
+            case 65:
+                return Cara_3_2_bool;
+            case 66:
+                return Cara_3_3_bool;
+            case 67:
+                return Cara_4_1_bool;
+            case 68:
+                return Cara_4_2_bool;
+            case 69:
+                return Cara_4_3_bool;
+            case 70:
+                return Cara_5_1_bool;
+            case 71:
+                return Cara_5_2_bool;
+            case 72:
+                return Cara_5_3_bool;
+            case 73:
+                return Grogu_0_1_bool;
+            case 74:
                 return Grogu_0_2_bool;
+            case 75:
+                return Grogu_1_1_bool;
+            case 76:
+                return Grogu_1_2_bool;
+            case 77:
+                return Grogu_2_1_bool;
+            case 78:
+                return Grogu_2_2_bool;
+            case 79:
+                return Grogu_3_1_bool;
+            case 80:
+                return Grogu_3_2_bool;
+            case 81:
+                return Grogu_4_1_bool;
+            case 82:
+                return Grogu_4_2_bool;
+            case 83:
+                return Grogu_5_1_bool;
+            case 84:
+                return Grogu_5_2_bool;
+            case 85:
+                return Final_Cutscene_bool;
         }
 		return Initial_Cutscene_bool;
 	}

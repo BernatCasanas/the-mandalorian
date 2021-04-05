@@ -13,7 +13,7 @@ public class NPCSpawnController : DiamondComponent
     public bool BoKatan = true;
     public bool Ahsoka = true;
     public bool CaraDune = true;
-    private const int GroguUID = 1453817131;
+    private const int GroguUID = 1075538485;
     private const int BoKatanUID = 653387112;
     private const int AhsokaUID = 1082641369;
     private const int CaraDuneUID = 2028292522;
@@ -101,9 +101,7 @@ public class NPCSpawnController : DiamondComponent
         switch(prefabUID)
         {
             case GroguUID:
-                if(animation == 0) Animator.Play(unit, "Idle");
-                else if(animation == 1) Animator.Play(unit, "Sit");
-                else if(animation == 2) Animator.Play(unit, "Bar");
+                Animator.Play(unit, "Grogu_Idle");
 
                 if(HubTextController != null) {
                     HubTextController.GetComponent<HubTextController>().grogu = unit;

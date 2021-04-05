@@ -34,32 +34,31 @@ public class HubTextController : DiamondComponent
 
 	public float maximum_distance_to_interact_squared = 0.0f;
 
-	private int bo_katan_stage = 1;
-	private int greef_stage = 1;
-	private int ashoka_stage = 1;
-	private int grogu_stage = 1;
+	private static int bo_katan_stage = 1;
+	private static int greef_stage = 1;
+	private static int ashoka_stage = 1;
+	private static int grogu_stage = 1;
 
-	private int bo_katan_interaction_num = 1;
-	private int greef_interaction_num = 1;
-	private int ashoka_interaction_num = 1;
-	private int grogu_interaction_num = 1;
+	private static int bo_katan_interaction_num = 1;
+	private static int greef_interaction_num = 1;
+	private static int ashoka_interaction_num = 1;
+	private static int grogu_interaction_num = 1;
 
-	private bool showtext = true;
 	private int total_interactions_and_stages = 0;
-	private bool start = true;
 	private bool dialog_finished = false;
+	private bool start = true;
 
 	
 
 	Interaction interaction = Interaction.NONE;
+
 	public void Update()
 	{
-		if (start)
+        if (start)
         {
 			total_interactions_and_stages = total_stages * total_interactions;
 			start = false;
         }
-
 		if (mando == null || Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN || textController == null || dialog == null || textController.IsEnabled() == false) 
 			return;
         if (dialog_finished)
@@ -106,8 +105,6 @@ public class HubTextController : DiamondComponent
 			return;
 		}
 
-		showtext = true;
-        //return;
 
         switch (interaction)
         {
@@ -141,12 +138,8 @@ public class HubTextController : DiamondComponent
                 break;
         }
 
-        if (showtext)
-        {
-			dialog_finished = true;
-			dialog.Enable(true);
-			showtext = false;
-        }
+		dialog_finished = true;
+		dialog.Enable(true);
 	}
 
 	public void IncreaseStage(Interaction interaction_to_increase_stage)
