@@ -33,6 +33,9 @@ public class Enemy : DiamondComponent
 
     public Spawn dieCallBack = null;
 
+	protected NavMeshAgent agent;
+
+
 	protected enum STATES
 	{
 		IDLE,
@@ -93,7 +96,7 @@ public class Enemy : DiamondComponent
 
 		Quaternion dir = Quaternion.RotateAroundAxis(Vector3.up, angle);
 
-		float rotationSpeed = Time.deltaTime * slerpSpeed;
+		float rotationSpeed = Time.deltaTime * agent.angularSpeed;
 		//Debug.Log("CS: Rotation speed: " + rotationSpeed.ToString());
 		//Debug.Log("CS: Time: " + Time.deltaTime);
 

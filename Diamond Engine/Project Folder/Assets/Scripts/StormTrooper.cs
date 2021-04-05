@@ -12,6 +12,8 @@ public class StormTrooper : Enemy
 	private float pushSkillTimer = 0.15f;
 	private float pushSkillSpeed = 0.2f;
     public float stormTrooperDamage = 5.0f;
+
+	private bool start = true;
     
 
 	public void Start()
@@ -31,6 +33,12 @@ public class StormTrooper : Enemy
 			player = Core.instance.gameObject;
         }
 
+        if (start)
+        {
+			Start();
+			start = false;
+        }
+
 		switch (currentState)
 		{
 			case STATES.IDLE:
@@ -40,7 +48,7 @@ public class StormTrooper : Enemy
 
 				if (InRange(player.transform.globalPosition, range))
 				{
-					LookAt(player.transform.globalPosition);
+					LookAt(agent.GetDestination(gameObject));
 
 					if(timePassed > idleTime)
                     {
@@ -54,8 +62,8 @@ public class StormTrooper : Enemy
 					{
 						currentState = STATES.WANDER;
 						timePassed = 0.0f;
-						targetPosition = CalculateNewPosition(wanderRange);
-                        if (shotSequences == 1)
+						agent.CalculateRandomPath(gameObject, gameObject.transform.localPosition, wanderRange);
+						if (shotSequences == 1)
                         {
 							currentState = STATES.SHOOT;
                         }
@@ -71,9 +79,11 @@ public class StormTrooper : Enemy
 
 			case STATES.RUN:
 				//Debug.Log("Run");
+				agent.speed = 12.5f;
 
+				LookAt(agent.GetDestination(gameObject));
 				LookAt(targetPosition);
-				MoveToPosition(targetPosition, runningSpeed);
+				agent.MoveToCalculatedPos(gameObject, agent.speed);
 
 				if (Mathf.Distance(gameObject.transform.localPosition, targetPosition) < stoppingDistance)
 				{
@@ -88,6 +98,7 @@ public class StormTrooper : Enemy
 			case STATES.WANDER:
 
 				//Debug.Log("Wander");
+				agent.speed = 3.5f;
 
 				if (player == null)
 					Debug.Log("Null player");
@@ -105,13 +116,13 @@ public class StormTrooper : Enemy
 				{
 					if (targetPosition == null)
                     {
-						targetPosition = CalculateNewPosition(wanderRange);
+						agent.CalculateRandomPath(gameObject, gameObject.transform.localPosition, wanderRange);
 						Animator.Play(gameObject, "ST_Run");
 						Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
 					}
 
 					LookAt(targetPosition);
-					MoveToPosition(targetPosition, wanderSpeed);
+					agent.MoveToCalculatedPos(gameObject, agent.speed);
 
 					if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) < stoppingDistance)
 					{
