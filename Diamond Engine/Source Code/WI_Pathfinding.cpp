@@ -95,6 +95,8 @@ void W_Pathfinding::DrawBakingTab()
 		EngineExternal->modulePathfinding->ClearNavMeshes();
 	}
 
+	ImGui::Checkbox("Debug Draw", &EngineExternal->modulePathfinding->debugDraw);
+
 	/*ImGui::Text("Input Mesh");
 	ImGui::Button("Drop mesh here");
 	if (ImGui::BeginDragDropTarget())

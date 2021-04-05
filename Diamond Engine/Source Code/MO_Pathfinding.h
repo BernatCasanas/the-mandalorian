@@ -109,6 +109,7 @@ public:
 	std::vector<NavAgent> agents;
 	NavAgent bakedNav;
 	Pathfinder pathfinder;
+	bool debugDraw;
 
 private:
 	NavMeshBuilder* navMeshBuilder;

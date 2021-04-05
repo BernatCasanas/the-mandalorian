@@ -14,6 +14,8 @@
 #include "MO_ResourceManager.h"
 #include "IM_FileSystem.h"
 
+#include "DETime.h"
+
 #include "RecastNavigation/DebugUtils/DetourDebugDraw.h"
 #include "RecastNavigation/InputGeom.h"
 #include "RecastNavigation/Detour/DetourNavMesh.h"
@@ -25,7 +27,7 @@
 #include "RecastNavigation/DebugUtils/SampleInterfaces.h"
 
 M_Pathfinding::M_Pathfinding(Application* app, bool start_enabled) : Module(app, start_enabled),
-geometry(nullptr), navMeshBuilder(nullptr), walkabilityPoint(nullptr),
+geometry(nullptr), navMeshBuilder(nullptr), walkabilityPoint(nullptr), debugDraw(true),
 randomPointSet(false), randomRadius(0.0f)
 {
 	geometry = new InputGeom();
@@ -144,6 +146,9 @@ void M_Pathfinding::Load(int navMeshResourceUID)
 
 void M_Pathfinding::DebugDraw()
 {
+	if (!debugDraw || DETime::state == GameState::PLAY)
+		return;
+	
 	if (navMeshBuilder == nullptr)
 		return;
 
