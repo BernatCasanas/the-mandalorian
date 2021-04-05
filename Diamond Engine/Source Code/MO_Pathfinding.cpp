@@ -134,6 +134,8 @@ void M_Pathfinding::Load(int navMeshResourceUID)
 	navMeshBuilder->SetNavMesh(navMesh);
 	navMeshBuilder->SetSettings(settings);
 	navMeshBuilder->SetGeometry(geometry);
+	pathfinder.Init(navMeshBuilder);
+
 	//navMeshBuilder->HandleBuild();
 }
 
@@ -376,9 +378,9 @@ m_npolys(0), m_nsmoothPath(0), pathType(PathType::STRAIGHT),
 m_startRef(0), m_endRef(0), 
 m_nstraightPath(0), m_pathIterNum(0)
 {
-	m_polyPickExt[0] = 2;
-	m_polyPickExt[1] = 4;
-	m_polyPickExt[2] = 2;
+	m_polyPickExt[0] = 32.0f;
+	m_polyPickExt[1] = 32.0f;
+	m_polyPickExt[2] = 32.0f;
 
 	startPosition = float3::zero;
 	endPosition = float3::zero;
@@ -756,6 +758,11 @@ bool Pathfinder::CalculatePath(float3 origin, float3 destination, std::vector<fl
 	float startNearest[3];
 	float endNearest[3];
 
+	startPosition = origin;
+	endPosition = destination;
+	startPosSet = true;
+	endPosSet = true;
+
 	status = m_navQuery->findNearestPoly(origin.ptr(), m_polyPickExt, &m_filter, &m_startRef, startNearest);
 	if (dtStatusFailed(status) || (status & DT_STATUS_DETAIL_MASK)) {
 		LOG(LogType::L_ERROR, "Could not find a near poly to start path");
@@ -766,8 +773,29 @@ bool Pathfinder::CalculatePath(float3 origin, float3 destination, std::vector<fl
 		LOG(LogType::L_ERROR, "Could not find a near poly to end path");
 		return false;}
 
-	status = m_navQuery->findStraightPath(startNearest, endNearest, m_polys, m_npolys, m_straightPath, m_straightPathFlags,
-							  m_straightPathPolys, &m_nstraightPath, MAX_POLYS, m_straightPathOptions);
+	//status = m_navQuery->findStraightPath(startNearest, endNearest, m_polys, m_npolys, m_straightPath, m_straightPathFlags,
+							  //m_straightPathPolys, &m_nstraightPath, MAX_POLYS, m_straightPathOptions);
+
+
+	status = m_navQuery->findPath(m_startRef, m_endRef, startPosition.ptr(),
+		endPosition.ptr(), &m_filter, m_polys, &m_npolys, MAX_POLYS);
+
+	/*if (dtStatusPartial(status) || dtStatusFailed(status))
+		validPath = false;*/
+
+	m_nstraightPath = 0;
+	if (m_npolys)
+	{
+		// In case of partial path, make sure the end point is clamped to the last polygon.
+		float epos[3];
+		dtVcopy(epos, endPosition.ptr());
+		if (m_polys[m_npolys - 1] != m_endRef)
+			m_navQuery->closestPointOnPoly(m_polys[m_npolys - 1], endPosition.ptr(), epos, 0);
+
+		m_navQuery->findStraightPath(startPosition.ptr(), epos, m_polys, m_npolys,
+			m_straightPath, m_straightPathFlags,
+			m_straightPathPolys, &m_nstraightPath, MAX_POLYS, m_straightPathOptions);
+	}
 
 	if (dtStatusFailed(status) || (status & DT_STATUS_DETAIL_MASK) || m_nstraightPath == 0) {
 		LOG(LogType::L_ERROR, "Could not create straight path");

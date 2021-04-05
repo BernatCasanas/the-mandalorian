@@ -46,7 +46,7 @@ public class StormTrooper : Enemy
 		switch (currentState)
 		{
 			case STATES.IDLE:
-				Debug.Log("Idle");
+				//Debug.Log("Idle");
 
 				timePassed += Time.deltaTime;
 
@@ -82,7 +82,7 @@ public class StormTrooper : Enemy
 				break;
 
 			case STATES.RUN:
-				Debug.Log("Run");
+				//Debug.Log("Run");
 				agent.speed = 12.5f;
 
 				LookAt(agent.GetDestination(gameObject));
@@ -101,7 +101,7 @@ public class StormTrooper : Enemy
 
 			case STATES.WANDER:
 
-				Debug.Log("Wander");
+				//Debug.Log("Wander");
 				agent.speed = 3.5f;
 
 				if (player == null)
@@ -148,7 +148,7 @@ public class StormTrooper : Enemy
 				break;
 
 			case STATES.SHOOT:
-				Debug.Log("Shoot");
+				//Debug.Log("Shoot");
 				
 				timePassed += Time.deltaTime;
 
