@@ -13,7 +13,7 @@ public class GameSceneManager : DiamondComponent
     public float rotSpeedDegSec = 1.0f;
     float rotationAngle = 0.0f;
     public float verticalSpeedMultiplier = 0.5f;
-    Vector3 initialPos = null; //lowest position of the obj
+    Vector3 initialPos = new Vector3(0,0,0); //lowest position of the obj
     bool goingUp = true;
     float animTime = 0.0f;
 

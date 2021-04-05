@@ -9,6 +9,7 @@
 #include "MO_Scene.h"
 #include "MO_Input.h"
 #include "MO_ResourceManager.h"
+#include "MO_Pathfinding.h"
 
 #include"CO_Transform.h"
 #include"GameObject.h"
@@ -44,11 +45,11 @@ void W_Scene::Draw()
 {
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.f, 0.f));
 
-	if (ImGui::Begin(name.c_str(), NULL /*| ImGuiWindowFlags_NoResize*//*, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse*/)) 
+	if (ImGui::Begin(name.c_str(), NULL /*| ImGuiWindowFlags_NoResize*//*, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse*/))
 	{
 		selected = ImGui::IsWindowFocused();
 
-		if (/*ImGui::IsWindowFocused() &&*/ ImGui::IsWindowHovered() && !ImGuizmo::IsUsing()) 
+		if (/*ImGui::IsWindowFocused() &&*/ ImGui::IsWindowHovered() && !ImGuizmo::IsUsing())
 		{
 			//TODO: Uncomment this, it's the editor camera input handler
 			App->moduleCamera->ProcessSceneKeyboard();
@@ -69,15 +70,15 @@ void W_Scene::Draw()
 				//TODO: This is working only with textures now
 				std::string libPath = EngineExternal->moduleResources->LibraryFromMeta((*name).c_str());
 				EngineExternal->moduleScene->LoadModelTree(libPath.c_str());
-				
+
 				LOG(LogType::L_WARNING, "Model %s loaded to resource manager", (*name).c_str());
 			}
 
-			if (const ImGuiPayload * payload = ImGui::AcceptDragDropPayload("_TEXTURE"))
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("_TEXTURE"))
 			{
 				//Drop asset from Asset window to scene window
 				std::string* name = (std::string*)payload->Data;
-				
+
 				//TODO: Change selected mesh texture
 				//EngineExternal->moduleResources->AssetsToScene((*name).c_str());
 				LOG(LogType::L_WARNING, "Texture %s did nothing", (*name).c_str());
@@ -107,20 +108,28 @@ void W_Scene::Draw()
 		//Draw gizmo
 		DrawGuizmo();
 
-		if (ImGui::IsMouseClicked(0) && !ImGuizmo::IsUsing() && !App->moduleInput->GetKey(SDL_SCANCODE_LALT) == KEY_DOWN)
+		if (EngineExternal->moduleInput->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN || EngineExternal->moduleInput->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
 		{
-			ImVec2 position = ImGui::GetMousePos();
-			ImVec2 normal = NormalizeOnWindow(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y + ImGui::GetFrameHeight(), ImGui::GetWindowSize().x, ImGui::GetWindowSize().y - ImGui::GetFrameHeight(), position);
-			normal.x = (normal.x - 0.5f) / 0.5f;
-			normal.y = -((normal.y - 0.5f) / 0.5f);
-
 			if (ImGui::IsWindowHovered())
 			{
-				LineSegment picking = App->moduleCamera->editorCamera.camFrustrum.UnProjectLineSegment(normal.x, normal.y);
-				//ImGui::SetCursorPos(ImVec2(100, 30));
-				//ImGui::Text("%f, %f", normal.x, normal.y);
-				App->moduleRenderer3D->RayToMeshQueueIntersection(picking);
-				App->moduleEditor->SetSelectedAsset(nullptr);
+				if (!ImGuizmo::IsUsing() && !App->moduleInput->GetKey(SDL_SCANCODE_LALT) == KEY_DOWN)
+				{
+					ImVec2 position = ImGui::GetMousePos();
+					ImVec2 normal = NormalizeOnWindow(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y + ImGui::GetFrameHeight(), ImGui::GetWindowSize().x, ImGui::GetWindowSize().y - ImGui::GetFrameHeight(), position);
+					normal.x = (normal.x - 0.5f) / 0.5f;
+					normal.y = -((normal.y - 0.5f) / 0.5f);
+
+
+					LineSegment picking = App->moduleCamera->editorCamera.camFrustrum.UnProjectLineSegment(normal.x, normal.y);
+
+					App->moduleRenderer3D->RayToMeshQueueIntersection(picking);
+					App->moduleEditor->SetSelectedAsset(nullptr);
+
+					if (EngineExternal->moduleInput->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
+						EngineExternal->modulePathfinding->CheckNavMeshIntersection(picking, SDL_BUTTON_LEFT);
+					else if (EngineExternal->moduleInput->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
+						EngineExternal->modulePathfinding->CheckNavMeshIntersection(picking, SDL_BUTTON_RIGHT);
+				}
 			}
 		}
 

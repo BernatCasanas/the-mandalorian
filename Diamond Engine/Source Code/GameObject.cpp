@@ -24,6 +24,7 @@
 #include "CO_Billboard.h"
 #include "CO_Navigation.h"
 #include "CO_DirectionalLight.h"
+#include "CO_NavMeshAgent.h"
 
 #include"MO_Scene.h"
 
@@ -202,6 +203,9 @@ Component* GameObject::AddComponent(Component::TYPE _type, const char* params)
 	case Component::TYPE::DIRECTIONAL_LIGHT:
 		ret = new C_DirectionalLight(this);
 		break;
+	case Component::TYPE::NAVMESHAGENT:
+		ret = new C_NavMeshAgent(this);
+		break;
 	}
 
 	if (ret != nullptr)
@@ -356,6 +360,7 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool skip_prefab_check)
 	DEJson::WriteInt(goData, "PrefabID", prefabID);
 
 	DEJson::WriteBool(goData, "DontDestroy", dontDestroy);
+	DEJson::WriteBool(goData, "Static", isStatic);
 
 	if (parent)
 		DEJson::WriteInt(goData, "ParentUID", parent->UID);
@@ -395,6 +400,7 @@ void GameObject::LoadFromJson(JSON_Object* _obj)
 	prefabID = DEJson::ReadInt(_obj, "PrefabID");
 	LoadComponents(json_object_get_array(_obj, "Components"));
 	dontDestroy = DEJson::ReadBool(_obj, "DontDestroy");
+	isStatic = DEJson::ReadBool(_obj, "Static");
 
 	const char* json_tag = DEJson::ReadString(_obj, "tag");
 

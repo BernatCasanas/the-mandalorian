@@ -23,9 +23,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
-#include "Recast.h"
-#include "RecastAlloc.h"
-#include "RecastAssert.h"
+#include "RecastNavigation/Recast/Recast.h"
+#include "RecastNavigation/Recast/RecastAlloc.h"
+#include "RecastNavigation/Recast/RecastAssert.h"
 
 float rcSqrt(float x)
 {
@@ -189,11 +189,14 @@ void rcCalcBounds(const float* verts, int nv, float* bmin, float* bmax)
 	// Calculate bounding box.
 	rcVcopy(bmin, verts);
 	rcVcopy(bmax, verts);
-	for (int i = 1; i < nv; ++i)
+	for (int i = 0; i < nv; i++)
 	{
 		const float* v = &verts[i*3];
 		rcVmin(bmin, v);
 		rcVmax(bmax, v);
+
+		if (*bmin == (float)-1.58164644e+38)
+			continue;
 	}
 }
 
@@ -327,9 +330,9 @@ int rcGetHeightFieldSpanCount(rcContext* ctx, rcHeightfield& hf)
 bool rcBuildCompactHeightfield(rcContext* ctx, const int walkableHeight, const int walkableClimb,
 							   rcHeightfield& hf, rcCompactHeightfield& chf)
 {
-	rcAssert(ctx);
+	//rcAssert(ctx);
 	
-	rcScopedTimer timer(ctx, RC_TIMER_BUILD_COMPACTHEIGHTFIELD);
+	//rcScopedTimer timer(ctx, RC_TIMER_BUILD_COMPACTHEIGHTFIELD);
 	
 	const int w = hf.width;
 	const int h = hf.height;

@@ -22,9 +22,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "Recast.h"
-#include "RecastAlloc.h"
-#include "RecastAssert.h"
+#include "RecastNavigation/Recast/Recast.h"
+#include "RecastNavigation/Recast/RecastAlloc.h"
+#include "RecastNavigation/Recast/RecastAssert.h"
 #include <new>
 
 
@@ -1255,9 +1255,9 @@ static bool mergeAndFilterLayerRegions(rcContext* ctx, int minRegionArea,
 /// @see rcCompactHeightfield, rcBuildRegions, rcBuildRegionsMonotone
 bool rcBuildDistanceField(rcContext* ctx, rcCompactHeightfield& chf)
 {
-	rcAssert(ctx);
+	//rcAssert(ctx);
 	
-	rcScopedTimer timer(ctx, RC_TIMER_BUILD_DISTANCEFIELD);
+	//rcScopedTimer timer(ctx, RC_TIMER_BUILD_DISTANCEFIELD);
 	
 	if (chf.dist)
 	{
@@ -1282,14 +1282,14 @@ bool rcBuildDistanceField(rcContext* ctx, rcCompactHeightfield& chf)
 	unsigned short maxDist = 0;
 
 	{
-		rcScopedTimer timerDist(ctx, RC_TIMER_BUILD_DISTANCEFIELD_DIST);
+		//rcScopedTimer timerDist(ctx, RC_TIMER_BUILD_DISTANCEFIELD_DIST);
 
 		calculateDistanceField(chf, src, maxDist);
 		chf.maxDistance = maxDist;
 	}
 
 	{
-		rcScopedTimer timerBlur(ctx, RC_TIMER_BUILD_DISTANCEFIELD_BLUR);
+		//rcScopedTimer timerBlur(ctx, RC_TIMER_BUILD_DISTANCEFIELD_BLUR);
 
 		// Blur
 		if (boxBlur(chf, 1, src, dst) != src)
@@ -1355,9 +1355,9 @@ struct rcSweepSpan
 bool rcBuildRegionsMonotone(rcContext* ctx, rcCompactHeightfield& chf,
 							const int borderSize, const int minRegionArea, const int mergeRegionArea)
 {
-	rcAssert(ctx);
+	//rcAssert(ctx);
 	
-	rcScopedTimer timer(ctx, RC_TIMER_BUILD_REGIONS);
+	//rcScopedTimer timer(ctx, RC_TIMER_BUILD_REGIONS);
 	
 	const int w = chf.width;
 	const int h = chf.height;
@@ -1488,7 +1488,7 @@ bool rcBuildRegionsMonotone(rcContext* ctx, rcCompactHeightfield& chf,
 
 
 	{
-		rcScopedTimer timerFilter(ctx, RC_TIMER_BUILD_REGIONS_FILTER);
+		//rcScopedTimer timerFilter(ctx, RC_TIMER_BUILD_REGIONS_FILTER);
 
 		// Merge regions and filter out small regions.
 		rcIntArray overlaps;
@@ -1528,9 +1528,9 @@ bool rcBuildRegionsMonotone(rcContext* ctx, rcCompactHeightfield& chf,
 bool rcBuildRegions(rcContext* ctx, rcCompactHeightfield& chf,
 					const int borderSize, const int minRegionArea, const int mergeRegionArea)
 {
-	rcAssert(ctx);
+	//rcAssert(ctx);
 	
-	rcScopedTimer timer(ctx, RC_TIMER_BUILD_REGIONS);
+	//rcScopedTimer timer(ctx, RC_TIMER_BUILD_REGIONS);
 	
 	const int w = chf.width;
 	const int h = chf.height;
@@ -1542,7 +1542,7 @@ bool rcBuildRegions(rcContext* ctx, rcCompactHeightfield& chf,
 		return false;
 	}
 	
-	ctx->startTimer(RC_TIMER_BUILD_REGIONS_WATERSHED);
+	//ctx->startTimer(RC_TIMER_BUILD_REGIONS_WATERSHED);
 
 	const int LOG_NB_STACKS = 3;
 	const int NB_STACKS = 1 << LOG_NB_STACKS;
@@ -1607,7 +1607,7 @@ bool rcBuildRegions(rcContext* ctx, rcCompactHeightfield& chf,
 //		ctx->stopTimer(RC_TIMER_DIVIDE_TO_LEVELS);
 
 		{
-			rcScopedTimer timerExpand(ctx, RC_TIMER_BUILD_REGIONS_EXPAND);
+			//rcScopedTimer timerExpand(ctx, RC_TIMER_BUILD_REGIONS_EXPAND);
 
 			// Expand current regions until no empty connected cells found.
 			if (expandRegions(expandIters, level, chf, srcReg, srcDist, dstReg, dstDist, lvlStacks[sId], false) != srcReg)
@@ -1618,7 +1618,7 @@ bool rcBuildRegions(rcContext* ctx, rcCompactHeightfield& chf,
 		}
 		
 		{
-			rcScopedTimer timerFloor(ctx, RC_TIMER_BUILD_REGIONS_FLOOD);
+			//rcScopedTimer timerFloor(ctx, RC_TIMER_BUILD_REGIONS_FLOOD);
 
 			// Mark new regions with IDs.
 			for (int j = 0; j<lvlStacks[sId].size(); j += 3)
@@ -1650,10 +1650,10 @@ bool rcBuildRegions(rcContext* ctx, rcCompactHeightfield& chf,
 		rcSwap(srcDist, dstDist);
 	}
 	
-	ctx->stopTimer(RC_TIMER_BUILD_REGIONS_WATERSHED);
+	//ctx->stopTimer(RC_TIMER_BUILD_REGIONS_WATERSHED);
 	
 	{
-		rcScopedTimer timerFilter(ctx, RC_TIMER_BUILD_REGIONS_FILTER);
+		//rcScopedTimer timerFilter(ctx, RC_TIMER_BUILD_REGIONS_FILTER);
 
 		// Merge regions and filter out smalle regions.
 		rcIntArray overlaps;
@@ -1679,9 +1679,9 @@ bool rcBuildRegions(rcContext* ctx, rcCompactHeightfield& chf,
 bool rcBuildLayerRegions(rcContext* ctx, rcCompactHeightfield& chf,
 						 const int borderSize, const int minRegionArea)
 {
-	rcAssert(ctx);
+	//rcAssert(ctx);
 	
-	rcScopedTimer timer(ctx, RC_TIMER_BUILD_REGIONS);
+	//rcScopedTimer timer(ctx, RC_TIMER_BUILD_REGIONS);
 	
 	const int w = chf.width;
 	const int h = chf.height;
@@ -1812,7 +1812,7 @@ bool rcBuildLayerRegions(rcContext* ctx, rcCompactHeightfield& chf,
 	
 	
 	{
-		rcScopedTimer timerFilter(ctx, RC_TIMER_BUILD_REGIONS_FILTER);
+		//rcScopedTimer timerFilter(ctx, RC_TIMER_BUILD_REGIONS_FILTER);
 
 		// Merge monotone regions to layers and remove small regions.
 		rcIntArray overlaps;
