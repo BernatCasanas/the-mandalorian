@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        -50.948268890380859,
-        47.174953460693359,
-        -40.630592346191406
+        3.4752261638641357,
+        6.7582063674926758,
+        -18.624275207519531
     ],
     "EditorCameraZ": [
-        0.65607571601867676,
-        -0.56114226579666138,
-        0.50466251373291016
+        -0.17276769876480103,
+        -0.33597806096076965,
+        0.92588883638381958
     ],
     "EditorCameraY": [
-        0.44477847218513489,
-        0.82771950960159302,
-        0.34212973713874817
+        -0.061628639698028564,
+        0.94186991453170776,
+        0.33027741312980652
     ],
     "tags": [],
     "layers": [],
@@ -5934,7 +5934,7 @@
                     "player": 1770459532,
                     "shopUI": 1993131308,
                     "hud": 1970467455,
-                    "interactionRange": 2
+                    "interactionRange": 4
                 }
             ]
         },
@@ -5942,7 +5942,7 @@
             "name": "PanelBG",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": false,
+            "Active": true,
             "Position": [
                 0,
                 0,
@@ -6117,6 +6117,7 @@
                 {
                     "Type": 7,
                     "Active": true,
+                    "Script_Name": "SHOP",
                     "ButtonState": 2,
                     "Is Selected": false
                 },
@@ -6130,10 +6131,34 @@
                 {
                     "Type": 17,
                     "Active": true,
-                    "Map": [],
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1285068717,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 1324189369,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
                     "Button Being Used": -1,
                     "Type Of UI": 7,
                     "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SHOP",
+                    "player": 1770459532,
+                    "shopUI": 1993131308,
+                    "hud": 1970467455,
+                    "interactionRange": 2
                 }
             ]
         },
@@ -6191,8 +6216,9 @@
                 {
                     "Type": 7,
                     "Active": true,
-                    "ButtonState": 2,
-                    "Is Selected": false
+                    "Script_Name": "SHOP",
+                    "ButtonState": 1,
+                    "Is Selected": true
                 },
                 {
                     "Type": 11,
@@ -6204,10 +6230,41 @@
                 {
                     "Type": 17,
                     "Active": true,
-                    "Map": [],
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1324189369,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 1285068717,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 703005603,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
                     "Button Being Used": -1,
                     "Type Of UI": 7,
-                    "Is Selected": false
+                    "Is Selected": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SHOP",
+                    "player": 1770459532,
+                    "shopUI": 1993131308,
+                    "hud": 1970467455,
+                    "interactionRange": 2
                 }
             ]
         },
@@ -6265,6 +6322,7 @@
                 {
                     "Type": 7,
                     "Active": true,
+                    "Script_Name": "SHOP",
                     "ButtonState": 2,
                     "Is Selected": false
                 },
@@ -6278,10 +6336,41 @@
                 {
                     "Type": 17,
                     "Active": true,
-                    "Map": [],
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 703005603,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 1324189369,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 985827193,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
                     "Button Being Used": -1,
                     "Type Of UI": 7,
                     "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SHOP",
+                    "player": 1770459532,
+                    "shopUI": 1993131308,
+                    "hud": 1970467455,
+                    "interactionRange": 2
                 }
             ]
         },
@@ -6339,6 +6428,7 @@
                 {
                     "Type": 7,
                     "Active": true,
+                    "Script_Name": "SHOP",
                     "ButtonState": 2,
                     "Is Selected": false
                 },
@@ -6352,10 +6442,41 @@
                 {
                     "Type": 17,
                     "Active": true,
-                    "Map": [],
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 985827193,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 703005603,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 1155932994,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
                     "Button Being Used": -1,
                     "Type Of UI": 7,
                     "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SHOP",
+                    "player": 1770459532,
+                    "shopUI": 1993131308,
+                    "hud": 1970467455,
+                    "interactionRange": 2
                 }
             ]
         },
@@ -6413,6 +6534,7 @@
                 {
                     "Type": 7,
                     "Active": true,
+                    "Script_Name": "SHOP",
                     "ButtonState": 2,
                     "Is Selected": false
                 },
@@ -6426,10 +6548,34 @@
                 {
                     "Type": 17,
                     "Active": true,
-                    "Map": [],
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1155932994,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 985827193,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
                     "Button Being Used": -1,
                     "Type Of UI": 7,
                     "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SHOP",
+                    "player": 1770459532,
+                    "shopUI": 1993131308,
+                    "hud": 1970467455,
+                    "interactionRange": 2
                 }
             ]
         },
