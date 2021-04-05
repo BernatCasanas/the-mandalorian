@@ -19,9 +19,9 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <stdio.h>
-#include "RecastNavigation/Recast/Include/Recast.h"
-#include "RecastNavigation/Recast/Include/RecastAlloc.h"
-#include "RecastNavigation/Recast/Include/RecastAssert.h"
+#include "RecastNavigation/Recast/Recast.h"
+#include "RecastNavigation/Recast/RecastAlloc.h"
+#include "RecastNavigation/Recast/RecastAssert.h"
 #include "../Globals.h"
 
 inline bool overlapBounds(const float* amin, const float* amax, const float* bmin, const float* bmax)

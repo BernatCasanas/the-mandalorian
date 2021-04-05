@@ -17,7 +17,7 @@
 //
 
 #include <stdlib.h>
-#include "RecastNavigation/Detour/Include/DetourAlloc.h"
+#include "RecastNavigation/Detour/DetourAlloc.h"
 
 static void *dtAllocDefault(size_t size, dtAllocHint)
 {

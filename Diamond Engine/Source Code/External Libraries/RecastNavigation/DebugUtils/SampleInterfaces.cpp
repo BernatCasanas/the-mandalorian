@@ -2,10 +2,10 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdarg.h>
-#include "RecastNavigation/DebugUtils/Include/SampleInterfaces.h"
-#include "RecastNavigation/Recast/Include/Recast.h"
-#include "RecastNavigation/DebugUtils/Include/RecastDebugDraw.h"
-#include "RecastNavigation/DebugUtils/Include/DetourDebugDraw.h"
+#include "RecastNavigation/DebugUtils/SampleInterfaces.h"
+#include "RecastNavigation/Recast/Recast.h"
+#include "RecastNavigation/DebugUtils/RecastDebugDraw.h"
+#include "RecastNavigation/DebugUtils/DetourDebugDraw.h"
 #include "SDL/include/SDL.h"
 #include "SDL/include/SDL_opengl.h"
 

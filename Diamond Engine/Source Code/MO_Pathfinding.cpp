@@ -14,15 +14,15 @@
 #include "MO_ResourceManager.h"
 #include "IM_FileSystem.h"
 
-#include "RecastNavigation/DebugUtils/Include/DetourDebugDraw.h"
+#include "RecastNavigation/DebugUtils/DetourDebugDraw.h"
 #include "RecastNavigation/InputGeom.h"
-#include "RecastNavigation/Detour/Include/DetourNavMesh.h"
-#include "RecastNavigation/Detour/Include/DetourNavMeshQuery.h"
-#include "RecastNavigation/Detour/Include/DetourNavMeshBuilder.h"
-#include "RecastNavigation/Detour/Include/DetourCommon.h"
+#include "RecastNavigation/Detour/DetourNavMesh.h"
+#include "RecastNavigation/Detour/DetourNavMeshQuery.h"
+#include "RecastNavigation/Detour/DetourNavMeshBuilder.h"
+#include "RecastNavigation/Detour/DetourCommon.h"
 #include "WI_Pathfinding.h"
 #include "mmgr/mmgr.h"
-#include "RecastNavigation/DebugUtils/Include/SampleInterfaces.h"
+#include "RecastNavigation/DebugUtils/SampleInterfaces.h"
 
 M_Pathfinding::M_Pathfinding(Application* app, bool start_enabled) : Module(app, start_enabled),
 geometry(nullptr), navMeshBuilder(nullptr), walkabilityPoint(nullptr),

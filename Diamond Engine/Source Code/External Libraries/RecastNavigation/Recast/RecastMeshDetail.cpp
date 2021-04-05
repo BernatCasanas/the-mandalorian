@@ -22,9 +22,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "RecastNavigation/Recast/Include/Recast.h"
-#include "RecastNavigation/Recast/Include/RecastAlloc.h"
-#include "RecastNavigation/Recast/Include/RecastAssert.h"
+#include "RecastNavigation/Recast/Recast.h"
+#include "RecastNavigation/Recast/RecastAlloc.h"
+#include "RecastNavigation/Recast/RecastAssert.h"
 
 
 static const unsigned RC_UNSET_HEIGHT = 0xffff;

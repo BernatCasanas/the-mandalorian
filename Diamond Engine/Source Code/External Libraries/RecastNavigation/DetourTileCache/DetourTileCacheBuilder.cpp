@@ -16,11 +16,11 @@
 // 3. This notice may not be removed or altered from any source distribution.
 //
 
-#include "RecastNavigation/Detour/Include/DetourCommon.h"
-#include "RecastNavigation/Detour/Include/DetourMath.h"
-#include "RecastNavigation/Detour/Include/DetourStatus.h"
-#include "RecastNavigation/Detour/Include/DetourAssert.h"
-#include "RecastNavigation/DetourTileCache/Include/DetourTileCacheBuilder.h"
+#include "RecastNavigation/Detour/DetourCommon.h"
+#include "RecastNavigation/Detour/DetourMath.h"
+#include "RecastNavigation/Detour/DetourStatus.h"
+#include "RecastNavigation/Detour/DetourAssert.h"
+#include "RecastNavigation/DetourTileCache/DetourTileCacheBuilder.h"
 #include <string.h>
 
 

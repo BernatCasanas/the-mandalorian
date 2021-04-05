@@ -1,6 +1,6 @@
-#include "Globals.h"
+#include "../Globals.h"
 #include "NavMeshBuilder.h"
-#include "MO_Pathfinding.h"
+#include "../MO_Pathfinding.h"
 #include "RecastNavigation/InputGeom.h"
 #include "RecastNavigation/Detour/DetourNavMesh.h"
 #include "RecastNavigation/Detour/DetourNavMeshQuery.h"
@@ -12,10 +12,10 @@
 
 #include "ImGui/imgui.h"
 
-#include "Application.h"
-#include "MO_Renderer3D.h"
+#include "../Application.h"
+#include "../MO_Renderer3D.h"
 
-#include "RE_Mesh.h"
+#include "../RE_Mesh.h"
 #include "mmgr/mmgr.h"
 
 

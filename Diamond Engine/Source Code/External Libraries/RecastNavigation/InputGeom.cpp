@@ -22,12 +22,12 @@
 #include <ctype.h>
 #include <string.h>
 #include <algorithm>
-#include "RecastNavigation/Recast/Include/Recast.h"
+#include "RecastNavigation/Recast/Recast.h"
 #include "InputGeom.h"
 #include "ChunkyTriMesh.h"
-#include "RecastNavigation/DebugUtils/Include/DebugDraw.h"
-#include "RecastNavigation/DebugUtils/Include/RecastDebugDraw.h"
-#include "RecastNavigation/Detour/Include/DetourNavMesh.h"
+#include "RecastNavigation/DebugUtils/DebugDraw.h"
+#include "RecastNavigation/DebugUtils/RecastDebugDraw.h"
+#include "RecastNavigation/Detour/DetourNavMesh.h"
 #include "../RE_Mesh.h"
 #include "../Globals.h"
 #include "../MO_ResourceManager.h"
