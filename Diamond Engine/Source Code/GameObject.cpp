@@ -360,6 +360,7 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool skip_prefab_check)
 	DEJson::WriteInt(goData, "PrefabID", prefabID);
 
 	DEJson::WriteBool(goData, "DontDestroy", dontDestroy);
+	DEJson::WriteBool(goData, "Static", isStatic);
 
 	if (parent)
 		DEJson::WriteInt(goData, "ParentUID", parent->UID);
@@ -399,6 +400,7 @@ void GameObject::LoadFromJson(JSON_Object* _obj)
 	prefabID = DEJson::ReadInt(_obj, "PrefabID");
 	LoadComponents(json_object_get_array(_obj, "Components"));
 	dontDestroy = DEJson::ReadBool(_obj, "DontDestroy");
+	isStatic = DEJson::ReadBool(_obj, "Static");
 
 	const char* json_tag = DEJson::ReadString(_obj, "tag");
 

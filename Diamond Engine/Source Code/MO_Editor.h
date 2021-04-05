@@ -26,6 +26,7 @@ enum class EditorWindow {
 	SCENE,
 	GAME,
 	TEXTEDITOR,
+	PATHFINDING,
 
 	//Help tab
 	ABOUT,
