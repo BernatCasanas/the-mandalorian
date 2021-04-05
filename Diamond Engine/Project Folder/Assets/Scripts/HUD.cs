@@ -173,7 +173,8 @@ public class HUD : DiamondComponent
         }
         if (last_hp > PlayerHealth.currHealth)
         {
-            hp_bar.GetComponent<Material>().SetFloatUniform("last_hp", last_hp / PlayerHealth.currMaxHealth);
+            if (hp_bar != null)
+                hp_bar.GetComponent<Material>().SetFloatUniform("last_hp", last_hp / PlayerHealth.currMaxHealth);
             last_hp -= 0.05f;
         }
         if (pulsation_forward)
@@ -186,11 +187,23 @@ public class HUD : DiamondComponent
             pulsation_rate -= (Time.deltaTime / 3);
             if (pulsation_rate < 0.6f) pulsation_forward = true;
         }
-        force_bar.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
-        force_wave.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
-        force_bar.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate);
-        force_wave.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate);
-        hp_bar.GetComponent<Material>().SetFloatUniform("t", pulsation_rate);
+
+        if (force_wave != null)
+        {
+            force_wave.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
+            force_wave.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate);
+        }
+
+        if (force_bar != null)
+        {
+            force_bar.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
+            force_bar.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate);
+        }
+        if (hp_bar != null)
+        {
+            hp_bar.GetComponent<Material>().SetFloatUniform("t", pulsation_rate);
+
+        }
     }
 
     public void AddToCombo(float comboUnitsToAdd, float weaponDecreaseTimeMultiplier)
@@ -307,19 +320,19 @@ public class HUD : DiamondComponent
     {
         if (hp_number_gameobject != null)
             hp_number_gameobject.GetComponent<Text>().text = new_hp.ToString();
-        if (hp_bar == null)
-            return;
         float hp_float = new_hp;
         hp_float /= max_hp;
         if (!(last_hp > new_hp))
             last_hp = new_hp;
+        if (hp_bar == null)
+            return;
         hp_bar.GetComponent<Material>().SetFloatUniform("length_used", hp_float);
         hp_bar.GetComponent<Material>().SetFloatUniform("last_hp", last_hp / max_hp);
     }
 
     public void UpdateForce(int new_force, int max_force)
     {
-        if (force_bar == null)
+        if (force_bar == null || force_wave == null)
             return;
         float force_float = new_force;
         force_float /= max_force;
