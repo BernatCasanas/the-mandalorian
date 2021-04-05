@@ -44,7 +44,6 @@ public class HubTextController : DiamondComponent
 	private static int ashoka_interaction_num = 1;
 	private static int grogu_interaction_num = 1;
 
-	private bool showtext = true;
 	private int total_interactions_and_stages = 0;
 	private bool dialog_finished = false;
 
@@ -105,8 +104,6 @@ public class HubTextController : DiamondComponent
 			return;
 		}
 
-		showtext = true;
-        //return;
 
         switch (interaction)
         {
@@ -140,12 +137,8 @@ public class HubTextController : DiamondComponent
                 break;
         }
 
-        if (showtext)
-        {
-			dialog_finished = true;
-			dialog.Enable(true);
-			showtext = false;
-        }
+		dialog_finished = true;
+		dialog.Enable(true);
 	}
 
 	public void IncreaseStage(Interaction interaction_to_increase_stage)
