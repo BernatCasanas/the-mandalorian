@@ -678,9 +678,10 @@ void NavMeshBuilder::OnEditor()
 			//ImGui::Text("Max Tiles: %i", m_navMesh->);
 		}
 
-		ImGui::Separator();
+
 		if (m_pmesh != nullptr)
 		{
+			ImGui::Separator();
 			ImGui::Text("PolyMesh");
 
 			ImGui::Text("Verts: %i", m_pmesh->nverts);

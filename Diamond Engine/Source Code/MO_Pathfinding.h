@@ -16,7 +16,7 @@ class NavMeshBuilder;
 
 struct NavAgent 
 {
-	std::string name = "";
+	NavAgent();
 	float radius = 0.0f;
 	float height = 0.0f;
 	float stopHeight = 0.0f;

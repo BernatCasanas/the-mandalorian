@@ -31,7 +31,6 @@ randomPointSet(false), randomRadius(0.0f)
 	geometry = new InputGeom();
 	geometry->SetMesh(new ResourceMesh(EngineExternal->GetRandomInt()));
 	agents.push_back(NavAgent());
-	agents[0].name = "New Agent";
 
 	randomPoint = float3::inf;
 }
@@ -892,3 +891,5 @@ void Pathfinder::RenderPath()
 	}
 }
 
+NavAgent::NavAgent() :radius(2.0f), height(5.0f), stopHeight(0.2f), maxSlope(45.0f)
+{}

@@ -18,13 +18,10 @@ public:
 
 	void Draw() override;
 
-	void DrawAgentsTab();
 	void DrawBakingTab();
 
 private:
 	NavAgent* selectedNav;
-	bool showAgents;
-	bool showBuild;
 };
 
 #endif //__W_PATHFINDING_H__
