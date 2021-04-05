@@ -728,4 +728,9 @@ void M_Editor::LogToConsole(const char* msg, LogType _type)
 			consoleWindow->AddLog(msg, _type);
 }
 
+bool M_Editor::IsWindowSelected(EditorWindow windowType)
+{
+	return windows[static_cast<unsigned int>(windowType)]->selected;
+}
+
 #endif

@@ -46,6 +46,8 @@ void W_Scene::Draw()
 
 	if (ImGui::Begin(name.c_str(), NULL /*| ImGuiWindowFlags_NoResize*//*, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse*/)) 
 	{
+		selected = ImGui::IsWindowFocused();
+
 		if (/*ImGui::IsWindowFocused() &&*/ ImGui::IsWindowHovered() && !ImGuizmo::IsUsing()) 
 		{
 			//TODO: Uncomment this, it's the editor camera input handler

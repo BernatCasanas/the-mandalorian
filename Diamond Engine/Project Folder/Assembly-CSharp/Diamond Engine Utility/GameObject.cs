@@ -75,6 +75,9 @@ namespace DiamondEngine
         public extern bool CompareTag(string tag);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern int GetUid();
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern void AddForce(Vector3 force);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
@@ -82,5 +85,8 @@ namespace DiamondEngine
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern void SetParent(GameObject newParent);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern void AssignLibraryTextureToMaterial(int _id, string textureName);
     }
 }

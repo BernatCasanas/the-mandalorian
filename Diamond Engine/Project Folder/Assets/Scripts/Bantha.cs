@@ -38,6 +38,7 @@ public class Bantha : Enemy
 					if (timePassed > idleTime)
 					{
 						currentState = STATES.SHOOT;
+						Animator.Play(gameObject, "BT_Dash", 1.0f);
 						//timePassed = timeBewteenShots;
 					}
 				}
@@ -69,6 +70,7 @@ public class Bantha : Enemy
 				{
 					currentState = STATES.IDLE;
 					timePassed = 0.0f;
+					Animator.Play(gameObject, "BT_Idle", 1.0f);
 				}
 				break;
 
@@ -79,6 +81,7 @@ public class Bantha : Enemy
 				if (InRange(player.transform.globalPosition, range))
 				{
 					currentState = STATES.RUN;
+					Animator.Play(gameObject, "BT_Run", 1.0f);
 					//timePassed = timeBewteenShots;
 				}
 				else  //if not, keep wandering
@@ -93,6 +96,7 @@ public class Bantha : Enemy
 					{
 						//targetPosition = CalculateNewPosition(wanderRange);
 						currentState = STATES.IDLE;
+						Animator.Play(gameObject, "BT_Idle", 1.0f);
 						timePassed = 0.0f;
 					}
 				}
@@ -128,6 +132,7 @@ public class Bantha : Enemy
 
 						chargeCounter = 0.0f;
 						currentState = STATES.RUN;
+						Animator.Play(gameObject, "BT_Run", 1.0f);
 						timePassed = 0.0f;
 					}
 				}
@@ -169,7 +174,7 @@ public class Bantha : Enemy
             {
                 currentState = STATES.DIE;
                 timePassed = 0.0f;
-                Animator.Play(gameObject, "ST_Die", 1.0f);
+                Animator.Play(gameObject, "BT_Die", 1.0f);
                 //Play Sound("Die")
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
                 Audio.PlayAudio(gameObject, "Play_Mando_Voice");
@@ -178,7 +183,7 @@ public class Bantha : Enemy
 
                 if (Core.instance.hud != null)
                 {
-                    Core.instance.hud.GetComponent<HUD>().IncrementCombo(1, 1.0f);
+                    Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 1.0f);
                 }
             }
         }
@@ -190,7 +195,7 @@ public class Bantha : Enemy
             {
                 currentState = STATES.DIE;
                 timePassed = 0.0f;
-                Animator.Play(gameObject, "ST_Die", 1.0f);
+                Animator.Play(gameObject, "BT_Die", 1.0f);
                 //Play Sound("Die")
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
                 Audio.PlayAudio(gameObject, "Play_Mando_Voice");
@@ -200,7 +205,7 @@ public class Bantha : Enemy
 
                 if (Core.instance.hud != null)
                 {
-                    Core.instance.hud.GetComponent<HUD>().IncrementCombo(1, 2.0f);
+                    Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 0.5f);
                 }
             }
         }
@@ -212,7 +217,7 @@ public class Bantha : Enemy
             {
                 currentState = STATES.DIE;
                 timePassed = 0.0f;
-                Animator.Play(gameObject, "ST_Die", 1.0f);
+                Animator.Play(gameObject, "BT_Die", 1.0f);
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
             }
         }

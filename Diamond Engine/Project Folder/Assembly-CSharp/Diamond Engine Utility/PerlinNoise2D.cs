@@ -4,7 +4,8 @@ namespace DiamondEngine
 {
     class PerlinNoise2D
     {
-        Random rand = new Random();
+        Random rand = null;
+        int seed= int.MinValue;
         int octaves = 1;
         float scale = 1.0f;
         float lacunarity = 0.5f;
@@ -14,17 +15,18 @@ namespace DiamondEngine
             this.octaves = (int)Mathf.Clamp(octaves, 1.0f, 12.0f);
             this.scale = scale;
             this.lacunarity = lacunarity;
-            rand = new Random();
+            seed = int.MinValue;
         }
         public void GenerateNoise(int seed, int octaves, float scale, float lacunarity = 2.0f)
         {
             this.octaves = (int)Mathf.Clamp(octaves, 1.0f, 12.0f);
             this.scale = scale;
             this.lacunarity = lacunarity;
-            rand = new Random(seed);
+            this.seed = seed;
         }
 
-        public float GetNoiseAt(float x, float y)
+        //Returns a value between 0 and 1
+        public float GetNoiseAt(Vector2 coords)
         {
             float value = 0.0f;
             float currentScale = scale;
@@ -32,10 +34,9 @@ namespace DiamondEngine
 
             for (int i = 0; i < octaves; ++i)
             {
-                value += GetNoiseSingle(x, y) * currentScale;
+                value += GetNoiseSingle(coords) * currentScale;
                 normalizeFactor += currentScale;
-                x *= 2.0f;
-                y *= 2.0f;
+                coords *= 2.0f;
                 currentScale /= lacunarity;
             }
 
@@ -43,20 +44,20 @@ namespace DiamondEngine
             return value / normalizeFactor;
         }
 
-        float GetNoiseSingle(float x, float y)
+        float GetNoiseSingle(Vector2 coord)
         {
             //gets the int part of the coords
-            Vector3 i = new Vector3((float)Math.Floor(x), (float)Math.Floor(y), 0.0f);
+            Vector2 i = new Vector2((float)Math.Floor(coord.x), (float)Math.Floor(coord.y));
 
             //gets the decimal part of the coords
-            Vector3 f = new Vector3(x - i.x, y - i.y);
+            Vector2 f = Fract(coord);
 
             //multiply by 6.283 (2*pi)
             float twoPi = (float)(Math.PI * 2);
-            float tl = (float)(i.x + rand.NextDouble() * (i.y - i.x)) * twoPi;//random number between i1 and i2
-            float tr = (float)(i.x + 1 + rand.NextDouble() * (i.y - i.x + 1)) * twoPi;//random number between i1 and i2 + vec2(1,0)
-            float bl = (float)(i.x + rand.NextDouble() * (i.y + 1 - i.x)) * twoPi;//random number between i1 and i2 + vec2(0,1)
-            float br = (float)(i.x + 1 + rand.NextDouble() * (i.y + 1 - i.x + 1)) * twoPi;//random number between i1 and i2 + vec2(1,1)
+            float tl = Rand(i) * twoPi;//random number between i1 and i2
+            float tr = Rand(i + new Vector2(1.0f, 0.0f)) * twoPi;//random number between i1 and i2 + vec2(1,0)
+            float bl = Rand(i + new Vector2(0.0f, 1.0f)) * twoPi;//random number between i1 and i2 + vec2(0,1)
+            float br = Rand(i + new Vector2(1.0f, 1.0f)) * twoPi;//random number between i1 and i2 + vec2(1,1)
 
 
             float tlSin = (float)Math.Sin(tl);
@@ -68,18 +69,18 @@ namespace DiamondEngine
             float brSin = (float)Math.Sin(br);
             float brCos = (float)Math.Cos(br);
 
-            Vector3 tlVec = new Vector3(-tlSin, tlCos, 0.0f);
-            Vector3 trVec = new Vector3(-trSin, trCos, 0.0f);
-            Vector3 blVec = new Vector3(-blSin, blCos, 0.0f);
-            Vector3 brVec = new Vector3(-brSin, brCos, 0.0f);
+            Vector2 tlVec = new Vector2(-tlSin, tlCos);
+            Vector2 trVec = new Vector2(-trSin, trCos);
+            Vector2 blVec = new Vector2(-blSin, blCos);
+            Vector2 brVec = new Vector2(-brSin, brCos);
 
-            float tlDot = Vector3.Dot(tlVec, f);
-            float trDot = Vector3.Dot(tlVec, f - new Vector3(1.0f, 0.0f, 0.0f));
-            float blDot = Vector3.Dot(tlVec, f - new Vector3(0.0f, 1.0f, 0.0f));
-            float brDot = Vector3.Dot(tlVec, f - new Vector3(1.0f, 1.0f, 0.0f));
+            float tlDot = Vector2.Dot(tlVec, f);
+            float trDot = Vector2.Dot(trVec, f - new Vector2(1.0f, 0.0f));
+            float blDot = Vector2.Dot(blVec, f - new Vector2(0.0f, 1.0f));
+            float brDot = Vector2.Dot(brVec, f - new Vector2(1.0f, 1.0f));
 
 
-            Vector3 cubic = f * f * (3.0f - 2.0f * f);
+            Vector2 cubic = f * f * (3.0f - 2.0f * f);
 
             float topMix = Mathf.Lerp(tlDot, trDot, cubic.x);
             float botMix = Mathf.Lerp(blDot, brDot, cubic.x);
@@ -89,6 +90,45 @@ namespace DiamondEngine
 
             return Mathf.Clamp(wholeMix + 0.5f, 0.0f, 1.0f);
 
+        }
+
+        float Rand(Vector2 coord)
+        {
+            // prevents randomness decreasing from coordinates too large
+            coord = coord % 10000.0f;
+            RegenerateSeed();
+            // returns "random" float between 0 and 1
+            return Fract((float)Math.Sin(Vector2.Dot(coord, new Vector2(12.9898f, 78.233f))) * 43758.5453f) * (float)rand.NextDouble();
+        }
+
+        Vector2 Rand2(Vector2 coord)
+        {
+            // prevents randomness decreasing from coordinates too large
+            coord = coord % 10000.0f;
+            RegenerateSeed();
+            // returns "random" vec2 with x and y between 0 and 1
+            Vector2 res = new Vector2(Vector2.Dot(coord, new Vector2(127.1f, 311.7f)), Vector2.Dot(coord, new Vector2(269.5f, 183.3f)));
+            return Fract(new Vector2((float)Math.Sin(res.x), (float)Math.Sin(res.y)) * 43758.5453f) * (float)rand.NextDouble();
+        }
+
+        float Fract(float f)
+        {
+            int floorF = (int)Math.Floor(f);
+            return f - floorF;
+        }
+        Vector2 Fract(Vector2 f)
+        {
+            int floorFX = (int)Math.Floor(f.x);
+            int floorFY = (int)Math.Floor(f.y);
+            return new Vector2(f.x - floorFX, f.y - floorFY);
+        }
+
+        void RegenerateSeed()
+        {
+            if (seed != int.MinValue)
+                rand = new Random(seed);
+            else
+                rand = new Random();
         }
     }
 }

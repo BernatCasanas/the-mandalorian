@@ -92,11 +92,9 @@ ResourceAnimation* AnimationLoader::ImportAnimation(aiAnimation* importedAnimati
 
 	std::string assets_path = "Assets/Animations/" + std::string(importedAnimation->mName.C_Str()) + ".anim";
 	FileSystem::Save(assets_path.c_str(), buffer, size, false);
+	FileSystem::Save(library_path.c_str(), buffer, size, false);
 	EngineExternal->moduleResources->GenerateMeta(assets_path.c_str(), EngineExternal->moduleResources->GenLibraryPath(UID, Resource::Type::ANIMATION).c_str(),
 												  UID, Resource::Type::PREFAB);
-
-	FileSystem::Save(library_path.c_str(), buffer, size, false);
-	//EngineExternal->moduleResources->UnloadResource(animation->GetUID());
 
 	RELEASE_ARRAY(buffer);
 

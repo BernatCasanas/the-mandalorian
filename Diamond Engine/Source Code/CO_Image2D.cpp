@@ -106,7 +106,7 @@ ResourceTexture* C_Image2D::GetTexture() const
 }
 
 
-void C_Image2D::SetTexture(ResourceTexture* tex)
+void C_Image2D::SetTexture(ResourceTexture* tex)	// Consider we repeat a RequestResource, but only delete the resource once
 {
 	EngineExternal->moduleResources->RequestResource(tex->GetUID(), tex->GetLibraryPath());
 
@@ -119,6 +119,21 @@ void C_Image2D::SetTexture(ResourceTexture* tex)
 void C_Image2D::SetTexture(int UID, const char* library_path)
 {
 	ResourceTexture* tex=static_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(UID, library_path));
+
+	if (texture != nullptr)
+		EngineExternal->moduleResources->UnloadResource(texture->GetUID());
+
+	texture = tex;
+}
+
+
+void C_Image2D::SetTexture(int UID, Resource::Type _type)
+{
+	ResourceTexture* tex = static_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(UID, _type));
+
+	if (tex == nullptr) {
+		return;
+	}
 
 	if (texture != nullptr)
 		EngineExternal->moduleResources->UnloadResource(texture->GetUID());

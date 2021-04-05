@@ -150,6 +150,9 @@ namespace DiamondEngine
             return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w;
         }
 
+        public bool IsEqual(Quaternion a) { return (this.x == a.x && this.y == a.y && this.z == a.z && this.w == a.w); }
+
+
         public static Quaternion Normalize(Quaternion q)
         {
             float mag = (float)Math.Sqrt(Dot(q, q));

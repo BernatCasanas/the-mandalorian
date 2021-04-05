@@ -74,6 +74,8 @@ public:
 	IconManager editorIcons;
 	ShortcutManager shortcutManager;
 
+	bool IsWindowSelected(EditorWindow windowType);
+
 private:
 	std::vector<Window*> windows;
 	std::vector<std::string> styles;

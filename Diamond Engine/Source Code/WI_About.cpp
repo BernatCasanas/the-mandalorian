@@ -32,6 +32,7 @@ void W_About::Draw()
 {
 	if (ImGui::Begin(name.c_str(), NULL/*, ImGuiWindowFlags_::ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize*/)) 
 	{
+		selected = ImGui::IsWindowFocused();
 		//ImGui::Separator();
 
 		ImGui::TextWrapped("Diamond Engine v%s", EngineVersion::GetVersion().c_str());

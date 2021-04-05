@@ -43,12 +43,13 @@ position(_position), rotation(_rotation), localScale(_localScale)*/
 		//We first initialize material to create shape later
 		colliderMaterial = EngineExternal->modulePhysics->CreateMaterial();
 		localTransform = float4x4::identity;
+
 	
 		
 		//We attach shape to a static or dynamic rigidbody to be collidable.
 		colliderShape = nullptr;
 		if (rigidbody != nullptr) {
-			colliderShape = EngineExternal->modulePhysics->CreateMeshCollider(rigidbody->rigid_dynamic, _gm);
+			colliderShape = EngineExternal->modulePhysics->CreateMeshCollider(rigidbody, _gm);
 			rigidbody->rigid_dynamic->attachShape(*colliderShape);
 			rigidbody->collider_info.push_back(this);
 		}
@@ -96,8 +97,9 @@ void C_MeshCollider::Update()
 		trans = EngineExternal->modulePhysics->PhysXTransformToF4F(rigidbody->rigid_dynamic->getGlobalPose());
 	else
 		trans = transform->globalTransform;
-
 	trans = trans * localTransform;
+
+	
 
 
 	//float3 pos, scale;
@@ -246,8 +248,8 @@ void C_MeshCollider::LoadData(DEConfig& nObj)
 
 
 	//colliderShape->setGeometry(physx::PxConvexMeshGeometry(aConvexMesh));
-	colliderShape->setGeometry(physx::PxBoxGeometry(newSize.x, newSize.y, newSize.z));
-	colliderShape->setLocalPose(physTrans);
+	//colliderShape->setGeometry(physx::PxBoxGeometry(newSize.x, newSize.y, newSize.z));
+	//colliderShape->setLocalPose(physTrans);
 
 	localTransform = float4x4::FromTRS(pos, rot, scale);
 

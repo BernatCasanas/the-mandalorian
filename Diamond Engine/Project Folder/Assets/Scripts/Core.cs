@@ -17,6 +17,7 @@ public class Core : DiamondComponent
         DASH,
         SHOOTING,
         SHOOT,
+        GADGET_SHOOT,
         SECONDARY_SHOOT,
         DEAD
     }
@@ -31,7 +32,10 @@ public class Core : DiamondComponent
         IN_SHOOTING_END,
         IN_SHOOT,
         IN_SHOOT_END,
+        IN_GADGET_SHOOT,
+        IN_GADGET_SHOOT_END,
         IN_SEC_SHOOT,
+        IN_SEC_SHOOT_END,
         IN_DEAD
     }
 
@@ -41,8 +45,11 @@ public class Core : DiamondComponent
     private bool scriptStart = true;
 
     //State
-    private STATE currentState = STATE.NONE;   //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS, I IF ANYONE DOES SOMETHIG BAD TO THIS STATE MACHINE I WILL KILL EVERYONE INVOLVED IN THE PROJECT AND THEN I WILL KILL MYSELF - Jose :)
+    private STATE currentState = STATE.NONE;   //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS
+                                               //Setting states directlly will break the behaviour  -Jose
     private List<INPUT> inputsList = new List<INPUT>();
+
+    private bool rightTriggerPressed = false;
 
     // Movement
     public float rotationSpeed = 2.0f;
@@ -62,16 +69,19 @@ public class Core : DiamondComponent
 
     // Shooting
     public float fireRate = 0.2f;
+    public float gadgetFireRate = 0.2f;
     private float shootingTimer = 0.0f;
-    public float secondaryRate = 0.2f;
-    private float currSecondaryRate = 0.0f;
+    private float gadgetShootTimer = 0.0f;
+
+    private bool hasShot = false;
 
     public float fireRateAfterDashRecoverRatio = 2.0f;
     private float secondaryRateRecoverCap = 0.0f;
 
     public float fireRateMultCap = 0.0f;
     private int deathZone = 15000;
-    public float normalShootSpeed = 0.0f;
+    private float normalShootSpeed = 0.0f;
+    private float gadgetShootSkill = 0.0f;
 
     //Grenades
     public float grenadesFireRate = 0.0f;
@@ -79,22 +89,17 @@ public class Core : DiamondComponent
 
     //Animations
     private float shootAnimationTotalTime = 0.0f;
-    public string currentStateString = "";
 
     //Controller Variables
     int verticalInput = 0;
     int horizontalInput = 0;
     Vector3 gamepadInput;
 
-    public List<smallGrenade> smallGrenades = new List<smallGrenade>();
-    public List<bigGrenade> BigGrenades = new List<bigGrenade>();
-
     //For Pause
     public GameObject background = null;
     public GameObject pause = null;
 
     private Vector3 mySpawnPos = new Vector3(0.0f, 0.0f, 0.0f);
-    // private Pause aux = null;
 
     AimBot myAimbot = null;
 
@@ -103,29 +108,19 @@ public class Core : DiamondComponent
         #region VARIABLES WITH DEPENDENCIES
 
         // INIT VARIABLES WITH DEPENDENCIES //
-
-        //Shoot
-        secondaryRate = 0.2f;
-
         //Animation
         shootAnimationTotalTime = 0.288f;
 
         //Dash - if scene doesnt have its values
         //dashDuration = 0.2f;
         //dashDistance = 4.5f;
-
-        // END INIT VARIABLES WITH DEPENDENCIES //
-        smallGrenades = new List<smallGrenade>();
-        BigGrenades = new List<bigGrenade>();
         #endregion
 
         #region SHOOT
 
         normalShootSpeed = shootAnimationTotalTime / fireRate;
-        //fireRateAfterDashRecoverRatio = 2f;
-        //fireRateMultCap = 2.5f;
-        currSecondaryRate = secondaryRate;
-        secondaryRateRecoverCap = 3.0f / secondaryRate;
+        gadgetShootSkill = shootAnimationTotalTime / gadgetFireRate;
+
         myAimbot = gameObject.GetComponent<AimBot>();
         #endregion
 
@@ -212,6 +207,17 @@ public class Core : DiamondComponent
                 Debug.Log("In shoot");
             }
         }
+
+        if (gadgetShootTimer > 0)
+        {
+            gadgetShootTimer -= Time.deltaTime;
+
+            if (gadgetShootTimer <= 0)
+            {
+                inputsList.Add(INPUT.IN_GADGET_SHOOT_END);
+                Debug.Log("In shoot");
+            }
+        }
     }
 
 
@@ -221,8 +227,11 @@ public class Core : DiamondComponent
         if (Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT)
             inputsList.Add(INPUT.IN_SHOOTING);
 
-        else if (Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP)
+        else if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE) && hasShot == true && CanStopShooting() == true)
+        {
             inputsList.Add(INPUT.IN_SHOOTING_END);
+            hasShot = false;
+        }
 
         if (IsJoystickMoving() == true)
             inputsList.Add(INPUT.IN_MOVE);
@@ -230,11 +239,16 @@ public class Core : DiamondComponent
         else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
             inputsList.Add(INPUT.IN_IDLE);
 
-        if (Input.GetRightTrigger() > 0)
+        if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false)
+        {
             inputsList.Add(INPUT.IN_DASH);
+            rightTriggerPressed = true;
+        }
+        else if (Input.GetRightTrigger() == 0 && rightTriggerPressed == true)
+            rightTriggerPressed = false;
 
-        if (Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_DOWN && smallGrenades.Count == 0 && BigGrenades.Count == 0)
-            inputsList.Add(INPUT.IN_SEC_SHOOT);
+        if (Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_DOWN)
+            inputsList.Add(INPUT.IN_GADGET_SHOOT);
     }
 
 
@@ -273,6 +287,11 @@ public class Core : DiamondComponent
                             currentState = STATE.SECONDARY_SHOOT;
                             break;
 
+                        case INPUT.IN_GADGET_SHOOT:
+                            currentState = STATE.GADGET_SHOOT;
+                            StartGadgetShoot();
+                            break;
+
                         case INPUT.IN_DEAD:
                             break;
                     }
@@ -297,6 +316,11 @@ public class Core : DiamondComponent
                             StartShooting();
                             break;
 
+                        case INPUT.IN_GADGET_SHOOT:
+                            currentState = STATE.GADGET_SHOOT;
+                            StartGadgetShoot();
+                            break;
+
                         case INPUT.IN_DEAD:
                             break;
                     }
@@ -309,6 +333,7 @@ public class Core : DiamondComponent
                         case INPUT.IN_DASH_END:
                             currentState = STATE.IDLE;
                             EndDash();
+                            StartIdle();
                             break;
 
                         case INPUT.IN_DEAD:
@@ -357,6 +382,20 @@ public class Core : DiamondComponent
                 case STATE.SECONDARY_SHOOT:
                     break;
 
+                case STATE.GADGET_SHOOT:
+                    switch (input)
+                    {
+                        case INPUT.IN_GADGET_SHOOT_END:
+                            currentState = STATE.IDLE;
+                            EndGadgetShoot();
+                            StartIdle();
+                            break;
+
+                        case INPUT.IN_DEAD:
+                            break;
+                    }
+                    break;
+
                 default:
                     Debug.Log("NEED TO ADD STATE TO CORE SWITCH");
                     break;
@@ -400,12 +439,9 @@ public class Core : DiamondComponent
 
     private void StartShooting()
     {
-        fireRate = GetCurrentFireRate();
         Animator.Play(gameObject, "Shoot", normalShootSpeed);
 
         shootingTimer = fireRate;
-
-        Debug.Log(fireRate.ToString());
 
         if (myAimbot != null)
         {
@@ -417,7 +453,9 @@ public class Core : DiamondComponent
 
     private void UpdateShooting()
     {
-        if (IsJoystickMoving() == true)
+        if (myAimbot != null && myAimbot.HasObjective())
+            myAimbot.RotateToObjective();
+        else if (IsJoystickMoving() == true)
             RotatePlayer();
     }
 
@@ -425,6 +463,11 @@ public class Core : DiamondComponent
     {
         if (myAimbot != null)
             myAimbot.isShooting = false;
+    }
+
+    private bool CanStopShooting()
+    {
+        return shootingTimer > fireRate * 0.5 ? true : false;
     }
 
     private void StartShoot()
@@ -436,7 +479,33 @@ public class Core : DiamondComponent
         InternalCalls.CreatePrefab("Library/Prefabs/346087333.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
 
         inputsList.Add(INPUT.IN_SHOOT_END);
+        hasShot = true;
     }
+
+
+    private void StartGadgetShoot()
+    {
+        Animator.Play(gameObject, "Shoot", gadgetShootSkill);
+        gadgetShootTimer = gadgetFireRate;
+    }
+
+
+    private void EndGadgetShoot()
+    {
+        Audio.StopAudio(gameObject);
+        Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot_Mando");
+
+        Input.PlayHaptic(2f, 30);
+
+        Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
+        Vector3 rot = new Vector3(0f, 1f, 0f);
+        Quaternion rotation = Quaternion.RotateAroundAxis(rot, 0.383972f);
+
+        InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation * rotation, scale);
+        rotation = Quaternion.RotateAroundAxis(rot, -0.383972f);
+        InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation * rotation, scale);
+    }
+
     #endregion
 
     /* #region SPECIAL SHOOT
@@ -573,34 +642,21 @@ public class Core : DiamondComponent
         //else
         //gamepadInput = new Vector3(0f, 0f, 0f);
 
-        /*if (Input.GetGamepadButton(DEControllerButton.START) == KeyState.KEY_DOWN)
+        if (Input.GetGamepadButton(DEControllerButton.START) == KeyState.KEY_DOWN)
         {
             Audio.StopAudio(gameObject);
-            pause.Enable(true);
-            aux = pause.GetComponent<Pause>();
-            aux.DisplayBoons();
-            background.Enable(true);
-            Time.PauseGame();
-        }*/
-    }
 
-    private float GetCurrentFireRate()
-    {
+            if (pause != null)
+            {
+                pause.Enable(true);
+                pause.GetComponent<Pause>().DisplayBoons();
+                background.Enable(true);
+                Time.PauseGame();
+            }
 
-        return fireRate;
-    }
-
-    private float GetCurrentSecondaryRate()
-    {
-        float ret = secondaryRate;
-
-        ret = (float)(Math.Log(timeSinceLastDash * fireRateAfterDashRecoverRatio) - Math.Log(0.01)) / secondaryRateRecoverCap;
-
-        ret = Math.Min(ret, secondaryRate * fireRateMultCap);
-        //Debug.Log("New fire rate: " + ret.ToString());
-
-        return ret;
-
+            else
+                Debug.Log("Need to add pause GO");
+        }
     }
 
     private bool IsJoystickMoving()
