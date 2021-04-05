@@ -34,15 +34,15 @@ public class HubTextController : DiamondComponent
 
 	public float maximum_distance_to_interact_squared = 0.0f;
 
-	private int bo_katan_stage = 1;
-	private int greef_stage = 1;
-	private int ashoka_stage = 1;
-	private int grogu_stage = 1;
+	private static int bo_katan_stage = 1;
+	private static int greef_stage = 1;
+	private static int ashoka_stage = 1;
+	private static int grogu_stage = 1;
 
-	private int bo_katan_interaction_num = 1;
-	private int greef_interaction_num = 1;
-	private int ashoka_interaction_num = 1;
-	private int grogu_interaction_num = 1;
+	private static int bo_katan_interaction_num = 1;
+	private static int greef_interaction_num = 1;
+	private static int ashoka_interaction_num = 1;
+	private static int grogu_interaction_num = 1;
 
 	private bool showtext = true;
 	private int total_interactions_and_stages = 0;
