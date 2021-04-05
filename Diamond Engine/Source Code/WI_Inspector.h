@@ -20,6 +20,7 @@ public:
 	void Draw() override;
 
 	void SetEditingResource(Resource* res);
+	void ComponentDragAndDrop();
 
 	GameObject* selectedGO;
 	Resource* editingRes;

@@ -7,6 +7,7 @@
 #include "MO_Input.h"
 
 #include "Globals.h"
+#include "MO_Editor.h"
 
 ShortcutManager::ShortcutManager() :
 	index(-1)
@@ -22,17 +23,19 @@ ShortcutManager::~ShortcutManager()
 
 void ShortcutManager::HandleInput()
 {	
-	if (EngineExternal->moduleInput->GetKey(SDL_SCANCODE_LCTRL) == KEY_STATE::KEY_REPEAT)
+	if (EngineExternal->moduleEditor->IsWindowSelected(EditorWindow::SCENE) || EngineExternal->moduleEditor->IsWindowSelected(EditorWindow::HIERARCHY))
 	{
-		if (EngineExternal->moduleInput->GetKey(SDL_SCANCODE_Z) == KEY_STATE::KEY_DOWN)
-			UndoCommand();
+		if (EngineExternal->moduleInput->GetKey(SDL_SCANCODE_LCTRL) == KEY_STATE::KEY_REPEAT)
+		{
+			if (EngineExternal->moduleInput->GetKey(SDL_SCANCODE_Z) == KEY_STATE::KEY_DOWN)
+				UndoCommand();
 
-		else if (EngineExternal->moduleInput->GetKey(SDL_SCANCODE_Y) == KEY_STATE::KEY_DOWN)
-			RedoCommand();
+			else if (EngineExternal->moduleInput->GetKey(SDL_SCANCODE_Y) == KEY_STATE::KEY_DOWN)
+				RedoCommand();
 
-		//TODO: Move copy and paste here
+			//TODO: Move copy and paste here
+		}
 	}
-	
 }
 
 

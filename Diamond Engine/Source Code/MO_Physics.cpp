@@ -10,6 +10,7 @@
 
 #include "CO_Collider.h"
 #include "CO_RigidBody.h"
+#include "CO_Transform.h"
 #include "CO_MeshRenderer.h"
 
 #include "RE_Mesh.h"
@@ -79,10 +80,11 @@ physx::PxFilterFlags contactReportFilterShader(physx::PxFilterObjectAttributes a
 	// all initial and persisting reports for everything, with per-point data
 	pairFlags = PxPairFlag::eSOLVE_CONTACT | PxPairFlag::eDETECT_DISCRETE_CONTACT
 		| PxPairFlag::eNOTIFY_TOUCH_FOUND
-		//| PxPairFlag::eNOTIFY_TOUCH_PERSISTS
+		| PxPairFlag::eNOTIFY_TOUCH_PERSISTS
+		| PxPairFlag::eNOTIFY_TOUCH_LOST
 		| PxPairFlag::eNOTIFY_CONTACT_POINTS
-		| PxPairFlag::eTRIGGER_DEFAULT 
-		| PxPairFlag::eDETECT_CCD_CONTACT; 
+		| PxPairFlag::eTRIGGER_DEFAULT
+		| PxPairFlag::eDETECT_CCD_CONTACT;
 	return PxFilterFlag::eDEFAULT;
 }
 
@@ -304,19 +306,40 @@ physx::PxShape* ModulePhysics::CreateSphereCollider(float radius, PxMaterial* ma
 	return colliderShape;
 }
 
-physx::PxShape* ModulePhysics::CreateMeshCollider(PxRigidActor* aConvexActor, GameObject* parent)
+physx::PxShape* ModulePhysics::CreateMeshCollider(C_RigidBody* rigidBody, GameObject* parent)
 {
 	C_MeshRenderer* mesh = dynamic_cast<C_MeshRenderer*>(parent->GetComponent(Component::TYPE::MESH_RENDERER));
+	C_Transform* transform = dynamic_cast<C_Transform*>(parent->GetComponent(Component::TYPE::TRANSFORM));
+
 	ResourceMesh* resMesh = mesh->GetRenderMesh();
 
 	PxVec3* convexVerts = new PxVec3[resMesh->vertices_count];
+	float3 tempscale, tempos;
+	Quat temprot;
+	tempscale.Set(1, 1, 1);
+	temprot = Quat::identity;
+
 	for (int i = 0; i < resMesh->vertices_count; i++)
 	{
-		PxVec3 vertex;
-		vertex.x = resMesh->vertices[VERTEX_ATTRIBUTES * i];
-		vertex.y = resMesh->vertices[VERTEX_ATTRIBUTES * i + 1];
-		vertex.z = resMesh->vertices[VERTEX_ATTRIBUTES * i + 2];
+
 		
+		
+		
+		tempos.x = resMesh->vertices[VERTEX_ATTRIBUTES * i];
+		tempos.y = resMesh->vertices[VERTEX_ATTRIBUTES * i + 1];
+		tempos.z = resMesh->vertices[VERTEX_ATTRIBUTES * i + 2];
+		tempos.x -= rigidBody->offset.x;
+		tempos.y -= rigidBody->offset.y;
+		tempos.z -= rigidBody->offset.z;
+		float4x4 objecttrans = float4x4::FromTRS(tempos, temprot, tempscale);
+
+		objecttrans = objecttrans * transform->GetCurrentGlobalMatrix().Transposed();
+		objecttrans.Decompose(tempos, temprot, tempscale);
+		PxVec3 vertex;
+		vertex.x = tempos.x;
+		vertex.y = tempos.y;
+		vertex.z = tempos.z;
+
 		convexVerts[i] = vertex;
 	}
 
@@ -336,7 +359,13 @@ physx::PxShape* ModulePhysics::CreateMeshCollider(PxRigidActor* aConvexActor, Ga
 	PxConvexMesh* aConvexMesh = mCooking->createConvexMesh(convexDesc,
 		mPhysics->getPhysicsInsertionCallback());
 
-	PxShape* aConvexShape = mPhysics->createShape(PxConvexMeshGeometry(aConvexMesh), *mMaterial);
+	transform->GetCurrentGlobalMatrix().Decompose(tempos, temprot, tempscale);
+	PxMeshScale meshScale;
+	meshScale.scale.x = tempscale.x;
+	meshScale.scale.y = tempscale.y;
+	meshScale.scale.z = tempscale.z;
+
+	PxShape* aConvexShape = mPhysics->createShape(PxConvexMeshGeometry(aConvexMesh, meshScale), *mMaterial);
 	delete[] convexVerts;
 
 	return aConvexShape;
@@ -392,7 +421,9 @@ CollisionDetector::CollisionDetector()
 
 }
 CollisionDetector::~CollisionDetector()
-{}
+{
+
+}
 
 void CollisionDetector::onContact(const PxContactPairHeader& pairHeader, const PxContactPair* pairs, PxU32 nbPairs)
 {
@@ -400,60 +431,130 @@ void CollisionDetector::onContact(const PxContactPairHeader& pairHeader, const P
 	{
 		const PxContactPair& cp = pairs[i];
 
-		if (cp.events & PxPairFlag::eNOTIFY_TOUCH_FOUND)
+		if (cp.events)
 		{
-			for (size_t k = 0; k < 2; ++k)
+			if (cp.events == PxPairFlag::eNOTIFY_TOUCH_FOUND)
 			{
-				GameObject* contact = static_cast<GameObject*>(pairHeader.actors[k]->userData);
-
-				std::vector<Component*> scripts = contact->GetComponentsOfType(Component::TYPE::SCRIPT);
-				for (size_t l = 0; l < scripts.size(); l++)
+				for (size_t k = 0; k < 2; ++k)
 				{
-					C_Script* script = dynamic_cast<C_Script*>(scripts[l]);
-					if (script)
+					GameObject* contact = static_cast<GameObject*>(pairHeader.actors[k]->userData);
+
+					std::vector< Component*> scripts = contact->GetComponentsOfType(Component::TYPE::SCRIPT);
+					for (size_t l = 0; l < scripts.size(); l++)
 					{
-						GameObject* contact2 = static_cast<GameObject*>(pairHeader.actors[ k == 0 ? 1 : 0]->userData);
-						script->CollisionCallback(false, contact2);
+						C_Script* script = dynamic_cast<C_Script*>(scripts[l]);
+						if (script)
+						{
+							GameObject* contact2 = static_cast<GameObject*>(pairHeader.actors[k == 0 ? 1 : 0]->userData);
+							script->CollisionCallback(false, contact2);
+						}
 					}
 				}
 			}
 
-			/*if ((pairHeader.actors[0] == mSubmarineActor) ||
-				(pairHeader.actors[1] == mSubmarineActor))*/
+			if (cp.events == PxPairFlag::eNOTIFY_TOUCH_PERSISTS)
+			{
+				for (size_t k = 0; k < 2; ++k)
+				{
+					GameObject* contact = static_cast<GameObject*>(pairHeader.actors[k]->userData);
+
+					std::vector< Component*> scripts = contact->GetComponentsOfType(Component::TYPE::SCRIPT);
+					for (size_t l = 0; l < scripts.size(); l++)
+					{
+						C_Script* script = dynamic_cast<C_Script*>(scripts[l]);
+						if (script)
+						{
+							GameObject* contact2 = static_cast<GameObject*>(pairHeader.actors[k == 0 ? 1 : 0]->userData);
+							script->CollisionPersistCallback(contact2);
+						}
+					}
+				}
+			}
+
+			if (cp.events == PxPairFlag::eNOTIFY_TOUCH_LOST)
+			{
+				for (size_t k = 0; k < 2; ++k)
+				{
+					GameObject* contact = static_cast<GameObject*>(pairHeader.actors[k]->userData);
+					if (contact)
+					{
+						std::vector< Component*> scripts = contact->GetComponentsOfType(Component::TYPE::SCRIPT);
+						for (size_t l = 0; l < scripts.size(); l++)
+						{
+							C_Script* script = dynamic_cast<C_Script*>(scripts[l]);
+							if (script)
+							{
+								GameObject* contact2 = static_cast<GameObject*>(pairHeader.actors[k == 0 ? 1 : 0]->userData);
+								if (contact2)
+									script->CollisionExitCallback(false, contact2);
+							}
+						}
+					}
+
+				}
+			}
+
 		}
+
+
 	}
 }
 
 void CollisionDetector::onTrigger(physx::PxTriggerPair* pairs, physx::PxU32 count)
 {
-	//LOG(LogType::L_NORMAL, "trigger detected");
 	for (PxU32 i = 0; i < count; i++)
 	{
 		const PxTriggerPair& cp = pairs[i];
-
 		GameObject* contact = static_cast<GameObject*>(pairs->triggerActor->userData);
 		GameObject* contact2 = static_cast<GameObject*>(pairs->otherActor->userData);
 
-		if (contact != nullptr) 
+		if (cp.status == PxPairFlag::eNOTIFY_TOUCH_FOUND)
 		{
-			std::vector< Component*> scripts = contact->GetComponentsOfType(Component::TYPE::SCRIPT);
-			for (size_t i = 0; i < scripts.size(); i++)
+			if (contact != nullptr /*&& pairs->flags*/)
 			{
-				C_Script* script = dynamic_cast<C_Script*>(scripts[i]);
-				if (script && contact2 != nullptr)
-					script->CollisionCallback(true, contact2);
+				std::vector< Component*> scripts = contact->GetComponentsOfType(Component::TYPE::SCRIPT);
+				for (size_t i = 0; i < scripts.size(); i++)
+				{
+					C_Script* script = dynamic_cast<C_Script*>(scripts[i]);
+					if (script)
+						script->CollisionCallback(true, contact2);
+				}
+
 			}
+
+			if (contact2 != nullptr)
+			{
+				std::vector< Component*> scripts = contact2->GetComponentsOfType(Component::TYPE::SCRIPT);
+				for (size_t i = 0; i < scripts.size(); i++)
+				{
+					C_Script* script = dynamic_cast<C_Script*>(scripts[i]);
+					if (script)
+						script->CollisionCallback(true, contact);
+				}
+			}
+		}
+		if (cp.status == PxPairFlag::eNOTIFY_TOUCH_LOST)
+		{
+			if (contact && contact2)
+			{
+				std::vector< Component*> scripts = contact->GetComponentsOfType(Component::TYPE::SCRIPT);
+				for (size_t i = 0; i < scripts.size(); i++)
+				{
+					C_Script* script = dynamic_cast<C_Script*>(scripts[i]);
+					if (script)
+						script->CollisionExitCallback(true, contact2);
+				}
+
+				scripts = contact2->GetComponentsOfType(Component::TYPE::SCRIPT);
+				for (size_t i = 0; i < scripts.size(); i++)
+				{
+					C_Script* script = dynamic_cast<C_Script*>(scripts[i]);
+					if (script)
+						script->CollisionExitCallback(true, contact);
+				}
+			}
+
 		}
 
-		if (contact2 != nullptr) 
-		{
-			std::vector< Component*> scripts = contact2->GetComponentsOfType(Component::TYPE::SCRIPT);
-			for (size_t i = 0; i < scripts.size(); i++)
-			{
-				C_Script* script = dynamic_cast<C_Script*>(scripts[i]);
-				if (script && contact != nullptr)
-					script->CollisionCallback(true, contact);
-			}
-		}
 	}
 }

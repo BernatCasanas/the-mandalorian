@@ -49,9 +49,9 @@ public:
 
 	void DrawDebugLines();
 	void AddDebugLines(float3& a, float3& b, float3& color);
+	static void DrawBox(float3* points, float3 color = float3::one);
 #endif // !STANDALONE
 
-	static void DrawBox(float3* points, float3 color = float3::one);
 	
 	void RayToMeshQueueIntersection(LineSegment& ray);
 
@@ -65,7 +65,11 @@ public:
 private:
 
 	void RenderWithOrdering(bool rTex = false);
+
+#ifndef STANDALONE
 	void DebugLine(LineSegment& line);
+#endif // !STANDALONE
+	
 	void GetCAPS(std::string& caps);
 
 	void DrawParticleSystems();

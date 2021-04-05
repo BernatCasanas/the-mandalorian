@@ -13,6 +13,7 @@ public:
 	bool OnEditor() override;
 #endif // !STANDALONE
 
+	void SetMaterial(ResourceMaterial* newMaterial);
 	int GetTextureID();
 
 

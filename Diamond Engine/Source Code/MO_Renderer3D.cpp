@@ -465,7 +465,6 @@ void ModuleRenderer3D::AddDebugLines(float3& a, float3& b, float3& color)
 {
 	lines.push_back(LineRender(a, b, color));
 }
-#endif // !STANDALONE
 
 void ModuleRenderer3D::DrawBox(float3* points, float3 color)
 {
@@ -491,6 +490,14 @@ void ModuleRenderer3D::DrawBox(float3* points, float3 color)
 	glLineWidth(1.f);
 	glColor3f(1.f, 1.f, 1.f);
 }
+
+void ModuleRenderer3D::DebugLine(LineSegment& line)
+{
+	glLineWidth(2.f);
+	this->AddDebugLines(pickingDebug.a, pickingDebug.b, float3(1.f, 0.f, 0.f));
+	glLineWidth(1.f);
+}
+#endif // !STANDALONE
 
 void ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray)
 {
@@ -571,12 +578,6 @@ void ModuleRenderer3D::RenderWithOrdering(bool rTex)
 	renderQueueMap.clear();
 }
 
-void ModuleRenderer3D::DebugLine(LineSegment& line)
-{
-	glLineWidth(2.f);
-	this->AddDebugLines(pickingDebug.a, pickingDebug.b, float3(1.f, 0.f, 0.f));
-	glLineWidth(1.f);
-}
 
 /*Get SDL caps*/
 void ModuleRenderer3D::GetCAPS(std::string& caps)

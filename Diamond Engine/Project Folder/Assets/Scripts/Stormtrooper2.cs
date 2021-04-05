@@ -9,38 +9,43 @@ public class StormTrooper2 : Enemy
 {
     //public static Enemy instance;
 
-    //enum STATE : int
-    //{
-    //    NONE = -1,
-    //    IDLE,
-    //    RUN,
-    //    WANDER,
-    //    PUSHED,
-    //    SHOOT,
-    //    HIT,
-    //    DIE
-    //}
+    enum STATE : int
+    {
+        NONE = -1,
+        IDLE,
+        RUN,
+        WANDER,
+        //PUSHED,
+        SHOOT,
+        HIT,
+        DIE
+    }
 
     enum INPUT : int
     {
         IN_IDLE,
         IN_RUN,
+        IN_RUN_END,
         IN_WANDER,
         IN_PUSHED,
         IN_SHOOT,
+        IN_SHOOT_END,
+        IN_SEQUENCE_END,
         IN_HIT,
         IN_DIE
     }
 
     //VARIABLES DEL STORMTROOPER ORIGINAL
-    public GameObject hitParticles;
+    public GameObject hitParticles = null;
 
     private int shotSequences = 0;
     public int maxShots = 2;
     public int maxSequences = 2;
+    //private float timeBetweenSequences = 0.75f;
+    private float shotTimer = 0.0f;
 
     private float pushSkillTimer = 0.15f;
-    private float pushSkillSpeed = 0.2f;
+    //private float pushSkillSpeed = 0.2f;
     public float stormTrooperDamage = 5.0f;
 
 
@@ -48,14 +53,14 @@ public class StormTrooper2 : Enemy
     //public GameObject shootPoint = null;
     public GameObject hud = null;
 
-    private bool scriptStart = true;
+    private bool started = false;
 
     //State
-    //private STATES currentState = STATES.NONE;   //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS
+    private STATE currentState2 = STATE.NONE;   //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS
                                                  //Setting states directlly will break the behaviour  -Jose
     private List<INPUT> inputsList = new List<INPUT>();
 
-    private bool rightTriggerPressed = false;
+    //private bool rightTriggerPressed = false;
 
 
     private void Start()
@@ -69,11 +74,19 @@ public class StormTrooper2 : Enemy
     public void Update()
     {
         // Placeholder for Start() function
-        if (scriptStart == true)
+        if (started == false)
         {
             Start();
-            scriptStart = false;
+            started = true;
         }
+
+        if (player == null)
+        {
+            Debug.Log("Null player");
+            player = Core.instance.gameObject;
+        }
+
+        timePassed += Time.deltaTime;
 
         #region UPDATE STUFF
 
@@ -93,11 +106,11 @@ public class StormTrooper2 : Enemy
 
         #region STATE MACHINE
 
-        /*ProcessInternalInput();
+        ProcessInternalInput();
         ProcessExternalInput();
         ProcessState();
 
-        UpdateState();*/
+        UpdateState();
 
 
         #endregion
@@ -109,24 +122,43 @@ public class StormTrooper2 : Enemy
     {
         //AQUI DEBERIAN ESTAR TODOS LOS TIMERS
 
-        //if (dashTimer > 0)
-        //{
-        //    dashTimer -= Time.deltaTime;
+        if(shotTimer > 0.0f)
+        {
+            shotTimer -= Time.deltaTime;
 
-        //    if (dashTimer <= 0)
-        //        //inputsList.Add(INPUT.IN_DASH_END);
-        //}
+            if(shotTimes < maxShots)
+            {
+                inputsList.Add(INPUT.IN_SHOOT);
+            }
+        }
 
-        //if (shootingTimer > 0)
-        //{
-        //    shootingTimer -= Time.deltaTime;
 
-        //    if (shootingTimer <= 0)
-        //    {
-        //        //inputsList.Add(INPUT.IN_SHOOT);
-        //        Debug.Log("In shoot");
-        //    }
-        //}
+        if (shotSequences == maxSequences && !turretMode)
+        {
+            inputsList.Add(INPUT.IN_SHOOT);
+        }
+
+        if (shotTimes == maxShots)
+        {
+            inputsList.Add(INPUT.IN_SHOOT_END);
+        }
+
+        if (timePassed > idleTime && !turretMode)
+        {
+            inputsList.Add(INPUT.IN_WANDER);
+        }
+
+
+        if (timePassed >= pushSkillTimer)
+        {
+            inputsList.Add(INPUT.IN_IDLE);
+        }
+
+        if (currentState != STATES.DIE && healthPoints <= 0.0f)
+        {
+            inputsList.Add(INPUT.IN_DIE);
+        }
+
     }
 
 
@@ -135,42 +167,32 @@ public class StormTrooper2 : Enemy
     {
         //AQUI DEBERIAN ESTAR LAS COSAS QUE HACEN CAMBIAR DE ESTADO (RANGOS DE ACCION)
 
-        //if (Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT)
-        //    //inputsList.Add(INPUT.IN_SHOOTING);
+        if (InRange(player.transform.globalPosition, range))
+        {
+            inputsList.Add(INPUT.IN_SHOOT);
+        }
 
-        //else if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE) && hasShot == true && CanStopShooting() == true)
-        //{
-        //    //inputsList.Add(INPUT.IN_SHOOTING_END);
-        //    hasShot = false;
-        //}
+        if (InRange(player.transform.globalPosition, wanderRange))
+        {
+            inputsList.Add(INPUT.IN_WANDER);
+        }
 
-        //if (IsJoystickMoving() == true)
-        //    inputsList.Add(INPUT.IN_MOVE);
+        if (Mathf.Distance(gameObject.transform.localPosition, targetPosition) < stoppingDistance)
+        {
+            inputsList.Add(INPUT.IN_IDLE);
+        }
 
-        //else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
-        //    inputsList.Add(INPUT.IN_IDLE);
-
-        //if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false)
-        //{
-        //    inputsList.Add(INPUT.IN_DASH);
-        //    rightTriggerPressed = true;
-        //}
-        //else if (Input.GetRightTrigger() == 0 && rightTriggerPressed == true)
-        //    rightTriggerPressed = false;
-
-        //if (Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_DOWN && smallGrenades.Count == 0 && BigGrenades.Count == 0)
-        //    inputsList.Add(INPUT.IN_SEC_SHOOT);
     }
 
 
     //Manages state changes throught inputs
     private void ProcessState()
     {
-        /*while (inputsList.Count > 0)
+        while (inputsList.Count > 0)
         {
             INPUT input = inputsList[0];
 
-            switch (currentState)
+            switch (currentState2)
             {
                 case STATE.NONE:
                     Debug.Log("CORE ERROR STATE");
@@ -180,26 +202,28 @@ public class StormTrooper2 : Enemy
                     switch (input)
                     {
                         case INPUT.IN_RUN:
-                            currentState = STATE.RUN;
-                            StartMove();
+                            currentState2 = STATE.RUN;
+                            StartRun();
                             break;
 
                         case INPUT.IN_WANDER:
-                            currentState = STATE.WANDER;
-                            StartDash();
+                            currentState2 = STATE.WANDER;
+                            StartWander();
                             break;
 
                         case INPUT.IN_SHOOT:
-                            currentState = STATE.SHOOT;
-                            StartShooting();
+                            currentState2 = STATE.SHOOT;
+                            StartShoot();
                             break;
 
                         case INPUT.IN_HIT:
-                            currentState = STATE.HIT;
+                            currentState2 = STATE.HIT;
+                            //StartHit();
                             break;
 
                         case INPUT.IN_DIE:
-                            currentState = STATE.DIE;
+                            currentState2 = STATE.DIE;
+                            StartDie();
                             break;
                     }
                     break;
@@ -209,22 +233,23 @@ public class StormTrooper2 : Enemy
                     switch (input)
                     {
                         case INPUT.IN_IDLE:
-                            currentState = STATE.IDLE;
+                            currentState2 = STATE.IDLE;
                             StartIdle();
                             break;
 
                         case INPUT.IN_WANDER:
-                            currentState = STATE.WANDER;
-                            StartDash();
+                            currentState2 = STATE.WANDER;
+                            StartWander();
                             break;
 
                         case INPUT.IN_SHOOT:
-                            currentState = STATE.SHOOT;
-                            StartShooting();
+                            currentState2 = STATE.SHOOT;
+                            StartShoot();
                             break;
 
                         case INPUT.IN_DIE:
-                            currentState = STATE.DIE;
+                            currentState2 = STATE.DIE;
+                            StartDie();
                             break;
                     }
                     break;
@@ -234,12 +259,13 @@ public class StormTrooper2 : Enemy
                     switch (input)
                     {
                         case INPUT.IN_SHOOT:
-                            currentState = STATE.IDLE;
-                            EndDash();
+                            currentState2 = STATE.IDLE;
+                            StartShoot();
                             break;
 
                         case INPUT.IN_DIE:
-                            currentState = STATE.DIE;
+                            currentState2 = STATE.DIE;
+                            StartDie();
                             break;
                     }
                     break;
@@ -249,23 +275,23 @@ public class StormTrooper2 : Enemy
                     switch (input)
                     {
                         case INPUT.IN_WANDER:
-                            currentState = STATE.WANDER;
-                            StartDash();
+                            currentState2 = STATE.WANDER;
+                            StartWander();
                             break;
 
                         case INPUT.IN_RUN:
-                            currentState = STATE.IDLE;
-                            EndShooting();
-                            StartIdle();
+                            currentState2 = STATE.IDLE;
+                            StartRun();
                             break;
 
                         case INPUT.IN_SHOOT:
-                            currentState = STATE.SHOOT;
+                            currentState2 = STATE.SHOOT;
                             StartShoot();
                             break;
 
                         case INPUT.IN_DIE:
-                            currentState = STATE.DIE;
+                            currentState2 = STATE.DIE;
+                            StartDie();
                             break;
                     }
                     break;
@@ -275,88 +301,138 @@ public class StormTrooper2 : Enemy
                     break;
             }
             inputsList.RemoveAt(0);
-        }*/
+        }
     }
 
 
     private void UpdateState()
     {
-        /*switch (currentState)
+        switch (currentState2)
         {
             case STATE.NONE:
                 break;
             case STATE.IDLE:
                 break;
             case STATE.RUN:
-                UpdateMove();
+                UpdateRun();
                 break;
             case STATE.WANDER:
-                UpdateDash();
+                UpdateWander();
                 break;
             case STATE.SHOOT:
+                //UpdateShoot();
                 break;
             case STATE.DIE:
                 break;
             default:
                 Debug.Log("NEED TO ADD STATE TO CORE");
                 break;
-        }*/
+        }
     }
 
 
     #region SHOOT
-
-    private void StartShooting()
-    {
-       /* fireRate = GetCurrentFireRate();
-        Animator.Play(gameObject, "Shoot", normalShootSpeed);
-
-        shootingTimer = fireRate;
-
-        Debug.Log(fireRate.ToString());
-
-        if (myAimbot != null)
-        {
-            myAimbot.isShooting = true;
-            myAimbot.SearchForNewObjective();
-        }*/
-    }
-
-
-    private void UpdateShooting()
-    {
-        /*if (myAimbot != null && myAimbot.HasObjective())
-            myAimbot.RotateToObjective();
-        else if (IsJoystickMoving() == true)
-            RotatePlayer();*/
-    }
-
-    private void EndShooting()
-    {
-        /*if (myAimbot != null)
-            myAimbot.isShooting = false;*/
-    }
-
-    private bool CanStopShooting()
-    {
-        return true;
-        //return shootingTimer > fireRate * 0.5 ? true : false;
-    }
-
     private void StartShoot()
     {
-       /* Audio.StopAudio(gameObject);
-        Audio.PlayAudio(shootPoint, "Play_Blaster_Shoot_Mando");
-        Input.PlayHaptic(.3f, 10);
+       //SFX LIKE AIMING OR SIMILAR + STOP RUNNING
+    }
 
-        InternalCalls.CreatePrefab("Library/Prefabs/346087333.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+    private void UpdateShoot()
+    {
+        //HERE SHOULD BE THE BEHAVIOUR WHILE SHOOTING
 
-        inputsList.Add(INPUT.IN_SHOOT_END);
-        hasShot = true;*/
+        //2 SECONDS STOPPED IN IDLE ANIMATION
+
+        //SHOT 2 BULLETS
+
+        //2 SECONDS STOPPED IN IDLE ANIMATION
+
+        //SHOT 2 BULLETS
+
+        //1 SECOND STOPPED IN IDLE ANIMATION
+
+        //AFTER THAT SHOTTIMES VARIABLE WOULD BE 2 AND START RUNNING
     }
     #endregion
 
     #region RUN
+    private void StartRun()
+    {
+        LookAt(targetPosition);
+        //MoveToPosition(targetPosition, runningSpeed);
+
+        //ANIMATIONS OR FX AT RUN START
+    }
+    private void UpdateRun()
+    {
+        LookAt(targetPosition);
+        MoveToPosition(targetPosition, runningSpeed);
+
+        //ANIMATIONS OR FX WHILE RUNNNG
+    }
+    #endregion
+
+    #region WANDER
+    private void StartWander()
+    {
+        targetPosition = CalculateNewPosition(wanderRange);
+        LookAt(targetPosition);
+        //MoveToPosition(targetPosition, wanderSpeed);
+
+        //ANIMATIONS OR FX AT WANDER START
+    }
+    private void UpdateWander()
+    {
+        LookAt(targetPosition);
+        MoveToPosition(targetPosition, wanderSpeed);
+
+        //ANIMATIONS OR FX WHILE WANDERING
+    }
+    #endregion
+
+    #region DIE
+    private void StartDie()
+    {
+       
+     
+            timePassed = 0.0f;
+            Animator.Play(gameObject, "ST_Die", 1.0f);
+            //Play Sound("Die")
+            Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
+            Audio.PlayAudio(gameObject, "Play_Mando_Voice");
+
+            if (hitParticles != null)
+                hitParticles.GetComponent<ParticleSystem>().Play();
+
+            RemoveFromSpawner();
+
+            if (Core.instance.hud != null)
+            {
+                Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 1.0f);
+            }
+    
+    }
+    private void UpdateDie()
+    {
+        timePassed += Time.deltaTime;
+
+        if (timePassed > 1.2f)
+        {
+            Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
+            Counter.roomEnemies--;
+            Debug.Log("Enemies: " + Counter.roomEnemies.ToString());
+            if (Counter.roomEnemies <= 0)
+            {
+                Core.instance.gameObject.GetComponent<BoonSpawn>().SpawnBoons();
+            }
+            player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+            InternalCalls.Destroy(gameObject);
+        }
+    }
+    #endregion
+
+    #region DASH
+    //THIS WILL BE HERE CAUSE BANTHA WILL USE IT, I DONT WANT TO ERASE IT YET
     private void StartDash()
     {
        /* Audio.StopAudio(gameObject);
@@ -381,54 +457,11 @@ public class StormTrooper2 : Enemy
 
     #endregion
 
-    #region MOVE AND ROTATE ENEMY
-    private void StartMove()
-    {
-        Animator.Play(gameObject, "Run");
-        Audio.PlayAudio(this.gameObject, "Play_Footsteps_Mando");
-    }
-
-    private void UpdateMove()
-    {
-        RotatePlayer();
-        //gameObject.SetVelocity(gameObject.transform.GetForward() * movementSpeed);
-    }
-
-    private void StopPlayer()
-    {
-        Debug.Log("Stoping");
-        gameObject.SetVelocity(new Vector3(0, 0, 0));
-    }
-
-    private void RotatePlayer()
-    {
-       /* //Calculate player rotation
-        Vector3 aX = new Vector3(gamepadInput.x, 0, -gamepadInput.y - 1);
-        Vector3 aY = new Vector3(0, 0, 1);
-        aX = Vector3.Normalize(aX);
-
-        if (aX.x >= 0)
-        {
-            angle = Math.Acos(Vector3.Dot(aX, aY) - 1);
-        }
-        else if (aX.x < 0)
-        {
-            angle = -Math.Acos(Vector3.Dot(aX, aY) - 1);
-        }
-
-        //Convert angle from world view to orthogonal view
-        angle += 0.785398f; //Rotate 45 degrees to the right
-
-        gameObject.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, (float)-angle);*/
-    }
-
+    
     private void StartIdle()
     {
         Animator.Play(gameObject, "Idle");
     }
-
-    #endregion
-
  
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
