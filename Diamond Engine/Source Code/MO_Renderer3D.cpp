@@ -466,6 +466,15 @@ void ModuleRenderer3D::AddDebugLines(float3& a, float3& b, float3& color)
 	lines.push_back(LineRender(a, b, color));
 }
 
+void ModuleRenderer3D::AddDebugTriangles(float3& a, float3& b, float3& c, float3& color)
+{
+	triangles.push_back(DebugTriangle(a, b, c, color));
+}
+void ModuleRenderer3D::AddDebugPoints(float3& position, float3& color)
+{
+	points.push_back(DebugPoint(position, color));
+}
+
 void ModuleRenderer3D::DrawBox(float3* points, float3 color)
 {
 	glColor3fv(&color.x);

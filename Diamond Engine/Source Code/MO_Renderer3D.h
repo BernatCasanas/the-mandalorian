@@ -31,6 +31,18 @@ struct LineRender
 	float3 a, b, color;
 };
 
+struct DebugTriangle
+{
+	DebugTriangle(float3& _a, float3& _b, float3& _c, float3& _color) : a(_a), b(_b), c(_c), color(_color) {}
+	float3 a, b, c, color;
+};
+
+struct DebugPoint
+{
+	DebugPoint(float3& _position, float3& _color) : position(_position), color(_color) {}
+	float3 position, color;
+};
+
 class ModuleRenderer3D : public Module
 {
 public:
@@ -49,6 +61,8 @@ public:
 
 	void DrawDebugLines();
 	void AddDebugLines(float3& a, float3& b, float3& color);
+	void AddDebugTriangles(float3& a, float3& b, float3& c, float3& color);
+	void AddDebugPoints(float3& position, float3& color);
 	static void DrawBox(float3* points, float3 color = float3::one);
 #endif // !STANDALONE
 
@@ -98,6 +112,8 @@ public:
 
 private:
 	std::vector<LineRender> lines;
+	std::vector<DebugTriangle> triangles;
+	std::vector<DebugPoint> points;
 	C_Camera* gameCamera;
 	LineSegment pickingDebug;
 	std::string str_CAPS;
