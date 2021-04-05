@@ -8,7 +8,8 @@
 #include "MO_Camera3D.h"
 #include "MO_Scene.h"
 #include "MO_ResourceManager.h"
-#include"MO_MonoManager.h"
+#include "MO_MonoManager.h"
+#include "MO_Pathfinding.h"
 
 #include "WI_Hierarchy.h"
 #include"WI_Game.h"
@@ -454,6 +455,7 @@ void M_Scene::SaveScene(const char* name)
 	JSON_Value* file = json_value_init_object();
 	DEConfig root_object(json_value_get_object(file));
 
+	root_object.WriteInt("NavMesh", EngineExternal->modulePathfinding->Save(name));
 	root_object.WriteVector3("EditorCameraPosition", &App->moduleCamera->editorCamera.camFrustrum.pos.x);
 	root_object.WriteVector3("EditorCameraZ", &App->moduleCamera->editorCamera.camFrustrum.front.x);
 	root_object.WriteVector3("EditorCameraY", &App->moduleCamera->editorCamera.camFrustrum.up.x);
@@ -519,6 +521,12 @@ void M_Scene::LoadScene(const char* name)
 	RELEASE(root); //Had to remove root to create it later
 
 	JSON_Object* sceneObj = json_value_get_object(scene);
+
+	int navMeshId = json_object_get_number(sceneObj, "NavMesh");
+	if (navMeshId != -1)
+	{
+		EngineExternal->modulePathfinding->Load(navMeshId);
+	}
 
 #ifndef STANDALONE
 
@@ -613,6 +621,8 @@ void M_Scene::CleanScene()
 		return;
 	delete root;
 	root = nullptr;
+
+	EngineExternal->modulePathfinding->ClearNavMeshes();
 
 #ifndef STANDALONE
 	App->moduleEditor->SetSelectedGO(nullptr);
