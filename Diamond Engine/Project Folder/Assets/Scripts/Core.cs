@@ -58,7 +58,7 @@ public class Core : DiamondComponent
     private double angle = 0.0f;
 
     // Dash
-    private float timeSinceLastDash = 0.0f;
+    //private float timeSinceLastDash = 0.0f;
     public float dashCD = 0.33f;
     public float dashDuration = 0.25f;
     public float dashDistance = 1.0f;
@@ -76,7 +76,7 @@ public class Core : DiamondComponent
     private bool hasShot = false;
 
     public float fireRateAfterDashRecoverRatio = 2.0f;
-    private float secondaryRateRecoverCap = 0.0f;
+    //private float secondaryRateRecoverCap = 0.0f;
 
     public float fireRateMultCap = 0.0f;
     private int deathZone = 15000;

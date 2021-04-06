@@ -23,7 +23,6 @@ public class StormTrooper : Enemy
 		shotTimes = 0;
         stormTrooperDamage = 1.0f;
 
-
 		if (player == null)
 		{
 			if (Core.instance.gameObject == null)
@@ -31,6 +30,8 @@ public class StormTrooper : Enemy
 
 			player = Core.instance.gameObject;
 		}
+		Animator.Play(gameObject, "ST_Idle");
+   
 	}
 
 	public void Update()
@@ -49,6 +50,9 @@ public class StormTrooper : Enemy
 				//Debug.Log("Idle");
 
 				timePassed += Time.deltaTime;
+
+				if (player == null)
+					return;
 
 				if (InRange(player.transform.globalPosition, range))
 				{
@@ -84,6 +88,9 @@ public class StormTrooper : Enemy
 			case STATES.RUN:
 				//Debug.Log("Run");
 
+				if (targetPosition == null)
+					targetPosition = CalculateNewPosition(runningRange);
+
 				LookAt(targetPosition);
 				MoveToPosition(targetPosition, runningSpeed);
 
@@ -102,46 +109,50 @@ public class StormTrooper : Enemy
 				//Debug.Log("Wander");
 
 				if (player == null)
+                {
 					Debug.Log("Null player");
-
-				// If the player is in range attack him
-				if (InRange(player.transform.globalPosition, range))
-				{
-					currentState = STATES.SHOOT;
-					Animator.Play(gameObject, "ST_Shoot");
-					timePassed = timeBewteenShots;
-					//Play Sound("Shoot")
-					Audio.PlayAudio(gameObject, "Play_Blaster_Stormtrooper");
-				}
-				else if(!turretMode) //if not, keep wandering
-				{
-					if (targetPosition == null)
-                    {
-						targetPosition = CalculateNewPosition(wanderRange);
-						Animator.Play(gameObject, "ST_Run");
-						Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
-					}
-
-					LookAt(targetPosition);
-					MoveToPosition(targetPosition, wanderSpeed);
-
-					if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) < stoppingDistance)
+                }
+				else
+                {
+					// If the player is in range attack him
+					if (InRange(player.transform.globalPosition, range))
 					{
-						//targetPosition = CalculateNewPosition(wanderRange);
+						currentState = STATES.SHOOT;
+						Animator.Play(gameObject, "ST_Shoot");
+						timePassed = timeBewteenShots;
+						//Play Sound("Shoot")
+						Audio.PlayAudio(gameObject, "Play_Blaster_Stormtrooper");
+					}
+					else if (!turretMode) //if not, keep wandering
+					{
+						if (targetPosition == null)
+						{
+							targetPosition = CalculateNewPosition(wanderRange);
+							Animator.Play(gameObject, "ST_Run");
+							Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
+						}
+
+						LookAt(targetPosition);
+						MoveToPosition(targetPosition, wanderSpeed);
+
+						if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) < stoppingDistance)
+						{
+							//targetPosition = CalculateNewPosition(wanderRange);
+							currentState = STATES.IDLE;
+							Animator.Play(gameObject, "ST_Idle");
+							timePassed = 0.0f;
+							Audio.StopAudio(this.gameObject);
+						}
+					}
+					else
+					{
 						currentState = STATES.IDLE;
 						Animator.Play(gameObject, "ST_Idle");
 						timePassed = 0.0f;
 						Audio.StopAudio(this.gameObject);
 					}
 				}
-				else
-                {
-					currentState = STATES.IDLE;
-					Animator.Play(gameObject, "ST_Idle");
-					timePassed = 0.0f;
-					Audio.StopAudio(this.gameObject);
-				}
-				
+
 				break;
 
 			case STATES.SHOOT:
@@ -222,7 +233,7 @@ public class StormTrooper : Enemy
                 }
 				break;
 		}
-		
+		*/
 	}
 
 	public void OnCollisionEnter(GameObject collidedGameObject)
@@ -252,6 +263,8 @@ public class StormTrooper : Enemy
                 {
 					Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 1.0f);
                 }
+
+				Die();
 			}            
 		}
 		else if (collidedGameObject.CompareTag("Grenade"))
@@ -274,6 +287,8 @@ public class StormTrooper : Enemy
 				{
 					Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 0.5f);
 				}
+
+				Die();
 			}
 		}
 		else if (collidedGameObject.CompareTag("WorldLimit"))
@@ -287,11 +302,10 @@ public class StormTrooper : Enemy
 				Animator.Play(gameObject, "ST_Die", 1.0f);
 				Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
 				RemoveFromSpawner();
+
+				Die();
 			}
 		}
-
-
-
 	}
 
 	
@@ -313,5 +327,20 @@ public class StormTrooper : Enemy
 		//Debug.Log("Triggered by tag: " + triggeredGameObject.tag);
 	}
 
-   
+	public void Die()
+    {
+		Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
+		Counter.roomEnemies--;
+		Debug.Log("Enemies: " + Counter.roomEnemies.ToString());
+		if (Counter.roomEnemies <= 0)
+		{
+			Core.instance.gameObject.GetComponent<BoonSpawn>().SpawnBoons();
+			Debug.Log("Spawn Boon");
+		}
+
+		if(player != null)
+			player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+
+		InternalCalls.Destroy(gameObject);
+	}
 }
