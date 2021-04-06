@@ -1,18 +1,18 @@
 {
     "EditorCameraPosition": [
-        -50.948268890380859,
-        47.174953460693359,
-        -40.630592346191406
+        -17.434307098388672,
+        9.3205146789550781,
+        -12.239418029785156
     ],
     "EditorCameraZ": [
-        0.65607571601867676,
-        -0.56114226579666138,
-        0.50466251373291016
+        0.74981552362442017,
+        -0.40085712075233459,
+        0.52639347314834595
     ],
     "EditorCameraY": [
-        0.44477847218513489,
-        0.82771950960159302,
-        0.34212973713874817
+        0.32808166742324829,
+        0.91614055633544922,
+        0.23032338917255402
     ],
     "tags": [],
     "layers": [],
@@ -4998,7 +4998,7 @@
                     "max_hp": 50,
                     "force": 50,
                     "max_force": 50,
-                    "currency": 0,
+                    "currency": 900,
                     "bullets_main_weapon": 10,
                     "max_bullets_main_weapon": 10,
                     "bullets_secondary_weapon": 10,
@@ -5934,7 +5934,8 @@
                     "player": 1770459532,
                     "shopUI": 1993131308,
                     "hud": 1970467455,
-                    "interactionRange": 2
+                    "textPopUp": 116529508,
+                    "interactionRange": 4
                 }
             ]
         },
@@ -5942,7 +5943,7 @@
             "name": "PanelBG",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": false,
+            "Active": true,
             "Position": [
                 0,
                 0,
@@ -5973,12 +5974,12 @@
                     "Active": true,
                     "Position": [
                         0,
-                        0
+                        10.899999618530273
                     ],
                     "Rotation": 0,
                     "Size": [
-                        50,
-                        76.300003051757813
+                        53.700000762939453,
+                        87.099998474121094
                     ]
                 },
                 {
@@ -6033,7 +6034,7 @@
                     "Active": true,
                     "Position": [
                         -10.699999809265137,
-                        60.799999237060547
+                        69.300003051757813
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -6054,6 +6055,983 @@
                     "Active": true,
                     "text": "SHOP",
                     "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Button1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1324189369,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1993131308,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        41.799999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40,
+                        16
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SHOP\/panel_shop_press.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/1933806555.dds",
+                    "Pressed_UID": 1933806555,
+                    "Hovered_AssetsPath": "Assets\/UI\/SHOP\/panel_shop_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1448586789.dds",
+                    "Hovered_UID": 1448586789,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SHOP\/panel_shop.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1119336625.dds",
+                    "Unhovered_UID": 1119336625,
+                    "Script_Name": "SHOP",
+                    "ButtonState": 1,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SHOP\/panel_shop.png",
+                    "LibraryPath": "Library\/Textures\/1119336625.dds",
+                    "UID": 1119336625
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1324189369,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 703005603,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SHOP",
+                    "player": 1770459532,
+                    "shopUI": 1993131308,
+                    "hud": 1970467455,
+                    "textPopUp": 116529508,
+                    "interactionRange": 2
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 938207836,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1324189369,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -19.100000381469727,
+                        10.899999618530273
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        8,
+                        12
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Item 1",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 105615925,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1324189369,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -34.099998474121094,
+                        4.6999998092651367
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7,
+                        11
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Lorem Ipsum is simply dummy text of theprinting and typesetting industry. Lorem  Ipsum has been the industry's standard  dummy text ever since the 1500s.",
+                    "maxTextLenght": 840,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Button2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 703005603,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1993131308,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        7.1999998092651367
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40,
+                        16
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SHOP\/panel_shop_press.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/1933806555.dds",
+                    "Pressed_UID": 1933806555,
+                    "Hovered_AssetsPath": "Assets\/UI\/SHOP\/panel_shop_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1448586789.dds",
+                    "Hovered_UID": 1448586789,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SHOP\/panel_shop.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1119336625.dds",
+                    "Unhovered_UID": 1119336625,
+                    "Script_Name": "SHOP",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SHOP\/panel_shop.png",
+                    "LibraryPath": "Library\/Textures\/1119336625.dds",
+                    "UID": 1119336625
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 703005603,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 1324189369,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 985827193,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SHOP",
+                    "player": 1770459532,
+                    "shopUI": 1993131308,
+                    "hud": 1970467455,
+                    "textPopUp": 116529508,
+                    "interactionRange": 2
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1105143004,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 703005603,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -19.299999237060547,
+                        10.699999809265137
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        8,
+                        12
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Item 2",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1666626785,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 703005603,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -34.099998474121094,
+                        4.6999998092651367
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7,
+                        11
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Lorem Ipsum is simply dummy text of theprinting and typesetting industry. Lorem  Ipsum has been the industry's standard  dummy text ever since the 1500s.",
+                    "maxTextLenght": 840,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Button3",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 985827193,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1993131308,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        -27.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40,
+                        16
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SHOP\/panel_shop_press.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/1933806555.dds",
+                    "Pressed_UID": 1933806555,
+                    "Hovered_AssetsPath": "Assets\/UI\/SHOP\/panel_shop_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1448586789.dds",
+                    "Hovered_UID": 1448586789,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SHOP\/panel_shop.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1119336625.dds",
+                    "Unhovered_UID": 1119336625,
+                    "Script_Name": "SHOP",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SHOP\/panel_shop.png",
+                    "LibraryPath": "Library\/Textures\/1119336625.dds",
+                    "UID": 1119336625
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 985827193,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 703005603,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 1155932994,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SHOP",
+                    "player": 1770459532,
+                    "shopUI": 1993131308,
+                    "hud": 1970467455,
+                    "textPopUp": 116529508,
+                    "interactionRange": 2
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1116976768,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 985827193,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -19.600000381469727,
+                        10.899999618530273
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        8,
+                        12
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Item 3",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1534467428,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 985827193,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -34.099998474121094,
+                        4.6999998092651367
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7,
+                        11
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Lorem Ipsum is simply dummy text of theprinting and typesetting industry. Lorem  Ipsum has been the industry's standard  dummy text ever since the 1500s.",
+                    "maxTextLenght": 840,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ButtonHealth",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1155932994,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1993131308,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        -62.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40,
+                        16
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SHOP\/panel_shop_press.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/1933806555.dds",
+                    "Pressed_UID": 1933806555,
+                    "Hovered_AssetsPath": "Assets\/UI\/SHOP\/panel_shop_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1448586789.dds",
+                    "Hovered_UID": 1448586789,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SHOP\/panel_shop.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1119336625.dds",
+                    "Unhovered_UID": 1119336625,
+                    "Script_Name": "SHOP",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SHOP\/panel_shop.png",
+                    "LibraryPath": "Library\/Textures\/1119336625.dds",
+                    "UID": 1119336625
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1155932994,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 985827193,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 1285068717,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SHOP",
+                    "player": 1770459532,
+                    "shopUI": 1993131308,
+                    "hud": 1970467455,
+                    "textPopUp": 116529508,
+                    "interactionRange": 2
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 361739764,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1155932994,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -23.899999618530273,
+                        11.199999809265137
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        8,
+                        12
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Health Item",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 287817479,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1155932994,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -34.099998474121094,
+                        4.6999998092651367
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7,
+                        11
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Lorem Ipsum is simply dummy text of theprinting and typesetting industry. Lorem  Ipsum has been the industry's standard  dummy text ever since the 1500s.",
+                    "maxTextLenght": 840,
                     "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
                         1,
@@ -6097,8 +7075,8 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -42.400001525878906,
-                        62.799999237060547
+                        31.700000762939453,
+                        -87.800003051757813
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -6117,319 +7095,58 @@
                 {
                     "Type": 7,
                     "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SHOP\/button_return_press.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/991138649.dds",
+                    "Pressed_UID": 991138649,
+                    "Hovered_AssetsPath": "Assets\/UI\/SHOP\/button_return_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/276450203.dds",
+                    "Hovered_UID": 276450203,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SHOP\/button_return.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1606299495.dds",
+                    "Unhovered_UID": 1606299495,
+                    "Script_Name": "SHOP",
                     "ButtonState": 2,
                     "Is Selected": false
                 },
                 {
                     "Type": 11,
                     "Active": true,
-                    "AssetPath": "Empty",
+                    "AssetPath": "Assets\/UI\/SHOP\/button_return.png",
                     "LibraryPath": "Library\/Textures\/1606299495.dds",
                     "UID": 1606299495
                 },
                 {
                     "Type": 17,
                     "Active": true,
-                    "Map": [],
-                    "Button Being Used": -1,
-                    "Type Of UI": 7,
-                    "Is Selected": false
-                }
-            ]
-        },
-        {
-            "name": "Button1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1324189369,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 1993131308,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        0,
-                        37
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1285068717,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 1155932994,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
                     ],
-                    "Rotation": 0,
-                    "Size": [
-                        35.5,
-                        14.399999618530273
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 7,
-                    "Active": true,
-                    "ButtonState": 2,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/798321305.dds",
-                    "UID": 798321305
-                },
-                {
-                    "Type": 17,
-                    "Active": true,
-                    "Map": [],
                     "Button Being Used": -1,
                     "Type Of UI": 7,
                     "Is Selected": false
-                }
-            ]
-        },
-        {
-            "name": "Button2",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 703005603,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 1993131308,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
                 },
                 {
-                    "Type": 6,
+                    "Type": 5,
                     "Active": true,
-                    "Position": [
-                        0,
-                        5.3000001907348633
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        35.5,
-                        14.399999618530273
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 7,
-                    "Active": true,
-                    "ButtonState": 2,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/798321305.dds",
-                    "UID": 798321305
-                },
-                {
-                    "Type": 17,
-                    "Active": true,
-                    "Map": [],
-                    "Button Being Used": -1,
-                    "Type Of UI": 7,
-                    "Is Selected": false
-                }
-            ]
-        },
-        {
-            "name": "Button3",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 985827193,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 1993131308,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        0,
-                        -26.700000762939453
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        35.5,
-                        14.399999618530273
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 7,
-                    "Active": true,
-                    "ButtonState": 2,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/798321305.dds",
-                    "UID": 798321305
-                },
-                {
-                    "Type": 17,
-                    "Active": true,
-                    "Map": [],
-                    "Button Being Used": -1,
-                    "Type Of UI": 7,
-                    "Is Selected": false
-                }
-            ]
-        },
-        {
-            "name": "ButtonHealth",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1155932994,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 1993131308,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        0,
-                        -58.599998474121094
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        35.5,
-                        14.399999618530273
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 7,
-                    "Active": true,
-                    "ButtonState": 2,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/798321305.dds",
-                    "UID": 798321305
-                },
-                {
-                    "Type": 17,
-                    "Active": true,
-                    "Map": [],
-                    "Button Being Used": -1,
-                    "Type Of UI": 7,
-                    "Is Selected": false
+                    "ScriptName": "SHOP",
+                    "player": 1770459532,
+                    "shopUI": 1993131308,
+                    "hud": 1970467455,
+                    "textPopUp": 116529508,
+                    "interactionRange": 2
                 }
             ]
         },
@@ -6490,6 +7207,71 @@
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1618508553.dds",
                     "UID": 1618508553
+                }
+            ]
+        },
+        {
+            "name": "Press A to Buy",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 116529508,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "ParentUID": 1827275921,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -21.899999618530273,
+                        -74.800003051757813
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        17.200000762939453,
+                        28
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Press A to Buy",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }

@@ -259,6 +259,23 @@ vec3 ResourceMesh::GetVectorFromIndex(float* startValue)
 	return vec3(x, y, z);
 }
 
+void ResourceMesh::GetVertices(float* verticesArray)
+{
+	//int size = sizeof(*vertices) / sizeof(vertices[0]);
+
+	for (size_t i = 0; i < vertices_count; i++)
+	{
+		verticesArray[i * 3] = vertices[i * VERTEX_ATTRIBUTES];
+		verticesArray[i * 3 + 1] = vertices[i * VERTEX_ATTRIBUTES + 1];
+		verticesArray[i * 3 + 2] = vertices[i * VERTEX_ATTRIBUTES + 2];
+	}
+}
+
+int* ResourceMesh::GetTriangles() const
+{
+	return (int*)(indices);
+}
+
 const char* ResourceMesh::SaveCustomFormat(uint& retSize)
 {
 	uint aCounts[4] = { hasSkeleton, indices_count, vertices_count, bonesOffsets.size()};

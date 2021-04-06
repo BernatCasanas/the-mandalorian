@@ -2,6 +2,7 @@
 #define __CO_IMAGE2D_H__
 
 #include "Component.h"
+#include "DEResource.h"
 
 class ResourceTexture;
 class ResourceMaterial;
@@ -21,6 +22,7 @@ public:
 	ResourceTexture* GetTexture() const;
 	void SetTexture(ResourceTexture* tex);
 	void SetTexture(int UID, const char* library_path);
+	void SetTexture(int UID, Resource::Type _type);
 
 
 	void SaveData(JSON_Object* nObj) override;

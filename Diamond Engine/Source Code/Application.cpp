@@ -11,6 +11,7 @@
 #include "MO_Physics.h"
 #include "MO_AudioManager.h"
 #include "MO_GUI.h"
+#include "MO_Pathfinding.h"
 
 #ifndef STANDALONE
 #include "MO_Editor.h"
@@ -41,6 +42,7 @@ Application::Application() : quitApplicationState(false), fpsCap(60)
 	modulePhysics = new ModulePhysics(this);
 	moduleAudio = new ModuleAudioManager(this);
 	moduleMono = new M_MonoManager(this);
+	modulePathfinding = new M_Pathfinding(this);
 
 	moduleResources = new M_ResourceManager(this);
 
@@ -70,6 +72,7 @@ Application::Application() : quitApplicationState(false), fpsCap(60)
 	AddModule(moduleCamera);
 #endif
 	AddModule(moduleMono);
+	AddModule(modulePathfinding);
 
 	AddModule(moduleResources);
 
