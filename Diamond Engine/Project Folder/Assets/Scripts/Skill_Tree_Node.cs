@@ -67,38 +67,38 @@ public class Skill_Tree_Node : DiamondComponent
         if (previous_button_selected.GetComponent<Skill_Tree_Node>().nav_left != null)
         {
             nav_left = previous_button_selected.GetComponent<Skill_Tree_Node>().nav_left;
-            //Set this Navigation
+            gameObject.GetComponent<Navigation>().SetLeftNavButton(nav_left);
             nav_left.GetComponent<Skill_Tree_Node>().nav_right = gameObject;
-            //Set Navigation brother left;
+            nav_left.GetComponent<Navigation>().SetRightNavButton(gameObject);
         }
 
         if (previous_button_selected.GetComponent<Skill_Tree_Node>().nav_right != null)
         {
             nav_right = previous_button_selected.GetComponent<Skill_Tree_Node>().nav_right;
-            //Set this Navigation
+            gameObject.GetComponent<Navigation>().SetRightNavButton(nav_right);
             nav_right.GetComponent<Skill_Tree_Node>().nav_left = gameObject;
-            //Set Navigation brother right;
+            nav_right.GetComponent<Navigation>().SetLeftNavButton(gameObject);
         }
 
         if (previous_button_selected.GetComponent<Skill_Tree_Node>().nav_up != null)
         {
             nav_up = previous_button_selected.GetComponent<Skill_Tree_Node>().nav_up;
-            //Set this Navigation
+            gameObject.GetComponent<Navigation>().SetUpNavButton(nav_up);
             if (nav_up.GetComponent<Skill_Tree_Node>().nav_down == previous_button_selected)
             {
                 nav_up.GetComponent<Skill_Tree_Node>().nav_down = gameObject;
-                //Set Navigation brother left;
+                nav_up.GetComponent<Navigation>().SetDownNavButton(gameObject);
             }
         }
 
         if (previous_button_selected.GetComponent<Skill_Tree_Node>().nav_down != null)
         {
             nav_down = previous_button_selected.GetComponent<Skill_Tree_Node>().nav_down;
-            //Set this Navigation
+            gameObject.GetComponent<Navigation>().SetDownNavButton(nav_down);
             if (nav_down.GetComponent<Skill_Tree_Node>().nav_up == previous_button_selected)
             {
                 nav_down.GetComponent<Skill_Tree_Node>().nav_up = gameObject;
-                //Set Navigation brother left;
+                nav_down.GetComponent<Navigation>().SetUpNavButton(gameObject);
             }
         }
     }
