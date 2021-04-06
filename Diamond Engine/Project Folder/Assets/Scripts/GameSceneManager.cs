@@ -52,7 +52,7 @@ public class GameSceneManager : DiamondComponent
 
             if (rewardSpawnComponent.trigger == true)
             {
-                rewardObject.Enable(false);
+                //rewardObject.Enable(false);
                 // Then the player touches the thing, we add whatever they won to the player object, we disable rewardObject and we change scene :D
                 // All bools that regulate stuff should be put at false when changing scene
             }
