@@ -27,7 +27,7 @@
 #include "RecastNavigation/DebugUtils/SampleInterfaces.h"
 
 M_Pathfinding::M_Pathfinding(Application* app, bool start_enabled) : Module(app, start_enabled),
-geometry(nullptr), navMeshBuilder(nullptr), walkabilityPoint(nullptr), debugDraw(true),
+geometry(nullptr), navMeshBuilder(nullptr), walkabilityPoint(nullptr), debugDraw(false),
 randomPointSet(false), randomRadius(0.0f)
 {
 	geometry = new InputGeom();
@@ -35,6 +35,10 @@ randomPointSet(false), randomRadius(0.0f)
 	agents.push_back(NavAgent());
 
 	randomPoint = float3::inf;
+
+#ifndef STANDALONE
+	debugDraw = true;
+#endif // !STANDALONE
 }
 
 M_Pathfinding::~M_Pathfinding()
@@ -113,8 +117,11 @@ int M_Pathfinding::Save(const char* scene_path)
 	rcVcopy(settings.navMeshBMin, geometry->getNavMeshBoundsMin());
 	rcVcopy(settings.navMeshBMax, geometry->getNavMeshBoundsMax());
 
+	if (navMeshBuilder == nullptr)
+		return -1;
+
 	navMeshBuilder->CollectSettings(settings);
-	navMeshBuilder->CollectSettings(settings);
+
 	return NavMeshImporter::Save(navMeshPath.c_str(), navMeshBuilder->GetNavMesh(), settings);
 }
 
@@ -201,8 +208,9 @@ void M_Pathfinding::CheckNavMeshIntersection(LineSegment raycast, int clickedMou
 
 	if (geometry->getChunkyMesh() == nullptr)
 	{
-		BakeNavMesh();
-		LOG(LogType::L_WARNING, "No chunky mesh set, one has been baked to avoid crashes");
+		return;
+		//BakeNavMesh();
+		//LOG(LogType::L_WARNING, "No chunky mesh set, one has been baked to avoid crashes");
 	}
 
 	float hitTime;
@@ -265,6 +273,8 @@ void M_Pathfinding::ClearNavMeshes()
 
 	geometry = new InputGeom();
 	geometry->SetMesh(new ResourceMesh(EngineExternal->GetRandomInt()));
+
+	pathfinder;
 }
 
 bool M_Pathfinding::IsWalkable(float x, float z, float3& hitPoint)
@@ -311,6 +321,8 @@ void M_Pathfinding::BakeNavMesh()
 			AddGameObjectToNavMesh(gameObjects[i]);
 		}
 	}
+
+	pathfinder.Init(navMeshBuilder);
 }
 
 void M_Pathfinding::AddGameObjectToNavMesh(GameObject* objectToAdd)
@@ -336,7 +348,7 @@ void M_Pathfinding::AddGameObjectToNavMesh(GameObject* objectToAdd)
 	navMeshBuilder->HandleSettings();
 	navMeshBuilder->HandleBuild();
 
-	pathfinder.Init(navMeshBuilder);
+	//pathfinder.Init(navMeshBuilder);
 }
 
 NavMeshBuilder* M_Pathfinding::GetNavMeshBuilder()
