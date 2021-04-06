@@ -20,7 +20,7 @@ public class GameSceneManager : DiamondComponent
         if (Counter.roomEnemies > 0)    // This would, ideally, not be necessary, and enemies generating would have nothing to do with dialogue ocurring, since it would (presumably) stop the game
         {
             enemiesHaveSpawned = true;
-            Counter.roomEnemies = 0;    // KILL THIS LINE, IT'S ONLY FOR DEBUG PURPOSES
+            //Counter.roomEnemies = 0;    // KILL THIS LINE, IT'S ONLY FOR DEBUG PURPOSES
         }
 
         else if (enemiesHaveSpawned && Counter.roomEnemies <= 0 && rewardData == null)    // Right now, when a room begins, enemy counter = 0
@@ -53,12 +53,12 @@ public class GameSceneManager : DiamondComponent
             if (rewardSpawnComponent.trigger == true)
             {
                 rewardObject.Enable(false);
+                // Then the player touches the thing, we add whatever they won to the player object, we disable rewardObject and we change scene :D
+                // All bools that regulate stuff should be put at false when changing scene
             }
 
         }
 
-        // Then the player touches the thing, we add whatever they won to the player object, we disable rewardObject and we change scene :D
-        // All bools that regulate stuff should be put at false when changing scene
 
     }
 
