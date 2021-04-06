@@ -495,6 +495,18 @@ void C_Navigation::LoadMapaData(DEConfig& nObj)
 	EngineExternal->moduleScene->navigationReferenceMap.emplace(nObj.ReadInt("UID"), &map_of_buttons_and_joysticks[static_cast<BUTTONSANDJOYSTICKS>(nObj.ReadInt("Index"))]);
 }
 
+void C_Navigation::SetButtonOrJoystickWithGameobject(ACTIONSNAVIGATION action_to_do, BUTTONSANDJOYSTICKS button_or_joystick, GameObject* gameobject)
+{
+	if (map_of_buttons_and_joysticks.count(button_or_joystick) != 0) {
+		map_of_buttons_and_joysticks[button_or_joystick].action = action_to_do;
+	}
+	else {
+		map_of_buttons_and_joysticks.emplace(button_or_joystick, action_to_do);
+	}
+
+	map_of_buttons_and_joysticks[button_or_joystick].referenceGO = gameobject;
+}
+
 
 
 #ifndef STANDALONE
