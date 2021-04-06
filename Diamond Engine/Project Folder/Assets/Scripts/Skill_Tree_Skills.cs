@@ -5,8 +5,10 @@ using DiamondEngine;
 namespace DiamondEngine {
 	public class Skills
     {
+        bool active = false;
 		public virtual void Use()
 		{
+            active = true;
 		}
 	}
 
