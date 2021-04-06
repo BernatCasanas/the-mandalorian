@@ -96,7 +96,7 @@ public class Enemy : DiamondComponent
 
 		Quaternion dir = Quaternion.RotateAroundAxis(Vector3.up, angle);
 
-		float rotationSpeed = Time.deltaTime * agent.angularSpeed;
+		float rotationSpeed = Time.deltaTime * /*agent.angularSpeed*/1;
 		//Debug.Log("CS: Rotation speed: " + rotationSpeed.ToString());
 		//Debug.Log("CS: Time: " + Time.deltaTime);
 

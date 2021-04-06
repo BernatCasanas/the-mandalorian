@@ -12,7 +12,9 @@ public class StormTrooper : Enemy
 	private float pushSkillTimer = 0.15f;
 	private float pushSkillSpeed = 0.2f;
     public float stormTrooperDamage = 5.0f;
-    
+
+	private bool scriptStart = true;
+
 
 	public void Start()
 	{
@@ -20,16 +22,26 @@ public class StormTrooper : Enemy
 		targetPosition = CalculateNewPosition(wanderRange);
 		shotTimes = 0;
         stormTrooperDamage = 1.0f;
-   
+
+
+		if (player == null)
+		{
+			if (Core.instance.gameObject == null)
+				Debug.Log("Null player");
+
+			player = Core.instance.gameObject;
+		}
 	}
 
 	public void Update()
 	{
-		if (player == null)
-        {
-			Debug.Log("Null player");
-			player = Core.instance.gameObject;
-        }
+
+		if (scriptStart == true)
+		{
+			Start();
+			scriptStart = false;
+		}
+
 
 		switch (currentState)
 		{
