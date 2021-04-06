@@ -108,6 +108,20 @@ public class PlayerHealth : DiamondComponent
             die = true;
         }
     }
+    //Increments the current Hp by the percentatge given as a parameter (1 = 100% 0 = 0%) It can also be negative to take percentual damage
+    public void HealPercentMax(float percentofMaxHp)
+    {
+        currHealth += (int)(currMaxHealth * percentofMaxHp);
+        currHealth = Math.Min(currMaxHealth, currHealth);
+
+        if (Core.instance.hud != null)
+            Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
+
+        if (currHealth <= 0)
+        {
+            die = true;
+        }
+    }
 
     //When current HP drops to 0, Die() Method is called
     public void SetCurrentHP(int newCurrentHP)
