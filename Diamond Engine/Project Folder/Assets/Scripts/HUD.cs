@@ -2,6 +2,52 @@ using System;
 using DiamondEngine;
 using System.Collections.Generic;
 
+//used for when the combo is incremented; easily expanded
+class ComboLvlUpEffects
+{
+    //Constructors
+    public ComboLvlUpEffects()
+    {
+        colorUpdate = new Vector3(1.0f, 1.0f, 1.0f); //default color case
+        forceBarPercentageRecovery = 0.0f;
+    }
+    public ComboLvlUpEffects(Vector3 color, float forceBarRecoveryPercent)
+    {
+        colorUpdate = color;
+        forceBarPercentageRecovery = forceBarRecoveryPercent;
+    }
+    // Copy constructor.
+    public ComboLvlUpEffects(ComboLvlUpEffects previouscomboLvlUp)
+    {
+        colorUpdate = previouscomboLvlUp.colorUpdate;
+        forceBarPercentageRecovery = previouscomboLvlUp.forceBarPercentageRecovery;
+    }
+
+    public Vector3 colorUpdate = new Vector3(1.0f, 1.0f, 1.0f); //default color case
+    public float forceBarPercentageRecovery = 0.0f;
+}
+
+//used for when the combo ends; easily expanded
+class ComboResetEffects
+{
+    //Constructors
+    public ComboResetEffects()
+    {
+        hpToRestore = 0.0f;
+    }
+    public ComboResetEffects(float hpToRestore)
+    {
+        this.hpToRestore = hpToRestore;
+    }
+    // Copy constructor.
+    public ComboResetEffects(ComboResetEffects previouscomboReset)
+    {
+        hpToRestore = previouscomboReset.hpToRestore;
+    }
+
+    public float hpToRestore = 0.0f;
+}
+
 public class HUD : DiamondComponent
 {
     public int hp = 0;
@@ -27,6 +73,7 @@ public class HUD : DiamondComponent
     public GameObject combo_gameobject = null;
     public GameObject force_wave = null;
     public GameObject force_wave_second = null;
+    public GameObject force_wave_third = null;
     private bool start = true;
     private float pulsation_rate = 0.0f;
     private bool pulsation_forward = true;
@@ -40,15 +87,24 @@ public class HUD : DiamondComponent
     public float force_bar_rate = 0.0f;
     public float last_hp = 0;
 
-    //stores the level as a key and the color as a value
-    Dictionary<int, Vector3> comboLvlColors = new Dictionary<int, Vector3>
+    //stores the level as a key and the reward as a value
+    Dictionary<int, ComboLvlUpEffects> lvlUpComboRewards = new Dictionary<int, ComboLvlUpEffects>
     {
-        { 0, new Vector3(0.0f,0.8f,1.0f)},
-        { 10, new Vector3(0.0f,1.0f,0.0f)},
-        { 25, new Vector3(1.0f,1.0f,0.0f)},
-        { 45, new Vector3(0.79f,0.28f,0.96f)},
-        { 77, new Vector3(1.0f,1.0f,1.0f)},
-            //TODO Add colors here
+        { 0,   new ComboLvlUpEffects(   new Vector3(0.0f,0.8f,1.0f),    0.0f)},
+        { 10,   new ComboLvlUpEffects(   new Vector3(0.0f,1.0f,0.0f),    0.05f)},
+        { 25,   new ComboLvlUpEffects(   new Vector3(1.0f,1.0f,0.0f),    0.1f)},
+        { 45,   new ComboLvlUpEffects(   new Vector3(0.79f,0.28f,0.96f), 0.15f)},
+        { 77,   new ComboLvlUpEffects(   new Vector3(1.0f,1.0f,1.0f),    0.2f)},
+            //TODO Add lvlUpRewards here
+    };
+    //stores the level as a key and the reward as a value
+    Dictionary<int, ComboResetEffects> endOfComboRewards = new Dictionary<int, ComboResetEffects>
+    {
+        { 0,   new ComboResetEffects( 0.0f)},
+        { 25,   new ComboResetEffects( 0.05f)},
+        { 45,   new ComboResetEffects( 0.15f)},
+        { 77,   new ComboResetEffects( 0.28f)},
+            //TODO Add endOfComboRewards here
     };
 
 
@@ -106,7 +162,6 @@ public class HUD : DiamondComponent
                 if (force == 0)
                 {
                     ChangeAlphaSkillPush(true);
-
                 }
                 force += 10;
                 UpdateForce(force, max_force);
@@ -197,7 +252,12 @@ public class HUD : DiamondComponent
         if (force_wave_second != null)
         {
             force_wave_second.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
-            force_wave_second.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate*2);
+            force_wave_second.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate);
+        }
+        if (force_wave_third != null)
+        {
+            force_wave_third.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
+            force_wave_third.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate);
         }
 
         if (force_bar != null)
@@ -225,6 +285,8 @@ public class HUD : DiamondComponent
             float extraCombo = currComboTime - fullComboTime;
             IncrementCombo();
             AddToCombo(extraCombo, weaponDecreaseTimeMultiplier);
+
+            OnLvlUpComboChange();
         }
 
         if (comboNumber > 0 && !combo_gameobject.IsEnabled())
@@ -232,17 +294,17 @@ public class HUD : DiamondComponent
             combo_gameobject.Enable(true);
         }
 
+        if (combo_text == null)
+            return;
+
+        combo_text.GetComponent<Text>().text = "x" + comboNumber.ToString();
+
         if (combo_bar == null)
             return;
 
         combo_bar.GetComponent<Material>().SetIntUniform("combo_number", comboNumber);
         combo_bar.GetComponent<Material>().SetFloatUniform("length_used", Mathf.InvLerp(0, fullComboTime, currComboTime));
 
-        if (combo_text == null)
-            return;
-
-        combo_text.GetComponent<Text>().text = "x" + comboNumber.ToString();
-        ChangeComboColor();
     }
 
     void IncrementCombo()
@@ -257,14 +319,14 @@ public class HUD : DiamondComponent
     {
         float toSubstract = currComboTime - Mathf.Lerp(currComboTime, -0.0f, Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier);
 
-        toSubstract = Math.Max(toSubstract, Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier * 1.5f);
+        toSubstract = Math.Max(toSubstract, Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier);
         toSubstract = Math.Min(toSubstract, Time.deltaTime * (1 / comboDecrementMultiplier) * fullComboTime * 0.25f);
         currComboTime -= toSubstract;
 
         if (currComboTime <= 0.0f)
         {
             currComboTime = 0.0f;
-            ResetCombo();
+            ResetCombo(true);
             return false;
         }
         Material mat = combo_bar.GetComponent<Material>();
@@ -273,49 +335,98 @@ public class HUD : DiamondComponent
         return true;
     }
 
-    public void ResetCombo()
+    public void ResetCombo(bool applyRewards = false)
     {
+        if (applyRewards)
+        {
+
+            ComboResetEffects endOfComboData = new ComboResetEffects();
+            bool lastEffect = false;
+            int key = 0;
+            foreach (KeyValuePair<int, ComboResetEffects> reward in endOfComboRewards)
+            {
+                lastEffect = false;
+                key = reward.Key;
+                if (comboNumber >= key)
+                {
+                    endOfComboData = reward.Value;
+                    lastEffect = true;
+                }
+            }
+
+            float hpPercentageToIncrease = 0.0f;
+            if (lastEffect)//special formula for when the effect applied is the last one in the dictionary
+            {
+                int comboLvlToOffset = 10; //every X lvls, offset will increase by 1
+                int comboLvlOffset = (comboNumber - key) / comboLvlToOffset;
+                hpPercentageToIncrease = endOfComboData.hpToRestore + (0.05f * comboLvlOffset);
+            }
+            else //normal reward case
+            {
+                hpPercentageToIncrease = endOfComboData.hpToRestore;
+            }
+
+
+            if (Core.instance != null && Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
+            {
+                Core.instance.gameObject.GetComponent<PlayerHealth>().HealPercentMax(hpPercentageToIncrease);
+            }
+
+        }
+
         comboNumber = 0;
         comboDecrementMultiplier = 1.0f;
         lastWeaponDecrementMultiplier = 1.0f;
         fullComboTime = 100.0f;
         currComboTime = 0.0f;
 
-        Material comboMat = combo_bar.GetComponent<Material>();
+        OnLvlUpComboChange();
 
+
+        Material comboMat = combo_bar.GetComponent<Material>();
         if (comboMat != null)
+        {
             comboMat.SetIntUniform("combo_number", comboNumber);
+            combo_bar.GetComponent<Material>().SetFloatUniform("length_used", Mathf.InvLerp(0, fullComboTime, currComboTime));
+        }
+
+        if (combo_text == null || combo_text.GetComponent<Text>()==null)
+            return;
+
+        combo_text.GetComponent<Text>().text = "x" + comboNumber.ToString();
 
         if (combo_gameobject != null)
             combo_gameobject.Enable(false);
     }
 
-    void ChangeComboColor()
+    //Updates the combo color + gives rewards
+    void OnLvlUpComboChange()
     {
-        Vector3 newColor = new Vector3(0.0f, 0.8f, 1.0f); //default color in case the dictionary is empty
-
-        foreach (KeyValuePair<int, Vector3> lvlColor in comboLvlColors)
+        ComboLvlUpEffects lvlUpComboData = new ComboLvlUpEffects();
+        foreach (KeyValuePair<int, ComboLvlUpEffects> lvlUpChange in lvlUpComboRewards)
         {
-            int key = lvlColor.Key;
-            Vector3 value = new Vector3(lvlColor.Value.x, lvlColor.Value.y, lvlColor.Value.z);
+            int key = lvlUpChange.Key;
             if (comboNumber >= key)
             {
-                newColor = value;
+                lvlUpComboData = lvlUpChange.Value;
             }
         }
+
+        UpdateForce((int)(force + (max_force * lvlUpComboData.forceBarPercentageRecovery)), max_force); //TODO check this works fine (at the time of creating this line force doesn't work and this part of the method cannot be tested)
+
 
         Text t = combo_text.GetComponent<Text>();
         if (t != null)
         {
-            t.color_red = newColor.x;
-            t.color_green = newColor.y;
-            t.color_blue = newColor.z;
+            t.color_red = lvlUpComboData.colorUpdate.x;
+            t.color_green = lvlUpComboData.colorUpdate.y;
+            t.color_blue = lvlUpComboData.colorUpdate.z;
         }
         if (combo_bar != null)
         {
-            combo_bar.GetComponent<Material>().SetFloatUniform("r", newColor.x);
-            combo_bar.GetComponent<Material>().SetFloatUniform("g", newColor.y);
-            combo_bar.GetComponent<Material>().SetFloatUniform("b", newColor.z);
+            combo_bar.GetComponent<Material>().SetFloatUniform("r", lvlUpComboData.colorUpdate.x);
+            combo_bar.GetComponent<Material>().SetFloatUniform("g", lvlUpComboData.colorUpdate.y);
+            combo_bar.GetComponent<Material>().SetFloatUniform("b", lvlUpComboData.colorUpdate.z);
         }
     }
 
@@ -344,13 +455,15 @@ public class HUD : DiamondComponent
 
     public void UpdateForce(int new_force, int max_force)
     {
-        if (force_bar == null || force_wave == null || force_wave_second == null)
+        if (force_bar == null || force_wave == null || force_wave_second == null || force_wave_third == null)
             return;
         float force_float = new_force;
         force_float /= max_force;
+        force_float = Math.Max(force_float, 1.0f);
         force_bar.GetComponent<Material>().SetFloatUniform("length_used", force_float);
         force_wave.GetComponent<Material>().SetFloatUniform("length_used", force_float);
         force_wave_second.GetComponent<Material>().SetFloatUniform("length_used", force_float);
+        force_wave_third.GetComponent<Material>().SetFloatUniform("length_used", force_float);
     }
 
     public void ChangeAlphaSkillPush(bool alpha_full)
