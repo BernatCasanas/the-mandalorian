@@ -451,10 +451,6 @@ public class StormTrooper2 : Enemy
 
         RemoveFromSpawner();
 
-        if (Core.instance.hud != null)
-        {
-            Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 1.0f);
-        }
 
     }
     private void UpdateDie()
@@ -481,6 +477,11 @@ public class StormTrooper2 : Enemy
             //Debug.Log("Collision bullet");
             healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
 
+            if (Core.instance.hud != null)
+            {
+                Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 1.0f);
+            }
+
             if (currentState != STATE.DIE && healthPoints <= 0.0f)  //quitar STATE
             {
                 inputsList.Add(INPUT.IN_DIE);
@@ -491,6 +492,11 @@ public class StormTrooper2 : Enemy
             Debug.Log("Collision Grenade");
 
             healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+
+            if (Core.instance.hud != null)
+            {
+                Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 0.5f);
+            }
 
             if (currentState != STATE.DIE && healthPoints <= 0.0f)  //quitar STATE
             {
