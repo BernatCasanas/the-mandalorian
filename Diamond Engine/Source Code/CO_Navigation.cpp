@@ -499,12 +499,15 @@ void C_Navigation::SetButtonOrJoystickWithGameobject(ACTIONSNAVIGATION action_to
 {
 	if (map_of_buttons_and_joysticks.count(button_or_joystick) != 0) {
 		map_of_buttons_and_joysticks[button_or_joystick].action = action_to_do;
+		map_of_buttons_and_joysticks[button_or_joystick].referenceGO = gameobject;
 	}
 	else {
-		map_of_buttons_and_joysticks.emplace(button_or_joystick, action_to_do);
+		ActionToRealize action;
+		action.action = action_to_do;
+		action.referenceGO = gameObject;
+		map_of_buttons_and_joysticks.emplace(button_or_joystick, action);
 	}
 
-	map_of_buttons_and_joysticks[button_or_joystick].referenceGO = gameobject;
 }
 
 
