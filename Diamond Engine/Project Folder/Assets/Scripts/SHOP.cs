@@ -10,6 +10,8 @@ public class SHOP : DiamondComponent
     public GameObject textPopUp;
     public float interactionRange = 2.0f;
     
+    private bool firstClick = true;
+
     public void Update()
     {
         if (InRange(player.transform.globalPosition, interactionRange))
@@ -38,24 +40,24 @@ public class SHOP : DiamondComponent
         switch (item)
         {
             case 0:
-                if(currency >= 150)
+                if (currency >= 150)
                 {
                     Debug.Log("Bought Item 1");
                     cost = currency - 150;
                 }
                 break;
             case 1:
-                if (currency >= 200)
+                if (currency >= 230)
                 {
                     Debug.Log("Bought Item 2");
-                    cost = currency - 200;
+                    cost = currency - 230;
                 }
                 break;
             case 2:
-                if (currency >= 250)
+                if (currency >= 310)
                 {
                     Debug.Log("Bought Item 3");
-                    cost = currency - 250;
+                    cost = currency - 310;
                 }
                 break;
             case 3:
@@ -70,9 +72,9 @@ public class SHOP : DiamondComponent
         if (cost == -1) Debug.Log("Not enough money");
         else
         {
+            hud.GetComponent<HUD>().currency = cost;
             hud.GetComponent<HUD>().UpdateCurrency(cost);
         }
-
     }
 
     public void OnExecuteButton()
@@ -97,6 +99,7 @@ public class SHOP : DiamondComponent
         {
             shopUI.Enable(!shopUI.IsEnabled());
             Time.ResumeGame();
+            firstClick = true;
             textPopUp.Enable(true);
         }
     }
