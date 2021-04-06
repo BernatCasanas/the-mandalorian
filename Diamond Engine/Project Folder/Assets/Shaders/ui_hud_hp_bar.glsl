@@ -20,24 +20,44 @@ out vec4 fragmentColor;
 
 uniform sampler2D ourTexture;
 uniform float length_used;
+uniform float last_hp;
+uniform float t;
 
 void main() {
-	if(textureCoords.x>length_used){
+	float g = length_used*length_used*1.5;
+	if (g >= 0.8)g=0.8;
+	if (textureCoords.x > last_hp)
+	{
 		fragmentColor=vec4(0,0,0,0);
+	}
+	else if(textureCoords.x<last_hp && textureCoords.x > length_used)
+	{
+		fragmentColor = texture(ourTexture,textureCoords)*vec4(0.5,0,0.1,1);
+	}
+	else
+	{
+		if(length_used > 0.5)
+		{
+			fragmentColor = texture(ourTexture,textureCoords)*mix(vec4(1*t,0.51*t,0,1),vec4(0.03*t,0.6*t,0.05*t,1),(length_used-0.5)*2);
 		}
+		else if(length_used <= 0.5)
+		{
+			fragmentColor = texture(ourTexture,textureCoords)*mix(vec4(1*t,0,0,1),vec4(1*t,0.51*t,0,1),length_used*2);
+		}
+	}
+	/*
 	else if(length_used<0.15){
-		fragmentColor = texture(ourTexture,textureCoords)*vec4(1,0,0,1);
+		fragmentColor = texture(ourTexture,textureCoords)*vec4(0.6,0,0.1,1);
 	}
 	else if(length_used<=0.5){
-		fragmentColor = texture(ourTexture,textureCoords)-vec4(0,0.3,0,1)+vec4(0.7,0.2,0,1);
+		fragmentColor = texture(ourTexture,textureCoords)*(vec4(0,0.3,0,1)+vec4(0.7,0.2,0,1));
 	}
-	
-	else{
-		fragmentColor = texture(ourTexture,textureCoords);
-	}
+	*/
 }
 
 #endif
+
+
 
 
 

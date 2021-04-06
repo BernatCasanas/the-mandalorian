@@ -136,6 +136,7 @@ void FileSystem::CreateLibraryFolders()
 	CreateDir(SOUNDS_PATH);
 	CreateDir(PREFABS_PATH);
 	CreateDir(FONTS_PATH);
+	CreateDir(NAVMESHES_PATH);
 
 	CreateLibrarySoundBanks();//TODO move this somewhere else? ask myke
 	CreateLibraryFonts();//TODO same bro

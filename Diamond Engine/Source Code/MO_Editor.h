@@ -26,6 +26,7 @@ enum class EditorWindow {
 	SCENE,
 	GAME,
 	TEXTEDITOR,
+	PATHFINDING,
 
 	//Help tab
 	ABOUT,
@@ -73,6 +74,8 @@ public:
 
 	IconManager editorIcons;
 	ShortcutManager shortcutManager;
+
+	bool IsWindowSelected(EditorWindow windowType);
 
 private:
 	std::vector<Window*> windows;

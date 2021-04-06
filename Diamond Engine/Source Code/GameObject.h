@@ -45,7 +45,7 @@ public:
 	void LoadComponents(JSON_Array* componentArray);
 	void RemoveComponent(Component* ptr);
 
-	void ChangeParent(GameObject*);
+	void ChangeParent(GameObject* newParent);
 	bool IsChild(GameObject*);
 
 	void RemoveChild(GameObject*);

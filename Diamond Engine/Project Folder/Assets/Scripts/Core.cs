@@ -58,7 +58,7 @@ public class Core : DiamondComponent
     private double angle = 0.0f;
 
     // Dash
-    private float timeSinceLastDash = 0.0f;
+    //private float timeSinceLastDash = 0.0f;
     public float dashCD = 0.33f;
     public float dashDuration = 0.25f;
     public float dashDistance = 1.0f;
@@ -76,7 +76,7 @@ public class Core : DiamondComponent
     private bool hasShot = false;
 
     public float fireRateAfterDashRecoverRatio = 2.0f;
-    private float secondaryRateRecoverCap = 0.0f;
+    //private float secondaryRateRecoverCap = 0.0f;
 
     public float fireRateMultCap = 0.0f;
     private int deathZone = 15000;
@@ -89,7 +89,6 @@ public class Core : DiamondComponent
 
     //Animations
     private float shootAnimationTotalTime = 0.0f;
-    public string currentStateString = "";
 
     //Controller Variables
     int verticalInput = 0;
@@ -101,7 +100,6 @@ public class Core : DiamondComponent
     public GameObject pause = null;
 
     private Vector3 mySpawnPos = new Vector3(0.0f, 0.0f, 0.0f);
-    // private Pause aux = null;
 
     AimBot myAimbot = null;
 
@@ -455,7 +453,7 @@ public class Core : DiamondComponent
 
     private void UpdateShooting()
     {
-        if (myAimbot!=null && myAimbot.HasObjective())
+        if (myAimbot != null && myAimbot.HasObjective())
             myAimbot.RotateToObjective();
         else if (IsJoystickMoving() == true)
             RotatePlayer();
@@ -644,15 +642,21 @@ public class Core : DiamondComponent
         //else
         //gamepadInput = new Vector3(0f, 0f, 0f);
 
-        /*if (Input.GetGamepadButton(DEControllerButton.START) == KeyState.KEY_DOWN)
+        if (Input.GetGamepadButton(DEControllerButton.START) == KeyState.KEY_DOWN)
         {
             Audio.StopAudio(gameObject);
-            pause.Enable(true);
-            aux = pause.GetComponent<Pause>();
-            aux.DisplayBoons();
-            background.Enable(true);
-            Time.PauseGame();
-        }*/
+
+            if (pause != null)
+            {
+                pause.Enable(true);
+                pause.GetComponent<Pause>().DisplayBoons();
+                background.Enable(true);
+                Time.PauseGame();
+            }
+
+            else
+                Debug.Log("Need to add pause GO");
+        }
     }
 
     private bool IsJoystickMoving()

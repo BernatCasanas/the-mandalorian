@@ -27,6 +27,7 @@ namespace StringLogic {
 #define ANIMATIONS_PATH "Library/Animations/"
 #define PREFABS_PATH "Library/Prefabs/"
 #define FONTS_PATH "Library/Fonts/"
+#define NAVMESHES_PATH "Library/NavMeshes/"
 
 namespace FileSystem
 {

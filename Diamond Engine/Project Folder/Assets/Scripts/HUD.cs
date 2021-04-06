@@ -25,8 +25,12 @@ public class HUD : DiamondComponent
     public GameObject combo_bar = null;
     public GameObject combo_text = null;
     public GameObject combo_gameobject = null;
+    public GameObject force_wave = null;
+    public GameObject force_wave_second = null;
+    public GameObject force_wave_third = null;
     private bool start = true;
-
+    private float pulsation_rate = 0.0f;
+    private bool pulsation_forward = true;
 
 
     private float fullComboTime = 0.0f;
@@ -34,6 +38,8 @@ public class HUD : DiamondComponent
     public int comboNumber = 0;
     float comboDecrementMultiplier = 1.0f;
     float lastWeaponDecrementMultiplier = 1.0f;
+    public float force_bar_rate = 0.0f;
+    public float last_hp = 0;
 
     //stores the level as a key and the color as a value
     Dictionary<int, Vector3> comboLvlColors = new Dictionary<int, Vector3>
@@ -53,6 +59,8 @@ public class HUD : DiamondComponent
         {
             UpdateHP(PlayerHealth.currHealth, PlayerHealth.currMaxHealth);
             ResetCombo();
+            UpdateForce(force, max_force);
+            force_bar_rate = -0.15f;
             start = false;
         }
         if (Input.GetKey(DEKeyCode.C) == KeyState.KEY_DOWN)
@@ -64,15 +72,18 @@ public class HUD : DiamondComponent
         {
             if (hp < max_hp)
             {
-                hp += 5;
+                //hp += 5;
                 //UpdateHP(hp, max_hp);
+                //last_hp = hp;
             }
         }
         if (Input.GetKey(DEKeyCode.D) == KeyState.KEY_DOWN)
         {
             if (hp > 0)
             {
-                hp -= 5;
+                //if (!(last_hp > hp))
+                //last_hp = hp;
+                //hp -= 5;
                 //UpdateHP(hp, max_hp);
             }
         }
@@ -162,6 +173,49 @@ public class HUD : DiamondComponent
         {
             UpdateCombo();
         }
+        if (last_hp > PlayerHealth.currHealth)
+        {
+            if (hp_bar != null)
+                hp_bar.GetComponent<Material>().SetFloatUniform("last_hp", last_hp / PlayerHealth.currMaxHealth);
+            last_hp -= 0.05f;
+        }
+        if (pulsation_forward)
+        {
+            pulsation_rate += (Time.deltaTime / 3);
+            if (pulsation_rate > 1.0f) pulsation_forward = false;
+        }
+        else if (!pulsation_forward)
+        {
+            pulsation_rate -= (Time.deltaTime / 3);
+            if (pulsation_rate < 0.6f) pulsation_forward = true;
+        }
+
+        if (force_wave != null)
+        {
+            force_wave.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
+            force_wave.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate);
+        }
+        if (force_wave_second != null)
+        {
+            force_wave_second.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
+            force_wave_second.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate);
+        }
+        if (force_wave_third != null)
+        {
+            force_wave_third.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
+            force_wave_third.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate);
+        }
+
+        if (force_bar != null)
+        {
+            force_bar.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
+            force_bar.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate);
+        }
+        if (hp_bar != null)
+        {
+            hp_bar.GetComponent<Material>().SetFloatUniform("t", pulsation_rate);
+
+        }
     }
 
     public void AddToCombo(float comboUnitsToAdd, float weaponDecreaseTimeMultiplier)
@@ -209,8 +263,8 @@ public class HUD : DiamondComponent
     {
         float toSubstract = currComboTime - Mathf.Lerp(currComboTime, -0.0f, Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier);
 
-        toSubstract = Math.Max(toSubstract, Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier*1.5f);
-        toSubstract = Math.Min(toSubstract, Time.deltaTime * (1/comboDecrementMultiplier) * fullComboTime * 0.25f);
+        toSubstract = Math.Max(toSubstract, Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier * 1.5f);
+        toSubstract = Math.Min(toSubstract, Time.deltaTime * (1 / comboDecrementMultiplier) * fullComboTime * 0.25f);
         currComboTime -= toSubstract;
 
         if (currComboTime <= 0.0f)
@@ -263,6 +317,12 @@ public class HUD : DiamondComponent
             t.color_green = newColor.y;
             t.color_blue = newColor.z;
         }
+        if (combo_bar != null)
+        {
+            combo_bar.GetComponent<Material>().SetFloatUniform("r", newColor.x);
+            combo_bar.GetComponent<Material>().SetFloatUniform("g", newColor.y);
+            combo_bar.GetComponent<Material>().SetFloatUniform("b", newColor.z);
+        }
     }
 
     //percentage between 0 and 1 (0%-100%) decreases the time left for the current combo to deplete
@@ -278,20 +338,26 @@ public class HUD : DiamondComponent
     {
         if (hp_number_gameobject != null)
             hp_number_gameobject.GetComponent<Text>().text = new_hp.ToString();
-        if (hp_bar == null)
-            return;
         float hp_float = new_hp;
         hp_float /= max_hp;
+        if (!(last_hp > new_hp))
+            last_hp = new_hp;
+        if (hp_bar == null)
+            return;
         hp_bar.GetComponent<Material>().SetFloatUniform("length_used", hp_float);
+        hp_bar.GetComponent<Material>().SetFloatUniform("last_hp", last_hp / max_hp);
     }
 
     public void UpdateForce(int new_force, int max_force)
     {
-        if (force_bar == null)
+        if (force_bar == null || force_wave == null || force_wave_second == null || force_wave_third == null)
             return;
         float force_float = new_force;
         force_float /= max_force;
         force_bar.GetComponent<Material>().SetFloatUniform("length_used", force_float);
+        force_wave.GetComponent<Material>().SetFloatUniform("length_used", force_float);
+        force_wave_second.GetComponent<Material>().SetFloatUniform("length_used", force_float);
+        force_wave_third.GetComponent<Material>().SetFloatUniform("length_used", force_float);
     }
 
     public void ChangeAlphaSkillPush(bool alpha_full)

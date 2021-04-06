@@ -130,13 +130,13 @@ bool C_Transform::OnEditor()
 	}
 	return false;
 }
+#endif // !STANDALONE
 float4x4 C_Transform::GetCurrentGlobalMatrix()
 {
 	Quat rot = Quat::FromEulerXYZ(eulerRotation.x * DEGTORAD, eulerRotation.y * DEGTORAD, eulerRotation.z * DEGTORAD);
 	rot.Normalize();
 	return gameObject->parent->transform->globalTransform * float4x4::FromTRS(position, rot, localScale);
 }
-#endif // !STANDALONE
 
 //TODO: This should be recursive
 void C_Transform::UpdateTransform()

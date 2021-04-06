@@ -22,6 +22,8 @@ void W_TextEditor::Draw()
 {
 	if (ImGui::Begin(name.c_str(), NULL /*| ImGuiWindowFlags_NoResize*//*, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse*/))
 	{
+		selected = ImGui::IsWindowFocused();
+
 		if (textType != Resource::Type::UNKNOWN)
 			(textType == Resource::Type::SHADER) ? DrawShaderEditor() : DrawScriptEditor(); //Move to switch in a future
 

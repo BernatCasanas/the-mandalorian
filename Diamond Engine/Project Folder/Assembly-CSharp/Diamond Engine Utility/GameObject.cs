@@ -85,5 +85,8 @@ namespace DiamondEngine
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern void SetParent(GameObject newParent);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern void AssignLibraryTextureToMaterial(int _id, string textureName);
     }
 }
