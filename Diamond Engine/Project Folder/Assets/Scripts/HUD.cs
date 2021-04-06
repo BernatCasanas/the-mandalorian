@@ -73,6 +73,7 @@ public class HUD : DiamondComponent
     public GameObject combo_gameobject = null;
     public GameObject force_wave = null;
     public GameObject force_wave_second = null;
+    public GameObject force_wave_third = null;
     private bool start = true;
     private float pulsation_rate = 0.0f;
     private bool pulsation_forward = true;
@@ -251,7 +252,12 @@ public class HUD : DiamondComponent
         if (force_wave_second != null)
         {
             force_wave_second.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
-            force_wave_second.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate * 2);
+            force_wave_second.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate);
+        }
+        if (force_wave_third != null)
+        {
+            force_wave_third.GetComponent<Material>().SetFloatUniform("t", Time.totalTime);
+            force_wave_third.GetComponent<Material>().SetFloatUniform("rate", force_bar_rate);
         }
 
         if (force_bar != null)
@@ -449,7 +455,7 @@ public class HUD : DiamondComponent
 
     public void UpdateForce(int new_force, int max_force)
     {
-        if (force_bar == null || force_wave == null || force_wave_second == null)
+        if (force_bar == null || force_wave == null || force_wave_second == null || force_wave_third == null)
             return;
         float force_float = new_force;
         force_float /= max_force;
@@ -457,6 +463,7 @@ public class HUD : DiamondComponent
         force_bar.GetComponent<Material>().SetFloatUniform("length_used", force_float);
         force_wave.GetComponent<Material>().SetFloatUniform("length_used", force_float);
         force_wave_second.GetComponent<Material>().SetFloatUniform("length_used", force_float);
+        force_wave_third.GetComponent<Material>().SetFloatUniform("length_used", force_float);
     }
 
     public void ChangeAlphaSkillPush(bool alpha_full)
