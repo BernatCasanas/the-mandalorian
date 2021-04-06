@@ -48,7 +48,7 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
         //
 
         // Do nazi things with buttons to assign a value to selectedReward; we may want to control the OnExecuteButton from the script instead of attaching this script as a component (it probably shouldn't a component, and instead, controlled by SceneManager
-        //selectedReward = ConvertRewardtoRewardResource(firstReward);    // DEBUG PURPOSES
+        selectedReward = ConvertRewardtoRewardResource(firstReward);
 
         return selectedReward;
     }
