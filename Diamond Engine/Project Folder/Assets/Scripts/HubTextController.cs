@@ -28,7 +28,6 @@ public class HubTextController : DiamondComponent
 	public GameObject grogu_portrait = null;
 
 
-
 	public int total_interactions = 0;
 	public int total_stages = 0;
 
