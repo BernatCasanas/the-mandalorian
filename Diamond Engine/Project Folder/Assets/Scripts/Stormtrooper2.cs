@@ -56,8 +56,8 @@ public class StormTrooper2 : Enemy
     private bool started = false;
 
     //State
-    private STATE currentState2 = STATE.NONE;   //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS
-                                                 //Setting states directlly will break the behaviour  -Jose
+    private STATE currentState = STATE.NONE;   //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS
+                                                //Setting states directlly will break the behaviour  -Jose
     private List<INPUT> inputsList = new List<INPUT>();
 
     //private bool rightTriggerPressed = false;
@@ -122,11 +122,11 @@ public class StormTrooper2 : Enemy
     {
         //AQUI DEBERIAN ESTAR TODOS LOS TIMERS
 
-        if(shotTimer > 0.0f)
+        if (shotTimer > 0.0f)
         {
             shotTimer -= Time.deltaTime;
 
-            if(shotTimes < maxShots)
+            if (shotTimes < maxShots)
             {
                 inputsList.Add(INPUT.IN_SHOOT);
             }
@@ -154,7 +154,7 @@ public class StormTrooper2 : Enemy
             inputsList.Add(INPUT.IN_IDLE);
         }
 
-        if (currentState != STATES.DIE && healthPoints <= 0.0f)
+        if (currentState != STATE.DIE && healthPoints <= 0.0f)
         {
             inputsList.Add(INPUT.IN_DIE);
         }
@@ -192,7 +192,7 @@ public class StormTrooper2 : Enemy
         {
             INPUT input = inputsList[0];
 
-            switch (currentState2)
+            switch (currentState)
             {
                 case STATE.NONE:
                     Debug.Log("CORE ERROR STATE");
@@ -202,27 +202,27 @@ public class StormTrooper2 : Enemy
                     switch (input)
                     {
                         case INPUT.IN_RUN:
-                            currentState2 = STATE.RUN;
+                            currentState = STATE.RUN;
                             StartRun();
                             break;
 
                         case INPUT.IN_WANDER:
-                            currentState2 = STATE.WANDER;
+                            currentState = STATE.WANDER;
                             StartWander();
                             break;
 
                         case INPUT.IN_SHOOT:
-                            currentState2 = STATE.SHOOT;
+                            currentState = STATE.SHOOT;
                             StartShoot();
                             break;
 
                         case INPUT.IN_HIT:
-                            currentState2 = STATE.HIT;
+                            currentState = STATE.HIT;
                             //StartHit();
                             break;
 
                         case INPUT.IN_DIE:
-                            currentState2 = STATE.DIE;
+                            currentState = STATE.DIE;
                             StartDie();
                             break;
                     }
@@ -233,22 +233,22 @@ public class StormTrooper2 : Enemy
                     switch (input)
                     {
                         case INPUT.IN_IDLE:
-                            currentState2 = STATE.IDLE;
+                            currentState = STATE.IDLE;
                             StartIdle();
                             break;
 
                         case INPUT.IN_WANDER:
-                            currentState2 = STATE.WANDER;
+                            currentState = STATE.WANDER;
                             StartWander();
                             break;
 
                         case INPUT.IN_SHOOT:
-                            currentState2 = STATE.SHOOT;
+                            currentState = STATE.SHOOT;
                             StartShoot();
                             break;
 
                         case INPUT.IN_DIE:
-                            currentState2 = STATE.DIE;
+                            currentState = STATE.DIE;
                             StartDie();
                             break;
                     }
@@ -259,12 +259,12 @@ public class StormTrooper2 : Enemy
                     switch (input)
                     {
                         case INPUT.IN_SHOOT:
-                            currentState2 = STATE.IDLE;
+                            currentState = STATE.IDLE;
                             StartShoot();
                             break;
 
                         case INPUT.IN_DIE:
-                            currentState2 = STATE.DIE;
+                            currentState = STATE.DIE;
                             StartDie();
                             break;
                     }
@@ -275,22 +275,22 @@ public class StormTrooper2 : Enemy
                     switch (input)
                     {
                         case INPUT.IN_WANDER:
-                            currentState2 = STATE.WANDER;
+                            currentState = STATE.WANDER;
                             StartWander();
                             break;
 
                         case INPUT.IN_RUN:
-                            currentState2 = STATE.IDLE;
+                            currentState = STATE.IDLE;
                             StartRun();
                             break;
 
                         case INPUT.IN_SHOOT:
-                            currentState2 = STATE.SHOOT;
+                            currentState = STATE.SHOOT;
                             StartShoot();
                             break;
 
                         case INPUT.IN_DIE:
-                            currentState2 = STATE.DIE;
+                            currentState = STATE.DIE;
                             StartDie();
                             break;
                     }
@@ -307,7 +307,7 @@ public class StormTrooper2 : Enemy
 
     private void UpdateState()
     {
-        switch (currentState2)
+        switch (currentState)
         {
             case STATE.NONE:
                 break;
@@ -334,7 +334,7 @@ public class StormTrooper2 : Enemy
     #region SHOOT
     private void StartShoot()
     {
-       //SFX LIKE AIMING OR SIMILAR + STOP RUNNING
+        //SFX LIKE AIMING OR SIMILAR + STOP RUNNING
     }
 
     private void UpdateShoot()
@@ -393,24 +393,22 @@ public class StormTrooper2 : Enemy
     #region DIE
     private void StartDie()
     {
-       
-     
-            timePassed = 0.0f;
-            Animator.Play(gameObject, "ST_Die", 1.0f);
-            //Play Sound("Die")
-            Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
-            Audio.PlayAudio(gameObject, "Play_Mando_Voice");
+        timePassed = 0.0f;
+        Animator.Play(gameObject, "ST_Die", 1.0f);
+        //Play Sound("Die")
+        Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
+        Audio.PlayAudio(gameObject, "Play_Mando_Voice");
 
-            if (hitParticles != null)
-                hitParticles.GetComponent<ParticleSystem>().Play();
+        if (hitParticles != null)
+            hitParticles.GetComponent<ParticleSystem>().Play();
 
-            RemoveFromSpawner();
+        RemoveFromSpawner();
 
-            if (Core.instance.hud != null)
-            {
-                Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 1.0f);
-            }
-    
+        if (Core.instance.hud != null)
+        {
+            Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 1.0f);
+        }
+
     }
     private void UpdateDie()
     {
@@ -435,98 +433,98 @@ public class StormTrooper2 : Enemy
     //THIS WILL BE HERE CAUSE BANTHA WILL USE IT, I DONT WANT TO ERASE IT YET
     private void StartDash()
     {
-       /* Audio.StopAudio(gameObject);
-        Audio.PlayAudio(gameObject, "Play_Dash");
-        Animator.Play(gameObject, "Dash");
+        /* Audio.StopAudio(gameObject);
+         Audio.PlayAudio(gameObject, "Play_Dash");
+         Animator.Play(gameObject, "Dash");
 
-        dashTimer = dashDuration;
-        dashStartYPos = gameObject.transform.localPosition.y;*/
+         dashTimer = dashDuration;
+         dashStartYPos = gameObject.transform.localPosition.y;*/
     }
 
     private void UpdateDash()
     {
-       // StopPlayer();
-       // gameObject.AddForce(gameObject.transform.GetForward().normalized * dashforce);
+        // StopPlayer();
+        // gameObject.AddForce(gameObject.transform.GetForward().normalized * dashforce);
     }
 
     private void EndDash()
     {
         //StopPlayer();
-       // gameObject.transform.localPosition.y = dashStartYPos;
+        // gameObject.transform.localPosition.y = dashStartYPos;
     }
 
     #endregion
 
-    
+
     private void StartIdle()
     {
         Animator.Play(gameObject, "Idle");
     }
- 
+
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
         //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + collidedGameObject.tag);
         //Debug.Log("Collided by tag: " + collidedGameObject.tag);
 
-       /* if (collidedGameObject.CompareTag("Bullet"))
-        {
-            Debug.Log("Collision bullet");
-            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
-            if (currentState != STATE.DIE && healthPoints <= 0.0f)  //quitar STATE
-            {
-                currentState = STATE.DIE;   //quitar STATE
-                timePassed = 0.0f;
-                Animator.Play(gameObject, "ST_Die", 1.0f);
-                //Play Sound("Die")
-                Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
-                Audio.PlayAudio(gameObject, "Play_Mando_Voice");
+        /* if (collidedGameObject.CompareTag("Bullet"))
+         {
+             Debug.Log("Collision bullet");
+             healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+             if (currentState != STATE.DIE && healthPoints <= 0.0f)  //quitar STATE
+             {
+                 currentState = STATE.DIE;   //quitar STATE
+                 timePassed = 0.0f;
+                 Animator.Play(gameObject, "ST_Die", 1.0f);
+                 //Play Sound("Die")
+                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
+                 Audio.PlayAudio(gameObject, "Play_Mando_Voice");
 
-                if (hitParticles != null)
-                    hitParticles.GetComponent<ParticleSystem>().Play();
+                 if (hitParticles != null)
+                     hitParticles.GetComponent<ParticleSystem>().Play();
 
-                RemoveFromSpawner();
+                 RemoveFromSpawner();
 
-                if (Core.instance.hud != null)
-                {
-                    Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 1.0f);
-                }
-            }
-        }
-        else if (collidedGameObject.CompareTag("Grenade"))
-        {
-            Debug.Log("Collision Grenade");
+                 if (Core.instance.hud != null)
+                 {
+                     Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 1.0f);
+                 }
+             }
+         }
+         else if (collidedGameObject.CompareTag("Grenade"))
+         {
+             Debug.Log("Collision Grenade");
 
-            if (currentState != STATE.DIE)  //quitar STATE
-            {
-                currentState = STATE.DIE;   //quitar STATE
-                timePassed = 0.0f;
-                Animator.Play(gameObject, "ST_Die", 1.0f);
-                //Play Sound("Die")
-                Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
-                Audio.PlayAudio(gameObject, "Play_Mando_Voice");
+             if (currentState != STATE.DIE)  //quitar STATE
+             {
+                 currentState = STATE.DIE;   //quitar STATE
+                 timePassed = 0.0f;
+                 Animator.Play(gameObject, "ST_Die", 1.0f);
+                 //Play Sound("Die")
+                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
+                 Audio.PlayAudio(gameObject, "Play_Mando_Voice");
 
-                RemoveFromSpawner();
+                 RemoveFromSpawner();
 
 
-                if (Core.instance.hud != null)
-                {
-                    Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 0.5f);
-                }
-            }
-        }
-        else if (collidedGameObject.CompareTag("WorldLimit"))
-        {
-            Debug.Log("Collision w/ The End");
+                 if (Core.instance.hud != null)
+                 {
+                     Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 0.5f);
+                 }
+             }
+         }
+         else if (collidedGameObject.CompareTag("WorldLimit"))
+         {
+             Debug.Log("Collision w/ The End");
 
-            if (currentState != STATE.DIE)  //quitar STATE
-            {
-                currentState = STATE.DIE;   //quitar STATE
-                timePassed = 0.0f;
-                Animator.Play(gameObject, "ST_Die", 1.0f);
-                Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
-                RemoveFromSpawner();
-            }
-        }*/
+             if (currentState != STATE.DIE)  //quitar STATE
+             {
+                 currentState = STATE.DIE;   //quitar STATE
+                 timePassed = 0.0f;
+                 Animator.Play(gameObject, "ST_Die", 1.0f);
+                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
+                 RemoveFromSpawner();
+             }
+         }*/
 
     }
 
@@ -534,11 +532,11 @@ public class StormTrooper2 : Enemy
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
         //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + triggeredGameObject.tag);
-       /* if (triggeredGameObject.CompareTag("Bullet"))
-        {
-            // InternalCalls.Destroy(gameObject);
-            gameObject.GetComponent<PlayerHealth>().TakeDamage(5);
-        }*/
+        /* if (triggeredGameObject.CompareTag("Bullet"))
+         {
+             // InternalCalls.Destroy(gameObject);
+             gameObject.GetComponent<PlayerHealth>().TakeDamage(5);
+         }*/
 
         //Debug.Log("Triggered by tag: " + triggeredGameObject.tag);
     }

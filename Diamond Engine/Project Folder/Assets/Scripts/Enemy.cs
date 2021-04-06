@@ -29,23 +29,12 @@ public class Enemy : DiamondComponent
 	//private float timeCount = 0.0f;
 	public bool turretMode = false;
 
-	protected STATES currentState = STATES.WANDER;
+	//protected STATES currentState = STATES.WANDER;
 
     public Spawn dieCallBack = null;
 
 	protected NavMeshAgent agent;
 
-
-	protected enum STATES
-	{
-		IDLE,
-		RUN,
-		WANDER,
-		SHOOT,
-		PUSHED,
-		HIT,
-		DIE
-	}
 
 	public virtual bool Shoot(float damage)
 	{
