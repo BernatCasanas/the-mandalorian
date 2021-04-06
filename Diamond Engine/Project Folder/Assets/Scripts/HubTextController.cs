@@ -111,8 +111,8 @@ public class HubTextController : DiamondComponent
                 if (bo_katan_portrait != null)
                 {
 					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().ChangeImageForAnotherOne(bo_katan_portrait);
-					textController.GetComponent<Transform2D>().lPos = bo_katan_portrait.GetComponent<Transform2D>().lPos;
-					textController.GetComponent<Transform2D>().size = bo_katan_portrait.GetComponent<Transform2D>().size;
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = bo_katan_portrait.GetComponent<Transform2D>().lPos;
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = bo_katan_portrait.GetComponent<Transform2D>().size;
 				}
 				textController.GetComponent<TextController>().dialog_index = bo_katan_interaction_num;
                 if (bo_katan_interaction_num % 3 != 0)
@@ -122,8 +122,8 @@ public class HubTextController : DiamondComponent
                 if (greef_portrait != null)
                 {
 					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().ChangeImageForAnotherOne(greef_portrait);
-					textController.GetComponent<Transform2D>().lPos = greef_portrait.GetComponent<Transform2D>().lPos;
-					textController.GetComponent<Transform2D>().size = greef_portrait.GetComponent<Transform2D>().size;
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = greef_portrait.GetComponent<Transform2D>().lPos;
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = greef_portrait.GetComponent<Transform2D>().size;
 				}
                 textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages) + greef_interaction_num;
                 if (greef_interaction_num % 3 != 0)
@@ -133,8 +133,8 @@ public class HubTextController : DiamondComponent
                 if (ashoka_portrait != null)
                 {
 					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().ChangeImageForAnotherOne(ashoka_portrait);
-					textController.GetComponent<Transform2D>().lPos = ashoka_portrait.GetComponent<Transform2D>().lPos;
-					textController.GetComponent<Transform2D>().size = ashoka_portrait.GetComponent<Transform2D>().size;
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = ashoka_portrait.GetComponent<Transform2D>().lPos;
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = ashoka_portrait.GetComponent<Transform2D>().size;
 				}
                 textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages * 2) + ashoka_interaction_num;
                 if (ashoka_interaction_num % 3 != 0)
@@ -144,8 +144,8 @@ public class HubTextController : DiamondComponent
                 if (grogu_portrait != null)
                 {
 					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().ChangeImageForAnotherOne(grogu_portrait);
-					textController.GetComponent<Transform2D>().lPos = grogu_portrait.GetComponent<Transform2D>().lPos;
-					textController.GetComponent<Transform2D>().size = grogu_portrait.GetComponent<Transform2D>().size;
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = grogu_portrait.GetComponent<Transform2D>().lPos;
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = grogu_portrait.GetComponent<Transform2D>().size;
 				}
 				textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages * 4) + grogu_interaction_num;
                 if (grogu_interaction_num % 2 != 0)
