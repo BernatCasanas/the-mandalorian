@@ -233,7 +233,6 @@ public class StormTrooper : Enemy
                 }
 				break;
 		}
-		*/
 	}
 
 	public void OnCollisionEnter(GameObject collidedGameObject)
