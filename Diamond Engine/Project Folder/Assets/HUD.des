@@ -1,4 +1,5 @@
 {
+    "NavMesh": -1,
     "EditorCameraPosition": [
         25.1678466796875,
         99.068618774414063,
@@ -40,6 +41,8 @@
             ],
             "UID": 143570472,
             "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Components": [
                 {
                     "Type": 1,
@@ -70,6 +73,8 @@
             ],
             "UID": 1661764735,
             "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "ParentUID": 143570472,
             "Components": [
                 {
@@ -95,7 +100,8 @@
                     "turret": 1661764735,
                     "rotationSpeed": 2,
                     "movementSpeed": 35,
-                    "mouseSens": 1
+                    "mouseSens": 1,
+                    "dashUp": true
                 },
                 {
                     "Type": 3,
@@ -130,6 +136,8 @@
             ],
             "UID": 1716888692,
             "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "ParentUID": 143570472,
             "Components": [
                 {
@@ -161,6 +169,8 @@
             ],
             "UID": 420350065,
             "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "ParentUID": 1716888692,
             "Components": [
                 {
@@ -206,6 +216,8 @@
             ],
             "UID": 1432217696,
             "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "ParentUID": 1716888692,
             "Components": [
                 {
@@ -251,6 +263,8 @@
             ],
             "UID": 467515712,
             "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "ParentUID": 1716888692,
             "Components": [
                 {
@@ -279,10 +293,10 @@
                 -37.998661041259766
             ],
             "Rotation": [
-                0.28966298699378967,
-                -0.30951863527297974,
-                0.099594645202159882,
-                0.90020811557769775
+                0.28966295719146729,
+                -0.30951860547065735,
+                0.099594630300998688,
+                0.9002079963684082
             ],
             "Scale": [
                 0.9999997615814209,
@@ -291,6 +305,8 @@
             ],
             "UID": 188616957,
             "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "ParentUID": 143570472,
             "Components": [
                 {
@@ -306,18 +322,25 @@
                     "farPlaneDist": 5000,
                     "vFOV": 1.0471975803375244,
                     "hFOV": 1.5521194934844971,
-                    "culling": false
+                    "culling": false,
+                    "drawSkybox": true
                 },
                 {
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "CameraController",
-                    "reference": 188616957,
                     "target": 1661764735,
                     "x": 1,
                     "y": 1,
                     "z": 1,
-                    "smoothSpeed": 1
+                    "smoothSpeed": 1,
+                    "zoomDesired": 0,
+                    "timer_easing_sec": 0,
+                    "timer": 0,
+                    "cornerTopLeftX": 0,
+                    "cornerTopLeftY": 0,
+                    "cornerBotRightX": 0,
+                    "cornerBotRightY": 0
                 }
             ]
         },
@@ -344,6 +367,8 @@
             ],
             "UID": 1747895609,
             "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "ParentUID": 143570472,
             "Components": [
                 {
@@ -379,6 +404,8 @@
             ],
             "UID": 1948140038,
             "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "ParentUID": 1747895609,
             "Components": [
                 {
@@ -398,8 +425,6 @@
                     "max_bullets_main_weapon": 10,
                     "bullets_secondary_weapon": 10,
                     "max_bullets_secondary_weapon": 10,
-                    "combo_number": 0,
-                    "combo_seconds": 5,
                     "main_weapon": true,
                     "hp_bar": 1263416948,
                     "hp_number_gameobject": 685408372,
@@ -411,7 +436,11 @@
                     "currency_number_gameobject": 685275708,
                     "combo_bar": 751315337,
                     "combo_text": 1065887298,
-                    "combo_gameobject": 810407947
+                    "combo_gameobject": 810407947,
+                    "force_wave": 1916380346,
+                    "comboNumber": 0,
+                    "force_bar_rate": 0,
+                    "last_hp": 0
                 }
             ]
         },
@@ -438,6 +467,8 @@
             ],
             "UID": 1568639235,
             "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "ParentUID": 1948140038,
             "Components": [
                 {
@@ -497,6 +528,8 @@
             ],
             "UID": 1263416948,
             "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "ParentUID": 1568639235,
             "Components": [
                 {
@@ -507,12 +540,12 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        4,
+                        0,
                         0
                     ],
                     "Rotation": 0,
                     "Size": [
-                        18.5,
+                        24.100000381469727,
                         3.4000000953674316
                     ]
                 },
@@ -528,8 +561,8 @@
                     "Type": 11,
                     "Active": true,
                     "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/449336422.dds",
-                    "UID": 449336422
+                    "LibraryPath": "Library\/Textures\/1774413428.dds",
+                    "UID": 1774413428
                 }
             ]
         },
@@ -556,6 +589,8 @@
             ],
             "UID": 685408372,
             "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "ParentUID": 1568639235,
             "Components": [
                 {
@@ -566,29 +601,95 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -23.700000762939453,
+                        -11.199999809265137,
                         -2.7000000476837158
                     ],
                     "Rotation": 0,
                     "Size": [
-                        8.6000003814697266,
-                        14
+                        12,
+                        20
                     ]
                 },
                 {
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
+                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "50",
+                    "text": "500",
                     "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "HP Max Value",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 244606525,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1568639235,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -1.7999999523162842,
+                        -2.7000000476837158
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        12,
+                        20
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "\/500",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
                         1,
                         1,
@@ -620,6 +721,8 @@
             ],
             "UID": 1950847140,
             "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "ParentUID": 1948140038,
             "Components": [
                 {
@@ -636,7 +739,7 @@
                     "Rotation": 0,
                     "Size": [
                         20,
-                        4
+                        5.5
                     ]
                 },
                 {
@@ -651,8 +754,8 @@
                     "Type": 11,
                     "Active": true,
                     "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/26374907.dds",
-                    "UID": 26374907
+                    "LibraryPath": "Library\/Textures\/2060021866.dds",
+                    "UID": 2060021866
                 }
             ]
         },
@@ -679,6 +782,8 @@
             ],
             "UID": 177995778,
             "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "ParentUID": 1950847140,
             "Components": [
                 {
@@ -689,13 +794,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        3.2999999523162842,
+                        0,
                         0
                     ],
                     "Rotation": 0,
                     "Size": [
-                        15,
-                        1.8999999761581421
+                        19.600000381469727,
+                        4.6999998092651367
                     ]
                 },
                 {
@@ -710,8 +815,69 @@
                     "Type": 11,
                     "Active": true,
                     "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/1267649818.dds",
-                    "UID": 1267649818
+                    "LibraryPath": "Library\/Textures\/318010131.dds",
+                    "UID": 318010131
+                }
+            ]
+        },
+        {
+            "name": "Force Wave",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1916380346,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1950847140,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        19.600000381469727,
+                        4.6999998092651367
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/hud_force_wave.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/757917666.mat",
+                    "MaterialUID": 757917666
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/292993466.dds",
+                    "UID": 292993466
                 }
             ]
         },
@@ -738,6 +904,8 @@
             ],
             "UID": 931853287,
             "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "ParentUID": 1948140038,
             "Components": [
                 {
@@ -797,6 +965,8 @@
             ],
             "UID": 1076718357,
             "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "ParentUID": 931853287,
             "Components": [
                 {
@@ -834,129 +1004,6 @@
             ]
         },
         {
-            "name": "Currency",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 2144550515,
-            "PrefabID": 0,
-            "ParentUID": 1948140038,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -83.800003051757813,
-                        76.599998474121094
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        9.8000001907348633,
-                        9.5
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/651582956.dds",
-                    "UID": 651582956
-                }
-            ]
-        },
-        {
-            "name": "Currency Value",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 685275708,
-            "PrefabID": 0,
-            "ParentUID": 2144550515,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        1.2000000476837158,
-                        -2.2999999523162842
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        9.1000003814697266,
-                        14.5
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
-                },
-                {
-                    "Type": 9,
-                    "Active": true,
-                    "text": "0",
-                    "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
-                    "textColor": [
-                        1,
-                        1,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
             "name": "SecondaryWeapon",
             "tag": "Untagged",
             "layer": "Default",
@@ -979,6 +1026,8 @@
             ],
             "UID": 1142762498,
             "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "ParentUID": 1948140038,
             "Components": [
                 {
@@ -1038,6 +1087,8 @@
             ],
             "UID": 1083364916,
             "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "ParentUID": 1948140038,
             "Components": [
                 {
@@ -1098,10 +1149,43 @@
             ]
         },
         {
+            "name": "ComboHolder",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1452048050,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1948140038,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
             "name": "Combo ",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": false,
+            "Active": true,
             "Position": [
                 0,
                 0,
@@ -1120,7 +1204,9 @@
             ],
             "UID": 810407947,
             "PrefabID": 0,
-            "ParentUID": 1948140038,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1452048050,
             "Components": [
                 {
                     "Type": 1,
@@ -1130,13 +1216,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        76.800003051757813,
+                        86.800003051757813,
                         88.599998474121094
                     ],
                     "Rotation": 0,
                     "Size": [
-                        20.200000762939453,
-                        3.7999999523162842
+                        8.8999996185302734,
+                        3.7000000476837158
                     ]
                 },
                 {
@@ -1179,7 +1265,9 @@
             ],
             "UID": 751315337,
             "PrefabID": 0,
-            "ParentUID": 810407947,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1452048050,
             "Components": [
                 {
                     "Type": 1,
@@ -1189,13 +1277,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -5.9000000953674316,
-                        0
+                        57.700000762939453,
+                        88.599998474121094
                     ],
                     "Rotation": 0,
                     "Size": [
-                        14,
-                        2.0999999046325684
+                        22.100000381469727,
+                        2.2000000476837158
                     ]
                 },
                 {
@@ -1238,7 +1326,9 @@
             ],
             "UID": 1065887298,
             "PrefabID": 0,
-            "ParentUID": 810407947,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1452048050,
             "Components": [
                 {
                     "Type": 1,
@@ -1248,8 +1338,8 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        0.40000000596046448,
-                        -18.200000762939453
+                        81.099998474121094,
+                        66.900001525878906
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -1261,7 +1351,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
+                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
                     "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
                     "MaterialUID": 744544911
                 },
@@ -1270,7 +1360,134 @@
                     "Active": true,
                     "text": "x0",
                     "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/teko-semibold.ttf",
+                    "fontName": "Library\/Fonts\/teko-semibold.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Currency",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 2144550515,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1948140038,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -83.800003051757813,
+                        76.599998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        9.8000001907348633,
+                        9.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/651582956.dds",
+                    "UID": 651582956
+                }
+            ]
+        },
+        {
+            "name": "Currency Value",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 685275708,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 2144550515,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        1.2000000476837158,
+                        -2.2999999523162842
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        9.1000003814697266,
+                        14.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/text.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "0",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
                         1,
                         1,
