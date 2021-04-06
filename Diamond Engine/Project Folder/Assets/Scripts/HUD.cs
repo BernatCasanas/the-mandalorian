@@ -305,6 +305,12 @@ public class HUD : DiamondComponent
             t.color_green = newColor.y;
             t.color_blue = newColor.z;
         }
+        if (combo_bar != null)
+        {
+            combo_bar.GetComponent<Material>().SetFloatUniform("r", newColor.x);
+            combo_bar.GetComponent<Material>().SetFloatUniform("g", newColor.y);
+            combo_bar.GetComponent<Material>().SetFloatUniform("b", newColor.z);
+        }
     }
 
     //percentage between 0 and 1 (0%-100%) decreases the time left for the current combo to deplete
