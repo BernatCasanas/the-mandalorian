@@ -7,19 +7,23 @@ public class SHOP : DiamondComponent
     public GameObject player;
     public GameObject shopUI;
     public GameObject hud;
+    public GameObject textPopUp;
     public float interactionRange = 2.0f;
     
     public void Update()
     {
-        if (!shopUI.IsEnabled() && Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN)
-        { 
-            if (InRange(player.transform.globalPosition, interactionRange))
+        if (InRange(player.transform.globalPosition, interactionRange))
+        {
+            if (!textPopUp.IsEnabled()) textPopUp.Enable(true);
+
+            if (!shopUI.IsEnabled() && Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN)
             {
                 shopUI.Enable(true);
+                textPopUp.Enable(false);
                 Time.PauseGame();
             }
         }
-
+        else textPopUp.Enable(false);
     }
 
     public bool InRange(Vector3 point, float givenRange)
@@ -93,6 +97,7 @@ public class SHOP : DiamondComponent
         {
             shopUI.Enable(!shopUI.IsEnabled());
             Time.ResumeGame();
+            textPopUp.Enable(true);
         }
     }
 
