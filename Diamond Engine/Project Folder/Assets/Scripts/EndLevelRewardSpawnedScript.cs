@@ -55,12 +55,10 @@ public class EndLevelRewardSpawn : DiamondComponent
     {
         rotationAngle += rotSpeedDegSec * Time.deltaTime;
         Vector3 axis = new Vector3(0.0f, 1.0f, 0.0f);
-        float myRotAngle = 0.0174533f * rotationAngle;
-        Quaternion newQuat = Quaternion.RotateAroundAxis(axis, myRotAngle);
-        gameObject.transform.localRotation.Set(newQuat.x, newQuat.y, newQuat.z, newQuat.w);
-
+        Quaternion newQuat = Quaternion.RotateAroundAxis(axis, rotationAngle);
+        gameObject.transform.globalRotation.Set(newQuat.x, newQuat.y, newQuat.z, newQuat.w);
     }
 
-    public float ParametricBlend(float t) => (t * t) / (2.0f * ((t * t) - t) + 1.0f);
+    public float ParametricBlend(float t) => ((t * t) / (2.0f * ((t * t) - t) + 1.0f));
 
 }
