@@ -147,7 +147,8 @@ public class List_Of_Dialogs : DiamondComponent
 	{
 		"I hope you didn't give me this thinking that I would drink it bounty hunter. It is unapologetically disgusting.",
 		"Oh, excuse me your majesty. Is this not sophisticated enough to be worthy of your royal stomach?",
-		"Very funny. Nobody would have guessed you were capable of having a sense of humour. But for your information, I am actually the last in the line of clan Kryze, a clan of rulers. I was once the Mand'alor, which is the title bestowed upon the sole leader of the Mandalorian people. Therefore, you can call me majesty if you wish.",
+		"Very funny. Nobody would have guessed you were capable of having a sense of humour. But for your information, I am actually the last in the line of clan Kryze, a clan of rulers. ",
+        "I was once the Mand'alor, which is the title bestowed upon the sole leader of the Mandalorian people. Therefore, you can call me majesty if you wish.",
 		"I'm definitely not doing that... If you were so great, what happened?",
 		"Well, the great purge happened. And I lo... we lost everything. We fought with all our might, but nobody could have faced the full power of the Empire. That was not a battle, it was an execution for our people.",
 		"I've heard about that from The Tribe. They say it was the worst that had ever happened to Mandalore, a complete genocide.",
@@ -161,6 +162,7 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 		true,
 		false,
+        false,
 		true,
 		false,
 		true,
@@ -205,7 +207,8 @@ public class List_Of_Dialogs : DiamondComponent
 	{
 		"Another one? I already told you I cannot drink this, just looking at it is unpleasant.",
 		"You are welcome. What happened the last time you acquired the Darksaber?",
-		"I was blinded by the chance of becoming the leader of Mandalore. I had longed for that moment for a long time, and since everyone seemed to agree, I accepted the Darksaber from Sabine Wren, a fellow Mandalorian and rightful owner of the blade. That was naive of me.",
+		"I was blinded by the chance of becoming the leader of Mandalore. I had longed for that moment for a long time, and since everyone seemed to agree, I accepted the Darksaber from Sabine Wren, a fellow Mandalorian and rightful owner of the blade. ",
+        "That was naive of me.",
 		"I see nothing wrong with that. If everyone agreed, you did the right thing.",
 		"They surely agreed at that time. However, when the great purge occurred and I lost Mandalore, they changed their mind. Given that I had not really earned the weapon, they thought I had been an illegitimate ruler and we had lost because of my weakness.",
 		"It was not your fault. The moment the Empire put its gaze on Mandalore, your fate was sealed.",
@@ -218,6 +221,7 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 		true,
 		false,
+        false,
 		true,
 		false,
 		true,
@@ -229,7 +233,8 @@ public class List_Of_Dialogs : DiamondComponent
 		"How did you gain the people's approval to become their new leader? I'm guessing not thanks to your charming skills...",
 		"Like you are one to talk. Stop trying to develop a sense of humour, thanks. That is a long story.",
 		"I have time.",
-		"*Sigh*, Then, long story short: my sister had been the leader of Mandalore for a long time and after her death, I was next in line. I helped defeat a dark lord of the Sith who had usurped the position. I had already been appointed regent for a small period of time. I also helped reclaim Mandalore from the hands of a clan that had bowed to the empire and ruled Mandalore under their supervision. And there were other things...",
+		"*Sigh*, Then, long story short: my sister had been the leader of Mandalore for a long time and after her death, I was next in line. I helped defeat a dark lord of the Sith who had usurped the position.",
+        "I had already been appointed regent for a small period of time. I also helped reclaim Mandalore from the hands of a clan that had bowed to the empire and ruled Mandalore under their supervision. And there were other things...",
 		"You really didn't make that up right now did you? And here I thought I had lived an exciting life...",
 		"I already told you; you know nothing of Mandalore.",
 	};
@@ -241,6 +246,7 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 		true,
 		false,
+        false,
 		true,
 		false,
 	};
@@ -300,9 +306,11 @@ public class List_Of_Dialogs : DiamondComponent
     private List<string> Bo_Katan_3_2 = new List<string>()
     {
         "Say Bo-katan, how was your relationship with your sister? It seems to me you didn't agree much with her.",
-        "We were never very close. We had different views on how the nation should be ruled. Mandalore has been through a lot of wars that have rendered the planet inhospitable, and life is only possible inside domed cities. To break with all this devastation, she envisioned a peaceful and fair society that would make peace with the planet.",
+        "We were never very close. We had different views on how the nation should be ruled. Mandalore has been through a lot of wars that have rendered the planet inhospitable, and life is only possible inside domed cities. ",
+        "To break with all this devastation, she envisioned a peaceful and fair society that would make peace with the planet.",
         "Sounds nice. But I guess that was a bad time to be an idealist.",
-        "Exactly, that was my position. Moreover, that was incompatible with our culture and traditions... When she became ruler, I was still young and wanted to rebel, so along with my Nite Owls, I joined an organization called the Death Watch, which planned to bring back Mandalore to its former way of life.",
+        "Exactly, that was my position. Moreover, that was incompatible with our culture and traditions... When she became ruler, I was still young and wanted to rebel, so along with my Nite Owls, ",
+        "I joined an organization called the Death Watch, which planned to bring back Mandalore to its former way of life.",
         "So, you went against your sister. What was the Death Watch exactly?",
         "At that time, I thought we were doing something good, but now I see we were just a bunch of terrorists. With the help of a powerful Sith Lord, we seized power from my sister and our leader Pre Vizsla became the new Ruler.",
         "From the stories I've heard, it was better to stay as far away as possible from Sith Lords.",
@@ -314,7 +322,9 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
         true,
         false,
+        false,
         true,
+        false,
         false,
         true,
         false, 
@@ -325,7 +335,8 @@ public class List_Of_Dialogs : DiamondComponent
     private List<string> Bo_Katan_3_3 = new List<string>()
     {
         "So, what happened with that Sith Lord?",
-        "His name was Darth Maul. A powerful creature filled with rage and hatred, but with a very cunning mind. We thought we were using him... We were wrong. You cannot toy with a Sith Lord. He killed Vizsla and my sister. Then, he appointed a puppet leader and governed Mandalore from within the shadows.",
+        "His name was Darth Maul. A powerful creature filled with rage and hatred, but with a very cunning mind. We thought we were using him... We were wrong. You cannot toy with a Sith Lord. ",
+        "He killed Vizsla and my sister. Then, he appointed a puppet leader and governed Mandalore from within the shadows.",
         "I'm glad there are no more of those. I have enough with my Rancors and Gideons. I Don't need an extra maniac running around who might want to hurt Grogu. Did you beat Maul in the end?",
         "I did not stand a chance; it was only thanks to the help of the armies from the republic and Ahsoka Tano herself that we reclaimed Mandalore. She defeated Maul. Then I became regent for a short period of time.",
         "I briefly faced against Ahsoka once, is she really that skilled?",
@@ -337,6 +348,7 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
         true,
         false,
+        false,
         true,
         false,
         true,
@@ -347,7 +359,8 @@ public class List_Of_Dialogs : DiamondComponent
     {
         "You are doing it on purpose, aren't you? I give up, maybe if I give it to the bartender he will exchange it for something potable.",
         "Come on, I know you secretly like it. What can you tell me about the Jedi? During republic times there were a few of them around, right? You must have encountered some.",
-        "Ahsoka could tell you more than me about them. She was once one. During the clone wars, Mandalore was a neutral state, so they tried to avoid us as much as possible. However, there was one who became really close with my sister, his name was Kenobi or something like that.",
+        "Ahsoka could tell you more than me about them. She was once one. During the clone wars, Mandalore was a neutral state, so they tried to avoid us as much as possible. ",
+        "However, there was one who became really close with my sister, his name was Kenobi or something like that.",
         "Do you think it is a good life for someone like Grogu? I mean... Look at him, they were supposed to fight against the toughest foes in the galaxy, he looks completely harmless. I don't know if he should take that path, it seems too dangerous.",
         "The first time I met Ahsoka she looked like an innocent little girl, but when I fought her, she gave me a round for my money.",
         "Did she beat you?",
@@ -361,6 +374,7 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
         false,
         true,
+        false,
         false,
         true,
         false,
@@ -377,7 +391,8 @@ public class List_Of_Dialogs : DiamondComponent
         "I remember one of the members in the Tribe was called Vizsla, not a very friendly fellow I should say.",
         "Haha well, Vizslas were known to be rather cold and ambitious. They were one of the clans that wished to return to the old ways and consequently were exiled to Concordia, one of Mandalore's moons, I sided with them during my sister's reign.",
         "So, the Mandalorian people were not very united?",
-        "In politics each clan had their best interests in mind and tended to work pretty often against each other, this caused quite a few civil wars. But when going to battle against an external threat this was entirely different. We worked as a unit; all our differences were gone and we became an unstoppable force. That is why I supported our warring culture.",
+        "In politics each clan had their best interests in mind and tended to work pretty often against each other, this caused quite a few civil wars. But when going to battle against an external threat this was entirely different. ",
+        "We worked as a unit; all our differences were gone and we became an unstoppable force. That is why I supported our warring culture.",
     };
 
     private List<bool> Bo_Katan_4_2_bool = new List<bool>()
@@ -389,12 +404,14 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+        false,
     };
 
     private List<string> Bo_Katan_4_3 = new List<string>()
     {
         "How was it to go to battle alongside the whole Mandalorian army? I guess it had to feel amazing.",
-        "Indeed, it felt incredible... I remember people coming out of their houses, standing on the wide streets of Sundari, looking up to see thousands of flying warriors in their shining beskar armours. Real mandalorian soldiers glittering in the sky, like shooting stars under a bright full moon night, it was truly a sight to behold...",
+        "Indeed, it felt incredible... I remember people coming out of their houses, standing on the wide streets of Sundari, looking up to see thousands of flying warriors in their shining beskar armours. ",
+        "Real mandalorian soldiers glittering in the sky, like shooting stars under a bright full moon night, it was truly a sight to behold...",
         "I would like to have seen it at least once in my life. Now I feel like I want to help you restore Mandalore to that former glory.",
         "I would very much appreciate your help. From what I have seen, you fight as well as the most veteran Mandalorian soldiers. And believe me, if seeing the army was impressive, flying with it felt even greater.",
         "I can imagine it. But I must be careful; your compliments might make me blush.",
@@ -407,6 +424,7 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
         true,
+        false,
         false,
         true,
         false,
@@ -502,7 +520,8 @@ public class List_Of_Dialogs : DiamondComponent
 		"I told you I'm not going back for a stupid little ball. Next time, remind me about it before we leave the ship. If you are so sad, you can go and get it yourself.",
 		"(The kid starts sitting up. It seems like, surprisingly he has understood what Din just said.)",
 		"Argh... Ok you win.Here you go... Yes, I know I lied to you. I just didn't want you dropping it somewhere, because then it is me who has to go looking around everywhere for the darn ball. So, don't drop it, or next time there will be no ball.",
-		"(Little Grogu, who appeared to be listening carefully to what Mando was saying, in reality has not understood a single thing. Therefore, he gives his big silver friend an adorable smile to whom no one in the galaxy could say no, and joyfully takes the ball in his hands.)",
+		"(Little Grogu, who appeared to be listening carefully to what Mando was saying, in reality has not understood a single thing).",
+        "(Therefore, he gives his big silver friend an adorable smile to whom no one in the galaxy could say no, and joyfully takes the ball in his hands.)",
 	};
 
 	private List<bool> Grogu_0_2_bool = new List<bool>()
@@ -516,6 +535,7 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 		true,
 		false,
+        false,
 	};
 
     private List<string> Grogu_1_1 = new List<string>()
@@ -526,7 +546,8 @@ public class List_Of_Dialogs : DiamondComponent
         "(The charming youngling tries, futilely, to wipe the mess he has made of himself with his small hands. He articulates babbles of frustration, and then looks at Mando with sparkling eyes.)",
         "No, no, and no. I told you to drink it slowly, and you didn't listen to me. Come on, you're like fifty years old! When I was your age... Anyhow, you should have learned how to behave yourself by now.",
         "(The adorable infant starts taking his tunic off. It seems like he pretends to use it to clean himself up and then throw it away.)",
-        "What do you think you are doing? There are a lot of people here watching. Put your tunic on again, they don't want to see a 50-year-old child naked... Fine, I'll let you on the ship. But let this be the last time you do something like this, otherwise I'll put you in charge of cleaning the Crest for an entire week",
+        "What do you think you are doing? There are a lot of people here watching. Put your tunic on again, they don't want to see a 50-year-old child naked... Fine, I'll let you on the ship. ",
+        "But let this be the last time you do something like this, otherwise I'll put you in charge of cleaning the Crest for an entire week",
     };
 
     private List<bool> Grogu_1_1_bool = new List<bool>()
@@ -538,6 +559,7 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+        true,
         true,
     };
 
@@ -570,7 +592,8 @@ public class List_Of_Dialogs : DiamondComponent
         "(Carefully, Grogu grabs the milk and starts drinking it. He succeeds in not spilling any drop. However he cannot avoid getting a blue moustache that makes him look even cuter than before, if this is even possible)",
         "Congratulations, you've learned to drink like a normal person. I'm proud of you.",
         "(The youngling smiles at Mando with his blue moustache. The whole canteen is looking at him like a child would look at a piece of candy. Grogu is enjoying the attention he's getting and starts waving at everyone while making happy noises.)",
-        "Stop moving and come here, I need to wipe this thing off of your lips, you are making a spectacle out of us. Maybe instead of a Jedi knight you should become a little clown, that would certainly make it easier for me. No more danger and, without a doubt, a lot of credits.",
+        "Stop moving and come here, I need to wipe this thing off of your lips, you are making a spectacle out of us. Maybe instead of a Jedi knight you should become a little clown, that would certainly make it easier for me.",
+        "No more danger and, without a doubt, a lot of credits.",
     };
 
     private List<bool> Grogu_2_1_bool = new List<bool>()
@@ -581,14 +604,18 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         false,
         true,
+        true,
     };
 
     private List<string> Grogu_2_2 = new List<string>()
     {
-        "There is one thing that bothers me, kid. How come that, after all we've been through, you haven't even said a real word to me, and the first time we meet Ahsoka Tano, you tell her all your life story you little traitor. It's very unfair, she doesn't even have ears...",
-        "(Little Grogu closes his unproportionally big eyes and attempts to concentrate, then he puts his small hands on his head. Now it seems he is really making an effort. After a few seconds of nothing happening, he gives up. He lays down on his seat and lets out a sigh.)",
+        "There is one thing that bothers me, kid. How come that, after all we've been through, you haven't even said a real word to me, and the first time we meet Ahsoka Tano, you tell her all your life story you little traitor. ",
+        "It's very unfair, she doesn't even have ears...",
+        "(Little Grogu closes his unproportionally big eyes and attempts to concentrate, then he puts his small hands on his head. Now it seems he is really making an effort. After a few seconds of nothing happening, he gives up).",
+        "(He lays down on his seat and lets out a sigh).",
         "What was that supposed to mean? Were you trying to communicate with me? If so, you gave up rather quickly. Here I've been trying for the past few months and you give up after a couple of seconds. Thank you for your enormous efforts.",
-        "(The mischievous little one, waves one fist in the air and touches his face with the other hand while mumbling something incomprehensible. However, any person with a minimum of experience interacting with other intelligent beings could have guessed that it certainly was not something nice.)",
+        "(The mischievous little one, waves one fist in the air and touches his face with the other hand while mumbling something incomprehensible).",
+        "(However, any person with a minimum of experience interacting with other intelligent beings could have guessed that it certainly was not something nice).",
         "Ok, ok, no need to get angry. Is it because of the helmet? Sorry but I can't take it off. I can't do anything about it. By the way... watch your mouth kid.",
     };
 
@@ -596,8 +623,11 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
 		true,
+        true,
+        false,
         false,
         true,
+        false,
         false,
         true,
     };
@@ -628,7 +658,8 @@ public class List_Of_Dialogs : DiamondComponent
     private List<string> Grogu_3_2 = new List<string>()
     {
         "I'm not sure if going with Bo-Katan is a good idea. She seems to really care about her home and people but there's something that seems off. What do you think kid?",
-        "(Right now, Grogu is too concerned with his metallic ball. He has put it in his mouth and is trying to chew it. He then discovers that apparently his species is unable to chew metal, which comes to him as a surprise to be sure, but an unwelcome one. Therefore, frustrated, he spits the ball.)",
+        "(Right now, Grogu is too concerned with his metallic ball. He has put it in his mouth and is trying to chew it. He then discovers that apparently his species is unable to chew metal, which comes to him as a surprise to be sure, but an unwelcome one).",
+        "(Therefore, frustrated, he spits the ball).",
         "Oh great. Now, every time I touch the dang ball on the lever, I'll remember the coat of saliva you so kindly gave it.",
         "(The clueless child utters a joyful cry. It seems like he perchance thinks that he has just been complimented.)",
         "Sure, sure, very well done. Thank you very much for your service. Well... I'll take this as your way of telling me to help Bo-Katan. I will trust you, but then it will be your fault if she turns out to be no good.",
@@ -640,6 +671,7 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
 		true,
         false,
+        false,
         true,
         false,
         true,
@@ -650,7 +682,8 @@ public class List_Of_Dialogs : DiamondComponent
     {
         "Another one for you kid. You already know the deal. Nice and easy all right?",
         "(Without wasting a single second, little Grogu drinks the milk. Afterwards he seems somewhat uneasy, could it have been the milk? He lies down to rest.)",
-        "It's nice to be able to rest. I know we've had it rough these past months. However, you've proven your value. The truth is, I always wonder what would have happened to you if I hadn't shown up, but I also don't know what would have become of me without you. You've saved me too, even if I don't like to admit it...",
+        "It's nice to be able to rest. I know we've had it rough these past months. However, you've proven your value. The truth is, I always wonder what would have happened to you if I hadn't shown up, but I also don't know what would have become of me without you. ",
+        "You've saved me too, even if I don't like to admit it...",
         "(The child is sleeping safe and sound. Nobody would be able to guess that in a couple hundred years, this youngling might become the most powerful being in the galaxy. Right now, it looks like he can't even hurt a fly.)",
         "Have a nice sleep kid, you've earned it. And don't worry, as long as I'm beside you, nobody will lay a hand on you.",
     };
@@ -660,6 +693,7 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
 		true,
         false,
+        true,
         true,
         false,
         true,
@@ -686,32 +720,39 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<string> Grogu_5_1 = new List<string>()
     {
-        "(The kid, who is not baby Yoda but looks like baby Yoda, drinks once again all the milk in one gulp. Now something is going wrong for real. His green skin starts to turn blue. He holds on until he can no longer bear it and throws up everything, making a mess once again, and thanks to the smell, this time a stinky mess).",
+        "(The kid, who is not baby Yoda but looks like baby Yoda, drinks once again all the milk in one gulp. Now something is going wrong for real. His green skin starts to turn blue).",
+        "(He holds on until he can no longer bear it and throws up everything, making a mess once again, and thanks to the smell, this time a stinky mess).",
         "Why? You were doing so well... That's because you drink too fast. I told you from the beginning; slow-ly. Now you've really done it kid... What's this?",
         "(Among all the nasty visual inventory of the things Grogu had eaten during the last 24 hours, there is a little chip. Mando grabs it.)",
         "Well, you never know... What am I going to do with you now? If you don't like blue milk you could have told me from the beginning.",
         "(Little Grogu's pointy ears start angling down, a tiny tear rounds down his cheek from one of his big eyes. He doesn't even try to wipe himself up this time, he knows it is pointless.)",
-        "Oh, stop it. Please, don't cry kid, come on, don't cry. Do you want your ball? Look, here is your ball, grab it and eat it or whatever you want but don't do this to me... Ok, next time I'm going to buy you an ice-cream, no two ice-creams. Have you ever tried an ice-cream? Kids love this stuff, and there are ice-creams with all the tastes in the galaxy, you're going to love it... Ugh, I'm not good at this.",
+        "Oh, stop it. Please, don't cry kid, come on, don't cry. Do you want your ball? Look, here is your ball, grab it and eat it or whatever you want but don't do this to me... Ok, next time I'm going to buy you an ice-cream, no two ice-creams. ",
+        "Have you ever tried an ice-cream? Kids love this stuff, and there are ice-creams with all the tastes in the galaxy, you're going to love it... Ugh, I'm not good at this.",
     };
 
     private List<bool> Grogu_5_1_bool = new List<bool>()
     {
 		// Mando true, other false
         false,
-        true,
         false,
         true,
         false,
+        true,
+        false,
+        true,
         true,
     };
 
     private List<string> Grogu_5_2 = new List<string>()
     {
         "Tell me kid, when all this is over... us I mean. When we find you this wise master... Am I ever going to see you again? ... Another fifty years from now, will you remember an old and grumpy geezer the face of whom you never saw?",
-        "(Grogu reaches to Mando with his arms, but they are too short. Mando gets close and the kid puts one hand on the helmet, then he closes his big eyes. A warm funny sensation tickles Mando's face. Then The kid opens his eyes again and smiles at his tall tin-friend while bubbling some sounds beyond comprehension.).",
+        "(Grogu reaches to Mando with his arms, but they are too short. Mando gets close and the kid puts one hand on the helmet, then he closes his big eyes. A warm funny sensation tickles Mando's face). ",
+        "(Then The kid opens his eyes again and smiles at his tall tin-friend while bubbling some sounds beyond comprehension).",
         "I don't know what you just did but it feels like... like you've just been in my head. And in some weird way, I feel at ease. I haven't even found you a master yet and you can already do things I can't understand... You know, I'm going to be sad when you are gone.",
-        "(The youngling tilts his head and raises his ears. Then he returns the ball to Mando, who grabs it, looks at it, and gives it back to the child. Behind Grogu's black eyes, one can only but see a deep, daunting void. However, in this very moment, Mando could swear that he is having a glimpse into the entire universe.)",
-        "Thank you, but you keep it, there's very little I can give you, so at least keep this. Oh, don't act all tough and strong all of a sudden, I know you'll be sad too. Just pay me a visit whenever your master gives you a little bit of free time. And if he doesn't let you, I will personally come wherever you are and beat him up. Jedis are no match for me, but don't tell Ahsoka what I just said... You already know this, but there will always be a place for you on my ship.",
+        "(The youngling tilts his head and raises his ears. Then he returns the ball to Mando, who grabs it, looks at it, and gives it back to the child. Behind Grogu's black eyes, one can only but see a deep, daunting void). ",
+        "(However, in this very moment, Mando could swear that he is having a glimpse into the entire universe.)",
+        "Thank you, but you keep it, there's very little I can give you, so at least keep this. Oh, don't act all tough and strong all of a sudden, I know you'll be sad too. Just pay me a visit whenever your master gives you a little bit of free time.",
+        "And if he doesn't let you, I will personally come wherever you are and beat him up. Jedis are no match for me, but don't tell Ahsoka what I just said... You already know this, but there will always be a place for you on my ship.",
     };
 
     private List<bool> Grogu_5_2_bool = new List<bool>()
@@ -719,8 +760,11 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
 		true,
         false,
+        false,
         true,
         false,
+        false,
+        true,
         true,
     };
     //////////////////////////////////////////////////////////////////////////////////////// GREEF KARGA ////////////////////////////////////////////////////////////////////////////////////////
@@ -755,7 +799,8 @@ public class List_Of_Dialogs : DiamondComponent
 		"Sure, sure... Because you wouldn't happen to be running some underground business of questionable ethicality, which included illegal trafficking, assassination contracts...",
 		"Hey, as far as I can remember, you and your Mandalorian friends greatly benefited from such contracts.",
 		"I didn't kill anyone who didn't deserve it. And I usually brought my targets alive.",
-        "Tell yourself that if it makes you sleep any better. We did what we had to do to survive, and if it hadn't been me, someone else would have taken my place. It is just how it is. Under the rule of the Empire, this was the way. But well, as you can see, this has changed now.",
+        "Tell yourself that if it makes you sleep any better. We did what we had to do to survive, and if it hadn't been me, someone else would have taken my place. It is just how it is. Under the rule of the Empire, this was the way. ",
+        "But well, as you can see, this has changed now.",
 	};
 
 	private List<bool> Greef_0_2_bool = new List<bool>()
@@ -767,16 +812,19 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 		true,
 		false,
+        false,
 	};
 
 	private List<string> Greef_0_3 = new List<string>()
 	{
 		"There's one thing that still doesn't convince me. What you are doing in Nevarro... do you really believe in it? Or are you just doing it to keep your new job?",
-		"You genuinely think that low of me... Look, I could have just cleaned the place up a bit and buried all the bad stuff, because it doesn't matter. Nobody is going to look twice to a planet like Nevarro. But I'm honestly trying. I'm really making an effort to change things. I want people to know that they can safely grow their kids there, and live comfortable lives.",
+		"You genuinely think that low of me... Look, I could have just cleaned the place up a bit and buried all the bad stuff, because it doesn't matter. Nobody is going to look twice to a planet like Nevarro.",
+        "But I'm honestly trying. I'm really making an effort to change things. I want people to know that they can safely grow their kids there, and live comfortable lives.",
 		"Alright, I believe you. Now that Cara is helping you, I think you might actually be able to achieve what you're saying. It's not that I don't trust you, but I know you're only loyal to yourself.",
 		"My days of messing around with wrongdoers are over. It is painful to admit it, but one has already a certain age here. What I want now is peace and tranquillity.",
 		"It is quite amusing to imagine the infamous Greef Karga as an old gramps, in a park, seated on a bench while watching the children play.",
-		"Very funny. Be careful with what you say. I might not be in my golden years, but I still have a lot in me. I'm still an agent of the Guild and he who underestimates me will find himself in a bad spot. But well, you just watch Mando, next time you come to Nevarro you won't be able to recognize it.",
+		"Very funny. Be careful with what you say. I might not be in my golden years, but I still have a lot in me. I'm still an agent of the Guild and he who underestimates me will find himself in a bad spot. ",
+        "But well, you just watch Mando, next time you come to Nevarro you won't be able to recognize it.",
 	};
 
 	private List<bool> Greef_0_3_bool = new List<bool>()
@@ -784,9 +832,11 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
 		true,
 		false,
+        false,
 		true,
 		false,
 		true,
+        false,
 		false,
 	};
 
@@ -794,7 +844,8 @@ public class List_Of_Dialogs : DiamondComponent
     {
         "Oh, is this your way of showing how much you appreciate my friendship? You're welcome Mando.",
         "Don't get too full of yourself. I had one to spare. I can give it to someone else.",
-        "No, I appreciate this, and I'll take it. Say, have you reconsidered my proposition? There's still a place for you in the Guild if you want. Since you left, I can't cash any of the big boy bounties. The other bounty hunters are not as good as you, except for maybe Cara, but she's too busy being Marshall and has no time for chasing miscreants around the galaxy.",
+        "No, I appreciate this, and I'll take it. Say, have you reconsidered my proposition? There's still a place for you in the Guild if you want. Since you left, I can't cash any of the big boy bounties. ",
+        "The other bounty hunters are not as good as you, except for maybe Cara, but she's too busy being Marshall and has no time for chasing miscreants around the galaxy.",
         "The kid is my mission now. As long as I have to take care of him, it's better to avoid all conflicts. Therefore no, I can't return to the Guild right now. You'll have to settle for the small fish.",
         "Well, maybe when you have delivered the kid to whoever it is that's supposed to take him, you'll reconsider. You've been a bounty hunter all your life and you don't know anything else, once the kid is gone, I know you'll come back.",
         "You don't know what I will do. Maybe I'll come back, maybe I won't. Right now, there's the whole Mandalore affair we'll have to take care of, so I'll be busy for quite a while.",
@@ -805,6 +856,7 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
         false,
         true,
+        false,
         false,
         true,
         false,
@@ -818,7 +870,8 @@ public class List_Of_Dialogs : DiamondComponent
         "Come on, it's not like you aren't a terrific gunslinger too. You alone can take a dozen of bucketheads on your own. And you are an agent of the Guild. I'm sure you can get a few fellow hunters to help with our cause.",
         "Well, if you put it like that, it sure is tempting. I like you throwing me compliments. You should do it more often. But what's in it for me?",
         "Is it not enough to go on a new adventure with your friends? And aren't you curious to know what we'll find there?",
-        "I'm glad to see that you finally recognize me as your friend, especially when you are trying to get something from me... I don't know if I need any more adventures... I've already seen a lot of action in my life, and age is unforgiving you know... My knees are not what they used to be, my hips hurt, and my sight is--",
+        "I'm glad to see that you finally recognize me as your friend, especially when you are trying to get something from me... ",
+        "I don't know if I need any more adventures... I've already seen a lot of action in my life, and age is unforgiving you know... My knees are not what they used to be, my hips hurt, and my sight is--",
         "Alright you old geezer, I get it. I'm sure that if you ask her, Bo-Katan would be willing to reward you with a reasonable amount of credits for your service. After all, she is going to become the ruler of Mandalore.",
         "I don't know how you did it, but I think you have convinced me. If this Bo-Katan is kind enough to give us a little reward as you say, you can count me in. It is strange, but my knees and my hips are feeling so much better now...",
     };
@@ -832,6 +885,7 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+        false,
         true,
         false,
     };
@@ -839,11 +893,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<string> Greef_1_3 = new List<string>()
     {
         "Tell me Mando, what is this Mandalore campaign all about?",
-        "The thing is, we don't really know. The objective is to take the planet, so that Bo-Katan can restore Mandalore to the nation it used to be before the Empire decimated it. But how we are going to take it is kind of a mystery, because we don't know what is waiting for us down there.",
+        "The thing is, we don't really know. The objective is to take the planet, so that Bo-Katan can restore Mandalore to the nation it used to be before the Empire decimated it. ",
+        "But how we are going to take it is kind of a mystery, because we don't know what is waiting for us down there.",
         "So, we are going to go there completely blind. We don't know who or what we are going to face, and how many of them there will be.",
         "More or less, that's it.",
         "Sounds like my kind of weekend.",
-        "Bo-Katan hasn't told me what her plan is. Though from what I have gathered, I don't think we are just going to land there and hope we don't get instantly killed. She must have some friends from before they had to leave the planet, some real Mandalorian warriors I would expect.",
+        "Bo-Katan hasn't told me what her plan is. Though from what I have gathered, I don't think we are just going to land there and hope we don't get instantly killed. ",
+        "She must have some friends from before they had to leave the planet, some real Mandalorian warriors I would expect.",
         "I'm going to join you, but let me say, I have a bad feeling about this.",
     };
 
@@ -852,9 +908,11 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
         false,
         true,
+        true,
         false,
         true,
         false,
+        true,
         true,
         false,
     };
@@ -884,10 +942,12 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<string> Greef_2_2 = new List<string>()
     {
-        "You did help me a lot, I have to admit it. And that day, against all the troopers and Moff Gideon, you almost got killed for getting involved with me. We're lucky IG saved the day, I'll never come to like droids, but if not for him... Well, we wouldn't be talking right now.",
+        "You did help me a lot, I have to admit it. And that day, against all the troopers and Moff Gideon, you almost got killed for getting involved with me. ",
+        "We're lucky IG saved the day, I'll never come to like droids, but if not for him... Well, we wouldn't be talking right now.",
         "I know you don't hate me Mando... Out of all the group, we two go back the longest. I'm the one who knows you best. By the way, speaking about IG. I tried to rebuild him.",
         "What? But how? He blew himself up. I'd be surprised if there was even a single screw left of him.",
-        "You know I'm resourceful. With the help of a few members of the Guild, we tried to find as many parts as possible. After five days we found enough. Turns out his memory drive was kept in a small and very hard metal container. It was not beskar, but was hard enough to withstand the explosion. We used some of the pieces we had found with new ones and we built him a new body.",
+        "You know I'm resourceful. With the help of a few members of the Guild, we tried to find as many parts as possible. After five days we found enough. Turns out his memory drive was kept in a small and very hard metal container.",
+        "It was not beskar, but was hard enough to withstand the explosion. We used some of the pieces we had found with new ones and we built him a new body.",
         "Why would you do that? You went through a lot of work for just a droid. If you were in need, buying a new one would have been cheaper.",
         "Hey, that IG saved my life too, plus was a fellow member of the Guild. I kind of felt I owed it to him. I thought he would be useful too, so I sent him to help in several businesses in Nevarro... it was not a good idea. He almost trashed a whole village.",
         "What were you expecting, he was made for combat.. You know I appreciate you. Losing my best bounty hunter is not something I would want.",
@@ -898,8 +958,11 @@ public class List_Of_Dialogs : DiamondComponent
     private List<bool> Greef_2_2_bool = new List<bool>()
     {
 		// Mando true, other false
+        true,
+        true,
         false,
         true,
+        false,
         false,
         true,
         false,
@@ -911,9 +974,12 @@ public class List_Of_Dialogs : DiamondComponent
     {
         "You never told me what happened after we destroyed that imperial base in Nevarro.",
         "Ah, nothing worth mentioning. I reported it to some high charges in the New Republic, they came to take a look and then they left. Afterwards, we got the licence to join the trade network in Nevarro's sector. This has brought a few investors, which is nice.",
-        "Looks like it ended up being profitable for you. For me, discovering that Moff Gideon was alive was quite the opposite, a pretty unpleasant surprise I must say. Didn't they tell you what was all that genetic stuff about? That was not a normal base, it's purpose must have been scientific research or something like that...",
-        "We didn't leave much to be investigated there. Either way, they couldn't tell me anything. But I think it's for the best. They were doing something scary, and the kid was part of their plans in some way. It was right for you to go after Moff Gideon. Otherwise, the kid would still be in danger.",
-        "I doubt that was their only base, they had a lot of resources and staff, if all that stuff was so important for the imperials, I bet they had more labs just in case. Going after Moff Gideon was my only choice, I had to go to the root of all this and end it once and for all. Although, something tells me that it is not yet over.",
+        "Looks like it ended up being profitable for you. For me, discovering that Moff Gideon was alive was quite the opposite, a pretty unpleasant surprise I must say. ",
+        "Didn't they tell you what was all that genetic stuff about? That was not a normal base, it's purpose must have been scientific research or something like that...",
+        "We didn't leave much to be investigated there. Either way, they couldn't tell me anything. But I think it's for the best. They were doing something scary, and the kid was part of their plans in some way. ",
+        "It was right for you to go after Moff Gideon. Otherwise, the kid would still be in danger.",
+        "I doubt that was their only base, they had a lot of resources and staff, if all that stuff was so important for the imperials, I bet they had more labs just in case.",
+        " Going after Moff Gideon was my only choice, I had to go to the root of all this and end it once and for all. Although, something tells me that it is not yet over.",
         "What makes you say that?",
         " I don't know. But it seems to me that Moff Gideon was not the brains of all this. He had to be working under someone we still don't know. Someone even more dangerous...",
     };
@@ -924,7 +990,10 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         false,
         true,
+        true,
         false,
+        false,
+        true,
         true,
         false,
         true,
@@ -936,9 +1005,11 @@ public class List_Of_Dialogs : DiamondComponent
         "Nah, this time it actually is a token of appreciation. Sure, we've had our differences, but it's true that you've helped me a lot.",
         "Wow, where did you get this new empathy of yours? It's unlike you.",
         "Don't make me regret saying those words.",
-        "Fine, fine, I won't complain. You know, I used to be like you when I was younger... without the whole Mandalorian thing, of course... I mean I was a bounty hunter too. I preferred to work alone and kept most to myself. My aim was to become the best bounty hunter in the galaxy, and I didn't have time for other things.",
+        "Fine, fine, I won't complain. You know, I used to be like you when I was younger... without the whole Mandalorian thing, of course... I mean I was a bounty hunter too. I preferred to work alone and kept most to myself. ",
+        "My aim was to become the best bounty hunter in the galaxy, and I didn't have time for other things.",
         "The best in the galaxy? That's more on the impossible side of things. You are good, no offense, but there are a lot of beings out there who don't care about blasters and tricks. If they want to kill you, you don't stand any chance.",
-        "I know, I eventually learned that. But I had an idol. You are too young to have known about him. He was a Duros bounty hunter. Like me, he didn't have any psychic powers, superhuman strength or an impenetrable armour. Just two guns, a few tricks up his sleeve and a very cool hat. And despite that, he became the number one bounty hunter during the clone wars era.",
+        "I know, I eventually learned that. But I had an idol. You are too young to have known about him. He was a Duros bounty hunter. ",
+        "Like me, he didn't have any psychic powers, superhuman strength or an impenetrable armour. Just two guns, a few tricks up his sleeve and a very cool hat. And despite that, he became the number one bounty hunter during the clone wars era.",
     };
 
     private List<bool> Greef_3_1_bool = new List<bool>()
@@ -949,20 +1020,25 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+        false,
         true,
+        false,
         false,
     };
 
     private List<string> Greef_3_2 = new List<string>()
     {
         "It's hard to believe a man like that bounty hunter could thrive in an era filled with Jedi and war. I guess it makes sense that you wanted to be like him. Although it seems like you were missing the cool hat.",
-        "Hahaha, I tried some, but I quickly discovered hats are not my thing. I always dropped them, and I had to buy new ones all the time. Plus, I have a big head and it was difficult to find hats that--Wait, why am I telling you all this? It is irrelevant to what I was trying to say.",
+        "Hahaha, I tried some, but I quickly discovered hats are not my thing. I always dropped them, and I had to buy new ones all the time. ",
+        "Plus, I have a big head and it was difficult to find hats that--Wait, why am I telling you all this? It is irrelevant to what I was trying to say.",
         "I don't know, it was you who mentioned he wore a cool hat...",
         "Stop trying to make fun of me. Anyway, what was I trying to tell you? ... Ah yes, I remember. I admired that bounty hunter and I thought I could be like him. I trained myself, I improved my accuracy as much as I could, and I got the latest gadgets...",
         "Let me guess. Then you faced some simple goons, they kicked your butt and they made you realize you were not a superhero.",
-        "I find your lack of faith in me slightly disturbing, but it's ok, I'm used to it. It was actually rather the opposite. I started to get a lot of contracts which I always closed successfully, and eventually, the Empire noticed me. I suppose they thought I could be of use, so I started working for them, one thing led to another and I ended up becoming the magistrate of Nevarro.",
+        "I find your lack of faith in me slightly disturbing, but it's ok, I'm used to it. It was actually rather the opposite. ",
+        "I started to get a lot of contracts which I always closed successfully, and eventually, the Empire noticed me. I suppose they thought I could be of use, so I started working for them, one thing led to another and I ended up becoming the magistrate of Nevarro.",
         "I was really not expecting that ending. But hold on, then, what was the point of your story?",
-        "I couldn't have become a magistrate if I had just continued to be a lone wolf working for myself. I didn't become that legendary bounty hunter that I admired, instead I became something better. And for that, I had to make new partners and learn to appreciate them. It is difficult to get anywhere if you are not willing to establish new friendships",
+        "I couldn't have become a magistrate if I had just continued to be a lone wolf working for myself.",
+        "I didn't become that legendary bounty hunter that I admired, instead I became something better. And for that, I had to make new partners and learn to appreciate them. It is difficult to get anywhere if you are not willing to establish new friendships",
     };
 
     private List<bool> Greef_3_2_bool = new List<bool>()
@@ -970,32 +1046,43 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
         true,
         false,
-        true,
         false,
         true,
         false,
         true,
+        false,
+        false,
+        true,
+        false,
         false,
     };
 
     private List<string> Greef_3_3 = new List<string>()
     {
-        "I knew you worked for the empire, but I had never thought about your past with them. I just imagined that they had let you be magistrate as long as you didn't give them any problems. But with all that talk about partners and friendships... How deep did you go into their rabbit hole?",
-        "I guess that by telling you that story, it was inevitable that you would ask me about this... Look Mando, I'm not proud of a lot of the things I did for the Empire, but I also don't regret doing them. All those choices I made, in the end, led me to become magistrate of Nevarro.",
+        "I knew you worked for the empire, but I had never thought about your past with them. I just imagined that they had let you be magistrate as long as you didn't give them any problems. But with all that talk about partners and friendships... ",
+        "How deep did you go into their rabbit hole?",
+        "I guess that by telling you that story, it was inevitable that you would ask me about this... Look Mando, I'm not proud of a lot of the things I did for the Empire, but I also don't regret doing them.",
+        "All those choices I made, in the end, led me to become magistrate of Nevarro.",
         "But how many people had to suffer so that you could get your precious position? The Empire's methods were ruthless, and you became their puppet.",
-        "The Empire might have been ruthless and cruel, but this was because of those who ruled it. For people like us, in the lower ranks, we were fighting for a good cause. The methods were wrong, no doubt about it, but the ultimate goal was to establish order and peace in the galaxy.",
+        "The Empire might have been ruthless and cruel, but this was because of those who ruled it. For people like us, in the lower ranks, we were fighting for a good cause. " ,
+        "The methods were wrong, no doubt about it, but the ultimate goal was to establish order and peace in the galaxy.",
         "Are you trying to justify what the Empire did? Look at what they did to Bo-Katan's nation, look at Cara's homeplanet Alderaan... In fact, you can't, because they destroyed it.",
-        "No, I'm not trying to justify them. What I'm trying to tell you is that there was a dream; after the Empire had total control over the galaxy, there would be no more suffering. Ordinary people fought for that dream, but halfway towards it, we started forgetting what it was. And when we realized what we had done and tried to go back, it was too late; the dream was already over.",
+        "No, I'm not trying to justify them. What I'm trying to tell you is that there was a dream; after the Empire had total control over the galaxy, there would be no more suffering. ",
+        "Ordinary people fought for that dream, but halfway towards it, we started forgetting what it was. And when we realized what we had done and tried to go back, it was too late; the dream was already over.",
     };
 
     private List<bool> Greef_3_3_bool = new List<bool>()
     {
 		// Mando true, other false
         true,
+        true,
+        false,
         false,
         true,
         false,
+        false,
         true,
+        false,
         false,
     };
 
@@ -1005,9 +1092,11 @@ public class List_Of_Dialogs : DiamondComponent
         "You are starting to give too much importance to this. Anyway, there's something I want to ask you. You've been around longer than most of us...",
         "If this is your way of telling me that I'm old, nice job; you were successful in making me feel like the grandpa of the band.",
         "You don't need me to tell you that you are old, you can just go to the mirror and look at yourself when you have some time. But this isn't what I was trying to say. I wanted to ask you what you remember about the jedi. You were around when they were still alive.",
-        "If I could borrow one from you I would do it, but since you don't take your helmet off to spare us seeing your ugly face, I guess you don't have any mirrors. Regarding the Jedi, I can't tell you much, I think I saw one or two from afar, but I never talked with any of them.",
+        "If I could borrow one from you I would do it, but since you don't take your helmet off to spare us seeing your ugly face, I guess you don't have any mirrors. ",
+        "Regarding the Jedi, I can't tell you much, I think I saw one or two from afar, but I never talked with any of them.",
         "If only you were as good with blasters as you are with words... Still, you must have heard stories. From what I understand, Jedis were a big deal back then.",
-        "I had no time for stories, I was too busy working and training to become a bounty hunter. Hmm, I remember that Jango Fett, the best bounty hunter during the last years of the Republic, was killed by a Jedi when I was just a kid. Maybe that's why later, I tried to stay away from them as much as possible.",
+        "I had no time for stories, I was too busy working and training to become a bounty hunter. Hmm, I remember that Jango Fett, the best bounty hunter during the last years of the Republic, was killed by a Jedi when I was just a kid. ",
+        "Maybe that's why later, I tried to stay away from them as much as possible.",
     };
 
     private List<bool> Greef_4_1_bool = new List<bool>()
@@ -1018,15 +1107,19 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+        false,
         true,
+        false,
         false,
     };
 
     private List<string> Greef_4_2 = new List<string>()
     {
-        "About the Jedi. Remember the other bounty hunter I told you about? The one I used to admire. He became number one after Jango's death. He meddled with Jedi many times and yet, always seemed to come out unscratched. So, I don't know, maybe they weren't that good, or he was too smart.",
+        "About the Jedi. Remember the other bounty hunter I told you about? The one I used to admire. He became number one after Jango's death. He meddled with Jedi many times and yet, always seemed to come out unscratched.",
+        " So, I don't know, maybe they weren't that good, or he was too smart.",
         "It's nice to know that, but it doesn't help me. What I was wondering is whether it is right for Grogu to become a Jedi.",
-        "Does he have any other choice? He has the gift. Do you know how much would most people be willing to sacrifice to be able to wield the force? He has a chance to become what most of us can only dream about, and he must learn to defend himself too. Moff Gideon was not the only one out there who would go to great lengths to get him.",
+        "Does he have any other choice? He has the gift. Do you know how much would most people be willing to sacrifice to be able to wield the force? He has a chance to become what most of us can only dream about, and he must learn to defend himself too.",
+        "Moff Gideon was not the only one out there who would go to great lengths to get him.",
         "I know all that, but isn't becoming a Jedi even more dangerous? Now, not many people know about his existence. However, being a Jedi would immediately put him on the spot.",
         "You need to trust in him. Jedi were anything but weaklings. Once he is fully trained, it will be those who want to harm him who are going to have to start worrying. He will be stronger than the whole Guild combined.",
     };
@@ -1035,7 +1128,9 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
         false,
+        false,
         true,
+        false,
         false,
         true,
         false,
@@ -1043,8 +1138,10 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<string> Greef_4_3 = new List<string>()
     {
-        "I briefly fought Ahsoka once. She is extremely good, more than anyone I've ever met, but she is not invincible. A shot from behind, a knife while sleeping, or enough manpower... All these things could kill her. If Grogu becomes a Jedi, he will have to keep an eye open during all his life.",
-        "Don't we all Mando? You avoid having partners so that they cannot backstab you, and when was the last time you slept without having your blaster next to you and ready to fire? Let me tell you, I do the same and I bet so does Cara and even our Mythrol friend. It's just the way it is.",
+        "I briefly fought Ahsoka once. She is extremely good, more than anyone I've ever met, but she is not invincible. A shot from behind, a knife while sleeping, or enough manpower... ",
+        "All these things could kill her. If Grogu becomes a Jedi, he will have to keep an eye open during all his life.",
+        "Don't we all Mando? You avoid having partners so that they cannot backstab you, and when was the last time you slept without having your blaster next to you and ready to fire? ",
+        "Let me tell you, I do the same and I bet so does Cara and even our Mythrol friend. It's just the way it is.",
         "Yes, you're right... Sorry I can't help it. The kid has me worried all the time. What would have happened to him if I had not shown up that day at the Nikto hideout on Aravala-7? He would surely be dead, or serving as guinea pig for that crazy maniac...",
         "You shouldn't think about that, the important thing is that you found him and saved him. Maybe it was fate, have you thought about that?",
         "I don't believe in fate.",
@@ -1055,6 +1152,8 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
         true,
+        true,
+        false,
         false,
         true,
         false,
@@ -1068,7 +1167,8 @@ public class List_Of_Dialogs : DiamondComponent
         "Thank you, Greef. I certainly will. I think I agree with what you said at the beginning. It's been nice these days. I've learned things I didn't know about you and you've given me some good advice.",
         "You know you can count on me Mando. As long as you don't backstab me again, I'm not going to send all of the Guild after you.",
         "Fair enough. Now that we are past that Gideon problem there's not much we have to worry about. After our Mandalore mission, what are you planning to do?",
-        "First, we have to get back from that cursed planet. Something tells me things are not going to go as smooth as Bo-Katan has planned. Afterwards, I will consider what is my next move. I'm probably going to keep my position as magistrate, trying to improve things in Nevarro.",
+        "First, we have to get back from that cursed planet. Something tells me things are not going to go as smooth as Bo-Katan has planned. Afterwards, I will consider what is my next move. ",
+        "I'm probably going to keep my position as magistrate, trying to improve things in Nevarro.",
         "I suppose that's what makes most sense for you. Haven't you considered retiring though?",
         "If you try to remind me of my age one more time. I'm going to put a price on your head so high, the whole galaxy is going to be after you.",
     };
@@ -1081,6 +1181,7 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+        false,
         true,
         false,
     };
@@ -1088,7 +1189,8 @@ public class List_Of_Dialogs : DiamondComponent
     private List<string> Greef_5_2 = new List<string>()
     {
         "For reclaiming Mandalore, will you ask the members of the Guild for help?",
-        "I can ask, but except for a couple of goons who owe me credits, I don't think anyone is going to join if there isn't a reward in the end. You said Bo-Katan would compensate us, but you can't know if she will actually do it. And even if she did, it can't be a lot, she has probably already spent most of her credits preparing the mission, and she is going to need even more if she wants to rebuild Mandalore.",
+        "I can ask, but except for a couple of goons who owe me credits, I don't think anyone is going to join if there isn't a reward in the end.",
+        "You said Bo-Katan would compensate us, but you can't know if she will actually do it. And even if she did, it can't be a lot, she has probably already spent most of her credits preparing the mission, and she is going to need even more if she wants to rebuild Mandalore.",
         "You're right, I hadn't thought about that. Since the Empire made hell rain over the planet, everything must be in ruins. It will take years to restore the cities to their former glory...",
         "I don't know what you had pictured in your mind. But when we land in the middle of all that decay, the only thing that you are going to see are dunes of earth and sand stretching far away.",
         "I admit that after hearing so much about Mandalore and... Well, believing myself a Mandalorian, I had imagined shining cities of silver hidden inside colossal domes.",
@@ -1100,6 +1202,7 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
         true,
+        false,
         false,
         true,
         false,
@@ -1224,11 +1327,14 @@ public class List_Of_Dialogs : DiamondComponent
     private List<string> Ahsoka_1_2 = new List<string>()
     {
         "You keep saying you're not a Jedi. Still, you fight with lightsabers, you use the force, and you're on the good guys' side. I have never met a Jedi, but from the stories I've heard, you tick all the boxes... Help me understand.",
-        "Since I was a child, I was raised by Jedi in the Jedi ways... Eventually, I realized that things are not as black and white as they had taught me. While in The Order, I was so naively blinded by our just cause, that I was unable to see the dark shadows our bright light had casted. Then I understood; there lies darkness in light, and likewise, one can find light in darkness.",
+        "Since I was a child, I was raised by Jedi in the Jedi ways... Eventually, I realized that things are not as black and white as they had taught me. While in The Order, I was so naively blinded by our just cause, that I was unable to see the dark shadows our bright light",
+        "had casted. Then I understood; there lies darkness in light, and likewise, one can find light in darkness.",
         "Am I supposed to understand what all this means? Now I'm even more confused.",
-        "There is no such thing as simply good and bad people, we are far more complex. I was not sure we were the 'good guys' anymore. What I had once considered my home, became unfamiliar, and where before I had seen friendly faces, I could only see strangers. It became clear to me that I no longer belonged in The Order.",
+        "There is no such thing as simply good and bad people, we are far more complex. I was not sure we were the 'good guys' anymore. What I had once considered my home, became unfamiliar, and where before I had seen friendly faces, I could only see strangers.",
+        "It became clear to me that I no longer belonged in The Order.",
         "I'm going to pretend that this was more clarifying than before... You make it sound as if Jedi were bad people. Why should Grogu become one then? It doesn't seem like a good idea anymore.",
-        "No, do not get me wrong. The Jedi were definitely trying to do good, it is just... those were hard times, and they had to make a lot of difficult decisions. I do not think it has ever been tougher for the members of the Jedi council. I even considered rejoining after a while, but then order 66 was issued and... Well, it was too late...",
+        "No, do not get me wrong. The Jedi were definitely trying to do good, it is just... those were hard times, and they had to make a lot of difficult decisions. I do not think it has ever been tougher for the members of the Jedi council.",
+        "I even considered rejoining after a while, but then order 66 was issued and... Well, it was too late...",
     };
 
     private List<bool> Ahsoka_1_2_bool = new List<bool>()
@@ -1236,9 +1342,12 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
 		true,
         false,
-        true,
         false,
         true,
+        false,
+        false,
+        true,
+        false,
         false,
     };
 
@@ -1267,7 +1376,8 @@ public class List_Of_Dialogs : DiamondComponent
     {
         "Oh, I did not think you would actually take my petition seriously. Thank you anyway.",
         "I had one to spare... There is one thing that's been bugging me; how long does it take to train a Jedi? From what I understand, Grogu is around 50. I keep thinking of him as a kid, but in reality, could he be too old?",
-        "He really is a remarkable being. I have only met one other like him in my life. Perhaps the greatest Jedi master who ever lived. He was more than 800 years old... You need not worry about these things, every species ages at its own rhythm. He may be 50, but he is still a youngling.",
+        "He really is a remarkable being. I have only met one other like him in my life. Perhaps the greatest Jedi master who ever lived. He was more than 800 years old... You need not worry about these things, every species ages at its own rhythm.",
+        "He may be 50, but he is still a youngling.",
         "More than 800 years?! By the time I die he'll probably still be too young to even get a speeder licence. I hope at least he'll have learned to talk...",
         "Do not underestimate Grogu. The fact that you cannot understand him does not mean he is unable to communicate with others. I can speak with him through the force for example.",
         "But the kid is so helpless. He'll have to rely on others for his protection for who knows how many years...",
@@ -1280,6 +1390,7 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
         true,
         false,
+        false,
         true,
         false,
         true,
@@ -1289,9 +1400,11 @@ public class List_Of_Dialogs : DiamondComponent
     private List<string> Ahsoka_2_2 = new List<string>()
     {
         "Grogu will live more than 800 years... Do you think he'll remember any of us in a couple of centuries?",
-        "I am not going to pretend to know how living for such a long time affects someone's mind. Nonetheless, what I can assure you is that Grogu is not just anyone. His kind are very special. The old master I told you about always had an answer for every question, and all the Jedi turned to him every time they needed counsel. He was the wisest one in the Jedi council and most of the other members had learned from him.",
+        "I am not going to pretend to know how living for such a long time affects someone's mind. Nonetheless, what I can assure you is that Grogu is not just anyone. His kind are very special. ",
+        "The old master I told you about always had an answer for every question, and all the Jedi turned to him every time they needed counsel. He was the wisest one in the Jedi council and most of the other members had learned from him.",
         "That doesn't really answer my question. What would have been for him a few years when he was a kid compared to almost a millennium of experience studying the mysteries of the universe?",
-        "Memories are powerful, the mind can decide to keep or to erase them based on their nature and the impact they had on you, but they always stay in your subconscious. The Jedi have a deeper connection between their mind and their subconscious, for we cannot allow repressed emotions to cloud our judgement and affect our actions. In the same way, we can access old memories that are buried deep in our subconscious.",
+        "Memories are powerful, the mind can decide to keep or to erase them based on their nature and the impact they had on you, but they always stay in your subconscious. ",
+        "The Jedi have a deeper connection between their mind and their subconscious, for we cannot allow repressed emotions to cloud our judgement and affect our actions. In the same way, we can access old memories that are buried deep in our subconscious.",
         "Does this mean he will remember us?",
         "To answer what is really troubling you... Yes, he will remember you.",
     };
@@ -1301,6 +1414,7 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
 		true,
         false,
+        false,
         true,
         false,
         true,
@@ -1309,7 +1423,8 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<string> Ahsoka_2_3 = new List<string>()
     {
-        "I wanted to ask you Mandalorian, why do you care so much for Grogu? I have encountered a fair amount of people like you in my life. Bounty hunters with good reputations who prefer to work alone and would stop at nothing to get their mission done, so that they can earn their desired credits at the end... None of them would have broken a deal to save the child.",
+        "I wanted to ask you Mandalorian, why do you care so much for Grogu? I have encountered a fair amount of people like you in my life.",
+        "Bounty hunters with good reputations who prefer to work alone and would stop at nothing to get their mission done, so that they can earn their desired credits at the end... None of them would have broken a deal to save the child.",
         "I suppose I'm not like the other bounty hunters you've met. I just... I felt it was the right thing to do.",
         "That might be what you tell yourself, but I sense there is something more. Something that makes you care for him and has created a strong bond between you two...",
         "I told you I don't like these Jedi tricks. Get out of my mind!",
@@ -1322,6 +1437,7 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
 		false,
+        false,
         true,
         false,
         true,
@@ -1356,11 +1472,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<string> Ahsoka_3_2 = new List<string>()
     {
         "What went wrong the last time you two tried to claim Mandalore?",
-        "Nothing went wrong. It was certainly difficult, and we had a lot of casualties, but we were ultimately successful. You can ask Bo-Katan for the details. The problem was that the Republic fell hours later, and since she had claimed Mandalore with their aid, the planet was targeted by The Empire. She could not keep her position for long.",
+        "Nothing went wrong. It was certainly difficult, and we had a lot of casualties, but we were ultimately successful. You can ask Bo-Katan for the details.",
+        "The problem was that the Republic fell hours later, and since she had claimed Mandalore with their aid, the planet was targeted by The Empire. She could not keep her position for long.",
         "Well, you already did it once. I'm sure you can do it again.",
         "Last time I had an entire division of troopers from the Republic with me and Bo-Katan had a lot of Mandalorian warriors with her.",
         "I'm sure that we can do without the boys in white; their only purpose is to add bulk. One Mandalorian counts for twenty of them. We can find the numbers elsewhere.",
-        "You do not know what you are talking about, you are too young. Those were not your usual storm troopers; those were clone troopers. They were created specifically to become soldiers in the Grand Army of the Republic. Fighting was in their blood. I have never met any army as brave and disciplined as them.",
+        "You do not know what you are talking about, you are too young. Those were not your usual storm troopers; those were clone troopers. They were created specifically to become soldiers in the Grand Army of the Republic.",
+        "Fighting was in their blood. I have never met any army as brave and disciplined as them.",
     };
 
     private List<bool> Ahsoka_3_2_bool = new List<bool>()
@@ -1368,9 +1486,11 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
 		true,
         false,
+        false,
         true,
         false,
         true,
+        false,
         false,
     };
 
@@ -1381,9 +1501,11 @@ public class List_Of_Dialogs : DiamondComponent
         "That's what happened to the Jedi right?... They put too much trust in them.",
         "That is sadly true... However, I would not have fought with anyone else during the clone wars. When they turned against the Jedi... it was not their fault. They could not help it. Even if it was against their will.",
         "Seems like you were really fond of them.",
-        "We went through so much together... They saved my life countless times. Some of them became dear friends. I was able to save one at least, my second in command. His name is Rex, the finest soldier I have ever known. He was beside me during our mission in Mandalore. He was beside me from the beginning until the very last moment...",
+        "We went through so much together... They saved my life countless times. Some of them became dear friends. I was able to save one at least, my second in command. ",
+        "His name is Rex, the finest soldier I have ever known. He was beside me during our mission in Mandalore. He was beside me from the beginning until the very last moment...",
         "The way you talk about him, I'd have liked to meet this man. He would have been a great addition to our team now.",
-        "Oh, you misunderstood me, he is still alive. That geezer, he last saw action during the battle of Endor, despite me advising him not to do it because of his age. I am sure if I told him, he would come without hesitation. I am not going to do it though. He has earned a well-deserved retirement. After a life full of war, I want him to spend his last years in peace..",
+        "Oh, you misunderstood me, he is still alive. That geezer, he last saw action during the battle of Endor, despite me advising him not to do it because of his age. ",
+        "I am sure if I told him, he would come without hesitation. I am not going to do it though. He has earned a well-deserved retirement. After a life full of war, I want him to spend his last years in peace..",
     };
 
     private List<bool> Ahsoka_3_3_bool = new List<bool>()
@@ -1395,7 +1517,9 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+        false,
         true,
+        false,
         false,
     };
 
@@ -1429,10 +1553,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<string> Ahsoka_4_2 = new List<string>()
     {
         "It amazes me that you did so much for the Rebellion and still, your involvement has remained a secret. The Republic owes you part of their existence, but your name will be forgotten after you die.",
-        "I did not do what I did to get a medal or expecting to become a hero at the end. I did what I felt was right, and to know I helped those who needed it the most, is the greatest reward I can get. I know this is not your way, bounty hunter, and yet I think that by now, you might be able to understand it.",
+        "I did not do what I did to get a medal or expecting to become a hero at the end. I did what I felt was right, and to know I helped those who needed it the most, is the greatest reward I can get. ",
+        "I know this is not your way, bounty hunter, and yet I think that by now, you might be able to understand it.",
         "Yes, I think I can understand.",
-        "I spent the first half of my life fighting for the Republic. During those years, I tasted victory and defeat, glory and condemnation, I was given respect and criticism... All those moments are lost in time, they are meaningless, for few now live who remember them. However, when I look in the eyes of the people who suffered under the Empire, who are living peacefully and with freedom today, and I see them sparkling with happiness and joy... I cannot ask for more.",
-        "Maybe you aren't a Jedi, and it is too late for you to go back and become one. But from all the stories I've heard, if there's one thing I'm certain about, is that you embody all the great things a Jedi master is supposed to stand for. I'm sure that if they were alive now, they would be proud of you...",
+        "I spent the first half of my life fighting for the Republic. During those years, I tasted victory and defeat, glory and condemnation, I was given respect and criticism... All those moments are lost in time, they are meaningless, for few now live who remember them. ",
+        "However, when I look in the eyes of the people who suffered under the Empire, who are living peacefully and with freedom today, and I see them sparkling with happiness and joy... I cannot ask for more.",
+        "Maybe you aren't a Jedi, and it is too late for you to go back and become one. But from all the stories I've heard, if there's one thing I'm certain about, is that you embody all the great things a Jedi master is supposed to stand for. ",
+        "I'm sure that if they were alive now, they would be proud of you...",
         "Thank you Mandalorian. This means a lot to me...",
     };
 
@@ -1441,8 +1568,11 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
 		true,
         false,
+        false,
         true,
         false,
+        false,
+        true,
         true,
         false,
     };
@@ -1451,11 +1581,13 @@ public class List_Of_Dialogs : DiamondComponent
     {
         "I have realized I owe you an apology Mandalorian. I read you wrong the first time we met.",
         "Well, uh... apology accepted. What do you mean?",
-        "The first time, I decided to leave Grogu with you because I thought that, as he was your mission, you would protect him and keep him safe. But now that I know you better, there is no doubt in my mind that it was the right choice. He is more than your mission, and you are more than just a bounty hunter.",
+        "The first time, I decided to leave Grogu with you because I thought that, as he was your mission, you would protect him and keep him safe. But now that I know you better, there is no doubt in my mind that it was the right choice. ",
+        "He is more than your mission, and you are more than just a bounty hunter.",
         "I'll take that as a compliment, I guess. But hold on a second, are you saying that if you had considered me untrustworthy, you would have taken Grogu? You know I wouldn't have let you, right?",
         "There is no need to think about that, it did not happen. However, there is a chance I might have done it. But do not worry, I would not have harmed you. You treated Grogu well.",
         "You really think I wouldn't stand any chance against you... Your lightsabers can't cut through my beskar armour, and not to brag but I'm a good fighter. You wouldn't have it so easy...",
-        "Fine. I remember our small fight the first time we met. If it makes you feel any better, I acknowledge you were surprisingly capable, and fairly resourceful. You reminded me of a certain bounty hunter, a blue skinned gunslinger who caused us a lot of trouble when I was still a Padaw--",
+        "Fine. I remember our small fight the first time we met. If it makes you feel any better, I acknowledge you were surprisingly capable, and fairly resourceful. ",
+        "You reminded me of a certain bounty hunter, a blue skinned gunslinger who caused us a lot of trouble when I was still a Padaw--",
         "Alright, ok I get it... Thank you, that definitely made me feel better.",
     };
 
@@ -1465,9 +1597,11 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
         true,
         false,
+        false,
         true,
         false,
         true,
+        false,
         false,
         true,
     };
@@ -1502,7 +1636,8 @@ public class List_Of_Dialogs : DiamondComponent
         "This is true for everyone.",
         "What I mean is, I was not as calm and collected as I am today, and I was very inexperienced. I was eager to prove myself and I often acted hastily and carelessly, without thinking much or considering the consequences of my actions.",
         "Kids tend to be like this, it is not something to be ashamed of.",
-        "But I was not just any kid, I was a Jedi Padawan. It was expected from us to be disciplined, focused and obedient to our masters. Any Jedi master would have deemed me a lost cause, any but Skyguy. He taught me a lot, and little by little, I changed into what I am today. Everything was going well, until one day everything started to change. I left the Order, and shortly after, he became someone else.",
+        "But I was not just any kid, I was a Jedi Padawan. It was expected from us to be disciplined, focused and obedient to our masters. Any Jedi master would have deemed me a lost cause, any but Skyguy. He taught me a lot, and little by little, I changed into what I am today. ",
+        "Everything was going well, until one day everything started to change. I left the Order, and shortly after, he became someone else.",
     };
 
     private List<bool> Ahsoka_5_2_bool = new List<bool>()
@@ -1514,12 +1649,14 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+        false,
     };
 
     private List<string> Ahsoka_5_3 = new List<string>()
     {
         "What do you mean by that your master became someone else?",
-        "Exactly that. I lost track of him, and for a few years I thought he had disappeared. Then, one day, I met him again. He was no longer my master, he was someone... or something else, something vile. Where once I had seen kindness, now there was just an overwhelming sense of hollowness and misery... He had taken me under his wing, had looked out and cared for me, and had taught me so much... and I, in the end... I was incapable of helping him...",
+        "Exactly that. I lost track of him, and for a few years I thought he had disappeared. Then, one day, I met him again. He was no longer my master, he was someone... or something else, something vile. ",
+        "Where once I had seen kindness, now there was just an overwhelming sense of hollowness and misery... He had taken me under his wing, had looked out and cared for me, and had taught me so much... and I, in the end... I was incapable of helping him...",
         "Now I understand why you said these were painful memories. I'm sorry I asked you about it. Most of us have a dark past, I guess overcoming it and being able to see the light at the end of the tunnel is what makes us be better persons.",
         "You know Mandalorian... I think there is a wise master hidden deep down inside you too.",
         "Oh please, I was being sincere for once... Don't make fun of me.",
@@ -1533,6 +1670,7 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
 		true,
+        false,
         false,
         true,
         false,
@@ -1624,7 +1762,8 @@ public class List_Of_Dialogs : DiamondComponent
         "I suppose it became much easier. Hunting the remnants of the empire doesn't sound as dangerous.",
         "Well, they didn't use to just surrender without putting up a fight, but yes, your odds of coming out alive were much higher.",
         "I don't understand why you decided to resign at that point, the hard work had already been done. Were the new missions not exciting enough for you?",
-        "They were exciting alright. But the New Republic Defence Force had more purposes than just hunting leftovers. We also had to escort important delegates and pacify riots. I had not signed for that. I felt like I wasn't fighting for a cause I believed in anymore.",
+        "They were exciting alright. But the New Republic Defence Force had more purposes than just hunting leftovers. We also had to escort important delegates and pacify riots.",
+        "I had not signed for that. I felt like I wasn't fighting for a cause I believed in anymore.",
     };
 
     private List<bool> Cara_1_1_bool = new List<bool>()
@@ -1636,6 +1775,7 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         false,
         true,
+        false,
         false,
     };
 
@@ -1662,11 +1802,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<string> Cara_1_3 = new List<string>()
     {
         "Was your homeworld much different from Nevarro?",
-        "Alderaan was a beautiful planet. It had amazing landscapes of every color you could imagine. There were advanced cities with the most elaborate architecture that blended harmoniously with nature. Its inhabitants were peaceful people who tried to live their lives without conflict and despised war.",
+        "Alderaan was a beautiful planet. It had amazing landscapes of every color you could imagine. There were advanced cities with the most elaborate architecture that blended harmoniously with nature. ",
+        "Its inhabitants were peaceful people who tried to live their lives without conflict and despised war.",
         "But they were one of the supporters of the republic, weren't they? Therefore, they were in war against the Confederacy.",
         "Alderaan had been a member of the Republic since ancient times. They didn't want a war against anybody. During those times of turmoil they tried to make peace and help innocent people as much as possible. And they were targeted for that.",
         "So that's why afterwards, the empire destroyed the planet?",
-        "No, they destroyed it just because they could. It's true that Senator Organa, who was from Alderaan, was one of the leaders of the resistance, but they didn't need to destroy the whole planet. I was offworld when that happened and I lost everyone, that's why I joined the rebellion.",
+        "No, they destroyed it just because they could. It's true that Senator Organa, who was from Alderaan, was one of the leaders of the resistance, but they didn't need to destroy the whole planet.",
+        " I was offworld when that happened and I lost everyone, that's why I joined the rebellion.",
         "I'm sorry for your loss. Seems that people losing their planets is a recurring theme nowadays...",
     };
 
@@ -1675,9 +1817,11 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
         true,
         false,
+        false,
         true,
         false,
         true,
+        false,
         false,
         true,
     };
@@ -1760,7 +1904,8 @@ public class List_Of_Dialogs : DiamondComponent
         "You can't drink credits. And blue milk isn't so easy to get, you know.",
         "You should give it to Grogu. He needs it to grow and become a strong jedi. He's so tiny...",
         "I already do, the kid loves blue milk, but if I give him too much, he is going to get stuffed. He doesn't know when to stop. Do you really think he should become a jedi? He's supposed to be over fifty years old, still he's completely helpless.",
-        "I'm sure he'll do fine. I remember stories from my time as a shock trooper. They were convinced we would win the war because a jedi knight was fighting alongside us. I never got to see this Jedi myself, but apparently, he was the one who defeated Darth Vader and the Emperor at the end of the war. If Grogu turns out to be half as good, there's nothing to be afraid of.",
+        "I'm sure he'll do fine. I remember stories from my time as a shock trooper. They were convinced we would win the war because a jedi knight was fighting alongside us. ",
+        "I never got to see this Jedi myself, but apparently, he was the one who defeated Darth Vader and the Emperor at the end of the war. If Grogu turns out to be half as good, there's nothing to be afraid of.",
     };
 
     private List<bool> Cara_3_1_bool = new List<bool>()
@@ -1772,12 +1917,14 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+        false,
     };
 
     private List<string> Cara_3_2 = new List<string>()
     {
         "Do you remember who this jedi was? He might be the answer I've been looking for. If he is still alive, maybe he could train the kid.",
-        "I haven't heard anything from him since I left the army. After the battle of Endor, he was supposedly still fighting against the remnants of the empire here and there. I never found out if he was real or just a legend to keep our morale in high spirits. But if he really existed, he could very well be alive.",
+        "I haven't heard anything from him since I left the army. After the battle of Endor, he was supposedly still fighting against the remnants of the empire here and there. ",
+        "I never found out if he was real or just a legend to keep our morale in high spirits. But if he really existed, he could very well be alive.",
         "That's great! When I met Ahsoka, I thought my mission was over, but she wouldn't take the kid, so I found myself at the starting point once again. Right now, I'll settle for a legend, it is better than having nothing.",
         "Don't get too excited. I never believed it, but... even if he really existed... He could be dead by now.",
         "I don't lose anything for trying. Do you remember what he was called?",
@@ -1788,6 +1935,7 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
         true,
+        false,
         false,
         true,
         false,
@@ -1800,7 +1948,8 @@ public class List_Of_Dialogs : DiamondComponent
         "Tell me Cara, do you have any idea of how I can find this Skywalker?",
         "Hmm... Maybe, but it will probably turn out to be a dead end.",
         "Nevermind about that, please tell me.",
-        "If the stories they told about the jedi were true, he must have been in contact with the high officers and commanders of the Rebel Alliance, most of whom became leaders of the New Republic afterwards. Since in my new job I work for the republic, I can try to find someone up in the chain of command who might have met him.",
+        "If the stories they told about the jedi were true, he must have been in contact with the high officers and commanders of the Rebel Alliance, most of whom became leaders of the New Republic afterwards. ",
+        "Since in my new job I work for the republic, I can try to find someone up in the chain of command who might have met him.",
         "That would be great, but slow. And I don't think anyone who knows something about him is willing to tell it to a simple Marshall from who knows what planet...",
         "Well thanks, that didn't hurt at all... See, I already told you it was probably not a good idea.",
         "No, I mean... Your idea was good, just a little too, uh... bureaucratic. Why don't you give me a name and I will pay him or her a formal visit myself.",
@@ -1812,6 +1961,7 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
         true,
+        false,
         false,
         true,
         false,
@@ -1850,7 +2000,8 @@ public class List_Of_Dialogs : DiamondComponent
         "You know... uh...",
         "Built and strong?",
         "No, yes, strong... One of your punches could K.O. a wookie. It's not something one would expect from an Alderaanian girl.",
-        "You were trained by mercenaries; I was trained by soldiers in a period of war. Shock troopers were always the first to engage the enemy in battle. It was not enough to be able to know how to shoot. Being so close to the enemy lines, more often than not the fights got physical, and if you want to knock out a stormtrooper in his armour, you've got to hit hard.",
+        "You were trained by mercenaries; I was trained by soldiers in a period of war. Shock troopers were always the first to engage the enemy in battle. It was not enough to be able to know how to shoot. ",
+        "Being so close to the enemy lines, more often than not the fights got physical, and if you want to knock out a stormtrooper in his armour, you've got to hit hard.",
     };
 
     private List<bool> Cara_4_2_bool = new List<bool>()
@@ -1862,14 +2013,17 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+        false,
     };
 
     private List<string> Cara_4_3 = new List<string>()
     {
         "I was also trained in hand-to-hand combat. The members of the Tribe are not only mercenaries, most of them were also warriors of Mandalore back in the day.",
-        "But now they're just mercenaries. Besides, your suits don't seem to be very practical for this kind of stuff. In the military, we had a training program where we entered a cage and fought one another without any protections or equipment. I never lost a single fight.",
+        "But now they're just mercenaries. Besides, your suits don't seem to be very practical for this kind of stuff. ",
+        "In the military, we had a training program where we entered a cage and fought one another without any protections or equipment. I never lost a single fight.",
         "The armour is better than it seems, it's pretty flexible. But what was the point of that? Who would go into a fight without equipment?",
-        "Forget it... Ah, I just remembered we never finished our arm-wrestling match. That would settle things, right? Surely the great and respected Mandalorian wouldn't lose to a 'poor alderaanian girl'. This time though, tell the child he's not allowed to help you.",
+        "Forget it... Ah, I just remembered we never finished our arm-wrestling match. That would settle things, right? ",
+        "Surely the great and respected Mandalorian wouldn't lose to a 'poor alderaanian girl'. This time though, tell the child he's not allowed to help you.",
         "You are no 'poor alderaanian girl'. And I didn't ask Grogu to help me last time, he did it by himself. I... I don't have time for that right now, maybe another day.",
         "Sure, maybe another day. I think somebody's a sore loser...",
     };
@@ -1879,7 +2033,9 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
         true,
         false,
+        false,
         true,
+        false,
         false,
         true,
         false,
@@ -1916,7 +2072,8 @@ public class List_Of_Dialogs : DiamondComponent
         "Fired? You? When? How? Why?",
         "It's not right, they can't do that. They can't fire me if we don't let them. You'll help me, right? We'll show them what we did to corrupt empire officers back in the rebellion army.",
         "Please, calm down and speak slower. You're not making any sense. I can't help you like this.",
-        "Argh... fine. Ok, I'm alright now. The thing is, I'm not the Marshall anymore. They've taken my badge. But I'm not going to stand still and do nothing while they sit on their comfortable golden thrones up in their floating privileged mansions toying with us like marionettes. I'm starting a new rebellion.",
+        "Argh... fine. Ok, I'm alright now. The thing is, I'm not the Marshall anymore. They've taken my badge. ",
+        "But I'm not going to stand still and do nothing while they sit on their comfortable golden thrones up in their floating privileged mansions toying with us like marionettes. I'm starting a new rebellion.",
     };
 
     private List<bool> Cara_5_2_bool = new List<bool>()
@@ -1929,6 +2086,7 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+        false,
     };
 
     private List<string> Cara_5_3 = new List<string>()
@@ -1940,9 +2098,11 @@ public class List_Of_Dialogs : DiamondComponent
         "Oh no, don't tell me you bought the milk from smugglers...",
         "You're missing the point here. I spent all of my money in that shipment, I am... was the Marshall, they should have turned it over to me.",
         "And what did you say to that superior?",
-        "I just compared what they were doing with the way the empire treated underdeveloped planets that refused to submit to their authority. They put blockades so that they couldn't get any food or medicine from the outside. They were doing the same thing to me! It's very unfair, right?",
+        "I just compared what they were doing with the way the empire treated underdeveloped planets that refused to submit to their authority. They put blockades so that they couldn't get any food or medicine from the outside. ",
+        "They were doing the same thing to me! It's very unfair, right?",
         "Well, uh... maybe?",
-        "After all I've done for you, you're not even on my side here? Fine, I'll find others who will join my cause, but don't expect any more help from me, you are alone in that Mandalore business of yours, and you'll have to find that jedi by yourself. Just wait and see... I'll show them a new rebellion.",
+        "After all I've done for you, you're not even on my side here? Fine, I'll find others who will join my cause, but don't expect any more help from me, you are alone in that Mandalore business of yours, and you'll have to find that jedi by yourself. ",
+        "Just wait and see... I'll show them a new rebellion.",
         "No, but I just... Well, I hope it goes well for you...",
         // "No, but I just... Well, I hope it goes well for you. (To Grogu) Honestly, it's not that difficult to see why they fired her.",
     };
@@ -1958,7 +2118,9 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+        false,
         true,
+        false,
         false,
         true,
     };
