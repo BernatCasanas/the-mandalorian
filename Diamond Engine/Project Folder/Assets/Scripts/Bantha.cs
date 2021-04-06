@@ -7,9 +7,21 @@ public class Bantha : Enemy
 	public float chargeRange = 25.0f;
 	public float chargeTime = 1.5f;
 	public float chargeDuration = 1.0f;
-    
 
-    private float chargeCounter = 0.0f;
+	protected enum STATES
+	{
+		IDLE,
+		RUN,
+		WANDER,
+		SHOOT,
+		PUSHED,
+		HIT,
+		DIE
+	}
+
+	private STATES currentState;
+
+	private float chargeCounter = 0.0f;
 	//private float chargeStartYPos = 0.0f;
 
 	public void Start()

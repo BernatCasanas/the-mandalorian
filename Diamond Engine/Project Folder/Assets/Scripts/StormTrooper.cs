@@ -3,6 +3,17 @@ using DiamondEngine;
 
 public class StormTrooper : Enemy
 {
+	protected enum STATES
+	{
+		IDLE,
+		RUN,
+		WANDER,
+		SHOOT,
+		PUSHED,
+		HIT,
+		DIE
+	}
+
 	public GameObject hitParticles;
 
 	private int shotSequences = 0;
@@ -15,6 +26,7 @@ public class StormTrooper : Enemy
 
 	private bool scriptStart = true;
 
+	private STATES currentState = STATES.IDLE;
 
 	public void Start()
 	{
