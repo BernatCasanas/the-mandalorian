@@ -1194,6 +1194,8 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+        true,
+        false,
     };
 
     private List<string> Ahsoka_1_1 = new List<string>()
