@@ -19,6 +19,7 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            Debug.Log("Knockback");
         }
     }
 
@@ -26,6 +27,7 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            Debug.Log("Speed");
         }
     }
 
@@ -33,6 +35,7 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            Debug.Log("Increase");
         }
     }
 
@@ -40,6 +43,7 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            Debug.Log("Reduction");
         }
     }
 
