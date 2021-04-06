@@ -5,28 +5,15 @@ using DiamondEngine;
 public class Enemy : DiamondComponent
 {
 	public GameObject player = null;
-	public GameObject shootPoint = null;
 
-	public float wanderSpeed = 3.5f;
-	public float runningSpeed = 7.5f;
-	public float range = 20.0f;
+	public float detectionRange = 20.0f;
 	public float damage = 20.0f;
-	public float bulletSpeed = 10.0f;
     public float healthPoints = 60.0f;
-	protected int shotTimes = 0;
 
-
-	protected float timeBewteenShots = 0.5f;
-	protected float timePassed = 0.0f;
-
-	public float idleTime = 5.0f;
 	protected Vector3 targetPosition = null;
 	protected float stoppingDistance = 1.0f;
-	public float wanderRange = 5.0f;
-	public float runningRange = 15.0f;
 
 	public float slerpSpeed = 1000.5f;
-	//private float timeCount = 0.0f;
 	public bool turretMode = false;
 
 	//protected STATES currentState = STATES.WANDER;
@@ -34,17 +21,6 @@ public class Enemy : DiamondComponent
     public Spawn dieCallBack = null;
 
 	protected NavMeshAgent agent;
-
-
-	public virtual bool Shoot(float damage)
-	{
-        GameObject bullet =	InternalCalls.CreatePrefab("Library/Prefabs/373530213.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
-        bullet.GetComponent<BH_Bullet>().damage = damage;
-        timePassed = 0.0f;
-		shotTimes++;
-
-		return true;
-	}
 
 	public virtual bool TakeDamage()
 	{

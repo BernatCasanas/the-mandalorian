@@ -13,6 +13,18 @@ namespace DiamondEngine
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern void SetLeftNavButton(GameObject button_mapped);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern void SetRightNavButton(GameObject button_mapped);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern void SetUpNavButton(GameObject button_mapped);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern void SetDownNavButton(GameObject button_mapped);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern void Select();
 
     }
