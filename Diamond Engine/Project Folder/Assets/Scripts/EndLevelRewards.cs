@@ -31,24 +31,28 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
     EndLevelReward thirdReward;
     GameResources selectedReward = null;
     BoonDataHolder boonGenerator = new BoonDataHolder();
+    bool rewardsGenerated = false;
 
     public GameResources GenerateRewardPipeline()
     {
-        // This probably needs to be done only once
+        // This should be done only once, but since we stop time, we don't enter more than once anyway :P
 
-        //
+        if (rewardsGenerated == false) {
 
-        Debug.Log("Log to make sure we only enter this function once.");
+            rewardsGenerated = true;
+            firstReward = SelectRewards();
+            secondReward = SelectRewards();
+            thirdReward = SelectRewards();
 
-        firstReward = SelectRewards();
-        secondReward = SelectRewards();
-        thirdReward = SelectRewards();
-
-        CreatePopUpGameObject();
-        //
+            CreatePopUpGameObject();
+        }
 
         // Do nazi things with buttons to assign a value to selectedReward; we may want to control the OnExecuteButton from the script instead of attaching this script as a component (it probably shouldn't a component, and instead, controlled by SceneManager
-        //selectedReward = ConvertRewardtoRewardResource(firstReward);    // DEBUG PURPOSES
+        selectedReward = ConvertRewardtoRewardResource(firstReward);
+
+        if (1 == 1) {
+            rewardsGenerated = false;
+        }
 
         return selectedReward;
     }
