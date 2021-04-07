@@ -216,6 +216,7 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.Animator::Pause", Pause);
 	mono_add_internal_call("DiamondEngine.Animator::Resume", Resume);
 	mono_add_internal_call("DiamondEngine.Animator::GetCurrentAnimation", GetCurrentAnimation);
+	mono_add_internal_call("DiamondEngine.Animator::GetAnimationTime", GetAnimationTime);
 
 	mono_add_internal_call("DiamondEngine.Time::get_deltaTime", GetDT);
 	mono_add_internal_call("DiamondEngine.Time::get_totalTime", GetTotalTime);
