@@ -1,4 +1,5 @@
 {
+    "NavMesh": -1,
     "EditorCameraPosition": [
         123.02468872070313,
         43.976943969726563,
@@ -41,6 +42,7 @@
             "UID": 2076234472,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "Components": [
                 {
                     "Type": 1,
@@ -72,6 +74,7 @@
             "UID": 1530138418,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 2076234472,
             "Components": [
                 {
@@ -85,7 +88,7 @@
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
                     "vFOV": 1.0471975803375244,
-                    "hFOV": 1.5382387638092041,
+                    "hFOV": 1.6646232604980469,
                     "culling": true,
                     "drawSkybox": true
                 },
@@ -121,6 +124,7 @@
             "UID": 248411895,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 2076234472,
             "Components": [
                 {
@@ -157,6 +161,7 @@
             "UID": 998732504,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 248411895,
             "Components": [
                 {
@@ -178,8 +183,7 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "StaticVariablesInit",
-                    "InitVariablesOnStart": false
+                    "ScriptName": "StaticVariablesInit"
                 }
             ]
         },
@@ -207,6 +211,7 @@
             "UID": 682318534,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 998732504,
             "Components": [
                 {
@@ -267,6 +272,7 @@
             "UID": 1022745932,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 682318534,
             "Components": [
                 {
@@ -406,6 +412,7 @@
             "UID": 192343998,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 1022745932,
             "Components": [
                 {
@@ -438,7 +445,7 @@
                     "Active": true,
                     "text": "RETRY",
                     "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
                         1,
                         1,
@@ -471,6 +478,7 @@
             "UID": 726965814,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 682318534,
             "Components": [
                 {
@@ -610,6 +618,7 @@
             "UID": 1620945713,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 726965814,
             "Components": [
                 {
@@ -642,132 +651,7 @@
                     "Active": true,
                     "text": "MENU",
                     "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
-                    "textColor": [
-                        1,
-                        1,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Image",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1595834923,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 682318534,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -44.099998474121094,
-                        65.699996948242188
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        38.700000762939453,
-                        16.799999237060547
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/1848582122.dds",
-                    "UID": 1848582122
-                }
-            ]
-        },
-        {
-            "name": "Screen ",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 917288620,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 1595834923,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -35.900001525878906,
-                        -5.1999998092651367
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        13.899999618530273,
-                        29.600000381469727
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
-                },
-                {
-                    "Type": 9,
-                    "Active": true,
-                    "text": "PLACEHOLDER SCREEN",
-                    "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
                         1,
                         1,
@@ -800,6 +684,7 @@
             "UID": 1409212991,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 682318534,
             "Components": [
                 {
@@ -810,13 +695,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -44.799999237060547,
-                        0
+                        -44.5,
+                        20.700000762939453
                     ],
                     "Rotation": 0,
                     "Size": [
                         38.700000762939453,
-                        46.799999237060547
+                        67.599998474121094
                     ]
                 },
                 {
@@ -831,8 +716,8 @@
                     "Type": 11,
                     "Active": true,
                     "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/1381190712.dds",
-                    "UID": 1381190712
+                    "LibraryPath": "Library\/Textures\/2126775415.dds",
+                    "UID": 2126775415
                 }
             ]
         },
@@ -860,6 +745,7 @@
             "UID": 1693006496,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 1409212991,
             "Components": [
                 {
@@ -871,7 +757,7 @@
                     "Active": true,
                     "Position": [
                         -8.8999996185302734,
-                        26.899999618530273
+                        30.299999237060547
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -892,7 +778,7 @@
                     "Active": true,
                     "text": "KILLS",
                     "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
                         1,
                         1,
@@ -925,6 +811,7 @@
             "UID": 2017808774,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 1409212991,
             "Components": [
                 {
@@ -936,7 +823,7 @@
                     "Active": true,
                     "Position": [
                         -33.200000762939453,
-                        -2.9000000953674316
+                        10.600000381469727
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -957,7 +844,7 @@
                     "Active": true,
                     "text": "BANTHA:",
                     "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
                         1,
                         1,
@@ -990,6 +877,7 @@
             "UID": 1092938150,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 2017808774,
             "Components": [
                 {
@@ -1022,7 +910,7 @@
                     "Active": true,
                     "text": "0",
                     "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
                         1,
                         1,
@@ -1055,6 +943,7 @@
             "UID": 1687829289,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 1409212991,
             "Components": [
                 {
@@ -1066,7 +955,7 @@
                     "Active": true,
                     "Position": [
                         -33.200000762939453,
-                        -26.799999237060547
+                        -10
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -1087,7 +976,7 @@
                     "Active": true,
                     "text": "STORM TROOPER:",
                     "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
                         1,
                         1,
@@ -1120,6 +1009,7 @@
             "UID": 1806360646,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 1687829289,
             "Components": [
                 {
@@ -1152,7 +1042,7 @@
                     "Active": true,
                     "text": "0",
                     "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
                         1,
                         1,
@@ -1162,7 +1052,7 @@
             ]
         },
         {
-            "name": "Image",
+            "name": "Screen ",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -1182,10 +1072,11 @@
                 1,
                 1
             ],
-            "UID": 1932758148,
+            "UID": 917288620,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 682318534,
+            "Static": false,
+            "ParentUID": 1409212991,
             "Components": [
                 {
                     "Type": 1,
@@ -1195,73 +1086,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        42.299999237060547,
-                        65.699996948242188
+                        -35.599998474121094,
+                        52
                     ],
                     "Rotation": 0,
                     "Size": [
-                        38.700000762939453,
-                        16.799999237060547
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/1848582122.dds",
-                    "UID": 1848582122
-                }
-            ]
-        },
-        {
-            "name": "Findings",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1360383974,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "ParentUID": 1932758148,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -30,
-                        -6
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        27.399999618530273,
-                        36.200000762939453
+                        13.899999618530273,
+                        29.600000381469727
                     ]
                 },
                 {
@@ -1275,9 +1106,9 @@
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "FINDINGS",
+                    "text": "PLACEHOLDER SCREEN",
                     "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
                         1,
                         1,
@@ -1310,6 +1141,7 @@
             "UID": 114639979,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 682318534,
             "Components": [
                 {
@@ -1320,13 +1152,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        42.400001525878906,
-                        0
+                        44.700000762939453,
+                        20.700000762939453
                     ],
                     "Rotation": 0,
                     "Size": [
                         38.700000762939453,
-                        46.799999237060547
+                        68.599998474121094
                     ]
                 },
                 {
@@ -1341,8 +1173,8 @@
                     "Type": 11,
                     "Active": true,
                     "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/1997051888.dds",
-                    "UID": 1997051888
+                    "LibraryPath": "Library\/Textures\/2126775415.dds",
+                    "UID": 2126775415
                 }
             ]
         },
@@ -1370,6 +1202,7 @@
             "UID": 663647262,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 114639979,
             "Components": [
                 {
@@ -1380,13 +1213,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        1.2000000476837158,
-                        8.8999996185302734
+                        11.899999618530273,
+                        13
                     ],
                     "Rotation": 0,
                     "Size": [
                         8.1999998092651367,
-                        20
+                        18.5
                     ]
                 },
                 {
@@ -1430,6 +1263,7 @@
             "UID": 1553847345,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 663647262,
             "Components": [
                 {
@@ -1462,7 +1296,7 @@
                     "Active": true,
                     "text": "x",
                     "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
                         1,
                         1,
@@ -1495,6 +1329,7 @@
             "UID": 1657758998,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 663647262,
             "Components": [
                 {
@@ -1527,7 +1362,7 @@
                     "Active": true,
                     "text": "0",
                     "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
                         1,
                         1,
@@ -1560,6 +1395,7 @@
             "UID": 675362497,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 114639979,
             "Components": [
                 {
@@ -1570,8 +1406,8 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -27.200000762939453,
-                        8.8999996185302734
+                        -20,
+                        13
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -1620,6 +1456,7 @@
             "UID": 2074402502,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 675362497,
             "Components": [
                 {
@@ -1652,7 +1489,7 @@
                     "Active": true,
                     "text": "x",
                     "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
                         1,
                         1,
@@ -1685,6 +1522,7 @@
             "UID": 257952572,
             "PrefabID": 0,
             "DontDestroy": false,
+            "Static": false,
             "ParentUID": 675362497,
             "Components": [
                 {
@@ -1717,7 +1555,73 @@
                     "Active": true,
                     "text": "0",
                     "maxTextLenght": 0,
-                    "fontName": "Assets\/Fonts\/renner-medium.ttf",
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Findings",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1360383974,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 114639979,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -18.100000381469727,
+                        52.099998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        17,
+                        32.299999237060547
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "FINDINGS",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
                         1,
                         1,
