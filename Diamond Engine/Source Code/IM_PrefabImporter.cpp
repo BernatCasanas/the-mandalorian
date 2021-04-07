@@ -172,6 +172,7 @@ void PrefabImporter::OverrideGameObject(uint prefabID, GameObject* objectToRepla
 
 	C_Transform* oldObjectTransform = objectToReplace->transform;
 	prefabObject->transform->SetTransformMatrix(oldObjectTransform->position, oldObjectTransform->rotation, oldObjectTransform->localScale);
+	prefabObject->transform->updateTransform = true;
 
 	prefabObject->ChangeParent(objectToReplace->parent);
 

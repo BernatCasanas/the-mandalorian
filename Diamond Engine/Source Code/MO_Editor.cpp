@@ -252,8 +252,8 @@ void M_Editor::DrawMenuBar()
 				if (!sceneDir.empty()) 
 				{
 					std::string metaDir = App->moduleResources->GetMetaPath(sceneDir.c_str());
-					std::string test = App->moduleResources->LibraryFromMeta(metaDir.c_str());
-					App->moduleScene->LoadScene(test.c_str());
+					std::string libraryPath = App->moduleResources->LibraryFromMeta(metaDir.c_str());
+					App->moduleScene->LoadScene(libraryPath.c_str());
 				}
 			}
 			ImGui::GreySeparator();

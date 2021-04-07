@@ -63,7 +63,7 @@ bool C_NavMeshAgent::OnEditor()
 
 		ImGui::NextColumn();
 	}
-
+	ImGui::Columns(1);
 	
 	return true;
 }

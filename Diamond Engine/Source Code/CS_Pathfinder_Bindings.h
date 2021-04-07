@@ -45,17 +45,21 @@ MonoObject* CS_GetDestination(MonoObject* go)
 
 	C_NavMeshAgent* comp = DECS_CompToComp<C_NavMeshAgent*>(go);
 
-	C_Transform* trans = DECS_CompToComp<C_Transform*>(go);
+	C_Transform* trans = comp->GetGO()->transform;
 
 	if (comp == nullptr)
 		return nullptr;
 
-	if (comp->path.size() <= 0) return EngineExternal->moduleMono->Float3ToCS(trans->position);
+	if (comp->path.size() <= 0) 
+		return EngineExternal->moduleMono->Float3ToCS(trans->position);
 
 	float3 distance = comp->path.front() - trans->position;
-	if (Sqrt(distance.x * distance.x + distance.y * distance.y + distance.z * distance.z) < comp->properties.stoppingDistance) {
+	if (Sqrt(distance.x * distance.x + distance.y * distance.y + distance.z * distance.z) < comp->properties.stoppingDistance) 
+	{
+		if (comp->path.size() > 1)
+			comp->path.erase(comp->path.begin());
+		
 		assert(!comp->path.empty());
-		comp->path.erase(comp->path.begin());
 	}
 
 	return EngineExternal->moduleMono->Float3ToCS(comp->path.front());
