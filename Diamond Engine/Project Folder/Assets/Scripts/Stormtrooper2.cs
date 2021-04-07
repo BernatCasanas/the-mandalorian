@@ -63,11 +63,11 @@ public class StormTrooper2 : Enemy
     public float runningRange = 12.5f;
 
     //Timers
-    public float idleTimer = 0.0f;
-    public float shotTimer = 0.0f;
-    public float sequenceTimer = 0.0f;
-    public float dieTimer = 0.0f;
-    public float statesTimer = 0.0f;
+    private float idleTimer = 0.0f;
+    private float shotTimer = 0.0f;
+    private float sequenceTimer = 0.0f;
+    private float dieTimer = 0.0f;
+    private float statesTimer = 0.0f;
     //private float pushSkillTimer = 0.15f;
 
     //Action variables
@@ -80,6 +80,7 @@ public class StormTrooper2 : Enemy
 
     private void Start()
     {
+        agent = new NavMeshAgent();
         targetPosition = null;
 
         currentState = STATE.IDLE;
@@ -104,7 +105,6 @@ public class StormTrooper2 : Enemy
             Debug.Log("Null player");
             player = Core.instance.gameObject;
         }
-
 
         #region STATE MACHINE
 
@@ -133,23 +133,28 @@ public class StormTrooper2 : Enemy
 
         if (currentState == STATE.WANDER)
         {
-            if (Mathf.Distance(gameObject.transform.localPosition, targetPosition) < stoppingDistance)
+            if (agent != null)
             {
-                inputsList.Add(INPUT.IN_IDLE);
+                if (Mathf.Distance(gameObject.transform.localPosition, agent.GetDestination()) < stoppingDistance)
+                {
+                    inputsList.Add(INPUT.IN_IDLE);
+                    //currentState = STATE.IDLE;
+                }
             }
+            else
+                Debug.Log("Null agent");
         }
 
-        if(statesTimer > 0.0f)
-        {
-            statesTimer -= Time.deltaTime;
+        //if (statesTimer > 0.0f)
+        //{
+        //    statesTimer -= Time.deltaTime;
 
-            if(shotSequences >= maxSequences)
-            {
-                statesTimer = 0.0f;
-                shotSequences = 0;
-                inputsList.Add(INPUT.IN_RUN);
-            }
-        }
+        //    if (shotSequences >= maxSequences)
+        //    {
+        //        shotSequences = 0;
+        //        inputsList.Add(INPUT.IN_RUN);
+        //    }
+        //}
 
         if (dieTimer > 0.0f)
         {
@@ -177,7 +182,6 @@ public class StormTrooper2 : Enemy
             }
         }
     }
-
 
     //Manages state changes throught inputs
     private void ProcessState()
@@ -238,8 +242,8 @@ public class StormTrooper2 : Enemy
                     switch (input)
                     {
                         case INPUT.IN_IDLE:
-                            currentState = STATE.WANDER;
-                            StartWander();
+                            currentState = STATE.IDLE;
+                            StartIdle();
                             break;
 
                         case INPUT.IN_WANDER:
@@ -258,7 +262,7 @@ public class StormTrooper2 : Enemy
                     switch (input)
                     {
                         case INPUT.IN_RUN:
-                            currentState = STATE.IDLE;
+                            currentState = STATE.RUN;
                             StartRun();
                             break;
 
@@ -316,17 +320,26 @@ public class StormTrooper2 : Enemy
     #region WANDER
     private void StartWander()
     {
-        targetPosition = CalculateNewPosition(wanderRange);
-        LookAt(targetPosition);
-        //MoveToPosition(targetPosition, wanderSpeed);
+        //targetPosition = CalculateNewPosition(wanderRange);
+
+        if (agent != null)
+            agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
+        else
+            Debug.Log("Null Nav Mesh Agent");
 
         //ANIMATIONS OR FX AT WANDER START
+        Animator.Play(gameObject, "ST_Run");
     }
     private void UpdateWander()
     {
-        LookAt(targetPosition);
-        MoveToPosition(targetPosition, wanderSpeed);
+        //LookAt(agent.GetDestination());
 
+        //if (agent != null)
+        //    agent.MoveToCalculatedPos(wanderSpeed);
+        //else
+        //    Debug.Log("Null agent");
+
+        //MoveToPosition(targetPosition, wanderSpeed);
         //ANIMATIONS OR FX WHILE WANDERING
     }
     #endregion
@@ -334,16 +347,26 @@ public class StormTrooper2 : Enemy
     #region RUN
     private void StartRun()
     {
-        targetPosition = CalculateNewPosition(runningRange);
-        LookAt(targetPosition);
-        //MoveToPosition(targetPosition, runningSpeed);
+        //targetPosition = CalculateNewPosition(runningRange);
+
+        agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
         //ANIMATIONS OR FX AT RUN START
+        Animator.Play(gameObject, "ST_Run");
     }
     private void UpdateRun()
     {
-        LookAt(targetPosition);
-        MoveToPosition(targetPosition, runningSpeed);
+        if (agent.GetDestination() == null)
+            Debug.Log("Null Destination");
+
+        //LookAt(agent.GetDestination());
+
+        //if (agent != null)
+        //    agent.MoveToCalculatedPos(runningSpeed);
+        //else
+        //    Debug.Log("Null agent");
+
+        //MoveToPosition(targetPosition, runningSpeed);
 
         //ANIMATIONS OR FX WHILE RUNNNG
     }
@@ -369,9 +392,22 @@ public class StormTrooper2 : Enemy
 
             if (statesTimer <= 0.0f)
             {
-                Shoot();
-                Debug.Log("Shot 1");
-                shotTimer = timeBewteenShots;
+                //First Timer
+                if (shotSequences == 0)
+                {
+                    //First Shot
+                    Shoot();
+                    shotTimer = timeBewteenShots;
+                }
+                //Second Timer
+                else
+                {
+                    //Reboot times
+                    shotTimes = 0;
+                    shotSequences = 0;
+                    inputsList.Add(INPUT.IN_RUN);
+                    Debug.Log("Run for your life man");
+                }
             }
         }
 
@@ -381,41 +417,33 @@ public class StormTrooper2 : Enemy
 
             if (shotTimer <= 0.0f)
             {
-                if (shotTimes < maxShots)
+                Shoot();
+
+                if (shotTimes >= maxShots)
                 {
-                    Shoot();
-                    Debug.Log("Shot 2");
-                }
-                else
-                {
-                    shotTimes = 0;
                     shotSequences++;
 
                     if (shotSequences < maxSequences)
                     {
                         sequenceTimer = timeBewteenSequences;
+                        shotTimes = 0;
                     }
                     else
                     {
-                        //shotSequences = 0;
-                        shotTimer = 0.0f;
-
                         statesTimer = timeBewteenStates;
                     }
                 }
             }
         }
 
-        if (sequenceTimer > 0.0f)
+        if(sequenceTimer > 0.0f)
         {
             sequenceTimer -= Time.deltaTime;
 
-            if (sequenceTimer <= 0.0f)
+            if(sequenceTimer <= 0.0f)
             {
-                shotTimes = 0;
                 Shoot();
-                //Debug.Log("Shot 3");
-                shotSequences++;
+                shotTimer = timeBewteenShots;
             }
         }
     }
@@ -429,8 +457,6 @@ public class StormTrooper2 : Enemy
 
         Animator.Play(gameObject, "ST_Shoot");
         Audio.PlayAudio(gameObject, "PLay_Blaster_Stormtrooper");
-
-        shotTimer = timeBewteenShots;
         shotTimes++;
     }
 
