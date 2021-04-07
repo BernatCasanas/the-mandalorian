@@ -1,14 +1,14 @@
 {
     "Game Objects": [
         {
-            "name": "Floor153",
+            "name": "Empty",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
-                2.1570730209350586,
-                -2.4336791038513184,
-                -19.519336700439453
+                0,
+                0,
+                0
             ],
             "Rotation": [
                 0,
@@ -21,60 +21,85 @@
                 1,
                 1
             ],
-            "UID": 1649538388,
+            "UID": 1053817156,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 565757249,
+            "ParentUID": 178763901,
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
                 },
                 {
-                    "Type": 2,
+                    "Type": 20,
                     "Active": true,
-                    "Path": "Library\/Meshes\/1745688022.mmh",
-                    "UID": 1745688022,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
+                    "systemActive": false,
+                    "looping": true,
+                    "maxDuration": 0.87900000810623169,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/920411250.dds",
+                            "texUID": 920411250,
+                            "paEmitterName": "Test",
+                            "paLifeTime": [
+                                2.2999999523162842,
+                                4.3000001907348633
+                            ],
+                            "paSize": [
+                                1,
+                                1
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        0,
+                                        2.5999999046325684,
+                                        0
+                                    ],
+                                    "paFOLT_magnitude": 10,
+                                    "paFOLT_gravityMod": 1,
+                                    "paFOLT_gravity": -9.8000001907348633,
+                                    "paFOLT_forceType": 0
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 5,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeSphereRadius": 1,
+                                    "paShapeType": 1,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
                     ]
                 },
                 {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
+                    "Type": 21,
+                    "Active": false,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
                 },
                 {
-                    "Type": 18,
+                    "Type": 3,
                     "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
                 }
             ]
         }

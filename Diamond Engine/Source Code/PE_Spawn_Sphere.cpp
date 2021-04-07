@@ -3,8 +3,11 @@
 #include "Application.h"
 #include "CO_Transform.h"
 #include <math.h>
-
+#include "MathGeoLib/include/Math/MathFunc.h"
 #include "ImGui/imgui.h"
+
+
+#include "MO_Camera3D.h"
 
 PE_SpawnShapeSphere::PE_SpawnShapeSphere() :PE_SpawnShapeBase(PE_SPAWN_SHAPE_TYPE::SPHERE)
 {
@@ -32,11 +35,27 @@ void PE_SpawnShapeSphere::Spawn(Particle& particle, bool hasInitialSpeed, float 
 	localPos.y = offset[1] + x2 * c;
 	localPos.z = offset[2] + x3 * c;
 	particle.pos = gTrans.TransformPos(localPos);
-
+	
 	if (hasInitialSpeed)
 	{
+		float3 direction = (localPos - float3(offset[0], offset[1], offset[2]));
 		float3 localSpeed = (localPos - float3(offset[0], offset[1], offset[2])).Normalized() * speed;
 		particle.speed = gTrans.TransformDir(localSpeed).Normalized() * speed;
+		direction = gTrans.TransformDir(direction).Normalized();
+	//	LOG(LogType::L_NORMAL, "Direction local %f %f %f", direction.x, direction.y, direction.z);
+
+		float4x4 cameraView = EngineExternal->moduleCamera->editorCamera.ViewMatrixOpenGL().Transposed();
+
+		direction =  cameraView.TransformDir(direction);
+
+		float2 directionViewProj = float2(direction.x , direction.y).Normalized();
+		float2 xAxis = float2(1, 0);
+		float angle = xAxis.AngleBetween(directionViewProj);
+		if (directionViewProj.y < 0)
+			angle = 360 * DEGTORAD - angle;
+		angle += 90 * DEGTORAD;
+		
+		particle.rotation = angle;
 	}
 }
 
