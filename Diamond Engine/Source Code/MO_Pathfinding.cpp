@@ -143,8 +143,6 @@ void M_Pathfinding::Load(int navMeshResourceUID)
 	navMeshBuilder->SetSettings(settings);
 	navMeshBuilder->SetGeometry(geometry);
 	pathfinder.Init(navMeshBuilder);
-
-	//navMeshBuilder->HandleBuild();
 }
 
 
@@ -172,7 +170,7 @@ void M_Pathfinding::DebugDraw()
 	if (pathfinder.endPosSet)
 		EngineExternal->moduleRenderer3D->AddDebugPoints(debugEndPoint, float3(255.0f, 0.0f, 0.0f));
 
-	if (pathfinder.m_npolys > 0)
+	if (pathfinder.m_npolys > 0 && pathfinder.m_navMesh != nullptr)
 		pathfinder.RenderPath();
 
 	if (walkabilityPoint != nullptr)
@@ -196,7 +194,6 @@ void M_Pathfinding::DebugDraw()
 		DebugDrawGL dd;
 		EngineExternal->moduleRenderer3D->AddDebugPoints(randomPoint, float3(255.0f, 255.0f, 255.0f));
 		duDebugDrawCircle(&dd, pathfinder.startPosition.x, pathfinder.startPosition.y + 0.2f, pathfinder.startPosition.z, randomRadius, duRGBA(64, 16, 0, 220), 2.0f);
-
 	}
 
 }
@@ -206,11 +203,11 @@ void M_Pathfinding::CheckNavMeshIntersection(LineSegment raycast, int clickedMou
 	if (navMeshBuilder == nullptr)
 		return;
 
-	if (geometry->getChunkyMesh() == nullptr)
+	if (geometry->getChunkyMesh() == nullptr && navMeshBuilder->GetNavMesh() == nullptr)
 	{
-		return;
-		//BakeNavMesh();
-		//LOG(LogType::L_WARNING, "No chunky mesh set, one has been baked to avoid crashes");
+		//return;
+		BakeNavMesh();
+		LOG(LogType::L_WARNING, "No chunky mesh set, one has been baked to avoid crashes");
 	}
 
 	float hitTime;
