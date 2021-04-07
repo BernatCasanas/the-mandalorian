@@ -43,18 +43,21 @@ namespace DiamondEngine
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern void CalculateRandomPath(object startPos, float radius);
 
+
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern void CalculatePath(object startPos, object endPos);
+
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern Vector3 GetDestination();
 
+
         public void MoveToCalculatedPos(float speed)
         {
-            Vector3 pos = gameObject.transform.localPosition;
+            Vector3 pos = gameObject.transform.globalPosition;
             Vector3 direction = GetDestination() - pos;
 
-            pos += direction.normalized * speed * Time.deltaTime;
+            gameObject.transform.localPosition += direction.normalized * speed * Time.deltaTime;
         }
     }
 }

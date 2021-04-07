@@ -13,7 +13,7 @@ public class Enemy : DiamondComponent
 	protected Vector3 targetPosition = null;
 	protected float stoppingDistance = 1.0f;
 
-	public float slerpSpeed = 1000.5f;
+	public float slerpSpeed = 5.0f;
 	public bool turretMode = false;
 
 	//protected STATES currentState = STATES.WANDER;
@@ -61,7 +61,7 @@ public class Enemy : DiamondComponent
 
 		Quaternion dir = Quaternion.RotateAroundAxis(Vector3.up, angle);
 
-		float rotationSpeed = Time.deltaTime * /*agent.angularSpeed*/1;
+		float rotationSpeed = Time.deltaTime * slerpSpeed;
 		//Debug.Log("CS: Rotation speed: " + rotationSpeed.ToString());
 		//Debug.Log("CS: Time: " + Time.deltaTime);
 

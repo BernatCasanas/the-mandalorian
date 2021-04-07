@@ -75,6 +75,8 @@ public:
     void SaveMapData(JSON_Object* nObj, const ActionToRealize& action, BUTTONSANDJOYSTICKS map_index);
     void LoadMapaData(DEConfig& nObj);
 
+    void SetButtonOrJoystickWithGameobject(ACTIONSNAVIGATION action_to_do, BUTTONSANDJOYSTICKS button_or_joystick, GameObject* gameobject);
+
 #ifndef STANDALONE
     bool OnEditor() override;
     void WriteButtonOrJoystickOnEditor(const char* text, BUTTONSANDJOYSTICKS button_or_joystick);
