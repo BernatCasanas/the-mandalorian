@@ -16,7 +16,7 @@
 
 #include <assert.h>
 
-C_Navigation::C_Navigation(GameObject* gameObject, Component::TYPE type_of_ui) :Component(gameObject), is_selected(false), button_or_joystick_being_used(BUTTONSANDJOYSTICKS::NO_BUTTON_OR_JOYSTICK),
+C_Navigation::C_Navigation(GameObject* gameObject, Component::TYPE type_of_ui) :Component(gameObject), is_selected(false), is_active(false), button_or_joystick_being_used(BUTTONSANDJOYSTICKS::NO_BUTTON_OR_JOYSTICK),
 type_of_ui(type_of_ui)
 {
 	map_of_buttons_and_joysticks.clear();
@@ -35,11 +35,13 @@ C_Navigation::~C_Navigation()
 
 void C_Navigation::Enable()
 {
+	is_active = true;
 	button_or_joystick_being_used = BUTTONSANDJOYSTICKS::BUTTON_OR_JOYSTICK_UNKNOWN;
 }
 
 void C_Navigation::Disable()
 {
+	is_active = false;
 	switch (type_of_ui) {
 	case Component::TYPE::BUTTON: {
 		static_cast<C_Button*>(gameObject->GetComponent(Component::TYPE::BUTTON))->ReleaseButton();
@@ -55,14 +57,8 @@ void C_Navigation::Disable()
 
 void C_Navigation::Update()
 {
-	/*if (map_of_updated_uints.size() > 0) {
-		for (std::map<BUTTONSANDJOYSTICKS, ActionToRealize>::iterator it = map_of_buttons_and_joysticks.begin(); it != map_of_buttons_and_joysticks.end(); ++it) {
-			if (map_of_updated_uints.count(it->second.referenceGO->UID)) {
-				it->second.referenceGO = EngineExternal->moduleScene->GetGOFromUID(EngineExternal->moduleScene->root, map_of_updated_uints[it->second.referenceGO->UID]);
-			}
-		}
-		map_of_updated_uints.clear();
-	}*/
+	if (!is_active)
+		is_active = true;
 	if (!is_selected || map_of_buttons_and_joysticks.size() == 0 || DETime::state == GameState::STOP)
 		return;
 	KEY_STATE state;
@@ -395,10 +391,11 @@ void C_Navigation::Select()
 {
 	if (EngineExternal->moduleGui->uid_gameobject_of_ui_selected.size() != 0) {
 		C_Navigation* aux;
-		for (std::vector<GameObject*>::const_iterator it = gameObject->parent->children.begin(); it != gameObject->parent->children.end(); ++it)
-		{
-			aux = static_cast<C_Navigation*>((*it)->GetComponent(Component::TYPE::NAVIGATION));
-			if (aux != nullptr && aux->is_selected)
+		GameObject* gameobject;
+		for (int i = 0; i < EngineExternal->moduleGui->uid_gameobject_of_ui_selected.size(); ++i) {
+			gameobject = EngineExternal->moduleScene->GetGOFromUID(EngineExternal->moduleScene->root, EngineExternal->moduleGui->uid_gameobject_of_ui_selected[i]);
+			aux = static_cast<C_Navigation*>(gameobject->GetComponent(Component::TYPE::NAVIGATION));
+			if (aux != nullptr && aux->is_selected && aux->is_active)
 			{
 				aux->Deselect();
 			}

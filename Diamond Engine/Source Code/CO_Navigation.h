@@ -85,6 +85,7 @@ public:
 private:
     std::map< BUTTONSANDJOYSTICKS, ActionToRealize> map_of_buttons_and_joysticks;
     bool is_selected;
+    bool is_active;
     BUTTONSANDJOYSTICKS button_or_joystick_being_used;
     const Component::TYPE type_of_ui;
 };
