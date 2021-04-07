@@ -23,7 +23,6 @@ namespace DiamondEngine
 
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public static extern float GetAnimationTime(object gameObject, string animationName);
-
+        public static extern float GetAnimationDuration(object gameObject, string animationName);
     }
 }

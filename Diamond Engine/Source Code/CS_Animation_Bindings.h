@@ -54,7 +54,7 @@ MonoString* GetCurrentAnimation(MonoObject* goObj)
 	}
 }
 
-float GetAnimationTime(MonoObject* cs_gameObject, MonoString* animationString)
+float GetAnimationDuration(MonoObject* cs_gameObject, MonoString* animationString)
 {
 	if (animationString == NULL)
 		return 0.0f;
