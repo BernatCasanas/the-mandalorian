@@ -14,6 +14,7 @@ C_NavMeshAgent::~C_NavMeshAgent()
 	path.clear();
 }
 
+#ifndef STANDALONE
 bool C_NavMeshAgent::OnEditor()
 {
 	if (Component::OnEditor() == true) {
@@ -62,10 +63,11 @@ bool C_NavMeshAgent::OnEditor()
 
 		ImGui::NextColumn();
 	}
-
+	ImGui::Columns(1);
 	
 	return true;
 }
+#endif // !STANDALONE
 
 void C_NavMeshAgent::SaveData(JSON_Object* nObj)
 {

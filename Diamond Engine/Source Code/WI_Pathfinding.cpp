@@ -1,3 +1,7 @@
+#ifndef STANDALONE
+
+
+
 #include "WI_Pathfinding.h"
 #include "MO_Pathfinding.h"
 #include "MO_Scene.h"
@@ -136,3 +140,5 @@ void W_Pathfinding::DrawBakingTab()
 
 }
 
+
+#endif // !STANDALONE

@@ -608,6 +608,8 @@ void NavMeshBuilder::HandleSettings()
 	}
 }
 
+
+#ifndef STANDALONE
 void NavMeshBuilder::DebugDraw()
 {
 	if (m_geom != nullptr)
@@ -620,7 +622,9 @@ void NavMeshBuilder::DebugDraw()
 	if (m_navMesh != nullptr)
 	{
 		DebugDrawGL dd;
-		duDebugDrawNavMeshWithClosedList(&dd, *m_navMesh, *m_navQuery, m_navMeshDrawFlags);
+
+		if(m_navMesh != nullptr)
+			duDebugDrawNavMeshWithClosedList(&dd, *m_navMesh, *m_navQuery, m_navMeshDrawFlags);
 	}
 }
 
@@ -673,12 +677,6 @@ void NavMeshBuilder::OnEditor()
 
 		ImGui::Separator();
 
-		if (m_navMesh != nullptr)
-		{
-			//ImGui::Text("Max Tiles: %i", m_navMesh->);
-		}
-
-
 		if (m_pmesh != nullptr)
 		{
 			ImGui::Separator();
@@ -690,6 +688,7 @@ void NavMeshBuilder::OnEditor()
 		//ImGui::Text(": %i", m_cellSize);
 	}
 }
+#endif // !STANDALONE
 
 dtNavMesh* NavMeshBuilder::GetNavMesh() { return m_navMesh; }
 
