@@ -316,48 +316,28 @@ public class StormTrooper2 : Enemy
     #region WANDER
     private void StartWander()
     {
-        //targetPosition = CalculateNewPosition(wanderRange);
+        agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
-        if (agent != null)
-            agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
-        else
-            Debug.Log("Null Nav Mesh Agent");
-
-        //ANIMATIONS OR FX AT WANDER START
         Animator.Play(gameObject, "ST_Run");
     }
     private void UpdateWander()
     {
-        //LookAt(agent.GetDestination());
-
-        //if (agent != null)
-        //    agent.MoveToCalculatedPos(wanderSpeed);
-        //else
-        //    Debug.Log("Null agent");
-
-        //MoveToPosition(targetPosition, wanderSpeed);
-        //ANIMATIONS OR FX WHILE WANDERING
+        LookAt(agent.GetDestination());
+        agent.MoveToCalculatedPos(runningSpeed);
     }
     #endregion
 
     #region RUN
     private void StartRun()
     {
-        //targetPosition = CalculateNewPosition(runningRange);
-
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
-        //ANIMATIONS OR FX AT RUN START
         Animator.Play(gameObject, "ST_Run");
     }
     private void UpdateRun()
     {
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(runningSpeed);
-
-        //MoveToPosition(targetPosition, runningSpeed);
-
-        //ANIMATIONS OR FX WHILE RUNNNG
     }
     #endregion
 
