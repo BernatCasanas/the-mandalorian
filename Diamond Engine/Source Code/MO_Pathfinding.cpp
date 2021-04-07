@@ -153,7 +153,7 @@ void M_Pathfinding::Load(int navMeshResourceUID)
 
 void M_Pathfinding::DebugDraw()
 {
-	if (!debugDraw || DETime::state == GameState::PLAY)
+	if (!debugDraw)
 		return;
 	
 	if (navMeshBuilder == nullptr)

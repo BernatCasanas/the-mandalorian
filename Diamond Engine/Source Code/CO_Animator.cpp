@@ -68,7 +68,7 @@ void C_Animator::Start()
 		{
 			Play("Idle");
 		}
-		else
+		else if(currentAnimation == nullptr)
 		{
 			Play(animations.begin()->first, defaultBlend);
 		}
