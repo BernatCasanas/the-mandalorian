@@ -15,6 +15,7 @@ public class Skill_Tree_Node : DiamondComponent
     public GameObject nav_down = null;
 
     public GameObject nav_aux = null;
+    public GameObject nav_aux_2 = null;
     public bool has2children = false;
 
     public bool main_button = false;
@@ -104,13 +105,17 @@ public class Skill_Tree_Node : DiamondComponent
                 nav_up.GetComponent<Skill_Tree_Node>().nav_aux = gameObject;
             }
 
-            if(previous_button_selected.GetComponent<Skill_Tree_Node>().nav_aux != null && has2children == false)
+            if (previous_button_selected.GetComponent<Skill_Tree_Node>().nav_aux != null && has2children == false)
             {
                 nav_aux = previous_button_selected.GetComponent<Skill_Tree_Node>().nav_aux;
-                Debug.Log(nav_aux.Name);
-                Debug.Log(gameObject.Name);
                 nav_aux.GetComponent<Skill_Tree_Node>().nav_down = gameObject;
                 nav_aux.GetComponent<Navigation>().SetDownNavButton(gameObject);
+            }
+            else if (previous_button_selected.GetComponent<Skill_Tree_Node>().nav_aux_2 != null)
+            {
+                nav_aux_2 = previous_button_selected.GetComponent<Skill_Tree_Node>().nav_aux_2;
+                nav_aux_2.GetComponent<Skill_Tree_Node>().nav_down = gameObject;
+                nav_aux_2.GetComponent<Navigation>().SetDownNavButton(gameObject);
             }
         }
 
@@ -126,6 +131,10 @@ public class Skill_Tree_Node : DiamondComponent
             else if (nav_down.GetComponent<Skill_Tree_Node>().nav_aux.GetUid() == previous_button_selected.GetUid())
             {
                 nav_down.GetComponent<Skill_Tree_Node>().nav_aux = gameObject;
+            }
+            else if (nav_down.GetComponent<Skill_Tree_Node>().nav_aux_2.GetUid() == previous_button_selected.GetUid())
+            {
+                nav_down.GetComponent<Skill_Tree_Node>().nav_aux_2 = gameObject;
             }
 
             if (previous_button_selected.GetComponent<Skill_Tree_Node>().nav_aux != null && has2children == true)
