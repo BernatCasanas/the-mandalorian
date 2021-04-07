@@ -20,6 +20,7 @@ C_Navigation::C_Navigation(GameObject* gameObject, Component::TYPE type_of_ui) :
 type_of_ui(type_of_ui)
 {
 	map_of_buttons_and_joysticks.clear();
+	map_of_updated_uints.clear();
 	name = "Navigation";
 	assert(static_cast<int>(BUTTONSANDJOYSTICKS::RIGHT_JOYSTICK_UP) == 15, "Make sure RIGHT_JOYSTICK_UP is the first joystick input in the enum");
 
@@ -31,6 +32,7 @@ C_Navigation::~C_Navigation()
 	if (it != EngineExternal->moduleGui->uid_gameobject_of_ui_selected.end())
 		EngineExternal->moduleGui->uid_gameobject_of_ui_selected.erase(it);
 	map_of_buttons_and_joysticks.clear();
+	map_of_updated_uints.clear();
 }
 
 void C_Navigation::Enable()
@@ -55,6 +57,14 @@ void C_Navigation::Disable()
 
 void C_Navigation::Update()
 {
+	if (map_of_updated_uints.size() > 0) {
+		for (std::map<BUTTONSANDJOYSTICKS, ActionToRealize>::iterator it = map_of_buttons_and_joysticks.begin(); it != map_of_buttons_and_joysticks.end(); ++it) {
+			if (map_of_updated_uints.count(it->second.referenceGO->UID)) {
+				it->second.referenceGO = EngineExternal->moduleScene->GetGOFromUID(EngineExternal->moduleScene->root, map_of_updated_uints[it->second.referenceGO->UID]);
+			}
+		}
+		map_of_updated_uints.clear();
+	}
 	if (!is_selected || map_of_buttons_and_joysticks.size() == 0 || DETime::state == GameState::STOP)
 		return;
 	KEY_STATE state;
@@ -384,13 +394,8 @@ void C_Navigation::DoTheAction(GameObject* gameobject_passed, ACTIONSNAVIGATION 
 
 void C_Navigation::OnRecursiveUIDChange(std::map<uint, GameObject*> gameObjects)
 {
-	for (std::map<BUTTONSANDJOYSTICKS, ActionToRealize>::iterator it = map_of_buttons_and_joysticks.begin(); it != map_of_buttons_and_joysticks.end(); ++it) {
-		if (gameObjects.count(it->second.referenceGO->UID) != 0) {
-			it->second.referenceGO = gameObjects[it->second.referenceGO->UID];
-		}
-		else {
-			map_of_buttons_and_joysticks.erase(it);
-		}
+	for (std::map<uint, GameObject*>::const_iterator it = gameObjects.begin(); it != gameObjects.end(); ++it) {
+		map_of_updated_uints.emplace(it->first, it->second->UID);
 	}
 }
 
