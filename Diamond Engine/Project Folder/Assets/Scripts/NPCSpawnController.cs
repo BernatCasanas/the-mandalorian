@@ -45,17 +45,12 @@ public class NPCSpawnController : DiamondComponent
         LEAN
     }
 
-    bool start = true;
-    public void Update()
+    public void Awake()
     {
-        //TODO: Move to Start function
-        if (start)
-        {
-            GenerateCharactersList();
-            GenerateSpawnPointsList();
-            SpawnNPCs();
-            start = false;
-        }
+        Debug.Log("Awake");
+        GenerateCharactersList();
+        GenerateSpawnPointsList();
+        SpawnNPCs();
     }
 
     private void SpawnNPCs()
