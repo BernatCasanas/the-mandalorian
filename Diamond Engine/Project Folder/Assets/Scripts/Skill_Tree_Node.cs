@@ -129,7 +129,7 @@ public class Skill_Tree_Node : DiamondComponent
                 nav_down.GetComponent<Skill_Tree_Node>().nav_up = gameObject;
                 nav_down.GetComponent<Navigation>().SetUpNavButton(gameObject);
             }
-            else if (nav_down.GetComponent<Skill_Tree_Node>().nav_aux.GetUid() == previous_button_selected.GetUid())
+            else if (nav_down.GetComponent<Skill_Tree_Node>().nav_aux != null && nav_down.GetComponent<Skill_Tree_Node>().nav_aux.GetUid() == previous_button_selected.GetUid())
             {
                 nav_down.GetComponent<Skill_Tree_Node>().nav_aux = gameObject;
             }
