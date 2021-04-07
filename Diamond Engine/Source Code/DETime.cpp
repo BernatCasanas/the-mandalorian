@@ -1,6 +1,7 @@
 #include "DETime.h"
 #include "Application.h"
 #include "MO_Scene.h"
+#include "CO_Script.h"
 
 int DETime::frameCount;
 
@@ -19,12 +20,17 @@ GameState DETime::state = GameState::STOP;
 GameState DETime::state = GameState::PLAY;
 #endif // !STANDALONE
 
-void DETime::Play()
+void DETime::Play(std::vector<C_Script*>& scripts)
 {
 	state = GameState::PLAY;
 	gameTimer.Start();
 
 	SDL_SetRelativeMouseMode(SDL_TRUE);
+
+	for (size_t i = 0; i < scripts.size(); i++)
+	{
+		scripts[i]->OnAwake();
+	}
 }
 
 void DETime::Stop()

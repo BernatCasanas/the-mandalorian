@@ -74,7 +74,6 @@ bool M_Scene::Start()
 	App->moduleEditor->editorIcons.LoadPreDefinedIcons();
 #endif // !STANDALONE
 
-
 	return true;
 }
 
@@ -521,6 +520,7 @@ void M_Scene::LoadScene(const char* name)
 	RELEASE(root); //Had to remove root to create it later
 
 	JSON_Object* sceneObj = json_value_get_object(scene);
+	int oldSize = activeScriptsVector.size();
 
 	int navMeshId = json_object_get_number(sceneObj, "NavMesh");
 	if (navMeshId != -1)
@@ -571,6 +571,18 @@ void M_Scene::LoadScene(const char* name)
 		dontDestroyList[i]->ChangeParent(root);
 	}
 
+	if (DETime::state == GameState::PLAY) 
+	{
+		std::vector<C_Script*> newScriptsAdded;
+		newScriptsAdded.reserve(activeScriptsVector.size() - oldSize);
+
+		newScriptsAdded.assign(activeScriptsVector.begin() + oldSize, activeScriptsVector.end());
+
+		for (size_t i = 0; i < newScriptsAdded.size(); i++)
+		{
+			newScriptsAdded[i]->OnAwake();
+		}
+	}
 
 	//Free memory
 	json_value_free(scene);
