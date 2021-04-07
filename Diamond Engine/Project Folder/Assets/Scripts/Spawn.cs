@@ -77,7 +77,7 @@ public class Spawn : DiamondComponent
         {
             currentEnemies.Add(enemy);
 
-            Enemy enemyScript = enemy.GetComponent<StormTrooper>();
+            Enemy enemyScript = enemy.GetComponent<StormTrooper2>();
 
             if (enemyScript != null)
                 enemyScript.dieCallBack = this;
