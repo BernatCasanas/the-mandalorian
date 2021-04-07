@@ -608,6 +608,8 @@ void NavMeshBuilder::HandleSettings()
 	}
 }
 
+
+#ifndef STANDALONE
 void NavMeshBuilder::DebugDraw()
 {
 	if (m_geom != nullptr)
@@ -690,6 +692,7 @@ void NavMeshBuilder::OnEditor()
 		//ImGui::Text(": %i", m_cellSize);
 	}
 }
+#endif // !STANDALONE
 
 dtNavMesh* NavMeshBuilder::GetNavMesh() { return m_navMesh; }
 

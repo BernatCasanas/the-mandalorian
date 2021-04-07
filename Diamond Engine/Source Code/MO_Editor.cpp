@@ -405,7 +405,7 @@ void M_Editor::DrawTopBar()
 				if (DETime::state == GameState::STOP) 
 				{
 					App->moduleScene->SaveScene("Library/Scenes/tmp.des");
-					DETime::Play();
+					DETime::Play(App->moduleScene->activeScriptsVector);
 					EngineExternal->moduleAudio->StopAllSounds();
 					EngineExternal->moduleAudio->PlayOnAwake();
 				}

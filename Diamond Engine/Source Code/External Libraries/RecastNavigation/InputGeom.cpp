@@ -273,6 +273,7 @@ void InputGeom::MergeToMesh(ResourceMesh* new_mesh, float4x4 new_mesh_transform)
 	m_mesh->indices_count = total_indices;
 }
 
+#ifndef STANDALONE
 void InputGeom::DrawMesh()
 {
 	if (m_mesh != nullptr)
@@ -287,6 +288,7 @@ void InputGeom::DrawMesh()
 		}
 	}
 }
+#endif
 
 static bool isectSegAABB(const float* sp, const float* sq,
 						 const float* amin, const float* amax,

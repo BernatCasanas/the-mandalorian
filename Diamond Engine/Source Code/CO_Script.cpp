@@ -16,7 +16,7 @@
 
 C_Script* C_Script::runningScript = nullptr;
 C_Script::C_Script(GameObject* _gm, const char* scriptName) : Component(_gm), noGCobject(0), updateMethod(nullptr), onCollisionEnter(nullptr), onTriggerEnter(nullptr), onApplicationQuit(nullptr)
-, onExecuteButton(nullptr), onExecuteCheckbox(nullptr)
+, onExecuteButton(nullptr), onExecuteCheckbox(nullptr), onAwake(nullptr), onStart(nullptr)
 {
 	name = scriptName;
 	//strcpy(name, scriptName);
@@ -68,7 +68,7 @@ void C_Script::Update()
 		}
 		else
 		{
-			LOG(LogType::L_ERROR, "Something went wrong");
+			LOG(LogType::L_ERROR, "Something went wrong with %s", mono_class_get_name(mono_object_get_class(exec)));
 		}
 	}
 }
@@ -304,6 +304,17 @@ void C_Script::LoadScriptData(const char* scriptName)
 	onCollisionEnter = mono_method_desc_search_in_class(oncDesc, klass);
 	mono_method_desc_free(oncDesc);
 
+#pragma region InitCSMethods
+	oncDesc = mono_method_desc_new(":Awake", false);
+	onAwake = mono_method_desc_search_in_class(oncDesc, klass);
+	mono_method_desc_free(oncDesc);
+
+	oncDesc = mono_method_desc_new(":Start", false);
+	onStart = mono_method_desc_search_in_class(oncDesc, klass);
+	mono_method_desc_free(oncDesc);
+#pragma endregion
+
+
 	oncDesc = mono_method_desc_new(":OnTriggerEnter", false);
 	onTriggerEnter = mono_method_desc_search_in_class(oncDesc, klass);
 	mono_method_desc_free(oncDesc);
@@ -407,6 +418,18 @@ void C_Script::ExecuteCheckbox(bool checkbox_active)
 	args[0] = &checkbox_active;
 
 	mono_runtime_invoke(onExecuteCheckbox, mono_gchandle_get_target(noGCobject), args, NULL);
+}
+
+void C_Script::OnStart()
+{
+	if (onStart != nullptr)
+		mono_runtime_invoke(onStart, mono_gchandle_get_target(noGCobject), NULL, NULL);
+}
+
+void C_Script::OnAwake()
+{
+	if (onAwake != nullptr)
+		mono_runtime_invoke(onAwake, mono_gchandle_get_target(noGCobject), NULL, NULL);
 }
 
 void C_Script::SetField(MonoClassField* field, GameObject* value)
