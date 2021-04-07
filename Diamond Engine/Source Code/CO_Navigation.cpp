@@ -411,7 +411,9 @@ void C_Navigation::Select()
 void C_Navigation::Deselect()
 {
 
-	EngineExternal->moduleGui->uid_gameobject_of_ui_selected.erase(std::find(EngineExternal->moduleGui->uid_gameobject_of_ui_selected.begin(), EngineExternal->moduleGui->uid_gameobject_of_ui_selected.end(), gameObject->UID));
+	std::vector<int>::iterator it = std::find(EngineExternal->moduleGui->uid_gameobject_of_ui_selected.begin(), EngineExternal->moduleGui->uid_gameobject_of_ui_selected.end(), gameObject->UID);
+	if (it != EngineExternal->moduleGui->uid_gameobject_of_ui_selected.end())
+		EngineExternal->moduleGui->uid_gameobject_of_ui_selected.erase(it);
 
 	is_selected = false;
 
@@ -504,7 +506,7 @@ void C_Navigation::SetButtonOrJoystickWithGameobject(ACTIONSNAVIGATION action_to
 	else {
 		ActionToRealize action;
 		action.action = action_to_do;
-		action.referenceGO = gameObject;
+		action.referenceGO = gameobject;
 		map_of_buttons_and_joysticks.emplace(button_or_joystick, action);
 	}
 
