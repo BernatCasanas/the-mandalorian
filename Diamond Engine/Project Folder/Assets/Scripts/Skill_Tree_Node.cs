@@ -45,12 +45,13 @@ public class Skill_Tree_Node : DiamondComponent
 	}
     public void OnExecuteButton()
     {
-        if(has2children == false && nav_aux != null && (nav_up.GetComponent<Skill_Tree_Node>().main_button || nav_aux.GetComponent<Skill_Tree_Node>().main_button))
+        if (has2children == false && nav_aux != null && nav_up != null && (nav_up.GetComponent<Skill_Tree_Node>().main_button || nav_aux.GetComponent<Skill_Tree_Node>().main_button))
         {
             return;
         }
 
         skill.Use();
+
         if (children_1 != null)
         {
             children_1.EnableNav(true);
@@ -60,6 +61,7 @@ public class Skill_Tree_Node : DiamondComponent
         {
             children_2.EnableNav(true);
         }
+
         if (button_skill_purchased != null)
         {
             button_skill_purchased.GetComponent<Skill_Tree_Node>().UpdateNavs(gameObject);
@@ -67,7 +69,6 @@ public class Skill_Tree_Node : DiamondComponent
             button_skill_purchased.EnableNav(true);
         }
         gameObject.EnableNav(false);
-
     }
 
 
@@ -132,7 +133,7 @@ public class Skill_Tree_Node : DiamondComponent
             {
                 nav_down.GetComponent<Skill_Tree_Node>().nav_aux = gameObject;
             }
-            else if (nav_down.GetComponent<Skill_Tree_Node>().nav_aux_2.GetUid() == previous_button_selected.GetUid())
+            else if (nav_down.GetComponent<Skill_Tree_Node>().nav_aux_2 != null && nav_down.GetComponent<Skill_Tree_Node>().nav_aux_2.GetUid() == previous_button_selected.GetUid())
             {
                 nav_down.GetComponent<Skill_Tree_Node>().nav_aux_2 = gameObject;
             }
