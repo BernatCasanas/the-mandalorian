@@ -80,7 +80,7 @@ public class StormTrooper2 : Enemy
 
     private void Start()
     {
-        agent = new NavMeshAgent();
+        agent = gameObject.GetComponent<NavMeshAgent>();
         targetPosition = null;
 
         currentState = STATE.IDLE;
@@ -131,18 +131,14 @@ public class StormTrooper2 : Enemy
             }
         }
 
-        if (currentState == STATE.WANDER)
+        if (currentState == STATE.RUN || currentState == STATE.WANDER)
         {
-            if (agent != null)
+            Debug.Log("Stopping distance: " + agent.stoppingDistance);
+            if (Mathf.Distance(gameObject.transform.localPosition, agent.GetDestination()) <= agent.stoppingDistance)
             {
-                if (Mathf.Distance(gameObject.transform.localPosition, agent.GetDestination()) < stoppingDistance)
-                {
-                    inputsList.Add(INPUT.IN_IDLE);
-                    //currentState = STATE.IDLE;
-                }
+                inputsList.Add(INPUT.IN_IDLE);
+                Debug.Log("Stop running man");
             }
-            else
-                Debug.Log("Null agent");
         }
 
         //if (statesTimer > 0.0f)
@@ -356,15 +352,8 @@ public class StormTrooper2 : Enemy
     }
     private void UpdateRun()
     {
-        if (agent.GetDestination() == null)
-            Debug.Log("Null Destination");
-
-        //LookAt(agent.GetDestination());
-
-        //if (agent != null)
-        //    agent.MoveToCalculatedPos(runningSpeed);
-        //else
-        //    Debug.Log("Null agent");
+        LookAt(agent.GetDestination());
+        agent.MoveToCalculatedPos(runningSpeed);
 
         //MoveToPosition(targetPosition, runningSpeed);
 
@@ -406,7 +395,7 @@ public class StormTrooper2 : Enemy
                     shotTimes = 0;
                     shotSequences = 0;
                     inputsList.Add(INPUT.IN_RUN);
-                    Debug.Log("Run for your life man");
+                    //Debug.Log("Run for your life man");
                 }
             }
         }
@@ -436,11 +425,11 @@ public class StormTrooper2 : Enemy
             }
         }
 
-        if(sequenceTimer > 0.0f)
+        if (sequenceTimer > 0.0f)
         {
             sequenceTimer -= Time.deltaTime;
 
-            if(sequenceTimer <= 0.0f)
+            if (sequenceTimer <= 0.0f)
             {
                 Shoot();
                 shotTimer = timeBewteenShots;
