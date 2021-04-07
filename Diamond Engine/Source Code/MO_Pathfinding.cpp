@@ -301,6 +301,10 @@ bool M_Pathfinding::CleanUp()
 		navMeshBuilder = nullptr;
 	}
 
+	pathfinder.m_navMesh = nullptr;
+	pathfinder.m_navQuery = nullptr;
+	pathfinder.m_navMeshBuilder = nullptr;
+
 	return true;
 }
 
