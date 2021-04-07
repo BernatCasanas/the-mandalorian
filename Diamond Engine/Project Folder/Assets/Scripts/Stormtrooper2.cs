@@ -486,7 +486,8 @@ public class StormTrooper2 : Enemy
         {
             Debug.Log("Collision Grenade");
 
-            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+            //healthPoints -= collidedGameObject.GetComponent<smallGrenade>().damage;
+            healthPoints -= 5; //TODO: Hardcoded value, talk with adria
 
             if (Core.instance.hud != null)
             {
