@@ -293,7 +293,7 @@ void M_Scene::LoadNavigationData()
 		// Get the range of the current key
 		auto range = navigationReferenceMap.equal_range(i->first);
 		
-		GameObject* ref = GetGOFromUID(EngineExternal->moduleScene->root, i->first);
+		GameObject* ref = GetGOFromUID(EngineExternal->moduleScene->root, changeNavigationUIDS.count(i->first)>0? changeNavigationUIDS[i->first] : i->first);
 		// Now render out that whole range
 		for (auto d = range.first; d != range.second; ++d)
 		{

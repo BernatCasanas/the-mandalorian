@@ -76,6 +76,8 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath)
 			it->second->components[i]->OnRecursiveUIDChange(gameObjects);
 		}
 	}
+
+	EngineExternal->moduleScene->LoadNavigationData();
 	
 	std::string id_string;
 	FileSystem::GetFileName(libraryPath, id_string, false);

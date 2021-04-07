@@ -66,8 +66,6 @@ public:
 
     void DoTheAction(GameObject* gameobject, ACTIONSNAVIGATION action, bool is_key_released);
 
-    void OnRecursiveUIDChange(std::map<uint, GameObject*> gameObjects) override;
-
     void Select();
     void Deselect();
 
@@ -86,7 +84,6 @@ public:
 
 private:
     std::map< BUTTONSANDJOYSTICKS, ActionToRealize> map_of_buttons_and_joysticks;
-    std::map<uint, uint> map_of_updated_uints;
     bool is_selected;
     BUTTONSANDJOYSTICKS button_or_joystick_being_used;
     const Component::TYPE type_of_ui;

@@ -265,8 +265,10 @@ void GameObject::RecursiveUIDRegeneration()
 
 void GameObject::RecursiveUIDRegenerationSavingReferences(std::map<uint, GameObject*>& gameObjects)
 {
+	uint old_uid=UID;
 	gameObjects[UID] = this;
 	UID = EngineExternal->GetRandomInt();
+	EngineExternal->moduleScene->changeNavigationUIDS.emplace(old_uid, UID);
 
 	for (size_t i = 0; i < this->children.size(); i++)
 	{
