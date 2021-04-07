@@ -213,10 +213,7 @@ public class Core : DiamondComponent
             gadgetShootTimer -= Time.deltaTime;
 
             if (gadgetShootTimer <= 0)
-            {
                 inputsList.Add(INPUT.IN_GADGET_SHOOT_END);
-                Debug.Log("In shoot");
-            }
         }
     }
 

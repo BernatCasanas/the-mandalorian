@@ -57,6 +57,7 @@ MonoObject* CS_GetDestination(MonoObject* go)
 		assert(!comp->path.empty());
 		comp->path.erase(comp->path.begin());
 	}
+
 	return EngineExternal->moduleMono->Float3ToCS(comp->path.front());
 }
 

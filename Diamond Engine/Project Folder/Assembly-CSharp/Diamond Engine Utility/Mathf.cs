@@ -8,6 +8,11 @@ namespace DiamondEngine
     {
         public static float Distance(Vector3 pointA, Vector3 pointB)
         {
+            if (pointA == null || pointB == null)
+            {
+                //Add infinity someday
+            }
+
             Vector3 distance = pointB - pointA;
             return distance.magnitude;
         }
