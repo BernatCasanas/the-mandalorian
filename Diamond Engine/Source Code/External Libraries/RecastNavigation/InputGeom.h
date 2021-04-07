@@ -112,7 +112,11 @@ public:
 	bool loadMesh(ResourceMesh* mesh);
 	bool AddMesh(ResourceMesh* mesh, float4x4 new_mesh_transform);
 	void MergeToMesh(ResourceMesh* new_mesh, float4x4 new_mesh_transform);
+
+#ifndef STANDALONE
 	void DrawMesh();
+#endif // !STANDALONE
+
 
 	/// Method to return static mesh data.
 	ResourceMesh* getMesh() const { return m_mesh; }
