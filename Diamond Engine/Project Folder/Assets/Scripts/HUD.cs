@@ -74,6 +74,8 @@ public class HUD : DiamondComponent
     public GameObject force_wave = null;
     public GameObject force_wave_second = null;
     public GameObject force_wave_third = null;
+    public GameObject hp_glitch = null;
+    public GameObject max_hp_number = null;
     private bool start = true;
     private float pulsation_rate = 0.0f;
     private bool pulsation_forward = true;
@@ -86,6 +88,7 @@ public class HUD : DiamondComponent
     float lastWeaponDecrementMultiplier = 1.0f;
     public float force_bar_rate = 0.0f;
     public float last_hp = 0;
+    private bool hp_descending = false;
 
     //stores the level as a key and the reward as a value
     Dictionary<int, ComboLvlUpEffects> lvlUpComboRewards = new Dictionary<int, ComboLvlUpEffects>
@@ -110,11 +113,14 @@ public class HUD : DiamondComponent
 
     public void Update()
     {
+        hp_descending = false;
         if (start)
         {
             UpdateHP(PlayerHealth.currHealth, PlayerHealth.currMaxHealth);
             ResetCombo();
             UpdateForce(force, max_force);
+            max_hp_number.GetComponent<Text>().text = PlayerHealth.currMaxHealth.ToString();
+            last_hp = Mathf.Lerp(last_hp, PlayerHealth.currHealth - 0.5f, 2.5f * Time.deltaTime);
             force_bar_rate = -0.15f;
             start = false;
         }
@@ -227,11 +233,12 @@ public class HUD : DiamondComponent
         {
             UpdateCombo();
         }
+        last_hp = Mathf.Lerp(last_hp, PlayerHealth.currHealth - 0.5f, 2.5f * Time.deltaTime);
         if (last_hp > PlayerHealth.currHealth)
         {
             if (hp_bar != null)
                 hp_bar.GetComponent<Material>().SetFloatUniform("last_hp", last_hp / PlayerHealth.currMaxHealth);
-            last_hp -= 0.05f;
+            hp_descending = true;
         }
         if (pulsation_forward)
         {
@@ -269,6 +276,11 @@ public class HUD : DiamondComponent
         {
             hp_bar.GetComponent<Material>().SetFloatUniform("t", pulsation_rate);
 
+        }
+        hp_glitch.Enable(false);
+        if (hp_descending && hp_glitch != null)
+        {
+            hp_glitch.Enable(true);
         }
     }
 
@@ -451,6 +463,8 @@ public class HUD : DiamondComponent
             return;
         hp_bar.GetComponent<Material>().SetFloatUniform("length_used", hp_float);
         hp_bar.GetComponent<Material>().SetFloatUniform("last_hp", last_hp / max_hp);
+        hp_glitch.GetComponent<Material>().SetFloatUniform("length_used", hp_float);
+        max_hp_number.GetComponent<Text>().text = PlayerHealth.currMaxHealth.ToString();
     }
 
     public void UpdateForce(int new_force, int max_force)
@@ -459,7 +473,7 @@ public class HUD : DiamondComponent
             return;
         float force_float = new_force;
         force_float /= max_force;
-        force_float = Math.Max(force_float, 1.0f);
+        //force_float = Math.Max(force_float, 1.0f); CANNOT DO THIS! This returns 1.0 and it's not a wanted value
         force_bar.GetComponent<Material>().SetFloatUniform("length_used", force_float);
         force_wave.GetComponent<Material>().SetFloatUniform("length_used", force_float);
         force_wave_second.GetComponent<Material>().SetFloatUniform("length_used", force_float);

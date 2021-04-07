@@ -645,7 +645,7 @@ public class Core : DiamondComponent
 
             if (pause != null)
             {
-                pause.Enable(true);
+                pause.EnableNav(true);
                 pause.GetComponent<Pause>().DisplayBoons();
                 background.Enable(true);
                 Time.PauseGame();

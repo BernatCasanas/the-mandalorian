@@ -39,6 +39,9 @@ int PrefabImporter::SavePrefab(const char* assets_path, GameObject* gameObject)
 
 GameObject* PrefabImporter::LoadPrefab(const char* libraryPath)
 {
+
+	int oldSize = EngineExternal->moduleScene->activeScriptsVector.size();
+
 	GameObject* rootObject = nullptr;
 
 	JSON_Value* prefab = json_parse_file(libraryPath);
@@ -63,6 +66,7 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath)
 	//rootObject->RecursiveUIDRegeneration();
 	EngineExternal->moduleScene->LoadScriptsData(rootObject);
 
+
 	//Save all references to game objects with their old UID
 	std::map<uint, GameObject*> gameObjects;
 	rootObject->RecursiveUIDRegenerationSavingReferences(gameObjects);
@@ -76,6 +80,13 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath)
 			it->second->components[i]->OnRecursiveUIDChange(gameObjects);
 		}
 	}
+
+	std::vector<C_Script*> saveCopy; //We need to do this in case someone decides to create an instance inside the awake method
+	for (int i = oldSize; i < EngineExternal->moduleScene->activeScriptsVector.size(); ++i)
+		saveCopy.push_back(EngineExternal->moduleScene->activeScriptsVector[i]);
+
+	for (size_t i = 0; i < saveCopy.size(); i++)
+		saveCopy[i]->OnAwake();
 	
 	std::string id_string;
 	FileSystem::GetFileName(libraryPath, id_string, false);

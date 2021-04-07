@@ -16,6 +16,7 @@ public:
 	C_Script(GameObject* _gm, const char* scriptName);
 	virtual ~C_Script();
 
+	//void Start() override;
 	void Update() override;
 
 #ifndef STANDALONE
@@ -37,6 +38,9 @@ public:
 	void ExecuteButton();
 	void ExecuteCheckbox(bool checkbox_active);
 
+	void OnStart();
+	void OnAwake();
+
 	void OnApplicationQuit();
 
 	std::vector<std::string> methods;
@@ -44,11 +48,15 @@ public:
 
 	MonoMethod* updateMethod;
 
+	MonoMethod* onAwake;
+	MonoMethod* onStart;
+
 	MonoMethod* onCollisionEnter;
 	MonoMethod* onTriggerEnter;
 	MonoMethod* onCollisionStay;
 	MonoMethod* onCollisionExit;
 	MonoMethod* onTriggerExit;
+
 
 	MonoMethod* onApplicationQuit;
 	
