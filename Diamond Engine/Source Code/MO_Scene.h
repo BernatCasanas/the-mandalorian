@@ -60,7 +60,6 @@ public:
 	std::vector<GameObject*> destroyList;
 	std::multimap<uint, SerializedField*> referenceMap;
 	std::multimap<uint, ActionToRealize*> navigationReferenceMap;
-	std::map<uint, uint> changeNavigationUIDS;
 	ResourceMaterial* defaultMaterial;
 	char current_scene[64];
 	char current_scene_name[32];

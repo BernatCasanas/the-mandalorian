@@ -60,6 +60,7 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath)
 		parent = LoadGOData(json_array_get_object(gameObjectsArray, i), parent);
 	}
 
+	EngineExternal->moduleScene->LoadNavigationData();
 	//rootObject->RecursiveUIDRegeneration();
 	EngineExternal->moduleScene->LoadScriptsData(rootObject);
 
@@ -77,7 +78,6 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath)
 		}
 	}
 
-	EngineExternal->moduleScene->LoadNavigationData();
 	
 	std::string id_string;
 	FileSystem::GetFileName(libraryPath, id_string, false);
