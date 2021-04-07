@@ -622,7 +622,9 @@ void NavMeshBuilder::DebugDraw()
 	if (m_navMesh != nullptr)
 	{
 		DebugDrawGL dd;
-		duDebugDrawNavMeshWithClosedList(&dd, *m_navMesh, *m_navQuery, m_navMeshDrawFlags);
+
+		if(m_navMesh != nullptr)
+			duDebugDrawNavMeshWithClosedList(&dd, *m_navMesh, *m_navQuery, m_navMeshDrawFlags);
 	}
 }
 
@@ -674,12 +676,6 @@ void NavMeshBuilder::OnEditor()
 		ImGui::Text("Cell Height: %.4f", m_cellHeight);
 
 		ImGui::Separator();
-
-		if (m_navMesh != nullptr)
-		{
-			//ImGui::Text("Max Tiles: %i", m_navMesh->);
-		}
-
 
 		if (m_pmesh != nullptr)
 		{
