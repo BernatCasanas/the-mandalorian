@@ -66,6 +66,8 @@ public:
 
     void DoTheAction(GameObject* gameobject, ACTIONSNAVIGATION action, bool is_key_released);
 
+    void OnRecursiveUIDChange(std::map<uint, GameObject*> gameObjects) override;
+
     void Select();
     void Deselect();
 

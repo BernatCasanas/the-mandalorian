@@ -382,6 +382,18 @@ void C_Navigation::DoTheAction(GameObject* gameobject_passed, ACTIONSNAVIGATION 
 	}
 }
 
+void C_Navigation::OnRecursiveUIDChange(std::map<uint, GameObject*> gameObjects)
+{
+	for (std::map<BUTTONSANDJOYSTICKS, ActionToRealize>::iterator it = map_of_buttons_and_joysticks.begin(); it != map_of_buttons_and_joysticks.end(); ++it) {
+		if (gameObjects.count(it->second.referenceGO->UID) != 0) {
+			it->second.referenceGO = gameObjects[it->second.referenceGO->UID];
+		}
+		else {
+			map_of_buttons_and_joysticks.erase(it);
+		}
+	}
+}
+
 void C_Navigation::Select()
 {
 	if (EngineExternal->moduleGui->uid_gameobject_of_ui_selected.size() != 0) {
