@@ -321,7 +321,7 @@ public class BabyYoda : DiamondComponent
         //TODO instantiate prefab here
         Vector3 spawnPos = new Vector3(mandoTransform.globalPosition.x, mandoTransform.globalPosition.y, mandoTransform.globalPosition.z);
         spawnPos += mandoTransform.GetRight() * wallSkillOffset.x;
-        spawnPos += Vector3.Cross(mandoTransform.GetRight(), mandoTransform.GetForward()) * wallSkillOffset.y;
+        spawnPos += Vector3.Cross(mandoTransform.GetForward(),mandoTransform.GetRight()) * wallSkillOffset.y;
         spawnPos += mandoTransform.GetForward() * wallSkillOffset.z;
 
         InternalCalls.CreatePrefab("Library/Prefabs/1850725718.prefab", spawnPos, mandoTransform.globalRotation, new Vector3(1, 1, 1));
