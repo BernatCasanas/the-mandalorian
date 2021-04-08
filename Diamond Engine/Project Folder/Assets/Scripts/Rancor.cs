@@ -67,6 +67,8 @@ public class Rancor : DiamondComponent
     private float meleeCH3Timer = 0.0f;
 
     //Projectile
+    public float projectileTime = 1.5f;
+    private float projectileTimer = 0.0f;
    
 
     private bool start = false;
@@ -125,6 +127,14 @@ public class Rancor : DiamondComponent
             if (meleeCH3Timer <= 0)
                 inputsList.Add(RANCOR_INPUT.IN_MELEE_COMBO_END);
         }
+
+        if (projectileTimer > 0)
+        {
+            projectileTimer -= Time.deltaTime;
+
+            if (projectileTimer <= 0)
+                inputsList.Add(RANCOR_INPUT.IN_PROJECTILE_END);
+        }
     }
 
 	private void ProcessExternalInput()
@@ -165,6 +175,8 @@ public class Rancor : DiamondComponent
                             break;
                         
                         case RANCOR_INPUT.IN_PROJECTILE:
+                            currentState = RANCOR_STATE.PROJECTILE;
+                            StartProjectile();
                             break;
                        
                         case RANCOR_INPUT.IN_MELEE_COMBO_1HIT:
@@ -182,6 +194,7 @@ public class Rancor : DiamondComponent
                     {
                         case RANCOR_INPUT.IN_WANDER_END:
                             currentState = RANCOR_STATE.SEARCH_STATE;
+                            EndWander();
                             break;
 
                         case RANCOR_INPUT.IN_DEAD:
@@ -305,17 +318,24 @@ public class Rancor : DiamondComponent
 
             if (distance <= meleeRange)
             {
-                inputsList.Add(RANCOR_INPUT.IN_MELEE_COMBO_1HIT);
-                //add hand slam
+                decision = randomNum.Next(1, 100);
+
+                if (decision <= 50)
+                    inputsList.Add(RANCOR_INPUT.IN_MELEE_COMBO_1HIT);
+
+                else
+                    inputsList.Add(RANCOR_INPUT.IN_HAND_SLAM);  //ADD START /STATE MACHINE LOGIC
             }
 
             else if (distance > meleeRange && distance <= longRange)
             {
                 //Projectile and charge
+                inputsList.Add(RANCOR_INPUT.IN_PROJECTILE);
             }
             else
-            { 
+            {
                 //Projectile
+                inputsList.Add(RANCOR_INPUT.IN_PROJECTILE);
             }
         }
         else if (decision > attackProbability && decision <= shortWanderProbability)
@@ -323,7 +343,6 @@ public class Rancor : DiamondComponent
 
         else if (decision > shortWanderProbability)
             inputsList.Add(RANCOR_INPUT.IN_WANDER_LONG);
-
     }
 
 
@@ -413,6 +432,23 @@ public class Rancor : DiamondComponent
 
     private void EndWander()
     {
+        
+    }
+
+    #endregion
+
+
+    #region PROJECTILE
+
+    private void StartProjectile()
+    {
+        projectileTimer = projectileTime;
+        //add animation
+        //add timer to spawn projectiles
+    }
+
+    private void UpdateProjectile()
+    { 
         
     }
 
