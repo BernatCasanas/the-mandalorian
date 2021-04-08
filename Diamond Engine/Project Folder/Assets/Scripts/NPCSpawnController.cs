@@ -90,6 +90,8 @@ public class NPCSpawnController : DiamondComponent
         prefabPath += prefabUID;
         prefabPath += ".prefab";
 
+        if(prefabUID==GroguUID) { pos.y += 1.3f; }
+
         GameObject unit = InternalCalls.CreatePrefab(prefabPath, pos, rot, Vector3.one);
         //Animator animatorComponent = unit.GetComponent<Animator>();
         Debug.Log("Character: " + prefabUID + " , Animation: " + animation);
@@ -100,7 +102,7 @@ public class NPCSpawnController : DiamondComponent
 
                 if(HubTextController != null) {
                     HubTextController.GetComponent<HubTextController>().grogu = unit;
-                }
+                }             
 
                 break;
             case BoKatanUID:
