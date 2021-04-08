@@ -28,11 +28,18 @@ void main() {
 		fragmentColor=vec4(0,0,0,0);
 		}
 	else{
-		fragmentColor = texture(ourTexture,vec2(textureCoords.x + t*rate, textureCoords.y))* mix(vec4(0.5,0.6,0.6,1), vec4(0.03,0.75,0.62,1), length_used);
-	}
+		fragmentColor = texture(ourTexture,vec2(textureCoords.x + t*rate, textureCoords.y))* mix(vec4(0.5,0.6,0.6,1), vec4(0.19,0.22,0.36,1), length_used);
 }
 
 #endif
+
+
+
+
+
+
+
+
 
 
 
