@@ -10,8 +10,6 @@ public class SHOP : DiamondComponent
     public GameObject textPopUp;
     public float interactionRange = 2.0f;
     
-    private bool firstClick = true;
-
     public void Update()
     {
         if (InRange(player.transform.globalPosition, interactionRange))
@@ -99,7 +97,6 @@ public class SHOP : DiamondComponent
         {
             shopUI.Enable(!shopUI.IsEnabled());
             Time.ResumeGame();
-            firstClick = true;
             textPopUp.Enable(true);
         }
     }
