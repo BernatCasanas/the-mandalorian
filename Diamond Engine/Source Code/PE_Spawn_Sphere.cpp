@@ -3,7 +3,6 @@
 #include "Application.h"
 #include "CO_Transform.h"
 #include <math.h>
-#include "MathGeoLib/include/Math/MathFunc.h"
 #include "ImGui/imgui.h"
 
 
@@ -12,6 +11,8 @@
 PE_SpawnShapeSphere::PE_SpawnShapeSphere() :PE_SpawnShapeBase(PE_SPAWN_SHAPE_TYPE::SPHERE)
 {
 	radius = 1.0f;
+	angle = 0;
+	useDirection = false;
 }
 
 PE_SpawnShapeSphere::~PE_SpawnShapeSphere()
@@ -38,24 +39,29 @@ void PE_SpawnShapeSphere::Spawn(Particle& particle, bool hasInitialSpeed, float 
 	
 	if (hasInitialSpeed)
 	{
-		float3 direction = (localPos - float3(offset[0], offset[1], offset[2]));
 		float3 localSpeed = (localPos - float3(offset[0], offset[1], offset[2])).Normalized() * speed;
 		particle.speed = gTrans.TransformDir(localSpeed).Normalized() * speed;
-		direction = gTrans.TransformDir(direction).Normalized();
-	//	LOG(LogType::L_NORMAL, "Direction local %f %f %f", direction.x, direction.y, direction.z);
-
-		float4x4 cameraView = EngineExternal->moduleCamera->editorCamera.ViewMatrixOpenGL().Transposed();
-
-		direction =  cameraView.TransformDir(direction);
-
-		float2 directionViewProj = float2(direction.x , direction.y).Normalized();
-		float2 xAxis = float2(1, 0);
-		float angle = xAxis.AngleBetween(directionViewProj);
-		if (directionViewProj.y < 0)
-			angle = 360 * DEGTORAD - angle;
-		angle += 90 * DEGTORAD;
 		
-		particle.rotation = angle;
+		
+		if (useDirection)
+		{
+			float3 direction = (localPos - float3(offset[0], offset[1], offset[2]));
+			direction = gTrans.TransformDir(direction).Normalized();
+
+			float4x4 cameraView = EngineExternal->moduleCamera->editorCamera.ViewMatrixOpenGL().Transposed();
+
+			direction = cameraView.TransformDir(direction);
+
+			float2 directionViewProj = float2(direction.x, direction.y).Normalized();
+			float2 xAxis = float2(1, 0);
+			float finalAngle = xAxis.AngleBetween(directionViewProj);
+			if (directionViewProj.y < 0)
+				finalAngle = 360 * DEGTORAD - finalAngle;
+			finalAngle += angle * DEGTORAD;
+
+			particle.rotation = finalAngle;
+		}
+			
 	}
 }
 
@@ -66,6 +72,19 @@ void PE_SpawnShapeSphere::OnEditor(int emitterIndex)
 	suffixLabel += emitterIndex;
 	ImGui::DragFloat(suffixLabel.c_str(), &radius);
 
+	suffixLabel = "Face Direction##PaShapeCone";
+	suffixLabel += emitterIndex;
+	ImGui::Checkbox(suffixLabel.c_str(), &useDirection);
+
+	if (useDirection)
+	{
+		suffixLabel = "Set Angle##PaShapeCone";
+		suffixLabel += emitterIndex;
+		ImGui::DragFloat(suffixLabel.c_str(), &angle);
+	}
+
+
+
 }
 #endif // !STANDALONE
 
@@ -73,10 +92,16 @@ void PE_SpawnShapeSphere::OnEditor(int emitterIndex)
 void PE_SpawnShapeSphere::SaveData(JSON_Object* nObj)
 {
 	DEJson::WriteFloat(nObj, "PaShapeSphereRadius", radius);
+	DEJson::WriteBool(nObj, "PaShapeSphereDirection", useDirection);
+	DEJson::WriteFloat(nObj, "PaShapeSphereAngle", angle);
+
 }
 
 
 void PE_SpawnShapeSphere::LoadData(DEConfig& nObj)
 {
 	radius = nObj.ReadFloat("PaShapeSphereRadius");
+	useDirection = nObj.ReadBool("PaShapeSphereDirection");
+	angle = nObj.ReadFloat("PaShapeSphereAngle");
+
 }
