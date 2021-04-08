@@ -24,9 +24,9 @@ public:
 
 	void SaveData(JSON_Object* nObj) override;
 	void LoadData(DEConfig& nObj) override;
+	void ChangeSprite(BUTTONSTATE num_sprite, ResourceTexture* sprite);
 
 #ifndef STANDALONE
-	void ChangeSprite(BUTTONSTATE num_sprite, ResourceTexture* sprite);
 	void ChangeScript(const char* script_name);
 	bool OnEditor() override;
 
