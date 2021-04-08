@@ -19235,6 +19235,2883 @@
             ]
         },
         {
+            "name": "GroguTree",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1603578304,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1847907807,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "TextPanel",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1492746195,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1603578304,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        40.400001525878906,
+                        -26.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        26.899999618530273,
+                        39
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1736132959.dds",
+                    "UID": 1736132959
+                }
+            ]
+        },
+        {
+            "name": "Companion",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1197292592,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1603578304,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        89,
+                        82
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 2129789327,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -21.600000381469727,
+                        33.900001525878906
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/693312354.dds",
+                    "Pressed_UID": 693312354,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1330585533.dds",
+                    "Hovered_UID": 1330585533,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/961468463.dds",
+                    "Unhovered_UID": 961468463,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 1,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_hover.png",
+                    "LibraryPath": "Library\/Textures\/1330585533.dds",
+                    "UID": 1330585533
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 2129789327,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 1123411798,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 16,
+                            "UID": 1123411798,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 20,
+                            "UID": 1123411798,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "GForceReg",
+                    "children_1": 695948772,
+                    "children_2": 1407390158,
+                    "button_skill_purchased": 759360658,
+                    "nav_down": 1123411798,
+                    "nav_aux": 673828449,
+                    "has2children": true,
+                    "main_button": true
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node1_Unlocked",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 759360658,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -21.600000381469727,
+                        33.900001525878906
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/309212752.dds",
+                    "Pressed_UID": 309212752,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/unlocked_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1363024423.dds",
+                    "Hovered_UID": 1363024423,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/unlocked_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/397245909.dds",
+                    "Unhovered_UID": 397245909,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/unlocked_button.png",
+                    "LibraryPath": "Library\/Textures\/397245909.dds",
+                    "UID": 397245909
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "Empty",
+                    "has2children": false,
+                    "main_button": false
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 695948772,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -27.600000381469727,
+                        15.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/693312354.dds",
+                    "Pressed_UID": 693312354,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1330585533.dds",
+                    "Hovered_UID": 1330585533,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/961468463.dds",
+                    "Unhovered_UID": 961468463,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button.png",
+                    "LibraryPath": "Library\/Textures\/961468463.dds",
+                    "UID": 961468463
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 695948772,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "GPushRange",
+                    "children_1": 525220436,
+                    "button_skill_purchased": 1698364818,
+                    "button_skill_unavailable": 1123411798,
+                    "has2children": false,
+                    "main_button": true
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node2_Locked",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1123411798,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -27.600000381469727,
+                        15.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/693312354.dds",
+                    "Pressed_UID": 693312354,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1559276760.dds",
+                    "Hovered_UID": 1559276760,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1462646886.dds",
+                    "Unhovered_UID": 1462646886,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button.png",
+                    "LibraryPath": "Library\/Textures\/1462646886.dds",
+                    "UID": 1462646886
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 11,
+                            "UID": 2129789327,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 1167917287,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 14,
+                            "UID": 673828449,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 15,
+                            "UID": 2129789327,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 16,
+                            "UID": 1167917287,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 18,
+                            "UID": 673828449,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 19,
+                            "UID": 2129789327,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 20,
+                            "UID": 1167917287,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 22,
+                            "UID": 673828449,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "Empty",
+                    "nav_right": 15254090,
+                    "nav_up": 1572989137,
+                    "nav_down": 968705309,
+                    "has2children": false,
+                    "main_button": false
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node2_Unlocked",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1698364818,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -27.600000381469727,
+                        15.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/309212752.dds",
+                    "Pressed_UID": 309212752,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/unlocked_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1363024423.dds",
+                    "Hovered_UID": 1363024423,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/unlocked_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/397245909.dds",
+                    "Unhovered_UID": 397245909,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/unlocked_button.png",
+                    "LibraryPath": "Library\/Textures\/397245909.dds",
+                    "UID": 397245909
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "Empty",
+                    "has2children": false,
+                    "main_button": false
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node3",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1407390158,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -16.5,
+                        15.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/693312354.dds",
+                    "Pressed_UID": 693312354,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1330585533.dds",
+                    "Hovered_UID": 1330585533,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/961468463.dds",
+                    "Unhovered_UID": 961468463,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button.png",
+                    "LibraryPath": "Library\/Textures\/961468463.dds",
+                    "UID": 961468463
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1407390158,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "GForceDur",
+                    "children_1": 525220436,
+                    "button_skill_purchased": 830179114,
+                    "button_skill_unavailable": 673828449,
+                    "has2children": false,
+                    "main_button": true
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node3_Locked",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 673828449,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -16.5,
+                        15.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/693312354.dds",
+                    "Pressed_UID": 693312354,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1559276760.dds",
+                    "Hovered_UID": 1559276760,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1462646886.dds",
+                    "Unhovered_UID": 1462646886,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button.png",
+                    "LibraryPath": "Library\/Textures\/1462646886.dds",
+                    "UID": 1462646886
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 11,
+                            "UID": 2129789327,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 1167917287,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 13,
+                            "UID": 1123411798,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 15,
+                            "UID": 2129789327,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 16,
+                            "UID": 1167917287,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 17,
+                            "UID": 1123411798,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 19,
+                            "UID": 2129789327,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 20,
+                            "UID": 1167917287,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 21,
+                            "UID": 1123411798,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "Empty",
+                    "nav_left": 1123411798,
+                    "nav_up": 2129789327,
+                    "nav_down": 1167917287,
+                    "has2children": false,
+                    "main_button": false
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node3_Unlocked",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 830179114,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -16.5,
+                        15.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/309212752.dds",
+                    "Pressed_UID": 309212752,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/unlocked_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1363024423.dds",
+                    "Hovered_UID": 1363024423,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/unlocked_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/397245909.dds",
+                    "Unhovered_UID": 397245909,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/unlocked_button.png",
+                    "LibraryPath": "Library\/Textures\/397245909.dds",
+                    "UID": 397245909
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "Empty",
+                    "has2children": false,
+                    "main_button": false
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node4",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 525220436,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -21.600000381469727,
+                        -2.5999999046325684
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/693312354.dds",
+                    "Pressed_UID": 693312354,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1330585533.dds",
+                    "Hovered_UID": 1330585533,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/961468463.dds",
+                    "Unhovered_UID": 961468463,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button.png",
+                    "LibraryPath": "Library\/Textures\/961468463.dds",
+                    "UID": 961468463
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 525220436,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "GThrshComboForce",
+                    "children_1": 1446875919,
+                    "button_skill_purchased": 1396111866,
+                    "button_skill_unavailable": 1167917287,
+                    "has2children": false,
+                    "main_button": true
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node4_Locked",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1167917287,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -21.600000381469727,
+                        -2.5999999046325684
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/693312354.dds",
+                    "Pressed_UID": 693312354,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1559276760.dds",
+                    "Hovered_UID": 1559276760,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1462646886.dds",
+                    "Unhovered_UID": 1462646886,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button.png",
+                    "LibraryPath": "Library\/Textures\/1462646886.dds",
+                    "UID": 1462646886
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 11,
+                            "UID": 673828449,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 932926870,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 15,
+                            "UID": 673828449,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 16,
+                            "UID": 932926870,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 19,
+                            "UID": 673828449,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 20,
+                            "UID": 932926870,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "Empty",
+                    "nav_up": 673828449,
+                    "nav_down": 932926870,
+                    "nav_aux_2": 1123411798,
+                    "has2children": false,
+                    "main_button": false
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node4_Unlocked",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1396111866,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -21.600000381469727,
+                        -2.5999999046325684
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/309212752.dds",
+                    "Pressed_UID": 309212752,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/unlocked_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1363024423.dds",
+                    "Hovered_UID": 1363024423,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/unlocked_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/397245909.dds",
+                    "Unhovered_UID": 397245909,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/unlocked_button.png",
+                    "LibraryPath": "Library\/Textures\/397245909.dds",
+                    "UID": 397245909
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "Empty",
+                    "has2children": false,
+                    "main_button": false
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node5",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1446875919,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -21.600000381469727,
+                        -21.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/693312354.dds",
+                    "Pressed_UID": 693312354,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1330585533.dds",
+                    "Hovered_UID": 1330585533,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/961468463.dds",
+                    "Unhovered_UID": 961468463,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button.png",
+                    "LibraryPath": "Library\/Textures\/961468463.dds",
+                    "UID": 961468463
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1446875919,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "GMaxForce",
+                    "children_1": 772807125,
+                    "children_2": 1356414027,
+                    "button_skill_purchased": 658712755,
+                    "button_skill_unavailable": 932926870,
+                    "has2children": true,
+                    "main_button": true
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node5_Locked",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 932926870,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -21.600000381469727,
+                        -20.700000762939453
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/693312354.dds",
+                    "Pressed_UID": 693312354,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1559276760.dds",
+                    "Hovered_UID": 1559276760,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1462646886.dds",
+                    "Unhovered_UID": 1462646886,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button.png",
+                    "LibraryPath": "Library\/Textures\/1462646886.dds",
+                    "UID": 1462646886
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 11,
+                            "UID": 1167917287,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 549557687,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 15,
+                            "UID": 1167917287,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 16,
+                            "UID": 549557687,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 19,
+                            "UID": 1167917287,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 20,
+                            "UID": 549557687,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "Empty",
+                    "nav_up": 1167917287,
+                    "nav_down": 549557687,
+                    "nav_aux": 1455080589,
+                    "has2children": true,
+                    "main_button": false
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node5_Unlocked",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 658712755,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -21.600000381469727,
+                        -21.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/309212752.dds",
+                    "Pressed_UID": 309212752,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/unlocked_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1363024423.dds",
+                    "Hovered_UID": 1363024423,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/unlocked_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/397245909.dds",
+                    "Unhovered_UID": 397245909,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/unlocked_button.png",
+                    "LibraryPath": "Library\/Textures\/397245909.dds",
+                    "UID": 397245909
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "Empty",
+                    "nav_right": 439005694,
+                    "nav_up": 1824371181,
+                    "nav_down": 1454145466,
+                    "has2children": false,
+                    "main_button": false
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node6",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 772807125,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -27.600000381469727,
+                        -38.599998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/693312354.dds",
+                    "Pressed_UID": 693312354,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1330585533.dds",
+                    "Hovered_UID": 1330585533,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/961468463.dds",
+                    "Unhovered_UID": 961468463,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button.png",
+                    "LibraryPath": "Library\/Textures\/961468463.dds",
+                    "UID": 961468463
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 772807125,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "GSingComboForce",
+                    "children_1": 727434170,
+                    "button_skill_purchased": 1187071675,
+                    "button_skill_unavailable": 549557687,
+                    "nav_up": 439005694,
+                    "nav_aux": 566133065,
+                    "has2children": false,
+                    "main_button": true
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node6_Locked",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 549557687,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -27.600000381469727,
+                        -38.599998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/693312354.dds",
+                    "Pressed_UID": 693312354,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1559276760.dds",
+                    "Hovered_UID": 1559276760,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1462646886.dds",
+                    "Unhovered_UID": 1462646886,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button.png",
+                    "LibraryPath": "Library\/Textures\/1462646886.dds",
+                    "UID": 1462646886
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 11,
+                            "UID": 932926870,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 587502369,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 14,
+                            "UID": 1455080589,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 15,
+                            "UID": 932926870,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 16,
+                            "UID": 587502369,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 18,
+                            "UID": 1455080589,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 19,
+                            "UID": 932926870,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 20,
+                            "UID": 587502369,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 22,
+                            "UID": 1455080589,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "Empty",
+                    "nav_right": 1455080589,
+                    "nav_up": 932926870,
+                    "nav_down": 587502369,
+                    "has2children": false,
+                    "main_button": false
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node6_Unlocked",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1187071675,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -27.600000381469727,
+                        -38.599998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/309212752.dds",
+                    "Pressed_UID": 309212752,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/unlocked_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1363024423.dds",
+                    "Hovered_UID": 1363024423,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/unlocked_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/397245909.dds",
+                    "Unhovered_UID": 397245909,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/unlocked_button.png",
+                    "LibraryPath": "Library\/Textures\/397245909.dds",
+                    "UID": 397245909
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 14,
+                            "UID": 0,
+                            "Action": 0,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "Empty",
+                    "nav_up": 439005694,
+                    "nav_aux": 566133065,
+                    "has2children": false,
+                    "main_button": false
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node7",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1356414027,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -16.5,
+                        -38.599998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/693312354.dds",
+                    "Pressed_UID": 693312354,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1330585533.dds",
+                    "Hovered_UID": 1330585533,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/961468463.dds",
+                    "Unhovered_UID": 961468463,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button.png",
+                    "LibraryPath": "Library\/Textures\/961468463.dds",
+                    "UID": 961468463
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1356414027,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "GComboTimer",
+                    "children_1": 727434170,
+                    "button_skill_purchased": 919606838,
+                    "button_skill_unavailable": 1455080589,
+                    "nav_up": 439005694,
+                    "nav_aux": 566133065,
+                    "has2children": false,
+                    "main_button": true
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node7_Locked",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1455080589,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -16.5,
+                        -38.599998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/693312354.dds",
+                    "Pressed_UID": 693312354,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1559276760.dds",
+                    "Hovered_UID": 1559276760,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1462646886.dds",
+                    "Unhovered_UID": 1462646886,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button.png",
+                    "LibraryPath": "Library\/Textures\/1462646886.dds",
+                    "UID": 1462646886
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 11,
+                            "UID": 932926870,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 587502369,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 13,
+                            "UID": 549557687,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 15,
+                            "UID": 932926870,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 16,
+                            "UID": 587502369,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 17,
+                            "UID": 549557687,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 19,
+                            "UID": 932926870,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 20,
+                            "UID": 587502369,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 21,
+                            "UID": 549557687,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "Empty",
+                    "nav_left": 1896198689,
+                    "nav_up": 892451836,
+                    "nav_down": 587502369,
+                    "has2children": false,
+                    "main_button": false
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node7_Unlocked",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 919606838,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -16.5,
+                        -38.599998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/309212752.dds",
+                    "Pressed_UID": 309212752,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/unlocked_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1363024423.dds",
+                    "Hovered_UID": 1363024423,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/unlocked_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/397245909.dds",
+                    "Unhovered_UID": 397245909,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/unlocked_button.png",
+                    "LibraryPath": "Library\/Textures\/397245909.dds",
+                    "UID": 397245909
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 14,
+                            "UID": 0,
+                            "Action": 0,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "Empty",
+                    "nav_up": 439005694,
+                    "nav_aux": 566133065,
+                    "has2children": false,
+                    "main_button": false
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node8",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 727434170,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -21.600000381469727,
+                        -56.099998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/693312354.dds",
+                    "Pressed_UID": 693312354,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1330585533.dds",
+                    "Hovered_UID": 1330585533,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/961468463.dds",
+                    "Unhovered_UID": 961468463,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button.png",
+                    "LibraryPath": "Library\/Textures\/961468463.dds",
+                    "UID": 961468463
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 727434170,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 20,
+                            "UID": 0,
+                            "Action": 0,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "GHPForceReg",
+                    "has2children": false,
+                    "main_button": true
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node8_Locked",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 587502369,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -21.600000381469727,
+                        -56.099998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/693312354.dds",
+                    "Pressed_UID": 693312354,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1559276760.dds",
+                    "Hovered_UID": 1559276760,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1462646886.dds",
+                    "Unhovered_UID": 1462646886,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/Grogu\/locked_button.png",
+                    "LibraryPath": "Library\/Textures\/1462646886.dds",
+                    "UID": 1462646886
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 11,
+                            "UID": 1455080589,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 15,
+                            "UID": 1455080589,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 19,
+                            "UID": 1455080589,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "Empty",
+                    "nav_up": 1455080589,
+                    "nav_aux_2": 549557687,
+                    "has2children": false,
+                    "main_button": false
+                }
+            ]
+        },
+        {
+            "name": "Comp_Node8_Unlocked",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1528891387,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1197292592,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -21.600000381469727,
+                        -56.099998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5999999046325684,
+                        7.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/skill_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/309212752.dds",
+                    "Pressed_UID": 309212752,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/unlocked_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1363024423.dds",
+                    "Hovered_UID": 1363024423,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/unlocked_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/397245909.dds",
+                    "Unhovered_UID": 397245909,
+                    "Script_Name": "Skill_Tree_Node",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/unlocked_button.png",
+                    "LibraryPath": "Library\/Textures\/397245909.dds",
+                    "UID": 397245909
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Skill_Tree_Node",
+                    "skill_name": "Empty",
+                    "nav_up": 439005694,
+                    "nav_aux": 566133065,
+                    "has2children": true,
+                    "main_button": false
+                }
+            ]
+        },
+        {
+            "name": "Panel",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 2111594010,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1603578304,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -2.4000000953674316,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        86,
+                        82
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/2061995124.dds",
+                    "UID": 2061995124
+                }
+            ]
+        },
+        {
             "name": "List of Dialogs",
             "tag": "Untagged",
             "layer": "Default",
