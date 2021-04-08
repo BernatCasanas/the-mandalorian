@@ -18,4 +18,6 @@ public:
 	void LoadData(DEConfig& nObj) override;
 private:
 	float dimensions[3];
+	float angle;
+	bool useDirection;
 };

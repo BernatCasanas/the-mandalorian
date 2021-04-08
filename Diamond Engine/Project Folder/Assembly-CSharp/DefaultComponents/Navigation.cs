@@ -27,7 +27,7 @@ namespace DiamondEngine
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern void Select();
 
-        public extern bool is_active
+        public extern bool is_selected
         {
             [MethodImplAttribute(MethodImplOptions.InternalCall)]
             get;

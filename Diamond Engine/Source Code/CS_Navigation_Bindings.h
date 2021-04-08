@@ -91,7 +91,7 @@ void SetDownNavButton(MonoObject* obj, MonoObject* other_obj)
 	workNav->SetButtonOrJoystickWithGameobject(ACTIONSNAVIGATION::MOVE, BUTTONSANDJOYSTICKS::RIGHT_JOYSTICK_DOWN, button_mapped);
 }
 
-bool GetIsActiveNav(MonoObject* obj)
+bool GetIsSelectedNav(MonoObject* obj)
 {
 	if (EngineExternal == nullptr)
 		return nullptr;
@@ -103,7 +103,7 @@ bool GetIsActiveNav(MonoObject* obj)
 
 	
 
-	return workNav->IsActiveNav();
+	return workNav->IsSelectedNav();
 
 
 }
