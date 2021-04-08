@@ -220,7 +220,6 @@ void C_Button::LoadData(DEConfig& nObj)
 }
 
 
-#ifndef STANDALONE
 
 void C_Button::ChangeSprite(BUTTONSTATE num_sprite, ResourceTexture* sprite)
 {
@@ -247,6 +246,7 @@ void C_Button::ChangeSprite(BUTTONSTATE num_sprite, ResourceTexture* sprite)
 	}
 }
 
+#ifndef STANDALONE
 
 void C_Button::ChangeScript(const char* new_script_name)
 {
