@@ -26,6 +26,7 @@
 #include "CS_ParticleSystem_Bindings.h"
 #include "CS_Transform2D_Bindings.h"
 #include "CS_Pathfinder_Bindings.h"
+#include "CS_Button_Bindings.h"
 
 #include <iostream>
 #include <fstream> 
@@ -160,10 +161,6 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.Transform2D::get_size", Get2Dsize);
 	mono_add_internal_call("DiamondEngine.Transform2D::set_size", Set2DSize);
 	mono_add_internal_call("DiamondEngine.Transform2D::SetLocalTransform", SetLocalTransform2D);
-
-
-
-
 #pragma endregion
 
 #pragma region Settings
@@ -193,12 +190,13 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::set_angularSpeed", CS_SetAngularSpeed);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::get_stoppingDistance", CS_GetStoppingDistance);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::set_stoppingDistance", CS_SetStoppingDistance);
+#pragma endregion
 
+#pragma region Button
+	mono_add_internal_call("DiamondEngine.Button::ChangeSprites", CS_ButtonChangeSprites);
 #pragma endregion
 
 	mono_add_internal_call("DiamondEngine.DiamondComponent::get_gameObject", CS_Component_Get_GO);
-
-
 	mono_add_internal_call("DiamondEngine.GameObject::TryGetComponent", CS_GetComponent);
 	mono_add_internal_call("DiamondEngine.GameObject::get_Name", CS_Get_GO_Name);
 	mono_add_internal_call("DiamondEngine.GameObject::get_parent", CS_Get_GO_Parent);
