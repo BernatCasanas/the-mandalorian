@@ -1,6 +1,39 @@
 {
     "Game Objects": [
         {
+            "name": "Empty",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 625428609,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1009255034,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
             "name": "Text",
             "tag": "Untagged",
             "layer": "Default",
@@ -21,10 +54,11 @@
                 1,
                 1
             ],
-            "UID": 105615925,
+            "UID": 1426982923,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1324189369,
+            "Static": false,
+            "ParentUID": 625428609,
             "Components": [
                 {
                     "Type": 1,
@@ -34,13 +68,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -34.099998474121094,
-                        4.6999998092651367
+                        -45.299999237060547,
+                        -58.200000762939453
                     ],
                     "Rotation": 0,
                     "Size": [
-                        8,
-                        12
+                        8.8000001907348633,
+                        14.199999809265137
                     ]
                 },
                 {
@@ -54,14 +88,75 @@
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "Lorem Ipsum is simply dummy text of theprinting and typesetting industry. Lorem  Ipsum has been the industry's standard  dummy text ever since the 1500s.",
-                    "maxTextLenght": 840,
+                    "text": "Press A to talk",
+                    "maxTextLenght": 1120,
                     "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
                         1,
                         1,
                         1
                     ]
+                }
+            ]
+        },
+        {
+            "name": "Text_Box",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 567046841,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 625428609,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        3.4000000953674316,
+                        -66.199996948242188
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        58.599998474121094,
+                        32.599998474121094
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1848582122.dds",
+                    "UID": 1848582122
                 }
             ]
         }
