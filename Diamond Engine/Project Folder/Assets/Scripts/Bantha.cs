@@ -43,6 +43,9 @@ public class Bantha : Enemy
     private List<INPUT> inputsList = new List<INPUT>();
 
 
+    public GameObject hitParticles = null;
+
+
     //Action times
     public float idleTime = 5.0f;
     public float dieTime = 3.0f;
@@ -84,7 +87,6 @@ public class Bantha : Enemy
             started = true;
         }
 
-
         #region STATE MACHINE
 
         ProcessInternalInput();
@@ -94,7 +96,6 @@ public class Bantha : Enemy
         UpdateState();
 
         #endregion
-
 
         #region CODE
 
@@ -464,22 +465,26 @@ public class Bantha : Enemy
     #region RUN
     private void StartRun()
     {
-        throw new NotImplementedException();
+        Animator.Play(gameObject, "BT_Run");
     }
     private void UpdateRun()
     {
-        throw new NotImplementedException();
+        LookAt(player.transform.globalPosition);
+        MoveToPosition(player.transform.localPosition, runningSpeed);
     }
     #endregion
 
     #region WANDER
     private void StartWander()
     {
-        throw new NotImplementedException();
+        agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
+
+        Animator.Play(gameObject, "BT_Run");
     }
     private void UpdateWander()
     {
-        throw new NotImplementedException();
+        LookAt(agent.GetDestination());
+        agent.MoveToCalculatedPos(wanderSpeed);
     }
     #endregion
 
@@ -497,11 +502,41 @@ public class Bantha : Enemy
     #region DIE
     private void StartDie()
     {
-        throw new NotImplementedException();
+        dieTimer = dieTime;
+
+        Animator.Play(gameObject, "BT_Die", 1.0f);
+
+        Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
+        Audio.PlayAudio(gameObject, "Play_Mando_Voice");
+
+        if (hitParticles != null)
+            hitParticles.GetComponent<ParticleSystem>().Play();
+
+        RemoveFromSpawner();
     }
     private void UpdateDie()
     {
-        throw new NotImplementedException();
+        if (dieTimer > 0.0f)
+        {
+            dieTimer -= Time.deltaTime;
+
+            if (dieTimer <= 0.0f)
+            {
+                Die();
+            }
+        }
+    }
+    private void Die()
+    {
+        Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
+        Counter.roomEnemies--;
+        Debug.Log("Enemies: " + Counter.roomEnemies.ToString());
+        if (Counter.roomEnemies <= 0)
+        {
+            Core.instance.gameObject.GetComponent<BoonSpawn>().SpawnBoons();
+        }
+        player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+        InternalCalls.Destroy(gameObject);
     }
     #endregion
 
