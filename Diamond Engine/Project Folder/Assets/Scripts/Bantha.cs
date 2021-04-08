@@ -14,6 +14,7 @@ public class Bantha : Enemy
         RUN,
         WANDER,
         CHARGE,
+        TIRED,
         PUSHED,
         HIT,
         DIE
@@ -30,6 +31,7 @@ public class Bantha : Enemy
         IN_HIT,
         IN_DIE,
         IN_DIE_END,
+        IN_CHARGE_RANGE,
         IN_PLAYER_IN_RANGE
     }
 
@@ -44,6 +46,7 @@ public class Bantha : Enemy
     //Action times
     public float idleTime = 5.0f;
     public float dieTime = 3.0f;
+    public float tiredTime = 2.0f;
     public float timeBewteenStates = 1.5f;
 
     //Speeds
@@ -53,11 +56,13 @@ public class Bantha : Enemy
 
     //Ranges
     public float wanderRange = 7.5f;
-    public float runningRange = 12.5f;
+    //public float runningRange = 12.5f;
+    public float chargeRange = 5.0f;
 
     //Timers
     private float idleTimer = 0.0f;
     private float dieTimer = 0.0f;
+    private float tiredTimer = 0.0f;
     //private float chargeDuration = 1.0f;
 
 
@@ -249,6 +254,24 @@ public class Bantha : Enemy
             }
         }
 
+        if (currentState == STATE.CHARGE)
+        {
+            if (Mathf.Distance(gameObject.transform.localPosition, player.transform.localPosition) <= stoppingDistance)
+            {
+                inputsList.Add(INPUT.IN_CHARGE_END);
+            }
+        }
+
+        if (tiredTimer > 0.0f)
+        {
+            tiredTimer -= Time.deltaTime;
+
+            if (tiredTimer < 0.0f)
+            {
+                inputsList.Add(INPUT.IN_RUN);
+            }
+        }
+
         if (dieTimer > 0.0f)
         {
             dieTimer -= Time.deltaTime;
@@ -263,22 +286,20 @@ public class Bantha : Enemy
     //All events from outside the stormtrooper
     private void ProcessExternalInput()
     {
-        if (currentState != STATE.DIE && currentState != STATE.RUN)
+        if (currentState != STATE.DIE)
         {
             if (InRange(player.transform.globalPosition, detectionRange))
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
-                Debug.Log("In range");
+                Debug.Log("In run range");
+            }
+            if (InRange(player.transform.globalPosition, chargeRange))
+            {
+                inputsList.Add(INPUT.IN_CHARGE_RANGE);
+                Debug.Log("In charge range");
             }
         }
 
-        if(currentState == STATE.CHARGE)
-        {
-            if(Mathf.Distance(gameObject.transform.localPosition, player.transform.localPosition) <= stoppingDistance)
-            {
-                inputsList.Add(INPUT.IN_CHARGE_END);
-            }
-        }
     }
 
     private void ProcessState()
@@ -304,19 +325,67 @@ public class Bantha : Enemy
                             break;
 
                         case INPUT.IN_PLAYER_IN_RANGE:
+                            currentState = STATE.RUN;
+                            StartRun();
+                            break;
+                        case INPUT.IN_CHARGE_RANGE:
                             currentState = STATE.CHARGE;
                             StartCharge();
                             break;
 
-                        case INPUT.IN_IDLE:
+                        case INPUT.IN_DIE:
                             currentState = STATE.DIE;
                             StartDie();
                             break;
                     }
                     break;
 
+                case STATE.WANDER:
+                    switch (input)
+                    {
+                        case INPUT.IN_IDLE:
+                            currentState = STATE.IDLE;
+                            StartIdle();
+                            break;
+
+                        case INPUT.IN_PLAYER_IN_RANGE:
+                            currentState = STATE.CHARGE;
+                            StartCharge();
+                            break;
+
+                        case INPUT.IN_DIE:
+                            currentState = STATE.DIE;
+                            StartDie();
+                            break;
+                    }
+                    break;
 
                 case STATE.RUN:
+                    switch (input)
+                    {
+                        case INPUT.IN_IDLE:
+                            currentState = STATE.IDLE;
+                            StartIdle();
+                            break;
+
+                        case INPUT.IN_WANDER:
+                            currentState = STATE.WANDER;
+                            StartWander();
+                            break;
+
+                        case INPUT.IN_CHARGE_RANGE:
+                            currentState = STATE.CHARGE;
+                            StartCharge();
+                            break;
+
+                        case INPUT.IN_DIE:
+                            currentState = STATE.DIE;
+                            StartDie();
+                            break;
+                    }
+                    break;
+
+                case STATE.CHARGE:
                     switch (input)
                     {
                         case INPUT.IN_WANDER:
@@ -324,41 +393,14 @@ public class Bantha : Enemy
                             StartWander();
                             break;
 
-                        case INPUT.IN_PLAYER_IN_RANGE:
-                            currentState = STATE.CHARGE;
-                            StartCharge();
-                            break;
-
-                        case INPUT.IN_DIE:
-                            currentState = STATE.DIE;
-                            StartDie();
-                            break;
-                    }
-                    break;
-
-
-                case STATE.WANDER:
-                    switch (input)
-                    {
-                        case INPUT.IN_PLAYER_IN_RANGE:
-                            currentState = STATE.CHARGE;
-                            StartCharge();
-                            break;
-
-                        case INPUT.IN_DIE:
-                            currentState = STATE.DIE;
-                            StartDie();
-                            break;
-                    }
-                    break;
-
-
-                case STATE.CHARGE:
-                    switch (input)
-                    {
                         case INPUT.IN_RUN:
-                            currentState = STATE.IDLE;
+                            currentState = STATE.RUN;
                             StartRun();
+                            break;
+
+                        case INPUT.IN_CHARGE_END:
+                            currentState = STATE.TIRED;
+                            StartTired();
                             break;
 
                         case INPUT.IN_DIE:
@@ -392,6 +434,8 @@ public class Bantha : Enemy
             case STATE.CHARGE:
                 UpdateCharge();
                 break;
+            case STATE.TIRED:
+                break;
             case STATE.DIE:
                 UpdateDie();
                 break;
@@ -408,6 +452,15 @@ public class Bantha : Enemy
         Animator.Play(gameObject, "BT_Idle");
     }
     #endregion
+
+    #region TIRED
+    private void StartTired()
+    {
+        tiredTimer = tiredTime;
+        Animator.Play(gameObject, "BT_Idle");
+    }
+    #endregion
+
     #region RUN
     private void StartRun()
     {
@@ -418,6 +471,7 @@ public class Bantha : Enemy
         throw new NotImplementedException();
     }
     #endregion
+
     #region WANDER
     private void StartWander()
     {
@@ -428,6 +482,7 @@ public class Bantha : Enemy
         throw new NotImplementedException();
     }
     #endregion
+
     #region CHARGE
     private void StartCharge()
     {
@@ -438,6 +493,7 @@ public class Bantha : Enemy
         throw new NotImplementedException();
     }
     #endregion
+
     #region DIE
     private void StartDie()
     {
