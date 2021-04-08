@@ -137,7 +137,7 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.Navigation::SetRightNavButton", SetRightNavButton);
 	mono_add_internal_call("DiamondEngine.Navigation::SetUpNavButton", SetUpNavButton);
 	mono_add_internal_call("DiamondEngine.Navigation::SetDownNavButton", SetDownNavButton);
-	mono_add_internal_call("DiamondEngine.Text::get_is_active", GetIsActiveNav);
+	mono_add_internal_call("DiamondEngine.Text::get_is_selected", GetIsSelectedNav);
 #pragma endregion
 
 #pragma region ParticleSystem
