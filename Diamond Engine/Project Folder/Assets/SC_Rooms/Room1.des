@@ -1,19 +1,19 @@
 {
-    "NavMesh": -1,
+    "NavMesh": 519700752,
     "EditorCameraPosition": [
-        6.5718488693237305,
-        11.741833686828613,
-        6.5836515426635742
+        -11.711432456970215,
+        23.253456115722656,
+        -6.8869032859802246
     ],
     "EditorCameraZ": [
-        -0.73795241117477417,
-        -0.42988935112953186,
-        -0.52021276950836182
+        0.51434803009033203,
+        -0.54412084817886353,
+        0.66285645961761475
     ],
     "EditorCameraY": [
-        -0.35132229328155518,
-        0.90288156270980835,
-        -0.24774482846260071
+        0.33360752463340759,
+        0.83900684118270874,
+        0.4298529326915741
     ],
     "tags": [
         "Enemy",
@@ -9995,7 +9995,11 @@
                     "verticalTimeInterval": 1.2000000476837158,
                     "followPoint": 1079552447,
                     "horizontalSpeed": 4,
-                    "skillPushDuration": 1
+                    "skillPushDuration": 1,
+                    "wallSkillOffsetX": 0,
+                    "wallSkillOffsetY": 0,
+                    "wallSkillOffsetZ": 0,
+                    "skillWallDuration": 0
                 }
             ]
         },
@@ -10604,7 +10608,7 @@
             "UID": 415847465,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 552014237,
             "Components": [
                 {
@@ -10691,7 +10695,7 @@
             "UID": 1489315558,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 552014237,
             "Components": [
                 {
@@ -11597,7 +11601,7 @@
             "UID": 2125864029,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 692755255,
             "Components": [
                 {
@@ -11717,7 +11721,7 @@
             "UID": 1291134322,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 819301709,
             "Components": [
                 {
@@ -11837,7 +11841,7 @@
             "UID": 1950966770,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 692135836,
             "Components": [
                 {
@@ -11957,7 +11961,7 @@
             "UID": 787477779,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 2064305067,
             "Components": [
                 {
@@ -12077,7 +12081,7 @@
             "UID": 197126955,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 1880427496,
             "Components": [
                 {
@@ -12179,9 +12183,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                3.4694469519536142e-18,
-                0.37437477707862854,
-                1.7347234759768071e-18
+                0,
+                2.2622580528259277,
+                0
             ],
             "Rotation": [
                 0,
@@ -12190,9 +12194,9 @@
                 1
             ],
             "Scale": [
-                1,
-                1,
-                1
+                0.99999988079071045,
+                0.99999988079071045,
+                0.99999988079071045
             ],
             "UID": 439235337,
             "PrefabID": 0,
@@ -12344,9 +12348,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                0.2636968195438385,
-                0.2713300883769989,
-                -0.55071192979812622
+                0.26369667053222656,
+                0.27132987976074219,
+                -0.55071163177490234
             ],
             "Rotation": [
                 0,
@@ -12355,9 +12359,9 @@
                 1
             ],
             "Scale": [
-                1,
-                1,
-                1
+                0.99999994039535522,
+                0.99999994039535522,
+                0.99999994039535522
             ],
             "UID": 1641575949,
             "PrefabID": 0,
@@ -13088,7 +13092,7 @@
             "UID": 499494891,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 560868052,
             "Components": [
                 {
@@ -15110,7 +15114,7 @@
             "UID": 1737847773,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 205362412,
             "Components": [
                 {
@@ -16121,7 +16125,7 @@
             "UID": 1881995950,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 483034263,
             "Components": [
                 {
@@ -20051,6 +20055,52 @@
                     "Active": true,
                     "ScriptName": "GroguFollowPoints",
                     "priority": 4
+                }
+            ]
+        },
+        {
+            "name": "DirectionalLight",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -20.693496704101563,
+                27.128353118896484,
+                -13.68649959564209
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1159288423,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 23,
+                    "Active": true,
+                    "orthoSize": [
+                        10,
+                        10
+                    ],
+                    "lightColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }

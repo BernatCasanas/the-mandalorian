@@ -45,10 +45,19 @@ public class Rancor : DiamondComponent
 	private List<RANCOR_INPUT> inputsList = new List<RANCOR_INPUT>();
     Random randomNum = new Random();
 
+    //Stats
+    public int attackProbability = 66;  //FROM 1 TO A 100
+    public int shortWanderProbability = 90; //FROM THE PREVIOS VALUE TO HERE
+
+    public float meleeRange = 14.0f;
+    public float longRange = 21.0f;
+
+    //Wander
     public float shortWanderTime = 2.0f;
     public float longWanderTime = 4.0f;
     private float wanderTimer = 0.0f;
 
+    //Melee Combo
     public float meleeComboHit1Time = 2.0f;
     public float meleeComboHit2Time = 2.0f;
     public float meleeComboHit3Time = 4.0f;
@@ -56,6 +65,9 @@ public class Rancor : DiamondComponent
     private float meleeCH1Timer = 0.0f;
     private float meleeCH2Timer = 0.0f;
     private float meleeCH3Timer = 0.0f;
+
+    //Projectile
+   
 
     private bool start = false;
 
@@ -137,13 +149,13 @@ public class Rancor : DiamondComponent
                     switch (input)
                     {
                         case RANCOR_INPUT.IN_WANDER_SHORT:
-                            StartWander();
                             currentState = RANCOR_STATE.WANDER;
+                            StartShortWander();
                             break;
 
                         case RANCOR_INPUT.IN_WANDER_LONG:
-                            StartWander();
                             currentState = RANCOR_STATE.WANDER;
+                            StartLongWander();
                             break;
 
                         case RANCOR_INPUT.IN_RUSH:
@@ -286,20 +298,30 @@ public class Rancor : DiamondComponent
 
         Debug.Log("Decision value: " + decision.ToString());
 
-        if (decision <= 60)
+        if (decision <= attackProbability)
         {
             //Do all distance checks
             float distance = Mathf.Distance(Core.instance.gameObject.transform.localPosition, gameObject.transform.localPosition);
 
-            if (distance < 20)
+            if (distance <= meleeRange)
             {
                 inputsList.Add(RANCOR_INPUT.IN_MELEE_COMBO_1HIT);
+                //add hand slam
+            }
+
+            else if (distance > meleeRange && distance <= longRange)
+            {
+                //Projectile and charge
+            }
+            else
+            { 
+                //Projectile
             }
         }
-        else if (decision > 60 && decision <= 90)
+        else if (decision > attackProbability && decision <= shortWanderProbability)
             inputsList.Add(RANCOR_INPUT.IN_WANDER_SHORT);
 
-        else if (decision > 90)
+        else if (decision > shortWanderProbability)
             inputsList.Add(RANCOR_INPUT.IN_WANDER_LONG);
 
     }
@@ -364,12 +386,21 @@ public class Rancor : DiamondComponent
 
     #region WANDER
 
-    private void StartWander()
+    private void StartShortWander()
     {
         //Start walk animation
         //Search point
 
         wanderTimer = shortWanderTime;
+    }
+
+
+    private void StartLongWander()
+    {
+        //Start walk animation
+        //Search point
+
+        wanderTimer = longWanderTime;
     }
 
 

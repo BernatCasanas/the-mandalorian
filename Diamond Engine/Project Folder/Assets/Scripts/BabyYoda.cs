@@ -30,12 +30,22 @@ public class BabyYoda : DiamondComponent
     private bool lefttTriggerPressed = false;
 
 
+    public float wallSkillOffsetX = 0.0f;
+    public float wallSkillOffsetY = 0.0f;
+    public float wallSkillOffsetZ = 1.0f;
+
+    private Vector3 wallSkillOffset = Vector3.zero;
+    public float skillWallDuration = 0.8f;
+    private float skillWallTimer = 0.0f;
+    private bool leftButtonPressed = false;
+
     #region STATE_ENUMS
     enum STATE
     {
         NONE = -1,
         MOVE,
-        SKILL_PUSH
+        SKILL_PUSH,
+        SKILL_WALL
     }
 
     enum INPUTS
@@ -43,6 +53,8 @@ public class BabyYoda : DiamondComponent
         NONE = -1,
         IN_SKILL_PUSH,
         IN_SKILL_PUSH_END,
+        IN_SKILL_WALL,
+        IN_SKILL_WALL_END,
     }
     #endregion
 
@@ -67,6 +79,12 @@ public class BabyYoda : DiamondComponent
         }
     }
     #endregion
+
+    public void Awake()
+    {
+        wallSkillOffset = new Vector3(wallSkillOffsetX, wallSkillOffsetY, wallSkillOffsetZ);
+    }
+
     public void Update()
     {
         UpdateState();
@@ -170,6 +188,8 @@ public class BabyYoda : DiamondComponent
                 break;
             case STATE.SKILL_PUSH:
                 break;
+            case STATE.SKILL_WALL:
+                break;
             default:
                 break;
         }
@@ -191,6 +211,19 @@ public class BabyYoda : DiamondComponent
         {
             lefttTriggerPressed = false;
         }
+
+        if (Input.GetGamepadButton(DEControllerButton.LEFTSHOULDER) > 0 && leftButtonPressed == false)
+        {
+            if (input == INPUTS.NONE)
+            {
+                input = INPUTS.IN_SKILL_WALL;
+                leftButtonPressed = true;
+            }
+        }
+        else if (Input.GetGamepadButton(DEControllerButton.LEFTSHOULDER) == 0)
+        {
+            leftButtonPressed = false;
+        }
     }
 
 
@@ -207,6 +240,18 @@ public class BabyYoda : DiamondComponent
                 skillPushTimer = 0.0f;
             }
         }
+
+        if (skillWallTimer > 0.0f)
+        {
+            skillWallTimer += Time.deltaTime;
+
+            if (skillWallTimer >= skillWallDuration && input == INPUTS.NONE)
+            {
+                input = INPUTS.IN_SKILL_WALL_END;
+                skillWallTimer = 0.0f;
+            }
+        }
+
     }
 
     private void ProcessState()
@@ -222,6 +267,10 @@ public class BabyYoda : DiamondComponent
                         ExecutePushSkill();
                         state = STATE.SKILL_PUSH;
                         break;
+                    case INPUTS.IN_SKILL_WALL:
+                        ExecuteWallSkill();
+                        state = STATE.SKILL_WALL;
+                        break;
                 }
                 break;
 
@@ -229,6 +278,15 @@ public class BabyYoda : DiamondComponent
                 switch (input)
                 {
                     case INPUTS.IN_SKILL_PUSH_END:
+                        state = STATE.MOVE;
+                        break;
+                }
+                break;
+
+            case STATE.SKILL_WALL:
+                switch (input)
+                {
+                    case INPUTS.IN_SKILL_WALL_END:
                         state = STATE.MOVE;
                         break;
                 }
@@ -253,5 +311,20 @@ public class BabyYoda : DiamondComponent
 
         Transform mandoTransform = Core.instance.gameObject.transform;
         InternalCalls.CreatePrefab("Library/Prefabs/541990364.prefab", new Vector3(mandoTransform.globalPosition.x, mandoTransform.globalPosition.y + 1, mandoTransform.globalPosition.z), mandoTransform.globalRotation, new Vector3(1, 1, 1));
+    }
+
+    //Execute order 66
+    private void ExecuteWallSkill()
+    {
+        skillWallTimer += INIT_TIMER;
+        Transform mandoTransform = Core.instance.gameObject.transform;
+        //TODO instantiate prefab here
+        Vector3 spawnPos = new Vector3(mandoTransform.globalPosition.x, mandoTransform.globalPosition.y, mandoTransform.globalPosition.z);
+        spawnPos += mandoTransform.GetRight() * wallSkillOffset.x;
+        spawnPos += Vector3.Cross(mandoTransform.GetForward(),mandoTransform.GetRight()) * wallSkillOffset.y;
+        spawnPos += mandoTransform.GetForward() * wallSkillOffset.z;
+
+        InternalCalls.CreatePrefab("Library/Prefabs/1850725718.prefab", spawnPos, mandoTransform.globalRotation, new Vector3(1, 1, 1));
+
     }
 }
