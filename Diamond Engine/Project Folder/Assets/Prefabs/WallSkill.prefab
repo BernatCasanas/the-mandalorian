@@ -1,15 +1,15 @@
 {
-    "assets_path": "Assets\/Prefabs\/Grogu.prefab",
+    "assets_path": "Assets\/Prefabs\/WallSkill.prefab",
     "Game Objects": [
         {
-            "name": "Grogu",
+            "name": "WallSkill",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
-                -18.157947540283203,
-                6.8328351974487305,
-                -13.516075134277344
+                0,
+                0,
+                12.90793514251709
             ],
             "Rotation": [
                 0,
@@ -22,11 +22,11 @@
                 1,
                 1
             ],
-            "UID": 1791005559,
-            "PrefabID": 2124140914,
+            "UID": 318926794,
+            "PrefabID": 1850725718,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1676501951,
+            "ParentUID": 738685494,
             "Components": [
                 {
                     "Type": 1,
@@ -35,21 +35,16 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "BabyYoda",
-                    "verticalSpeed": 0.80000001192092896,
-                    "verticalTimeInterval": 1.2000000476837158,
-                    "followPoint": 598316490,
-                    "horizontalSpeed": 4,
-                    "skillPushDuration": 1,
-                    "wallSkillOffsetX": 0,
-                    "wallSkillOffsetY": 0.10000000149011612,
-                    "wallSkillOffsetZ": 4,
-                    "skillWallDuration": 0.5
+                    "ScriptName": "BarrierSkill",
+                    "myMeshPivot": 1168898741,
+                    "maxTimeAlive": 5,
+                    "maxHP": 30,
+                    "maxSpawnTimeAnim": 1
                 }
             ]
         },
         {
-            "name": "GroguMesh",
+            "name": "Mesh Pivot",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -65,15 +60,15 @@
                 1
             ],
             "Scale": [
-                1,
-                1,
-                1
+                2,
+                1.5,
+                0.5
             ],
-            "UID": 570657334,
+            "UID": 1168898741,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1791005559,
+            "ParentUID": 318926794,
             "Components": [
                 {
                     "Type": 1,
@@ -82,31 +77,31 @@
             ]
         },
         {
-            "name": "GrogusBody",
+            "name": "Mesh",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
                 0,
-                0,
+                1,
                 0
             ],
             "Rotation": [
+                -0.7071068286895752,
                 0,
                 0,
-                0,
-                1
+                0.70710670948028564
             ],
             "Scale": [
                 1,
-                1,
-                1
+                0.99999988079071045,
+                0.99999988079071045
             ],
-            "UID": 1286780914,
+            "UID": 1006444096,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 570657334,
+            "ParentUID": 1168898741,
             "Components": [
                 {
                     "Type": 1,
@@ -115,26 +110,18 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/2081829869.mmh",
-                    "UID": 2081829869,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
                     "alternColor": [
                         1,
                         1,
                         1
                     ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
                 }
             ]
         },
         {
-            "name": "CapsuleDoor",
+            "name": "Collider Pivot",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -150,49 +137,30 @@
                 1
             ],
             "Scale": [
-                1,
-                1,
-                1
+                2,
+                1.5,
+                0.5
             ],
-            "UID": 398711695,
+            "UID": 1547973300,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 570657334,
+            "ParentUID": 318926794,
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/1111006325.mmh",
-                    "UID": 1111006325,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
                 }
             ]
         },
         {
-            "name": "Capsule",
+            "name": "Collider",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
                 0,
-                0,
+                1,
                 0
             ],
             "Rotation": [
@@ -203,14 +171,14 @@
             ],
             "Scale": [
                 1,
-                1,
-                1
+                0.99999994039535522,
+                0.99999994039535522
             ],
-            "UID": 333296473,
+            "UID": 2129778252,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 570657334,
+            "ParentUID": 1547973300,
             "Components": [
                 {
                     "Type": 1,
@@ -218,9 +186,9 @@
                 },
                 {
                     "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/772459766.mmh",
-                    "UID": 772459766,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
                     "alternColor": [
                         1,
                         1,
@@ -228,12 +196,39 @@
                     ]
                 },
                 {
-                    "Type": 3,
+                    "Type": 14,
                     "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 0,
+                    "Density": 0
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }
