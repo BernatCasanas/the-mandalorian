@@ -90,3 +90,20 @@ void SetDownNavButton(MonoObject* obj, MonoObject* other_obj)
 	workNav->SetButtonOrJoystickWithGameobject(ACTIONSNAVIGATION::MOVE, BUTTONSANDJOYSTICKS::BUTTON_DPAD_DOWN, button_mapped);
 	workNav->SetButtonOrJoystickWithGameobject(ACTIONSNAVIGATION::MOVE, BUTTONSANDJOYSTICKS::RIGHT_JOYSTICK_DOWN, button_mapped);
 }
+
+bool GetIsActiveNav(MonoObject* obj)
+{
+	if (EngineExternal == nullptr)
+		return nullptr;
+
+	C_Navigation* workNav = DECS_CompToComp<C_Navigation*>(obj);
+
+	if (workNav == nullptr)
+		return nullptr;
+
+	
+
+	return workNav->IsActiveNav();
+
+
+}
