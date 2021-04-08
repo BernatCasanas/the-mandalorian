@@ -32,7 +32,7 @@ void CS_ButtonChangeSprites(MonoObject* comp, int pressed, int hovered, int notH
 		thisReference->ChangeSprite(BUTTONSTATE::BUTTONUNHOVERED, inputRes);
 	}
 
-	thisReference->ChangeTexture(thisReference.)
+	thisReference->ChangeTexture(thisReference->GetActualState());
 }
 
 
