@@ -1,5 +1,53 @@
 {
+    "EditorCameraPosition": [
+        5.3010458946228027,
+        4.4598088264465332,
+        -3.2652797698974609
+    ],
+    "EditorCameraZ": [
+        -0.81234103441238403,
+        -0.37215393781661987,
+        0.44900274276733398
+    ],
+    "EditorCameraY": [
+        -0.3257271945476532,
+        0.92817103862762451,
+        0.18000096082687378
+    ],
+    "tags": [],
+    "layers": [],
     "Game Objects": [
+        {
+            "name": "Scene root",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 178763901,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
         {
             "name": "Empty",
             "tag": "Untagged",
@@ -33,9 +81,9 @@
                 {
                     "Type": 20,
                     "Active": true,
-                    "systemActive": false,
+                    "systemActive": true,
                     "looping": true,
-                    "maxDuration": 0.87900000810623169,
+                    "maxDuration": 1.2070000171661377,
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
@@ -44,7 +92,7 @@
                             "paEmitterName": "Test",
                             "paLifeTime": [
                                 2.2999999523162842,
-                                4.3000001907348633
+                                6.3000001907348633
                             ],
                             "paSize": [
                                 1,
@@ -56,7 +104,7 @@
                                 1,
                                 1
                             ],
-                            "paPerSec": 1,
+                            "paPerSec": 17,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 0,
@@ -69,19 +117,6 @@
                                     "paFOLT_gravityMod": 1,
                                     "paFOLT_gravity": -9.8000001907348633,
                                     "paFOLT_forceType": 0
-                                },
-                                {
-                                    "paEffectType": 5,
-                                    "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 5,
-                                    "paShapeRandSpeed": 0,
-                                    "PaShapeSphereRadius": 1,
-                                    "paShapeType": 1,
-                                    "PaShapeOffset": [
-                                        0,
-                                        0,
-                                        0
-                                    ]
                                 }
                             ]
                         }
@@ -89,7 +124,7 @@
                 },
                 {
                     "Type": 21,
-                    "Active": false,
+                    "Active": true,
                     "billboardAlignment": 0,
                     "horizantalAligned": true
                 },
@@ -97,7 +132,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 }

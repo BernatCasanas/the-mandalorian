@@ -104,16 +104,27 @@ void C_ParticleSystem::Update()
 
 	if (systemActive == true)
 	{
+		bool throwParticles = true;
 		if (playTimer.Read() >= maxDuration * 1000)
 		{
+			
 			playTimer.Stop();
 			if (looping) playTimer.Start();
-			else systemActive = false;
+			else {
+				throwParticles = false;
+				systemActive = false;
+				for (int i = 0; i < myEmitters.size(); ++i)
+				{
+					if (myEmitters[i]->CheckActiveParticles())
+						systemActive = true;
+				}
+				
+			}
 		}
 
 		for (int i = 0; i < myEmitters.size(); ++i)
 		{
-			myEmitters[i]->Update(dt, systemActive);
+			myEmitters[i]->Update(dt, throwParticles);
 		}
 
 		EngineExternal->moduleRenderer3D->particleSystemQueue.push_back(gameObject);
