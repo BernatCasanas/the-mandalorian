@@ -20,12 +20,10 @@ public class GameSceneManager : DiamondComponent
         if (Counter.roomEnemies > 0)    // This would, ideally, not be necessary, and enemies generating would have nothing to do with dialogue ocurring, since it would (presumably) stop the game
         {
             enemiesHaveSpawned = true;
-            //Counter.roomEnemies = 0;    // KILL THIS LINE, IT'S ONLY FOR DEBUG PURPOSES
         }
 
         else if (enemiesHaveSpawned && Counter.roomEnemies <= 0 && rewardData == null)    // Right now, when a room begins, enemy counter = 0
         {
-            //Time.PauseGame();
             rewardData = rewardMenu.GenerateRewardPipeline();
 
             if (rewardData != null)
