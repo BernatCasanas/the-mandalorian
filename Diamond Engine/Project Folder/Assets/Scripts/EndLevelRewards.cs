@@ -26,31 +26,37 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
     }
 
     int[] rewardChances = new int[5] { 80, 5, 5, 5, 5 }; // Reward chances, by order being boons, beskar, macarons, scraps and milk
+
     EndLevelReward firstReward; // Could probably make an array for this... UwU
     EndLevelReward secondReward;
     EndLevelReward thirdReward;
+
+    EndLevelRewardsButtons firstButton = null; // Could probably make an array for this... UwU
+    EndLevelRewardsButtons secondButton = null;
+    EndLevelRewardsButtons thirdButton = null;
+
     GameResources selectedReward = null;
     BoonDataHolder boonGenerator = new BoonDataHolder();
     bool rewardsGenerated = false;
 
     public GameResources GenerateRewardPipeline()
     {
-        // This should be done only once, but since we stop time, we don't enter more than once anyway :P
 
-        if (rewardsGenerated == false) {
-
+        if (rewardsGenerated == false)
+        {
             rewardsGenerated = true;
             firstReward = SelectRewards();
             secondReward = SelectRewards();
             thirdReward = SelectRewards();
 
             CreatePopUpGameObject();
+            firstButton = InternalCalls.FindObjectWithName("FirstRewardButton").GetComponent<EndLevelRewardsButtons>();
+            secondButton = InternalCalls.FindObjectWithName("SecondRewardButton").GetComponent<EndLevelRewardsButtons>();
+            thirdButton = InternalCalls.FindObjectWithName("ThirdRewardButton").GetComponent<EndLevelRewardsButtons>();
         }
 
-        // Do nazi things with buttons to assign a value to selectedReward; we may want to control the OnExecuteButton from the script instead of attaching this script as a component (it probably shouldn't a component, and instead, controlled by SceneManager
-        selectedReward = ConvertRewardtoRewardResource(firstReward);
-
-        if (1 == 1) {
+        if (CheckRewardSelected())
+        {
             rewardsGenerated = false;
         }
 
@@ -226,23 +232,27 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
 
     }
 
-    public void OnExecuteButton()
+    public bool CheckRewardSelected()   // I know. Shut up
     {
-        if (gameObject.name == "FirstRewardButton")
+        if (firstButton.pressed)
         {
-            Debug.Log("Tot va començar");
+            selectedReward = ConvertRewardtoRewardResource(firstReward);
+            return true;
         }
 
-        else if (gameObject.name == "SecondRewardButton")
+        else if (secondButton.pressed)
         {
-            Debug.Log("quan Caos va");
+            selectedReward = ConvertRewardtoRewardResource(secondReward);
+            return true;
         }
 
-        else if (gameObject.name == "ThirdRewardButton")
+        else if (thirdButton.pressed)
         {
-            Debug.Log("crear a Gea");
+            selectedReward = ConvertRewardtoRewardResource(thirdReward);
+            return true;
         }
 
+        return false;
     }
 
     public GameResources ConvertRewardtoRewardResource(EndLevelReward reward)

@@ -25,11 +25,12 @@ public class GameSceneManager : DiamondComponent
 
         else if (enemiesHaveSpawned && Counter.roomEnemies <= 0 && rewardData == null)    // Right now, when a room begins, enemy counter = 0
         {
-            Time.PauseGame();
+            //Time.PauseGame();
             rewardData = rewardMenu.GenerateRewardPipeline();
 
             if (rewardData != null)
             {
+
                 if (rewardObject != null)
                 {
                     InternalCalls.Destroy(rewardObject);    // I don't like this, but if I try to give it a new position once created, it doesn't work; only does when assigning position at constructor...

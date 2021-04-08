@@ -1,7 +1,7 @@
 using System;
 using DiamondEngine;
 using System.Collections.Generic;
-public class GameResources
+public class GameResources  // We make a struct of the GameResourceData, then we have a function with a getter to a dictionary that return the data
 {
     public GameResources(int _id, EndLevelRewardType _type, string _description)
     {
