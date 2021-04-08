@@ -62,6 +62,10 @@ public:
 
     void Update() override;
 
+    inline bool IsActiveNav() {
+        return is_active;
+    }
+
     void CheckIfButtonOrJoystickIsBeingUsed(BUTTONSANDJOYSTICKS button_or_joystick_to_check, KEY_STATE& state, bool& is_key_down, bool& is_key_up);
 
     void DoTheAction(GameObject* gameobject, ACTIONSNAVIGATION action, bool is_key_released);
