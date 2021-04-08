@@ -3,8 +3,10 @@ using DiamondEngine;
 using System.Collections.Generic;
 public class Spawn : DiamondComponent
 {
-    public int prefabToSpawn = 0;
     private string libraryPath = "Library/Prefabs/489054570.prefab";
+
+    public int prefab_1_UID = 0;
+    public int prefab_2_UID = 0;
 
     private bool doneSpawning = false;
 
@@ -41,11 +43,6 @@ public class Spawn : DiamondComponent
 
     public void Awake()
     {
-        if(prefabToSpawn != 0)
-        {
-            Debug.Log("Prefab changed");
-            libraryPath = "Library/Prefabs/" + prefabToSpawn.ToString() + ".prefab";
-        }
     }
 
     public void Update()
@@ -83,6 +80,8 @@ public class Spawn : DiamondComponent
 
     GameObject SpawnPrefab(Vector3 position)
     {
+       libraryPath = GenerateLibraryPath(RandomizePrefabs());
+
         GameObject enemy = InternalCalls.CreatePrefab(libraryPath, position, Quaternion.identity, Vector3.one);
         Counter.roomEnemies++;
 
@@ -211,5 +210,41 @@ public class Spawn : DiamondComponent
         }
 
         return turret;
+    }
+
+    private int RandomizePrefabs()
+    {
+        //First we check that we have both prefabs to randomize, if not we return the other if it has been set
+        if (prefab_1_UID == 0)
+        {
+            if (prefab_2_UID != 0)
+                return prefab_2_UID;
+        }
+        else if (prefab_2_UID == 0)
+        {
+            if (prefab_1_UID != 0)
+                return prefab_1_UID;
+        }
+        else
+        {
+            Random randomizer = new Random();
+
+            int index = randomizer.Next(2);
+
+            if (index == 0)
+                return prefab_1_UID;
+            else
+                return prefab_2_UID;
+        }
+
+        return 0;
+    }
+
+    private string GenerateLibraryPath(int uid)
+    {
+        if (uid == 0)
+            return "Library/Prefabs/489054570.prefab";
+        else
+            return "Library/Prefabs/" + uid.ToString() + ".prefab";
     }
 }
