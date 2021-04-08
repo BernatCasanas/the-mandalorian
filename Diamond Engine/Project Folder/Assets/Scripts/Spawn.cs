@@ -3,6 +3,9 @@ using DiamondEngine;
 using System.Collections.Generic;
 public class Spawn : DiamondComponent
 {
+    public int prefabToSpawn = 0;
+    private string libraryPath = "Library/Prefabs/489054570.prefab";
+
     private bool doneSpawning = false;
 
     public GameObject spawnPoint0 = null;
@@ -35,6 +38,16 @@ public class Spawn : DiamondComponent
 
 
     bool start = true;
+
+    public void Awake()
+    {
+        if(prefabToSpawn != 0)
+        {
+            Debug.Log("Prefab changed");
+            libraryPath = "Library/Prefabs/" + prefabToSpawn.ToString() + ".prefab";
+        }
+    }
+
     public void Update()
     {
         if (start)
@@ -70,7 +83,7 @@ public class Spawn : DiamondComponent
 
     GameObject SpawnPrefab(Vector3 position)
     {
-        GameObject enemy = InternalCalls.CreatePrefab("Library/Prefabs/489054570.prefab", position, Quaternion.identity, Vector3.one);
+        GameObject enemy = InternalCalls.CreatePrefab(libraryPath, position, Quaternion.identity, Vector3.one);
         Counter.roomEnemies++;
 
         if (enemy != null)

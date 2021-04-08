@@ -76,7 +76,7 @@ public class StormTrooper2 : Enemy
 
     //private bool rightTriggerPressed = false;
 
-    private void Start()
+    public void Awake()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
         targetPosition = null;
@@ -92,13 +92,6 @@ public class StormTrooper2 : Enemy
 
     public void Update()
     {
-        // Placeholder for Start() function
-        if (started == false)
-        {
-            Start();
-            started = true;
-        }
-
         if (player == null)
         {
             Debug.Log("Null player");
