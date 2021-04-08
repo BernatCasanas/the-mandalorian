@@ -65,6 +65,7 @@ public class TextController : DiamondComponent
             gui.GetComponent<HUD>().ResetCombo();
 			gui_not_enabled = false;
 			Time.ResumeGame();
+			InternalCalls.Destroy(dialog);
 		}
 	}
 	public void Update()

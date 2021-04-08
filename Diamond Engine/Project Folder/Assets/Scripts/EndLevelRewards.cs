@@ -53,6 +53,8 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
             firstButton = InternalCalls.FindObjectWithName("FirstRewardButton").GetComponent<EndLevelRewardsButtons>();
             secondButton = InternalCalls.FindObjectWithName("SecondRewardButton").GetComponent<EndLevelRewardsButtons>();
             thirdButton = InternalCalls.FindObjectWithName("ThirdRewardButton").GetComponent<EndLevelRewardsButtons>();
+
+            firstButton.gameObject.GetComponent<Navigation>().Select();
         }
 
         if (CheckRewardSelected())
@@ -147,7 +149,6 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
         GameObject firstImage = InternalCalls.FindObjectWithName("FirstRewardImage");
         GameObject secondImage = InternalCalls.FindObjectWithName("SecondRewardImage");
         GameObject thirdImage = InternalCalls.FindObjectWithName("ThirdRewardImage");
-
 
         if (canvas == null)
         {
