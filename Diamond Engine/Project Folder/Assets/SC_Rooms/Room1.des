@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        6.5718488693237305,
-        11.741833686828613,
-        6.5836515426635742
+        -20.511327743530273,
+        62.26275634765625,
+        -47.4654541015625
     ],
     "EditorCameraZ": [
-        -0.73795241117477417,
-        -0.42988935112953186,
-        -0.52021276950836182
+        0.31121289730072021,
+        -0.57303029298782349,
+        0.75814449787139893
     ],
     "EditorCameraY": [
-        -0.35132229328155518,
-        0.90288156270980835,
-        -0.24774482846260071
+        0.21756771206855774,
+        0.81953418254852295,
+        0.53012079000473022
     ],
     "tags": [
         "Enemy",
@@ -9995,7 +9995,11 @@
                     "verticalTimeInterval": 1.2000000476837158,
                     "followPoint": 1079552447,
                     "horizontalSpeed": 4,
-                    "skillPushDuration": 1
+                    "skillPushDuration": 1,
+                    "wallSkillOffsetX": 0,
+                    "wallSkillOffsetY": 0,
+                    "wallSkillOffsetZ": 0,
+                    "skillWallDuration": 0
                 }
             ]
         },
@@ -20051,6 +20055,52 @@
                     "Active": true,
                     "ScriptName": "GroguFollowPoints",
                     "priority": 4
+                }
+            ]
+        },
+        {
+            "name": "DirectionalLight",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -13.239896774291992,
+                27.128353118896484,
+                -16.847419738769531
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1159288423,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 23,
+                    "Active": true,
+                    "orthoSize": [
+                        10,
+                        10
+                    ],
+                    "lightColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }

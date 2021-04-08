@@ -94,7 +94,7 @@ void main()
     vec3 color = altColor;
     vec3 normal = normalize(fs_in.Normal);
     // ambient
-    vec3 ambient = 0.15 * color;
+    vec3 ambient = vec3(0.18, 0.11, 0.12);
     // diffuse
     vec3 lightDir = normalize(lightPos - fs_in.FragPos);
     float diff = max(dot(lightDir, normal), 0.0);
@@ -113,4 +113,5 @@ void main()
     //color = mix (vec4(diffuseColor + ambientLight, 1.0), vec4(vertexColor, 1.0), 0.7);
 }
 #endif
+
 
