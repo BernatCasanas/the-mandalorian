@@ -63,6 +63,7 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath)
 		parent = LoadGOData(json_array_get_object(gameObjectsArray, i), parent);
 	}
 
+	EngineExternal->moduleScene->LoadNavigationData();
 	//rootObject->RecursiveUIDRegeneration();
 	EngineExternal->moduleScene->LoadScriptsData(rootObject);
 
@@ -172,6 +173,7 @@ void PrefabImporter::OverrideGameObject(uint prefabID, GameObject* objectToRepla
 
 	C_Transform* oldObjectTransform = objectToReplace->transform;
 	prefabObject->transform->SetTransformMatrix(oldObjectTransform->position, oldObjectTransform->rotation, oldObjectTransform->localScale);
+	prefabObject->transform->updateTransform = true;
 
 	prefabObject->ChangeParent(objectToReplace->parent);
 

@@ -524,9 +524,7 @@ void M_Scene::LoadScene(const char* name)
 
 	int navMeshId = json_object_get_number(sceneObj, "NavMesh");
 	if (navMeshId != -1)
-	{
 		EngineExternal->modulePathfinding->Load(navMeshId);
-	}
 
 #ifndef STANDALONE
 
@@ -586,12 +584,16 @@ void M_Scene::LoadScene(const char* name)
 
 	//Free memory
 	json_value_free(scene);
-	strcpy(current_scene, name);
+
+	if(strcmp(name, "Library/Scenes/tmp.des") != 0)
+		strcpy(current_scene, name);
 
 	std::string scene_name;
 	FileSystem::GetFileName(name, scene_name, false);
 
-	strcpy(current_scene_name, scene_name.c_str());
+	if (strcmp(name, "Library/Scenes/tmp.des") != 0)
+		strcpy(current_scene_name, scene_name.c_str());
+
 	App->moduleResources->ZeroReferenceCleanUp();
 
 	LOADING_SCENE = false;

@@ -143,8 +143,6 @@ void M_Pathfinding::Load(int navMeshResourceUID)
 	navMeshBuilder->SetSettings(settings);
 	navMeshBuilder->SetGeometry(geometry);
 	pathfinder.Init(navMeshBuilder);
-
-	//navMeshBuilder->HandleBuild();
 }
 
 
@@ -172,7 +170,7 @@ void M_Pathfinding::DebugDraw()
 	if (pathfinder.endPosSet)
 		EngineExternal->moduleRenderer3D->AddDebugPoints(debugEndPoint, float3(255.0f, 0.0f, 0.0f));
 
-	if (pathfinder.m_npolys > 0)
+	if (pathfinder.m_npolys > 0 && pathfinder.m_navMesh != nullptr)
 		pathfinder.RenderPath();
 
 	if (walkabilityPoint != nullptr)
@@ -196,7 +194,6 @@ void M_Pathfinding::DebugDraw()
 		DebugDrawGL dd;
 		EngineExternal->moduleRenderer3D->AddDebugPoints(randomPoint, float3(255.0f, 255.0f, 255.0f));
 		duDebugDrawCircle(&dd, pathfinder.startPosition.x, pathfinder.startPosition.y + 0.2f, pathfinder.startPosition.z, randomRadius, duRGBA(64, 16, 0, 220), 2.0f);
-
 	}
 
 }
@@ -206,11 +203,11 @@ void M_Pathfinding::CheckNavMeshIntersection(LineSegment raycast, int clickedMou
 	if (navMeshBuilder == nullptr)
 		return;
 
-	if (geometry->getChunkyMesh() == nullptr)
+	if (geometry->getChunkyMesh() == nullptr && navMeshBuilder->GetNavMesh() == nullptr)
 	{
-		return;
-		//BakeNavMesh();
-		//LOG(LogType::L_WARNING, "No chunky mesh set, one has been baked to avoid crashes");
+		//return;
+		BakeNavMesh();
+		LOG(LogType::L_WARNING, "No chunky mesh set, one has been baked to avoid crashes");
 	}
 
 	float hitTime;
@@ -303,6 +300,10 @@ bool M_Pathfinding::CleanUp()
 		delete navMeshBuilder;
 		navMeshBuilder = nullptr;
 	}
+
+	pathfinder.m_navMesh = nullptr;
+	pathfinder.m_navQuery = nullptr;
+	pathfinder.m_navMeshBuilder = nullptr;
 
 	return true;
 }
@@ -774,10 +775,8 @@ bool Pathfinder::CalculatePath(float3 origin, float3 destination, std::vector<fl
 	float startNearest[3];
 	float endNearest[3];
 
-	startPosition = origin;
-	endPosition = destination;
-	startPosSet = true;
-	endPosSet = true;
+	if (m_navQuery == nullptr)
+		return false;
 
 	status = m_navQuery->findNearestPoly(origin.ptr(), m_polyPickExt, &m_filter, &m_startRef, startNearest);
 	if (dtStatusFailed(status) || (status & DT_STATUS_DETAIL_MASK)) {
@@ -789,26 +788,19 @@ bool Pathfinder::CalculatePath(float3 origin, float3 destination, std::vector<fl
 		LOG(LogType::L_ERROR, "Could not find a near poly to end path");
 		return false;}
 
-	//status = m_navQuery->findStraightPath(startNearest, endNearest, m_polys, m_npolys, m_straightPath, m_straightPathFlags,
-							  //m_straightPathPolys, &m_nstraightPath, MAX_POLYS, m_straightPathOptions);
-
-
-	status = m_navQuery->findPath(m_startRef, m_endRef, startPosition.ptr(),
-		endPosition.ptr(), &m_filter, m_polys, &m_npolys, MAX_POLYS);
-
-	/*if (dtStatusPartial(status) || dtStatusFailed(status))
-		validPath = false;*/
+	status = m_navQuery->findPath(m_startRef, m_endRef, origin.ptr(),
+		destination.ptr(), &m_filter, m_polys, &m_npolys, MAX_POLYS);
 
 	m_nstraightPath = 0;
 	if (m_npolys)
 	{
 		// In case of partial path, make sure the end point is clamped to the last polygon.
 		float epos[3];
-		dtVcopy(epos, endPosition.ptr());
+		dtVcopy(epos, destination.ptr());
 		if (m_polys[m_npolys - 1] != m_endRef)
-			m_navQuery->closestPointOnPoly(m_polys[m_npolys - 1], endPosition.ptr(), epos, 0);
+			m_navQuery->closestPointOnPoly(m_polys[m_npolys - 1], destination.ptr(), epos, 0);
 
-		m_navQuery->findStraightPath(startPosition.ptr(), epos, m_polys, m_npolys,
+		m_navQuery->findStraightPath(origin.ptr(), epos, m_polys, m_npolys,
 			m_straightPath, m_straightPathFlags,
 			m_straightPathPolys, &m_nstraightPath, MAX_POLYS, m_straightPathOptions);
 	}
@@ -819,6 +811,11 @@ bool Pathfinder::CalculatePath(float3 origin, float3 destination, std::vector<fl
 
 	path.resize(m_nstraightPath);
 	memcpy(path.data(), m_straightPath, sizeof(float) * m_nstraightPath * 3);
+
+	startPosition = origin;
+	endPosition = destination;
+	startPosSet = true;
+	endPosSet = true;
 }
 
 void Pathfinder::RenderPath()

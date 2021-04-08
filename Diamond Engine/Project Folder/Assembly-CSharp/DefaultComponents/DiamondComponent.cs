@@ -49,6 +49,7 @@ namespace DiamondEngine
             { typeof(ParticleSystem), ComponentType.PARTICLE_SYSTEM  },
             { typeof(Transform2D), ComponentType.TRANSFORM_2D  },
             { typeof(NavMeshAgent), ComponentType.NAVMESHAGENT  },
+            { typeof(Button), ComponentType.BUTTON  },
         };
 
         public DiamondComponent()
