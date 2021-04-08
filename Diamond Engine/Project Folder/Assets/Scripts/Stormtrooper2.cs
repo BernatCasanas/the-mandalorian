@@ -28,10 +28,8 @@ public class StormTrooper2 : Enemy
         IN_WANDER,
         IN_PUSHED,
         IN_SHOOT,
-        IN_SEQUENCE_END,
         IN_HIT,
         IN_DIE,
-        IN_DIE_END,
         IN_PLAYER_IN_RANGE
     }
 
@@ -47,7 +45,7 @@ public class StormTrooper2 : Enemy
 
     //Action times
     public float idleTime = 5.0f;
-    public float dieTime = 3.0f;
+    private float dieTime = 3.0f;
     public float timeBewteenShots = 0.5f;
     public float timeBewteenSequences = 1.0f;
     public float timeBewteenStates = 1.5f;
@@ -89,6 +87,7 @@ public class StormTrooper2 : Enemy
         shotTimes = 0;
         shotSequences = 0;
         //stormTrooperDamage = 1.0f;
+        dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
     }
 
     public void Update()
@@ -138,27 +137,6 @@ public class StormTrooper2 : Enemy
             {
                 inputsList.Add(INPUT.IN_IDLE);
                 Debug.Log("Stop running man");
-            }
-        }
-
-        //if (statesTimer > 0.0f)
-        //{
-        //    statesTimer -= Time.deltaTime;
-
-        //    if (shotSequences >= maxSequences)
-        //    {
-        //        shotSequences = 0;
-        //        inputsList.Add(INPUT.IN_RUN);
-        //    }
-        //}
-
-        if (dieTimer > 0.0f)
-        {
-            dieTimer -= Time.deltaTime;
-
-            if (dieTimer <= 0.0f)
-            {
-                inputsList.Add(INPUT.IN_DIE_END);
             }
         }
     }
@@ -348,7 +326,7 @@ public class StormTrooper2 : Enemy
         statesTimer = timeBewteenStates;
         Debug.Log("States timer: " + statesTimer.ToString());
 
-        Animator.Play(gameObject, "ST_Shoot");
+        //Animator.Play(gameObject, "ST_Shoot");
 
         Debug.Log("Shoot started");
     }
@@ -392,11 +370,16 @@ public class StormTrooper2 : Enemy
                 {
                     shotSequences++;
 
+                    Animator.Play(gameObject, "ST_Idle");
+
+                    //End of second shot of the first sequence
                     if (shotSequences < maxSequences)
                     {
                         sequenceTimer = timeBewteenSequences;
                         shotTimes = 0;
+                        //Start of pause between sequences
                     }
+                    //End of second shot of the second sequence
                     else
                     {
                         statesTimer = timeBewteenStates;
@@ -419,8 +402,7 @@ public class StormTrooper2 : Enemy
 
     private void Shoot()
     {
-        Debug.Log("Shoot");
-
+        //Debug.Log("Shoot");
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/373530213.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         bullet.GetComponent<BH_Bullet>().damage = damage;
 
@@ -450,6 +432,19 @@ public class StormTrooper2 : Enemy
     }
     private void UpdateDie()
     {
+        if (dieTimer > 0.0f)
+        {
+            dieTimer -= Time.deltaTime;
+
+            if (dieTimer <= 0.0f)
+            {
+                Die();
+            }
+        }
+    }
+
+    private void Die()
+    {
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
         Counter.roomEnemies--;
         Debug.Log("Enemies: " + Counter.roomEnemies.ToString());
@@ -460,6 +455,7 @@ public class StormTrooper2 : Enemy
         player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
         InternalCalls.Destroy(gameObject);
     }
+
     #endregion
 
     public void OnCollisionEnter(GameObject collidedGameObject)
