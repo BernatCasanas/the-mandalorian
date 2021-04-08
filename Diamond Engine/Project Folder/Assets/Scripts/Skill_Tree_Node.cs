@@ -13,21 +13,17 @@ public class Skill_Tree_Node : DiamondComponent
 
 
     #region Style
-    public int unlocked = 961468463;
     public int unlockedButtonPressed = 0;
     public int unlockedButtonHovered = 0;
     public int unlockedButtonUnhovered = 0;
 
-    public int locked = 1462646886;
     public int lockedButtonPressed = 0;
     public int lockedButtonHovered = 0;
     public int lockedButtonUnhovered = 0;
 
-    public int owned = 1330585533;
     public int ownedButtonPressed = 0;
     public int ownedButtonHovered = 0;
     public int ownedButtonUnhovered = 0;
-
     #endregion
 
     #region Logic
@@ -55,16 +51,16 @@ public class Skill_Tree_Node : DiamondComponent
             switch (value)
             {
                 case NODE_STATE.UNLOCKED:
-                    gameObject.GetComponent<Image2D>().AssignLibrary2DTexture(unlocked);
+                    gameObject.GetComponent<Image2D>().AssignLibrary2DTexture(unlockedButtonUnhovered);
                     gameObject.GetComponent<Button>().ChangeSprites(unlockedButtonPressed, unlockedButtonHovered, unlockedButtonUnhovered);
                     Debug.Log(skill_name + " has been unlocked.");
                     break;
                 case NODE_STATE.LOCKED:
-                    gameObject.GetComponent<Image2D>().AssignLibrary2DTexture(locked);
+                    gameObject.GetComponent<Image2D>().AssignLibrary2DTexture(lockedButtonUnhovered);
                     gameObject.GetComponent<Button>().ChangeSprites(lockedButtonPressed, lockedButtonHovered, lockedButtonUnhovered);
                     break;
                 case NODE_STATE.OWNED:
-                    gameObject.GetComponent<Image2D>().AssignLibrary2DTexture(owned);
+                    gameObject.GetComponent<Image2D>().AssignLibrary2DTexture(ownedButtonUnhovered);
                     gameObject.GetComponent<Button>().ChangeSprites(ownedButtonPressed, ownedButtonHovered, ownedButtonUnhovered);
                     Debug.Log(skill_name + " has been owned.");
                     break;
@@ -120,6 +116,5 @@ public class Skill_Tree_Node : DiamondComponent
         if(oppositeNode != null)
             oppositeNode.GetComponent<Skill_Tree_Node>().state = NODE_STATE.LOCKED;
     }
-
 
 }
