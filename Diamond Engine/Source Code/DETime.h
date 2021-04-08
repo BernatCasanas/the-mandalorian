@@ -1,5 +1,7 @@
 #pragma once
 #include"Timer.h"
+#include<vector>
+class C_Script;
 
 enum class GameState {
 	PLAY,
@@ -32,7 +34,7 @@ struct DETime
 
 	static GameState state/* = GameState::STOP*/;
 
-	static void Play();
+	static void Play(std::vector<C_Script*>& scripts);
 	static void Stop();
 	static void Pause();
 	static void Step();

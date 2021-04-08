@@ -9,6 +9,7 @@
 #include "MO_Input.h"
 #include "MO_GUI.h"
 #include"MO_Window.h"
+#include "MO_Pathfinding.h"
 
 #include "RE_Mesh.h"
 #include "RE_Texture.h"
@@ -460,12 +461,50 @@ void ModuleRenderer3D::DrawDebugLines()
 	glEnd();
 
 	lines.clear();
+
+	glBegin(GL_TRIANGLES);
+	for (size_t i = 0; i < triangles.size(); i++)
+	{
+		glColor3fv(triangles[i].color.ptr());
+
+		glVertex3fv(triangles[i].a.ptr());
+		glVertex3fv(triangles[i].b.ptr());
+		glVertex3fv(triangles[i].c.ptr());
+	}
+
+	glColor3f(255.f, 255.f, 255.f);
+	glEnd();
+
+	triangles.clear();
+
+	glPointSize(20.0f);
+	glBegin(GL_POINTS);
+	for (size_t i = 0; i < points.size(); i++)
+	{
+		glColor3fv(points[i].color.ptr());
+		glVertex3fv(points[i].position.ptr());
+		glColor3f(255.f, 255.f, 255.f);
+	}
+	glEnd();
+	glPointSize(1.0f);
+
+	points.clear();
+
+	EngineExternal->modulePathfinding->DebugDraw();
 }
 void ModuleRenderer3D::AddDebugLines(float3& a, float3& b, float3& color)
 {
 	lines.push_back(LineRender(a, b, color));
 }
-#endif // !STANDALONE
+
+void ModuleRenderer3D::AddDebugTriangles(float3& a, float3& b, float3& c, float3& color)
+{
+	triangles.push_back(DebugTriangle(a, b, c, color));
+}
+void ModuleRenderer3D::AddDebugPoints(float3& position, float3& color)
+{
+	points.push_back(DebugPoint(position, color));
+}
 
 void ModuleRenderer3D::DrawBox(float3* points, float3 color)
 {
@@ -491,6 +530,14 @@ void ModuleRenderer3D::DrawBox(float3* points, float3 color)
 	glLineWidth(1.f);
 	glColor3f(1.f, 1.f, 1.f);
 }
+
+void ModuleRenderer3D::DebugLine(LineSegment& line)
+{
+	glLineWidth(2.f);
+	this->AddDebugLines(pickingDebug.a, pickingDebug.b, float3(1.f, 0.f, 0.f));
+	glLineWidth(1.f);
+}
+#endif // !STANDALONE
 
 void ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray)
 {
@@ -571,12 +618,6 @@ void ModuleRenderer3D::RenderWithOrdering(bool rTex)
 	renderQueueMap.clear();
 }
 
-void ModuleRenderer3D::DebugLine(LineSegment& line)
-{
-	glLineWidth(2.f);
-	this->AddDebugLines(pickingDebug.a, pickingDebug.b, float3(1.f, 0.f, 0.f));
-	glLineWidth(1.f);
-}
 
 /*Get SDL caps*/
 void ModuleRenderer3D::GetCAPS(std::string& caps)

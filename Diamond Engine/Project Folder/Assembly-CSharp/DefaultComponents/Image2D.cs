@@ -16,6 +16,9 @@ namespace DiamondEngine
         public extern void SwapTwoImages(GameObject other_image);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern void AssignLibrary2DTexture(int id);
+        
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern void ChangeImageForAnotherOne(GameObject other_image);
 
     }

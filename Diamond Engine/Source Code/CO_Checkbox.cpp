@@ -15,7 +15,7 @@
 #include "ImGui/imgui.h"
 
 
-C_Checkbox::C_Checkbox(GameObject* gameObject): Component(gameObject), sprite_checkbox_active(nullptr), sprite_checkbox_active_hovered(nullptr), sprite_checkbox_active_pressed(nullptr),
+C_Checkbox::C_Checkbox(GameObject* gameObject) : Component(gameObject), sprite_checkbox_active(nullptr), sprite_checkbox_active_hovered(nullptr), sprite_checkbox_active_pressed(nullptr),
 sprite_checkbox_unactive(nullptr), sprite_checkbox_unactive_hovered(nullptr), sprite_checkbox_unactive_pressed(nullptr), script_name(""), num_sprite_used(CHECKBOXSTATE::CHECKBOXUNACTIVE),
 checkbox_active(false), is_selected(false)
 {
@@ -54,7 +54,7 @@ void C_Checkbox::Update()
 {
 #ifndef STANDALONE
 	ChangeTexture(num_sprite_used);
-	if (gameObject->GetComponent(Component::TYPE::SCRIPT, script_name.c_str()) == nullptr)
+	if (script_name != "" && gameObject->GetComponent(Component::TYPE::SCRIPT, script_name.c_str()) == nullptr)
 		script_name = "";
 	if (sprites_freezed)
 		return;
@@ -98,16 +98,13 @@ void C_Checkbox::PressCheckbox()
 	checkbox_active = !checkbox_active;
 	if (checkbox_active) {
 		ChangeTexture(CHECKBOXSTATE::CHECKBOXACTIVEPRESSED);
-		C_Script* script = static_cast<C_Script*>(gameObject->GetComponent(Component::TYPE::SCRIPT, script_name.c_str()));
-		if (script != nullptr)
-			script->ExecuteCheckbox(checkbox_active);
 	}
 	else {
 		ChangeTexture(CHECKBOXSTATE::CHECKBOXUNACTIVEPRESSED);
-		C_Script* script = static_cast<C_Script*>(gameObject->GetComponent(Component::TYPE::SCRIPT, script_name.c_str()));
-		if (script != nullptr)
-			script->ExecuteCheckbox(checkbox_active);
 	}
+	C_Script* script = static_cast<C_Script*>(gameObject->GetComponent(Component::TYPE::SCRIPT, script_name.c_str()));
+	if (script != nullptr)
+		script->ExecuteCheckbox(checkbox_active);
 }
 
 void C_Checkbox::UnpressCheckbox()
@@ -178,7 +175,7 @@ void C_Checkbox::ChangeTexture(CHECKBOXSTATE new_num_sprite)
 
 		if (img != nullptr)
 			img->SetTexture(sprite_checkbox_unactive);
-		
+
 		break;
 	}
 	case CHECKBOXSTATE::CHECKBOXUNACTIVEHOVERED:
@@ -268,7 +265,7 @@ void C_Checkbox::LoadData(DEConfig& nObj)
 	std::string assetsName = nObj.ReadString("Active_Pressed_AssetsPath");
 
 	if (texName != "") {
-		sprite_checkbox_active_pressed = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("Active_Pressed_UID"), texName.c_str()));
+		sprite_checkbox_active_pressed = static_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("Active_Pressed_UID"), texName.c_str()));
 		if (sprite_checkbox_active_pressed == nullptr) {
 			LOG(LogType::L_ERROR, "the sprite checkbox active pressed couldn't be created");
 		}
@@ -281,7 +278,7 @@ void C_Checkbox::LoadData(DEConfig& nObj)
 	assetsName = nObj.ReadString("Active_Hovered_AssetsPath");
 
 	if (texName != "") {
-		sprite_checkbox_active_hovered = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("Active_Hovered_UID"), texName.c_str()));
+		sprite_checkbox_active_hovered = static_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("Active_Hovered_UID"), texName.c_str()));
 		if (sprite_checkbox_active_hovered == nullptr) {
 			LOG(LogType::L_ERROR, "the sprite checkbox active hovered couldn't be created");
 		}
@@ -295,7 +292,7 @@ void C_Checkbox::LoadData(DEConfig& nObj)
 	assetsName = nObj.ReadString("Active_AssetsPath");
 
 	if (texName != "") {
-		sprite_checkbox_active = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("Active_UID"), texName.c_str()));
+		sprite_checkbox_active = static_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("Active_UID"), texName.c_str()));
 		if (sprite_checkbox_active == nullptr) {
 			LOG(LogType::L_ERROR, "the sprite checkbox active couldn't be created");
 		}
@@ -308,7 +305,7 @@ void C_Checkbox::LoadData(DEConfig& nObj)
 	assetsName = nObj.ReadString("Unactive_Pressed_AssetsPath");
 
 	if (texName != "") {
-		sprite_checkbox_unactive_pressed = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("Unactive_Pressed_UID"), texName.c_str()));
+		sprite_checkbox_unactive_pressed = static_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("Unactive_Pressed_UID"), texName.c_str()));
 		if (sprite_checkbox_unactive_pressed == nullptr) {
 			LOG(LogType::L_ERROR, "the sprite checkbox unactive pressed couldn't be created");
 		}
@@ -321,7 +318,7 @@ void C_Checkbox::LoadData(DEConfig& nObj)
 	assetsName = nObj.ReadString("Unactive_Hovered_AssetsPath");
 
 	if (texName != "") {
-		sprite_checkbox_unactive_hovered = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("Unactive_Hovered_UID"), texName.c_str()));
+		sprite_checkbox_unactive_hovered = static_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("Unactive_Hovered_UID"), texName.c_str()));
 		if (sprite_checkbox_unactive_hovered == nullptr) {
 			LOG(LogType::L_ERROR, "the sprite checkbox unactive hovered couldn't be created");
 		}
@@ -335,7 +332,7 @@ void C_Checkbox::LoadData(DEConfig& nObj)
 	assetsName = nObj.ReadString("Unactive_AssetsPath");
 
 	if (texName != "") {
-		sprite_checkbox_unactive = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("Unactive_UID"), texName.c_str()));
+		sprite_checkbox_unactive = static_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("Unactive_UID"), texName.c_str()));
 		if (sprite_checkbox_unactive == nullptr) {
 			LOG(LogType::L_ERROR, "the sprite checkbox unactive couldn't be created");
 		}
@@ -401,9 +398,8 @@ void C_Checkbox::ChangeSprite(CHECKBOXSTATE num_sprite, ResourceTexture* sprite)
 void C_Checkbox::ChangeScript(const char* new_script_name)
 {
 	if (!script_name.empty()) {
-		Component* component = gameObject->GetComponent(Component::TYPE::SCRIPT, script_name.c_str());
 		if (gameObject != nullptr)
-			gameObject->RemoveComponent(component);
+			gameObject->RemoveComponent(gameObject->GetComponent(Component::TYPE::SCRIPT, script_name.c_str()));
 	}
 	dynamic_cast<C_Script*>(gameObject->AddComponent(TYPE::SCRIPT, new_script_name));
 

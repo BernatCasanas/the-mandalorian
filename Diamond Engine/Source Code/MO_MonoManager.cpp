@@ -25,6 +25,7 @@
 #include "CS_Navigation_Bindings.h"
 #include "CS_ParticleSystem_Bindings.h"
 #include "CS_Transform2D_Bindings.h"
+#include "CS_Pathfinder_Bindings.h"
 
 #include <iostream>
 #include <fstream> 
@@ -126,11 +127,16 @@ bool M_MonoManager::Init()
 
 #pragma region Image2D
 	mono_add_internal_call("DiamondEngine.Image2D::SwapTwoImages", SwapTwoImages);
+	mono_add_internal_call("DiamondEngine.Image2D::AssignLibrary2DTexture", AssignLibrary2DTexture);
 	mono_add_internal_call("DiamondEngine.Image2D::ChangeImageForAnotherOne", ChangeImageForAnotherOne);
 #pragma endregion
 
 #pragma region Navigation
 	mono_add_internal_call("DiamondEngine.Navigation::Select", SelectNavigation);
+	mono_add_internal_call("DiamondEngine.Navigation::SetLeftNavButton", SetLeftNavButton);
+	mono_add_internal_call("DiamondEngine.Navigation::SetRightNavButton", SetRightNavButton);
+	mono_add_internal_call("DiamondEngine.Navigation::SetUpNavButton", SetUpNavButton);
+	mono_add_internal_call("DiamondEngine.Navigation::SetDownNavButton", SetDownNavButton);
 #pragma endregion
 
 #pragma region ParticleSystem
@@ -176,6 +182,19 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.Config::ControllerVibrationEnable", CS_ControllerEnableVibration);
 #pragma endregion
 
+#pragma region Pathfinder
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::CalculateRandomPath", CS_CalculateRandomPath);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::CalculatePath", CS_CalculatePath);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::GetDestination", CS_GetDestination);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::get_speed", CS_GetSpeed);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::set_speed", CS_SetSpeed);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::get_angularSpeed", CS_GetAngularSpeed);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::set_angularSpeed", CS_SetAngularSpeed);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::get_stoppingDistance", CS_GetStoppingDistance);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::set_stoppingDistance", CS_SetStoppingDistance);
+
+#pragma endregion
+
 	mono_add_internal_call("DiamondEngine.DiamondComponent::get_gameObject", CS_Component_Get_GO);
 
 
@@ -191,11 +210,15 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.GameObject::AddForce", AddForce);
 	mono_add_internal_call("DiamondEngine.GameObject::SetParent", CS_SetParent);
 	mono_add_internal_call("DiamondEngine.GameObject::GetUid", GetUid);
+	mono_add_internal_call("DiamondEngine.GameObject::AssignLibraryTextureToMaterial", AssignLibraryTextureToMaterial);
 
+#pragma region Animator
 	mono_add_internal_call("DiamondEngine.Animator::Play", Play);
 	mono_add_internal_call("DiamondEngine.Animator::Pause", Pause);
 	mono_add_internal_call("DiamondEngine.Animator::Resume", Resume);
 	mono_add_internal_call("DiamondEngine.Animator::GetCurrentAnimation", GetCurrentAnimation);
+	mono_add_internal_call("DiamondEngine.Animator::GetAnimationDuration", GetAnimationDuration);
+#pragma endregion
 
 	mono_add_internal_call("DiamondEngine.Time::get_deltaTime", GetDT);
 	mono_add_internal_call("DiamondEngine.Time::get_totalTime", GetTotalTime);

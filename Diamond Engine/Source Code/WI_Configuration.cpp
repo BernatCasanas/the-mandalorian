@@ -22,11 +22,12 @@ W_Configuration::~W_Configuration()
 
 void W_Configuration::Draw()
 {
-
 	UpdateInfoLogs();
 
     if (ImGui::Begin(name.c_str(), NULL, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize)) 
     {
+		selected = ImGui::IsWindowFocused();
+
 	    //ImGui::SetNextTreeNodeOpen(true);
 	    if (ImGui::CollapsingHeader("Application", ImGuiTreeNodeFlags_DefaultOpen))
 	    {

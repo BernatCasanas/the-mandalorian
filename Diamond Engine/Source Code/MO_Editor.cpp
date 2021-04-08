@@ -32,6 +32,7 @@
 #include "WI_Assets.h"
 #include "WI_Game.h"
 #include "WI_TextEditor.h"
+#include "WI_Pathfinding.h"
 
 #include"GameObject.h"
 #include"IM_TextureImporter.h"
@@ -52,6 +53,7 @@ viewportCorSize(0.f), dockspace_id(0)
 	windows[static_cast<unsigned int>(EditorWindow::SCENE)] = new W_Scene(App);
 	windows[static_cast<unsigned int>(EditorWindow::GAME)] = new W_Game();
 	windows[static_cast<unsigned int>(EditorWindow::TEXTEDITOR)] = new W_TextEditor();
+	windows[static_cast<unsigned int>(EditorWindow::PATHFINDING)] = new W_Pathfinding();
 
 	//TODO: This 2 windows are last on the enum to keep them from drawing on the window
 	//tab on the main menu bar, and are drawed by hand on other tabs, there
@@ -250,8 +252,8 @@ void M_Editor::DrawMenuBar()
 				if (!sceneDir.empty()) 
 				{
 					std::string metaDir = App->moduleResources->GetMetaPath(sceneDir.c_str());
-					std::string test = App->moduleResources->LibraryFromMeta(metaDir.c_str());
-					App->moduleScene->LoadScene(test.c_str());
+					std::string libraryPath = App->moduleResources->LibraryFromMeta(metaDir.c_str());
+					App->moduleScene->LoadScene(libraryPath.c_str());
 				}
 			}
 			ImGui::GreySeparator();
@@ -403,7 +405,7 @@ void M_Editor::DrawTopBar()
 				if (DETime::state == GameState::STOP) 
 				{
 					App->moduleScene->SaveScene("Library/Scenes/tmp.des");
-					DETime::Play();
+					DETime::Play(App->moduleScene->activeScriptsVector);
 					EngineExternal->moduleAudio->StopAllSounds();
 					EngineExternal->moduleAudio->PlayOnAwake();
 				}
@@ -726,6 +728,11 @@ void M_Editor::LogToConsole(const char* msg, LogType _type)
 
 		if (consoleWindow != nullptr)
 			consoleWindow->AddLog(msg, _type);
+}
+
+bool M_Editor::IsWindowSelected(EditorWindow windowType)
+{
+	return windows[static_cast<unsigned int>(windowType)]->selected;
 }
 
 #endif

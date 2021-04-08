@@ -42,6 +42,7 @@ public:
 	void LoadData(DEConfig& nObj) override;
 
 	void OnRecursiveUIDChange(std::map < uint, GameObject*> gameObjects) override;
+	ResourceAnimation* GetAnimation(const char* animationName);
 
 #ifndef STANDALONE
 	bool OnEditor() override;
