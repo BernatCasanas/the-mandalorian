@@ -11,6 +11,8 @@ public class HubSkillTreeController : DiamondComponent
 	public GameObject weapon_tree = null;
 	public GameObject weapon_tree_activation_point = null;
 
+	public Skills skill_selected = null;
+
 	public float maximum_distance_to_interact_squared = 0.0f;
 
 	public void Update()
