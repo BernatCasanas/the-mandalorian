@@ -156,7 +156,7 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
 
         rewardMenu.SetParent(canvas);
 
-        firstImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardTexture(firstReward));    // Have the function re-entered or something...
+        firstImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardTexture(firstReward));
         secondImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardTexture(secondReward));
         thirdImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardTexture(thirdReward));
 
