@@ -11016,7 +11016,8 @@
                     "ScriptName": "PlayerHealth",
                     "<currMaxHealth>k__BackingField": 0,
                     "<currHealth>k__BackingField": 0,
-                    "<healWhenKillingAnEnemy>k__BackingField": 0
+                    "<healWhenKillingAnEnemy>k__BackingField": 0,
+                    "character_mesh": 713750560
                 },
                 {
                     "Type": 5,
@@ -12712,9 +12713,9 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
-                    "MaterialUID": 1948688504
+                    "MaterialAssetPath": "Assets\/Materials\/Player.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/637612837.mat",
+                    "MaterialUID": 637612837
                 }
             ]
         },
@@ -13274,8 +13275,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Spawn",
-                    "prefab_1_UID": 489054570,
-                    "prefab_2_UID": 0,
+                    "spawnStormtrooper": true,
+                    "spawnBantha": true,
                     "spawnPoint0": 775786026,
                     "spawnPoint1": 1785194096,
                     "spawnPoint2": 1382087491,
@@ -13289,12 +13290,6 @@
                     "maxWaves": 1,
                     "timePassed": 0,
                     "timeBetweenSpawns": 0.20000000298023224,
-                    "turretSpawnPoint0": false,
-                    "turretSpawnPoint1": true,
-                    "turretSpawnPoint2": false,
-                    "turretSpawnPoint3": false,
-                    "turretSpawnPoint4": false,
-                    "turretSpawnPoint5": true,
                     "currentEnemies": 0
                 }
             ]

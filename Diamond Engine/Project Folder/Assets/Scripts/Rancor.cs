@@ -221,6 +221,16 @@ public class Rancor : DiamondComponent
                     break;
 
                 case RANCOR_STATE.PROJECTILE:
+                    switch (input)
+                    {
+                        case RANCOR_INPUT.IN_PROJECTILE_END:
+                            currentState = RANCOR_STATE.SEARCH_STATE;
+                            EndProjectile();
+                            break;
+                        
+                        case RANCOR_INPUT.IN_DEAD:
+                            break;
+                    }
                     break;
 
                 case RANCOR_STATE.MELEE_COMBO_HIT1:
@@ -295,6 +305,7 @@ public class Rancor : DiamondComponent
                 break;
 
             case RANCOR_STATE.PROJECTILE:
+                UpdateProjectile();
                 break;
 
             case RANCOR_STATE.MELEE_COMBO_HIT1:
@@ -424,7 +435,9 @@ public class Rancor : DiamondComponent
 
         //Search point
         wanderTimer = shortWanderTime;
-        agent.CalculateRandomPath(gameObject.transform.globalPosition, meleeRange);
+
+        if (agent != null)
+            agent.CalculateRandomPath(gameObject.transform.globalPosition, meleeRange);
     }
 
 
@@ -434,15 +447,18 @@ public class Rancor : DiamondComponent
         //Search point
 
         wanderTimer = longWanderTime;
-        agent.CalculateRandomPath(gameObject.transform.globalPosition, longRange);
+
+        if (agent != null)
+            agent.CalculateRandomPath(gameObject.transform.globalPosition, longRange);
     }
 
 
     private void UpdateWander()
     {
         //Move character
-      
-        agent.MoveToCalculatedPos(wanderSpeed);
+
+        if (agent != null)
+            agent.MoveToCalculatedPos(wanderSpeed);
 
         Debug.Log("Wandering");
     }
@@ -466,8 +482,13 @@ public class Rancor : DiamondComponent
     }
 
     private void UpdateProjectile()
-    { 
-        
+    {
+        Debug.Log("Projectile");
+    }
+
+    private void EndProjectile()
+    {
+
     }
 
     #endregion
