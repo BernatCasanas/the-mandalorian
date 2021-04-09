@@ -3,12 +3,23 @@ using DiamondEngine;
 
 public class Enable : DiamondComponent
 {
-	public GameObject gameObject1;
-	public GameObject gameObject2;
+	public GameObject enable;
+	public GameObject disable;
 	
 	public void OnExecuteButton()
     {
-		if (gameObject1 != null) gameObject1.Enable(!gameObject1.IsEnabled());
-		if (gameObject2 != null) gameObject2.Enable(!gameObject2.IsEnabled());
+		Debug.Log("Executing!");
+
+		if (enable != null)
+		{
+			enable.Enable(true);
+			Debug.Log(enable.Name + " is enabled!");
+		}
+
+		if (disable != null)
+		{
+			disable.Enable(false);
+			Debug.Log(disable.Name + " is disabled!");
+		}
     }
 }
