@@ -22,10 +22,30 @@ public class HubTextController : DiamondComponent
 	public GameObject ashoka = null;
 	public GameObject grogu = null;
 
-	public GameObject bo_katan_portrait = null;
-	public GameObject greef_portrait = null;
-	public GameObject ashoka_portrait = null;
-	public GameObject grogu_portrait = null;
+	public int bo_katan_portrait_uid = 0;
+	public int greef_portrait_uid = 0;
+	public int ashoka_portrait_uid = 0;
+	public int grogu_portrait_uid = 0;
+
+	public float bo_katan_portrait_pos_x = 0;
+	public float bo_katan_portrait_pos_y = 0;
+	public float bo_katan_portrait_size_x = 0;
+	public float bo_katan_portrait_size_y = 0;
+
+	public float greef_portrait_pos_x = 0;
+	public float greef_portrait_pos_y = 0;
+	public float greef_portrait_size_x = 0;
+	public float greef_portrait_size_y = 0;
+
+	public float ashoka_portrait_pos_x = 0;
+	public float ashoka_portrait_pos_y = 0;
+	public float ashoka_portrait_size_x = 0;
+	public float ashoka_portrait_size_y = 0;
+
+	public float grogu_portrait_pos_x = 0;
+	public float grogu_portrait_pos_y = 0;
+	public float grogu_portrait_size_x = 0;
+	public float grogu_portrait_size_y = 0;
 
 
 	public int total_interactions = 0;
@@ -107,44 +127,44 @@ public class HubTextController : DiamondComponent
         switch (interaction)
         {
             case Interaction.BO_KATAN:
-                if (bo_katan_portrait != null)
+                if (bo_katan_portrait_uid != 0)
                 {
-					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().ChangeImageForAnotherOne(bo_katan_portrait);
-					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = bo_katan_portrait.GetComponent<Transform2D>().lPos;
-					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = bo_katan_portrait.GetComponent<Transform2D>().size;
-				}
+					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().AssignLibrary2DTexture(bo_katan_portrait_uid);
+                    textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = new Vector3(bo_katan_portrait_pos_x,bo_katan_portrait_pos_y,0);
+                    textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = new Vector3(bo_katan_portrait_size_x, bo_katan_portrait_size_y, 0);
+                }
 				textController.GetComponent<TextController>().dialog_index = bo_katan_interaction_num;
                 if (bo_katan_interaction_num % 3 != 0)
                     bo_katan_interaction_num++;
                 break;
             case Interaction.GREEF:
-                if (greef_portrait != null)
+                if (greef_portrait_uid != 0)
                 {
-					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().ChangeImageForAnotherOne(greef_portrait);
-					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = greef_portrait.GetComponent<Transform2D>().lPos;
-					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = greef_portrait.GetComponent<Transform2D>().size;
+					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().AssignLibrary2DTexture(greef_portrait_uid);
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = new Vector3(greef_portrait_pos_x, greef_portrait_pos_y, 0);
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = new Vector3(greef_portrait_size_x, greef_portrait_size_y, 0);
 				}
                 textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages) + greef_interaction_num;
                 if (greef_interaction_num % 3 != 0)
                     greef_interaction_num++;
                 break;
             case Interaction.ASHOKA:
-                if (ashoka_portrait != null)
+                if (ashoka_portrait_uid != 0)
                 {
-					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().ChangeImageForAnotherOne(ashoka_portrait);
-					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = ashoka_portrait.GetComponent<Transform2D>().lPos;
-					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = ashoka_portrait.GetComponent<Transform2D>().size;
+					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().AssignLibrary2DTexture(ashoka_portrait_uid);
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = new Vector3(ashoka_portrait_pos_x, ashoka_portrait_pos_y, 0);
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = new Vector3(ashoka_portrait_size_x, ashoka_portrait_size_y, 0);
 				}
                 textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages * 2) + ashoka_interaction_num;
                 if (ashoka_interaction_num % 3 != 0)
                     ashoka_interaction_num++;
                 break;
             case Interaction.GROGU:
-                if (grogu_portrait != null)
+                if (grogu_portrait_uid != 0)
                 {
-					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().ChangeImageForAnotherOne(grogu_portrait);
-					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = grogu_portrait.GetComponent<Transform2D>().lPos;
-					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = grogu_portrait.GetComponent<Transform2D>().size;
+					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().AssignLibrary2DTexture(grogu_portrait_uid);
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = new Vector3(grogu_portrait_pos_x, grogu_portrait_pos_y, 0);
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = new Vector3(grogu_portrait_size_x, grogu_portrait_size_y, 0);
 				}
 				textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages * 4) + grogu_interaction_num;
                 if (grogu_interaction_num % 2 != 0)
