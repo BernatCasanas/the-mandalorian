@@ -60,26 +60,26 @@ public class Rancor : DiamondComponent
     public float wanderSpeed = 2.0f;
 
     //Melee Combo
-    public float meleeComboHit1Time = 2.0f;
-    public float meleeComboHit2Time = 2.0f;
-    public float meleeComboHit3Time = 4.0f;
+    private float meleeComboHit1Time = 0.0f;
+    private float meleeComboHit2Time = 0.0f;
+    private float meleeComboHit3Time = 0.0f;
 
     private float meleeCH1Timer = 0.0f;
     private float meleeCH2Timer = 0.0f;
     private float meleeCH3Timer = 0.0f;
 
     //Projectile
-    public float projectileTime = 1.5f;
+    private float projectileTime = 0.0f;
     private float projectileTimer = 0.0f;
 
 
     //Hand slam
-    public float handSlamTime = 1.5f;
+    public float handSlamTime = 0.0f;
     private float handSlamTimer = 0.0f;
 
 
     //rush
-    public float rushTime = 4.0f;
+    public float rushTime = 0.0f;
     private float rushTimer = 0.0f;
 
     private bool start = false;
@@ -87,6 +87,16 @@ public class Rancor : DiamondComponent
     private void Start()
     {
         wanderTimer = shortWanderTime;
+
+        meleeComboHit1Time = Animator.GetAnimationDuration(gameObject, "RN_MeleeComboP1") - 0.016f;
+        meleeComboHit2Time = Animator.GetAnimationDuration(gameObject, "RN_MeleeComboP2") - 0.016f;
+        meleeComboHit3Time = Animator.GetAnimationDuration(gameObject, "RN_MeleeComboP3") - 0.016f;
+
+        projectileTime = Animator.GetAnimationDuration(gameObject, "RN_ProjectileThrow") - 0.016f;
+
+        handSlamTime = Animator.GetAnimationDuration(gameObject, "RN_HandSlam") - 0.016f;
+
+        rushTime = Animator.GetAnimationDuration(gameObject, "RN_Rush") - 0.016f;
     }
 
     public void Awake()
@@ -431,6 +441,8 @@ public class Rancor : DiamondComponent
     private void StartMCHit1()
     {
         meleeCH1Timer = meleeComboHit1Time;
+
+        Animator.Play(gameObject, "RN_MeleeComboP1");
         //TODO: Add animation
     }
 
@@ -449,6 +461,7 @@ public class Rancor : DiamondComponent
     private void StartMCHit2()
     {
         meleeCH2Timer = meleeComboHit2Time;
+        Animator.Play(gameObject, "RN_MeleeComboP2");
         //TODO: Add animation
     }
 
@@ -467,6 +480,7 @@ public class Rancor : DiamondComponent
     private void StartMCHit3()
     {
         meleeCH3Timer = meleeComboHit3Time;
+        Animator.Play(gameObject, "RN_MeleeComboP3");
         //TODO: Add animation
     }
 
@@ -489,7 +503,7 @@ public class Rancor : DiamondComponent
     private void StartShortWander()
     {
         //Start walk animation
-        //Animator.Play(gameObject, "RN_Walk");
+        Animator.Play(gameObject, "RN_Walk");
 
         //Search point
         wanderTimer = shortWanderTime;
@@ -503,6 +517,8 @@ public class Rancor : DiamondComponent
     {
         //Start walk animation
         //Search point
+
+        Animator.Play(gameObject, "RN_Walk");
 
         wanderTimer = longWanderTime;
 
@@ -535,7 +551,8 @@ public class Rancor : DiamondComponent
     private void StartProjectile()
     {
         projectileTimer = projectileTime;
-        //add animation
+
+        Animator.Play(gameObject, "RN_ProjectileThrow");
         //add timer to spawn projectiles
     }
 
@@ -557,7 +574,7 @@ public class Rancor : DiamondComponent
     private void StartHandSlam()
     {
         handSlamTimer = handSlamTime;
-
+        Animator.Play(gameObject, "RN_HandSlam");
     }
 
 
@@ -579,6 +596,7 @@ public class Rancor : DiamondComponent
     private void StartRush()
     {
         rushTimer = rushTime;
+        Animator.Play(gameObject, "RN_Rush");
     }
 
 
