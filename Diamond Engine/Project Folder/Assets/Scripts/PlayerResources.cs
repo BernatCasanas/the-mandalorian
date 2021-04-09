@@ -4,11 +4,41 @@ using System.Collections.Generic;
 
 public static class PlayerResources
 {
-    public static int beskarCounter = 0;
-    public static int macaronCounter = 0;
-    public static int milkCounter = 0;
-    public static int scrapCounter = 0;
-    public static Dictionary<Type, int> boonCounter;
+    static int beskarCounter = 0;
+    static int macaronCounter = 0;
+    static int milkCounter = 0;
+    static int scrapCounter = 0;
+    static Dictionary<Type, int> boonCounter = new Dictionary<Type, int>();
+
+    public static int GetResourceCount(RewardType type, Type boonType = null)
+    {
+        int auxCounter = 0;
+
+        switch (type)
+        {
+            case RewardType.REWARD_BOON:
+                auxCounter = boonCounter[boonType];
+                break;
+
+            case RewardType.REWARD_BESKAR:
+                auxCounter = beskarCounter;
+                break;
+
+            case RewardType.REWARD_MACARON:
+                auxCounter = macaronCounter;
+                break;
+
+            case RewardType.REWARD_SCRAP:
+                auxCounter = scrapCounter;
+                break;
+
+            case RewardType.REWARD_MILK:
+                auxCounter = milkCounter;
+                break;
+        }
+
+        return auxCounter;
+    }
 
     public static void AddResourceBy1(RewardType type, Type boonType = null)
     {
