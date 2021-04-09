@@ -1,19 +1,19 @@
 {
     "NavMesh": 1917905990,
     "EditorCameraPosition": [
-        -21.203252792358398,
-        32.060272216796875,
-        -15.587085723876953
+        -34.597988128662109,
+        32.135738372802734,
+        -16.315618515014648
     ],
     "EditorCameraZ": [
-        0.50672566890716553,
-        -0.7125169038772583,
-        0.48533391952514648
+        0.73543357849121094,
+        -0.63524544239044189,
+        0.23579798638820648
     ],
     "EditorCameraY": [
-        0.51463007926940918,
-        0.70165491104125977,
-        0.49278414249420166
+        0.60491335391998291,
+        0.77231037616729736,
+        0.19395002722740173
     ],
     "tags": [
         "Enemy",
@@ -9450,11 +9450,7 @@
                     "verticalTimeInterval": 1.2000000476837158,
                     "followPoint": 1655058450,
                     "horizontalSpeed": 4,
-                    "skillPushDuration": 1,
-                    "wallSkillOffsetX": 0,
-                    "wallSkillOffsetY": 0,
-                    "wallSkillOffsetZ": 0,
-                    "skillWallDuration": 0
+                    "skillPushDuration": 1
                 }
             ]
         },
@@ -9944,7 +9940,7 @@
                     "dashCD": 0.30000001192092896,
                     "dashDuration": 0.20000000298023224,
                     "dashDistance": 4.75,
-                    "dashforce": 500,
+                    "dashforce": 50,
                     "fireRate": 0.15000000596046448,
                     "gadgetFireRate": 0.20000000298023224,
                     "fireRateAfterDashRecoverRatio": 1.75,
@@ -14586,8 +14582,8 @@
             ],
             "Scale": [
                 0.79213201999664307,
-                15.752720832824707,
-                11.857495307922363
+                15.752719879150391,
+                11.857494354248047
             ],
             "UID": 162396340,
             "PrefabID": 0,
@@ -14902,10 +14898,247 @@
             ],
             "Scale": [
                 0.79204404354095459,
-                6.5760154724121094,
+                19.133476257324219,
                 11.855837821960449
             ],
             "UID": 100901544,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 82440641,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ColliderWall",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                32.302097320556641,
+                7.3626213073730469,
+                -20.890710830688477
+            ],
+            "Rotation": [
+                -0.56900990009307861,
+                0.41980510950088501,
+                0.41980257630348206,
+                0.56899666786193848
+            ],
+            "Scale": [
+                0.79213404655456543,
+                15.752321243286133,
+                11.857041358947754
+            ],
+            "UID": 2132106245,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 82440641,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ColliderWall",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -32.358707427978516,
+                7.3620877265930176,
+                -0.99297374486923218
+            ],
+            "Rotation": [
+                -0.707114577293396,
+                0,
+                0,
+                0.70709896087646484
+            ],
+            "Scale": [
+                0.79204404354095459,
+                23.810140609741211,
+                11.854785919189453
+            ],
+            "UID": 1004235211,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 82440641,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ColliderWall",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -14.129695892333984,
+                7.361539363861084,
+                -24.917215347290039
+            ],
+            "Rotation": [
+                -0.50000554323196411,
+                0.50000590085983276,
+                0.49999445676803589,
+                0.49999406933784485
+            ],
+            "Scale": [
+                0.79204410314559937,
+                20.050498962402344,
+                11.854960441589355
+            ],
+            "UID": 234529652,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
