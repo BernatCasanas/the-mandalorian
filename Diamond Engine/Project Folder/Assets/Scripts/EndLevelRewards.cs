@@ -1,8 +1,7 @@
 using System;
 using DiamondEngine;
-using System.Collections.Generic;
 
-public enum EndLevelRewardType
+public enum RewardType
 {
     REWARD_BOON,
     REWARD_BESKAR,
@@ -11,18 +10,18 @@ public enum EndLevelRewardType
     REWARD_MILK
 }
 
-public class EndLevelRewards : DiamondComponent // This can (should) probably stop being a component
+public class EndLevelRewards
 {
     public struct EndLevelReward
     {
-        public EndLevelReward(int index, EndLevelRewardType rewardType)
+        public EndLevelReward(int index, RewardType rewardType)
         {
             boonIndex = index;
             type = rewardType;
         }
 
         public int boonIndex;
-        public EndLevelRewardType type;
+        public RewardType type;
     }
 
     int[] rewardChances = new int[5] { 80, 5, 5, 5, 5 }; // Reward chances, by order being boons, beskar, macarons, scraps and milk
@@ -36,7 +35,6 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
     EndLevelRewardsButtons thirdButton = null;
 
     public GameResources selectedReward = null;
-    BoonDataHolder boonGenerator = new BoonDataHolder();
     bool rewardsGenerated = false;
 
     public GameResources GenerateRewardPipeline()
@@ -55,6 +53,8 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
             thirdButton = InternalCalls.FindObjectWithName("ThirdRewardButton").GetComponent<EndLevelRewardsButtons>();
 
             firstButton.gameObject.GetComponent<Navigation>().Select(); // Line added because buttons crashed. For... some reason
+
+            Debug.Log("Rng total weight value is " + BoonDataHolder.boonTotalWeights);
         }
 
         if (CheckRewardSelected())
@@ -84,27 +84,27 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
                 switch (i)
                 {
                     case 0:
-                        newReward = new EndLevelReward(RequestRandomBoon(), EndLevelRewardType.REWARD_BOON);
+                        newReward = new EndLevelReward(RequestRandomBoon(), RewardType.REWARD_BOON);
                         break;
 
                     case 1:
-                        newReward = new EndLevelReward(-1, EndLevelRewardType.REWARD_BESKAR);
+                        newReward = new EndLevelReward(-1, RewardType.REWARD_BESKAR);
                         break;
 
                     case 2:
-                        newReward = new EndLevelReward(-1, EndLevelRewardType.REWARD_MACARON);
+                        newReward = new EndLevelReward(-1, RewardType.REWARD_MACARON);
                         break;
 
                     case 3:
-                        newReward = new EndLevelReward(-1, EndLevelRewardType.REWARD_SCRAP);
+                        newReward = new EndLevelReward(-1, RewardType.REWARD_SCRAP);
                         break;
 
                     case 4:
-                        newReward = new EndLevelReward(-1, EndLevelRewardType.REWARD_MILK);
+                        newReward = new EndLevelReward(-1, RewardType.REWARD_MILK);
                         break;
 
                     default:
-                        newReward = new EndLevelReward(RequestRandomBoon(), EndLevelRewardType.REWARD_BOON); // Spawn boon, just in case
+                        newReward = new EndLevelReward(RequestRandomBoon(), RewardType.REWARD_BOON); // Spawn boon, just in case
                         break;
                 }
 
@@ -114,25 +114,25 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
 
         }
 
-        newReward = new EndLevelReward(RequestRandomBoon(), EndLevelRewardType.REWARD_BOON); // Spawn boon, just in case, but we should always quit from the previous return
+        newReward = new EndLevelReward(RequestRandomBoon(), RewardType.REWARD_BOON); // Spawn boon, just in case, but we should always quit from the previous return
         return newReward;
 
     }
 
     public int RequestRandomBoon()
     {
-        float randomPick = (float)(new Random().NextDouble() * boonGenerator.boonTotalWeights) - boonGenerator.boonType[1].rngChanceWeight;
+        float randomPick = (float)(new Random().NextDouble() * BoonDataHolder.boonTotalWeights) - BoonDataHolder.boonType[1].rngChanceWeight;
 
-        for (int i = 0; i < boonGenerator.boonType.Length; i++)
+        for (int i = 0; i < BoonDataHolder.boonType.Length; i++)
         {
 
-            if (randomPick < boonGenerator.boonType[i].rngChanceWeight)
+            if (randomPick < BoonDataHolder.boonType[i].rngChanceWeight)
             {
                 return i;
             }
         }
 
-        return boonGenerator.boonType.Length - 1;
+        return BoonDataHolder.boonType.Length - 1;
     }
 
     void CreatePopUpGameObject()
@@ -172,23 +172,23 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
 
         switch (reward.type)
         {
-            case EndLevelRewardType.REWARD_BOON:
-                text = boonGenerator.boonType[reward.boonIndex].rewardDescription;
+            case RewardType.REWARD_BOON:
+                text = BoonDataHolder.boonType[reward.boonIndex].rewardDescription;
                 break;
 
-            case EndLevelRewardType.REWARD_BESKAR:
+            case RewardType.REWARD_BESKAR:
                 text = new BeskarResource().rewardDescription;
                 break;
 
-            case EndLevelRewardType.REWARD_MACARON:
+            case RewardType.REWARD_MACARON:
                 text = new MacaronResource().rewardDescription;
                 break;
 
-            case EndLevelRewardType.REWARD_SCRAP:
+            case RewardType.REWARD_SCRAP:
                 text = new ScrapResource().rewardDescription;
                 break;
 
-            case EndLevelRewardType.REWARD_MILK:
+            case RewardType.REWARD_MILK:
                 text = new MilkResource().rewardDescription;
                 break;
 
@@ -204,23 +204,23 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
 
         switch (reward.type)
         {
-            case EndLevelRewardType.REWARD_BOON:
-                textureId = boonGenerator.boonType[reward.boonIndex].libraryTextureID;
+            case RewardType.REWARD_BOON:
+                textureId = BoonDataHolder.boonType[reward.boonIndex].libraryTextureID;
                 break;
 
-            case EndLevelRewardType.REWARD_BESKAR:
+            case RewardType.REWARD_BESKAR:
                 textureId = new BeskarResource().libraryTextureID;
                 break;
 
-            case EndLevelRewardType.REWARD_MACARON:
+            case RewardType.REWARD_MACARON:
                 textureId = new MacaronResource().libraryTextureID;
                 break;
 
-            case EndLevelRewardType.REWARD_SCRAP:
+            case RewardType.REWARD_SCRAP:
                 textureId = new ScrapResource().libraryTextureID;
                 break;
 
-            case EndLevelRewardType.REWARD_MILK:
+            case RewardType.REWARD_MILK:
                 textureId = new MilkResource().libraryTextureID;
                 break;
 
@@ -259,23 +259,23 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
 
         switch (reward.type)
         {
-            case EndLevelRewardType.REWARD_BOON:
-                selectedResource = boonGenerator.boonType[reward.boonIndex];
-                break;
-
-            case EndLevelRewardType.REWARD_BESKAR:
+            case RewardType.REWARD_BOON:
                 selectedResource = new BeskarResource();
                 break;
 
-            case EndLevelRewardType.REWARD_MACARON:
+            case RewardType.REWARD_BESKAR:
+                selectedResource = new BeskarResource();
+                break;
+
+            case RewardType.REWARD_MACARON:
                 selectedResource = new MacaronResource();
                 break;
 
-            case EndLevelRewardType.REWARD_SCRAP:
+            case RewardType.REWARD_SCRAP:
                 selectedResource = new ScrapResource();
                 break;
 
-            case EndLevelRewardType.REWARD_MILK:
+            case RewardType.REWARD_MILK:
                 selectedResource = new MilkResource();
                 break;
 
