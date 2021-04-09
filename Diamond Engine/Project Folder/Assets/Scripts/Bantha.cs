@@ -51,7 +51,7 @@ public class Bantha : Enemy
 
     //Action times
     public float idleTime = 5.0f;
-    public float dieTime = 3.0f;
+    private float dieTime = 3.0f;
     public float tiredTime = 2.0f;
     public float loadingTime = 2.0f;
     public float timeBewteenStates = 1.5f;
@@ -75,8 +75,6 @@ public class Bantha : Enemy
     private float chargeTimer = 0.0f;
     //private float chargeDuration = 1.0f;
 
-
-
     public void Awake()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
@@ -85,7 +83,8 @@ public class Bantha : Enemy
 
         currentState = STATE.IDLE;
         StartIdle();
-        //Animator.Play(gameObject, "BT_Idle");
+        
+        dieTime = Animator.GetAnimationDuration(gameObject, "BT_Die");
     }
 
     public void Update()
@@ -298,16 +297,6 @@ public class Bantha : Enemy
             if (tiredTimer < 0.0f)
             {
                 inputsList.Add(INPUT.IN_RUN);
-            }
-        }
-
-        if (dieTimer > 0.0f)
-        {
-            dieTimer -= Time.deltaTime;
-
-            if (dieTimer <= 0.0f)
-            {
-                inputsList.Add(INPUT.IN_DIE);
             }
         }
     }
@@ -611,7 +600,7 @@ public class Bantha : Enemy
     {
         dieTimer = dieTime;
 
-        Animator.Play(gameObject, "BT_Death", 1.0f);
+        Animator.Play(gameObject, "BT_Die", 1.0f);
 
         //Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Death");
         //Audio.PlayAudio(gameObject, "Play_Mando_Voice");
