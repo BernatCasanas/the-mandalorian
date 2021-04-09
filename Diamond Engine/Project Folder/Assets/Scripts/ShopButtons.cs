@@ -12,44 +12,47 @@ public class ShopButtons : DiamondComponent
     {
         if(shopController.GetComponent<SHOP>().firstClick)
         {
+            Debug.Log("First Click");
             shopController.GetComponent<SHOP>().firstClick = false;
         }
-
-        if (gameObject.Name == "Button1")
+        else
         {
-            if (!bought)
+            if (gameObject.Name == "Button1")
             {
-                shopController.GetComponent<SHOP>().Buy(0);
-                bought = true;
+                if (!bought)
+                {
+                    shopController.GetComponent<SHOP>().Buy(0);
+                    bought = true;
+                }
             }
-        }
-        else if (gameObject.Name == "Button2")
-        {
-            if (!bought)
+            else if (gameObject.Name == "Button2")
             {
-                shopController.GetComponent<SHOP>().Buy(1);
-                bought = true;
+                if (!bought)
+                {
+                    shopController.GetComponent<SHOP>().Buy(1);
+                    bought = true;
+                }
             }
-        }
-        else if (gameObject.Name == "Button3")
-        {
-            if (!bought)
+            else if (gameObject.Name == "Button3")
             {
-                shopController.GetComponent<SHOP>().Buy(2);
-                bought = true;
+                if (!bought)
+                {
+                    shopController.GetComponent<SHOP>().Buy(2);
+                    bought = true;
+                }
             }
-        }
-        else if (gameObject.Name == "ButtonHealth")
-        {
-            if (!bought)
+            else if (gameObject.Name == "ButtonHealth")
             {
-                shopController.GetComponent<SHOP>().Buy(3);
-                bought = true;
+                if (!bought)
+                {
+                    shopController.GetComponent<SHOP>().Buy(3);
+                    bought = true;
+                }
             }
-        }
-        else if (gameObject.Name == "ButtonBack")
-        {
-            shopController.GetComponent<SHOP>().CloseShop();
+            else if (gameObject.Name == "ButtonBack")
+            {
+                shopController.GetComponent<SHOP>().CloseShop();
+            }
         }
     }
 }

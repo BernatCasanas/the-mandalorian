@@ -50,7 +50,7 @@ public class SHOP : DiamondComponent
             case 1:
                 if (currency >= 230)
                 {
-                    Debug.Log("Bought Item 2");
+                    Debug.Log("Bought Watto's Coolant");
                     cost = currency - 230;
                 }
                 break;
@@ -58,7 +58,7 @@ public class SHOP : DiamondComponent
                 if (currency >= 310)
                 {
                     Debug.Log("Bought Wrecker’s resilience");
-                    player.GetComponent<PlayerHealth>().IncrementMaxHpPercent(20);
+                    player.GetComponent<PlayerHealth>().IncrementMaxHpPercent(0.2f);
                     cost = currency - 310;
                 }
                 break;
@@ -66,7 +66,7 @@ public class SHOP : DiamondComponent
                 if (currency >= 75)
                 {
                     Debug.Log("Bought Health replenishment");
-                    player.GetComponent<PlayerHealth>().HealPercent(25);
+                    player.GetComponent<PlayerHealth>().HealPercent(0.25f);
                     cost = currency - 75;
                 }
                 break;
