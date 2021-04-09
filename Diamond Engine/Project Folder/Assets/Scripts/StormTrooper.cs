@@ -38,8 +38,6 @@ public class StormTrooper : Enemy
                                              //Setting states directlly will break the behaviour  -Jose
     private List<INPUT> inputsList = new List<INPUT>();
 
-    private bool started = false;
-
     public GameObject shootPoint = null;
     public GameObject hitParticles = null;
 
