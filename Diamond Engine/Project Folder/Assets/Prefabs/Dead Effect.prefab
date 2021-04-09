@@ -18,14 +18,15 @@
                 1
             ],
             "Scale": [
+                1.0000005960464478,
                 1,
-                1,
-                1
+                1.0000005960464478
             ],
-            "UID": 1292619607,
-            "PrefabID": 77855806,
+            "UID": 2038911133,
+            "PrefabID": 230945350,
             "DontDestroy": false,
-            "ParentUID": 404284268,
+            "Static": false,
+            "ParentUID": 378045798,
             "Components": [
                 {
                     "Type": 1,
@@ -54,10 +55,11 @@
                 1,
                 1
             ],
-            "UID": 1019947765,
+            "UID": 215440246,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1292619607,
+            "Static": false,
+            "ParentUID": 2038911133,
             "Components": [
                 {
                     "Type": 1,
@@ -80,8 +82,8 @@
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/88911285.dds",
-                            "texUID": 88911285,
+                            "LibraryPath": "Library\/Textures\/170375526.dds",
+                            "texUID": 170375526,
                             "paEmitterName": "Smoke",
                             "paLifeTime": [
                                 0.5,
@@ -89,7 +91,7 @@
                             ],
                             "paSize": [
                                 0.20000000298023224,
-                                1
+                                0.5
                             ],
                             "paColor": [
                                 1,
@@ -97,7 +99,7 @@
                                 1,
                                 1
                             ],
-                            "paPerSec": 50,
+                            "paPerSec": 200,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 1,
@@ -145,10 +147,12 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 1.5,
+                                    "paShapePartSpeed": 1,
                                     "paShapeRandSpeed": 0,
-                                    "PaShapeConeRadius": 1,
+                                    "PaShapeConeRadius": 0.5,
                                     "PaShapeConeHeight": 2,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 2,
                                     "PaShapeOffset": [
                                         0,
@@ -160,8 +164,8 @@
                         },
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1044702331.dds",
-                            "texUID": 1044702331,
+                            "LibraryPath": "Library\/Textures\/1162313265.dds",
+                            "texUID": 1162313265,
                             "paEmitterName": "Smoke 2",
                             "paLifeTime": [
                                 0.5,
@@ -169,7 +173,7 @@
                             ],
                             "paSize": [
                                 0.20000000298023224,
-                                1
+                                0.5
                             ],
                             "paColor": [
                                 1,
@@ -177,7 +181,7 @@
                                 1,
                                 1
                             ],
-                            "paPerSec": 50,
+                            "paPerSec": 200,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 2,
@@ -232,10 +236,12 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 1.5,
+                                    "paShapePartSpeed": 1,
                                     "paShapeRandSpeed": 0,
                                     "PaShapeConeRadius": 1,
                                     "PaShapeConeHeight": 2,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 2,
                                     "PaShapeOffset": [
                                         0,
@@ -276,10 +282,11 @@
                 1,
                 1
             ],
-            "UID": 1089075363,
+            "UID": 1139576118,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1292619607,
+            "Static": false,
+            "ParentUID": 2038911133,
             "Components": [
                 {
                     "Type": 1,
@@ -302,12 +309,12 @@
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1830772739.dds",
-                            "texUID": 1830772739,
+                            "LibraryPath": "Library\/Textures\/1755453139.dds",
+                            "texUID": 1755453139,
                             "paEmitterName": "Cross",
                             "paLifeTime": [
-                                1.1000000238418579,
-                                1.1000000238418579
+                                3,
+                                3
                             ],
                             "paSize": [
                                 0.30000001192092896,
@@ -373,23 +380,23 @@
                                 },
                                 {
                                     "paEffectType": 3,
-                                    "paSizeOLTStartSize": 1.7000000476837158,
-                                    "paSizeOLTEndSize": 2
+                                    "paSizeOLTStartSize": 1,
+                                    "paSizeOLTEndSize": 1.5
                                 }
                             ]
                         },
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1044702331.dds",
-                            "texUID": 1044702331,
+                            "LibraryPath": "Library\/Textures\/1162313265.dds",
+                            "texUID": 1162313265,
                             "paEmitterName": "Rests",
                             "paLifeTime": [
-                                1.1000000238418579,
-                                1.1000000238418579
+                                3.5,
+                                5
                             ],
                             "paSize": [
                                 0.20000000298023224,
-                                1.5
+                                0.80000001192092896
                             ],
                             "paColor": [
                                 1,
@@ -397,7 +404,7 @@
                                 1,
                                 1
                             ],
-                            "paPerSec": 7,
+                            "paPerSec": 15,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 2,
@@ -441,11 +448,18 @@
                                     ]
                                 },
                                 {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0.80000001192092896,
+                                    "paSizeOLTEndSize": 0
+                                },
+                                {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": false,
                                     "paShapePartSpeed": 0,
                                     "paShapeRandSpeed": 0,
                                     "PaShapeSphereRadius": 1.5,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 1,
                                     "PaShapeOffset": [
                                         0,
@@ -472,7 +486,7 @@
             "Active": true,
             "Position": [
                 0,
-                -1.5,
+                -0.44529104232788086,
                 0
             ],
             "Rotation": [
@@ -486,10 +500,11 @@
                 1,
                 1
             ],
-            "UID": 1310722794,
+            "UID": 1793056510,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1292619607,
+            "Static": false,
+            "ParentUID": 2038911133,
             "Components": [
                 {
                     "Type": 1,
@@ -508,12 +523,12 @@
                     "Active": true,
                     "systemActive": false,
                     "looping": false,
-                    "maxDuration": 2.0420000553131104,
+                    "maxDuration": 4.0809998512268066,
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/4612426.dds",
-                            "texUID": 4612426,
+                            "LibraryPath": "Library\/Textures\/2059805849.dds",
+                            "texUID": 2059805849,
                             "paEmitterName": "Soul",
                             "paLifeTime": [
                                 0.30000001192092896,
@@ -521,7 +536,7 @@
                             ],
                             "paSize": [
                                 0.10000000149011612,
-                                0.30000001192092896
+                                0.10000000149011612
                             ],
                             "paColor": [
                                 1,
@@ -531,17 +546,6 @@
                             ],
                             "paPerSec": 5,
                             "ParticleEffects": [
-                                {
-                                    "paEffectType": 1,
-                                    "paROLT_rotation": [
-                                        -0.5,
-                                        0.5
-                                    ],
-                                    "paROLT_rotationSpeed": [
-                                        -0.5,
-                                        1
-                                    ]
-                                },
                                 {
                                     "paEffectType": 2,
                                     "Gradients": [
@@ -577,10 +581,12 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 1,
+                                    "paShapePartSpeed": 0.5,
                                     "paShapeRandSpeed": 0.5,
-                                    "PaShapeConeRadius": 1.5,
+                                    "PaShapeConeRadius": 0.5,
                                     "PaShapeConeHeight": 1,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 2,
                                     "PaShapeOffset": [
                                         0,
@@ -592,8 +598,8 @@
                         },
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1539028471.dds",
-                            "texUID": 1539028471,
+                            "LibraryPath": "Library\/Textures\/14496052.dds",
+                            "texUID": 14496052,
                             "paEmitterName": "Heart",
                             "paLifeTime": [
                                 0.69999998807907104,
@@ -601,7 +607,7 @@
                             ],
                             "paSize": [
                                 0.10000000149011612,
-                                0.30000001192092896
+                                0.10000000149011612
                             ],
                             "paColor": [
                                 1,
@@ -611,17 +617,6 @@
                             ],
                             "paPerSec": 1,
                             "ParticleEffects": [
-                                {
-                                    "paEffectType": 1,
-                                    "paROLT_rotation": [
-                                        -0.5,
-                                        0.5
-                                    ],
-                                    "paROLT_rotationSpeed": [
-                                        -0.5,
-                                        1
-                                    ]
-                                },
                                 {
                                     "paEffectType": 2,
                                     "Gradients": [
@@ -657,10 +652,12 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 1,
+                                    "paShapePartSpeed": 0.5,
                                     "paShapeRandSpeed": 0.5,
-                                    "PaShapeConeRadius": 1.5,
+                                    "PaShapeConeRadius": 0.5,
                                     "PaShapeConeHeight": 1,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 2,
                                     "PaShapeOffset": [
                                         0,
@@ -672,8 +669,8 @@
                         },
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/732268829.dds",
-                            "texUID": 732268829,
+                            "LibraryPath": "Library\/Textures\/1129325781.dds",
+                            "texUID": 1129325781,
                             "paEmitterName": "Cries",
                             "paLifeTime": [
                                 0.30000001192092896,
@@ -681,7 +678,7 @@
                             ],
                             "paSize": [
                                 0.10000000149011612,
-                                0.30000001192092896
+                                0.10000000149011612
                             ],
                             "paColor": [
                                 1,
@@ -691,17 +688,6 @@
                             ],
                             "paPerSec": 5,
                             "ParticleEffects": [
-                                {
-                                    "paEffectType": 1,
-                                    "paROLT_rotation": [
-                                        -0.5,
-                                        0.5
-                                    ],
-                                    "paROLT_rotationSpeed": [
-                                        -0.5,
-                                        1
-                                    ]
-                                },
                                 {
                                     "paEffectType": 2,
                                     "Gradients": [
@@ -737,10 +723,12 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 1,
+                                    "paShapePartSpeed": 0.5,
                                     "paShapeRandSpeed": 0.5,
-                                    "PaShapeConeRadius": 1.5,
+                                    "PaShapeConeRadius": 0.5,
                                     "PaShapeConeHeight": 1,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 2,
                                     "PaShapeOffset": [
                                         0,
