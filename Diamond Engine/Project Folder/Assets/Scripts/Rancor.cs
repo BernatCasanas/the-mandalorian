@@ -77,6 +77,11 @@ public class Rancor : DiamondComponent
     public float handSlamTime = 1.5f;
     private float handSlamTimer = 0.0f;
 
+
+    //rush
+    public float rushTime = 4.0f;
+    private float rushTimer = 0.0f;
+
     private bool start = false;
 
     private void Start()
@@ -160,6 +165,15 @@ public class Rancor : DiamondComponent
             if (handSlamTimer <= 0)
                 inputsList.Add(RANCOR_INPUT.IN_HAND_SLAM_END);
         }
+
+
+        if (rushTimer > 0)
+        {
+            rushTimer -= Time.deltaTime;
+
+            if (rushTimer <= 0)
+                inputsList.Add(RANCOR_INPUT.IN_RUSH_END);
+        }
     }
 
 	private void ProcessExternalInput()
@@ -194,6 +208,8 @@ public class Rancor : DiamondComponent
                             break;
 
                         case RANCOR_INPUT.IN_RUSH:
+                            currentState = RANCOR_STATE.RUSH;
+                            StartRush();
                             break;
                         
                         case RANCOR_INPUT.IN_HAND_SLAM:
@@ -230,6 +246,16 @@ public class Rancor : DiamondComponent
                     break;
 
                 case RANCOR_STATE.RUSH:
+                    switch (input)
+                    {
+                        case RANCOR_INPUT.IN_RUSH_END:
+                            currentState = RANCOR_STATE.SEARCH_STATE;
+                            EndRush();
+                            break;
+                        
+                        case RANCOR_INPUT.IN_DEAD:
+                            break;
+                    }
                     break;
 
                 case RANCOR_STATE.HAND_SLAM:
@@ -324,6 +350,7 @@ public class Rancor : DiamondComponent
                 break;
 
             case RANCOR_STATE.RUSH:
+                UpdateRush();
                 break;
 
             case RANCOR_STATE.HAND_SLAM:
@@ -373,13 +400,18 @@ public class Rancor : DiamondComponent
                     inputsList.Add(RANCOR_INPUT.IN_MELEE_COMBO_1HIT);
 
                 else
-                    inputsList.Add(RANCOR_INPUT.IN_HAND_SLAM);  //ADD START /STATE MACHINE LOGIC
+                    inputsList.Add(RANCOR_INPUT.IN_HAND_SLAM);
             }
 
             else if (distance > meleeRange && distance <= longRange)
             {
-                //Projectile and charge
-                inputsList.Add(RANCOR_INPUT.IN_PROJECTILE);
+                decision = randomNum.Next(1, 100);
+
+                if (decision <= 50)
+                    inputsList.Add(RANCOR_INPUT.IN_PROJECTILE);
+
+                else
+                    inputsList.Add(RANCOR_INPUT.IN_RUSH); 
             }
             else
             {
@@ -541,4 +573,27 @@ public class Rancor : DiamondComponent
     }
 
     #endregion
+
+    #region rush
+
+    private void StartRush()
+    {
+        rushTimer = rushTime;
+    }
+
+
+    private void UpdateRush()
+    {
+        Debug.Log("Rush");
+    }
+
+
+    private void EndRush()
+    {
+
+    }
+
+    #endregion
+
+
 }
