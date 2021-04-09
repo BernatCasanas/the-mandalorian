@@ -29,15 +29,11 @@ public class BabyYoda : DiamondComponent
     private float INIT_TIMER = 0.0001f;
     private bool lefttTriggerPressed = false;
 
-
-    public float wallSkillOffsetX = 0.0f;
-    public float wallSkillOffsetY = 0.0f;
-    public float wallSkillOffsetZ = 1.0f;
-
     private Vector3 wallSkillOffset = Vector3.zero;
-    public float skillWallDuration = 0.8f;
+    private float wallSkillDuration = 1.0f; //TODO provisional we have to use the force bar with a cost instead
     private float skillWallTimer = 0.0f;
     private bool leftButtonPressed = false;
+
 
     #region STATE_ENUMS
     enum STATE
@@ -82,7 +78,7 @@ public class BabyYoda : DiamondComponent
 
     public void Awake()
     {
-        wallSkillOffset = new Vector3(wallSkillOffsetX, wallSkillOffsetY, wallSkillOffsetZ);
+        wallSkillOffset = new Vector3(0.0f,1.5f, 3.0f);
     }
 
     public void Update()
@@ -245,7 +241,7 @@ public class BabyYoda : DiamondComponent
         {
             skillWallTimer += Time.deltaTime;
 
-            if (skillWallTimer >= skillWallDuration && input == INPUTS.NONE)
+            if (skillWallTimer >= wallSkillDuration && input == INPUTS.NONE)
             {
                 input = INPUTS.IN_SKILL_WALL_END;
                 skillWallTimer = 0.0f;
@@ -316,9 +312,16 @@ public class BabyYoda : DiamondComponent
     //Execute order 66
     private void ExecuteWallSkill()
     {
+        if (Core.instance.hud != null)
+        {
+            force_updating = true;
+            final_timer_force = Time.totalTime + 1;
+            Core.instance.hud.GetComponent<HUD>().UpdateForce(0, 100);
+            //Core.instance.hud.GetComponent<HUD>().ChangeAlphaSkillPush(false);
+        }
+
         skillWallTimer += INIT_TIMER;
         Transform mandoTransform = Core.instance.gameObject.transform;
-        //TODO instantiate prefab here
         Vector3 spawnPos = new Vector3(mandoTransform.globalPosition.x, mandoTransform.globalPosition.y, mandoTransform.globalPosition.z);
         spawnPos += mandoTransform.GetRight() * wallSkillOffset.x;
         spawnPos += Vector3.Cross(mandoTransform.GetForward(),mandoTransform.GetRight()) * wallSkillOffset.y;
