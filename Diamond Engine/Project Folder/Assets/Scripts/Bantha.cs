@@ -81,7 +81,8 @@ public class Bantha : Enemy
         targetPosition = null;
 
         currentState = STATE.IDLE;
-        Animator.Play(gameObject, "BT_Idle");
+        StartIdle();
+        //Animator.Play(gameObject, "BT_Idle");
     }
 
     public void Update()
@@ -260,6 +261,14 @@ public class Bantha : Enemy
             }
         }
 
+        if (currentState == STATE.WANDER)
+        {
+            if (Mathf.Distance(gameObject.transform.localPosition, agent.GetDestination()) <= stoppingDistance)
+            {
+                inputsList.Add(INPUT.IN_IDLE);
+            }
+        }
+
         if (loadingTimer > 0.0f)
         {
             loadingTimer -= Time.deltaTime;
@@ -272,7 +281,7 @@ public class Bantha : Enemy
 
         if (currentState == STATE.CHARGE)
         {
-            if (Mathf.Distance(gameObject.transform.localPosition, player.transform.localPosition) <= stoppingDistance)
+            if (Mathf.Distance(gameObject.transform.localPosition, targetPosition) <= stoppingDistance)
             {
                 inputsList.Add(INPUT.IN_CHARGE_END);
             }
@@ -467,11 +476,6 @@ public class Bantha : Enemy
                             StartRun();
                             break;
 
-                        case INPUT.IN_CHARGE_RANGE:
-                            currentState = STATE.LOADING_ATTACK;
-                            StartLoading();
-                            break;
-
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
                             StartDie();
@@ -499,6 +503,9 @@ public class Bantha : Enemy
                 break;
             case STATE.WANDER:
                 UpdateWander();
+                break;
+            case STATE.LOADING_ATTACK:
+                UpdateLoading();
                 break;
             case STATE.CHARGE:
                 UpdateCharge();
@@ -565,12 +572,12 @@ public class Bantha : Enemy
     {
         loadingTimer = loadingTime;
         Animator.Play(gameObject, "BT_Charge");
-        targetPosition = player.transform.localPosition;
+        //targetPosition = player.transform.localPosition;
         
     }
     private void UpdateLoading()
     {
-        LookAt(targetPosition);
+        LookAt(player.transform.localPosition);
     }
     #endregion
 
