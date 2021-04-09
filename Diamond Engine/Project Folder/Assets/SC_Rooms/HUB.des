@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -26.58802604675293,
-        16.589624404907227,
-        11.249431610107422
+        -23.194948196411133,
+        18.536933898925781,
+        8.3864688873291016
     ],
     "EditorCameraZ": [
-        0.798511803150177,
-        -0.49823218584060669,
-        -0.33785146474838257
+        0.70641416311264038,
+        -0.70567780733108521,
+        -0.054751873016357422
     ],
     "EditorCameraY": [
-        0.45885148644447327,
-        0.86704361438751221,
-        -0.19414070248603821
+        0.7035677433013916,
+        0.70853286981582642,
+        -0.05453125387430191
     ],
     "tags": [],
     "layers": [],
@@ -7370,7 +7370,7 @@
             "name": "WeaponTree",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "Position": [
                 0,
                 0,
@@ -10069,7 +10069,7 @@
                     "grogu_portrait": 1366491156,
                     "total_interactions": 3,
                     "total_stages": 6,
-                    "maximum_distance_to_interact_squared": 10,
+                    "maximum_distance_to_interact_squared": 20,
                     "bo_katan_stage": 0,
                     "greef_stage": 0,
                     "ashoka_stage": 0,
@@ -10085,9 +10085,12 @@
                     "ScriptName": "HubSkillTreeController",
                     "mando": 1032451305,
                     "mando_tree": 408436917,
+                    "mando_tree_activation_point": 1593877066,
                     "grogu_tree": 1603578304,
+                    "grogu_tree_activation_point": 1545912826,
                     "weapon_tree": 815764826,
-                    "maximum_distance_to_interact_squared": 10
+                    "weapon_tree_activation_point": 863428572,
+                    "maximum_distance_to_interact_squared": 20
                 }
             ]
         },
@@ -17837,8 +17840,8 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                17.820873260498047,
-                0.50101631879806519,
+                17.820894241333008,
+                0.50101613998413086,
                 8.6345653533935547
             ],
             "Rotation": [
@@ -18676,10 +18679,10 @@
                 0
             ],
             "Rotation": [
-                -0.11595169454813004,
-                -0.0027253860607743263,
-                -0.0079767452552914619,
-                0.99321919679641724
+                -0.11595167964696884,
+                -0.0027253858279436827,
+                -0.0079767443239688873,
+                0.99321907758712769
             ],
             "Scale": [
                 1,
@@ -19039,10 +19042,10 @@
                 0
             ],
             "Rotation": [
-                0.31927761435508728,
-                -0.0079053491353988647,
-                0.0026635029353201389,
-                0.94762462377548218
+                0.31927758455276489,
+                -0.0079053482040762901,
+                0.0026635027024894953,
+                0.94762450456619263
             ],
             "Scale": [
                 1,
@@ -19091,6 +19094,83 @@
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Watto",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -0.66312134265899658,
+                0.49390578269958496,
+                -2.6574106216430664
+            ],
+            "Rotation": [
+                -2.6081199422378631e-09,
+                -0.73631054162979126,
+                -2.6081199422378631e-09,
+                0.6766437292098999
+            ],
+            "Scale": [
+                1.0000083446502686,
+                1,
+                1.0000083446502686
+            ],
+            "UID": 863428572,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1481651339,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Watto",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 398364388,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 863428572,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1148313110.mmh",
+                    "UID": 1148313110,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }
