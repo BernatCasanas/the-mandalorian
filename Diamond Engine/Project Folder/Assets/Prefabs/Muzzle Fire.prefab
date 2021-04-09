@@ -7,9 +7,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -8.7846546173095703,
-                0,
-                10.795595169067383
+                -14.391697883605957,
+                7.7234277725219727,
+                -9.9544944763183594
             ],
             "Rotation": [
                 0,
@@ -18,14 +18,15 @@
                 1
             ],
             "Scale": [
-                1,
-                1,
-                1
+                0.5,
+                0.5,
+                0.5
             ],
-            "UID": 560322841,
-            "PrefabID": 1604751915,
+            "UID": 2056499537,
+            "PrefabID": 1564072956,
             "DontDestroy": false,
-            "ParentUID": 404284268,
+            "Static": false,
+            "ParentUID": 1676501951,
             "Components": [
                 {
                     "Type": 1,
@@ -47,17 +48,18 @@
                 0.7071068286895752,
                 0,
                 0,
-                0.7071068286895752
+                0.70710670948028564
             ],
             "Scale": [
                 1,
-                1,
-                1
+                0.99998700618743896,
+                0.99998700618743896
             ],
-            "UID": 1196065506,
+            "UID": 672036340,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 560322841,
+            "Static": false,
+            "ParentUID": 2056499537,
             "Components": [
                 {
                     "Type": 1,
@@ -76,20 +78,20 @@
                     "Active": true,
                     "systemActive": false,
                     "looping": false,
-                    "maxDuration": 0.068999998271465302,
+                    "maxDuration": 0.041000001132488251,
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1044702331.dds",
-                            "texUID": 1044702331,
+                            "LibraryPath": "Library\/Textures\/39569920.dds",
+                            "texUID": 39569920,
                             "paEmitterName": "Muzzle Flash",
                             "paLifeTime": [
                                 0.10000000149011612,
                                 0.20000000298023224
                             ],
                             "paSize": [
-                                0.10000000149011612,
-                                0.30000001192092896
+                                0.0099999997764825821,
+                                0.0099999997764825821
                             ],
                             "paColor": [
                                 1,
@@ -97,7 +99,7 @@
                                 0.79928314685821533,
                                 1
                             ],
-                            "paPerSec": 10000,
+                            "paPerSec": 750,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 1,
@@ -120,7 +122,7 @@
                                                 0.771270751953125,
                                                 0.76953125
                                             ],
-                                            "paColorOLTposition": 0.49333235621452332
+                                            "paColorOLTposition": 0.049966659396886826
                                         },
                                         {
                                             "paColorOLTcolor": [
@@ -129,13 +131,13 @@
                                                 0.125,
                                                 0.60188418626785278
                                             ],
-                                            "paColorOLTposition": 0.59733331203460693
+                                            "paColorOLTposition": 0.32548919320106506
                                         },
                                         {
                                             "paColorOLTcolor": [
-                                                0.74609375,
-                                                0.3876190185546875,
-                                                0.3876190185546875,
+                                                0.90610325336456299,
+                                                0.18292227387428284,
+                                                0.18292227387428284,
                                                 0.48828125
                                             ],
                                             "paColorOLTposition": 1
@@ -145,9 +147,11 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 1,
-                                    "paShapeRandSpeed": 5,
-                                    "PaShapeSphereRadius": 1,
+                                    "paShapePartSpeed": 0.0010000000474974513,
+                                    "paShapeRandSpeed": 10,
+                                    "PaShapeSphereRadius": 9.9999997473787516e-05,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 1,
                                     "PaShapeOffset": [
                                         0,
@@ -159,16 +163,16 @@
                         },
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1110100241.dds",
-                            "texUID": 1110100241,
+                            "LibraryPath": "Library\/Textures\/39569920.dds",
+                            "texUID": 39569920,
                             "paEmitterName": "Fire trail",
                             "paLifeTime": [
                                 0.30000001192092896,
                                 0.30000001192092896
                             ],
                             "paSize": [
-                                0.10000000149011612,
-                                0.30000001192092896
+                                0.0020000000949949026,
+                                0.0099999997764825821
                             ],
                             "paColor": [
                                 0.99641579389572144,
@@ -176,19 +180,21 @@
                                 0.20356880128383636,
                                 1
                             ],
-                            "paPerSec": 450,
+                            "paPerSec": 200,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 2,
+                                    "paShapePartSpeed": 0.10000000149011612,
                                     "paShapeRandSpeed": 3,
-                                    "PaShapeConeRadius": 4,
-                                    "PaShapeConeHeight": 3,
+                                    "PaShapeConeRadius": 0.10000000149011612,
+                                    "PaShapeConeHeight": 0.10000000149011612,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 2,
                                     "PaShapeOffset": [
                                         0,
-                                        0.20000000298023224,
+                                        0,
                                         0
                                     ]
                                 }

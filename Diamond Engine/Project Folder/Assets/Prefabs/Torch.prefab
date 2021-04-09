@@ -2,7 +2,40 @@
     "assets_path": "Assets\/Prefabs\/Torch.prefab",
     "Game Objects": [
         {
-            "name": "Torch",
+            "name": "Torch 1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -4.9714145660400391,
+                10.595178604125976,
+                16.278297424316406
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 21476766,
+            "PrefabID": 2017464894,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Flame",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -18,46 +51,15 @@
                 1
             ],
             "Scale": [
-                1,
-                1,
-                1
+                0.40000000596046448,
+                0.40000000596046448,
+                0.40000000596046448
             ],
-            "UID": 1649811075,
-            "PrefabID": 903546305,
-            "DontDestroy": false,
-            "ParentUID": 404284268,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Flame",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                1.1170148849487305,
-                -6.7719001770019531
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1186509133,
+            "UID": 585307374,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1649811075,
+            "Static": false,
+            "ParentUID": 21476766,
             "Components": [
                 {
                     "Type": 1,
@@ -80,16 +82,16 @@
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1110100241.dds",
-                            "texUID": 1110100241,
+                            "LibraryPath": "Library\/Textures\/39569920.dds",
+                            "texUID": 39569920,
                             "paEmitterName": "Flame",
                             "paLifeTime": [
                                 1,
                                 1
                             ],
                             "paSize": [
-                                0.10000000149011612,
-                                0.40000000596046448
+                                0.0099999997764825821,
+                                0.10000000149011612
                             ],
                             "paColor": [
                                 1,
@@ -97,16 +99,16 @@
                                 1,
                                 1
                             ],
-                            "paPerSec": 750,
+                            "paPerSec": 1000,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 0,
                                     "paFOLT_direction": [
-                                        0,
-                                        5,
-                                        -6.7220001220703125
+                                        -4.9710001945495605,
+                                        11.595000267028809,
+                                        16.277999877929688
                                     ],
-                                    "paFOLT_magnitude": 5,
+                                    "paFOLT_magnitude": 1.2000000476837158,
                                     "paFOLT_gravityMod": 0,
                                     "paFOLT_gravity": -0,
                                     "paFOLT_forceType": 1
@@ -157,7 +159,9 @@
                                     "paShapeHasInitSpeed": true,
                                     "paShapePartSpeed": 0.0099999997764825821,
                                     "paShapeRandSpeed": 0,
-                                    "PaShapeSphereRadius": 0.30000001192092896,
+                                    "PaShapeSphereRadius": 0.10000000149011612,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 1,
                                     "PaShapeOffset": [
                                         0,
@@ -184,8 +188,8 @@
             "Active": true,
             "Position": [
                 0,
-                1.1169999837875366,
-                -6.7199997901916504
+                -0.10266494750976562,
+                0
             ],
             "Rotation": [
                 0,
@@ -198,10 +202,11 @@
                 1,
                 1
             ],
-            "UID": 846383091,
+            "UID": 1182483429,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1649811075,
+            "Static": false,
+            "ParentUID": 21476766,
             "Components": [
                 {
                     "Type": 1,
@@ -224,16 +229,16 @@
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/88911285.dds",
-                            "texUID": 88911285,
+                            "LibraryPath": "Library\/Textures\/39569920.dds",
+                            "texUID": 39569920,
                             "paEmitterName": "Empty",
                             "paLifeTime": [
                                 0.5,
                                 1
                             ],
                             "paSize": [
-                                0.10000000149011612,
-                                0.10000000149011612
+                                0.0099999997764825821,
+                                0.05000000074505806
                             ],
                             "paColor": [
                                 1,
@@ -251,8 +256,8 @@
                                         0
                                     ],
                                     "paFOLT_magnitude": 0,
-                                    "paFOLT_gravityMod": 0.0010000000474974513,
-                                    "paFOLT_gravity": -0.0098000010475516319,
+                                    "paFOLT_gravityMod": 0.0030000000260770321,
+                                    "paFOLT_gravity": -0.029400000348687172,
                                     "paFOLT_forceType": 2
                                 },
                                 {
@@ -301,10 +306,12 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 2,
+                                    "paShapePartSpeed": 1,
                                     "paShapeRandSpeed": 0,
-                                    "PaShapeConeRadius": 1.5,
-                                    "PaShapeConeHeight": 2,
+                                    "PaShapeConeRadius": 0.5,
+                                    "PaShapeConeHeight": 1,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 2,
                                     "PaShapeOffset": [
                                         0,

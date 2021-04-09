@@ -7,9 +7,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                0,
-                0,
-                0
+                -13.5892333984375,
+                7.4589319229125977,
+                -10.316718101501465
             ],
             "Rotation": [
                 0,
@@ -22,10 +22,11 @@
                 1,
                 1
             ],
-            "UID": 526446770,
+            "UID": 677150852,
             "PrefabID": 1747705162,
             "DontDestroy": false,
-            "ParentUID": 738685494,
+            "Static": false,
+            "ParentUID": 1676501951,
             "Components": [
                 {
                     "Type": 1,
@@ -40,11 +41,11 @@
             "Active": true,
             "Position": [
                 0,
-                2.5169961452484131,
+                0.024780750274658203,
                 0
             ],
             "Rotation": [
-                1,
+                -1,
                 0,
                 0,
                 -4.3711388286737929e-08
@@ -54,10 +55,11 @@
                 1,
                 1
             ],
-            "UID": 647170821,
+            "UID": 210964501,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 526446770,
+            "Static": false,
+            "ParentUID": 677150852,
             "Components": [
                 {
                     "Type": 1,
@@ -67,7 +69,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -80,12 +82,12 @@
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1110100241.dds",
-                            "texUID": 1110100241,
+                            "LibraryPath": "Library\/Textures\/39569920.dds",
+                            "texUID": 39569920,
                             "paEmitterName": "Fire",
                             "paLifeTime": [
                                 0.10000000149011612,
-                                0.15000000596046448
+                                0.10000000149011612
                             ],
                             "paSize": [
                                 0.10000000149011612,
@@ -162,16 +164,18 @@
                                 },
                                 {
                                     "paEffectType": 3,
-                                    "paSizeOLTStartSize": 0.10000000149011612,
-                                    "paSizeOLTEndSize": 0.5
+                                    "paSizeOLTStartSize": 0.035000000149011612,
+                                    "paSizeOLTEndSize": 0.10000000149011612
                                 },
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 30,
-                                    "paShapeRandSpeed": 0.5,
-                                    "PaShapeConeRadius": 0.10000000149011612,
-                                    "PaShapeConeHeight": 1,
+                                    "paShapePartSpeed": 10,
+                                    "paShapeRandSpeed": 0.30000001192092896,
+                                    "PaShapeConeRadius": 0.019999999552965164,
+                                    "PaShapeConeHeight": 0.30000001192092896,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 2,
                                     "PaShapeOffset": [
                                         0,
@@ -183,16 +187,16 @@
                         },
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/88911285.dds",
-                            "texUID": 88911285,
+                            "LibraryPath": "Library\/Textures\/170375526.dds",
+                            "texUID": 170375526,
                             "paEmitterName": "Smoke",
                             "paLifeTime": [
                                 0.10000000149011612,
                                 1
                             ],
                             "paSize": [
-                                0.10000000149011612,
-                                0.5
+                                0.05000000074505806,
+                                0.05000000074505806
                             ],
                             "paColor": [
                                 1,
@@ -239,10 +243,12 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 0.10000000149011612,
-                                    "paShapeRandSpeed": 5,
-                                    "PaShapeConeRadius": 0.40000000596046448,
-                                    "PaShapeConeHeight": 0.5,
+                                    "paShapePartSpeed": 0.05000000074505806,
+                                    "paShapeRandSpeed": 4,
+                                    "PaShapeConeRadius": 0.090000003576278687,
+                                    "PaShapeConeHeight": 0.10000000149011612,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 2,
                                     "PaShapeOffset": [
                                         0,

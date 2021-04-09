@@ -7,9 +7,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -6.740105152130127,
-                0,
-                19.903480529785156
+                15.614404678344726,
+                6.4240498542785645,
+                -14.378755569458008
             ],
             "Rotation": [
                 0,
@@ -22,10 +22,11 @@
                 1,
                 1
             ],
-            "UID": 1971928033,
+            "UID": 1020063345,
             "PrefabID": 436147261,
             "DontDestroy": false,
-            "ParentUID": 738685494,
+            "Static": false,
+            "ParentUID": 1676501951,
             "Components": [
                 {
                     "Type": 1,
@@ -40,7 +41,7 @@
             "Active": true,
             "Position": [
                 0,
-                1.0483405590057373,
+                0.066840648651123047,
                 0
             ],
             "Rotation": [
@@ -54,10 +55,11 @@
                 1,
                 1
             ],
-            "UID": 1119516430,
+            "UID": 545935955,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1971928033,
+            "Static": false,
+            "ParentUID": 1020063345,
             "Components": [
                 {
                     "Type": 1,
@@ -67,7 +69,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -76,20 +78,20 @@
                     "Active": true,
                     "systemActive": false,
                     "looping": false,
-                    "maxDuration": 0.27399998903274536,
+                    "maxDuration": 0.16300000250339508,
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1110100241.dds",
-                            "texUID": 1110100241,
+                            "LibraryPath": "Library\/Textures\/39569920.dds",
+                            "texUID": 39569920,
                             "paEmitterName": "Main Explosion",
                             "paLifeTime": [
                                 0.10000000149011612,
-                                1
+                                0.69999998807907104
                             ],
                             "paSize": [
-                                0.5,
-                                1
+                                0.10000000149011612,
+                                0.10000000149011612
                             ],
                             "paColor": [
                                 1,
@@ -144,8 +146,8 @@
                                 },
                                 {
                                     "paEffectType": 3,
-                                    "paSizeOLTStartSize": 1.5,
-                                    "paSizeOLTEndSize": 0.10000000149011612
+                                    "paSizeOLTStartSize": 1,
+                                    "paSizeOLTEndSize": 0
                                 },
                                 {
                                     "paEffectType": 4,
@@ -158,9 +160,11 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 15,
+                                    "paShapePartSpeed": 5,
                                     "paShapeRandSpeed": 0.20000000298023224,
                                     "PaShapeSphereRadius": 0.20000000298023224,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 1,
                                     "PaShapeOffset": [
                                         0,
@@ -172,8 +176,8 @@
                         },
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/88911285.dds",
-                            "texUID": 88911285,
+                            "LibraryPath": "Library\/Textures\/170375526.dds",
+                            "texUID": 170375526,
                             "paEmitterName": "Expl 2",
                             "paLifeTime": [
                                 1,
@@ -258,18 +262,20 @@
                                 {
                                     "paEffectType": 3,
                                     "paSizeOLTStartSize": 2,
-                                    "paSizeOLTEndSize": 3.5
+                                    "paSizeOLTEndSize": 0
                                 },
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 2,
+                                    "paShapePartSpeed": 0.75,
                                     "paShapeRandSpeed": 3,
                                     "PaShapeAreaDimensions": [
-                                        0.5,
+                                        0.30000001192092896,
                                         0.10000000149011612,
-                                        0.5
+                                        0.30000001192092896
                                     ],
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 0,
                                     "PaShapeOffset": [
                                         0,
@@ -286,7 +292,7 @@
                             "paEmitterName": "Up",
                             "paLifeTime": [
                                 2,
-                                2
+                                1.5
                             ],
                             "paSize": [
                                 0.20000000298023224,
@@ -366,16 +372,18 @@
                                 },
                                 {
                                     "paEffectType": 3,
-                                    "paSizeOLTStartSize": 1,
-                                    "paSizeOLTEndSize": 1.5
+                                    "paSizeOLTStartSize": 0.5,
+                                    "paSizeOLTEndSize": 0
                                 },
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
                                     "paShapePartSpeed": 1,
                                     "paShapeRandSpeed": 2,
-                                    "PaShapeConeRadius": 3,
-                                    "PaShapeConeHeight": 4,
+                                    "PaShapeConeRadius": 1.5,
+                                    "PaShapeConeHeight": 2,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 2,
                                     "PaShapeOffset": [
                                         0,
@@ -387,16 +395,16 @@
                         },
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1916745156.dds",
-                            "texUID": 1916745156,
+                            "LibraryPath": "Library\/Textures\/39569920.dds",
+                            "texUID": 39569920,
                             "paEmitterName": "Spurns",
                             "paLifeTime": [
                                 1,
                                 3
                             ],
                             "paSize": [
-                                0.10000000149011612,
-                                0.20000000298023224
+                                0.0010000000474974513,
+                                0.019999999552965164
                             ],
                             "paColor": [
                                 1,
@@ -461,19 +469,21 @@
                                 },
                                 {
                                     "paEffectType": 3,
-                                    "paSizeOLTStartSize": 0.20000000298023224,
-                                    "paSizeOLTEndSize": 0.10000000149011612
+                                    "paSizeOLTStartSize": 0.05000000074505806,
+                                    "paSizeOLTEndSize": 0.0099999997764825821
                                 },
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 2,
-                                    "paShapeRandSpeed": 0,
+                                    "paShapePartSpeed": 0.5,
+                                    "paShapeRandSpeed": 1,
                                     "PaShapeAreaDimensions": [
-                                        3.5,
-                                        3.5,
-                                        3.5
+                                        2,
+                                        2,
+                                        2
                                     ],
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 0,
                                     "PaShapeOffset": [
                                         0,
@@ -514,10 +524,11 @@
                 1,
                 1
             ],
-            "UID": 1339545374,
+            "UID": 294054802,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1971928033,
+            "Static": false,
+            "ParentUID": 1020063345,
             "Components": [
                 {
                     "Type": 1,
@@ -527,7 +538,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -540,8 +551,8 @@
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/198178459.dds",
-                            "texUID": 198178459,
+                            "LibraryPath": "Library\/Textures\/481592650.dds",
+                            "texUID": 481592650,
                             "paEmitterName": "Empty",
                             "paLifeTime": [
                                 0.69999998807907104,
@@ -593,8 +604,8 @@
                                 },
                                 {
                                     "paEffectType": 3,
-                                    "paSizeOLTStartSize": 1,
-                                    "paSizeOLTEndSize": 15
+                                    "paSizeOLTStartSize": 2.5,
+                                    "paSizeOLTEndSize": 3.5
                                 }
                             ]
                         }
