@@ -365,7 +365,7 @@ static float frand()
 float3 M_Pathfinding::FindRandomPointAround(float3 centerPoint, float radius)
 {
 	if (navMeshBuilder == nullptr)
-		return centerPoint;
+		return float3::zero;
 
 	dtPolyRef polyRef;
 	navMeshBuilder->GetNavMeshQuery()->findNearestPoly(centerPoint.ptr(), pathfinder.m_polyPickExt, &pathfinder.m_filter, &polyRef, 0);
@@ -380,9 +380,6 @@ float3 M_Pathfinding::FindRandomPointAround(float3 centerPoint, float radius)
 		randomPointSet = true;
 		randomRadius = radius;
 	}
-
-	if (dtStatusFailed(status) || (status & DT_STATUS_DETAIL_MASK))
-		return centerPoint;
 
 	return randomPoint;
 }
