@@ -564,7 +564,8 @@ public class Core : DiamondComponent
     private void UpdateDash()
     {
         StopPlayer();
-        gameObject.AddForce(gameObject.transform.GetForward().normalized * dashforce);
+        //gameObject.AddForce(gameObject.transform.GetForward().normalized * dashforce);
+        gameObject.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.GetForward().normalized * dashforce * Time.deltaTime;
     }
 
     private void EndDash()
@@ -585,7 +586,8 @@ public class Core : DiamondComponent
     private void UpdateMove()
     {
         RotatePlayer();
-        gameObject.SetVelocity(gameObject.transform.GetForward() * movementSpeed);
+        //gameObject.SetVelocity(gameObject.transform.GetForward() * movementSpeed);
+        gameObject.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.GetForward().normalized * movementSpeed * Time.deltaTime;
     }
 
     private void StopPlayer()

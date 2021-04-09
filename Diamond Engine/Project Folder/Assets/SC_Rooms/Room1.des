@@ -1989,6 +1989,7 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "FinalCutscene",
+                    "gui": 309414691,
                     "dialog": 2127558681,
                     "text": 562775364,
                     "mandoimage": 903949909,
@@ -9994,7 +9995,11 @@
                     "verticalTimeInterval": 1.2000000476837158,
                     "followPoint": 1079552447,
                     "horizontalSpeed": 4,
-                    "skillPushDuration": 1
+                    "skillPushDuration": 1,
+                    "wallSkillOffsetX": 0,
+                    "wallSkillOffsetY": 0,
+                    "wallSkillOffsetZ": 0,
+                    "skillWallDuration": 0
                 }
             ]
         },
@@ -10323,6 +10328,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Spawn",
+                    "prefab_1_UID": 0,
+                    "prefab_2_UID": 0,
                     "spawnPoint0": 865954322,
                     "spawnPoint1": 149946084,
                     "spawnPoint2": 478306097,
@@ -17789,7 +17796,7 @@
                     "dashCD": 0.30000001192092896,
                     "dashDuration": 0.20000000298023224,
                     "dashDistance": 4.75,
-                    "dashforce": 500,
+                    "dashforce": 50,
                     "fireRate": 0.15000000596046448,
                     "gadgetFireRate": 0.20000000298023224,
                     "fireRateAfterDashRecoverRatio": 1.75,

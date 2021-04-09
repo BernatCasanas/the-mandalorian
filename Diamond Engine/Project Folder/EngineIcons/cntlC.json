@@ -1,162 +1,132 @@
 {
     "Game Objects": [
         {
-            "name": "Empty",
+            "name": "Dust",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
                 0,
                 0,
-                0
+                -0.0081729888916015625
             ],
             "Rotation": [
+                -0.71074622869491577,
                 0,
                 0,
-                0,
-                1
+                0.70344847440719604
             ],
             "Scale": [
                 1,
-                1,
-                1
+                0.99999898672103882,
+                0.99999898672103882
             ],
-            "UID": 625428609,
+            "UID": 8345645,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1009255034,
+            "ParentUID": 1643193249,
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Text",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1426982923,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 625428609,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -45.299999237060547,
-                        -58.200000762939453
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        8.8000001907348633,
-                        14.199999809265137
-                    ]
                 },
                 {
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
                 },
                 {
-                    "Type": 9,
+                    "Type": 20,
                     "Active": true,
-                    "text": "Press A to talk",
-                    "maxTextLenght": 1120,
-                    "fontName": "Library\/Fonts\/renner-medium.ttf",
-                    "textColor": [
-                        1,
-                        1,
-                        1
+                    "systemActive": true,
+                    "looping": true,
+                    "maxDuration": 0.096000000834465027,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/39569920.dds",
+                            "texUID": 39569920,
+                            "paEmitterName": "Dust 1",
+                            "paLifeTime": [
+                                0.30000001192092896,
+                                2
+                            ],
+                            "paSize": [
+                                0.029999999329447746,
+                                0.10000000149011612
+                            ],
+                            "paColor": [
+                                0.45364236831665039,
+                                0.228880375623703,
+                                0.024034028872847557,
+                                1
+                            ],
+                            "paPerSec": 15,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    "paFOLT_magnitude": 0,
+                                    "paFOLT_gravityMod": 0.019999999552965164,
+                                    "paFOLT_gravity": -0.19599999487400055,
+                                    "paFOLT_forceType": 0
+                                },
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0,
+                                                0,
+                                                0,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                1,
+                                                1,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 0.5,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeConeRadius": 0.30000001192092896,
+                                    "PaShapeConeHeight": 0.20000000298023224,
+                                    "PaShapeSphereDirection": false,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 2,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
                     ]
-                }
-            ]
-        },
-        {
-            "name": "Text_Box",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 567046841,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 625428609,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
                 },
                 {
-                    "Type": 6,
+                    "Type": 21,
                     "Active": true,
-                    "Position": [
-                        3.4000000953674316,
-                        -66.199996948242188
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        58.599998474121094,
-                        32.599998474121094
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/1848582122.dds",
-                    "UID": 1848582122
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
                 }
             ]
         }
