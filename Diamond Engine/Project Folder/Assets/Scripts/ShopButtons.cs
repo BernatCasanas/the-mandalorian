@@ -6,6 +6,8 @@ public class ShopButtons : DiamondComponent
 {
     public GameObject shopController;
 
+    bool bought = false;
+
     public void OnExecuteButton()
     {
         if(shopController.GetComponent<SHOP>().firstClick)
@@ -15,19 +17,35 @@ public class ShopButtons : DiamondComponent
 
         if (gameObject.Name == "Button1")
         {
-            shopController.GetComponent<SHOP>().Buy(0);
+            if (!bought)
+            {
+                shopController.GetComponent<SHOP>().Buy(0);
+                bought = true;
+            }
         }
         else if (gameObject.Name == "Button2")
         {
-            shopController.GetComponent<SHOP>().Buy(1);
+            if (!bought)
+            {
+                shopController.GetComponent<SHOP>().Buy(1);
+                bought = true;
+            }
         }
         else if (gameObject.Name == "Button3")
         {
-            shopController.GetComponent<SHOP>().Buy(2);
+            if (!bought)
+            {
+                shopController.GetComponent<SHOP>().Buy(2);
+                bought = true;
+            }
         }
         else if (gameObject.Name == "ButtonHealth")
         {
-            shopController.GetComponent<SHOP>().Buy(3);
+            if (!bought)
+            {
+                shopController.GetComponent<SHOP>().Buy(3);
+                bought = true;
+            }
         }
         else if (gameObject.Name == "ButtonBack")
         {
