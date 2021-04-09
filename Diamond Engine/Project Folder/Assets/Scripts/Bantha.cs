@@ -635,7 +635,7 @@ public class Bantha : Enemy
     }
     private void Die()
     {
-        Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
+        Counter.SumToCounterType(Counter.CounterTypes.ENEMY_BANTHA);
         Counter.roomEnemies--;
         Debug.Log("Enemies: " + Counter.roomEnemies.ToString());
         if (Counter.roomEnemies <= 0)
