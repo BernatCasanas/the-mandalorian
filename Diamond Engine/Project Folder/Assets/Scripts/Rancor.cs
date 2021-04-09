@@ -71,7 +71,11 @@ public class Rancor : DiamondComponent
     //Projectile
     public float projectileTime = 1.5f;
     private float projectileTimer = 0.0f;
-   
+
+
+    //Hand slam
+    public float handSlamTime = 1.5f;
+    private float handSlamTimer = 0.0f;
 
     private bool start = false;
 
@@ -147,6 +151,15 @@ public class Rancor : DiamondComponent
             if (projectileTimer <= 0)
                 inputsList.Add(RANCOR_INPUT.IN_PROJECTILE_END);
         }
+
+
+        if (handSlamTimer > 0)
+        {
+            handSlamTimer -= Time.deltaTime;
+
+            if (handSlamTimer <= 0)
+                inputsList.Add(RANCOR_INPUT.IN_HAND_SLAM_END);
+        }
     }
 
 	private void ProcessExternalInput()
@@ -184,6 +197,8 @@ public class Rancor : DiamondComponent
                             break;
                         
                         case RANCOR_INPUT.IN_HAND_SLAM:
+                            currentState = RANCOR_STATE.HAND_SLAM;
+                            StartHandSlam();
                             break;
                         
                         case RANCOR_INPUT.IN_PROJECTILE:
@@ -218,6 +233,16 @@ public class Rancor : DiamondComponent
                     break;
 
                 case RANCOR_STATE.HAND_SLAM:
+                    switch (input)
+                    {
+                        case RANCOR_INPUT.IN_HAND_SLAM_END:
+                            currentState = RANCOR_STATE.SEARCH_STATE;
+                            EndHandSlam();
+                            break;
+                        
+                        case RANCOR_INPUT.IN_DEAD:
+                            break;
+                    }
                     break;
 
                 case RANCOR_STATE.PROJECTILE:
@@ -302,6 +327,7 @@ public class Rancor : DiamondComponent
                 break;
 
             case RANCOR_STATE.HAND_SLAM:
+                UpdateHandSlam();
                 break;
 
             case RANCOR_STATE.PROJECTILE:
@@ -487,6 +513,29 @@ public class Rancor : DiamondComponent
     }
 
     private void EndProjectile()
+    {
+
+    }
+
+    #endregion
+
+
+    #region HAND_SLAM
+
+    private void StartHandSlam()
+    {
+        handSlamTimer = handSlamTime;
+
+    }
+
+
+    private void UpdateHandSlam()
+    {
+        Debug.Log("Hand slam");
+    }
+
+
+    private void EndHandSlam()
     {
 
     }

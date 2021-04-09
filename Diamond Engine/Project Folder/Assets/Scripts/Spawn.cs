@@ -39,13 +39,9 @@ public class Spawn : DiamondComponent
 
     public List<GameObject> currentEnemies = null;
 
-
-    bool start = true;
-
     public void Awake()
     {
         currentEnemies = new List<GameObject>();
-        start = false;
     }
 
     public void Update()
@@ -100,7 +96,7 @@ public class Spawn : DiamondComponent
         {
             currentEnemies.Add(enemy);
 
-            Enemy enemyScript = enemy.GetComponent<StormTrooper2>();
+            Enemy enemyScript = enemy.GetComponent<StormTrooper>();
 
             if (enemyScript != null)
                 enemyScript.dieCallBack = this;
