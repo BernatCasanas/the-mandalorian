@@ -10,6 +10,7 @@ public class PlayerHealth : DiamondComponent
     //0 means this boon is not working else heal the amount stored here
     public static int healWhenKillingAnEnemy { get; private set; }
     public GameObject character_mesh = null;
+    public GameObject damage_screen = null;
    
     private bool die = false;
     private float damaged = 0.0f;
@@ -29,6 +30,10 @@ public class PlayerHealth : DiamondComponent
         {
             Debug.Log("Sending uniform");
             character_mesh.GetComponent<Material>().SetFloatUniform("damaged", damaged);
+        }
+        if (damage_screen != null && currHealth < currMaxHealth / 4)
+        {
+            damage_screen.GetComponent<Material>().SetFloatUniform("alpha", 1-(currHealth / (currMaxHealth / 4)));
         }
     }
 
