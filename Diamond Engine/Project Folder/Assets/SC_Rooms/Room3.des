@@ -2480,6 +2480,67 @@
             ]
         },
         {
+            "name": "DamageScreen",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 111556221,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 188057911,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        100,
+                        100
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/303021662.mat",
+                    "MaterialUID": 303021662
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/714069747.dds",
+                    "UID": 714069747
+                }
+            ]
+        },
+        {
             "name": "AllPause",
             "tag": "Untagged",
             "layer": "Default",
@@ -10435,7 +10496,7 @@
             "name": "Dialog",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "Position": [
                 0,
                 0,
@@ -11017,7 +11078,8 @@
                     "<currMaxHealth>k__BackingField": 0,
                     "<currHealth>k__BackingField": 0,
                     "<healWhenKillingAnEnemy>k__BackingField": 0,
-                    "character_mesh": 713750560
+                    "character_mesh": 713750560,
+                    "damage_screen": 111556221
                 },
                 {
                     "Type": 5,
@@ -12713,7 +12775,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Player.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/637612837.mat",
                     "MaterialUID": 637612837
                 }
@@ -13531,11 +13593,7 @@
                     "verticalTimeInterval": 1.2000000476837158,
                     "followPoint": 598316490,
                     "horizontalSpeed": 4,
-                    "skillPushDuration": 1,
-                    "wallSkillOffsetX": 0,
-                    "wallSkillOffsetY": 0,
-                    "wallSkillOffsetZ": 0,
-                    "skillWallDuration": 0
+                    "skillPushDuration": 1
                 }
             ]
         },
