@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -8.495758056640625,
-        8.6218957901000977,
-        16.576787948608398
+        -5.0455789566040039,
+        9.903416633605957,
+        17.892854690551758
     ],
     "EditorCameraZ": [
-        0.3939441442489624,
-        -0.81291687488555908,
-        -0.42892217636108398
+        0.55681729316711426,
+        -0.82297718524932861,
+        -0.11253106594085693
     ],
     "EditorCameraY": [
-        0.54987192153930664,
-        0.58237969875335693,
-        -0.59872758388519287
+        0.80664849281311035,
+        0.56807452440261841,
+        -0.16312450170516968
     ],
     "tags": [],
     "layers": [],
@@ -2828,7 +2828,7 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "HubRoomSwitch",
-                    "nextRoomUID": 1406013733
+                    "nextRoomUID": 1341124272
                 }
             ]
         },
@@ -2836,7 +2836,7 @@
             "name": "MandoTree",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "Position": [
                 0,
                 0,
@@ -7191,9 +7191,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -21.417537689208984,
+                2.4785425662994385,
                 0.8038598895072937,
-                2.2957310676574707
+                16.402853012084961
             ],
             "Rotation": [
                 0,
@@ -7224,6 +7224,95 @@
                     "player": 1032451305,
                     "maxDistance": 2.0000028610229492,
                     "displayText": 1994074079
+                }
+            ]
+        },
+        {
+            "name": "Particle System",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.024734973907470703,
+                -0.80385899543762207,
+                1.3857517242431641
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1687554268,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 937252279,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": true,
+                    "looping": true,
+                    "maxDuration": 5.0409998893737793,
+                    "ParticleEmitters": [
+                        {
+                            "paEmitterName": "Empty",
+                            "paLifeTime": [
+                                2.5999999046325684,
+                                2.5999999046325684
+                            ],
+                            "paSize": [
+                                1,
+                                1
+                            ],
+                            "paColor": [
+                                0.011131875216960907,
+                                0.26271188259124756,
+                                0,
+                                1
+                            ],
+                            "paPerSec": 46,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 1,
+                                    "paSizeOLTEndSize": 0.10000000149011612
+                                },
+                                {
+                                    "paEffectType": 4,
+                                    "paVelocityOLTVelocity": [
+                                        0,
+                                        1,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 3,
+                    "horizantalAligned": true
                 }
             ]
         },
