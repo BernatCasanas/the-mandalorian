@@ -4,11 +4,15 @@ using DiamondEngine;
 public class BH_DestructBox : DiamondComponent
 {
 	public GameObject thisReference;
+	public GameObject explosion = null;
+	public GameObject wave = null;
 
 	private bool triggered = false;
 	public float explosionTime = 2.0f;
 	private float timer = 0;
-	public ParticleSystem partSys;
+	private ParticleSystem partExp = null;
+	private ParticleSystem partWave = null;
+
 
 	public void Update()
 	{
@@ -16,16 +20,26 @@ public class BH_DestructBox : DiamondComponent
 			timer += Time.deltaTime;
 
 		if (timer >= explosionTime)
+        {
 			InternalCalls.Destroy(thisReference);
+		}
 
 	}
 
 	public void OnTriggerEnter(GameObject triggeredGameObject)
 	{
-		partSys = gameObject.GetComponent<ParticleSystem>();
 
-		if (partSys != null && !triggered)
-			partSys.Play();
+		if (explosion != null && wave != null)
+        {
+			partExp = explosion.GetComponent<ParticleSystem>();
+			partWave = wave.GetComponent<ParticleSystem>();
+		}
+
+		if (partExp != null && !triggered)
+			partExp.Play();
+
+		if (partWave != null && !triggered)
+			partWave.Play();
 
 		triggered = true;
 	}

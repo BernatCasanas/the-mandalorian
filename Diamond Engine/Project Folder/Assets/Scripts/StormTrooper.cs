@@ -38,8 +38,6 @@ public class StormTrooper : Enemy
                                              //Setting states directlly will break the behaviour  -Jose
     private List<INPUT> inputsList = new List<INPUT>();
 
-    private bool started = false;
-
     public GameObject shootPoint = null;
     public GameObject hitParticles = null;
 
@@ -416,8 +414,31 @@ public class StormTrooper : Enemy
         Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
         Audio.PlayAudio(gameObject, "Play_Mando_Voice");
 
-        if (hitParticles != null)
-            hitParticles.GetComponent<ParticleSystem>().Play();
+        ParticleSystem dead = null;
+        ParticleSystem wave = null;
+        ParticleSystem souls = null;
+
+        StormTrooperParticles myParticles = gameObject.GetComponent<StormTrooperParticles>();
+        if(myParticles != null)
+        {
+            dead = myParticles.dead;
+            wave = myParticles.wave;
+            souls = myParticles.souls;
+        }
+       
+
+        if (dead != null)
+        {
+            dead.Play();
+        }
+        if (wave != null)
+        {
+            wave.Play();
+        }
+        if (souls != null)
+        {
+            souls.Play();
+        }
 
         RemoveFromSpawner();
 
