@@ -57,6 +57,7 @@ public class TextController : DiamondComponent
 				gui_not_enabled = false;
 			}
 			Time.ResumeGame();
+			InternalCalls.Destroy(dialog);
 		}
 	}
 	public void Update()

@@ -1,19 +1,19 @@
 {
-    "NavMesh": -1,
+    "NavMesh": 2087711928,
     "EditorCameraPosition": [
-        -27.76579475402832,
-        22.336872100830078,
-        -10.382864952087402
+        -18.584300994873047,
+        52.522243499755859,
+        -49.910552978515625
     ],
     "EditorCameraZ": [
-        0.65514546632766724,
-        -0.59047812223434448,
-        0.47129619121551514
+        0.26384016871452332,
+        -0.54010754823684692,
+        0.79916977882385254
     ],
     "EditorCameraY": [
-        0.47943145036697388,
-        0.80705368518829346,
-        0.34468814730644226
+        0.16947612166404724,
+        0.84159600734710693,
+        0.5128294825553894
     ],
     "tags": [
         "Player"
@@ -234,7 +234,7 @@
             "UID": 1449621175,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 613945768,
             "Components": [
                 {
@@ -321,7 +321,7 @@
             "UID": 982314618,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 613945768,
             "Components": [
                 {
@@ -408,7 +408,7 @@
             "UID": 961797416,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 613945768,
             "Components": [
                 {
@@ -495,7 +495,7 @@
             "UID": 610302229,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 613945768,
             "Components": [
                 {
@@ -582,7 +582,7 @@
             "UID": 1887529314,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 613945768,
             "Components": [
                 {
@@ -669,7 +669,7 @@
             "UID": 711559123,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 613945768,
             "Components": [
                 {
@@ -756,7 +756,7 @@
             "UID": 1304933387,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 613945768,
             "Components": [
                 {
@@ -843,7 +843,7 @@
             "UID": 1574569713,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 613945768,
             "Components": [
                 {
@@ -930,7 +930,7 @@
             "UID": 520260364,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 613945768,
             "Components": [
                 {
@@ -1017,7 +1017,7 @@
             "UID": 1587611742,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 613945768,
             "Components": [
                 {
@@ -1104,7 +1104,7 @@
             "UID": 133778692,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 613945768,
             "Components": [
                 {
@@ -1191,7 +1191,7 @@
             "UID": 169738693,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 613945768,
             "Components": [
                 {
@@ -1278,7 +1278,7 @@
             "UID": 1922519559,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "ParentUID": 613945768,
             "Components": [
                 {
@@ -10851,6 +10851,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Spawn",
+                    "prefab_1_UID": 0,
+                    "prefab_2_UID": 0,
                     "spawnPoint0": 1373407371,
                     "spawnPoint1": 1285193716,
                     "spawnPoint2": 1565549381,
@@ -11196,7 +11198,11 @@
                     "verticalTimeInterval": 1.2000000476837158,
                     "followPoint": 585592383,
                     "horizontalSpeed": 4,
-                    "skillPushDuration": 1
+                    "skillPushDuration": 1,
+                    "wallSkillOffsetX": 0,
+                    "wallSkillOffsetY": 0,
+                    "wallSkillOffsetZ": 0,
+                    "skillWallDuration": 0
                 }
             ]
         },
@@ -11500,7 +11506,7 @@
                     "dashCD": 0.30000001192092896,
                     "dashDuration": 0.20000000298023224,
                     "dashDistance": 4.75,
-                    "dashforce": 500,
+                    "dashforce": 50,
                     "fireRate": 0.15000000596046448,
                     "gadgetFireRate": 0.20000000298023224,
                     "fireRateAfterDashRecoverRatio": 1.75,

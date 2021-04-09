@@ -3,6 +3,12 @@ using DiamondEngine;
 using System.Collections.Generic;
 public class Spawn : DiamondComponent
 {
+    private string stormtrooperPath = "Library/Prefabs/489054570.prefab";
+    private string banthaPath       = "Library/Prefabs/978476012.prefab";
+
+    public bool spawnStormtrooper = false;
+    public bool spawnBantha = false;
+
     private bool doneSpawning = false;
 
     public GameObject spawnPoint0 = null;
@@ -24,25 +30,28 @@ public class Spawn : DiamondComponent
 
     private bool fightEndMusicPlayed = false;
 
-    public bool turretSpawnPoint0 = false;
-    public bool turretSpawnPoint1 = false;
-    public bool turretSpawnPoint2 = false;
-    public bool turretSpawnPoint3 = false;
-    public bool turretSpawnPoint4 = false;
-    public bool turretSpawnPoint5 = false;
+    //public bool turretSpawnPoint0 = false;
+    //public bool turretSpawnPoint1 = false;
+    //public bool turretSpawnPoint2 = false;
+    //public bool turretSpawnPoint3 = false;
+    //public bool turretSpawnPoint4 = false;
+    //public bool turretSpawnPoint5 = false;
 
     public List<GameObject> currentEnemies = null;
 
 
     bool start = true;
+
+    public void Awake()
+    {
+        currentEnemies = new List<GameObject>();
+        start = false;
+    }
+
     public void Update()
     {
-        if (start)
-        {
-            currentEnemies = new List<GameObject>();
-            start = false;
-        }
-
+        if (!spawnStormtrooper && !spawnBantha)
+            return;
 
         timePassed += Time.deltaTime;
 
@@ -70,9 +79,23 @@ public class Spawn : DiamondComponent
 
     GameObject SpawnPrefab(Vector3 position)
     {
-        GameObject enemy = InternalCalls.CreatePrefab("Library/Prefabs/489054570.prefab", position, Quaternion.identity, Vector3.one);
+        string libraryPath = "";
+
+        if (spawnStormtrooper && spawnBantha)
+            libraryPath = RandomizePrefabs();
+        else
+        {
+            if (spawnStormtrooper)
+                libraryPath = stormtrooperPath;
+            else if (spawnBantha)
+                libraryPath = banthaPath;
+            else return null;
+        }
+
+        GameObject enemy = InternalCalls.CreatePrefab(libraryPath, position, Quaternion.identity, Vector3.one);
         Counter.roomEnemies++;
 
+        //add enemy script
         if (enemy != null)
         {
             currentEnemies.Add(enemy);
@@ -92,30 +115,29 @@ public class Spawn : DiamondComponent
 
         switch (index)
         {
-            case 0:
-                spawnPoint = spawnPoint0;
-                break;
-            case 1:
-                spawnPoint = spawnPoint1;
-                break;
-            case 2:
-                spawnPoint = spawnPoint2;
-                break;
-            case 3:
-                spawnPoint = spawnPoint3;
-                break;
-            case 4:
-                spawnPoint = spawnPoint4;
-                break;
-            case 5:
-                spawnPoint = spawnPoint5;
-                break;
-            default:
-                spawnPoint = spawnPoint0;
-                break;
+            case 0: spawnPoint = spawnPoint0; break;
+            case 1: spawnPoint = spawnPoint1; break;
+            case 2: spawnPoint = spawnPoint2; break;
+            case 3: spawnPoint = spawnPoint3; break;
+            case 4: spawnPoint = spawnPoint4; break;
+            case 5: spawnPoint = spawnPoint5; break;
+            default:spawnPoint = spawnPoint0; break;
         }
 
         return spawnPoint;
+    }
+
+    private string RandomizePrefabs()
+    {
+        Random random = new Random();
+
+        int index = random.Next(2);
+
+        if (index == 0)
+            return stormtrooperPath;
+        else
+            return banthaPath;
+
     }
 
     private void SpawnWave()
@@ -154,13 +176,13 @@ public class Spawn : DiamondComponent
                     spawnPoints[randomIndex] = 1;
                     spawnEnemies++;
 
-                    if (enemy != null)
-                    {
-                        Enemy enemyScript = enemy.GetComponent<StormTrooper>();
+                    //if (enemy != null)
+                    //{
+                    //    Enemy enemyScript = enemy.GetComponent<StormTrooper>();
 
-                        if (enemyScript != null)
-                            enemyScript.turretMode = TurretSpawnPoint(randomIndex);
-                    }
+                    //    if (enemyScript != null)
+                    //        enemyScript.turretMode = TurretSpawnPoint(randomIndex);
+                    //}
 
                     break;
                 }
@@ -168,34 +190,27 @@ public class Spawn : DiamondComponent
         }
     }
 
+    private string GenerateLibraryPath(int uid)
+    {
+        if (uid == 0)
+            return "Library/Prefabs/489054570.prefab";
+        else
+            return "Library/Prefabs/" + uid.ToString() + ".prefab";
+    }
+
     private bool TurretSpawnPoint(int index)
     {
         bool turret = false;
 
-        switch (index)
-        {
-            case 0:
-                turret = turretSpawnPoint0;
-                break;
-            case 1:
-                turret = turretSpawnPoint1;
-                break;
-            case 2:
-                turret = turretSpawnPoint2;
-                break;
-            case 3:
-                turret = turretSpawnPoint3;
-                break;
-            case 4:
-                turret = turretSpawnPoint4;
-                break;
-            case 5:
-                turret = turretSpawnPoint5;
-                break;
-            default:
-                turret = false;
-                break;
-        }
+        //switch (index)
+        //{
+        //    case 0: turret = turretSpawnPoint0; break;
+        //    case 1: turret = turretSpawnPoint1; break;
+        //    case 2: turret = turretSpawnPoint2; break;
+        //    case 3: turret = turretSpawnPoint3; break;
+        //    case 4: turret = turretSpawnPoint4; break;
+        //    case 5: turret = turretSpawnPoint5; break;
+        //}
 
         return turret;
     }

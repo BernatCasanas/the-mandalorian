@@ -29,6 +29,13 @@ namespace DiamondEngine
             return (value - from) / (to - from);
         }
 
+        //remaps a value v between iMin & iMax to oMin, oMax.
+        public static float Remap(float iMin,float iMax,float oMin, float oMax,float v)
+        {
+            float t = InvLerp(iMin, iMax, v);
+            return Lerp(oMin,oMax,t);
+        }
+
         public static float LerpAngle(float from, float to, float t)
         {
             float delta = Repeat((to - from), 360);

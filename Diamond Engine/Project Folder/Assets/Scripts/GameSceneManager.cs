@@ -20,19 +20,17 @@ public class GameSceneManager : DiamondComponent
         if (Counter.roomEnemies > 0)    // This would, ideally, not be necessary, and enemies generating would have nothing to do with dialogue ocurring, since it would (presumably) stop the game
         {
             enemiesHaveSpawned = true;
-            //Counter.roomEnemies = 0;    // KILL THIS LINE, IT'S ONLY FOR DEBUG PURPOSES
         }
 
         else if (enemiesHaveSpawned && Counter.roomEnemies <= 0 && rewardData == null)    // Right now, when a room begins, enemy counter = 0
         {
-            Time.PauseGame();
             rewardData = rewardMenu.GenerateRewardPipeline();
 
             if (rewardData != null)
             {
                 if (rewardObject != null)
                 {
-                    InternalCalls.Destroy(rewardObject);    // I don't like this, but if I try to give it a new position once created, it doesn't work; only does when assigning position at constructor...
+                    InternalCalls.Destroy(rewardObject);    // I don't like this, but if I try to give it a new position once created, it doesn't work; only does when assigning position at constructor... When fixed, just reassign position
                 }
 
                 rewardInitialPos = InternalCalls.FindObjectWithName("DinDjarin").transform.globalPosition;    // Not this position, but for now it's fine;
@@ -50,12 +48,22 @@ public class GameSceneManager : DiamondComponent
             rewardSpawnComponent.AdvanceVerticalMovement(rewardInitialPos);
             rewardSpawnComponent.AdvanceRotation();
 
-            if (rewardSpawnComponent.trigger == true)
-            {
-                //rewardObject.Enable(false);
-                // Then the player touches the thing, we add whatever they won to the player object, we disable rewardObject and we change scene :D
-                // All bools that regulate stuff should be put at false when changing scene
-            }
+             if (rewardSpawnComponent.trigger == true)
+             {
+                 rewardData.Use();
+                 rewardMenu.selectedReward = null;
+                 rewardObject.Enable(false);
+                 enemiesHaveSpawned = false;
+                 rewardData = null;
+
+                 if (!Counter.isFinalScene)
+                     RoomSwitch.SwitchRooms();
+                 else
+                 {
+                     Counter.gameResult = Counter.GameResult.VICTORY;
+                     SceneManager.LoadScene(821370213);
+                 }
+             }
 
         }
 
