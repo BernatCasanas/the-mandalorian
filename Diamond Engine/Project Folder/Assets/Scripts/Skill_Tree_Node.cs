@@ -102,7 +102,7 @@ public class Skill_Tree_Node : DiamondComponent
 
         //}
 
-        if (hub_skill_controller == null || hub_skill_controller.GetComponent<HubSkillTreeController>().skill_selected == skill || !gameObject.GetComponent<Navigation>().is_active/*ARNAU: is_selected*/)
+        if (hub_skill_controller == null || hub_skill_controller.GetComponent<HubSkillTreeController>().skill_selected == skill || !gameObject.GetComponent<Navigation>().is_selected)
             return;
         
         hub_skill_controller.GetComponent<HubSkillTreeController>().skill_selected = skill;
