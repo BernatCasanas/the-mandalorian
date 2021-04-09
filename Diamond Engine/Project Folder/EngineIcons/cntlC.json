@@ -1,6 +1,72 @@
 {
     "Game Objects": [
         {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 938207836,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1324189369,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -16.200000762939453,
+                        10.600000381469727
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        6.5,
+                        10.399999618530273
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Cad Bane’s rocket boots",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
             "name": "Dust Trail R",
             "tag": "Untagged",
             "layer": "Default",
@@ -21,11 +87,11 @@
                 1,
                 1
             ],
-            "UID": 1643193249,
+            "UID": 740166247,
             "PrefabID": 1187362402,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1800709106,
+            "ParentUID": 938207836,
             "Components": [
                 {
                     "Type": 1,
@@ -54,11 +120,11 @@
                 0.99999892711639404,
                 0.99999892711639404
             ],
-            "UID": 8345645,
+            "UID": 96688975,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1643193249,
+            "ParentUID": 740166247,
             "Components": [
                 {
                     "Type": 1,
@@ -80,9 +146,6 @@
                     "maxDuration": 0.096000000834465027,
                     "ParticleEmitters": [
                         {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/39569920.dds",
-                            "texUID": 39569920,
                             "paEmitterName": "Dust 1",
                             "paLifeTime": [
                                 0.30000001192092896,
@@ -119,8 +182,6 @@
                                     "paShapeRandSpeed": 0,
                                     "PaShapeConeRadius": 0.10000000149011612,
                                     "PaShapeConeHeight": 0.10000000149011612,
-                                    "PaShapeSphereDirection": false,
-                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 2,
                                     "PaShapeOffset": [
                                         0,
@@ -131,9 +192,6 @@
                             ]
                         },
                         {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/39569920.dds",
-                            "texUID": 39569920,
                             "paEmitterName": "Dust 2",
                             "paLifeTime": [
                                 0.30000001192092896,
@@ -170,8 +228,6 @@
                                     "paShapeRandSpeed": 0,
                                     "PaShapeConeRadius": 0.30000001192092896,
                                     "PaShapeConeHeight": 0.20000000298023224,
-                                    "PaShapeSphereDirection": false,
-                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 2,
                                     "PaShapeOffset": [
                                         0,
