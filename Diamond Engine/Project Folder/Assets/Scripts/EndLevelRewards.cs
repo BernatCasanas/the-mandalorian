@@ -260,7 +260,7 @@ public class EndLevelRewards
         switch (reward.type)
         {
             case RewardType.REWARD_BOON:
-                selectedResource = new BeskarResource();
+                selectedResource = BoonDataHolder.boonType[reward.boonIndex];
                 break;
 
             case RewardType.REWARD_BESKAR:
