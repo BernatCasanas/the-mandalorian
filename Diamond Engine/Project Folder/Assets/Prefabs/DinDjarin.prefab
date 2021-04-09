@@ -44,7 +44,7 @@
                     "dashCD": 0.30000001192092896,
                     "dashDuration": 0.20000000298023224,
                     "dashDistance": 4.75,
-                    "dashforce": 500,
+                    "dashforce": 50,
                     "fireRate": 0.15000000596046448,
                     "gadgetFireRate": 0.20000000298023224,
                     "fireRateAfterDashRecoverRatio": 1.75,
@@ -134,8 +134,16 @@
                     "maxRange": 50,
                     "angleWeight": 0.5,
                     "distanceWeight": 0.5,
-                    "spawnGameObject": 947121240,
                     "isShooting": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "PlayerParticles",
+                    "dustObj": 8345645,
+                    "muzzleObj": 1738046822,
+                    "jetpackObj": 303744531,
+                    "impactObj": 1418240991
                 }
             ]
         },
@@ -460,7 +468,7 @@
                 0,
                 0,
                 -0.0073059904389083385,
-                0.99997329711914062
+                0.99997329711914063
             ],
             "Scale": [
                 1,
@@ -1541,7 +1549,7 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                0.49832534790039062,
+                0.49832534790039063,
                 2.0816681711721685e-17,
                 1.3898392876873153e-17
             ],
@@ -2016,7 +2024,7 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -1.8636245727539062,
+                -1.8636245727539063,
                 0.046333789825439453,
                 -0.77125072479248047
             ],
@@ -2090,7 +2098,7 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -1.8636245727539062,
+                -1.8636245727539063,
                 0.046333789825439453,
                 0.86050128936767578
             ],
@@ -2164,7 +2172,7 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                0.76593399047851562,
+                0.76593399047851563,
                 0.046333789825439453,
                 0.86050128936767578
             ],
@@ -2312,8 +2320,8 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -0.0040750503540039062,
-                -0.17300605773925781,
+                -0.0040750503540039063,
+                -0.044361591339111328,
                 -0.058134078979492188
             ],
             "Rotation": [
@@ -2374,7 +2382,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -2565,7 +2573,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -2712,7 +2720,7 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                0.14876651763916016,
+                0.00073337554931640625,
                 0.85818099975585938,
                 -0.19471836090087891
             ],
@@ -2746,7 +2754,7 @@
             "Active": true,
             "Position": [
                 0,
-                0.024780750274658203,
+                0,
                 0
             ],
             "Rotation": [
@@ -2774,7 +2782,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -3041,7 +3049,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },

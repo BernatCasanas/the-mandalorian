@@ -54,16 +54,16 @@ public class Skill_Tree_Node : DiamondComponent
             switch (value)
             {
                 case NODE_STATE.UNLOCKED:
-                    gameObject.GetComponent<Image2D>().AssignLibrary2DTexture(unlockedButtonUnhovered);
+                    //gameObject.GetComponent<Image2D>().AssignLibrary2DTexture(unlockedButtonUnhovered);
                     gameObject.GetComponent<Button>().ChangeSprites(unlockedButtonPressed, unlockedButtonHovered, unlockedButtonUnhovered);
                     Debug.Log(skill_name + " has been unlocked.");
                     break;
                 case NODE_STATE.LOCKED:
-                    gameObject.GetComponent<Image2D>().AssignLibrary2DTexture(lockedButtonUnhovered);
+                    //gameObject.GetComponent<Image2D>().AssignLibrary2DTexture(lockedButtonUnhovered);
                     gameObject.GetComponent<Button>().ChangeSprites(lockedButtonPressed, lockedButtonHovered, lockedButtonUnhovered);
                     break;
                 case NODE_STATE.OWNED:
-                    gameObject.GetComponent<Image2D>().AssignLibrary2DTexture(ownedButtonUnhovered);
+                    //gameObject.GetComponent<Image2D>().AssignLibrary2DTexture(ownedButtonUnhovered);
                     gameObject.GetComponent<Button>().ChangeSprites(ownedButtonPressed, ownedButtonHovered, ownedButtonUnhovered);
                     Debug.Log(skill_name + " has been owned.");
                     break;

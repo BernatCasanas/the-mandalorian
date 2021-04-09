@@ -144,6 +144,8 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            int newHP = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementMaxHpPercent(0.1f, true);
+            Debug.Log("MAX HP: " + newHP);
         }
     }
 

@@ -1,9 +1,6 @@
-using System;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Collections.Generic;
-
 using DiamondEngine;
+using System;
+using System.Collections.Generic;
 
 public class Core : DiamondComponent
 {
@@ -39,6 +36,15 @@ public class Core : DiamondComponent
         IN_DEAD
     }
 
+    enum PARTICLES : int
+    {
+        NONE = -1,
+        DUST,
+        MUZZLE,
+        JETPACK,
+        IMPACT
+    }
+
     public GameObject shootPoint = null;
     public GameObject hud = null;
 
@@ -56,6 +62,10 @@ public class Core : DiamondComponent
     public float movementSpeed = 35.0f;
     public float mouseSens = 1.0f;
     private double angle = 0.0f;
+    private float runTime = 0.0f;
+    private float dustTime = 0.0f;
+
+
 
     // Dash
     //private float timeSinceLastDash = 0.0f;
@@ -145,6 +155,7 @@ public class Core : DiamondComponent
 
         Debug.Log("Start!");
         mySpawnPos = new Vector3(gameObject.transform.globalPosition.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z);
+        runTime = Animator.GetAnimationDuration(gameObject, "Run")/2;
         #endregion
     }
 
@@ -439,7 +450,7 @@ public class Core : DiamondComponent
         Animator.Play(gameObject, "Shoot", normalShootSpeed);
 
         shootingTimer = fireRate;
-
+        PlayParticles(PARTICLES.MUZZLE);
         if (myAimbot != null)
         {
             myAimbot.isShooting = true;
@@ -559,6 +570,8 @@ public class Core : DiamondComponent
 
         dashTimer = dashDuration;
         dashStartYPos = gameObject.transform.localPosition.y;
+
+        PlayParticles(PARTICLES.JETPACK);
     }
 
     private void UpdateDash()
@@ -586,13 +599,22 @@ public class Core : DiamondComponent
     private void UpdateMove()
     {
         RotatePlayer();
+        dustTime += Time.deltaTime;
+        if (dustTime >= runTime)
+        {
+
+            PlayParticles(PARTICLES.DUST);
+            dustTime = 0;
+        }
+       
+
         //gameObject.SetVelocity(gameObject.transform.GetForward() * movementSpeed);
         gameObject.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.GetForward().normalized * movementSpeed * Time.deltaTime;
     }
 
     private void StopPlayer()
     {
-        Debug.Log("Stoping");
+       // Debug.Log("Stoping");
         gameObject.SetVelocity(new Vector3(0, 0, 0));
     }
 
@@ -674,6 +696,7 @@ public class Core : DiamondComponent
         if (collidedGameObject.CompareTag("StormTrooperBullet"))
         {
             //InternalCalls.Destroy(gameObject);
+            PlayParticles(PARTICLES.IMPACT);
             BH_Bullet bulletScript = collidedGameObject.GetComponent<BH_Bullet>();
 
             if (bulletScript != null)
@@ -683,9 +706,7 @@ public class Core : DiamondComponent
         {
             //InternalCalls.Destroy(gameObject);
             float damage = collidedGameObject.GetComponent<Enemy>().damage;
-            Debug.Log("Me cago en diamond engine");
-
-
+            
             if (damage != 0)
                 gameObject.GetComponent<PlayerHealth>().TakeDamage((int)damage);
         }
@@ -724,4 +745,67 @@ public class Core : DiamondComponent
         }
     }
 
+    private void PlayParticles(PARTICLES particletype)
+    {
+        PlayerParticles myParticles = gameObject.GetComponent<PlayerParticles>();
+        ParticleSystem particle = null;
+
+        switch (particletype)
+        {
+            case PARTICLES.NONE:
+                break;
+            case PARTICLES.DUST:
+                if (myParticles != null)
+                {
+                    particle = myParticles.dust;
+                    if (particle != null)
+                        particle.Play();
+                    else
+                        Debug.Log("Jetpack particle not found");
+                }
+                else
+                    Debug.Log("Component Particles not found");
+                break;
+                
+            case PARTICLES.IMPACT:
+                if (myParticles != null)
+                {
+                    particle = myParticles.impact;
+                    if (particle != null)
+                        particle.Play();
+                    else
+                        Debug.Log("Jetpack particle not found");
+                }
+                else
+                    Debug.Log("Component Particles not found");
+                break;
+
+            case PARTICLES.JETPACK:
+                if (myParticles != null)
+                {
+                    particle = myParticles.jetpack;
+                    if (particle != null)
+                        particle.Play();
+                    else
+                        Debug.Log("Jetpack particle not found");
+                }
+                else
+                    Debug.Log("Component Particles not found");
+                break;
+
+            case PARTICLES.MUZZLE:
+                if (myParticles != null)
+                {
+                    particle = myParticles.muzzle;
+                    if (particle != null)
+                        particle.Play();
+                    else
+                        Debug.Log("Jetpack particle not found");
+                }
+                else
+                    Debug.Log("Component Particles not found");
+                break;
+
+        }
+    }
 }

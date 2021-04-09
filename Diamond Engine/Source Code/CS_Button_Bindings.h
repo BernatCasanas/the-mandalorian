@@ -31,6 +31,8 @@ void CS_ButtonChangeSprites(MonoObject* comp, int pressed, int hovered, int notH
 		ResourceTexture* inputRes = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(notHovered, Resource::Type::TEXTURE));
 		thisReference->ChangeSprite(BUTTONSTATE::BUTTONUNHOVERED, inputRes);
 	}
+
+	thisReference->ChangeTexture(thisReference->GetActualState());
 }
 
 
