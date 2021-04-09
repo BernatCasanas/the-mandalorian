@@ -9,6 +9,11 @@ namespace DiamondEngine {
 		public virtual void Use()
 		{
 		}
+
+        public virtual void AddDescription()
+        {
+            description = "Sorry, but this skill is currently unavailable. Please wait for the next update.";
+        }
 	}
 
     #region Mando Skills
@@ -20,6 +25,11 @@ namespace DiamondEngine {
         {
             Debug.Log("Knockback");
         }
+
+        //public override void AddDescription()
+        //{
+        //    description = "Knockback Skill. Press 'A' to buy it. Price: it's free!";
+        //}
     }
 
     public class UtilityMovementSpeedSkill : Skills
@@ -28,6 +38,7 @@ namespace DiamondEngine {
         {
             Debug.Log("Speed");
         }
+
     }
 
     public class UtilityIncreaseDamageSkill : Skills
@@ -36,6 +47,7 @@ namespace DiamondEngine {
         {
             Debug.Log("Increase");
         }
+
     }
 
     public class UtilityDamageReductionSkill : Skills
@@ -84,6 +96,11 @@ namespace DiamondEngine {
         public override void Use()
         {
         }
+
+        //public override void AddDescription()
+        //{
+        //    description = "Increase Damage Skill. Press 'A' to buy it. Price: it's free!";
+        //}
     }
 
     public class AggressionFireRateSkill : Skills
@@ -147,12 +164,22 @@ namespace DiamondEngine {
             int newHP = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementMaxHpPercent(0.1f, true);
             Debug.Log("MAX HP: " + newHP);
         }
+
+        public override void AddDescription()
+        {
+            description = "Increase Max HP Skill. Press 'A' to buy it. Price: it's free!";
+        }
     }
 
     public class DefenseDamageReductionSkill : Skills
     {
         public override void Use()
         {
+        }
+
+        public override void AddDescription()
+        {
+            description = "Decrease the Damage Reduction Skill. Press 'A' to buy it. Price: it's free!";
         }
     }
 

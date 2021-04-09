@@ -54,18 +54,13 @@ public class Skill_Tree_Node : DiamondComponent
             switch (value)
             {
                 case NODE_STATE.UNLOCKED:
-                    //gameObject.GetComponent<Image2D>().AssignLibrary2DTexture(unlockedButtonUnhovered);
                     gameObject.GetComponent<Button>().ChangeSprites(unlockedButtonPressed, unlockedButtonHovered, unlockedButtonUnhovered);
-                    Debug.Log(skill_name + " has been unlocked.");
                     break;
                 case NODE_STATE.LOCKED:
-                    //gameObject.GetComponent<Image2D>().AssignLibrary2DTexture(lockedButtonUnhovered);
-                    gameObject.GetComponent<Button>().ChangeSprites(lockedButtonPressed, lockedButtonHovered, lockedButtonUnhovered);
+                    gameObject.GetComponent<Button>().ChangeSprites(lockedButtonHovered, lockedButtonHovered, lockedButtonUnhovered);
                     break;
                 case NODE_STATE.OWNED:
-                    //gameObject.GetComponent<Image2D>().AssignLibrary2DTexture(ownedButtonUnhovered);
                     gameObject.GetComponent<Button>().ChangeSprites(ownedButtonPressed, ownedButtonHovered, ownedButtonUnhovered);
-                    Debug.Log(skill_name + " has been owned.");
                     break;
                 default:
                     break;
@@ -86,6 +81,7 @@ public class Skill_Tree_Node : DiamondComponent
         {
             Type t = SkillDictionary.skill_type[skill_name];
             skill = (Skills)Activator.CreateInstance(t);
+            skill.AddDescription();
         }
         else
         {
@@ -94,23 +90,17 @@ public class Skill_Tree_Node : DiamondComponent
     }
 	public void Update()
 	{
-        //if (start)
-        //{
-        //    start = false;
 
-
-
-        //}
-
-        if (hub_skill_controller == null || hub_skill_controller.GetComponent<HubSkillTreeController>().skill_selected == skill || !gameObject.GetComponent<Navigation>().is_selected)
+        if (hub_skill_controller == null || hub_skill_controller.GetComponent<HubSkillTreeController>().skill_selected == skill || gameObject.GetComponent<Navigation>().is_selected == false)
             return;
         
+
         hub_skill_controller.GetComponent<HubSkillTreeController>().skill_selected = skill;
         if (text_description != null)
             text_description.GetComponent<Text>().text = skill.description;
-       
 
-	}
+
+    }
     public void OnExecuteButton()
     {
         if (state == NODE_STATE.LOCKED || state == NODE_STATE.OWNED)
