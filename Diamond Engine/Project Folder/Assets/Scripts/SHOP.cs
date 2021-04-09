@@ -9,7 +9,6 @@ public class SHOP : DiamondComponent
     public GameObject hud;
     public GameObject textPopUp;
     public float interactionRange = 2.0f;
-    public bool firstClick = false;
     
     public void Update()
     {
@@ -25,7 +24,6 @@ public class SHOP : DiamondComponent
             }
         }
         else textPopUp.Enable(false);
-
     }
 
     public bool InRange(Vector3 point, float givenRange)
@@ -77,11 +75,30 @@ public class SHOP : DiamondComponent
         }
     }
 
-    public void CloseShop()
+    public void OnExecuteButton()
     {
-        shopUI.Enable(!shopUI.IsEnabled());
-        Time.ResumeGame();
-        textPopUp.Enable(true);
+        if (gameObject.Name == "Button1")
+        {
+            Buy(0);
+        }
+        else if (gameObject.Name == "Button2")
+        {
+            Buy(1);
+        }
+        else if (gameObject.Name == "Button3")
+        {
+            Buy(2);
+        }
+        else if (gameObject.Name == "ButtonHealth")
+        {
+            Buy(3);
+        }
+        else if (gameObject.Name == "ButtonBack")
+        {
+            shopUI.Enable(!shopUI.IsEnabled());
+            Time.ResumeGame();
+            textPopUp.Enable(true);
+        }
     }
 
 }
