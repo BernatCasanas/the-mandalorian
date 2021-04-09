@@ -25,7 +25,7 @@ public class PlayerHealth : DiamondComponent
         {
             damaged = Mathf.Lerp(damaged, 0.0f, 0.1f);
         }
-        if (character_mesh.GetComponent<Material>() != null)
+        if (character_mesh != null)
         {
             Debug.Log("Sending uniform");
             character_mesh.GetComponent<Material>().SetFloatUniform("damaged", damaged);
