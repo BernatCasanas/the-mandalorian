@@ -3,36 +3,65 @@ using DiamondEngine;
 
 public class StormTrooperParticles : DiamondComponent
 {
-    public GameObject circles;
-    public GameObject circlesUp;
-    public GameObject stormTrooper;
+    public GameObject circlesObj = null;
+    public GameObject circlesUPObj = null;
+    public GameObject stormTrooperObj = null;
+    public GameObject deadObj = null;
+    public GameObject waveObj = null;
+    public GameObject soulsObj = null;
+    public ParticleSystem circles = null;
+    public ParticleSystem circlesUp = null;
+    public ParticleSystem stormTrooper = null;
+    public ParticleSystem dead = null;
+    public ParticleSystem wave = null;
+    public ParticleSystem souls = null;
 
-    public bool start = true;
+    public void Awake()
+    {
+        if (circlesObj != null) 
+        {
+            circles = circlesObj.GetComponent<ParticleSystem>();
+        }
+        if (circlesUPObj != null)
+        {
+            circlesUp = circlesUPObj.GetComponent<ParticleSystem>();
+        }
+        if (stormTrooperObj != null)
+        {
+            stormTrooper = stormTrooperObj.GetComponent<ParticleSystem>();
+        }
+
+        if (deadObj != null)
+        {
+            dead = deadObj.GetComponent<ParticleSystem>();
+        }
+        if (waveObj != null)
+        {
+            wave = waveObj.GetComponent<ParticleSystem>();
+        }
+        if (soulsObj != null)
+        {
+            souls = soulsObj.GetComponent<ParticleSystem>();
+        }
+
+
+        if (circles != null) 
+        {
+            circles.Play();
+        }
+        if (circlesUp != null)
+        {
+            circlesUp.Play();
+        }
+        if (stormTrooper != null)
+        {
+            stormTrooper.Play();
+        }
+        
+    }
     public void Update()
     {
-        if (start)
-        {
-            ParticleSystem circlesP = null;
-            ParticleSystem circlesUpP = null;
-            ParticleSystem stormTrooperP = null;
-
-            if (circles != null && circlesUp != null && stormTrooper != null)
-            {
-
-                circlesP = circles.GetComponent<ParticleSystem>();
-                circlesUpP = circlesUp.GetComponent<ParticleSystem>();
-                stormTrooperP = stormTrooper.GetComponent<ParticleSystem>();
-            }
-
-
-            if (circlesP != null && circlesUpP != null && stormTrooperP != null)
-            {
-                circlesP.Play();
-                circlesUpP.Play();
-                stormTrooperP.Play();
-            }
-            start = false;
-        }
+      
     }
 
 }
