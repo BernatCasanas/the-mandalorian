@@ -32,7 +32,8 @@ public class Bantha : Enemy
         IN_DIE,
         IN_DIE_END,
         IN_CHARGE_RANGE,
-        IN_PLAYER_IN_RANGE
+        IN_PLAYER_IN_RANGE,
+        IN_RUN_END
     }
 
     private bool started = false;
@@ -69,22 +70,22 @@ public class Bantha : Enemy
     //private float chargeDuration = 1.0f;
 
 
-    public void Start()
+
+    public void Awake()
     {
+        agent = gameObject.GetComponent<NavMeshAgent>();
+        targetPosition = null;
+
         currentState = STATE.IDLE;
         Animator.Play(gameObject, "BT_Idle");
-        targetPosition = CalculateNewPosition(wanderRange);
     }
+
     public void Update()
     {
         if (player == null)
         {
-            return;
-        }
-        if(!started)
-        {
-            Start();
-            started = true;
+            Debug.Log("Null player");
+            player = Core.instance.gameObject;
         }
 
         #region STATE MACHINE
@@ -300,6 +301,14 @@ public class Bantha : Enemy
                 Debug.Log("In charge range");
             }
         }
+        if(currentState == STATE.RUN)
+        {
+            if(!InRange(player.transform.globalPosition, detectionRange))
+            {
+                inputsList.Add(INPUT.IN_WANDER);
+                Debug.Log("In wander");
+            }
+        }
 
     }
 
@@ -350,8 +359,8 @@ public class Bantha : Enemy
                             break;
 
                         case INPUT.IN_PLAYER_IN_RANGE:
-                            currentState = STATE.CHARGE;
-                            StartCharge();
+                            currentState = STATE.RUN;
+                            StartRun();
                             break;
 
                         case INPUT.IN_DIE:
@@ -402,6 +411,31 @@ public class Bantha : Enemy
                         case INPUT.IN_CHARGE_END:
                             currentState = STATE.TIRED;
                             StartTired();
+                            break;
+
+                        case INPUT.IN_DIE:
+                            currentState = STATE.DIE;
+                            StartDie();
+                            break;
+                    }
+                    break;
+
+                case STATE.TIRED:
+                    switch (input)
+                    {
+                        case INPUT.IN_IDLE:
+                            currentState = STATE.IDLE;
+                            StartIdle();
+                            break;
+
+                        case INPUT.IN_WANDER:
+                            currentState = STATE.WANDER;
+                            StartWander();
+                            break;
+
+                        case INPUT.IN_RUN:
+                            currentState = STATE.RUN;
+                            StartRun();
                             break;
 
                         case INPUT.IN_DIE:
@@ -469,8 +503,9 @@ public class Bantha : Enemy
     }
     private void UpdateRun()
     {
-        LookAt(player.transform.globalPosition);
-        MoveToPosition(player.transform.localPosition, runningSpeed);
+        agent.CalculatePath(gameObject.transform.localPosition, player.transform.localPosition);
+        LookAt(agent.GetDestination());
+        agent.MoveToCalculatedPos(runningSpeed);
     }
     #endregion
 
@@ -480,6 +515,9 @@ public class Bantha : Enemy
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
         Animator.Play(gameObject, "BT_Run");
+
+        //Audio.PlayAudio(gameObject, "Play_Footsteps_Bantha");
+
     }
     private void UpdateWander()
     {
@@ -491,11 +529,13 @@ public class Bantha : Enemy
     #region CHARGE
     private void StartCharge()
     {
-        throw new NotImplementedException();
+        Animator.Play(gameObject, "BT_Charge");
+        targetPosition = player.transform.localPosition;
+        LookAt(targetPosition);
     }
     private void UpdateCharge()
     {
-        throw new NotImplementedException();
+        MoveToPosition(targetPosition, chargeSpeed);
     }
     #endregion
 
@@ -506,7 +546,7 @@ public class Bantha : Enemy
 
         Animator.Play(gameObject, "BT_Die", 1.0f);
 
-        Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
+        Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Death");
         Audio.PlayAudio(gameObject, "Play_Mando_Voice");
 
         if (hitParticles != null)

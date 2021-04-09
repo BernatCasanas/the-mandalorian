@@ -1,19 +1,19 @@
 {
     "NavMesh": 1537712499,
     "EditorCameraPosition": [
-        -17.747905731201172,
-        43.038639068603516,
-        -15.446223258972168
+        -14.559921264648438,
+        27.027385711669922,
+        -14.315891265869141
     ],
     "EditorCameraZ": [
-        0.63310414552688599,
-        -0.6635664701461792,
-        0.39857089519500732
+        0.32464617490768433,
+        -0.77240234613418579,
+        0.54589343070983887
     ],
     "EditorCameraY": [
-        0.56202089786529541,
-        0.74811708927154541,
-        0.35277950763702393
+        0.39489197731018066,
+        0.63513362407684326,
+        0.66382652521133423
     ],
     "tags": [
         "Player",
@@ -10008,7 +10008,7 @@
                     "dashCD": 0.30000001192092896,
                     "dashDuration": 0.20000000298023224,
                     "dashDistance": 4.75,
-                    "dashforce": 500,
+                    "dashforce": 50,
                     "fireRate": 0.15000000596046448,
                     "gadgetFireRate": 0.20000000298023224,
                     "fireRateAfterDashRecoverRatio": 1.75,
@@ -12276,9 +12276,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                12.857709884643555,
-                6.905364990234375,
-                -12.232314109802246
+                12.628430366516113,
+                8.9115800857543945,
+                14.562441825866699
             ],
             "Rotation": [
                 0,
@@ -12304,7 +12304,7 @@
             ]
         },
         {
-            "name": "SpawnPoints",
+            "name": "MultipleSpawnPoints",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -12333,32 +12333,55 @@
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "StormtrooperSP",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -2.3451058864593506,
+                -8.6311540603637695,
+                0.00080913136480376124
+            ],
+            "Rotation": [
+                -1.0672353625840181e-11,
+                0.7071068286895752,
+                -1.0672353625840181e-11,
+                0.7071068286895752
+            ],
+            "Scale": [
+                0.99999994039535522,
+                1,
+                0.99999994039535522
+            ],
+            "UID": 1182138487,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 920837177,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
                 },
                 {
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Spawn",
-                    "prefab_1_UID": 489054570,
-                    "prefab_2_UID": 0,
+                    "spawnStormtrooper": true,
+                    "spawnBantha": false,
                     "spawnPoint0": 775786026,
                     "spawnPoint1": 1785194096,
-                    "spawnPoint2": 1382087491,
-                    "spawnPoint3": 13439782,
-                    "spawnPoint4": 1535676177,
-                    "spawnPoint5": 690269375,
-                    "maxSpawnPoints": 6,
-                    "maxEnemies": 6,
+                    "maxSpawnPoints": 2,
+                    "maxEnemies": 2,
                     "enemyIncreasePerWave": 0,
                     "wave": 0,
                     "maxWaves": 1,
                     "timePassed": 0,
                     "timeBetweenSpawns": 0.20000000298023224,
-                    "turretSpawnPoint0": false,
-                    "turretSpawnPoint1": true,
-                    "turretSpawnPoint2": false,
-                    "turretSpawnPoint3": false,
-                    "turretSpawnPoint4": false,
-                    "turretSpawnPoint5": true,
                     "currentEnemies": 0
                 }
             ]
@@ -12369,15 +12392,15 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -3.363832950592041,
-                0,
-                7.8176202774047852
+                -1.6901857852935791,
+                8.6311540603637695,
+                10.871663093566895
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                3.090099198743701e-08,
+                -0.70722883939743042,
+                3.090099198743701e-08,
+                0.70698469877243042
             ],
             "Scale": [
                 1,
@@ -12388,7 +12411,7 @@
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 920837177,
+            "ParentUID": 1182138487,
             "Components": [
                 {
                     "Type": 1,
@@ -12402,15 +12425,15 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                8.3964223861694336,
-                0,
-                1.7783842086791992
+                20.379039764404297,
+                8.6311540603637695,
+                -5.9575252532958984
             ],
             "Rotation": [
-                -8.6726588843492397e-19,
-                0,
-                1.0587911840678754e-22,
-                1
+                3.090099198743701e-08,
+                -0.70722883939743042,
+                3.090099198743701e-08,
+                0.70698469877243042
             ],
             "Scale": [
                 1,
@@ -12421,7 +12444,127 @@
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
+            "ParentUID": 1182138487,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "BanthaSP",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                -2.3451058864593506,
+                -8.6311540603637695,
+                0.00080913136480376124
+            ],
+            "Rotation": [
+                -1.0672353625840181e-11,
+                0.7071068286895752,
+                -1.0672353625840181e-11,
+                0.7071068286895752
+            ],
+            "Scale": [
+                0.99999994039535522,
+                1,
+                0.99999994039535522
+            ],
+            "UID": 395538018,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "ParentUID": 920837177,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Spawn",
+                    "spawnStormtrooper": false,
+                    "spawnBantha": true,
+                    "spawnPoint0": 569545697,
+                    "spawnPoint1": 1202912629,
+                    "spawnPoint2": 412877903,
+                    "spawnPoint3": 903869668,
+                    "spawnPoint4": 596847787,
+                    "spawnPoint5": 1478692924,
+                    "maxSpawnPoints": 6,
+                    "maxEnemies": 6,
+                    "enemyIncreasePerWave": 0,
+                    "wave": 0,
+                    "maxWaves": 1,
+                    "timePassed": 0,
+                    "timeBetweenSpawns": 0.20000000298023224,
+                    "currentEnemies": 0
+                }
+            ]
+        },
+        {
+            "name": "SpawnPoint0",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -5.4979186058044434,
+                8.6311540603637695,
+                0.35185128450393677
+            ],
+            "Rotation": [
+                3.090099198743701e-08,
+                -0.70722883939743042,
+                3.090099198743701e-08,
+                0.70698469877243042
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 569545697,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 395538018,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "SpawnPoint1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -1.7775763273239136,
+                8.6311540603637695,
+                10.741528511047363
+            ],
+            "Rotation": [
+                3.090099198743701e-08,
+                -0.70722883939743042,
+                3.090099198743701e-08,
+                0.70698469877243042
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1202912629,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 395538018,
             "Components": [
                 {
                     "Type": 1,
@@ -12435,26 +12578,26 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -2.5130066871643066,
-                0,
-                -2.8988730907440186
+                2.8996822834014893,
+                8.6311540603637695,
+                -0.16790039837360382
             ],
             "Rotation": [
-                -8.6726588843492397e-19,
-                0,
-                1.0587911840678754e-22,
-                1
+                3.090099198743701e-08,
+                -0.70722883939743042,
+                3.090099198743701e-08,
+                0.70698469877243042
             ],
             "Scale": [
                 1,
                 1,
                 1
             ],
-            "UID": 1382087491,
+            "UID": 412877903,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 920837177,
+            "ParentUID": 395538018,
             "Components": [
                 {
                     "Type": 1,
@@ -12468,26 +12611,26 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                11.781569480895996,
-                0,
-                -13.619406700134277
+                13.620214462280273,
+                8.6311540603637695,
+                14.126676559448242
             ],
             "Rotation": [
-                -8.6726588843492397e-19,
-                0,
-                1.0587911840678754e-22,
-                1
+                3.090099198743701e-08,
+                -0.70722883939743042,
+                3.090099198743701e-08,
+                0.70698469877243042
             ],
             "Scale": [
                 1,
                 1,
                 1
             ],
-            "UID": 13439782,
+            "UID": 903869668,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 920837177,
+            "ParentUID": 395538018,
             "Components": [
                 {
                     "Type": 1,
@@ -12501,26 +12644,26 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -9.3120212554931641,
-                0,
-                -13.386466979980469
+                13.387277603149414,
+                8.6311540603637695,
+                -6.9669137001037598
             ],
             "Rotation": [
-                -8.6726588843492397e-19,
-                0,
-                1.0587911840678754e-22,
-                1
+                3.090099198743701e-08,
+                -0.70722883939743042,
+                3.090099198743701e-08,
+                0.70698469877243042
             ],
             "Scale": [
                 1,
                 1,
                 1
             ],
-            "UID": 1535676177,
+            "UID": 596847787,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 920837177,
+            "ParentUID": 395538018,
             "Components": [
                 {
                     "Type": 1,
@@ -12534,26 +12677,211 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -8.1691608428955078,
-                0,
-                -24.948497772216797
+                24.949308395385742,
+                8.6311540603637695,
+                -5.8240528106689453
             ],
             "Rotation": [
-                -8.6726588843492397e-19,
-                0,
-                1.0587911840678754e-22,
-                1
+                3.090099198743701e-08,
+                -0.70722883939743042,
+                3.090099198743701e-08,
+                0.70698469877243042
             ],
             "Scale": [
                 1,
                 1,
                 1
             ],
-            "UID": 690269375,
+            "UID": 1478692924,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 395538018,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "MixedSP",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -2.3451058864593506,
+                -8.6311540603637695,
+                0.00080913136480376124
+            ],
+            "Rotation": [
+                -1.0672353625840181e-11,
+                0.7071068286895752,
+                -1.0672353625840181e-11,
+                0.7071068286895752
+            ],
+            "Scale": [
+                0.99999994039535522,
+                1,
+                0.99999994039535522
+            ],
+            "UID": 2008991918,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 920837177,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Spawn",
+                    "spawnStormtrooper": true,
+                    "spawnBantha": true,
+                    "spawnPoint0": 268910321,
+                    "spawnPoint1": 1767427777,
+                    "spawnPoint2": 1423773064,
+                    "spawnPoint3": 954310518,
+                    "spawnPoint4": 954310518,
+                    "maxSpawnPoints": 4,
+                    "maxEnemies": 4,
+                    "enemyIncreasePerWave": 0,
+                    "wave": 0,
+                    "maxWaves": 1,
+                    "timePassed": 0,
+                    "timeBetweenSpawns": 0.20000000298023224,
+                    "currentEnemies": 0
+                }
+            ]
+        },
+        {
+            "name": "SpawnPoint0",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                3.079761266708374,
+                8.6311540603637695,
+                -6.4292178153991699
+            ],
+            "Rotation": [
+                3.090099198743701e-08,
+                -0.70722883939743042,
+                3.090099198743701e-08,
+                0.70698469877243042
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 268910321,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 2008991918,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "SpawnPoint1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -1.2626806497573853,
+                8.6311540603637695,
+                0.52270716428756714
+            ],
+            "Rotation": [
+                3.090099198743701e-08,
+                -0.70722883939743042,
+                3.090099198743701e-08,
+                0.70698469877243042
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1767427777,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 2008991918,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "SpawnPoint2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                13.620214462280273,
+                8.6311540603637695,
+                14.126676559448242
+            ],
+            "Rotation": [
+                3.090099198743701e-08,
+                -0.70722883939743042,
+                3.090099198743701e-08,
+                0.70698469877243042
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1423773064,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 2008991918,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "SpawnPoint3",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                13.387277603149414,
+                8.6311540603637695,
+                -6.9669137001037598
+            ],
+            "Rotation": [
+                3.090099198743701e-08,
+                -0.70722883939743042,
+                3.090099198743701e-08,
+                0.70698469877243042
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 954310518,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 2008991918,
             "Components": [
                 {
                     "Type": 1,
@@ -13117,7 +13445,7 @@
                 0
             ],
             "Rotation": [
-                0,
+                1.2621774483536189e-29,
                 0,
                 0,
                 1
@@ -13164,12 +13492,12 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                7.1535253524780273,
-                -0.70357024669647217,
+                7.1535243988037109,
+                -0.70357036590576172,
                 -5.3196959495544434
             ],
             "Rotation": [
-                0,
+                2.5243548967072378e-29,
                 0,
                 0,
                 1
@@ -13221,7 +13549,7 @@
                 1.9623928070068359
             ],
             "Rotation": [
-                0,
+                2.5243548967072378e-29,
                 0,
                 0,
                 1
@@ -13273,7 +13601,7 @@
                 -5.3972487449645996
             ],
             "Rotation": [
-                0,
+                3.7865323450608567e-29,
                 0,
                 0,
                 1
@@ -13311,6 +13639,20 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
                 }
             ]
         },
@@ -13325,7 +13667,7 @@
                 -19.848062515258789
             ],
             "Rotation": [
-                0,
+                2.5243548967072378e-29,
                 0,
                 0,
                 1
@@ -13363,6 +13705,41 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
@@ -13377,7 +13754,7 @@
                 -25.490253448486328
             ],
             "Rotation": [
-                3.1049565229499025e-27,
+                3.1175782974334387e-27,
                 0,
                 0,
                 1
@@ -13415,6 +13792,41 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
@@ -13920,12 +14332,12 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                11.534019470214844,
-                -3.9432599544525146,
+                11.631013870239258,
+                -3.9432601928710938,
                 -2.609501838684082
             ],
             "Rotation": [
-                0,
+                3.4331226595218434e-27,
                 0,
                 0,
                 1
@@ -13963,6 +14375,41 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        -0.69999998807907104,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
@@ -14993,6 +15440,1224 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "Colliders",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1068222064,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Coll1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -10.475000381469727,
+                7.369999885559082,
+                -6.6170001029968262
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                2.6770000457763672,
+                8.774998664855957,
+                0.99999994039535522
+            ],
+            "UID": 1934658585,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1068222064,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Coll2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                4.1269998550415039,
+                7.369999885559082,
+                -4.0289998054504395
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                12.130999565124512,
+                5.9079995155334473,
+                0.99999994039535522
+            ],
+            "UID": 543522798,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1068222064,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Coll3",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                13.045999526977539,
+                7.369999885559082,
+                6.1599998474121094
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                3.0399999618530273,
+                4.3429994583129883,
+                0.99999994039535522
+            ],
+            "UID": 1938859418,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1068222064,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Coll4",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                13.045999526977539,
+                7.369999885559082,
+                12.968999862670898
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                5.2649998664855957,
+                3.0959997177124023,
+                0.99999994039535522
+            ],
+            "UID": 951941099,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1068222064,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CollRock1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -3.2590000629425049,
+                8.8360004425048828,
+                -3.6819999217987061
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                1.496999979019165,
+                1.7599998712539673,
+                0.99999994039535522
+            ],
+            "UID": 1598423412,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1068222064,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CollRock2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                7.7719998359680176,
+                8.8360004425048828,
+                -3.6819999217987061
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                1.496999979019165,
+                1.7599998712539673,
+                0.99999994039535522
+            ],
+            "UID": 1233779312,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1068222064,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CollWall",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                28.52400016784668,
+                8.8360004425048828,
+                -3.6819999217987061
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                1.496999979019165,
+                6.8249993324279785,
+                1.1979998350143433
+            ],
+            "UID": 1875400688,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1068222064,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CollWall2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                19.486000061035156,
+                8.8360004425048828,
+                9.1020002365112305
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                1.496999979019165,
+                6.8249993324279785,
+                1.1979998350143433
+            ],
+            "UID": 265561648,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1068222064,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CollWall3",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                17.969999313354492,
+                8.8360004425048828,
+                5.0570001602172852
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                1.496999979019165,
+                4.9029994010925293,
+                1.1979998350143433
+            ],
+            "UID": 980778385,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1068222064,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CollWall4",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -18.790756225585938,
+                8.6949996948242188,
+                -4.2870001792907715
+            ],
+            "Rotation": [
+                -0.71080559492111206,
+                -6.1382461353787221e-06,
+                6.2029866967350245e-06,
+                0.703388512134552
+            ],
+            "Scale": [
+                1.496999979019165,
+                5.4829988479614258,
+                1.1979999542236328
+            ],
+            "UID": 1381902073,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1068222064,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CollWall5",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -9.7279996871948242,
+                8.5170001983642578,
+                -21.285999298095703
+            ],
+            "Rotation": [
+                -0.50261986255645752,
+                0.50261116027832031,
+                0.4973752498626709,
+                0.49736642837524414
+            ],
+            "Scale": [
+                1.4969998598098755,
+                5.4829998016357422,
+                1.1979999542236328
+            ],
+            "UID": 2136838733,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1068222064,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CollWall6",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                15.395999908447266,
+                7.245999813079834,
+                27.405570983886719
+            ],
+            "Rotation": [
+                -0.50000464916229248,
+                0.49999582767486572,
+                0.50000429153442383,
+                0.49999523162841797
+            ],
+            "Scale": [
+                7.4350028038024902,
+                6.8250026702880859,
+                2.8160004615783691
+            ],
+            "UID": 1919784268,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1068222064,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CollWall7",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -1.906000018119812,
+                8.2810001373291016,
+                7.9050002098083496
+            ],
+            "Rotation": [
+                -0.50000017881393433,
+                0.50000029802322388,
+                0.49999982118606567,
+                0.49999970197677612
+            ],
+            "Scale": [
+                0.02500000037252903,
+                1.5,
+                1.1979999542236328
+            ],
+            "UID": 65816795,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1068222064,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CollWall8",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -4.9174618721008301,
+                8.2810001373291016,
+                11.028420448303223
+            ],
+            "Rotation": [
+                -0.70710724592208862,
+                0,
+                0,
+                0.70710629224777222
+            ],
+            "Scale": [
+                0.02500000037252903,
+                1.499929666519165,
+                1.1979295015335083
+            ],
+            "UID": 1648465644,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1068222064,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CollWall9",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                1.2511153221130371,
+                8.2810001373291016,
+                11.028420448303223
+            ],
+            "Rotation": [
+                -0.70710724592208862,
+                0,
+                0,
+                0.70710629224777222
+            ],
+            "Scale": [
+                0.02500000037252903,
+                1.4998884201049805,
+                1.1978882551193237
+            ],
+            "UID": 2005537950,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1068222064,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }

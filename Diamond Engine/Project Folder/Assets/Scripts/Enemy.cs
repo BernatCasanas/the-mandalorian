@@ -6,8 +6,8 @@ public class Enemy : DiamondComponent
 {
 	public GameObject player = null;
 
-	public float detectionRange = 20.0f;
-	public float damage = 20.0f;
+	public float detectionRange = 12.5f;
+	public float damage = 5.0f;
     public float healthPoints = 60.0f;
 
 	protected Vector3 targetPosition = null;
