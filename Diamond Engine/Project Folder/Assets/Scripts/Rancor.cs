@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 public class Rancor : DiamondComponent
 {
-
 	enum RANCOR_STATE : int
     {
 		NONE = -1,
@@ -39,6 +38,8 @@ public class Rancor : DiamondComponent
         IN_DEAD
 	}
 
+    private NavMeshAgent agent = null;
+
 	//State
 	private RANCOR_STATE currentState = RANCOR_STATE.WANDER;   //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS
 															   //Setting states directlly will break the behaviour  -Jose
@@ -56,6 +57,7 @@ public class Rancor : DiamondComponent
     public float shortWanderTime = 2.0f;
     public float longWanderTime = 4.0f;
     private float wanderTimer = 0.0f;
+    public float wanderSpeed = 2.0f;
 
     //Melee Combo
     public float meleeComboHit1Time = 2.0f;
@@ -76,6 +78,16 @@ public class Rancor : DiamondComponent
     private void Start()
     {
         wanderTimer = shortWanderTime;
+    }
+
+    public void Awake()
+    {
+        agent = gameObject.GetComponent<NavMeshAgent>();
+
+        if (agent == null)
+            Debug.Log("Null agent, add a NavMeshAgent Component");
+
+        Animator.Play(gameObject, "RN_Idle");
     }
 
     public void Update()
@@ -408,9 +420,11 @@ public class Rancor : DiamondComponent
     private void StartShortWander()
     {
         //Start walk animation
-        //Search point
+        //Animator.Play(gameObject, "RN_Walk");
 
+        //Search point
         wanderTimer = shortWanderTime;
+        agent.CalculateRandomPath(gameObject.transform.globalPosition, meleeRange);
     }
 
 
@@ -420,12 +434,16 @@ public class Rancor : DiamondComponent
         //Search point
 
         wanderTimer = longWanderTime;
+        agent.CalculateRandomPath(gameObject.transform.globalPosition, longRange);
     }
 
 
     private void UpdateWander()
     {
         //Move character
+      
+        agent.MoveToCalculatedPos(wanderSpeed);
+
         Debug.Log("Wandering");
     }
 
