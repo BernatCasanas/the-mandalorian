@@ -13,6 +13,7 @@ public class Bantha : Enemy
         IDLE,
         RUN,
         WANDER,
+        LOADING_ATTACK,
         CHARGE,
         TIRED,
         PUSHED,
@@ -26,6 +27,7 @@ public class Bantha : Enemy
         IN_RUN,
         IN_WANDER,
         IN_PUSHED,
+        IN_LOADING,
         IN_CHARGE,
         IN_CHARGE_END,
         IN_HIT,
@@ -36,7 +38,7 @@ public class Bantha : Enemy
         IN_RUN_END
     }
 
-    private bool started = false;
+    //private bool started = false;
 
     //State
     private STATE currentState = STATE.NONE;
@@ -51,6 +53,7 @@ public class Bantha : Enemy
     public float idleTime = 5.0f;
     public float dieTime = 3.0f;
     public float tiredTime = 2.0f;
+    public float loadingTime = 2.0f;
     public float timeBewteenStates = 1.5f;
 
     //Speeds
@@ -67,6 +70,7 @@ public class Bantha : Enemy
     private float idleTimer = 0.0f;
     private float dieTimer = 0.0f;
     private float tiredTimer = 0.0f;
+    private float loadingTimer = 0.0f;
     //private float chargeDuration = 1.0f;
 
 
@@ -256,6 +260,16 @@ public class Bantha : Enemy
             }
         }
 
+        if (loadingTimer > 0.0f)
+        {
+            loadingTimer -= Time.deltaTime;
+
+            if (loadingTimer < 0.0f)
+            {
+                inputsList.Add(INPUT.IN_CHARGE);
+            }
+        }
+
         if (currentState == STATE.CHARGE)
         {
             if (Mathf.Distance(gameObject.transform.localPosition, player.transform.localPosition) <= stoppingDistance)
@@ -339,8 +353,8 @@ public class Bantha : Enemy
                             StartRun();
                             break;
                         case INPUT.IN_CHARGE_RANGE:
-                            currentState = STATE.CHARGE;
-                            StartCharge();
+                            currentState = STATE.LOADING_ATTACK;
+                            StartLoading();
                             break;
 
                         case INPUT.IN_DIE:
@@ -384,6 +398,21 @@ public class Bantha : Enemy
                             break;
 
                         case INPUT.IN_CHARGE_RANGE:
+                            currentState = STATE.LOADING_ATTACK;
+                            StartLoading();
+                            break;
+
+                        case INPUT.IN_DIE:
+                            currentState = STATE.DIE;
+                            StartDie();
+                            break;
+                    }
+                    break;
+
+                case STATE.LOADING_ATTACK:
+                    switch (input)
+                    {
+                        case INPUT.IN_CHARGE:
                             currentState = STATE.CHARGE;
                             StartCharge();
                             break;
@@ -436,6 +465,11 @@ public class Bantha : Enemy
                         case INPUT.IN_RUN:
                             currentState = STATE.RUN;
                             StartRun();
+                            break;
+
+                        case INPUT.IN_CHARGE_RANGE:
+                            currentState = STATE.LOADING_ATTACK;
+                            StartLoading();
                             break;
 
                         case INPUT.IN_DIE:
@@ -523,6 +557,20 @@ public class Bantha : Enemy
     {
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(wanderSpeed);
+    }
+    #endregion
+
+    #region LOADING_ATTACK
+    private void StartLoading()
+    {
+        loadingTimer = loadingTime;
+        Animator.Play(gameObject, "BT_Charge");
+        targetPosition = player.transform.localPosition;
+        
+    }
+    private void UpdateLoading()
+    {
+        LookAt(targetPosition);
     }
     #endregion
 
