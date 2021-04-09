@@ -20,7 +20,7 @@ public class HubSkillTreeController : DiamondComponent
 		if (mando == null || (Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN && Input.GetGamepadButton(DEControllerButton.B) != KeyState.KEY_DOWN))
 			return;
 		bool activate_tree = Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN ? true : false;
-		if (activate_tree && (mando_tree.IsEnabled() || grogu_tree.IsEnabled() || weapon_tree.IsEnabled()))
+		if (activate_tree && ((mando_tree != null && mando_tree.IsEnabled()) || (grogu_tree != null && grogu_tree.IsEnabled()) || (weapon_tree != null && weapon_tree.IsEnabled()))) 
 			return;
         if (!activate_tree)
         {
