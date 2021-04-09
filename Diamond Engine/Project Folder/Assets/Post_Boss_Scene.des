@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -8.4272785186767578,
-        9.4303302764892578,
-        -14.15070915222168
+        4.0716133117675781,
+        7.4176015853881836,
+        6.7181572914123535
     ],
     "EditorCameraZ": [
-        0.47956064343452454,
-        -0.36046981811523438,
-        0.80005192756652832
+        0.096694260835647583,
+        -0.99281883239746094,
+        0.070435047149658203
     ],
     "EditorCameraY": [
-        0.1853264719247818,
-        0.93277084827423096,
-        0.30918049812316895
+        0.80257523059844971,
+        0.11962807178497314,
+        0.58443319797515869
     ],
     "tags": [],
     "layers": [],
@@ -13254,7 +13254,7 @@
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "Empty",
+                    "text": " ",
                     "maxTextLenght": 1120,
                     "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
@@ -13392,7 +13392,7 @@
                     "Unhovered_UID": 1837260390,
                     "Script_Name": "TextController",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": true
                 },
                 {
                     "Type": 11,
@@ -13415,7 +13415,7 @@
                     ],
                     "Button Being Used": -1,
                     "Type Of UI": 7,
-                    "Is Selected": false
+                    "Is Selected": true
                 },
                 {
                     "Type": 5,
@@ -13435,7 +13435,7 @@
             "name": "Press A to Talk",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "Position": [
                 0,
                 0,
@@ -13500,7 +13500,7 @@
                     "Active": true,
                     "Position": [
                         -45.299999237060547,
-                        -58.200000762939453
+                        -68.5
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -13519,7 +13519,7 @@
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "Press A to talk",
+                    "text": "Press A to start talking",
                     "maxTextLenght": 1120,
                     "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
@@ -13566,12 +13566,12 @@
                     "Active": true,
                     "Position": [
                         3.4000000953674316,
-                        -66.199996948242188
+                        -67.800003051757813
                     ],
                     "Rotation": 0,
                     "Size": [
                         58.599998474121094,
-                        32.599998474121094
+                        19.100000381469727
                     ]
                 },
                 {
@@ -13592,10 +13592,110 @@
             ]
         },
         {
-            "name": "Press A to Buy",
+            "name": "TalkButton",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 422736431,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 567046841,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        54.099998474121094,
+                        -10.100000381469727
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        2.9000000953674316,
+                        6.0999999046325684
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_right_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/20625459.dds",
+                    "Pressed_UID": 20625459,
+                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1337145929.dds",
+                    "Hovered_UID": 1337145929,
+                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1837260390.dds",
+                    "Unhovered_UID": 1837260390,
+                    "Script_Name": "Enable",
+                    "ButtonState": 2,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/arrow_right.png",
+                    "LibraryPath": "Library\/Textures\/1837260390.dds",
+                    "UID": 1837260390
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 422736431,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Enable",
+                    "enable": 995881843,
+                    "disable": 625428609
+                }
+            ]
+        },
+        {
+            "name": "Press A to Buy",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
             "Position": [
                 0,
                 0,
@@ -16093,7 +16193,11 @@
                     "verticalTimeInterval": 1.2000000476837158,
                     "followPoint": 236082371,
                     "horizontalSpeed": 4,
-                    "skillPushDuration": 1
+                    "skillPushDuration": 1,
+                    "wallSkillOffsetX": 0,
+                    "wallSkillOffsetY": 0,
+                    "wallSkillOffsetZ": 0,
+                    "skillWallDuration": 0
                 }
             ]
         },
@@ -16449,22 +16553,22 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                4.1784157752990723,
-                0.52400320768356323,
-                6.7861833572387695
+                4.1779999732971191,
+                0.52399998903274536,
+                6.7859997749328613
             ],
             "Rotation": [
-                -2.7697314664010264e-08,
-                -0.94897925853729248,
-                -2.7697314664010264e-08,
-                0.31533858180046082
+                2.7697074855836945e-08,
+                -0.94897788763046265,
+                2.7697074855836945e-08,
+                0.31534266471862793
             ],
             "Scale": [
-                0.99999696016311646,
                 1,
-                0.99999696016311646
+                1,
+                1
             ],
-            "UID": 872487944,
+            "UID": 1397736682,
             "PrefabID": 653387112,
             "DontDestroy": false,
             "Static": false,
@@ -16477,8 +16581,8 @@
                 {
                     "Type": 16,
                     "Active": true,
-                    "RootBone UID": 0,
-                    "MeshRendererUID": 1908193829,
+                    "RootBone UID": 736179889,
+                    "MeshRendererUID": 751557364,
                     "Animations": [
                         228659680,
                         306810430,
@@ -16489,7 +16593,7 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "InsideCollider",
-                    "colliderPosition": 872487944,
+                    "colliderPosition": 751557364,
                     "player": 1497423809,
                     "maxDistance": 2,
                     "displayText": 625428609
@@ -16502,26 +16606,26 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                4.76837158203125e-07,
+                0,
                 0,
                 0
             ],
             "Rotation": [
-                1.7763568394002505e-15,
-                -7.4505805969238281e-09,
-                1.7763568394002505e-15,
+                0,
+                0,
+                0,
                 1
             ],
             "Scale": [
                 1,
                 1,
-                0.99999994039535522
+                1
             ],
-            "UID": 1908193829,
+            "UID": 751557364,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 872487944,
+            "ParentUID": 1397736682,
             "Components": [
                 {
                     "Type": 1,
@@ -16545,6 +16649,41 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
                     "MaterialUID": 1948688504
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        0.80000001192092896,
+                        1,
+                        1.3999999761581421
+                    ]
                 }
             ]
         },
@@ -16569,11 +16708,11 @@
                 1,
                 1
             ],
-            "UID": 581714448,
+            "UID": 736179889,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 872487944,
+            "ParentUID": 1397736682,
             "Components": [
                 {
                     "Type": 1,
@@ -16602,11 +16741,11 @@
                 1,
                 1
             ],
-            "UID": 147485435,
+            "UID": 1735332767,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 581714448,
+            "ParentUID": 736179889,
             "Components": [
                 {
                     "Type": 1,
@@ -16635,11 +16774,11 @@
                 1,
                 1
             ],
-            "UID": 964153828,
+            "UID": 320074734,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 147485435,
+            "ParentUID": 1735332767,
             "Components": [
                 {
                     "Type": 1,
@@ -16668,11 +16807,11 @@
                 1,
                 1
             ],
-            "UID": 1457304909,
+            "UID": 1632734542,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 964153828,
+            "ParentUID": 320074734,
             "Components": [
                 {
                     "Type": 1,
@@ -16691,21 +16830,21 @@
                 -5.9824354359250265e-09
             ],
             "Rotation": [
-                0.036077085882425308,
+                0.03607708215713501,
                 0,
                 0,
-                0.99934911727905273
+                0.99934899806976318
             ],
             "Scale": [
                 1,
                 1,
                 1
             ],
-            "UID": 1160166974,
+            "UID": 2007145578,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1457304909,
+            "ParentUID": 1632734542,
             "Components": [
                 {
                     "Type": 1,
@@ -16734,11 +16873,11 @@
                 1,
                 1
             ],
-            "UID": 829965890,
+            "UID": 573892001,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1160166974,
+            "ParentUID": 2007145578,
             "Components": [
                 {
                     "Type": 1,
@@ -16767,11 +16906,11 @@
                 1,
                 1
             ],
-            "UID": 712737861,
+            "UID": 1001749186,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 829965890,
+            "ParentUID": 573892001,
             "Components": [
                 {
                     "Type": 1,
@@ -16800,11 +16939,11 @@
                 0.99999994039535522,
                 0.99999994039535522
             ],
-            "UID": 1765473099,
+            "UID": 1101158534,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1457304909,
+            "ParentUID": 1632734542,
             "Components": [
                 {
                     "Type": 1,
@@ -16833,11 +16972,11 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 628605787,
+            "UID": 739581361,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1765473099,
+            "ParentUID": 1101158534,
             "Components": [
                 {
                     "Type": 1,
@@ -16866,11 +17005,11 @@
                 0.99999994039535522,
                 1
             ],
-            "UID": 594254514,
+            "UID": 178530062,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 628605787,
+            "ParentUID": 739581361,
             "Components": [
                 {
                     "Type": 1,
@@ -16899,11 +17038,11 @@
                 1,
                 1
             ],
-            "UID": 1321059739,
+            "UID": 1953581313,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 594254514,
+            "ParentUID": 178530062,
             "Components": [
                 {
                     "Type": 1,
@@ -16932,11 +17071,11 @@
                 0.99999994039535522,
                 1
             ],
-            "UID": 1070455203,
+            "UID": 1555293275,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1457304909,
+            "ParentUID": 1632734542,
             "Components": [
                 {
                     "Type": 1,
@@ -16955,21 +17094,21 @@
                 0
             ],
             "Rotation": [
-                -0.1174413189291954,
-                0.013079995289444923,
-                -0.013046307489275932,
-                0.99290794134140015
+                -0.1174413338303566,
+                0.013079997152090073,
+                -0.013046309351921082,
+                0.9929080605506897
             ],
             "Scale": [
                 1,
                 1,
                 0.99999994039535522
             ],
-            "UID": 2036686222,
+            "UID": 652649741,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1070455203,
+            "ParentUID": 1555293275,
             "Components": [
                 {
                     "Type": 1,
@@ -16998,11 +17137,11 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 2081217746,
+            "UID": 1668614935,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 2036686222,
+            "ParentUID": 652649741,
             "Components": [
                 {
                     "Type": 1,
@@ -17031,11 +17170,11 @@
                 1,
                 1
             ],
-            "UID": 1444063882,
+            "UID": 365021523,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 2081217746,
+            "ParentUID": 1668614935,
             "Components": [
                 {
                     "Type": 1,
@@ -17064,11 +17203,11 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 577110770,
+            "UID": 1989457832,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 581714448,
+            "ParentUID": 736179889,
             "Components": [
                 {
                     "Type": 1,
@@ -17097,11 +17236,11 @@
                 0.99999994039535522,
                 0.99999994039535522
             ],
-            "UID": 1757366447,
+            "UID": 1790941113,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 577110770,
+            "ParentUID": 1989457832,
             "Components": [
                 {
                     "Type": 1,
@@ -17130,11 +17269,11 @@
                 0.99999994039535522,
                 1
             ],
-            "UID": 1023586056,
+            "UID": 2063199706,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1757366447,
+            "ParentUID": 1790941113,
             "Components": [
                 {
                     "Type": 1,
@@ -17163,11 +17302,11 @@
                 0.99999994039535522,
                 1
             ],
-            "UID": 987462728,
+            "UID": 1140550890,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1023586056,
+            "ParentUID": 2063199706,
             "Components": [
                 {
                     "Type": 1,
@@ -17196,11 +17335,11 @@
                 1,
                 1
             ],
-            "UID": 748594677,
+            "UID": 938181218,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 987462728,
+            "ParentUID": 1140550890,
             "Components": [
                 {
                     "Type": 1,
@@ -17229,11 +17368,11 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 629378374,
+            "UID": 1399454873,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 581714448,
+            "ParentUID": 736179889,
             "Components": [
                 {
                     "Type": 1,
@@ -17262,11 +17401,11 @@
                 0.99999988079071045,
                 0.99999994039535522
             ],
-            "UID": 695442866,
+            "UID": 114648743,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 629378374,
+            "ParentUID": 1399454873,
             "Components": [
                 {
                     "Type": 1,
@@ -17295,11 +17434,11 @@
                 0.99999994039535522,
                 0.99999994039535522
             ],
-            "UID": 261468524,
+            "UID": 1910904151,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 695442866,
+            "ParentUID": 114648743,
             "Components": [
                 {
                     "Type": 1,
@@ -17318,21 +17457,21 @@
                 0
             ],
             "Rotation": [
-                0.28693976998329163,
-                0.038619775325059891,
-                -0.011578258126974106,
-                0.95709991455078125
+                0.28693974018096924,
+                0.038619771599769592,
+                -0.011578257195651531,
+                0.9570997953414917
             ],
             "Scale": [
                 1,
                 1,
                 1
             ],
-            "UID": 1628717432,
+            "UID": 298481474,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 261468524,
+            "ParentUID": 1910904151,
             "Components": [
                 {
                     "Type": 1,
@@ -17361,11 +17500,11 @@
                 1,
                 1
             ],
-            "UID": 1504804378,
+            "UID": 1526932982,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1628717432,
+            "ParentUID": 298481474,
             "Components": [
                 {
                     "Type": 1,
