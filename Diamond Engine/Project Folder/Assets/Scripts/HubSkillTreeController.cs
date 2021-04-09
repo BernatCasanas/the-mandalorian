@@ -24,17 +24,17 @@ public class HubSkillTreeController : DiamondComponent
 			return;
         if (!activate_tree)
         {
-            if (mando_tree.IsEnabled())
+            if (mando_tree !=null && mando_tree.IsEnabled())
             {
 				mando_tree.EnableNav(false);
 				return;
             }
-			if (grogu_tree.IsEnabled())
+			if (grogu_tree!=null && grogu_tree.IsEnabled())
 			{
 				grogu_tree.EnableNav(false);
 				return;
 			}
-			if (weapon_tree.IsEnabled())
+			if (weapon_tree !=null && weapon_tree.IsEnabled())
 			{
 				weapon_tree.EnableNav(false);
 				return;
