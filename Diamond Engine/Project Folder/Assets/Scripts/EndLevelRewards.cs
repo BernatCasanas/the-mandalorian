@@ -35,13 +35,12 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
     EndLevelRewardsButtons secondButton = null;
     EndLevelRewardsButtons thirdButton = null;
 
-    GameResources selectedReward = null;
+    public GameResources selectedReward = null;
     BoonDataHolder boonGenerator = new BoonDataHolder();
     bool rewardsGenerated = false;
 
     public GameResources GenerateRewardPipeline()
     {
-
         if (rewardsGenerated == false)
         {
             rewardsGenerated = true;
@@ -50,16 +49,17 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
             thirdReward = SelectRewards();
 
             CreatePopUpGameObject();
+
             firstButton = InternalCalls.FindObjectWithName("FirstRewardButton").GetComponent<EndLevelRewardsButtons>();
             secondButton = InternalCalls.FindObjectWithName("SecondRewardButton").GetComponent<EndLevelRewardsButtons>();
             thirdButton = InternalCalls.FindObjectWithName("ThirdRewardButton").GetComponent<EndLevelRewardsButtons>();
 
-            firstButton.gameObject.GetComponent<Navigation>().Select();
+            firstButton.gameObject.GetComponent<Navigation>().Select(); // Line added because buttons crashed. For... some reason
         }
 
         if (CheckRewardSelected())
         {
-            rewardsGenerated = false;
+            CleanAllElements();
         }
 
         return selectedReward;
@@ -137,8 +137,6 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
 
     void CreatePopUpGameObject()
     {
-        // This maybe should be a find, and if not, then we instantiate; this will mean enabling and disabling the GO constantly from SceneManager
-
         GameObject rewardMenu = InternalCalls.CreatePrefab("Library/Prefabs/18131542.prefab", new Vector3(0.0f, 0.0f, 0.0f), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
         GameObject canvas = InternalCalls.FindObjectWithName("Canvas");
 
@@ -166,7 +164,6 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
         thirdText.GetComponent<Text>().text = RewardText(thirdReward);
 
         return;
-
     }
 
     string RewardText(EndLevelReward reward)
@@ -285,6 +282,15 @@ public class EndLevelRewards : DiamondComponent // This can (should) probably st
         }
 
         return selectedResource;
+    }
+
+    public void CleanAllElements()
+    {
+        rewardsGenerated = false;
+        firstButton = null;
+        secondButton = null;
+        thirdButton = null;
+        InternalCalls.Destroy(InternalCalls.FindObjectWithName("EndLevelReward"));
     }
 
 }
