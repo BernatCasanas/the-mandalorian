@@ -1,8 +1,48 @@
 {
-    "assets_path": "Assets\/Prefabs\/XWing .prefab",
+    "assets_path": "Assets\/Prefabs\/XWing.prefab",
     "Game Objects": [
         {
-            "name": "XWing ",
+            "name": "XWing",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                6.0019707679748535,
+                8.2513151168823242,
+                14.476251602172852
+            ],
+            "Rotation": [
+                0.067422986030578613,
+                -0.86631691455841064,
+                0.068691670894622803,
+                0.49013331532478333
+            ],
+            "Scale": [
+                1.000001072883606,
+                0.99999839067459106,
+                1.0000005960464478
+            ],
+            "UID": 1894357097,
+            "PrefabID": 1844396977,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Xwing",
+                    "timeBetweenSparks": 3,
+                    "stopTime": 1
+                }
+            ]
+        },
+        {
+            "name": "Spaceship",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -22,15 +62,34 @@
                 1,
                 1
             ],
-            "UID": 972741174,
-            "PrefabID": 925580968,
+            "UID": 1474753379,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1676501951,
+            "ParentUID": 1894357097,
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/996929350.mmh",
+                    "UID": 996929350,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
                 }
             ]
         },
@@ -40,26 +99,26 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                5.3929743766784668,
-                9.9887104034423828,
-                13.622654914855957
+                -0.50791072845458984,
+                1.8625330924987793,
+                0.62534236907958984
             ],
             "Rotation": [
-                -1.1734662308526822e-07,
-                -1.4901154088420299e-08,
-                -2.23517560016262e-08,
-                1
+                0.067423172295093536,
+                -0.86631685495376587,
+                0.068691566586494446,
+                -0.49013331532478333
             ],
             "Scale": [
-                1.0000001192092896,
-                1,
-                1.0000002384185791
+                0.99999940395355225,
+                1.0000015497207642,
+                0.99999922513961792
             ],
-            "UID": 168983262,
+            "UID": 464352642,
             "PrefabID": 195124493,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 972741174,
+            "ParentUID": 1894357097,
             "Components": [
                 {
                     "Type": 1,
@@ -75,7 +134,7 @@
             "Position": [
                 0,
                 0,
-                -0.098833084106445312
+                -0.098833084106445313
             ],
             "Rotation": [
                 -0.7071068286895752,
@@ -88,11 +147,11 @@
                 0.99998706579208374,
                 0.99998706579208374
             ],
-            "UID": 868265436,
+            "UID": 476466744,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 168983262,
+            "ParentUID": 464352642,
             "Components": [
                 {
                     "Type": 1,
@@ -212,58 +271,6 @@
                     "Active": true,
                     "billboardAlignment": 0,
                     "horizantalAligned": true
-                }
-            ]
-        },
-        {
-            "name": "Spaceship",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                6.0019707679748535,
-                8.2513151168823242,
-                14.476251602172852
-            ],
-            "Rotation": [
-                0.067422986030578613,
-                -0.86631691455841064,
-                0.068691670894622803,
-                0.49013331532478333
-            ],
-            "Scale": [
-                1.000001072883606,
-                0.99999839067459106,
-                1.0000005960464478
-            ],
-            "UID": 2138224000,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 972741174,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/996929350.mmh",
-                    "UID": 996929350,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
                 }
             ]
         }
