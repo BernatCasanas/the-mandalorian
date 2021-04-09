@@ -94,7 +94,7 @@ namespace DiamondEngine
 
         public static float Dot(Vector3 a, Vector3 b)
         {
-            return (a.x * b.x + a.y + b.y + a.z + b.z);
+            return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z));
         }
 
         public static Vector3 Cross(Vector3 v1, Vector3 v2)
@@ -109,7 +109,7 @@ namespace DiamondEngine
         }
 
         public static float Magnitude(Vector3 vector) { return (float)Math.Sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z); }
-        public float magnitude { get { return (float)Math.Sqrt(x * x + y * y + z * z); } }
+        public float magnitude { get { return (float)Math.Sqrt((x * x) + (y * y) + (z * z)); } }
 
         public bool IsEqual(Vector3 a) { return (this.x == a.x && this.y == a.y && this.z == a.z); }
 
@@ -129,8 +129,9 @@ namespace DiamondEngine
 
         public static Vector3 SlerpVector(Vector3 start, Vector3 end, float percent)
         {
-            float dot = Vector3.Dot(start, end);
-            Mathf.Clamp(dot, -1.0f, 1.0f);
+            Vector3 normStart = start.normalized;
+            Vector3 normEnd = end.normalized;
+            float dot = Dot(normStart, normEnd);
             float theta = (float)Math.Acos(dot) * percent;
             Vector3 RelativeVec = end - start * dot;
             return ((start * (float)Math.Cos(theta)) + (RelativeVec.normalized * (float)Math.Sin(theta)));

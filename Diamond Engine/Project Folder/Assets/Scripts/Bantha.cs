@@ -38,13 +38,10 @@ public class Bantha : Enemy
         IN_RUN_END
     }
 
-    //private bool started = false;
-
     //State
     private STATE currentState = STATE.NONE;
                                              
     private List<INPUT> inputsList = new List<INPUT>();
-
 
     public GameObject hitParticles = null;
 
@@ -104,150 +101,6 @@ public class Bantha : Enemy
         UpdateState();
 
         #endregion
-
-        #region CODE
-
-
-        //switch (currentState)
-        //{
-        //    case STATE.IDLE:
-        //        Debug.Log("Idle");
-
-        //        timePassed += Time.deltaTime;
-
-        //        if (InRange(player.transform.globalPosition, range))
-        //        {
-        //            LookAt(player.transform.globalPosition);
-
-        //            if (timePassed > idleTime)
-        //            {
-        //                currentState = STATE.SHOOT;
-        //                Animator.Play(gameObject, "BT_Dash", 1.0f);
-        //                //timePassed = timeBewteenShots;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            if (timePassed > idleTime)
-        //            {
-        //                currentState = STATE.WANDER;
-        //                timePassed = 0.0f;
-        //                targetPosition = CalculateNewPosition(wanderRange);
-        //            }
-        //        }
-        //        break;
-
-        //    case STATE.RUN:
-        //        Debug.Log("Running");
-
-        //        LookAt(player.transform.globalPosition);
-        //        MoveToPosition(player.transform.localPosition, runningSpeed);
-
-        //        // If the player is in range attack him
-        //        if (InRange(player.transform.globalPosition, chargeRange))
-        //        {
-        //            currentState = STATE.SHOOT;
-        //            //timePassed = timeBewteenShots;
-        //        }
-
-        //        if (Mathf.Distance(gameObject.transform.localPosition, player.transform.localPosition) < stoppingDistance)
-        //        {
-        //            currentState = STATE.IDLE;
-        //            timePassed = 0.0f;
-        //            Animator.Play(gameObject, "BT_Idle", 1.0f);
-        //        }
-        //        break;
-
-        //    case STATE.WANDER:
-        //        Debug.Log("Wander");
-
-        //        // If the player is in range run to him
-        //        if (InRange(player.transform.globalPosition, range))
-        //        {
-        //            currentState = STATE.RUN;
-        //            Animator.Play(gameObject, "BT_Run", 1.0f);
-        //            //timePassed = timeBewteenShots;
-        //        }
-        //        else  //if not, keep wandering
-        //        {
-        //            if (targetPosition == null)
-        //                targetPosition = CalculateNewPosition(wanderRange);
-
-        //            LookAt(targetPosition);
-        //            MoveToPosition(targetPosition, wanderSpeed);
-
-        //            if (Mathf.Distance(gameObject.transform.localPosition, targetPosition) < stoppingDistance)
-        //            {
-        //                //targetPosition = CalculateNewPosition(wanderRange);
-        //                currentState = STATE.IDLE;
-        //                Animator.Play(gameObject, "BT_Idle", 1.0f);
-        //                timePassed = 0.0f;
-        //            }
-        //        }
-        //        break;
-
-        //    case STATE.SHOOT:
-        //        Debug.Log("Charging");
-
-        //        timePassed += Time.deltaTime;
-
-        //        //LookAt(player.transform.globalPosition);
-
-        //        //Debug.Log(player.transform.localPosition.ToString());
-        //        //Debug.Log(gameObject.transform.localPosition.ToString());
-
-        //        if (timePassed < chargeTime)
-        //        {
-        //            LookAt(player.transform.globalPosition);
-        //        }
-        //        else
-        //        {
-        //            if (chargeCounter < chargeDuration)
-        //            {
-        //                chargeCounter += Time.deltaTime;
-        //                gameObject.SetVelocity(gameObject.transform.GetForward().normalized * chargeSpeed);
-
-
-
-        //            }
-        //            else
-        //            {
-
-
-        //                chargeCounter = 0.0f;
-        //                currentState = STATE.RUN;
-        //                Animator.Play(gameObject, "BT_Run", 1.0f);
-        //                timePassed = 0.0f;
-        //            }
-        //        }
-
-        //        if (Mathf.Distance(gameObject.transform.localPosition, player.transform.localPosition) < stoppingDistance)
-        //        {
-        //            chargeCounter = 0.0f;
-        //            currentState = STATE.RUN;
-        //            timePassed = 0.0f;
-        //        }
-
-        //        break;
-
-        //    case STATE.HIT:
-        //        Debug.Log("Being Hit");
-
-        //        break;
-
-        //    case STATE.DIE:
-        //        Debug.Log("Dying");
-        //        Counter.SumToCounterType(Counter.CounterTypes.ENEMY_BANTHA);
-        //        Counter.roomEnemies--;
-        //        if (Counter.roomEnemies <= 0 && Core.instance != null)
-        //        {
-        //            Core.instance.gameObject.GetComponent<BoonSpawn>().SpawnBoons();
-        //        }
-        //        InternalCalls.Destroy(gameObject);
-        //        break;
-
-        //}
-#endregion
     }
 
     //Timers go here
@@ -547,12 +400,9 @@ public class Bantha : Enemy
     private void StartWander()
     {
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
-
         Animator.Play(gameObject, "BT_Walk", 1.4f);
 
-
-        //Audio.PlayAudio(gameObject, "Play_Footsteps_Bantha");
-
+        Audio.PlayAudio(gameObject, "Play_Footsteps_Bantha");
     }
     private void UpdateWander()
     {
@@ -602,7 +452,7 @@ public class Bantha : Enemy
 
         Animator.Play(gameObject, "BT_Die", 1.0f);
 
-        //Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Death");
+        Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Death");
         //Audio.PlayAudio(gameObject, "Play_Mando_Voice");
 
         if (hitParticles != null)
