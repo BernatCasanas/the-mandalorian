@@ -56,7 +56,8 @@ public class HubTextController : DiamondComponent
 	}
 	public void Update()
 	{
-		if (mando == null || Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN || textController == null || dialog == null || textController.IsEnabled() == false) 
+		if (mando == null || Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN || textController == null || textController.GetComponent<TextController>().otherimage == null || dialog == null ||
+			textController.IsEnabled() == false) 
 			return;
         if (dialog_finished)
         {
