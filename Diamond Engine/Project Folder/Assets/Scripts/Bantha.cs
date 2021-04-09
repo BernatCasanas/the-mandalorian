@@ -320,12 +320,12 @@ public class Bantha : Enemy
             if (InRange(player.transform.globalPosition, detectionRange))
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
-                Debug.Log("In run range");
+              //  Debug.Log("In run range");
             }
             if (InRange(player.transform.globalPosition, chargeRange))
             {
                 inputsList.Add(INPUT.IN_CHARGE_RANGE);
-                Debug.Log("In charge range");
+              //  Debug.Log("In charge range");
             }
         }
         if(currentState == STATE.RUN)
@@ -333,7 +333,7 @@ public class Bantha : Enemy
             if(!InRange(player.transform.globalPosition, detectionRange))
             {
                 inputsList.Add(INPUT.IN_WANDER);
-                Debug.Log("In wander");
+            //    Debug.Log("In wander");
             }
         }
 
@@ -341,7 +341,7 @@ public class Bantha : Enemy
 
     private void ProcessState()
     {
-        Debug.Log("State: " + currentState.ToString());
+      //  Debug.Log("State: " + currentState.ToString());
 
         while (inputsList.Count > 0)
         {
