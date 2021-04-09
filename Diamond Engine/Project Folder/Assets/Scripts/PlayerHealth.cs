@@ -9,9 +9,10 @@ public class PlayerHealth : DiamondComponent
     //Bo Katan’s resilience: each time you kill an enemy heal +1 HP.
     //0 means this boon is not working else heal the amount stored here
     public static int healWhenKillingAnEnemy { get; private set; }
-
+    public GameObject character_mesh = null;
    
     private bool die = false;
+    private float damaged = 0.0f;
 
     public void Update()
     {
@@ -19,6 +20,15 @@ public class PlayerHealth : DiamondComponent
         {
             die = false;
             Die();
+        }
+        if (damaged > 0.01f)
+        {
+            damaged = Mathf.Lerp(damaged, 0.0f, 0.1f);
+        }
+        if (character_mesh.GetComponent<Material>() != null)
+        {
+            Debug.Log("Sending uniform");
+            character_mesh.GetComponent<Material>().SetFloatUniform("damaged", damaged);
         }
     }
 
@@ -159,7 +169,7 @@ public class PlayerHealth : DiamondComponent
             Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Critical");
         }
 
-
+        damaged = 1.0f;
         Debug.Log("Current health: " + currHealth);
         return currHealth;
     }
