@@ -51,7 +51,7 @@ public class Bantha : Enemy
 
     //Action times
     public float idleTime = 5.0f;
-    public float dieTime = 3.0f;
+    private float dieTime = 3.0f;
     public float tiredTime = 2.0f;
     public float loadingTime = 2.0f;
     public float timeBewteenStates = 1.5f;
@@ -65,24 +65,26 @@ public class Bantha : Enemy
     public float wanderRange = 7.5f;
     //public float runningRange = 12.5f;
     public float chargeRange = 5.0f;
+    public float chargeLenght = 20.0f;
 
     //Timers
     private float idleTimer = 0.0f;
     private float dieTimer = 0.0f;
     private float tiredTimer = 0.0f;
     private float loadingTimer = 0.0f;
+    private float chargeTimer = 0.0f;
     //private float chargeDuration = 1.0f;
-
-
 
     public void Awake()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
         targetPosition = null;
+        loadingTime = Animator.GetAnimationDuration(gameObject, "BT_Charge");
 
         currentState = STATE.IDLE;
         StartIdle();
-        //Animator.Play(gameObject, "BT_Idle");
+        
+        dieTime = Animator.GetAnimationDuration(gameObject, "BT_Die");
     }
 
     public void Update()
@@ -263,7 +265,7 @@ public class Bantha : Enemy
 
         if (currentState == STATE.WANDER)
         {
-            if (Mathf.Distance(gameObject.transform.localPosition, agent.GetDestination()) <= stoppingDistance)
+            if (Mathf.Distance(gameObject.transform.localPosition, agent.GetDestination()) <= agent.stoppingDistance)
             {
                 inputsList.Add(INPUT.IN_IDLE);
             }
@@ -279,9 +281,10 @@ public class Bantha : Enemy
             }
         }
 
-        if (currentState == STATE.CHARGE)
+        if (currentState == STATE.CHARGE && chargeTimer > 0.0f)
         {
-            if (Mathf.Distance(gameObject.transform.localPosition, targetPosition) <= stoppingDistance)
+            chargeTimer -= Time.deltaTime;
+            if (Mathf.Distance(gameObject.transform.localPosition, targetPosition) <= agent.stoppingDistance || chargeTimer < 0.0f)
             {
                 inputsList.Add(INPUT.IN_CHARGE_END);
             }
@@ -296,16 +299,6 @@ public class Bantha : Enemy
                 inputsList.Add(INPUT.IN_RUN);
             }
         }
-
-        if (dieTimer > 0.0f)
-        {
-            dieTimer -= Time.deltaTime;
-
-            if (dieTimer <= 0.0f)
-            {
-                inputsList.Add(INPUT.IN_DIE);
-            }
-        }
     }
 
     //All events from outside the stormtrooper
@@ -316,12 +309,12 @@ public class Bantha : Enemy
             if (InRange(player.transform.globalPosition, detectionRange))
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
-                Debug.Log("In run range");
+              //  Debug.Log("In run range");
             }
             if (InRange(player.transform.globalPosition, chargeRange))
             {
                 inputsList.Add(INPUT.IN_CHARGE_RANGE);
-                Debug.Log("In charge range");
+              //  Debug.Log("In charge range");
             }
         }
         if(currentState == STATE.RUN)
@@ -329,7 +322,7 @@ public class Bantha : Enemy
             if(!InRange(player.transform.globalPosition, detectionRange))
             {
                 inputsList.Add(INPUT.IN_WANDER);
-                Debug.Log("In wander");
+            //    Debug.Log("In wander");
             }
         }
 
@@ -337,7 +330,7 @@ public class Bantha : Enemy
 
     private void ProcessState()
     {
-        Debug.Log("State: " + currentState.ToString());
+      //  Debug.Log("State: " + currentState.ToString());
 
         while (inputsList.Count > 0)
         {
@@ -540,7 +533,7 @@ public class Bantha : Enemy
     #region RUN
     private void StartRun()
     {
-        Animator.Play(gameObject, "BT_Run");
+        Animator.Play(gameObject, "BT_Walk");
     }
     private void UpdateRun()
     {
@@ -555,7 +548,8 @@ public class Bantha : Enemy
     {
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
-        Animator.Play(gameObject, "BT_Run");
+        Animator.Play(gameObject, "BT_Walk", 1.4f);
+
 
         //Audio.PlayAudio(gameObject, "Play_Footsteps_Bantha");
 
@@ -584,13 +578,20 @@ public class Bantha : Enemy
     #region CHARGE
     private void StartCharge()
     {
-        Animator.Play(gameObject, "BT_Charge");
-        targetPosition = player.transform.localPosition;
-        LookAt(targetPosition);
+        chargeTimer = chargeLenght/chargeSpeed;
+        Animator.Play(gameObject, "BT_Run");
+
+        Vector3 direction = player.transform.globalPosition - gameObject.transform.globalPosition;
+        targetPosition = direction.normalized * chargeLenght + gameObject.transform.globalPosition;
+        
     }
     private void UpdateCharge()
     {
-        MoveToPosition(targetPosition, chargeSpeed);
+        agent.CalculatePath(gameObject.transform.localPosition, targetPosition);
+        LookAt(agent.GetDestination());
+        
+        agent.MoveToCalculatedPos(chargeSpeed);
+        
     }
     #endregion
 
@@ -601,8 +602,8 @@ public class Bantha : Enemy
 
         Animator.Play(gameObject, "BT_Die", 1.0f);
 
-        Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Death");
-        Audio.PlayAudio(gameObject, "Play_Mando_Voice");
+        //Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Death");
+        //Audio.PlayAudio(gameObject, "Play_Mando_Voice");
 
         if (hitParticles != null)
             hitParticles.GetComponent<ParticleSystem>().Play();
@@ -623,7 +624,7 @@ public class Bantha : Enemy
     }
     private void Die()
     {
-        Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
+        Counter.SumToCounterType(Counter.CounterTypes.ENEMY_BANTHA);
         Counter.roomEnemies--;
         Debug.Log("Enemies: " + Counter.roomEnemies.ToString());
         if (Counter.roomEnemies <= 0)
@@ -666,6 +667,20 @@ public class Bantha : Enemy
             if (currentState != STATE.DIE)  //quitar STATE
             {
                 inputsList.Add(INPUT.IN_DIE);
+            }
+        }
+        else if (collidedGameObject.CompareTag("Player"))
+        {
+            Debug.Log("Collision with player");
+
+            if(currentState == STATE.CHARGE)
+            {
+                inputsList.Add(INPUT.IN_CHARGE_END);
+                PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
+                if(playerHealth!= null)
+                {
+                    playerHealth.TakeDamage((int)damage);
+                }
             }
         }
 

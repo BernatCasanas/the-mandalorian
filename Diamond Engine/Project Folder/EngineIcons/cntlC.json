@@ -1,7 +1,40 @@
 {
     "Game Objects": [
         {
-            "name": "Dust",
+            "name": "Dust Trail R",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -0.0040750503540039063,
+                -0.17300605773925781,
+                -0.058134078979492188
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1643193249,
+            "PrefabID": 1187362402,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1800709106,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "DustR",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -11,15 +44,15 @@
                 -0.0081729888916015625
             ],
             "Rotation": [
-                -0.71074622869491577,
+                -0.71074628829956055,
                 0,
                 0,
                 0.70344847440719604
             ],
             "Scale": [
                 1,
-                0.99999898672103882,
-                0.99999898672103882
+                0.99999892711639404,
+                0.99999892711639404
             ],
             "UID": 8345645,
             "PrefabID": 0,
@@ -35,15 +68,15 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
                 {
                     "Type": 20,
                     "Active": true,
-                    "systemActive": true,
-                    "looping": true,
+                    "systemActive": false,
+                    "looping": false,
                     "maxDuration": 0.096000000834465027,
                     "ParticleEmitters": [
                         {
@@ -56,7 +89,7 @@
                                 2
                             ],
                             "paSize": [
-                                0.029999999329447746,
+                                0.0099999997764825821,
                                 0.10000000149011612
                             ],
                             "paColor": [
@@ -80,27 +113,55 @@
                                     "paFOLT_forceType": 0
                                 },
                                 {
-                                    "paEffectType": 2,
-                                    "Gradients": [
-                                        {
-                                            "paColorOLTcolor": [
-                                                0,
-                                                0,
-                                                0,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 0
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                1,
-                                                1,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 1
-                                        }
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 0.5,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeConeRadius": 0.10000000149011612,
+                                    "PaShapeConeHeight": 0.10000000149011612,
+                                    "PaShapeSphereDirection": false,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 2,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
                                     ]
+                                }
+                            ]
+                        },
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/39569920.dds",
+                            "texUID": 39569920,
+                            "paEmitterName": "Dust 2",
+                            "paLifeTime": [
+                                0.30000001192092896,
+                                2
+                            ],
+                            "paSize": [
+                                0.0099999997764825821,
+                                0.10000000149011612
+                            ],
+                            "paColor": [
+                                0.34322035312652588,
+                                0.19540895521640778,
+                                0.082896433770656586,
+                                1
+                            ],
+                            "paPerSec": 30,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    "paFOLT_magnitude": 0,
+                                    "paFOLT_gravityMod": 0.019999999552965164,
+                                    "paFOLT_gravity": -0.19599999487400055,
+                                    "paFOLT_forceType": 0
                                 },
                                 {
                                     "paEffectType": 5,

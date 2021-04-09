@@ -1,15 +1,15 @@
 {
-    "assets_path": "Assets\/Prefabs\/Torch.prefab",
+    "assets_path": "Assets\/Prefabs\/Torch Prefab 1.prefab",
     "Game Objects": [
         {
-            "name": "Torch 1",
+            "name": "Torch Prefab",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
-                -4.9714145660400391,
-                10.595178604125977,
-                -6.7574977874755859
+                20.128999710083008,
+                8.5939998626708984,
+                -9.8863544464111328
             ],
             "Rotation": [
                 0,
@@ -22,11 +22,96 @@
                 1,
                 1
             ],
-            "UID": 811006802,
-            "PrefabID": 2017464894,
+            "UID": 2099860697,
+            "PrefabID": 2128758711,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "TorchV3",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                -1.0672351891116705e-11,
+                -0.70722883939743042,
+                -1.0672351891116705e-11,
+                0.70698469877243042
+            ],
+            "Scale": [
+                1,
+                0.99999994039535522,
+                1
+            ],
+            "UID": 157349018,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 2099860697,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/597376607.mmh",
+                    "UID": 597376607,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "Torch 1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0.34851360321044922,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 481898831,
+            "PrefabID": 2017464894,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 2099860697,
             "Components": [
                 {
                     "Type": 1,
@@ -55,11 +140,11 @@
                 0.40000000596046448,
                 0.40000000596046448
             ],
-            "UID": 1464515118,
+            "UID": 141495970,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 811006802,
+            "ParentUID": 481898831,
             "Components": [
                 {
                     "Type": 1,
@@ -86,12 +171,12 @@
                             "texUID": 39569920,
                             "paEmitterName": "Flame",
                             "paLifeTime": [
-                                1,
-                                1
+                                0.40000000596046448,
+                                0.85000002384185791
                             ],
                             "paSize": [
-                                0.0099999997764825821,
-                                0.10000000149011612
+                                0.019999999552965164,
+                                0.059999998658895493
                             ],
                             "paColor": [
                                 1,
@@ -104,11 +189,11 @@
                                 {
                                     "paEffectType": 0,
                                     "paFOLT_direction": [
-                                        -4.9710001945495605,
-                                        11.595000267028809,
-                                        16.277999877929688
+                                        24.899999618530273,
+                                        90,
+                                        -18.299999237060547
                                     ],
-                                    "paFOLT_magnitude": 1.2000000476837158,
+                                    "paFOLT_magnitude": 1.5,
                                     "paFOLT_gravityMod": 0,
                                     "paFOLT_gravity": -0,
                                     "paFOLT_forceType": 1
@@ -159,7 +244,7 @@
                                     "paShapeHasInitSpeed": true,
                                     "paShapePartSpeed": 0.0099999997764825821,
                                     "paShapeRandSpeed": 0,
-                                    "PaShapeSphereRadius": 0.10000000149011612,
+                                    "PaShapeSphereRadius": 0.05000000074505806,
                                     "PaShapeSphereDirection": true,
                                     "PaShapeSphereAngle": 0,
                                     "paShapeType": 1,
@@ -188,7 +273,7 @@
             "Active": true,
             "Position": [
                 0,
-                -0.10266494750976563,
+                -0.097479820251464844,
                 0
             ],
             "Rotation": [
@@ -202,11 +287,11 @@
                 1,
                 1
             ],
-            "UID": 630954365,
+            "UID": 583438581,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 811006802,
+            "ParentUID": 481898831,
             "Components": [
                 {
                     "Type": 1,
@@ -238,7 +323,7 @@
                             ],
                             "paSize": [
                                 0.0099999997764825821,
-                                0.05000000074505806
+                                0.029999999329447746
                             ],
                             "paColor": [
                                 1,
@@ -256,8 +341,8 @@
                                         0
                                     ],
                                     "paFOLT_magnitude": 0,
-                                    "paFOLT_gravityMod": 0.0030000000260770321,
-                                    "paFOLT_gravity": -0.029400000348687172,
+                                    "paFOLT_gravityMod": 0.30000001192092896,
+                                    "paFOLT_gravity": -2.940000057220459,
                                     "paFOLT_forceType": 1
                                 },
                                 {
@@ -306,10 +391,10 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 1,
+                                    "paShapePartSpeed": 7,
                                     "paShapeRandSpeed": 0,
-                                    "PaShapeConeRadius": 0.5,
-                                    "PaShapeConeHeight": 1,
+                                    "PaShapeConeRadius": 0.30000001192092896,
+                                    "PaShapeConeHeight": 0.60000002384185791,
                                     "PaShapeSphereDirection": true,
                                     "PaShapeSphereAngle": 0,
                                     "paShapeType": 2,

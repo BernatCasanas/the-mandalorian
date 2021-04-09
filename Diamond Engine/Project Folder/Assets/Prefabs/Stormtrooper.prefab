@@ -7,9 +7,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                6.1428756713867188,
-                6.54449462890625,
-                -4.861910343170166
+                -12.11700439453125,
+                6.2642016410827637,
+                -14.418254852294922
             ],
             "Rotation": [
                 0,
@@ -22,7 +22,7 @@
                 1,
                 0.99999940395355225
             ],
-            "UID": 156285526,
+            "UID": 143633416,
             "PrefabID": 489054570,
             "DontDestroy": false,
             "Static": false,
@@ -35,8 +35,8 @@
                 {
                     "Type": 16,
                     "Active": true,
-                    "RootBone UID": 1602449944,
-                    "MeshRendererUID": 589402028,
+                    "RootBone UID": 1218194904,
+                    "MeshRendererUID": 507595499,
                     "Animations": [
                         470296733,
                         1026711667,
@@ -93,10 +93,12 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "StormTrooperParticles",
-                    "circles": 943521828,
-                    "circlesUp": 1703392752,
-                    "stormTrooper": 2057089498,
-                    "start": true
+                    "circlesObj": 1646444124,
+                    "circlesUPObj": 851731085,
+                    "stormTrooperObj": 711718255,
+                    "deadObj": 516478459,
+                    "waveObj": 280608671,
+                    "soulsObj": 597546932
                 },
                 {
                     "Type": 24,
@@ -115,8 +117,9 @@
                     "stoppingDistance": 1,
                     "slerpSpeed": 5,
                     "turretMode": false,
-                    "shootPoint": 641064512,
+                    "shootPoint": 315340847,
                     "idleTime": 5,
+                    "dieTime": 4,
                     "timeBewteenShots": 0.5,
                     "timeBewteenSequences": 0.5,
                     "timeBewteenStates": 1.5,
@@ -151,11 +154,11 @@
                 1,
                 1
             ],
-            "UID": 1602449944,
+            "UID": 1218194904,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 156285526,
+            "ParentUID": 143633416,
             "Components": [
                 {
                     "Type": 1,
@@ -184,11 +187,11 @@
                 1,
                 1
             ],
-            "UID": 244605927,
+            "UID": 1375740413,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1602449944,
+            "ParentUID": 1218194904,
             "Components": [
                 {
                     "Type": 1,
@@ -217,11 +220,11 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 163922957,
+            "UID": 505153626,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 244605927,
+            "ParentUID": 1375740413,
             "Components": [
                 {
                     "Type": 1,
@@ -250,11 +253,11 @@
                 0.99999994039535522,
                 0.99999994039535522
             ],
-            "UID": 752089139,
+            "UID": 2108392474,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 163922957,
+            "ParentUID": 505153626,
             "Components": [
                 {
                     "Type": 1,
@@ -283,11 +286,11 @@
                 1,
                 1
             ],
-            "UID": 1251665165,
+            "UID": 1442708963,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 752089139,
+            "ParentUID": 2108392474,
             "Components": [
                 {
                     "Type": 1,
@@ -316,11 +319,11 @@
                 1,
                 1
             ],
-            "UID": 1589024499,
+            "UID": 735575539,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1251665165,
+            "ParentUID": 1442708963,
             "Components": [
                 {
                     "Type": 1,
@@ -349,11 +352,11 @@
                 1,
                 1
             ],
-            "UID": 1854569674,
+            "UID": 462070710,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1589024499,
+            "ParentUID": 735575539,
             "Components": [
                 {
                     "Type": 1,
@@ -382,11 +385,11 @@
                 1,
                 1
             ],
-            "UID": 1688481326,
+            "UID": 519868850,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1854569674,
+            "ParentUID": 462070710,
             "Components": [
                 {
                     "Type": 1,
@@ -415,11 +418,11 @@
                 1,
                 1
             ],
-            "UID": 503560666,
+            "UID": 99819312,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1688481326,
+            "ParentUID": 519868850,
             "Components": [
                 {
                     "Type": 1,
@@ -448,11 +451,11 @@
                 1,
                 1
             ],
-            "UID": 726590311,
+            "UID": 263239060,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 244605927,
+            "ParentUID": 1375740413,
             "Components": [
                 {
                     "Type": 1,
@@ -481,11 +484,11 @@
                 1,
                 1
             ],
-            "UID": 1966737046,
+            "UID": 341152762,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 726590311,
+            "ParentUID": 263239060,
             "Components": [
                 {
                     "Type": 1,
@@ -514,11 +517,11 @@
                 1,
                 1
             ],
-            "UID": 495063199,
+            "UID": 227307382,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1966737046,
+            "ParentUID": 341152762,
             "Components": [
                 {
                     "Type": 1,
@@ -547,11 +550,11 @@
                 1,
                 1
             ],
-            "UID": 1829926876,
+            "UID": 560247479,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 495063199,
+            "ParentUID": 227307382,
             "Components": [
                 {
                     "Type": 1,
@@ -580,11 +583,11 @@
                 1,
                 1
             ],
-            "UID": 1871675721,
+            "UID": 244254998,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1829926876,
+            "ParentUID": 560247479,
             "Components": [
                 {
                     "Type": 1,
@@ -613,11 +616,11 @@
                 1,
                 1
             ],
-            "UID": 775155428,
+            "UID": 1501698812,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1871675721,
+            "ParentUID": 244254998,
             "Components": [
                 {
                     "Type": 1,
@@ -646,11 +649,11 @@
                 1,
                 1
             ],
-            "UID": 832003678,
+            "UID": 1679119704,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 775155428,
+            "ParentUID": 1501698812,
             "Components": [
                 {
                     "Type": 1,
@@ -679,11 +682,11 @@
                 1,
                 1
             ],
-            "UID": 851655507,
+            "UID": 1573104092,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 832003678,
+            "ParentUID": 1679119704,
             "Components": [
                 {
                     "Type": 1,
@@ -712,11 +715,11 @@
                 1,
                 1
             ],
-            "UID": 1084559177,
+            "UID": 1561475779,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1829926876,
+            "ParentUID": 560247479,
             "Components": [
                 {
                     "Type": 1,
@@ -745,11 +748,11 @@
                 1,
                 1
             ],
-            "UID": 421949750,
+            "UID": 1588031325,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1084559177,
+            "ParentUID": 1561475779,
             "Components": [
                 {
                     "Type": 1,
@@ -778,11 +781,11 @@
                 1,
                 1
             ],
-            "UID": 1134737437,
+            "UID": 1428279324,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 421949750,
+            "ParentUID": 1588031325,
             "Components": [
                 {
                     "Type": 1,
@@ -811,11 +814,11 @@
                 1,
                 1
             ],
-            "UID": 2074179188,
+            "UID": 1152025516,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1134737437,
+            "ParentUID": 1428279324,
             "Components": [
                 {
                     "Type": 1,
@@ -844,11 +847,11 @@
                 1,
                 1
             ],
-            "UID": 1038888880,
+            "UID": 949201280,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 2074179188,
+            "ParentUID": 1152025516,
             "Components": [
                 {
                     "Type": 1,
@@ -877,11 +880,11 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 1233483520,
+            "UID": 1975529396,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1038888880,
+            "ParentUID": 949201280,
             "Components": [
                 {
                     "Type": 1,
@@ -910,11 +913,11 @@
                 1,
                 1
             ],
-            "UID": 632586037,
+            "UID": 594423154,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1233483520,
+            "ParentUID": 1975529396,
             "Components": [
                 {
                     "Type": 1,
@@ -943,11 +946,11 @@
                 1,
                 1
             ],
-            "UID": 677849301,
+            "UID": 177043297,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 632586037,
+            "ParentUID": 594423154,
             "Components": [
                 {
                     "Type": 1,
@@ -976,11 +979,11 @@
                 1,
                 1
             ],
-            "UID": 1593042096,
+            "UID": 1522730304,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 677849301,
+            "ParentUID": 177043297,
             "Components": [
                 {
                     "Type": 1,
@@ -1009,11 +1012,11 @@
                 1,
                 1
             ],
-            "UID": 243332654,
+            "UID": 1328776982,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 2074179188,
+            "ParentUID": 1152025516,
             "Components": [
                 {
                     "Type": 1,
@@ -1042,11 +1045,11 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 1711696598,
+            "UID": 1481718356,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 243332654,
+            "ParentUID": 1328776982,
             "Components": [
                 {
                     "Type": 1,
@@ -1075,11 +1078,11 @@
                 1,
                 1
             ],
-            "UID": 1866310034,
+            "UID": 41712137,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1711696598,
+            "ParentUID": 1481718356,
             "Components": [
                 {
                     "Type": 1,
@@ -1108,11 +1111,11 @@
                 1,
                 1
             ],
-            "UID": 872815379,
+            "UID": 642799333,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1866310034,
+            "ParentUID": 41712137,
             "Components": [
                 {
                     "Type": 1,
@@ -1141,11 +1144,11 @@
                 1,
                 1
             ],
-            "UID": 1082225847,
+            "UID": 920642960,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 872815379,
+            "ParentUID": 642799333,
             "Components": [
                 {
                     "Type": 1,
@@ -1174,11 +1177,11 @@
                 1,
                 1
             ],
-            "UID": 1181938992,
+            "UID": 139106151,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 2074179188,
+            "ParentUID": 1152025516,
             "Components": [
                 {
                     "Type": 1,
@@ -1207,11 +1210,11 @@
                 1,
                 1
             ],
-            "UID": 496176286,
+            "UID": 1705574448,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1181938992,
+            "ParentUID": 139106151,
             "Components": [
                 {
                     "Type": 1,
@@ -1240,11 +1243,11 @@
                 1,
                 1
             ],
-            "UID": 2014745611,
+            "UID": 837866990,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 496176286,
+            "ParentUID": 1705574448,
             "Components": [
                 {
                     "Type": 1,
@@ -1273,11 +1276,11 @@
                 1,
                 1
             ],
-            "UID": 1414812332,
+            "UID": 1039407329,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 2014745611,
+            "ParentUID": 837866990,
             "Components": [
                 {
                     "Type": 1,
@@ -1306,11 +1309,11 @@
                 1,
                 1
             ],
-            "UID": 2016929223,
+            "UID": 821199350,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1414812332,
+            "ParentUID": 1039407329,
             "Components": [
                 {
                     "Type": 1,
@@ -1339,11 +1342,11 @@
                 0.99999994039535522,
                 1
             ],
-            "UID": 968724447,
+            "UID": 262812269,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1829926876,
+            "ParentUID": 560247479,
             "Components": [
                 {
                     "Type": 1,
@@ -1372,11 +1375,11 @@
                 0.99999994039535522,
                 0.99999994039535522
             ],
-            "UID": 1840790552,
+            "UID": 692307609,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 968724447,
+            "ParentUID": 262812269,
             "Components": [
                 {
                     "Type": 1,
@@ -1405,11 +1408,11 @@
                 0.99999994039535522,
                 1
             ],
-            "UID": 149935126,
+            "UID": 1025072921,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1840790552,
+            "ParentUID": 692307609,
             "Components": [
                 {
                     "Type": 1,
@@ -1438,11 +1441,11 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 1862882826,
+            "UID": 1425275837,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 149935126,
+            "ParentUID": 1025072921,
             "Components": [
                 {
                     "Type": 1,
@@ -1471,11 +1474,11 @@
                 1,
                 1
             ],
-            "UID": 637852028,
+            "UID": 352170848,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1862882826,
+            "ParentUID": 1425275837,
             "Components": [
                 {
                     "Type": 1,
@@ -1504,11 +1507,11 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 81705075,
+            "UID": 665810809,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 637852028,
+            "ParentUID": 352170848,
             "Components": [
                 {
                     "Type": 1,
@@ -1537,11 +1540,11 @@
                 1,
                 1
             ],
-            "UID": 1852329319,
+            "UID": 979812894,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 81705075,
+            "ParentUID": 665810809,
             "Components": [
                 {
                     "Type": 1,
@@ -1570,11 +1573,11 @@
                 1,
                 1
             ],
-            "UID": 331548455,
+            "UID": 735446219,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1852329319,
+            "ParentUID": 979812894,
             "Components": [
                 {
                     "Type": 1,
@@ -1603,11 +1606,11 @@
                 1,
                 1
             ],
-            "UID": 1580747599,
+            "UID": 48617578,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 331548455,
+            "ParentUID": 735446219,
             "Components": [
                 {
                     "Type": 1,
@@ -1636,11 +1639,11 @@
                 1,
                 1
             ],
-            "UID": 1134132170,
+            "UID": 370170266,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1862882826,
+            "ParentUID": 1425275837,
             "Components": [
                 {
                     "Type": 1,
@@ -1669,11 +1672,11 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 737074674,
+            "UID": 1820325186,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1134132170,
+            "ParentUID": 370170266,
             "Components": [
                 {
                     "Type": 1,
@@ -1702,11 +1705,11 @@
                 1,
                 1
             ],
-            "UID": 1754133489,
+            "UID": 1259830448,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 737074674,
+            "ParentUID": 1820325186,
             "Components": [
                 {
                     "Type": 1,
@@ -1735,11 +1738,11 @@
                 1,
                 1
             ],
-            "UID": 1427600073,
+            "UID": 981025787,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1754133489,
+            "ParentUID": 1259830448,
             "Components": [
                 {
                     "Type": 1,
@@ -1768,11 +1771,11 @@
                 1,
                 1
             ],
-            "UID": 1106531879,
+            "UID": 1426407539,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1427600073,
+            "ParentUID": 981025787,
             "Components": [
                 {
                     "Type": 1,
@@ -1801,11 +1804,11 @@
                 1,
                 1
             ],
-            "UID": 1175079028,
+            "UID": 1832984498,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1862882826,
+            "ParentUID": 1425275837,
             "Components": [
                 {
                     "Type": 1,
@@ -1834,11 +1837,11 @@
                 0.99999994039535522,
                 0.99999994039535522
             ],
-            "UID": 1787475923,
+            "UID": 2145495930,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1175079028,
+            "ParentUID": 1832984498,
             "Components": [
                 {
                     "Type": 1,
@@ -1867,11 +1870,11 @@
                 1,
                 1
             ],
-            "UID": 1331375180,
+            "UID": 1199591798,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1787475923,
+            "ParentUID": 2145495930,
             "Components": [
                 {
                     "Type": 1,
@@ -1900,11 +1903,11 @@
                 1,
                 1
             ],
-            "UID": 1982234966,
+            "UID": 1141536728,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1331375180,
+            "ParentUID": 1199591798,
             "Components": [
                 {
                     "Type": 1,
@@ -1933,11 +1936,11 @@
                 1,
                 1
             ],
-            "UID": 1438960725,
+            "UID": 853731912,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1982234966,
+            "ParentUID": 1141536728,
             "Components": [
                 {
                     "Type": 1,
@@ -1966,11 +1969,11 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 1772502675,
+            "UID": 1764547333,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 244605927,
+            "ParentUID": 1375740413,
             "Components": [
                 {
                     "Type": 1,
@@ -1999,11 +2002,11 @@
                 1,
                 1
             ],
-            "UID": 408444967,
+            "UID": 600360511,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1772502675,
+            "ParentUID": 1764547333,
             "Components": [
                 {
                     "Type": 1,
@@ -2032,11 +2035,11 @@
                 1,
                 1
             ],
-            "UID": 1516077580,
+            "UID": 1224914770,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 408444967,
+            "ParentUID": 600360511,
             "Components": [
                 {
                     "Type": 1,
@@ -2065,11 +2068,11 @@
                 1,
                 1
             ],
-            "UID": 2015947130,
+            "UID": 1068096153,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1516077580,
+            "ParentUID": 1224914770,
             "Components": [
                 {
                     "Type": 1,
@@ -2098,11 +2101,11 @@
                 1,
                 1
             ],
-            "UID": 1313904398,
+            "UID": 1006023344,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 2015947130,
+            "ParentUID": 1068096153,
             "Components": [
                 {
                     "Type": 1,
@@ -2131,11 +2134,11 @@
                 1,
                 1
             ],
-            "UID": 1124665546,
+            "UID": 172085719,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1313904398,
+            "ParentUID": 1006023344,
             "Components": [
                 {
                     "Type": 1,
@@ -2164,11 +2167,11 @@
                 1,
                 1
             ],
-            "UID": 938724799,
+            "UID": 2116059533,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1124665546,
+            "ParentUID": 172085719,
             "Components": [
                 {
                     "Type": 1,
@@ -2197,11 +2200,11 @@
                 1,
                 1
             ],
-            "UID": 589402028,
+            "UID": 507595499,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 156285526,
+            "ParentUID": 143633416,
             "Components": [
                 {
                     "Type": 1,
@@ -2249,11 +2252,11 @@
                 0.05000000074505806,
                 0.60000002384185791
             ],
-            "UID": 641064512,
+            "UID": 315340847,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 156285526,
+            "ParentUID": 143633416,
             "Components": [
                 {
                     "Type": 1,
@@ -2282,11 +2285,11 @@
                 1,
                 1
             ],
-            "UID": 399754351,
+            "UID": 619785706,
             "PrefabID": 2054061864,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 156285526,
+            "ParentUID": 143633416,
             "Components": [
                 {
                     "Type": 1,
@@ -2315,11 +2318,11 @@
                 1,
                 1
             ],
-            "UID": 2057089498,
+            "UID": 711718255,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 399754351,
+            "ParentUID": 619785706,
             "Components": [
                 {
                     "Type": 1,
@@ -2336,7 +2339,7 @@
                 {
                     "Type": 20,
                     "Active": true,
-                    "systemActive": false,
+                    "systemActive": true,
                     "looping": false,
                     "maxDuration": 2.0559999942779541,
                     "ParticleEmitters": [
@@ -2411,11 +2414,11 @@
                 1,
                 1
             ],
-            "UID": 943521828,
+            "UID": 1646444124,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 399754351,
+            "ParentUID": 619785706,
             "Components": [
                 {
                     "Type": 1,
@@ -2432,7 +2435,7 @@
                 {
                     "Type": 20,
                     "Active": true,
-                    "systemActive": false,
+                    "systemActive": true,
                     "looping": false,
                     "maxDuration": 2.0910000801086426,
                     "ParticleEmitters": [
@@ -2507,11 +2510,11 @@
                 1,
                 1
             ],
-            "UID": 1703392752,
+            "UID": 851731085,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 399754351,
+            "ParentUID": 619785706,
             "Components": [
                 {
                     "Type": 1,
@@ -2528,7 +2531,7 @@
                 {
                     "Type": 20,
                     "Active": true,
-                    "systemActive": false,
+                    "systemActive": true,
                     "looping": false,
                     "maxDuration": 1.7070000171661377,
                     "ParticleEmitters": [
@@ -2588,6 +2591,753 @@
                     "Type": 21,
                     "Active": true,
                     "billboardAlignment": 2,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "Dead Effect",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1.0000005960464478,
+                1,
+                1.0000005960464478
+            ],
+            "UID": 2051407821,
+            "PrefabID": 230945350,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 143633416,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Dead Particle",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 516478459,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 2051407821,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 0.62300002574920654,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/170375526.dds",
+                            "texUID": 170375526,
+                            "paEmitterName": "Smoke",
+                            "paLifeTime": [
+                                0.5,
+                                0.69999998807907104
+                            ],
+                            "paSize": [
+                                0.20000000298023224,
+                                0.5
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 200,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        0,
+                                        45
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        -1,
+                                        2
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.17578125,
+                                                0.17577949166297913,
+                                                0.17577949166297913,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.12492340058088303,
+                                                0.12492215633392334,
+                                                0.12492215633392334,
+                                                0.87890625
+                                            ],
+                                            "paColorOLTposition": 0.65333330631256104
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.09765625,
+                                                0.097655273973941803,
+                                                0.097655273973941803,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 1,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeConeRadius": 0.5,
+                                    "PaShapeConeHeight": 2,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 2,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1162313265.dds",
+                            "texUID": 1162313265,
+                            "paEmitterName": "Smoke 2",
+                            "paLifeTime": [
+                                0.5,
+                                0.69999998807907104
+                            ],
+                            "paSize": [
+                                0.20000000298023224,
+                                0.5
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 200,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.25390625,
+                                                0.25390371680259705,
+                                                0.25390371680259705,
+                                                0.87112897634506226
+                                            ],
+                                            "paColorOLTposition": 0.87733334302902222
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.2850707471370697,
+                                                0.28506788611412048,
+                                                0.28506788611412048,
+                                                0.87925428152084351
+                                            ],
+                                            "paColorOLTposition": 0.88266664743423462
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.21875,
+                                                0.2187478095293045,
+                                                0.2187478095293045,
+                                                0.89019608497619629
+                                            ],
+                                            "paColorOLTposition": 0.88266670703887939
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.32421875,
+                                                0.32421550154685974,
+                                                0.32421550154685974,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 1,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeConeRadius": 1,
+                                    "PaShapeConeHeight": 2,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 2,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "Wave",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 280608671,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 2051407821,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 1.0379999876022339,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1755453139.dds",
+                            "texUID": 1755453139,
+                            "paEmitterName": "Cross",
+                            "paLifeTime": [
+                                3,
+                                3
+                            ],
+                            "paSize": [
+                                0.30000001192092896,
+                                0.30000001192092896
+                            ],
+                            "paColor": [
+                                1,
+                                0.15412187576293945,
+                                0.15412187576293945,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                9.9999999747524271e-07,
+                                                9.9998999303352321e-07,
+                                                9.9998999303352321e-07,
+                                                0.01171875
+                                            ],
+                                            "paColorOLTposition": 0.0026666666381061077
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0,
+                                                0,
+                                                0.5390625
+                                            ],
+                                            "paColorOLTposition": 0.18400000035762787
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0,
+                                                0,
+                                                0.51171875
+                                            ],
+                                            "paColorOLTposition": 0.49066540598869324
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                1.1920928955078125e-07,
+                                                0,
+                                                0.61328125
+                                            ],
+                                            "paColorOLTposition": 0.81066668033599854
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.0234375,
+                                                0.023437362164258957,
+                                                0.023437265306711197,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 1,
+                                    "paSizeOLTEndSize": 1.5
+                                }
+                            ]
+                        },
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1162313265.dds",
+                            "texUID": 1162313265,
+                            "paEmitterName": "Rests",
+                            "paLifeTime": [
+                                3.5,
+                                5
+                            ],
+                            "paSize": [
+                                0.20000000298023224,
+                                0.80000001192092896
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 15,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                5.0626806569198379e-07,
+                                                5.0626300662770518e-07,
+                                                5.0626300662770518e-07,
+                                                0.54296875
+                                            ],
+                                            "paColorOLTposition": 0.24799999594688416
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                9.9999999747524271e-07,
+                                                9.9998999303352321e-07,
+                                                9.9998999303352321e-07,
+                                                0.5078125
+                                            ],
+                                            "paColorOLTposition": 0.48266670107841492
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                9.9999999747524271e-07,
+                                                9.9998999303352321e-07,
+                                                9.9998999303352321e-07,
+                                                0.0234375
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0.80000001192092896,
+                                    "paSizeOLTEndSize": 0
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": false,
+                                    "paShapePartSpeed": 0,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeSphereRadius": 1.5,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 1,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 3,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "Souls",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                -0.44529104232788086,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 597546932,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 2051407821,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 4.0809998512268066,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/2059805849.dds",
+                            "texUID": 2059805849,
+                            "paEmitterName": "Soul",
+                            "paLifeTime": [
+                                0.30000001192092896,
+                                1.2999999523162842
+                            ],
+                            "paSize": [
+                                0.10000000149011612,
+                                0.10000000149011612
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 5,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                9.9999999747524271e-07,
+                                                9.9998999303352321e-07,
+                                                9.9998999303352321e-07,
+                                                0.65234375
+                                            ],
+                                            "paColorOLTposition": 0.64533334970474243
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                9.9999999747524271e-07,
+                                                9.9998999303352321e-07,
+                                                9.9998999303352321e-07,
+                                                0.47265625
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 0.5,
+                                    "paShapeRandSpeed": 0.5,
+                                    "PaShapeConeRadius": 0.5,
+                                    "PaShapeConeHeight": 1,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 2,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/14496052.dds",
+                            "texUID": 14496052,
+                            "paEmitterName": "Heart",
+                            "paLifeTime": [
+                                0.69999998807907104,
+                                1.2999999523162842
+                            ],
+                            "paSize": [
+                                0.10000000149011612,
+                                0.10000000149011612
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.3515625,
+                                                0,
+                                                0,
+                                                0.65234375
+                                            ],
+                                            "paColorOLTposition": 0.50133335590362549
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                9.9999999747524271e-07,
+                                                9.9998999303352321e-07,
+                                                9.9998999303352321e-07,
+                                                0.0078125
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 0.5,
+                                    "paShapeRandSpeed": 0.5,
+                                    "PaShapeConeRadius": 0.5,
+                                    "PaShapeConeHeight": 1,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 2,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1129325781.dds",
+                            "texUID": 1129325781,
+                            "paEmitterName": "Cries",
+                            "paLifeTime": [
+                                0.30000001192092896,
+                                1.2999999523162842
+                            ],
+                            "paSize": [
+                                0.10000000149011612,
+                                0.10000000149011612
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 5,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.21484375,
+                                                0.21484160423278809,
+                                                0.21484160423278809,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.05859375,
+                                                0.058593161404132843,
+                                                0.058593161404132843,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0.47200000286102295
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.1875,
+                                                0.18749812245368958,
+                                                0.18749812245368958,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 0.5,
+                                    "paShapeRandSpeed": 0.5,
+                                    "PaShapeConeRadius": 0.5,
+                                    "PaShapeConeHeight": 1,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 2,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
                     "horizantalAligned": true
                 }
             ]
