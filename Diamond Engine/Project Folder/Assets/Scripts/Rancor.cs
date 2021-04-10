@@ -11,6 +11,7 @@ public class Rancor : DiamondComponent
 		SEARCH_STATE,
 		WANDER,
 		RUSH,
+        RUSH_STUN,
 		HAND_SLAM,
 		PROJECTILE,
 		MELEE_COMBO_HIT1,
@@ -27,6 +28,8 @@ public class Rancor : DiamondComponent
         IN_WANDER_END,
 		IN_RUSH,
 		IN_RUSH_END,
+        IN_RUSH_STUN,
+        IN_RUSH_STUN_END,
 		IN_HAND_SLAM,
 		IN_HAND_SLAM_END,
 		IN_PROJECTILE,
@@ -74,13 +77,17 @@ public class Rancor : DiamondComponent
 
 
     //Hand slam
-    public float handSlamTime = 0.0f;
+    private float handSlamTime = 0.0f;
     private float handSlamTimer = 0.0f;
 
 
     //rush
-    public float rushTime = 0.0f;
+    private float rushTime = 0.0f;
     private float rushTimer = 0.0f;
+
+    private float rushStunDuration = 0.0f;
+    private float rushStunTimer = 0.0f;
+
 
     private bool start = false;
 
@@ -97,6 +104,8 @@ public class Rancor : DiamondComponent
         handSlamTime = Animator.GetAnimationDuration(gameObject, "RN_HandSlam") - 0.016f;
 
         rushTime = Animator.GetAnimationDuration(gameObject, "RN_Rush") - 0.016f;
+
+        rushStunDuration = Animator.GetAnimationDuration(gameObject, "RN_RushRecover") - 0.016f;
     }
 
     public void Awake()
@@ -186,6 +195,15 @@ public class Rancor : DiamondComponent
             if (rushTimer <= 0)
                 inputsList.Add(RANCOR_INPUT.IN_RUSH_END);
         }
+
+
+        if (rushStunTimer > 0)
+        {
+            rushStunTimer -= Time.deltaTime;
+
+            if (rushStunTimer <= 0)
+                inputsList.Add(RANCOR_INPUT.IN_RUSH_STUN_END);
+        }
     }
 
 	private void ProcessExternalInput()
@@ -263,6 +281,25 @@ public class Rancor : DiamondComponent
                         case RANCOR_INPUT.IN_RUSH_END:
                             currentState = RANCOR_STATE.SEARCH_STATE;
                             EndRush();
+                            break;
+
+                        case RANCOR_INPUT.IN_RUSH_STUN:
+                            currentState = RANCOR_STATE.RUSH_STUN;
+                            EndRush();
+                            StartRushStun();
+                            break;
+
+                        case RANCOR_INPUT.IN_DEAD:
+                            break;
+                    }
+                    break;
+
+                case RANCOR_STATE.RUSH_STUN:
+                    switch (input)
+                    {
+                        case RANCOR_INPUT.IN_RUSH_STUN_END:
+                            currentState = RANCOR_STATE.SEARCH_STATE;
+                            EndRushStun();
                             break;
                         
                         case RANCOR_INPUT.IN_DEAD:
@@ -365,6 +402,10 @@ public class Rancor : DiamondComponent
                 UpdateRush();
                 break;
 
+            case RANCOR_STATE.RUSH_STUN:
+                UpdateRushStun();
+                break;
+
             case RANCOR_STATE.HAND_SLAM:
                 UpdateHandSlam();
                 break;
@@ -386,8 +427,6 @@ public class Rancor : DiamondComponent
                 break;
 
             case RANCOR_STATE.DEAD:
-                break;
-            default:
                 break;
         }
     }
@@ -609,6 +648,24 @@ public class Rancor : DiamondComponent
 
 
     private void EndRush()
+    {
+
+    }
+
+
+    private void StartRushStun()
+    {
+        rushStunTimer = rushStunDuration;
+        Animator.Play(gameObject, "RN_RushRecover");
+    }
+
+    private void UpdateRushStun()
+    {
+        Debug.Log("Rush Stun");
+    }
+
+
+    private void EndRushStun()
     {
 
     }
