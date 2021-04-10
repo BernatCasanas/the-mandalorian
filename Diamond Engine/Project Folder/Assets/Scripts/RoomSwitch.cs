@@ -16,7 +16,7 @@ public class RoomSwitch : DiamondComponent
 		769097826,
 		1796967585,
 	};
-	private static int finalScene = 1076838722;
+	private static int finalScene = 308281119;
 
 	public static void SwitchRooms()
 	{
