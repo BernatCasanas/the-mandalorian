@@ -483,7 +483,7 @@ public class Core : DiamondComponent
         Audio.StopAudio(gameObject);
         Audio.PlayAudio(shootPoint, "Play_Blaster_Shoot_Mando");
         Input.PlayHaptic(.3f, 10);
-
+        hud.GetComponent<HUD>().ShootSwapImage(true);
         InternalCalls.CreatePrefab("Library/Prefabs/346087333.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
 
         inputsList.Add(INPUT.IN_SHOOT_END);

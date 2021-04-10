@@ -15,6 +15,7 @@ void main() {
 #ifdef fragment
 #version 330 core
 in vec2 textureCoords;
+uniform float t;
 
 out vec4 fragmentColor;
 
@@ -22,7 +23,12 @@ uniform sampler2D ourTexture;
 uniform float alpha;
 
 void main() {
-	fragmentColor = texture(ourTexture,textureCoords)*vec4(1,1,1,alpha);
-}
+	fragmentColor = texture(ourTexture,textureCoords)*(1.0-alpha);
+	}
 
 #endif
+
+
+
+
+
