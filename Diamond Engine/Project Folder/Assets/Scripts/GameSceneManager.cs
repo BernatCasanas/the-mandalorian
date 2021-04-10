@@ -21,7 +21,7 @@ public class GameSceneManager : DiamondComponent
             enemiesHaveSpawned = true;
         }
 
-        else if (enemiesHaveSpawned && Counter.roomEnemies <= 0 && rewardData == null)    // Right now, when a room begins, enemy counter = 0
+        else if (enemiesHaveSpawned && Counter.roomEnemies <= 0 && rewardData == null && Counter.gameResult != Counter.GameResult.DEFEAT)    // Right now, when a room begins, enemy counter = 0
         {
             rewardData = rewardMenu.GenerateRewardPipeline();
 
