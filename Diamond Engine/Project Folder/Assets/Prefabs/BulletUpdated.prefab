@@ -1,6 +1,149 @@
 {
-    "assets_path": "Assets\/Prefabs\/Standard Impact.prefab",
+    "assets_path": "Assets\/Prefabs\/BulletUpdated.prefab",
     "Game Objects": [
+        {
+            "name": "BulletUpdated",
+            "tag": "Bullet",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -8.2207517623901367,
+                7.3299999237060547,
+                -11.422430992126465
+            ],
+            "Rotation": [
+                -1.3422223332781869e-09,
+                -0.72229331731796265,
+                -1.3422223332781869e-09,
+                0.69158685207366943
+            ],
+            "Scale": [
+                0.050000008195638657,
+                0.05000000074505806,
+                0.60000008344650269
+            ],
+            "UID": 1190057205,
+            "PrefabID": 1821505626,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/965117995.mmh",
+                    "UID": 965117995,
+                    "alternColor": [
+                        1,
+                        0,
+                        6.008148193359375e-05
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "BH_Bullet",
+                    "speed": 50,
+                    "maxLifeTime": 10,
+                    "currentLifeTime": 0.74599999189376831,
+                    "yVel": 0,
+                    "damage": 9,
+                    "destroyOBJ": 42380552,
+                    "mesh": 906084398
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/571028171.mat",
+                    "MaterialUID": 571028171
+                }
+            ]
+        },
+        {
+            "name": "bulletmesh",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 906084398,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1190057205,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/965117995.mmh",
+                    "UID": 965117995,
+                    "alternColor": [
+                        1,
+                        0,
+                        0
+                    ]
+                }
+            ]
+        },
         {
             "name": "Standard Impact",
             "tag": "Untagged",
