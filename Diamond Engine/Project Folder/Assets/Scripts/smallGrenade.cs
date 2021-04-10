@@ -8,6 +8,8 @@ public class smallGrenade : DiamondComponent
 
     public float detonationTime = 2.0f;
 
+    public float damage = 5.0f;
+
     private float Timer = 0.0f;
 
     private bool move = true;

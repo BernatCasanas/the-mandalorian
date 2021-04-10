@@ -3,199 +3,6 @@
     "Game Objects": [
         {
             "name": "Bullet",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 744498841,
-            "PrefabID": 346087333,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1676501951,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Standard Impact",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                -11.346318244934082,
-                7.6736574172973633,
-                -12.193576812744141
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1256221172,
-            "PrefabID": 1860992275,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 744498841,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "STimpact Particle",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 955208090,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1256221172,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
-                    "MaterialUID": 355756108
-                },
-                {
-                    "Type": 20,
-                    "Active": true,
-                    "systemActive": false,
-                    "looping": false,
-                    "maxDuration": 0.087999999523162842,
-                    "ParticleEmitters": [
-                        {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/39569920.dds",
-                            "texUID": 39569920,
-                            "paEmitterName": "Impact",
-                            "paLifeTime": [
-                                0.019999999552965164,
-                                0.029999999329447746
-                            ],
-                            "paSize": [
-                                0.0099999997764825821,
-                                0.029999999329447746
-                            ],
-                            "paColor": [
-                                1,
-                                0.18807339668273926,
-                                0.18807339668273926,
-                                1
-                            ],
-                            "paPerSec": 500,
-                            "ParticleEffects": [
-                                {
-                                    "paEffectType": 5,
-                                    "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 0.5,
-                                    "paShapeRandSpeed": 1,
-                                    "PaShapeSphereRadius": 0.0010000000474974513,
-                                    "PaShapeSphereDirection": false,
-                                    "PaShapeSphereAngle": 0,
-                                    "paShapeType": 1,
-                                    "PaShapeOffset": [
-                                        0,
-                                        0,
-                                        0
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "Type": 21,
-                    "Active": true,
-                    "billboardAlignment": 0,
-                    "horizantalAligned": true
-                }
-            ]
-        },
-        {
-            "name": "Bullet",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                -42.917339324951172,
-                7.3299999237060547,
-                -11.422430992126465
-            ],
-            "Rotation": [
-                -1.3422223332781869e-09,
-                -0.72229331731796265,
-                -1.3422223332781869e-09,
-                0.69158685207366943
-            ],
-            "Scale": [
-                0.050000008195638657,
-                0.05000000074505806,
-                0.60000008344650269
-            ],
-            "UID": 977392948,
-            "PrefabID": 346087333,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 744498841,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Bullet FBX",
             "tag": "Bullet",
             "layer": "Default",
             "Active": true,
@@ -205,9 +12,9 @@
                 -11.422430992126465
             ],
             "Rotation": [
-                1.3422223332781869e-09,
+                -1.3422223332781869e-09,
                 -0.72229331731796265,
-                1.3422223332781869e-09,
+                -1.3422223332781869e-09,
                 0.69158685207366943
             ],
             "Scale": [
@@ -215,11 +22,10 @@
                 0.05000000074505806,
                 0.60000008344650269
             ],
-            "UID": 1907593866,
+            "UID": 692211942,
             "PrefabID": 346087333,
             "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 977392948,
+            "ParentUID": 738685494,
             "Components": [
                 {
                     "Type": 1,

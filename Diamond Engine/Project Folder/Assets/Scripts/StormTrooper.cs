@@ -83,8 +83,31 @@ public class StormTrooper : Enemy
         shotSequences = 0;
 
         dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
+
+        ParticleSystem spawnparticles = null;
+
+
+        StormTrooperParticles myParticles = gameObject.GetComponent<StormTrooperParticles>();
+        if (myParticles != null)
+        {
+            spawnparticles = myParticles.spawn;
+
+        }
+
+        if (spawnparticles != null)
+        {
+            Debug.Log("PLAY SPAWN!!!");
+            spawnparticles.Play();
+        }
+        else
+        { Debug.Log("CAN'T PLAY SPAWN!!!"); }
     }
 
+    public void Start()
+    {
+      
+       
+    }
     public void Update()
     {
         if (player == null)
@@ -395,7 +418,7 @@ public class StormTrooper : Enemy
 
     private void Shoot()
     {
-        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/373530213.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         bullet.GetComponent<BH_Bullet>().damage = damage;
 
         Animator.Play(gameObject, "ST_Shoot");
