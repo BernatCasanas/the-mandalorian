@@ -59,8 +59,8 @@ public class BH_Bullet : DiamondComponent
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-        if (triggeredGameObject.tag != "Player")
-        {
+        //if (triggeredGameObject.tag != "Player")
+        //{
             triggered = true;
 
             if (destroyOBJ != null)
@@ -70,6 +70,6 @@ public class BH_Bullet : DiamondComponent
                 if (destroyPar != null)
                     destroyPar.Play();
             }
-        }
+        //}
     }
 }
