@@ -12,10 +12,9 @@ public class RoomSwitch : DiamondComponent
 	static Random test = new Random();
 	static List<int> visited = new List<int>() 
 	{
-		1934547592,
-		1482507639,
-		1143112058,
-
+		1940308114,
+		769097826,
+		1796967585,
 	};
 	private static int finalScene = 1076838722;
 
@@ -34,9 +33,9 @@ public class RoomSwitch : DiamondComponent
 		{
 			visited = new List<int>()
 				{
-						  1934547592,
-						   1482507639,
-						   1143112058,
+					1940308114,
+					769097826,
+					1796967585,
 
 				};
 			currentroom = 0;
