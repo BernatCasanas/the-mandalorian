@@ -132,7 +132,9 @@ public class Rancor : DiamondComponent
             wanderTimer -= Time.deltaTime;
 
             if (wanderTimer <= 0)
+            {
                 inputsList.Add(RANCOR_INPUT.IN_WANDER_END);
+            }
         }
 
         if (meleeCH1Timer > 0)
@@ -509,7 +511,7 @@ public class Rancor : DiamondComponent
         wanderTimer = shortWanderTime;
 
         if (agent != null)
-            agent.CalculateRandomPath(gameObject.transform.globalPosition, meleeRange);
+            agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
     }
 
 
@@ -523,7 +525,7 @@ public class Rancor : DiamondComponent
         wanderTimer = longWanderTime;
 
         if (agent != null)
-            agent.CalculateRandomPath(gameObject.transform.globalPosition, longRange);
+            agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
     }
 
 
@@ -531,7 +533,7 @@ public class Rancor : DiamondComponent
     {
         //Move character
 
-        if (agent != null)
+        if (agent != null && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) > agent.stoppingDistance)
             agent.MoveToCalculatedPos(wanderSpeed);
 
         Debug.Log("Wandering");
