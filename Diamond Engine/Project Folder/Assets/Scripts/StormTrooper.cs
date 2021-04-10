@@ -444,7 +444,9 @@ public class StormTrooper : Enemy
             souls.Play();
         }
 
-        RemoveFromSpawner();
+        RemoveFromEnemyList();
+
+
     }
     private void UpdateDie()
     {

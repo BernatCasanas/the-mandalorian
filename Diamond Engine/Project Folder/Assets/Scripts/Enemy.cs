@@ -18,8 +18,6 @@ public class Enemy : DiamondComponent
 
 	//protected STATES currentState = STATES.WANDER;
 
-    public Spawn dieCallBack = null;
-
 	protected NavMeshAgent agent;
 
 	public virtual bool TakeDamage()
@@ -72,19 +70,17 @@ public class Enemy : DiamondComponent
     {
 		return Mathf.Distance(gameObject.transform.globalPosition, point) < givenRange;
 	}
-    public void RemoveFromSpawner()
+    public void RemoveFromEnemyList()
     {
-        if (dieCallBack != null)
-        {
-			foreach (GameObject item in dieCallBack.currentEnemies)
+		foreach (GameObject item in EnemyManager.currentEnemies)
+		{
+			if (item.GetUid() == gameObject.GetUid())
 			{
-				if (item.GetUid() == gameObject.GetUid())
-				{
-					dieCallBack.currentEnemies.Remove(item);
-					//Debug.Log("Enemy Killed!");
-					break;
-				}
+				EnemyManager.currentEnemies.Remove(item);
+				//Debug.Log("Enemy Killed!");
+				break;
 			}
 		}
+		
     }
 }
