@@ -314,25 +314,30 @@ public class Core : DiamondComponent
                     {
                         case INPUT.IN_IDLE:
                             currentState = STATE.IDLE;
+                            MoveEnd();
                             StartIdle();
                             break;
 
                         case INPUT.IN_DASH:
                             currentState = STATE.DASH;
+                            MoveEnd();
                             StartDash();
                             break;
 
                         case INPUT.IN_SHOOTING:
                             currentState = STATE.SHOOTING;
+                            MoveEnd();
                             StartShooting();
                             break;
 
                         case INPUT.IN_GADGET_SHOOT:
                             currentState = STATE.GADGET_SHOOT;
+                            MoveEnd();
                             StartGadgetShoot();
                             break;
 
                         case INPUT.IN_DEAD:
+                            MoveEnd();
                             break;
                     }
                     break;
@@ -445,6 +450,12 @@ public class Core : DiamondComponent
         }
     }
 
+    #region IDLE
+    private void StartIdle()
+    {
+        Animator.Play(gameObject, "Idle");
+    }
+    #endregion
 
     #region NORMAL SHOOT
 
@@ -619,6 +630,10 @@ public class Core : DiamondComponent
         //gameObject.SetVelocity(gameObject.transform.GetForward() * movementSpeed);
         gameObject.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.GetForward().normalized * movementSpeed * Time.deltaTime;
     }
+    private void MoveEnd()
+    {
+        Audio.StopAudio(gameObject);
+    }
 
     private void StopPlayer()
     {
@@ -648,13 +663,7 @@ public class Core : DiamondComponent
         angle += 0.785398f; //Rotate 45 degrees to the right
 
         gameObject.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, (float)-angle);
-    }
-
-    private void StartIdle()
-    {
-        Animator.Play(gameObject, "Idle");
-    }
-
+    }   
     #endregion
 
     #region UTILITIES
