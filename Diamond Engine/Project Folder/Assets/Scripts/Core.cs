@@ -69,11 +69,9 @@ public class Core : DiamondComponent
 
     // Dash
     //private float timeSinceLastDash = 0.0f;
-    public float dashCD = 0.33f;
-    public float dashDuration = 0.25f;
-    public float dashDistance = 1.0f;
-    public float dashforce = 1000f;
-    private float dashSpeed = 0.0f;
+    public static float dashCD = 0.33f;
+    public static float dashDuration = 0.25f;
+    public static float dashSpeed = 0.0f;
     private float dashTimer = 0.0f;
     private float dashCDTimer = 0.0f;
     private float dashStartYPos = 0.0f;
@@ -143,7 +141,9 @@ public class Core : DiamondComponent
 
         // Dash
         dashTimer = 0f;
-        dashSpeed = dashDistance / dashDuration;
+        dashDuration = 0.2f;
+        dashSpeed = 30.0f;
+        //dashSpeed = dashDistance / dashDuration;
         
 
         #endregion
@@ -610,8 +610,8 @@ public class Core : DiamondComponent
     private void UpdateDash()
     {
         StopPlayer();
-        //gameObject.AddForce(gameObject.transform.GetForward().normalized * dashforce);
-        gameObject.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.GetForward().normalized * dashforce * Time.deltaTime;
+        //gameObject.AddForce(gameObject.transform.GetForward().normalized * dashSpeed);
+        gameObject.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.GetForward().normalized * dashSpeed * Time.deltaTime;
     }
 
     private void EndDash()
