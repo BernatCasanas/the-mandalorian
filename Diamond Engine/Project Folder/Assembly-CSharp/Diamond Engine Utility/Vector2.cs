@@ -88,11 +88,11 @@ namespace DiamondEngine
 
         public static float Dot(Vector2 a, Vector2 b)
         {
-            return (a.x * b.x + a.y + b.y);
+            return ((a.x * b.x) + (a.y * b.y));
         }
 
         public static float Magnitude(Vector2 vector) { return (float)Math.Sqrt(vector.x * vector.x + vector.y * vector.y); }
-        public float magnitude { get { return (float)Math.Sqrt(x * x + y * y); } }
+        public float magnitude { get { return (float)Math.Sqrt((x * x) + (y * y)); } }
 
         public static Vector2 Normalize(Vector2 value)
         {

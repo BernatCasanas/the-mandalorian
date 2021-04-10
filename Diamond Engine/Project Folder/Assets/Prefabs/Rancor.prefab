@@ -38,7 +38,15 @@
                     "RootBone UID": 998349138,
                     "MeshRendererUID": 67329654,
                     "Animations": [
-                        912906602
+                        624820739,
+                        2098940216,
+                        228930047,
+                        1763178722,
+                        1980637539,
+                        127188271,
+                        461480024,
+                        819885234,
+                        777435603
                     ]
                 },
                 {
@@ -49,9 +57,9 @@
                     "LockLinearX": false,
                     "LockLinearY": false,
                     "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
                     "Mass": 60,
                     "Density": 2
                 },
@@ -86,11 +94,16 @@
                     "longRange": 22,
                     "shortWanderTime": 2,
                     "longWanderTime": 4,
-                    "wanderSpeed": 0,
-                    "meleeComboHit1Time": 2,
-                    "meleeComboHit2Time": 2,
-                    "meleeComboHit3Time": 4,
-                    "projectileTime": 1.3999999761581421
+                    "wanderSpeed": 10,
+                    "handSlamTime": 1.2000000476837158,
+                    "rushTime": 4
+                },
+                {
+                    "Type": 24,
+                    "Active": true,
+                    "Speed": 0,
+                    "Angular Speed": 0,
+                    "Stopping Distance": 1
                 }
             ]
         },
@@ -133,20 +146,20 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                0.0001206620509037748,
-                1.46563720703125,
-                -0.0086022056639194489
+                0,
+                0,
+                0
             ],
             "Rotation": [
-                0.03932514414191246,
-                -0.7244725227355957,
-                -0.059619404375553131,
-                0.68559366464614868
+                0,
+                0,
+                0,
+                1
             ],
             "Scale": [
                 1,
                 1,
-                0.99999994039535522
+                1
             ],
             "UID": 609617896,
             "PrefabID": 0,
