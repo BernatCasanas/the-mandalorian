@@ -45,10 +45,6 @@ public class Rancor : DiamondComponent
 
     private NavMeshAgent agent = null;
 
-    public GameObject meleeCombo1Collider = null;
-    public GameObject meleeCombo2Collider = null;
-    public GameObject meleeCombo3Collider = null;
-
     //private Vector3 targetPosition = null;
     private Vector3 targetDirection = null;
 
@@ -78,6 +74,11 @@ public class Rancor : DiamondComponent
     public float wanderSpeed = 2.0f;
 
     //Melee Combo
+    public GameObject meleeComboCollider = null;
+    public GameObject meleeComboJumpCollider = null;
+
+    public float meleeComboMovSpeed = 0.0f;
+
     private float meleeComboHit1Time = 0.0f;
     private float meleeComboHit2Time = 0.0f;
     private float meleeComboHit3Time = 0.0f;
@@ -85,6 +86,10 @@ public class Rancor : DiamondComponent
     private float meleeCH1Timer = 0.0f;
     private float meleeCH2Timer = 0.0f;
     private float meleeCH3Timer = 0.0f;
+
+    public float meleeCH1ColliderDuration = 0.0f;
+    public float meleeCH2ColliderDuration = 0.0f;
+    public float meleeCH3ColliderDuration = 0.0f;
 
     private float meleeCH1ColliderTimer = 0.0f;
     private float meleeCH2ColliderTimer = 0.0f;
@@ -146,16 +151,6 @@ public class Rancor : DiamondComponent
             Debug.Log("Null agent, add a NavMeshAgent Component");
 
         Animator.Play(gameObject, "RN_Idle");
-
-
-        if (meleeCombo1Collider != null)
-            meleeCombo1Collider.Enable(true);
-
-        if (meleeCombo2Collider != null)
-            meleeCombo2Collider.Enable(true);
-
-        if (meleeCombo3Collider != null)
-            meleeCombo3Collider.Enable(true);
 
         EnemyManager.AddEnemy(gameObject);
     }
@@ -567,11 +562,11 @@ public class Rancor : DiamondComponent
     private void StartMCHit1()
     {
         meleeCH1Timer = meleeComboHit1Time;
-        meleeCH1ColliderTimer = 0.5f;
+        meleeCH1ColliderTimer = meleeCH1ColliderDuration;
 
         Animator.Play(gameObject, "RN_MeleeComboP1");
-        //TODO: Add animation
 
+        LookAt(Core.instance.gameObject.transform.globalPosition);
     }
 
     private void UpdateMCHit1()
@@ -585,29 +580,30 @@ public class Rancor : DiamondComponent
 
             if(meleeCH1ColliderTimer <= 0.0f)
             {
-                if (meleeCombo1Collider != null)
-                    meleeCombo1Collider.Enable(true);
+                if (meleeComboCollider != null)
+                    meleeComboCollider.Enable(true);
             }
         }
+
+        LookAt(Core.instance.gameObject.transform.globalPosition);
+        gameObject.transform.localPosition += gameObject.transform.GetForward().normalized * meleeComboMovSpeed * Time.deltaTime;
     }
 
     private void EndMCHit1()
     {
-        if (meleeCombo1Collider != null)
-            meleeCombo1Collider.Enable(false);
+        if (meleeComboCollider != null)
+            meleeComboCollider.Enable(false);
     }
 
 
     private void StartMCHit2()
     {
         meleeCH2Timer = meleeComboHit2Time;
-        meleeCH2ColliderTimer = 0.5f;
+        meleeCH2ColliderTimer = meleeCH2ColliderDuration;
 
         Animator.Play(gameObject, "RN_MeleeComboP2");
-        //TODO: Add animation
 
-        if (meleeCombo2Collider != null)
-            meleeCombo2Collider.Enable(true);
+        LookAt(Core.instance.gameObject.transform.globalPosition);
     }
 
     private void UpdateMCHit2()
@@ -619,29 +615,30 @@ public class Rancor : DiamondComponent
 
             if (meleeCH2ColliderTimer <= 0.0f)
             {
-                if (meleeCombo2Collider != null)
-                    meleeCombo2Collider.Enable(true);
+                if (meleeComboCollider != null)
+                    meleeComboCollider.Enable(true);
             }
         }
+
+        LookAt(Core.instance.gameObject.transform.globalPosition);
+        gameObject.transform.localPosition += gameObject.transform.GetForward().normalized * meleeComboMovSpeed * Time.deltaTime;
     }
 
     private void EndMCHit2()
     {
-        if (meleeCombo2Collider != null)
-            meleeCombo2Collider.Enable(false);
+        if (meleeComboCollider != null)
+            meleeComboCollider.Enable(false);
     }
 
 
     private void StartMCHit3()
     {
         meleeCH3Timer = meleeComboHit3Time;
-        meleeCH3ColliderTimer = 0.5f;
+        meleeCH3ColliderTimer = meleeCH3ColliderDuration;
 
         Animator.Play(gameObject, "RN_MeleeComboP3");
-        //TODO: Add animation
 
-        if (meleeCombo3Collider != null)
-            meleeCombo3Collider.Enable(true);
+        LookAt(Core.instance.gameObject.transform.globalPosition);
     }
 
     private void UpdateMCHit3()
@@ -654,18 +651,20 @@ public class Rancor : DiamondComponent
 
             if (meleeCH3ColliderTimer <= 0.0f)
             {
-                if (meleeCombo3Collider != null)
-                    meleeCombo3Collider.Enable(true);
+                if (meleeComboJumpCollider != null)
+                    meleeComboJumpCollider.Enable(true);
             }
         }
+
+        LookAt(Core.instance.gameObject.transform.globalPosition);
     }
 
     private void EndMCHit3()
     {
         //TODO: Deactivate collider
 
-        if (meleeCombo3Collider != null)
-            meleeCombo3Collider.Enable(false);
+        if (meleeComboJumpCollider != null)
+            meleeComboJumpCollider.Enable(false);
     }
 
     #endregion
@@ -877,13 +876,6 @@ public class Rancor : DiamondComponent
         Quaternion desiredRotation = Quaternion.Slerp(gameObject.transform.localRotation, dir, rotationSpeed);
 
         gameObject.transform.localRotation = desiredRotation;
-    }
-
-    public void MoveToPosition(Vector3 positionToReach, float speed)
-    {
-        Vector3 direction = positionToReach - gameObject.transform.localPosition;
-
-        gameObject.transform.localPosition += direction.normalized * speed * Time.deltaTime;
     }
 
     public void OnCollisionEnter(GameObject collidedGameObject)
