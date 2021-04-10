@@ -406,7 +406,7 @@ MonoObject* CreatePrefab(MonoString* prefabPath, MonoObject* position, MonoObjec
 		prefab_object->transform->SetTransformMatrix(posVector, rotQuat, scaleVector);
 		prefab_object->transform->updateTransform = true;
 	}
-	prefab_object->transform->updateTransform = true;
+
 	return EngineExternal->moduleMono->GoToCSGO(prefab_object);
 }
 
