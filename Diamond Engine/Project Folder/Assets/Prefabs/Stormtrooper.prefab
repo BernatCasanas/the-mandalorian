@@ -1,0 +1,3504 @@
+{
+    "assets_path": "Assets\/Prefabs\/Stormtrooper.prefab",
+    "Game Objects": [
+        {
+            "name": "Stormtrooper",
+            "tag": "Enemy",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -12.11700439453125,
+                6.2642016410827637,
+                -14.418254852294922
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                0.99999940395355225,
+                1,
+                0.99999940395355225
+            ],
+            "UID": 375876497,
+            "PrefabID": 489054570,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 16,
+                    "Active": true,
+                    "RootBone UID": 1809358942,
+                    "MeshRendererUID": 1532300873,
+                    "Animations": [
+                        470296733,
+                        1026711667,
+                        961511436,
+                        62587842
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
+                    "Mass": 100,
+                    "Density": 1
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "Stormtrooper",
+                    "volume": 50,
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        1,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        2,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "StormTrooperParticles",
+                    "circlesObj": 644517811,
+                    "circlesUPObj": 303715566,
+                    "stormTrooperObj": 1751407851,
+                    "deadObj": 1678969345,
+                    "waveObj": 1842378388,
+                    "soulsObj": 1174999285
+                },
+                {
+                    "Type": 24,
+                    "Active": true,
+                    "Speed": 5,
+                    "Angular Speed": 5,
+                    "Stopping Distance": 1
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "StormTrooper",
+                    "detectionRange": 12.5,
+                    "damage": 5,
+                    "healthPoints": 60,
+                    "stoppingDistance": 1,
+                    "slerpSpeed": 5,
+                    "turretMode": false,
+                    "shootPoint": 1921430761,
+                    "idleTime": 5,
+                    "timeBewteenShots": 0.5,
+                    "timeBewteenSequences": 0.5,
+                    "timeBewteenStates": 1.5,
+                    "wanderSpeed": 3.5,
+                    "runningSpeed": 7.5,
+                    "bulletSpeed": 10,
+                    "wanderRange": 7.5,
+                    "runningRange": 12.5,
+                    "maxShots": 2,
+                    "maxSequences": 2
+                }
+            ]
+        },
+        {
+            "name": "Armature",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1809358942,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 375876497,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Hips",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.0050513683818280697,
+                0.96914041042327881,
+                -0.0089950868859887123
+            ],
+            "Rotation": [
+                0.092035889625549316,
+                -0.22004188597202301,
+                -0.33660072088241577,
+                0.91093957424163818
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 135651609,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1809358942,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "LeftLeg",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.11634469777345657,
+                -0.0031172451563179493,
+                -0.031259428709745407
+            ],
+            "Rotation": [
+                0.22548729181289673,
+                -0.11151725053787231,
+                -0.203203946352005,
+                0.94627034664154053
+            ],
+            "Scale": [
+                0.99999994039535522,
+                1,
+                0.99999994039535522
+            ],
+            "UID": 1715074330,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 135651609,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "LeftKnee",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.33052447438240051,
+                -8.1956386566162109e-08,
+                -2.6077032089233398e-08
+            ],
+            "Rotation": [
+                0.00024921682779677212,
+                0.013881401158869267,
+                -0.1684364527463913,
+                0.98561477661132812
+            ],
+            "Scale": [
+                0.99999994039535522,
+                0.99999994039535522,
+                0.99999994039535522
+            ],
+            "UID": 804188436,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1715074330,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "LeftFeet",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.49832594394683838,
+                -6.4726918935775757e-08,
+                -1.0523945093154907e-07
+            ],
+            "Rotation": [
+                -0.62832146883010864,
+                0.013435748405754566,
+                -0.01169360987842083,
+                0.77774989604949951
+            ],
+            "Scale": [
+                0.99999994039535522,
+                1,
+                1
+            ],
+            "UID": 1356941819,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 804188436,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "LeftToe",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.048129726201295853,
+                0.00092379190027713776,
+                0.10971997678279877
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1693265422,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1356941819,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "LeftFingers",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -0.0024161860346794128,
+                0.0091347824782133102,
+                0.12188589572906494
+            ],
+            "Rotation": [
+                4.4491514472611016e-08,
+                -5.950306913860004e-08,
+                0.65520197153091431,
+                0.75545376539230347
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 717142997,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1693265422,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "LeftFingers_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -2.3079337552189827e-08,
+                0.12225160747766495,
+                1.1059455573558807e-09
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1365285034,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 717142997,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "LeftFingers_end_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0.12225159257650375,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 588168600,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1365285034,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Spine1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -0.047563415020704269,
+                0.051045607775449753,
+                -4.3888576328754425e-08
+            ],
+            "Rotation": [
+                -0.0038555082865059376,
+                0.0017923155101016164,
+                0.91369938850402832,
+                0.40636858344078064
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 667919604,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 135651609,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Spine2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.075442120432853699,
+                -5.8207660913467407e-10,
+                4.220055416226387e-10
+            ],
+            "Rotation": [
+                9.00378296364579e-08,
+                0.0033832131884992123,
+                -0.0064760078676044941,
+                0.99997329711914062
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1767341593,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 667919604,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Spine3",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.087512828409671783,
+                2.2060703486204147e-08,
+                -1.0186340659856796e-10
+            ],
+            "Rotation": [
+                0.99998879432678223,
+                -0.0041938661597669125,
+                -0.0021907386835664511,
+                1.1868598448927514e-05
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1866007741,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1767341593,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Spine4",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.18505336344242096,
+                -3.2622483558952808e-07,
+                2.9438524506986141e-08
+            ],
+            "Rotation": [
+                0.99727785587310791,
+                0.049693576991558075,
+                -0.053524952381849289,
+                0.010123786516487598
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1301710896,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1866007741,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Neck",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.13787917792797089,
+                -2.8167851269245148e-06,
+                -1.1641532182693481e-09
+            ],
+            "Rotation": [
+                0.17073118686676025,
+                0.18082532286643982,
+                -0.67179363965988159,
+                0.69774377346038818
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 456903369,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1301710896,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Head",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -0.0055730044841766357,
+                0.14352260529994965,
+                -1.6894588839022617e-08
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1541673785,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 456903369,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Head_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -5.4205884225666523e-10,
+                0.14363209903240204,
+                8.5793772086617537e-10
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1637908425,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1541673785,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Head_end_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0.14365200698375702,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1440801225,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1637908425,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "LeftShoulder",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.033532936125993729,
+                -0.070088401436805725,
+                5.5879354476928711e-09
+            ],
+            "Rotation": [
+                -6.3305288788839675e-10,
+                -3.4184992614427756e-08,
+                -0.67744046449661255,
+                0.73557758331298828
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1060934355,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1301710896,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "LeftArm",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.11282745748758316,
+                0.001011579530313611,
+                -0.05623289942741394
+            ],
+            "Rotation": [
+                0.081803753972053528,
+                -0.13498148322105408,
+                -0.57603234052658081,
+                0.80204421281814575
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 610690890,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1060934355,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "LeftForearm",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.26500016450881958,
+                -0.0010020844638347626,
+                -0.025999948382377625
+            ],
+            "Rotation": [
+                0.0089405504986643791,
+                -0.48356065154075623,
+                0.019335117191076279,
+                0.87505161762237549
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1029209384,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 610690890,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "LeftHand",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.28900045156478882,
+                -2.7939677238464355e-06,
+                0.039999864995479584
+            ],
+            "Rotation": [
+                0.98219573497772217,
+                0.0039131310768425465,
+                0.02450164221227169,
+                -0.1862146258354187
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1647157662,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1029209384,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_RingFinger",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.037698563188314438,
+                -0.0026888810098171234,
+                0.0019251089543104172
+            ],
+            "Rotation": [
+                -5.115280643508413e-08,
+                -0.079738631844520569,
+                -3.5129605180372891e-07,
+                0.99681580066680908
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1136836302,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1647157662,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_RingMid",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.052526570856571198,
+                -0.0033336430788040161,
+                0.0056190360337495804
+            ],
+            "Rotation": [
+                -0.13947179913520813,
+                0.34793627262115479,
+                -0.63181191682815552,
+                0.67845535278320312
+            ],
+            "Scale": [
+                1,
+                1,
+                0.99999994039535522
+            ],
+            "UID": 22887710,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1136836302,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_RingEnd",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.076177485287189484,
+                -0.02064814418554306,
+                0.0043806657195091248
+            ],
+            "Rotation": [
+                9.34573218813739e-09,
+                0.083330817520618439,
+                -4.3924941905970627e-08,
+                0.99652194976806641
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 32391836,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 22887710,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_RingEnd_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -4.4703483581542969e-08,
+                0.079037383198738098,
+                2.0489096641540527e-08
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 294184806,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 32391836,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_RingEnd_end_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0.079048395156860352,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 888837087,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 294184806,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_IndexFinger",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.0451640784740448,
+                -0.0080205351114273071,
+                0.039074551314115524
+            ],
+            "Rotation": [
+                -4.9685887404393725e-08,
+                -0.31220516562461853,
+                -1.5119007912289817e-07,
+                0.95001471042633057
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1985545722,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1647157662,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_IndexMid",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.070312120020389557,
+                -0.013977039605379105,
+                -0.011798888444900513
+            ],
+            "Rotation": [
+                -0.26579293608665466,
+                0.52688658237457275,
+                -0.57495695352554321,
+                0.56671786308288574
+            ],
+            "Scale": [
+                0.99999994039535522,
+                1,
+                0.99999994039535522
+            ],
+            "UID": 8870325,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1985545722,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_IndexEnd",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.059133149683475494,
+                -0.010063447058200836,
+                0.001134529709815979
+            ],
+            "Rotation": [
+                -4.5126085979063646e-08,
+                0.13653630018234253,
+                -3.7605072833457598e-08,
+                0.99063515663146973
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1233090136,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 8870325,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_IndexEnd_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -7.543712854385376e-08,
+                0.059985868632793427,
+                -1.3038516044616699e-08
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1162085984,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1233090136,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_IndexEnd_end_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0.059994220733642578,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1289374986,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1162085984,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_ThumbFinger",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.017293915152549744,
+                -0.019482094794511795,
+                0.037107605487108231
+            ],
+            "Rotation": [
+                6.7734626796323028e-09,
+                -0.4486193060874939,
+                -1.2504848712069361e-08,
+                0.89372295141220093
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 611972059,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1647157662,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_ThumbMid",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.037645492702722549,
+                -0.025718111544847488,
+                -0.0076227039098739624
+            ],
+            "Rotation": [
+                0.21986697614192963,
+                -0.26405736804008484,
+                0.012774876318871975,
+                0.93902558088302612
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 31163159,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 611972059,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_ThumbEnd",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.03263535350561142,
+                -0.031309101730585098,
+                0.0054354071617126465
+            ],
+            "Rotation": [
+                2.8797451534501306e-08,
+                0.29966792464256287,
+                8.9076870324333868e-09,
+                0.95404356718063354
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 651809269,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 31163159,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_ThumbEnd_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                1.1175870895385742e-08,
+                0.045547693967819214,
+                -3.7252902984619141e-08
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1136172292,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 651809269,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_ThumbEnd_end_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0.045554041862487793,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1038487734,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1136172292,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "RightShoulder",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.028335550799965858,
+                0.072345435619354248,
+                -1.1175870895385742e-08
+            ],
+            "Rotation": [
+                0.69253695011138916,
+                0.68393176794052124,
+                -0.15514366328716278,
+                0.16899849474430084
+            ],
+            "Scale": [
+                0.99999994039535522,
+                0.99999994039535522,
+                1
+            ],
+            "UID": 1222585265,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1301710896,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "RightArm",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.12606790661811829,
+                -2.8912909328937531e-06,
+                -5.2154064178466797e-08
+            ],
+            "Rotation": [
+                -0.28568181395530701,
+                0.65096533298492432,
+                -0.12358684837818146,
+                0.6923556923866272
+            ],
+            "Scale": [
+                1,
+                0.99999994039535522,
+                0.99999994039535522
+            ],
+            "UID": 2094385720,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1222585265,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "RightForearm",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.26644212007522583,
+                5.1036477088928223e-07,
+                -3.9823353290557861e-06
+            ],
+            "Rotation": [
+                -0.0079717952758073807,
+                0.71868604421615601,
+                0.020859884098172188,
+                0.69497603178024292
+            ],
+            "Scale": [
+                1,
+                0.99999994039535522,
+                1
+            ],
+            "UID": 1236064467,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 2094385720,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "RightHand",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.29160255193710327,
+                -8.3632767200469971e-06,
+                2.5928020477294922e-06
+            ],
+            "Rotation": [
+                0.39687329530715942,
+                -0.1562654972076416,
+                -0.24833390116691589,
+                0.86971431970596313
+            ],
+            "Scale": [
+                1,
+                1,
+                0.99999994039535522
+            ],
+            "UID": 2079554423,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1236064467,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_RingFinger",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.041543751955032349,
+                2.0340085029602051e-06,
+                4.4703483581542969e-08
+            ],
+            "Rotation": [
+                -0.0012516910210251808,
+                0.016178568825125694,
+                0.094921909272670746,
+                0.99535256624221802
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1605970237,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 2079554423,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_RingMid",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.060923434793949127,
+                -6.9662928581237793e-07,
+                0
+            ],
+            "Rotation": [
+                -0.11909191310405731,
+                -0.10734669864177704,
+                -0.1671328991651535,
+                0.97281056642532349
+            ],
+            "Scale": [
+                1,
+                1,
+                0.99999994039535522
+            ],
+            "UID": 517789122,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1605970237,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_RingEnd",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.078345313668251038,
+                -0.010221457108855247,
+                -0.0024669952690601349
+            ],
+            "Rotation": [
+                -0.0097406003624200821,
+                0.034752916544675827,
+                -0.138083815574646,
+                0.98976272344589233
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1335964220,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 517789122,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_RingEnd_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0.079039141535758972,
+                -1.4901161193847656e-08
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1500725403,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1335964220,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_RingEnd_end_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0.079048313200473785,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 481404772,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1500725403,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_IndexFinger",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.071917280554771423,
+                0.0043728724122047424,
+                -0.039136223495006561
+            ],
+            "Rotation": [
+                -0.044101819396018982,
+                0.21238313615322113,
+                -0.031703516840934753,
+                0.97567582130432129
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 104352683,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 2079554423,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_IndexMid",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.062298312783241272,
+                0.00068129226565361023,
+                0.013732172548770905
+            ],
+            "Rotation": [
+                0.087431453168392181,
+                -0.06101638451218605,
+                0.084624364972114563,
+                0.99069243669509888
+            ],
+            "Scale": [
+                1,
+                1,
+                0.99999994039535522
+            ],
+            "UID": 200965342,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 104352683,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_IndexEnd",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.059995606541633606,
+                2.6393681764602661e-06,
+                3.4458935260772705e-08
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 552115177,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 200965342,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_IndexEnd_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -5.2154064178466797e-08,
+                0.059987593442201614,
+                -2.0489096641540527e-08
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1000940264,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 552115177,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_IndexEnd_end_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0.059995736926794052,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 617774794,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1000940264,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_ThumbFInger",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.038819953799247742,
+                -0.013025768101215363,
+                -0.036866374313831329
+            ],
+            "Rotation": [
+                -0.097960531711578369,
+                0.244431272149086,
+                -0.20009422302246094,
+                0.94372636079788208
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 296450958,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 2079554423,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_ThumbMid",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.04622359573841095,
+                6.4215855672955513e-06,
+                1.212581992149353e-06
+            ],
+            "Rotation": [
+                -0.013438813388347626,
+                0.016817335039377213,
+                -0.083782479166984558,
+                0.99625152349472046
+            ],
+            "Scale": [
+                0.99999994039535522,
+                0.99999994039535522,
+                0.99999994039535522
+            ],
+            "UID": 1894299248,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 296450958,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_ThumbEnd",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.045548196882009506,
+                6.7799192038364708e-06,
+                1.6903504729270935e-07
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1742215444,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1894299248,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_ThumbEnd_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -1.0244548320770264e-08,
+                0.045548401772975922,
+                -4.5169144868850708e-08
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 610076870,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1742215444,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_ThumbEnd_end_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0.04555174708366394,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1230195904,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 610076870,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "RightLeg",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -0.016588568687438965,
+                -0.11519824713468552,
+                -0.031259424984455109
+            ],
+            "Rotation": [
+                0.63154786825180054,
+                -0.4605863094329834,
+                -0.15119150280952454,
+                0.60510224103927612
+            ],
+            "Scale": [
+                0.99999994039535522,
+                1,
+                0.99999994039535522
+            ],
+            "UID": 1526222730,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 135651609,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "RightKnee",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.33052456378936768,
+                2.8405338525772095e-08,
+                8.6147338151931763e-08
+            ],
+            "Rotation": [
+                -0.0019358210265636444,
+                -0.022111285477876663,
+                -0.27143189311027527,
+                0.96220171451568604
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1809315417,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1526222730,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "RightFeet",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.49832546710968018,
+                -4.6566128730773926e-08,
+                -1.4435499906539917e-08
+            ],
+            "Rotation": [
+                -0.039008628576993942,
+                0.72235536575317383,
+                -0.68460595607757568,
+                0.089419111609458923
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1400364878,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1809315417,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "RightToe",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -0.049591448158025742,
+                -0.0013282385189086199,
+                -0.11688719689846039
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1193081085,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1400364878,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "RightFingers",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.0038778944872319698,
+                -0.0087298210710287094,
+                -0.11471900343894958
+            ],
+            "Rotation": [
+                -0.0003425806644372642,
+                0.00039514602394774556,
+                0.65520173311233521,
+                0.75545376539230347
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 978236472,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1193081085,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "RightFingers_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                9.2186382971704006e-09,
+                0.11511605232954025,
+                1.2514647096395493e-08
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 505036154,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 978236472,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "RightFingers_end_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0.11511609703302383,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 372325303,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 505036154,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Mesh",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1532300873,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 375876497,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/122055109.mmh",
+                    "UID": 122055109,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
+                    "MaterialUID": 1948688504
+                }
+            ]
+        },
+        {
+            "name": "ShootPoint",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                1.25,
+                2.6707072257995605
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                0.05000000074505806,
+                0.05000000074505806,
+                0.60000002384185791
+            ],
+            "UID": 1921430761,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 375876497,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "spawnenemy_particle",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0.099771022796630859,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 879672657,
+            "PrefabID": 2054061864,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 375876497,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "stormtropper",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1751407851,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 879672657,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 2.0559999942779541,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/627670173.dds",
+                            "texUID": 627670173,
+                            "paEmitterName": "Empty",
+                            "paLifeTime": [
+                                1,
+                                1
+                            ],
+                            "paSize": [
+                                3,
+                                3
+                            ],
+                            "paColor": [
+                                0.9686274528503418,
+                                0.015686275437474251,
+                                0.015686275437474251,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": []
+                                },
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0,
+                                    "paSizeOLTEndSize": 0
+                                },
+                                {
+                                    "paEffectType": 4,
+                                    "paVelocityOLTVelocity": [
+                                        1,
+                                        1,
+                                        1
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 3,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "circles",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                -4.6566128730773926e-10,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 644517811,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 879672657,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 2.0910000801086426,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/481592650.dds",
+                            "texUID": 481592650,
+                            "paEmitterName": "Empty",
+                            "paLifeTime": [
+                                1,
+                                1
+                            ],
+                            "paSize": [
+                                5,
+                                5
+                            ],
+                            "paColor": [
+                                0.9686274528503418,
+                                0.015686275437474251,
+                                0.015686275437474251,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": []
+                                },
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0,
+                                    "paSizeOLTEndSize": 0
+                                },
+                                {
+                                    "paEffectType": 4,
+                                    "paVelocityOLTVelocity": [
+                                        1,
+                                        1,
+                                        1
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 3,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "circles up",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 303715566,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 879672657,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 1.7070000171661377,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/481592650.dds",
+                            "texUID": 481592650,
+                            "paEmitterName": "Empty",
+                            "paLifeTime": [
+                                1.5,
+                                1.5
+                            ],
+                            "paSize": [
+                                5,
+                                5
+                            ],
+                            "paColor": [
+                                0.9686274528503418,
+                                0.015686275437474251,
+                                0.015686275437474251,
+                                1
+                            ],
+                            "paPerSec": 5,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 4,
+                                    "paVelocityOLTVelocity": [
+                                        1,
+                                        1,
+                                        1
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 0,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeAreaDimensions": [
+                                        1,
+                                        1,
+                                        1
+                                    ],
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 0,
+                                    "PaShapeOffset": [
+                                        1,
+                                        1,
+                                        1
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 2,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "Dead Effect",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1.0000005960464478,
+                1,
+                1.0000005960464478
+            ],
+            "UID": 857432124,
+            "PrefabID": 230945350,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 375876497,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Dead Particle",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1678969345,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 857432124,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 0.62300002574920654,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/170375526.dds",
+                            "texUID": 170375526,
+                            "paEmitterName": "Smoke",
+                            "paLifeTime": [
+                                0.5,
+                                0.69999998807907104
+                            ],
+                            "paSize": [
+                                0.20000000298023224,
+                                0.5
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 100,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        0,
+                                        45
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        -1,
+                                        2
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.17578125,
+                                                0.17577949166297913,
+                                                0.17577949166297913,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.12492340058088303,
+                                                0.12492215633392334,
+                                                0.12492215633392334,
+                                                0.87890625
+                                            ],
+                                            "paColorOLTposition": 0.65333330631256104
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.09765625,
+                                                0.097655273973941803,
+                                                0.097655273973941803,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 1,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeSphereRadius": 0.5,
+                                    "PaShapeSphereDirection": false,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 1,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0.5,
+                                        0
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1162313265.dds",
+                            "texUID": 1162313265,
+                            "paEmitterName": "Smoke 2",
+                            "paLifeTime": [
+                                0.5,
+                                0.69999998807907104
+                            ],
+                            "paSize": [
+                                0.20000000298023224,
+                                0.5
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 200,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.25390625,
+                                                0.25390371680259705,
+                                                0.25390371680259705,
+                                                0.87112897634506226
+                                            ],
+                                            "paColorOLTposition": 0.87733334302902222
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.2850707471370697,
+                                                0.28506788611412048,
+                                                0.28506788611412048,
+                                                0.87925428152084351
+                                            ],
+                                            "paColorOLTposition": 0.88266664743423462
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.21875,
+                                                0.2187478095293045,
+                                                0.2187478095293045,
+                                                0.89019608497619629
+                                            ],
+                                            "paColorOLTposition": 0.88266670703887939
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.32421875,
+                                                0.32421550154685974,
+                                                0.32421550154685974,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 1,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeConeRadius": 1,
+                                    "PaShapeConeHeight": 2,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 2,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "Wave",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1842378388,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 857432124,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 1.0379999876022339,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1755453139.dds",
+                            "texUID": 1755453139,
+                            "paEmitterName": "Cross",
+                            "paLifeTime": [
+                                3,
+                                3
+                            ],
+                            "paSize": [
+                                0.30000001192092896,
+                                0.30000001192092896
+                            ],
+                            "paColor": [
+                                1,
+                                0.15412187576293945,
+                                0.15412187576293945,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                9.9999999747524271e-07,
+                                                9.9998999303352321e-07,
+                                                9.9998999303352321e-07,
+                                                0.01171875
+                                            ],
+                                            "paColorOLTposition": 0.0026666666381061077
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0,
+                                                0,
+                                                0.5390625
+                                            ],
+                                            "paColorOLTposition": 0.18400000035762787
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0,
+                                                0,
+                                                0.51171875
+                                            ],
+                                            "paColorOLTposition": 0.49066540598869324
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                1.1920928955078125e-07,
+                                                0,
+                                                0.61328125
+                                            ],
+                                            "paColorOLTposition": 0.81066668033599854
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.0234375,
+                                                0.023437362164258957,
+                                                0.023437265306711197,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 1,
+                                    "paSizeOLTEndSize": 1.5
+                                }
+                            ]
+                        },
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1162313265.dds",
+                            "texUID": 1162313265,
+                            "paEmitterName": "Rests",
+                            "paLifeTime": [
+                                3.5,
+                                5
+                            ],
+                            "paSize": [
+                                0.20000000298023224,
+                                0.80000001192092896
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 15,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                5.0626806569198379e-07,
+                                                5.0626300662770518e-07,
+                                                5.0626300662770518e-07,
+                                                0.54296875
+                                            ],
+                                            "paColorOLTposition": 0.24799999594688416
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                9.9999999747524271e-07,
+                                                9.9998999303352321e-07,
+                                                9.9998999303352321e-07,
+                                                0.5078125
+                                            ],
+                                            "paColorOLTposition": 0.48266670107841492
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                9.9999999747524271e-07,
+                                                9.9998999303352321e-07,
+                                                9.9998999303352321e-07,
+                                                0.0234375
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0.5,
+                                    "paSizeOLTEndSize": 0
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": false,
+                                    "paShapePartSpeed": 0,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeSphereRadius": 1.5,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 1,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 3,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "Souls",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                -0.44529104232788086,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1174999285,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 857432124,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 4.0809998512268066,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/2059805849.dds",
+                            "texUID": 2059805849,
+                            "paEmitterName": "Soul",
+                            "paLifeTime": [
+                                0.30000001192092896,
+                                1.2999999523162842
+                            ],
+                            "paSize": [
+                                0.10000000149011612,
+                                0.10000000149011612
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 5,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                9.9999999747524271e-07,
+                                                9.9998999303352321e-07,
+                                                9.9998999303352321e-07,
+                                                0.65234375
+                                            ],
+                                            "paColorOLTposition": 0.64533334970474243
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                9.9999999747524271e-07,
+                                                9.9998999303352321e-07,
+                                                9.9998999303352321e-07,
+                                                0.47265625
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 0.5,
+                                    "paShapeRandSpeed": 0.5,
+                                    "PaShapeConeRadius": 0.5,
+                                    "PaShapeConeHeight": 1,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 2,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/14496052.dds",
+                            "texUID": 14496052,
+                            "paEmitterName": "Heart",
+                            "paLifeTime": [
+                                0.69999998807907104,
+                                1.2999999523162842
+                            ],
+                            "paSize": [
+                                0.10000000149011612,
+                                0.10000000149011612
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.3515625,
+                                                0,
+                                                0,
+                                                0.65234375
+                                            ],
+                                            "paColorOLTposition": 0.50133335590362549
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                9.9999999747524271e-07,
+                                                9.9998999303352321e-07,
+                                                9.9998999303352321e-07,
+                                                0.0078125
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 0.5,
+                                    "paShapeRandSpeed": 0.5,
+                                    "PaShapeConeRadius": 0.5,
+                                    "PaShapeConeHeight": 1,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 2,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1129325781.dds",
+                            "texUID": 1129325781,
+                            "paEmitterName": "Cries",
+                            "paLifeTime": [
+                                0.30000001192092896,
+                                1.2999999523162842
+                            ],
+                            "paSize": [
+                                0.10000000149011612,
+                                0.10000000149011612
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 5,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.21484375,
+                                                0.21484160423278809,
+                                                0.21484160423278809,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.05859375,
+                                                0.058593161404132843,
+                                                0.058593161404132843,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0.47200000286102295
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.1875,
+                                                0.18749812245368958,
+                                                0.18749812245368958,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 0.5,
+                                    "paShapeRandSpeed": 0.5,
+                                    "PaShapeConeRadius": 0.5,
+                                    "PaShapeConeHeight": 1,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 2,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "StormtrooperSpawn",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                12.117012023925781,
+                -6.2642016410827637,
+                14.41826343536377
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1.0000005960464478,
+                1,
+                1.0000005960464478
+            ],
+            "UID": 404278987,
+            "PrefabID": 186688337,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 375876497,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Particle System",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -10.534280776977539,
+                6.3295950889587402,
+                -13.474418640136719
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1386676345,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 404278987,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 0.10999999940395355,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/989165713.dds",
+                            "texUID": 989165713,
+                            "paEmitterName": "Symbol",
+                            "paLifeTime": [
+                                1,
+                                1
+                            ],
+                            "paSize": [
+                                1,
+                                1
+                            ],
+                            "paColor": [
+                                1,
+                                0,
+                                0,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        1,
+                                        1
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        3,
+                                        3
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0.088825218379497528
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0,
+                                                0,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0.48137557506561279
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0.90544456243515015
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0.30000001192092896,
+                                    "paSizeOLTEndSize": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 3,
+                    "horizantalAligned": true
+                }
+            ]
+        }
+    ]
+}
