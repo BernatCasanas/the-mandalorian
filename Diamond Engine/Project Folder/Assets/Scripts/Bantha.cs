@@ -291,21 +291,25 @@ public class Bantha : Enemy
                     {
                         case INPUT.IN_WANDER:
                             currentState = STATE.WANDER;
+                            ChargeEnd();
                             StartWander();
                             break;
 
                         case INPUT.IN_RUN:
                             currentState = STATE.RUN;
+                            ChargeEnd();
                             StartRun();
                             break;
 
                         case INPUT.IN_CHARGE_END:
                             currentState = STATE.TIRED;
+                            ChargeEnd();
                             StartTired();
                             break;
 
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
+                            ChargeEnd();
                             StartDie();
                             break;
                     }
@@ -463,10 +467,10 @@ public class Bantha : Enemy
         agent.MoveToCalculatedPos(chargeSpeed);
         
     }
-    //private void ChargeEnd()
-    //{
-    //    Audio.StopAudio(gameObject);
-    //}
+    private void ChargeEnd()
+    {
+        Audio.StopAudio(gameObject);
+    }
     #endregion
 
     #region DIE
