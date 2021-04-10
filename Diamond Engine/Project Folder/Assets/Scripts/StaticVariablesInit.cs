@@ -18,5 +18,6 @@ public class StaticVariablesInit : DiamondComponent
     {
         PlayerHealth.ResetMaxAndCurrentHPToDefault();
         Counter.ResetCounters();
+        EnemyManager.ClearList();
     }
 }
