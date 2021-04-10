@@ -62,13 +62,10 @@ public class Enemy : DiamondComponent
 		Quaternion dir = Quaternion.RotateAroundAxis(Vector3.up, angle);
 
 		float rotationSpeed = Time.deltaTime * slerpSpeed;
-		//Debug.Log("CS: Rotation speed: " + rotationSpeed.ToString());
-		//Debug.Log("CS: Time: " + Time.deltaTime);
 
 		Quaternion desiredRotation = Quaternion.Slerp(gameObject.transform.localRotation, dir, rotationSpeed);
 
 		gameObject.transform.localRotation = desiredRotation;
-
 	}
 
 	public bool InRange(Vector3 point, float givenRange)

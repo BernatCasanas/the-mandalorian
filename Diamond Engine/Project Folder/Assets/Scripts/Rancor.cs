@@ -53,6 +53,8 @@ public class Rancor : DiamondComponent
 	private List<RANCOR_INPUT> inputsList = new List<RANCOR_INPUT>();
     Random randomNum = new Random();
 
+    public float slerpSpeed = 5.0f;
+
     //Stats
     public int attackProbability = 66;  //FROM 1 TO A 100
     public int shortWanderProbability = 90; //FROM THE PREVIOS VALUE TO HERE
@@ -534,6 +536,8 @@ public class Rancor : DiamondComponent
     private void StartMCHit2()
     {
         meleeCH2Timer = meleeComboHit2Time;
+        meleeCH2ColliderTimer = 0.5f;
+
         Animator.Play(gameObject, "RN_MeleeComboP2");
         //TODO: Add animation
 
@@ -557,6 +561,8 @@ public class Rancor : DiamondComponent
     private void StartMCHit3()
     {
         meleeCH3Timer = meleeComboHit3Time;
+        meleeCH3ColliderTimer = 0.5f;
+
         Animator.Play(gameObject, "RN_MeleeComboP3");
         //TODO: Add animation
 
@@ -613,9 +619,11 @@ public class Rancor : DiamondComponent
     private void UpdateWander()
     {
         //Move character
-
         if (agent != null && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) > agent.stoppingDistance)
+        {
+            LookAt(Core.instance.gameObject.transform.globalPosition);
             agent.MoveToCalculatedPos(wanderSpeed);
+        }
 
         Debug.Log("Wandering");
     }
@@ -714,5 +722,21 @@ public class Rancor : DiamondComponent
 
     #endregion
 
+    public void LookAt(Vector3 pointToLook)
+    {
+        Vector3 direction = pointToLook - gameObject.transform.globalPosition;
+        direction = direction.normalized;
+        float angle = (float)Math.Atan2(direction.x, direction.z);
 
+        if (Math.Abs(angle * Mathf.Rad2Deg) < 1.0f)
+            return;
+
+        Quaternion dir = Quaternion.RotateAroundAxis(Vector3.up, angle);
+
+        float rotationSpeed = Time.deltaTime * slerpSpeed;
+
+        Quaternion desiredRotation = Quaternion.Slerp(gameObject.transform.localRotation, dir, rotationSpeed);
+
+        gameObject.transform.localRotation = desiredRotation;
+    }
 }
