@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -5.3881802558898926,
-        8.2128086090087891,
-        -7.6110444068908691
+        -5.275794506072998,
+        8.5184040069580078,
+        -4.8205327987670898
     ],
     "EditorCameraZ": [
-        0.6542242169380188,
-        -0.44418215751647949,
-        0.61212170124053955
+        0.6616823673248291,
+        -0.71171295642852783,
+        0.23588407039642334
     ],
     "EditorCameraY": [
-        0.32437631487846375,
-        0.89593648910522461,
-        0.30344325304031372
+        0.67046022415161133,
+        0.70247042179107666,
+        0.23878523707389832
     ],
     "tags": [],
     "layers": [],
@@ -11214,6 +11214,265 @@
             ]
         },
         {
+            "name": "NextRoomText",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1661930012,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1009255034,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 957948739,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1661930012,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -45.299999237060547,
+                        -68.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        8.8000001907348633,
+                        14.199999809265137
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Press A to go to the next level",
+                    "maxTextLenght": 1120,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Text_Box",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1097016687,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1661930012,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        3.4000000953674316,
+                        -67.800003051757813
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        58.599998474121094,
+                        19.100000381469727
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1848582122.dds",
+                    "UID": 1848582122
+                }
+            ]
+        },
+        {
+            "name": "NextRoomButton",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 142860072,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1097016687,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        54.099998474121094,
+                        -10.100000381469727
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        2.9000000953674316,
+                        6.0999999046325684
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_right_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/70978250.dds",
+                    "Pressed_UID": 70978250,
+                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1346482548.dds",
+                    "Hovered_UID": 1346482548,
+                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1346482548.dds",
+                    "Unhovered_UID": 1346482548,
+                    "Script_Name": "HubRoomSwitch",
+                    "ButtonState": 1,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/arrow_right.png",
+                    "LibraryPath": "Library\/Textures\/1346482548.dds",
+                    "UID": 1346482548
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 142860072,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "HubRoomSwitch",
+                    "nextRoomUID": 614298780
+                }
+            ]
+        },
+        {
             "name": "DinDjarin",
             "tag": "Player",
             "layer": "Default",
@@ -11437,10 +11696,10 @@
                 0.056709360331296921
             ],
             "Rotation": [
-                -0.0271739661693573,
-                0.19621393084526062,
-                -0.30611684918403625,
-                0.93115741014480591
+                -0.027173969894647598,
+                0.19621396064758301,
+                -0.30611687898635864,
+                0.93115752935409546
             ],
             "Scale": [
                 0.99999988079071045,
@@ -11932,10 +12191,10 @@
                 0.039999987930059433
             ],
             "Rotation": [
-                -0.47698268294334412,
-                -0.12094411253929138,
-                -0.05129377543926239,
-                0.86903905868530273
+                -0.47698274254798889,
+                -0.12094412744045258,
+                -0.051293782889842987,
+                0.86903917789459229
             ],
             "Scale": [
                 0.99999988079071045,
@@ -12064,10 +12323,10 @@
                 0.039074663072824478
             ],
             "Rotation": [
-                -8.1857081113412278e-08,
-                -0.31220510601997375,
-                -3.4855980857173563e-07,
-                0.95001471042633057
+                -8.1857088218839635e-08,
+                -0.31220513582229614,
+                -3.4855983699344506e-07,
+                0.95001482963562012
             ],
             "Scale": [
                 0.99999982118606567,
@@ -12130,10 +12389,10 @@
                 0.0011344746453687549
             ],
             "Rotation": [
-                4.4394894871402357e-08,
-                0.13653638958930969,
-                1.9533750617029e-08,
-                0.99063503742218018
+                4.4394898424116036e-08,
+                0.13653640449047089,
+                1.9533752393385839e-08,
+                0.99063515663146973
             ],
             "Scale": [
                 1.0000001192092896,
@@ -12262,10 +12521,10 @@
                 -2.8560558362755728e-08
             ],
             "Rotation": [
-                0.69253617525100708,
-                0.68393254280090332,
-                -0.15514370799064636,
-                0.168998122215271
+                0.69253623485565186,
+                0.6839326024055481,
+                -0.15514372289180756,
+                0.16899813711643219
             ],
             "Scale": [
                 0.99999988079071045,
@@ -12493,10 +12752,10 @@
                 -0.03913632407784462
             ],
             "Rotation": [
-                -0.044098757207393646,
-                0.21238307654857635,
-                -0.031702034175395966,
-                0.97567600011825562
+                -0.044098760932683945,
+                0.21238310635089874,
+                -0.031702037900686264,
+                0.97567611932754517
             ],
             "Scale": [
                 1.0000001192092896,
@@ -12955,10 +13214,10 @@
                 0.02565460093319416
             ],
             "Rotation": [
-                0.41681963205337524,
-                -0.57119274139404297,
-                0.41681960225105286,
-                0.5711931586265564
+                0.41681969165802002,
+                -0.57119280099868774,
+                0.41681966185569763,
+                0.57119321823120117
             ],
             "Scale": [
                 1,
@@ -13930,10 +14189,10 @@
                 0.014188759028911591
             ],
             "Rotation": [
-                -0.0049477051943540573,
-                -0.10826671868562698,
-                0.022751525044441223,
-                0.99384915828704834
+                -0.0049477056600153446,
+                -0.10826673358678818,
+                0.022751526907086372,
+                0.99384927749633789
             ],
             "Scale": [
                 1,
@@ -20336,7 +20595,7 @@
             "Active": true,
             "Position": [
                 0,
-                0,
+                -0.37919175624847412,
                 0
             ],
             "Rotation": [
@@ -20373,10 +20632,10 @@
                 -3.2025718688964844
             ],
             "Rotation": [
-                -2.0945396528304627e-08,
-                -0.90486770868301392,
-                -2.0945396528304627e-08,
-                0.4256928563117981
+                -2.0945398304661467e-08,
+                -0.90486782789230347,
+                -2.0945398304661467e-08,
+                0.42569291591644287
             ],
             "Scale": [
                 0.99999856948852539,
@@ -20411,6 +20670,94 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "Light",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -24.049282073974609,
+                53.761276245117188,
+                -39.368053436279297
+            ],
+            "Rotation": [
+                -0.22750116884708405,
+                0,
+                0,
+                0.97377783060073853
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1896898010,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 3625608,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 23,
+                    "Active": true,
+                    "orthoSize": [
+                        100,
+                        100
+                    ],
+                    "lightColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "NextRoomCollider",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.77643245458602905,
+                0,
+                7.0814895629882813
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1431384928,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 3625608,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "InsideCollider",
+                    "colliderPosition": 1431384928,
+                    "player": 1497423809,
+                    "maxDistance": 2,
+                    "displayText": 1661930012
                 }
             ]
         }

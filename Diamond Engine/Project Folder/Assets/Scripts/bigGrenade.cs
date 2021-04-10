@@ -10,6 +10,8 @@ public class bigGrenade : DiamondComponent
 
     public float yVel = 0.0f;
 
+    public float damage = 0.0f;
+
     public float detonationTime = 1.5f;
 
     private float Timer = 0.0f;
@@ -38,7 +40,7 @@ public class bigGrenade : DiamondComponent
         {
             gameObject.transform.localPosition += gameObject.transform.GetForward() * (speed * Time.deltaTime);
 
-            yVel -= Time.deltaTime * 0.102f;
+            yVel -= Time.deltaTime * 0.02f;
             gameObject.transform.localPosition += (Vector3.up * yVel);
         }
         else

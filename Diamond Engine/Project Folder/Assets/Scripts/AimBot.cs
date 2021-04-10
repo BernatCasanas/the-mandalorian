@@ -10,7 +10,6 @@ public class AimBot : DiamondComponent
     public float distanceWeight = 0.5f;
     public GameObject spawnGameObject = null;
     float dotMin = 0;
-    Spawn spawnComponent = null;
     bool start = true;
 
     int lastFrameEnemyCount = 0;
@@ -22,8 +21,6 @@ public class AimBot : DiamondComponent
 
         if (start)
         {
-            if (spawnGameObject != null)
-                spawnComponent = spawnGameObject.GetComponent<Spawn>();
 
             ChangeConeAngle(startAimConeAngle);
             start = false;
@@ -32,7 +29,7 @@ public class AimBot : DiamondComponent
         if (!isShooting && myCurrentObjective != null)
             myCurrentObjective = null;
 
-        if (spawnComponent != null)
+        if (EnemyManager.currentEnemies != null)
         {
             if (isShooting)
             {
@@ -40,16 +37,16 @@ public class AimBot : DiamondComponent
                 {
                     SearchForNewObjective();
                 }
-                else if (lastFrameEnemyCount != spawnComponent.currentEnemies.Count)//change in enemies! if targeting an enemy make sure it hasn't died
+                else if (lastFrameEnemyCount != EnemyManager.currentEnemies.Count) //change in enemies! if targeting an enemy make sure it hasn't died
                 {
-                    if (myCurrentObjective != null && !spawnComponent.currentEnemies.Contains(myCurrentObjective))//if the target is not in the list anymore search for a new objective
+                    if (myCurrentObjective != null && !EnemyManager.currentEnemies.Contains(myCurrentObjective)) //if the target is not in the list anymore search for a new objective
                     {
                         SearchForNewObjective();
                     }
                 }
             }
 
-            lastFrameEnemyCount = spawnComponent.currentEnemies.Count;
+            lastFrameEnemyCount = EnemyManager.currentEnemies.Count;
         }
 
     }
@@ -65,7 +62,7 @@ public class AimBot : DiamondComponent
     //assigns a new objective if there is any objective in range, otherwise myCurrentObjective is null
     public void SearchForNewObjective()
     {
-        if (spawnComponent == null)
+        if (EnemyManager.currentEnemies == null)
         {
             myCurrentObjective = null;
             return;
@@ -80,15 +77,15 @@ public class AimBot : DiamondComponent
         //Debug.Log("Searching for a new objective!");
         KeyValuePair<float, GameObject> weightedObj = new KeyValuePair<float, GameObject>(float.NegativeInfinity, null);
 
-        Debug.Log("Enemies searching num: " + spawnComponent.currentEnemies.Count.ToString());
-        for (int i = 0; i < spawnComponent.currentEnemies.Count; ++i)
+        Debug.Log("Enemies searching num: " + EnemyManager.currentEnemies.Count.ToString());
+        for (int i = 0; i < EnemyManager.currentEnemies.Count; ++i)
         {
-            float targetWeight = GetTargetWeight(spawnComponent.currentEnemies[i]);
+            float targetWeight = GetTargetWeight(EnemyManager.currentEnemies[i]);
 
 
             if (targetWeight > weightedObj.Key)
             {
-                weightedObj = new KeyValuePair<float, GameObject>(targetWeight, spawnComponent.currentEnemies[i]);
+                weightedObj = new KeyValuePair<float, GameObject>(targetWeight, EnemyManager.currentEnemies[i]);
             }
         }
 

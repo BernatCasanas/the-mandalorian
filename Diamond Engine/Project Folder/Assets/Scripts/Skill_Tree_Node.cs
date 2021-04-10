@@ -11,6 +11,13 @@ public class Skill_Tree_Node : DiamondComponent
         OWNED,
     };
 
+    public enum NODE_TYPE
+    {
+        MANDO = 0,
+        GROGU,
+        WEAPON,
+    }
+
 
     #region Style
     public int unlockedButtonPressed = 0;
@@ -43,6 +50,9 @@ public class Skill_Tree_Node : DiamondComponent
 
     public bool isRootNode = false;
     private NODE_STATE _state;
+
+    public int node_type = 0;
+    private NODE_TYPE _type = NODE_TYPE.MANDO;
 
 
     public NODE_STATE state 
@@ -87,6 +97,13 @@ public class Skill_Tree_Node : DiamondComponent
         {
             Debug.Log("ERROR: Skill doesn't exist");
         }
+
+        if (node_type == 0)
+            _type = NODE_TYPE.MANDO;
+        else if (node_type == 1)
+            _type = NODE_TYPE.GROGU;
+        else
+            _type = NODE_TYPE.WEAPON;
     }
 	public void Update()
 	{
@@ -99,12 +116,53 @@ public class Skill_Tree_Node : DiamondComponent
         if (text_description != null)
             text_description.GetComponent<Text>().text = skill.description;
 
+        if (Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_DOWN)
+        {
+            Debug.Log("Beskar: ");
+            PlayerResources.AddResourceBy1(RewardType.REWARD_BESKAR);
+            Debug.Log("Beskar: " + PlayerResources.GetResourceCount(RewardType.REWARD_BESKAR));
+        }
+
+
 
     }
     public void OnExecuteButton()
     {
         if (state == NODE_STATE.LOCKED || state == NODE_STATE.OWNED)
             return;
+
+        if (_type == NODE_TYPE.MANDO && PlayerResources.GetResourceCount(RewardType.REWARD_BESKAR) == 0)
+        {
+            Debug.Log("You don't have enough Beskar!");
+            return;
+        }
+        else
+        {
+            PlayerResources.SubstractResourceBy1(RewardType.REWARD_BESKAR);
+            Debug.Log("Beskar: " + PlayerResources.GetResourceCount(RewardType.REWARD_BESKAR));
+        }
+
+        if (_type == NODE_TYPE.GROGU && PlayerResources.GetResourceCount(RewardType.REWARD_MACARON) == 0)
+        {
+            Debug.Log("You don't have enough Macarons!");
+            return;
+        }
+        else
+        {
+            PlayerResources.SubstractResourceBy1(RewardType.REWARD_MACARON);
+            Debug.Log("Macarons: " + PlayerResources.GetResourceCount(RewardType.REWARD_MACARON));
+        }
+
+        if (_type == NODE_TYPE.WEAPON && PlayerResources.GetResourceCount(RewardType.REWARD_SCRAP) == 0)
+        {
+            Debug.Log("You don't have enough Scrap!");
+            return;
+        }
+        else
+        {
+            PlayerResources.SubstractResourceBy1(RewardType.REWARD_SCRAP);
+            Debug.Log("Scrap: " + PlayerResources.GetResourceCount(RewardType.REWARD_SCRAP));
+        }
 
         skill.Use();
 
