@@ -17,7 +17,9 @@ public static class PlayerResources
         switch (type)
         {
             case RewardType.REWARD_BOON:
-                auxCounter = boonCounter[boonType];
+                if (boonCounter.ContainsKey(boonType)) {
+                    auxCounter = boonCounter[boonType];
+                }
                 break;
 
             case RewardType.REWARD_BESKAR:

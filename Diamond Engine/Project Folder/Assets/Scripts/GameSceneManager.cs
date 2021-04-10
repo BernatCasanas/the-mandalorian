@@ -16,7 +16,6 @@ public class GameSceneManager : DiamondComponent
 
     public void Update()
     {
-
         if (Counter.roomEnemies > 0)    // This would, ideally, not be necessary, and enemies generating would have nothing to do with dialogue ocurring, since it would (presumably) stop the game
         {
             enemiesHaveSpawned = true;
