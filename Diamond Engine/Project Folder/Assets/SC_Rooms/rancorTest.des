@@ -1,19 +1,19 @@
 {
     "NavMesh": 1851738196,
     "EditorCameraPosition": [
-        2.1027796268463135,
-        8.3254585266113281,
-        15.401592254638672
+        -48.427600860595703,
+        32.289604187011719,
+        -7.7133822441101074
     ],
     "EditorCameraZ": [
-        -0.15834228694438934,
-        -0.26493698358535767,
-        -0.95117616653442383
+        0.82480335235595703,
+        -0.54994618892669678,
+        0.13137185573577881
     ],
     "EditorCameraY": [
-        -0.043392889201641083,
-        0.96426570415496826,
-        -0.26135927438735962
+        0.54310035705566406,
+        0.83520007133483887,
+        0.086503170430660248
     ],
     "tags": [],
     "layers": [],
@@ -199,7 +199,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Rancor",
-                    "slerpSpeed": 0,
+                    "slerpSpeed": 20,
+                    "healthPoints": 1200,
                     "attackProbability": 66,
                     "shortWanderProbability": 90,
                     "meleeRange": 14,
@@ -207,8 +208,8 @@
                     "shortWanderTime": 2,
                     "longWanderTime": 4,
                     "wanderSpeed": 10,
-                    "loadRushTime": 0,
-                    "rushSpeed": 0
+                    "loadRushTime": 0.40000000596046448,
+                    "rushSpeed": 40
                 },
                 {
                     "Type": 24,
@@ -229,6 +230,7 @@
                         732328014,
                         1999399267,
                         286369267,
+                        76559059,
                         63834785,
                         1097900842
                     ]
@@ -2969,13 +2971,13 @@
                     "dashCD": 0.30000001192092896,
                     "dashDuration": 0.20000000298023224,
                     "dashDistance": 4.75,
-                    "dashforce": 500,
+                    "dashforce": 50,
                     "fireRate": 0.15000000596046448,
                     "gadgetFireRate": 0.20000000298023224,
                     "fireRateAfterDashRecoverRatio": 1.75,
                     "fireRateMultCap": 2,
                     "grenadesFireRate": 0.125,
-                    "bulletDamage": 0
+                    "bulletDamage": 10
                 },
                 {
                     "Type": 13,

@@ -58,9 +58,13 @@ public class Rancor : DiamondComponent
 	private List<RANCOR_INPUT> inputsList = new List<RANCOR_INPUT>();
     Random randomNum = new Random();
 
+    public GameObject hitParticles = null;
+
     public float slerpSpeed = 5.0f;
 
     //Stats
+    public float healthPoints = 60.0f;
+
     public int attackProbability = 66;  //FROM 1 TO A 100
     public int shortWanderProbability = 90; //FROM THE PREVIOS VALUE TO HERE
 
@@ -96,7 +100,7 @@ public class Rancor : DiamondComponent
     private float handSlamTimer = 0.0f;
 
 
-    //rush
+    //Rush
     public float loadRushTime = 0.4f;
     private float loadRushTimer = 0.0f;
 
@@ -106,6 +110,10 @@ public class Rancor : DiamondComponent
 
     private float rushStunDuration = 0.0f;
     private float rushStunTimer = 0.0f;
+
+    //Die
+    private float dieTime = 0.0f;
+    private float dieTimer = 0.0f;
 
 
     private bool start = false;
@@ -125,6 +133,8 @@ public class Rancor : DiamondComponent
         rushTime = Animator.GetAnimationDuration(gameObject, "RN_Rush") - 0.016f;
 
         rushStunDuration = Animator.GetAnimationDuration(gameObject, "RN_RushRecover") - 0.016f;
+
+        dieTime = Animator.GetAnimationDuration(gameObject, "RN_Die") - 0.016f;
     }
 
     public void Awake()
@@ -295,6 +305,8 @@ public class Rancor : DiamondComponent
                             break;
                         
                         case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
                             break;
                     }
                     break;
@@ -308,6 +320,8 @@ public class Rancor : DiamondComponent
                             break;
 
                         case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
                             break;
                     }
                     break;
@@ -321,6 +335,8 @@ public class Rancor : DiamondComponent
                             break;
 
                         case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
                             break;
                     }
                     break;
@@ -340,6 +356,8 @@ public class Rancor : DiamondComponent
                             break;
 
                         case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
                             break;
                     }
                     break;
@@ -353,6 +371,8 @@ public class Rancor : DiamondComponent
                             break;
                         
                         case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
                             break;
                     }
                     break;
@@ -366,6 +386,8 @@ public class Rancor : DiamondComponent
                             break;
                         
                         case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
                             break;
                     }
                     break;
@@ -379,6 +401,8 @@ public class Rancor : DiamondComponent
                             break;
                         
                         case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
                             break;
                     }
                     break;
@@ -393,6 +417,8 @@ public class Rancor : DiamondComponent
                             break;
                       
                         case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
                             break;
                     }
                     break;
@@ -407,6 +433,8 @@ public class Rancor : DiamondComponent
                             break;
 
                         case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
                             break;
                     }
                     break;
@@ -420,6 +448,8 @@ public class Rancor : DiamondComponent
                             break;
 
                         case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
                             break;
                     }
                     break;
@@ -481,6 +511,7 @@ public class Rancor : DiamondComponent
                 break;
 
             case RANCOR_STATE.DEAD:
+                UpdateDie();
                 break;
         }
     }
@@ -638,7 +669,6 @@ public class Rancor : DiamondComponent
 
     #endregion
 
-
     #region WANDER
 
     private void StartShortWander()
@@ -687,7 +717,6 @@ public class Rancor : DiamondComponent
     }
 
     #endregion
-
 
     #region PROJECTILE
 
@@ -795,11 +824,41 @@ public class Rancor : DiamondComponent
 
     #endregion
 
-    //TODO: Use this when die animation starts
+    #region DIE
+    private void StartDie()
+    {
+        //Audio.StopAudio(gameObject);
+
+        dieTimer = dieTime;
+
+        //Animator.Play(gameObject, "RN_Die", 1.0f);
+
+        Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Death");
+        //Audio.PlayAudio(gameObject, "Play_Mando_Voice");
+
+        if (hitParticles != null)
+            hitParticles.GetComponent<ParticleSystem>().Play();
+
+        //RemoveFromEnemyList();
+    }
+    private void UpdateDie()
+    {
+        if (dieTimer > 0.0f)
+        {
+            dieTimer -= Time.deltaTime;
+
+            if (dieTimer <= 0.0f)
+            {
+                Die();
+            }
+        }
+    }
     public void Die()
     {
+        Debug.Log("RANCOR DEAD");
         EnemyManager.RemoveEnemy(gameObject);
     }
+    #endregion
 
     public void LookAt(Vector3 pointToLook)
     {
@@ -824,5 +883,40 @@ public class Rancor : DiamondComponent
         Vector3 direction = positionToReach - gameObject.transform.localPosition;
 
         gameObject.transform.localPosition += direction.normalized * speed * Time.deltaTime;
+    }
+
+    public void OnCollisionEnter(GameObject collidedGameObject)
+    {
+
+        if (collidedGameObject.CompareTag("Bullet"))
+        {
+            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+            Debug.Log("Rancor HP: " + healthPoints.ToString());
+
+            Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
+
+            if (currentState != RANCOR_STATE.DEAD && healthPoints <= 0.0f)
+            {
+                inputsList.Add(RANCOR_INPUT.IN_DEAD);
+            }
+        }
+        else if (collidedGameObject.CompareTag("Grenade"))
+        {
+            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+
+            Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
+
+            if (currentState != RANCOR_STATE.DEAD && healthPoints <= 0.0f)
+            {
+                inputsList.Add(RANCOR_INPUT.IN_DEAD);
+            }
+        }
+        else if (collidedGameObject.CompareTag("WorldLimit"))
+        {
+            if (currentState != RANCOR_STATE.DEAD)
+            {
+                inputsList.Add(RANCOR_INPUT.IN_DEAD);
+            }
+        }
     }
 }
