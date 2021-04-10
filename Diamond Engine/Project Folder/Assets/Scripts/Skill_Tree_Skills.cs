@@ -342,6 +342,11 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            if(Core.instance != null)
+            {
+                Core.instance.IncreaseNormalShootDamage(0.25f);
+               
+            }
         }
     }
 
