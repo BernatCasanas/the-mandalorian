@@ -498,7 +498,7 @@ public class Core : DiamondComponent
         Audio.PlayAudio(shootPoint, "Play_Blaster_Shoot_Mando");
         Input.PlayHaptic(.3f, 10);
 
-        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/346087333.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1821505626.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
         inputsList.Add(INPUT.IN_SHOOT_END);
         hasShot = true;
