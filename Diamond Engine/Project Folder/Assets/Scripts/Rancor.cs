@@ -101,6 +101,7 @@ public class Rancor : DiamondComponent
 
 
     //Rush
+    public float rushDamage = 5.0f;
     public float loadRushTime = 0.4f;
     private float loadRushTimer = 0.0f;
 
@@ -916,6 +917,18 @@ public class Rancor : DiamondComponent
             if (currentState != RANCOR_STATE.DEAD)
             {
                 inputsList.Add(RANCOR_INPUT.IN_DEAD);
+            }
+        }
+        else if (collidedGameObject.CompareTag("Player"))
+        {
+            if (currentState == RANCOR_STATE.RUSH)
+            {
+                inputsList.Add(RANCOR_INPUT.IN_RUSH_END);
+                PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage((int)rushDamage);
+                }
             }
         }
     }
