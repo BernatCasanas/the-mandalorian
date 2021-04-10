@@ -236,6 +236,12 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            if (BabyYoda.instance != null)
+            {
+                BabyYoda.instance.ReduceForceRegenerationTime(1f);
+
+                Debug.Log("ReducedForceRengeration Time");
+            }
         }
     }
 
@@ -336,6 +342,11 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            if(Core.instance != null)
+            {
+                Core.instance.IncreaseNormalShootDamage(0.25f);
+               
+            }
         }
     }
 
