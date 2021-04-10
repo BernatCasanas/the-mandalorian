@@ -42,6 +42,8 @@ public class TextController : DiamondComponent
 
 		}
 
+		
+
 		if (index >= texts.Count && gui_not_enabled)
 		{
 			index = -1;
@@ -64,6 +66,8 @@ public class TextController : DiamondComponent
 	{
 		if (startMenu == true && dialog != null && list_of_dialogs != null && dialog_index >= 0)
 		{
+			Debug.Log(dialog_index.ToString());
+
 			if (gui != null)
 			{
 				gui.Enable(false);
@@ -75,6 +79,8 @@ public class TextController : DiamondComponent
 		}
 		else if (finished == true)
 		{
+			Debug.Log(finished.ToString());
+
 			startMenu = true;
 			finished = false;
 

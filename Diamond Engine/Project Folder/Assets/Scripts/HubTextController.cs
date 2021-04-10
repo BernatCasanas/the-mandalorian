@@ -15,7 +15,6 @@ public class HubTextController : DiamondComponent
 
 	public GameObject textController = null;
 	public GameObject dialog = null;
-
 	public GameObject mando = null;
 	public GameObject bo_katan = null;
 	public GameObject greef = null;
@@ -77,8 +76,11 @@ public class HubTextController : DiamondComponent
 	public void Update()
 	{
 		if (mando == null || Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN || textController == null || textController.GetComponent<TextController>().otherimage == null || dialog == null ||
-			textController.IsEnabled() == false) 
+			textController.IsEnabled() == false)
+        {
 			return;
+		}
+			
         if (dialog_finished)
         {
 			dialog_finished = false;
@@ -171,8 +173,8 @@ public class HubTextController : DiamondComponent
                     grogu_interaction_num++;
                 break;
         }
-
 		dialog_finished = true;
+		textController.GetComponent<Navigation>().Select();
 		dialog.Enable(true);
 	}
 
