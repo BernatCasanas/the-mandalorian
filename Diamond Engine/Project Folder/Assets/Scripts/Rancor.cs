@@ -49,7 +49,7 @@ public class Rancor : DiamondComponent
     public GameObject meleeCombo2Collider = null;
     public GameObject meleeCombo3Collider = null;
 
-    private Vector3 targetPosition = null;
+    //private Vector3 targetPosition = null;
     private Vector3 targetDirection = null;
 
     //State
@@ -125,7 +125,6 @@ public class Rancor : DiamondComponent
         rushTime = Animator.GetAnimationDuration(gameObject, "RN_Rush") - 0.016f;
 
         rushStunDuration = Animator.GetAnimationDuration(gameObject, "RN_RushRecover") - 0.016f;
-
     }
 
     public void Awake()
@@ -146,6 +145,8 @@ public class Rancor : DiamondComponent
 
         if (meleeCombo3Collider != null)
             meleeCombo3Collider.Enable(false);
+
+        EnemyManager.AddEnemy(gameObject);
     }
 
     public void Update()
@@ -246,7 +247,6 @@ public class Rancor : DiamondComponent
 	private void ProcessExternalInput()
     {
         
-
     }
 
 	private void ProcessState()
@@ -485,7 +485,6 @@ public class Rancor : DiamondComponent
         }
     }
 
-
     private void SelectAction()
     {
         int decision = randomNum.Next(1, 100);
@@ -582,7 +581,16 @@ public class Rancor : DiamondComponent
     private void UpdateMCHit2()
     {
         Debug.Log("Combo hit 2");
-        //TODO: Activate collider
+        if (meleeCH2ColliderTimer > 0.0f)
+        {
+            meleeCH2ColliderTimer -= Time.deltaTime;
+
+            if (meleeCH2ColliderTimer <= 0.0f)
+            {
+                if (meleeCombo2Collider != null)
+                    meleeCombo2Collider.Enable(true);
+            }
+        }
     }
 
     private void EndMCHit2()
@@ -607,7 +615,17 @@ public class Rancor : DiamondComponent
     private void UpdateMCHit3()
     {
         Debug.Log("Combo hit 3");
-        //TODO: Activate collider
+
+        if (meleeCH3ColliderTimer > 0.0f)
+        {
+            meleeCH3ColliderTimer -= Time.deltaTime;
+
+            if (meleeCH3ColliderTimer <= 0.0f)
+            {
+                if (meleeCombo3Collider != null)
+                    meleeCombo3Collider.Enable(true);
+            }
+        }
     }
 
     private void EndMCHit3()
@@ -693,7 +711,6 @@ public class Rancor : DiamondComponent
 
     #endregion
 
-
     #region HAND_SLAM
 
     private void StartHandSlam()
@@ -777,6 +794,12 @@ public class Rancor : DiamondComponent
     }
 
     #endregion
+
+    //TODO: Use this when die animation starts
+    public void Die()
+    {
+        EnemyManager.RemoveEnemy(gameObject);
+    }
 
     public void LookAt(Vector3 pointToLook)
     {

@@ -458,7 +458,7 @@ public class Bantha : Enemy
         if (hitParticles != null)
             hitParticles.GetComponent<ParticleSystem>().Play();
 
-        RemoveFromSpawner();
+        RemoveFromEnemyList();
     }
     private void UpdateDie()
     {
