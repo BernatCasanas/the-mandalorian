@@ -88,7 +88,7 @@
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
                     "vFOV": 1.0471975803375244,
-                    "hFOV": 1.6646232604980469,
+                    "hFOV": 1.6498100757598877,
                     "culling": true,
                     "drawSkybox": true
                 },
@@ -249,7 +249,7 @@
             ]
         },
         {
-            "name": "Continue",
+            "name": "Retry",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -312,7 +312,7 @@
                     "Unhovered_AssetsPath": "Assets\/UI\/MENU\/second_button.png",
                     "Unhovered_LibraryPath": "Library\/Textures\/1618474496.dds",
                     "Unhovered_UID": 1618474496,
-                    "Script_Name": "EndScreen",
+                    "Script_Name": "HubRoomSwitch",
                     "ButtonState": 1,
                     "Is Selected": true
                 },
@@ -384,12 +384,13 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "EndScreen"
+                    "ScriptName": "HubRoomSwitch",
+                    "nextRoomUID": 1564453141
                 }
             ]
         },
         {
-            "name": "Text",
+            "name": "Retry",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -455,7 +456,7 @@
             ]
         },
         {
-            "name": "Quit",
+            "name": "Menu",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -518,7 +519,7 @@
                     "Unhovered_AssetsPath": "Assets\/UI\/MENU\/second_button.png",
                     "Unhovered_LibraryPath": "Library\/Textures\/1618474496.dds",
                     "Unhovered_UID": 1618474496,
-                    "Script_Name": "EndScreen",
+                    "Script_Name": "HubRoomSwitch",
                     "ButtonState": 2,
                     "Is Selected": false
                 },
@@ -590,12 +591,13 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "EndScreen"
+                    "ScriptName": "HubRoomSwitch",
+                    "nextRoomUID": 1726826608
                 }
             ]
         },
         {
-            "name": "Text",
+            "name": "Menu",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -1106,7 +1108,7 @@
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "PLACEHOLDER SCREEN",
+                    "text": "            DEFEAT!",
                     "maxTextLenght": 0,
                     "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
@@ -1234,8 +1236,8 @@
                     "Type": 11,
                     "Active": true,
                     "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/1143141246.dds",
-                    "UID": 1143141246
+                    "LibraryPath": "Library\/Textures\/1240646973.dds",
+                    "UID": 323
                 }
             ]
         },
@@ -1427,8 +1429,8 @@
                     "Type": 11,
                     "Active": true,
                     "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/1240646973.dds",
-                    "UID": 1240646973
+                    "LibraryPath": "Library\/Textures\/1143141246.dds",
+                    "UID": 1143141246
                 }
             ]
         },
