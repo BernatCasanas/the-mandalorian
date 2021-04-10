@@ -43,6 +43,10 @@ public class Rancor : DiamondComponent
 
     private NavMeshAgent agent = null;
 
+    public GameObject meleeCombo1Collider = null;
+    public GameObject meleeCombo2Collider = null;
+    public GameObject meleeCombo3Collider = null;
+
 	//State
 	private RANCOR_STATE currentState = RANCOR_STATE.WANDER;   //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS
 															   //Setting states directlly will break the behaviour  -Jose
@@ -70,6 +74,10 @@ public class Rancor : DiamondComponent
     private float meleeCH1Timer = 0.0f;
     private float meleeCH2Timer = 0.0f;
     private float meleeCH3Timer = 0.0f;
+
+    private float meleeCH1ColliderTimer = 0.0f;
+    private float meleeCH2ColliderTimer = 0.0f;
+    private float meleeCH3ColliderTimer = 0.0f;
 
     //Projectile
     private float projectileTime = 0.0f;
@@ -116,6 +124,16 @@ public class Rancor : DiamondComponent
             Debug.Log("Null agent, add a NavMeshAgent Component");
 
         Animator.Play(gameObject, "RN_Idle");
+
+
+        if (meleeCombo1Collider != null)
+            meleeCombo1Collider.Enable(false);
+
+        if (meleeCombo2Collider != null)
+            meleeCombo2Collider.Enable(false);
+
+        if (meleeCombo3Collider != null)
+            meleeCombo3Collider.Enable(false);
     }
 
     public void Update()
@@ -482,20 +500,34 @@ public class Rancor : DiamondComponent
     private void StartMCHit1()
     {
         meleeCH1Timer = meleeComboHit1Time;
+        meleeCH1ColliderTimer = 0.5f;
 
         Animator.Play(gameObject, "RN_MeleeComboP1");
         //TODO: Add animation
+
     }
 
     private void UpdateMCHit1()
     {
         Debug.Log("Combo hit 1");
         //TODO: Activate collider
+
+        if(meleeCH1ColliderTimer > 0.0f)
+        {
+            meleeCH1ColliderTimer -= Time.deltaTime;
+
+            if(meleeCH1ColliderTimer <= 0.0f)
+            {
+                if (meleeCombo1Collider != null)
+                    meleeCombo1Collider.Enable(true);
+            }
+        }
     }
 
     private void EndMCHit1()
     {
-        //TODO: Deactivate collider
+        if (meleeCombo1Collider != null)
+            meleeCombo1Collider.Enable(false);
     }
 
 
@@ -504,6 +536,9 @@ public class Rancor : DiamondComponent
         meleeCH2Timer = meleeComboHit2Time;
         Animator.Play(gameObject, "RN_MeleeComboP2");
         //TODO: Add animation
+
+        if (meleeCombo2Collider != null)
+            meleeCombo2Collider.Enable(true);
     }
 
     private void UpdateMCHit2()
@@ -514,7 +549,8 @@ public class Rancor : DiamondComponent
 
     private void EndMCHit2()
     {
-        //TODO: Deactivate collider
+        if (meleeCombo2Collider != null)
+            meleeCombo2Collider.Enable(false);
     }
 
 
@@ -523,6 +559,9 @@ public class Rancor : DiamondComponent
         meleeCH3Timer = meleeComboHit3Time;
         Animator.Play(gameObject, "RN_MeleeComboP3");
         //TODO: Add animation
+
+        if (meleeCombo3Collider != null)
+            meleeCombo3Collider.Enable(true);
     }
 
     private void UpdateMCHit3()
@@ -534,6 +573,9 @@ public class Rancor : DiamondComponent
     private void EndMCHit3()
     {
         //TODO: Deactivate collider
+
+        if (meleeCombo3Collider != null)
+            meleeCombo3Collider.Enable(false);
     }
 
     #endregion
