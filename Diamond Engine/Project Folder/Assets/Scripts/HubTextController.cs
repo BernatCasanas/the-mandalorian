@@ -1,0 +1,213 @@
+using System;
+using DiamondEngine;
+
+
+public class HubTextController : DiamondComponent
+{
+	public enum Interaction
+	{
+		NONE,
+		BO_KATAN,
+		GREEF,
+		ASHOKA,
+		GROGU
+	}
+
+	public GameObject textController = null;
+	public GameObject dialog = null;
+
+	public GameObject mando = null;
+	public GameObject bo_katan = null;
+	public GameObject greef = null;
+	public GameObject ashoka = null;
+	public GameObject grogu = null;
+
+	public int bo_katan_portrait_uid = 0;
+	public int greef_portrait_uid = 0;
+	public int ashoka_portrait_uid = 0;
+	public int grogu_portrait_uid = 0;
+
+	public float bo_katan_portrait_pos_x = 0;
+	public float bo_katan_portrait_pos_y = 0;
+	public float bo_katan_portrait_size_x = 0;
+	public float bo_katan_portrait_size_y = 0;
+
+	public float greef_portrait_pos_x = 0;
+	public float greef_portrait_pos_y = 0;
+	public float greef_portrait_size_x = 0;
+	public float greef_portrait_size_y = 0;
+
+	public float ashoka_portrait_pos_x = 0;
+	public float ashoka_portrait_pos_y = 0;
+	public float ashoka_portrait_size_x = 0;
+	public float ashoka_portrait_size_y = 0;
+
+	public float grogu_portrait_pos_x = 0;
+	public float grogu_portrait_pos_y = 0;
+	public float grogu_portrait_size_x = 0;
+	public float grogu_portrait_size_y = 0;
+
+
+	public int total_interactions = 0;
+	public int total_stages = 0;
+
+	public float maximum_distance_to_interact_squared = 0.0f;
+
+	private static int bo_katan_stage = 1;
+	private static int greef_stage = 1;
+	private static int ashoka_stage = 1;
+	private static int grogu_stage = 1;
+
+	private static int bo_katan_interaction_num = 1;
+	private static int greef_interaction_num = 1;
+	private static int ashoka_interaction_num = 1;
+	private static int grogu_interaction_num = 1;
+
+	private int total_interactions_and_stages = 0;
+	private bool dialog_finished = false;
+
+	
+
+	Interaction interaction = Interaction.NONE;
+
+	public void Awake()
+	{
+		total_interactions_and_stages = total_stages * total_interactions;
+	}
+	public void Update()
+	{
+		if (mando == null || Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN || textController == null || textController.GetComponent<TextController>().otherimage == null || dialog == null ||
+			textController.IsEnabled() == false) 
+			return;
+        if (dialog_finished)
+        {
+			dialog_finished = false;
+			return;
+        }
+		interaction = Interaction.NONE;
+
+        if (bo_katan != null)
+        {
+            if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(bo_katan.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
+            {
+                interaction = Interaction.BO_KATAN;
+            }
+        }
+
+        if (interaction == Interaction.NONE && greef != null)
+        {
+            if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(greef.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
+            {
+				interaction = Interaction.GREEF;
+            }
+        }
+
+        if (interaction == Interaction.NONE && ashoka != null)
+        {
+            if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(ashoka.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
+            {
+                interaction = Interaction.ASHOKA;
+            }
+        }
+
+        if (interaction == Interaction.NONE && grogu != null)
+        {
+			if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(grogu.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
+            {
+                interaction = Interaction.GROGU;
+            }
+        }
+
+        if (interaction == Interaction.NONE)
+        {
+			return;
+		}
+
+
+        switch (interaction)
+        {
+            case Interaction.BO_KATAN:
+                if (bo_katan_portrait_uid != 0)
+                {
+					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().AssignLibrary2DTexture(bo_katan_portrait_uid);
+                    textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = new Vector3(bo_katan_portrait_pos_x,bo_katan_portrait_pos_y,0);
+                    textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = new Vector3(bo_katan_portrait_size_x, bo_katan_portrait_size_y, 0);
+                }
+				textController.GetComponent<TextController>().dialog_index = bo_katan_interaction_num;
+                if (bo_katan_interaction_num % 3 != 0)
+                    bo_katan_interaction_num++;
+                break;
+            case Interaction.GREEF:
+                if (greef_portrait_uid != 0)
+                {
+					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().AssignLibrary2DTexture(greef_portrait_uid);
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = new Vector3(greef_portrait_pos_x, greef_portrait_pos_y, 0);
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = new Vector3(greef_portrait_size_x, greef_portrait_size_y, 0);
+				}
+                textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages) + greef_interaction_num;
+                if (greef_interaction_num % 3 != 0)
+                    greef_interaction_num++;
+                break;
+            case Interaction.ASHOKA:
+                if (ashoka_portrait_uid != 0)
+                {
+					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().AssignLibrary2DTexture(ashoka_portrait_uid);
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = new Vector3(ashoka_portrait_pos_x, ashoka_portrait_pos_y, 0);
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = new Vector3(ashoka_portrait_size_x, ashoka_portrait_size_y, 0);
+				}
+                textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages * 2) + ashoka_interaction_num;
+                if (ashoka_interaction_num % 3 != 0)
+                    ashoka_interaction_num++;
+                break;
+            case Interaction.GROGU:
+                if (grogu_portrait_uid != 0)
+                {
+					textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().AssignLibrary2DTexture(grogu_portrait_uid);
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = new Vector3(grogu_portrait_pos_x, grogu_portrait_pos_y, 0);
+					textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = new Vector3(grogu_portrait_size_x, grogu_portrait_size_y, 0);
+				}
+				textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages * 4) + grogu_interaction_num;
+                if (grogu_interaction_num % 2 != 0)
+                    grogu_interaction_num++;
+                break;
+        }
+
+		dialog_finished = true;
+		dialog.Enable(true);
+	}
+
+	public void IncreaseStage(Interaction interaction_to_increase_stage)
+    {
+        switch (interaction_to_increase_stage)
+        {
+			case Interaction.BO_KATAN:
+				if(bo_katan_stage <= total_stages)
+                {
+					bo_katan_interaction_num = (bo_katan_stage * total_interactions) + 1;
+					++bo_katan_stage;
+                }
+				break;
+			case Interaction.GREEF:
+				if (greef_stage <= total_stages)
+				{
+					greef_interaction_num = (greef_stage * total_interactions) + 1;
+					++greef_stage;
+				}
+				break;
+			case Interaction.ASHOKA:
+				if (ashoka_stage <= total_stages)
+				{
+					ashoka_interaction_num = (ashoka_stage * total_interactions) + 1;
+					++ashoka_stage;
+				}
+				break;
+			case Interaction.GROGU:
+				if (grogu_stage <= total_stages)
+				{
+					grogu_interaction_num = (grogu_stage * (total_interactions-1)) + 1;
+					++grogu_stage;
+				}
+				break;
+		}
+    }
+}
