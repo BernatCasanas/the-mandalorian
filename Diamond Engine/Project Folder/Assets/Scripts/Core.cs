@@ -69,9 +69,9 @@ public class Core : DiamondComponent
 
     // Dash
     //private float timeSinceLastDash = 0.0f;
-    public float dashCD = 0.33f;
-    public float dashDuration = 0.25f;
-    public float dashSpeed = 0.0f;
+    public static float dashCD = 0.33f;
+    public static float dashDuration = 0.25f;
+    public static float dashSpeed = 0.0f;
     private float dashTimer = 0.0f;
     private float dashCDTimer = 0.0f;
     private float dashStartYPos = 0.0f;
@@ -141,6 +141,8 @@ public class Core : DiamondComponent
 
         // Dash
         dashTimer = 0f;
+        dashDuration = 0.2f;
+        dashSpeed = 30.0f;
         //dashSpeed = dashDistance / dashDuration;
         
 
