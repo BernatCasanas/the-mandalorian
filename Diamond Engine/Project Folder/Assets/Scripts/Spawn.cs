@@ -1,6 +1,7 @@
 using System;
 using DiamondEngine;
 using System.Collections.Generic;
+
 public class Spawn : DiamondComponent
 {
     private string stormtrooperPath = "Library/Prefabs/489054570.prefab";
@@ -29,20 +30,6 @@ public class Spawn : DiamondComponent
     public float timeBetweenSpawns = 8.0f;
 
     private bool fightEndMusicPlayed = false;
-
-    //public bool turretSpawnPoint0 = false;
-    //public bool turretSpawnPoint1 = false;
-    //public bool turretSpawnPoint2 = false;
-    //public bool turretSpawnPoint3 = false;
-    //public bool turretSpawnPoint4 = false;
-    //public bool turretSpawnPoint5 = false;
-
-    public List<GameObject> currentEnemies = null;
-
-    public void Awake()
-    {
-        currentEnemies = new List<GameObject>();
-    }
 
     public void Update()
     {
@@ -93,17 +80,7 @@ public class Spawn : DiamondComponent
 
         //add enemy script
         if (enemy != null)
-        {
-            currentEnemies.Add(enemy);
-
-            Enemy enemyScript = enemy.GetComponent<StormTrooper>();
-            if(enemyScript==null)
-            {
-                enemyScript = enemy.GetComponent<Bantha>();
-            }
-            if (enemyScript != null)
-                enemyScript.dieCallBack = this;
-        }
+            EnemyManager.AddEnemy(enemy);
 
         return enemy;
     }

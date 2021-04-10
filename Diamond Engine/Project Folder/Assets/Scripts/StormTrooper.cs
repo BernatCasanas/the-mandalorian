@@ -165,6 +165,7 @@ public class StormTrooper : Enemy
 
                         case INPUT.IN_PLAYER_IN_RANGE:
                             currentState = STATE.SHOOT;
+                            PlayerDetected();
                             StartShoot();
                             break;
 
@@ -180,16 +181,20 @@ public class StormTrooper : Enemy
                     {
                         case INPUT.IN_IDLE:
                             currentState = STATE.IDLE;
+                            WanderEnd();
                             StartIdle();
                             break;
 
                         case INPUT.IN_PLAYER_IN_RANGE:
                             currentState = STATE.SHOOT;
+                            WanderEnd();
+                            PlayerDetected();
                             StartShoot();
                             break;
 
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
+                            WanderEnd();
                             StartDie();
                             break;
                     }
@@ -200,16 +205,19 @@ public class StormTrooper : Enemy
                     {
                         case INPUT.IN_IDLE:
                             currentState = STATE.IDLE;
+                            RunEnd();
                             StartIdle();
                             break;
 
                         case INPUT.IN_WANDER:
                             currentState = STATE.WANDER;
+                            RunEnd();
                             StartWander();
                             break;
 
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
+                            RunEnd();
                             StartDie();
                             break;
                     }
@@ -279,11 +287,16 @@ public class StormTrooper : Enemy
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
         Animator.Play(gameObject, "ST_Run");
+        Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
     }
     private void UpdateWander()
     {
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(runningSpeed);
+    }
+    private void WanderEnd()
+    {
+        Audio.StopAudio(gameObject);
     }
     #endregion
 
@@ -293,11 +306,16 @@ public class StormTrooper : Enemy
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
         Animator.Play(gameObject, "ST_Run");
+        Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
     }
     private void UpdateRun()
     {
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(runningSpeed);
+    }
+    private void RunEnd()
+    {
+        Audio.StopAudio(gameObject);
     }
     #endregion
 
@@ -384,12 +402,17 @@ public class StormTrooper : Enemy
         Audio.PlayAudio(gameObject, "PLay_Blaster_Stormtrooper");
         shotTimes++;
     }
+    private void PlayerDetected()
+    {
+        Audio.PlayAudio(gameObject, "Play_Enemy_Detection");
+    }
     #endregion
 
     #region DIE
     private void StartDie()
     {
         dieTimer = dieTime;
+        //Audio.StopAudio(gameObject);
 
         Animator.Play(gameObject, "ST_Die", 1.0f);
 
@@ -421,7 +444,9 @@ public class StormTrooper : Enemy
             souls.Play();
         }
 
-        RemoveFromSpawner();
+        RemoveFromEnemyList();
+
+
     }
     private void UpdateDie()
     {
@@ -456,6 +481,8 @@ public class StormTrooper : Enemy
         if (collidedGameObject.CompareTag("Bullet"))
         {
             healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+
+            Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
             if (Core.instance.hud != null)
             {
