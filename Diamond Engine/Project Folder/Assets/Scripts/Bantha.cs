@@ -536,11 +536,11 @@ public class Bantha : Enemy
         }
         else if (collidedGameObject.CompareTag("Player"))
         {
-            if(currentState == STATE.CHARGE)
+            if (currentState == STATE.CHARGE)
             {
                 inputsList.Add(INPUT.IN_CHARGE_END);
                 PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
-                if(playerHealth!= null)
+                if (playerHealth != null)
                 {
                     playerHealth.TakeDamage((int)damage);
                 }

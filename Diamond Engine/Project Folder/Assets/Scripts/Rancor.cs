@@ -149,13 +149,13 @@ public class Rancor : DiamondComponent
 
 
         if (meleeCombo1Collider != null)
-            meleeCombo1Collider.Enable(false);
+            meleeCombo1Collider.Enable(true);
 
         if (meleeCombo2Collider != null)
-            meleeCombo2Collider.Enable(false);
+            meleeCombo2Collider.Enable(true);
 
         if (meleeCombo3Collider != null)
-            meleeCombo3Collider.Enable(false);
+            meleeCombo3Collider.Enable(true);
 
         EnemyManager.AddEnemy(gameObject);
     }
