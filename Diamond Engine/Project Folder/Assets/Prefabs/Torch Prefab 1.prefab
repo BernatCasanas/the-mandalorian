@@ -2,99 +2,14 @@
     "assets_path": "Assets\/Prefabs\/Torch Prefab 1.prefab",
     "Game Objects": [
         {
-            "name": "Torch Prefab",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                20.128999710083008,
-                8.5939998626708984,
-                1.354748010635376
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 664552565,
-            "PrefabID": 2128758711,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1676501951,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "TorchV3",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                -1.0672351891116705e-11,
-                -0.70722883939743042,
-                -1.0672351891116705e-11,
-                0.70698469877243042
-            ],
-            "Scale": [
-                1,
-                0.99999994039535522,
-                1
-            ],
-            "UID": 1426436897,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 664552565,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/597376607.mmh",
-                    "UID": 597376607,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
-                }
-            ]
-        },
-        {
             "name": "Torch 1",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
-                0,
-                0.34851360321044922,
-                0
+                20.155708312988281,
+                8.5939998626708984,
+                -9.1821403503417969
             ],
             "Rotation": [
                 0,
@@ -107,11 +22,11 @@
                 1,
                 1
             ],
-            "UID": 1729434169,
-            "PrefabID": 2017464894,
+            "UID": 923377220,
+            "PrefabID": 2128758711,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 664552565,
+            "ParentUID": 1676501951,
             "Components": [
                 {
                     "Type": 1,
@@ -140,11 +55,11 @@
                 0.40000000596046448,
                 0.40000000596046448
             ],
-            "UID": 1970643600,
+            "UID": 1522460675,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1729434169,
+            "ParentUID": 923377220,
             "Components": [
                 {
                     "Type": 1,
@@ -154,7 +69,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -193,7 +108,7 @@
                                         90,
                                         -18.299999237060547
                                     ],
-                                    "paFOLT_magnitude": 1.2300000190734863,
+                                    "paFOLT_magnitude": 1.5,
                                     "paFOLT_gravityMod": 0,
                                     "paFOLT_gravity": -0,
                                     "paFOLT_forceType": 1
@@ -287,11 +202,11 @@
                 1,
                 1
             ],
-            "UID": 1890319711,
+            "UID": 1884289196,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1729434169,
+            "ParentUID": 923377220,
             "Components": [
                 {
                     "Type": 1,
@@ -301,7 +216,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -319,7 +234,7 @@
                             "paEmitterName": "Empty",
                             "paLifeTime": [
                                 0.5,
-                                1
+                                0.5
                             ],
                             "paSize": [
                                 0.0099999997764825821,
@@ -341,8 +256,8 @@
                                         0
                                     ],
                                     "paFOLT_magnitude": 0,
-                                    "paFOLT_gravityMod": 0.5,
-                                    "paFOLT_gravity": -4.9000000953674316,
+                                    "paFOLT_gravityMod": 2,
+                                    "paFOLT_gravity": -19.600000381469726,
                                     "paFOLT_forceType": 1
                                 },
                                 {
@@ -391,7 +306,7 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 1,
+                                    "paShapePartSpeed": 3,
                                     "paShapeRandSpeed": 0,
                                     "PaShapeConeRadius": 0.30000001192092896,
                                     "PaShapeConeHeight": 0.60000002384185791,
@@ -413,6 +328,50 @@
                     "Active": true,
                     "billboardAlignment": 0,
                     "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "TorchV3",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                -0.36608219146728516,
+                -0.00017833709716796875
+            ],
+            "Rotation": [
+                -6.1817246432838147e-08,
+                -0.7071068286895752,
+                6.1817246432838147e-08,
+                0.7071068286895752
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 749947041,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 923377220,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/597376607.mmh",
+                    "UID": 597376607,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }

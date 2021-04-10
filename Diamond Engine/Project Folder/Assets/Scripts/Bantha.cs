@@ -60,7 +60,6 @@ public class Bantha : Enemy
 
     //Ranges
     public float wanderRange = 7.5f;
-    //public float runningRange = 12.5f;
     public float chargeRange = 5.0f;
     public float chargeLength = 20.0f;
 
@@ -70,7 +69,6 @@ public class Bantha : Enemy
     private float tiredTimer = 0.0f;
     private float loadingTimer = 0.0f;
     private float chargeTimer = 0.0f;
-    //private float chargeDuration = 1.0f;
 
     public void Awake()
     {
@@ -162,12 +160,10 @@ public class Bantha : Enemy
             if (InRange(player.transform.globalPosition, detectionRange))
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
-              //  Debug.Log("In run range");
             }
             if (InRange(player.transform.globalPosition, chargeRange))
             {
                 inputsList.Add(INPUT.IN_CHARGE_RANGE);
-              //  Debug.Log("In charge range");
             }
         }
         if(currentState == STATE.RUN)
@@ -175,7 +171,6 @@ public class Bantha : Enemy
             if(!InRange(player.transform.globalPosition, detectionRange))
             {
                 inputsList.Add(INPUT.IN_WANDER);
-            //    Debug.Log("In wander");
             }
         }
 
@@ -183,8 +178,6 @@ public class Bantha : Enemy
 
     private void ProcessState()
     {
-      //  Debug.Log("State: " + currentState.ToString());
-
         while (inputsList.Count > 0)
         {
             INPUT input = inputsList[0];
@@ -224,16 +217,19 @@ public class Bantha : Enemy
                     {
                         case INPUT.IN_IDLE:
                             currentState = STATE.IDLE;
+                            WanderEnd();
                             StartIdle();
                             break;
 
                         case INPUT.IN_PLAYER_IN_RANGE:
                             currentState = STATE.RUN;
+                            WanderEnd();
                             StartRun();
                             break;
 
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
+                            WanderEnd();
                             StartDie();
                             break;
                     }
@@ -244,21 +240,25 @@ public class Bantha : Enemy
                     {
                         case INPUT.IN_IDLE:
                             currentState = STATE.IDLE;
+                            RunEnd();
                             StartIdle();
                             break;
 
                         case INPUT.IN_WANDER:
                             currentState = STATE.WANDER;
+                            RunEnd();
                             StartWander();
                             break;
 
                         case INPUT.IN_CHARGE_RANGE:
                             currentState = STATE.LOADING_ATTACK;
+                            RunEnd();
                             StartLoading();
                             break;
 
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
+                            RunEnd();
                             StartDie();
                             break;
                     }
@@ -378,6 +378,8 @@ public class Bantha : Enemy
     #region TIRED
     private void StartTired()
     {
+        Audio.StopAudio(gameObject);
+
         tiredTimer = tiredTime;
         Animator.Play(gameObject, "BT_Idle");
     }
@@ -394,6 +396,10 @@ public class Bantha : Enemy
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(runningSpeed);
     }
+    private void RunEnd()
+    {
+        Audio.StopAudio(gameObject);
+    }
     #endregion
 
     #region WANDER
@@ -409,6 +415,10 @@ public class Bantha : Enemy
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(wanderSpeed);
     }
+    private void WanderEnd()
+    {
+        Audio.StopAudio(gameObject);
+    }
     #endregion
 
     #region LOADING_ATTACK
@@ -416,8 +426,6 @@ public class Bantha : Enemy
     {
         loadingTimer = loadingTime;
         Animator.Play(gameObject, "BT_Charge");
-        //targetPosition = player.transform.localPosition;
-        
     }
     private void UpdateLoading()
     {
@@ -431,23 +439,26 @@ public class Bantha : Enemy
         chargeTimer = chargeLength/chargeSpeed;
         Animator.Play(gameObject, "BT_Run");
 
+        Audio.PlayAudio(gameObject, "Play_Bantha_Attack");
+        Audio.PlayAudio(gameObject, "Play_Footsteps_Bantha");
+
         Vector3 direction = player.transform.globalPosition - gameObject.transform.globalPosition;
-        targetPosition = direction.normalized * chargeLength + gameObject.transform.globalPosition;
-        
+        targetPosition = direction.normalized * chargeLength + gameObject.transform.globalPosition;      
     }
     private void UpdateCharge()
     {
         agent.CalculatePath(gameObject.transform.localPosition, targetPosition);
         LookAt(agent.GetDestination());
         
-        agent.MoveToCalculatedPos(chargeSpeed);
-        
+        agent.MoveToCalculatedPos(chargeSpeed);       
     }
     #endregion
 
     #region DIE
     private void StartDie()
     {
+        //Audio.StopAudio(gameObject);
+
         dieTimer = dieTime;
 
         Animator.Play(gameObject, "BT_Die", 1.0f);
@@ -491,38 +502,33 @@ public class Bantha : Enemy
 
         if (collidedGameObject.CompareTag("Bullet"))
         {
-            //Debug.Log("Collision bullet");
             healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
 
-            if (currentState != STATE.DIE && healthPoints <= 0.0f)  //quitar STATE
+            Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
+
+            if (currentState != STATE.DIE && healthPoints <= 0.0f)
             {
                 inputsList.Add(INPUT.IN_DIE);
             }
         }
         else if (collidedGameObject.CompareTag("Grenade"))
         {
-            Debug.Log("Collision Grenade");
-
             healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
 
-            if (currentState != STATE.DIE && healthPoints <= 0.0f)  //quitar STATE
+            if (currentState != STATE.DIE && healthPoints <= 0.0f)
             {
                 inputsList.Add(INPUT.IN_DIE);
             }
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))
         {
-            Debug.Log("Collision w/ The End");
-
-            if (currentState != STATE.DIE)  //quitar STATE
+            if (currentState != STATE.DIE)
             {
                 inputsList.Add(INPUT.IN_DIE);
             }
         }
         else if (collidedGameObject.CompareTag("Player"))
         {
-            Debug.Log("Collision with player");
-
             if(currentState == STATE.CHARGE)
             {
                 inputsList.Add(INPUT.IN_CHARGE_END);
@@ -533,16 +539,13 @@ public class Bantha : Enemy
                 }
             }
         }
-
     }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-        //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + triggeredGameObject.tag);
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         {
             inputsList.Add(INPUT.IN_PUSHED);
         }
-
     }
 }
