@@ -34,8 +34,8 @@ public class StormTrooper : Enemy
     }
 
     //State
-    private STATE currentState = STATE.NONE; //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS
-                                             //Setting states directlly will break the behaviour  -Jose
+    private STATE currentState = STATE.NONE;
+
     private List<INPUT> inputsList = new List<INPUT>();
 
     public GameObject shootPoint = null;
@@ -52,7 +52,6 @@ public class StormTrooper : Enemy
     public float wanderSpeed = 3.5f;
     public float runningSpeed = 7.5f;
     public float bulletSpeed = 10.0f;
-    //private float pushSkillSpeed = 0.2f;
 
     //Ranges
     public float wanderRange = 7.5f;
@@ -64,7 +63,6 @@ public class StormTrooper : Enemy
     private float sequenceTimer = 0.0f;
     private float dieTimer = 0.0f;
     private float statesTimer = 0.0f;
-    //private float pushSkillTimer = 0.15f;
 
     //Action variables
     int shotTimes = 0;
@@ -72,7 +70,6 @@ public class StormTrooper : Enemy
     private int shotSequences = 0;
     public int maxSequences = 2;
 
-    //private bool rightTriggerPressed = false;
 
     public void Awake()
     {
@@ -84,10 +81,33 @@ public class StormTrooper : Enemy
 
         shotTimes = 0;
         shotSequences = 0;
-        //stormTrooperDamage = 1.0f;
+
         dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
+
+        ParticleSystem spawnparticles = null;
+
+
+        StormTrooperParticles myParticles = gameObject.GetComponent<StormTrooperParticles>();
+        if (myParticles != null)
+        {
+            spawnparticles = myParticles.spawn;
+
+        }
+
+        if (spawnparticles != null)
+        {
+            Debug.Log("PLAY SPAWN!!!");
+            spawnparticles.Play();
+        }
+        else
+        { Debug.Log("CAN'T PLAY SPAWN!!!"); }
     }
 
+    public void Start()
+    {
+      
+       
+    }
     public void Update()
     {
         if (player == null)
@@ -123,11 +143,9 @@ public class StormTrooper : Enemy
 
         if (currentState == STATE.RUN || currentState == STATE.WANDER)
         {
-            Debug.Log("Stopping distance: " + agent.stoppingDistance);
             if (Mathf.Distance(gameObject.transform.localPosition, agent.GetDestination()) <= agent.stoppingDistance)
             {
                 inputsList.Add(INPUT.IN_IDLE);
-                Debug.Log("Stop running man");
             }
         }
     }
@@ -143,7 +161,6 @@ public class StormTrooper : Enemy
 
                 if (player != null)
                     LookAt(player.transform.globalPosition);
-                //Debug.Log("In range");
             }
         }
     }
@@ -151,8 +168,6 @@ public class StormTrooper : Enemy
     //Manages state changes throught inputs
     private void ProcessState()
     {
-        //Debug.Log("State: " + currentState.ToString());
-
         while (inputsList.Count > 0)
         {
             INPUT input = inputsList[0];
@@ -173,6 +188,7 @@ public class StormTrooper : Enemy
 
                         case INPUT.IN_PLAYER_IN_RANGE:
                             currentState = STATE.SHOOT;
+                            PlayerDetected();
                             StartShoot();
                             break;
 
@@ -188,16 +204,20 @@ public class StormTrooper : Enemy
                     {
                         case INPUT.IN_IDLE:
                             currentState = STATE.IDLE;
+                            WanderEnd();
                             StartIdle();
                             break;
 
                         case INPUT.IN_PLAYER_IN_RANGE:
                             currentState = STATE.SHOOT;
+                            WanderEnd();
+                            PlayerDetected();
                             StartShoot();
                             break;
 
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
+                            WanderEnd();
                             StartDie();
                             break;
                     }
@@ -208,16 +228,19 @@ public class StormTrooper : Enemy
                     {
                         case INPUT.IN_IDLE:
                             currentState = STATE.IDLE;
+                            RunEnd();
                             StartIdle();
                             break;
 
                         case INPUT.IN_WANDER:
                             currentState = STATE.WANDER;
+                            RunEnd();
                             StartWander();
                             break;
 
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
+                            RunEnd();
                             StartDie();
                             break;
                     }
@@ -279,7 +302,6 @@ public class StormTrooper : Enemy
         idleTimer = idleTime;
         Animator.Play(gameObject, "ST_Idle");
     }
-
     #endregion
 
     #region WANDER
@@ -288,11 +310,16 @@ public class StormTrooper : Enemy
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
         Animator.Play(gameObject, "ST_Run");
+        Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
     }
     private void UpdateWander()
     {
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(runningSpeed);
+    }
+    private void WanderEnd()
+    {
+        Audio.StopAudio(gameObject);
     }
     #endregion
 
@@ -302,24 +329,23 @@ public class StormTrooper : Enemy
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
         Animator.Play(gameObject, "ST_Run");
+        Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
     }
     private void UpdateRun()
     {
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(runningSpeed);
     }
+    private void RunEnd()
+    {
+        Audio.StopAudio(gameObject);
+    }
     #endregion
 
     #region SHOOT
     private void StartShoot()
     {
-        //SFX LIKE AIMING OR SIMILAR + STOP RUNNING
         statesTimer = timeBewteenStates;
-        Debug.Log("States timer: " + statesTimer.ToString());
-
-        //Animator.Play(gameObject, "ST_Shoot");
-
-        Debug.Log("Shoot started");
     }
 
     private void UpdateShoot()
@@ -344,7 +370,6 @@ public class StormTrooper : Enemy
                     shotTimes = 0;
                     shotSequences = 0;
                     inputsList.Add(INPUT.IN_RUN);
-                    //Debug.Log("Run for your life man");
                 }
             }
         }
@@ -393,21 +418,24 @@ public class StormTrooper : Enemy
 
     private void Shoot()
     {
-        //Debug.Log("Shoot");
-        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/373530213.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         bullet.GetComponent<BH_Bullet>().damage = damage;
 
         Animator.Play(gameObject, "ST_Shoot");
         Audio.PlayAudio(gameObject, "PLay_Blaster_Stormtrooper");
         shotTimes++;
     }
-
+    private void PlayerDetected()
+    {
+        Audio.PlayAudio(gameObject, "Play_Enemy_Detection");
+    }
     #endregion
 
     #region DIE
     private void StartDie()
     {
         dieTimer = dieTime;
+        //Audio.StopAudio(gameObject);
 
         Animator.Play(gameObject, "ST_Die", 1.0f);
 
@@ -425,7 +453,6 @@ public class StormTrooper : Enemy
             wave = myParticles.wave;
             souls = myParticles.souls;
         }
-       
 
         if (dead != null)
         {
@@ -440,7 +467,7 @@ public class StormTrooper : Enemy
             souls.Play();
         }
 
-        RemoveFromSpawner();
+        RemoveFromEnemyList();
 
 
     }
@@ -474,28 +501,24 @@ public class StormTrooper : Enemy
 
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
-        //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + collidedGameObject.tag);
-        //Debug.Log("Collided by tag: " + collidedGameObject.tag);
-
         if (collidedGameObject.CompareTag("Bullet"))
         {
-            //Debug.Log("Collision bullet");
             healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+
+            Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
             if (Core.instance.hud != null)
             {
                 Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 1.0f);
             }
 
-            if (currentState != STATE.DIE && healthPoints <= 0.0f)  //quitar STATE
+            if (currentState != STATE.DIE && healthPoints <= 0.0f)
             {
                 inputsList.Add(INPUT.IN_DIE);
             }
         }
         else if (collidedGameObject.CompareTag("Grenade"))
         {
-            Debug.Log("Collision Grenade");
-
             //healthPoints -= collidedGameObject.GetComponent<smallGrenade>().damage;
             healthPoints -= 5; //TODO: Hardcoded value, talk with adria
 
@@ -504,16 +527,14 @@ public class StormTrooper : Enemy
                 Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 0.5f);
             }
 
-            if (currentState != STATE.DIE && healthPoints <= 0.0f)  //quitar STATE
+            if (currentState != STATE.DIE && healthPoints <= 0.0f)
             {
                 inputsList.Add(INPUT.IN_DIE);
             }
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))
         {
-            Debug.Log("Collision w/ The End");
-
-            if (currentState != STATE.DIE)  //quitar STATE
+            if (currentState != STATE.DIE)
             {
                 inputsList.Add(INPUT.IN_DIE);
             }
@@ -522,12 +543,9 @@ public class StormTrooper : Enemy
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-        //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + triggeredGameObject.tag);
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         {
             inputsList.Add(INPUT.IN_PUSHED);
         }
-
-        //Debug.Log("Triggered by tag: " + triggeredGameObject.tag);
     }
 }

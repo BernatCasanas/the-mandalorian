@@ -17,7 +17,9 @@ public static class PlayerResources
         switch (type)
         {
             case RewardType.REWARD_BOON:
-                auxCounter = boonCounter[boonType];
+                if (boonCounter.ContainsKey(boonType)) {
+                    auxCounter = boonCounter[boonType];
+                }
                 break;
 
             case RewardType.REWARD_BESKAR:
@@ -40,72 +42,82 @@ public static class PlayerResources
         return auxCounter;
     }
 
-    public static void AddResourceBy1(RewardType type, Type boonType = null)
+    public static int AddResourceBy1(RewardType type, Type boonType = null)
     {
+        int resourceLeft = 0;
+
         switch (type)
         {
             case RewardType.REWARD_BOON:
-                AddBoonToMap(1, boonType);
+                resourceLeft = AddBoonToMap(1, boonType);
                 break;
 
             case RewardType.REWARD_BESKAR:
-                beskarCounter++;
+                resourceLeft = ++beskarCounter;
                 break;
 
             case RewardType.REWARD_MACARON:
-                macaronCounter++;
+                resourceLeft = ++macaronCounter;
                 break;
 
             case RewardType.REWARD_SCRAP:
-                scrapCounter++;
+                resourceLeft = ++scrapCounter;
                 break;
 
             case RewardType.REWARD_MILK:
-                milkCounter++;
+                resourceLeft = ++milkCounter;
                 break;
         }
+
+        return resourceLeft;
     }
 
-    public static void SubstractResourceBy1(RewardType type, Type boonType = null)
+    public static int SubstractResourceBy1(RewardType type, Type boonType = null)
     {
+        int resourceLeft = 0;
+
         switch (type)
         {
             case RewardType.REWARD_BOON:
-                AddBoonToMap(-1, boonType);
+                resourceLeft = AddBoonToMap(-1, boonType);
                 break;
 
             case RewardType.REWARD_BESKAR:
                 if (beskarCounter > 0)
                 {
-                    beskarCounter--;
+                    resourceLeft = --beskarCounter;
                 }
                 break;
 
             case RewardType.REWARD_MACARON:
                 if (macaronCounter > 0)
                 {
-                    macaronCounter--;
+                    resourceLeft = --macaronCounter;
                 }
                 break;
 
             case RewardType.REWARD_SCRAP:
                 if (scrapCounter > 0)
                 {
-                    scrapCounter--;
+                    resourceLeft = --scrapCounter;
                 }
                 break;
 
             case RewardType.REWARD_MILK:
                 if (milkCounter > 0)
                 {
-                    milkCounter--;
+                    resourceLeft = --milkCounter;
                 }
                 break;
         }
+
+        return resourceLeft;
     }
 
-    static void AddBoonToMap(int amountToAdd, Type boonType)
+    static int AddBoonToMap(int amountToAdd, Type boonType)
     {
+        int boonAmount = 0;
+
         if (boonCounter.ContainsKey(boonType) == false)
         {
             boonCounter.Add(boonType, amountToAdd);
@@ -116,6 +128,9 @@ public static class PlayerResources
         }
 
         if (boonCounter[boonType] < 0) { boonCounter[boonType] = 0; }
+        boonAmount = boonCounter[boonType];
+
+        return boonAmount;
     }
 
     public static void ResetRunBoons()

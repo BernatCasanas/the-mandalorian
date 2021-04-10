@@ -18,8 +18,6 @@ public class Enemy : DiamondComponent
 
 	//protected STATES currentState = STATES.WANDER;
 
-    public Spawn dieCallBack = null;
-
 	protected NavMeshAgent agent;
 
 	public virtual bool TakeDamage()
@@ -62,32 +60,27 @@ public class Enemy : DiamondComponent
 		Quaternion dir = Quaternion.RotateAroundAxis(Vector3.up, angle);
 
 		float rotationSpeed = Time.deltaTime * slerpSpeed;
-		//Debug.Log("CS: Rotation speed: " + rotationSpeed.ToString());
-		//Debug.Log("CS: Time: " + Time.deltaTime);
 
 		Quaternion desiredRotation = Quaternion.Slerp(gameObject.transform.localRotation, dir, rotationSpeed);
 
 		gameObject.transform.localRotation = desiredRotation;
-
 	}
 
 	public bool InRange(Vector3 point, float givenRange)
     {
 		return Mathf.Distance(gameObject.transform.globalPosition, point) < givenRange;
 	}
-    public void RemoveFromSpawner()
+    public void RemoveFromEnemyList()
     {
-        if (dieCallBack != null)
-        {
-			foreach (GameObject item in dieCallBack.currentEnemies)
+		foreach (GameObject item in EnemyManager.currentEnemies)
+		{
+			if (item.GetUid() == gameObject.GetUid())
 			{
-				if (item.GetUid() == gameObject.GetUid())
-				{
-					dieCallBack.currentEnemies.Remove(item);
-					//Debug.Log("Enemy Killed!");
-					break;
-				}
+				EnemyManager.currentEnemies.Remove(item);
+				//Debug.Log("Enemy Killed!");
+				break;
 			}
 		}
+		
     }
 }

@@ -10,17 +10,16 @@ public class RoomSwitch : DiamondComponent
 
 	//public static int index = 0;
 	static Random test = new Random();
-	static List<int> visited = new List<int>() 
+	static List<int> visited = new List<int>()
 	{
-		1934547592,
-		1482507639,
-		1143112058,
-
+		1940308114,
+		769097826,
+		1796967585,
 	};
-	private static int finalScene = 1076838722;
+	private static int finalScene = 308281119;
 
 	public static void SwitchRooms()
-    {
+	{
 		if (visited.Count > 0)
 		{
 			int roomnumber = test.Next(0, visited.Count);
@@ -34,9 +33,9 @@ public class RoomSwitch : DiamondComponent
 		{
 			visited = new List<int>()
 				{
-						  1934547592,
-						   1482507639,
-						   1143112058,
+					1940308114,
+					769097826,
+					1796967585,
 
 				};
 			currentroom = 0;

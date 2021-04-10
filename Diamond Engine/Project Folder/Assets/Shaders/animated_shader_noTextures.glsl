@@ -53,13 +53,14 @@ void main()
 	
 	mat4 viewModel = view * model_matrix;
 	gl_Position = projection * viewModel * totalPosition;
-	influenceColor = vec3(weights.x, weights.y, weights.z);
+	
+	//influenceColor = vec3(weights.x, weights.y, weights.z);
 	//ourColor = vec3(boneIDs.x / 30, boneIDs.y / 30, boneIDs.z / 30);
 	vertexColor = colors;
 	
 	lightColor = vec3(0.225, 0.150, 0.120);
-	vec3 lightDirection = vec3(lightPosition - totalPosition.xyz);
-	diffuseColor = vec3(max(dot(lightDirection, -normals), 0) * lightColor);
+	vec3 lightDirection = vec3(lightPosition - normalize(totalPosition.xyz));
+	diffuseColor = vec3(max(dot(lightDirection, -normals), 0.0) * lightColor);
     
 }
 #endif
@@ -79,6 +80,7 @@ void main()
  	color = vec4(vertexColor + diffuseColor, 1.0);
 }
 #endif
+
 
 
 

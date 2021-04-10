@@ -10,7 +10,9 @@ public class Rancor : DiamondComponent
 		NONE = -1,
 		SEARCH_STATE,
 		WANDER,
+        LOADING_RUSH,
 		RUSH,
+        RUSH_STUN,
 		HAND_SLAM,
 		PROJECTILE,
 		MELEE_COMBO_HIT1,
@@ -25,8 +27,11 @@ public class Rancor : DiamondComponent
 		IN_WANDER_SHORT,
         IN_WANDER_LONG,
         IN_WANDER_END,
+        IN_LOADING_RUSH,
 		IN_RUSH,
 		IN_RUSH_END,
+        IN_RUSH_STUN,
+        IN_RUSH_STUN_END,
 		IN_HAND_SLAM,
 		IN_HAND_SLAM_END,
 		IN_PROJECTILE,
@@ -40,13 +45,26 @@ public class Rancor : DiamondComponent
 
     private NavMeshAgent agent = null;
 
-	//State
-	private RANCOR_STATE currentState = RANCOR_STATE.WANDER;   //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS
+    public GameObject meleeCombo1Collider = null;
+    public GameObject meleeCombo2Collider = null;
+    public GameObject meleeCombo3Collider = null;
+
+    //private Vector3 targetPosition = null;
+    private Vector3 targetDirection = null;
+
+    //State
+    private RANCOR_STATE currentState = RANCOR_STATE.WANDER;   //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS
 															   //Setting states directlly will break the behaviour  -Jose
 	private List<RANCOR_INPUT> inputsList = new List<RANCOR_INPUT>();
     Random randomNum = new Random();
 
+    public GameObject hitParticles = null;
+
+    public float slerpSpeed = 5.0f;
+
     //Stats
+    public float healthPoints = 60.0f;
+
     public int attackProbability = 66;  //FROM 1 TO A 100
     public int shortWanderProbability = 90; //FROM THE PREVIOS VALUE TO HERE
 
@@ -68,19 +86,36 @@ public class Rancor : DiamondComponent
     private float meleeCH2Timer = 0.0f;
     private float meleeCH3Timer = 0.0f;
 
+    private float meleeCH1ColliderTimer = 0.0f;
+    private float meleeCH2ColliderTimer = 0.0f;
+    private float meleeCH3ColliderTimer = 0.0f;
+
     //Projectile
     private float projectileTime = 0.0f;
     private float projectileTimer = 0.0f;
 
 
     //Hand slam
-    public float handSlamTime = 0.0f;
+    private float handSlamTime = 0.0f;
     private float handSlamTimer = 0.0f;
 
 
-    //rush
-    public float rushTime = 0.0f;
+    //Rush
+    public float rushDamage = 5.0f;
+    public float loadRushTime = 0.4f;
+    private float loadRushTimer = 0.0f;
+
+    public float rushSpeed = 20.0f;
+    private float rushTime = 0.0f;
     private float rushTimer = 0.0f;
+
+    private float rushStunDuration = 0.0f;
+    private float rushStunTimer = 0.0f;
+
+    //Die
+    private float dieTime = 0.0f;
+    private float dieTimer = 0.0f;
+
 
     private bool start = false;
 
@@ -97,6 +132,10 @@ public class Rancor : DiamondComponent
         handSlamTime = Animator.GetAnimationDuration(gameObject, "RN_HandSlam") - 0.016f;
 
         rushTime = Animator.GetAnimationDuration(gameObject, "RN_Rush") - 0.016f;
+
+        rushStunDuration = Animator.GetAnimationDuration(gameObject, "RN_RushRecover") - 0.016f;
+
+        dieTime = Animator.GetAnimationDuration(gameObject, "RN_Die") - 0.016f;
     }
 
     public void Awake()
@@ -107,6 +146,18 @@ public class Rancor : DiamondComponent
             Debug.Log("Null agent, add a NavMeshAgent Component");
 
         Animator.Play(gameObject, "RN_Idle");
+
+
+        if (meleeCombo1Collider != null)
+            meleeCombo1Collider.Enable(true);
+
+        if (meleeCombo2Collider != null)
+            meleeCombo2Collider.Enable(true);
+
+        if (meleeCombo3Collider != null)
+            meleeCombo3Collider.Enable(true);
+
+        EnemyManager.AddEnemy(gameObject);
     }
 
     public void Update()
@@ -132,7 +183,9 @@ public class Rancor : DiamondComponent
             wanderTimer -= Time.deltaTime;
 
             if (wanderTimer <= 0)
+            {
                 inputsList.Add(RANCOR_INPUT.IN_WANDER_END);
+            }
         }
 
         if (meleeCH1Timer > 0)
@@ -176,6 +229,13 @@ public class Rancor : DiamondComponent
                 inputsList.Add(RANCOR_INPUT.IN_HAND_SLAM_END);
         }
 
+        if (loadRushTimer > 0)
+        {
+            loadRushTimer -= Time.deltaTime;
+
+            if (loadRushTimer <= 0)
+                inputsList.Add(RANCOR_INPUT.IN_RUSH);
+        }
 
         if (rushTimer > 0)
         {
@@ -184,12 +244,20 @@ public class Rancor : DiamondComponent
             if (rushTimer <= 0)
                 inputsList.Add(RANCOR_INPUT.IN_RUSH_END);
         }
+
+
+        if (rushStunTimer > 0)
+        {
+            rushStunTimer -= Time.deltaTime;
+
+            if (rushStunTimer <= 0)
+                inputsList.Add(RANCOR_INPUT.IN_RUSH_STUN_END);
+        }
     }
 
 	private void ProcessExternalInput()
     {
         
-
     }
 
 	private void ProcessState()
@@ -217,9 +285,9 @@ public class Rancor : DiamondComponent
                             StartLongWander();
                             break;
 
-                        case RANCOR_INPUT.IN_RUSH:
-                            currentState = RANCOR_STATE.RUSH;
-                            StartRush();
+                        case RANCOR_INPUT.IN_LOADING_RUSH:
+                            currentState = RANCOR_STATE.LOADING_RUSH;
+                            StartLoadingRush();
                             break;
                         
                         case RANCOR_INPUT.IN_HAND_SLAM:
@@ -238,6 +306,8 @@ public class Rancor : DiamondComponent
                             break;
                         
                         case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
                             break;
                     }
                     break;
@@ -251,6 +321,23 @@ public class Rancor : DiamondComponent
                             break;
 
                         case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
+                            break;
+                    }
+                    break;
+
+                case RANCOR_STATE.LOADING_RUSH:
+                    switch (input)
+                    {
+                        case RANCOR_INPUT.IN_RUSH:
+                            currentState = RANCOR_STATE.RUSH;
+                            StartRush();
+                            break;
+
+                        case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
                             break;
                     }
                     break;
@@ -262,8 +349,31 @@ public class Rancor : DiamondComponent
                             currentState = RANCOR_STATE.SEARCH_STATE;
                             EndRush();
                             break;
+
+                        case RANCOR_INPUT.IN_RUSH_STUN:
+                            currentState = RANCOR_STATE.RUSH_STUN;
+                            EndRush();
+                            StartRushStun();
+                            break;
+
+                        case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
+                            break;
+                    }
+                    break;
+
+                case RANCOR_STATE.RUSH_STUN:
+                    switch (input)
+                    {
+                        case RANCOR_INPUT.IN_RUSH_STUN_END:
+                            currentState = RANCOR_STATE.SEARCH_STATE;
+                            EndRushStun();
+                            break;
                         
                         case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
                             break;
                     }
                     break;
@@ -277,6 +387,8 @@ public class Rancor : DiamondComponent
                             break;
                         
                         case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
                             break;
                     }
                     break;
@@ -290,6 +402,8 @@ public class Rancor : DiamondComponent
                             break;
                         
                         case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
                             break;
                     }
                     break;
@@ -304,6 +418,8 @@ public class Rancor : DiamondComponent
                             break;
                       
                         case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
                             break;
                     }
                     break;
@@ -318,6 +434,8 @@ public class Rancor : DiamondComponent
                             break;
 
                         case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
                             break;
                     }
                     break;
@@ -331,6 +449,8 @@ public class Rancor : DiamondComponent
                             break;
 
                         case RANCOR_INPUT.IN_DEAD:
+                            currentState = RANCOR_STATE.DEAD;
+                            StartDie();
                             break;
                     }
                     break;
@@ -359,8 +479,16 @@ public class Rancor : DiamondComponent
                 UpdateWander();
                 break;
 
+            case RANCOR_STATE.LOADING_RUSH:
+                UpdateLoadingRush();
+                break;
+
             case RANCOR_STATE.RUSH:
                 UpdateRush();
+                break;
+
+            case RANCOR_STATE.RUSH_STUN:
+                UpdateRushStun();
                 break;
 
             case RANCOR_STATE.HAND_SLAM:
@@ -384,12 +512,10 @@ public class Rancor : DiamondComponent
                 break;
 
             case RANCOR_STATE.DEAD:
-                break;
-            default:
+                UpdateDie();
                 break;
         }
     }
-
 
     private void SelectAction()
     {
@@ -421,7 +547,7 @@ public class Rancor : DiamondComponent
                     inputsList.Add(RANCOR_INPUT.IN_PROJECTILE);
 
                 else
-                    inputsList.Add(RANCOR_INPUT.IN_RUSH); 
+                    inputsList.Add(RANCOR_INPUT.IN_LOADING_RUSH); 
             }
             else
             {
@@ -441,62 +567,108 @@ public class Rancor : DiamondComponent
     private void StartMCHit1()
     {
         meleeCH1Timer = meleeComboHit1Time;
+        meleeCH1ColliderTimer = 0.5f;
 
         Animator.Play(gameObject, "RN_MeleeComboP1");
         //TODO: Add animation
+
     }
 
     private void UpdateMCHit1()
     {
         Debug.Log("Combo hit 1");
         //TODO: Activate collider
+
+        if(meleeCH1ColliderTimer > 0.0f)
+        {
+            meleeCH1ColliderTimer -= Time.deltaTime;
+
+            if(meleeCH1ColliderTimer <= 0.0f)
+            {
+                if (meleeCombo1Collider != null)
+                    meleeCombo1Collider.Enable(true);
+            }
+        }
     }
 
     private void EndMCHit1()
     {
-        //TODO: Deactivate collider
+        if (meleeCombo1Collider != null)
+            meleeCombo1Collider.Enable(false);
     }
 
 
     private void StartMCHit2()
     {
         meleeCH2Timer = meleeComboHit2Time;
+        meleeCH2ColliderTimer = 0.5f;
+
         Animator.Play(gameObject, "RN_MeleeComboP2");
         //TODO: Add animation
+
+        if (meleeCombo2Collider != null)
+            meleeCombo2Collider.Enable(true);
     }
 
     private void UpdateMCHit2()
     {
         Debug.Log("Combo hit 2");
-        //TODO: Activate collider
+        if (meleeCH2ColliderTimer > 0.0f)
+        {
+            meleeCH2ColliderTimer -= Time.deltaTime;
+
+            if (meleeCH2ColliderTimer <= 0.0f)
+            {
+                if (meleeCombo2Collider != null)
+                    meleeCombo2Collider.Enable(true);
+            }
+        }
     }
 
     private void EndMCHit2()
     {
-        //TODO: Deactivate collider
+        if (meleeCombo2Collider != null)
+            meleeCombo2Collider.Enable(false);
     }
 
 
     private void StartMCHit3()
     {
         meleeCH3Timer = meleeComboHit3Time;
+        meleeCH3ColliderTimer = 0.5f;
+
         Animator.Play(gameObject, "RN_MeleeComboP3");
         //TODO: Add animation
+
+        if (meleeCombo3Collider != null)
+            meleeCombo3Collider.Enable(true);
     }
 
     private void UpdateMCHit3()
     {
         Debug.Log("Combo hit 3");
-        //TODO: Activate collider
+
+        if (meleeCH3ColliderTimer > 0.0f)
+        {
+            meleeCH3ColliderTimer -= Time.deltaTime;
+
+            if (meleeCH3ColliderTimer <= 0.0f)
+            {
+                if (meleeCombo3Collider != null)
+                    meleeCombo3Collider.Enable(true);
+            }
+        }
     }
 
     private void EndMCHit3()
     {
         //TODO: Deactivate collider
+
+        if (meleeCombo3Collider != null)
+            meleeCombo3Collider.Enable(false);
     }
 
     #endregion
-
 
     #region WANDER
 
@@ -509,7 +681,7 @@ public class Rancor : DiamondComponent
         wanderTimer = shortWanderTime;
 
         if (agent != null)
-            agent.CalculateRandomPath(gameObject.transform.globalPosition, meleeRange);
+            agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
     }
 
 
@@ -523,16 +695,18 @@ public class Rancor : DiamondComponent
         wanderTimer = longWanderTime;
 
         if (agent != null)
-            agent.CalculateRandomPath(gameObject.transform.globalPosition, longRange);
+            agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
     }
 
 
     private void UpdateWander()
     {
         //Move character
-
-        if (agent != null)
+        if (agent != null && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) > agent.stoppingDistance)
+        {
+            LookAt(Core.instance.gameObject.transform.globalPosition);
             agent.MoveToCalculatedPos(wanderSpeed);
+        }
 
         Debug.Log("Wandering");
     }
@@ -544,7 +718,6 @@ public class Rancor : DiamondComponent
     }
 
     #endregion
-
 
     #region PROJECTILE
 
@@ -568,7 +741,6 @@ public class Rancor : DiamondComponent
 
     #endregion
 
-
     #region HAND_SLAM
 
     private void StartHandSlam()
@@ -591,18 +763,40 @@ public class Rancor : DiamondComponent
 
     #endregion
 
-    #region rush
+    #region LOADING_RUSH
+    private void StartLoadingRush()
+    {
+        loadRushTimer = loadRushTime;
+
+        //Animator.Play(gameObject, "RN_LoadingRush"); //THIS ANIMATION DOESNT EXIST, BUT ITS NEEDED
+
+    }
+    private void UpdateLoadingRush()
+    {
+        Debug.Log("Loading Rush");
+
+        LookAt(Core.instance.gameObject.transform.globalPosition); //RANCOR POINTING PLAYER WHILE LOADING
+    }
+    #endregion
+
+    #region RUSH
 
     private void StartRush()
     {
         rushTimer = rushTime;
         Animator.Play(gameObject, "RN_Rush");
+
+        targetDirection = Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition; //RANCOR CALCULATES RUSH DIRECTION
+        
     }
 
 
     private void UpdateRush()
     {
         Debug.Log("Rush");
+
+        gameObject.transform.localPosition += targetDirection.normalized * rushSpeed * Time.deltaTime; //ADD SPEED IN RUSH DIRECTION
+       
     }
 
 
@@ -611,7 +805,131 @@ public class Rancor : DiamondComponent
 
     }
 
+
+    private void StartRushStun()
+    {
+        rushStunTimer = rushStunDuration;
+        Animator.Play(gameObject, "RN_RushRecover");
+    }
+
+    private void UpdateRushStun()
+    {
+        Debug.Log("Rush Stun");
+    }
+
+
+    private void EndRushStun()
+    {
+
+    }
+
     #endregion
 
+    #region DIE
+    private void StartDie()
+    {
+        //Audio.StopAudio(gameObject);
 
+        dieTimer = dieTime;
+
+        //Animator.Play(gameObject, "RN_Die", 1.0f);
+
+        Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Death");
+        //Audio.PlayAudio(gameObject, "Play_Mando_Voice");
+
+        if (hitParticles != null)
+            hitParticles.GetComponent<ParticleSystem>().Play();
+
+        //RemoveFromEnemyList();
+    }
+    private void UpdateDie()
+    {
+        if (dieTimer > 0.0f)
+        {
+            dieTimer -= Time.deltaTime;
+
+            if (dieTimer <= 0.0f)
+            {
+                Die();
+            }
+        }
+    }
+    public void Die()
+    {
+        Debug.Log("RANCOR DEAD");
+        EnemyManager.RemoveEnemy(gameObject);
+    }
+    #endregion
+
+    public void LookAt(Vector3 pointToLook)
+    {
+        Vector3 direction = pointToLook - gameObject.transform.globalPosition;
+        direction = direction.normalized;
+        float angle = (float)Math.Atan2(direction.x, direction.z);
+
+        if (Math.Abs(angle * Mathf.Rad2Deg) < 1.0f)
+            return;
+
+        Quaternion dir = Quaternion.RotateAroundAxis(Vector3.up, angle);
+
+        float rotationSpeed = Time.deltaTime * slerpSpeed;
+
+        Quaternion desiredRotation = Quaternion.Slerp(gameObject.transform.localRotation, dir, rotationSpeed);
+
+        gameObject.transform.localRotation = desiredRotation;
+    }
+
+    public void MoveToPosition(Vector3 positionToReach, float speed)
+    {
+        Vector3 direction = positionToReach - gameObject.transform.localPosition;
+
+        gameObject.transform.localPosition += direction.normalized * speed * Time.deltaTime;
+    }
+
+    public void OnCollisionEnter(GameObject collidedGameObject)
+    {
+
+        if (collidedGameObject.CompareTag("Bullet"))
+        {
+            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+            Debug.Log("Rancor HP: " + healthPoints.ToString());
+
+            Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
+
+            if (currentState != RANCOR_STATE.DEAD && healthPoints <= 0.0f)
+            {
+                inputsList.Add(RANCOR_INPUT.IN_DEAD);
+            }
+        }
+        else if (collidedGameObject.CompareTag("Grenade"))
+        {
+            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+
+            Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
+
+            if (currentState != RANCOR_STATE.DEAD && healthPoints <= 0.0f)
+            {
+                inputsList.Add(RANCOR_INPUT.IN_DEAD);
+            }
+        }
+        else if (collidedGameObject.CompareTag("WorldLimit"))
+        {
+            if (currentState != RANCOR_STATE.DEAD)
+            {
+                inputsList.Add(RANCOR_INPUT.IN_DEAD);
+            }
+        }
+        else if (collidedGameObject.CompareTag("Player"))
+        {
+            if (currentState == RANCOR_STATE.RUSH)
+            {
+                inputsList.Add(RANCOR_INPUT.IN_RUSH_END);
+                PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage((int)rushDamage);
+                }
+            }
+        }
+    }
 }
