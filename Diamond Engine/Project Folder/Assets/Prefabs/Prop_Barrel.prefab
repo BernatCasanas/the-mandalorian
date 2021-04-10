@@ -7,9 +7,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -8.0041408538818359,
+                15.66752815246582,
                 6.0797181129455566,
-                -13.28359317779541
+                -3.9360365867614746
             ],
             "Rotation": [
                 0,
@@ -22,7 +22,7 @@
                 1,
                 1
             ],
-            "UID": 1746406400,
+            "UID": 2034878772,
             "PrefabID": 1796667987,
             "DontDestroy": false,
             "Static": false,
@@ -71,9 +71,9 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "BH_DestructBox",
-                    "thisReference": 1746406400,
-                    "explosion": 1148126291,
-                    "wave": 64197077,
+                    "thisReference": 2034878772,
+                    "explosion": 1496750940,
+                    "wave": 800706712,
                     "explosionTime": 1.5
                 }
             ]
@@ -99,11 +99,11 @@
                 1,
                 1
             ],
-            "UID": 330848554,
+            "UID": 798792822,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1746406400,
+            "ParentUID": 2034878772,
             "Components": [
                 {
                     "Type": 1,
@@ -151,11 +151,11 @@
                 1,
                 1
             ],
-            "UID": 97580312,
+            "UID": 1518537750,
             "PrefabID": 436147261,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1746406400,
+            "ParentUID": 2034878772,
             "Components": [
                 {
                     "Type": 1,
@@ -184,11 +184,11 @@
                 1,
                 1
             ],
-            "UID": 1148126291,
+            "UID": 1496750940,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 97580312,
+            "ParentUID": 1518537750,
             "Components": [
                 {
                     "Type": 1,
@@ -207,7 +207,7 @@
                     "Active": true,
                     "systemActive": false,
                     "looping": false,
-                    "maxDuration": 0.16300000250339508,
+                    "maxDuration": 0.25699999928474426,
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
@@ -228,7 +228,7 @@
                                 0,
                                 1
                             ],
-                            "paPerSec": 5000,
+                            "paPerSec": 2500,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 1,
@@ -251,7 +251,7 @@
                                                 0,
                                                 0
                                             ],
-                                            "paColorOLTposition": 0.21066668629646301
+                                            "paColorOLTposition": 0.34820297360420227
                                         },
                                         {
                                             "paColorOLTcolor": [
@@ -260,7 +260,7 @@
                                                 0.0739288330078125,
                                                 0.47731062769889832
                                             ],
-                                            "paColorOLTposition": 0.5249665379524231
+                                            "paColorOLTposition": 0.56508094072341919
                                         },
                                         {
                                             "paColorOLTcolor": [
@@ -289,8 +289,8 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 5,
-                                    "paShapeRandSpeed": 0.20000000298023224,
+                                    "paShapePartSpeed": 3.5,
+                                    "paShapeRandSpeed": 0.10000000149011612,
                                     "PaShapeSphereRadius": 0.20000000298023224,
                                     "PaShapeSphereDirection": true,
                                     "PaShapeSphereAngle": 0,
@@ -322,7 +322,7 @@
                                 1,
                                 1
                             ],
-                            "paPerSec": 500,
+                            "paPerSec": 100,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 0,
@@ -332,8 +332,8 @@
                                         0
                                     ],
                                     "paFOLT_magnitude": 0,
-                                    "paFOLT_gravityMod": 0.0010000000474974513,
-                                    "paFOLT_gravity": -0.0098000010475516319,
+                                    "paFOLT_gravityMod": 0,
+                                    "paFOLT_gravity": -0,
                                     "paFOLT_forceType": 2
                                 },
                                 {
@@ -396,7 +396,7 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 0.75,
+                                    "paShapePartSpeed": 0.60000002384185791,
                                     "paShapeRandSpeed": 3,
                                     "PaShapeAreaDimensions": [
                                         0.30000001192092896,
@@ -433,7 +433,7 @@
                                 1,
                                 1
                             ],
-                            "paPerSec": 600,
+                            "paPerSec": 100,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 0,
@@ -443,19 +443,19 @@
                                         0
                                     ],
                                     "paFOLT_magnitude": 0,
-                                    "paFOLT_gravityMod": 0.004999999888241291,
-                                    "paFOLT_gravity": -0.048999998718500137,
+                                    "paFOLT_gravityMod": 0.0030000000260770321,
+                                    "paFOLT_gravity": -0.029400000348687172,
                                     "paFOLT_forceType": 2
                                 },
                                 {
                                     "paEffectType": 1,
                                     "paROLT_rotation": [
-                                        -1,
-                                        1
+                                        -2,
+                                        2
                                     ],
                                     "paROLT_rotationSpeed": [
-                                        -1,
-                                        1
+                                        -2,
+                                        2
                                     ]
                                 },
                                 {
@@ -653,11 +653,11 @@
                 1,
                 1
             ],
-            "UID": 64197077,
+            "UID": 800706712,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 97580312,
+            "ParentUID": 1518537750,
             "Components": [
                 {
                     "Type": 1,
@@ -733,8 +733,8 @@
                                 },
                                 {
                                     "paEffectType": 3,
-                                    "paSizeOLTStartSize": 2.5,
-                                    "paSizeOLTEndSize": 5
+                                    "paSizeOLTStartSize": 1.5,
+                                    "paSizeOLTEndSize": 3.5
                                 }
                             ]
                         }
