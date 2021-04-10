@@ -62,7 +62,7 @@ public class Bantha : Enemy
     public float wanderRange = 7.5f;
     //public float runningRange = 12.5f;
     public float chargeRange = 5.0f;
-    public float chargeLenght = 20.0f;
+    public float chargeLength = 20.0f;
 
     //Timers
     private float idleTimer = 0.0f;
@@ -428,11 +428,11 @@ public class Bantha : Enemy
     #region CHARGE
     private void StartCharge()
     {
-        chargeTimer = chargeLenght/chargeSpeed;
+        chargeTimer = chargeLength/chargeSpeed;
         Animator.Play(gameObject, "BT_Run");
 
         Vector3 direction = player.transform.globalPosition - gameObject.transform.globalPosition;
-        targetPosition = direction.normalized * chargeLenght + gameObject.transform.globalPosition;
+        targetPosition = direction.normalized * chargeLength + gameObject.transform.globalPosition;
         
     }
     private void UpdateCharge()
