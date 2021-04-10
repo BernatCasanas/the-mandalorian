@@ -18,6 +18,7 @@ public class GameSceneManager : DiamondComponent
     {
         rewardObject = InternalCalls.CreatePrefab("Library/Prefabs/1394471616.prefab", new Vector3(rewardInitialPos.x, rewardInitialPos.y, rewardInitialPos.z), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
         rewardObject.SetParent(gameObject);
+        rewardObject.Enable(false);
         rewardSpawnComponent = rewardObject.GetComponent<EndLevelRewardSpawn>();
     }
 
@@ -26,7 +27,6 @@ public class GameSceneManager : DiamondComponent
         if (Counter.roomEnemies > 0)    // This would, ideally, not be necessary, and enemies generating would have nothing to do with dialogue ocurring, since it would (presumably) stop the game
         {
             enemiesHaveSpawned = true;
-            Counter.roomEnemies = 0;
         }
 
         else if (enemiesHaveSpawned && Counter.roomEnemies <= 0 && rewardData == null && Counter.gameResult != Counter.GameResult.DEFEAT)    // Right now, when a room begins, enemy counter = 0
