@@ -53,8 +53,6 @@ public class EndLevelRewards
             thirdButton = InternalCalls.FindObjectWithName("ThirdRewardButton").GetComponent<EndLevelRewardsButtons>();
 
             firstButton.gameObject.GetComponent<Navigation>().Select(); // Line added because buttons crashed. For... some reason
-
-            Debug.Log("Rng total weight value is " + BoonDataHolder.boonTotalWeights);
         }
 
         if (CheckRewardSelected())
