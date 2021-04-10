@@ -4,6 +4,8 @@ using DiamondEngine;
 
 public class BabyYoda : DiamondComponent
 {
+    public static BabyYoda instance;
+
     //Vertical Movement
     public float verticalSpeed = 0.8f;
     public float verticalTimeInterval = 1.2f;
@@ -34,6 +36,9 @@ public class BabyYoda : DiamondComponent
     private float skillWallTimer = 0.0f;
     private bool leftButtonPressed = false;
 
+    private static float timeForceRegeneration = 4f;
+    private float timeForceRegenerationDefault = 4f;
+    private float timeWhenStartRecharge = 0f;
 
     #region STATE_ENUMS
     enum STATE
@@ -62,6 +67,7 @@ public class BabyYoda : DiamondComponent
     {
         if (!force_updating || Core.instance.hud == null)
             return;
+
         if (Time.totalTime >= final_timer_force)
         {
             Core.instance.hud.GetComponent<HUD>().UpdateForce(100, 100);
@@ -70,7 +76,8 @@ public class BabyYoda : DiamondComponent
         }
         else
         {
-            float force_bar_normalized = (1 - (final_timer_force - Time.totalTime) / 1) * 100;
+            float force_bar_normalized = ((Time.totalTime - timeWhenStartRecharge) / (final_timer_force - timeWhenStartRecharge)) * 100;
+            Debug.Log(force_bar_normalized.ToString());
             Core.instance.hud.GetComponent<HUD>().UpdateForce((int)force_bar_normalized, 100);
         }
     }
@@ -78,7 +85,8 @@ public class BabyYoda : DiamondComponent
 
     public void Awake()
     {
-        wallSkillOffset = new Vector3(0.0f,1.5f, 3.0f);
+        instance = this;
+        wallSkillOffset = new Vector3(0.0f, 1.5f, 3.0f);
     }
 
     public void Update()
@@ -299,7 +307,8 @@ public class BabyYoda : DiamondComponent
         if (Core.instance.hud != null)
         {
             force_updating = true;
-            final_timer_force = Time.totalTime + 1;
+            final_timer_force = Time.totalTime + timeForceRegeneration;
+            timeWhenStartRecharge = Time.totalTime;
             Core.instance.hud.GetComponent<HUD>().UpdateForce(0, 100);
             Core.instance.hud.GetComponent<HUD>().ChangeAlphaSkillPush(false);
         }
@@ -315,9 +324,10 @@ public class BabyYoda : DiamondComponent
         if (Core.instance.hud != null)
         {
             force_updating = true;
-            final_timer_force = Time.totalTime + 1;
+            final_timer_force = Time.totalTime + timeForceRegeneration;
+            timeWhenStartRecharge = Time.totalTime;
             Core.instance.hud.GetComponent<HUD>().UpdateForce(0, 100);
-            //Core.instance.hud.GetComponent<HUD>().ChangeAlphaSkillPush(false);
+            Core.instance.hud.GetComponent<HUD>().ChangeAlphaSkillPush(false);
         }
 
         skillWallTimer += INIT_TIMER;
@@ -330,4 +340,15 @@ public class BabyYoda : DiamondComponent
         InternalCalls.CreatePrefab("Library/Prefabs/1850725718.prefab", spawnPos, mandoTransform.globalRotation, new Vector3(1, 1, 1));
 
     }
+
+    public void ReduceForceRegenerationTime(float time)
+    {
+        timeForceRegeneration -= time;
+    }
+
+    public void OnApplicationQuit()
+    {
+        timeForceRegeneration = timeForceRegenerationDefault;
+    }
+
 }

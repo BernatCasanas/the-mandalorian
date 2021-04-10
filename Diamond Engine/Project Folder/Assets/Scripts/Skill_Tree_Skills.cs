@@ -167,7 +167,7 @@ namespace DiamondEngine {
 
         public override void AddDescription()
         {
-            description = "Increase Max HP Skill. Press 'A' to buy it. Price: it's free!";
+            description = "Increase Mando's Max HP by 10%. Press 'A' to buy it. Price: it's free!";
         }
     }
 
@@ -177,10 +177,10 @@ namespace DiamondEngine {
         {
         }
 
-        public override void AddDescription()
-        {
-            description = "Decrease the Damage Reduction Skill. Press 'A' to buy it. Price: it's free!";
-        }
+        //public override void AddDescription()
+        //{
+        //    description = "Decrease the Damage Reduction Skill. Press 'A' to buy it. Price: it's free!";
+        //}
     }
 
     public class DefenseComboDamageReductionSkill : Skills
@@ -236,6 +236,15 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            if (BabyYoda.instance != null)
+            {
+                BabyYoda.instance.ReduceForceRegenerationTime(1f);
+            }
+        }
+
+        public override void AddDescription()
+        {
+            description = "Increase Grogu's Force regeneration by 1 Force/Second. Press 'A' to buy it. Price: it's free!";
         }
     }
 
@@ -336,6 +345,15 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            if(Core.instance != null)
+            {
+                Core.instance.IncreaseNormalShootDamage(0.25f);
+            }
+        }
+
+        public override void AddDescription()
+        {
+            description = "Increase Mando's Primary Weapon damage by 25%. Press 'A' to buy it. Price: it's free!";
         }
     }
 
