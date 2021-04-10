@@ -50,8 +50,8 @@ class ComboResetEffects
 
 public class HUD : DiamondComponent
 {
-    public int hp = 50;
-    public int max_hp = 50;
+    public int hp = 0;
+    public int max_hp = 0;
     public int force = 0;
     public int max_force = 0;
     public int currency = 10000;

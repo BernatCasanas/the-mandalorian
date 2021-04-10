@@ -24,7 +24,7 @@ public class EndScreen : DiamondComponent
 			{
 				Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
 			}
-			SceneManager.LoadScene(518261031);
+			SceneManager.LoadScene(1406013733);
 		}
 		else if (gameObject.Name == "Quit")
 		{

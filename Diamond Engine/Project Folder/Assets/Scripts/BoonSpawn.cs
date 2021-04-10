@@ -107,7 +107,7 @@ public class BoonSpawn : DiamondComponent
         else
         {
             Counter.gameResult = Counter.GameResult.VICTORY;
-            SceneManager.LoadScene(1469030805); //1469030805 = PostBoss1 Screen
+            SceneManager.LoadScene(821370213);
         }
     }
 
@@ -145,4 +145,5 @@ public class BoonSpawn : DiamondComponent
 
         myRandomPool.Add(newWeight);
     }
+
 }

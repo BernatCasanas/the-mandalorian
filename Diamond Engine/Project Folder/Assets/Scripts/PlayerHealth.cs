@@ -30,9 +30,6 @@ public class PlayerHealth : DiamondComponent
             Debug.Log("Sending uniform");
             character_mesh.GetComponent<Material>().SetFloatUniform("damaged", damaged);
         }
-
-        if (Input.GetKey(DEKeyCode.COMMA) == KeyState.KEY_DOWN) Debug.Log(currHealth.ToString());
-        if (Input.GetKey(DEKeyCode.M) == KeyState.KEY_DOWN) SetMaxHPValue(50, true);
     }
 
     //Increments the max Hp by the percentatge given as a parameter (1 = 100% 0 = 0%) It can also be negative to substract HP
@@ -113,8 +110,6 @@ public class PlayerHealth : DiamondComponent
     {
         currHealth += (int)(currHealth * percent);
 
-        if (currHealth > currMaxHealth) currHealth = currMaxHealth;
-
         if (Core.instance.hud != null)
             Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
 
@@ -129,8 +124,6 @@ public class PlayerHealth : DiamondComponent
         currHealth += (int)(currMaxHealth * percentofMaxHp);
         currHealth = Math.Min(currMaxHealth, currHealth);
 
-        if (currHealth > currMaxHealth) currHealth = currMaxHealth;
-
         if (Core.instance.hud != null)
             Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
 
@@ -144,8 +137,6 @@ public class PlayerHealth : DiamondComponent
     public void SetCurrentHP(int newCurrentHP)
     {
         currHealth = newCurrentHP;
-
-        if (currHealth > currMaxHealth) currHealth = currMaxHealth;
 
         if (Core.instance.hud != null)
             Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
