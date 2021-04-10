@@ -94,7 +94,6 @@ public class BabyYoda : DiamondComponent
         UpdateState();
         Move();
         UpdateHUD();
-        Debug.Log(timeForceRegeneration.ToString());
     }
 
     #region MOVEMENT
