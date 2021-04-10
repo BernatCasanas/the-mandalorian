@@ -113,6 +113,9 @@ public class Core : DiamondComponent
 
     AimBot myAimbot = null;
 
+    private static float bulletDamage = 9f;
+    private float bulletDamageDefault = 9f;
+
     private void Start()
     {
         #region VARIABLES WITH DEPENDENCIES
@@ -495,8 +498,8 @@ public class Core : DiamondComponent
         Audio.PlayAudio(shootPoint, "Play_Blaster_Shoot_Mando");
         Input.PlayHaptic(.3f, 10);
 
-        InternalCalls.CreatePrefab("Library/Prefabs/346087333.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
-
+        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/346087333.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+        bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
         inputsList.Add(INPUT.IN_SHOOT_END);
         hasShot = true;
     }
@@ -523,6 +526,11 @@ public class Core : DiamondComponent
         InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation * rotation, scale);
         rotation = Quaternion.RotateAroundAxis(rot, -0.383972f);
         InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation * rotation, scale);
+    }
+
+    public void IncreaseNormalShootDamage(float percent)
+    {
+        bulletDamage += (bulletDamage * percent);
     }
 
     #endregion
@@ -818,5 +826,10 @@ public class Core : DiamondComponent
                 break;
 
         }
+    }
+
+    public void OnApplicationQuit()
+    {
+        bulletDamage = bulletDamageDefault;
     }
 }

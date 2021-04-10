@@ -19,7 +19,4 @@ public:
 private:
 	//Sphere with a point and a radius the point is an offset from the transform
 	float radius;
-	float angle;
-	bool useDirection;
-
 };

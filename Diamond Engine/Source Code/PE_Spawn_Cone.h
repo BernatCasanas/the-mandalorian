@@ -19,6 +19,4 @@ public:
 private:
 	float radius;
 	float height;
-	float angle;
-	bool useDirection;
 };

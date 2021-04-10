@@ -14,7 +14,7 @@ public class StartMenu : DiamondComponent
 	{
 		if (gameObject.Name == "Play")
 		{
-			SceneManager.LoadScene(1406013733);
+			SceneManager.LoadScene(1564453141);
 			Audio.SetState("Game_State", "Run");
 			if (MusicSourceLocate.instance != null)
 			{

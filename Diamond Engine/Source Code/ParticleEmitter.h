@@ -32,7 +32,6 @@ public:
 	void LoadData(DEConfig& nObj);
 
 	void RestartEmitter();
-	bool CheckActiveParticles();
 
 
 private:
@@ -81,8 +80,6 @@ private:
 	float lastParticeTime;
 	//index of the last used aprticle
 	int lastUsedParticle;
-	//this variable holds the time since the last particle was thrown
-	float lastTimeSinceParticle;
 
 	std::vector<Particle> myParticles;
 	std::vector<ParticleEffect*> myEffects;
