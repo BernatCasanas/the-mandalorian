@@ -89,6 +89,8 @@ public class HUD : DiamondComponent
     public float force_bar_rate = 0.0f;
     public float last_hp = 0;
     private bool hp_descending = false;
+    public GameObject shooting_blink = null;
+    private float shoot_time = 0.0f;
 
     //stores the level as a key and the reward as a value
     Dictionary<int, ComboLvlUpEffects> lvlUpComboRewards = new Dictionary<int, ComboLvlUpEffects>
@@ -277,10 +279,18 @@ public class HUD : DiamondComponent
             hp_bar.GetComponent<Material>().SetFloatUniform("t", pulsation_rate);
 
         }
-        hp_glitch.Enable(false);
-        if (hp_descending && hp_glitch != null)
+        if (hp_glitch != null)
         {
-            hp_glitch.Enable(true);
+            hp_glitch.Enable(false);
+            if (hp_descending)
+                hp_glitch.Enable(true);
+        }
+        if (shoot_time > 0.0f)
+            shoot_time -= Time.deltaTime;
+        if (shoot_time < 0.0f)
+        {
+            ShootSwapImage(false);
+            shoot_time = 0.0f;
         }
     }
 
@@ -508,6 +518,24 @@ public class HUD : DiamondComponent
             float bullets_float = bullets_secondary_weapon;
             bullets_float /= max_bullets_secondary_weapon;
             weapon_bar.GetComponent<Material>().SetFloatUniform("length_used", bullets_float);
+        }
+    }
+
+    public void ShootSwapImage(bool shoot)
+    {
+        if (shooting_blink!= null)
+        {
+            if (shoot)
+            {
+                shooting_blink.Enable(true);
+                shoot_time = 0.3f;
+                return;
+            }
+            else
+            {
+                shooting_blink.Enable(false);
+                return;
+            }
         }
     }
 
