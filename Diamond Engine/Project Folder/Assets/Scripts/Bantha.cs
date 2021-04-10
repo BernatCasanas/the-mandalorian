@@ -513,7 +513,14 @@ public class Bantha : Enemy
         }
         else if (collidedGameObject.CompareTag("Grenade"))
         {
-            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+            smallGrenade smallGrenade = collidedGameObject.GetComponent<smallGrenade>();
+          //  bigGrenade bigGrenade = collidedGameObject.GetComponent<bigGrenade>();
+
+            if (smallGrenade != null)
+                healthPoints -= smallGrenade.damage;
+
+            //if (bigGrenade != null)
+            //    healthPoints -= bigGrenade.damage;
 
             if (currentState != STATE.DIE && healthPoints <= 0.0f)
             {

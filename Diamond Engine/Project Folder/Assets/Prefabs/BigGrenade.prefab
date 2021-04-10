@@ -3,13 +3,13 @@
     "Game Objects": [
         {
             "name": "BigGrenade",
-            "tag": "Grenade",
+            "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
                 -6.0474491119384766,
-                8.1829290390014648,
-                -7.8671426773071289
+                6.7126517295837402,
+                -0.88713598251342773
             ],
             "Rotation": [
                 0,
@@ -22,10 +22,11 @@
                 0.1999991238117218,
                 0.1999991238117218
             ],
-            "UID": 2061686957,
+            "UID": 157258350,
             "PrefabID": 142833782,
             "DontDestroy": false,
-            "ParentUID": 287742846,
+            "Static": false,
+            "ParentUID": 1676501951,
             "Components": [
                 {
                     "Type": 1,
@@ -60,10 +61,11 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "bigGrenade",
-                    "thisReference": 2061686957,
-                    "speed": 5,
+                    "thisReference": 157258350,
+                    "speed": 10,
                     "yVel": 0,
-                    "detonationTime": 2
+                    "damage": 0,
+                    "detonationTime": 1
                 },
                 {
                     "Type": 22,
