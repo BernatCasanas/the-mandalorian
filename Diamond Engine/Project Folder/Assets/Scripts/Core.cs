@@ -75,7 +75,9 @@ public class Core : DiamondComponent
     public float dashforce = 1000f;
     private float dashSpeed = 0.0f;
     private float dashTimer = 0.0f;
+    private float dashCDTimer = 0.0f;
     private float dashStartYPos = 0.0f;
+    private bool dashAvaliable = true;
 
     // Shooting
     public float fireRate = 0.2f;
@@ -142,7 +144,7 @@ public class Core : DiamondComponent
         // Dash
         dashTimer = 0f;
         dashSpeed = dashDistance / dashDuration;
-        //dashAvaliable = true;
+        
 
         #endregion
 
@@ -211,6 +213,14 @@ public class Core : DiamondComponent
                 inputsList.Add(INPUT.IN_DASH_END);
         }
 
+        if (dashCDTimer > 0 && dashAvaliable == false)
+        {
+            dashCDTimer -= Time.deltaTime;
+
+            if (dashCDTimer <= 0)
+                dashAvaliable = true;
+        }
+
         if (shootingTimer > 0)
         {
             shootingTimer -= Time.deltaTime;
@@ -250,13 +260,17 @@ public class Core : DiamondComponent
         else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
             inputsList.Add(INPUT.IN_IDLE);
 
-        if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false)
+        if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false && dashAvaliable == true)
         {
             inputsList.Add(INPUT.IN_DASH);
             rightTriggerPressed = true;
         }
         else if (Input.GetRightTrigger() == 0 && rightTriggerPressed == true)
             rightTriggerPressed = false;
+
+
+
+
 
         if (Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_DOWN)
             inputsList.Add(INPUT.IN_GADGET_SHOOT);
@@ -602,8 +616,14 @@ public class Core : DiamondComponent
 
     private void EndDash()
     {
+        dashCDTimer = dashCD;
+        dashAvaliable = false;
+        //Debug.Log(dashCDTimer.ToString());
+        //Debug.Log(dashAvaliable.ToString());
+
         StopPlayer();
         gameObject.transform.localPosition.y = dashStartYPos;
+        
     }
 
     #endregion
