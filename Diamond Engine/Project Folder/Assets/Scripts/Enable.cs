@@ -14,10 +14,12 @@ public class Enable : DiamondComponent
 		if (disable != null)
 		{
 			disable.EnableNav(false);
+			Debug.Log("Disable " + disable.Name);
 		}
 		if (disable2 != null)
 		{
 			disable2.EnableNav(false);
+			Debug.Log("Disable " + disable2.Name);
 		}
 		if (enable != null)
 		{
