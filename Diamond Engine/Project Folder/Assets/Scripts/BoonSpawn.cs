@@ -102,7 +102,7 @@ public class BoonSpawn : DiamondComponent
         instancedPrefabs.Clear();
 
         //TODO add timer here ?????
-        if (!Counter.isFinalScene)
+        if (Counter.isFinalScene == false)
             RoomSwitch.SwitchRooms();
         else
         {
