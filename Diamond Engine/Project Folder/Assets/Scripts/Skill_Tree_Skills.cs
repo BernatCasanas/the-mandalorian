@@ -6,11 +6,13 @@ namespace DiamondEngine {
 	public class Skills
     {
         public String description=" ";
+        public RewardType type_of_price = RewardType.REWARD_BESKAR;
+        public int price = 0;
 		public virtual void Use()
 		{
 		}
 
-        public virtual void AddDescription()
+        public virtual void AssignCharacteristics()
         {
             description = "Sorry, but this skill is currently unavailable. Please wait for the next update.";
         }
@@ -26,7 +28,7 @@ namespace DiamondEngine {
             Debug.Log("Knockback");
         }
 
-        //public override void AddDescription()
+        //public override void AssignCharacteristics()
         //{
         //    description = "Knockback Skill. Press 'A' to buy it. Price: it's free!";
         //}
@@ -97,7 +99,7 @@ namespace DiamondEngine {
         {
         }
 
-        //public override void AddDescription()
+        //public override void AssignCharacteristics()
         //{
         //    description = "Increase Damage Skill. Press 'A' to buy it. Price: it's free!";
         //}
@@ -165,9 +167,11 @@ namespace DiamondEngine {
             Debug.Log("MAX HP: " + newHP);
         }
 
-        public override void AddDescription()
+        public override void AssignCharacteristics()
         {
             description = "Increase Mando's Max HP by 10%. Press 'A' to buy it. Price: 1 Beskar Ingot";
+            price = 1;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -177,7 +181,7 @@ namespace DiamondEngine {
         {
         }
 
-        //public override void AddDescription()
+        //public override void AssignCharacteristics()
         //{
         //    description = "Decrease the Damage Reduction Skill. Press 'A' to buy it. Price: it's free!";
         //}
@@ -242,9 +246,11 @@ namespace DiamondEngine {
             }
         }
 
-        public override void AddDescription()
+        public override void AssignCharacteristics()
         {
             description = "Increase Grogu's Force regeneration by 1 Force/Second. Press 'A' to buy it. Price: 1 Blue Macaron";
+            price = 1;
+            type_of_price = RewardType.REWARD_MACARON;
         }
     }
 
@@ -351,9 +357,11 @@ namespace DiamondEngine {
             }
         }
 
-        public override void AddDescription()
+        public override void AssignCharacteristics()
         {
             description = "Increase Mando's Primary Weapon damage by 25%. Press 'A' to buy it. Price: 1 Imperial Scrap";
+            price = 1;
+            type_of_price = RewardType.REWARD_SCRAP;
         }
     }
 
