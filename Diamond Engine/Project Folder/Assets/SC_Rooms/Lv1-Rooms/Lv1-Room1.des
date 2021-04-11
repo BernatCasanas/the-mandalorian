@@ -230,7 +230,7 @@
                     "currency_number_gameobject": 1605325581,
                     "combo_bar": 1699354592,
                     "combo_text": 1596969108,
-                    "combo_gameobject": 1158791421,
+                    "combo_gameobject": 159826368,
                     "force_wave": 1292584398,
                     "force_wave_second": 646586484,
                     "force_wave_third": 716145623,
@@ -1421,7 +1421,7 @@
             "name": "Combo Holder",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": false,
+            "Active": true,
             "Position": [
                 0,
                 0,
@@ -10561,10 +10561,12 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "RoomSwitch",
+                    "originalLevelPools": 0,
+                    "levelLists": 0,
+                    "postBossRoom": 0,
                     "roomID": 0,
                     "currentroom": 0,
-                    "visited": 0,
-                    "finalScene": 0
+                    "currentLevelIndicator": 0
                 },
                 {
                     "Type": 3,
@@ -13564,10 +13566,10 @@
                 -21.285999298095703
             ],
             "Rotation": [
-                -0.50261980295181274,
-                0.50261110067367554,
-                0.49737519025802612,
-                0.49736636877059937
+                -0.50261986255645752,
+                0.50261116027832031,
+                0.4973752498626709,
+                0.49736642837524414
             ],
             "Scale": [
                 1.4969998598098755,
@@ -14117,10 +14119,10 @@
                 -14.760412216186523
             ],
             "Rotation": [
-                -0.50261986255645752,
-                0.50261116027832031,
-                0.4973752498626709,
-                0.49736642837524414
+                -0.50261980295181274,
+                0.50261110067367554,
+                0.49737519025802612,
+                0.49736636877059937
             ],
             "Scale": [
                 1.4969998598098755,
@@ -14225,9 +14227,9 @@
                     "rotationSpeed": 2,
                     "movementSpeed": 5.5,
                     "mouseSens": 1,
-                    "dashCD": 0.30000001192092896,
+                    "dashCD": 0.33000001311302185,
                     "dashDuration": 0.20000000298023224,
-                    "dashSpeed": 0,
+                    "dashSpeed": 30,
                     "fireRate": 0.15000000596046448,
                     "gadgetFireRate": 0.20000000298023224,
                     "fireRateAfterDashRecoverRatio": 1.75,
@@ -14288,6 +14290,7 @@
                     "RootBone UID": 547894527,
                     "MeshRendererUID": 2029792425,
                     "Animations": [
+                        814877702,
                         2130902709,
                         942859953,
                         720149964

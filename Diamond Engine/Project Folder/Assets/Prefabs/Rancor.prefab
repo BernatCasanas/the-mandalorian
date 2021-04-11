@@ -52,7 +52,7 @@
                     "isTrigger": false,
                     "Position": [
                         0,
-                        1,
+                        0.30000001192092896,
                         0
                     ],
                     "Rotation": [
@@ -80,9 +80,14 @@
                     "shortWanderTime": 2,
                     "longWanderTime": 4,
                     "wanderSpeed": 10,
+                    "meleeComboCollider": 593903660,
+                    "meleeComboJumpCollider": 762093390,
+                    "meleeComboMovSpeed": 3,
+                    "jumpAttackSpeed": 5,
+                    "jumpDelayDuration": 0.5,
                     "meleeCH1ColliderDuration": 0.20000000298023224,
                     "meleeCH2ColliderDuration": 0.20000000298023224,
-                    "meleeCH3ColliderDuration": 0.30000001192092896,
+                    "meleeCH3ColliderDuration": 0.60000002384185791,
                     "rushDamage": 5,
                     "loadRushTime": 0.40000000596046448,
                     "rushSpeed": 40
@@ -2802,6 +2807,164 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
                     "MaterialUID": 1948688504
+                }
+            ]
+        },
+        {
+            "name": "MeleeCollider",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0.23796534538269043,
+                1.2011109590530396
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                0.79365086555480957,
+                0.7935560941696167,
+                0.7935560941696167
+            ],
+            "UID": 593903660,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 67329654,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": true,
+                    "LockLinearY": true,
+                    "LockLinearZ": true,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
+                    "Mass": 0,
+                    "Density": 0
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1.3999999761581421,
+                        0.80000001192092896,
+                        0.80000001192092896
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "MeleeJumpCollider",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                -0.21775150299072266,
+                -3.5422087307779293e-07
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                2.2000000476837158,
+                2.1999466419219971,
+                0.99999916553497314
+            ],
+            "UID": 762093390,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 67329654,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": true,
+                    "LockLinearY": true,
+                    "LockLinearZ": true,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
+                    "Mass": 0,
+                    "Density": 0
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }
