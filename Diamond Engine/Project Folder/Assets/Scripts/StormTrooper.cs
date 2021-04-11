@@ -489,10 +489,6 @@ public class StormTrooper : Enemy
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
         Counter.roomEnemies--;
         Debug.Log("Enemies: " + Counter.roomEnemies.ToString());
-        if (Counter.roomEnemies <= 0)
-        {
-            Core.instance.gameObject.GetComponent<BoonSpawn>().SpawnBoons();
-        }
         player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
         InternalCalls.Destroy(gameObject);
     }
