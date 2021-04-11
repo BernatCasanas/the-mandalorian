@@ -84,10 +84,10 @@ position(_position), rotation(_rotation), localScale(_localScale)*/
 	
 
 	//We attach shape to a static or dynamic rigidbody to be collidable.
-	if (rigidbody != nullptr && colliderShape != nullptr) {
+	if (rigidbody != nullptr && colliderShape != nullptr) 
+	{
 		rigidbody->rigid_dynamic->attachShape(*colliderShape);
 		rigidbody->collider_info.push_back(this);
-
 	}
 	//else {
 	//	_gm->AddComponent(Component::TYPE::RIGIDBODY);
@@ -103,7 +103,8 @@ position(_position), rotation(_rotation), localScale(_localScale)*/
 
 	//}
 
-	colliderShape->setFlag(physx::PxShapeFlag::eVISUALIZATION, true);
+	if(colliderShape != nullptr)
+		colliderShape->setFlag(physx::PxShapeFlag::eVISUALIZATION, true);
 
 }
 
@@ -180,8 +181,6 @@ void C_BoxCollider::Update()
 		EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(float3(-half_size.x, half_size.y, +half_size.z)), trans.MulPos(float3(-half_size.x, half_size.y, -half_size.z)), float3(0.0f, 1.0f, 0.0f));
 
 		glColor3f(1.0f, 1.0f, 1.0f);
-
-
 	}
 #endif // !STANDALONE
 
@@ -224,7 +223,6 @@ void C_BoxCollider::LoadData(DEConfig& nObj)
 	rot = nObj.ReadQuat("Rotation");
 	scale = nObj.ReadVector3("Scale");
 
-
 	physx::PxTransform physTrans;
 	physTrans.p = physx::PxVec3(pos.x, pos.y, pos.z);
 	physTrans.q = physx::PxQuat(rot.x, rot.y, rot.z, rot.w);
@@ -232,10 +230,12 @@ void C_BoxCollider::LoadData(DEConfig& nObj)
 	newSize.x = colliderSize.x * scale.x;
 	newSize.y = colliderSize.y * scale.y;
 	newSize.z = colliderSize.z * scale.z;
-	colliderShape->setGeometry(physx::PxBoxGeometry(newSize.x, newSize.y, newSize.z));
-	colliderShape->setLocalPose(physTrans);
+
+	if (colliderShape != nullptr) {
+		colliderShape->setGeometry(physx::PxBoxGeometry(newSize.x, newSize.y, newSize.z));
+		colliderShape->setLocalPose(physTrans);
+	}
 
 	localTransform = float4x4::FromTRS(pos, rot, scale);
-
 }
 

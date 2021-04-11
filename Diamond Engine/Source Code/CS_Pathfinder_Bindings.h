@@ -21,7 +21,10 @@ void CS_CalculateRandomPath(MonoObject* go, MonoObject* startPos, float radius)
 
 	const char* name = mono_class_get_name(klass);
 	float3 destination = EngineExternal->modulePathfinding->FindRandomPointAround(EngineExternal->moduleMono->UnboxVector(startPos), radius);
-	EngineExternal->modulePathfinding->FindPath(EngineExternal->moduleMono->UnboxVector(startPos), destination, comp->path);
+	if (!EngineExternal->modulePathfinding->FindPath(EngineExternal->moduleMono->UnboxVector(startPos), destination, comp->path))
+	{
+		comp->path.push_back(destination);
+	}
 }
 
 void CS_CalculatePath(MonoObject* go, MonoObject* startPos, MonoObject* endPos)
