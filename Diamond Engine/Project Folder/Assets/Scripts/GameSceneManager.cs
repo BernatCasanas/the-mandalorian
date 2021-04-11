@@ -35,7 +35,7 @@ public class GameSceneManager : DiamondComponent
 
             if (rewardData != null && rewardObject != null)
             {
-                rewardInitialPos = Core.instance.gameObject.transform.globalPosition;    // Not this position, but for now it's fine;
+                rewardInitialPos = Core.instance.gameObject.transform.globalPosition + new Vector3(1.5f, 0.0f, 0.0f);    // Not this position, but for now it's fine;
                 rewardObject.transform.localPosition = rewardInitialPos;
                 rewardObject.AssignLibraryTextureToMaterial(rewardData.libraryTextureID, "diffuseTexture");
                 rewardObject.Enable(true);
@@ -53,6 +53,7 @@ public class GameSceneManager : DiamondComponent
                 rewardMenu.selectedReward = null;
                 rewardObject.Enable(false);
                 enemiesHaveSpawned = false;
+                rewardSpawnComponent.trigger = false;
                 rewardData = null;
 
                 if (!Counter.isFinalScene)

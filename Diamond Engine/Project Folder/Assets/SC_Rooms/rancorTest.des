@@ -1,21 +1,23 @@
 {
     "NavMesh": 1851738196,
     "EditorCameraPosition": [
-        -19.290647506713867,
-        22.017889022827148,
-        16.997777938842773
+        -4.9157567024230957,
+        23.080245971679688,
+        -16.737842559814453
     ],
     "EditorCameraZ": [
-        0.3803248405456543,
-        -0.78136450052261353,
-        -0.49479556083679199
+        -0.35391741991043091,
+        -0.75351786613464355,
+        0.55403387546539307
     ],
     "EditorCameraY": [
-        0.47620856761932373,
-        0.62407499551773071,
-        -0.61948031187057495
+        -0.40548557043075562,
+        0.65742743015289307,
+        0.63511466979980469
     ],
-    "tags": [],
+    "tags": [
+        "Wall"
+    ],
     "layers": [],
     "Game Objects": [
         {
@@ -216,6 +218,8 @@
                     "meleeCH1ColliderDuration": 0.20000000298023224,
                     "meleeCH2ColliderDuration": 0.20000000298023224,
                     "meleeCH3ColliderDuration": 0.60000002384185791,
+                    "prepareShotDuration": 1.7999999523162842,
+                    "projectilePoint": 2063439949,
                     "rushDamage": 5,
                     "loadRushTime": 0.40000000596046448,
                     "rushSpeed": 40
@@ -422,10 +426,10 @@
                 6.3329935073852539e-08
             ],
             "Rotation": [
-                -0.69168466329574585,
-                0.3998054563999176,
-                -0.038131203502416611,
-                0.60022819042205811
+                -0.69168472290039063,
+                0.39980551600456238,
+                -0.038131207227706909,
+                0.60022825002670288
             ],
             "Scale": [
                 1,
@@ -620,10 +624,10 @@
                 4.6566128730773926e-09
             ],
             "Rotation": [
-                0.94520783424377441,
-                -0.25782632827758789,
-                0.0020451326854526997,
-                -0.20025862753391266
+                0.94520795345306396,
+                -0.25782635807991028,
+                0.0020451329182833433,
+                -0.20025865733623505
             ],
             "Scale": [
                 1,
@@ -1874,10 +1878,10 @@
                 -4.4703483581542969e-08
             ],
             "Rotation": [
-                -0.019969150424003601,
-                0.029594490304589272,
-                -0.27162355184555054,
-                0.96174114942550659
+                -0.01996915228664875,
+                0.02959449402987957,
+                -0.27162358164787292,
+                0.96174126863479614
             ],
             "Scale": [
                 0.99999994039535522,
@@ -2072,10 +2076,10 @@
                 -1.4901161193847656e-08
             ],
             "Rotation": [
-                0.045865703374147415,
-                0.2960963249206543,
-                -0.31853440403938293,
-                0.89931035041809082
+                0.045865707099437714,
+                0.29609635472297668,
+                -0.31853443384170532,
+                0.89931046962738037
             ],
             "Scale": [
                 1,
@@ -2666,10 +2670,10 @@
                 -5.5879354476928711e-09
             ],
             "Rotation": [
-                -0.32018527388572693,
-                0.20791608095169067,
-                -0.11619275063276291,
-                0.91692501306533813
+                -0.32018530368804932,
+                0.20791611075401306,
+                -0.1161927655339241,
+                0.91692513227462769
             ],
             "Scale": [
                 1,
@@ -2798,10 +2802,10 @@
                 1.862645149230957e-09
             ],
             "Rotation": [
-                9.6178247588341037e-09,
-                -4.3361250590123745e-08,
-                0.21654406189918518,
-                0.9762728214263916
+                9.6178256470125234e-09,
+                -4.3361254142837424e-08,
+                0.21654409170150757,
+                0.97627294063568115
             ],
             "Scale": [
                 1,
@@ -3099,6 +3103,39 @@
                         1,
                         1
                     ]
+                }
+            ]
+        },
+        {
+            "name": "ProjectilePoint",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                1.4614632129669189,
+                1.9876432418823242,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 2063439949,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1029662745,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
                 }
             ]
         },
@@ -5398,6 +5435,322 @@
                     "Active": true,
                     "ScriptName": "GroguFollowPoints",
                     "priority": 4
+                }
+            ]
+        },
+        {
+            "name": "Cube",
+            "tag": "Wall",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -6.0701956748962402,
+                8.0971336364746094,
+                36.029747009277344
+            ],
+            "Rotation": [
+                -0.49999982118606567,
+                0.50000017881393433,
+                0.49999994039535522,
+                0.50000005960464478
+            ],
+            "Scale": [
+                1.0000009536743164,
+                37.4202880859375,
+                7.1323823928833008
+            ],
+            "UID": 1776821562,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 961502186,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        0.99998998641967773,
+                        0.99998998641967773
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 60,
+                    "Density": 60
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Cube",
+            "tag": "Wall",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -42.075454711914063,
+                8.097137451171875,
+                0
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                1,
+                37.424411773681641,
+                7.1328940391540527
+            ],
+            "UID": 445966214,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 961502186,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        0.99998998641967773,
+                        0.99998998641967773
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 60,
+                    "Density": 60
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Cube",
+            "tag": "Wall",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                30.508398056030273,
+                8.097137451171875,
+                0
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                1,
+                37.420547485351563,
+                7.132411003112793
+            ],
+            "UID": 295216568,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 961502186,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        0.99998998641967773,
+                        0.99998998641967773
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 60,
+                    "Density": 60
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Cube",
+            "tag": "Wall",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -6.0702176094055176,
+                8.0971336364746094,
+                -33.873397827148438
+            ],
+            "Rotation": [
+                -0.49999982118606567,
+                0.50000017881393433,
+                0.49999994039535522,
+                0.50000005960464478
+            ],
+            "Scale": [
+                1.0000009536743164,
+                37.4202880859375,
+                7.1323823928833008
+            ],
+            "UID": 1854178938,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 961502186,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        0.99998998641967773,
+                        0.99998998641967773
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 60,
+                    "Density": 60
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }
