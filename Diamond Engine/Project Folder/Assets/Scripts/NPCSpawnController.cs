@@ -92,7 +92,7 @@ public class NPCSpawnController : DiamondComponent
 
         if(prefabUID==GroguUID) { pos.y += 1.3f; }
 
-        GameObject unit = InternalCalls.CreatePrefab(prefabPath, pos, rot, Vector3.one);
+        GameObject unit = InternalCalls.CreatePrefab(prefabPath, pos, rot, new Vector3(1, 1, 1));
         //Animator animatorComponent = unit.GetComponent<Animator>();
         Debug.Log("Character: " + prefabUID + " , Animation: " + animation);
         switch(prefabUID)

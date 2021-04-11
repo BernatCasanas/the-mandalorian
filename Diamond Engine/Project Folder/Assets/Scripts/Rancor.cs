@@ -76,6 +76,7 @@ public class Rancor : DiamondComponent
     //Melee Combo
     public GameObject meleeComboCollider = null;
     public GameObject meleeComboJumpCollider = null;
+    private MoveMeleeCollForward meleeHit = null;
 
     private Vector3 meleeComboCollPos = new Vector3(0, 0, 0);
     private Vector3 meleeComboJumpCollPos = new Vector3(0, 0, 0);
@@ -113,7 +114,11 @@ public class Rancor : DiamondComponent
     private float projectileTime = 0.0f;
     private float projectileTimer = 0.0f;
 
+    public float prepareShotDuration = 0.5f;
+    private float prepareShotTimer = 0.0f;
+
     public GameObject projectilePoint = null;
+    private Vector3 target = new Vector3(0, 0, 0);
 
     //Hand slam
     private float handSlamTime = 0.0f;
@@ -161,13 +166,20 @@ public class Rancor : DiamondComponent
         {
             meleeComboCollPos = meleeComboCollider.transform.localPosition;
             meleeComboCollRot = meleeComboCollider.transform.localRotation;
+
+            meleeComboCollider.Enable(true);
+
         }
 
         if (meleeComboJumpCollider != null)
         {
             meleeComboJumpCollPos = meleeComboJumpCollider.transform.localPosition;
             meleeComboJumpCollRot = meleeComboJumpCollider.transform.localRotation;
+
+            meleeComboJumpCollider.Enable(true);
+
         }
+
     }
 
     public void Awake()
@@ -176,6 +188,11 @@ public class Rancor : DiamondComponent
 
         if (agent == null)
             Debug.Log("Null agent, add a NavMeshAgent Component");
+
+        meleeHit = meleeComboCollider.GetComponent<MoveMeleeCollForward>();
+
+        if (meleeHit == null)
+            Debug.Log("Null hit script");
 
         Animator.Play(gameObject, "RN_Idle");
 
@@ -607,11 +624,12 @@ public class Rancor : DiamondComponent
 
             if (meleeCH1ColliderTimer <= 0.0f)
             {
-                if (meleeComboCollider != null)
+                if (meleeComboCollider != null && meleeHit != null)
                 {
-                    meleeComboCollider.Enable(true);
+                    meleeHit.EnableHit(true);
                     meleeComboCollider.transform.localPosition = meleeComboCollPos;
-                    //meleeComboCollider.transform.localRotation = gameObject.transform.localRotation;
+                    //Mathf.LookAt(ref meleeComboCollider.transform, Core.instance.gameObject.transform.globalPosition);
+
                 }
             }
         }
@@ -622,8 +640,8 @@ public class Rancor : DiamondComponent
 
     private void EndMCHit1()
     {
-        if (meleeComboCollider != null)
-            meleeComboCollider.Enable(false);
+        if (meleeComboCollider != null && meleeHit != null)
+            meleeHit.EnableHit(true);
     }
 
 
@@ -646,11 +664,10 @@ public class Rancor : DiamondComponent
 
             if (meleeCH2ColliderTimer <= 0.0f)
             {
-                if (meleeComboCollider != null)
+                if (meleeComboJumpCollider != null && meleeHit != null)
                 {
-                    meleeComboCollider.Enable(true);
+                    //meleeHit.EnableHit(true);
                     meleeComboCollider.transform.localPosition = meleeComboCollPos;
-                    //meleeComboCollider.transform.localRotation = gameObject.transform.localRotation;
                 }
             }
         }
@@ -661,8 +678,8 @@ public class Rancor : DiamondComponent
 
     private void EndMCHit2()
     {
-        if (meleeComboCollider != null)
-            meleeComboCollider.Enable(false);
+        if (meleeComboCollider != null && meleeHit != null)
+            meleeHit.EnableHit(true);
     }
 
 
@@ -696,7 +713,9 @@ public class Rancor : DiamondComponent
             if (meleeCH3ColliderTimer <= 0.0f)
             {
                 if (meleeComboJumpCollider != null)
-                    meleeComboJumpCollider.Enable(true);
+                {
+                    //meleeHit.EnableHit(true);
+                }
             }
         }
 
@@ -716,7 +735,7 @@ public class Rancor : DiamondComponent
             gameObject.transform.localPosition = new Vector3(x, gameObject.transform.localPosition.y, z);
         }
         LookAt(jumpAttackTarget);
-        
+
 
         if (meleeComboJumpCollider != null)
         {
@@ -731,7 +750,10 @@ public class Rancor : DiamondComponent
         startedJumping = false;
 
         if (meleeComboJumpCollider != null)
-            meleeComboJumpCollider.Enable(false);
+        {
+            //meleeHit.EnableHit(true);
+
+        }
     }
 
     #endregion
@@ -793,19 +815,30 @@ public class Rancor : DiamondComponent
 
         Animator.Play(gameObject, "RN_ProjectileThrow");
         //add timer to spawn projectiles
-        if (projectilePoint != null)
-        {
-            Vector3 pos = projectilePoint.transform.globalPosition;
-            Quaternion rot = projectilePoint.transform.globalRotation;
-            Vector3 scale = new Vector3(1, 1, 1);
 
-            GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1893149913.prefab", pos, rot, scale);
-            projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
-        }
+        prepareShotTimer = prepareShotDuration;
     }
 
     private void UpdateProjectile()
     {
+        if (prepareShotTimer > 0.0f)
+        {
+            prepareShotTimer -= Time.deltaTime;
+
+            if (prepareShotTimer <= 0.0f)
+            {
+                if (projectilePoint != null)
+                {
+                    Vector3 pos = projectilePoint.transform.globalPosition;
+                    Quaternion rot = projectilePoint.transform.globalRotation;
+                    Vector3 scale = new Vector3(1, 1, 1);
+
+                    GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1893149913.prefab", pos, rot, scale);
+                    projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
+                }
+            }
+        }
+
         Debug.Log("Projectile");
     }
 
