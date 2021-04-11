@@ -92,6 +92,9 @@ public class HUD : DiamondComponent
     public GameObject shooting_blink = null;
     private float shoot_time = 0.0f;
 
+    bool comboHUDneedsUpdate = false;
+    Vector3 comboColor = Vector3.one;
+
     //stores the level as a key and the reward as a value
     Dictionary<int, ComboLvlUpEffects> lvlUpComboRewards = new Dictionary<int, ComboLvlUpEffects>
     {
@@ -118,6 +121,7 @@ public class HUD : DiamondComponent
         hp_descending = false;
         if (start)
         {
+            comboColor = Vector3.one;
             UpdateHP(PlayerHealth.currHealth, PlayerHealth.currMaxHealth);
             ResetCombo();
             UpdateForce(force, max_force);
@@ -231,7 +235,7 @@ public class HUD : DiamondComponent
         {
             DecreaseComboPercentage(0.3f);
         }
-        if (combo_bar != null && comboNumber > 0)
+        if (comboNumber > 0)
         {
             UpdateCombo();
         }
@@ -292,6 +296,11 @@ public class HUD : DiamondComponent
             ShootSwapImage(false);
             shoot_time = 0.0f;
         }
+
+        if (comboHUDneedsUpdate)
+        {
+            UpdateComboHUD();
+        }
     }
 
     public void AddToCombo(float comboUnitsToAdd, float weaponDecreaseTimeMultiplier)
@@ -316,17 +325,7 @@ public class HUD : DiamondComponent
             combo_gameobject.Enable(true);
         }
 
-        if (combo_text == null)
-            return;
-
-        combo_text.GetComponent<Text>().text = "x" + comboNumber.ToString();
-
-        if (combo_bar == null)
-            return;
-
-        combo_bar.GetComponent<Material>().SetIntUniform("combo_number", comboNumber);
-        combo_bar.GetComponent<Material>().SetFloatUniform("length_used", Mathf.InvLerp(0, fullComboTime, currComboTime));
-
+        comboHUDneedsUpdate = true;
     }
 
     void IncrementCombo()
@@ -351,10 +350,40 @@ public class HUD : DiamondComponent
             ResetCombo(true);
             return false;
         }
-        Material mat = combo_bar.GetComponent<Material>();
-        if (mat != null)
-            mat.SetFloatUniform("length_used", Mathf.InvLerp(0, fullComboTime, currComboTime));
+        comboHUDneedsUpdate = true;
         return true;
+    }
+
+    void UpdateComboHUD()
+    {
+        if (combo_text != null && combo_text.IsEnabled())
+        {
+            Text t = combo_text.GetComponent<Text>();
+            if (t != null)
+            {
+                t.text = "x" + comboNumber.ToString();
+                t.color_red = comboColor.x;
+                t.color_green = comboColor.y;
+                t.color_blue = comboColor.z;
+            }
+        }
+
+
+        if (combo_bar != null && combo_bar.IsEnabled())
+        {
+            Material m = combo_bar.GetComponent<Material>();
+            if (m != null)
+            {
+                m.SetIntUniform("combo_number", comboNumber);
+                m.SetFloatUniform("length_used", Mathf.InvLerp(0, fullComboTime, currComboTime));
+
+                m.SetFloatUniform("r", comboColor.x);
+                m.SetFloatUniform("g", comboColor.y);
+                m.SetFloatUniform("b", comboColor.z);
+            }
+        }
+
+        comboHUDneedsUpdate = false;
     }
 
     public void ResetCombo(bool applyRewards = false)
@@ -405,17 +434,7 @@ public class HUD : DiamondComponent
         OnLvlUpComboChange();
 
 
-        Material comboMat = combo_bar.GetComponent<Material>();
-        if (comboMat != null)
-        {
-            comboMat.SetIntUniform("combo_number", comboNumber);
-            combo_bar.GetComponent<Material>().SetFloatUniform("length_used", Mathf.InvLerp(0, fullComboTime, currComboTime));
-        }
-
-        if (combo_text == null || combo_text.GetComponent<Text>()==null)
-            return;
-
-        combo_text.GetComponent<Text>().text = "x" + comboNumber.ToString();
+        comboHUDneedsUpdate = true;
 
         if (combo_gameobject != null)
             combo_gameobject.Enable(false);
@@ -436,20 +455,11 @@ public class HUD : DiamondComponent
 
         UpdateForce((int)(force + (max_force * lvlUpComboData.forceBarPercentageRecovery)), max_force); //TODO check this works fine (at the time of creating this line force doesn't work and this part of the method cannot be tested)
 
+        comboColor.x = lvlUpComboData.colorUpdate.x;
+        comboColor.y = lvlUpComboData.colorUpdate.y;
+        comboColor.z = lvlUpComboData.colorUpdate.z;
 
-        Text t = combo_text.GetComponent<Text>();
-        if (t != null)
-        {
-            t.color_red = lvlUpComboData.colorUpdate.x;
-            t.color_green = lvlUpComboData.colorUpdate.y;
-            t.color_blue = lvlUpComboData.colorUpdate.z;
-        }
-        if (combo_bar != null)
-        {
-            combo_bar.GetComponent<Material>().SetFloatUniform("r", lvlUpComboData.colorUpdate.x);
-            combo_bar.GetComponent<Material>().SetFloatUniform("g", lvlUpComboData.colorUpdate.y);
-            combo_bar.GetComponent<Material>().SetFloatUniform("b", lvlUpComboData.colorUpdate.z);
-        }
+        comboHUDneedsUpdate = true;
     }
 
     //percentage between 0 and 1 (0%-100%) decreases the time left for the current combo to deplete
@@ -523,7 +533,7 @@ public class HUD : DiamondComponent
 
     public void ShootSwapImage(bool shoot)
     {
-        if (shooting_blink!= null)
+        if (shooting_blink != null)
         {
             if (shoot)
             {
