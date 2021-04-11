@@ -7,14 +7,16 @@ public class RancorProjectile : DiamondComponent
 	public float lifeTime = 20.0f;
 	public int damage = 10;
 
-	public Vector3 targetPos = new Vector3(0, 0, 0);	//Set from Rancor.cs
+	public Vector3 targetPos = new Vector3(0, 0, 0);    //Set from Rancor.cs
+	private Vector3 targetDirection = Vector3.zero;
 
 
 	public void Update()
 	{
-		Vector3 direction = targetPos - gameObject.transform.globalPosition;
-
-		gameObject.transform.localPosition += direction.normalized * speed * Time.deltaTime;
+		if (targetDirection == Vector3.zero)
+			targetDirection = targetPos - gameObject.transform.globalPosition;
+		
+		gameObject.transform.localPosition += targetDirection.normalized * speed * Time.deltaTime;
 
 		lifeTime -= Time.deltaTime;
 

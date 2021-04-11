@@ -795,7 +795,11 @@ public class Rancor : DiamondComponent
         //add timer to spawn projectiles
         if (projectilePoint != null)
         {
-            GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1893149913.prefab", projectilePoint.transform.localPosition, projectilePoint.transform.localRotation, projectilePoint.transform.localScale);
+            Vector3 pos = projectilePoint.transform.globalPosition;
+            Quaternion rot = projectilePoint.transform.globalRotation;
+            Vector3 scale = new Vector3(1, 1, 1);
+
+            GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1893149913.prefab", pos, rot, scale);
             projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
         }
     }
@@ -984,6 +988,11 @@ public class Rancor : DiamondComponent
             {
                 inputsList.Add(RANCOR_INPUT.IN_DEAD);
             }
+        }
+        else if (collidedGameObject.CompareTag("Wall"))
+        {
+            if (currentState == RANCOR_STATE.RUSH)
+                inputsList.Add(RANCOR_INPUT.IN_RUSH_STUN);
         }
         else if (collidedGameObject.CompareTag("Player"))
         {
