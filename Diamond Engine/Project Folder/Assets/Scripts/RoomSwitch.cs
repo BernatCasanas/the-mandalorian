@@ -113,6 +113,8 @@ public class RoomSwitch : DiamondComponent
         {
 			RoomSwitch.levelLists[i].ClearData(RoomSwitch.originalLevelPools[i]);
         }
+
+		Counter.gameResult = Counter.GameResult.NONE;   // This is morally wrong. But we don't have a scene manager
 	}
 
 	public void OnApplicationQuit()

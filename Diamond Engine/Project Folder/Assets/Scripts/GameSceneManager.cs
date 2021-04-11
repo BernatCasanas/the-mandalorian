@@ -3,8 +3,6 @@ using DiamondEngine;
 
 public class GameSceneManager : DiamondComponent
 {
-
-    bool enemiesHaveSpawned = false;
     GameObject rewardObject = null;
     EndLevelRewardSpawn rewardSpawnComponent = null;
     EndLevelRewards rewardMenu = new EndLevelRewards();
@@ -24,17 +22,13 @@ public class GameSceneManager : DiamondComponent
 
     public void Update()
     {
-        if (Counter.roomEnemies > 0)    // This would, ideally, not be necessary, and enemies generating would have nothing to do with dialogue ocurring, since it would (presumably) stop the game
-        {
-            enemiesHaveSpawned = true;
-        }
-
-        else if (enemiesHaveSpawned && Counter.roomEnemies <= 0 && rewardData == null && Counter.gameResult != Counter.GameResult.DEFEAT)    // Right now, when a room begins, enemy counter = 0
+        if (Counter.allEnemiesDead && rewardData == null)    // We need a scene manager :')
         {
             rewardData = rewardMenu.GenerateRewardPipeline();
 
             if (rewardData != null && rewardObject != null)
             {
+                Counter.allEnemiesDead = false;
                 rewardInitialPos = Core.instance.gameObject.transform.globalPosition + new Vector3(1.5f, 0.0f, 0.0f);    // Not this position, but for now it's fine;
                 rewardObject.transform.localPosition = rewardInitialPos;
                 rewardObject.AssignLibraryTextureToMaterial(rewardData.libraryTextureID, "diffuseTexture");
@@ -52,7 +46,6 @@ public class GameSceneManager : DiamondComponent
                 rewardData.Use();
                 rewardMenu.selectedReward = null;
                 rewardObject.Enable(false);
-                enemiesHaveSpawned = false;
                 rewardSpawnComponent.trigger = false;
                 rewardData = null;
 
