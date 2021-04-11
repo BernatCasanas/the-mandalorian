@@ -488,6 +488,10 @@ public class Bantha : Enemy
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_BANTHA);
         Counter.roomEnemies--;
         Debug.Log("Enemies: " + Counter.roomEnemies.ToString());
+        if(Counter.roomEnemies <= 0)
+        {
+            Counter.allEnemiesDead = true;
+        }
         player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
         InternalCalls.Destroy(gameObject);
     }

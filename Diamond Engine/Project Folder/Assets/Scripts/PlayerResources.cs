@@ -72,41 +72,43 @@ public static class PlayerResources
         return resourceLeft;
     }
 
-    public static int SubstractResourceBy1(RewardType type, Type boonType = null)
+    public static int SubstractResource(RewardType type, int total_to_substract, Type boonType = null)
     {
         int resourceLeft = 0;
+        if (total_to_substract <= 0)
+            return resourceLeft;
 
         switch (type)
         {
             case RewardType.REWARD_BOON:
-                resourceLeft = AddBoonToMap(-1, boonType);
+                resourceLeft = AddBoonToMap(-total_to_substract, boonType);
                 break;
 
             case RewardType.REWARD_BESKAR:
                 if (beskarCounter > 0)
                 {
-                    resourceLeft = --beskarCounter;
+                    resourceLeft = beskarCounter - total_to_substract ;
                 }
                 break;
 
             case RewardType.REWARD_MACARON:
                 if (macaronCounter > 0)
                 {
-                    resourceLeft = --macaronCounter;
+                    resourceLeft = macaronCounter - (total_to_substract);
                 }
                 break;
 
             case RewardType.REWARD_SCRAP:
                 if (scrapCounter > 0)
                 {
-                    resourceLeft = --scrapCounter;
+                    resourceLeft = scrapCounter - total_to_substract;
                 }
                 break;
 
             case RewardType.REWARD_MILK:
                 if (milkCounter > 0)
                 {
-                    resourceLeft = --milkCounter;
+                    resourceLeft = milkCounter - total_to_substract;
                 }
                 break;
         }
