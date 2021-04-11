@@ -25,6 +25,7 @@ public class GameSceneManager : DiamondComponent
         if (Counter.allEnemiesDead && rewardData == null)    // We need a scene manager :')
         {
             rewardData = rewardMenu.GenerateRewardPipeline();
+            Debug.Log("Reward data texture id is " + rewardData.libraryTextureID + " and reward type is " + rewardData.resourceType);
 
             if (rewardData != null && rewardObject != null)
             {
