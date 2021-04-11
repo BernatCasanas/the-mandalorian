@@ -734,6 +734,7 @@ public class Rancor : DiamondComponent
                 if (meleeComboJumpCollider != null)
                 {
                     meleeComboJumpCollider.transform.localPosition = new Vector3(0, 1000, 0);
+                    Audio.PlayAudio(gameObject, "Play_Rancor_Area_Impact");
                 }
             }
 
