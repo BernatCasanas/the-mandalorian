@@ -5,11 +5,11 @@
   "SchemaVersion": "12",
   "SoundbankVersion": "135",
   "RootPaths": {
-   "ProjectRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\",
-   "SourceFilesRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\.cache\\Windows\\",
-   "SoundBanksRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows\\",
+   "ProjectRoot": "C:\\Users\\PC1\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\",
+   "SourceFilesRoot": "C:\\Users\\PC1\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\.cache\\Windows\\",
+   "SoundBanksRoot": "C:\\Users\\PC1\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows\\",
    "ExternalSourcesInputFile": "",
-   "ExternalSourcesOutputRoot": "C:\\Users\\admin\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows"
+   "ExternalSourcesOutputRoot": "C:\\Users\\PC1\\Documents\\GitHub\\Wwise-project\\Virtual Ragnarok Audio\\GeneratedSoundBanks\\Windows"
   },
   "DialogueEvents": [],
   "StreamedFiles": [],
@@ -18,7 +18,6 @@
    {
     "Id": "833070093",
     "Language": "SFX",
-    "Hash": "3903376156",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Stormtrooper",
     "ShortName": "Stormtrooper",
     "Path": "Stormtrooper.bnk",
@@ -207,7 +206,6 @@
    {
     "Id": "1093318992",
     "Language": "SFX",
-    "Hash": "2862124982",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Mando",
     "ShortName": "Mando",
     "Path": "Mando.bnk",
@@ -605,7 +603,6 @@
    {
     "Id": "1551306167",
     "Language": "SFX",
-    "Hash": "3429386044",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI",
     "ShortName": "UI",
     "Path": "UI.bnk",
@@ -702,7 +699,7 @@
    {
     "Id": "3049191116",
     "Language": "SFX",
-    "Hash": "1284087884",
+    "Hash": "745277780",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Rancor",
     "ShortName": "Rancor",
     "Path": "Rancor.bnk",
@@ -714,6 +711,44 @@
       "DurationType": "OneShot",
       "DurationMin": "0.000000",
       "DurationMax": "0.000000"
+     },
+     {
+      "Id": "71208304",
+      "Name": "Play_Rancor_Breath",
+      "ObjectPath": "\\Events\\Default Work Unit\\Rancor\\Play_Rancor_Breath",
+      "DurationType": "OneShot",
+      "DurationMin": "2.054966",
+      "DurationMax": "2.054966",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "1050047278",
+        "Language": "SFX",
+        "ShortName": "Rancor Breath.wav",
+        "Path": "SFX\\Rancor Breath_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "2129427556",
+      "Name": "Play_Rancor_Death",
+      "ObjectPath": "\\Events\\Default Work Unit\\Rancor\\Play_Rancor_Death",
+      "DurationType": "OneShot",
+      "DurationMin": "6.560365",
+      "DurationMax": "6.560365",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "287144272",
+        "Language": "SFX",
+        "ShortName": "Rancor death voice.wav",
+        "Path": "SFX\\Rancor death voice_10C4C929.wem"
+       },
+       {
+        "Id": "685391831",
+        "Language": "SFX",
+        "ShortName": "rancor death fall.wav",
+        "Path": "SFX\\rancor death fall_10C4C929.wem"
+       }
+      ]
      },
      {
       "Id": "393948735",
@@ -736,6 +771,140 @@
       ]
      },
      {
+      "Id": "1949657139",
+      "Name": "Play_Rancor_Hand_Slam",
+      "ObjectPath": "\\Events\\Default Work Unit\\Rancor\\Play_Rancor_Hand_Slam",
+      "DurationType": "OneShot",
+      "DurationMin": "1.620930",
+      "DurationMax": "1.620930",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "818849677",
+        "Language": "SFX",
+        "ShortName": "Rancor_HandSlam.wav",
+        "Path": "SFX\\Rancor_HandSlam_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "403129218",
+      "Name": "Play_Rancor_Melee",
+      "ObjectPath": "\\Events\\Default Work Unit\\Rancor\\Play_Rancor_Melee",
+      "DurationType": "OneShot",
+      "DurationMin": "4.962643",
+      "DurationMax": "4.962643",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "30862167",
+        "Language": "SFX",
+        "ShortName": "rancor punch swish 2.wav",
+        "Path": "SFX\\rancor punch swish 2_10C4C929.wem"
+       },
+       {
+        "Id": "36736387",
+        "Language": "SFX",
+        "ShortName": "Rancor booty impact.wav",
+        "Path": "SFX\\Rancor booty impact_10C4C929.wem"
+       },
+       {
+        "Id": "872536724",
+        "Language": "SFX",
+        "ShortName": "rancor punch swish.wav",
+        "Path": "SFX\\rancor punch swish_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "3823299811",
+      "Name": "Play_Rancor_Recovery",
+      "ObjectPath": "\\Events\\Default Work Unit\\Rancor\\Play_Rancor_Recovery",
+      "DurationType": "OneShot",
+      "DurationMin": "0.779841",
+      "DurationMax": "0.779841",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "825049687",
+        "Language": "SFX",
+        "ShortName": "Rancor wall impact.wav",
+        "Path": "SFX\\Rancor wall impact_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "3430546032",
+      "Name": "Play_Rancor_Rush_Fall",
+      "ObjectPath": "\\Events\\Default Work Unit\\Rancor\\Play_Rancor_Rush_Fall",
+      "DurationType": "OneShot",
+      "DurationMin": "1.082934",
+      "DurationMax": "1.082934",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "685391831",
+        "Language": "SFX",
+        "ShortName": "rancor death fall.wav",
+        "Path": "SFX\\rancor death fall_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "504785516",
+      "Name": "Play_Rancor_Rush_Steps",
+      "ObjectPath": "\\Events\\Default Work Unit\\Rancor\\Play_Rancor_Rush_Steps",
+      "DurationType": "Infinite",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "92596664",
+        "Language": "SFX",
+        "ShortName": "Rancor chain step 2.wav",
+        "Path": "SFX\\Rancor chain step 2_10C4C929.wem"
+       },
+       {
+        "Id": "208519487",
+        "Language": "SFX",
+        "ShortName": "Rancor chain step 1.wav",
+        "Path": "SFX\\Rancor chain step 1_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1699620314",
+      "Name": "Play_Rancor_Throw",
+      "ObjectPath": "\\Events\\Default Work Unit\\Rancor\\Play_Rancor_Throw",
+      "DurationType": "OneShot",
+      "DurationMin": "3.140181",
+      "DurationMax": "3.140181",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "22332606",
+        "Language": "SFX",
+        "ShortName": "Rancor rock pull.wav",
+        "Path": "SFX\\Rancor rock pull_10C4C929.wem"
+       },
+       {
+        "Id": "930133299",
+        "Language": "SFX",
+        "ShortName": "Rancor Projectile throw.wav",
+        "Path": "SFX\\Rancor Projectile throw_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "2772419814",
+      "Name": "Play_Rock_Impact",
+      "ObjectPath": "\\Events\\Default Work Unit\\Rancor\\Play_Rock_Impact",
+      "DurationType": "OneShot",
+      "DurationMin": "1.080604",
+      "DurationMax": "1.080604",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "769836140",
+        "Language": "SFX",
+        "ShortName": "Rock impact.wav",
+        "Path": "SFX\\Rock impact_10C4C929.wem"
+       }
+      ]
+     },
+     {
       "Id": "1931338186",
       "Name": "Resume_Object",
       "ObjectPath": "\\Events\\Default Work Unit\\Resume_Object",
@@ -751,12 +920,18 @@
       "DurationMin": "0.000000",
       "DurationMax": "0.000000"
      }
+    ],
+    "GameParameters": [
+     {
+      "Id": "467158820",
+      "Name": "SourceVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
+     }
     ]
    },
    {
     "Id": "3434002875",
     "Language": "SFX",
-    "Hash": "1651508073",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Cantine",
     "ShortName": "Cantine",
     "Path": "Cantine.bnk",
@@ -806,7 +981,6 @@
    {
     "Id": "3795682265",
     "Language": "SFX",
-    "Hash": "4220554066",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Bantha",
     "ShortName": "Bantha",
     "Path": "Bantha.bnk",
@@ -1015,7 +1189,6 @@
    {
     "Id": "3991942870",
     "Language": "SFX",
-    "Hash": "1869783493",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Music",
     "ShortName": "Music",
     "Path": "Music.bnk",
@@ -1385,7 +1558,6 @@
    {
     "Id": "4179269225",
     "Language": "SFX",
-    "Hash": "4208834724",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Grogu",
     "ShortName": "Grogu",
     "Path": "Grogu.bnk",
