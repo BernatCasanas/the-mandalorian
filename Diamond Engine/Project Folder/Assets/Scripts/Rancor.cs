@@ -104,11 +104,15 @@ public class Rancor : DiamondComponent
 
     public float meleeCH1ColliderDuration = 0.0f;
     public float meleeCH2ColliderDuration = 0.0f;
-    public float meleeCH3ColliderDuration = 0.0f;
+    public float meleeComboHit3CollisionTimeToActivate = 0.0f;
+    public float meleeComboHit3CollisionDuration= 0.0f;
+
 
     private float meleeCH1ColliderTimer = 0.0f;
     private float meleeCH2ColliderTimer = 0.0f;
     private float meleeCH3ColliderTimer = 0.0f;
+    private float meleeCH3ColliderActiveTimer = 0.0f;
+
 
     //Projectile
     private float projectileTime = 0.0f;
@@ -177,6 +181,8 @@ public class Rancor : DiamondComponent
             meleeComboJumpCollRot = meleeComboJumpCollider.transform.localRotation;
 
             meleeComboJumpCollider.Enable(true);
+
+            meleeComboJumpCollider.transform.localPosition = new Vector3(0, 1000, 0);
 
         }
 
@@ -664,7 +670,7 @@ public class Rancor : DiamondComponent
 
             if (meleeCH2ColliderTimer <= 0.0f)
             {
-                if (meleeComboJumpCollider != null && meleeHit != null)
+                if (meleeComboCollider != null && meleeHit != null)
                 {
                     meleeHit.EnableHit(true);
                     meleeComboCollider.transform.localPosition = meleeComboCollPos;
@@ -686,7 +692,8 @@ public class Rancor : DiamondComponent
     private void StartMCHit3()
     {
         meleeCH3Timer = meleeComboHit3Time;
-        meleeCH3ColliderTimer = meleeCH3ColliderDuration;
+        meleeCH3ColliderTimer = meleeComboHit3CollisionTimeToActivate;
+        meleeCH3ColliderActiveTimer = meleeComboHit3CollisionDuration;
 
         Animator.Play(gameObject, "RN_MeleeComboP3");
 
@@ -697,7 +704,7 @@ public class Rancor : DiamondComponent
 
         if (meleeComboJumpCollider != null)
         {
-            meleeComboJumpCollider.transform.localPosition = meleeComboJumpCollPos;
+            meleeComboJumpCollider.transform.localPosition = new Vector3(0, 1000, 0);
             meleeComboJumpCollider.transform.localRotation = meleeComboJumpCollRot;
         }
     }
@@ -714,9 +721,22 @@ public class Rancor : DiamondComponent
             {
                 if (meleeComboJumpCollider != null)
                 {
-                    //meleeHit.EnableHit(true);
+                    meleeComboJumpCollider.transform.localPosition = meleeComboJumpCollPos;
                 }
             }
+        }
+        else if (meleeCH3ColliderActiveTimer > 0.0f)
+        {
+            meleeCH3ColliderActiveTimer -= Time.deltaTime;
+
+            if (meleeCH3ColliderActiveTimer <= 0.0f)
+            {
+                if (meleeComboJumpCollider != null)
+                {
+                    meleeComboJumpCollider.transform.localPosition = new Vector3(0, 1000, 0);
+                }
+            }
+
         }
 
 
@@ -735,13 +755,6 @@ public class Rancor : DiamondComponent
             gameObject.transform.localPosition = new Vector3(x, gameObject.transform.localPosition.y, z);
         }
         LookAt(jumpAttackTarget);
-
-
-        if (meleeComboJumpCollider != null)
-        {
-            meleeComboJumpCollider.transform.localPosition = meleeComboJumpCollPos;
-            meleeComboJumpCollider.transform.localRotation = meleeComboJumpCollRot;
-        }
     }
 
     private void EndMCHit3()
@@ -751,8 +764,7 @@ public class Rancor : DiamondComponent
 
         if (meleeComboJumpCollider != null)
         {
-            //meleeHit.EnableHit(true);
-
+            meleeComboJumpCollider.transform.localPosition = new Vector3(0, 1000, 0);
         }
     }
 
@@ -991,7 +1003,6 @@ public class Rancor : DiamondComponent
 
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
-
         if (collidedGameObject.CompareTag("Bullet"))
         {
             healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
@@ -1006,7 +1017,14 @@ public class Rancor : DiamondComponent
         }
         else if (collidedGameObject.CompareTag("Grenade"))
         {
-            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+            bigGrenade bGrenade = collidedGameObject.GetComponent<bigGrenade>();
+            smallGrenade sGrenade = collidedGameObject.GetComponent<smallGrenade>();
+
+            if (bGrenade != null)
+                healthPoints -= bGrenade.damage;
+
+            if (sGrenade != null)
+                healthPoints -= sGrenade.damage;
 
             Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
 
