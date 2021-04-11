@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -5.940704345703125,
-        37.539608001708984,
-        -20.447248458862305
+        -6.9650235176086426,
+        18.409622192382813,
+        -12.645071983337402
     ],
     "EditorCameraZ": [
-        -0.17378240823745728,
-        -0.97288185358047485,
-        0.15264534950256348
+        0.58443379402160645,
+        -0.72689902782440186,
+        0.36063146591186523
     ],
     "EditorCameraY": [
-        -0.73041349649429321,
-        0.23130249977111816,
-        0.64264708757400513
+        0.61877524852752686,
+        0.6867443323135376,
+        0.38144385814666748
     ],
     "tags": [],
     "layers": [],
@@ -15703,6 +15703,912 @@
             ]
         },
         {
+            "name": "InsideColliderMando",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                12.485654830932617,
+                0,
+                17.360584259033203
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1965028590,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1847907807,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "InsideCollider",
+                    "colliderPosition": 639675190,
+                    "player": 488445221,
+                    "maxDistance": 20,
+                    "displayText": 1974668928
+                }
+            ]
+        },
+        {
+            "name": "MandoTreeText",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                -12.485654830932617,
+                0,
+                -17.360584259033203
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1974668928,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1965028590,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 817322642,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1974668928,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -45.299999237060547,
+                        -66.800003051757813
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        8.8000001907348633,
+                        14.199999809265137
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": " Press A to open Mando's SkillTree...",
+                    "maxTextLenght": 1120,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "TextBox",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 945464123,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1974668928,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        3.4000000953674316,
+                        -67.199996948242188
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        58.600002288818359,
+                        20.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1848582122.dds",
+                    "UID": 1848582122
+                }
+            ]
+        },
+        {
+            "name": "Button",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1636443186,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 945464123,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        54.099998474121094,
+                        -11.899999618530273
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        2.9000000953674316,
+                        6.0999999046325684
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_right_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/70978250.dds",
+                    "Pressed_UID": 70978250,
+                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1346482548.dds",
+                    "Hovered_UID": 1346482548,
+                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1346482548.dds",
+                    "Unhovered_UID": 1346482548,
+                    "Script_Name": "Enable",
+                    "ButtonState": 1,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/arrow_right.png",
+                    "LibraryPath": "Library\/Textures\/1346482548.dds",
+                    "UID": 1346482548
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1636443186,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Enable",
+                    "disable": 1965028590,
+                    "disable2": 1974668928
+                }
+            ]
+        },
+        {
+            "name": "InsideColliderGrogu",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                12.485654830932617,
+                0,
+                17.360584259033203
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 254437374,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1847907807,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "InsideCollider",
+                    "colliderPosition": 960381075,
+                    "player": 488445221,
+                    "maxDistance": 20,
+                    "displayText": 346540431
+                }
+            ]
+        },
+        {
+            "name": "GroguTreeText",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                -12.485654830932617,
+                0,
+                -17.360584259033203
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 346540431,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 254437374,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1660056253,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 346540431,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -45.299999237060547,
+                        -66.800003051757813
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        8.8000001907348633,
+                        14.199999809265137
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": " Press A to open Grogu's SkillTree...",
+                    "maxTextLenght": 1120,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "TextBox",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1501475867,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 346540431,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        3.4000000953674316,
+                        -67.199996948242188
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        58.600002288818359,
+                        20.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1848582122.dds",
+                    "UID": 1848582122
+                }
+            ]
+        },
+        {
+            "name": "Button",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1189851388,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1501475867,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        54.099998474121094,
+                        -11.899999618530273
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        2.9000000953674316,
+                        6.0999999046325684
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_right_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/70978250.dds",
+                    "Pressed_UID": 70978250,
+                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1346482548.dds",
+                    "Hovered_UID": 1346482548,
+                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1346482548.dds",
+                    "Unhovered_UID": 1346482548,
+                    "Script_Name": "Enable",
+                    "ButtonState": 1,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/arrow_right.png",
+                    "LibraryPath": "Library\/Textures\/1346482548.dds",
+                    "UID": 1346482548
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1189851388,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Enable",
+                    "disable": 254437374,
+                    "disable2": 346540431
+                }
+            ]
+        },
+        {
+            "name": "InsideColliderWeapons",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                12.485654830932617,
+                0,
+                17.360584259033203
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 560237047,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1847907807,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "InsideCollider",
+                    "colliderPosition": 993695001,
+                    "player": 488445221,
+                    "maxDistance": 20,
+                    "displayText": 1951394275
+                }
+            ]
+        },
+        {
+            "name": "WeaponsTreeText",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                -12.485654830932617,
+                0,
+                -17.360584259033203
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1951394275,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 560237047,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1762859614,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1951394275,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -45.299999237060547,
+                        -66.800003051757813
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        8.8000001907348633,
+                        14.199999809265137
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": " Press A to open the Weapons's SkillTree...",
+                    "maxTextLenght": 1120,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "TextBox",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1211276597,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1951394275,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        3.4000000953674316,
+                        -67.199996948242188
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        58.600002288818359,
+                        20.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1848582122.dds",
+                    "UID": 1848582122
+                }
+            ]
+        },
+        {
+            "name": "Button",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 752625694,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1211276597,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        54.099998474121094,
+                        -11.899999618530273
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        2.9000000953674316,
+                        6.0999999046325684
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_right_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/70978250.dds",
+                    "Pressed_UID": 70978250,
+                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1346482548.dds",
+                    "Hovered_UID": 1346482548,
+                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1346482548.dds",
+                    "Unhovered_UID": 1346482548,
+                    "Script_Name": "Enable",
+                    "ButtonState": 1,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/arrow_right.png",
+                    "LibraryPath": "Library\/Textures\/1346482548.dds",
+                    "UID": 1346482548
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 752625694,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Enable",
+                    "disable": 560237047,
+                    "disable2": 1951394275
+                }
+            ]
+        },
+        {
             "name": "Hub Controller",
             "tag": "Untagged",
             "layer": "Default",
@@ -15769,7 +16675,7 @@
                     "grogu_portrait_size_y": 77.199996948242188,
                     "total_interactions": 3,
                     "total_stages": 6,
-                    "maximum_distance_to_interact_squared": 20,
+                    "maximum_distance_to_interact_squared": 15,
                     "bo_katan_stage": 0,
                     "greef_stage": 0,
                     "ashoka_stage": 0,
@@ -15790,7 +16696,10 @@
                     "grogu_tree_activation_point": 960381075,
                     "weapon_tree": 815764826,
                     "weapon_tree_activation_point": 993695001,
-                    "maximum_distance_to_interact_squared": 20
+                    "maximum_distance_to_interact_squared_skill": 20,
+                    "mandoText": 1965028590,
+                    "groguText": 254437374,
+                    "weaponText": 560237047
                 }
             ]
         },
@@ -15831,7 +16740,7 @@
                     "ScriptName": "InsideCollider",
                     "colliderPosition": 937252279,
                     "player": 488445221,
-                    "maxDistance": 1.5000027418136597,
+                    "maxDistance": 4.9999957084655762,
                     "displayText": 1994074079
                 }
             ]

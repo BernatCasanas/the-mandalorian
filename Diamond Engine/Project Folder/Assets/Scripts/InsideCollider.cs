@@ -10,6 +10,9 @@ public class InsideCollider : DiamondComponent
 
     public void Update()
 	{
+        if (displayText == null)
+            return;
+
         if (IsInside() && displayText.IsEnabled() == false) 
             displayText.Enable(true);
         else if(!IsInside() && displayText.IsEnabled()) 
@@ -18,10 +21,12 @@ public class InsideCollider : DiamondComponent
 
     public bool IsInside()
     {
+        if (player == null || colliderPosition == null)
+            return false;
+
         Vector3 playerPos = player.transform.globalPosition;
         Vector3 colliderPos = colliderPosition.transform.globalPosition;
-        double insideNum = Math.Pow(playerPos.x - colliderPos.x, 2) + Math.Pow(playerPos.y - colliderPos.y, 2) + Math.Pow(playerPos.z - colliderPos.z, 2);
-        double distance = Math.Sqrt(insideNum);
+        double distance = playerPos.DistanceNoSqrt(colliderPos);
 
         if (distance >= -maxDistance && distance <= maxDistance)        
             return true;    

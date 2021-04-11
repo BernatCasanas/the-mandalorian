@@ -13,7 +13,11 @@ public class HubSkillTreeController : DiamondComponent
 
 	public Skills skill_selected = null;
 
-	public float maximum_distance_to_interact_squared = 0.0f;
+	public float maximum_distance_to_interact_squared_skill = 0.0f;
+
+	public GameObject mandoText = null;
+	public GameObject groguText = null;
+	public GameObject weaponText = null;
 
 	public void Update()
 	{
@@ -27,38 +31,50 @@ public class HubSkillTreeController : DiamondComponent
             if (mando_tree !=null && mando_tree.IsEnabled())
             {
 				mando_tree.EnableNav(false);
+				if (mandoText != null)
+					mandoText.Enable(true);
 				return;
             }
 			if (grogu_tree!=null && grogu_tree.IsEnabled())
 			{
 				grogu_tree.EnableNav(false);
+				if (groguText != null)
+					groguText.Enable(true);
 				return;
 			}
 			if (weapon_tree !=null && weapon_tree.IsEnabled())
 			{
 				weapon_tree.EnableNav(false);
+				if (weaponText != null)
+					weaponText.Enable(true);
 				return;
 			}
 		}
 		if (mando_tree != null && mando_tree_activation_point != null)
 		{
-			if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(mando_tree_activation_point.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
+			if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(mando_tree_activation_point.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared_skill)
 			{
 				mando_tree.EnableNav(true);
+				if (mandoText != null)
+					mandoText.Enable(false);
 			}
 		}
 		if (grogu_tree != null && grogu_tree_activation_point != null)
 		{
-			if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(grogu_tree_activation_point.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
+			if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(grogu_tree_activation_point.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared_skill)
 			{
 				grogu_tree.EnableNav(true);
+				if (groguText != null)
+					groguText.Enable(false);
 			}
 		}
 		if (weapon_tree != null && weapon_tree_activation_point != null)
 		{
-			if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(weapon_tree_activation_point.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
+			if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(weapon_tree_activation_point.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared_skill)
 			{
 				weapon_tree.EnableNav(true);
+				if (weaponText != null)
+					weaponText.Enable(false);
 			}
 		}
 	}
