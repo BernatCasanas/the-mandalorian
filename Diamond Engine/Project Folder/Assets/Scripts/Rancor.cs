@@ -113,7 +113,11 @@ public class Rancor : DiamondComponent
     private float projectileTime = 0.0f;
     private float projectileTimer = 0.0f;
 
+    public float prepareShotDuration = 0.5f;
+    private float prepareShotTimer = 0.0f;
+
     public GameObject projectilePoint = null;
+    private Vector3 target = new Vector3(0, 0, 0);
 
     //Hand slam
     private float handSlamTime = 0.0f;
@@ -793,19 +797,30 @@ public class Rancor : DiamondComponent
 
         Animator.Play(gameObject, "RN_ProjectileThrow");
         //add timer to spawn projectiles
-        if (projectilePoint != null)
-        {
-            Vector3 pos = projectilePoint.transform.globalPosition;
-            Quaternion rot = projectilePoint.transform.globalRotation;
-            Vector3 scale = new Vector3(1, 1, 1);
 
-            GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1893149913.prefab", pos, rot, scale);
-            projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
-        }
+        prepareShotTimer = prepareShotDuration;
     }
 
     private void UpdateProjectile()
     {
+        if (prepareShotTimer > 0.0f)
+        {
+            prepareShotTimer -= Time.deltaTime;
+
+            if (prepareShotTimer <= 0.0f)
+            {
+                if (projectilePoint != null)
+                {
+                    Vector3 pos = projectilePoint.transform.globalPosition;
+                    Quaternion rot = projectilePoint.transform.globalRotation;
+                    Vector3 scale = new Vector3(1, 1, 1);
+
+                    GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1893149913.prefab", pos, rot, scale);
+                    projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
+                }
+            }
+        }
+
         Debug.Log("Projectile");
     }
 
