@@ -75,7 +75,7 @@ public class Spawn : DiamondComponent
             else return null;
         }
 
-        GameObject enemy = InternalCalls.CreatePrefab(libraryPath, position, Quaternion.identity, Vector3.one);
+        GameObject enemy = InternalCalls.CreatePrefab(libraryPath, position, Quaternion.identity, new Vector3(1, 1, 1));
         Counter.roomEnemies++;
 
         //add enemy script
