@@ -26,7 +26,7 @@ public class BH_Bullet : DiamondComponent
         if (started == false)
         {
             started = true;
-            InternalCalls.CreatePrefab("Library/Prefabs/150008798.prefab", gameObject.transform.globalPosition, gameObject.transform.globalRotation, gameObject.transform.globalScale);
+            //InternalCalls.CreatePrefab("Library/Prefabs/1564072956.prefab", gameObject.transform.globalPosition, gameObject.transform.globalRotation, gameObject.transform.globalScale);
         }
 
         currentLifeTime += Time.deltaTime;
