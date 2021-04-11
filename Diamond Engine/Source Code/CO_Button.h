@@ -29,8 +29,8 @@ public:
 		return num_sprite_used;
 	}
 
-#ifndef STANDALONE
 	void ChangeSprite(BUTTONSTATE num_sprite, ResourceTexture* sprite);
+#ifndef STANDALONE
 	void ChangeScript(const char* script_name);
 	bool OnEditor() override;
 

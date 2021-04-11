@@ -4,24 +4,26 @@ using DiamondEngine;
 
 public class RoomDataHolder
 {
-	public List<int> visited; //I think this is a fucking pointer-type shit? i don't know, i don't think this is working, im out
+	public List<int> visited = new List<int>(); //I think this is a fucking pointer-type shit? i don't know, i don't think this is working, im out
 	public int finalScene = 0;
 
     public RoomDataHolder(List<int> initList, int final)
-    {
+	{
+		//visited.Clear();
 		visited = new List<int>(initList);
 		finalScene = final;
     }
 
 	public void ClearData(List<int> initList)
     {
+		//visited.Clear();
 		visited = new List<int>(initList);
 	}
 
 	//public bool isFinalScene = false;
 }
 
-public class RoomSwitch : DiamondComponent
+public static class RoomSwitch
 {
 
     public enum LEVELS
@@ -31,7 +33,7 @@ public class RoomSwitch : DiamondComponent
 		MAX,
     }
 
-	static List<List<int>> originalLevelPools = new List<List<int>>()
+	public readonly static List<List<int>> originalLevelPools = new List<List<int>>()
 	{
 		new List<int>()
 		{
@@ -51,22 +53,27 @@ public class RoomSwitch : DiamondComponent
 
 	};
 
-	static List<RoomDataHolder> levelLists = new List<RoomDataHolder>() 
+	public readonly static List<RoomDataHolder> levelLists = new List<RoomDataHolder>() 
 	{
 		new RoomDataHolder(originalLevelPools[0], 308281119),
 		new RoomDataHolder(originalLevelPools[1], 880545183),
 	};
 
-	private static int postBossRoom = 466646284;
+	private readonly static int postBossRoom = 466646284;
 
 	private static int roomID = 0;
-	static int currentroom = 0;
+	public static int currentroom = 0;
 
 	//public static int index = 0;
 	static Random randomGenerator = new Random();
 
 
 	public static LEVELS currentLevelIndicator = LEVELS.ONE;
+
+	public static LEVELS GetLevelIndicator()
+    {
+		return currentLevelIndicator;
+    }
 
 	public static void SwitchRooms()
 	{
@@ -75,6 +82,10 @@ public class RoomSwitch : DiamondComponent
 
 		if(index > 0 && currentLevelIndicator == LEVELS.TWO && levelLists[index-1].finalScene == currentroom  /*&& currentLevelIndicator == LEVELS.TWO*/)
         {
+			Debug.Log(index.ToString());
+			Debug.Log(currentLevelIndicator.ToString());
+			Debug.Log(levelLists[index - 1].finalScene.ToString() + " // " + currentroom.ToString());
+
 			Debug.Log("PostBoss loaded");
 			SceneManager.LoadScene(postBossRoom);
 			currentroom = postBossRoom;
@@ -92,7 +103,9 @@ public class RoomSwitch : DiamondComponent
 		}
 		else
 		{
-			levelLists[index].visited = originalLevelPools[index];
+			//levelLists[index].visited.Clear();
+			levelLists[index].visited = new List<int>(originalLevelPools[index]);
+
 			currentLevelIndicator++;
 			//IMPORTANT: isFinalScene is needed to know when to change from a room to the end scene to show statistics
 
@@ -106,20 +119,20 @@ public class RoomSwitch : DiamondComponent
 
 	public static void ClearStaticData()
     {
-		RoomSwitch.currentLevelIndicator = LEVELS.ONE;
-		RoomSwitch.currentroom = 0;
+		currentLevelIndicator = LEVELS.ONE;
+		currentroom = 0;
 
-        for (int i = 0; i < levelLists.Count; i++)
+        for (int i = 0; i < 2; i++)
         {
-			RoomSwitch.levelLists[i].ClearData(RoomSwitch.originalLevelPools[i]);
+			levelLists[i].ClearData(originalLevelPools[i]);
         }
 
 		Counter.gameResult = Counter.GameResult.NONE;   // This is morally wrong. But we don't have a scene manager
 	}
 
-	public void OnApplicationQuit()
-    {
-		RoomSwitch.ClearStaticData();
-	}
+	//public void OnApplicationQuit()
+ //   {
+	//	RoomSwitch.ClearStaticData();
+	//}
 
 }

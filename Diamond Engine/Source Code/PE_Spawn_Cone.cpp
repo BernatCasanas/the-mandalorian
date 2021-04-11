@@ -6,6 +6,7 @@
 
 #include "ImGui/imgui.h"
 #include "MO_Camera3D.h"
+#include"MO_Renderer3D.h"
 
 PE_SpawnShapeCone::PE_SpawnShapeCone() :PE_SpawnShapeBase(PE_SPAWN_SHAPE_TYPE::CONE)
 {
@@ -47,7 +48,11 @@ void PE_SpawnShapeCone::Spawn(Particle& particle, bool hasInitialSpeed, float sp
 
 			direction = gTrans.TransformDir(direction).Normalized();
 
+#ifndef STANDALONE
 			float4x4 cameraView = EngineExternal->moduleCamera->editorCamera.ViewMatrixOpenGL().Transposed();
+#else
+			float4x4 cameraView = EngineExternal->moduleRenderer3D->GetGameRenderTarget()->ViewMatrixOpenGL().Transposed();
+#endif // !STANDALONE
 
 			direction = cameraView.TransformDir(direction);
 

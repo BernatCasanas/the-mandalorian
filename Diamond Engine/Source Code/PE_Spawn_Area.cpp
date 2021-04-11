@@ -6,6 +6,7 @@
 
 #include "ImGui/imgui.h"
 #include "MO_Camera3D.h"
+#include"MO_Renderer3D.h"
 
 PE_SpawnShapeArea::PE_SpawnShapeArea() :PE_SpawnShapeBase(PE_SPAWN_SHAPE_TYPE::AREA)
 {
@@ -40,7 +41,11 @@ void PE_SpawnShapeArea::Spawn(Particle& particle, bool hasInitialSpeed, float sp
 			float3 direction = (localPos - float3(offset[0], offset[1], offset[2]));
 			direction = gTrans.TransformDir(direction).Normalized();
 
+#ifndef STANDALONE
 			float4x4 cameraView = EngineExternal->moduleCamera->editorCamera.ViewMatrixOpenGL().Transposed();
+#else
+			float4x4 cameraView = EngineExternal->moduleRenderer3D->GetGameRenderTarget()->ViewMatrixOpenGL().Transposed();
+#endif // !STANDALONE
 
 			direction = cameraView.TransformDir(direction);
 
