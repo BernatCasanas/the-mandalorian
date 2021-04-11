@@ -593,12 +593,6 @@ public class Rancor : DiamondComponent
         Animator.Play(gameObject, "RN_MeleeComboP1");
 
         LookAt(Core.instance.gameObject.transform.globalPosition);
-
-        if (meleeComboCollider != null)
-        {
-            meleeComboCollider.transform.localPosition = meleeComboCollPos;
-            meleeComboCollider.transform.localRotation = meleeComboCollRot;
-        }
     }
 
     private void UpdateMCHit1()
@@ -613,18 +607,16 @@ public class Rancor : DiamondComponent
             if (meleeCH1ColliderTimer <= 0.0f)
             {
                 if (meleeComboCollider != null)
+                {
                     meleeComboCollider.Enable(true);
+                    meleeComboCollider.transform.localPosition = meleeComboCollPos;
+                    //meleeComboCollider.transform.localRotation = gameObject.transform.localRotation;
+                }
             }
         }
 
         LookAt(Core.instance.gameObject.transform.globalPosition);
         gameObject.transform.localPosition += gameObject.transform.GetForward().normalized * meleeComboMovSpeed * Time.deltaTime;
-
-        if (meleeComboCollider != null)
-        {
-            meleeComboCollider.transform.localPosition = meleeComboCollPos;
-            meleeComboCollider.transform.localRotation = meleeComboCollRot;
-        }
     }
 
     private void EndMCHit1()
@@ -642,12 +634,6 @@ public class Rancor : DiamondComponent
         Animator.Play(gameObject, "RN_MeleeComboP2");
 
         LookAt(Core.instance.gameObject.transform.globalPosition);
-
-        if (meleeComboCollider != null)
-        {
-            meleeComboCollider.transform.localPosition = meleeComboCollPos;
-            meleeComboCollider.transform.localRotation = meleeComboCollRot;
-        }
     }
 
     private void UpdateMCHit2()
@@ -660,18 +646,16 @@ public class Rancor : DiamondComponent
             if (meleeCH2ColliderTimer <= 0.0f)
             {
                 if (meleeComboCollider != null)
+                {
                     meleeComboCollider.Enable(true);
+                    meleeComboCollider.transform.localPosition = meleeComboCollPos;
+                    //meleeComboCollider.transform.localRotation = gameObject.transform.localRotation;
+                }
             }
         }
 
         LookAt(Core.instance.gameObject.transform.globalPosition);
         gameObject.transform.localPosition += gameObject.transform.GetForward().normalized * meleeComboMovSpeed * Time.deltaTime;
-
-        if (meleeComboCollider != null)
-        { 
-            meleeComboCollider.transform.localPosition = meleeComboCollPos;
-            meleeComboCollider.transform.localRotation = meleeComboCollRot;
-        }
     }
 
     private void EndMCHit2()
