@@ -160,6 +160,8 @@ public class BabyYoda : DiamondComponent
 
     private void LookAtMando()
     {
+        if (Core.instance.gameObject == null) 
+            return;
         Vector3 worldForward = new Vector3(0, 0, 1);
 
         Vector3 vec = Core.instance.gameObject.transform.localPosition + Core.instance.gameObject.transform.GetForward() * 2 - gameObject.transform.globalPosition;
@@ -312,7 +314,8 @@ public class BabyYoda : DiamondComponent
             Core.instance.hud.GetComponent<HUD>().ChangeAlphaSkillPush(false);
         }
         skillPushTimer += INIT_TIMER;
-
+        if (Core.instance.gameObject == null)
+            return;
         Transform mandoTransform = Core.instance.gameObject.transform;
         InternalCalls.CreatePrefab("Library/Prefabs/541990364.prefab", new Vector3(mandoTransform.globalPosition.x, mandoTransform.globalPosition.y + 1, mandoTransform.globalPosition.z), mandoTransform.globalRotation, new Vector3(1, 1, 1));
     }
@@ -328,7 +331,8 @@ public class BabyYoda : DiamondComponent
             Core.instance.hud.GetComponent<HUD>().UpdateForce(0, 100);
             Core.instance.hud.GetComponent<HUD>().ChangeAlphaSkillPush(false);
         }
-
+        if (Core.instance.gameObject == null)
+            return;
         skillWallTimer += INIT_TIMER;
         Transform mandoTransform = Core.instance.gameObject.transform;
         Vector3 spawnPos = new Vector3(mandoTransform.globalPosition.x, mandoTransform.globalPosition.y, mandoTransform.globalPosition.z);
