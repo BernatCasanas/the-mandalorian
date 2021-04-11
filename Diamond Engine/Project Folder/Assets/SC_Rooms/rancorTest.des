@@ -1,19 +1,19 @@
 {
     "NavMesh": 1851738196,
     "EditorCameraPosition": [
-        -4.9157567024230957,
-        23.080245971679688,
-        -16.737842559814453
+        -1.8198573589324951,
+        29.816070556640625,
+        -22.120311737060547
     ],
     "EditorCameraZ": [
-        -0.35391741991043091,
-        -0.75351786613464355,
-        0.55403387546539307
+        -0.33814960718154907,
+        -0.71807801723480225,
+        0.6082918643951416
     ],
     "EditorCameraY": [
-        -0.40548557043075562,
-        0.65742743015289307,
-        0.63511466979980469
+        -0.34873694181442261,
+        0.69596260786056519,
+        0.6277090311050415
     ],
     "tags": [
         "Wall"
@@ -2946,7 +2946,7 @@
             "name": "MeleeCollider",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": false,
+            "Active": true,
             "Position": [
                 0,
                 0.29983615875244141,
@@ -3023,7 +3023,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "MoveMeleeCollForward",
-                    "colliderSpeed": 5
+                    "colliderSpeed": 5,
+                    "startState": false
                 }
             ]
         },
@@ -3031,7 +3032,7 @@
             "name": "MeleeJumpCollider",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": false,
+            "Active": true,
             "Position": [
                 0,
                 -0.27436685562133789,

@@ -641,7 +641,7 @@ public class Rancor : DiamondComponent
     private void EndMCHit1()
     {
         if (meleeComboCollider != null && meleeHit != null)
-            meleeHit.EnableHit(true);
+            meleeHit.EnableHit(false);
     }
 
 
@@ -666,7 +666,7 @@ public class Rancor : DiamondComponent
             {
                 if (meleeComboJumpCollider != null && meleeHit != null)
                 {
-                    //meleeHit.EnableHit(true);
+                    meleeHit.EnableHit(true);
                     meleeComboCollider.transform.localPosition = meleeComboCollPos;
                 }
             }
@@ -679,7 +679,7 @@ public class Rancor : DiamondComponent
     private void EndMCHit2()
     {
         if (meleeComboCollider != null && meleeHit != null)
-            meleeHit.EnableHit(true);
+            meleeHit.EnableHit(false);
     }
 
 
