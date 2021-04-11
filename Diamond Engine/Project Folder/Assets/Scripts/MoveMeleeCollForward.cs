@@ -7,6 +7,8 @@ public class MoveMeleeCollForward : DiamondComponent
 
     public bool startState = false;
 
+    public int damage = 10;
+
     private bool colliderState = false;
     private bool start = false;
     private Vector3 startingPos;
@@ -59,5 +61,13 @@ public class MoveMeleeCollForward : DiamondComponent
         gameObject.transform.localPosition = new Vector3(0, 10000f, 0);
     }
 
-
+    public void OnTriggerEnter(GameObject triggeredGameObject)
+    {
+        if (triggeredGameObject.CompareTag("Player"))
+        {
+            PlayerHealth health = triggeredGameObject.GetComponent<PlayerHealth>();
+            if (health != null)
+                health.TakeDamage(damage);
+        }
+    }
 }
