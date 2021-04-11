@@ -40,6 +40,11 @@ ResourceAnimation* AnimationLoader::ImportAnimation(aiAnimation* importedAnimati
 	library_path += std::to_string(UID);
 	library_path += ".anim";
 
+	if (FileSystem::Exists(library_path.c_str()))
+	{
+		return dynamic_cast<ResourceAnimation*>(EngineExternal->moduleResources->RequestResource(UID, library_path.c_str()));
+	}
+
 	ResourceAnimation* animation = dynamic_cast<ResourceAnimation*>(EngineExternal->moduleResources->CreateNewResource("", UID, Resource::Type::ANIMATION));
 
 	strcpy(animation->animationName, importedAnimation->mName.C_Str());

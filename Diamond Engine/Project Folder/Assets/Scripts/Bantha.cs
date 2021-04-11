@@ -444,10 +444,10 @@ public class Bantha : Enemy
 
         Vector3 direction = player.transform.globalPosition - gameObject.transform.globalPosition;
         targetPosition = direction.normalized * chargeLength + gameObject.transform.globalPosition;      
+        agent.CalculatePath(gameObject.transform.localPosition, targetPosition);
     }
     private void UpdateCharge()
     {
-        agent.CalculatePath(gameObject.transform.localPosition, targetPosition);
         LookAt(agent.GetDestination());
         
         agent.MoveToCalculatedPos(chargeSpeed);       

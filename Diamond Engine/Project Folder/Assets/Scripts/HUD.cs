@@ -311,7 +311,7 @@ public class HUD : DiamondComponent
             OnLvlUpComboChange();
         }
 
-        if (comboNumber > 0 && !combo_gameobject.IsEnabled())
+        if (comboNumber > 0 && combo_gameobject!= null && !combo_gameobject.IsEnabled())
         {
             combo_gameobject.Enable(true);
         }
@@ -417,7 +417,7 @@ public class HUD : DiamondComponent
 
         combo_text.GetComponent<Text>().text = "x" + comboNumber.ToString();
 
-        if (combo_gameobject != null)
+        if (combo_gameobject != null && combo_gameobject.IsEnabled())
             combo_gameobject.Enable(false);
     }
 
