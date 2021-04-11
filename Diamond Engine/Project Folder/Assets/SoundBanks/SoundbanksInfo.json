@@ -699,7 +699,7 @@
    {
     "Id": "3049191116",
     "Language": "SFX",
-    "Hash": "745277780",
+    "Hash": "1666941359",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Rancor",
     "ShortName": "Rancor",
     "Path": "Rancor.bnk",
@@ -711,6 +711,22 @@
       "DurationType": "OneShot",
       "DurationMin": "0.000000",
       "DurationMax": "0.000000"
+     },
+     {
+      "Id": "1574311082",
+      "Name": "Play_Rancor_Area_Impact",
+      "ObjectPath": "\\Events\\Default Work Unit\\Rancor\\Play_Rancor_Area_Impact",
+      "DurationType": "OneShot",
+      "DurationMin": "2.331917",
+      "DurationMax": "2.331917",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "36736387",
+        "Language": "SFX",
+        "ShortName": "Rancor booty impact.wav",
+        "Path": "SFX\\Rancor booty impact_10C4C929.wem"
+       }
+      ]
      },
      {
       "Id": "71208304",
@@ -787,30 +803,34 @@
       ]
      },
      {
-      "Id": "403129218",
-      "Name": "Play_Rancor_Melee",
-      "ObjectPath": "\\Events\\Default Work Unit\\Rancor\\Play_Rancor_Melee",
+      "Id": "1078032220",
+      "Name": "Play_Rancor_Melee_1rst_punch",
+      "ObjectPath": "\\Events\\Default Work Unit\\Rancor\\Play_Rancor_Melee_1rst_punch",
       "DurationType": "OneShot",
-      "DurationMin": "4.962643",
-      "DurationMax": "4.962643",
+      "DurationMin": "1.663197",
+      "DurationMax": "1.663197",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "872536724",
+        "Language": "SFX",
+        "ShortName": "rancor punch swish.wav",
+        "Path": "SFX\\rancor punch swish_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "3547689282",
+      "Name": "Play_Rancor_Melee_2nd_punch",
+      "ObjectPath": "\\Events\\Default Work Unit\\Rancor\\Play_Rancor_Melee_2nd_punch",
+      "DurationType": "OneShot",
+      "DurationMin": "0.967528",
+      "DurationMax": "0.967528",
       "IncludedMemoryFiles": [
        {
         "Id": "30862167",
         "Language": "SFX",
         "ShortName": "rancor punch swish 2.wav",
         "Path": "SFX\\rancor punch swish 2_10C4C929.wem"
-       },
-       {
-        "Id": "36736387",
-        "Language": "SFX",
-        "ShortName": "Rancor booty impact.wav",
-        "Path": "SFX\\Rancor booty impact_10C4C929.wem"
-       },
-       {
-        "Id": "872536724",
-        "Language": "SFX",
-        "ShortName": "rancor punch swish.wav",
-        "Path": "SFX\\rancor punch swish_10C4C929.wem"
        }
       ]
      },

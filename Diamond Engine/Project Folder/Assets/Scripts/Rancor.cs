@@ -1003,7 +1003,6 @@ public class Rancor : DiamondComponent
 
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
-
         if (collidedGameObject.CompareTag("Bullet"))
         {
             healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
@@ -1018,7 +1017,14 @@ public class Rancor : DiamondComponent
         }
         else if (collidedGameObject.CompareTag("Grenade"))
         {
-            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+            bigGrenade bGrenade = collidedGameObject.GetComponent<bigGrenade>();
+            smallGrenade sGrenade = collidedGameObject.GetComponent<smallGrenade>();
+
+            if (bGrenade != null)
+                healthPoints -= bGrenade.damage;
+
+            if (sGrenade != null)
+                healthPoints -= sGrenade.damage;
 
             Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
 
