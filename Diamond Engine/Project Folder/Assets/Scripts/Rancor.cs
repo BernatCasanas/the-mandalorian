@@ -113,6 +113,7 @@ public class Rancor : DiamondComponent
     private float projectileTime = 0.0f;
     private float projectileTimer = 0.0f;
 
+    public GameObject projectilePoint = null;
 
     //Hand slam
     private float handSlamTime = 0.0f;
@@ -792,6 +793,11 @@ public class Rancor : DiamondComponent
 
         Animator.Play(gameObject, "RN_ProjectileThrow");
         //add timer to spawn projectiles
+        if (projectilePoint != null)
+        {
+            GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1893149913.prefab", projectilePoint.transform.localPosition, projectilePoint.transform.localRotation, projectilePoint.transform.localScale);
+            projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
+        }
     }
 
     private void UpdateProjectile()
