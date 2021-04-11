@@ -70,6 +70,29 @@ namespace DiamondEngine
         public static float Floor(float f) { return (float)Math.Floor(f); }
 
         public const float Rad2Deg = 57.29578f;
+
+
+        public static void LookAt(ref Transform goTransform, Vector3 pointToLook, float slerpDegree = 1.0f)
+        {
+            Vector3 direction = pointToLook - goTransform.globalPosition;
+            direction = direction.normalized;
+            float angle = (float)Math.Atan2(direction.x, direction.z);
+
+            if (Math.Abs(angle * Mathf.Rad2Deg) < 1.0f)
+                return;
+
+
+            Quaternion dir = Quaternion.RotateAroundAxis(Vector3.up, angle);
+
+            if (slerpDegree > 1.0f) slerpDegree = 1.0f;
+            if (slerpDegree < 0.0f) slerpDegree = 0.1f;
+            Quaternion desiredRotation = Quaternion.Slerp(goTransform.localRotation, dir, slerpDegree);
+
+            goTransform.localRotation = desiredRotation;
+
+        }
+
+
     }
 
 
