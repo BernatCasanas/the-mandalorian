@@ -19,6 +19,17 @@ public class HubSkillTreeController : DiamondComponent
 	public GameObject groguText = null;
 	public GameObject weaponText = null;
 
+	public GameObject beskarResourceText = null;
+	public GameObject macaronResourceText = null;
+	public GameObject scrapResourceText = null;
+
+	public void Awake()
+    {
+		beskarResourceText.GetComponent<Text>().text = PlayerResources.GetResourceCount(RewardType.REWARD_BESKAR).ToString();
+		macaronResourceText.GetComponent<Text>().text = PlayerResources.GetResourceCount(RewardType.REWARD_MACARON).ToString();
+		scrapResourceText.GetComponent<Text>().text = PlayerResources.GetResourceCount(RewardType.REWARD_SCRAP).ToString();
+    }
+
 	public void Update()
 	{
 		if (mando == null || (Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN && Input.GetGamepadButton(DEControllerButton.B) != KeyState.KEY_DOWN))
