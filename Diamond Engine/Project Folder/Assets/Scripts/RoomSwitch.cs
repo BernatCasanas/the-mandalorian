@@ -82,10 +82,6 @@ public static class RoomSwitch
 
 		if(index > 0 && currentLevelIndicator == LEVELS.TWO && levelLists[index-1].finalScene == currentroom  /*&& currentLevelIndicator == LEVELS.TWO*/)
         {
-			Debug.Log(index.ToString());
-			Debug.Log(currentLevelIndicator.ToString());
-			Debug.Log(levelLists[index - 1].finalScene.ToString() + " // " + currentroom.ToString());
-
 			Debug.Log("PostBoss loaded");
 			SceneManager.LoadScene(postBossRoom);
 			currentroom = postBossRoom;
