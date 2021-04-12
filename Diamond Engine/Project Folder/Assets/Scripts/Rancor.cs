@@ -186,6 +186,7 @@ public class Rancor : DiamondComponent
 
         }
 
+        Counter.SumToCounterType(Counter.CounterTypes.RANCOR);
     }
 
     public void Awake()
@@ -581,7 +582,7 @@ public class Rancor : DiamondComponent
                     inputsList.Add(RANCOR_INPUT.IN_MELEE_COMBO_1HIT);
 
                 else
-                    inputsList.Add(RANCOR_INPUT.IN_HAND_SLAM);
+                    inputsList.Add(RANCOR_INPUT.IN_MELEE_COMBO_1HIT);
             }
 
             else if (distance > meleeRange && distance <= longRange)
@@ -953,7 +954,7 @@ public class Rancor : DiamondComponent
 
         dieTimer = dieTime;
 
-        //Animator.Play(gameObject, "RN_Die", 1.0f);
+        Animator.Play(gameObject, "RN_Die", 1.0f);
 
         Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Death");
         //Audio.PlayAudio(gameObject, "Play_Mando_Voice");
@@ -980,7 +981,14 @@ public class Rancor : DiamondComponent
     public void Die()
     {
         Debug.Log("RANCOR DEAD");
+
+        Counter.roomEnemies--;
+
+        if (Counter.roomEnemies <= 0)
+            Counter.allEnemiesDead = true;
+
         EnemyManager.RemoveEnemy(gameObject);
+        InternalCalls.Destroy(gameObject);
     }
     #endregion
 

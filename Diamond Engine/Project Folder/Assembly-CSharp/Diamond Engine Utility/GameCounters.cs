@@ -14,6 +14,7 @@ namespace DiamondEngine
             WRECKER_RES,
             ENEMY_BANTHA,
             ENEMY_STORMTROOP,
+            RANCOR,
             MAX,
         }
 
