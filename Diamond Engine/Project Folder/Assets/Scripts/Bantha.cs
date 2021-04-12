@@ -506,6 +506,11 @@ public class Bantha : Enemy
 
             Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
 
+            if (Core.instance.hud != null)
+            {
+                Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 1.0f);
+            }
+
             if (currentState != STATE.DIE && healthPoints <= 0.0f)
             {
                 inputsList.Add(INPUT.IN_DIE);
@@ -521,6 +526,11 @@ public class Bantha : Enemy
 
             //if (bigGrenade != null)
             //    healthPoints -= bigGrenade.damage;
+
+            if (Core.instance.hud != null)
+            {
+                Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 0.5f);
+            }
 
             if (currentState != STATE.DIE && healthPoints <= 0.0f)
             {

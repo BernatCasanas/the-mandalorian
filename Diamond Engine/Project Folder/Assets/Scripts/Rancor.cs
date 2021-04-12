@@ -1011,6 +1011,11 @@ public class Rancor : DiamondComponent
 
             Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
 
+            if (Core.instance.hud != null)
+            {
+                Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 1.0f);
+            }
+
             if (currentState != RANCOR_STATE.DEAD && healthPoints <= 0.0f)
             {
                 inputsList.Add(RANCOR_INPUT.IN_DEAD);
@@ -1028,6 +1033,11 @@ public class Rancor : DiamondComponent
                 healthPoints -= sGrenade.damage;
 
             Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
+
+            if (Core.instance.hud != null)
+            {
+                Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 0.5f);
+            }
 
             if (currentState != RANCOR_STATE.DEAD && healthPoints <= 0.0f)
             {
