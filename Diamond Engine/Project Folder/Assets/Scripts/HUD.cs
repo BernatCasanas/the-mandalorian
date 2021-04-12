@@ -99,19 +99,19 @@ public class HUD : DiamondComponent
     Dictionary<int, ComboLvlUpEffects> lvlUpComboRewards = new Dictionary<int, ComboLvlUpEffects>
     {
         { 0,   new ComboLvlUpEffects(   new Vector3(0.0f,0.8f,1.0f),    0.0f)},
-        { 10,   new ComboLvlUpEffects(   new Vector3(0.0f,1.0f,0.0f),    0.05f)},
-        { 25,   new ComboLvlUpEffects(   new Vector3(1.0f,1.0f,0.0f),    0.1f)},
-        { 45,   new ComboLvlUpEffects(   new Vector3(0.79f,0.28f,0.96f), 0.15f)},
-        { 77,   new ComboLvlUpEffects(   new Vector3(1.0f,1.0f,1.0f),    0.2f)},
+        { 3,   new ComboLvlUpEffects(   new Vector3(0.0f,1.0f,0.0f),    0.05f)},
+        { 8,   new ComboLvlUpEffects(   new Vector3(1.0f,1.0f,0.0f),    0.1f)},
+        { 15,   new ComboLvlUpEffects(   new Vector3(0.79f,0.28f,0.96f), 0.15f)},
+        { 25,   new ComboLvlUpEffects(   new Vector3(1.0f,1.0f,1.0f),    0.2f)},
             //TODO Add lvlUpRewards here
     };
     //stores the level as a key and the reward as a value
     Dictionary<int, ComboResetEffects> endOfComboRewards = new Dictionary<int, ComboResetEffects>
     {
         { 0,   new ComboResetEffects( 0.0f)},
-        { 25,   new ComboResetEffects( 0.05f)},
-        { 45,   new ComboResetEffects( 0.15f)},
-        { 77,   new ComboResetEffects( 0.28f)},
+        { 8,   new ComboResetEffects( 0.05f)},
+        { 15,   new ComboResetEffects( 0.12f)},
+        { 25,   new ComboResetEffects( 0.2f)},
             //TODO Add endOfComboRewards here
     };
 
@@ -320,7 +320,7 @@ public class HUD : DiamondComponent
             OnLvlUpComboChange();
         }
 
-        if (comboNumber > 0 && combo_gameobject!= null && !combo_gameobject.IsEnabled())
+        if (comboNumber > 0 && combo_gameobject != null && !combo_gameobject.IsEnabled())
         {
             combo_gameobject.Enable(true);
         }
@@ -333,7 +333,7 @@ public class HUD : DiamondComponent
         //TODO make full combo time not a linear function
         ++comboNumber;
         currComboTime = 0.0f;
-        comboDecrementMultiplier += 0.2f;
+        comboDecrementMultiplier += 0.05f;
     }
 
     bool UpdateCombo()
