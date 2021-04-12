@@ -627,10 +627,7 @@ public class Rancor : DiamondComponent
 
             if (meleeCH2ColliderTimer <= 0.0f)
             {
-               Vector3 pos = gameObject.transform.localPosition;
-               Quaternion rot = gameObject.transform.globalRotation;
-
-               InternalCalls.CreatePrefab("Library/Prefabs/1846472793.prefab", pos, rot, gameObject.transform.localScale);
+                InternalCalls.CreatePrefab("Library/Prefabs/1846472793.prefab", gameObject.transform.localPosition, gameObject.transform.localRotation, gameObject.transform.localScale);
             }
         }
 
@@ -668,7 +665,11 @@ public class Rancor : DiamondComponent
             if (meleeCH3ColliderTimer <= 0.0f)
             {
                 Audio.PlayAudio(gameObject, "Play_Rancor_Area_Impact");
-                //CreateJump coll prefab
+
+                Vector3 pos = gameObject.transform.localPosition;
+                pos.y += 3;
+
+                InternalCalls.CreatePrefab("Library/Prefabs/376114835.prefab", pos, gameObject.transform.localRotation, gameObject.transform.localScale);
             }
         }
 

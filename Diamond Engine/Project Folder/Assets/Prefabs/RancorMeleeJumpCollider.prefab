@@ -1,15 +1,15 @@
 {
-    "assets_path": "Assets\/Prefabs\/RancorMeleeCollider.prefab",
+    "assets_path": "Assets\/Prefabs\/RancorMeleeJumpCollider.prefab",
     "Game Objects": [
         {
-            "name": "RancorMeleeCollider",
+            "name": "RancorMeleeJumpCollider",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
-                5.480870246887207,
-                20.364511489868164,
-                -5.2785558700561523
+                0,
+                28.469461441040039,
+                0
             ],
             "Rotation": [
                 0,
@@ -19,11 +19,11 @@
             ],
             "Scale": [
                 1,
-                0.99988049268722534,
-                0.99988049268722534
+                1,
+                1
             ],
-            "UID": 954163845,
-            "PrefabID": 1846472793,
+            "UID": 838403117,
+            "PrefabID": 376114835,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1676501951,
@@ -73,16 +73,16 @@
                         1
                     ],
                     "Scale": [
-                        1.3999999761581421,
-                        0.80000001192092896,
-                        0.40000000596046448
+                        2,
+                        0.5,
+                        2
                     ]
                 },
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "MoveMeleeCollForward",
-                    "colliderSpeed": 6,
+                    "ScriptName": "RancorJumpCollider",
+                    "colliderSpeed": 9,
                     "lifeTime": 1,
                     "startState": false,
                     "damage": 15
