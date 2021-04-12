@@ -13,6 +13,10 @@ public class HubRoomSwitch : DiamondComponent
 			RoomSwitch.ClearStaticData();
 
 		SceneManager.LoadScene(nextRoomUID);
+		Audio.SetState("Player_State", "Alive");
+		Audio.SetState("Game_State", "Run");
+		Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+		Debug.Log("Exploring");
 	}
 	public void Update()
 	{

@@ -15,7 +15,7 @@ public class StartMenu : DiamondComponent
 		if (gameObject.Name == "Play")
 		{
 			SceneManager.LoadScene(1564453141);
-			Audio.SetState("Game_State", "Run");
+			Audio.SetState("Game_State", "HUB");
 			if (MusicSourceLocate.instance != null)
 			{
 				Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
@@ -41,7 +41,7 @@ public class StartMenu : DiamondComponent
 		if (!musicplayed)
         {
 			Audio.SetState("Player_State", "Alive");
-			Audio.SetState("Game_State", "HUB");
+			Audio.SetState("Game_State", "Menu");
 			musicplayed = true;
 		}
 	}

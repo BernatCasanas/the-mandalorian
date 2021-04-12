@@ -193,8 +193,7 @@ public class PlayerHealth : DiamondComponent
         {
             Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Critical");
         }
-
-        damaged = 1.0f;
+        damaged = (damage > 0) ? 1.0f : damaged;
         Debug.Log("Current health: " + currHealth);
         return currHealth;
     }
