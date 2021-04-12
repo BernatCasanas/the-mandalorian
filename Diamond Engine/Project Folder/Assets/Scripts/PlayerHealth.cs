@@ -175,14 +175,15 @@ public class PlayerHealth : DiamondComponent
     {
         currHealth -= damage;
 
-        if (Core.instance.hud != null)
-            Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
 
         if (currHealth <= 0)
         {
             die = true;
         }
         if (currHealth > currMaxHealth) currHealth = currMaxHealth;
+
+        if (Core.instance.hud != null)
+            Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
 
         if (currHealth < 75 && currHealth >= 50 && MusicSourceLocate.instance != null)
         {
