@@ -57,7 +57,7 @@ public class PlayerHealth : DiamondComponent
         if (currMaxHealth < 1)
             currMaxHealth = 1;
 
-        if (alsoRestoreAllHP)
+        if (alsoRestoreAllHP || currHealth > currMaxHealth)
         {
             currHealth = currMaxHealth;
         }
@@ -75,7 +75,7 @@ public class PlayerHealth : DiamondComponent
         if (currMaxHealth < 1)
             currMaxHealth = 1;
 
-        if (alsoRestoreAllHP)
+        if (alsoRestoreAllHP || currHealth > currMaxHealth)
         {
             currHealth = currMaxHealth;
         }
@@ -93,7 +93,7 @@ public class PlayerHealth : DiamondComponent
         if (currMaxHealth < 1)
             currMaxHealth = 1;
 
-        if (alsoRestoreAllHP)
+        if (alsoRestoreAllHP || currHealth > currMaxHealth)
         {
             currHealth = currMaxHealth;
         }
