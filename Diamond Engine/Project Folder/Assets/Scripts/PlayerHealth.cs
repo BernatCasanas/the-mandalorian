@@ -182,6 +182,7 @@ public class PlayerHealth : DiamondComponent
         {
             die = true;
         }
+        if (currHealth > currMaxHealth) currHealth = currMaxHealth;
 
         if (currHealth < 75 && currHealth >= 50 && MusicSourceLocate.instance != null)
         {
