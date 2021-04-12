@@ -94,7 +94,8 @@ public class Core : DiamondComponent
     private float gadgetShootSkill = 0.0f;
 
     //Grenades
-    public float grenadesFireRate = 0.0f;
+    private float grenadesFireRate = 4.0f;      //TODO make this public please, but i dont want to update all prefabs now
+    private float grenadesFireRateTimer = 0.0f;
     //private float grenadesTimer = 0.0f;
 
     //Animations
@@ -269,8 +270,13 @@ public class Core : DiamondComponent
 
 
 
-        if (Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_DOWN)
+        if (Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_DOWN && grenadesFireRateTimer <= 0.0f)
+        {
             inputsList.Add(INPUT.IN_GADGET_SHOOT);
+            grenadesFireRateTimer = grenadesFireRate;
+        }
+
+        grenadesFireRateTimer -= Time.deltaTime;
     }
 
 
