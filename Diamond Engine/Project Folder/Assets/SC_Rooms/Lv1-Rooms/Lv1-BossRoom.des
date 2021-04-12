@@ -1,19 +1,19 @@
 {
     "NavMesh": 141075303,
     "EditorCameraPosition": [
-        33.331172943115234,
-        43.838645935058594,
-        -44.947002410888672
+        5.5214991569519043,
+        16.621240615844727,
+        -12.486725807189941
     ],
     "EditorCameraZ": [
-        -0.40483424067497253,
-        -0.49231216311454773,
-        0.77054393291473389
+        0.073028691112995148,
+        -0.19933517277240753,
+        0.97720634937286377
     ],
     "EditorCameraY": [
-        -0.22895555198192596,
-        0.8704187273979187,
-        0.43583324551582336
+        0.014951465651392937,
+        0.97993135452270508,
+        0.19877366721630096
     ],
     "tags": [
         "Enemy",
@@ -19356,8 +19356,6 @@
                     "shortWanderTime": 2,
                     "longWanderTime": 4,
                     "wanderSpeed": 10,
-                    "meleeComboCollider": 1743687606,
-                    "meleeComboJumpCollider": 24252416,
                     "meleeComboMovSpeed": 3,
                     "jumpAttackSpeed": 5,
                     "jumpDelayDuration": 0.5,
@@ -22096,93 +22094,6 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
                     "MaterialUID": 1948688504
-                }
-            ]
-        },
-        {
-            "name": "MeleeCollider",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0.29983615875244141,
-                0.0052280426025390625
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                0.99988049268722534,
-                0.99988049268722534
-            ],
-            "UID": 1743687606,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1050637505,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": false,
-                    "Path": "Library\/Meshes\/1313575480.mmh",
-                    "UID": 1313575480,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": false,
-                    "Gravity": false,
-                    "LockLinearX": true,
-                    "LockLinearY": true,
-                    "LockLinearZ": true,
-                    "LockAngularX": true,
-                    "LockAngularY": true,
-                    "LockAngularZ": true,
-                    "Mass": 0,
-                    "Density": 0
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1.3999999761581421,
-                        0.80000001192092896,
-                        0.80000001192092896
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "MoveMeleeCollForward",
-                    "colliderSpeed": 5,
-                    "startState": false,
-                    "damage": 0
                 }
             ]
         },

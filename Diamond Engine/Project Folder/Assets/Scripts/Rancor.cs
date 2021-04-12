@@ -73,17 +73,6 @@ public class Rancor : DiamondComponent
     private float wanderTimer = 0.0f;
     public float wanderSpeed = 2.0f;
 
-    //Melee Combo
-    public GameObject meleeComboCollider = null;
-    public GameObject meleeComboJumpCollider = null;
-    private MoveMeleeCollForward meleeHit = null;
-
-    private Vector3 meleeComboCollPos = new Vector3(0, 0, 0);
-    private Vector3 meleeComboJumpCollPos = new Vector3(0, 0, 0);
-
-    private Quaternion meleeComboCollRot = new Quaternion(0, 0, 0);
-    private Quaternion meleeComboJumpCollRot = new Quaternion(0, 0, 0);
-
     public float meleeComboMovSpeed = 0.0f;
 
     public float jumpAttackSpeed = 2.0f;
@@ -166,26 +155,6 @@ public class Rancor : DiamondComponent
 
         dieTime = Animator.GetAnimationDuration(gameObject, "RN_Die") - 0.016f;
 
-        if (meleeComboCollider != null)
-        {
-            meleeComboCollPos = meleeComboCollider.transform.localPosition;
-            meleeComboCollRot = meleeComboCollider.transform.localRotation;
-
-            meleeComboCollider.Enable(true);
-
-        }
-
-        if (meleeComboJumpCollider != null)
-        {
-            meleeComboJumpCollPos = meleeComboJumpCollider.transform.localPosition;
-            meleeComboJumpCollRot = meleeComboJumpCollider.transform.localRotation;
-
-            meleeComboJumpCollider.Enable(true);
-
-            meleeComboJumpCollider.transform.localPosition = new Vector3(0, 1000, 0);
-
-        }
-
         Counter.SumToCounterType(Counter.CounterTypes.RANCOR);
     }
 
@@ -195,11 +164,6 @@ public class Rancor : DiamondComponent
 
         if (agent == null)
             Debug.Log("Null agent, add a NavMeshAgent Component");
-
-        meleeHit = meleeComboCollider.GetComponent<MoveMeleeCollForward>();
-
-        if (meleeHit == null)
-            Debug.Log("Null hit script");
 
         Animator.Play(gameObject, "RN_Idle");
 
@@ -631,13 +595,7 @@ public class Rancor : DiamondComponent
 
             if (meleeCH1ColliderTimer <= 0.0f)
             {
-                if (meleeComboCollider != null && meleeHit != null)
-                {
-                    meleeHit.EnableHit(true);
-                    meleeComboCollider.transform.localPosition = meleeComboCollPos;
-                    //Mathf.LookAt(ref meleeComboCollider.transform, Core.instance.gameObject.transform.globalPosition);
-
-                }
+                InternalCalls.CreatePrefab("Library/Prefabs/1846472793.prefab", gameObject.transform.localPosition, gameObject.transform.localRotation, gameObject.transform.localScale);
             }
         }
 
@@ -647,8 +605,6 @@ public class Rancor : DiamondComponent
 
     private void EndMCHit1()
     {
-        if (meleeComboCollider != null && meleeHit != null)
-            meleeHit.EnableHit(false);
     }
 
 
@@ -671,11 +627,10 @@ public class Rancor : DiamondComponent
 
             if (meleeCH2ColliderTimer <= 0.0f)
             {
-                if (meleeComboCollider != null && meleeHit != null)
-                {
-                    meleeHit.EnableHit(true);
-                    meleeComboCollider.transform.localPosition = meleeComboCollPos;
-                }
+               Vector3 pos = gameObject.transform.localPosition;
+               Quaternion rot = gameObject.transform.globalRotation;
+
+               InternalCalls.CreatePrefab("Library/Prefabs/1846472793.prefab", pos, rot, gameObject.transform.localScale);
             }
         }
 
@@ -685,8 +640,6 @@ public class Rancor : DiamondComponent
 
     private void EndMCHit2()
     {
-        if (meleeComboCollider != null && meleeHit != null)
-            meleeHit.EnableHit(false);
     }
 
 
@@ -702,12 +655,6 @@ public class Rancor : DiamondComponent
         LookAt(jumpAttackTarget);
 
         jumpDelayTimer = jumpDelayDuration;
-
-        if (meleeComboJumpCollider != null)
-        {
-            meleeComboJumpCollider.transform.localPosition = new Vector3(0, 1000, 0);
-            meleeComboJumpCollider.transform.localRotation = meleeComboJumpCollRot;
-        }
     }
 
     private void UpdateMCHit3()
@@ -720,25 +667,9 @@ public class Rancor : DiamondComponent
 
             if (meleeCH3ColliderTimer <= 0.0f)
             {
-                if (meleeComboJumpCollider != null)
-                {
-                    meleeComboJumpCollider.transform.localPosition = meleeComboJumpCollPos;
-                }
+                Audio.PlayAudio(gameObject, "Play_Rancor_Area_Impact");
+                //CreateJump coll prefab
             }
-        }
-        else if (meleeCH3ColliderActiveTimer > 0.0f)
-        {
-            meleeCH3ColliderActiveTimer -= Time.deltaTime;
-
-            if (meleeCH3ColliderActiveTimer <= 0.0f)
-            {
-                if (meleeComboJumpCollider != null)
-                {
-                    meleeComboJumpCollider.transform.localPosition = new Vector3(0, 1000, 0);
-                    Audio.PlayAudio(gameObject, "Play_Rancor_Area_Impact");
-                }
-            }
-
         }
 
 
@@ -761,13 +692,7 @@ public class Rancor : DiamondComponent
 
     private void EndMCHit3()
     {
-        //TODO: Deactivate collider
         startedJumping = false;
-
-        if (meleeComboJumpCollider != null)
-        {
-            meleeComboJumpCollider.transform.localPosition = new Vector3(0, 1000, 0);
-        }
     }
 
     #endregion
