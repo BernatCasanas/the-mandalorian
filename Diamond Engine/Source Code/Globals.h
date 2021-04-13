@@ -94,4 +94,4 @@ static void CMDCompileCS()
 #define MIN_HEIGHT 768
 
 #define SCREEN_SIZE 1
-#define TITLE "Diamond Engine v"
+#define TITLE "The Mandalorian: Ashes of the Empire"

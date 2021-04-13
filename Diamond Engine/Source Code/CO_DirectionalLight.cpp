@@ -46,6 +46,7 @@ C_DirectionalLight::C_DirectionalLight(GameObject* _gm) : Component(_gm), orthoS
 	glDrawBuffer(GL_NONE);
 	glReadBuffer(GL_NONE);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glBindTexture(GL_TEXTURE_2D, 0);
 
 	depthShader = dynamic_cast<ResourceShader*>(EngineExternal->moduleResources->RequestResource(248150058, Resource::Type::SHADER));
 	EngineExternal->moduleRenderer3D->directLight = this;
@@ -53,8 +54,12 @@ C_DirectionalLight::C_DirectionalLight(GameObject* _gm) : Component(_gm), orthoS
 
 C_DirectionalLight::~C_DirectionalLight()
 {
-	glDeleteBuffers(1, &depthMapFBO);
-	glDeleteTextures(1, &depthMap);
+	if (depthMapFBO != 0)
+		glDeleteFramebuffers(1, (GLuint*)&depthMapFBO);
+
+	if (depthMap != 0)
+		glDeleteTextures(1, (GLuint*)&depthMap);
+
 	EngineExternal->moduleResources->UnloadResource(depthShader->GetUID());
 	EngineExternal->moduleRenderer3D->directLight = nullptr;
 }
@@ -96,7 +101,7 @@ bool C_DirectionalLight::OnEditor()
 
 		ImGui::ColorPicker3("Color", lightColor.ptr());
 
-		if(ImGui::Button("Set light source", ImVec2(0, 50)))
+		if (ImGui::Button("Set light source", ImVec2(0, 50)))
 			EngineExternal->moduleRenderer3D->directLight = this;
 
 		return true;
@@ -179,6 +184,8 @@ void C_DirectionalLight::EndPass()
 
 	glActiveTexture(GL_TEXTURE0 + 5);
 	glBindTexture(GL_TEXTURE_2D, 0);
+
+	glActiveTexture(GL_TEXTURE0);
 
 	//glBindTexture(GL_TEXTURE_2D, depthMap);
 
