@@ -36,13 +36,13 @@ void PE_SpawnShapeSphere::Spawn(Particle& particle, bool hasInitialSpeed, float 
 	localPos.y = offset[1] + x2 * c;
 	localPos.z = offset[2] + x3 * c;
 	particle.pos = gTrans.TransformPos(localPos);
-	
+
 	if (hasInitialSpeed)
 	{
 		float3 localSpeed = (localPos - float3(offset[0], offset[1], offset[2])).Normalized() * speed;
 		particle.speed = gTrans.TransformDir(localSpeed).Normalized() * speed;
-		
-		
+
+
 		if (useDirection)
 		{
 			float3 direction = (localPos - float3(offset[0], offset[1], offset[2]));
@@ -65,7 +65,7 @@ void PE_SpawnShapeSphere::Spawn(Particle& particle, bool hasInitialSpeed, float 
 
 			particle.rotation = finalAngle;
 		}
-			
+
 	}
 }
 

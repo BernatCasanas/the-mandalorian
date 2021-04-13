@@ -24,7 +24,7 @@ void PE_SpawnShapeArea::Spawn(Particle& particle, bool hasInitialSpeed, float sp
 {
 
 	//Get a random spawn point inside of a quad defined by a point and a radius
-	
+
 	float3 localPos;
 	localPos.x = offset[0] + EngineExternal->GetRandomFloat(-dimensions[0], dimensions[0]);
 	localPos.y = offset[1] + EngineExternal->GetRandomFloat(-dimensions[1], dimensions[1]);
