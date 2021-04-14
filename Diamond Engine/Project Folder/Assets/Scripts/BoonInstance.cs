@@ -3,7 +3,9 @@ using DiamondEngine;
 
 public class BoonInstance : DiamondComponent
 {
-    public string myType = "";
+    // OBSOLETE SCRIPT. Now boon functionality is managed from somewhere else. I didn't delete it because engine began exploding for some reason
+
+    /*public string myType = "";
     Boon myBoon = null;
     BoonSpawn boonSpawner = null;
     public float verticalMovementAmount = 1.0f;
@@ -103,6 +105,6 @@ public class BoonInstance : DiamondComponent
     {
         float sqt = t * t;
         return sqt / (2.0f * (sqt - t) + 1.0f);
-    }
+    }*/
 
 }

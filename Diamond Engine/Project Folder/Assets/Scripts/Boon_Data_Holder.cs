@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DiamondEngine
+/*namespace DiamondEngine
 {
     public class Boon
     {
@@ -64,3 +61,4 @@ namespace DiamondEngine
         };
     }
 }
+*/

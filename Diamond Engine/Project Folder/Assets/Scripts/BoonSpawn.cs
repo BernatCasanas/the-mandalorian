@@ -2,12 +2,10 @@ using System;
 using DiamondEngine;
 using System.Collections.Generic;
 
-
-
-
 public class BoonSpawn : DiamondComponent
 {
-    struct BoonWeight
+    // OBSOLETE SCRIPT. Now boon functionality is managed from somewhere else. I didn't delete it because engine began exploding for some reason
+    /* struct BoonWeight
     {
         public string boonLibID;
         public float weight; //weight to take into account for the random pick
@@ -144,6 +142,6 @@ public class BoonSpawn : DiamondComponent
         totalweight += weight;
 
         myRandomPool.Add(newWeight);
-    }
+    }*/
 
 }
