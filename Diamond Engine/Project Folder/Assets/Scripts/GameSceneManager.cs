@@ -22,7 +22,6 @@ public class GameSceneManager : DiamondComponent
 
     public void Update()
     {
-        Debug.Log("Room counter is " + Counter.roomEnemies);
         if (Counter.allEnemiesDead && rewardData == null)    // We need a scene manager :')
         {
             rewardData = rewardMenu.GenerateRewardPipeline();
