@@ -167,6 +167,7 @@ public class Rancor : DiamondComponent
 
         Animator.Play(gameObject, "RN_Idle");
 
+        Counter.roomEnemies++;  // If we had a manager...
         EnemyManager.AddEnemy(gameObject);
     }
 
