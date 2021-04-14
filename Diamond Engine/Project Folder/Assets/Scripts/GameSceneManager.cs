@@ -30,6 +30,7 @@ public class GameSceneManager : DiamondComponent
             if (rewardData != null && rewardObject != null)
             {
                 Counter.allEnemiesDead = false;
+                Counter.roomEnemies = 0;    // Safety check that could be done in a more understandable place if we had a scene manager...
                 rewardInitialPos = Core.instance.gameObject.transform.globalPosition + new Vector3(1.5f, 0.0f, 0.0f);    // Not this position, but for now it's fine;
                 rewardObject.transform.localPosition = rewardInitialPos;
                 rewardObject.AssignLibraryTextureToMaterial(rewardData.libraryTextureID, "diffuseTexture");
