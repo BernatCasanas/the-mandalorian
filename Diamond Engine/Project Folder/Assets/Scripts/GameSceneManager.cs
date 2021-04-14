@@ -42,26 +42,35 @@ public class GameSceneManager : DiamondComponent
             rewardSpawnComponent.AdvanceVerticalMovement(rewardInitialPos);
             rewardSpawnComponent.AdvanceRotation();
 
-            if (rewardSpawnComponent.trigger == true)
-            {
-                rewardData.Use();
-                rewardMenu.selectedReward = null;
-                rewardObject.Enable(false);
-                rewardSpawnComponent.trigger = false;
-                rewardData = null;
-
-                if (!Counter.isFinalScene)
-                    RoomSwitch.SwitchRooms();
-                else
-                {
-                    Counter.gameResult = Counter.GameResult.VICTORY;
-                    SceneManager.LoadScene(821370213);
-                }
-            }
-
+            ChangeScene();
         }
 
+        if (Input.GetKey(DEKeyCode.N) == KeyState.KEY_DOWN && Input.GetKey(DEKeyCode.LSHIFT) == KeyState.KEY_REPEAT && Input.GetKey(DEKeyCode.LALT) == KeyState.KEY_REPEAT)
+        {
+            Debug.Log("Change scene");
+            ChangeScene();
+        }
         // We should clean boons when ending a run :3
     }
 
+
+    private void ChangeScene()
+    {
+        if (rewardData != null)
+        {
+            rewardData.Use();
+            rewardMenu.selectedReward = null;
+            rewardObject.Enable(false);
+            rewardSpawnComponent.trigger = false;
+            rewardData = null;
+        }
+
+        if (!Counter.isFinalScene)
+            RoomSwitch.SwitchRooms();
+        else
+        {
+            Counter.gameResult = Counter.GameResult.VICTORY;
+            SceneManager.LoadScene(821370213);
+        }
+    }
 }
