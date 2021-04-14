@@ -25,44 +25,54 @@ public class TextController : DiamondComponent
 	private bool finished = false;
 	public void OnExecuteButton()
 	{
-		if (++index < texts.Count)
-		{
+		if (startMenu==true)
+			return;
+        if (++index < texts.Count)
+        {
+			if(text!=null)
+				text.GetComponent<Text>().text = texts[index];
+            if (images[index] == true)
+            {
+				if(mandoimage!=null)
+					mandoimage.Enable(true);
+				if(otherimage!=null)
+					otherimage.Enable(false);
+            }
+            else
+            {
+				if(mandoimage!=null)
+					mandoimage.Enable(false);
+				if(otherimage!=null)
+					otherimage.Enable(true);
+            }
 
-			text.GetComponent<Text>().text = texts[index];
-			if (images[index] == true)
-			{
+        }
+
+
+
+        if (index >= texts.Count && gui_not_enabled)
+        {
+            index = -1;
+			if(mandoimage!=null)
 				mandoimage.Enable(true);
-				otherimage.Enable(false);
-			}
-			else
-			{
-				mandoimage.Enable(false);
+			if (otherimage != null)
 				otherimage.Enable(true);
-			}
-
-		}
-
-		
-
-		if (index >= texts.Count && gui_not_enabled)
-		{
-			index = -1;
-			mandoimage.Enable(true);
-			otherimage.Enable(true);
-			text.GetComponent<Text>().text = " ";
-			dialog.Enable(false);
-			finished = true;
-			if (gui != null)
-			{
-				gui.Enable(true);
-				gui.GetComponent<HUD>().ResetCombo();
-				gui_not_enabled = false;
-			}
-			Time.ResumeGame();
-			//InternalCalls.Destroy(dialog);
-		}
-	}
-	public void Update()
+			if (text != null)
+				text.GetComponent<Text>().text = " ";
+			if (dialog != null)
+				dialog.Enable(false);
+            finished = true;
+            if (gui != null)
+            {
+                gui.Enable(true);
+                gui.GetComponent<HUD>().ResetCombo();
+                gui_not_enabled = false;
+            }
+            Time.ResumeGame();
+            //InternalCalls.Destroy(dialog);
+        }
+    }
+    public void Update()
 	{
 		if (startMenu == true && dialog != null && list_of_dialogs != null && dialog_index >= 0)
 		{
