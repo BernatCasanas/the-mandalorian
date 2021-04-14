@@ -113,6 +113,7 @@ public:
     physx::PxShape* CreateBoxCollider(float3 size, physx::PxMaterial* material = nullptr);
     physx::PxShape* CreateSphereCollider(float radius, physx::PxMaterial* material = nullptr);
     physx::PxShape* CreateMeshCollider(C_RigidBody* aConvexActor, GameObject* parent);
+    physx::PxShape* CreateCapsuleCollider(float radius, float halfHeight, physx::PxMaterial* material = nullptr);
     physx::PxMaterial* CreateMaterial(float staticFriction = 0.5f, float dynamicFriction = 0.5f, float restitution = 0.1f);
 
     void ReleaseActor(physx::PxRigidActor* actor);

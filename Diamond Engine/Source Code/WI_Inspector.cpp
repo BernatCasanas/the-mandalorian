@@ -225,6 +225,12 @@ void W_Inspector::Draw()
 						selectedGO->AddComponent(Component::TYPE::SPHERECOLLIDER);
 
 					}
+					if (ImGui::Selectable("Capsule Collider"))
+					{
+						if (selectedGO->GetComponent(Component::TYPE::RIGIDBODY) != nullptr)
+						selectedGO->AddComponent(Component::TYPE::CAPSULECOLLIDER);
+
+					}
 					if (ImGui::Selectable("AudioListener"))
 					{
 						if (selectedGO->GetComponent(Component::TYPE::AUDIO_LISTENER) == nullptr)

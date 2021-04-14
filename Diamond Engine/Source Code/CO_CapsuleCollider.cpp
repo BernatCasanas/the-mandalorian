@@ -8,7 +8,7 @@
 
 #include "CO_RigidBody.h"
 #include "CO_Collider.h"
-#include "CO_SphereCollider.h"
+#include "CO_CapsuleCollider.h"
 #include "CO_Transform.h"
 #include "CO_MeshRenderer.h"
 
@@ -17,7 +17,7 @@
 
 
 
-C_SphereCollider::C_SphereCollider() : C_Collider(nullptr)
+C_CapsuleCollider::C_CapsuleCollider() : C_Collider(nullptr)
 {
 	name = "Sphere Collider_" + std::to_string(-1);
 
@@ -25,14 +25,14 @@ C_SphereCollider::C_SphereCollider() : C_Collider(nullptr)
 }
 
 
-C_SphereCollider::C_SphereCollider(GameObject* _gm/*, float3 _position, Quat _rotation, float3 _localScale*/) : C_Collider(_gm)/*,
+C_CapsuleCollider::C_CapsuleCollider(GameObject* _gm/*, float3 _position, Quat _rotation, float3 _localScale*/) : C_Collider(_gm)/*,
 position(_position), rotation(_rotation), localScale(_localScale)*/
 {
 
 	int indexNum = _gm != nullptr ? _gm->GetComponentsOfType(Component::TYPE::SPHERECOLLIDER).size() + _gm->GetComponentsOfType(Component::TYPE::COLLIDER).size() : 0;
-	name = "Sphere Collider_" + std::to_string(indexNum);
+	name = "Capsule Collider_" + std::to_string(indexNum);
 	isTrigger = false;
-	shape = ColliderShape::SPHERE;
+	shape = ColliderShape::CAPSULE;
 
 	//Checks if component does have any owner and get additional data to be created
 
@@ -49,28 +49,42 @@ position(_position), rotation(_rotation), localScale(_localScale)*/
 	colliderShape = nullptr;
 
 	//If gameObject does have mesh we apply measures directly to collider from OBB
-	if (mesh != nullptr) {
+	
+	if (rigidbody != nullptr)
+	{
+		if (mesh != nullptr) {
 
-		colliderSize = mesh->globalOBB.Size() / 2;
-		
-		radius = 0;
-		for (int i = 0; i < 3; i++)
-		{
-			if (radius < colliderSize[i])
-				radius = colliderSize[i];
+			colliderSize = mesh->globalOBB.Size() / 2;
+
+			halfHeight = 0;
+			for (int i = 0; i < 3; i++)
+			{
+				if (halfHeight < colliderSize[i])
+					halfHeight = colliderSize[i];
+			}
+			halfHeight /= 2;
+			radius = colliderSize[0];
+
+			for (int i = 1; i < 3; i++)
+			{
+				if (radius > colliderSize[i])
+					radius = colliderSize[i];
+			}
+
+			if (colliderSize.y <= 0.0f)
+				colliderSize.y = 0.01f;
+			colliderShape = EngineExternal->modulePhysics->CreateCapsuleCollider(radius, halfHeight, colliderMaterial);
+
 		}
+		else {
+			colliderSize = { 0.5f, 0.5f, 0.5f };
+			radius = 0.5;
+			halfHeight = 0.5;
+			colliderShape = EngineExternal->modulePhysics->CreateCapsuleCollider(radius, halfHeight, colliderMaterial);
 
-		if (colliderSize.y <= 0.0f) 
-			colliderSize.y = 0.01f;
-		colliderShape = EngineExternal->modulePhysics->CreateSphereCollider(radius, colliderMaterial);
-
+		}
 	}
-	else {
-		colliderSize = { 0.5f, 0.5f, 0.5f };
-		radius = 0.5;
-		colliderShape = EngineExternal->modulePhysics->CreateSphereCollider(radius, colliderMaterial);
-	}
-
+	
 	
 
 	//We attach shape to a static or dynamic rigidbody to be collidable.
@@ -85,7 +99,7 @@ position(_position), rotation(_rotation), localScale(_localScale)*/
 
 }
 
-C_SphereCollider::~C_SphereCollider()
+C_CapsuleCollider::~C_CapsuleCollider()
 {
 	//LOG(LogType::L_NORMAL, "Deleting Box Collider");
 
@@ -112,9 +126,10 @@ C_SphereCollider::~C_SphereCollider()
 
 }
 
+
 #ifndef STANDALONE
 
-void C_SphereCollider::Update()
+void C_CapsuleCollider::Update()
 {
 
 	if (rigidbody == nullptr)
@@ -134,54 +149,128 @@ void C_SphereCollider::Update()
 		float3 pos, scale;
 		Quat rot;
 		trans.Decompose(pos, rot, scale);
-		scale.Set(radius, radius, radius);
-		trans = trans.FromTRS(pos, rot, scale);
+		//scale.Set(radius, radius, radius);
+		//trans = trans.FromTRS(pos, rot, scale);
 		//SetPosition(pos);
-		//trans = EngineExternal->modulePhysics->PhysXTransformToF4F(colliderShape->getLocalPose());
+
 
 		GLfloat x, y, z, alpha, beta; // Storage for coordinates and angles        
 		int gradation = 10;
 
-	//	glPushMatrix();
-	//	glMultMatrixf(trans.Transposed().ptr());
-	//	glLineWidth(2.0f);
-	//	glColor3f(0.0f, 1.0f, 0.0f);
+
+		
+		
+
+		float delta_angle = 360.0f / 50.0f;
+		float half_delta_angle = 180.f / 25.0f;
+		float curr_angle = 0.f;
+
 		LineSegment drawLine;
 
-		for (alpha = 0.0; alpha < PI; alpha += PI / gradation)
-		{
-			
-		//	glBegin(GL_LINE_STRIP);
-			for (beta = 0.0; beta < 2.01 * PI; beta += PI / gradation)
-			{
+		
+		for (int i = 0; i <= 50; ++i) {
+			curr_angle = delta_angle * i;
 
-				x = cos(beta) * sin(alpha);
-				y = sin(beta) * sin(alpha);
-				z = cos(alpha);
-				drawLine.a.Set(x, y, z);
-
-				if(beta != 0.0)
+			x = radius * cosf(DEGTORAD * curr_angle);
+			y = halfHeight;
+			z = radius * sinf(DEGTORAD * curr_angle);
+			drawLine.a.Set(x, y, z);
+			if (i != 0.0)
 				EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(drawLine.a), trans.MulPos(drawLine.b), float3(0.0f, 1.0f, 0.0f));
-
-				//glVertex3f(x, y, z);
-				x = cos(beta) * sin(alpha + PI / gradation);
-				y = sin(beta) * sin(alpha + PI / gradation);
-				z = cos(alpha + PI / gradation);
-				drawLine.b.Set(x, y, z);
-				//glVertex3f(x, y, z);
-
-				EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(drawLine.a), trans.MulPos(drawLine.b), float3(0.0f, 1.0f, 0.0f));
-			}
-
-			glTranslatef(pos.x, 0.0f, 0.0f);
-			glScalef(radius, radius, radius);
-			glEnd();
-
-			
+			drawLine.b.Set(x, y, z);
 		}
-		//glColor3f(1.0f, 1.0f, 1.0f);
 
-		//glPopMatrix();
+		
+		for (int i = 0; i <= 25; ++i) {
+			curr_angle = half_delta_angle * i;
+			x = radius * cosf(DEGTORAD * curr_angle);
+			y = radius * sinf(DEGTORAD * curr_angle) + halfHeight;
+			z = 0.0f;
+			drawLine.a.Set(x, y, z);
+
+			if (i != 0.0)
+				EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(drawLine.a), trans.MulPos(drawLine.b), float3(0.0f, 1.0f, 0.0f));
+			drawLine.b.Set(x, y, z);
+
+		}
+	
+
+		for (int i = 0; i <= 25; ++i) {
+			curr_angle = half_delta_angle * i;
+
+			x = 0.0f;
+			y = radius * sinf(DEGTORAD * curr_angle) + halfHeight;
+			z = radius * cosf(DEGTORAD * curr_angle);
+			drawLine.a.Set(x, y, z);
+
+			if (i != 0.0)
+				EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(drawLine.a), trans.MulPos(drawLine.b), float3(0.0f, 1.0f, 0.0f));
+			drawLine.b.Set(x, y, z);
+		}
+
+
+		for (int i = 0; i < 50; ++i) {
+			curr_angle = delta_angle * i;
+			x = radius * cosf(DEGTORAD * curr_angle);
+			y = -halfHeight;
+			z = radius * sinf(DEGTORAD * curr_angle);
+			drawLine.a.Set(x, y, z);
+
+			if (i != 0.0)
+				EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(drawLine.a), trans.MulPos(drawLine.b), float3(0.0f, 1.0f, 0.0f));
+			drawLine.b.Set(x, y, z);
+
+		}
+
+		for (int i = 0; i <= 25.0; ++i) {
+			curr_angle = 180.F + half_delta_angle * i;
+			x = radius * cosf(DEGTORAD * curr_angle);
+			y = radius * sinf(DEGTORAD * curr_angle) - halfHeight;
+			z = 0.0f;
+			drawLine.a.Set(x, y, z);
+
+			if (i != 0.0)
+				EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(drawLine.a), trans.MulPos(drawLine.b), float3(0.0f, 1.0f, 0.0f));
+			drawLine.b.Set(x, y, z);
+		}
+	
+
+		for (int i = 0; i <= 25; ++i) {
+			curr_angle = 180.F + half_delta_angle * i;
+
+			x = 0.0f;
+			y = radius * sinf(DEGTORAD * curr_angle) - halfHeight;
+			z = radius * cosf(DEGTORAD * curr_angle);
+			drawLine.a.Set(x, y, z);
+
+			if (i != 0.0)
+				EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(drawLine.a), trans.MulPos(drawLine.b), float3(0.0f, 1.0f, 0.0f));
+			drawLine.b.Set(x, y, z);
+		}
+
+		drawLine.a.Set(0.f, halfHeight, -radius);
+		drawLine.b.Set(0.f, -halfHeight, -radius);
+
+		EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(drawLine.a), trans.MulPos(drawLine.b), float3(0.0f, 1.0f, 0.0f));
+
+
+		drawLine.a.Set(0.f, halfHeight, radius);
+		drawLine.b.Set(0.f, -halfHeight, radius);
+
+		EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(drawLine.a), trans.MulPos(drawLine.b), float3(0.0f, 1.0f, 0.0f));
+
+		drawLine.a.Set(-radius, halfHeight, 0.f);
+		drawLine.b.Set(-radius, -halfHeight, 0.f);
+
+		EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(drawLine.a), trans.MulPos(drawLine.b), float3(0.0f, 1.0f, 0.0f));
+		drawLine.a.Set(radius, halfHeight, 0.f);
+		drawLine.b.Set(radius, -halfHeight, 0.f);
+
+		EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(drawLine.a), trans.MulPos(drawLine.b), float3(0.0f, 1.0f, 0.0f));
+
+		
+
+		
 	}
 
 }
@@ -191,7 +280,8 @@ void C_SphereCollider::Update()
 
 
 
-void C_SphereCollider::SaveData(JSON_Object* nObj)
+
+void C_CapsuleCollider::SaveData(JSON_Object* nObj)
 {
 	Component::SaveData(nObj);
 
@@ -207,10 +297,12 @@ void C_SphereCollider::SaveData(JSON_Object* nObj)
 	DEJson::WriteVector3(nObj, "Position", pos.ptr());
 	DEJson::WriteQuat(nObj, "Rotation", rot.ptr());
 	DEJson::WriteFloat(nObj, "Radius", radius);
+	DEJson::WriteFloat(nObj, "HalfHeight", halfHeight);
+
 
 }
 
-void C_SphereCollider::LoadData(DEConfig& nObj)
+void C_CapsuleCollider::LoadData(DEConfig& nObj)
 {
 	Component::LoadData(nObj);
 	float3 pos;
@@ -227,15 +319,16 @@ void C_SphereCollider::LoadData(DEConfig& nObj)
 	pos = nObj.ReadVector3("Position");
 	rot = nObj.ReadQuat("Rotation");
 	radius = nObj.ReadFloat("Radius");
+	radius = nObj.ReadFloat("HalfHeight");
 
 
 	physx::PxTransform physTrans;
 	physTrans.p = physx::PxVec3(pos.x, pos.y, pos.z);
-	physTrans.q = physx::PxQuat(rot.x, rot.y, rot.z, rot.w);
+	physTrans.q = physx::PxQuat(rot.x, rot.y, rot.z, rot.w) * physx::PxQuat(0, 0, 0.7071068, 0.7071068);
 	float3 newSize;
 	
 	
-	colliderShape->setGeometry(physx::PxSphereGeometry(radius));
+	colliderShape->setGeometry(physx::PxCapsuleGeometry(radius, halfHeight));
 	colliderShape->setLocalPose(physTrans);
 
 	localTransform = float4x4::FromTRS(pos, rot, float3(1, 1, 1));
@@ -244,7 +337,7 @@ void C_SphereCollider::LoadData(DEConfig& nObj)
 
 
 #ifndef STANDALONE
-bool C_SphereCollider::OnEditor()
+bool C_CapsuleCollider::OnEditor()
 {
 	if (Component::OnEditor() == true)
 	{
