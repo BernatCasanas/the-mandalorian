@@ -23,6 +23,7 @@ public:
 
 	void SaveData(JSON_Object* nObj) override;
 	void LoadData(DEConfig& nObj) override;
+	void SetRotation(Quat rotation);
 #ifndef STANDALONE
 	bool OnEditor()override;
 

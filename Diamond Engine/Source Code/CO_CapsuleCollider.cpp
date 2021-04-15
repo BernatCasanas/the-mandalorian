@@ -319,7 +319,7 @@ void C_CapsuleCollider::LoadData(DEConfig& nObj)
 	pos = nObj.ReadVector3("Position");
 	rot = nObj.ReadQuat("Rotation");
 	radius = nObj.ReadFloat("Radius");
-	radius = nObj.ReadFloat("HalfHeight");
+	halfHeight = nObj.ReadFloat("HalfHeight");
 
 
 	physx::PxTransform physTrans;
@@ -341,6 +341,8 @@ bool C_CapsuleCollider::OnEditor()
 {
 	if (Component::OnEditor() == true)
 	{
+		std::vector<Component*>::iterator it = std::find(rigidbody->collider_info.begin(), rigidbody->collider_info.end(), this);
+		int index = std::distance(rigidbody->collider_info.begin(), it);
 		ImGuiTreeNodeFlags node_flags = ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
 
 		bool trigger = isTrigger;
@@ -361,8 +363,9 @@ bool C_CapsuleCollider::OnEditor()
 			ImGui::Separator();
 
 			ImGui::Text("Position"); ImGui::Spacing(); ImGui::Spacing();// ImGui::NextColumn();
-		
-			ImGui::Text("Scale"); ImGui::NextColumn();
+			ImGui::Text("Rotation"); ImGui::Spacing(); ImGui::Spacing(); //ImGui::NextColumn();
+			ImGui::Text("Radius"); 
+			ImGui::Text("Half Heigth"); ImGui::NextColumn();
 
 			// Position
 			float3 pos, scale;
@@ -372,7 +375,8 @@ bool C_CapsuleCollider::OnEditor()
 
 			float t = pos.x;
 			ImGui::SetNextItemWidth(50);
-			ImGui::DragFloat(" ", &t);
+			std::string suffix = "##Posx" + std::to_string(index);
+			ImGui::DragFloat(suffix.c_str(), &t);
 			if (ImGui::IsItemActive())
 			{
 				pos.x = t;
@@ -383,21 +387,53 @@ bool C_CapsuleCollider::OnEditor()
 
 			}
 			ImGui::SetNextItemWidth(50);
-			
+
+			//Rotation
+			float r1 = rotation.x;
+			ImGui::SetNextItemWidth(50);
+			suffix = "##Rotx" + std::to_string(index);
+			ImGui::DragFloat(suffix.c_str(), &r1);
+			if (ImGui::IsItemActive())
+			{
+				float newrot = r1 - rotation.x;
+
+				rotation.x = r1;
+				float3 axis(1, 0, 0);
+				Quat newquat = Quat::RotateAxisAngle(axis, newrot * pi / 180);
+				rot = rot * newquat;
+				localTransform = float4x4::FromTRS(pos, rot, scale);
+
+				SetRotation(rot);
+
+			}
+			//Radius
+			ImGui::SetNextItemWidth(50);
+
 			float rad = radius;
-			ImGui::DragFloat("  ", &rad);
+			suffix = "##radius" + std::to_string(index);
+			ImGui::DragFloat(suffix.c_str(), &rad);
 			if (ImGui::IsItemActive())
 			{
 				radius = rad;
-				colliderShape->setGeometry(physx::PxSphereGeometry(radius));
+				colliderShape->setGeometry(physx::PxCapsuleGeometry(radius, halfHeight));
 			}
+			float h = halfHeight;
+			suffix = "##halfheigth" + std::to_string(index);
+			ImGui::DragFloat(suffix.c_str(), &h);
+			if (ImGui::IsItemActive())
+			{
+				halfHeight = h;
+				colliderShape->setGeometry(physx::PxCapsuleGeometry(radius, halfHeight));
+			}
+			ImGui::SetNextItemWidth(50);
 			ImGui::NextColumn();
 
 			// Position
 
 			float t1 = pos.y;
 			ImGui::SetNextItemWidth(50);
-			ImGui::DragFloat("    ", &t1);
+			suffix = "##Posy" + std::to_string(index);
+			ImGui::DragFloat(suffix.c_str(), &t1);
 			if (ImGui::IsItemActive())
 			{
 				pos.y = t1;
@@ -406,14 +442,36 @@ bool C_CapsuleCollider::OnEditor()
 				SetPosition(pos);
 			}
 		
-		
+			float r2 = rotation.y;
+			ImGui::SetNextItemWidth(50);
+			suffix = "##Roty" + std::to_string(index);
+			ImGui::DragFloat(suffix.c_str(), &r2);
+			if (ImGui::IsItemActive())
+			{
+				float newrot = r2 - rotation.y;
+
+				rotation.y = r2;
+				float3 axis(0, 1, 0);
+				Quat newquat = Quat::RotateAxisAngle(axis, newrot * pi / 180);
+				rot = rot * newquat;
+				localTransform = float4x4::FromTRS(pos, rot, scale);
+
+				SetRotation(rot);
+
+			}
+			//Scale
+			float s2 = scale.y;
+			ImGui::SetNextItemWidth(50);
+
+			
 			
 			ImGui::NextColumn();
 
 			// Position
 			float t2 = pos.z;
 			ImGui::SetNextItemWidth(50);
-			ImGui::DragFloat("       ", &t2);
+			suffix = "##Posz" + std::to_string(index);
+			ImGui::DragFloat(suffix.c_str(), &t2);
 			if (ImGui::IsItemActive())
 			{
 				pos.z = t2;
@@ -422,6 +480,24 @@ bool C_CapsuleCollider::OnEditor()
 				SetPosition(pos);
 			}
 			
+			// Rotation
+			float r3 = rotation.z;
+			ImGui::SetNextItemWidth(50);
+			suffix = "##Rotz" + std::to_string(index);
+			ImGui::DragFloat(suffix.c_str(), &r3);
+			if (ImGui::IsItemActive())
+			{
+				float newrot = r3 - rotation.z;
+
+				rotation.z = r3;
+				float3 axis(0, 0, 1);
+				Quat newquat = Quat::RotateAxisAngle(axis, newrot * pi / 180);
+				rot = rot * newquat;
+				localTransform = float4x4::FromTRS(pos, rot, scale);
+
+				SetRotation(rot);
+
+			}
 			ImGui::NextColumn();
 
 			ImGui::Columns(1);
@@ -437,6 +513,19 @@ bool C_CapsuleCollider::OnEditor()
 	}
 	return false;
 }
+
+
+void C_CapsuleCollider::SetRotation(Quat rotation) {
+
+
+
+	physx::PxTransform transformation = colliderShape->getLocalPose();
+	transformation.q = physx::PxQuat(rotation.x, rotation.y, rotation.z, rotation.w) * physx::PxQuat(0, 0, 0.7071068, 0.7071068);
+
+	colliderShape->setLocalPose(transformation); //Set new Transformation Values
+
+}
+
 #endif // !STANDALONE
 
 

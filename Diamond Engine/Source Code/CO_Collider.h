@@ -30,7 +30,6 @@ public:
 	void SetPosition(float3 position);
 	inline float3 GetPosition() { return colliderPos; };
 
-	void SetRotation(Quat rotation);
 	inline float3 GetEuler() { return colliderEuler; };
 
 	void SetScale(float3 scale, float radius = 1.0f);
@@ -44,6 +43,8 @@ public:
 
 	void SaveData(JSON_Object* nObj) override;
 	void LoadData(DEConfig& nObj) override;
+	void SetRotation(Quat rotation);
+
 #ifndef STANDALONE
 	bool OnEditor() override;
 #endif // !STANDALONE

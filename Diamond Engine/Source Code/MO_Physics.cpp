@@ -186,19 +186,19 @@ update_status ModulePhysics::PreUpdate(float dt)
 
 update_status ModulePhysics::Update(float gameTimestep) {
 
-	//RenderGeometry();
-	//const PxRenderBuffer& rb = mScene->getRenderBuffer();
-	//for (PxU32 i = 0; i < rb.getNbLines(); i++)
-	//{
-	//	const PxDebugLine& line = rb.getLines()[i];
+	RenderGeometry();
+	const PxRenderBuffer& rb = mScene->getRenderBuffer();
+	for (PxU32 i = 0; i < rb.getNbLines(); i++)
+	{
+		const PxDebugLine& line = rb.getLines()[i];
 
-	//	LineSegment drawLine;
-	//	drawLine.a.Set(line.pos0.x, line.pos0.y, line.pos0.z);
-	//	drawLine.b.Set(line.pos1.x, line.pos1.y, line.pos1.z);
+		LineSegment drawLine;
+		drawLine.a.Set(line.pos0.x, line.pos0.y, line.pos0.z);
+		drawLine.b.Set(line.pos1.x, line.pos1.y, line.pos1.z);
 
-	//	EngineExternal->moduleRenderer3D->AddDebugLines(drawLine.a, drawLine.b, float3(1.0f, 0.0f, 0.0f));
+		EngineExternal->moduleRenderer3D->AddDebugLines(drawLine.a, drawLine.b, float3(1.0f, 0.0f, 0.0f));
 
-	//}
+	}
 	return update_status::UPDATE_CONTINUE;
 }
 
