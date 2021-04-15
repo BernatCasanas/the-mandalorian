@@ -274,8 +274,8 @@ void C_CapsuleCollider::Update()
 	}
 
 }
-
 #endif // !STANDALONE
+
 
 
 

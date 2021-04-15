@@ -25,7 +25,6 @@ public:
 	C_Collider(GameObject* _gm/*, float3 _position, Quat _rotation, float3 _localScale*/);
 	virtual ~C_Collider();
 
-	void Update() override;
 
 	void SetPosition(float3 position);
 	inline float3 GetPosition() { return colliderPos; };
@@ -46,6 +45,8 @@ public:
 	void SetRotation(Quat rotation);
 
 #ifndef STANDALONE
+	void Update() override;
+
 	bool OnEditor() override;
 #endif // !STANDALONE
 public:

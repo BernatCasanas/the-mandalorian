@@ -17,7 +17,6 @@ public:
 	C_CapsuleCollider(GameObject* _gm/*, float3 _position, Quat _rotation, float3 _localScale*/);
 	virtual ~C_CapsuleCollider();
 
-	void Update() override;
 
 
 
@@ -26,6 +25,7 @@ public:
 	void SetRotation(Quat rotation);
 #ifndef STANDALONE
 	bool OnEditor()override;
+	void Update() override;
 
 #endif // !STANDALONE
 public:

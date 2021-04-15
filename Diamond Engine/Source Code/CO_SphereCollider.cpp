@@ -185,8 +185,8 @@ void C_SphereCollider::Update()
 	}
 
 }
-
 #endif // !STANDALONE
+
 
 
 

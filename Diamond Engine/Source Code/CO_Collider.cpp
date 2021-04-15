@@ -36,12 +36,14 @@ C_Collider::~C_Collider()
 {
 	
 }
+#ifndef STANDALONE
 
 void C_Collider::Update()
 {
 
 	
 }
+#endif
 
 void C_Collider::SetPosition(float3 position) {
 

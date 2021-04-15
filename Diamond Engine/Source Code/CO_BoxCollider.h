@@ -17,13 +17,13 @@ public:
 	C_BoxCollider(GameObject* _gm/*, float3 _position, Quat _rotation, float3 _localScale*/);
 	virtual ~C_BoxCollider();
 
-	void Update() override;
 
 
 
 	void SaveData(JSON_Object* nObj) override;
 	void LoadData(DEConfig& nObj) override;
 #ifndef STANDALONE
+	void Update() override;
 
 #endif // !STANDALONE
 public:
