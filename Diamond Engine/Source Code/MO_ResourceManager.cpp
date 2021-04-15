@@ -23,7 +23,7 @@
 #include"MO_MonoManager.h"
 
 M_ResourceManager::M_ResourceManager(Application* app, bool start_enabled) : Module(app, start_enabled), assetsRoot("Assets", "Assets", 0, true),
-fileCheckTime(0.f), fileUpdateDelay(2.f), meshesLibraryRoot("Meshes", "Library/Meshes", 0, true), animationsLibraryRoot("Animations", "Library/Animations", 0, true)
+fileCheckTime(0.f), fileUpdateDelay(2.f), meshesLibraryRoot("Meshes", "Library/Meshes", 0, true), animationsLibraryRoot("Animations", "Library/Animations", 0, true), recompileCS(false)
 {
 }
 
@@ -42,6 +42,9 @@ bool M_ResourceManager::Start()
 	assetsRoot.lastModTime = App->moduleFileSystem->GetLastModTime(assetsRoot.importPath.c_str());
 	meshesLibraryRoot.lastModTime = App->moduleFileSystem->GetLastModTime(meshesLibraryRoot.importPath.c_str());
 	animationsLibraryRoot.lastModTime = App->moduleFileSystem->GetLastModTime(animationsLibraryRoot.importPath.c_str());
+
+	NeedsDirsUpdate(assetsRoot);
+
 	return true;
 }
 
@@ -52,6 +55,13 @@ update_status M_ResourceManager::PreUpdate(float dt)
 	{
 		NeedsDirsUpdate(assetsRoot);
 	}
+	
+	if (recompileCS)
+	{
+		EngineExternal->moduleMono->ReCompileCS();
+		recompileCS = false;
+	}
+
 	return update_status::UPDATE_CONTINUE;
 }
 #endif // !STANDALONE
@@ -168,7 +178,8 @@ int M_ResourceManager::GenerateNewUID()
 
 void M_ResourceManager::NeedsDirsUpdate(AssetDir& dir)
 {
-	if (dir.lastModTime == App->moduleFileSystem->GetLastModTime(dir.importPath.c_str())) 
+	if (dir.lastModTime == App->moduleFileSystem->GetLastModTime(dir.importPath.c_str())
+		&& dir.lastModTime <= App->moduleFileSystem->GetLastModTime(dir.libraryPath.c_str()))
 	{
 		for (unsigned int i = 0; i < dir.childDirs.size(); i++)
 		{
@@ -218,10 +229,17 @@ void M_ResourceManager::NeedsDirsUpdate(AssetDir& dir)
 		//TODO: Then find modified files and create o recalulate .meta and library files
 		//SUPER IMPOIRTANT TODO DONT FFORGET, REGENERATE LIBRARY FILE BUT NEVER MODIFY META FILE
 		//Check if this works
-		if (!dir.isDir) 
+
+		//int lastModTime = App->moduleFileSystem->GetLastModTime(dir.importPath.c_str());
+		//int difference = lastModTime - dir.lastModTime;
+
+		if (!dir.isDir)
 		{
 			UpdateFile(dir);
 		}
+
+		//lastModTime = App->moduleFileSystem->GetLastModTime(dir.importPath.c_str());
+		//difference = lastModTime - dir.lastModTime;
 	}
 	fileCheckTime = 0.f;
 }
@@ -406,7 +424,8 @@ Resource* M_ResourceManager::CreateNewResource(const char* assetsFile, uint uid,
 		case Resource::Type::MESH: ret = (Resource*) new ResourceMesh(uid); break;
 		case Resource::Type::SCENE : ret = new Resource(uid, Resource::Type::SCENE); break;
 #ifndef STANDALONE
-		case Resource::Type::SCRIPT: App->moduleMono->ReCompileCS(); break;
+		//case Resource::Type::SCRIPT: App->moduleMono->ReCompileCS(); break;
+		case Resource::Type::SCRIPT: recompileCS = true; break;
 #endif // !STANDALONE
 		case Resource::Type::SHADER: ret = (Resource*) new ResourceShader(uid); break;
 		case Resource::Type::MATERIAL: 
@@ -597,6 +616,7 @@ void M_ResourceManager::UpdateFile(AssetDir& modDir)
 	LOG(LogType::L_WARNING, "File %s was modified, reimporting", modDir.dirName.c_str());
 	ImportFile(modDir.importPath.c_str(), App->moduleResources->GetMetaType(modDir.metaFileDir.c_str()));
 	modDir.lastModTime = App->moduleFileSystem->GetLastModTime(modDir.importPath.c_str());
+	modDir.GenerateMeta();
 }
 
 Resource::Type M_ResourceManager::GetTypeFromAssetExtension(const char* assetFile) const

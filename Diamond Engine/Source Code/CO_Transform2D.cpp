@@ -159,7 +159,7 @@ void C_Transform2D::LoadData(DEConfig& nObj)
 	size[0] = scl.x;
 	size[1] = scl.y;
 
-	updateTransform = true;
+	UpdateTransform();
 }
 
 
