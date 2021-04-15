@@ -39,7 +39,7 @@ public:
 
 	void Destroy();
 
-	void SaveToJson(JSON_Array* _goArray);
+	void SaveToJson(JSON_Array* _goArray, bool saveAllData = true);
 	void LoadFromJson(JSON_Object*);
 	void CopyObjectData(JSON_Object* jsonObject);
 	void GetChildrenUIDs(std::vector<uint>& UIDs);

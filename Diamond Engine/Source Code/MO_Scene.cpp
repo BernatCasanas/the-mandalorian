@@ -480,7 +480,7 @@ void M_Scene::SaveScene(const char* name)
 	json_object_set_value(root_object.nObj, "layers", layersValue);
 
 	JSON_Value* goArray = json_value_init_array();
-	root->SaveToJson(json_value_get_array(goArray));
+	root->SaveToJson(json_value_get_array(goArray), false);
 	json_object_set_value(root_object.nObj, "Game Objects", goArray);
 
 	//Save file 

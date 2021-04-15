@@ -341,7 +341,7 @@ void GameObject::Destroy()
 }
 
 
-void GameObject::SaveToJson(JSON_Array* _goArray)
+void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
 {
 	JSON_Value* goValue = json_value_init_object();
 	JSON_Object* goData = json_value_get_object(goValue);
@@ -366,7 +366,9 @@ void GameObject::SaveToJson(JSON_Array* _goArray)
 	if (parent)
 		DEJson::WriteInt(goData, "ParentUID", parent->UID);
 
-	if (prefabID != 0)
+	json_array_append_value(_goArray, goValue);
+
+	if (prefabID != 0 && !saveAllData)
 	{
 		std::vector<uint> uids;
 		GetChildrenUIDs(uids);
@@ -380,9 +382,7 @@ void GameObject::SaveToJson(JSON_Array* _goArray)
 		}
 	}
 
-	json_array_append_value(_goArray, goValue);
-
-	if (prefabID != 0u)
+	if (prefabID != 0u && !saveAllData)
 		return;
 
 	//TODO: Move inside component base
