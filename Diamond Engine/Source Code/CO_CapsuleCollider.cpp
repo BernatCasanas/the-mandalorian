@@ -341,12 +341,13 @@ bool C_CapsuleCollider::OnEditor()
 {
 	if (Component::OnEditor() == true)
 	{
-		std::vector<Component*>::iterator it = std::find(rigidbody->collider_info.begin(), rigidbody->collider_info.end(), this);
-		int index = std::distance(rigidbody->collider_info.begin(), it);
 		ImGuiTreeNodeFlags node_flags = ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
 
+		std::vector<Component*>::iterator it = std::find(rigidbody->collider_info.begin(), rigidbody->collider_info.end(), this);
+		int index = std::distance(rigidbody->collider_info.begin(), it);
 		bool trigger = isTrigger;
-		ImGui::Checkbox("isTrigger", &trigger);
+		std::string suffix = "isTrigger##" + std::to_string(index);
+		ImGui::Checkbox(suffix.c_str(), &trigger);
 
 		if (trigger != isTrigger)
 		{
@@ -355,7 +356,7 @@ bool C_CapsuleCollider::OnEditor()
 		}
 
 		ImGui::Separator();
-		if (ImGui::TreeNodeEx("Edit Collider", node_flags))
+		if (ImGui::TreeNodeEx(std::string("Edit Collider: " + name + "##" + std::to_string(index)).c_str(), node_flags))
 		{
 
 
@@ -375,7 +376,7 @@ bool C_CapsuleCollider::OnEditor()
 
 			float t = pos.x;
 			ImGui::SetNextItemWidth(50);
-			std::string suffix = "##Posx" + std::to_string(index);
+			suffix = "##Posx" + std::to_string(index);
 			ImGui::DragFloat(suffix.c_str(), &t);
 			if (ImGui::IsItemActive())
 			{
@@ -417,6 +418,8 @@ bool C_CapsuleCollider::OnEditor()
 				radius = rad;
 				colliderShape->setGeometry(physx::PxCapsuleGeometry(radius, halfHeight));
 			}
+
+			ImGui::SetNextItemWidth(50);
 			float h = halfHeight;
 			suffix = "##halfheigth" + std::to_string(index);
 			ImGui::DragFloat(suffix.c_str(), &h);
@@ -425,7 +428,6 @@ bool C_CapsuleCollider::OnEditor()
 				halfHeight = h;
 				colliderShape->setGeometry(physx::PxCapsuleGeometry(radius, halfHeight));
 			}
-			ImGui::SetNextItemWidth(50);
 			ImGui::NextColumn();
 
 			// Position

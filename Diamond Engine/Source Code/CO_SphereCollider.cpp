@@ -250,8 +250,11 @@ bool C_SphereCollider::OnEditor()
 	{
 		ImGuiTreeNodeFlags node_flags = ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
 
+		std::vector<Component*>::iterator it = std::find(rigidbody->collider_info.begin(), rigidbody->collider_info.end(), this);
+		int index = std::distance(rigidbody->collider_info.begin(), it);
 		bool trigger = isTrigger;
-		ImGui::Checkbox("isTrigger", &trigger);
+		std::string suffix = "isTrigger##" + std::to_string(index);
+		ImGui::Checkbox(suffix.c_str(), &trigger);
 
 		if (trigger != isTrigger)
 		{
@@ -260,7 +263,7 @@ bool C_SphereCollider::OnEditor()
 		}
 
 		ImGui::Separator();
-		if (ImGui::TreeNodeEx("Edit Collider", node_flags))
+		if (ImGui::TreeNodeEx(std::string("Edit Collider: " + name + "##" + std::to_string(index)).c_str(), node_flags))
 		{
 
 
@@ -279,7 +282,9 @@ bool C_SphereCollider::OnEditor()
 
 			float t = pos.x;
 			ImGui::SetNextItemWidth(50);
-			ImGui::DragFloat(" ", &t);
+			suffix = "##Posx" + std::to_string(index);
+
+			ImGui::DragFloat(suffix.c_str(), &t);
 			if (ImGui::IsItemActive())
 			{
 				pos.x = t;
@@ -292,7 +297,9 @@ bool C_SphereCollider::OnEditor()
 			ImGui::SetNextItemWidth(50);
 			
 			float rad = radius;
-			ImGui::DragFloat("  ", &rad);
+			suffix = "##radius" + std::to_string(index);
+
+			ImGui::DragFloat(suffix.c_str(), &rad);
 			if (ImGui::IsItemActive())
 			{
 				radius = rad;
@@ -304,7 +311,8 @@ bool C_SphereCollider::OnEditor()
 
 			float t1 = pos.y;
 			ImGui::SetNextItemWidth(50);
-			ImGui::DragFloat("    ", &t1);
+			suffix = "##Posy" + std::to_string(index);
+			ImGui::DragFloat(suffix.c_str(), &t1);
 			if (ImGui::IsItemActive())
 			{
 				pos.y = t1;
@@ -320,7 +328,8 @@ bool C_SphereCollider::OnEditor()
 			// Position
 			float t2 = pos.z;
 			ImGui::SetNextItemWidth(50);
-			ImGui::DragFloat("       ", &t2);
+			suffix = "##Posz" + std::to_string(index);
+			ImGui::DragFloat(suffix.c_str(), &t2);
 			if (ImGui::IsItemActive())
 			{
 				pos.z = t2;
