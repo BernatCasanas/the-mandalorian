@@ -689,6 +689,7 @@ public class Rancor : DiamondComponent
             float x = Mathf.Lerp(gameObject.transform.localPosition.x, jumpAttackTarget.x, jumpAttackSpeed * Time.deltaTime);
             float z = Mathf.Lerp(gameObject.transform.localPosition.z, jumpAttackTarget.z, jumpAttackSpeed * Time.deltaTime);
             gameObject.transform.localPosition = new Vector3(x, gameObject.transform.localPosition.y, z);
+            //TODO: Disable collider component
         }
         LookAt(jumpAttackTarget);
     }
@@ -737,8 +738,6 @@ public class Rancor : DiamondComponent
             LookAt(agent.GetDestination());
             agent.MoveToCalculatedPos(followSpeed);
         }
-        Debug.Log(followTimer.ToString());
-        Debug.Log(agent.GetDestination().ToString());
 
         Debug.Log("Following");
     }
