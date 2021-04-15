@@ -43,7 +43,7 @@ bool M_ResourceManager::Start()
 	meshesLibraryRoot.lastModTime = App->moduleFileSystem->GetLastModTime(meshesLibraryRoot.importPath.c_str());
 	animationsLibraryRoot.lastModTime = App->moduleFileSystem->GetLastModTime(animationsLibraryRoot.importPath.c_str());
 
-	NeedsDirsUpdate(assetsRoot);
+	//NeedsDirsUpdate(assetsRoot);
 
 	return true;
 }
@@ -178,8 +178,8 @@ int M_ResourceManager::GenerateNewUID()
 
 void M_ResourceManager::NeedsDirsUpdate(AssetDir& dir)
 {
-	if (dir.lastModTime == App->moduleFileSystem->GetLastModTime(dir.importPath.c_str())
-		&& dir.lastModTime <= App->moduleFileSystem->GetLastModTime(dir.libraryPath.c_str()))
+	if (dir.lastModTime == App->moduleFileSystem->GetLastModTime(dir.importPath.c_str()))
+		//&& dir.lastModTime <= App->moduleFileSystem->GetLastModTime(dir.libraryPath.c_str()))
 	{
 		for (unsigned int i = 0; i < dir.childDirs.size(); i++)
 		{
