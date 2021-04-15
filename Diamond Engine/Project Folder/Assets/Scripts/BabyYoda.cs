@@ -16,9 +16,15 @@ public class BabyYoda : DiamondComponent
     public GameObject followPoint = null;
     public float horizontalSpeed = 4f;
 
-    //HUD variables
-    private bool force_updating = false;
-    private float final_timer_force = 0.0f;
+    //Force (HUD) variables
+    private float currentForce = 0;
+    private static int totalForce = 100;
+    private static float forceRegenerationSpeed = 4f;
+    private float forceRegenerationSpeedDft = 4f;
+
+    // Force Skills Cost
+    private static int skillPushForceCost = 40;
+    private static int skillWallForceCost = 60;
 
     //State (INPUT AND STATE LOGIC)
     #region STATE
@@ -36,9 +42,6 @@ public class BabyYoda : DiamondComponent
     private float skillWallTimer = 0.0f;
     private bool leftButtonPressed = false;
 
-    private static float timeForceRegeneration = 4f;
-    private float timeForceRegenerationDefault = 4f;
-    private float timeWhenStartRecharge = 0f;
 
     #region STATE_ENUMS
     enum STATE
@@ -65,20 +68,19 @@ public class BabyYoda : DiamondComponent
     #region HUD
     private void UpdateHUD()
     {
-        if (!force_updating || Core.instance.hud == null)
+        if (Core.instance.hud == null)
             return;
 
-        if (Time.totalTime >= final_timer_force)
+        if (currentForce < totalForce)
         {
-            Core.instance.hud.GetComponent<HUD>().UpdateForce(100, 100);
-            Core.instance.hud.GetComponent<HUD>().ChangeAlphaSkillPush(true);
-            force_updating = false;
+            currentForce += (forceRegenerationSpeed * Time.deltaTime);
+
+            if (currentForce > totalForce)
+                currentForce = totalForce;
+
+            Core.instance.hud.GetComponent<HUD>().UpdateForce((int)currentForce, totalForce);
         }
-        else
-        {
-            float force_bar_normalized = ((Time.totalTime - timeWhenStartRecharge) / (final_timer_force - timeWhenStartRecharge)) * 100;
-            Core.instance.hud.GetComponent<HUD>().UpdateForce((int)force_bar_normalized, 100);
-        }
+
     }
     #endregion
 
@@ -86,6 +88,8 @@ public class BabyYoda : DiamondComponent
     {
         instance = this;
         wallSkillOffset = new Vector3(0.0f, 1.5f, 3.0f);
+
+        currentForce = totalForce;
     }
 
     public void Update()
@@ -160,7 +164,7 @@ public class BabyYoda : DiamondComponent
 
     private void LookAtMando()
     {
-        if (Core.instance.gameObject == null) 
+        if (Core.instance.gameObject == null)
             return;
         Vector3 worldForward = new Vector3(0, 0, 1);
 
@@ -269,12 +273,14 @@ public class BabyYoda : DiamondComponent
                 switch (input)
                 {
                     case INPUTS.IN_SKILL_PUSH:
-                        ExecutePushSkill();
-                        state = STATE.SKILL_PUSH;
+                        bool skillPushExecuted = ExecutePushSkill();
+                        if (skillPushExecuted == true)
+                            state = STATE.SKILL_PUSH;
                         break;
                     case INPUTS.IN_SKILL_WALL:
-                        ExecuteWallSkill();
-                        state = STATE.SKILL_WALL;
+                        bool skillWallExecuted = ExecuteWallSkill();
+                        if (skillWallExecuted == true)
+                            state = STATE.SKILL_WALL;
                         break;
                 }
                 break;
@@ -303,36 +309,37 @@ public class BabyYoda : DiamondComponent
     }
     #endregion
 
-    private void ExecutePushSkill()
+    private bool ExecutePushSkill()
     {
+        if (Core.instance.gameObject == null || currentForce < skillPushForceCost)
+            return false;
+
         if (Core.instance.hud != null)
         {
-            force_updating = true;
-            final_timer_force = Time.totalTime + timeForceRegeneration;
-            timeWhenStartRecharge = Time.totalTime;
-            Core.instance.hud.GetComponent<HUD>().UpdateForce(0, 100);
-            Core.instance.hud.GetComponent<HUD>().ChangeAlphaSkillPush(false);
+            SetCurrentForce((int)currentForce - skillPushForceCost);
+
         }
         skillPushTimer += INIT_TIMER;
-        if (Core.instance.gameObject == null)
-            return;
+
         Transform mandoTransform = Core.instance.gameObject.transform;
         InternalCalls.CreatePrefab("Library/Prefabs/541990364.prefab", new Vector3(mandoTransform.globalPosition.x, mandoTransform.globalPosition.y + 1, mandoTransform.globalPosition.z), mandoTransform.globalRotation, new Vector3(1, 1, 1));
+
+        return true;
+
     }
 
     //Execute order 66
-    private void ExecuteWallSkill()
+    private bool ExecuteWallSkill()
     {
+        if (Core.instance.gameObject == null || currentForce < skillWallForceCost)
+            return false;
+
         if (Core.instance.hud != null)
         {
-            force_updating = true;
-            final_timer_force = Time.totalTime + timeForceRegeneration;
-            timeWhenStartRecharge = Time.totalTime;
-            Core.instance.hud.GetComponent<HUD>().UpdateForce(0, 100);
-            Core.instance.hud.GetComponent<HUD>().ChangeAlphaSkillPush(false);
+            currentForce -= skillWallForceCost;
+            Core.instance.hud.GetComponent<HUD>().UpdateForce((int)currentForce, totalForce);
         }
-        if (Core.instance.gameObject == null)
-            return;
+
         skillWallTimer += INIT_TIMER;
         Transform mandoTransform = Core.instance.gameObject.transform;
         Vector3 spawnPos = new Vector3(mandoTransform.globalPosition.x, mandoTransform.globalPosition.y, mandoTransform.globalPosition.z);
@@ -342,16 +349,62 @@ public class BabyYoda : DiamondComponent
 
         InternalCalls.CreatePrefab("Library/Prefabs/1850725718.prefab", spawnPos, mandoTransform.globalRotation, new Vector3(1, 1, 1));
 
+        return true;
+
     }
 
-    public void ReduceForceRegenerationTime(float time)
+    public static float GetForceRegenerationSpeed()
     {
-        timeForceRegeneration -= time;
+        return forceRegenerationSpeed;
     }
+
+    public static void AugmentForceRegenSpeed(float newSpeed)
+    {
+        forceRegenerationSpeed += newSpeed;
+    }
+
+    public static void SetForceRegenerationSpeed(float newSpeed)
+    {
+        forceRegenerationSpeed = newSpeed;
+    }
+
+    public int GetCurrentForce()
+    {
+        return (int)currentForce;
+    }
+
+    public void SetCurrentForce(int newForceValue)
+    {
+        currentForce = newForceValue;
+
+        Core.instance.hud.GetComponent<HUD>().UpdateForce((int)currentForce, totalForce);
+    }
+
+    public static int GetMaxForce()
+    {
+        return totalForce;
+    }
+
+    public static void SetMaxForce(int newValue)
+    {
+        totalForce = newValue;
+    }
+
+    public static int GetPushCost()
+    {
+        return skillPushForceCost;
+    }
+
+    public static void SetPushCost(int newValue)
+    {
+        skillPushForceCost = newValue;
+    }
+
 
     public void OnApplicationQuit()
     {
-        timeForceRegeneration = timeForceRegenerationDefault;
+        forceRegenerationSpeed = forceRegenerationSpeedDft;
     }
+
 
 }
