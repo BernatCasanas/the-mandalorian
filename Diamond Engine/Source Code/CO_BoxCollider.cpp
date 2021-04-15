@@ -133,10 +133,10 @@ C_BoxCollider::~C_BoxCollider()
 		colliderShape->release();
 
 }
+#ifndef STANDALONE
 
 void C_BoxCollider::Update()
 {
-#ifndef STANDALONE
 
 	if (rigidbody == nullptr)
 		rigidbody = dynamic_cast<C_RigidBody*>(gameObject->GetComponent(Component::TYPE::RIGIDBODY));
@@ -183,9 +183,9 @@ void C_BoxCollider::Update()
 
 
 	}
-#endif // !STANDALONE
 
 }
+#endif // !STANDALONE
 
 void C_BoxCollider::SaveData(JSON_Object* nObj)
 {

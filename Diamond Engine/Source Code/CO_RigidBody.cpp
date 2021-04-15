@@ -30,9 +30,11 @@ C_RigidBody::C_RigidBody(GameObject* _gm): Component(_gm), rotatedOffset(float3:
 
 	std::vector<Component*> meshCollider_info;
 	std::vector<Component*> sphereCollider_info;
+	std::vector<Component*> capsuleCollider_info;
 
 	meshCollider_info = _gm->GetComponentsOfType(Component::TYPE::MESHCOLLIDER);
 	sphereCollider_info = _gm->GetComponentsOfType(Component::TYPE::SPHERECOLLIDER);
+	capsuleCollider_info = _gm->GetComponentsOfType(Component::TYPE::CAPSULECOLLIDER);
 
 	for (int i = 0; i < meshCollider_info.size(); i++)
 	{
@@ -41,6 +43,10 @@ C_RigidBody::C_RigidBody(GameObject* _gm): Component(_gm), rotatedOffset(float3:
 	for (int i = 0; i < sphereCollider_info.size(); i++)
 	{
 		collider_info.push_back(sphereCollider_info[i]);
+	}
+	for (int i = 0; i < capsuleCollider_info.size(); i++)
+	{
+		collider_info.push_back(capsuleCollider_info[i]);
 	}
 	/*for (int i = 0; i < collider_info.size(); i++)
 	{

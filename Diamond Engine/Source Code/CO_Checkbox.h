@@ -28,6 +28,8 @@ public:
 	void SaveData(JSON_Object* nObj) override;
 	void LoadData(DEConfig& nObj) override;
 
+	void SetAsActive(bool state);
+
 #ifndef STANDALONE
 	void ChangeSprite(CHECKBOXSTATE num_sprite, ResourceTexture* sprite);
 	void ChangeScript(const char* script);

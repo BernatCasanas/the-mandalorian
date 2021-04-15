@@ -14,6 +14,7 @@ enum class ColliderShape
 	CUBE,
 	MESH,
 	SPHERE,
+	CAPSULE
 };
 
 class C_Collider : public Component
@@ -24,12 +25,10 @@ public:
 	C_Collider(GameObject* _gm/*, float3 _position, Quat _rotation, float3 _localScale*/);
 	virtual ~C_Collider();
 
-	void Update() override;
 
 	void SetPosition(float3 position);
 	inline float3 GetPosition() { return colliderPos; };
 
-	void SetRotation(Quat rotation);
 	inline float3 GetEuler() { return colliderEuler; };
 
 	void SetScale(float3 scale, float radius = 1.0f);
@@ -43,7 +42,11 @@ public:
 
 	void SaveData(JSON_Object* nObj) override;
 	void LoadData(DEConfig& nObj) override;
+	void SetRotation(Quat rotation);
+
 #ifndef STANDALONE
+	void Update() override;
+
 	bool OnEditor() override;
 #endif // !STANDALONE
 public:

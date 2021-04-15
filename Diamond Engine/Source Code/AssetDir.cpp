@@ -64,10 +64,10 @@ void AssetDir::GenerateMeta()
 		this->resourceType = EngineExternal->moduleResources->GetTypeFromAssetExtension(importPath.c_str());
 		this->metaUID = EngineExternal->moduleResources->GenerateNewUID();
 		this->libraryPath = EngineExternal->moduleResources->GenLibraryPath(metaUID, resourceType).c_str();
+		//this->lastModTime = EngineExternal->moduleFileSystem->GetLastModTime(importPath.c_str());
+		EngineExternal->moduleResources->GenerateMeta(importPath.c_str(), libraryPath.c_str(), metaUID, resourceType);
 	}
 
-	this->lastModTime = EngineExternal->moduleFileSystem->GetLastModTime(importPath.c_str());
-	EngineExternal->moduleResources->GenerateMeta(importPath.c_str(), libraryPath.c_str(), metaUID, resourceType);
 }
 
 void AssetDir::LoadDataFromMeta()
@@ -78,7 +78,7 @@ void AssetDir::LoadDataFromMeta()
 	metaUID = rObj.ReadInt("UID");
 	resourceType = static_cast<Resource::Type>(rObj.ReadInt("Type"));
 	libraryPath = rObj.ReadString("Library Path");
-	lastModTime = rObj.ReadInt("modTime");
+	//lastModTime = rObj.ReadInt("modTime");
 
 	//Free memory
 	json_value_free(metaJSON);
