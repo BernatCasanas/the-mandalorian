@@ -758,19 +758,17 @@ public class Core : DiamondComponent
         }
     }
 
-    /*
+    
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-        //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + triggeredGameObject.tag);
-        if (triggeredGameObject.CompareTag("Bullet"))
+        if (triggeredGameObject.CompareTag("Coin"))
         {
-            // InternalCalls.Destroy(gameObject);
-            gameObject.GetComponent<PlayerHealth>().TakeDamage(5);
+            PlayerResources.AddRunCoins(1);
+            hud.GetComponent<HUD>().UpdateCurrency(PlayerResources.GetRunCoins());
+            InternalCalls.Destroy(triggeredGameObject);
         }
-
-        //Debug.Log("Triggered by tag: " + triggeredGameObject.tag);
     }
-    */
+    
 
     public void RespawnOnFall()
     {
