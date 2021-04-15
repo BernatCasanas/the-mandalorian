@@ -757,6 +757,7 @@ public class Rancor : DiamondComponent
         projectileTimer = projectileTime;
 
         Animator.Play(gameObject, "RN_ProjectileThrow");
+        Audio.PlayAudio(gameObject, "Play_Rancor_Throw");
         //add timer to spawn projectiles
 
         prepareShotTimer = prepareShotDuration;
