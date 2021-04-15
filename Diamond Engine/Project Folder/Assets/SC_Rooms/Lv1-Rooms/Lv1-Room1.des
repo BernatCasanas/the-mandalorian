@@ -1,19 +1,19 @@
 {
     "NavMesh": 1537712499,
     "EditorCameraPosition": [
-        -4.6945071220397949,
-        50.869815826416016,
-        28.499078750610352
+        -13.159069061279297,
+        21.562698364257813,
+        -17.9691162109375
     ],
     "EditorCameraZ": [
-        0.16167089343070984,
-        -0.65045422315597534,
-        -0.74214005470275879
+        0.42448610067367554,
+        -0.69557088613510132,
+        0.57964891195297241
     ],
     "EditorCameraY": [
-        0.13839289546012878,
-        0.75954544544219971,
-        -0.63556128740310669
+        0.41096392273902893,
+        0.71845752000808716,
+        0.56118392944335938
     ],
     "tags": [
         "Player",
@@ -214,6 +214,7 @@
                     "max_hp": 50,
                     "force": 50,
                     "max_force": 50,
+                    "currency": 0,
                     "bullets_main_weapon": 10,
                     "max_bullets_main_weapon": 10,
                     "bullets_secondary_weapon": 10,
@@ -10217,11 +10218,8 @@
                     "verticalTimeInterval": 1.2000000476837158,
                     "followPoint": 1017030090,
                     "horizontalSpeed": 4,
-                    "totalForce": 0,
-                    "forceRegenerationSpeed": 0,
-                    "skillPushForceCost": 0,
-                    "skillWallForceCost": 0,
-                    "skillPushDuration": 1
+                    "skillPushDuration": 1,
+                    "timeForceRegeneration": 0
                 }
             ]
         },
@@ -10659,7 +10657,7 @@
                 0
             ],
             "Rotation": [
-                1.2621774483536189e-29,
+                0,
                 0,
                 0,
                 1
@@ -10692,7 +10690,7 @@
                 -1.9623928070068359
             ],
             "Rotation": [
-                1.2621774483536189e-29,
+                0,
                 0,
                 0,
                 1
@@ -11150,7 +11148,7 @@
             "Active": true,
             "Position": [
                 6.4506893157958984,
-                -0.23274087905883789,
+                -0.23274077475070953,
                 9.620488166809082
             ],
             "Rotation": [
@@ -11305,9 +11303,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                0.15566802024841309,
-                1.8016057014465332,
-                -5.0357203483581543
+                0.15566807985305786,
+                1.8016055822372437,
+                -5.0357217788696289
             ],
             "Rotation": [
                 0,
@@ -11409,9 +11407,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                22.745750427246094,
+                22.745752334594727,
                 9.8439388275146484,
-                -7.5778183937072754
+                -7.5778193473815918
             ],
             "Rotation": [
                 0,
@@ -11560,12 +11558,12 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -0.55025482177734375,
+                -0.5502554178237915,
                 4.5057849884033203,
-                -0.99055027961730957
+                -0.99054950475692749
             ],
             "Rotation": [
-                3.7865323450608567e-29,
+                0,
                 0,
                 0,
                 1
@@ -11603,14 +11601,6 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "TurretRotation",
-                    "turret": 1889833382,
-                    "maxRotationDeg": 90,
-                    "speedMult": 1
                 }
             ]
         },
@@ -12686,7 +12676,7 @@
             "Active": true,
             "Position": [
                 13.324386596679688,
-                3.7474489212036133,
+                3.7474491596221924,
                 9.4608440399169922
             ],
             "Rotation": [
@@ -13565,10 +13555,10 @@
                 -21.285999298095703
             ],
             "Rotation": [
-                -0.50261980295181274,
-                0.50261110067367554,
-                0.49737519025802612,
-                0.49736636877059937
+                -0.50261986255645752,
+                0.50261116027832031,
+                0.4973752498626709,
+                0.49736642837524414
             ],
             "Scale": [
                 1.4969998598098755,
@@ -14118,10 +14108,10 @@
                 -14.760412216186523
             ],
             "Rotation": [
-                -0.50261986255645752,
-                0.50261116027832031,
-                0.4973752498626709,
-                0.49736642837524414
+                -0.50261980295181274,
+                0.50261110067367554,
+                0.49737519025802612,
+                0.49736636877059937
             ],
             "Scale": [
                 1.4969998598098755,
@@ -14233,6 +14223,7 @@
                     "gadgetFireRate": 0.20000000298023224,
                     "fireRateAfterDashRecoverRatio": 1.75,
                     "fireRateMultCap": 2,
+                    "grenadesFireRate": 0.125,
                     "background": 1383816799,
                     "pause": 1369759560,
                     "bulletDamage": 0
@@ -14307,7 +14298,10 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "BoonSpawn"
+                    "ScriptName": "BoonSpawn",
+                    "boonSpawnPosGO": 1295957895,
+                    "boonsToSpawn": 1,
+                    "separation": 3.5
                 },
                 {
                     "Type": 5,
@@ -16004,7 +15998,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
+                    "MaterialAssetPath": "Assets\/Materials\/Player.mat",
                     "MaterialLibraryPath": "Library\/Materials\/637612837.mat",
                     "MaterialUID": 637612837
                 }
