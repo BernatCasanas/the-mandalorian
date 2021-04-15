@@ -122,7 +122,7 @@ void W_Scene::Draw()
 
 					LineSegment picking = App->moduleCamera->editorCamera.camFrustrum.UnProjectLineSegment(normal.x, normal.y);
 
-					App->moduleRenderer3D->RayToMeshQueueIntersection(picking);
+					App->moduleEditor->SetSelectedGO(App->moduleRenderer3D->RayToMeshQueueIntersection(picking));
 					App->moduleEditor->SetSelectedAsset(nullptr);
 
 					if (EngineExternal->moduleInput->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)

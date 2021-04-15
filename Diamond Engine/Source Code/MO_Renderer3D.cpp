@@ -539,7 +539,7 @@ void ModuleRenderer3D::DebugLine(LineSegment& line)
 }
 #endif // !STANDALONE
 
-void ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray)
+GameObject* ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray)
 {
 	pickingDebug = ray;
 
@@ -585,19 +585,16 @@ void ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray)
 	}
 	canSelect.clear();
 
-#ifndef STANDALONE
+	GameObject* gameobject_to_return = nullptr;
+
 	if (distMap.begin() != distMap.end())
 	{
-		App->moduleEditor->SetSelectedGO((*distMap.begin()).second->GetGO());
-		selected = true;
+		gameobject_to_return = (*distMap.begin()).second->GetGO();
 	}
 
-
-	//If nothing is selected, set selected GO to null
-	if(!selected)
-		App->moduleEditor->SetSelectedGO(nullptr);
-#endif // !STANDALONE
 	distMap.clear();
+
+	return gameobject_to_return;
 }
 
 void ModuleRenderer3D::RenderWithOrdering(bool rTex)
