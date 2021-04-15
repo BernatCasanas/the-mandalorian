@@ -53,7 +53,7 @@ void C_Text::RenderText(C_Transform2D* transform, ResourceMaterial* material, un
 		{
 			const Character& character = it->second;
 
-			glBindTexture(GL_TEXTURE_2D, character.textureId);
+			glBindTexture(GL_TEXTURE_2D, font->atlasTexture);
 			GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "model_matrix");
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, transform->GetGlobal2DTransform().ptr());
 
@@ -67,20 +67,17 @@ void C_Text::RenderText(C_Transform2D* transform, ResourceMaterial* material, un
 			float height = character.size[1] / 100.f;
 
 			float vertices[6][4] = {
-				{ posX,			posY + height,  0.0f, 0.0f },
-				{ posX,			posY,			0.0f, 1.0f },
-				{ posX + width, posY,			1.0f, 1.0f },
+				{ posX,			posY + height,  character.textureOffset, 0.0f },
+				{ posX,			posY,			character.textureOffset, character.size[1] / (float)font->atlasHeight },
+				{ posX + width, posY,			character.textureOffset + character.size[0] / (float)font->atlasWidth, character.size[1] / (float)font->atlasHeight},
 
-				{ posX,			posY + height,  0.0f, 0.0f },
-				{ posX + width, posY,			1.0f, 1.0f },
-				{ posX + width, posY + height,  1.0f, 0.0f }
+				{ posX,			posY + height,  character.textureOffset, 0.0f },
+				{ posX + width, posY,			character.textureOffset + character.size[0] / (float)font->atlasWidth, character.size[1] / (float)font->atlasHeight },
+				{ posX + width, posY + height,  character.textureOffset + character.size[0] / (float)font->atlasWidth, 0.0f }
 			};
 
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
 			glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
-
-			glEnableVertexAttribArray(0);
-			glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (GLvoid*)0);
 
 			// render quad
 			glDrawArrays(GL_TRIANGLES, 0, 6);

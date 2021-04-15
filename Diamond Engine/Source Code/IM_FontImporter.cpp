@@ -11,8 +11,8 @@
 
 #pragma comment (lib, "FreeType/win32/freetype.lib")
 
-Character::Character(unsigned int textureId, unsigned int advanceX, unsigned int advanceY, float sizeX, float sizeY, float bearingX, float bearingY) :
-	textureId(textureId)
+Character::Character(unsigned int advanceX, unsigned int advanceY, float sizeX, float sizeY, float bearingX, float bearingY, float texOffset) :
+	textureOffset(texOffset)
 {
 	advance[0] = advanceX;
 	advance[1] = advanceY;
@@ -30,7 +30,10 @@ Character::~Character()
 }
 
 
-FontDictionary::FontDictionary(const char* name, std::map<char, Character>& characterVec) :
+FontDictionary::FontDictionary(unsigned int atlasTexture, const char* name, std::map<char, Character>& characterVec, int atlasWidth, int atlasHeight) :
+	atlasTexture(atlasTexture),
+	atlasWidth(atlasWidth),
+	atlasHeight(atlasHeight),
 	name(name),
 	characters(characterVec)
 {
@@ -43,17 +46,11 @@ FontDictionary::~FontDictionary()
 }
 
 
-void FontDictionary::UnloadCharacterTextures()
+void FontDictionary::UnloadAtlas()
 {
-	int charactersCount = characters.size();
+	glDeleteTextures(1, &atlasTexture);
 
-	for (std::map<char, Character>::iterator it = characters.begin(); it != characters.end(); ++it)
-	{
-		if (it->second.textureId != 0)
-			glDeleteTextures(1, &it->second.textureId);
-
-		it->second.textureId = 0;
-	}
+	atlasTexture = 0u;
 }
 
 
@@ -67,7 +64,7 @@ FreeType_Library::FreeType_Library()
 FreeType_Library::~FreeType_Library()
 {
 	for (std::map<std::string, FontDictionary>::iterator it = fontLibrary.begin(); it != fontLibrary.end(); ++it)
-		it->second.UnloadCharacterTextures();
+		it->second.UnloadAtlas();
 
 	fontLibrary.clear();
 	FT_Done_FreeType(library);
@@ -103,6 +100,31 @@ void FreeType_Library::ImportNewFont(const char* path, int size)
 void FreeType_Library::InitFontDictionary(FT_Face& face, const char* fontName)
 {
 	std::map<char, Character> charVector;
+	int width = 0;
+	int height = 0;
+
+	CalculateAtlasSize(face, width, height);
+
+	unsigned int atlasTexture = 0u;
+
+	glActiveTexture(GL_TEXTURE0);
+	glGenTextures(1, &atlasTexture);
+	glBindTexture(GL_TEXTURE_2D, atlasTexture);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, width, height, 0, GL_RED, GL_UNSIGNED_BYTE, 0);
+
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+	/* Clamping to edges is important to prevent artifacts when scaling */
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	/* Linear filtering usually looks best for text */
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+
+	int xAtlasPos = 0;
 
 	for (unsigned char c = 0; c < 128; ++c)
 	{
@@ -112,20 +134,16 @@ void FreeType_Library::InitFontDictionary(FT_Face& face, const char* fontName)
 			continue;
 		}
 
-		unsigned int texture = 0;
-		glGenTextures(1, &texture);
-		glBindTexture(GL_TEXTURE_2D, texture);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, face->glyph->bitmap.width, face->glyph->bitmap.rows, 0, GL_RED, GL_UNSIGNED_BYTE, face->glyph->bitmap.buffer);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glBindTexture(GL_TEXTURE_2D, 0);
+		glTexSubImage2D(GL_TEXTURE_2D, 0, xAtlasPos, 0, face->glyph->bitmap.width, face->glyph->bitmap.rows, GL_RED, GL_UNSIGNED_BYTE, face->glyph->bitmap.buffer);
 
-		charVector.insert(std::pair<char, Character>(c, Character(texture, face->glyph->advance.x, face->size->metrics.height, face->glyph->bitmap.width, face->glyph->bitmap.rows, face->glyph->bitmap_left, face->glyph->bitmap_top)));
+		float texOffset = (float)xAtlasPos / (float)width;
+
+		charVector.insert(std::pair<char, Character>(c, Character(face->glyph->advance.x, face->size->metrics.height, face->glyph->bitmap.width, face->glyph->bitmap.rows, face->glyph->bitmap_left, face->glyph->bitmap_top, texOffset)));
+
+		xAtlasPos += face->glyph->bitmap.width + 1;
 	}
 
-	fontLibrary.emplace(std::pair<std::string, FontDictionary>(fontName, FontDictionary(fontName, charVector)));
+	fontLibrary.emplace(std::pair<std::string, FontDictionary>(fontName, FontDictionary(atlasTexture, fontName, charVector, width, height)));
 	glBindTexture(GL_TEXTURE_2D, 0);
 	FT_Done_Face(face);
 }
@@ -145,9 +163,28 @@ FontDictionary* FreeType_Library::GetFont(const char* name)
 
 	else
 	{
-		ImportNewFont(libPath.c_str(), 48);
+		ImportNewFont(libPath.c_str(), 72);
 		iterator = fontLibrary.find(libPath.c_str());
 
 		return (iterator != fontLibrary.end() ? &iterator->second : nullptr);
+	}
+}
+
+
+void FreeType_Library::CalculateAtlasSize(FT_Face& face, int& width, int& height) const
+{
+	width = 0;
+	height = 0;
+
+	for (unsigned char c = 0; c < 128; ++c)
+	{
+		if (FT_Load_Char(face, c, FT_LOAD_RENDER))
+		{
+			LOG(LogType::L_ERROR, "Could not load gyph %c", c);
+			continue;
+		}
+
+		width += face->glyph->bitmap.width + 1;
+		height = height > face->glyph->bitmap.rows ? height : face->glyph->bitmap.rows;
 	}
 }
