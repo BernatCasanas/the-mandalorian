@@ -1,19 +1,19 @@
 {
     "NavMesh": 141075303,
     "EditorCameraPosition": [
-        -42.039588928222656,
-        43.371616363525391,
-        34.690860748291016
+        -8.7953691482543945,
+        25.213752746582031,
+        0.015178672969341278
     ],
     "EditorCameraZ": [
-        0.42725017666816711,
-        -0.43064486980438232,
-        -0.79498571157455444
+        0.69376641511917114,
+        -0.71943795680999756,
+        -0.033124804496765137
     ],
     "EditorCameraY": [
-        0.20356899499893188,
-        0.90252143144607544,
-        -0.37949275970458984
+        0.71859824657440186,
+        0.6945565938949585,
+        -0.034751147031784058
     ],
     "tags": [
         "Enemy",
@@ -9173,8 +9173,11 @@
                     "verticalTimeInterval": 1.2000000476837158,
                     "followPoint": 1079552447,
                     "horizontalSpeed": 4,
-                    "skillPushDuration": 1,
-                    "timeForceRegeneration": 0
+                    "totalForce": 0,
+                    "forceRegenerationSpeed": 0,
+                    "skillPushForceCost": 0,
+                    "skillWallForceCost": 0,
+                    "skillPushDuration": 1
                 }
             ]
         },
@@ -9698,7 +9701,6 @@
                     "gadgetFireRate": 0.20000000298023224,
                     "fireRateAfterDashRecoverRatio": 1.75,
                     "fireRateMultCap": 2,
-                    "grenadesFireRate": 0.125,
                     "background": 1123945215,
                     "pause": 184396232,
                     "bulletDamage": 0
@@ -9773,10 +9775,7 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "BoonSpawn",
-                    "boonSpawnPosGO": 118351988,
-                    "boonsToSpawn": 1,
-                    "separation": 3.5
+                    "ScriptName": "BoonSpawn"
                 },
                 {
                     "Type": 5,
@@ -19350,12 +19349,12 @@
                     "slerpSpeed": 20,
                     "healthPoints": 1200,
                     "attackProbability": 66,
-                    "shortWanderProbability": 90,
+                    "shortFollowProbability": 0,
                     "meleeRange": 14,
                     "longRange": 22,
-                    "shortWanderTime": 2,
-                    "longWanderTime": 4,
-                    "wanderSpeed": 10,
+                    "shortFollowTime": 2,
+                    "longFollowTime": 4,
+                    "followSpeed": 2,
                     "meleeComboMovSpeed": 3,
                     "jumpAttackSpeed": 5,
                     "jumpDelayDuration": 0.5,

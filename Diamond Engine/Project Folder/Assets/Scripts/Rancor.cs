@@ -9,7 +9,7 @@ public class Rancor : DiamondComponent
     {
         NONE = -1,
         SEARCH_STATE,
-        WANDER,
+        FOLLOW,
         LOADING_RUSH,
         RUSH,
         RUSH_STUN,
@@ -24,9 +24,9 @@ public class Rancor : DiamondComponent
     enum RANCOR_INPUT : int
     {
         NONE = -1,
-        IN_WANDER_SHORT,
-        IN_WANDER_LONG,
-        IN_WANDER_END,
+        IN_FOLLOW_SHORT,
+        IN_FOLLOW_LONG,
+        IN_FOLLOW_END,
         IN_LOADING_RUSH,
         IN_RUSH,
         IN_RUSH_END,
@@ -49,7 +49,7 @@ public class Rancor : DiamondComponent
     private Vector3 targetDirection = null;
 
     //State
-    private RANCOR_STATE currentState = RANCOR_STATE.WANDER;   //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS
+    private RANCOR_STATE currentState = RANCOR_STATE.FOLLOW;   //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS
                                                                //Setting states directlly will break the behaviour  -Jose
     private List<RANCOR_INPUT> inputsList = new List<RANCOR_INPUT>();
     Random randomNum = new Random();
@@ -62,16 +62,16 @@ public class Rancor : DiamondComponent
     public float healthPoints = 60.0f;
 
     public int attackProbability = 66;  //FROM 1 TO A 100
-    public int shortWanderProbability = 90; //FROM THE PREVIOS VALUE TO HERE
+    public int shortFollowProbability = 90; //FROM THE PREVIOS VALUE TO HERE
 
     public float meleeRange = 14.0f;
     public float longRange = 21.0f;
 
-    //Wander
-    public float shortWanderTime = 2.0f;
-    public float longWanderTime = 4.0f;
-    private float wanderTimer = 0.0f;
-    public float wanderSpeed = 2.0f;
+    //Follow
+    public float shortFollowTime = 2.0f;
+    public float longFollowTime = 4.0f;
+    private float followTimer = 0.0f;
+    public float followSpeed = 2.0f;
 
     public float meleeComboMovSpeed = 0.0f;
 
@@ -139,7 +139,7 @@ public class Rancor : DiamondComponent
 
     private void Start()
     {
-        wanderTimer = shortWanderTime;
+        followTimer = shortFollowTime;
 
         meleeComboHit1Time = Animator.GetAnimationDuration(gameObject, "RN_MeleeComboP1") - 0.016f;
         meleeComboHit2Time = Animator.GetAnimationDuration(gameObject, "RN_MeleeComboP2") - 0.016f;
@@ -189,13 +189,13 @@ public class Rancor : DiamondComponent
     //Timers go here
     private void ProcessInternalInput()
     {
-        if (wanderTimer > 0)
+        if (followTimer > 0)
         {
-            wanderTimer -= Time.deltaTime;
+            followTimer -= Time.deltaTime;
 
-            if (wanderTimer <= 0)
+            if (followTimer <= 0)
             {
-                inputsList.Add(RANCOR_INPUT.IN_WANDER_END);
+                inputsList.Add(RANCOR_INPUT.IN_FOLLOW_END);
             }
         }
 
@@ -286,14 +286,14 @@ public class Rancor : DiamondComponent
                 case RANCOR_STATE.SEARCH_STATE:
                     switch (input)
                     {
-                        case RANCOR_INPUT.IN_WANDER_SHORT:
-                            currentState = RANCOR_STATE.WANDER;
-                            StartShortWander();
+                        case RANCOR_INPUT.IN_FOLLOW_SHORT:
+                            currentState = RANCOR_STATE.FOLLOW;
+                            StartShortFollow();
                             break;
 
-                        case RANCOR_INPUT.IN_WANDER_LONG:
-                            currentState = RANCOR_STATE.WANDER;
-                            StartLongWander();
+                        case RANCOR_INPUT.IN_FOLLOW_LONG:
+                            currentState = RANCOR_STATE.FOLLOW;
+                            StartLongFollow();
                             break;
 
                         case RANCOR_INPUT.IN_LOADING_RUSH:
@@ -323,12 +323,12 @@ public class Rancor : DiamondComponent
                     }
                     break;
 
-                case RANCOR_STATE.WANDER:
+                case RANCOR_STATE.FOLLOW:
                     switch (input)
                     {
-                        case RANCOR_INPUT.IN_WANDER_END:
+                        case RANCOR_INPUT.IN_FOLLOW_END:
                             currentState = RANCOR_STATE.SEARCH_STATE;
-                            EndWander();
+                            EndFollow();
                             break;
 
                         case RANCOR_INPUT.IN_DEAD:
@@ -486,8 +486,8 @@ public class Rancor : DiamondComponent
                 SelectAction();
                 break;
 
-            case RANCOR_STATE.WANDER:
-                UpdateWander();
+            case RANCOR_STATE.FOLLOW:
+                UpdateFollow();
                 break;
 
             case RANCOR_STATE.LOADING_RUSH:
@@ -566,11 +566,11 @@ public class Rancor : DiamondComponent
                 inputsList.Add(RANCOR_INPUT.IN_PROJECTILE);
             }
         }
-        else if (decision > attackProbability && decision <= shortWanderProbability)
-            inputsList.Add(RANCOR_INPUT.IN_WANDER_SHORT);
+        else if (decision > attackProbability && decision <= shortFollowProbability)
+            inputsList.Add(RANCOR_INPUT.IN_FOLLOW_SHORT);
 
-        else if (decision > shortWanderProbability)
-            inputsList.Add(RANCOR_INPUT.IN_WANDER_LONG);
+        else if (decision > shortFollowProbability)
+            inputsList.Add(RANCOR_INPUT.IN_FOLLOW_LONG);
     }
 
 
@@ -700,52 +700,55 @@ public class Rancor : DiamondComponent
 
     #endregion
 
-    #region WANDER
+    #region FOLLOW
 
-    private void StartShortWander()
+    private void StartShortFollow()
     {
         //Start walk animation
         Animator.Play(gameObject, "RN_Walk");
         Audio.PlayAudio(gameObject, "PLay_Rancor_Footsteps");
         //Search point
-        wanderTimer = shortWanderTime;
+        followTimer = shortFollowTime;
 
-        if (agent != null)
-            agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
+
     }
 
 
-    private void StartLongWander()
+    private void StartLongFollow()
     {
         //Start walk animation
         //Search point
 
         Animator.Play(gameObject, "RN_Walk");
         Audio.PlayAudio(gameObject, "PLay_Rancor_Footsteps");
-        wanderTimer = longWanderTime;
+        followTimer = longFollowTime;
 
-        if (agent != null)
-            agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
     }
 
 
-    private void UpdateWander()
+    private void UpdateFollow()
     {
+        if (agent != null)
+            agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
+
         //Move character
         if (agent != null && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) > agent.stoppingDistance)
         {
-            LookAt(Core.instance.gameObject.transform.globalPosition);
-            agent.MoveToCalculatedPos(wanderSpeed);
+            LookAt(agent.GetDestination());
+            agent.MoveToCalculatedPos(followSpeed);
         }
+        Debug.Log(followTimer.ToString());
+        Debug.Log(agent.GetDestination().ToString());
 
-        Debug.Log("Wandering");
+        Debug.Log("Following");
     }
 
 
-    private void EndWander()
+    private void EndFollow()
     {
         Audio.StopAudio(gameObject);
-        Debug.Log("End wander");
+        Animator.Play(gameObject, "RN_Idle");
+        Debug.Log("End Following");
     }
 
     #endregion
