@@ -87,6 +87,6 @@ namespace DiamondEngine
         public extern void AssignLibraryTextureToMaterial(int _id, string textureName);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public extern void FindGOWithRayCastBetweenTwoGO(GameObject goal_gameobject);
+        public extern GameObject FindGOWithRayCastBetweenTwoGO(GameObject goal_gameobject);
     }
 }
