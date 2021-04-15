@@ -648,8 +648,16 @@ void C_Navigation::WriteButtonOrJoystickOnEditor(const char* text, BUTTONSANDJOY
 	ImGui::NextColumn();
 }
 
-
 #endif // !STANDALONE
+
+void C_Navigation::SetUIActive(bool state)
+{
+	C_Checkbox* component = static_cast<C_Checkbox*>(gameObject->GetComponent(Component::TYPE::CHECKBOX));
+
+	if (component != nullptr)
+		component->SetAsActive(state);
+}
+
 
 ActionToRealize::ActionToRealize() :action(ACTIONSNAVIGATION::NONE), referenceGO(nullptr), is_key_down(false), is_key_up(true)
 {

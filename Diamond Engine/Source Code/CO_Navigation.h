@@ -86,6 +86,8 @@ public:
     void WriteButtonOrJoystickOnEditor(const char* text, BUTTONSANDJOYSTICKS button_or_joystick);
 #endif // !STANDALONE
 
+    void SetUIActive(bool state);
+
 private:
     std::map< BUTTONSANDJOYSTICKS, ActionToRealize> map_of_buttons_and_joysticks;
     bool is_selected;
