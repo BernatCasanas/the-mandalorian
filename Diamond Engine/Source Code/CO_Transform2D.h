@@ -23,9 +23,9 @@ public:
 	void SetTransform(float locPosX, float locPosY, float locRotation, float sizeX, float sizeY);
 
 	void SetTrueUpdateTransform();
+	void UpdateTransform();
 
 private:
-	void UpdateTransform();
 	void SetPreviousParameters();
 
 public:
