@@ -493,6 +493,17 @@ public class Bantha : Enemy
         {
             Counter.allEnemiesDead = true;
         }
+        //Created dropped coins
+        var rand = new Random();
+        int droppedCoins = rand.Next(1,4);
+        Vector3 pos = gameObject.transform.globalPosition;
+        pos.x += rand.Next(-200, 201) / 100;
+        pos.z += rand.Next(-200, 201) / 100;
+        for (int i = 0;i < droppedCoins;i++)
+        {
+            InternalCalls.CreatePrefab(coinDropPath, pos, Quaternion.identity, new Vector3(1, 1, 1));
+        }
+
         player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
         InternalCalls.Destroy(gameObject);
     }

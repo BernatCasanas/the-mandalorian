@@ -54,7 +54,7 @@ public class HUD : DiamondComponent
     public int max_hp = 0;
     public int force = 0;
     public int max_force = 0;
-    public int currency = 10000;
+    //public int currency = 10000;
     public int bullets_main_weapon = 0;
     public int max_bullets_main_weapon = 0;
     public int bullets_secondary_weapon = 0;
@@ -130,11 +130,11 @@ public class HUD : DiamondComponent
             force_bar_rate = -0.15f;
             start = false;
         }
-        if (Input.GetKey(DEKeyCode.C) == KeyState.KEY_DOWN)
+        /*if (Input.GetKey(DEKeyCode.C) == KeyState.KEY_DOWN)
         {
             currency++;
             UpdateCurrency(currency);
-        }
+        }*/
         if (Input.GetKey(DEKeyCode.H) == KeyState.KEY_DOWN)
         {
             if (hp < max_hp)

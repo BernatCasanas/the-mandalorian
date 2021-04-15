@@ -51,11 +51,13 @@ public class SHOP : DiamondComponent
             {
                 CloseShop();
             }
-
+            //Debug 
             if (Input.GetKey(DEKeyCode.Alpha7) == KeyState.KEY_DOWN)
             {
-                UpdateCurrency(1000);
+                PlayerResources.AddRunCoins(500);
+                hud.GetComponent<HUD>().UpdateCurrency(PlayerResources.GetRunCoins());
             }
+            //
         }
         else 
         {
@@ -86,7 +88,7 @@ public class SHOP : DiamondComponent
         //int cost = -1;
         if (shopOpen)
         {
-            int currency = hud.GetComponent<HUD>().currency;
+            int currency = PlayerResources.GetRunCoins();
             switch (item.itemType)
             {
                 case ShopItems.ShIt_CADBANEROCKETBOOTS:
@@ -143,7 +145,7 @@ public class SHOP : DiamondComponent
 
     private void UpdateCurrency(int val)
     {
-        hud.GetComponent<HUD>().currency = val;
+        PlayerResources.SetRunCoins(val);
         hud.GetComponent<HUD>().UpdateCurrency(val);
     }
 

@@ -8,6 +8,7 @@ public static class PlayerResources
     static int macaronCounter = 0;
     static int milkCounter = 0;
     static int scrapCounter = 0;
+    static int runCoins = 0;
     static Dictionary<Type, int> boonCounter = new Dictionary<Type, int>();
 
     public static int GetResourceCount(RewardType type, Type boonType = null)
@@ -133,6 +134,21 @@ public static class PlayerResources
         boonAmount = boonCounter[boonType];
 
         return boonAmount;
+    }
+
+    public static int GetRunCoins()
+    {
+        return runCoins;
+    }
+
+    public static void AddRunCoins(int val)
+    {
+        runCoins += val;
+    }
+
+    public static void SetRunCoins(int val)
+    {
+        runCoins = val;
     }
 
     public static void ResetRunBoons()

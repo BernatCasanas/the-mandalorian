@@ -12,6 +12,7 @@ public class Enemy : DiamondComponent
 
 	protected Vector3 targetPosition = null;
 	protected float stoppingDistance = 1.0f;
+	protected string coinDropPath = "Library/Prefabs/1907169014.prefab";
 
 	public float slerpSpeed = 5.0f;
 	public bool turretMode = false;
