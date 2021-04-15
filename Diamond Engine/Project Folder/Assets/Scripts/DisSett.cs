@@ -29,10 +29,16 @@ public class DisSett : DiamondComponent
             Config.SetResolution(Config.GetResolution() - 1);
 
         else if (gameObject.Name == "WindowModeUp")
-            Config.SetWindowMode(Config.GetWindowMode() + 1); Debug.Log("Res should go up");
+        {
+            Config.SetWindowMode(Config.GetWindowMode() + 1);
+            Debug.Log("Res should go up");
+        }
 
         else if (gameObject.Name == "WindowModeDown")
-            Config.SetWindowMode(Config.GetWindowMode() - 1); Debug.Log("Res should go down");
+        {
+            Config.SetWindowMode(Config.GetWindowMode() - 1); 
+            Debug.Log("Res should go down");
+        }
 
         Debug.Log("Executed");
     }
