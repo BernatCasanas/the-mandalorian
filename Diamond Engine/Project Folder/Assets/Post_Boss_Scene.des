@@ -194,8 +194,13 @@
                     "shopUI": 1993131308,
                     "hud": 1635900496,
                     "textPopUp": 316970805,
+                    "item1": 1324189369,
+                    "item2": 703005603,
+                    "item3": 985827193,
+                    "item4": 1155932994,
                     "interactionRange": 2,
-                    "firstClick": true
+                    "autoGenerateItems": true,
+                    "opening": true
                 }
             ]
         },
@@ -428,7 +433,13 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "ShopButtons",
-                    "shopController": 1827275921
+                    "shopController": 1827275921,
+                    "nameTxt": 938207836,
+                    "descTxt": 105615925,
+                    "priceTxt": 951693218,
+                    "itemType": 0,
+                    "price_type": 0,
+                    "closeBtn": false
                 }
             ]
         },
@@ -833,7 +844,13 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "ShopButtons",
-                    "shopController": 1827275921
+                    "shopController": 1827275921,
+                    "nameTxt": 1105143004,
+                    "descTxt": 1666626785,
+                    "priceTxt": 748331825,
+                    "itemType": 0,
+                    "price_type": 0,
+                    "closeBtn": false
                 }
             ]
         },
@@ -1299,7 +1316,13 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "ShopButtons",
-                    "shopController": 1827275921
+                    "shopController": 1827275921,
+                    "nameTxt": 1116976768,
+                    "descTxt": 1534467428,
+                    "priceTxt": 1072312767,
+                    "itemType": 0,
+                    "price_type": 0,
+                    "closeBtn": false
                 }
             ]
         },
@@ -1704,7 +1727,13 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "ShopButtons",
-                    "shopController": 1827275921
+                    "shopController": 1827275921,
+                    "nameTxt": 361739764,
+                    "descTxt": 287817479,
+                    "priceTxt": 469923215,
+                    "itemType": 0,
+                    "price_type": 0,
+                    "closeBtn": false
                 }
             ]
         },
@@ -2102,7 +2131,10 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "ShopButtons",
-                    "shopController": 1827275921
+                    "shopController": 1827275921,
+                    "itemType": 0,
+                    "price_type": 0,
+                    "closeBtn": true
                 }
             ]
         },
@@ -11946,8 +11978,11 @@
                     "verticalTimeInterval": 1.2000000476837158,
                     "followPoint": 1422350749,
                     "horizontalSpeed": 4,
-                    "skillPushDuration": 1,
-                    "timeForceRegeneration": 0
+                    "totalForce": 0,
+                    "forceRegenerationSpeed": 0,
+                    "skillPushForceCost": 0,
+                    "skillWallForceCost": 0,
+                    "skillPushDuration": 1
                 }
             ]
         },
@@ -12212,7 +12247,7 @@
                 {
                     "Type": 16,
                     "Active": true,
-                    "RootBone UID": 736179889,
+                    "RootBone UID": 0,
                     "MeshRendererUID": 751557364,
                     "Animations": [
                         228659680,
@@ -19070,7 +19105,7 @@
                 {
                     "Type": 16,
                     "Active": true,
-                    "RootBone UID": 2146159510,
+                    "RootBone UID": 0,
                     "MeshRendererUID": 100206105,
                     "Animations": [
                         814877702,
@@ -19090,9 +19125,7 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "BoonSpawn",
-                    "boonsToSpawn": 1,
-                    "separation": 3.5
+                    "ScriptName": "BoonSpawn"
                 },
                 {
                     "Type": 5,

@@ -919,9 +919,6 @@
     <ClInclude Include="Source Code\CO_DirectionalLight.h">
       <Filter>Sources\Components\Derived\Lights</Filter>
     </ClInclude>
-    <ClInclude Include="Source Code\CO_CubeCollider.h">
-      <Filter>Sources\Components\Derived\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="Source Code\CS_Transform2D_Bindings.h">
       <Filter>Sources\Tools\Bindings</Filter>
     </ClInclude>
@@ -1020,6 +1017,9 @@
     </ClInclude>
     <ClInclude Include="Source Code\CS_Button_Bindings.h">
       <Filter>Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_CapsuleCollider.h">
+      <Filter>Sources\Components\Derived\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1581,6 +1581,9 @@
     </ClCompile>
     <ClCompile Include="Source Code\IM_NavMeshImporter.cpp">
       <Filter>Sources\Tools\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_CapsuleCollider.cpp">
+      <Filter>Sources\Components\Derived\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

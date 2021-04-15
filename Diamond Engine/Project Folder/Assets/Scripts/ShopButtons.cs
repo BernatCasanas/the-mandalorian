@@ -5,54 +5,53 @@ using System.Collections.Generic;
 public class ShopButtons : DiamondComponent
 {
     public GameObject shopController;
+    public GameObject nameTxt;
+    public GameObject descTxt;
+    public GameObject priceTxt;
+    public ShopItems itemType;
+    public ShopPrice price_type;    
+    public bool closeBtn;
 
     bool bought = false;
+    SHOP shopScript;
+
+    public void Awake()
+    {
+        shopScript = shopController.GetComponent<SHOP>();
+    }
+
+    public void SetItem(ShopItems type, ShopPrice price, string name, string description)
+    {
+        itemType = type;
+        price_type = price;
+        if (nameTxt != null) nameTxt.GetComponent<Text>().text = name;
+        if (descTxt != null) descTxt.GetComponent<Text>().text = description;
+        if (priceTxt != null) priceTxt.GetComponent<Text>().text = ((int)price).ToString();
+    }
 
     public void OnExecuteButton()
     {
-        /*if(shopController.GetComponent<SHOP>().firstClick)
+        if (shopScript.opening)
         {
-            Debug.Log("First Click");
-            shopController.GetComponent<SHOP>().firstClick = false;
+            shopScript.opening = false;
         }
-        else
-        {*/
-            if (gameObject.Name == "Button1")
+        else if(!bought)
+        {
+            if (closeBtn)
             {
-                if (!bought)
+                shopScript.CloseShop();
+            }
+            else
+            {
+                if (shopScript.Buy(this))
                 {
-                    shopController.GetComponent<SHOP>().Buy(0);
                     bought = true;
+                    if (nameTxt != null) nameTxt.GetComponent<Text>().text = "-";
+                    if (descTxt != null) descTxt.GetComponent<Text>().text = "-";
+                    if (priceTxt != null) priceTxt.GetComponent<Text>().text = "-";
+                    //gameObject.Enable(false);
                 }
             }
-            else if (gameObject.Name == "Button2")
-            {
-                if (!bought)
-                {
-                    shopController.GetComponent<SHOP>().Buy(1);
-                    bought = true;
-                }
-            }
-            else if (gameObject.Name == "Button3")
-            {
-                if (!bought)
-                {
-                    shopController.GetComponent<SHOP>().Buy(2);
-                    bought = true;
-                }
-            }
-            else if (gameObject.Name == "ButtonHealth")
-            {
-                if (!bought)
-                {
-                    shopController.GetComponent<SHOP>().Buy(3);
-                    bought = true;
-                }
-            }
-            else if (gameObject.Name == "ButtonBack")
-            {
-                shopController.GetComponent<SHOP>().CloseShop();
-            }
-        //}
+        }
     }
 }

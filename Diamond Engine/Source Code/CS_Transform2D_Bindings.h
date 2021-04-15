@@ -86,7 +86,7 @@ void Set2DlPos(MonoObject* obj, MonoObject* vec3)
 	trans2D->localPos[0] = tempPos.x;
 	trans2D->localPos[1] = tempPos.y;
 
-	trans2D->SetTrueUpdateTransform();
+	trans2D->UpdateTransform();
 
 }
 
@@ -102,7 +102,7 @@ void Set2DlRot(MonoObject* obj, float rot)
 		return;
 
 	trans2D->localRotation = rot;
-	trans2D->SetTrueUpdateTransform();
+	trans2D->UpdateTransform();
 
 }
 
@@ -122,7 +122,7 @@ void Set2DSize(MonoObject* obj, MonoObject* vec3)
 	trans2D->size[0] = tempSize.x;
 	trans2D->size[1] = tempSize.y;
 
-	trans2D->SetTrueUpdateTransform();
+	trans2D->UpdateTransform();
 
 }
 
@@ -144,6 +144,6 @@ void SetLocalTransform2D(MonoObject* obj, MonoObject* posVec3,float rot,MonoObje
 
 	trans2D->SetTransform(tempPos.x, tempPos.y, rot, tempSize.x, tempSize.y);
 
-	trans2D->SetTrueUpdateTransform();
+	trans2D->UpdateTransform();
 
 }

@@ -15,12 +15,14 @@ public class StartMenu : DiamondComponent
 		if (gameObject.Name == "Play")
 		{
 			SceneManager.LoadScene(1564453141);
-			Audio.SetState("Game_State", "HUB");
+			
 			if (MusicSourceLocate.instance != null)
 			{
 				Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
 				Debug.Log("Exploring");
 			}
+			Audio.SetState("Game_State", "HUB");
+			//Audio.PlayAudio(gameObject, "Play_Cantine_Voices");
 		}
 		else if (gameObject.Name == "Options")
 		{

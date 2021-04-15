@@ -14,14 +14,14 @@ resourceType(Resource::Type::UNKNOWN), parentDir(nullptr)
 	importPath = _imPath;
 	importPath.push_back('\0');
 
-	if (!isDir) 
+	if (!isDir)
 	{
 		GenerateMetaPath();
-		if (HasMeta()) 
+		if (HasMeta())
 		{
 			LoadDataFromMeta();
 		}
-		else if(!isDir)
+		else if (!isDir)
 		{
 			//resourceType = Resource::Type::MESH;
 			resourceType = EngineExternal->moduleResources->GetTypeFromLibraryExtension(_imPath);
@@ -64,10 +64,10 @@ void AssetDir::GenerateMeta()
 		this->resourceType = EngineExternal->moduleResources->GetTypeFromAssetExtension(importPath.c_str());
 		this->metaUID = EngineExternal->moduleResources->GenerateNewUID();
 		this->libraryPath = EngineExternal->moduleResources->GenLibraryPath(metaUID, resourceType).c_str();
-
+		//this->lastModTime = EngineExternal->moduleFileSystem->GetLastModTime(importPath.c_str());
 		EngineExternal->moduleResources->GenerateMeta(importPath.c_str(), libraryPath.c_str(), metaUID, resourceType);
-
 	}
+
 }
 
 void AssetDir::LoadDataFromMeta()
@@ -78,6 +78,7 @@ void AssetDir::LoadDataFromMeta()
 	metaUID = rObj.ReadInt("UID");
 	resourceType = static_cast<Resource::Type>(rObj.ReadInt("Type"));
 	libraryPath = rObj.ReadString("Library Path");
+	//lastModTime = rObj.ReadInt("modTime");
 
 	//Free memory
 	json_value_free(metaJSON);
@@ -105,6 +106,7 @@ void AssetDir::CreateLibraryFileRecursive()
 		uint id = EngineExternal->moduleResources->CreateLibraryFromAssets(importPath.c_str());
 	}
 
+
 	for (size_t i = 0; i < childDirs.size(); i++)
 	{
 		childDirs[i].CreateLibraryFileRecursive();
@@ -123,7 +125,7 @@ void AssetDir::GenerateMetaPath()
 void AssetDir::DeletePermanent()
 {
 	//Directory can only be deleted if there is nothing inside
-	if (isDir && childDirs.size() != 0) 
+	if (isDir && childDirs.size() != 0)
 	{
 		//Delete all files inside recursive
 		for (size_t i = 0; i < childDirs.size(); i++)
@@ -133,15 +135,15 @@ void AssetDir::DeletePermanent()
 	}
 
 	//Remove library
-	if (!isDir) 
+	if (!isDir)
 	{
 		EngineExternal->moduleFileSystem->DeleteAssetFile(libraryPath.c_str());
 
-		if (resourceType == Resource::Type::MODEL) 
+		if (resourceType == Resource::Type::MODEL)
 		{
 			std::vector<uint> meshesID;
 			//Get meshes from fbx meta
-			if (FileSystem::Exists(metaFileDir.c_str())) 
+			if (FileSystem::Exists(metaFileDir.c_str()))
 			{
 				ModelImporter::GetMeshesFromMeta(importPath.c_str(), meshesID);
 
@@ -155,7 +157,7 @@ void AssetDir::DeletePermanent()
 				}
 
 				EngineExternal->moduleResources->UpdateMeshesDisplay();
-			}		
+			}
 		}
 	}
 
