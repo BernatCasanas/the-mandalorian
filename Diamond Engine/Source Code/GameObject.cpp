@@ -341,7 +341,7 @@ void GameObject::Destroy()
 }
 
 
-void GameObject::SaveToJson(JSON_Array* _goArray, bool skip_prefab_check)
+void GameObject::SaveToJson(JSON_Array* _goArray)
 {
 	JSON_Value* goValue = json_value_init_object();
 	JSON_Object* goData = json_value_get_object(goValue);
@@ -352,9 +352,6 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool skip_prefab_check)
 
 	//Save all gameObject data
 	DEJson::WriteBool(goData, "Active", active);
-	DEJson::WriteVector3(goData, "Position", &transform->position[0]);
-	DEJson::WriteQuat(goData, "Rotation", &transform->rotation.x);
-	DEJson::WriteVector3(goData, "Scale", &transform->localScale[0]);
 
 	DEJson::WriteInt(goData, "UID", UID);
 	DEJson::WriteInt(goData, "PrefabID", prefabID);
@@ -362,12 +359,30 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool skip_prefab_check)
 	DEJson::WriteBool(goData, "DontDestroy", dontDestroy);
 	DEJson::WriteBool(goData, "Static", isStatic);
 
+	DEJson::WriteVector3(goData, "Position", &transform->position[0]);
+	DEJson::WriteQuat(goData, "Rotation", &transform->rotation.x);
+	DEJson::WriteVector3(goData, "Scale", &transform->localScale[0]);
+
 	if (parent)
 		DEJson::WriteInt(goData, "ParentUID", parent->UID);
 
+	if (prefabID != 0)
+	{
+		std::vector<uint> uids;
+		GetChildrenUIDs(uids);
+
+		JSON_Value* uidsGoArray = json_value_init_array();
+		JSON_Array* uidsJsArray = json_value_get_array(uidsGoArray);
+		for (size_t i = 0; i < uids.size(); i++)
+		{
+			json_array_append_number(uidsJsArray, uids[i]);
+			json_object_set_value(goData, "UIDs", uidsGoArray);
+		}
+	}
+
 	json_array_append_value(_goArray, goValue);
 
-	if (prefabID != 0u && !skip_prefab_check)
+	if (prefabID != 0u)
 		return;
 
 	//TODO: Move inside component base
@@ -411,6 +426,34 @@ void GameObject::LoadFromJson(JSON_Object* _obj)
 
 	if (json_layer == nullptr) sprintf_s(layer, "Default");
 	else sprintf_s(layer, json_layer);
+}
+
+void GameObject::CopyObjectData(JSON_Object* jsonObject)
+{
+	UID = DEJson::ReadInt(jsonObject, "UID");
+	active = DEJson::ReadBool(jsonObject, "Active");
+	transform->SetTransformMatrix(DEJson::ReadVector3(jsonObject, "Position"), DEJson::ReadQuat(jsonObject, "Rotation"), DEJson::ReadVector3(jsonObject, "Scale"));
+	dontDestroy = DEJson::ReadBool(jsonObject, "DontDestroy");
+	isStatic = DEJson::ReadBool(jsonObject, "Static");
+
+	const char* json_tag = DEJson::ReadString(jsonObject, "tag");
+
+	if (json_tag == nullptr) sprintf_s(tag, "Untagged");
+	else sprintf_s(tag, json_tag);
+
+	const char* json_layer = DEJson::ReadString(jsonObject, "layer");
+
+	if (json_layer == nullptr) sprintf_s(layer, "Default");
+	else sprintf_s(layer, json_layer);
+}
+
+void GameObject::GetChildrenUIDs(std::vector<uint>& UIDs)
+{
+	for (size_t i = 0; i < children.size(); i++)
+	{
+		UIDs.push_back(children[i]->UID);
+		children[i]->GetChildrenUIDs(UIDs);
+	}
 }
 
 

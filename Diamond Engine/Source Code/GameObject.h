@@ -39,8 +39,10 @@ public:
 
 	void Destroy();
 
-	void SaveToJson(JSON_Array* _goArray, bool skip_prefab_check = true);
+	void SaveToJson(JSON_Array* _goArray);
 	void LoadFromJson(JSON_Object*);
+	void CopyObjectData(JSON_Object* jsonObject);
+	void GetChildrenUIDs(std::vector<uint>& UIDs);
 
 	void LoadComponents(JSON_Array* componentArray);
 	void RemoveComponent(Component* ptr);
