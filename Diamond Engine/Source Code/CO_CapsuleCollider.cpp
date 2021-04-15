@@ -19,7 +19,7 @@
 
 C_CapsuleCollider::C_CapsuleCollider() : C_Collider(nullptr)
 {
-	name = "Sphere Collider_" + std::to_string(-1);
+	name = "Capsule Collider_" + std::to_string(-1);
 
 
 }
@@ -29,7 +29,7 @@ C_CapsuleCollider::C_CapsuleCollider(GameObject* _gm/*, float3 _position, Quat _
 position(_position), rotation(_rotation), localScale(_localScale)*/
 {
 
-	int indexNum = _gm != nullptr ? _gm->GetComponentsOfType(Component::TYPE::SPHERECOLLIDER).size() + _gm->GetComponentsOfType(Component::TYPE::COLLIDER).size() : 0;
+	int indexNum = _gm != nullptr ? _gm->GetComponentsOfType(Component::TYPE::CAPSULECOLLIDER).size() + _gm->GetComponentsOfType(Component::TYPE::COLLIDER).size() : 0;
 	name = "Capsule Collider_" + std::to_string(indexNum);
 	isTrigger = false;
 	shape = ColliderShape::CAPSULE;
