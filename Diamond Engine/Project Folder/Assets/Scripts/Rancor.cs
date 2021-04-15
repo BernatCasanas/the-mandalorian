@@ -166,7 +166,7 @@ public class Rancor : DiamondComponent
             Debug.Log("Null agent, add a NavMeshAgent Component");
 
         Animator.Play(gameObject, "RN_Idle");
-
+        Audio.PlayAudio(gameObject, "Play_Rancor_Breath");
         Counter.roomEnemies++;  // If we had a manager...
         EnemyManager.AddEnemy(gameObject);
     }
@@ -547,7 +547,7 @@ public class Rancor : DiamondComponent
                     inputsList.Add(RANCOR_INPUT.IN_MELEE_COMBO_1HIT);
 
                 else
-                    inputsList.Add(RANCOR_INPUT.IN_MELEE_COMBO_1HIT);
+                    inputsList.Add(RANCOR_INPUT.IN_HAND_SLAM);
             }
 
             else if (distance > meleeRange && distance <= longRange)
@@ -581,7 +581,7 @@ public class Rancor : DiamondComponent
         meleeCH1ColliderTimer = meleeCH1ColliderDuration;
 
         Animator.Play(gameObject, "RN_MeleeComboP1");
-
+        Audio.PlayAudio(gameObject, "Play_Rancor_Melee_1rst_Punch");
         LookAt(Core.instance.gameObject.transform.globalPosition);
     }
 
@@ -615,6 +615,7 @@ public class Rancor : DiamondComponent
         meleeCH2ColliderTimer = meleeCH2ColliderDuration;
 
         Animator.Play(gameObject, "RN_MeleeComboP2");
+        Audio.PlayAudio(gameObject, "Play_Rancor_Melee_2nd_Punch");
 
         LookAt(Core.instance.gameObject.transform.globalPosition);
     }
@@ -705,7 +706,7 @@ public class Rancor : DiamondComponent
     {
         //Start walk animation
         Animator.Play(gameObject, "RN_Walk");
-
+        Audio.PlayAudio(gameObject, "PLay_Rancor_Footsteps");
         //Search point
         wanderTimer = shortWanderTime;
 
@@ -720,7 +721,7 @@ public class Rancor : DiamondComponent
         //Search point
 
         Animator.Play(gameObject, "RN_Walk");
-
+        Audio.PlayAudio(gameObject, "PLay_Rancor_Footsteps");
         wanderTimer = longWanderTime;
 
         if (agent != null)
@@ -743,7 +744,8 @@ public class Rancor : DiamondComponent
 
     private void EndWander()
     {
-
+        Audio.StopAudio(gameObject);
+        Debug.Log("End wander");
     }
 
     #endregion
@@ -796,6 +798,7 @@ public class Rancor : DiamondComponent
     {
         handSlamTimer = handSlamTime;
         Animator.Play(gameObject, "RN_HandSlam");
+        Audio.PlayAudio(gameObject, "Play_Rancor_Hand_Slam");
     }
 
 
@@ -834,7 +837,7 @@ public class Rancor : DiamondComponent
     {
         rushTimer = rushTime;
         Animator.Play(gameObject, "RN_Rush");
-
+        Audio.PlayAudio(gameObject, "Play_Rancor_Rush_Steps");
         targetDirection = Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition; //RANCOR CALCULATES RUSH DIRECTION
 
     }
@@ -851,7 +854,7 @@ public class Rancor : DiamondComponent
 
     private void EndRush()
     {
-
+        Audio.StopAudio(gameObject);
     }
 
 
@@ -859,6 +862,7 @@ public class Rancor : DiamondComponent
     {
         rushStunTimer = rushStunDuration;
         Animator.Play(gameObject, "RN_RushRecover");
+        Audio.PlayAudio(gameObject, "Play_Rancor_Recovery");
     }
 
     private void UpdateRushStun()
@@ -883,7 +887,7 @@ public class Rancor : DiamondComponent
 
         Animator.Play(gameObject, "RN_Die", 1.0f);
 
-        Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Death");
+        Audio.PlayAudio(gameObject, "Play_Rancor_Death");
         //Audio.PlayAudio(gameObject, "Play_Mando_Voice");
 
         if (hitParticles != null)
