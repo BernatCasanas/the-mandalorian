@@ -124,7 +124,7 @@ public class HUD : DiamondComponent
             comboColor = Vector3.one;
             UpdateHP(PlayerHealth.currHealth, PlayerHealth.currMaxHealth);
             ResetCombo();
-            UpdateForce(force, max_force);
+            UpdateForce(BabyYoda.instance.GetCurrentForce(), BabyYoda.GetMaxForce());
             max_hp_number.GetComponent<Text>().text = PlayerHealth.currMaxHealth.ToString();
             last_hp = Mathf.Lerp(last_hp, PlayerHealth.currHealth - 0.5f, 2.5f * Time.deltaTime);
             force_bar_rate = -0.15f;
@@ -156,28 +156,23 @@ public class HUD : DiamondComponent
         }
         if (Input.GetKey(DEKeyCode.F) == KeyState.KEY_DOWN)
         {
-            if (force > 0)
+            if (BabyYoda.instance != null)
             {
-                force -= 10;
-                if (force == 0)
+                if (BabyYoda.instance.GetCurrentForce() > 0)
                 {
-                    ChangeAlphaSkillPush(false);
-
+                    BabyYoda.instance.SetCurrentForce(BabyYoda.instance.GetCurrentForce() - 10);
                 }
-                UpdateForce(force, max_force);
             }
+
         }
         if (Input.GetKey(DEKeyCode.M) == KeyState.KEY_DOWN)
         {
-            if (force < max_force)
+            if (BabyYoda.instance != null)
             {
-                if (force == 0)
+                if (BabyYoda.instance.GetCurrentForce() < BabyYoda.GetMaxForce())
                 {
-                    ChangeAlphaSkillPush(true);
+                    BabyYoda.instance.SetCurrentForce(BabyYoda.instance.GetCurrentForce() + 10);
                 }
-                force += 10;
-                UpdateForce(force, max_force);
-
             }
         }
         if (Input.GetKey(DEKeyCode.S) == KeyState.KEY_DOWN)
@@ -453,7 +448,8 @@ public class HUD : DiamondComponent
             }
         }
 
-        UpdateForce((int)(force + (max_force * lvlUpComboData.forceBarPercentageRecovery)), max_force); //TODO check this works fine (at the time of creating this line force doesn't work and this part of the method cannot be tested)
+        if (BabyYoda.instance != null)
+            UpdateForce((int)(BabyYoda.instance.GetCurrentForce() + (BabyYoda.GetMaxForce() * lvlUpComboData.forceBarPercentageRecovery)), BabyYoda.GetMaxForce()); //TODO check this works fine (at the time of creating this line force doesn't work and this part of the method cannot be tested)
 
         comboColor.x = lvlUpComboData.colorUpdate.x;
         comboColor.y = lvlUpComboData.colorUpdate.y;
@@ -491,6 +487,7 @@ public class HUD : DiamondComponent
     {
         if (force_bar == null || force_wave == null || force_wave_second == null || force_wave_third == null)
             return;
+
         float force_float = new_force;
         force_float /= max_force;
         //force_float = Math.Max(force_float, 1.0f); CANNOT DO THIS! This returns 1.0 and it's not a wanted value
@@ -498,16 +495,23 @@ public class HUD : DiamondComponent
         force_wave.GetComponent<Material>().SetFloatUniform("length_used", force_float);
         force_wave_second.GetComponent<Material>().SetFloatUniform("length_used", force_float);
         force_wave_third.GetComponent<Material>().SetFloatUniform("length_used", force_float);
+
+
+        if (new_force >= BabyYoda.GetPushCost())
+            ChangeAlphaSkillPush(1.0f);
+        else
+            ChangeAlphaSkillPush(0.0f);
     }
 
-    public void ChangeAlphaSkillPush(bool alpha_full)
+    public void ChangeAlphaSkillPush(float alpha)
     {
         if (skill_push == null)
             return;
-        if (alpha_full)
-            skill_push.GetComponent<Material>().SetFloatUniform("alpha", 1.0f);
-        else
-            skill_push.GetComponent<Material>().SetFloatUniform("alpha", 0.5f);
+
+        Debug.Log("UUUUUUUUUUUUUUUUUUUU: " + alpha.ToString());
+
+
+        skill_push.GetComponent<Material>().SetFloatUniform("alpha", alpha);
     }
 
     public void SwapWeapons()

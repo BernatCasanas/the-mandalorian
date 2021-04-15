@@ -10,13 +10,13 @@ public class ShopButtons : DiamondComponent
 
     public void OnExecuteButton()
     {
-        if(shopController.GetComponent<SHOP>().firstClick)
+        /*if(shopController.GetComponent<SHOP>().firstClick)
         {
             Debug.Log("First Click");
             shopController.GetComponent<SHOP>().firstClick = false;
         }
         else
-        {
+        {*/
             if (gameObject.Name == "Button1")
             {
                 if (!bought)
@@ -53,6 +53,6 @@ public class ShopButtons : DiamondComponent
             {
                 shopController.GetComponent<SHOP>().CloseShop();
             }
-        }
+        //}
     }
 }

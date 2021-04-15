@@ -242,7 +242,7 @@ namespace DiamondEngine {
         {
             if (BabyYoda.instance != null)
             {
-                BabyYoda.instance.ReduceForceRegenerationTime(1f);
+                BabyYoda.AugmentForceRegenSpeed(1f);
             }
         }
 
