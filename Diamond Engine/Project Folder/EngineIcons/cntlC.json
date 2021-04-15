@@ -1,70 +1,188 @@
 {
     "Game Objects": [
         {
-            "name": "Game Camera",
+            "name": "StormTropButton",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
-                -8.12689208984375,
-                18.808589935302734,
-                -10.831701278686523
+                0,
+                0,
+                0
             ],
             "Rotation": [
-                0.24263942241668701,
-                0.39558225870132446,
-                -0.10866371542215347,
-                0.87910920381546021
+                0,
+                0,
+                0,
+                1
             ],
             "Scale": [
                 1,
-                0.9999997615814209,
-                0.9999997615814209
+                1,
+                1
             ],
-            "UID": 400702684,
-            "PrefabID": 1599948487,
+            "UID": 272834513,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1676501951,
+            "ParentUID": 537868336,
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
                 },
                 {
-                    "Type": 4,
+                    "Type": 6,
                     "Active": true,
-                    "fType": 1,
-                    "fSize": 50,
-                    "nearPlaneDist": 1,
-                    "farPlaneDist": 100,
-                    "vFOV": 13.039999961853027,
-                    "hFOV": 25.360000610351563,
-                    "culling": false,
-                    "drawSkybox": true
+                    "Position": [
+                        16.5,
+                        10.800000190734863
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        36.099998474121094,
+                        13.5
+                    ]
                 },
                 {
-                    "Type": 12,
+                    "Type": 3,
                     "Active": true,
-                    "isDefaultListener": true,
-                    "masterVolume": 50
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
                 },
                 {
-                    "Type": 5,
+                    "Type": 7,
                     "Active": true,
-                    "ScriptName": "CameraController",
-                    "target": 1800709106,
-                    "x": -10.300000190734863,
-                    "y": 9.3000001907348633,
-                    "z": -10,
-                    "smoothSpeed": 0.10000000149011612,
-                    "zoomDesired": 0.10000000149011612,
-                    "timer_easing_sec": 0,
-                    "timer": 0,
-                    "cornerTopLeftX": -100,
-                    "cornerTopLeftY": -100,
-                    "cornerBotRightX": 100,
-                    "cornerBotRightY": 100
+                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/second_button.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/1618474496.dds",
+                    "Pressed_UID": 1618474496,
+                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/second_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1345927926.dds",
+                    "Hovered_UID": 1345927926,
+                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/second_button_pressed.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1546682848.dds",
+                    "Unhovered_UID": 1546682848,
+                    "ButtonState": 0,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/second_button.png",
+                    "LibraryPath": "Library\/Textures\/1618474496.dds",
+                    "UID": 1618474496
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 0,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 1259067917,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 1815962501,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 19,
+                            "UID": 1259067917,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 20,
+                            "UID": 1815962501,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 518771858,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 272834513,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -25.200000762939453,
+                        -5.9000000953674316
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        16.299999237060547,
+                        27
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Spawn bantha",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }

@@ -440,6 +440,7 @@ public class Bantha : Enemy
         Animator.Play(gameObject, "BT_Run");
 
         Audio.PlayAudio(gameObject, "Play_Bantha_Attack");
+        Audio.PlayAudio(gameObject, "Play_Bantha_Ramming");
         Audio.PlayAudio(gameObject, "Play_Footsteps_Bantha");
 
         Vector3 direction = player.transform.globalPosition - gameObject.transform.globalPosition;
