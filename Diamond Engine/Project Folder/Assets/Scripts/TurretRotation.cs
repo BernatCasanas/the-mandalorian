@@ -4,7 +4,8 @@ using DiamondEngine;
 public class TurretRotation : DiamondComponent
 {
 	public GameObject turret;
-	public float maxRotationDeg = 90;
+	public float startingRotationDeg = 0;
+	public float finishRotationDeg = 90;
 	public float speedMult = 1.0f;
 
 	private float currentRotation;
@@ -12,7 +13,7 @@ public class TurretRotation : DiamondComponent
 
 	public void Awake()
 	{
-		currentRotation = maxRotationDeg * 0.5f;
+		currentRotation = startingRotationDeg;
 	}
 
 	public void Update()
@@ -20,12 +21,12 @@ public class TurretRotation : DiamondComponent
 		if (rotatingLeft)
 		{
 			currentRotation -= speedMult;
-			if (currentRotation <= maxRotationDeg * -0.5f) rotatingLeft = !rotatingLeft;
+			if (currentRotation <= startingRotationDeg) rotatingLeft = !rotatingLeft;
 		}
 		else
 		{
 			currentRotation += speedMult;
-			if (currentRotation >= maxRotationDeg * 0.5f) rotatingLeft = !rotatingLeft;
+			if (currentRotation >= finishRotationDeg) rotatingLeft = !rotatingLeft;
 		}
 
 		Rotate(currentRotation * 0.0174533f); //Radian to degree
