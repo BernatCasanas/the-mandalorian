@@ -26,7 +26,7 @@ int PrefabImporter::SavePrefab(const char* assets_path, GameObject* gameObject)
 
 	int uid = EngineExternal->moduleResources->ImportFile(assets_path, Resource::Type::PREFAB);
 	EngineExternal->moduleResources->GenerateMeta(assets_path, EngineExternal->moduleResources->GenLibraryPath(uid, Resource::Type::PREFAB).c_str(),
-												  uid, Resource::Type::PREFAB);
+		uid, Resource::Type::PREFAB);
 
 	//std::string meta = std::string(assets_path) + ".meta";
 	//int uid = EngineExternal->moduleResources->GetMetaUID(meta.c_str());
@@ -55,12 +55,12 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 	GameObject* parent = rootObject;
 	std::map<uint, GameObject*> gameObjects;
 
-	for (size_t i = 0; i < objects.size(); i++)
+	for (size_t j = 0; j < json_array_get_count(gameObjectsArray); j++)
 	{
-		gameObjects[objects[i]->prefabReference] = objects[i];
-
-		for (size_t j = 0; j < json_array_get_count(gameObjectsArray); j++)
+		for (size_t i = 0; i < objects.size(); i++)
 		{
+			gameObjects[objects[i]->prefabReference] = objects[i];
+
 			JSON_Object* jsonObject = json_array_get_object(gameObjectsArray, j);
 
 			int uid = json_object_get_number(jsonObject, "UID");
@@ -110,7 +110,7 @@ GameObject* PrefabImporter::InstantiatePrefab(const char* libraryPath)
 	GameObject* rootObject = nullptr;
 
 	JSON_Value* prefab = json_parse_file(libraryPath);
-	
+
 	if (prefab == nullptr)
 		return nullptr;
 
@@ -139,7 +139,7 @@ GameObject* PrefabImporter::InstantiatePrefab(const char* libraryPath)
 
 	//replace the components references with the new GameObjects using their old UIDs
 	std::map<uint, GameObject*>::const_iterator it = gameObjects.begin();
-	for(it; it != gameObjects.end(); it++)
+	for (it; it != gameObjects.end(); it++)
 	{
 		it->second->prefabReference = it->first;
 		for (size_t i = 0; i < it->second->components.size(); i++)
@@ -154,7 +154,7 @@ GameObject* PrefabImporter::InstantiatePrefab(const char* libraryPath)
 
 	for (size_t i = 0; i < saveCopy.size(); i++)
 		saveCopy[i]->OnAwake();
-	
+
 	std::string id_string;
 	FileSystem::GetFileName(libraryPath, id_string, false);
 	rootObject->prefabID = (uint)atoi(id_string.c_str());
@@ -219,7 +219,7 @@ void PrefabImporter::OverridePrefabGameObjects(uint prefabID, GameObject* gameOb
 
 	for (size_t i = 0; i < prefabObjects.size(); i++)
 	{
-		if(prefabObjects[i] != gameObject)
+		if (prefabObjects[i] != gameObject)
 			OverrideGameObject(prefabID, prefabObjects[i], gameObject);
 	}
 
@@ -231,17 +231,28 @@ void PrefabImporter::OverrideGameObject(uint prefabID, GameObject* objectToRepla
 {
 	std::string libraryPath = EngineExternal->moduleResources->GenLibraryPath(prefabID, Resource::Type::PREFAB);
 
+	std::vector<GameObject*> sceneObjects;
+	objectToReplace->CollectChilds(sceneObjects);
+
 	GameObject* prefabObject = InstantiatePrefab(libraryPath.c_str());
 
-	if (prefabObject == nullptr) {
-		return;
+	std::vector<GameObject*> prefabObjects;
+	prefabObject->CollectChilds(prefabObjects);
+
+	for (size_t i = 0; i < prefabObjects.size(); i++)
+	{
+		for (size_t j = 0; j < sceneObjects.size(); j++)
+		{
+			if (prefabObjects[i]->prefabReference == sceneObjects[j]->prefabReference || prefabObjects[i]->UID == sceneObjects[j]->prefabReference)
+			{
+				prefabObjects[i]->UID = sceneObjects[j]->UID;
+			}
+		}
 	}
 
 	C_Transform* oldObjectTransform = objectToReplace->transform;
 	prefabObject->transform->SetTransformMatrix(oldObjectTransform->position, oldObjectTransform->rotation, oldObjectTransform->localScale);
 	prefabObject->transform->updateTransform = true;
-
-	prefabObject->ChangeParent(objectToReplace->parent);
 
 	objectToReplace->Destroy();
 }
