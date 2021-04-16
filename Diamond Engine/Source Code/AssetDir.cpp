@@ -64,10 +64,31 @@ void AssetDir::GenerateMeta()
 		this->resourceType = EngineExternal->moduleResources->GetTypeFromAssetExtension(importPath.c_str());
 		this->metaUID = EngineExternal->moduleResources->GenerateNewUID();
 		this->libraryPath = EngineExternal->moduleResources->GenLibraryPath(metaUID, resourceType).c_str();
-		//this->lastModTime = EngineExternal->moduleFileSystem->GetLastModTime(importPath.c_str());
+		this->lastModTime = EngineExternal->moduleFileSystem->GetLastModTime(importPath.c_str());
 		EngineExternal->moduleResources->GenerateMeta(importPath.c_str(), libraryPath.c_str(), metaUID, resourceType);
 	}
+}
 
+void AssetDir::UpdateMetaLastModTime()
+{
+	if (lastModTime != EngineExternal->moduleFileSystem->GetLastModTime(importPath.c_str()))
+	{
+		lastModTime = EngineExternal->moduleFileSystem->GetLastModTime(importPath.c_str());
+
+		JSON_Value* metaFile = json_parse_file(metaFileDir.c_str());
+
+		if (metaFile == NULL)
+			return;
+
+		JSON_Object* metaObj = json_value_get_object(metaFile);
+		
+		json_object_set_number(metaObj, "modTime", lastModTime);
+
+		json_serialize_to_file_pretty(metaFile, metaFileDir.c_str());
+
+		//Free memory
+		json_value_free(metaFile);
+	}
 }
 
 void AssetDir::LoadDataFromMeta()
@@ -78,10 +99,23 @@ void AssetDir::LoadDataFromMeta()
 	metaUID = rObj.ReadInt("UID");
 	resourceType = static_cast<Resource::Type>(rObj.ReadInt("Type"));
 	libraryPath = rObj.ReadString("Library Path");
-	//lastModTime = rObj.ReadInt("modTime");
+	lastModTime = rObj.ReadInt("modTime");
 
 	//Free memory
 	json_value_free(metaJSON);
+}
+
+int AssetDir::GetMetaLastModTime()
+{
+	JSON_Value* metaJSON = json_parse_file(metaFileDir.c_str());
+	DEConfig rObj(json_value_get_object(metaJSON));
+
+	int modTime = rObj.ReadInt("modTime");
+
+	//Free memory
+	json_value_free(metaJSON);
+
+	return modTime;
 }
 
 void AssetDir::GenerateMetaRecursive()

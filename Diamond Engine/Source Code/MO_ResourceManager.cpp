@@ -43,7 +43,7 @@ bool M_ResourceManager::Start()
 	meshesLibraryRoot.lastModTime = App->moduleFileSystem->GetLastModTime(meshesLibraryRoot.importPath.c_str());
 	animationsLibraryRoot.lastModTime = App->moduleFileSystem->GetLastModTime(animationsLibraryRoot.importPath.c_str());
 
-	//NeedsDirsUpdate(assetsRoot);
+	NeedsDirsUpdate(assetsRoot);
 
 	return true;
 }
@@ -178,8 +178,8 @@ int M_ResourceManager::GenerateNewUID()
 
 void M_ResourceManager::NeedsDirsUpdate(AssetDir& dir)
 {
-	if (dir.lastModTime == App->moduleFileSystem->GetLastModTime(dir.importPath.c_str()))
-		//&& dir.lastModTime <= App->moduleFileSystem->GetLastModTime(dir.libraryPath.c_str()))
+	if (dir.lastModTime == App->moduleFileSystem->GetLastModTime(dir.importPath.c_str()))// && !dir.isDir  //if it is a folder and it is up to date
+		//|| (!dir.isDir && dir.lastModTime <= App->moduleFileSystem->GetLastModTime(dir.libraryPath.c_str()))) //or it is a file and it is 
 	{
 		for (unsigned int i = 0; i < dir.childDirs.size(); i++)
 		{
@@ -225,21 +225,15 @@ void M_ResourceManager::NeedsDirsUpdate(AssetDir& dir)
 			}
 
 		}
-
-		//TODO: Then find modified files and create o recalulate .meta and library files
-		//SUPER IMPOIRTANT TODO DONT FFORGET, REGENERATE LIBRARY FILE BUT NEVER MODIFY META FILE
-		//Check if this works
-
-		//int lastModTime = App->moduleFileSystem->GetLastModTime(dir.importPath.c_str());
-		//int difference = lastModTime - dir.lastModTime;
-
-		if (!dir.isDir)
+		else
 		{
+			//TODO: Then find modified files and create o recalulate .meta and library files
+			//SUPER IMPOIRTANT TODO DONT FFORGET, REGENERATE LIBRARY FILE BUT NEVER MODIFY META FILE
+			//Check if this works
+
 			UpdateFile(dir);
 		}
 
-		//lastModTime = App->moduleFileSystem->GetLastModTime(dir.importPath.c_str());
-		//difference = lastModTime - dir.lastModTime;
 	}
 	fileCheckTime = 0.f;
 }
@@ -615,8 +609,15 @@ void M_ResourceManager::UpdateFile(AssetDir& modDir)
 {
 	LOG(LogType::L_WARNING, "File %s was modified, reimporting", modDir.dirName.c_str());
 	ImportFile(modDir.importPath.c_str(), App->moduleResources->GetMetaType(modDir.metaFileDir.c_str()));
-	modDir.lastModTime = App->moduleFileSystem->GetLastModTime(modDir.importPath.c_str());
-	modDir.GenerateMeta();
+
+	if(modDir.isDir)
+		modDir.lastModTime = App->moduleFileSystem->GetLastModTime(modDir.importPath.c_str());
+	else
+		modDir.UpdateMetaLastModTime();
+}
+
+void M_ResourceManager::UpdateFileAndMeta(const char* assetsPath)
+{
 }
 
 Resource::Type M_ResourceManager::GetTypeFromAssetExtension(const char* assetFile) const
@@ -685,7 +686,6 @@ Resource::Type M_ResourceManager::GetTypeFromLibraryExtension(const char* librar
 
 void M_ResourceManager::GenerateMeta(const char* aPath, const char* lPath, unsigned int uid, Resource::Type type)
 {
-
 	JSON_Value* file = json_value_init_object();
 	DEConfig rObj(json_value_get_object(file));
 
