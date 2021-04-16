@@ -7,7 +7,16 @@ public class DebugGodmode : DiamondComponent
 
     public void OnExecuteCheckbox(bool active)
     {
-        Debug.Log("YEEEET");
+        if(active)
+        {
+            DebugOptionsHolder.godModeActive = true;
+            Debug.Log("GOD MODE ACTIVE");
+        }
+        else
+        {
+            DebugOptionsHolder.godModeActive = false;
+            Debug.Log("GOD MODE DEACTIVATED");
+        }
     }
 
     public void Update()

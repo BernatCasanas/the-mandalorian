@@ -18,7 +18,7 @@ public class PlayerHealth : DiamondComponent
 
     public void Update()
     {
-        if (die)
+        if (die && !DebugOptionsHolder.godModeActive)
         {
             die = false;
             Die();
@@ -125,6 +125,9 @@ public class PlayerHealth : DiamondComponent
     //Increments the current Hp by the percentatge given as a parameter (1 = 100% 0 = 0%) It can also be negative to take percentual damage
     public void HealPercent(float percent)
     {
+        if (DebugOptionsHolder.godModeActive)
+            return;
+
         currHealth += (int)(currHealth * percent);
 
         if (currHealth > currMaxHealth) currHealth = currMaxHealth;
@@ -140,6 +143,9 @@ public class PlayerHealth : DiamondComponent
     //Increments the current Hp by the percentatge given as a parameter (1 = 100% 0 = 0%) It can also be negative to take percentual damage
     public void HealPercentMax(float percentofMaxHp)
     {
+        if (DebugOptionsHolder.godModeActive)
+            return;
+
         currHealth += (int)(currMaxHealth * percentofMaxHp);
         currHealth = Math.Min(currMaxHealth, currHealth);
 
@@ -157,6 +163,9 @@ public class PlayerHealth : DiamondComponent
     //When current HP drops to 0, Die() Method is called
     public void SetCurrentHP(int newCurrentHP)
     {
+        if (DebugOptionsHolder.godModeActive)
+            return;
+
         currHealth = newCurrentHP;
 
         if (currHealth > currMaxHealth) currHealth = currMaxHealth;
@@ -173,6 +182,9 @@ public class PlayerHealth : DiamondComponent
     //Also works as a HEAL AMOUNT when taking negative damage ;) When current HP drops to 0, Die() Method is called
     public int TakeDamage(int damage)
     {
+        if (DebugOptionsHolder.godModeActive)
+            return currHealth;
+
         currHealth -= damage;
 
 
