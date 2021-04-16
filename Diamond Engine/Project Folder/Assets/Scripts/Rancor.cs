@@ -807,6 +807,7 @@ public class Rancor : DiamondComponent
         Audio.PlayAudio(gameObject, "Play_Rancor_Hand_Slam");
 
         handSlamTimerToActivate = 0.0f;
+        handSlamHitBox.GetComponent<RancorHandSlamHitCollider>().RestartCollider();
     }
 
 
@@ -815,12 +816,14 @@ public class Rancor : DiamondComponent
         handSlamTimerToActivate += Time.deltaTime;
         if(handSlamTimerToActivate > handSlamTimeToActivate)
         {
+            if (handSlamHitBox == null)
+                return;
             //Actiavate collider
-            handSlamHitBox.Enable(true);
+            handSlamHitBox.Enable(true); //Enable collider not gameobject
 
             //Temporal while colliders can't set active
-            handSlamHitBox.transform.localPosition = handSlamHitBoxPos;
-            handSlamHitBox.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, 3.14159f);
+            //handSlamHitBox.transform.localPosition = handSlamHitBoxPos;
+            //handSlamHitBox.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, 3.14159f);
             //----
             Input.PlayHaptic(50f, 2);
         }
@@ -832,7 +835,10 @@ public class Rancor : DiamondComponent
 
     private void EndHandSlam()
     {
+        if (handSlamHitBox == null)
+            return;
         handSlamHitBox.Enable(false);
+
     }
 
     #endregion

@@ -1472,8 +1472,11 @@
                     "verticalTimeInterval": 1.2000000476837158,
                     "followPoint": 25726733,
                     "horizontalSpeed": 4,
-                    "skillPushDuration": 1,
-                    "timeForceRegeneration": 0
+                    "totalForce": 0,
+                    "forceRegenerationSpeed": 0,
+                    "skillPushForceCost": 0,
+                    "skillWallForceCost": 0,
+                    "skillPushDuration": 1
                 }
             ]
         },
@@ -1810,7 +1813,6 @@
                     "max_hp": 50,
                     "force": 50,
                     "max_force": 50,
-                    "currency": 0,
                     "bullets_main_weapon": 10,
                     "max_bullets_main_weapon": 10,
                     "bullets_secondary_weapon": 10,
@@ -3316,7 +3318,7 @@
                 1,
                 1
             ],
-            "UID": 1640051962,
+            "UID": 208311947,
             "PrefabID": 131620332,
             "DontDestroy": false,
             "Static": false,
@@ -3349,11 +3351,11 @@
                 1,
                 1
             ],
-            "UID": 352135412,
+            "UID": 928993896,
             "PrefabID": 1110241348,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1640051962,
+            "ParentUID": 208311947,
             "Components": [
                 {
                     "Type": 1,
@@ -3363,18 +3365,18 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Pause",
-                    "pauseWindow": 352135412,
-                    "settingsWindow": 736272181,
-                    "displayWindow": 1702369700,
-                    "controlsWindow": 142904287,
-                    "quitWindow": 210807194,
-                    "background": 263558524,
-                    "leftImage": 430549539,
-                    "rightImage": 1593518468,
-                    "leftText": 712709893,
-                    "rightText": 1196572961,
-                    "leftX": 1965796618,
-                    "rightX": 1420483357
+                    "pauseWindow": 928993896,
+                    "settingsWindow": 1585735611,
+                    "displayWindow": 1212727876,
+                    "controlsWindow": 711602228,
+                    "quitWindow": 1935576526,
+                    "background": 179435110,
+                    "leftImage": 1412188137,
+                    "rightImage": 118820353,
+                    "leftText": 1853959123,
+                    "rightText": 284787969,
+                    "leftX": 2130983095,
+                    "rightX": 1654160645
                 }
             ]
         },
@@ -3399,11 +3401,11 @@
                 1,
                 1
             ],
-            "UID": 346204700,
+            "UID": 1719036717,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 352135412,
+            "ParentUID": 928993896,
             "Components": [
                 {
                     "Type": 1,
@@ -3460,11 +3462,11 @@
                 1,
                 1
             ],
-            "UID": 1908448419,
+            "UID": 1791626947,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 346204700,
+            "ParentUID": 1719036717,
             "Components": [
                 {
                     "Type": 1,
@@ -3520,63 +3522,63 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 1908448419,
+                            "UID": 1791626947,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 1,
-                            "UID": 1908448419,
+                            "UID": 1791626947,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 6,
-                            "UID": 1908448419,
+                            "UID": 1791626947,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 1605437086,
+                            "UID": 1870205478,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 2053637427,
+                            "UID": 1954254719,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 1605437086,
+                            "UID": 1870205478,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 2053637427,
+                            "UID": 1954254719,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 1605437086,
+                            "UID": 1870205478,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 2053637427,
+                            "UID": 1954254719,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -3590,12 +3592,12 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Pause",
-                    "pauseWindow": 352135412,
-                    "settingsWindow": 736272181,
-                    "displayWindow": 1702369700,
-                    "controlsWindow": 142904287,
-                    "quitWindow": 210807194,
-                    "background": 263558524
+                    "pauseWindow": 928993896,
+                    "settingsWindow": 1585735611,
+                    "displayWindow": 1212727876,
+                    "controlsWindow": 711602228,
+                    "quitWindow": 1935576526,
+                    "background": 179435110
                 }
             ]
         },
@@ -3620,11 +3622,11 @@
                 1,
                 1
             ],
-            "UID": 1126655662,
+            "UID": 419524739,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1908448419,
+            "ParentUID": 1791626947,
             "Components": [
                 {
                     "Type": 1,
@@ -3634,13 +3636,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -13.100000381469727,
-                        -3.9000000953674316
+                        -17.600000381469727,
+                        -5.1999998092651367
                     ],
                     "Rotation": 0,
                     "Size": [
-                        11,
-                        21.200000762939453
+                        10,
+                        16
                     ]
                 },
                 {
@@ -3686,11 +3688,11 @@
                 1,
                 1
             ],
-            "UID": 2053637427,
+            "UID": 1954254719,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 346204700,
+            "ParentUID": 1719036717,
             "Components": [
                 {
                     "Type": 1,
@@ -3746,63 +3748,63 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 2053637427,
+                            "UID": 1954254719,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 1,
-                            "UID": 1908448419,
+                            "UID": 1791626947,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 6,
-                            "UID": 1908448419,
+                            "UID": 1791626947,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 1908448419,
+                            "UID": 1791626947,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 149608143,
+                            "UID": 974645219,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 1908448419,
+                            "UID": 1791626947,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 149608143,
+                            "UID": 974645219,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 1908448419,
+                            "UID": 1791626947,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 149608143,
+                            "UID": 974645219,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -3816,13 +3818,13 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Pause",
-                    "pauseWindow": 352135412,
-                    "settingsWindow": 736272181,
-                    "displayWindow": 1702369700,
-                    "controlsWindow": 142904287,
-                    "quitWindow": 210807194,
-                    "background": 263558524,
-                    "default_selected": 749996042
+                    "pauseWindow": 928993896,
+                    "settingsWindow": 1585735611,
+                    "displayWindow": 1212727876,
+                    "controlsWindow": 711602228,
+                    "quitWindow": 1935576526,
+                    "background": 179435110,
+                    "default_selected": 607622980
                 }
             ]
         },
@@ -3847,11 +3849,11 @@
                 1,
                 1
             ],
-            "UID": 1125055201,
+            "UID": 1193852167,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 2053637427,
+            "ParentUID": 1954254719,
             "Components": [
                 {
                     "Type": 1,
@@ -3861,13 +3863,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -11.600000381469727,
-                        -3.5999999046325684
+                        -16.100000381469727,
+                        -5.1999998092651367
                     ],
                     "Rotation": 0,
                     "Size": [
-                        10.600000381469727,
-                        20
+                        10,
+                        16
                     ]
                 },
                 {
@@ -3913,11 +3915,11 @@
                 1,
                 1
             ],
-            "UID": 149608143,
+            "UID": 974645219,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 346204700,
+            "ParentUID": 1719036717,
             "Components": [
                 {
                     "Type": 1,
@@ -3973,63 +3975,63 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 149608143,
+                            "UID": 974645219,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 1,
-                            "UID": 1908448419,
+                            "UID": 1791626947,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 6,
-                            "UID": 1908448419,
+                            "UID": 1791626947,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 2053637427,
+                            "UID": 1954254719,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 486113276,
+                            "UID": 1863440435,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 2053637427,
+                            "UID": 1954254719,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 486113276,
+                            "UID": 1863440435,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 2053637427,
+                            "UID": 1954254719,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 486113276,
+                            "UID": 1863440435,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -4043,13 +4045,13 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Pause",
-                    "pauseWindow": 352135412,
-                    "settingsWindow": 736272181,
-                    "displayWindow": 1702369700,
-                    "controlsWindow": 142904287,
-                    "quitWindow": 210807194,
-                    "background": 263558524,
-                    "default_selected": 661733659
+                    "pauseWindow": 928993896,
+                    "settingsWindow": 1585735611,
+                    "displayWindow": 1212727876,
+                    "controlsWindow": 711602228,
+                    "quitWindow": 1935576526,
+                    "background": 179435110,
+                    "default_selected": 1419077053
                 }
             ]
         },
@@ -4074,11 +4076,11 @@
                 1,
                 1
             ],
-            "UID": 572835853,
+            "UID": 1733997740,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 149608143,
+            "ParentUID": 974645219,
             "Components": [
                 {
                     "Type": 1,
@@ -4088,13 +4090,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -10.100000381469727,
-                        -3.7999999523162842
+                        -13.600000381469727,
+                        -5.1999998092651367
                     ],
                     "Rotation": 0,
                     "Size": [
-                        10.899999618530273,
-                        19.399999618530273
+                        10,
+                        16
                     ]
                 },
                 {
@@ -4140,11 +4142,11 @@
                 1,
                 1
             ],
-            "UID": 486113276,
+            "UID": 1863440435,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 346204700,
+            "ParentUID": 1719036717,
             "Components": [
                 {
                     "Type": 1,
@@ -4200,63 +4202,63 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 486113276,
+                            "UID": 1863440435,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 1,
-                            "UID": 1908448419,
+                            "UID": 1791626947,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 6,
-                            "UID": 1908448419,
+                            "UID": 1791626947,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 149608143,
+                            "UID": 974645219,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 1605437086,
+                            "UID": 1870205478,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 149608143,
+                            "UID": 974645219,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 1605437086,
+                            "UID": 1870205478,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 149608143,
+                            "UID": 974645219,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 1605437086,
+                            "UID": 1870205478,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -4270,12 +4272,12 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Pause",
-                    "pauseWindow": 352135412,
-                    "settingsWindow": 736272181,
-                    "displayWindow": 1702369700,
-                    "controlsWindow": 142904287,
-                    "quitWindow": 210807194,
-                    "background": 263558524
+                    "pauseWindow": 928993896,
+                    "settingsWindow": 1585735611,
+                    "displayWindow": 1212727876,
+                    "controlsWindow": 711602228,
+                    "quitWindow": 1935576526,
+                    "background": 179435110
                 }
             ]
         },
@@ -4300,11 +4302,11 @@
                 1,
                 1
             ],
-            "UID": 1497595323,
+            "UID": 804442571,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 486113276,
+            "ParentUID": 1863440435,
             "Components": [
                 {
                     "Type": 1,
@@ -4314,13 +4316,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -12.5,
-                        -4.5
+                        -17.5,
+                        -5.1999998092651367
                     ],
                     "Rotation": 0,
                     "Size": [
-                        10.100000381469727,
-                        20.899999618530273
+                        9.5,
+                        16
                     ]
                 },
                 {
@@ -4366,11 +4368,11 @@
                 1,
                 1
             ],
-            "UID": 1605437086,
+            "UID": 1870205478,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 346204700,
+            "ParentUID": 1719036717,
             "Components": [
                 {
                     "Type": 1,
@@ -4426,63 +4428,63 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 1605437086,
+                            "UID": 1870205478,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 1,
-                            "UID": 1908448419,
+                            "UID": 1791626947,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 6,
-                            "UID": 1908448419,
+                            "UID": 1791626947,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 486113276,
+                            "UID": 1863440435,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 1908448419,
+                            "UID": 1791626947,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 486113276,
+                            "UID": 1863440435,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 1908448419,
+                            "UID": 1791626947,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 486113276,
+                            "UID": 1863440435,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 1908448419,
+                            "UID": 1791626947,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -4496,13 +4498,13 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Pause",
-                    "pauseWindow": 352135412,
-                    "settingsWindow": 736272181,
-                    "displayWindow": 1702369700,
-                    "controlsWindow": 142904287,
-                    "quitWindow": 210807194,
-                    "background": 263558524,
-                    "default_selected": 38652208
+                    "pauseWindow": 928993896,
+                    "settingsWindow": 1585735611,
+                    "displayWindow": 1212727876,
+                    "controlsWindow": 711602228,
+                    "quitWindow": 1935576526,
+                    "background": 179435110,
+                    "default_selected": 1909131633
                 }
             ]
         },
@@ -4527,11 +4529,11 @@
                 1,
                 1
             ],
-            "UID": 2053988997,
+            "UID": 1494582581,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1605437086,
+            "ParentUID": 1870205478,
             "Components": [
                 {
                     "Type": 1,
@@ -4541,13 +4543,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -6.6999998092651367,
-                        -4.1999998092651367
+                        -8.1999998092651367,
+                        -5.1999998092651367
                     ],
                     "Rotation": 0,
                     "Size": [
-                        11.899999618530273,
-                        20
+                        10,
+                        16
                     ]
                 },
                 {
@@ -4593,11 +4595,11 @@
                 1,
                 1
             ],
-            "UID": 1979390054,
+            "UID": 161240063,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 352135412,
+            "ParentUID": 928993896,
             "Components": [
                 {
                     "Type": 1,
@@ -4654,11 +4656,11 @@
                 1,
                 1
             ],
-            "UID": 941837897,
+            "UID": 797403254,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1979390054,
+            "ParentUID": 161240063,
             "Components": [
                 {
                     "Type": 1,
@@ -4668,13 +4670,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -17.100000381469727,
+                        -16.399999618530273,
                         56
                     ],
                     "Rotation": 0,
                     "Size": [
-                        15.800000190734863,
-                        31.299999237060547
+                        10.5,
+                        21.399999618530273
                     ]
                 },
                 {
@@ -4720,11 +4722,11 @@
                 1,
                 1
             ],
-            "UID": 430549539,
+            "UID": 1412188137,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 941837897,
+            "ParentUID": 797403254,
             "Components": [
                 {
                     "Type": 1,
@@ -4781,11 +4783,11 @@
                 1,
                 1
             ],
-            "UID": 712709893,
+            "UID": 1853959123,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 430549539,
+            "ParentUID": 1412188137,
             "Components": [
                 {
                     "Type": 1,
@@ -4795,13 +4797,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        8.6000003814697266,
+                        9.3999996185302734,
                         5.5
                     ],
                     "Rotation": 0,
                     "Size": [
-                        11.300000190734863,
-                        20
+                        10,
+                        16
                     ]
                 },
                 {
@@ -4847,11 +4849,11 @@
                 1,
                 1
             ],
-            "UID": 1965796618,
+            "UID": 2130983095,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 430549539,
+            "ParentUID": 1412188137,
             "Components": [
                 {
                     "Type": 1,
@@ -4866,8 +4868,8 @@
                     ],
                     "Rotation": 0,
                     "Size": [
-                        12.600000381469727,
-                        18.5
+                        10,
+                        16
                     ]
                 },
                 {
@@ -4913,11 +4915,11 @@
                 1,
                 1
             ],
-            "UID": 1593518468,
+            "UID": 118820353,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 941837897,
+            "ParentUID": 797403254,
             "Components": [
                 {
                     "Type": 1,
@@ -4974,11 +4976,11 @@
                 1,
                 1
             ],
-            "UID": 1196572961,
+            "UID": 284787969,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1593518468,
+            "ParentUID": 118820353,
             "Components": [
                 {
                     "Type": 1,
@@ -4988,13 +4990,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        8.6000003814697266,
+                        9.3999996185302734,
                         5.5
                     ],
                     "Rotation": 0,
                     "Size": [
-                        11.300000190734863,
-                        20
+                        10,
+                        16
                     ]
                 },
                 {
@@ -5040,11 +5042,11 @@
                 1,
                 1
             ],
-            "UID": 1420483357,
+            "UID": 1654160645,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1593518468,
+            "ParentUID": 118820353,
             "Components": [
                 {
                     "Type": 1,
@@ -5059,8 +5061,8 @@
                     ],
                     "Rotation": 0,
                     "Size": [
-                        12.600000381469727,
-                        18.5
+                        10,
+                        16
                     ]
                 },
                 {
@@ -5106,11 +5108,11 @@
                 1,
                 1
             ],
-            "UID": 1702369700,
+            "UID": 1212727876,
             "PrefabID": 870255131,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1640051962,
+            "ParentUID": 208311947,
             "Components": [
                 {
                     "Type": 1,
@@ -5139,11 +5141,11 @@
                 1,
                 1
             ],
-            "UID": 1058405770,
+            "UID": 860389544,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1702369700,
+            "ParentUID": 1212727876,
             "Components": [
                 {
                     "Type": 1,
@@ -5200,11 +5202,11 @@
                 1,
                 1
             ],
-            "UID": 661733659,
+            "UID": 1419077053,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1058405770,
+            "ParentUID": 860389544,
             "Components": [
                 {
                     "Type": 1,
@@ -5270,56 +5272,56 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 661733659,
+                            "UID": 1419077053,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 1,
-                            "UID": 842060515,
+                            "UID": 511550017,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 842060515,
+                            "UID": 511550017,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 649537273,
+                            "UID": 1818563602,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 842060515,
+                            "UID": 511550017,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 649537273,
+                            "UID": 1818563602,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 842060515,
+                            "UID": 511550017,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 649537273,
+                            "UID": 1818563602,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -5333,8 +5335,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "DisSett",
-                    "displayScreen": 1702369700,
-                    "bigBrother": 352135412
+                    "displayScreen": 1212727876,
+                    "bigBrother": 928993896
                 }
             ]
         },
@@ -5359,11 +5361,11 @@
                 1,
                 1
             ],
-            "UID": 592394148,
+            "UID": 430843031,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 661733659,
+            "ParentUID": 1419077053,
             "Components": [
                 {
                     "Type": 1,
@@ -5378,8 +5380,8 @@
                     ],
                     "Rotation": 0,
                     "Size": [
-                        16.299999237060547,
-                        27
+                        10,
+                        16
                     ]
                 },
                 {
@@ -5425,11 +5427,11 @@
                 1,
                 1
             ],
-            "UID": 649537273,
+            "UID": 1818563602,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1058405770,
+            "ParentUID": 860389544,
             "Components": [
                 {
                     "Type": 1,
@@ -5485,91 +5487,91 @@
                     "Map": [
                         {
                             "Index": 1,
-                            "UID": 842060515,
+                            "UID": 511550017,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 661733659,
+                            "UID": 1419077053,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 1177499137,
+                            "UID": 2013458321,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 13,
-                            "UID": 1581104886,
+                            "UID": 2032284607,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 14,
-                            "UID": 234323938,
+                            "UID": 1296705733,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 661733659,
+                            "UID": 1419077053,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 1177499137,
+                            "UID": 2013458321,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 17,
-                            "UID": 1581104886,
+                            "UID": 2032284607,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 18,
-                            "UID": 234323938,
+                            "UID": 1296705733,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 661733659,
+                            "UID": 1419077053,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 1177499137,
+                            "UID": 2013458321,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 21,
-                            "UID": 1581104886,
+                            "UID": 2032284607,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 22,
-                            "UID": 234323938,
+                            "UID": 1296705733,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -5583,8 +5585,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "DisSett",
-                    "displayScreen": 1702369700,
-                    "bigBrother": 352135412
+                    "displayScreen": 1212727876,
+                    "bigBrother": 928993896
                 }
             ]
         },
@@ -5609,11 +5611,11 @@
                 1,
                 1
             ],
-            "UID": 1871328654,
+            "UID": 1023158663,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 649537273,
+            "ParentUID": 1818563602,
             "Components": [
                 {
                     "Type": 1,
@@ -5623,13 +5625,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -18.700000762939453,
+                        -21.600000381469727,
                         8.1999998092651367
                     ],
                     "Rotation": 0,
                     "Size": [
-                        13.5,
-                        21.700000762939453
+                        10,
+                        16
                     ]
                 },
                 {
@@ -5675,11 +5677,11 @@
                 1,
                 1
             ],
-            "UID": 234323938,
+            "UID": 1296705733,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 649537273,
+            "ParentUID": 1818563602,
             "Components": [
                 {
                     "Type": 1,
@@ -5759,11 +5761,11 @@
                 1,
                 1
             ],
-            "UID": 1581104886,
+            "UID": 2032284607,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 649537273,
+            "ParentUID": 1818563602,
             "Components": [
                 {
                     "Type": 1,
@@ -5843,11 +5845,11 @@
                 1,
                 1
             ],
-            "UID": 239006633,
+            "UID": 579057705,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 649537273,
+            "ParentUID": 1818563602,
             "Components": [
                 {
                     "Type": 1,
@@ -5862,8 +5864,8 @@
                     ],
                     "Rotation": 0,
                     "Size": [
-                        13.5,
-                        20
+                        9,
+                        13.5
                     ]
                 },
                 {
@@ -5909,11 +5911,11 @@
                 1,
                 1
             ],
-            "UID": 1177499137,
+            "UID": 2013458321,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1058405770,
+            "ParentUID": 860389544,
             "Components": [
                 {
                     "Type": 1,
@@ -5968,99 +5970,92 @@
                     "Active": true,
                     "Map": [
                         {
-                            "Index": 0,
-                            "UID": 0,
-                            "Action": 2,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
                             "Index": 1,
-                            "UID": 0,
+                            "UID": 511550017,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 649537273,
+                            "UID": 1818563602,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 842060515,
+                            "UID": 511550017,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 13,
-                            "UID": 421806449,
+                            "UID": 605418538,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 14,
-                            "UID": 1566764427,
+                            "UID": 1499894360,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 649537273,
+                            "UID": 2013458321,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 842060515,
+                            "UID": 511550017,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 17,
-                            "UID": 421806449,
+                            "UID": 605418538,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 18,
-                            "UID": 1566764427,
+                            "UID": 1499894360,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 649537273,
+                            "UID": 2013458321,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 842060515,
+                            "UID": 511550017,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 21,
-                            "UID": 421806449,
+                            "UID": 605418538,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 22,
-                            "UID": 1566764427,
+                            "UID": 1499894360,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -6074,8 +6069,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "DisSett",
-                    "displayScreen": 1702369700,
-                    "bigBrother": 352135412
+                    "displayScreen": 1212727876,
+                    "bigBrother": 928993896
                 }
             ]
         },
@@ -6100,11 +6095,11 @@
                 1,
                 1
             ],
-            "UID": 626676499,
+            "UID": 1986708416,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1177499137,
+            "ParentUID": 2013458321,
             "Components": [
                 {
                     "Type": 1,
@@ -6114,13 +6109,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -22.100000381469727,
+                        -27.600000381469727,
                         7.5999999046325684
                     ],
                     "Rotation": 0,
                     "Size": [
-                        12.5,
-                        21.799999237060547
+                        10,
+                        16
                     ]
                 },
                 {
@@ -6166,11 +6161,11 @@
                 1,
                 1
             ],
-            "UID": 1566764427,
+            "UID": 1499894360,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1177499137,
+            "ParentUID": 2013458321,
             "Components": [
                 {
                     "Type": 1,
@@ -6232,8 +6227,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "DisSett",
-                    "displayScreen": 1702369700,
-                    "bigBrother": 352135412
+                    "displayScreen": 1212727876,
+                    "bigBrother": 928993896
                 }
             ]
         },
@@ -6258,11 +6253,11 @@
                 1,
                 1
             ],
-            "UID": 421806449,
+            "UID": 605418538,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1177499137,
+            "ParentUID": 2013458321,
             "Components": [
                 {
                     "Type": 1,
@@ -6324,8 +6319,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "DisSett",
-                    "displayScreen": 1702369700,
-                    "bigBrother": 352135412
+                    "displayScreen": 1212727876,
+                    "bigBrother": 928993896
                 }
             ]
         },
@@ -6350,11 +6345,11 @@
                 1,
                 1
             ],
-            "UID": 1895396751,
+            "UID": 1182494429,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1177499137,
+            "ParentUID": 2013458321,
             "Components": [
                 {
                     "Type": 1,
@@ -6369,8 +6364,8 @@
                     ],
                     "Rotation": 0,
                     "Size": [
-                        13.5,
-                        20
+                        9,
+                        13.5
                     ]
                 },
                 {
@@ -6416,11 +6411,11 @@
                 1,
                 1
             ],
-            "UID": 842060515,
+            "UID": 511550017,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1058405770,
+            "ParentUID": 860389544,
             "Components": [
                 {
                     "Type": 1,
@@ -6435,7 +6430,7 @@
                     ],
                     "Rotation": 0,
                     "Size": [
-                        5.0999999046325684,
+                        5,
                         9
                     ]
                 },
@@ -6476,56 +6471,56 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 842060515,
+                            "UID": 511550017,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 1,
-                            "UID": 842060515,
+                            "UID": 511550017,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 1177499137,
+                            "UID": 2013458321,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 661733659,
+                            "UID": 1419077053,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 1177499137,
+                            "UID": 2013458321,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 661733659,
+                            "UID": 1419077053,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 1177499137,
+                            "UID": 2013458321,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 661733659,
+                            "UID": 1419077053,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -6539,8 +6534,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "DisSett",
-                    "displayScreen": 1702369700,
-                    "bigBrother": 352135412
+                    "displayScreen": 1212727876,
+                    "bigBrother": 928993896
                 }
             ]
         },
@@ -6565,11 +6560,11 @@
                 1,
                 1
             ],
-            "UID": 939035362,
+            "UID": 754931709,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1058405770,
+            "ParentUID": 860389544,
             "Components": [
                 {
                     "Type": 1,
@@ -6584,8 +6579,8 @@
                     ],
                     "Rotation": 0,
                     "Size": [
-                        20.700000762939453,
-                        36.099998474121094
+                        13.5,
+                        24.899999618530273
                     ]
                 },
                 {
@@ -6631,11 +6626,11 @@
                 1,
                 1
             ],
-            "UID": 736272181,
+            "UID": 1585735611,
             "PrefabID": 811954472,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1640051962,
+            "ParentUID": 208311947,
             "Components": [
                 {
                     "Type": 1,
@@ -6664,11 +6659,11 @@
                 1,
                 1
             ],
-            "UID": 1718343158,
+            "UID": 512164808,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 736272181,
+            "ParentUID": 1585735611,
             "Components": [
                 {
                     "Type": 1,
@@ -6725,11 +6720,11 @@
                 1,
                 1
             ],
-            "UID": 749996042,
+            "UID": 607622980,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1718343158,
+            "ParentUID": 512164808,
             "Components": [
                 {
                     "Type": 1,
@@ -6766,7 +6761,7 @@
                     "Unhovered_LibraryPath": "Library\/Textures\/1884509864.dds",
                     "Unhovered_UID": 1884509864,
                     "Script_Name": "Settings",
-                    "ButtonState": 2,
+                    "ButtonState": 1,
                     "Is Selected": true
                 },
                 {
@@ -6782,91 +6777,91 @@
                     "Map": [
                         {
                             "Index": 1,
-                            "UID": 666956109,
+                            "UID": 1189202427,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 666956109,
+                            "UID": 1189202427,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 1325435751,
+                            "UID": 1898188994,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 13,
-                            "UID": 1176361424,
+                            "UID": 1978868402,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 14,
-                            "UID": 336878891,
+                            "UID": 1143989671,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 666956109,
+                            "UID": 1189202427,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 1325435751,
+                            "UID": 1898188994,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 17,
-                            "UID": 1176361424,
+                            "UID": 1978868402,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 18,
-                            "UID": 336878891,
+                            "UID": 1143989671,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 666956109,
+                            "UID": 1189202427,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 1325435751,
+                            "UID": 1898188994,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 21,
-                            "UID": 1176361424,
+                            "UID": 1978868402,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 22,
-                            "UID": 336878891,
+                            "UID": 1143989671,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -6880,12 +6875,12 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Settings",
-                    "settingsWindow": 736272181,
-                    "bigBrother": 352135412,
-                    "bar": 874854665,
-                    "aux_bar_1": 1188572458,
-                    "aux_bar_2": 1911533128,
-                    "aux_bar_3": 762517001
+                    "settingsWindow": 1585735611,
+                    "bigBrother": 928993896,
+                    "bar": 1131126004,
+                    "aux_bar_1": 2059837253,
+                    "aux_bar_2": 260524621,
+                    "aux_bar_3": 624577692
                 }
             ]
         },
@@ -6910,11 +6905,11 @@
                 1,
                 1
             ],
-            "UID": 1557046924,
+            "UID": 39128327,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 749996042,
+            "ParentUID": 607622980,
             "Components": [
                 {
                     "Type": 1,
@@ -6929,8 +6924,8 @@
                     ],
                     "Rotation": 0,
                     "Size": [
-                        11.699999809265137,
-                        20
+                        7,
+                        14.5
                     ]
                 },
                 {
@@ -6976,11 +6971,11 @@
                 1,
                 1
             ],
-            "UID": 336878891,
+            "UID": 1143989671,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 749996042,
+            "ParentUID": 607622980,
             "Components": [
                 {
                     "Type": 1,
@@ -7042,9 +7037,9 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Settings",
-                    "settingsWindow": 736272181,
-                    "bigBrother": 352135412,
-                    "bar": 874854665
+                    "settingsWindow": 1585735611,
+                    "bigBrother": 928993896,
+                    "bar": 1131126004
                 }
             ]
         },
@@ -7069,11 +7064,11 @@
                 1,
                 1
             ],
-            "UID": 1176361424,
+            "UID": 1978868402,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 749996042,
+            "ParentUID": 607622980,
             "Components": [
                 {
                     "Type": 1,
@@ -7135,9 +7130,9 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Settings",
-                    "settingsWindow": 736272181,
-                    "bigBrother": 352135412,
-                    "bar": 874854665
+                    "settingsWindow": 1585735611,
+                    "bigBrother": 928993896,
+                    "bar": 1131126004
                 }
             ]
         },
@@ -7162,11 +7157,11 @@
                 1,
                 1
             ],
-            "UID": 874854665,
+            "UID": 1131126004,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 749996042,
+            "ParentUID": 607622980,
             "Components": [
                 {
                     "Type": 1,
@@ -7223,11 +7218,11 @@
                 1,
                 1
             ],
-            "UID": 1325435751,
+            "UID": 1898188994,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1718343158,
+            "ParentUID": 512164808,
             "Components": [
                 {
                     "Type": 1,
@@ -7280,91 +7275,91 @@
                     "Map": [
                         {
                             "Index": 1,
-                            "UID": 666956109,
+                            "UID": 1189202427,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 749996042,
+                            "UID": 607622980,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 615728567,
+                            "UID": 1118928100,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 13,
-                            "UID": 1341943733,
+                            "UID": 921534218,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 14,
-                            "UID": 369824096,
+                            "UID": 1941172382,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 749996042,
+                            "UID": 607622980,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 615728567,
+                            "UID": 1118928100,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 17,
-                            "UID": 1341943733,
+                            "UID": 921534218,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 18,
-                            "UID": 369824096,
+                            "UID": 1941172382,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 749996042,
+                            "UID": 607622980,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 615728567,
+                            "UID": 1118928100,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 21,
-                            "UID": 1341943733,
+                            "UID": 921534218,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 22,
-                            "UID": 369824096,
+                            "UID": 1941172382,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -7378,8 +7373,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Settings",
-                    "settingsWindow": 736272181,
-                    "bigBrother": 352135412
+                    "settingsWindow": 1585735611,
+                    "bigBrother": 928993896
                 }
             ]
         },
@@ -7404,11 +7399,11 @@
                 1,
                 1
             ],
-            "UID": 790108781,
+            "UID": 1967282188,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1325435751,
+            "ParentUID": 1898188994,
             "Components": [
                 {
                     "Type": 1,
@@ -7423,8 +7418,8 @@
                     ],
                     "Rotation": 0,
                     "Size": [
-                        10.300000190734863,
-                        20
+                        7,
+                        14.5
                     ]
                 },
                 {
@@ -7470,11 +7465,11 @@
                 1,
                 1
             ],
-            "UID": 369824096,
+            "UID": 1941172382,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1325435751,
+            "ParentUID": 1898188994,
             "Components": [
                 {
                     "Type": 1,
@@ -7536,9 +7531,9 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Settings",
-                    "settingsWindow": 736272181,
-                    "bigBrother": 352135412,
-                    "bar": 1188572458
+                    "settingsWindow": 1585735611,
+                    "bigBrother": 928993896,
+                    "bar": 2059837253
                 }
             ]
         },
@@ -7563,11 +7558,11 @@
                 1,
                 1
             ],
-            "UID": 1341943733,
+            "UID": 921534218,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1325435751,
+            "ParentUID": 1898188994,
             "Components": [
                 {
                     "Type": 1,
@@ -7629,9 +7624,9 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Settings",
-                    "settingsWindow": 736272181,
-                    "bigBrother": 352135412,
-                    "bar": 1188572458
+                    "settingsWindow": 1585735611,
+                    "bigBrother": 928993896,
+                    "bar": 2059837253
                 }
             ]
         },
@@ -7656,11 +7651,11 @@
                 1,
                 1
             ],
-            "UID": 1188572458,
+            "UID": 2059837253,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1325435751,
+            "ParentUID": 1898188994,
             "Components": [
                 {
                     "Type": 1,
@@ -7717,11 +7712,11 @@
                 1,
                 1
             ],
-            "UID": 615728567,
+            "UID": 1118928100,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1718343158,
+            "ParentUID": 512164808,
             "Components": [
                 {
                     "Type": 1,
@@ -7777,91 +7772,91 @@
                     "Map": [
                         {
                             "Index": 1,
-                            "UID": 666956109,
+                            "UID": 1189202427,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 1325435751,
+                            "UID": 1898188994,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 1138816251,
+                            "UID": 337756079,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 13,
-                            "UID": 1157391180,
+                            "UID": 958076437,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 14,
-                            "UID": 849940046,
+                            "UID": 1397544557,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 1325435751,
+                            "UID": 1898188994,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 1138816251,
+                            "UID": 337756079,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 17,
-                            "UID": 1157391180,
+                            "UID": 958076437,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 18,
-                            "UID": 849940046,
+                            "UID": 1397544557,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 1325435751,
+                            "UID": 1898188994,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 1138816251,
+                            "UID": 337756079,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 21,
-                            "UID": 1157391180,
+                            "UID": 958076437,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 22,
-                            "UID": 849940046,
+                            "UID": 1397544557,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -7875,8 +7870,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Settings",
-                    "settingsWindow": 736272181,
-                    "bigBrother": 352135412
+                    "settingsWindow": 1585735611,
+                    "bigBrother": 928993896
                 }
             ]
         },
@@ -7901,11 +7896,11 @@
                 1,
                 1
             ],
-            "UID": 1717485340,
+            "UID": 923955175,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 615728567,
+            "ParentUID": 1118928100,
             "Components": [
                 {
                     "Type": 1,
@@ -7920,8 +7915,8 @@
                     ],
                     "Rotation": 0,
                     "Size": [
-                        10.899999618530273,
-                        19.100000381469727
+                        7,
+                        14.5
                     ]
                 },
                 {
@@ -7967,11 +7962,11 @@
                 1,
                 1
             ],
-            "UID": 1157391180,
+            "UID": 958076437,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 615728567,
+            "ParentUID": 1118928100,
             "Components": [
                 {
                     "Type": 1,
@@ -8033,9 +8028,9 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Settings",
-                    "settingsWindow": 736272181,
-                    "bigBrother": 352135412,
-                    "bar": 1911533128
+                    "settingsWindow": 1585735611,
+                    "bigBrother": 928993896,
+                    "bar": 260524621
                 }
             ]
         },
@@ -8060,11 +8055,11 @@
                 1,
                 1
             ],
-            "UID": 849940046,
+            "UID": 1397544557,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 615728567,
+            "ParentUID": 1118928100,
             "Components": [
                 {
                     "Type": 1,
@@ -8126,9 +8121,9 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Settings",
-                    "settingsWindow": 736272181,
-                    "bigBrother": 352135412,
-                    "bar": 1911533128
+                    "settingsWindow": 1585735611,
+                    "bigBrother": 928993896,
+                    "bar": 260524621
                 }
             ]
         },
@@ -8153,11 +8148,11 @@
                 1,
                 1
             ],
-            "UID": 1911533128,
+            "UID": 260524621,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 615728567,
+            "ParentUID": 1118928100,
             "Components": [
                 {
                     "Type": 1,
@@ -8214,11 +8209,11 @@
                 1,
                 1
             ],
-            "UID": 1138816251,
+            "UID": 337756079,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1718343158,
+            "ParentUID": 512164808,
             "Components": [
                 {
                     "Type": 1,
@@ -8274,91 +8269,91 @@
                     "Map": [
                         {
                             "Index": 1,
-                            "UID": 666956109,
+                            "UID": 1189202427,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 615728567,
+                            "UID": 1118928100,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 1400372781,
+                            "UID": 1474610276,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 13,
-                            "UID": 927808034,
+                            "UID": 2042094080,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 14,
-                            "UID": 723398318,
+                            "UID": 1607040873,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 615728567,
+                            "UID": 1118928100,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 1400372781,
+                            "UID": 1474610276,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 17,
-                            "UID": 927808034,
+                            "UID": 2042094080,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 18,
-                            "UID": 723398318,
+                            "UID": 1607040873,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 615728567,
+                            "UID": 1118928100,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 1400372781,
+                            "UID": 1474610276,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 21,
-                            "UID": 927808034,
+                            "UID": 2042094080,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 22,
-                            "UID": 723398318,
+                            "UID": 1607040873,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -8372,8 +8367,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Settings",
-                    "settingsWindow": 736272181,
-                    "bigBrother": 352135412
+                    "settingsWindow": 1585735611,
+                    "bigBrother": 928993896
                 }
             ]
         },
@@ -8398,11 +8393,11 @@
                 1,
                 1
             ],
-            "UID": 429963631,
+            "UID": 2117525056,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1138816251,
+            "ParentUID": 337756079,
             "Components": [
                 {
                     "Type": 1,
@@ -8417,8 +8412,8 @@
                     ],
                     "Rotation": 0,
                     "Size": [
-                        10.300000190734863,
-                        19.700000762939453
+                        7,
+                        14.5
                     ]
                 },
                 {
@@ -8464,11 +8459,11 @@
                 1,
                 1
             ],
-            "UID": 723398318,
+            "UID": 1607040873,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1138816251,
+            "ParentUID": 337756079,
             "Components": [
                 {
                     "Type": 1,
@@ -8530,9 +8525,9 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Settings",
-                    "settingsWindow": 736272181,
-                    "bigBrother": 352135412,
-                    "bar": 762517001
+                    "settingsWindow": 1585735611,
+                    "bigBrother": 928993896,
+                    "bar": 624577692
                 }
             ]
         },
@@ -8557,11 +8552,11 @@
                 1,
                 1
             ],
-            "UID": 927808034,
+            "UID": 2042094080,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1138816251,
+            "ParentUID": 337756079,
             "Components": [
                 {
                     "Type": 1,
@@ -8631,9 +8626,9 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Settings",
-                    "settingsWindow": 736272181,
-                    "bigBrother": 352135412,
-                    "bar": 762517001
+                    "settingsWindow": 1585735611,
+                    "bigBrother": 928993896,
+                    "bar": 624577692
                 }
             ]
         },
@@ -8658,11 +8653,11 @@
                 1,
                 1
             ],
-            "UID": 762517001,
+            "UID": 624577692,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1138816251,
+            "ParentUID": 337756079,
             "Components": [
                 {
                     "Type": 1,
@@ -8719,11 +8714,11 @@
                 1,
                 1
             ],
-            "UID": 1400372781,
+            "UID": 1474610276,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1718343158,
+            "ParentUID": 512164808,
             "Components": [
                 {
                     "Type": 1,
@@ -8789,56 +8784,56 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 1400372781,
+                            "UID": 1474610276,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 1,
-                            "UID": 666956109,
+                            "UID": 1189202427,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 1138816251,
+                            "UID": 337756079,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 666956109,
+                            "UID": 1189202427,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 1138816251,
+                            "UID": 337756079,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 666956109,
+                            "UID": 1189202427,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 1138816251,
+                            "UID": 337756079,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 666956109,
+                            "UID": 1189202427,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -8852,8 +8847,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Settings",
-                    "settingsWindow": 736272181,
-                    "bigBrother": 352135412
+                    "settingsWindow": 1585735611,
+                    "bigBrother": 928993896
                 }
             ]
         },
@@ -8878,11 +8873,11 @@
                 1,
                 1
             ],
-            "UID": 1743295848,
+            "UID": 1238796914,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1400372781,
+            "ParentUID": 1474610276,
             "Components": [
                 {
                     "Type": 1,
@@ -8897,8 +8892,8 @@
                     ],
                     "Rotation": 0,
                     "Size": [
-                        9.8000001907348633,
-                        21.899999618530273
+                        7,
+                        14.5
                     ]
                 },
                 {
@@ -8944,11 +8939,11 @@
                 1,
                 1
             ],
-            "UID": 666956109,
+            "UID": 1189202427,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1718343158,
+            "ParentUID": 512164808,
             "Components": [
                 {
                     "Type": 1,
@@ -8959,7 +8954,7 @@
                     "Active": true,
                     "Position": [
                         37.900001525878906,
-                        -78.400001525878906
+                        -78.900001525878906
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -9004,56 +8999,56 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 666956109,
+                            "UID": 1189202427,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 1,
-                            "UID": 666956109,
+                            "UID": 1189202427,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 1400372781,
+                            "UID": 1474610276,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 749996042,
+                            "UID": 607622980,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 1400372781,
+                            "UID": 1474610276,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 749996042,
+                            "UID": 607622980,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 1400372781,
+                            "UID": 1474610276,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 749996042,
+                            "UID": 607622980,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -9067,8 +9062,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Settings",
-                    "settingsWindow": 736272181,
-                    "bigBrother": 352135412
+                    "settingsWindow": 1585735611,
+                    "bigBrother": 928993896
                 }
             ]
         },
@@ -9093,11 +9088,11 @@
                 1,
                 1
             ],
-            "UID": 1259849255,
+            "UID": 1525127376,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1718343158,
+            "ParentUID": 512164808,
             "Components": [
                 {
                     "Type": 1,
@@ -9112,8 +9107,8 @@
                     ],
                     "Rotation": 0,
                     "Size": [
-                        19.299999237060547,
-                        32
+                        13,
+                        23.799999237060547
                     ]
                 },
                 {
@@ -9159,11 +9154,11 @@
                 1,
                 1
             ],
-            "UID": 142904287,
+            "UID": 711602228,
             "PrefabID": 1076342540,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1640051962,
+            "ParentUID": 208311947,
             "Components": [
                 {
                     "Type": 1,
@@ -9192,11 +9187,11 @@
                 1,
                 1
             ],
-            "UID": 1995112323,
+            "UID": 10979298,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 142904287,
+            "ParentUID": 711602228,
             "Components": [
                 {
                     "Type": 1,
@@ -9253,11 +9248,11 @@
                 1,
                 1
             ],
-            "UID": 325267976,
+            "UID": 2033011373,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1995112323,
+            "ParentUID": 10979298,
             "Components": [
                 {
                     "Type": 1,
@@ -9268,7 +9263,7 @@
                     "Active": true,
                     "Position": [
                         0,
-                        -67.099998474121094
+                        -69.599998474121094
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -9313,14 +9308,14 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 325267976,
+                            "UID": 2033011373,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 1,
-                            "UID": 325267976,
+                            "UID": 2033011373,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -9334,8 +9329,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Return",
-                    "controlsWindow": 142904287,
-                    "bigBrother": 352135412
+                    "controlsWindow": 711602228,
+                    "bigBrother": 928993896
                 }
             ]
         },
@@ -9360,11 +9355,11 @@
                 1,
                 1
             ],
-            "UID": 266699481,
+            "UID": 1785109510,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1995112323,
+            "ParentUID": 10979298,
             "Components": [
                 {
                     "Type": 1,
@@ -9375,7 +9370,7 @@
                     "Active": true,
                     "Position": [
                         2,
-                        0.20000000298023224
+                        -2
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -9421,11 +9416,11 @@
                 1,
                 1
             ],
-            "UID": 210807194,
+            "UID": 1935576526,
             "PrefabID": 1733982637,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1640051962,
+            "ParentUID": 208311947,
             "Components": [
                 {
                     "Type": 1,
@@ -9454,11 +9449,11 @@
                 1,
                 1
             ],
-            "UID": 704409876,
+            "UID": 26983749,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 210807194,
+            "ParentUID": 1935576526,
             "Components": [
                 {
                     "Type": 1,
@@ -9515,11 +9510,11 @@
                 1,
                 1
             ],
-            "UID": 1783414104,
+            "UID": 1734881651,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 704409876,
+            "ParentUID": 26983749,
             "Components": [
                 {
                     "Type": 1,
@@ -9559,15 +9554,15 @@
                     "Unhovered_LibraryPath": "Library\/Textures\/1618474496.dds",
                     "Unhovered_UID": 1618474496,
                     "Script_Name": "QuitConfirmation",
-                    "ButtonState": 2,
+                    "ButtonState": 1,
                     "Is Selected": true
                 },
                 {
                     "Type": 11,
                     "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/second_button.png",
-                    "LibraryPath": "Library\/Textures\/1618474496.dds",
-                    "UID": 1618474496
+                    "AssetPath": "Assets\/UI\/MENU\/second_button_hover.png",
+                    "LibraryPath": "Library\/Textures\/1345927926.dds",
+                    "UID": 1345927926
                 },
                 {
                     "Type": 17,
@@ -9575,98 +9570,98 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 1783414104,
+                            "UID": 1734881651,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 1,
-                            "UID": 38652208,
+                            "UID": 1909131633,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 38652208,
+                            "UID": 1909131633,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 38652208,
+                            "UID": 1909131633,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 13,
-                            "UID": 1011505403,
+                            "UID": 415603997,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 14,
-                            "UID": 1011505403,
+                            "UID": 415603997,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 38652208,
+                            "UID": 1909131633,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 38652208,
+                            "UID": 1909131633,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 17,
-                            "UID": 1011505403,
+                            "UID": 415603997,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 18,
-                            "UID": 1011505403,
+                            "UID": 415603997,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 38652208,
+                            "UID": 1909131633,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 38652208,
+                            "UID": 1909131633,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 21,
-                            "UID": 1011505403,
+                            "UID": 415603997,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 22,
-                            "UID": 1011505403,
+                            "UID": 415603997,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -9680,8 +9675,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "QuitConfirmation",
-                    "confirmScreen": 210807194,
-                    "bigBrother": 352135412
+                    "confirmScreen": 1935576526,
+                    "bigBrother": 928993896
                 }
             ]
         },
@@ -9706,11 +9701,11 @@
                 1,
                 1
             ],
-            "UID": 2011315985,
+            "UID": 1125182403,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1783414104,
+            "ParentUID": 1734881651,
             "Components": [
                 {
                     "Type": 1,
@@ -9720,13 +9715,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -19.600000381469727,
-                        -5
+                        -19.799999237060547,
+                        -4
                     ],
                     "Rotation": 0,
                     "Size": [
-                        9.8000001907348633,
-                        22.799999237060547
+                        6.5999999046325684,
+                        13.399999618530273
                     ]
                 },
                 {
@@ -9772,11 +9767,11 @@
                 1,
                 1
             ],
-            "UID": 1011505403,
+            "UID": 415603997,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 704409876,
+            "ParentUID": 26983749,
             "Components": [
                 {
                     "Type": 1,
@@ -9832,98 +9827,98 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 1011505403,
+                            "UID": 415603997,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 1,
-                            "UID": 38652208,
+                            "UID": 1909131633,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 38652208,
+                            "UID": 1909131633,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 38652208,
+                            "UID": 1909131633,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 13,
-                            "UID": 1783414104,
+                            "UID": 1734881651,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 14,
-                            "UID": 1783414104,
+                            "UID": 1734881651,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 38652208,
+                            "UID": 1909131633,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 38652208,
+                            "UID": 1909131633,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 17,
-                            "UID": 1783414104,
+                            "UID": 1734881651,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 18,
-                            "UID": 1783414104,
+                            "UID": 1734881651,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 38652208,
+                            "UID": 1909131633,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 38652208,
+                            "UID": 1909131633,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 21,
-                            "UID": 1783414104,
+                            "UID": 1734881651,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 22,
-                            "UID": 1783414104,
+                            "UID": 1734881651,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -9937,8 +9932,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "QuitConfirmation",
-                    "confirmScreen": 210807194,
-                    "bigBrother": 352135412
+                    "confirmScreen": 1935576526,
+                    "bigBrother": 928993896
                 }
             ]
         },
@@ -9963,11 +9958,11 @@
                 1,
                 1
             ],
-            "UID": 1733909839,
+            "UID": 1718699106,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1011505403,
+            "ParentUID": 415603997,
             "Components": [
                 {
                     "Type": 1,
@@ -9977,13 +9972,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -19.399999618530273,
-                        -4.8000001907348633
+                        -16.200000762939453,
+                        -4
                     ],
                     "Rotation": 0,
                     "Size": [
-                        12,
-                        23.700000762939453
+                        6.5999999046325684,
+                        13.399999618530273
                     ]
                 },
                 {
@@ -10029,11 +10024,11 @@
                 1,
                 1
             ],
-            "UID": 38652208,
+            "UID": 1909131633,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 704409876,
+            "ParentUID": 26983749,
             "Components": [
                 {
                     "Type": 1,
@@ -10089,56 +10084,56 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 38652208,
+                            "UID": 1909131633,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 1,
-                            "UID": 38652208,
+                            "UID": 1909131633,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 1783414104,
+                            "UID": 1734881651,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 1011505403,
+                            "UID": 415603997,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 15,
-                            "UID": 1783414104,
+                            "UID": 1734881651,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 16,
-                            "UID": 1011505403,
+                            "UID": 415603997,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 1783414104,
+                            "UID": 1734881651,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 1011505403,
+                            "UID": 415603997,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -10152,8 +10147,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "QuitConfirmation",
-                    "confirmScreen": 210807194,
-                    "bigBrother": 352135412
+                    "confirmScreen": 1935576526,
+                    "bigBrother": 928993896
                 }
             ]
         },
@@ -10178,11 +10173,11 @@
                 1,
                 1
             ],
-            "UID": 208363477,
+            "UID": 1448057322,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 38652208,
+            "ParentUID": 1909131633,
             "Components": [
                 {
                     "Type": 1,
@@ -10192,13 +10187,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -10,
-                        -5.1999998092651367
+                        -9.3000001907348633,
+                        -4
                     ],
                     "Rotation": 0,
                     "Size": [
-                        10.899999618530273,
-                        22.799999237060547
+                        6.5999999046325684,
+                        13.399999618530273
                     ]
                 },
                 {
@@ -10244,11 +10239,11 @@
                 1,
                 1
             ],
-            "UID": 221596732,
+            "UID": 1579006547,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 704409876,
+            "ParentUID": 26983749,
             "Components": [
                 {
                     "Type": 1,
@@ -10263,8 +10258,8 @@
                     ],
                     "Rotation": 0,
                     "Size": [
-                        15.300000190734863,
-                        28.799999237060547
+                        10,
+                        16
                     ]
                 },
                 {
@@ -10310,11 +10305,11 @@
                 1,
                 1
             ],
-            "UID": 263558524,
+            "UID": 179435110,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1640051962,
+            "ParentUID": 208311947,
             "Components": [
                 {
                     "Type": 1,
@@ -10371,11 +10366,11 @@
                 1,
                 1
             ],
-            "UID": 1107719436,
+            "UID": 539418711,
             "PrefabID": 829475632,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 263558524,
+            "ParentUID": 179435110,
             "Components": [
                 {
                     "Type": 1,
@@ -10432,11 +10427,11 @@
                 1,
                 1
             ],
-            "UID": 102122692,
+            "UID": 1823543442,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1107719436,
+            "ParentUID": 539418711,
             "Components": [
                 {
                     "Type": 1,
@@ -10451,8 +10446,8 @@
                     ],
                     "Rotation": 0,
                     "Size": [
-                        9.3999996185302734,
-                        17.399999618530273
+                        6,
+                        11
                     ]
                 },
                 {
@@ -10498,11 +10493,11 @@
                 1,
                 1
             ],
-            "UID": 1713068162,
+            "UID": 1979732136,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1107719436,
+            "ParentUID": 539418711,
             "Components": [
                 {
                     "Type": 1,
@@ -10559,11 +10554,11 @@
                 1,
                 1
             ],
-            "UID": 719203163,
+            "UID": 1135608702,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1107719436,
+            "ParentUID": 539418711,
             "Components": [
                 {
                     "Type": 1,
@@ -10620,11 +10615,11 @@
                 1,
                 1
             ],
-            "UID": 914697771,
+            "UID": 455493990,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1107719436,
+            "ParentUID": 539418711,
             "Components": [
                 {
                     "Type": 1,
@@ -11043,9 +11038,9 @@
                     "gadgetFireRate": 0.20000000298023224,
                     "fireRateAfterDashRecoverRatio": 1.75,
                     "fireRateMultCap": 2,
-                    "grenadesFireRate": 0.125,
-                    "background": 263558524,
-                    "pause": 352135412,
+                    "lockInputs": true,
+                    "background": 179435110,
+                    "pause": 928993896,
                     "bulletDamage": 0
                 },
                 {
@@ -11118,10 +11113,7 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "BoonSpawn",
-                    "boonSpawnPosGO": 965338672,
-                    "boonsToSpawn": 1,
-                    "separation": 3.5
+                    "ScriptName": "BoonSpawn"
                 },
                 {
                     "Type": 5,
@@ -12818,7 +12810,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Player.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/637612837.mat",
                     "MaterialUID": 637612837
                 }
