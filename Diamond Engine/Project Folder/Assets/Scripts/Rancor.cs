@@ -117,9 +117,10 @@ public class Rancor : DiamondComponent
     private float handSlamTime = 0.0f;
     private float handSlamTimer = 0.0f;
     public GameObject handSlamHitBox = null;
-    private Vector3 handSlamHitBoxPos = new Vector3(0f, 0.4f, 2f);
+    public GameObject handSlamWave = null;
     private float handSlamTimerToActivate = 0.0f;
     private float handSlamTimeToActivate = 1.0f;
+    private bool activateWave = false;
 
     //Rush
     public float rushDamage = 5.0f;
@@ -808,24 +809,44 @@ public class Rancor : DiamondComponent
 
         handSlamTimerToActivate = 0.0f;
         handSlamHitBox.GetComponent<RancorHandSlamHitCollider>().RestartCollider();
+        activateWave = true;
+       
     }
 
 
     private void UpdateHandSlam()
     {
+      
         handSlamTimerToActivate += Time.deltaTime;
+        if(handSlamTimerToActivate < 0.5f)
+        {
+            LookAt(Core.instance.gameObject.transform.globalPosition);
+        }
         if(handSlamTimerToActivate > handSlamTimeToActivate)
         {
             if (handSlamHitBox == null)
                 return;
             //Actiavate collider
             handSlamHitBox.Enable(true); //Enable collider not gameobject
-
             //Temporal while colliders can't set active
             //handSlamHitBox.transform.localPosition = handSlamHitBoxPos;
             //handSlamHitBox.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, 3.14159f);
             //----
-            Input.PlayHaptic(50f, 2);
+
+            Input.PlayHaptic(30f, 1);
+        }
+
+        if (handSlamTimer < 0.6f)
+        {
+            if (handSlamHitBox == null)
+                return;
+            handSlamHitBox.Enable(false);
+            if (activateWave)
+            {
+                InternalCalls.CreatePrefab("Library/Prefabs/1923485827.prefab", gameObject.transform.localPosition, gameObject.transform.localRotation, new Vector3(0.767f, 0.225f, 1.152f));
+                activateWave = false;
+            }
+
         }
 
         
@@ -835,9 +856,7 @@ public class Rancor : DiamondComponent
 
     private void EndHandSlam()
     {
-        if (handSlamHitBox == null)
-            return;
-        handSlamHitBox.Enable(false);
+
 
     }
 
