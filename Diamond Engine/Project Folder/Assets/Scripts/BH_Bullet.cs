@@ -9,6 +9,12 @@ public class BH_Bullet : DiamondComponent
 
     public float currentLifeTime = 0.0f;
 
+    public float range_squared = 0.0f;
+    public Vector3 initial_pos = new Vector3(0.0f,0.0f,0.0f);
+    public bool use_range_instead_of_time = false;
+
+    private float actual_range_squared = 0.0f;
+
     public float yVel = 0.0f;
     public float damage = 9.0f;
 
@@ -26,10 +32,14 @@ public class BH_Bullet : DiamondComponent
         if (started == false)
         {
             started = true;
+            initial_pos = gameObject.transform.globalPosition;
             //InternalCalls.CreatePrefab("Library/Prefabs/1564072956.prefab", gameObject.transform.globalPosition, gameObject.transform.globalRotation, gameObject.transform.globalScale);
         }
 
-        currentLifeTime += Time.deltaTime;
+        if (!use_range_instead_of_time)
+            currentLifeTime += Time.deltaTime;
+        else
+            actual_range_squared = gameObject.transform.globalPosition.DistanceNoSqrt(initial_pos);
 
         // gameObject.transform.localPosition += gameObject.transform.GetForward() * (speed * Time.deltaTime);
        if(!triggered)
@@ -47,7 +57,7 @@ public class BH_Bullet : DiamondComponent
         //yVel -= Time.deltaTime / 15.0f;
         //gameObject.transform.localPosition += (Vector3.up * yVel);
 
-        if (currentLifeTime >= maxLifeTime)
+        if ((!use_range_instead_of_time && currentLifeTime >= maxLifeTime)||(use_range_instead_of_time && actual_range_squared >= range_squared))
         {
             InternalCalls.Destroy(this.gameObject);
         }

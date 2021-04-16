@@ -34,12 +34,7 @@ class RancorHandSlamHitCollider : DiamondComponent
         }
         float y = Mathf.Lerp(gameObject.transform.localPosition.y, finalPos.y, timer);
         gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, y, gameObject.transform.localPosition.z);
-        Debug.Log(gameObject.transform.localPosition.y.ToString());
 
-        if(Input.GetKey(DEKeyCode.SPACE) == KeyState.KEY_DOWN)
-        {
-            start = true;
-        }
     }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)

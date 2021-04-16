@@ -3,6 +3,7 @@ using DiamondEngine;
 
 public class DebugGodmode : DiamondComponent
 {
+
     public void OnExecuteCheckbox(bool active)
     {
         if(active)
@@ -18,16 +19,17 @@ public class DebugGodmode : DiamondComponent
     }
 
     public void Awake()
-    {
-        if(DebugOptionsHolder.godModeActive)
+    { 
+        Navigation navigation = gameObject.GetComponent<Navigation>();
+        if (navigation != null)
         {
-            Navigation nav = gameObject.GetComponent<Navigation>();
-            if (nav != null)
-                nav.SetUIElementAsActive(true);
+            navigation.SetUIElementAsActive(DebugOptionsHolder.godModeActive);
+            navigation.Select();
         }
     }
+
+
     public void Update()
     {
-
     }
 }
