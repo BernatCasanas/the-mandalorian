@@ -175,6 +175,7 @@
                     "gadgetFireRate": 0.20000000298023224,
                     "fireRateAfterDashRecoverRatio": 1.75,
                     "fireRateMultCap": 2,
+                    "lockInputs": true,
                     "bulletDamage": 0
                 },
                 {
@@ -2533,7 +2534,7 @@
             ]
         },
         {
-            "name": "OptionsWindow",
+            "name": "DebugWindow",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -2554,7 +2555,7 @@
                 1
             ],
             "UID": 181971645,
-            "PrefabID": 1246101959,
+            "PrefabID": 1384815824,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 985770018,
@@ -2965,7 +2966,7 @@
                     "Unhovered_AssetsPath": "Assets\/UI\/MENU\/button_return.png",
                     "Unhovered_LibraryPath": "Library\/Textures\/834295412.dds",
                     "Unhovered_UID": 834295412,
-                    "Script_Name": "DisSett",
+                    "Script_Name": "DebugReturn",
                     "ButtonState": 2,
                     "Is Selected": false
                 },
@@ -2982,14 +2983,7 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 0,
-                            "Action": 2,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 1,
-                            "UID": 0,
+                            "UID": 95765346,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -3044,7 +3038,13 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "DisSett"
+                    "ScriptName": "DebugReturn",
+                    "window": 181971645
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "DebugReturn"
                 }
             ]
         },
