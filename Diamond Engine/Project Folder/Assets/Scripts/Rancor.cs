@@ -822,7 +822,10 @@ public class Rancor : DiamondComponent
             handSlamHitBox.transform.localPosition = handSlamHitBoxPos;
             handSlamHitBox.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, 3.14159f);
             //----
+            Input.PlayHaptic(50f, 2);
         }
+
+        
         Debug.Log("Hand slam");
     }
 
