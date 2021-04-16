@@ -46,10 +46,11 @@ public class GameSceneManager : DiamondComponent
             ChangeScene();
         }
 
-        if (Input.GetKey(DEKeyCode.N) == KeyState.KEY_DOWN && Input.GetKey(DEKeyCode.LSHIFT) == KeyState.KEY_REPEAT && Input.GetKey(DEKeyCode.LALT) == KeyState.KEY_REPEAT)
+        if (DebugOptionsHolder.goToNextRoom == true)
         {
             Debug.Log("Change scene");
             ChangeScene();
+            DebugOptionsHolder.goToNextRoom = false;
         }
         // We should clean boons when ending a run :3
     }
