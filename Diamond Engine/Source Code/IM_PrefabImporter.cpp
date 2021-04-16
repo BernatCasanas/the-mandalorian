@@ -37,9 +37,74 @@ int PrefabImporter::SavePrefab(const char* assets_path, GameObject* gameObject)
 	return uid;
 }
 
-GameObject* PrefabImporter::LoadPrefab(const char* libraryPath)
+GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<GameObject*>& objects)
 {
+	int oldSize = EngineExternal->moduleScene->activeScriptsVector.size();
 
+	GameObject* rootObject = objects.front();
+
+	JSON_Value* prefab = json_parse_file(libraryPath);
+
+	if (prefab == nullptr)
+		return nullptr;
+
+	JSON_Object* prefabObj = json_value_get_object(prefab);
+	JSON_Array* gameObjectsArray = json_object_get_array(prefabObj, "Game Objects");
+	JSON_Object* goJsonObj = json_array_get_object(gameObjectsArray, 0);
+
+	GameObject* parent = rootObject;
+	std::map<uint, GameObject*> gameObjects;
+
+	for (size_t i = 0; i < objects.size(); i++)
+	{
+		gameObjects[objects[i]->prefabReference] = objects[i];
+
+		for (size_t j = 0; j < json_array_get_count(gameObjectsArray); j++)
+		{
+			JSON_Object* jsonObject = json_array_get_object(gameObjectsArray, j);
+
+			int uid = json_object_get_number(jsonObject, "UID");
+
+			if (uid == objects[i]->prefabReference)
+			{
+				objects[i]->LoadComponents(json_object_get_array(jsonObject, "Components"));
+			}
+		}
+	}
+
+	EngineExternal->moduleScene->LoadNavigationData();
+	EngineExternal->moduleScene->LoadScriptsData(rootObject);
+
+	//replace the components references with the new GameObjects using their old UIDs
+	std::map<uint, GameObject*>::const_iterator it = gameObjects.begin();
+	for (it; it != gameObjects.end(); it++)
+	{
+		for (size_t i = 0; i < it->second->components.size(); i++)
+		{
+			it->second->components[i]->OnRecursiveUIDChange(gameObjects);
+		}
+	}
+
+	std::vector<C_Script*> saveCopy; //We need to do this in case someone decides to create an instance inside the awake method
+	for (int i = oldSize; i < EngineExternal->moduleScene->activeScriptsVector.size(); ++i)
+		saveCopy.push_back(EngineExternal->moduleScene->activeScriptsVector[i]);
+
+	for (size_t i = 0; i < saveCopy.size(); i++)
+		saveCopy[i]->OnAwake();
+
+	std::string id_string;
+	FileSystem::GetFileName(libraryPath, id_string, false);
+	rootObject->prefabID = (uint)atoi(id_string.c_str());
+
+	//Free memory
+	json_value_free(prefab);
+	gameObjects.clear();
+
+	return rootObject;
+}
+
+GameObject* PrefabImporter::InstantiatePrefab(const char* libraryPath)
+{
 	int oldSize = EngineExternal->moduleScene->activeScriptsVector.size();
 
 	GameObject* rootObject = nullptr;
@@ -76,6 +141,7 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath)
 	std::map<uint, GameObject*>::const_iterator it = gameObjects.begin();
 	for(it; it != gameObjects.end(); it++)
 	{
+		it->second->prefabReference = it->first;
 		for (size_t i = 0; i < it->second->components.size(); i++)
 		{
 			it->second->components[i]->OnRecursiveUIDChange(gameObjects);
@@ -165,7 +231,7 @@ void PrefabImporter::OverrideGameObject(uint prefabID, GameObject* objectToRepla
 {
 	std::string libraryPath = EngineExternal->moduleResources->GenLibraryPath(prefabID, Resource::Type::PREFAB);
 
-	GameObject* prefabObject = LoadPrefab(libraryPath.c_str());
+	GameObject* prefabObject = InstantiatePrefab(libraryPath.c_str());
 
 	if (prefabObject == nullptr) {
 		return;

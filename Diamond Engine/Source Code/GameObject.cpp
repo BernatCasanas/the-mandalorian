@@ -37,7 +37,8 @@
 
 
 GameObject::GameObject(const char* _name, GameObject* parent, int _uid) : parent(parent), name(_name), showChildren(false),
-active(true), isStatic(false), toDelete(false),dontDestroy(false), UID(_uid), transform(nullptr), dumpComponent(nullptr), prefabID(0u), tag("Untagged"), layer("Default")
+active(true), isStatic(false), toDelete(false),dontDestroy(false), UID(_uid), transform(nullptr), dumpComponent(nullptr), 
+prefabID(0u), prefabReference(0u), tag("Untagged"), layer("Default")
 {
 	if(parent != nullptr)
 		parent->children.push_back(this);
@@ -355,6 +356,7 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
 
 	DEJson::WriteInt(goData, "UID", UID);
 	DEJson::WriteInt(goData, "PrefabID", prefabID);
+	DEJson::WriteInt(goData, "PrefabReference", prefabReference);
 
 	DEJson::WriteBool(goData, "DontDestroy", dontDestroy);
 	DEJson::WriteBool(goData, "Static", isStatic);
@@ -370,16 +372,15 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
 
 	if (prefabID != 0 && !saveAllData)
 	{
-		std::vector<uint> uids;
-		GetChildrenUIDs(uids);
+		JSON_Value* childrenValue = json_value_init_array();
+		JSON_Array* childrenArray = json_value_get_array(childrenValue);
 
-		JSON_Value* uidsGoArray = json_value_init_array();
-		JSON_Array* uidsJsArray = json_value_get_array(uidsGoArray);
-		for (size_t i = 0; i < uids.size(); i++)
+		for (size_t i = 0; i < children.size(); i++)
 		{
-			json_array_append_number(uidsJsArray, uids[i]);
-			json_object_set_value(goData, "UIDs", uidsGoArray);
+			children[i]->SaveForPrefab(childrenArray);
 		}
+
+		json_object_set_value(goData, "PrefabObjects", childrenValue);
 	}
 
 	if (prefabID != 0u && !saveAllData)
@@ -403,7 +404,7 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
 
 	for (size_t i = 0; i < children.size(); i++)
 	{
-		children[i]->SaveToJson(_goArray);
+		children[i]->SaveToJson(_goArray, saveAllData);
 	}
 }
 
@@ -413,7 +414,62 @@ void GameObject::LoadFromJson(JSON_Object* _obj)
 	active = DEJson::ReadBool(_obj, "Active");
 	transform->SetTransformMatrix(DEJson::ReadVector3(_obj, "Position"), DEJson::ReadQuat(_obj, "Rotation"), DEJson::ReadVector3(_obj, "Scale"));
 	prefabID = DEJson::ReadInt(_obj, "PrefabID");
+	prefabReference = DEJson::ReadInt(_obj, "PrefabReference");
 	LoadComponents(json_object_get_array(_obj, "Components"));
+	dontDestroy = DEJson::ReadBool(_obj, "DontDestroy");
+	isStatic = DEJson::ReadBool(_obj, "Static");
+
+	const char* json_tag = DEJson::ReadString(_obj, "tag");
+
+	if (json_tag == nullptr) sprintf_s(tag, "Untagged");
+	else sprintf_s(tag, json_tag);
+
+	const char* json_layer = DEJson::ReadString(_obj, "layer");
+
+	if (json_layer == nullptr) sprintf_s(layer, "Default");
+	else sprintf_s(layer, json_layer);
+}
+
+void GameObject::SaveForPrefab(JSON_Array* goArray)
+{
+	JSON_Value* goValue = json_value_init_object();
+	JSON_Object* goData = json_value_get_object(goValue);
+
+	json_object_set_string(goData, "name", name.c_str());
+	json_object_set_string(goData, "tag", tag);
+	json_object_set_string(goData, "layer", layer);
+
+	//Save all gameObject data
+	DEJson::WriteBool(goData, "Active", active);
+
+	DEJson::WriteInt(goData, "UID", UID);
+	DEJson::WriteInt(goData, "PrefabID", prefabID);
+	DEJson::WriteInt(goData, "PrefabReference", prefabReference);
+
+	DEJson::WriteBool(goData, "DontDestroy", dontDestroy);
+	DEJson::WriteBool(goData, "Static", isStatic);
+
+	DEJson::WriteVector3(goData, "Position", &transform->position[0]);
+	DEJson::WriteQuat(goData, "Rotation", &transform->rotation.x);
+	DEJson::WriteVector3(goData, "Scale", &transform->localScale[0]);
+
+	if (parent)
+		DEJson::WriteInt(goData, "ParentUID", parent->UID);
+
+	json_array_append_value(goArray, goValue);
+
+	for (size_t i = 0; i < children.size(); i++)
+	{
+		children[i]->SaveForPrefab(goArray);
+	}
+}
+
+void GameObject::LoadForPrefab(JSON_Object* _obj)
+{
+	active = DEJson::ReadBool(_obj, "Active");
+	transform->SetTransformMatrix(DEJson::ReadVector3(_obj, "Position"), DEJson::ReadQuat(_obj, "Rotation"), DEJson::ReadVector3(_obj, "Scale"));
+	prefabID = DEJson::ReadInt(_obj, "PrefabID");
+	prefabReference = DEJson::ReadInt(_obj, "PrefabReference");
 	dontDestroy = DEJson::ReadBool(_obj, "DontDestroy");
 	isStatic = DEJson::ReadBool(_obj, "Static");
 

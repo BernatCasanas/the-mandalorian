@@ -61,7 +61,7 @@ bool M_Scene::Init()
 bool M_Scene::Start()
 {
 	CreateGameCamera("Main Camera");
-	LoadScene("Library/Scenes/1726826608.des");
+	LoadScene("Library/Scenes/790373974.des");
 	//LoadScene("Library/Scenes/1482507639.des");
 
 	//LoadScene("Library/Scenes/884741631.des");
@@ -125,6 +125,7 @@ update_status M_Scene::Update(float dt)
 
 				GameObject* parent = (App->moduleEditor->GetSelectedGO() == nullptr) ? root : App->moduleEditor->GetSelectedGO();
 				GameObject* gameObjectRoot = nullptr;
+
 				for (size_t i = 0; i < json_array_get_count(sceneGO); i++)
 				{
 					parent = LoadGOData(json_array_get_object(sceneGO, i), parent);
@@ -664,26 +665,24 @@ GameObject* M_Scene::LoadGOData(JSON_Object* goJsonObj, GameObject* parent)
 
 		if (FileSystem::Exists(prefabPath.c_str()))
 		{
-			GameObject* prefabObject = PrefabImporter::LoadPrefab(prefabPath.c_str());
+			parent = CreateGameObject(json_object_get_string(goJsonObj, "name"), parent, json_object_get_number(goJsonObj, "UID"));
+			parent->LoadForPrefab(goJsonObj);
 
-			if (prefabObject != nullptr)
+			JSON_Array* prefabGO = json_object_get_array(goJsonObj, "PrefabObjects");
+			JSON_Object* prefabJsonObj = json_array_get_object(prefabGO, 0);
+
+			int prefabObjectsCount = json_array_get_count(prefabGO);
+
+			GameObject* prefabRoot = parent;
+			std::vector<GameObject*> prefabObjects;
+			for (size_t i = 0; i < json_array_get_count(prefabGO); i++)
 			{
-				prefabObject->CopyObjectData(goJsonObj);
-				prefabObject->ChangeParent(parent);
-
-				std::vector<GameObject*> childs;
-				prefabObject->CollectChilds(childs);
-				childs.erase(childs.begin());
-
-				JSON_Array* uidsArray = json_object_get_array(goJsonObj, "UIDs");
-
-				for (size_t i = 0; i < json_array_get_count(uidsArray); i++)
-				{
-					childs[i]->UID = json_array_get_number(uidsArray, i);
-				}
-
-				return prefabObject;
+				parent = LoadGOData(json_array_get_object(prefabGO, i), parent);
 			}
+			prefabRoot->CollectChilds(prefabObjects);
+
+			PrefabImporter::LoadPrefab(prefabPath.c_str(), prefabObjects);
+			//prefabRoot->ChangeParent(parent);
 		}
 	}
 	else

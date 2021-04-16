@@ -159,6 +159,8 @@ void W_Inspector::Draw()
 				ImGui::Spacing();
 				ImGui::Checkbox("Dont Destroy", &selectedGO->dontDestroy);
 
+				ImGui::Text("Prefab Reference: %i", selectedGO->prefabReference);
+
 				if (selectedGO->prefabID != 0u)
 				{
 					ImGui::Text("Prefab ID: %d", selectedGO->prefabID);

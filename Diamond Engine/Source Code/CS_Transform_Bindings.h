@@ -392,7 +392,7 @@ MonoObject* CreatePrefab(MonoString* prefabPath, MonoObject* position, MonoObjec
 		return nullptr;
 
 	char* library_path = mono_string_to_utf8(prefabPath);
-	GameObject* prefab_object = PrefabImporter::LoadPrefab(library_path);
+	GameObject* prefab_object = PrefabImporter::InstantiatePrefab(library_path);
 	mono_free(library_path);
 
 	if (prefab_object != nullptr)
