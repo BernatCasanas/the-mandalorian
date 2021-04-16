@@ -1,19 +1,19 @@
 {
     "NavMesh": 1522584861,
     "EditorCameraPosition": [
-        -9.0842618942260742,
-        36.606063842773438,
-        -37.192001342773438
+        44.888278961181641,
+        4.4201102256774902,
+        -4.4090628623962402
     ],
     "EditorCameraZ": [
-        0.17149971425533295,
-        -0.6910775899887085,
-        0.70213931798934937
+        0.4137306809425354,
+        -0.45734214782714844,
+        0.78718817234039307
     ],
     "EditorCameraY": [
-        0.16397729516029358,
-        0.72278058528900146,
-        0.67134171724319458
+        0.21277745068073273,
+        0.88929080963134766,
+        0.40483033657073975
     ],
     "tags": [
         "Player"
@@ -220,7 +220,6 @@
                     "max_hp": 50,
                     "force": 50,
                     "max_force": 50,
-                    "currency": 0,
                     "bullets_main_weapon": 10,
                     "max_bullets_main_weapon": 10,
                     "bullets_secondary_weapon": 10,
@@ -9634,19 +9633,19 @@
             "Active": true,
             "Position": [
                 10.969048500061035,
-                -9.6301765441894531,
-                -30.234647750854492
+                -9.6301755905151367,
+                -30.234643936157227
             ],
             "Rotation": [
-                0,
-                0,
-                0,
+                -3.5527141023169746e-15,
+                1.4901162970204496e-08,
+                -3.5527136788005009e-15,
                 1
             ],
             "Scale": [
                 1,
                 1,
-                1
+                0.99999994039535522
             ],
             "UID": 1106916468,
             "PrefabID": 0,
@@ -9676,6 +9675,14 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FloatingVehicles",
+                    "verticalMovementAmount": 1,
+                    "rotSpeedDegSec": 1,
+                    "verticalSpeedMultiplier": 0.5
                 }
             ]
         },
@@ -12903,8 +12910,11 @@
                     "verticalTimeInterval": 1.2000000476837158,
                     "followPoint": 1838234630,
                     "horizontalSpeed": 4,
-                    "skillPushDuration": 1,
-                    "timeForceRegeneration": 0
+                    "totalForce": 0,
+                    "forceRegenerationSpeed": 0,
+                    "skillPushForceCost": 0,
+                    "skillWallForceCost": 0,
+                    "skillPushDuration": 1
                 }
             ]
         },
@@ -13262,7 +13272,6 @@
                     "gadgetFireRate": 0.20000000298023224,
                     "fireRateAfterDashRecoverRatio": 1.75,
                     "fireRateMultCap": 2,
-                    "grenadesFireRate": 0.125,
                     "background": 1572500659,
                     "pause": 1331131758,
                     "bulletDamage": 0
@@ -13337,10 +13346,7 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "BoonSpawn",
-                    "boonSpawnPosGO": 1054503630,
-                    "boonsToSpawn": 1,
-                    "separation": 3.5
+                    "ScriptName": "BoonSpawn"
                 },
                 {
                     "Type": 5,
@@ -15036,7 +15042,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Player.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/637612837.mat",
                     "MaterialUID": 637612837
                 }
