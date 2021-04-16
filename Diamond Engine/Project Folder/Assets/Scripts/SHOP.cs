@@ -97,6 +97,7 @@ public class SHOP : DiamondComponent
                         Debug.Log("Bought Cad Bane’s rocket boots");
                         playerSpeed += playerSpeed * 0.1f;
                         currency -= (int)item.price_type;
+                        PlayerResources.AddBoon(BOONS.BOON_CADBANEROCKETBOOTS);
                         ret = true;
                     }
                     break;
@@ -106,6 +107,7 @@ public class SHOP : DiamondComponent
                         Debug.Log("Bought Watto's Coolant");
                         player.GetComponent<Core>().dashCD -= player.GetComponent<Core>().dashCD * 0.2f;
                         currency -= (int)item.price_type;
+                        PlayerResources.AddBoon(BOONS.BOON_WATTOSCOOLANT);
                         ret = true;
                     }
                     break;
@@ -115,6 +117,7 @@ public class SHOP : DiamondComponent
                         Debug.Log("Bought Wrecker’s resilience");
                         player.GetComponent<PlayerHealth>().IncrementMaxHpPercent(0.2f);
                         currency -= (int)item.price_type;
+                        PlayerResources.AddBoon(BOONS.BOON_WRECKERRESILIENCE);
                         ret = true;
                     }
                     break;
@@ -125,6 +128,7 @@ public class SHOP : DiamondComponent
                         player.GetComponent<Core>().dashCD += player.GetComponent<Core>().dashCD * 0.5f;
                         playerSpeed += playerSpeed * 0.4f;
                         currency -= (int)item.price_type;
+                        PlayerResources.AddBoon(BOONS.BOON_IMPERIALREFINEDCOOLANT);
                         ret = true;
                     }
                     break;
@@ -156,69 +160,129 @@ public class SHOP : DiamondComponent
         var rand = new Random();
         int item;
         bool exit;
+        int counter;
 
         if (item1 != null)
         {
+            counter = 0;
             exit = false;
             do
             {
                 item = rand.Next(0, (int)ShopItems.ShIt_MAX);
+                //Check if item is not already in shop
                 if (available[item])
                 {
-                    available[item] = false;
-                    SetShopItem(item1.GetComponent<ShopButtons>(), (ShopItems)item);
-
-                    exit = true;
+                    //Check if is a boon is not already obtained
+                    if (!CheckGotBoon((ShopItems)item))
+                    {
+                        available[item] = false;
+                        SetShopItem(item1.GetComponent<ShopButtons>(), (ShopItems)item);
+                        exit = true;
+                    }
                 }
-            } while (exit == false);
+                counter++;
+            } while (exit == false && counter < (int)ShopItems.ShIt_MAX);
+            //We run out of possible boons, fill with another unending item
+            if (counter >= (int)ShopItems.ShIt_MAX)
+            {
+                SetShopItem(item1.GetComponent<ShopButtons>(), ShopItems.ShIt_HEALTHREPLENISHMENT);
+            }
         }
 
         if (item2 != null)
         {
+            counter = 0;
             exit = false;
             do
             {
                 item = rand.Next(0, (int)ShopItems.ShIt_MAX);
                 if (available[item])
                 {
-                    available[item] = false;
-                    SetShopItem(item2.GetComponent<ShopButtons>(), (ShopItems)item);
-
-                    exit = true;
+                    if (!CheckGotBoon((ShopItems)item))
+                    {
+                        available[item] = false;
+                        SetShopItem(item2.GetComponent<ShopButtons>(), (ShopItems)item);
+                        exit = true;
+                    }
                 }
-            } while (exit == false);
+                counter++;
+            } while (exit == false && counter < (int)ShopItems.ShIt_MAX);
+
+            if (counter >= (int)ShopItems.ShIt_MAX)
+            {
+                SetShopItem(item2.GetComponent<ShopButtons>(), ShopItems.ShIt_HEALTHREPLENISHMENT);
+            }
         }
 
         if (item3 != null)
         {
+            counter = 0;
             exit = false;
             do
             {
                 item = rand.Next(0, (int)ShopItems.ShIt_MAX);
                 if (available[item])
                 {
-                    available[item] = false;
-                    SetShopItem(item3.GetComponent<ShopButtons>(), (ShopItems)item);
-
-                    exit = true;
+                    if (!CheckGotBoon((ShopItems)item))
+                    {
+                        available[item] = false;
+                        SetShopItem(item3.GetComponent<ShopButtons>(), (ShopItems)item);
+                        exit = true;
+                    }
                 }
-            } while (exit == false);
+                counter++;
+            } while (exit == false && counter < (int)ShopItems.ShIt_MAX);
+
+            if (counter >= (int)ShopItems.ShIt_MAX)
+            {
+                SetShopItem(item3.GetComponent<ShopButtons>(), ShopItems.ShIt_HEALTHREPLENISHMENT);
+            }
         }
 
         if (item4 != null)
         {
+            counter = 0;
             exit = false;
             do
             {
                 item = rand.Next(0, (int)ShopItems.ShIt_MAX);
                 if (available[item])
                 {
-                    available[item] = false;
-                    SetShopItem(item4.GetComponent<ShopButtons>(), (ShopItems)item);
-
-                    exit = true;
+                    if (!CheckGotBoon((ShopItems)item))
+                    {
+                        available[item] = false;
+                        SetShopItem(item4.GetComponent<ShopButtons>(), (ShopItems)item);
+                        exit = true;
+                    }
                 }
-            } while (exit == false);
+                counter++;
+            } while (exit == false && counter < (int)ShopItems.ShIt_MAX);
+            
+            if (counter >= (int)ShopItems.ShIt_MAX)
+            {
+                SetShopItem(item4.GetComponent<ShopButtons>(), ShopItems.ShIt_HEALTHREPLENISHMENT);
+            }
+        }
+    }
+
+    private bool CheckGotBoon(ShopItems it)
+    {
+        switch (it)
+        {
+            case ShopItems.ShIt_CADBANEROCKETBOOTS:
+                if (PlayerResources.CheckBoon(BOONS.BOON_CADBANEROCKETBOOTS)) return true;
+                else return false;
+            case ShopItems.ShIt_WATTOSCOOLANT:
+                if (PlayerResources.CheckBoon(BOONS.BOON_WATTOSCOOLANT)) return true;
+                else return false;
+            case ShopItems.ShIt_WRECKERRESILIENCE:
+                if (PlayerResources.CheckBoon(BOONS.BOON_WRECKERRESILIENCE)) return true;
+                else return false;
+            case ShopItems.ShIt_IMPERIALREFINEDCOOLANT:
+                if (PlayerResources.CheckBoon(BOONS.BOON_IMPERIALREFINEDCOOLANT))return true;            
+                else return false;
+            default:
+                return false;
         }
     }
 

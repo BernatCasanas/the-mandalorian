@@ -2,6 +2,15 @@ using System;
 using DiamondEngine;
 using System.Collections.Generic;
 
+public enum BOONS
+{
+    BOON_WATTOSCOOLANT = 0,
+    BOON_CADBANEROCKETBOOTS,
+    BOON_IMPERIALREFINEDCOOLANT,
+    BOON_WRECKERRESILIENCE,
+    BOON_MAX
+}
+
 public static class PlayerResources
 {
     static int beskarCounter = 0;
@@ -9,6 +18,7 @@ public static class PlayerResources
     static int milkCounter = 0;
     static int scrapCounter = 0;
     static int runCoins = 0;
+    static bool[] accquiredBoons = new bool[(int)BOONS.BOON_MAX];
     static Dictionary<Type, int> boonCounter = new Dictionary<Type, int>();
 
     public static int GetResourceCount(RewardType type, Type boonType = null)
@@ -41,6 +51,25 @@ public static class PlayerResources
         }
 
         return auxCounter;
+    }
+
+    public static void ResetHoldingBoons()
+    {
+        for (int i=0;i < accquiredBoons.Length; i++)
+        {
+            accquiredBoons[i] = false;
+        }
+    }
+
+    public static void AddBoon(BOONS newBoon)
+    {      
+        accquiredBoons[(int)newBoon] = true;       
+    }
+
+    public static bool CheckBoon(BOONS newBoon)
+    {
+        if (accquiredBoons[(int)newBoon]) return true;
+        else return false;
     }
 
     public static int AddResourceBy1(RewardType type, Type boonType = null)
