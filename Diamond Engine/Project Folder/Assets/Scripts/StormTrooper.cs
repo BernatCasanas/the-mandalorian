@@ -30,7 +30,8 @@ public class StormTrooper : Enemy
         IN_SHOOT,
         IN_HIT,
         IN_DIE,
-        IN_PLAYER_IN_RANGE
+        IN_PLAYER_IN_RANGE,
+        
     }
 
     //State
@@ -63,13 +64,17 @@ public class StormTrooper : Enemy
     private float sequenceTimer = 0.0f;
     private float dieTimer = 0.0f;
     private float statesTimer = 0.0f;
-
+    private float pushTimer = 0.0f;
     //Action variables
     int shotTimes = 0;
     public int maxShots = 2;
     private int shotSequences = 0;
     public int maxSequences = 2;
 
+    //push
+    public float pushHorizontalForce = 100;
+    public float pushVerticalForce = 10;
+    public float PushStun = 2;
 
     public void Awake()
     {
@@ -195,6 +200,10 @@ public class StormTrooper : Enemy
                             currentState = STATE.DIE;
                             StartDie();
                             break;
+                        case INPUT.IN_PUSHED:
+                            currentState = STATE.PUSHED;
+                            StartPush();
+                            break;
                     }
                     break;
 
@@ -219,6 +228,10 @@ public class StormTrooper : Enemy
                             WanderEnd();
                             StartDie();
                             break;
+                        case INPUT.IN_PUSHED:
+                            currentState = STATE.PUSHED;
+                            StartPush();
+                            break;
                     }
                     break;
 
@@ -242,6 +255,10 @@ public class StormTrooper : Enemy
                             RunEnd();
                             StartDie();
                             break;
+                        case INPUT.IN_PUSHED:
+                            currentState = STATE.PUSHED;
+                            StartPush();
+                            break;
                     }
                     break;
 
@@ -257,9 +274,26 @@ public class StormTrooper : Enemy
                             currentState = STATE.DIE;
                             StartDie();
                             break;
+                        case INPUT.IN_PUSHED:
+                            currentState = STATE.PUSHED;
+                            StartPush();
+                            break;
                     }
                     break;
-
+                case STATE.PUSHED:
+                    switch (input)
+                    {
+                        case INPUT.IN_DIE:
+                            currentState = STATE.DIE;
+                            StartDie();
+                            break;
+                        case INPUT.IN_IDLE:
+                            currentState = STATE.IDLE;
+                            RunEnd();
+                            StartIdle();
+                            break;
+                    }
+                    break;
                 default:
                     Debug.Log("NEED TO ADD STATE TO CORE SWITCH");
                     break;
@@ -288,6 +322,9 @@ public class StormTrooper : Enemy
                 break;
             case STATE.DIE:
                 UpdateDie();
+                break;
+            case STATE.PUSHED:
+                UpdatePush();
                 break;
             default:
                 Debug.Log("NEED TO ADD STATE TO CORE");
@@ -508,6 +545,24 @@ public class StormTrooper : Enemy
 
     #endregion
 
+    #region PUSH
+
+    private void StartPush()
+    {
+        Vector3 force = gameObject.transform.globalPosition - player.transform.globalPosition;
+        force.y = pushVerticalForce;
+        gameObject.AddForce(force * pushHorizontalForce);
+        pushTimer = 0.0f;
+    }
+    private void UpdatePush()
+    {
+        pushTimer += Time.deltaTime;
+        if(pushTimer >= PushStun)
+            inputsList.Add(INPUT.IN_IDLE);
+
+    }
+    #endregion
+
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
         if (collidedGameObject.CompareTag("Bullet"))
@@ -548,13 +603,18 @@ public class StormTrooper : Enemy
                 inputsList.Add(INPUT.IN_DIE);
             }
         }
+       
     }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         {
-            inputsList.Add(INPUT.IN_PUSHED);
+            if (player != null)
+            {
+                inputsList.Add(INPUT.IN_PUSHED);
+
+            }
         }
     }
 }
