@@ -19,6 +19,15 @@ public class DebugGodmode : DiamondComponent
         }
     }
 
+    public void Awake()
+    {
+        if(DebugOptionsHolder.godModeActive)
+        {
+            Navigation nav = gameObject.GetComponent<Navigation>();
+            if (nav != null)
+                nav.SetUIElementAsActive(true);
+        }
+    }
     public void Update()
     {
 
