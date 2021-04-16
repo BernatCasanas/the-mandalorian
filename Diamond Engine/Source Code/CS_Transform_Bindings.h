@@ -410,6 +410,32 @@ MonoObject* CreatePrefab(MonoString* prefabPath, MonoObject* position, MonoObjec
 	return EngineExternal->moduleMono->GoToCSGO(prefab_object);
 }
 
+
+MonoObject* CreateUIPrefab(MonoString* prefabPath, MonoObject* position, MonoObject* rotation, MonoObject* scale)
+{
+	if (prefabPath == nullptr)
+		return nullptr;
+
+	char* library_path = mono_string_to_utf8(prefabPath);
+	GameObject* prefab_object = PrefabImporter::LoadUIPrefab(library_path);
+	mono_free(library_path);
+
+	if(prefab_object != nullptr)
+	{ 
+		C_Transform* object_transform = dynamic_cast<C_Transform*>(prefab_object->GetComponent(Component::TYPE::TRANSFORM));
+
+		float3 posVector = M_MonoManager::UnboxVector(position);
+		Quat rotQuat = M_MonoManager::UnboxQuat(rotation);
+		float3 scaleVector = M_MonoManager::UnboxVector(scale);
+
+		prefab_object->transform->SetTransformMatrix(posVector, rotQuat, scaleVector);
+		prefab_object->transform->updateTransform = true;
+	}
+
+	return EngineExternal->moduleMono->GoToCSGO(prefab_object);
+}
+
+
 void CreateBullet(MonoObject* position, MonoObject* rotation, MonoObject* scale) //TODO: We really need prefabs
 {
 	if (EngineExternal == nullptr)
