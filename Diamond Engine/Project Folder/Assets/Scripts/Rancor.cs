@@ -122,15 +122,15 @@ public class Rancor : DiamondComponent
     private float handSlamTimeToActivate = 1.0f;
 
     //Rush
-    public float rushDamage = 5.0f;
+    public float rushDamage = 10.0f;
     public float loadRushTime = 0.4f;
     private float loadRushTimer = 0.0f;
 
-    public float rushSpeed = 20.0f;
+    public float rushSpeed = 15.0f;
     private float rushTime = 0.0f;
     private float rushTimer = 0.0f;
 
-    private float rushStunDuration = 0.0f;
+    private float rushStunDuration = 1.2f;
     private float rushStunTimer = 0.0f;
 
     //Die
@@ -154,7 +154,7 @@ public class Rancor : DiamondComponent
 
         rushTime = Animator.GetAnimationDuration(gameObject, "RN_Rush") - 0.016f;
 
-        rushStunDuration = Animator.GetAnimationDuration(gameObject, "RN_RushRecover") - 0.016f;
+        //rushStunDuration = Animator.GetAnimationDuration(gameObject, "RN_RushRecover") - 0.016f;
 
         dieTime = Animator.GetAnimationDuration(gameObject, "RN_Die") - 0.016f;
 
@@ -896,6 +896,7 @@ public class Rancor : DiamondComponent
     private void UpdateRushStun()
     {
         Debug.Log("Rush Stun");
+        Debug.Log(rushStunTimer.ToString());
     }
 
 
