@@ -14,8 +14,9 @@ struct AssetDir
 
 	bool HasMeta();
 	void GenerateMeta();
+	void UpdateMetaLastModTime();
 	void LoadDataFromMeta();
-	//void ReadMeta();
+	int GetMetaLastModTime();
 
 	void GenerateMetaRecursive();
 	void CreateLibraryFileRecursive();
