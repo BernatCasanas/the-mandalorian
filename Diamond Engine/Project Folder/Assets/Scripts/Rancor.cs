@@ -951,7 +951,8 @@ public class Rancor : DiamondComponent
             healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
             Debug.Log("Rancor HP: " + healthPoints.ToString());
 
-            Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
+            //CHANGE FOR APPROPIATE RANCOR HIT
+            //Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
 
             if (Core.instance.hud != null)
             {
@@ -974,7 +975,8 @@ public class Rancor : DiamondComponent
             if (sGrenade != null)
                 healthPoints -= sGrenade.damage;
 
-            Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
+           //CHANGE FOR APPROPIATE RANCOR HIT
+            //Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
 
             if (Core.instance.hud != null)
             {

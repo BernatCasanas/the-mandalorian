@@ -742,7 +742,7 @@ public class Core : DiamondComponent
             //InternalCalls.Destroy(gameObject);
             PlayParticles(PARTICLES.IMPACT);
             BH_Bullet bulletScript = collidedGameObject.GetComponent<BH_Bullet>();
-            Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
+            Audio.PlayAudio(gameObject, "Play_Mando_Hit");
 
             if (bulletScript != null)
                 gameObject.GetComponent<PlayerHealth>().TakeDamage((int)bulletScript.damage);
@@ -750,7 +750,7 @@ public class Core : DiamondComponent
         if (collidedGameObject.CompareTag("Bantha"))
         {
             //InternalCalls.Destroy(gameObject);
-            Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
+            Audio.PlayAudio(gameObject, "Play_Mando_Hit");
             float damage = collidedGameObject.GetComponent<Enemy>().damage;
 
             if (damage != 0)
