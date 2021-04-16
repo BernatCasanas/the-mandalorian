@@ -386,13 +386,20 @@ bool CompareTag(MonoObject* cs_gameObject, MonoString* cs_tag)
 	return false;
 }
 
-MonoObject* CreatePrefab(MonoString* prefabPath, MonoObject* position, MonoObject* rotation, MonoObject* scale)
+MonoObject* CreatePrefab(MonoString* prefabPath, MonoObject* position, MonoObject* rotation, MonoObject* scale, bool addToCanvas)
 {
 	if (prefabPath == nullptr)
 		return nullptr;
 
 	char* library_path = mono_string_to_utf8(prefabPath);
-	GameObject* prefab_object = PrefabImporter::LoadPrefab(library_path);
+	GameObject* prefab_object = nullptr;
+		
+	if (addToCanvas == false)
+		PrefabImporter::LoadPrefab(library_path);
+	
+	else
+		PrefabImporter::LoadUIPrefab(library_path);
+
 	mono_free(library_path);
 
 	if(prefab_object != nullptr)

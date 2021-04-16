@@ -26,6 +26,7 @@ public:
 	void CreateText();
 
 	void SetCanvas(int uid);
+	int GetCanvasId() const;
 	void EraseCanvas();
 
 public:
