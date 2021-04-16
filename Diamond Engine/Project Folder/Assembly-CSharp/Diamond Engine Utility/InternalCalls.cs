@@ -28,6 +28,9 @@ namespace DiamondEngine
         public static extern GameObject CreatePrefab(object prefab_path, object position, object rotation, object scale);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public static extern GameObject CreateUIPrefab(object prefab_path, object position, object rotation, object scale);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern Vector3 GetWalkablePointAround(object position, float radius);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
