@@ -23,7 +23,10 @@ public class DebugGodmode : DiamondComponent
         {
             Navigation nav = gameObject.GetComponent<Navigation>();
             if (nav != null)
+            {
+                nav.SetUIElementAsActive(false);
                 nav.SetUIElementAsActive(true);
+            }
         }
     }
     public void Update()
