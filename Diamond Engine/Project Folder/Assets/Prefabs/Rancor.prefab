@@ -8,7 +8,7 @@
             "Active": true,
             "Position": [
                 5.480870246887207,
-                10.909770965576172,
+                8.7997846603393555,
                 -5.2837839126586914
             ],
             "Rotation": [
@@ -89,6 +89,7 @@
                     "meleeComboHit3CollisionDuration": 0.40000000596046448,
                     "prepareShotDuration": 1.7999999523162842,
                     "projectilePoint": 555307794,
+                    "handSlamHitBox": 1516460789,
                     "rushDamage": 5,
                     "loadRushTime": 0.40000000596046448,
                     "rushSpeed": 40
@@ -98,7 +99,7 @@
                     "Active": true,
                     "Speed": 0,
                     "Angular Speed": 0,
-                    "Stopping Distance": 0.0099999997764825821
+                    "Stopping Distance": 1
                 },
                 {
                     "Type": 16,
@@ -141,9 +142,9 @@
             ],
             "Rotation": [
                 0,
+                -0.7071068286895752,
                 0,
-                0,
-                1
+                0.7071068286895752
             ],
             "Scale": [
                 1.2599999904632568,
@@ -2851,6 +2852,79 @@
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "HandSlamHitBox",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "Position": [
+                0,
+                0.40000000596046448,
+                2
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1516460789,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1050637505,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        2.0280001163482666,
+                        1,
+                        1.2660000324249268
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "RancorHandSlamHitCollider"
                 }
             ]
         }

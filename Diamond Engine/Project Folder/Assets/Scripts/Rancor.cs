@@ -116,7 +116,10 @@ public class Rancor : DiamondComponent
     //Hand slam
     private float handSlamTime = 0.0f;
     private float handSlamTimer = 0.0f;
-
+    public GameObject handSlamHitBox = null;
+    private Vector3 handSlamHitBoxPos = new Vector3(0f, 0.4f, 2f);
+    private float handSlamTimerToActivate = 0.0f;
+    private float handSlamTimeToActivate = 1.0f;
 
     //Rush
     public float rushDamage = 5.0f;
@@ -802,18 +805,31 @@ public class Rancor : DiamondComponent
         handSlamTimer = handSlamTime;
         Animator.Play(gameObject, "RN_HandSlam");
         Audio.PlayAudio(gameObject, "Play_Rancor_Hand_Slam");
+
+        handSlamTimerToActivate = 0.0f;
     }
 
 
     private void UpdateHandSlam()
     {
+        handSlamTimerToActivate += Time.deltaTime;
+        if(handSlamTimerToActivate > handSlamTimeToActivate)
+        {
+            //Actiavate collider
+            handSlamHitBox.Enable(true);
+
+            //Temporal while colliders can't set active
+            handSlamHitBox.transform.localPosition = handSlamHitBoxPos;
+            handSlamHitBox.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, 3.14159f);
+            //----
+        }
         Debug.Log("Hand slam");
     }
 
 
     private void EndHandSlam()
     {
-
+        handSlamHitBox.Enable(false);
     }
 
     #endregion
