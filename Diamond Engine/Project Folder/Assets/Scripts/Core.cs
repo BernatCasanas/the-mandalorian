@@ -66,7 +66,6 @@ public class Core : DiamondComponent
     private float dustTime = 0.0f;
 
 
-
     // Dash
     //private float timeSinceLastDash = 0.0f;
     public float dashCD = 0.33f;
@@ -105,6 +104,7 @@ public class Core : DiamondComponent
     int verticalInput = 0;
     int horizontalInput = 0;
     Vector3 gamepadInput;
+    public bool lockInputs = false;
 
     //For Pause
     public GameObject background = null;
@@ -124,7 +124,7 @@ public class Core : DiamondComponent
         // INIT VARIABLES WITH DEPENDENCIES //
         //Animation
         shootAnimationTotalTime = 0.288f;
-
+        lockInputs = false;
         //Dash - if scene doesnt have its values
         //dashDuration = 0.2f;
         //dashDistance = 4.5f;
@@ -243,39 +243,41 @@ public class Core : DiamondComponent
     //Controler inputs go here
     private void ProcessExternalInput()
     {
-        if (Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT)
-            inputsList.Add(INPUT.IN_SHOOTING);
-
-        else if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE) && hasShot == true && CanStopShooting() == true)
+        if (!lockInputs)
         {
-            inputsList.Add(INPUT.IN_SHOOTING_END);
-            hasShot = false;
+            if (Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT)
+                inputsList.Add(INPUT.IN_SHOOTING);
+
+            else if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE) && hasShot == true && CanStopShooting() == true)
+            {
+                inputsList.Add(INPUT.IN_SHOOTING_END);
+                hasShot = false;
+            }
+
+            if (IsJoystickMoving() == true)
+                inputsList.Add(INPUT.IN_MOVE);
+
+            else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
+                inputsList.Add(INPUT.IN_IDLE);
+
+            if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false && dashAvaliable == true)
+            {
+                inputsList.Add(INPUT.IN_DASH);
+                rightTriggerPressed = true;
+            }
+            else if (Input.GetRightTrigger() == 0 && rightTriggerPressed == true)
+                rightTriggerPressed = false;
+
+
+
+
+
+            if (Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_DOWN && grenadesFireRateTimer <= 0.0f)
+            {
+                inputsList.Add(INPUT.IN_GADGET_SHOOT);
+                grenadesFireRateTimer = grenadesFireRate;
+            }
         }
-
-        if (IsJoystickMoving() == true)
-            inputsList.Add(INPUT.IN_MOVE);
-
-        else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
-            inputsList.Add(INPUT.IN_IDLE);
-
-        if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false && dashAvaliable == true)
-        {
-            inputsList.Add(INPUT.IN_DASH);
-            rightTriggerPressed = true;
-        }
-        else if (Input.GetRightTrigger() == 0 && rightTriggerPressed == true)
-            rightTriggerPressed = false;
-
-
-
-
-
-        if (Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_DOWN && grenadesFireRateTimer <= 0.0f)
-        {
-            inputsList.Add(INPUT.IN_GADGET_SHOOT);
-            grenadesFireRateTimer = grenadesFireRate;
-        }
-
         grenadesFireRateTimer -= Time.deltaTime;
     }
 

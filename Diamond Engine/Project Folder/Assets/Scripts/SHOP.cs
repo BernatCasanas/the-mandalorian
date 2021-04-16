@@ -9,6 +9,7 @@ public enum ShopItems
     ShIt_IMPERIALREFINEDCOOLANT,
     ShIt_WRECKERRESILIENCE,
     ShIt_HEALTHREPLENISHMENT,
+    ShIt_GREEDOQUICKSHOOTER,
     ShIt_MAX
 }
 
@@ -35,7 +36,7 @@ public class SHOP : DiamondComponent
     public bool opening;
     //public bool firstClick = true;
 
-    float playerSpeed;
+    //float playerSpeed;
     bool shopOpen = false;
 
     public void Awake()
@@ -95,7 +96,7 @@ public class SHOP : DiamondComponent
                     if (currency >= (int)item.price_type)
                     {
                         Debug.Log("Bought Cad Bane’s rocket boots");
-                        playerSpeed += playerSpeed * 0.1f;
+                        player.GetComponent<Core>().movementSpeed += player.GetComponent<Core>().movementSpeed * 0.1f;
                         currency -= (int)item.price_type;
                         PlayerResources.AddBoon(BOONS.BOON_CADBANEROCKETBOOTS);
                         ret = true;
@@ -126,9 +127,19 @@ public class SHOP : DiamondComponent
                     {
                         Debug.Log("Bought Imperial’s refined coolant");
                         player.GetComponent<Core>().dashCD += player.GetComponent<Core>().dashCD * 0.5f;
-                        playerSpeed += playerSpeed * 0.4f;
+                        player.GetComponent<Core>().movementSpeed += player.GetComponent<Core>().movementSpeed * 0.4f;
                         currency -= (int)item.price_type;
                         PlayerResources.AddBoon(BOONS.BOON_IMPERIALREFINEDCOOLANT);
+                        ret = true;
+                    }
+                    break;
+                case ShopItems.ShIt_GREEDOQUICKSHOOTER:
+                    if (currency >= (int)item.price_type)
+                    {
+                        Debug.Log("Bought Greedo’s quick shooting");
+                        player.GetComponent<Core>().fireRate -= player.GetComponent<Core>().fireRate * 0.3f;
+                        currency -= (int)item.price_type;
+                        PlayerResources.AddBoon(BOONS.BOON_GREEDOQUICKSHOOTER);
                         ret = true;
                     }
                     break;
@@ -281,6 +292,9 @@ public class SHOP : DiamondComponent
             case ShopItems.ShIt_IMPERIALREFINEDCOOLANT:
                 if (PlayerResources.CheckBoon(BOONS.BOON_IMPERIALREFINEDCOOLANT))return true;            
                 else return false;
+            case ShopItems.ShIt_GREEDOQUICKSHOOTER:
+                if (PlayerResources.CheckBoon(BOONS.BOON_GREEDOQUICKSHOOTER)) return true;
+                else return false;
             default:
                 return false;
         }
@@ -303,7 +317,10 @@ public class SHOP : DiamondComponent
                 item.SetItem(type, ShopPrice.SHOP_CHEAP, "Imperial refined coolant", "Movement +40%, +50% dash cooldown.");
                 break;
             case ShopItems.ShIt_HEALTHREPLENISHMENT:
-                item.SetItem(type, ShopPrice.SHOP_HEALTH, "Health replenishment", "Heal for 25 % of your max life");
+                item.SetItem(type, ShopPrice.SHOP_HEALTH, "Health replenishment", "Heal for 25 % of your max life.");
+                break;
+            case ShopItems.ShIt_GREEDOQUICKSHOOTER:
+                item.SetItem(type, ShopPrice.SHOP_EXPENSIVE, "Greedo’s quick shooter", "+30% fire rate on the primary weapon.");
                 break;
         }
     }
@@ -315,8 +332,8 @@ public class SHOP : DiamondComponent
         shopUI.Enable(true);
         textPopUp.Enable(false); 
         //Save current player speed and set it to 0 toa void movement while shop opened
-        playerSpeed = player.GetComponent<Core>().movementSpeed;
-        player.GetComponent<Core>().movementSpeed = 0;
+        //playerSpeed = player.GetComponent<Core>().movementSpeed;
+        player.GetComponent<Core>().lockInputs = true;
         //Time.PauseGame();
     }
 
@@ -326,7 +343,7 @@ public class SHOP : DiamondComponent
         shopUI.Enable(false);
         //Time.ResumeGame();
         //Get player's speed back
-        player.GetComponent<Core>().movementSpeed = playerSpeed;
+        player.GetComponent<Core>().lockInputs = false;
         textPopUp.Enable(true);
     }
 }
