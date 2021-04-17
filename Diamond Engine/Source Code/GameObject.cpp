@@ -393,21 +393,27 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
 
 	json_array_append_value(_goArray, goValue);
 
-	if (prefabID != 0 && !saveAllData)
+	if (prefabID != 0)
 	{
-		JSON_Value* childrenValue = json_value_init_array();
-		JSON_Array* childrenArray = json_value_get_array(childrenValue);
-
-		for (size_t i = 0; i < children.size(); i++)
+		if (!saveAllData)
 		{
-			children[i]->SaveForPrefab(childrenArray);
-		}
+			JSON_Value* childrenValue = json_value_init_array();
+			JSON_Array* childrenArray = json_value_get_array(childrenValue);
 
-		json_object_set_value(goData, "PrefabObjects", childrenValue);
+			for (size_t i = 0; i < children.size(); i++)
+			{
+				children[i]->SaveForPrefab(childrenArray);
+			}
+
+			json_object_set_value(goData, "PrefabObjects", childrenValue);
+		}
 	}
 
-	if (prefabID != 0u && !saveAllData)
-		return;
+	if (prefabID != 0u)
+	{
+		if (!saveAllData)
+			return;
+	}
 
 	//TODO: Move inside component base
 	{
@@ -427,7 +433,14 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
 
 	for (size_t i = 0; i < children.size(); i++)
 	{
-		children[i]->SaveToJson(_goArray, saveAllData);
+		if (children[i]->prefabID != 0u)
+		{
+			children[i]->SaveToJson(_goArray, false);
+		}
+		else
+		{
+			children[i]->SaveToJson(_goArray, saveAllData);
+		}
 	}
 }
 

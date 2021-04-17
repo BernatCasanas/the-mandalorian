@@ -53,19 +53,17 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 	GameObject* parent = rootObject;
 	std::map<uint, GameObject*> gameObjects;
 
-	int lastInsiderPrefab = 0;
 	for (size_t j = 0; j < json_array_get_count(gameObjectsArray); j++)
 	{
 		bool newObject = true;
 		JSON_Object* jsonObject = json_array_get_object(gameObjectsArray, j);
+		int uid = json_object_get_number(jsonObject, "UID");
 
-		for (size_t i = 0; i < objects.size(); i++)
+		for (size_t i = 0; i < objects.size() && newObject; i++)
 		{
-			gameObjects[objects[i]->prefabReference] = objects[i];
-			int uid = json_object_get_number(jsonObject, "UID");
-
 			if (uid == objects[i]->prefabReference)
 			{
+				gameObjects[objects[i]->prefabReference] = objects[i];
 				objects[i]->LoadComponents(json_object_get_array(jsonObject, "Components"));
 				newObject = false;
 			}
@@ -77,33 +75,14 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 			int parentID = json_object_get_number(jsonObject, "ParentUID");
 			bool parentSet = false;
 
-			if (prefabID != 0)
-				lastInsiderPrefab = prefabID;
-
 			for (size_t i = 0; i < objects.size() && !parentSet; ++i)
 			{
-				if (objects[i]->prefabReference == parentID ||objects[i]->UID == parentID 
-					&& lastInsiderPrefab != 0 && parent->prefabID != lastInsiderPrefab)
+				if (objects[i]->prefabReference == parentID ||objects[i]->UID == parentID)
 				{
-					if (prefabID != 0)
-					{
-						float3 position = DEJson::ReadVector3(jsonObject,"Position");
-						Quat rotation = DEJson::ReadQuat(jsonObject, "Rotation");
-						float3 scale = DEJson::ReadVector3(jsonObject, "Scale");
-						GameObject* prefabChild = InstantiatePrefabAt(prefabID, position, rotation, scale);
-						prefabChild->ChangeParent(parent);
-					}
-					else
-						parent = EngineExternal->moduleScene->LoadGOData(jsonObject, parent);
-
+					parent = EngineExternal->moduleScene->LoadGOData(jsonObject, parent);
 					objects.push_back(parent);
 					parentSet = true;
 				}
-			}
-
-			if (lastInsiderPrefab != 0 && parent->prefabID != lastInsiderPrefab)
-			{
-				lastInsiderPrefab = 0;
 			}
 		}
 	}
