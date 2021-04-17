@@ -42,7 +42,7 @@
 
 
 ModuleRenderer3D::ModuleRenderer3D(Application* app, bool start_enabled) : Module(app, start_enabled), str_CAPS(""),
-vsync(false), wireframe(false), gameCamera(nullptr),resolution(2), directLight(nullptr)
+vsync(false), wireframe(false), gameCamera(nullptr), resolution(2), directLight(nullptr)
 {
 	GetCAPS(str_CAPS);
 	/*depth =*/ cull = lightng = color_material = texture_2d = true;
@@ -60,7 +60,7 @@ bool ModuleRenderer3D::Init()
 {
 	LOG(LogType::L_NORMAL, "Init: 3D Renderer context");
 	bool ret = true;
-	
+
 	//ASK: Can i do this inside the MM namespace?
 	MaykMath::Init();
 	LOG(LogType::L_NORMAL, "Init: MaykMath");
@@ -74,7 +74,7 @@ bool ModuleRenderer3D::Init()
 
 	//Create context
 	context = SDL_GL_CreateContext(App->moduleWindow->window);
-	if(context == NULL)
+	if (context == NULL)
 	{
 		LOG(LogType::L_ERROR, "OpenGL context could not be created! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
@@ -90,11 +90,11 @@ bool ModuleRenderer3D::Init()
 	{
 		LOG(LogType::L_NORMAL, "Init: Glew %s", glewGetString(GLEW_VERSION));
 	}
-	
-	if(ret == true)
+
+	if (ret == true)
 	{
 		//Use Vsync
-		if(SDL_GL_SetSwapInterval(static_cast<int>(vsync)) < 0)
+		if (SDL_GL_SetSwapInterval(static_cast<int>(vsync)) < 0)
 			LOG(LogType::L_WARNING, "Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
 
 		//Initialize Projection Matrix
@@ -103,7 +103,7 @@ bool ModuleRenderer3D::Init()
 
 		//Check for error
 		GLenum error = glGetError();
-		if(error != GL_NO_ERROR)
+		if (error != GL_NO_ERROR)
 		{
 			//gluErrorString
 			LOG(LogType::L_ERROR, "Error initializing OpenGL! %s\n", glewGetErrorString(error));
@@ -116,23 +116,23 @@ bool ModuleRenderer3D::Init()
 
 		//Check for error
 		error = glGetError();
-		if(error != GL_NO_ERROR)
+		if (error != GL_NO_ERROR)
 		{
 			//ASK: Maybe glewGetErrorString is not the same as glutGerErrorString, so errors could be wrong
 			LOG(LogType::L_ERROR, "Error initializing OpenGL! %s\n", glewGetErrorString(error));
 			ret = false;
 		}
-		
+
 		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 		glClearDepth(1.0f);
-		
+
 		//Initialize clear color
 		glClearColor(0.f, 0.f, 0.f, 1.f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		//Check for error
 		error = glGetError();
-		if(error != GL_NO_ERROR)
+		if (error != GL_NO_ERROR)
 		{
 			//ASK: Maybe glewGetErrorString is not the same as glutGerErrorString, so errors could be wrong
 			LOG(LogType::L_ERROR, "Error initializing OpenGL! %s\n", glewGetErrorString(error));
@@ -146,8 +146,8 @@ bool ModuleRenderer3D::Init()
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		//glBlendEquation(GL_FUNC_ADD);
-		
-		GLfloat LightModelAmbient[] = {0.0f, 0.0f, 0.0f, 0.0f};
+
+		GLfloat LightModelAmbient[] = { 0.0f, 0.0f, 0.0f, 0.0f };
 		glLightModelfv(GL_LIGHT_MODEL_AMBIENT, LightModelAmbient);
 
 		lights[0].ref = GL_LIGHT0;
@@ -156,12 +156,12 @@ bool ModuleRenderer3D::Init()
 		lights[0].SetPos(0.0f, 2.0f, 2.5f);
 		lights[0].Init();
 
-		GLfloat MaterialAmbient[] = {1.0f, 1.0f, 1.0f, 1.0f};
+		GLfloat MaterialAmbient[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, MaterialAmbient);
 
-		GLfloat MaterialDiffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
+		GLfloat MaterialDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 		glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MaterialDiffuse);
-		
+
 		glEnable(GL_MULTISAMPLE);
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_CULL_FACE);
@@ -189,7 +189,7 @@ bool ModuleRenderer3D::Init()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, SQUARE_TEXTURE_W, SQUARE_TEXTURE_H, 0, GL_RGBA, GL_UNSIGNED_BYTE, checkerImage);	
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, SQUARE_TEXTURE_W, SQUARE_TEXTURE_H, 0, GL_RGBA, GL_UNSIGNED_BYTE, checkerImage);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 
@@ -272,7 +272,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	p.Render();
 
 	//TODO: This should not be here
-	if (!renderQueue.empty()) 
+	if (!renderQueue.empty())
 	{
 		for (size_t i = 0; i < renderQueue.size(); i++)
 		{
@@ -287,7 +287,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	}
 
 	DrawParticleSystems();
-	if(App->moduleCamera->editorCamera.drawSkybox)
+	if (App->moduleCamera->editorCamera.drawSkybox)
 		skybox.DrawAsSkybox(&App->moduleCamera->editorCamera);
 
 	DebugLine(pickingDebug);
@@ -299,7 +299,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 #endif // !STANDALONE
 
 	//Draw game camera
-	if (gameCamera != nullptr) 
+	if (gameCamera != nullptr)
 	{
 		gameCamera->StartDraw();
 
@@ -319,13 +319,19 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 			RenderWithOrdering(true);
 		}
 
-		if (!renderQueueStencil.empty())
+		if (!renderQueueStencil.empty() && !renderQueuePostStencil.empty())
 		{
 			for (size_t i = 0; i < renderQueueStencil.size(); i++)
 			{
 				float distance = gameCamera->camFrustrum.pos.DistanceSq(renderQueueStencil[i]->globalOBB.pos);
 				renderQueueMapStencil.emplace(distance, renderQueueStencil[i]);
 			}
+			for (size_t i = 0; i < renderQueuePostStencil.size(); i++)
+			{
+				float distance = gameCamera->camFrustrum.pos.DistanceSq(renderQueuePostStencil[i]->globalOBB.pos);
+				renderQueueMapPostStencil.emplace(distance, renderQueuePostStencil[i]);
+			}
+
 			//TODO render stencil here
 			RenderStencilWithOrdering(true);
 		}
@@ -344,7 +350,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 #ifndef STANDALONE
 	App->moduleEditor->Draw();
 #endif // !STANDALONE
-	
+
 	//TEMPORAL: Delete here so you can call mouse picking from scene window, should not be here in the future
 	ClearAllRenderData();
 
@@ -383,7 +389,7 @@ void ModuleRenderer3D::OnResize(int width, int height)
 #endif // !STANDALONE
 
 
-	if (gameCamera != nullptr) 
+	if (gameCamera != nullptr)
 		gameCamera->ReGenerateBuffer(width, height);
 
 }
@@ -427,9 +433,9 @@ void ModuleRenderer3D::OnGUI()
 		ImGui::Text("Peak Actual Mem: "); ImGui::SameLine(); ImGui::TextColored(ImVec4(1.f, 1.f, 0.f, 1.f), "%u bytes", stats.peakActualMemory);
 
 		ImGui::Checkbox("Enable V-Sync", &vsync);
-			////Use Vsync
-			//if (SDL_GL_SetSwapInterval(static_cast<int>(vsync)) < 0)
-			//	LOG(LogType::L_WARNING, "Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
+		////Use Vsync
+		//if (SDL_GL_SetSwapInterval(static_cast<int>(vsync)) < 0)
+		//	LOG(LogType::L_WARNING, "Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
 
 		ImGui::SameLine();
 		ImGui::Checkbox("Wireframe Mode", &wireframe);
@@ -453,7 +459,7 @@ void ModuleRenderer3D::OnGUI()
 
 		if (ImGui::DragFloat4("Ambient: ", &lights[0].ambient, 0.01f, 0.f, 1.f))
 			lights[0].Init();
-		if(ImGui::DragFloat4("Diffuse: ", &lights[0].diffuse, 0.01f, 0.f, 1.f)) 
+		if (ImGui::DragFloat4("Diffuse: ", &lights[0].diffuse, 0.01f, 0.f, 1.f))
 			lights[0].Init();
 
 	}
@@ -568,7 +574,7 @@ void ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray)
 
 	//Add all meshes with a triangle hit and store the distance from the ray to the triangle, then pick the closest one
 	std::map<float, C_MeshRenderer*> distMap;
-	for(auto i = canSelect.begin(); i != canSelect.end(); ++i)
+	for (auto i = canSelect.begin(); i != canSelect.end(); ++i)
 	{
 		const ResourceMesh* _mesh = (*i).second->GetRenderMesh();
 		if (_mesh)
@@ -605,7 +611,7 @@ void ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray)
 
 
 	//If nothing is selected, set selected GO to null
-	if(!selected)
+	if (!selected)
 		App->moduleEditor->SetSelectedGO(nullptr);
 #endif // !STANDALONE
 	distMap.clear();
@@ -615,6 +621,9 @@ void ModuleRenderer3D::RenderWithOrdering(bool rTex)
 {
 	if (renderQueueMap.empty())
 		return;
+	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+	glDisable(GL_STENCIL_TEST);
+	glStencilMask(0xFF);
 
 	for (auto i = renderQueueMap.rbegin(); i != renderQueueMap.rend(); ++i)
 	{
@@ -632,7 +641,27 @@ void ModuleRenderer3D::RenderStencilWithOrdering(bool rTex)
 {
 	if (renderQueueMapStencil.empty())
 		return;
+	glEnable(GL_STENCIL_TEST);
+	glStencilFunc(GL_ALWAYS, 1, 0xFF);
+	glStencilMask(0xFF);
+
+
+
+	for (auto i = renderQueueMapPostStencil.rbegin(); i != renderQueueMapPostStencil.rend(); ++i)
+	{
+		// Get the range of the current key
+		auto range = renderQueueMapPostStencil.equal_range(i->first);
+
+		// Now render out that whole range
+		for (auto d = range.first; d != range.second; ++d)
+			d->second->RenderMesh(rTex);
+	}
+	renderQueueMapPostStencil.clear();
+
 	glDisable(GL_DEPTH_TEST);
+	glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+	glStencilMask(0x00);
+
 	for (auto i = renderQueueMapStencil.rbegin(); i != renderQueueMapStencil.rend(); ++i)
 	{
 		// Get the range of the current key
@@ -643,7 +672,11 @@ void ModuleRenderer3D::RenderStencilWithOrdering(bool rTex)
 			d->second->RenderMeshStencil(rTex);
 	}
 	renderQueueMapStencil.clear();
+
 	glEnable(GL_DEPTH_TEST);
+	glStencilFunc(GL_ALWAYS, 0, 0xFF);
+	glStencilMask(0xFF);
+	glDisable(GL_STENCIL_TEST);
 
 }
 
@@ -685,10 +718,14 @@ void ModuleRenderer3D::SetGameRenderTarget(C_Camera* cam)
 
 void ModuleRenderer3D::ClearAllRenderData()
 {
-	renderQueueMap.clear();
-	renderQueueMapStencil.clear();
 	renderQueue.clear();
 	renderQueueStencil.clear();
+	renderQueuePostStencil.clear();
+
+	renderQueueMap.clear();
+	renderQueueMapStencil.clear();
+	renderQueueMapPostStencil.clear();
+
 	particleSystemQueue.clear();
 }
 
@@ -742,7 +779,7 @@ void ModuleRenderer3D::DrawParticleSystems()
 	for (int i = 0; i < systemCount; ++i)
 	{
 		Component* partSy = particleSystemQueue[i]->GetComponent(Component::TYPE::PARTICLE_SYSTEM);
-		
+
 		if (partSy != nullptr)
 			static_cast<C_ParticleSystem*>(partSy)->Draw();
 	}

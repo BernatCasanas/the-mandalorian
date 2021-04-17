@@ -49,9 +49,16 @@ void C_MeshRenderer::Update()
 	if (EngineExternal->moduleRenderer3D->GetGameRenderTarget() != nullptr && EngineExternal->moduleRenderer3D->GetGameRenderTarget()->cullingState == true && !IsInsideFrustum(&EngineExternal->moduleRenderer3D->GetGameRenderTarget()->camFrustrum))
 		return;
 
-	EngineExternal->moduleRenderer3D->renderQueue.push_back(this);
 	if (drawStencil)
+	{
 		EngineExternal->moduleRenderer3D->renderQueueStencil.push_back(this);
+		EngineExternal->moduleRenderer3D->renderQueuePostStencil.push_back(this);
+	}
+	else
+	{
+		EngineExternal->moduleRenderer3D->renderQueue.push_back(this);
+	}
+
 
 #ifndef STANDALONE
 	if (showAABB == true)
@@ -158,7 +165,7 @@ void C_MeshRenderer::RenderMeshStencil(bool rTex)
 	}
 
 	//TODO this float 3 is "alternColor" variable
-	_mesh->RenderMesh(id, float3(1.0f,0.0f,0.0f), rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform);
+	_mesh->RenderMesh(id, float3(1.0f, 0.0f, 0.0f), rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform);
 
 }
 

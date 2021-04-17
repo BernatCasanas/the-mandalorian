@@ -97,8 +97,10 @@ public:
 
 	std::vector<C_MeshRenderer*> renderQueue;
 	std::vector<C_MeshRenderer*> renderQueueStencil;
+	std::vector<C_MeshRenderer*> renderQueuePostStencil;
 	std::multimap<float, C_MeshRenderer*> renderQueueMap;
 	std::multimap<float, C_MeshRenderer*> renderQueueMapStencil;
+	std::multimap<float, C_MeshRenderer*> renderQueueMapPostStencil;
 
 	std::vector<GameObject*> particleSystemQueue;
 
