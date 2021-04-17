@@ -43,6 +43,7 @@ public:
 private:
 	ResourceMesh* _mesh;
 	float3 alternColor;
+	float3 alternColorStencil;
 	bool drawDebugVertices;
 	C_Transform* gameObjectTransform;
 	std::vector<C_Transform*> bonesMap;

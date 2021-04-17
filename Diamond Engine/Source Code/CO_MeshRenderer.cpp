@@ -11,6 +11,7 @@
 
 #include "GameObject.h"
 #include "CO_Material.h"
+#include "CO_StencilMaterial.h"
 #include "CO_Transform.h"
 #include"CO_Camera.h"
 
@@ -27,6 +28,7 @@ faceNormals(false), vertexNormals(false), showAABB(false), showOBB(false), drawD
 {
 	name = "Mesh Renderer";
 	alternColor = float3::one;
+	alternColorStencil = float3::one;
 	gameObjectTransform = dynamic_cast<C_Transform*>(gameObject->GetComponent(Component::TYPE::TRANSFORM));
 }
 
@@ -132,13 +134,21 @@ void C_MeshRenderer::RenderMeshStencil(bool rTex)
 		return;
 
 	C_Transform* transform = gameObject->transform;
-
+	bool hasStencilMatActive = false;
 	//TODO will take the normal material for the moment
+	C_StencilMaterial* stencilMaterial = dynamic_cast<C_StencilMaterial*>(gameObject->GetComponent(Component::TYPE::STENCIL_MATERIAL));
 	C_Material* material = dynamic_cast<C_Material*>(gameObject->GetComponent(Component::TYPE::MATERIAL));
 	GLuint id = 0;
 
-	if (material != nullptr && material->IsActive())
-		id = material->GetTextureID();
+	if (stencilMaterial != nullptr && stencilMaterial->IsActive())
+	{
+		hasStencilMatActive = true;
+		id = stencilMaterial->GetTextureID();
+	}
+	else if (material != nullptr && material->IsActive())
+	{
+		id = stencilMaterial->GetTextureID();
+	}
 
 	//TODO do not want to recalculate bones again, ask marc pages what can be done to avoid this 
 	//Mesh array with transform matrix of each bone
@@ -164,8 +174,10 @@ void C_MeshRenderer::RenderMeshStencil(bool rTex)
 		}
 	}
 
-	//TODO this float 3 is "alternColor" variable
-	_mesh->RenderMesh(id, float3(1.0f, 0.0f, 0.0f), rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform);
+	if (hasStencilMatActive)
+		_mesh->RenderMesh(id, alternColorStencil, rTex, (stencilMaterial && stencilMaterial->material != nullptr) ? stencilMaterial->material : EngineExternal->moduleScene->defaultMaterial, transform);
+	else
+		_mesh->RenderMesh(id, alternColorStencil, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform);
 
 }
 
@@ -180,6 +192,7 @@ void C_MeshRenderer::SaveData(JSON_Object* nObj)
 	}
 
 	DEJson::WriteVector3(nObj, "alternColor", &alternColor.x);
+	DEJson::WriteVector3(nObj, "alternColorStencil", &alternColorStencil.x);
 	DEJson::WriteBool(nObj, "drawStencil", drawStencil);
 }
 
@@ -190,6 +203,7 @@ void C_MeshRenderer::LoadData(DEConfig& nObj)
 	SetRenderMesh(dynamic_cast<ResourceMesh*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("UID"), nObj.ReadString("Path"))));
 
 	alternColor = nObj.ReadVector3("alternColor");
+	alternColorStencil = nObj.ReadVector3("alternColorStencil");
 	drawStencil = nObj.ReadBool("drawStencil");
 	if (_mesh == nullptr)
 		return;
@@ -252,6 +266,9 @@ bool C_MeshRenderer::OnEditor()
 		ImGui::Checkbox("Draw Stencil", &drawStencil);
 
 		ImGui::ColorPicker3("No texture color: ", &alternColor.x);
+
+		if(drawStencil)
+			ImGui::ColorPicker3("No texture Stencil color: ", &alternColorStencil.x);
 
 		return true;
 	}
