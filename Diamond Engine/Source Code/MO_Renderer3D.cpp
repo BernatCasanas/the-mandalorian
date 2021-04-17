@@ -319,6 +319,17 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 			RenderWithOrdering(true);
 		}
 
+		if (!renderQueueStencil.empty())
+		{
+			for (size_t i = 0; i < renderQueueStencil.size(); i++)
+			{
+				float distance = gameCamera->camFrustrum.pos.DistanceSq(renderQueueStencil[i]->globalOBB.pos);
+				renderQueueMapStencil.emplace(distance, renderQueueStencil[i]);
+			}
+			//TODO render stencil here
+			RenderStencilWithOrdering(true);
+		}
+
 		DrawParticleSystems();
 
 		if (gameCamera->drawSkybox)
@@ -614,8 +625,26 @@ void ModuleRenderer3D::RenderWithOrdering(bool rTex)
 		for (auto d = range.first; d != range.second; ++d)
 			d->second->RenderMesh(rTex);
 	}
-
 	renderQueueMap.clear();
+}
+
+void ModuleRenderer3D::RenderStencilWithOrdering(bool rTex)
+{
+	if (renderQueueMapStencil.empty())
+		return;
+	glDisable(GL_DEPTH_TEST);
+	for (auto i = renderQueueMapStencil.rbegin(); i != renderQueueMapStencil.rend(); ++i)
+	{
+		// Get the range of the current key
+		auto range = renderQueueMapStencil.equal_range(i->first);
+
+		// Now render out that whole range
+		for (auto d = range.first; d != range.second; ++d)
+			d->second->RenderMeshStencil(rTex);
+	}
+	renderQueueMapStencil.clear();
+	glEnable(GL_DEPTH_TEST);
+
 }
 
 
@@ -657,7 +686,9 @@ void ModuleRenderer3D::SetGameRenderTarget(C_Camera* cam)
 void ModuleRenderer3D::ClearAllRenderData()
 {
 	renderQueueMap.clear();
+	renderQueueMapStencil.clear();
 	renderQueue.clear();
+	renderQueueStencil.clear();
 	particleSystemQueue.clear();
 }
 

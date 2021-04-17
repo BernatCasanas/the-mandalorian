@@ -16,6 +16,7 @@ public:
 	void Update() override;
 
 	void RenderMesh(bool rTex = false);
+	void RenderMeshStencil(bool rTex = false);
 
 	void SaveData(JSON_Object* nObj) override;
 	void LoadData(DEConfig& nObj) override;
@@ -45,4 +46,5 @@ private:
 	bool drawDebugVertices;
 	C_Transform* gameObjectTransform;
 	std::vector<C_Transform*> bonesMap;
+	bool drawStencil;
 };

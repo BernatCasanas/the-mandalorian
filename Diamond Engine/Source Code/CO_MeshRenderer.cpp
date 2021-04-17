@@ -23,7 +23,7 @@
 #include"MathGeoLib/include/Geometry/Plane.h"
 
 C_MeshRenderer::C_MeshRenderer(GameObject* _gm) : Component(_gm), _mesh(nullptr),
-faceNormals(false), vertexNormals(false), showAABB(false), showOBB(false), drawDebugVertices(false)
+faceNormals(false), vertexNormals(false), showAABB(false), showOBB(false), drawDebugVertices(false), drawStencil(false)
 {
 	name = "Mesh Renderer";
 	alternColor = float3::one;
@@ -50,6 +50,8 @@ void C_MeshRenderer::Update()
 		return;
 
 	EngineExternal->moduleRenderer3D->renderQueue.push_back(this);
+	if (drawStencil)
+		EngineExternal->moduleRenderer3D->renderQueueStencil.push_back(this);
 
 #ifndef STANDALONE
 	if (showAABB == true)
@@ -91,7 +93,7 @@ void C_MeshRenderer::RenderMesh(bool rTex)
 		float4x4 invertedMatrix = gameObjectTransform->globalTransform.Inverted();
 
 		//Get each bone
-		for (int i = 0; i<  _mesh->bonesMap.size(); ++i)
+		for (int i = 0; i < _mesh->bonesMap.size(); ++i)
 		{
 			C_Transform* bone = bonesMap[i];
 
@@ -117,6 +119,49 @@ void C_MeshRenderer::RenderMesh(bool rTex)
 
 }
 
+void C_MeshRenderer::RenderMeshStencil(bool rTex)
+{
+	if (_mesh == nullptr)
+		return;
+
+	C_Transform* transform = gameObject->transform;
+
+	//TODO will take the normal material for the moment
+	C_Material* material = dynamic_cast<C_Material*>(gameObject->GetComponent(Component::TYPE::MATERIAL));
+	GLuint id = 0;
+
+	if (material != nullptr && material->IsActive())
+		id = material->GetTextureID();
+
+	//TODO do not want to recalculate bones again, ask marc pages what can be done to avoid this 
+	//Mesh array with transform matrix of each bone
+	if (rootBone != nullptr)
+	{
+		//float4x4 invertedMatrix = dynamic_cast<C_Transform*>(gameObject->GetComponent(Component::TYPE::TRANSFORM))->globalTransform.Inverted();
+		float4x4 invertedMatrix = gameObjectTransform->globalTransform.Inverted();
+
+		//Get each bone
+		for (int i = 0; i < _mesh->bonesMap.size(); ++i)
+		{
+			C_Transform* bone = bonesMap[i];
+
+			if (bone != nullptr)
+			{
+				//Calcule of Delta Matrix
+				float4x4 Delta = CalculateDeltaMatrix(bone->globalTransform, invertedMatrix);
+				Delta = Delta * _mesh->bonesOffsets[i];
+
+				//Storage of Delta Matrix (Transformation applied to each bone)
+				_mesh->boneTransforms[i] = Delta.Transposed();
+			}
+		}
+	}
+
+	//TODO this float 3 is "alternColor" variable
+	_mesh->RenderMesh(id, float3(1.0f,0.0f,0.0f), rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform);
+
+}
+
 void C_MeshRenderer::SaveData(JSON_Object* nObj)
 {
 	Component::SaveData(nObj);
@@ -128,6 +173,7 @@ void C_MeshRenderer::SaveData(JSON_Object* nObj)
 	}
 
 	DEJson::WriteVector3(nObj, "alternColor", &alternColor.x);
+	DEJson::WriteBool(nObj, "drawStencil", drawStencil);
 }
 
 void C_MeshRenderer::LoadData(DEConfig& nObj)
@@ -137,7 +183,7 @@ void C_MeshRenderer::LoadData(DEConfig& nObj)
 	SetRenderMesh(dynamic_cast<ResourceMesh*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("UID"), nObj.ReadString("Path"))));
 
 	alternColor = nObj.ReadVector3("alternColor");
-
+	drawStencil = nObj.ReadBool("drawStencil");
 	if (_mesh == nullptr)
 		return;
 
@@ -167,7 +213,7 @@ bool C_MeshRenderer::OnEditor()
 		//TODO: Maybe move this into a function?
 		if (ImGui::BeginDragDropTarget())
 		{
-			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("_MESH"))
+			if (const ImGuiPayload * payload = ImGui::AcceptDragDropPayload("_MESH"))
 			{
 				std::string* libraryDrop = (std::string*)payload->Data;
 
@@ -196,6 +242,7 @@ bool C_MeshRenderer::OnEditor()
 		ImGui::SameLine();
 		ImGui::Checkbox("Show OBB", &showOBB);
 		ImGui::Checkbox("Draw Vertices", &drawDebugVertices);
+		ImGui::Checkbox("Draw Stencil", &drawStencil);
 
 		ImGui::ColorPicker3("No texture color: ", &alternColor.x);
 
