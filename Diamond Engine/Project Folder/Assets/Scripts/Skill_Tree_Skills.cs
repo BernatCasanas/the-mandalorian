@@ -47,16 +47,31 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            //TODO: Priority
             Debug.Log("Increase");
         }
 
+        public override void AssignCharacteristics()
+        {
+            description = "[NOT IMPLEMENTED] Mando has 15% increased damage for 10 seconds after Grogu uses his Push skill";
+            price = 0;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
     public class UtilityDamageReductionSkill : Skills
     {
         public override void Use()
         {
+            //TODO: Priority
             Debug.Log("Reduction");
+        }
+
+        public override void AssignCharacteristics()
+        {
+            description = "[NOT IMPLEMENTED] 20% Damage reduction 2 seconds after dash (doesn't attack)";
+            price = 0;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -79,6 +94,14 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            //TODO: Priority
+        }
+
+        public override void AssignCharacteristics()
+        {
+            description = "[NOT IMPLEMENTED] Mando heals 10 HP when Grogu uses a Skill";
+            price = 0;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -87,6 +110,14 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            //TODO: Priority
+        }
+
+        public override void AssignCharacteristics()
+        {
+            description = "[NOT IMPLEMENTED] Dash can be used consecutively twice in a row (Normal CD upon double dashing)";
+            price = 0;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -138,6 +169,14 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            //TODO: Priority
+        }
+
+        public override void AssignCharacteristics()
+        {
+            description = "[NOT IMPLEMENTED] Increase damage to Bosses and greater enemies by 20%";
+            price = 0;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -145,6 +184,14 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            //TODO: Priority
+        }
+
+        public override void AssignCharacteristics()
+        {
+            description = "[NOT IMPLEMENTED] For each 1% of hp missing, gain 1% damage";
+            price = 0;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -228,6 +275,14 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            //TODO: Priority
+        }
+
+        public override void AssignCharacteristics()
+        {
+            description = "[NOT IMPLEMENTED] 10% chance to avoid damage";
+            price = 0;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
     #endregion
@@ -329,6 +384,13 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            //TODO: Priority
+        }
+        public override void AssignCharacteristics()
+        {
+            description = "[NOT IMPLEMENTED] Bullet impacts slow enemy speed by 20%";
+            price = 0;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -395,6 +457,14 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            //TODO: Priority
+        }
+
+        public override void AssignCharacteristics()
+        {
+            description = "[NOT IMPLEMENTED] Delay between uses reduced by 30%";
+            price = 0;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
