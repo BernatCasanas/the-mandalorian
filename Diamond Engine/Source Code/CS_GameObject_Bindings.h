@@ -43,7 +43,68 @@ void AddForce(MonoObject* cs_GameObject, MonoObject* cs_Force)
 
 }
 
+void EnableCollider(MonoObject* cs_GameObject)
+{
+	GameObject* cpp_gameObject = EngineExternal->moduleMono->GameObject_From_CSGO(cs_GameObject);
+	
+	std::vector<Component*> boxCollider_info = cpp_gameObject->GetComponentsOfType(Component::TYPE::BOXCOLLIDER);
+	std::vector<Component*> meshCollider_info = cpp_gameObject->GetComponentsOfType(Component::TYPE::MESHCOLLIDER);
+	std::vector<Component*> sphereCollider_info = cpp_gameObject->GetComponentsOfType(Component::TYPE::SPHERECOLLIDER);
+	std::vector<Component*> capsuleCollider_info = cpp_gameObject->GetComponentsOfType(Component::TYPE::CAPSULECOLLIDER);
 
+	for (int i = 0; i < boxCollider_info.size(); i++)
+	{
+		C_Collider* col = dynamic_cast<C_Collider*>(boxCollider_info[i]);
+		col->EnableShapeInContactTests();
+	}
+	for (int i = 0; i < meshCollider_info.size(); i++)
+	{
+		C_Collider* col = dynamic_cast<C_Collider*>(meshCollider_info[i]);
+		col->EnableShapeInContactTests();
+	}
+	for (int i = 0; i < sphereCollider_info.size(); i++)
+	{
+		C_Collider* col = dynamic_cast<C_Collider*>(sphereCollider_info[i]);
+		col->EnableShapeInContactTests();
+	}
+	for (int i = 0; i < capsuleCollider_info.size(); i++)
+	{
+		C_Collider* col = dynamic_cast<C_Collider*>(capsuleCollider_info[i]);
+		col->EnableShapeInContactTests();
+	}
+
+}
+
+void DisableCollider(MonoObject* cs_GameObject)
+{
+	GameObject* cpp_gameObject = EngineExternal->moduleMono->GameObject_From_CSGO(cs_GameObject);
+
+	std::vector<Component*> boxCollider_info = cpp_gameObject->GetComponentsOfType(Component::TYPE::BOXCOLLIDER);
+	std::vector<Component*> meshCollider_info = cpp_gameObject->GetComponentsOfType(Component::TYPE::MESHCOLLIDER);
+	std::vector<Component*> sphereCollider_info = cpp_gameObject->GetComponentsOfType(Component::TYPE::SPHERECOLLIDER);
+	std::vector<Component*> capsuleCollider_info = cpp_gameObject->GetComponentsOfType(Component::TYPE::CAPSULECOLLIDER);
+
+	for (int i = 0; i < boxCollider_info.size(); i++)
+	{
+		C_Collider* col = dynamic_cast<C_Collider*>(boxCollider_info[i]);
+		col->DisableShapeInContactTests();
+	}
+	for (int i = 0; i < meshCollider_info.size(); i++)
+	{
+		C_Collider* col = dynamic_cast<C_Collider*>(meshCollider_info[i]);
+		col->DisableShapeInContactTests();
+	}
+	for (int i = 0; i < sphereCollider_info.size(); i++)
+	{
+		C_Collider* col = dynamic_cast<C_Collider*>(sphereCollider_info[i]);
+		col->DisableShapeInContactTests();
+	}
+	for (int i = 0; i < capsuleCollider_info.size(); i++)
+	{
+		C_Collider* col = dynamic_cast<C_Collider*>(capsuleCollider_info[i]);
+		col->DisableShapeInContactTests();
+	}
+}
 MonoObject* FindObjectWithName(MonoString* name) {
 
 	std::vector<GameObject*> gameObjectVec;

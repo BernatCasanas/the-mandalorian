@@ -43,7 +43,9 @@ public:
 	void SaveData(JSON_Object* nObj) override;
 	void LoadData(DEConfig& nObj) override;
 	void SetRotation(Quat rotation);
-
+	void DisableShapeInContactTests();
+	void EnableShapeInContactTests();
+	void Enable();
 #ifndef STANDALONE
 	void Update() override;
 
@@ -51,7 +53,7 @@ public:
 #endif // !STANDALONE
 public:
 	bool isTrigger;
-
+	bool isActive;
 	physx::PxShape* colliderShape;
 	physx::PxMaterial* colliderMaterial;
 	C_Transform* transform;

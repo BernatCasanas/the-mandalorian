@@ -31,6 +31,7 @@ position(_position), rotation(_rotation), localScale(_localScale)*/
 
 	int indexNum = _gm != nullptr ? _gm->GetComponentsOfType(Component::TYPE::SPHERECOLLIDER).size() + _gm->GetComponentsOfType(Component::TYPE::COLLIDER).size() : 0;
 	name = "Sphere Collider_" + std::to_string(indexNum);
+	isActive = true;
 	isTrigger = false;
 	shape = ColliderShape::SPHERE;
 
@@ -201,7 +202,7 @@ void C_SphereCollider::SaveData(JSON_Object* nObj)
 	localTransform.Decompose(pos, rot, scale);
 
 	Component::SaveData(nObj);
-
+	DEJson::WriteBool(nObj, "isActive", isActive);
 	DEJson::WriteBool(nObj, "isTrigger", isTrigger);
 
 	DEJson::WriteVector3(nObj, "Position", pos.ptr());
@@ -216,6 +217,12 @@ void C_SphereCollider::LoadData(DEConfig& nObj)
 	float3 pos;
 	Quat rot;
 	bool trigger;
+
+	isActive = nObj.ReadBool("isActive");
+	if (!isActive)
+	{
+		DisableShapeInContactTests();
+	}
 
 	trigger = nObj.ReadBool("isTrigger");
 	if (trigger != isTrigger)
@@ -258,8 +265,19 @@ bool C_SphereCollider::OnEditor()
 			index = std::distance(rigidbody->collider_info.begin(), it);
 		}
 
+		bool colactive = isActive;
+		std::string suffix = "isActive##" + std::to_string(index);
+		ImGui::Checkbox(suffix.c_str(), &isActive);
+
+		if (colactive != isActive)
+		{
+			if (isActive)EnableShapeInContactTests();
+			else
+				DisableShapeInContactTests();
+		}
+
 		bool trigger = isTrigger;
-		std::string suffix = "isTrigger##" + std::to_string(index);
+		suffix = "isTrigger##" + std::to_string(index);
 		ImGui::Checkbox(suffix.c_str(), &trigger);
 
 		if (trigger != isTrigger)
