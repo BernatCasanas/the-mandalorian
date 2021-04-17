@@ -1,17 +1,17 @@
 {
     "Game Objects": [
         {
-            "name": "Central",
+            "name": "Impact",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
-                0.55220222473144531,
-                -6.1334109306335449,
-                -5.3972487449645996
+                0,
+                0,
+                0
             ],
             "Rotation": [
-                3.7865323450608567e-29,
+                0,
                 0,
                 0,
                 1
@@ -21,48 +21,172 @@
                 1,
                 1
             ],
-            "UID": 110569972,
+            "UID": 963747817,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": true,
-            "ParentUID": 1916107655,
+            "Static": false,
+            "ParentUID": 641350221,
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
                 },
                 {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/1989522569.mmh",
-                    "UID": 1989522569,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Sand.mat",
-                    "MaterialLibraryPath": "Library\/Materials\/50127070.mat",
-                    "MaterialUID": 50127070
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
                 },
                 {
-                    "Type": 14,
+                    "Type": 20,
                     "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 0.31499999761581421,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/170375526.dds",
+                            "texUID": 170375526,
+                            "paEmitterName": "Boom",
+                            "paLifeTime": [
+                                0.69999998807907104,
+                                1.2999999523162842
+                            ],
+                            "paSize": [
+                                0.10000000149011612,
+                                0.69999998807907104
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 750,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    "paFOLT_magnitude": 0,
+                                    "paFOLT_gravityMod": 0.30000001192092896,
+                                    "paFOLT_gravity": -2.940000057220459,
+                                    "paFOLT_forceType": 0
+                                },
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        360,
+                                        0
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        -1,
+                                        1
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.35573124885559082,
+                                                0.20247045159339905,
+                                                0,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 2,
+                                    "paShapeRandSpeed": 1,
+                                    "PaShapeSphereRadius": 1,
+                                    "PaShapeSphereDirection": false,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 1,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/39569920.dds",
+                            "texUID": 39569920,
+                            "paEmitterName": "Piedrecitas",
+                            "paLifeTime": [
+                                0.60000002384185791,
+                                0.60000002384185791
+                            ],
+                            "paSize": [
+                                0.10000000149011612,
+                                0.20000000298023224
+                            ],
+                            "paColor": [
+                                0.15942031145095825,
+                                0.038122259080410004,
+                                0,
+                                1
+                            ],
+                            "paPerSec": 500,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    "paFOLT_magnitude": 0,
+                                    "paFOLT_gravityMod": 2,
+                                    "paFOLT_gravity": -19.600000381469726,
+                                    "paFOLT_forceType": 0
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 2.5,
+                                    "paShapeRandSpeed": 2,
+                                    "PaShapeSphereRadius": 1,
+                                    "PaShapeSphereDirection": false,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 1,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
                 }
             ]
         }
