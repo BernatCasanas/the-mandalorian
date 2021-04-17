@@ -147,7 +147,7 @@ void C_MeshRenderer::RenderMeshStencil(bool rTex)
 	}
 	else if (material != nullptr && material->IsActive())
 	{
-		id = stencilMaterial->GetTextureID();
+		id = material->GetTextureID();
 	}
 
 	//TODO do not want to recalculate bones again, ask marc pages what can be done to avoid this 
@@ -193,7 +193,8 @@ void C_MeshRenderer::SaveData(JSON_Object* nObj)
 
 	DEJson::WriteVector3(nObj, "alternColor", &alternColor.x);
 	DEJson::WriteVector3(nObj, "alternColorStencil", &alternColorStencil.x);
-	DEJson::WriteBool(nObj, "drawStencil", drawStencil);
+	bool doNotDrawStencil = !drawStencil; //We do that because Json defaults to true if doesn't find a certain property and we don't want every object to be drawn with stencil
+	DEJson::WriteBool(nObj, "doNotDrawStencil", doNotDrawStencil);
 }
 
 void C_MeshRenderer::LoadData(DEConfig& nObj)
@@ -204,7 +205,7 @@ void C_MeshRenderer::LoadData(DEConfig& nObj)
 
 	alternColor = nObj.ReadVector3("alternColor");
 	alternColorStencil = nObj.ReadVector3("alternColorStencil");
-	drawStencil = nObj.ReadBool("drawStencil");
+	drawStencil = !nObj.ReadBool("doNotDrawStencil");
 	if (_mesh == nullptr)
 		return;
 
