@@ -116,7 +116,7 @@ public class Bantha : Enemy
 
         if (currentState == STATE.WANDER)
         {
-            if (Mathf.Distance(gameObject.transform.localPosition, agent.GetDestination()) <= agent.stoppingDistance)
+            if (Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance)
             {
                 inputsList.Add(INPUT.IN_IDLE);
             }
@@ -135,7 +135,7 @@ public class Bantha : Enemy
         if (currentState == STATE.CHARGE && chargeTimer > 0.0f)
         {
             chargeTimer -= Time.deltaTime;
-            if (Mathf.Distance(gameObject.transform.localPosition, targetPosition) <= agent.stoppingDistance || chargeTimer < 0.0f)
+            if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) <= agent.stoppingDistance || chargeTimer < 0.0f)
             {
                 inputsList.Add(INPUT.IN_CHARGE_END);
             }
@@ -392,7 +392,7 @@ public class Bantha : Enemy
     }
     private void UpdateRun()
     {
-        agent.CalculatePath(gameObject.transform.localPosition, player.transform.localPosition);
+        agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition);
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(runningSpeed);
     }
@@ -429,7 +429,7 @@ public class Bantha : Enemy
     }
     private void UpdateLoading()
     {
-        LookAt(player.transform.localPosition);
+        LookAt(player.transform.globalPosition);
     }
     #endregion
 
@@ -445,7 +445,7 @@ public class Bantha : Enemy
 
         Vector3 direction = player.transform.globalPosition - gameObject.transform.globalPosition;
         targetPosition = direction.normalized * chargeLength + gameObject.transform.globalPosition;      
-        agent.CalculatePath(gameObject.transform.localPosition, targetPosition);
+        agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
     }
     private void UpdateCharge()
     {

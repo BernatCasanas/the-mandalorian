@@ -147,7 +147,7 @@ public class StormTrooper : Enemy
 
         if (currentState == STATE.RUN || currentState == STATE.WANDER)
         {
-            if (Mathf.Distance(gameObject.transform.localPosition, agent.GetDestination()) <= agent.stoppingDistance)
+            if (Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance)
             {
                 inputsList.Add(INPUT.IN_IDLE);
             }
