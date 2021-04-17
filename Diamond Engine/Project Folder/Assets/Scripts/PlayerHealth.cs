@@ -184,8 +184,11 @@ public class PlayerHealth : DiamondComponent
     {
         if (DebugOptionsHolder.godModeActive)
             return currHealth;
-
-        currHealth -= damage;
+        if(PlayerResources.CheckBoon(BOONS.BOON_BOSSKSTRENGTH))
+        {
+            currHealth -= damage - (int)(damage * 0.1f);
+        }
+        else currHealth -= damage;
 
 
         if (currHealth <= 0)
