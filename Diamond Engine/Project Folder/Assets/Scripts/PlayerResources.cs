@@ -185,6 +185,7 @@ public static class PlayerResources
     public static void ResetRunBoons()
     {
         boonCounter.Clear();
+        Debug.Log("Boons reseted");
     }
 
 }
