@@ -187,8 +187,13 @@ bool C_Collider::OnEditor()
 	{
 		ImGuiTreeNodeFlags node_flags = ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
 		
-		std::vector<Component*>::iterator it = std::find(rigidbody->collider_info.begin(), rigidbody->collider_info.end(), this);
-		int index = std::distance(rigidbody->collider_info.begin(), it);
+		int index = 0;
+		if (rigidbody != nullptr)
+		{
+			std::vector<Component*>::iterator it;
+			it = std::find(rigidbody->collider_info.begin(), rigidbody->collider_info.end(), this);
+			index = std::distance(rigidbody->collider_info.begin(), it);
+		}
 		bool trigger = isTrigger;
 		std::string suffix = "isTrigger##" + std::to_string(index);
 		ImGui::Checkbox(suffix.c_str(), &trigger);
