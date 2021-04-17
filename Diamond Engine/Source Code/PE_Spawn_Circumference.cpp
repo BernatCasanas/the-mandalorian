@@ -8,7 +8,7 @@
 #include"MO_Renderer3D.h"
 #include "MO_Camera3D.h"
 
-PE_SpawnShapeCircumference::PE_SpawnShapeCircumference() :PE_SpawnShapeBase(PE_SPAWN_SHAPE_TYPE::SPHERE)
+PE_SpawnShapeCircumference::PE_SpawnShapeCircumference() :PE_SpawnShapeBase(PE_SPAWN_SHAPE_TYPE::CIRCUMFERENCE)
 {
 	innerRadius = 1.0f;
 	outterRadius = 1.0f;
@@ -98,7 +98,7 @@ void PE_SpawnShapeCircumference::SaveData(JSON_Object* nObj)
 	DEJson::WriteFloat(nObj, "PaShapeCircumferenceinnerRadius", innerRadius);
 	DEJson::WriteFloat(nObj, "PaShapeCircumferenceoutterRadius", outterRadius);
 	DEJson::WriteBool(nObj, "PaShapeCircumferenceDirection", useDirection);
-	DEJson::WriteFloat(nObj, "PaShapeSphereAngle", angle);
+	DEJson::WriteFloat(nObj, "PaShapeCircumferenceAngle", angle);
 
 }
 
@@ -107,7 +107,7 @@ void PE_SpawnShapeCircumference::LoadData(DEConfig& nObj)
 {
 	innerRadius = nObj.ReadFloat("PaShapeCircumferenceinnerRadius");
 	outterRadius = nObj.ReadFloat("PaShapeCircumferenceoutterRadius");
-	useDirection = nObj.ReadBool("PaShapeSphereDirection");
-	angle = nObj.ReadFloat("PaShapeSphereAngle");
+	useDirection = nObj.ReadBool("PaShapeCircumferenceDirection");
+	angle = nObj.ReadFloat("PaShapeCircumferenceAngle");
 
 }
