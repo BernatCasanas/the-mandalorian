@@ -134,7 +134,7 @@ void AssignLibraryTextureToMaterial(MonoObject* obj, int _id, MonoString* textur
 
 
 //---------- RAY CAST ----------//
-MonoObject* FindGOWithRayCastBetweenTwoGO(MonoObject* gameObject, MonoObject* goal_gameobject) {
+MonoObject* RayCast(MonoObject* gameObject, MonoObject* goal_gameobject) {
 
 	GameObject* cpp_gameObject = EngineExternal->moduleMono->GameObject_From_CSGO(gameObject);
 	GameObject* cpp_goal_gameobject = EngineExternal->moduleMono->GameObject_From_CSGO(goal_gameobject);
