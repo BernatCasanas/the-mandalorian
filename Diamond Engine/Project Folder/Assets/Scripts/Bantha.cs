@@ -43,7 +43,9 @@ public class Bantha : Enemy
                                              
     private List<INPUT> inputsList = new List<INPUT>();
 
+    public GameObject chargePoint = null;
     public GameObject hitParticles = null;
+    private GameObject visualFeedback = null;
 
 
     //Action times
@@ -425,11 +427,19 @@ public class Bantha : Enemy
     private void StartLoading()
     {
         loadingTimer = loadingTime;
+
+        Vector3 visualFeedbackPos = chargePoint.transform.globalPosition;
+        visualFeedbackPos.x -= chargeLength / 2;
+        visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/662438418.prefab", visualFeedbackPos, chargePoint.transform.globalRotation, new Vector3(3.5f, 1.0f, chargeLength/10));
         Animator.Play(gameObject, "BT_Charge");
     }
     private void UpdateLoading()
     {
         LookAt(player.transform.globalPosition);
+        if(visualFeedback.transform.globalScale.z < chargeLength)
+        {
+            visualFeedback.transform.localScale += new Vector3(0.0f, 0.0f, 0.1f);
+        }
     }
     #endregion
 
