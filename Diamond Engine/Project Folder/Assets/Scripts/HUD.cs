@@ -234,7 +234,7 @@ public class HUD : DiamondComponent
         {
             UpdateCombo();
         }
-        last_hp = Mathf.Lerp(last_hp, PlayerHealth.currHealth - 0.5f, 2.5f * Time.deltaTime);
+        last_hp = Mathf.Lerp(last_hp, PlayerHealth.currHealth /*- 0.5f*/, 2.5f * Time.deltaTime);
         if (last_hp > PlayerHealth.currHealth)
         {
             if (hp_bar != null)
@@ -479,7 +479,7 @@ public class HUD : DiamondComponent
             return;
         hp_bar.GetComponent<Material>().SetFloatUniform("length_used", hp_float);
         hp_bar.GetComponent<Material>().SetFloatUniform("last_hp", last_hp / max_hp);
-        hp_glitch.GetComponent<Material>().SetFloatUniform("length_used", hp_float);
+        if (hp_glitch!= null)hp_glitch.GetComponent<Material>().SetFloatUniform("length_used", hp_float);
         max_hp_number.GetComponent<Text>().text = PlayerHealth.currMaxHealth.ToString();
     }
 

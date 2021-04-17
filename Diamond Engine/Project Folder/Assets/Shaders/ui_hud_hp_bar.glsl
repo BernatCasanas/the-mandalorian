@@ -24,13 +24,13 @@ uniform float last_hp;
 uniform float t;
 
 void main() {
-	float g = length_used*length_used*1.5;
-	if (g >= 0.8)g=0.8;
-	if (textureCoords.x > last_hp)
+	float half_len = (1-length_used)/2;
+	float half_hp = (1-last_hp)/2;
+	if (textureCoords.x > (1-half_hp) || textureCoords.x < half_hp)
 	{
 		fragmentColor=vec4(0,0,0,0);
 	}
-	else if(textureCoords.x<last_hp && textureCoords.x > length_used)
+	else if(textureCoords.x<(1-half_hp) && textureCoords.x > (1-half_len) || textureCoords.x > half_hp && textureCoords.x < half_len)
 	{
 		fragmentColor = texture(ourTexture,textureCoords)*vec4(0.5,0,0.1,1);
 	}
@@ -56,6 +56,7 @@ void main() {
 }
 
 #endif
+
 
 
 
