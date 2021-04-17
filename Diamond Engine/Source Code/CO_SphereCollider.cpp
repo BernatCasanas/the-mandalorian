@@ -67,7 +67,7 @@ position(_position), rotation(_rotation), localScale(_localScale)*/
 	}
 	else {
 		colliderSize = { 0.5f, 0.5f, 0.5f };
-		radius = radius = 0.5;
+		radius = 0.5;
 		colliderShape = EngineExternal->modulePhysics->CreateSphereCollider(radius, colliderMaterial);
 	}
 
@@ -112,9 +112,10 @@ C_SphereCollider::~C_SphereCollider()
 
 }
 
+#ifndef STANDALONE
+
 void C_SphereCollider::Update()
 {
-#ifndef STANDALONE
 
 	if (rigidbody == nullptr)
 		rigidbody = dynamic_cast<C_RigidBody*>(gameObject->GetComponent(Component::TYPE::RIGIDBODY));
@@ -141,27 +142,35 @@ void C_SphereCollider::Update()
 		GLfloat x, y, z, alpha, beta; // Storage for coordinates and angles        
 		int gradation = 10;
 
-		glPushMatrix();
-		glMultMatrixf(trans.Transposed().ptr());
-		glLineWidth(2.0f);
-		glColor3f(0.0f, 1.0f, 0.0f);
+	//	glPushMatrix();
+	//	glMultMatrixf(trans.Transposed().ptr());
+	//	glLineWidth(2.0f);
+	//	glColor3f(0.0f, 1.0f, 0.0f);
+		LineSegment drawLine;
+
 		for (alpha = 0.0; alpha < PI; alpha += PI / gradation)
 		{
 			
-			
-			glBegin(GL_LINE_STRIP);
-			
-
+		//	glBegin(GL_LINE_STRIP);
 			for (beta = 0.0; beta < 2.01 * PI; beta += PI / gradation)
 			{
+
 				x = cos(beta) * sin(alpha);
 				y = sin(beta) * sin(alpha);
 				z = cos(alpha);
-				glVertex3f(x, y, z);
+				drawLine.a.Set(x, y, z);
+
+				if(beta != 0.0)
+				EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(drawLine.a), trans.MulPos(drawLine.b), float3(0.0f, 1.0f, 0.0f));
+
+				//glVertex3f(x, y, z);
 				x = cos(beta) * sin(alpha + PI / gradation);
 				y = sin(beta) * sin(alpha + PI / gradation);
 				z = cos(alpha + PI / gradation);
-				glVertex3f(x, y, z);
+				drawLine.b.Set(x, y, z);
+				//glVertex3f(x, y, z);
+
+				EngineExternal->moduleRenderer3D->AddDebugLines(trans.MulPos(drawLine.a), trans.MulPos(drawLine.b), float3(0.0f, 1.0f, 0.0f));
 			}
 
 			glTranslatef(pos.x, 0.0f, 0.0f);
@@ -170,13 +179,13 @@ void C_SphereCollider::Update()
 
 			
 		}
-		glColor3f(1.0f, 1.0f, 1.0f);
+		//glColor3f(1.0f, 1.0f, 1.0f);
 
-		glPopMatrix();
+		//glPopMatrix();
 	}
-#endif // !STANDALONE
 
 }
+#endif // !STANDALONE
 
 
 
@@ -241,8 +250,17 @@ bool C_SphereCollider::OnEditor()
 	{
 		ImGuiTreeNodeFlags node_flags = ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
 
+		int index = 0;
+		if (rigidbody != nullptr)
+		{
+			std::vector<Component*>::iterator it;
+			it = std::find(rigidbody->collider_info.begin(), rigidbody->collider_info.end(), this);
+			index = std::distance(rigidbody->collider_info.begin(), it);
+		}
+
 		bool trigger = isTrigger;
-		ImGui::Checkbox("isTrigger", &trigger);
+		std::string suffix = "isTrigger##" + std::to_string(index);
+		ImGui::Checkbox(suffix.c_str(), &trigger);
 
 		if (trigger != isTrigger)
 		{
@@ -251,7 +269,7 @@ bool C_SphereCollider::OnEditor()
 		}
 
 		ImGui::Separator();
-		if (ImGui::TreeNodeEx("Edit Collider", node_flags))
+		if (ImGui::TreeNodeEx(std::string("Edit Collider: " + name + "##" + std::to_string(index)).c_str(), node_flags))
 		{
 
 
@@ -270,7 +288,9 @@ bool C_SphereCollider::OnEditor()
 
 			float t = pos.x;
 			ImGui::SetNextItemWidth(50);
-			ImGui::DragFloat(" ", &t);
+			suffix = "##Posx" + std::to_string(index);
+
+			ImGui::DragFloat(suffix.c_str(), &t);
 			if (ImGui::IsItemActive())
 			{
 				pos.x = t;
@@ -283,7 +303,9 @@ bool C_SphereCollider::OnEditor()
 			ImGui::SetNextItemWidth(50);
 			
 			float rad = radius;
-			ImGui::DragFloat("  ", &rad);
+			suffix = "##radius" + std::to_string(index);
+
+			ImGui::DragFloat(suffix.c_str(), &rad);
 			if (ImGui::IsItemActive())
 			{
 				radius = rad;
@@ -295,7 +317,8 @@ bool C_SphereCollider::OnEditor()
 
 			float t1 = pos.y;
 			ImGui::SetNextItemWidth(50);
-			ImGui::DragFloat("    ", &t1);
+			suffix = "##Posy" + std::to_string(index);
+			ImGui::DragFloat(suffix.c_str(), &t1);
 			if (ImGui::IsItemActive())
 			{
 				pos.y = t1;
@@ -311,7 +334,8 @@ bool C_SphereCollider::OnEditor()
 			// Position
 			float t2 = pos.z;
 			ImGui::SetNextItemWidth(50);
-			ImGui::DragFloat("       ", &t2);
+			suffix = "##Posz" + std::to_string(index);
+			ImGui::DragFloat(suffix.c_str(), &t2);
 			if (ImGui::IsItemActive())
 			{
 				pos.z = t2;

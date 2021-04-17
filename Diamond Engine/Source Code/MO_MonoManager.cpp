@@ -87,6 +87,7 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.InternalCalls::Destroy", Destroy);
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreateBullet", CreateBullet);
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreatePrefab", CreatePrefab);
+	mono_add_internal_call("DiamondEngine.InternalCalls::CreateUIPrefab", CreateUIPrefab);
 
 	mono_add_internal_call("DiamondEngine.InternalCalls::GetWalkablePointAround", GetWalkablePointAround);
 
@@ -139,6 +140,8 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.Navigation::SetUpNavButton", SetUpNavButton);
 	mono_add_internal_call("DiamondEngine.Navigation::SetDownNavButton", SetDownNavButton);
 	mono_add_internal_call("DiamondEngine.Navigation::get_is_selected", GetIsSelectedNav);
+	mono_add_internal_call("DiamondEngine.Navigation::SetUIElementAsActive", SetUIElementAsActive);
+
 #pragma endregion
 
 #pragma region ParticleSystem

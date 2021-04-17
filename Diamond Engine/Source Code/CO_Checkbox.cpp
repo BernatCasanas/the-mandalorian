@@ -351,6 +351,15 @@ void C_Checkbox::LoadData(DEConfig& nObj)
 	is_selected = nObj.ReadBool("Is Selected");
 }
 
+
+void C_Checkbox::SetAsActive(bool state)
+{
+	checkbox_active = state;
+
+	UnpressCheckbox();
+}
+
+
 #ifndef STANDALONE
 void C_Checkbox::ChangeSprite(CHECKBOXSTATE num_sprite, ResourceTexture* sprite)
 {

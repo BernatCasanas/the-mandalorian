@@ -221,6 +221,12 @@ void M_Gui::SetCanvas(int uid)
 }
 
 
+int M_Gui::GetCanvasId() const
+{
+	return canvas;
+}
+
+
 void M_Gui::EraseCanvas()
 {
 	canvas = -1;

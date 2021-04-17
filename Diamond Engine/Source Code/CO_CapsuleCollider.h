@@ -9,19 +9,20 @@ class C_Transform;
 class C_RigidBody;
 class C_MeshRenderer;
 
-class C_SphereCollider : public C_Collider
+class C_CapsuleCollider : public C_Collider
 {
 public:
 
-	C_SphereCollider();
-	C_SphereCollider(GameObject* _gm/*, float3 _position, Quat _rotation, float3 _localScale*/);
-	virtual ~C_SphereCollider();
+	C_CapsuleCollider();
+	C_CapsuleCollider(GameObject* _gm/*, float3 _position, Quat _rotation, float3 _localScale*/);
+	virtual ~C_CapsuleCollider();
 
 
 
 
 	void SaveData(JSON_Object* nObj) override;
 	void LoadData(DEConfig& nObj) override;
+	void SetRotation(Quat rotation);
 #ifndef STANDALONE
 	bool OnEditor()override;
 	void Update() override;
@@ -29,7 +30,7 @@ public:
 #endif // !STANDALONE
 public:
 	float radius;
-
+	float halfHeight;
 
 
 };

@@ -63,6 +63,7 @@ private:
 	void LoadResource(int uid);
 	void ReleaseResource(int uid);
 	void UpdateFile(AssetDir& modDir);
+	void UpdateFileAndMeta(const char* assetsPath);
 
 	bool IsResourceLoaded(int uid);
 
@@ -72,6 +73,7 @@ private:
 
 	float fileCheckTime;
 	float fileUpdateDelay;
+	bool recompileCS;
 
 public:
 	AssetDir assetsRoot;

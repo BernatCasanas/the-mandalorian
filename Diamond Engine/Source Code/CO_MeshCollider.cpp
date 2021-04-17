@@ -89,6 +89,8 @@ C_MeshCollider::~C_MeshCollider()
 	
 }
 
+#ifndef STANDALONE
+
 void C_MeshCollider::Update()
 {
 
@@ -112,7 +114,6 @@ void C_MeshCollider::Update()
 	//scale.z = colliderSize.z * scale.z;
 	//colliderShape->getGeometry().convexMesh().scale.scale = physx::PxVec3(scale.x, scale.y, scale.z);
 
-#ifndef STANDALONE
 
 	if (colliderShape != nullptr )
 	{
@@ -169,9 +170,9 @@ void C_MeshCollider::Update()
 		//glPopMatrix();
 
 	}
-	#endif // !STANDALONE
 	
 }
+#endif // !STANDALONE
 
 
 
