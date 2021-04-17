@@ -184,6 +184,7 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::CalculateRandomPath", CS_CalculateRandomPath);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::CalculatePath", CS_CalculatePath);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::GetDestination", CS_GetDestination);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::GetLastVector", CS_GetLastVector);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::get_speed", CS_GetSpeed);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::set_speed", CS_SetSpeed);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::get_angularSpeed", CS_GetAngularSpeed);
