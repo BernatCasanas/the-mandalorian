@@ -26,6 +26,7 @@ public:
 
 	void RecursiveUIDRegeneration();
 	void RecursiveUIDRegenerationSavingReferences(std::map<uint, GameObject*>& gameObjects);
+	void UnlinkFromPrefab();
 
 	bool isActive() const;
 

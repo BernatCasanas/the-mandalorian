@@ -528,7 +528,6 @@ void M_Scene::LoadScene(const char* name)
 		EngineExternal->modulePathfinding->Load(navMeshId);
 
 #ifndef STANDALONE
-
 	MaykMath::GeneralDataSet(&App->moduleCamera->editorCamera.camFrustrum.pos.x, &DEJson::ReadVector3(sceneObj, "EditorCameraPosition")[0], 3);
 	MaykMath::GeneralDataSet(&App->moduleCamera->editorCamera.camFrustrum.front.x, &DEJson::ReadVector3(sceneObj, "EditorCameraZ")[0], 3);
 	MaykMath::GeneralDataSet(&App->moduleCamera->editorCamera.camFrustrum.up.x, &DEJson::ReadVector3(sceneObj, "EditorCameraY")[0], 3);
@@ -565,8 +564,7 @@ void M_Scene::LoadScene(const char* name)
 	LoadScriptsData();
 
 	//Insert Dont destroy objects to new scene
-	for (size_t i = 0; i < dontDestroyList.size(); i++)
-	{
+	for (size_t i = 0; i < dontDestroyList.size(); i++) {
 		dontDestroyList[i]->ChangeParent(root);
 	}
 
@@ -674,14 +672,14 @@ GameObject* M_Scene::LoadGOData(JSON_Object* goJsonObj, GameObject* parent)
 			int prefabObjectsCount = json_array_get_count(prefabGO);
 
 			GameObject* prefabRoot = parent;
-			std::vector<GameObject*> prefabObjects;
 			for (size_t i = 0; i < json_array_get_count(prefabGO); i++)
 			{
 				parent = LoadGOData(json_array_get_object(prefabGO, i), parent);
 			}
+			std::vector<GameObject*> prefabObjects;
 			prefabRoot->CollectChilds(prefabObjects);
 
-			PrefabImporter::LoadPrefab(prefabPath.c_str(), prefabObjects);
+			parent = PrefabImporter::LoadPrefab(prefabPath.c_str(), prefabObjects);
 			//prefabRoot->ChangeParent(parent);
 		}
 	}

@@ -1,4 +1,5 @@
 #include "IM_PrefabImporter.h"
+#include "Globals.h"
 #include "GameObject.h"
 #include "DEJsonSupport.h"
 #include "Application.h"
@@ -26,10 +27,7 @@ int PrefabImporter::SavePrefab(const char* assets_path, GameObject* gameObject)
 
 	int uid = EngineExternal->moduleResources->ImportFile(assets_path, Resource::Type::PREFAB);
 	EngineExternal->moduleResources->GenerateMeta(assets_path, EngineExternal->moduleResources->GenLibraryPath(uid, Resource::Type::PREFAB).c_str(),
-		uid, Resource::Type::PREFAB);
-
-	//std::string meta = std::string(assets_path) + ".meta";
-	//int uid = EngineExternal->moduleResources->GetMetaUID(meta.c_str());
+												  uid, Resource::Type::PREFAB);
 
 	//Free memory
 	json_value_free(file);
@@ -55,19 +53,57 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 	GameObject* parent = rootObject;
 	std::map<uint, GameObject*> gameObjects;
 
+	int lastInsiderPrefab = 0;
 	for (size_t j = 0; j < json_array_get_count(gameObjectsArray); j++)
 	{
+		bool newObject = true;
+		JSON_Object* jsonObject = json_array_get_object(gameObjectsArray, j);
+
 		for (size_t i = 0; i < objects.size(); i++)
 		{
 			gameObjects[objects[i]->prefabReference] = objects[i];
-
-			JSON_Object* jsonObject = json_array_get_object(gameObjectsArray, j);
-
 			int uid = json_object_get_number(jsonObject, "UID");
 
 			if (uid == objects[i]->prefabReference)
 			{
 				objects[i]->LoadComponents(json_object_get_array(jsonObject, "Components"));
+				newObject = false;
+			}
+		}
+
+		if (newObject)
+		{
+			int prefabID = json_object_get_number(jsonObject, "PrefabID");
+			int parentID = json_object_get_number(jsonObject, "ParentUID");
+			bool parentSet = false;
+
+			if (prefabID != 0)
+				lastInsiderPrefab = prefabID;
+
+			for (size_t i = 0; i < objects.size() && !parentSet; ++i)
+			{
+				if (objects[i]->prefabReference == parentID ||objects[i]->UID == parentID 
+					&& lastInsiderPrefab != 0 && parent->prefabID != lastInsiderPrefab)
+				{
+					if (prefabID != 0)
+					{
+						float3 position = DEJson::ReadVector3(jsonObject,"Position");
+						Quat rotation = DEJson::ReadQuat(jsonObject, "Rotation");
+						float3 scale = DEJson::ReadVector3(jsonObject, "Scale");
+						GameObject* prefabChild = InstantiatePrefabAt(prefabID, position, rotation, scale);
+						prefabChild->ChangeParent(parent);
+					}
+					else
+						parent = EngineExternal->moduleScene->LoadGOData(jsonObject, parent);
+
+					objects.push_back(parent);
+					parentSet = true;
+				}
+			}
+
+			if (lastInsiderPrefab != 0 && parent->prefabID != lastInsiderPrefab)
+			{
+				lastInsiderPrefab = 0;
 			}
 		}
 	}
@@ -166,6 +202,18 @@ GameObject* PrefabImporter::InstantiatePrefab(const char* libraryPath)
 	return rootObject;
 }
 
+GameObject* PrefabImporter::InstantiatePrefabAt(uint prefabID, float3 position, Quat rotation, float3 scale)
+{
+	std::string libraryPath = EngineExternal->moduleResources->GenLibraryPath(prefabID, Resource::Type::PREFAB);
+	GameObject* prefab = InstantiatePrefab(libraryPath.c_str());
+
+	C_Transform* oldObjectTransform = prefab->transform;
+	prefab->transform->SetTransformMatrix(oldObjectTransform->position, oldObjectTransform->rotation, oldObjectTransform->localScale);
+	prefab->transform->updateTransform = true;
+
+	return prefab;
+}
+
 GameObject* PrefabImporter::LoadGOData(JSON_Object* goJsonObj, GameObject* parent)
 {
 	GameObject* originalParent = parent;
@@ -179,6 +227,32 @@ GameObject* PrefabImporter::LoadGOData(JSON_Object* goJsonObj, GameObject* paren
 	parent = new GameObject(json_object_get_string(goJsonObj, "name"), parent, json_object_get_number(goJsonObj, "UID"));
 	parent->LoadFromJson(goJsonObj);
 	return parent;
+}
+
+void PrefabImporter::OverridePrefab(uint prefabID, GameObject* referenceObject)
+{
+	std::string libraryPath = EngineExternal->moduleResources->GenLibraryPath(prefabID, Resource::Type::PREFAB);
+
+	JSON_Value* prefab = json_parse_file(libraryPath.c_str());
+	std::string assets_path;
+
+	if (prefab == nullptr)
+	{
+		if (!FileSystem::Exists(libraryPath.c_str())) {
+			assets_path = "Assets/Prefabs/" + referenceObject->name + ".prefab";
+			LOG(LogType::L_ERROR, "The prefab tried to override does not exist, it will be created at: %s", assets_path.c_str());
+		}
+	}
+	else
+	{
+		JSON_Object* prefabObj = json_value_get_object(prefab);
+		assets_path = json_object_get_string(prefabObj, "assets_path");
+	}
+
+	referenceObject->prefabID = SavePrefab(assets_path.c_str(), referenceObject);
+	//EngineExternal->moduleResources->ImportFile(assets_path.c_str(), Resource::Type::PREFAB);
+
+	json_value_free(prefab);
 }
 
 void PrefabImporter::OverridePrefabGameObjects(uint prefabID, GameObject* gameObject)

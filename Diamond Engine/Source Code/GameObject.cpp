@@ -275,6 +275,17 @@ void GameObject::RecursiveUIDRegenerationSavingReferences(std::map<uint, GameObj
 	}
 }
 
+void GameObject::UnlinkFromPrefab()
+{
+	prefabID = 0;
+	prefabReference = 0;
+
+	for (size_t i = 0; i < children.size(); i++)
+	{
+		children[i]->UnlinkFromPrefab();
+	}
+}
+
 
 
 bool GameObject::isActive() const
@@ -354,9 +365,24 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
 	//Save all gameObject data
 	DEJson::WriteBool(goData, "Active", active);
 
-	DEJson::WriteInt(goData, "UID", UID);
+	if (saveAllData)
+	{
+		DEJson::WriteInt(goData, "UID", prefabReference);
+		DEJson::WriteInt(goData, "PrefabReference", 0);
+
+		if (parent)
+			DEJson::WriteInt(goData, "ParentUID", parent->prefabReference);
+	}
+	else
+	{
+		DEJson::WriteInt(goData, "UID", UID);
+		DEJson::WriteInt(goData, "PrefabReference", prefabReference);
+
+		if (parent)
+			DEJson::WriteInt(goData, "ParentUID", parent->UID);
+	}
+
 	DEJson::WriteInt(goData, "PrefabID", prefabID);
-	DEJson::WriteInt(goData, "PrefabReference", prefabReference);
 
 	DEJson::WriteBool(goData, "DontDestroy", dontDestroy);
 	DEJson::WriteBool(goData, "Static", isStatic);
@@ -364,9 +390,6 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
 	DEJson::WriteVector3(goData, "Position", &transform->position[0]);
 	DEJson::WriteQuat(goData, "Rotation", &transform->rotation.x);
 	DEJson::WriteVector3(goData, "Scale", &transform->localScale[0]);
-
-	if (parent)
-		DEJson::WriteInt(goData, "ParentUID", parent->UID);
 
 	json_array_append_value(_goArray, goValue);
 

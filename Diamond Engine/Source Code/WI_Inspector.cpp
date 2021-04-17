@@ -165,7 +165,7 @@ void W_Inspector::Draw()
 				{
 					ImGui::Text("Prefab ID: %d", selectedGO->prefabID);
 					if (ImGui::Button("Override Prefab")) {
-						PrefabImporter::OverridePrefabGameObjects(selectedGO->prefabID, selectedGO);
+						PrefabImporter::OverridePrefab(selectedGO->prefabID, selectedGO);
 					}
 
 					ImGui::SameLine();
@@ -175,7 +175,7 @@ void W_Inspector::Draw()
 
 					ImGui::SameLine();
 					if (ImGui::Button("Unlink Prefab")) {
-						selectedGO->prefabID = 0u;
+						selectedGO->UnlinkFromPrefab();
 					}
 				}
 
