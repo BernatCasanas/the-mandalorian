@@ -35,7 +35,7 @@ void main()
     vs_out.FragPosLightSpace = lightSpaceMatrix * vec4(vs_out.FragPos, 1.0);
 
 	vec3 fPosition = (model_matrix * vec4(position, 1.0)).xyz;
-    vec3 lightDirection = normalize(vec3(lightPosition - fPosition));
+    vec3 lightDirection = normalize(vec3(lightPosition - vec3(0.0, 0.0, 0.0)));
     diffuseColor = vec3(max(dot(lightDirection, normals), 0) * lightColor);
 
     gl_Position = projection * view * model_matrix * vec4(position, 1.0);
@@ -68,6 +68,8 @@ uniform vec3 lightColor;
 
 out vec4 color;
 
+
+
 float ShadowCalculation(vec4 fragPosLightSpace, vec3 lightDir, vec3 normal)
 {
 // perform perspective divide
@@ -84,7 +86,25 @@ float ShadowCalculation(vec4 fragPosLightSpace, vec3 lightDir, vec3 normal)
     float currentDepth = projCoords.z;
     // check whether current frag pos is in shadow
 	float bias = max(0.0005 * (1.0 - dot(normal, lightDir)), 0.0005);
-	float shadow = currentDepth - bias > closestDepth  ? 1.0 : 0.0;  
+	float shadow = 0.0;
+	
+    vec2 texelSize = 1.0 / textureSize(shadowMap, 0);
+    for(int x = -2; x <= 2; ++x)
+    {
+        for(int y = -2; y <= 2; ++y)
+        {
+            float pcfDepth = texture(shadowMap, projCoords.xy + vec2(x, y) * texelSize).r; 
+            shadow += currentDepth - bias > pcfDepth  ? 1.0 : 0.0;        
+        }    
+    }
+    shadow /= 25.0;
+    
+    // keep the shadow at 0.0 when outside the far_plane region of the light's frustum.
+    if(projCoords.z > 1.0)
+        shadow = 0.0;
+        
+    return shadow;  
+
 
     return shadow;
 }
@@ -96,7 +116,7 @@ void main()
     // ambient
     vec3 ambient = 0.15 * color;
     // diffuse
-    vec3 lightDir = normalize(lightPos - fs_in.FragPos);
+    vec3 lightDir = normalize(lightPos - vec3(0.0, 0.0, 0.0));
     float diff = max(dot(lightDir, normal), 0.0);
     vec3 diffuse = diff * lightColor;
     // specular
@@ -106,11 +126,12 @@ void main()
     spec = pow(max(dot(normal, halfwayDir), 0.0), 64.0);
     vec3 specular = spec * lightColor;    
     // calculate shadow
-    float shadow = ShadowCalculation(fs_in.FragPosLightSpace, lightDir, fs_in.Normal);       
-    vec3 lighting = (ambient + (1.0 - shadow) * (diffuse + specular)) * color;    
+    float shadow = ShadowCalculation(fs_in.FragPosLightSpace, lightDir, fs_in.Normal);
+    vec3 lighting = (ambient + (1.0 - shadow) * (diffuse + specular)) * color;
     
     FragColor = vec4(lighting, 1.0) * mix (vec4(diffuseColor + ambientLight, 1.0), vec4(vertexColor, 1.0), 0.7);
     //color = mix (vec4(diffuseColor + ambientLight, 1.0), vec4(vertexColor, 1.0), 0.7);
 }
 #endif
+
 
