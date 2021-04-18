@@ -548,16 +548,25 @@ GameObject* ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray, GameO
 	float fHit = 0;
 
 	bool selected = false;
-	std::vector<GameObject*> list_of_childs;
-	EngineExternal->moduleScene->root->CollectChilds(list_of_childs);
-	for (std::vector<GameObject*>::iterator i = list_of_childs.begin(); i != list_of_childs.end(); ++i)
-	{
-		Component* comp = (*i)->GetComponent(Component::TYPE::MESH_RENDERER);
-		if (comp == nullptr)
-			continue;
-		C_MeshRenderer* mesh = static_cast<C_MeshRenderer*>(comp);
-		if (ray.Intersects(mesh->globalAABB, nHit, fHit))
-			canSelect[nHit] = mesh;
+	if (origin == nullptr) {
+		for (std::vector<C_MeshRenderer*>::iterator i = renderQueue.begin(); i != renderQueue.end(); ++i)
+		{
+			if (ray.Intersects((*i)->globalAABB, nHit, fHit))
+				canSelect[nHit] = (*i);
+		}
+	}
+	else {
+		std::vector<GameObject*> list_of_childs;
+		EngineExternal->moduleScene->root->CollectChilds(list_of_childs);
+		for (std::vector<GameObject*>::iterator i = list_of_childs.begin(); i != list_of_childs.end(); ++i)
+		{
+			Component* comp = (*i)->GetComponent(Component::TYPE::MESH_RENDERER);
+			if (comp == nullptr)
+				continue;
+			C_MeshRenderer* mesh = static_cast<C_MeshRenderer*>(comp);
+			if (ray.Intersects(mesh->globalAABB, nHit, fHit))
+				canSelect[nHit] = mesh;
+		}
 	}
 
 
@@ -595,7 +604,7 @@ GameObject* ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray, GameO
 	int repeat = 0;
 
 
-	while (repeat >= 0 && origin != nullptr)
+	while (repeat >= 0)
 	{
 		if(repeat==1)
 			distMap.erase(distMap.begin());
@@ -603,7 +612,7 @@ GameObject* ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray, GameO
 		{
 			gameobject_to_return = (*distMap.begin()).second->GetGO();
 		}
-		if (gameobject_to_return == origin)
+		if (gameobject_to_return == origin && origin != nullptr)
 			repeat = 1;
 		else
 			repeat = -1;
