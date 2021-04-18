@@ -56,7 +56,7 @@ void C_MeshRenderer::Update()
 		EngineExternal->moduleRenderer3D->renderQueueStencil.push_back(this);
 		EngineExternal->moduleRenderer3D->renderQueuePostStencil.push_back(this);
 	}
-	else
+	//else
 	{
 		EngineExternal->moduleRenderer3D->renderQueue.push_back(this);
 	}

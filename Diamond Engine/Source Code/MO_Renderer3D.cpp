@@ -290,6 +290,14 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 		(wireframe) ? glPolygonMode(GL_FRONT_AND_BACK, GL_FILL) : glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
 
+
+	DrawParticleSystems();
+	if (App->moduleCamera->editorCamera.drawSkybox)
+		skybox.DrawAsSkybox(&App->moduleCamera->editorCamera);
+
+	DebugLine(pickingDebug);
+	DrawDebugLines();
+
 	if (!renderQueueStencil.empty() && !renderQueuePostStencil.empty())
 	{
 		for (size_t i = 0; i < renderQueueStencil.size(); i++)
@@ -305,14 +313,6 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 		RenderStencilWithOrdering(true);
 	}
-
-	DrawParticleSystems();
-	if (App->moduleCamera->editorCamera.drawSkybox)
-		skybox.DrawAsSkybox(&App->moduleCamera->editorCamera);
-
-	DebugLine(pickingDebug);
-	DrawDebugLines();
-
 	App->moduleCamera->editorCamera.EndDraw();
 
 
@@ -339,6 +339,12 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 			RenderWithOrdering(true);
 		}
 
+
+		DrawParticleSystems();
+
+		if (gameCamera->drawSkybox)
+			skybox.DrawAsSkybox(gameCamera);
+
 		if (!renderQueueStencil.empty() && !renderQueuePostStencil.empty())
 		{
 			for (size_t i = 0; i < renderQueueStencil.size(); i++)
@@ -354,12 +360,6 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 			RenderStencilWithOrdering(true);
 		}
-
-		DrawParticleSystems();
-
-		if (gameCamera->drawSkybox)
-			skybox.DrawAsSkybox(gameCamera);
-
 		glClear(GL_DEPTH_BUFFER_BIT);
 		App->moduleGui->RenderCanvas2D();
 		gameCamera->EndDraw();
@@ -640,9 +640,9 @@ void ModuleRenderer3D::RenderWithOrdering(bool rTex)
 {
 	if (renderQueueMap.empty())
 		return;
-	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
-	glDisable(GL_STENCIL_TEST);
-	glStencilMask(0xFF);
+	//glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+	//glDisable(GL_STENCIL_TEST);
+	//glStencilMask(0x00);
 
 	for (auto i = renderQueueMap.rbegin(); i != renderQueueMap.rend(); ++i)
 	{
@@ -660,42 +660,260 @@ void ModuleRenderer3D::RenderStencilWithOrdering(bool rTex)
 {
 	if (renderQueueMapStencil.empty())
 		return;
-	glEnable(GL_STENCIL_TEST);
-	glStencilFunc(GL_ALWAYS, 1, 0xFF);
-	glStencilMask(0xFF);
+
+	/*
+	{//Old Code
+
+		glEnable(GL_STENCIL_TEST);
+		glStencilFunc(GL_ALWAYS, 1, 0xFF);
+		glStencilMask(0xFF);
 
 
 
-	for (auto i = renderQueueMapPostStencil.rbegin(); i != renderQueueMapPostStencil.rend(); ++i)
-	{
-		// Get the range of the current key
-		auto range = renderQueueMapPostStencil.equal_range(i->first);
+		for (auto i = renderQueueMapPostStencil.rbegin(); i != renderQueueMapPostStencil.rend(); ++i)
+		{
+			// Get the range of the current key
+			auto range = renderQueueMapPostStencil.equal_range(i->first);
 
-		// Now render out that whole range
-		for (auto d = range.first; d != range.second; ++d)
-			d->second->RenderMesh(rTex);
+			// Now render out that whole range
+			for (auto d = range.first; d != range.second; ++d)
+				d->second->RenderMesh(rTex);
+		}
+		renderQueueMapPostStencil.clear();
+
+		glDisable(GL_DEPTH_TEST);
+		glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+		glStencilMask(0x00);
+
+		for (auto i = renderQueueMapStencil.rbegin(); i != renderQueueMapStencil.rend(); ++i)
+		{
+			// Get the range of the current key
+			auto range = renderQueueMapStencil.equal_range(i->first);
+
+			// Now render out that whole range
+			for (auto d = range.first; d != range.second; ++d)
+				d->second->RenderMeshStencil(rTex);
+		}
+		renderQueueMapStencil.clear();
+
+		glEnable(GL_DEPTH_TEST);
+		glStencilFunc(GL_ALWAYS, 0, 0xFF);
+		glStencilMask(0xFF);
+		glDisable(GL_STENCIL_TEST);
+
 	}
-	renderQueueMapPostStencil.clear();
+	*/
 
-	glDisable(GL_DEPTH_TEST);
-	glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
-	glStencilMask(0x00);
+	/*
+	{ //Old Code / New Code hybrid (try to make depth work with)
+		glEnable(GL_STENCIL_TEST);
+		glStencilFunc(GL_ALWAYS, 1, 0xFF);
+		glStencilMask(0xFF);
 
-	for (auto i = renderQueueMapStencil.rbegin(); i != renderQueueMapStencil.rend(); ++i)
-	{
-		// Get the range of the current key
-		auto range = renderQueueMapStencil.equal_range(i->first);
 
-		// Now render out that whole range
-		for (auto d = range.first; d != range.second; ++d)
-			d->second->RenderMeshStencil(rTex);
+
+		for (auto i = renderQueueMapPostStencil.rbegin(); i != renderQueueMapPostStencil.rend(); --i)
+		{
+			// Get the range of the current key
+			auto range = renderQueueMapPostStencil.equal_range(i->first);
+
+			// Now render out that whole range
+			for (auto d = range.first; d != range.second; ++d)
+				d->second->RenderMesh(rTex);
+		}
+		renderQueueMapPostStencil.clear();
+
+		//glDisable(GL_DEPTH_TEST);
+		glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+		glStencilMask(0x00);
+		//glDepthFunc(GL_GREATER);
+
+		for (auto i = renderQueueMapStencil.rbegin(); i != renderQueueMapStencil.rend(); ++i)
+		{
+			// Get the range of the current key
+			auto range = renderQueueMapStencil.equal_range(i->first);
+
+			// Now render out that whole range
+			for (auto d = range.first; d != range.second; ++d)
+				d->second->RenderMeshStencil(rTex);
+		}
+		renderQueueMapStencil.clear();
+
+		//glEnable(GL_DEPTH_TEST);
+		glStencilFunc(GL_ALWAYS, 0, 0xFF);
+		glStencilMask(0xFF);
+		glDisable(GL_STENCIL_TEST);
+		//glDepthFunc(GL_LESS);
 	}
-	renderQueueMapStencil.clear();
+	*/
 
-	glEnable(GL_DEPTH_TEST);
-	glStencilFunc(GL_ALWAYS, 0, 0xFF);
-	glStencilMask(0xFF);
-	glDisable(GL_STENCIL_TEST);
+	/*
+	{//Hybrid code solving depth between stencils ?? todo
+
+		//glStencilMask(0x00); //DO not write to the stencil mask
+
+		//for (auto i = renderQueueMapPostStencil.rbegin(); i != renderQueueMapPostStencil.rend(); ++i)
+		//{
+		//	// Get the range of the current key
+		//	auto range = renderQueueMapPostStencil.equal_range(i->first);
+
+		//	// Now render out that whole range
+		//	for (auto d = range.first; d != range.second; ++d)
+		//		d->second->RenderMesh(rTex);
+		//}
+		//renderQueueMapPostStencil.clear();
+
+		glEnable(GL_DEPTH_TEST);
+		glEnable(GL_STENCIL_TEST);
+		glClear(GL_STENCIL_BUFFER_BIT);
+		glClearStencil(0.0);
+		glStencilOp(GL_KEEP,GL_REPLACE, GL_KEEP); //only write into the stencil mask as 1 the fragments that do not pass the depth test
+		glStencilFunc(GL_ALWAYS, 1, 0xFF);
+
+		//Only enable writting to the stencil buffer, no depth or color
+		glStencilMask(0xFF);//enable writting to the stencil buffer
+		glDepthMask(GL_FALSE);
+		glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
+
+
+		for (auto i = renderQueueMapStencil.rbegin(); i != renderQueueMapStencil.rend(); ++i)
+		{
+			// Get the range of the current key
+			auto range = renderQueueMapStencil.equal_range(i->first);
+
+			// Now render out that whole range
+			for (auto d = range.first; d != range.second; ++d)
+				d->second->RenderMeshStencil(rTex);
+		}
+
+		
+												   //Only enable writting to the depth and color buffer, not stencil
+		glStencilMask(0x00);
+		glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+		glDepthMask(GL_TRUE);
+		glClear(GL_DEPTH_BUFFER_BIT);
+		glClearDepth(1.0);
+		//glDisable(GL_DEPTH_TEST);
+		//glClear(GL_DEPTH_BUFFER_BIT);
+		glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE); //only write into the color & depth masks fragments that do pass the depth test and pass the stencil
+		glStencilFunc(GL_EQUAL, 1, 0xFF);
+
+		for (auto i = renderQueueMapStencil.rbegin(); i != renderQueueMapStencil.rend(); ++i)
+		{
+			// Get the range of the current key
+			auto range = renderQueueMapStencil.equal_range(i->first);
+
+			// Now render out that whole range
+			for (auto d = range.first; d != range.second; ++d)
+				d->second->RenderMeshStencil(rTex);
+		}
+		
+		
+		renderQueueMapStencil.clear();
+		glDisable(GL_STENCIL_TEST);
+		glDisable(GL_DEPTH_TEST);
+
+	}
+	*/
+
+	///*
+	{//Hybrid code final?
+		glEnable(GL_STENCIL_TEST);
+		glClear(GL_STENCIL_BUFFER_BIT);
+		//1. First we mask the silouhettes of the objects that will be drawn as stencil
+
+		glStencilFunc(GL_ALWAYS, 1, 0xFF);
+		glStencilOp(GL_KEEP, GL_REPLACE, GL_KEEP); //only write into the stencil mask as 1 the fragments that do not pass the depth test
+		glDepthFunc(GL_LEQUAL);
+		//Only enable writting to the stencil buffer, no depth or color
+		glStencilMask(0xFF);//enable writting to the stencil buffer
+		glDepthMask(GL_FALSE);
+		glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
+
+
+		for (auto i = renderQueueMapStencil.rbegin(); i != renderQueueMapStencil.rend(); ++i)
+		{
+			// Get the range of the current key
+			auto range = renderQueueMapStencil.equal_range(i->first);
+
+			// Now render out that whole range
+			for (auto d = range.first; d != range.second; ++d)
+				d->second->RenderMeshStencil(rTex);
+		}
+
+		//==================================================================
+		//2. We then draw the stencil objects in front of the mask
+
+		glStencilFunc(GL_NOTEQUAL, 0, 0xFF);
+		glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);//TODO original is keep keep replace //only write into the color & depth masks fragments that do pass the depth test and pass the stencil
+		
+		//We now want to draw on the color & depth buffers takin into account the stencil (without changing it)
+		glStencilMask(0x00);//disable writting to the stencil buffer
+		glDepthMask(GL_TRUE);
+		glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+		glClear(GL_DEPTH_BUFFER_BIT);
+		glDepthFunc(GL_LESS);
+
+		for (auto i = renderQueueMapStencil.rbegin(); i != renderQueueMapStencil.rend(); ++i)
+		{
+			// Get the range of the current key
+			auto range = renderQueueMapStencil.equal_range(i->first);
+
+			// Now render out that whole range
+			for (auto d = range.first; d != range.second; ++d)
+				d->second->RenderMeshStencil(rTex);
+		}
+		
+		
+		//==================================================================
+		//Clear(only the needed ones) & reset buffers to their normal state
+		renderQueueMapStencil.clear();
+		glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+		glEnable(GL_DEPTH_TEST);
+		glDepthMask(GL_TRUE);
+		glDepthFunc(GL_LESS);
+		glStencilMask(0xFF);//enable writting to the stencil buffer
+		glDisable(GL_STENCIL_TEST);
+		glClear(GL_STENCIL_BUFFER_BIT);
+	}
+	//*/
+
+	/*
+	{//New Code () only using depth testing -> same result
+
+
+
+		glDepthFunc(GL_GREATER);
+		glDepthMask(GL_FALSE);
+		for (auto i = renderQueueMapStencil.rbegin(); i != renderQueueMapStencil.rend(); ++i)
+		{
+			// Get the range of the current key
+			auto range = renderQueueMapStencil.equal_range(i->first);
+
+			// Now render out that whole range
+			for (auto d = range.first; d != range.second; ++d)
+				d->second->RenderMeshStencil(rTex);
+		}
+		renderQueueMapStencil.clear();
+		glDepthFunc(GL_LESS);
+		glDepthMask(GL_TRUE);
+
+		for (auto i = renderQueueMapPostStencil.rbegin(); i != renderQueueMapPostStencil.rend(); ++i)
+		{
+			// Get the range of the current key
+			auto range = renderQueueMapPostStencil.equal_range(i->first);
+
+			// Now render out that whole range
+			for (auto d = range.first; d != range.second; ++d)
+				d->second->RenderMesh(rTex);
+		}
+		renderQueueMapPostStencil.clear();
+
+	}
+	*/
+
+
+
 
 }
 
