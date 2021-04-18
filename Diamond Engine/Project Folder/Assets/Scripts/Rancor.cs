@@ -143,6 +143,7 @@ public class Rancor : DiamondComponent
     public GameObject boss_bar = null;
     public GameObject rancor_mesh = null;
     private float damaged = 0.0f;
+    private float limbo_health = 0.0f;
 
     private bool start = false;
 
@@ -165,7 +166,7 @@ public class Rancor : DiamondComponent
         dieTime = Animator.GetAnimationDuration(gameObject, "RN_Die") - 0.016f;
 
         Counter.SumToCounterType(Counter.CounterTypes.RANCOR);
-        maxHealthPoints = healthPoints;
+        limbo_health = maxHealthPoints = healthPoints;
         damaged = 0.0f;
     }
 
@@ -537,10 +538,11 @@ public class Rancor : DiamondComponent
                 UpdateDie();
                 break;
         }
-
+        limbo_health = Mathf.Lerp(limbo_health, healthPoints, 0.01f);
         if (boss_bar != null)
         {
             boss_bar.GetComponent<Material>().SetFloatUniform("length_used", healthPoints / maxHealthPoints);
+            boss_bar.GetComponent<Material>().SetFloatUniform("limbo", limbo_health / maxHealthPoints);
         }
         if (damaged > 0.01f)
         {
