@@ -26,6 +26,7 @@
 #include "CO_Navigation.h"
 #include "CO_DirectionalLight.h"
 #include "CO_NavMeshAgent.h"
+#include "CO_StencilMaterial.h"
 
 #include"MO_Scene.h"
 
@@ -209,6 +210,9 @@ Component* GameObject::AddComponent(Component::TYPE _type, const char* params)
 		break;
 	case Component::TYPE::NAVMESHAGENT:
 		ret = new C_NavMeshAgent(this);
+		break;
+	case Component::TYPE::STENCIL_MATERIAL:
+		ret = new C_StencilMaterial(this);
 		break;
 	}
 

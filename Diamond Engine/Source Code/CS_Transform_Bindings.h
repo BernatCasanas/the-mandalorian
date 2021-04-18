@@ -386,6 +386,17 @@ bool CompareTag(MonoObject* cs_gameObject, MonoString* cs_tag)
 	return false;
 }
 
+MonoObject* RayCast(MonoObject* cs_Position, MonoObject* cs_Direction, float MaxDistance)
+{
+	float3 pos = M_MonoManager::UnboxVector(cs_Position);
+	float3 dir = M_MonoManager::UnboxVector(cs_Direction);
+
+	GameObject* ret = EngineExternal->modulePhysics->ShootRay(pos, dir, MaxDistance);
+	if (ret == nullptr)
+		return nullptr;
+	return EngineExternal->moduleMono->GoToCSGO(ret);
+}
+
 MonoObject* CreatePrefab(MonoString* prefabPath, MonoObject* position, MonoObject* rotation, MonoObject* scale)
 {
 	if (prefabPath == nullptr)
