@@ -4,6 +4,7 @@
 #include "PE_Spawn_Area.h"
 #include "PE_Spawn_Cone.h"
 #include "PE_Spawn_Sphere.h"
+#include "PE_Spawn_Circumference.h"
 
 #include "CO_Transform.h"
 #include "MathGeoLib/include/Math/float4x4.h"
@@ -236,6 +237,9 @@ PE_SpawnShapeBase* PE_Shape::CreateSpawnShape(PE_SPAWN_SHAPE_TYPE newType)
 	case PE_SPAWN_SHAPE_TYPE::CONE:
 		newShape = new PE_SpawnShapeCone();
 		break;
+	case PE_SPAWN_SHAPE_TYPE::CIRCUMFERENCE:
+		newShape = new PE_SpawnShapeCircumference();
+		break;
 	case PE_SPAWN_SHAPE_TYPE::MAX:
 		break;
 	default:
@@ -258,6 +262,9 @@ void PE_Shape::GetShapeTypeString(PE_SPAWN_SHAPE_TYPE newType, std::string& out)
 		break;
 	case PE_SPAWN_SHAPE_TYPE::CONE:
 		out = "CONE";
+		break;
+	case PE_SPAWN_SHAPE_TYPE::CIRCUMFERENCE:
+		out = "CIRCUMFERENCE";
 		break;
 	case PE_SPAWN_SHAPE_TYPE::MAX:
 		break;
