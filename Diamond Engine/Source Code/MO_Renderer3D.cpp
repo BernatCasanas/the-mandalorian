@@ -539,7 +539,7 @@ void ModuleRenderer3D::DebugLine(LineSegment& line)
 }
 #endif // !STANDALONE
 
-GameObject* ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray, GameObject* origin)
+void ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray)
 {
 	pickingDebug = ray;
 
@@ -548,25 +548,10 @@ GameObject* ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray, GameO
 	float fHit = 0;
 
 	bool selected = false;
-	if (origin == nullptr) {
-		for (std::vector<C_MeshRenderer*>::iterator i = renderQueue.begin(); i != renderQueue.end(); ++i)
-		{
-			if (ray.Intersects((*i)->globalAABB, nHit, fHit))
-				canSelect[nHit] = (*i);
-		}
-	}
-	else {
-		std::vector<GameObject*> list_of_childs;
-		EngineExternal->moduleScene->root->CollectChilds(list_of_childs);
-		for (std::vector<GameObject*>::iterator i = list_of_childs.begin(); i != list_of_childs.end(); ++i)
-		{
-			Component* comp = (*i)->GetComponent(Component::TYPE::MESH_RENDERER);
-			if (comp == nullptr)
-				continue;
-			C_MeshRenderer* mesh = static_cast<C_MeshRenderer*>(comp);
-			if (ray.Intersects(mesh->globalAABB, nHit, fHit))
-				canSelect[nHit] = mesh;
-		}
+	for (std::vector<C_MeshRenderer*>::iterator i = renderQueue.begin(); i != renderQueue.end(); ++i)
+	{
+		if (ray.Intersects((*i)->globalAABB, nHit, fHit))
+			canSelect[nHit] = (*i);
 	}
 
 
@@ -600,28 +585,24 @@ GameObject* ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray, GameO
 	}
 	canSelect.clear();
 
+
+#ifndef STANDALONE
+
 	GameObject* gameobject_to_return = nullptr;
-	int repeat = 0;
-
-
-	while (repeat >= 0)
+	if (distMap.begin() != distMap.end())
 	{
-		if(repeat==1)
-			distMap.erase(distMap.begin());
-		if (distMap.begin() != distMap.end())
-		{
-			gameobject_to_return = (*distMap.begin()).second->GetGO();
-		}
-		if (gameobject_to_return == origin && origin != nullptr)
-			repeat = 1;
-		else
-			repeat = -1;
+		App->moduleEditor->SetSelectedGO((*distMap.begin()).second->GetGO());
+		selected = true;
 	}
 	
+	//If nothing is selected, set selected GO to null
+	if (!selected)
+		App->moduleEditor->SetSelectedGO(nullptr);
+
+#endif // !STANDALONE
 
 	distMap.clear();
 
-	return gameobject_to_return;
 }
 
 void ModuleRenderer3D::RenderWithOrdering(bool rTex)

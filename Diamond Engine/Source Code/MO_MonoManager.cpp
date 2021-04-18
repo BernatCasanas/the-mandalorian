@@ -214,7 +214,6 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.GameObject::SetParent", CS_SetParent);
 	mono_add_internal_call("DiamondEngine.GameObject::GetUid", GetUid);
 	mono_add_internal_call("DiamondEngine.GameObject::AssignLibraryTextureToMaterial", AssignLibraryTextureToMaterial);
-	mono_add_internal_call("DiamondEngine.GameObject::RayCast", RayCast);
 
 #pragma region Animator
 	mono_add_internal_call("DiamondEngine.Animator::Play", Play);
