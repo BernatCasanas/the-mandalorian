@@ -1680,13 +1680,14 @@
                     "Active": true,
                     "ScriptName": "SHOP",
                     "player": 1948877894,
-                    "shopUI": 1993131308,
+                    "shopUI": 1528787933,
                     "hud": 1251820939,
                     "textPopUp": 316970805,
                     "item1": 1324189369,
                     "item2": 703005603,
                     "item3": 985827193,
                     "item4": 1155932994,
+                    "currency": 790598962,
                     "interactionRange": 2,
                     "autoGenerateItems": true,
                     "opening": true
@@ -1694,14 +1695,47 @@
             ]
         },
         {
-            "name": "PanelBG",
+            "name": "Shop",
             "tag": "Untagged",
             "layer": "Default",
             "Active": false,
             "Position": [
+                -7.7241191864013672,
+                -1.0262577533721924,
+                5.2182931900024414
+            ],
+            "Rotation": [
                 0,
                 0,
-                0
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1528787933,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1827275921,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "PanelBG",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                7.7241191864013672,
+                1.0262577533721924,
+                -5.2182931900024414
             ],
             "Rotation": [
                 0,
@@ -1718,7 +1752,7 @@
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1827275921,
+            "ParentUID": 1528787933,
             "Components": [
                 {
                     "Type": 1,
@@ -3870,11 +3904,11 @@
             "name": "Background",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": false,
+            "Active": true,
             "Position": [
-                0,
-                0,
-                0
+                7.7241191864013672,
+                1.0262577533721924,
+                -5.2182931900024414
             ],
             "Rotation": [
                 0,
@@ -3891,7 +3925,7 @@
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1827275921,
+            "ParentUID": 1528787933,
             "Components": [
                 {
                     "Type": 1,
@@ -12782,7 +12816,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -12834,7 +12874,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -12886,7 +12932,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -13020,7 +13072,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -14106,7 +14164,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -14158,7 +14222,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -14243,7 +14313,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -14361,7 +14437,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -14413,7 +14495,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -14465,7 +14553,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -14517,7 +14611,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -14569,7 +14669,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -14621,7 +14727,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -14673,7 +14785,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -14725,7 +14843,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -14777,7 +14901,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -14829,7 +14959,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -14881,7 +15017,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -14933,7 +15075,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -14993,7 +15141,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -15045,7 +15199,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -15097,7 +15257,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -15149,7 +15315,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -15201,7 +15373,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -15253,7 +15431,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -15313,7 +15497,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -15365,7 +15555,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -15450,7 +15646,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -15502,7 +15704,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -15554,7 +15762,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -15606,7 +15820,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -15658,7 +15878,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -15743,7 +15969,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -15795,7 +16027,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -15847,7 +16085,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -15899,7 +16143,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -15951,7 +16201,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -16003,7 +16259,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -16055,7 +16317,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -16107,7 +16375,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -16159,7 +16433,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -16211,7 +16491,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -16263,7 +16549,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -16315,7 +16607,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -16400,7 +16698,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -16452,7 +16756,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -16504,7 +16814,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -16556,7 +16872,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -16608,7 +16930,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -16660,7 +16988,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -16712,7 +17046,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -16764,7 +17104,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -16816,7 +17162,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -16868,7 +17220,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -16920,7 +17278,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17005,7 +17369,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17057,7 +17427,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17109,7 +17485,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17161,7 +17543,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17213,7 +17601,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17265,7 +17659,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17317,7 +17717,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17402,7 +17808,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17454,7 +17866,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17506,7 +17924,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17558,7 +17982,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17610,7 +18040,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17662,7 +18098,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17714,7 +18156,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17766,7 +18214,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17818,7 +18272,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17870,7 +18330,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17922,7 +18388,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -17974,7 +18446,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -18059,7 +18537,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -18111,7 +18595,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -18163,7 +18653,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -18215,7 +18711,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -18267,7 +18769,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -18319,7 +18827,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -18371,7 +18885,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -18423,7 +18943,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -18475,7 +19001,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -18527,7 +19059,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -18579,7 +19117,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -18664,7 +19208,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -18743,7 +19293,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -18822,7 +19378,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -18901,7 +19463,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -18980,7 +19548,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -19059,7 +19633,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -19138,7 +19718,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -19217,7 +19803,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -19296,7 +19888,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -19375,7 +19973,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -19454,7 +20058,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -19533,7 +20143,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 18,
@@ -19645,7 +20261,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -21557,7 +22179,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -23098,6 +23726,10 @@
                                     "paShapeHasInitSpeed": true,
                                     "paShapePartSpeed": 0.10000000149011612,
                                     "paShapeRandSpeed": 0,
+                                    "PaShapeCircumferenceinnerRadius": 0,
+                                    "PaShapeCircumferenceoutterRadius": 0,
+                                    "PaShapeCircumferenceDirection": true,
+                                    "PaShapeCircumferenceAngle": 0,
                                     "paShapeType": 3,
                                     "PaShapeOffset": [
                                         0,
@@ -23157,7 +23789,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 18,

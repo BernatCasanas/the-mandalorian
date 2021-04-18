@@ -37,6 +37,7 @@ public class SHOP : DiamondComponent
     public GameObject item2;
     public GameObject item3;
     public GameObject item4;
+    public GameObject currency = null;
     public float interactionRange = 2.0f;
     public bool autoGenerateItems = true;
     public bool opening;
@@ -55,6 +56,8 @@ public class SHOP : DiamondComponent
             if (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_DOWN)
             {
                 CloseShop();
+                if (currency != null)
+                    currency.SetParent(hud);
             }
             //Debug 
             if (Input.GetKey(DEKeyCode.Alpha7) == KeyState.KEY_DOWN)
@@ -73,6 +76,8 @@ public class SHOP : DiamondComponent
                 if (Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN)
                 {
                     OpenShop();
+                    currency.SetParent(shopUI.parent);
+                    shopUI.SetParent(shopUI.parent);
                 }
             }
             else if (textPopUp.IsEnabled())
