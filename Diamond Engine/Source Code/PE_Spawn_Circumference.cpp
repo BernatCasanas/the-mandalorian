@@ -82,7 +82,7 @@ void PE_SpawnShapeCircumference::OnEditor(int emitterIndex)
 
 	if (useDirection)
 	{
-		suffixLabel = "Set Angle##PaShapeCone";
+		suffixLabel = "Set Angle##PaShapeCircumference";
 		suffixLabel += emitterIndex;
 		ImGui::DragFloat(suffixLabel.c_str(), &angle);
 	}
