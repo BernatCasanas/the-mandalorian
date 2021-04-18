@@ -87,6 +87,8 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.InternalCalls::Destroy", Destroy);
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreateBullet", CreateBullet);
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreatePrefab", CreatePrefab);
+	mono_add_internal_call("DiamondEngine.InternalCalls::RayCast", RayCast);
+
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreateUIPrefab", CreateUIPrefab);
 
 	mono_add_internal_call("DiamondEngine.InternalCalls::GetWalkablePointAround", GetWalkablePointAround);
