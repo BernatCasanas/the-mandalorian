@@ -13,6 +13,8 @@ public enum ShopItems
     ShIt_BOSSKSTRENGTH,
     ShIt_MASTERYODAASSITANCE,
     ShIt_GREEFPAYCHECK,
+    ShIt_BOUNTYHUNTERSKILLS,
+    ShIt_ANAKINKILLSTREAK,
     ShIt_MAX
 }
 
@@ -169,6 +171,24 @@ public class SHOP : DiamondComponent
                         Debug.Log("Bought Greef’s paycheck");
                         currency += 50;
                         PlayerResources.AddBoon(BOONS.BOON_GREEFPAYCHECK);
+                        ret = true;
+                    }
+                    break;
+                case ShopItems.ShIt_BOUNTYHUNTERSKILLS:
+                    if (currency >= (int)item.price_type)
+                    {
+                        Debug.Log("Bought Bounty’s hunter skills");
+                        currency -= (int)item.price_type;
+                        PlayerResources.AddBoon(BOONS.BOON_BOUNTYHUNTERSKILLS);
+                        ret = true;
+                    }
+                    break;
+                case ShopItems.ShIt_ANAKINKILLSTREAK:
+                    if (currency >= (int)item.price_type)
+                    {
+                        Debug.Log("Bought Anakin’s kill streak");
+                        currency -= (int)item.price_type;
+                        PlayerResources.AddBoon(BOONS.BOON_ANAKINKILLSTREAK);
                         ret = true;
                     }
                     break;
@@ -333,6 +353,12 @@ public class SHOP : DiamondComponent
             case ShopItems.ShIt_GREEFPAYCHECK:
                 if (PlayerResources.CheckBoon(BOONS.BOON_GREEFPAYCHECK)) return true;
                 else return false;
+            case ShopItems.ShIt_BOUNTYHUNTERSKILLS:
+                if (PlayerResources.CheckBoon(BOONS.BOON_BOUNTYHUNTERSKILLS)) return true;
+                else return false;
+            case ShopItems.ShIt_ANAKINKILLSTREAK:
+                if (PlayerResources.CheckBoon(BOONS.BOON_ANAKINKILLSTREAK)) return true;
+                else return false;
             default:
                 return false;
         }
@@ -361,13 +387,19 @@ public class SHOP : DiamondComponent
                 item.SetItem(type, ShopPrice.SHOP_EXPENSIVE, "Greedo’s quick shooter", "+30% fire rate on the primary weapon.");
                 break;
             case ShopItems.ShIt_BOSSKSTRENGTH:
-                item.SetItem(type, ShopPrice.SHOP_CHEAP, "Bossk’s strength", "-10% damage received.");
+                item.SetItem(type, ShopPrice.SHOP_AVERAGE, "Bossk’s strength", "-10% damage received.");
                 break;
             case ShopItems.ShIt_MASTERYODAASSITANCE:
                 item.SetItem(type, ShopPrice.SHOP_EXPENSIVE, "Master Yoda’s assistance", "Every kill counts +3 to combo.");
                 break;
             case ShopItems.ShIt_GREEFPAYCHECK:
                 item.SetItem(type, ShopPrice.SHOP_FREE, "Greef’s paycheck", "+50 coins.");
+                break;
+            case ShopItems.ShIt_BOUNTYHUNTERSKILLS:
+                item.SetItem(type, ShopPrice.SHOP_AVERAGE, "Bounty Hunter skills", "+2 gold when room is cleared.");
+                break;
+            case ShopItems.ShIt_ANAKINKILLSTREAK:
+                item.SetItem(type, ShopPrice.SHOP_AVERAGE, "Anakin’s kill streak", "+20% movement speed if combo is 50 or more.");
                 break;
         }
     }

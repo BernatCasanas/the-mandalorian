@@ -84,6 +84,7 @@ public class HUD : DiamondComponent
     float lastWeaponDecrementMultiplier = 1.0f;
     public float last_hp = 0;
     private bool hp_descending;
+    private bool anakinBoonApplied = false;
     public GameObject shooting_blink = null;
     private float shoot_time = 0.0f;
 
@@ -295,6 +296,22 @@ public class HUD : DiamondComponent
         ++comboNumber;
         currComboTime = 0.0f;
         comboDecrementMultiplier += 0.05f;
+        if (!anakinBoonApplied && PlayerResources.CheckBoon(BOONS.BOON_ANAKINKILLSTREAK))
+        {
+            if (comboNumber >= 50)
+            {
+                Core.instance.movementSpeed += Core.instance.movementSpeed * 0.2f;
+                anakinBoonApplied = true;
+            }
+        }
+        else if (anakinBoonApplied)
+        {
+            if (comboNumber < 50)
+            {
+                Core.instance.movementSpeed -= Core.instance.movementSpeed * 0.2f;
+                anakinBoonApplied = false;
+            }
+        }
     }
 
     bool UpdateCombo()

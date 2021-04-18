@@ -24,6 +24,12 @@ public class GameSceneManager : DiamondComponent
     {
         if (Counter.allEnemiesDead && rewardData == null)    // We need a scene manager :')
         {
+            if (PlayerResources.CheckBoon(BOONS.BOON_BOUNTYHUNTERSKILLS))
+            {
+                PlayerResources.AddRunCoins(2);
+                //TODO: Update hud coin text
+            }
+
             rewardData = rewardMenu.GenerateRewardPipeline();
             Debug.Log("Reward data texture id is " + rewardData.libraryTextureID + " and reward type is " + rewardData.resourceType);
 

@@ -506,9 +506,7 @@ public class StormTrooper : Enemy
         //Combo
         if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
         {
-            Core.instance.hud.GetComponent<HUD>().AddToCombo(100, 1.0f);
-            Core.instance.hud.GetComponent<HUD>().AddToCombo(100, 1.0f);
-            Core.instance.hud.GetComponent<HUD>().AddToCombo(100, 1.0f);
+            Core.instance.hud.GetComponent<HUD>().AddToCombo(300, 1.0f);
         }
 
         RemoveFromEnemyList();
