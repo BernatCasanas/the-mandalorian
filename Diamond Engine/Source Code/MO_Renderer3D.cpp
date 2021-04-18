@@ -284,11 +284,26 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 			float distance = App->moduleCamera->editorCamera.camFrustrum.pos.DistanceSq(renderQueue[i]->globalOBB.pos);
 			renderQueueMap.emplace(distance, renderQueue[i]);
 		}
-
 		//TODO: Make wireframe only affect scene window
 		(wireframe) ? glPolygonMode(GL_FRONT_AND_BACK, GL_LINE) : glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		RenderWithOrdering();
 		(wireframe) ? glPolygonMode(GL_FRONT_AND_BACK, GL_FILL) : glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	}
+
+	if (!renderQueueStencil.empty() && !renderQueuePostStencil.empty())
+	{
+		for (size_t i = 0; i < renderQueueStencil.size(); i++)
+		{
+			float distance = gameCamera->camFrustrum.pos.DistanceSq(renderQueueStencil[i]->globalOBB.pos);
+			renderQueueMapStencil.emplace(distance, renderQueueStencil[i]);
+		}
+		for (size_t i = 0; i < renderQueuePostStencil.size(); i++)
+		{
+			float distance = gameCamera->camFrustrum.pos.DistanceSq(renderQueuePostStencil[i]->globalOBB.pos);
+			renderQueueMapPostStencil.emplace(distance, renderQueuePostStencil[i]);
+		}
+
+		RenderStencilWithOrdering(true);
 	}
 
 	DrawParticleSystems();
@@ -337,7 +352,6 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 				renderQueueMapPostStencil.emplace(distance, renderQueuePostStencil[i]);
 			}
 
-			//TODO render stencil here
 			RenderStencilWithOrdering(true);
 		}
 
