@@ -80,3 +80,10 @@ void PlayHaptic(float strength, int length) {
 	}
 }
 
+int CS_GetControllerType()
+{
+	if (EngineExternal != nullptr)
+		return EngineExternal->moduleInput->GetControllerType();
+
+	return 0;
+}

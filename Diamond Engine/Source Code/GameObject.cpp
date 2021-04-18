@@ -517,3 +517,17 @@ bool GameObject::CompareTag(const char* _tag)
 {
 	return strcmp(tag, _tag) == 0;
 }
+
+GameObject* GameObject::GetChild(std::string childName)
+{
+	for (size_t i = 0; i < children.size(); i++)
+	{
+		if (children[i]->name == childName)
+			return children[i];
+
+		GameObject* child = children[i]->GetChild(childName);
+		
+		if (child != nullptr)
+			return child;
+	}
+}
