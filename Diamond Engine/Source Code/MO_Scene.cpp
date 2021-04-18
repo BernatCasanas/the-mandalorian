@@ -109,7 +109,7 @@ update_status M_Scene::Update(float dt)
 		DEConfig root_object(json_value_get_object(file));
 
 		JSON_Value* goArray = json_value_init_array();
-		App->moduleEditor->GetSelectedGO()->SaveToJson(json_value_get_array(goArray));
+		App->moduleEditor->GetSelectedGO()->SaveToJson(json_value_get_array(goArray), false);
 		json_object_set_value(root_object.nObj, "Game Objects", goArray);
 
 		//Save file 
