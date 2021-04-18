@@ -178,7 +178,7 @@ int M_ResourceManager::GenerateNewUID()
 
 void M_ResourceManager::NeedsDirsUpdate(AssetDir& dir)
 {
-	if (dir.lastModTime == App->moduleFileSystem->GetLastModTime(dir.importPath.c_str()))// && !dir.isDir  //if it is a folder and it is up to date
+	if (dir.lastModTime == App->moduleFileSystem->GetLastModTime(dir.importPath.c_str()) && dir.isDir)// && !dir.isDir  //if it is a folder and it is up to date
 		//|| (!dir.isDir && dir.lastModTime <= App->moduleFileSystem->GetLastModTime(dir.libraryPath.c_str()))) //or it is a file and it is 
 	{
 		for (unsigned int i = 0; i < dir.childDirs.size(); i++)
