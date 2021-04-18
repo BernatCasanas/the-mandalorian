@@ -2,21 +2,22 @@ using System;
 using System.Collections.Generic;
 using DiamondEngine;
 
-namespace DiamondEngine {
-	public class Skills
+namespace DiamondEngine
+{
+    public class Skills
     {
-        public String description=" ";
+        public String description = " ";
         public RewardType type_of_price = RewardType.REWARD_BESKAR;
         public int price = 0;
-		public virtual void Use()
-		{
-		}
+        public virtual void Use()
+        {
+        }
 
         public virtual void AssignCharacteristics()
         {
             description = "Sorry, but this skill is currently unavailable. Please wait for the next update.";
         }
-	}
+    }
 
     #region Mando Skills
 
@@ -276,11 +277,12 @@ namespace DiamondEngine {
         public override void Use()
         {
             //TODO: Priority
+            Core.instance.gameObject.GetComponent<PlayerHealth>().SetSkill("DAvoidDmg", 10); //10%
         }
 
         public override void AssignCharacteristics()
         {
-            description = "[NOT IMPLEMENTED] 10% chance to avoid damage";
+            description = "10% chance to avoid damage";
             price = 0;
             type_of_price = RewardType.REWARD_BESKAR;
         }
@@ -413,7 +415,7 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
-            if(Core.instance != null)
+            if (Core.instance != null)
             {
                 Core.instance.IncreaseNormalShootDamage(0.25f);
             }
@@ -457,7 +459,10 @@ namespace DiamondEngine {
     {
         public override void Use()
         {
+            //int newHP = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementMaxHpPercent(0.1f, true);
+
             //TODO: Priority
+            //Debug.Log("Secondary gun: Delay between uses reduced by 30%."); //Uncommenting that crashes the game
         }
 
         public override void AssignCharacteristics()
@@ -465,6 +470,11 @@ namespace DiamondEngine {
             description = "[NOT IMPLEMENTED] Delay between uses reduced by 30%";
             price = 0;
             type_of_price = RewardType.REWARD_BESKAR;
+        }
+
+        public float returnDelay(float originalDelay)
+        {
+            return 0.0f;
         }
     }
 

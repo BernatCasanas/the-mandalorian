@@ -103,6 +103,8 @@ public class Rancor : DiamondComponent
     private float meleeCH3ColliderTimer = 0.0f;
     private float meleeCH3ColliderActiveTimer = 0.0f;
 
+    private bool meleeHit3Haptic = false;
+
 
     //Projectile
     private float projectileTime = 0.0f;
@@ -122,6 +124,7 @@ public class Rancor : DiamondComponent
     private float handSlamTimerToActivate = 0.0f;
     private float handSlamTimeToActivate = 1.0f;
     private bool activateWave = false;
+    public float handSlamHapticStrenght = 10f;
 
     //Rush
     public float rushDamage = 10.0f;
@@ -135,6 +138,9 @@ public class Rancor : DiamondComponent
     private float rushStunDuration = 1.2f;
     private float rushStunTimer = 0.0f;
 
+    private bool startRush = false;
+
+
     //Die
     private float dieTime = 0.0f;
     private float dieTimer = 0.0f;
@@ -143,6 +149,7 @@ public class Rancor : DiamondComponent
     public GameObject boss_bar = null;
     public GameObject rancor_mesh = null;
     private float damaged = 0.0f;
+    private float limbo_health = 0.0f;
 
     private bool start = false;
 
@@ -159,13 +166,14 @@ public class Rancor : DiamondComponent
         handSlamTime = Animator.GetAnimationDuration(gameObject, "RN_HandSlam") - 0.016f;
 
         rushTime = Animator.GetAnimationDuration(gameObject, "RN_Rush") - 0.016f;
+        Debug.Log("RUSH TiME: "+ rushTime.ToString());
 
         //rushStunDuration = Animator.GetAnimationDuration(gameObject, "RN_RushRecover") - 0.016f;
 
         dieTime = Animator.GetAnimationDuration(gameObject, "RN_Die") - 0.016f;
 
         Counter.SumToCounterType(Counter.CounterTypes.RANCOR);
-        maxHealthPoints = healthPoints;
+        limbo_health = maxHealthPoints = healthPoints;
         damaged = 0.0f;
     }
 
@@ -537,10 +545,11 @@ public class Rancor : DiamondComponent
                 UpdateDie();
                 break;
         }
-
+        limbo_health = Mathf.Lerp(limbo_health, healthPoints, 0.01f);
         if (boss_bar != null)
         {
             boss_bar.GetComponent<Material>().SetFloatUniform("length_used", healthPoints / maxHealthPoints);
+            boss_bar.GetComponent<Material>().SetFloatUniform("limbo", limbo_health / maxHealthPoints);
         }
         if (damaged > 0.01f)
         {
@@ -682,6 +691,8 @@ public class Rancor : DiamondComponent
         LookAt(jumpAttackTarget);
 
         jumpDelayTimer = jumpDelayDuration;
+
+        meleeHit3Haptic = true;
     }
 
     private void UpdateMCHit3()
@@ -701,8 +712,18 @@ public class Rancor : DiamondComponent
 
                 InternalCalls.CreatePrefab("Library/Prefabs/376114835.prefab", pos, gameObject.transform.localRotation, gameObject.transform.localScale);
             }
+           
         }
 
+        if(meleeCH3Timer < 1.5f)
+        {
+            if (meleeHit3Haptic)
+            {
+                meleeHit3Haptic = false;
+                Input.PlayHaptic(0.8f, 500);
+                Debug.Log("Hpatic Jump");
+            }
+        }
 
         if (jumpDelayTimer > 0.0f)
         {
@@ -857,7 +878,6 @@ public class Rancor : DiamondComponent
             //handSlamHitBox.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, 3.14159f);
             //----
 
-            Input.PlayHaptic(30f, 1);
         }
 
         if (handSlamTimer < 0.6f)
@@ -865,15 +885,21 @@ public class Rancor : DiamondComponent
             if (handSlamHitBox == null)
                 return;
             handSlamHitBox.Enable(false);
-            if (activateWave)
-            {
-                InternalCalls.CreatePrefab("Library/Prefabs/1923485827.prefab", gameObject.transform.localPosition, gameObject.transform.localRotation, new Vector3(0.767f, 0.225f, 1.152f));
-                activateWave = false;
-            }
+
 
         }
 
-        
+        if (handSlamTimer < 0.6f)
+        {
+            if (activateWave)
+            {
+                InternalCalls.CreatePrefab("Library/Prefabs/1923485827.prefab", gameObject.transform.localPosition, gameObject.transform.localRotation, new Vector3(0.767f, 0.225f, 1.152f));
+                Input.PlayHaptic(.8f, 350);
+                activateWave = false;
+            }
+        }
+
+
         Debug.Log("Hand slam");
     }
 
@@ -908,8 +934,9 @@ public class Rancor : DiamondComponent
     {
         rushTimer = rushTime;
         Animator.Play(gameObject, "RN_Rush");
-        Audio.PlayAudio(gameObject, "Play_Rancor_Rush_Steps");
+        Audio.PlayAudio(gameObject, "Play_Rancor_Hand_Slam");
         targetDirection = Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition; //RANCOR CALCULATES RUSH DIRECTION
+        startRush = true;
 
     }
 
@@ -918,7 +945,15 @@ public class Rancor : DiamondComponent
     {
         Debug.Log("Rush");
 
-        gameObject.transform.localPosition += targetDirection.normalized * rushSpeed * Time.deltaTime; //ADD SPEED IN RUSH DIRECTION
+        if (rushTimer < 2.9f)
+        {
+            if (startRush)
+            {
+                Audio.PlayAudio(gameObject, "Play_Rancor_Rush_Steps");
+                startRush = false;
+            }
+            gameObject.transform.localPosition += targetDirection.normalized * rushSpeed * Time.deltaTime; //ADD SPEED IN RUSH DIRECTION
+        }
 
     }
 
