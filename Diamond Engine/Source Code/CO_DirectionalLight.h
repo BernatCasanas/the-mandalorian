@@ -42,4 +42,6 @@ private:
 	unsigned int depthMap;		//Depth texture
 
 	float3 lightColor;
+	float3 ambientLightColor;
+	float lightIntensity;
 };

@@ -15,7 +15,11 @@
 #include"MO_Window.h"
 
 const unsigned int SHADOW_WIDTH = 4096, SHADOW_HEIGHT = 4096;
-C_DirectionalLight::C_DirectionalLight(GameObject* _gm) : Component(_gm), orthoSize(10.0f, 10.0f), lightColor(float3::one)
+C_DirectionalLight::C_DirectionalLight(GameObject* _gm) : Component(_gm), 
+	orthoSize(10.0f, 10.0f), 
+	lightColor(float3::one), 
+	ambientLightColor(float3::one),
+	lightIntensity(1.0f)
 {
 	name = "Directional Light";
 
@@ -91,6 +95,21 @@ bool C_DirectionalLight::OnEditor()
 {
 	if (Component::OnEditor() == true)
 	{
+		ImGui::ColorPicker3("Color", lightColor.ptr());
+
+		ImGui::NewLine();
+
+		ImGui::ColorPicker3("Ambient color", ambientLightColor.ptr());
+
+		ImGui::NewLine();
+
+		ImGui::DragFloat("Light intensity", &lightIntensity, 0.1, 0.0f);
+
+		ImGui::NewLine();
+
+		if (ImGui::Button("Set light source", ImVec2(0, 50)))
+			EngineExternal->moduleRenderer3D->directLight = this;
+
 		ImGui::Image((ImTextureID)depthMap, ImVec2(250, 250), ImVec2(0, 1), ImVec2(1, 0));
 
 		if (ImGui::DragFloat2("Ortho size", orthoSize.ptr(), 0.001f))
@@ -98,11 +117,6 @@ bool C_DirectionalLight::OnEditor()
 			orthoFrustum.orthographicWidth = SHADOW_WIDTH / orthoSize.x;
 			orthoFrustum.orthographicHeight = SHADOW_HEIGHT / orthoSize.y;
 		}
-
-		ImGui::ColorPicker3("Color", lightColor.ptr());
-
-		if (ImGui::Button("Set light source", ImVec2(0, 50)))
-			EngineExternal->moduleRenderer3D->directLight = this;
 
 		return true;
 	}
@@ -117,15 +131,21 @@ void C_DirectionalLight::SaveData(JSON_Object* nObj)
 	DEConfig data(nObj);
 	data.WriteVector2("orthoSize", orthoSize.ptr());
 	data.WriteVector3("lightColor", lightColor.ptr());
+	data.WriteVector3("ambientLightColor", ambientLightColor.ptr());
+	data.WriteFloat("lightIntensity", lightIntensity);
 }
+
+
 void C_DirectionalLight::LoadData(DEConfig& nObj)
 {
 	Component::LoadData(nObj);
 
 	orthoSize = nObj.ReadVector2("orthoSize");
 	lightColor = nObj.ReadVector3("lightColor");
-
+	ambientLightColor = nObj.ReadVector3("ambientLightColor");
+	lightIntensity = nObj.ReadFloat("lightIntensity");
 }
+
 
 void C_DirectionalLight::StartPass()
 {
@@ -171,6 +191,12 @@ void C_DirectionalLight::PushLightUniforms(ResourceMaterial* material)
 
 	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightColor");
 	glUniform3fv(modelLoc, 1, &lightColor.x);
+
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "ambientLightColor");
+	glUniform3fv(modelLoc, 1, &ambientLightColor.x);
+
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightIntensity");
+	glUniform1f(modelLoc, lightIntensity);
 
 	//glUniform1i(glGetUniformLocation(material->shader->shaderProgramID, shadowMap), used_textures);
 
