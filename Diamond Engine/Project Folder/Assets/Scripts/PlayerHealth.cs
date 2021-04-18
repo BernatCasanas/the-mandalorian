@@ -16,6 +16,12 @@ public class PlayerHealth : DiamondComponent
     private float damaged = 0.0f;
     private float t = 0.0f;
 
+    public void Awake()
+    {
+        if (damage_screen != null)
+            damage_screen.GetComponent<Material>().SetFloatUniform("alpha", 1.0f);
+    }
+
     public void Update()
     {
         if (die && !DebugOptionsHolder.godModeActive)
