@@ -428,17 +428,16 @@ public class Bantha : Enemy
     {
         loadingTimer = loadingTime;
 
-        Vector3 visualFeedbackPos = chargePoint.transform.globalPosition;
-        visualFeedbackPos.x -= chargeLength / 2;
-        visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/662438418.prefab", visualFeedbackPos, chargePoint.transform.globalRotation, new Vector3(3.5f, 1.0f, chargeLength/10));
+        visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/1137197426.prefab", chargePoint.transform.globalPosition, chargePoint.transform.globalRotation, new Vector3(1.0f, 1.0f, 0.01f));
         Animator.Play(gameObject, "BT_Charge");
     }
     private void UpdateLoading()
     {
         LookAt(player.transform.globalPosition);
-        if(visualFeedback.transform.globalScale.z < chargeLength)
+        if(visualFeedback.transform.globalScale.z < 1.0)
         {
-            visualFeedback.transform.localScale += new Vector3(0.0f, 0.0f, 0.1f);
+            visualFeedback.transform.localScale = new Vector3(1.0f, 1.0f, Mathf.Lerp(visualFeedback.transform.localScale.z, 1.0f, Time.deltaTime * (loadingTime / loadingTimer)));
+            visualFeedback.transform.localRotation = gameObject.transform.globalRotation;
         }
     }
     #endregion
@@ -449,6 +448,7 @@ public class Bantha : Enemy
         chargeTimer = chargeLength/chargeSpeed;
         Animator.Play(gameObject, "BT_Run");
 
+        InternalCalls.Destroy(visualFeedback);
         Audio.PlayAudio(gameObject, "Play_Bantha_Attack");
         Audio.PlayAudio(gameObject, "Play_Bantha_Ramming");
         Audio.PlayAudio(gameObject, "Play_Footsteps_Bantha");

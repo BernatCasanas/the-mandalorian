@@ -1,19 +1,19 @@
 {
     "NavMesh": 1012432444,
     "EditorCameraPosition": [
-        36.310260772705078,
-        2.6269383430480957,
-        -0.1563345342874527
+        -22.824945449829102,
+        25.70344352722168,
+        21.387678146362305
     ],
     "EditorCameraZ": [
-        -0.99980181455612183,
-        0.011345927603542805,
-        0.016356466338038445
+        0.46310883760452271,
+        -0.68650281429290771,
+        -0.56057476997375488
     ],
     "EditorCameraY": [
-        0.011344410479068756,
-        0.99993568658828735,
-        -0.00018559124146122485
+        0.43723511695861816,
+        0.72712713479995728,
+        -0.52925568819046021
     ],
     "tags": [
         "Bantha"
@@ -49,67 +49,6 @@
                 {
                     "Type": 1,
                     "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Game Camera",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                28.337120056152344,
-                34.217071533203125,
-                -37.998661041259766
-            ],
-            "Rotation": [
-                0.28966295719146729,
-                -0.30951860547065735,
-                0.099594630300998688,
-                0.9002079963684082
-            ],
-            "Scale": [
-                0.9999997615814209,
-                1.999998927116394,
-                0.999927818775177
-            ],
-            "UID": 188616957,
-            "PrefabID": 0,
-            "DontDestroy": true,
-            "Static": false,
-            "ParentUID": 143570472,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 4,
-                    "Active": true,
-                    "fType": 1,
-                    "fSize": 13.260000228881836,
-                    "nearPlaneDist": 1,
-                    "farPlaneDist": 5000,
-                    "vFOV": 1.0471975803375244,
-                    "hFOV": 1.5521194934844971,
-                    "culling": false,
-                    "drawSkybox": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "CameraController",
-                    "x": 1,
-                    "y": 1,
-                    "z": 1,
-                    "smoothSpeed": 1,
-                    "zoomDesired": 0,
-                    "timer_easing_sec": 0,
-                    "timer": 0,
-                    "cornerTopLeftX": 0,
-                    "cornerTopLeftY": 0,
-                    "cornerBotRightX": 0,
-                    "cornerBotRightY": 0
                 }
             ]
         },
@@ -233,13 +172,13 @@
                     "mouseSens": 1,
                     "dashCD": 0.30000001192092896,
                     "dashDuration": 0.20000000298023224,
-                    "dashDistance": 4.75,
-                    "dashforce": 50,
+                    "dashSpeed": 0,
                     "fireRate": 0.15000000596046448,
                     "gadgetFireRate": 0,
                     "fireRateAfterDashRecoverRatio": 1.75,
                     "fireRateMultCap": 2,
-                    "grenadesFireRate": 0.125
+                    "lockInputs": true,
+                    "bulletDamage": 0
                 },
                 {
                     "Type": 13,
@@ -292,7 +231,6 @@
                     "RootBone UID": 940058511,
                     "MeshRendererUID": 379828154,
                     "Animations": [
-                        1169846379,
                         2130902709,
                         942859953,
                         720149964
@@ -309,9 +247,7 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "BoonSpawn",
-                    "boonsToSpawn": 1,
-                    "separation": 3.5
+                    "ScriptName": "BoonSpawn"
                 }
             ]
         },
@@ -2531,14 +2467,15 @@
                     "Active": true,
                     "ScriptName": "Bantha",
                     "player": 915476630,
-                    "detectionRange": 25,
+                    "detectionRange": 100,
                     "damage": 12,
                     "healthPoints": 300,
                     "stoppingDistance": 1,
+                    "coinDropPath": "Empty",
                     "slerpSpeed": 5,
                     "turretMode": false,
+                    "chargePoint": 1139584534,
                     "idleTime": 2,
-                    "dieTime": 3,
                     "tiredTime": 2,
                     "loadingTime": 2,
                     "timeBewteenStates": 1.5,
@@ -2546,8 +2483,8 @@
                     "runningSpeed": 7,
                     "chargeSpeed": 40,
                     "wanderRange": 6,
-                    "chargeRange": 10,
-                    "chargeLenght": 20
+                    "chargeRange": 7,
+                    "chargeLength": 14
                 },
                 {
                     "Type": 24,
@@ -4160,6 +4097,107 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
                     "MaterialUID": 1948688504
+                }
+            ]
+        },
+        {
+            "name": "ChargePoint",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0.44666337966918945,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1139584534,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1515177098,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Game Camera",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -12.169795989990234,
+                18.889739990234375,
+                -6.1936039924621582
+            ],
+            "Rotation": [
+                0.24263942241668701,
+                0.39558225870132446,
+                -0.10866371542215347,
+                0.87910920381546021
+            ],
+            "Scale": [
+                1,
+                0.9999997615814209,
+                0.9999997615814209
+            ],
+            "UID": 1553816270,
+            "PrefabID": 1330294312,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 143570472,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 4,
+                    "Active": true,
+                    "fType": 1,
+                    "fSize": 26.909999847412109,
+                    "nearPlaneDist": 1,
+                    "farPlaneDist": 100,
+                    "vFOV": 1.0471975803375244,
+                    "hFOV": 1.5521194934844971,
+                    "culling": false,
+                    "drawSkybox": true
+                },
+                {
+                    "Type": 12,
+                    "Active": true,
+                    "isDefaultListener": true,
+                    "masterVolume": 50
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "CameraController",
+                    "target": 915476630,
+                    "x": -10.300000190734863,
+                    "y": 9.3000001907348633,
+                    "z": -10,
+                    "smoothSpeed": 0.10000000149011612,
+                    "zoomDesired": 0.10000000149011612,
+                    "timer_easing_sec": 0,
+                    "timer": 0,
+                    "cornerTopLeftX": -100,
+                    "cornerTopLeftY": -100,
+                    "cornerBotRightX": 100,
+                    "cornerBotRightY": 100
                 }
             ]
         }
