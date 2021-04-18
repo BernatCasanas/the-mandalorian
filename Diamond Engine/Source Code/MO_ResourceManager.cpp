@@ -225,7 +225,7 @@ void M_ResourceManager::NeedsDirsUpdate(AssetDir& dir)
 			}
 
 		}
-		else
+		else if (dir.lastModTime > EngineExternal->moduleFileSystem->GetLastModTime(dir.libraryPath.c_str()))
 		{
 			//TODO: Then find modified files and create o recalulate .meta and library files
 			//SUPER IMPOIRTANT TODO DONT FFORGET, REGENERATE LIBRARY FILE BUT NEVER MODIFY META FILE
@@ -233,6 +233,10 @@ void M_ResourceManager::NeedsDirsUpdate(AssetDir& dir)
 
 			UpdateFile(dir);
 		}
+
+		/*if (EngineExternal->moduleFileSystem->GetLastModTime(dir.importPath.c_str()) != EngineExternal->moduleFileSystem->GetCreationTime(dir.importPath.c_str())
+				&& EngineExternal->moduleResources->ExistsOnLibrary(dir.importPath.c_str())
+				&& EngineExternal->moduleFileSystem->GetLastModTime(dir.importPath.c_str()) > EngineExternal->moduleFileSystem->GetLastModTime(dir.metaFileDir.c_str()))*/
 
 	}
 	fileCheckTime = 0.f;
@@ -609,11 +613,9 @@ void M_ResourceManager::UpdateFile(AssetDir& modDir)
 {
 	LOG(LogType::L_WARNING, "File %s was modified, reimporting", modDir.dirName.c_str());
 	ImportFile(modDir.importPath.c_str(), App->moduleResources->GetMetaType(modDir.metaFileDir.c_str()));
-
-	if(modDir.isDir)
-		modDir.lastModTime = App->moduleFileSystem->GetLastModTime(modDir.importPath.c_str());
-	else
-		modDir.UpdateMetaLastModTime();
+	modDir.lastModTime = App->moduleFileSystem->GetLastModTime(modDir.importPath.c_str());
+	//else
+		//modDir.UpdateMetaLastModTime();
 }
 
 void M_ResourceManager::UpdateFileAndMeta(const char* assetsPath)
