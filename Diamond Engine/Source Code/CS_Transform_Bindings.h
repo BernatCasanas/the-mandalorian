@@ -395,15 +395,22 @@ MonoObject* CreatePrefab(MonoString* prefabPath, MonoObject* position, MonoObjec
 	GameObject* prefab_object = PrefabImporter::LoadPrefab(library_path);
 	mono_free(library_path);
 
-	if(prefab_object != nullptr)
-	{ 
+	if (prefab_object != nullptr)
+	{
 		C_Transform* object_transform = dynamic_cast<C_Transform*>(prefab_object->GetComponent(Component::TYPE::TRANSFORM));
 
 		float3 posVector = M_MonoManager::UnboxVector(position);
 		Quat rotQuat = M_MonoManager::UnboxQuat(rotation);
-		float3 scaleVector = M_MonoManager::UnboxVector(scale);
+
+		float3 scaleVector;
+		if (scale != nullptr)
+			scaleVector = M_MonoManager::UnboxVector(scale);
+		else
+			scaleVector = prefab_object->transform->localScale;
 
 		prefab_object->transform->SetTransformMatrix(posVector, rotQuat, scaleVector);
+
+
 		prefab_object->transform->updateTransform = true;
 	}
 

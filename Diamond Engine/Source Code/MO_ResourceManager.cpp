@@ -318,7 +318,7 @@ Resource* M_ResourceManager::RequestResource(int uid, const char* libraryPath)
 
 				ret->LoadToMemory();
 			}
-			LOG(LogType::L_NORMAL, "Requested resource loaded as new"); //UNCOMMENTrec
+			//LOG(LogType::L_NORMAL, "Requested resource loaded as new"); //UNCOMMENTrec
 		}
 		else
 			LOG(LogType::L_ERROR, "Requested resource does not exist");
@@ -614,10 +614,6 @@ void M_ResourceManager::UpdateFile(AssetDir& modDir)
 		modDir.lastModTime = App->moduleFileSystem->GetLastModTime(modDir.importPath.c_str());
 	else
 		modDir.UpdateMetaLastModTime();
-}
-
-void M_ResourceManager::UpdateFileAndMeta(const char* assetsPath)
-{
 }
 
 Resource::Type M_ResourceManager::GetTypeFromAssetExtension(const char* assetFile) const

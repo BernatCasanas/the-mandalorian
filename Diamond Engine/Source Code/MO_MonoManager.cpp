@@ -149,8 +149,6 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.ParticleSystem::Stop", StopParticles);
 	mono_add_internal_call("DiamondEngine.ParticleSystem::get_playing", IsPlayingParticles);
 	mono_add_internal_call("DiamondEngine.ParticleSystem::get_looping", GetLoopingParticles);
-
-
 #pragma endregion
 
 
@@ -187,6 +185,9 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::CalculateRandomPath", CS_CalculateRandomPath);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::CalculatePath", CS_CalculatePath);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::GetDestination", CS_GetDestination);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::GetPointAt", CS_GetPointAt);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::GetPathSize", CS_GetPathSize);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::ClearPath", CS_ClearPath);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::get_speed", CS_GetSpeed);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::set_speed", CS_SetSpeed);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::get_angularSpeed", CS_GetAngularSpeed);
