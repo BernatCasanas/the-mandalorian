@@ -67,7 +67,7 @@ public:
 #endif // !STANDALONE
 
 	
-	GameObject* RayToMeshQueueIntersection(LineSegment& ray);
+	GameObject* RayToMeshQueueIntersection(LineSegment& ray, GameObject* origin = nullptr);
 
 	C_Camera* GetGameRenderTarget()const;
 	void SetGameRenderTarget(C_Camera* cam);
