@@ -1,0 +1,122 @@
+{
+    "assets_path": "Assets\/Prefabs\/Alert enemy.prefab",
+    "Game Objects": [
+        {
+            "name": "Alert enemy",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -0.086336135864257812,
+                1.6674346923828125,
+                0.017107963562011719
+            ],
+            "Rotation": [
+                -6.1532709594303014e-08,
+                -0.77161753177642822,
+                -6.1532709594303014e-08,
+                -0.63608676195144653
+            ],
+            "Scale": [
+                1.0000015497207642,
+                1,
+                1.0000009536743164
+            ],
+            "UID": 678454181,
+            "PrefabID": 987566116,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 693907959,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Alert",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -0.16187667846679688,
+                0,
+                -0.082670211791992188
+            ],
+            "Rotation": [
+                0,
+                0,
+                -1.0164395367051604e-20,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 415400327,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 678454181,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 0.070000000298023224,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1477516694.dds",
+                            "texUID": 1477516694,
+                            "paEmitterName": "Oju",
+                            "paLifeTime": [
+                                0.30000001192092896,
+                                0.30000001192092896
+                            ],
+                            "paSize": [
+                                0.10000000149011612,
+                                0.10000000149011612
+                            ],
+                            "paColor": [
+                                0.69202899932861328,
+                                0,
+                                0,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0.05000000074505806,
+                                    "paSizeOLTEndSize": 0.30000001192092896
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        }
+    ]
+}
