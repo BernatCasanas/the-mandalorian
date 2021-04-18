@@ -148,9 +148,7 @@ void ResourceMesh::RenderMesh(GLuint textureID, float3 color, bool renderTexture
 		glUniform3fv(modelLoc, 1, &color.x);
 
 		
-		float3 lightPosition = EngineExternal->moduleRenderer3D->directLight->GetPosition();
-		modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightPosition");
-		glUniform3fv(modelLoc, 1, &lightPosition.x);
+
 
 		if (boneTransforms.size() > 0)
 		{

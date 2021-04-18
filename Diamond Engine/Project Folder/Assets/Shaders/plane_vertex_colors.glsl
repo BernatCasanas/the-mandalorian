@@ -15,7 +15,6 @@ out VS_OUT {
 } vs_out;
 
 out vec3 vertexColor;
-out vec3 diffuseColor;
 
 uniform mat4 model_matrix;
 uniform mat4 view;
@@ -30,13 +29,11 @@ void main()
     vertexColor = colors;
     
     vs_out.FragPos = vec3(model_matrix * vec4(position, 1.0));
-    vs_out.Normal = transpose(inverse(mat3(model_matrix))) * normals;
+    vs_out.Normal = normalize(transpose(inverse(mat3(model_matrix))) * normals);
     vs_out.TexCoords = texCoord;
     vs_out.FragPosLightSpace = lightSpaceMatrix * vec4(vs_out.FragPos, 1.0);
 
 	vec3 fPosition = (model_matrix * vec4(position, 1.0)).xyz;
-    vec3 lightDirection = normalize(vec3(lightPosition - vec3(0.0, 0.0, 0.0)));
-    diffuseColor = vec3(max(dot(lightDirection, normals), 0) * lightColor);
 
     gl_Position = projection * view * model_matrix * vec4(position, 1.0);
 
@@ -46,7 +43,6 @@ void main()
 #ifdef fragment
 #version 330 core
 
-out vec4 FragColor;
 in VS_OUT {
     vec3 FragPos;
     vec3 Normal;
@@ -59,15 +55,13 @@ in vec3 diffuseColor;
 
 uniform sampler2D shadowMap;
 
-vec3 ambientLight = vec3(0.30, 0.15, 0.10);
-
 uniform vec3 lightPos;
 uniform vec3 viewPos;
 uniform vec3 lightColor;
 
 out vec4 color;
 
-
+vec3 ambientLight = vec3(0.43, 0.31, 0.29);
 
 float ShadowCalculation(vec4 fragPosLightSpace, vec3 lightDir, vec3 normal)
 {
@@ -107,24 +101,25 @@ float ShadowCalculation(vec4 fragPosLightSpace, vec3 lightDir, vec3 normal)
 
 void main()
 {
-    vec3 normal = normalize(fs_in.Normal);
     // diffuse
     vec3 lightDir = normalize(lightPos - vec3(0.0, 0.0, 0.0));
-    float diff = max(dot(lightDir, normal), 0.0);
+    float diff = max(dot(lightDir, fs_in.Normal), 0.0);
     vec3 diffuse = diff * lightColor;
     // specular
     vec3 viewDir = normalize(viewPos - fs_in.FragPos);
     float spec = 0.0;
     vec3 halfwayDir = normalize(lightDir + viewDir);  
-    spec = pow(max(dot(normal, halfwayDir), 0.0), 64.0);
-    vec3 specular = spec * lightColor;    
+    spec = pow(max(dot(fs_in.Normal, halfwayDir), 0.0), 64.0);
+    vec3 specular = spec * lightColor;
+        
     // calculate shadow
     float shadow = ShadowCalculation(fs_in.FragPosLightSpace, lightDir, fs_in.Normal);
-    vec3 lighting = (ambientLight + (1.0 - shadow) * (diffuse + specular));
+    vec3 lighting = (ambientLight + (1.0 - shadow) * (diffuse + specular)) * 1.6;
     
-    FragColor = vec4(lighting, 1.0) * mix (vec4(diffuseColor + ambientLight, 1.0), vec4(vertexColor, 1.0), 0.7);
+    color = vec4(lighting * vertexColor, 1.0);
     //color = mix (vec4(diffuseColor + ambientLight, 1.0), vec4(vertexColor, 1.0), 0.7);
 }
 #endif
+
 
 

@@ -163,6 +163,9 @@ void C_DirectionalLight::PushLightUniforms(ResourceMaterial* material)
 	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightPos");
 	glUniform3fv(modelLoc, 1, &gameObject->transform->position.x);
 
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightPosition");
+	glUniform3fv(modelLoc, 1, &gameObject->transform->position.x);
+
 	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "viewPos");
 	glUniform3fv(modelLoc, 1, EngineExternal->moduleRenderer3D->activeRenderCamera->GetPosition().ptr());
 
