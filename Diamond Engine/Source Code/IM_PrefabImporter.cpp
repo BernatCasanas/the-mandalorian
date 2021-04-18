@@ -80,6 +80,8 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 				if (sceneObjects[i]->prefabReference == parentID ||sceneObjects[i]->UID == parentID)
 				{
 					parent = EngineExternal->moduleScene->LoadGOData(jsonObject, parent);
+					parent->prefabReference = parent->UID;
+					prefabObjects[parent->prefabReference] = parent;
 					sceneObjects.push_back(parent);
 					parentSet = true;
 				}

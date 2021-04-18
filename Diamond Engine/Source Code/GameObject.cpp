@@ -502,7 +502,7 @@ void GameObject::SaveForPrefab(JSON_Array* goArray)
 
 	DEJson::WriteInt(goData, "UID", UID);
 	DEJson::WriteInt(goData, "PrefabID", prefabID);
-	DEJson::WriteInt(goData, "PrefabReference", prefabReference == 0 ? UID : prefabReference);
+	DEJson::WriteInt(goData, "PrefabReference", prefabReference);
 
 	DEJson::WriteBool(goData, "DontDestroy", dontDestroy);
 	DEJson::WriteBool(goData, "Static", isStatic);
@@ -620,6 +620,11 @@ void GameObject::ChangeParent(GameObject* newParent)
 	
 	parent = newParent;
 	parent->children.push_back(this);
+
+	if (parent->prefabID != 0u || parent->prefabReference != 0u)
+		prefabReference = UID;
+	else
+		prefabReference = 0u;
 
 	//TODO: This could be improved, you are setting up the local matrix 2 times
 	transform->localTransform = parent->transform->globalTransform.Inverted() * transform->globalTransform;
