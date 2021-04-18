@@ -9,9 +9,10 @@ public class PlayerHealth : DiamondComponent
     //Bo Katan’s resilience: each time you kill an enemy heal +1 HP.
     //0 means this boon is not working else heal the amount stored here
     public static int healWhenKillingAnEnemy { get; private set; }
+    public static int skill_chanceToAvoidDamage { get; set; }
     public GameObject character_mesh = null;
     public GameObject damage_screen = null;
-   
+
     private bool die = false;
     private float damaged = 0.0f;
     private float t = 0.0f;
@@ -20,6 +21,8 @@ public class PlayerHealth : DiamondComponent
     {
         if (damage_screen != null)
             damage_screen.GetComponent<Material>().SetFloatUniform("alpha", 1.0f);
+
+        skill_chanceToAvoidDamage = 0;
     }
 
     public void Update()
@@ -43,7 +46,7 @@ public class PlayerHealth : DiamondComponent
         }
         if (damage_screen != null)
         {
-            damage_screen.GetComponent<Material>().SetFloatUniform("alpha",1.0f);
+            damage_screen.GetComponent<Material>().SetFloatUniform("alpha", 1.0f);
             if (currHealth <= (currMaxHealth / 3))
                 damage_screen.GetComponent<Material>().SetFloatUniform("alpha", currHealth / (currMaxHealth / 3));
             t += Time.deltaTime;
@@ -190,7 +193,14 @@ public class PlayerHealth : DiamondComponent
     {
         if (DebugOptionsHolder.godModeActive)
             return currHealth;
-        if(PlayerResources.CheckBoon(BOONS.BOON_BOSSKSTRENGTH))
+
+        if (ChanceToAvoidDamage(skill_chanceToAvoidDamage))
+        {
+            Debug.Log("Damage missed!");
+            return currHealth; //We have avoided damage with a skill
+        }
+
+        if (PlayerResources.CheckBoon(BOONS.BOON_BOSSKSTRENGTH))
         {
             currHealth -= damage - (int)(damage * 0.1f);
         }
@@ -232,14 +242,27 @@ public class PlayerHealth : DiamondComponent
 
 
     }
-
     public static void ResetMaxAndCurrentHPToDefault()
     {
-
         healWhenKillingAnEnemy = 0;
 
         currHealth = currMaxHealth = 100;//TODO set the starting heath here for now
-
     }
 
+    //chanceToAvoid must be a number between 0 and 100 (%)
+    private bool ChanceToAvoidDamage(int chanceToAvoid)
+    {
+        Random rnd = new Random();
+        int randomNum = rnd.Next(1, 101);
+        return chanceToAvoid >= randomNum;
+    }
+
+    public void SetSkill(string skillName, float value = 0.0f)
+    {
+        Type t = SkillDictionary.skill_type[skillName];
+        if (skillName == "DAvoidDmg")
+        {
+            skill_chanceToAvoidDamage = (int)value;
+        }
+    }
 }
