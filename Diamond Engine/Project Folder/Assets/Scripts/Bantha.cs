@@ -54,6 +54,7 @@ public class Bantha : Enemy
     public float tiredTime = 2.0f;
     public float loadingTime = 2.0f;
     public float timeBewteenStates = 1.5f;
+    public float directionDecisionTime = 0.8f;
 
     //Speeds
     public float wanderSpeed = 3.5f;
@@ -71,6 +72,7 @@ public class Bantha : Enemy
     private float tiredTimer = 0.0f;
     private float loadingTimer = 0.0f;
     private float chargeTimer = 0.0f;
+    private float directionDecisionTimer = 0.0f;
 
     public void Awake()
     {
@@ -427,13 +429,25 @@ public class Bantha : Enemy
     private void StartLoading()
     {
         loadingTimer = loadingTime;
+        directionDecisionTimer = directionDecisionTime;
 
         visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/1137197426.prefab", chargePoint.transform.globalPosition, chargePoint.transform.globalRotation, new Vector3(1.0f, 1.0f, 0.01f));
         Animator.Play(gameObject, "BT_Charge");
     }
     private void UpdateLoading()
     {
-        LookAt(player.transform.globalPosition);
+        if (directionDecisionTimer > 0.0f)
+        {
+            directionDecisionTimer -= Time.deltaTime;
+            LookAt(player.transform.globalPosition);
+
+            if(directionDecisionTimer < 0.1f)
+            {
+                Vector3 direction = player.transform.globalPosition - gameObject.transform.globalPosition;
+                targetPosition = direction.normalized * chargeLength + gameObject.transform.globalPosition;
+                agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
+            }
+        }
         if(visualFeedback.transform.globalScale.z < 1.0)
         {
             visualFeedback.transform.localScale = new Vector3(1.0f, 1.0f, Mathf.Lerp(visualFeedback.transform.localScale.z, 1.0f, Time.deltaTime * (loadingTime / loadingTimer)));
@@ -453,9 +467,7 @@ public class Bantha : Enemy
         Audio.PlayAudio(gameObject, "Play_Bantha_Ramming");
         Audio.PlayAudio(gameObject, "Play_Footsteps_Bantha");
 
-        Vector3 direction = player.transform.globalPosition - gameObject.transform.globalPosition;
-        targetPosition = direction.normalized * chargeLength + gameObject.transform.globalPosition;      
-        agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
+       
     }
     private void UpdateCharge()
     {
