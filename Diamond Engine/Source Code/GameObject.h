@@ -27,6 +27,7 @@ public:
 	void RecursiveUIDRegeneration();
 	void RecursiveUIDRegenerationSavingReferences(std::map<uint, GameObject*>& gameObjects);
 	void UnlinkFromPrefab();
+	void OverrideGameObject(uint prefabID, bool prefabChild = false);
 
 	bool isActive() const;
 

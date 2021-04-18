@@ -28,6 +28,8 @@
 
 #include"MO_Scene.h"
 
+#include "IM_PrefabImporter.h"
+
 #include"MaykMath.h"
 #include"DEJsonSupport.h"
 #include <algorithm>
@@ -286,7 +288,34 @@ void GameObject::UnlinkFromPrefab()
 	}
 }
 
+void GameObject::OverrideGameObject(uint _prefabID, bool prefabChild)
+{
+	if (prefabID == _prefabID || prefabChild == true)
+	{
+		for (size_t i = components.size() - 1; i > 0 ; --i)
+		{
+			delete components[i];
+			components[i] = nullptr;
+			components.erase(components.end() - 1);
+		}
 
+		for (size_t i = 0; i < children.size(); i++)
+		{
+			children[i]->OverrideGameObject(_prefabID, true);
+		}
+
+		if(prefabID == _prefabID)
+			PrefabImporter::OverrideGameObject(prefabID, this);
+	}
+	else
+	{
+		for (size_t i = 0; i < children.size(); i++)
+		{
+			children[i]->OverrideGameObject(_prefabID, false);
+		}
+	}
+
+}
 
 bool GameObject::isActive() const
 {
@@ -393,26 +422,26 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
 
 	json_array_append_value(_goArray, goValue);
 
-	if (prefabID != 0)
+	if (prefabID != 0 && !saveAllData)
 	{
-		if (!saveAllData)
-		{
-			JSON_Value* childrenValue = json_value_init_array();
-			JSON_Array* childrenArray = json_value_get_array(childrenValue);
+		JSON_Value* childrenValue = json_value_init_array();
+		JSON_Array* childrenArray = json_value_get_array(childrenValue);
 
-			for (size_t i = 0; i < children.size(); i++)
+		for (size_t i = 0; i < children.size(); i++)
+		{
+			if (children[i]->prefabID != 0)
+			{
+				children[i]->SaveToJson(childrenArray, false);
+			}
+			else
 			{
 				children[i]->SaveForPrefab(childrenArray);
 			}
-
-			json_object_set_value(goData, "PrefabObjects", childrenValue);
 		}
-	}
 
-	if (prefabID != 0u)
-	{
-		if (!saveAllData)
-			return;
+		json_object_set_value(goData, "PrefabObjects", childrenValue);
+
+		return;
 	}
 
 	//TODO: Move inside component base
@@ -433,14 +462,7 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
 
 	for (size_t i = 0; i < children.size(); i++)
 	{
-		if (children[i]->prefabID != 0u)
-		{
-			children[i]->SaveToJson(_goArray, false);
-		}
-		else
-		{
-			children[i]->SaveToJson(_goArray, saveAllData);
-		}
+		children[i]->SaveToJson(_goArray, saveAllData);
 	}
 }
 

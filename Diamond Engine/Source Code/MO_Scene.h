@@ -57,6 +57,7 @@ public:
 	int holdUID;
 
 	GameObject* root;
+	int prefabToOverride;
 	std::vector<GameObject*> destroyList;
 	std::multimap<uint, SerializedField*> referenceMap;
 	std::multimap<uint, ActionToRealize*> navigationReferenceMap;

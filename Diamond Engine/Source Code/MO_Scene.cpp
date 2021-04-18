@@ -32,7 +32,7 @@
 
 extern bool LOADING_SCENE = false;
 M_Scene::M_Scene(Application* app, bool start_enabled) : Module(app, start_enabled), root(nullptr),
-defaultMaterial(nullptr), holdUID(0)
+defaultMaterial(nullptr), holdUID(0), prefabToOverride(0)
 {
 	current_scene[0] = '\0';
 	current_scene_name[0] = '\0';
@@ -88,6 +88,13 @@ update_status M_Scene::PreUpdate(float dt)
 		}
 		destroyList.clear();
 	}
+
+	if (prefabToOverride != 0)
+	{		
+		root->OverrideGameObject(prefabToOverride);
+		prefabToOverride = 0;
+	}
+
 	return update_status::UPDATE_CONTINUE;
 }
 
