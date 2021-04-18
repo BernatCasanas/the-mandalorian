@@ -13,6 +13,11 @@ public class EndScreen : DiamondComponent
 
 	private bool firstFrame = true;
 
+	public void Awake()
+    {
+		Counter.firstRun = false;
+	}
+
 	public void OnExecuteButton()
 	{
 		if (gameObject.Name == "Continue")

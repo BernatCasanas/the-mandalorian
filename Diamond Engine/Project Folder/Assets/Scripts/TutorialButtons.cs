@@ -15,8 +15,6 @@ public class TutorialButtons : DiamondComponent
 	{
         if (Counter.firstRun == true)
         {
-			Counter.firstRun = false;
-
 			RewardType type = RewardType.REWARD_BESKAR;	// We call a function, we get enum / boolean results
 
             if (type == RewardType.REWARD_BESKAR)	// Placeholder for PS controller
@@ -32,7 +30,6 @@ public class TutorialButtons : DiamondComponent
 				shootXbox.Enable(true);
 				groguXbox.Enable(true);
 			}
-
 		}
 	}
 
