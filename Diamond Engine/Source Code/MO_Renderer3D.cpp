@@ -235,6 +235,11 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 				renderQueueMap.emplace(distance, renderQueue[i]);
 			}
 
+			for (size_t i = 0; i < renderQueuePostStencil.size(); i++)
+			{
+				float distance = directLight->orthoFrustum.pos.DistanceSq(renderQueuePostStencil[i]->globalOBB.pos);
+				renderQueueMap.emplace(distance, renderQueuePostStencil[i]);
+			}
 
 			if (!renderQueueMap.empty())
 			{
