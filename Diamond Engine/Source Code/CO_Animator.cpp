@@ -184,10 +184,26 @@ void C_Animator::OnRecursiveUIDChange(std::map<uint, GameObject*> gameObjects)
 {
 	if (rootBoneUID != 0u)
 	{
-		std::map<uint, GameObject*>::iterator boneIt = gameObjects.find(rootBoneUID);
-		if (boneIt != gameObjects.end())
+		GameObject* _rootBone = nullptr;
+		std::map<uint, GameObject*>::iterator boneIt = gameObjects.begin();
+		for (boneIt; boneIt !=  gameObjects.end(); ++boneIt)
 		{
-			rootBone = boneIt->second;
+			if (boneIt->second->UID == rootBoneUID)
+				rootBone = _rootBone;
+		}
+
+		if (rootBone == nullptr)
+		{
+			boneIt = gameObjects.find(rootBoneUID);
+
+			if (boneIt != gameObjects.end())
+				rootBone = boneIt->second;
+		
+		}
+
+		//std::map<uint, GameObject*>::iterator boneIt = gameObjects.find(rootBoneUID);
+		if (rootBone != nullptr)
+		{
 			rootBoneUID = rootBone->UID;
 
 			boneMapping.clear();
@@ -195,14 +211,32 @@ void C_Animator::OnRecursiveUIDChange(std::map<uint, GameObject*> gameObjects)
 
 			if (meshRendererUID != 0u)
 			{
+				GameObject* meshRendererObject = nullptr;
 				std::map<uint, GameObject*>::iterator meshRendererIt = gameObjects.find(meshRendererUID);
-				if (meshRendererIt != gameObjects.end())
+
+				if (meshRendererIt == gameObjects.end())
 				{
-					C_MeshRenderer* meshRenderer = dynamic_cast<C_MeshRenderer*>(meshRendererIt->second->GetComponent(Component::TYPE::MESH_RENDERER));
+					for(meshRendererIt = gameObjects.begin();  meshRendererIt != gameObjects.end(); ++meshRendererIt)
+					{
+						if (meshRendererIt->second->UID == meshRendererUID)
+						{
+							meshRendererObject = meshRendererIt->second;
+							break;
+						}
+					}
+				}
+				else
+				{
+					meshRendererObject = meshRendererIt->second;
+				}
+
+				if (meshRendererObject != nullptr)
+				{
+					C_MeshRenderer* meshRenderer = dynamic_cast<C_MeshRenderer*>(meshRendererObject->GetComponent(Component::TYPE::MESH_RENDERER));
 					if (meshRenderer != nullptr)
 					{
 						meshRenderer->SetRootBone(rootBone);
-						meshRendererUID = meshRendererIt->second->UID;
+						meshRendererUID = meshRendererObject->UID;
 					}
 				}
 			}
