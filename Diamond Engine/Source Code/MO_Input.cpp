@@ -318,3 +318,11 @@ void ModuleInput::PlayHaptic(float strength, int length)
 	if (hapticEnabled)
 		SDL_HapticRumblePlay(haptic, strength, length);
 }
+
+int ModuleInput::GetControllerType()
+{
+	if (controller_player != nullptr)
+		return SDL_GameControllerGetType(controller_player);
+	else
+		return 0;
+}

@@ -25,6 +25,7 @@ public:
 	void GetAllFiles(AssetDir& file, const char* directory);
 	void GetAllFilesRecursive(AssetDir& _file);
 	uint64 GetLastModTime(const char* filename);
+	uint64 GetCreationTime(const char* filename);
 
 	static std::string OpenSaveAsDialog();
 	static std::string OpenFileSelectDialog();

@@ -131,3 +131,20 @@ void AssignLibraryTextureToMaterial(MonoObject* obj, int _id, MonoString* textur
 	}
 
 }
+
+MonoObject* CS_GetChild(MonoObject* obj, MonoString* name)
+{
+	if (obj == nullptr || name == nullptr)
+		return nullptr;
+
+	GameObject* cpp_gameObject = EngineExternal->moduleMono->GameObject_From_CSGO(obj);
+
+	char* cpp_name = mono_string_to_utf8(name);
+	GameObject* child = cpp_gameObject->GetChild(std::string(cpp_name));
+	mono_free(cpp_name);
+
+	if (child != nullptr)
+		return EngineExternal->moduleMono->GoToCSGO(child);
+
+	return nullptr;
+}

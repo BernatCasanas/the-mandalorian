@@ -82,11 +82,14 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.Input::GetRightAxisY", GetRightAxisY);
 	mono_add_internal_call("DiamondEngine.Input::GetRightAxisX", GetRightAxisX);
 	mono_add_internal_call("DiamondEngine.Input::PlayHaptic", PlayHaptic);
+	mono_add_internal_call("DiamondEngine.Input::GetControllerType", CS_GetControllerType);
 	// --- Controller gamepad end --- //
 
 	mono_add_internal_call("DiamondEngine.InternalCalls::Destroy", Destroy);
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreateBullet", CreateBullet);
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreatePrefab", CreatePrefab);
+	mono_add_internal_call("DiamondEngine.InternalCalls::RayCast", RayCast);
+
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreateUIPrefab", CreateUIPrefab);
 
 	mono_add_internal_call("DiamondEngine.InternalCalls::GetWalkablePointAround", GetWalkablePointAround);
@@ -214,6 +217,7 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.GameObject::SetParent", CS_SetParent);
 	mono_add_internal_call("DiamondEngine.GameObject::GetUid", GetUid);
 	mono_add_internal_call("DiamondEngine.GameObject::AssignLibraryTextureToMaterial", AssignLibraryTextureToMaterial);
+	mono_add_internal_call("DiamondEngine.GameObject::GetChild", CS_GetChild);
 
 #pragma region Animator
 	mono_add_internal_call("DiamondEngine.Animator::Play", Play);

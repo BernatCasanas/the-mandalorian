@@ -8,6 +8,7 @@ enum class PE_SPAWN_SHAPE_TYPE : int
 	AREA,
 	SPHERE,
 	CONE,
+	CIRCUMFERENCE,
 	MAX
 };
 
