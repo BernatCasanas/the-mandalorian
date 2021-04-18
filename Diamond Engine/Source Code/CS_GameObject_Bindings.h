@@ -47,61 +47,60 @@ void EnableCollider(MonoObject* cs_GameObject)
 {
 	GameObject* cpp_gameObject = EngineExternal->moduleMono->GameObject_From_CSGO(cs_GameObject);
 	
-	std::vector<Component*> boxCollider_info = cpp_gameObject->GetComponentsOfType(Component::TYPE::BOXCOLLIDER);
-	std::vector<Component*> meshCollider_info = cpp_gameObject->GetComponentsOfType(Component::TYPE::MESHCOLLIDER);
-	std::vector<Component*> sphereCollider_info = cpp_gameObject->GetComponentsOfType(Component::TYPE::SPHERECOLLIDER);
-	std::vector<Component*> capsuleCollider_info = cpp_gameObject->GetComponentsOfType(Component::TYPE::CAPSULECOLLIDER);
+	std::vector<Component*> iWantToDie;
+	std::vector<Component*> b;
 
-	for (int i = 0; i < boxCollider_info.size(); i++)
-	{
-		C_Collider* col = dynamic_cast<C_Collider*>(boxCollider_info[i]);
-		col->EnableShapeInContactTests();
-	}
-	for (int i = 0; i < meshCollider_info.size(); i++)
-	{
-		C_Collider* col = dynamic_cast<C_Collider*>(meshCollider_info[i]);
-		col->EnableShapeInContactTests();
-	}
-	for (int i = 0; i < sphereCollider_info.size(); i++)
-	{
-		C_Collider* col = dynamic_cast<C_Collider*>(sphereCollider_info[i]);
-		col->EnableShapeInContactTests();
-	}
-	for (int i = 0; i < capsuleCollider_info.size(); i++)
-	{
-		C_Collider* col = dynamic_cast<C_Collider*>(capsuleCollider_info[i]);
-		col->EnableShapeInContactTests();
-	}
+	b = cpp_gameObject->GetComponentsOfType(Component::TYPE::BOXCOLLIDER);
+	iWantToDie.insert(iWantToDie.end(), b.begin(), b.end());
+	b.clear();
 
+	b = cpp_gameObject->GetComponentsOfType(Component::TYPE::MESHCOLLIDER);
+	iWantToDie.insert(iWantToDie.end(), b.begin(), b.end());
+	b.clear();
+
+	b = cpp_gameObject->GetComponentsOfType(Component::TYPE::SPHERECOLLIDER);
+	iWantToDie.insert(iWantToDie.end(), b.begin(), b.end());
+	b.clear();
+
+	b = cpp_gameObject->GetComponentsOfType(Component::TYPE::CAPSULECOLLIDER);
+	iWantToDie.insert(iWantToDie.end(), b.begin(), b.end());
+	b.clear();
+
+
+	for (int i = 0; i < iWantToDie.size(); i++)
+	{
+		C_Collider* col = dynamic_cast<C_Collider*>(iWantToDie[i]);
+		col->EnableShapeInContactTests();
+	}
 }
 
 void DisableCollider(MonoObject* cs_GameObject)
 {
 	GameObject* cpp_gameObject = EngineExternal->moduleMono->GameObject_From_CSGO(cs_GameObject);
 
-	std::vector<Component*> boxCollider_info = cpp_gameObject->GetComponentsOfType(Component::TYPE::BOXCOLLIDER);
-	std::vector<Component*> meshCollider_info = cpp_gameObject->GetComponentsOfType(Component::TYPE::MESHCOLLIDER);
-	std::vector<Component*> sphereCollider_info = cpp_gameObject->GetComponentsOfType(Component::TYPE::SPHERECOLLIDER);
-	std::vector<Component*> capsuleCollider_info = cpp_gameObject->GetComponentsOfType(Component::TYPE::CAPSULECOLLIDER);
+	std::vector<Component*> iWantToDie;
+	std::vector<Component*> b;
 
-	for (int i = 0; i < boxCollider_info.size(); i++)
+	b = cpp_gameObject->GetComponentsOfType(Component::TYPE::BOXCOLLIDER);
+	iWantToDie.insert(iWantToDie.end(), b.begin(), b.end());
+	b.clear();
+
+	b = cpp_gameObject->GetComponentsOfType(Component::TYPE::MESHCOLLIDER);
+	iWantToDie.insert(iWantToDie.end(), b.begin(), b.end());
+	b.clear();
+
+	b = cpp_gameObject->GetComponentsOfType(Component::TYPE::SPHERECOLLIDER);
+	iWantToDie.insert(iWantToDie.end(), b.begin(), b.end());
+	b.clear();
+
+	b = cpp_gameObject->GetComponentsOfType(Component::TYPE::CAPSULECOLLIDER);
+	iWantToDie.insert(iWantToDie.end(), b.begin(), b.end());
+	b.clear();
+
+
+	for (int i = 0; i < iWantToDie.size(); i++)
 	{
-		C_Collider* col = dynamic_cast<C_Collider*>(boxCollider_info[i]);
-		col->DisableShapeInContactTests();
-	}
-	for (int i = 0; i < meshCollider_info.size(); i++)
-	{
-		C_Collider* col = dynamic_cast<C_Collider*>(meshCollider_info[i]);
-		col->DisableShapeInContactTests();
-	}
-	for (int i = 0; i < sphereCollider_info.size(); i++)
-	{
-		C_Collider* col = dynamic_cast<C_Collider*>(sphereCollider_info[i]);
-		col->DisableShapeInContactTests();
-	}
-	for (int i = 0; i < capsuleCollider_info.size(); i++)
-	{
-		C_Collider* col = dynamic_cast<C_Collider*>(capsuleCollider_info[i]);
+		C_Collider* col = dynamic_cast<C_Collider*>(iWantToDie[i]);
 		col->DisableShapeInContactTests();
 	}
 }
