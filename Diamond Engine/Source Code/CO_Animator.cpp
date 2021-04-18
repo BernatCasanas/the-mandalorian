@@ -147,8 +147,19 @@ void C_Animator::Update()
 void C_Animator::SaveData(JSON_Object* nObj)
 {
 	Component::SaveData(nObj);
-	DEJson::WriteInt(nObj, "RootBone UID", rootBone == nullptr ? 0 : rootBone->UID);
-	DEJson::WriteInt(nObj, "MeshRendererUID", meshRendererUID);
+	if (rootBone != nullptr)
+		DEJson::WriteInt(nObj, "RootBone UID", rootBone->prefabReference != 0u ? rootBone->prefabReference : rootBone->UID);
+	else
+		DEJson::WriteInt(nObj, "RootBone UID", 0);
+
+	GameObject* meshRendererObject = EngineExternal->moduleScene->GetGOFromUID(EngineExternal->moduleScene->root, meshRendererUID);
+	if (meshRendererObject != nullptr)
+	{
+		if (meshRendererObject->prefabReference != 0u)
+			DEJson::WriteInt(nObj, "MeshRendererUID", meshRendererObject->prefabReference);
+		else 
+			DEJson::WriteInt(nObj, "MeshRendererUID", meshRendererObject->UID);
+	}
 
 	JSON_Value* animationsValue = json_value_init_array();
 	JSON_Array* animationsArray = json_value_get_array(animationsValue);

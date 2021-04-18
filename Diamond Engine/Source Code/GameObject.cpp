@@ -502,7 +502,7 @@ void GameObject::SaveForPrefab(JSON_Array* goArray)
 
 	DEJson::WriteInt(goData, "UID", UID);
 	DEJson::WriteInt(goData, "PrefabID", prefabID);
-	DEJson::WriteInt(goData, "PrefabReference", prefabReference);
+	DEJson::WriteInt(goData, "PrefabReference", prefabReference == 0 ? UID : prefabReference);
 
 	DEJson::WriteBool(goData, "DontDestroy", dontDestroy);
 	DEJson::WriteBool(goData, "Static", isStatic);
