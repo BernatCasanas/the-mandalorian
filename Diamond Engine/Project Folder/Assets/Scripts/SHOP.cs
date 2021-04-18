@@ -11,11 +11,14 @@ public enum ShopItems
     ShIt_HEALTHREPLENISHMENT,
     ShIt_GREEDOQUICKSHOOTER,
     ShIt_BOSSKSTRENGTH,
+    ShIt_MASTERYODAASSITANCE,
+    ShIt_GREEFPAYCHECK,
     ShIt_MAX
 }
 
 public enum ShopPrice
 {
+    SHOP_FREE = 0,
     SHOP_HEALTH = 75,
     SHOP_CHEAP = 150,
     SHOP_AVERAGE = 230,
@@ -148,6 +151,24 @@ public class SHOP : DiamondComponent
                         Debug.Log("Bought Bossk’s strength");                      
                         currency -= (int)item.price_type;
                         PlayerResources.AddBoon(BOONS.BOON_BOSSKSTRENGTH);
+                        ret = true;
+                    }
+                    break;
+                case ShopItems.ShIt_MASTERYODAASSITANCE:
+                    if (currency >= (int)item.price_type)
+                    {
+                        Debug.Log("Bought Master’s yoda assistance");
+                        currency -= (int)item.price_type;
+                        PlayerResources.AddBoon(BOONS.BOON_MASTERYODAASSITANCE);
+                        ret = true;
+                    }
+                    break;
+                case ShopItems.ShIt_GREEFPAYCHECK:
+                    if (currency >= (int)item.price_type)
+                    {
+                        Debug.Log("Bought Greef’s paycheck");
+                        currency += 50;
+                        PlayerResources.AddBoon(BOONS.BOON_GREEFPAYCHECK);
                         ret = true;
                     }
                     break;
@@ -306,6 +327,12 @@ public class SHOP : DiamondComponent
             case ShopItems.ShIt_BOSSKSTRENGTH:
                 if (PlayerResources.CheckBoon(BOONS.BOON_BOSSKSTRENGTH)) return true;
                 else return false;
+            case ShopItems.ShIt_MASTERYODAASSITANCE:
+                if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE)) return true;
+                else return false;
+            case ShopItems.ShIt_GREEFPAYCHECK:
+                if (PlayerResources.CheckBoon(BOONS.BOON_GREEFPAYCHECK)) return true;
+                else return false;
             default:
                 return false;
         }
@@ -335,6 +362,12 @@ public class SHOP : DiamondComponent
                 break;
             case ShopItems.ShIt_BOSSKSTRENGTH:
                 item.SetItem(type, ShopPrice.SHOP_CHEAP, "Bossk’s strength", "-10% damage received.");
+                break;
+            case ShopItems.ShIt_MASTERYODAASSITANCE:
+                item.SetItem(type, ShopPrice.SHOP_EXPENSIVE, "Master Yoda’s assistance", "Every kill counts +3 to combo.");
+                break;
+            case ShopItems.ShIt_GREEFPAYCHECK:
+                item.SetItem(type, ShopPrice.SHOP_FREE, "Greef’s paycheck", "+50 coins.");
                 break;
         }
     }

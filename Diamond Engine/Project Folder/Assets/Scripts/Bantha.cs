@@ -480,6 +480,14 @@ public class Bantha : Enemy
         if (hitParticles != null)
             hitParticles.GetComponent<ParticleSystem>().Play();
 
+        //Combo
+        if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
+        {
+            Core.instance.hud.GetComponent<HUD>().AddToCombo(100, 1.0f);
+            Core.instance.hud.GetComponent<HUD>().AddToCombo(100, 1.0f);
+            Core.instance.hud.GetComponent<HUD>().AddToCombo(100, 1.0f);
+        }
+
         RemoveFromEnemyList();
     }
     private void UpdateDie()
@@ -503,6 +511,7 @@ public class Bantha : Enemy
         {
             Counter.allEnemiesDead = true;
         }
+        
         //Created dropped coins
         var rand = new Random();
         int droppedCoins = rand.Next(1,4);
