@@ -194,3 +194,9 @@ void C_DirectionalLight::EndPass()
 	glEnable(GL_CULL_FACE);
 	glViewport(0, 0, EngineExternal->moduleWindow->s_width, EngineExternal->moduleWindow->s_height);
 }
+
+
+float3 C_DirectionalLight::GetPosition() const
+{
+	return orthoFrustum.pos;
+}

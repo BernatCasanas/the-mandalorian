@@ -28,6 +28,9 @@ public:
 	void PushLightUniforms(ResourceMaterial* material);
 	void EndPass();
 
+	float3 GetPosition() const;
+
+public:
 	Frustum orthoFrustum;
 	ResourceShader* depthShader;
 	float4x4 spaceMatrixOpenGL;
