@@ -233,11 +233,6 @@ void M_ResourceManager::NeedsDirsUpdate(AssetDir& dir)
 
 			UpdateFile(dir);
 		}
-
-		/*if (EngineExternal->moduleFileSystem->GetLastModTime(dir.importPath.c_str()) != EngineExternal->moduleFileSystem->GetCreationTime(dir.importPath.c_str())
-				&& EngineExternal->moduleResources->ExistsOnLibrary(dir.importPath.c_str())
-				&& EngineExternal->moduleFileSystem->GetLastModTime(dir.importPath.c_str()) > EngineExternal->moduleFileSystem->GetLastModTime(dir.metaFileDir.c_str()))*/
-
 	}
 	fileCheckTime = 0.f;
 }
