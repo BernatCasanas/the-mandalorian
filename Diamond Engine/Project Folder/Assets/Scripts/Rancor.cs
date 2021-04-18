@@ -59,7 +59,8 @@ public class Rancor : DiamondComponent
     public float slerpSpeed = 5.0f;
 
     //Stats
-    public float healthPoints = 60.0f;
+    public float healthPoints = 60.0f;          //IF INITAL HEALTH IS CHANGED, CHANGE MAX HEALTH AS WELL!
+    public float maxHealthPoints = 60.0f;
 
     public int attackProbability = 66;  //FROM 1 TO A 100
     public int shortFollowProbability = 90; //FROM THE PREVIOS VALUE TO HERE
@@ -138,6 +139,9 @@ public class Rancor : DiamondComponent
     private float dieTime = 0.0f;
     private float dieTimer = 0.0f;
 
+    //Boss bar updating
+    public GameObject boss_bar = null;
+
 
     private bool start = false;
 
@@ -160,6 +164,7 @@ public class Rancor : DiamondComponent
         dieTime = Animator.GetAnimationDuration(gameObject, "RN_Die") - 0.016f;
 
         Counter.SumToCounterType(Counter.CounterTypes.RANCOR);
+        maxHealthPoints = healthPoints;
     }
 
     public void Awake()
@@ -529,6 +534,11 @@ public class Rancor : DiamondComponent
             case RANCOR_STATE.DEAD:
                 UpdateDie();
                 break;
+        }
+
+        if (boss_bar != null)
+        {
+            boss_bar.GetComponent<Material>().SetFloatUniform("length_used", healthPoints / maxHealthPoints);
         }
     }
 
