@@ -210,9 +210,11 @@ void ResourceMaterial::SetShader(ResourceShader* res)
 }
 
 #ifndef STANDALONE
-void ResourceMaterial::DrawEditor()
+void ResourceMaterial::DrawEditor(std::string suffix)
 {
-	ImGui::InputText("Name", name, IM_ARRAYSIZE(name));
+	std::string label = "Name" ;
+	label += suffix;
+	ImGui::InputText(label.c_str(), name, IM_ARRAYSIZE(name));
 
 	ImGui::Text("Drop here to change shader");
 	if (ImGui::BeginDragDropTarget())
@@ -241,8 +243,7 @@ void ResourceMaterial::DrawEditor()
 	{
 		if (IsDefaultUniform(uniforms[i].name))
 			continue;
-
-		ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s: ", uniforms[i].name);
+		ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s :", uniforms[i].name);
 
 		//ImGui::SameLine();
 		switch (uniforms[i].vType)
@@ -280,9 +281,11 @@ void ResourceMaterial::DrawEditor()
 
 			if (uniforms[i].data.textureValue != nullptr)
 			{
-				char name[32];
-				sprintf_s(name, "Remove Texture: %d", uniforms[i].data.textureValue->GetUID());
-				if (ImGui::Button(name))
+				char name[100]; //TODO change this for a string???
+				label = "Remove Texture: %d ";
+				sprintf_s(name, label.c_str(), uniforms[i].data.textureValue->GetUID());
+				label = name + suffix;
+				if (ImGui::Button(label.c_str()))
 				{
 					EngineExternal->moduleResources->UnloadResource(uniforms[i].data.textureValue->GetUID());
 					uniforms[i].data.textureValue = nullptr;
@@ -334,7 +337,9 @@ void ResourceMaterial::DrawEditor()
 		}
 	}
 
-	if (ImGui::Button("Save"))
+	label = "Save";
+	label += suffix;
+	if (ImGui::Button(label.c_str()))
 	{
 		char* fileBuffer = nullptr;
 		MaterialImporter::Save(this, &fileBuffer);
