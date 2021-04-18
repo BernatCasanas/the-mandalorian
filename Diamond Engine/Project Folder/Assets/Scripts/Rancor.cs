@@ -141,7 +141,8 @@ public class Rancor : DiamondComponent
 
     //Boss bar updating
     public GameObject boss_bar = null;
-
+    public GameObject rancor_mesh = null;
+    private float damaged = 0.0f;
 
     private bool start = false;
 
@@ -165,6 +166,7 @@ public class Rancor : DiamondComponent
 
         Counter.SumToCounterType(Counter.CounterTypes.RANCOR);
         maxHealthPoints = healthPoints;
+        damaged = 0.0f;
     }
 
     public void Awake()
@@ -539,6 +541,18 @@ public class Rancor : DiamondComponent
         if (boss_bar != null)
         {
             boss_bar.GetComponent<Material>().SetFloatUniform("length_used", healthPoints / maxHealthPoints);
+        }
+        if (damaged > 0.01f)
+        {
+            damaged = Mathf.Lerp(damaged, 0.0f, 0.1f);
+        }
+        else
+        {
+            damaged = 0.0f;
+        }
+        if (rancor_mesh != null)
+        {
+            rancor_mesh.GetComponent<Material>().SetFloatUniform("damaged", damaged);
         }
     }
 
@@ -1005,7 +1019,7 @@ public class Rancor : DiamondComponent
         {
             healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
             Debug.Log("Rancor HP: " + healthPoints.ToString());
-
+            damaged = 1.0f;
             //CHANGE FOR APPROPIATE RANCOR HIT
             //Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
 
