@@ -392,6 +392,8 @@ MonoObject* RayCast(MonoObject* cs_Position, MonoObject* cs_Direction, float Max
 	float3 dir = M_MonoManager::UnboxVector(cs_Direction);
 
 	GameObject* ret = EngineExternal->modulePhysics->ShootRay(pos, dir, MaxDistance);
+	if (ret == nullptr)
+		return nullptr;
 	return EngineExternal->moduleMono->GoToCSGO(ret);
 }
 
