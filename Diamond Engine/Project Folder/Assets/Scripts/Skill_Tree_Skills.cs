@@ -459,15 +459,13 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            //int newHP = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementMaxHpPercent(0.1f, true);
-
-            //TODO: Priority
+            Core.instance.SetSkill("SeDelay", 0.3f);
             //Debug.Log("Secondary gun: Delay between uses reduced by 30%."); //Uncommenting that crashes the game
         }
 
         public override void AssignCharacteristics()
         {
-            description = "[NOT IMPLEMENTED] Delay between uses reduced by 30%";
+            description = "Delay between uses reduced by 30%";
             price = 0;
             type_of_price = RewardType.REWARD_BESKAR;
         }

@@ -259,7 +259,6 @@ public class PlayerHealth : DiamondComponent
 
     public void SetSkill(string skillName, float value = 0.0f)
     {
-        Type t = SkillDictionary.skill_type[skillName];
         if (skillName == "DAvoidDmg")
         {
             skill_chanceToAvoidDamage = (int)value;

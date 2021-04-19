@@ -93,7 +93,7 @@ public class Core : DiamondComponent
     private float gadgetShootSkill = 0.0f;
 
     //Grenades
-    private float grenadesFireRate = 4.0f;      //TODO make this public please, but i dont want to update all prefabs now
+    public static float grenadesFireRate;
     private float grenadesFireRateTimer = 0.0f;
     //private float grenadesTimer = 0.0f;
 
@@ -136,6 +136,8 @@ public class Core : DiamondComponent
         gadgetShootSkill = shootAnimationTotalTime / gadgetFireRate;
 
         myAimbot = gameObject.GetComponent<AimBot>();
+
+        grenadesFireRate = 4.0f;
         #endregion
 
         #region DASH
@@ -856,6 +858,15 @@ public class Core : DiamondComponent
                     Debug.Log("Component Particles not found");
                 break;
 
+        }
+    }
+
+    public void SetSkill(string skillName, float value = 0.0f)
+    {
+        Type t = SkillDictionary.skill_type[skillName];
+        if (skillName == "SeDelay") //Secondary Delay Skill
+        {
+            grenadesFireRate -= grenadesFireRate * value;
         }
     }
 
