@@ -863,7 +863,6 @@ public class Core : DiamondComponent
 
     public void SetSkill(string skillName, float value = 0.0f)
     {
-        Type t = SkillDictionary.skill_type[skillName];
         if (skillName == "SeDelay") //Secondary Delay Skill
         {
             grenadesFireRate -= grenadesFireRate * value;

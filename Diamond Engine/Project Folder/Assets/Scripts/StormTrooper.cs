@@ -53,6 +53,7 @@ public class StormTrooper : Enemy
     public float wanderSpeed = 3.5f;
     public float runningSpeed = 7.5f;
     public float bulletSpeed = 10.0f;
+    private bool skill_slowDownActive = false;
 
     //Ranges
     public float wanderRange = 7.5f;
@@ -65,6 +66,8 @@ public class StormTrooper : Enemy
     private float dieTimer = 0.0f;
     private float statesTimer = 0.0f;
     private float pushTimer = 0.0f;
+    private float skill_slowDownTimer = 0.0f;
+
     //Action variables
     int shotTimes = 0;
     public int maxShots = 2;
@@ -118,6 +121,16 @@ public class StormTrooper : Enemy
         {
             Debug.Log("Null player");
             player = Core.instance.gameObject;
+        }
+
+        if (skill_slowDownActive)
+        {
+            skill_slowDownTimer += Time.deltaTime;
+            if (skill_slowDownTimer >= skill_slowDownDuration)
+            {
+                skill_slowDownTimer = 0.0f;
+                skill_slowDownActive = false;
+            }
         }
 
         #region STATE MACHINE
@@ -351,7 +364,8 @@ public class StormTrooper : Enemy
     private void UpdateWander()
     {
         LookAt(agent.GetDestination());
-        agent.MoveToCalculatedPos(runningSpeed);
+        if (skill_slowDownActive) agent.MoveToCalculatedPos(runningSpeed * (1 - skill_slowDownAmount));
+        else agent.MoveToCalculatedPos(runningSpeed);
     }
     private void WanderEnd()
     {
@@ -370,7 +384,8 @@ public class StormTrooper : Enemy
     private void UpdateRun()
     {
         LookAt(agent.GetDestination());
-        agent.MoveToCalculatedPos(runningSpeed);
+        if (skill_slowDownActive) agent.MoveToCalculatedPos(runningSpeed * (1 - skill_slowDownAmount));
+        else agent.MoveToCalculatedPos(runningSpeed);
     }
     private void RunEnd()
     {
@@ -585,6 +600,12 @@ public class StormTrooper : Enemy
             {
                 inputsList.Add(INPUT.IN_DIE);
             }
+
+            if (skill_slowDownEnabled)
+            {
+                skill_slowDownActive = true;
+                skill_slowDownTimer = 0.0f;
+            }
         }
         else if (collidedGameObject.CompareTag("Grenade"))
         {
@@ -599,6 +620,12 @@ public class StormTrooper : Enemy
             if (currentState != STATE.DIE && healthPoints <= 0.0f)
             {
                 inputsList.Add(INPUT.IN_DIE);
+            }
+
+            if (skill_slowDownEnabled)
+            {
+                skill_slowDownActive = true;
+                skill_slowDownTimer = 0.0f;
             }
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))

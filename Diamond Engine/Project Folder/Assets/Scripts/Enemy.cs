@@ -21,6 +21,11 @@ public class Enemy : DiamondComponent
 
 	protected NavMeshAgent agent;
 
+	//Skill: Bullet impacts slow enemy speed
+	public static bool skill_slowDownEnabled = false;
+	public static float skill_slowDownAmount = 0.0f;
+	public static float skill_slowDownDuration = 0.0f;
+
 	public virtual bool TakeDamage()
 	{
 		return true;
@@ -81,7 +86,6 @@ public class Enemy : DiamondComponent
 				//Debug.Log("Enemy Killed!");
 				break;
 			}
-		}
-		
+		}		
     }
 }

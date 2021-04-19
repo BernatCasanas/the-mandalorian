@@ -60,6 +60,7 @@ public class Bantha : Enemy
     public float wanderSpeed = 3.5f;
     public float runningSpeed = 7.5f;
     public float chargeSpeed = 60.0f;
+    private bool skill_slowDownActive = false;
 
     //Ranges
     public float wanderRange = 7.5f;
@@ -73,6 +74,7 @@ public class Bantha : Enemy
     private float loadingTimer = 0.0f;
     private float chargeTimer = 0.0f;
     private float directionDecisionTimer = 0.0f;
+    private float skill_slowDownTimer = 0.0f;
 
     public void Awake()
     {
@@ -82,7 +84,7 @@ public class Bantha : Enemy
 
         currentState = STATE.IDLE;
         StartIdle();
-        
+
         dieTime = Animator.GetAnimationDuration(gameObject, "BT_Die");
     }
 
@@ -101,6 +103,16 @@ public class Bantha : Enemy
         ProcessState();
 
         UpdateState();
+
+        if (skill_slowDownActive)
+        {
+            skill_slowDownTimer += Time.deltaTime;
+            if(skill_slowDownTimer >= skill_slowDownDuration)
+            {
+                skill_slowDownTimer = 0.0f;
+                skill_slowDownActive = false;
+            }
+        }
 
         #endregion
     }
@@ -398,7 +410,8 @@ public class Bantha : Enemy
     {
         agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition);
         LookAt(agent.GetDestination());
-        agent.MoveToCalculatedPos(runningSpeed);
+        if (skill_slowDownActive) agent.MoveToCalculatedPos(runningSpeed * (1 - skill_slowDownAmount));
+        else agent.MoveToCalculatedPos(runningSpeed);
     }
     private void RunEnd()
     {
@@ -416,8 +429,9 @@ public class Bantha : Enemy
     }
     private void UpdateWander()
     {
-        LookAt(agent.GetDestination());
-        agent.MoveToCalculatedPos(wanderSpeed);
+        LookAt(agent.GetDestination());        
+        if (skill_slowDownActive) agent.MoveToCalculatedPos(wanderSpeed * (1 - skill_slowDownAmount));
+        else agent.MoveToCalculatedPos(wanderSpeed);
     }
     private void WanderEnd()
     {
@@ -459,7 +473,9 @@ public class Bantha : Enemy
     #region CHARGE
     private void StartCharge()
     {
-        chargeTimer = chargeLength/chargeSpeed;
+        if (skill_slowDownActive) chargeTimer = chargeLength / (chargeSpeed * (1 - skill_slowDownAmount));
+        else chargeTimer = chargeLength / chargeSpeed;
+
         Animator.Play(gameObject, "BT_Run");
 
         InternalCalls.Destroy(visualFeedback);
@@ -473,7 +489,8 @@ public class Bantha : Enemy
     {
         LookAt(agent.GetDestination());
         
-        agent.MoveToCalculatedPos(chargeSpeed);       
+        if (skill_slowDownActive) agent.MoveToCalculatedPos(chargeSpeed * (1 - skill_slowDownAmount));
+        else agent.MoveToCalculatedPos(chargeSpeed);
     }
     #endregion
 
@@ -556,6 +573,12 @@ public class Bantha : Enemy
             {
                 inputsList.Add(INPUT.IN_DIE);
             }
+
+            if (skill_slowDownEnabled)
+            {
+                skill_slowDownActive = true;
+                skill_slowDownTimer = 0.0f;
+            }
         }
         else if (collidedGameObject.CompareTag("Grenade"))
         {
@@ -577,6 +600,12 @@ public class Bantha : Enemy
             {
                 inputsList.Add(INPUT.IN_DIE);
             }
+
+            if (skill_slowDownEnabled)
+            {
+                skill_slowDownActive = true;
+                skill_slowDownTimer = 0.0f;
+            }                           
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))
         {

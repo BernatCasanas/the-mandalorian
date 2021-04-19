@@ -276,7 +276,6 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            //TODO: Priority
             Core.instance.gameObject.GetComponent<PlayerHealth>().SetSkill("DAvoidDmg", 10); //10%
         }
 
@@ -387,10 +386,13 @@ namespace DiamondEngine
         public override void Use()
         {
             //TODO: Priority
+            Enemy.skill_slowDownEnabled = true;
+            Enemy.skill_slowDownAmount = 0.2f;
+            Enemy.skill_slowDownDuration = 3.0f;
         }
         public override void AssignCharacteristics()
         {
-            description = "[NOT IMPLEMENTED] Bullet impacts slow enemy speed by 20%";
+            description = "Bullet impacts slow enemy speed by 20% for 3 seconds";
             price = 0;
             type_of_price = RewardType.REWARD_BESKAR;
         }
