@@ -1,5 +1,6 @@
 using System;
 using DiamondEngine;
+using System.Collections.Generic;
 
 public class CameraMainMenuMovement : DiamondComponent
 {
@@ -17,11 +18,14 @@ public class CameraMainMenuMovement : DiamondComponent
 
 	Vector3 toGoVector = null;
 	Quaternion toRotateQuaternion = null;
+	private GameObject[] pointArray;
 
 	public void Awake()
     {
 		toGoVector = point1.transform.localPosition;
 		toRotateQuaternion = point1.transform.localRotation;
+
+		pointArray = new GameObject[] { point1, point2, point3, point4, point5, point6, point7 };
 	}
 
 	public void Update()
@@ -29,48 +33,15 @@ public class CameraMainMenuMovement : DiamondComponent
         if (Mathf.Distance(gameObject.transform.localPosition, toGoVector) < 0.5f)
         {
 			timer = 0;
-            switch(pointCount)
-            {
-				case (0):
-					Debug.Log("Cam Point 2");
-					toGoVector = point2.transform.localPosition;
-					toRotateQuaternion = point2.transform.globalRotation;
-					break;
-				case (1):
-					Debug.Log("Cam Point 3");
-					toGoVector = point3.transform.localPosition;
-					toRotateQuaternion = point3.transform.globalRotation;
-					break;
-				case (2):
-					Debug.Log("Cam Point 4");
-					toGoVector = point4.transform.localPosition;
-					toRotateQuaternion = point4.transform.globalRotation;
-					break;
-				case (3):
-					Debug.Log("Cam Point 5");
-					toGoVector = point5.transform.localPosition;
-					toRotateQuaternion = point5.transform.globalRotation;
-					break;
-				case (4):
-					Debug.Log("Cam Point 6");
-					toGoVector = point6.transform.localPosition;
-					toRotateQuaternion = point6.transform.globalRotation;
-					break;
-				case (5):
-					Debug.Log("Cam Point 7");
-					toGoVector = point7.transform.localPosition;
-					toRotateQuaternion = point7.transform.globalRotation;
-					break;
-				case (6):
-					Debug.Log("Cam Point 1");
-					toGoVector = point1.transform.localPosition;
-					toRotateQuaternion = point1.transform.globalRotation;
-					break;
-			}
+
+			toGoVector = pointArray[pointCount].transform.localPosition;
+			toRotateQuaternion = pointArray[pointCount].transform.globalRotation;
 
 			speed = Mathf.Distance(gameObject.transform.localPosition, toGoVector) / 10;
 			pointCount++;
-			if (pointCount >= 7) pointCount = 0;
+
+			if (pointCount >= 7) 
+				pointCount = 0;
 		}
 
 		if(toGoVector!=null)

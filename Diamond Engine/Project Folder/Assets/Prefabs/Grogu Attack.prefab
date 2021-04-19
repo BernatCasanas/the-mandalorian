@@ -1,29 +1,29 @@
 {
-    "assets_path": "Assets\/Prefabs\/Blood Impact.prefab",
+    "assets_path": "Assets\/Prefabs\/Grogu Attack.prefab",
     "Game Objects": [
         {
-            "name": "Blood Impact",
+            "name": "Grogu Attack",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
-                -24.582571029663086,
-                17.292133331298828,
-                -5.2490224838256836
+                -5.093231201171875,
+                8,
+                -13.434067726135254
             ],
             "Rotation": [
                 0,
+                -0.50093686580657959,
                 0,
-                0,
-                1
+                0.86548382043838501
             ],
             "Scale": [
                 1,
                 1,
                 1
             ],
-            "UID": 1511260038,
-            "PrefabID": 1265377444,
+            "UID": 1571428502,
+            "PrefabID": 38952853,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1676501951,
@@ -35,31 +35,31 @@
             ]
         },
         {
-            "name": "Blood",
+            "name": "Particle System",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
-                0.39561080932617188,
                 0,
-                0.2265477180480957
+                0,
+                -7.152557373046875e-07
             ],
             "Rotation": [
-                -0.44073605537414551,
-                0.58288758993148804,
-                0.4617273211479187,
-                0.50279384851455688
+                0,
+                0,
+                -0.74379843473434448,
+                0.6684039831161499
             ],
             "Scale": [
-                1.0000214576721191,
-                0.99999749660491943,
-                0.99999785423278809
+                1,
+                1,
+                1
             ],
-            "UID": 1621304480,
+            "UID": 869341327,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1511260038,
+            "ParentUID": 1571428502,
             "Components": [
                 {
                     "Type": 1,
@@ -69,7 +69,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -78,40 +78,39 @@
                     "Active": true,
                     "systemActive": false,
                     "looping": false,
-                    "maxDuration": 0.24500000476837158,
+                    "maxDuration": 0.2800000011920929,
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1118915037.dds",
-                            "texUID": 1118915037,
-                            "paEmitterName": "White sparks",
+                            "LibraryPath": "Library\/Textures\/294166960.dds",
+                            "texUID": 294166960,
+                            "paEmitterName": "Force",
                             "paLifeTime": [
-                                0.5,
-                                0.75
-                            ],
-                            "paSize": [
-                                0.05000000074505806,
-                                0.070000000298023224
-                            ],
-                            "paColor": [
-                                0.74275362491607666,
-                                0,
-                                0,
+                                1,
                                 1
                             ],
-                            "paPerSec": 100,
+                            "paSize": [
+                                1,
+                                1
+                            ],
+                            "paColor": [
+                                0,
+                                1,
+                                0.95652174949645996,
+                                1
+                            ],
+                            "paPerSec": 15,
                             "ParticleEffects": [
                                 {
-                                    "paEffectType": 0,
-                                    "paFOLT_direction": [
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
                                         0,
-                                        0,
-                                        0
+                                        360
                                     ],
-                                    "paFOLT_magnitude": 0,
-                                    "paFOLT_gravityMod": 1,
-                                    "paFOLT_gravity": -9.8000001907348633,
-                                    "paFOLT_forceType": 0
+                                    "paROLT_rotationSpeed": [
+                                        -3,
+                                        3
+                                    ]
                                 },
                                 {
                                     "paEffectType": 2,
@@ -127,27 +126,9 @@
                                         },
                                         {
                                             "paColorOLTcolor": [
-                                                0.6719367504119873,
-                                                0.033737301826477051,
                                                 0,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 0.26361030340194702
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                0.86561262607574463,
-                                                0,
-                                                0,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 0.67048740386962891
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                0.79446637630462646,
-                                                0.11304660886526108,
-                                                0,
+                                                1,
+                                                0.98809528350830078,
                                                 1
                                             ],
                                             "paColorOLTposition": 1
@@ -155,14 +136,19 @@
                                     ]
                                 },
                                 {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0.10000000149011612,
+                                    "paSizeOLTEndSize": 2
+                                },
+                                {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 0.75,
+                                    "paShapePartSpeed": 3,
                                     "paShapeRandSpeed": 0,
-                                    "PaShapeConeRadius": 0.10000000149011612,
+                                    "PaShapeConeRadius": 0,
                                     "PaShapeConeHeight": 1,
                                     "PaShapeSphereDirection": true,
-                                    "PaShapeSphereAngle": 20,
+                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 2,
                                     "PaShapeOffset": [
                                         0,
@@ -177,8 +163,8 @@
                 {
                     "Type": 21,
                     "Active": true,
-                    "billboardAlignment": 0,
-                    "horizantalAligned": true
+                    "billboardAlignment": 3,
+                    "horizantalAligned": false
                 }
             ]
         }
