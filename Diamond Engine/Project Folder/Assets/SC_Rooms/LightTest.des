@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -20.97697639465332,
-        29.312244415283203,
-        -28.026638031005859
+        -1.1822187900543213,
+        28.233852386474609,
+        -26.470043182373047
     ],
     "EditorCameraZ": [
-        0.4748167097568512,
-        -0.6634376049041748,
-        0.57827305793762207
+        0.17324893176555634,
+        -0.73813635110855103,
+        0.65202736854553223
     ],
     "EditorCameraY": [
-        0.42117378115653992,
-        0.74823158979415894,
-        0.5126032829284668
+        0.1898723840713501,
+        0.67465156316757202,
+        0.71329778432846069
     ],
     "tags": [
         "Player",
@@ -126,9 +126,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -2.3602192401885986,
+                4.5905208587646484,
                 17.473213195800781,
-                -36.554733276367188
+                -12.808444023132324
             ],
             "Rotation": [
                 0,
@@ -168,7 +168,114 @@
                         0.22745098173618317,
                         0.23921568691730499
                     ],
-                    "lightIntensity": 1.6000000238418579
+                    "lightIntensity": 1.6000000238418579,
+                    "specularValue": 64
+                }
+            ]
+        },
+        {
+            "name": "Empty",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 10780401,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1017208032,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": true,
+                    "maxDuration": 0.87900000810623169,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/920411250.dds",
+                            "texUID": 920411250,
+                            "paEmitterName": "Test",
+                            "paLifeTime": [
+                                2.2999999523162842,
+                                4.3000001907348633
+                            ],
+                            "paSize": [
+                                1,
+                                1
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        0,
+                                        2.5999999046325684,
+                                        0
+                                    ],
+                                    "paFOLT_magnitude": 10,
+                                    "paFOLT_gravityMod": 1,
+                                    "paFOLT_gravity": -9.8000001907348633,
+                                    "paFOLT_forceType": 0
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 5,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeSphereRadius": 1,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 1,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": false,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
                 }
             ]
         },

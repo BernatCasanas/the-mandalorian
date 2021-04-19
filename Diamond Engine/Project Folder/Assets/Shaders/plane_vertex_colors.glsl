@@ -22,7 +22,6 @@ uniform mat4 projection;
 uniform mat4 lightSpaceMatrix;
 
 uniform vec3 lightPosition;
-vec3 lightColor = vec3(0.55, 0.35, 0.35);
 
 void main()
 {
@@ -61,6 +60,7 @@ uniform vec3 viewPos;
 uniform vec3 lightColor;
 uniform vec3 ambientLightColor;
 uniform float lightIntensity;
+uniform float specularValue;
 
 out vec4 color;
 
@@ -112,7 +112,7 @@ void main()
     vec3 viewDir = normalize(viewPos - fs_in.FragPos);
     float spec = 0.0;
     vec3 halfwayDir = normalize(lightDir + viewDir);  
-    spec = pow(max(dot(fs_in.Normal, halfwayDir), 0.0), 64.0);
+    spec = pow(max(dot(fs_in.Normal, halfwayDir), 0.0), specularValue);
     vec3 specular = spec * lightColor;
         
     // calculate shadow
@@ -120,9 +120,10 @@ void main()
     vec3 lighting = (ambientLightColor + (1.0 - shadow) * (diffuse + specular)) * lightIntensity;
     
     color = vec4(lighting * vertexColor, 1.0);
-    //color = mix (vec4(diffuseColor + ambientLight, 1.0), vec4(vertexColor, 1.0), 0.7);
 }
 #endif
+
+
 
 
 

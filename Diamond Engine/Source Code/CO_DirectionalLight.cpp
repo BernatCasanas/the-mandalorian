@@ -19,7 +19,8 @@ C_DirectionalLight::C_DirectionalLight(GameObject* _gm) : Component(_gm),
 	orthoSize(10.0f, 10.0f), 
 	lightColor(float3::one), 
 	ambientLightColor(float3::one),
-	lightIntensity(1.0f)
+	lightIntensity(1.0f),
+	specularValue(64.0f)
 {
 	name = "Directional Light";
 
@@ -103,7 +104,8 @@ bool C_DirectionalLight::OnEditor()
 
 		ImGui::NewLine();
 
-		ImGui::DragFloat("Light intensity", &lightIntensity, 0.1, 0.0f);
+		ImGui::DragFloat("Light intensity", &lightIntensity, 0.05, 0.0f);
+		ImGui::DragFloat("Specular value", &specularValue, 0.1, 0.0f);
 
 		ImGui::NewLine();
 
@@ -133,6 +135,7 @@ void C_DirectionalLight::SaveData(JSON_Object* nObj)
 	data.WriteVector3("lightColor", lightColor.ptr());
 	data.WriteVector3("ambientLightColor", ambientLightColor.ptr());
 	data.WriteFloat("lightIntensity", lightIntensity);
+	data.WriteFloat("specularValue", specularValue);
 }
 
 
@@ -144,6 +147,7 @@ void C_DirectionalLight::LoadData(DEConfig& nObj)
 	lightColor = nObj.ReadVector3("lightColor");
 	ambientLightColor = nObj.ReadVector3("ambientLightColor");
 	lightIntensity = nObj.ReadFloat("lightIntensity");
+	specularValue = nObj.ReadFloat("specularValue");
 }
 
 
@@ -197,6 +201,9 @@ void C_DirectionalLight::PushLightUniforms(ResourceMaterial* material)
 
 	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightIntensity");
 	glUniform1f(modelLoc, lightIntensity);
+
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "specularValue");
+	glUniform1f(modelLoc, specularValue);
 
 	//glUniform1i(glGetUniformLocation(material->shader->shaderProgramID, shadowMap), used_textures);
 

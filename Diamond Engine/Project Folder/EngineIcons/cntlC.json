@@ -1,6 +1,59 @@
 {
     "Game Objects": [
         {
+            "name": "DirectionalLight",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -2.3602192401885986,
+                17.473213195800781,
+                -36.554733276367188
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1017208032,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 23,
+                    "Active": true,
+                    "orthoSize": [
+                        10,
+                        10
+                    ],
+                    "lightColor": [
+                        1,
+                        0.99998998641967773,
+                        0.99998998641967773
+                    ],
+                    "ambientLightColor": [
+                        0.31764706969261169,
+                        0.22745098173618317,
+                        0.23921568691730499
+                    ],
+                    "lightIntensity": 1.6000000238418579,
+                    "specularValue": 0
+                }
+            ]
+        },
+        {
             "name": "Empty",
             "tag": "Untagged",
             "layer": "Default",
@@ -21,10 +74,11 @@
                 1,
                 1
             ],
-            "UID": 1053817156,
+            "UID": 10780401,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 178763901,
+            "Static": false,
+            "ParentUID": 1017208032,
             "Components": [
                 {
                     "Type": 1,
@@ -76,6 +130,8 @@
                                     "paShapePartSpeed": 5,
                                     "paShapeRandSpeed": 0,
                                     "PaShapeSphereRadius": 1,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
                                     "paShapeType": 1,
                                     "PaShapeOffset": [
                                         0,
