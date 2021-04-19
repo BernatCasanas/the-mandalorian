@@ -183,7 +183,7 @@ GameObject* PrefabImporter::InstantiatePrefab(const char* libraryPath)
 
 	for (size_t i = 1; i < json_array_get_count(gameObjectsArray); i++)
 	{
-		parent = LoadGOData(json_array_get_object(gameObjectsArray, i), parent);
+		parent = EngineExternal->moduleScene->LoadGOData(json_array_get_object(gameObjectsArray, i), parent);
 	}
 
 	EngineExternal->moduleScene->LoadNavigationData();
@@ -233,22 +233,6 @@ GameObject* PrefabImporter::InstantiatePrefabAt(uint prefabID, float3 position, 
 	prefab->transform->updateTransform = true;
 
 	return prefab;
-}
-
-GameObject* PrefabImporter::LoadGOData(JSON_Object* goJsonObj, GameObject* parent)
-{
-	GameObject* originalParent = parent;
-
-	while (parent != nullptr && json_object_get_number(goJsonObj, "ParentUID") != parent->UID)
-		parent = parent->parent;
-
-	if (parent == nullptr)
-		parent = originalParent;
-
-	parent = new GameObject(json_object_get_string(goJsonObj, "name"), parent, json_object_get_number(goJsonObj, "UID"));
-	parent->LoadFromJson(goJsonObj);
-
-	return parent;
 }
 
 void PrefabImporter::OverridePrefab(uint prefabID, GameObject* referenceObject)
