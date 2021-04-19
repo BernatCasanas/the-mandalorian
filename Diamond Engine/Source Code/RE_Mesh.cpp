@@ -1,22 +1,23 @@
 #include "RE_Mesh.h"
-#include"Application.h"
 
 #include "OpenGL.h"
 #include "MeshArrays.h"
 #include "IM_FileSystem.h"
-#include"Globals.h"
+#include "Globals.h"
 
-#include"RE_Shader.h"
-#include"RE_Material.h"
+#include "RE_Shader.h"
+#include "RE_Material.h"
+#include "RE_Texture.h"
 
+#include"Application.h"
 #include"MO_Scene.h" //This can be removed
 #include"MO_Camera3D.h" //This can be deleted
 #include"MO_Renderer3D.h"
 
-#include"CO_Transform.h"
-#include"CO_DirectionalLight.h"
-#include"DETime.h"
 #include "GameObject.h"
+#include "CO_Transform.h"
+#include "CO_DirectionalLight.h"
+#include "DETime.h"
 
 ResourceMesh::ResourceMesh(unsigned int _uid) : Resource(_uid, Resource::Type::MESH), indices_id(0), vertices_id(0), generalWireframe(nullptr),
 EBO(0), VAO(0), VBO(0)
@@ -106,7 +107,7 @@ bool ResourceMesh::UnloadFromMemory()
 	return true;
 }
 
-void ResourceMesh::RenderMesh(GLuint textureID, float3 color, bool renderTexture, ResourceMaterial* material, C_Transform* _transform)
+void ResourceMesh::RenderMesh(GLuint textureID, float3 color, bool renderTexture, ResourceMaterial* material, C_Transform* _transform, ResourceTexture* normalMap)
 {
 	//ASK: glDrawElementsInstanced()?
 	//if (textureID != 0 && (renderTexture || (generalWireframe != nullptr && *generalWireframe == false)))
@@ -147,8 +148,14 @@ void ResourceMesh::RenderMesh(GLuint textureID, float3 color, bool renderTexture
 		modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "altColor");
 		glUniform3fv(modelLoc, 1, &color.x);
 
-		
+		glActiveTexture(GL_TEXTURE8);
+		glUniform1i(glGetUniformLocation(material->shader->shaderProgramID, "normalMap"), 8);
 
+		if (normalMap != nullptr)
+			glBindTexture(GL_TEXTURE_2D, normalMap->textureID);
+
+		else
+			glBindTexture(GL_TEXTURE_2D, EngineExternal->moduleRenderer3D->defaultNormalMap);
 
 		if (boneTransforms.size() > 0)
 		{
@@ -168,6 +175,9 @@ void ResourceMesh::RenderMesh(GLuint textureID, float3 color, bool renderTexture
 	//{
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, 0);
+
+	/*glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, 0);*/
 	//}
 
 	if (material->shader)

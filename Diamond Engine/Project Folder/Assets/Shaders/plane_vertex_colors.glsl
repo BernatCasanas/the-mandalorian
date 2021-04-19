@@ -4,17 +4,21 @@
 layout (location = 0) in vec3 position;
 layout (location = 1) in vec2 texCoord;
 layout (location = 2) in vec3 normals;
+layout (location = 3) in vec3 tangents;
 layout (location = 6) in vec3 colors;
 
-out vec3 fPosition;
 out VS_OUT {
     vec3 FragPos;
     vec3 Normal;
     vec2 TexCoords;
     vec4 FragPosLightSpace;
+    
+    vec3 TangentLightPos;
+    vec3 TangentViewPos;
+    vec3 TangentFragPos;
+    
+    vec3 vertexColor;
 } vs_out;
-
-out vec3 vertexColor;
 
 uniform mat4 model_matrix;
 uniform mat4 view;
@@ -22,17 +26,27 @@ uniform mat4 projection;
 uniform mat4 lightSpaceMatrix;
 
 uniform vec3 lightPosition;
+uniform vec3 cameraPosition;
 
 void main()
 {
-    vertexColor = colors;
+    vs_out.vertexColor = colors;
     
     vs_out.FragPos = vec3(model_matrix * vec4(position, 1.0));
     vs_out.Normal = normalize(transpose(inverse(mat3(model_matrix))) * normals);
     vs_out.TexCoords = texCoord;
     vs_out.FragPosLightSpace = lightSpaceMatrix * vec4(vs_out.FragPos, 1.0);
 
-	vec3 fPosition = (model_matrix * vec4(position, 1.0)).xyz;
+	
+	//Calculate tangent vars
+	vec3 T = normalize(vec3(model_matrix * vec4(tangents, 0.0)));
+    vec3 N = normalize(vec3(model_matrix * vec4(normals,  0.0)));
+    vec3 B = cross(N, T);
+	
+	mat3 TBN = transpose(mat3(T, B, N));
+    vs_out.TangentLightPos = TBN * lightPosition;
+    vs_out.TangentViewPos  = TBN * cameraPosition;
+    vs_out.TangentFragPos  = TBN * vec3(model_matrix * vec4(position, 1.0));
 
     gl_Position = projection * view * model_matrix * vec4(position, 1.0);
 
@@ -47,20 +61,25 @@ in VS_OUT {
     vec3 Normal;
     vec2 TexCoords;
     vec4 FragPosLightSpace;
+    
+    vec3 TangentLightPos;
+    vec3 TangentViewPos;
+    vec3 TangentFragPos;
+    
+    vec3 vertexColor;
 } fs_in;
 
-in vec3 vertexColor; 
-in vec3 diffuseColor; 
+in vec3 vertexColor;  
 
 uniform sampler2D shadowMap;
+uniform sampler2D normalMap;
 
-uniform vec3 lightPos;
-uniform vec3 viewPos;
 
 uniform vec3 lightColor;
 uniform vec3 ambientLightColor;
 uniform float lightIntensity;
 uniform float specularValue;
+uniform vec3 cameraPosition;
 
 out vec4 color;
 
@@ -104,27 +123,25 @@ float ShadowCalculation(vec4 fragPosLightSpace, vec3 lightDir, vec3 normal)
 
 void main()
 {
-    // diffuse
-    vec3 lightDir = normalize(lightPos - vec3(0.0, 0.0, 0.0));
-    float diff = max(dot(lightDir, fs_in.Normal), 0.0);
+	vec3 normal = texture(normalMap, fs_in.TexCoords).rgb;
+    normal = normalize(normal * 2.0 - 1.0);
+    
+    vec3 lightDir = normalize(fs_in.TangentLightPos - fs_in.TangentFragPos);
+    
+    // diffusesssaasw
+    float diff = max(dot(lightDir, normal), 0.0);
     vec3 diffuse = diff * lightColor;
     // specular
-    vec3 viewDir = normalize(viewPos - fs_in.FragPos);
+    vec3 viewDir = normalize(fs_in.TangentViewPos - fs_in.TangentFragPos);
     float spec = 0.0;
     vec3 halfwayDir = normalize(lightDir + viewDir);  
-    spec = pow(max(dot(fs_in.Normal, halfwayDir), 0.0), specularValue);
+    spec = pow(max(dot(normal, halfwayDir), 0.0), specularValue);
     vec3 specular = spec * lightColor;
         
     // calculate shadow
-    float shadow = ShadowCalculation(fs_in.FragPosLightSpace, lightDir, fs_in.Normal);
+    float shadow = ShadowCalculation(fs_in.FragPosLightSpace, lightDir, normal);
     vec3 lighting = (ambientLightColor + (1.0 - shadow) * (diffuse + specular)) * lightIntensity;
     
-    color = vec4(lighting * vertexColor, 1.0);
+    color = vec4(lighting * fs_in.vertexColor, 1.0);
 }
 #endif
-
-
-
-
-
-

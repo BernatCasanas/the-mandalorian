@@ -56,7 +56,6 @@ bool ResourceMaterial::LoadToMemory()
 					uniforms[k].data.floatValue=val.ReadFloat("value");
 			}
 		}
-
 	}
 
 	json_value_free(file);

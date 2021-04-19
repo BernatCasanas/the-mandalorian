@@ -192,6 +192,27 @@ bool ModuleRenderer3D::Init()
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, SQUARE_TEXTURE_W, SQUARE_TEXTURE_H, 0, GL_RGBA, GL_UNSIGNED_BYTE, checkerImage);	
 	glBindTexture(GL_TEXTURE_2D, 0);
 
+	//Generate default normal map
+
+	for (int i = 0; i < SQUARE_TEXTURE_W; i++) {
+		for (int j = 0; j < SQUARE_TEXTURE_H; j++) {
+			defaultNormalMapImage[i][j][0] = (GLubyte)127;
+			defaultNormalMapImage[i][j][1] = (GLubyte)127;
+			defaultNormalMapImage[i][j][2] = (GLubyte)255;
+			defaultNormalMapImage[i][j][3] = (GLubyte)255;
+		}
+	}
+
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glGenTextures(1, &defaultNormalMap);
+	glBindTexture(GL_TEXTURE_2D, defaultNormalMap);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, SQUARE_TEXTURE_W, SQUARE_TEXTURE_H, 0, GL_RGBA, GL_UNSIGNED_BYTE, defaultNormalMapImage);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
 
 	// Projection matrix for
 	OnResize(App->moduleWindow->s_width, App->moduleWindow->s_height);
@@ -222,7 +243,6 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
-
 	//Render light depth pass
 	if (directLight)
 	{
@@ -351,6 +371,7 @@ bool ModuleRenderer3D::CleanUp()
 	skybox.ClearMemory();
 
 	glDeleteTextures(1, &checkersTexture);
+	glDeleteTextures(1, &defaultNormalMap);
 
 	SDL_GL_DeleteContext(context);
 	ClearAllRenderData();

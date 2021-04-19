@@ -1,28 +1,32 @@
 #include "CO_MeshRenderer.h"
 #include "RE_Mesh.h"
-#include "OpenGL.h"
+
+#include "RE_Material.h"
+#include "RE_Shader.h"
+#include "RE_Texture.h"
 
 #include "Application.h"
 #include "MO_Renderer3D.h"
-#include"MO_ResourceManager.h"
-#include"RE_Material.h"
-#include"RE_Shader.h"
+#include "MO_ResourceManager.h"
+#include "MO_Scene.h"
+
 #include "IM_FileSystem.h"
 
 #include "GameObject.h"
 #include "CO_Material.h"
 #include "CO_Transform.h"
-#include"CO_Camera.h"
+#include "CO_Camera.h"
 
 #include "ImGui/imgui.h"
-#include"MO_Scene.h"
 
-#include"DEJsonSupport.h"
+#include "OpenGL.h"
 
-#include"MathGeoLib/include/Geometry/Frustum.h"
-#include"MathGeoLib/include/Geometry/Plane.h"
+#include "DEJsonSupport.h"
 
-C_MeshRenderer::C_MeshRenderer(GameObject* _gm) : Component(_gm), _mesh(nullptr),
+#include "MathGeoLib/include/Geometry/Frustum.h"
+#include "MathGeoLib/include/Geometry/Plane.h"
+
+C_MeshRenderer::C_MeshRenderer(GameObject* _gm) : Component(_gm), _mesh(nullptr), normalMap(nullptr),
 faceNormals(false), vertexNormals(false), showAABB(false), showOBB(false), drawDebugVertices(false)
 {
 	name = "Mesh Renderer";
@@ -39,6 +43,12 @@ C_MeshRenderer::~C_MeshRenderer()
 	{
 		EngineExternal->moduleResources->UnloadResource(_mesh->GetUID());
 		_mesh = nullptr;
+	}
+
+	if (normalMap != nullptr)
+	{
+		EngineExternal->moduleResources->UnloadResource(normalMap->GetUID());
+		normalMap = nullptr;
 	}
 
 	gameObjectTransform = nullptr;
@@ -110,7 +120,7 @@ void C_MeshRenderer::RenderMesh(bool rTex)
 	if (drawDebugVertices)
 		DrawDebugVertices();
 
-	_mesh->RenderMesh(id, alternColor, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform);
+	_mesh->RenderMesh(id, alternColor, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform, normalMap);
 
 	if (vertexNormals || faceNormals)
 		_mesh->RenderMeshDebug(&vertexNormals, &faceNormals, transform->GetGlobalTransposed());
@@ -187,6 +197,42 @@ bool C_MeshRenderer::OnEditor()
 				LOG(LogType::L_WARNING, "Mesh %s changed", (*libraryDrop).c_str());
 			}
 			ImGui::EndDragDropTarget();
+		}
+
+		ImGui::TextColored(ImVec4(1.f, 1.f, 0.f, 1.f), "Normal map");
+		if (normalMap != nullptr)
+			ImGui::Image((ImTextureID)normalMap->textureID, ImVec2(64, 64), ImVec2(0, 1), ImVec2(1, 0));
+
+		else
+			ImGui::Image((ImTextureID)EngineExternal->moduleRenderer3D->defaultNormalMap, ImVec2(64, 64), ImVec2(0, 1), ImVec2(1, 0));
+
+		if (ImGui::BeginDragDropTarget())
+		{
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("_TEXTURE"))
+			{
+				//Drop asset from Asset window to scene window
+				std::string* metaFileDrop = (std::string*)payload->Data;
+
+				if (normalMap != nullptr)
+					EngineExternal->moduleResources->UnloadResource(normalMap->GetUID());
+
+				std::string libraryName = EngineExternal->moduleResources->LibraryFromMeta(metaFileDrop->c_str());
+
+				normalMap = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(EngineExternal->moduleResources->GetMetaUID(metaFileDrop->c_str()), libraryName.c_str()));
+				LOG(LogType::L_WARNING, "File %s loaded to scene", (*metaFileDrop).c_str());
+			}
+			ImGui::EndDragDropTarget();
+		}
+
+		if (normalMap != nullptr)
+		{
+			char name[32];
+			sprintf_s(name, "Remove normal map: %d", normalMap->GetUID());
+			if (ImGui::Button(name))
+			{
+				EngineExternal->moduleResources->UnloadResource(normalMap->GetUID());
+				normalMap = nullptr;
+			}
 		}
 
 		ImGui::Checkbox("Vertex Normals", &vertexNormals);

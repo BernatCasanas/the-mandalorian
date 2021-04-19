@@ -46,8 +46,9 @@ static const char* defaultUniforms[] = { "position", "tangents", "texCoord", "no
 										 "model_matrix", "view", "projection", "normalMatrix", 
 										 "cameraPosition",
 										 "time", "ourTexture","altColor", "hasTexture", 
-										 "lightPos", "lightPosition", "viewPos", "lightColor", "lightSpaceMatrix" 
-										 "ambientLightColor", "lightIntensity", "specularValue"};
+										 "lightPos", "lightPosition", "viewPos", "lightColor", "lightSpaceMatrix",
+										 "ambientLightColor", "lightIntensity", "specularValue", "shadowMap",
+										 "normalMap"};
 
 class ResourceMaterial : public Resource {
 public:
