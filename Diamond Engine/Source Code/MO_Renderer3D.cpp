@@ -621,19 +621,24 @@ void ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray)
 	}
 	canSelect.clear();
 
+
 #ifndef STANDALONE
+
+	GameObject* gameobject_to_return = nullptr;
 	if (distMap.begin() != distMap.end())
 	{
 		App->moduleEditor->SetSelectedGO((*distMap.begin()).second->GetGO());
 		selected = true;
 	}
-
-
+	
 	//If nothing is selected, set selected GO to null
 	if (!selected)
 		App->moduleEditor->SetSelectedGO(nullptr);
+
 #endif // !STANDALONE
+
 	distMap.clear();
+
 }
 
 void ModuleRenderer3D::RenderWithOrdering(bool rTex)

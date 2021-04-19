@@ -75,6 +75,8 @@ void AssetDir::UpdateMetaLastModTime()
 	{
 		lastModTime = EngineExternal->moduleFileSystem->GetLastModTime(importPath.c_str());
 
+
+
 		JSON_Value* metaFile = json_parse_file(metaFileDir.c_str());
 
 		if (metaFile == NULL)
@@ -99,7 +101,7 @@ void AssetDir::LoadDataFromMeta()
 	metaUID = rObj.ReadInt("UID");
 	resourceType = static_cast<Resource::Type>(rObj.ReadInt("Type"));
 	libraryPath = rObj.ReadString("Library Path");
-	lastModTime = rObj.ReadInt("modTime");
+	//lastModTime = rObj.ReadInt("modTime");
 
 	//Free memory
 	json_value_free(metaJSON);
@@ -138,6 +140,10 @@ void AssetDir::CreateLibraryFileRecursive()
 	{
 		//Create mirror
 		uint id = EngineExternal->moduleResources->CreateLibraryFromAssets(importPath.c_str());
+	}
+	else if (EngineExternal->moduleFileSystem)
+	{
+
 	}
 
 
