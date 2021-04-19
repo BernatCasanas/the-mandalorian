@@ -829,7 +829,7 @@ void ModuleRenderer3D::RenderStencilWithOrdering(bool rTex)
 
 		glStencilFunc(GL_ALWAYS, 1, 0xFF);
 		glStencilOp(GL_KEEP, GL_REPLACE, GL_KEEP); //only write into the stencil mask as 1 the fragments that do not pass the depth test
-		glDepthFunc(GL_LEQUAL);
+		glDepthFunc(GL_LESS);
 		//Only enable writting to the stencil buffer, no depth or color
 		glStencilMask(0xFF);//enable writting to the stencil buffer
 		glDepthMask(GL_FALSE);
@@ -846,6 +846,21 @@ void ModuleRenderer3D::RenderStencilWithOrdering(bool rTex)
 				d->second->RenderMeshStencil(rTex);
 		}
 
+		glStencilFunc(GL_EQUAL, 0, 0xFF);
+		glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);//TODO original is keep keep replace //only write into the color & depth masks fragments that do pass the depth test and pass the stencil
+		glDepthMask(GL_TRUE);
+		glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+		glStencilMask(0x00);//disable writting to the stencil buffer
+		//Draw meshes that haven't been
+		for (auto i = renderQueueMapPostStencil.rbegin(); i != renderQueueMapPostStencil.rend(); ++i)
+		{
+			// Get the range of the current key
+			auto range = renderQueueMapPostStencil.equal_range(i->first);
+
+			// Now render out that whole range
+			for (auto d = range.first; d != range.second; ++d)
+				d->second->RenderMesh(rTex);
+		}
 		//==================================================================
 		//2. We then draw the stencil objects in front of the mask
 
@@ -869,7 +884,6 @@ void ModuleRenderer3D::RenderStencilWithOrdering(bool rTex)
 				d->second->RenderMeshStencil(rTex);
 		}
 		
-		
 		//==================================================================
 		//Clear(only the needed ones) & reset buffers to their normal state
 		renderQueueMapStencil.clear();
@@ -880,6 +894,7 @@ void ModuleRenderer3D::RenderStencilWithOrdering(bool rTex)
 		glStencilMask(0xFF);//enable writting to the stencil buffer
 		glDisable(GL_STENCIL_TEST);
 		glClear(GL_STENCIL_BUFFER_BIT);
+
 	}
 	//*/
 
