@@ -42,8 +42,9 @@ public:
 	void Destroy();
 
 	void SaveToJson(JSON_Array* _goArray, bool saveAllData = true);
+	void SavePrefab(JSON_Array* _goArray, bool saveAllData = true);
 	void LoadFromJson(JSON_Object*);
-	void SaveForPrefab(JSON_Array* goArray);
+	void SaveReducedData(JSON_Array* goArray);
 	void LoadForPrefab(JSON_Object*);
 	void CopyObjectData(JSON_Object* jsonObject);
 	void GetChildrenUIDs(std::vector<uint>& UIDs);

@@ -382,7 +382,7 @@ void GameObject::Destroy()
 }
 
 
-void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
+void GameObject::SaveScene(JSON_Array* _goArray, bool saveAllData)
 {
 	JSON_Value* goValue = json_value_init_object();
 	JSON_Object* goData = json_value_get_object(goValue);
@@ -397,18 +397,20 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
 	if (saveAllData)
 	{
 		DEJson::WriteInt(goData, "UID", prefabReference);
-		DEJson::WriteInt(goData, "PrefabReference", 0);
-
 		if (parent)
 			DEJson::WriteInt(goData, "ParentUID", parent->prefabReference);
+		
+		DEJson::WriteInt(goData, "PrefabReference", 0);
+
 	}
 	else
 	{
 		DEJson::WriteInt(goData, "UID", UID);
-		DEJson::WriteInt(goData, "PrefabReference", prefabReference);
-
 		if (parent)
 			DEJson::WriteInt(goData, "ParentUID", parent->UID);
+
+		DEJson::WriteInt(goData, "PrefabReference", prefabReference);
+
 	}
 
 	DEJson::WriteInt(goData, "PrefabID", prefabID);
@@ -431,11 +433,11 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
 		{
 			if (children[i]->prefabID != 0)
 			{
-				children[i]->SaveToJson(childrenArray, false);
+				children[i]->SaveScene(childrenArray, false);
 			}
 			else
 			{
-				children[i]->SaveForPrefab(childrenArray);
+				children[i]->SaveReducedData(childrenArray);
 			}
 		}
 
@@ -463,13 +465,136 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
 	for (size_t i = 0; i < children.size(); i++)
 	{
 		if (children[i]->prefabID != 0u)
-			children[i]->SaveToJson(_goArray, false);
+			children[i]->SaveScene(_goArray, false);
 		else	
-			children[i]->SaveToJson(_goArray, saveAllData);
+			children[i]->SaveScene(_goArray, saveAllData);
 	
 	}
 }
 
+void GameObject::SavePrefab(JSON_Array* _goArray, bool saveAllData)
+{
+	JSON_Value* goValue = json_value_init_object();
+	JSON_Object* goData = json_value_get_object(goValue);
+
+	json_object_set_string(goData, "name", name.c_str());
+	json_object_set_string(goData, "tag", tag);
+	json_object_set_string(goData, "layer", layer);
+
+	//Save all gameObject data
+	DEJson::WriteBool(goData, "Active", active);
+
+	if (saveAllData)
+	{
+		DEJson::WriteInt(goData, "UID", prefabReference);
+		if (parent)
+			DEJson::WriteInt(goData, "ParentUID", parent->prefabReference);
+
+		DEJson::WriteInt(goData, "PrefabReference", 0);
+
+	}
+	else
+	{
+		DEJson::WriteInt(goData, "UID", UID);
+		if (parent)
+			DEJson::WriteInt(goData, "ParentUID", parent->UID);
+
+		DEJson::WriteInt(goData, "PrefabReference", prefabReference);
+
+	}
+
+	DEJson::WriteInt(goData, "PrefabID", prefabID);
+
+	DEJson::WriteBool(goData, "DontDestroy", dontDestroy);
+	DEJson::WriteBool(goData, "Static", isStatic);
+
+	DEJson::WriteVector3(goData, "Position", &transform->position[0]);
+	DEJson::WriteQuat(goData, "Rotation", &transform->rotation.x);
+	DEJson::WriteVector3(goData, "Scale", &transform->localScale[0]);
+
+	json_array_append_value(_goArray, goValue);
+
+	if (prefabID != 0 && !saveAllData)
+	{
+		JSON_Value* childrenValue = json_value_init_array();
+		JSON_Array* childrenArray = json_value_get_array(childrenValue);
+
+		for (size_t i = 0; i < children.size(); i++)
+		{
+			if (children[i]->prefabID != 0)
+			{
+				children[i]->SaveScene(childrenArray, false);
+			}
+			else
+			{
+				children[i]->SaveReducedData(childrenArray);
+			}
+		}
+
+		json_object_set_value(goData, "PrefabObjects", childrenValue);
+
+		return;
+	}
+
+	//TODO: Move inside component base
+	{
+		//Save components
+		JSON_Value* goArray = json_value_init_array();
+		JSON_Array* jsArray = json_value_get_array(goArray);
+		for (size_t i = 0; i < components.size(); i++)
+		{
+			JSON_Value* nVal = json_value_init_object();
+			JSON_Object* nObj = json_value_get_object(nVal);
+
+			components[i]->SaveData(nObj);
+			json_array_append_value(jsArray, nVal);
+		}
+		json_object_set_value(goData, "Components", goArray);
+	}
+
+	for (size_t i = 0; i < children.size(); i++)
+	{
+		if (children[i]->prefabID != 0u)
+			children[i]->SaveScene(_goArray, false);
+		else
+			children[i]->SaveScene(_goArray, saveAllData);
+
+	}
+}
+
+void GameObject::SaveReducedData(JSON_Array* goArray)
+{
+	JSON_Value* goValue = json_value_init_object();
+	JSON_Object* goData = json_value_get_object(goValue);
+
+	json_object_set_string(goData, "name", name.c_str());
+	json_object_set_string(goData, "tag", tag);
+	json_object_set_string(goData, "layer", layer);
+
+	//Save all gameObject data
+	DEJson::WriteBool(goData, "Active", active);
+
+	DEJson::WriteInt(goData, "UID", UID);
+	if (parent)
+		DEJson::WriteInt(goData, "ParentUID", parent->UID);
+
+	DEJson::WriteInt(goData, "PrefabID", prefabID);
+	DEJson::WriteInt(goData, "PrefabReference", prefabReference);
+
+	DEJson::WriteBool(goData, "DontDestroy", dontDestroy);
+	DEJson::WriteBool(goData, "Static", isStatic);
+
+	DEJson::WriteVector3(goData, "Position", &transform->position[0]);
+	DEJson::WriteQuat(goData, "Rotation", &transform->rotation.x);
+	DEJson::WriteVector3(goData, "Scale", &transform->localScale[0]);
+
+	json_array_append_value(goArray, goValue);
+
+	for (size_t i = 0; i < children.size(); i++)
+	{
+		children[i]->SaveReducedData(goArray);
+	}
+}
 
 void GameObject::LoadFromJson(JSON_Object* _obj)
 {
@@ -490,40 +615,6 @@ void GameObject::LoadFromJson(JSON_Object* _obj)
 
 	if (json_layer == nullptr) sprintf_s(layer, "Default");
 	else sprintf_s(layer, json_layer);
-}
-
-void GameObject::SaveForPrefab(JSON_Array* goArray)
-{
-	JSON_Value* goValue = json_value_init_object();
-	JSON_Object* goData = json_value_get_object(goValue);
-
-	json_object_set_string(goData, "name", name.c_str());
-	json_object_set_string(goData, "tag", tag);
-	json_object_set_string(goData, "layer", layer);
-
-	//Save all gameObject data
-	DEJson::WriteBool(goData, "Active", active);
-
-	DEJson::WriteInt(goData, "UID", UID);
-	DEJson::WriteInt(goData, "PrefabID", prefabID);
-	DEJson::WriteInt(goData, "PrefabReference", prefabReference);
-
-	DEJson::WriteBool(goData, "DontDestroy", dontDestroy);
-	DEJson::WriteBool(goData, "Static", isStatic);
-
-	DEJson::WriteVector3(goData, "Position", &transform->position[0]);
-	DEJson::WriteQuat(goData, "Rotation", &transform->rotation.x);
-	DEJson::WriteVector3(goData, "Scale", &transform->localScale[0]);
-
-	if (parent)
-		DEJson::WriteInt(goData, "ParentUID", parent->UID);
-
-	json_array_append_value(goArray, goValue);
-
-	for (size_t i = 0; i < children.size(); i++)
-	{
-		children[i]->SaveForPrefab(goArray);
-	}
 }
 
 void GameObject::LoadForPrefab(JSON_Object* _obj)
