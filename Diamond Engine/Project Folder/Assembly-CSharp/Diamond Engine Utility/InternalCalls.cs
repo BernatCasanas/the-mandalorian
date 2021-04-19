@@ -138,6 +138,9 @@ namespace DiamondEngine
         
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern void PlayHaptic(float strength, int length);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public static extern ControllerType GetControllerType();
     }
 
     public class Scene
@@ -758,6 +761,16 @@ public enum DEControllerButton
     DPAD_LEFT,
     DPAD_RIGHT,
     MAX
+}
+
+public enum ControllerType
+{
+    SDL_CONTROLLER_TYPE_UNKNOWN = 0,
+    SDL_CONTROLLER_TYPE_XBOX360,
+    SDL_CONTROLLER_TYPE_XBOXONE,
+    SDL_CONTROLLER_TYPE_PS3,
+    SDL_CONTROLLER_TYPE_PS4,
+    SDL_CONTROLLER_TYPE_NINTENDO_SWITCH_PRO
 }
 
 public class Ease

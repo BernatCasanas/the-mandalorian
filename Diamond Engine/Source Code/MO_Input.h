@@ -13,6 +13,8 @@ enum KEY_STATE
 	KEY_UP
 };
 
+
+
 class ModuleInput : public Module
 {
 public:
@@ -102,6 +104,8 @@ public:
 
 	//Execute haptic
 	void PlayHaptic(float strength, int length);
+
+	int GetControllerType();
 
 public:
 	bool hapticEnabled;

@@ -65,6 +65,25 @@ MonoObject* CS_GetDestination(MonoObject* go)
 	return EngineExternal->moduleMono->Float3ToCS(comp->path.front());
 }
 
+MonoObject* CS_GetLastVector(MonoObject* go)
+{
+	if (EngineExternal == nullptr || go == nullptr)
+		return nullptr;
+
+	C_NavMeshAgent* comp = DECS_CompToComp<C_NavMeshAgent*>(go);
+
+	C_Transform* trans = comp->GetGO()->transform;
+
+	if (comp == nullptr)
+		return nullptr;
+
+	if (comp->path.size() <= 0)
+		return EngineExternal->moduleMono->Float3ToCS(trans->position);
+
+	
+	return EngineExternal->moduleMono->Float3ToCS(comp->path.back()-comp->path[comp->path.size()-2]);
+}
+
 float CS_GetSpeed(MonoObject* obj)
 {
 	if (EngineExternal == nullptr || obj == nullptr)

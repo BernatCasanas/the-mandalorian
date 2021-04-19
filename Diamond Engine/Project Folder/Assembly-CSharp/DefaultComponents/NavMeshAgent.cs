@@ -51,6 +51,8 @@ namespace DiamondEngine
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern Vector3 GetDestination();
 
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern Vector3 GetLastVector();
 
         public void MoveToCalculatedPos(float speed)
         {
