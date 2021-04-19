@@ -181,21 +181,16 @@ void C_Collider::LoadData(DEConfig& nObj)
 
 }
 
-void C_Collider::DisableShapeInContactTests()
-{
-	colliderShape->setFlag(physx::PxShapeFlag::eSIMULATION_SHAPE, false);
-}
-
-void C_Collider::EnableShapeInContactTests()
-{
-	colliderShape->setFlag(physx::PxShapeFlag::eSIMULATION_SHAPE, true);
-
-}
-
 void C_Collider::Enable()
 {
+	Component::Enable();
 	colliderShape->setFlag(physx::PxShapeFlag::eSIMULATION_SHAPE, active);
+}
 
+void C_Collider::Disable() 
+{
+	Component::Disable();
+	colliderShape->setFlag(physx::PxShapeFlag::eSIMULATION_SHAPE, active);
 }
 
 #ifndef STANDALONE
@@ -212,16 +207,8 @@ bool C_Collider::OnEditor()
 			it = std::find(rigidbody->collider_info.begin(), rigidbody->collider_info.end(), this);
 			index = std::distance(rigidbody->collider_info.begin(), it);
 		}
-		bool colactive = isActive;
-		std::string suffix = "isActive##" + std::to_string(index);
-		ImGui::Checkbox(suffix.c_str(), &isActive);
 
-		if (colactive != isActive)
-		{
-			if (isActive)EnableShapeInContactTests();
-			else
-				DisableShapeInContactTests();
-		}
+		std::string suffix;
 
 		bool trigger = isTrigger;
 		suffix = "isTrigger##" + std::to_string(index);

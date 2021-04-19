@@ -70,7 +70,7 @@ void EnableCollider(MonoObject* cs_GameObject)
 	for (int i = 0; i < iWantToDie.size(); i++)
 	{
 		C_Collider* col = dynamic_cast<C_Collider*>(iWantToDie[i]);
-		col->EnableShapeInContactTests();
+		col->Enable();
 	}
 }
 
@@ -101,7 +101,7 @@ void DisableCollider(MonoObject* cs_GameObject)
 	for (int i = 0; i < iWantToDie.size(); i++)
 	{
 		C_Collider* col = dynamic_cast<C_Collider*>(iWantToDie[i]);
-		col->DisableShapeInContactTests();
+		col->Disable();
 	}
 }
 MonoObject* FindObjectWithName(MonoString* name) {

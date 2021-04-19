@@ -29,7 +29,6 @@ position(_position), rotation(_rotation), localScale(_localScale)*/
 {
 
 	name = "Mesh Collider";
-	isActive = true;
 	isTrigger = false;
 	shape = ColliderShape::MESH;
 
@@ -190,7 +189,6 @@ void C_MeshCollider::SaveData(JSON_Object* nObj)
 
 	Component::SaveData(nObj);
 
-	DEJson::WriteBool(nObj, "isActive", isActive);
 	DEJson::WriteBool(nObj, "isTrigger", isTrigger);
 
 	DEJson::WriteVector3(nObj, "Position", pos.ptr());
@@ -205,12 +203,6 @@ void C_MeshCollider::LoadData(DEConfig& nObj)
 	float3 pos, scale;
 	Quat rot;
 	bool trigger;
-
-	isActive = nObj.ReadBool("isActive");
-	if (!isActive)
-	{
-		DisableShapeInContactTests();
-	}
 
 	trigger = nObj.ReadBool("isTrigger");
 	if (trigger != isTrigger)

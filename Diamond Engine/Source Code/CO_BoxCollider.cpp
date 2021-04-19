@@ -28,7 +28,6 @@ position(_position), rotation(_rotation), localScale(_localScale)*/
 {
 	int indexNum = _gm != nullptr ?_gm->GetComponentsOfType(Component::TYPE::BOXCOLLIDER).size() + _gm->GetComponentsOfType(Component::TYPE::COLLIDER).size() : 0;
 	name = "Box Collider_" + std::to_string(indexNum);
-	isActive = true;
 	isTrigger = false;
 	shape = ColliderShape::CUBE;
 
@@ -198,7 +197,6 @@ void C_BoxCollider::SaveData(JSON_Object* nObj)
 
 	Component::SaveData(nObj);
 
-	DEJson::WriteBool(nObj, "isActive", isActive);
 	DEJson::WriteBool(nObj, "isTrigger", isTrigger);
 
 	DEJson::WriteVector3(nObj, "Position", pos.ptr());
@@ -212,12 +210,6 @@ void C_BoxCollider::LoadData(DEConfig& nObj)
 	Component::LoadData(nObj);
 	float3 pos, scale;
 	Quat rot;
-
-	isActive = nObj.ReadBool("isActive");
-	if (!isActive)
-	{
-		DisableShapeInContactTests();
-	}
 
 	bool trigger;
 	trigger = nObj.ReadBool("isTrigger");
