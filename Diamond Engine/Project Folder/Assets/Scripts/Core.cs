@@ -547,12 +547,27 @@ public class Core : DiamondComponent
         Input.PlayHaptic(2f, 30);
 
         Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
-        Vector3 rot = new Vector3(0f, 1f, 0f);
-        Quaternion rotation = Quaternion.RotateAroundAxis(rot, 0.383972f);
+        Quaternion rotation = Quaternion.RotateAroundAxis(Vector3.up, 0.383972f);
 
-        InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation * rotation, scale);
-        rotation = Quaternion.RotateAroundAxis(rot, -0.383972f);
-        InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation * rotation, scale);
+        //TODO: Some of this is hardcoded, will change it once I have all the Mando's new numbers. Besis, Alex <3
+
+        bigGrenade grenadeComp = InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation * rotation, scale).GetComponent<bigGrenade>();
+        
+        if(grenadeComp != null)
+        {
+            Vector3 targetPos = grenadeComp.gameObject.transform.globalPosition + grenadeComp.gameObject.transform.GetForward() * 1.9f;
+            grenadeComp.InitGrenade(targetPos, 0.204f, 10);
+        }
+        
+        rotation = Quaternion.RotateAroundAxis(Vector3.up, -0.383972f);
+        grenadeComp = InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation * rotation, scale).GetComponent<bigGrenade>();
+
+        if (grenadeComp != null)
+        {
+            Vector3 targetPos = grenadeComp.gameObject.transform.globalPosition + grenadeComp.gameObject.transform.GetForward() * 1.9f;
+            grenadeComp.InitGrenade(targetPos, 0.204f, 10);
+        }
+
     }
 
     public void IncreaseNormalShootDamage(float percent)

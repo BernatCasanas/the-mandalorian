@@ -22,11 +22,11 @@
                 0.069992832839488983,
                 0.069992832839488983
             ],
-            "UID": 1585181348,
+            "UID": 1766323777,
             "PrefabID": 1968664915,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 738685494,
+            "ParentUID": 1676501951,
             "Components": [
                 {
                     "Type": 1,
@@ -41,7 +41,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -61,9 +67,10 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "smallGrenade",
-                    "thisReference": 1585181348,
+                    "thisReference": 1766323777,
                     "detonationTime": 2.5,
-                    "damage": 3
+                    "damage": 3,
+                    "explosionTime": 0.5
                 },
                 {
                     "Type": 22,
@@ -98,6 +105,16 @@
                         1
                     ],
                     "Radius": 0.069992825388908386
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "Mando",
+                    "volume": 50,
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false
                 }
             ]
         }

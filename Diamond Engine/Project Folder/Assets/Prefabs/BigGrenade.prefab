@@ -22,11 +22,11 @@
                 0.1999991238117218,
                 0.1999991238117218
             ],
-            "UID": 578526131,
+            "UID": 269659273,
             "PrefabID": 142833782,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 738685494,
+            "ParentUID": 1676501951,
             "Components": [
                 {
                     "Type": 1,
@@ -41,7 +41,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -61,11 +67,9 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "bigGrenade",
-                    "thisReference": 578526131,
-                    "speed": 10,
-                    "yVel": 0,
-                    "damage": 15,
-                    "detonationTime": 1
+                    "thisReference": 269659273,
+                    "detonationTime": 1,
+                    "detonationTimeOnDetect": 0
                 },
                 {
                     "Type": 22,
@@ -100,6 +104,16 @@
                         1
                     ],
                     "Radius": 0.1999991238117218
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "Mando",
+                    "volume": 50,
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false
                 }
             ]
         }

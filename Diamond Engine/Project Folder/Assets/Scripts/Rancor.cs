@@ -1074,7 +1074,7 @@ public class Rancor : DiamondComponent
             smallGrenade sGrenade = collidedGameObject.GetComponent<smallGrenade>();
 
             if (bGrenade != null)
-                healthPoints -= bGrenade.damage;
+                healthPoints -= bGrenade.GetDamage() ;
 
             if (sGrenade != null)
                 healthPoints -= sGrenade.damage;

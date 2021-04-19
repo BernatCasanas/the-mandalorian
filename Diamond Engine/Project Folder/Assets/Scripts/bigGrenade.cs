@@ -1,112 +1,182 @@
 using System;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Collections.Generic;
+
 using DiamondEngine;
 
 public class bigGrenade : DiamondComponent
 {
     public GameObject thisReference = null; //This is needed until i make all this be part of a component base class
-   
 
-    public float speed = 25.0f;
+    private float timeToGetToTarget = 1f;
+    private float setUpTimer = 0f;
+    private float speed = 25.0f;
 
-    public float yVel = 0.0f;
-
-    public float damage = 0.0f;
+    private float damage = 0.0f;
 
     public float detonationTime = 1.5f;
+    private float dftExplosionTimer = 0.0f;
 
-    private float Timer = 0.0f;
+    private bool grenadeSetUp = false;
+    private bool enemiesNearby = false;
 
-    private bool move = true;
+    public float detonationTimeOnDetect = 0.16f;
+    private float proximityTimer = 0f;
 
-    private bool detonate = false;
+    private Vector3 targetPos = new Vector3(0, 0, 0);
+    private Vector3 targetDirection = new Vector3(0, 0, 0);
 
-    public void OnCollisionEnter(GameObject collidedGameObject)
-    {
-        if (collidedGameObject.CompareTag("Enemy"))
-        {
-            detonate = true;
-        }
-
-    }
 
     public void Update()
     {
-        if (thisReference.transform.globalPosition.y < Core.instance.gameObject.transform.globalPosition.y + 0.5)
-        {
-            move = false;
-        }
+        Move();
 
-        if (move)
-        {
-            gameObject.transform.localPosition += gameObject.transform.GetForward() * (speed * Time.deltaTime);
-
-            yVel -= Time.deltaTime * 0.02f;
-            gameObject.transform.localPosition += (Vector3.up * yVel);
-        }
-        else
-        {
-            Timer += Time.deltaTime;
-
-        }
-
-        if (Timer > detonationTime || detonate)
+        if (dftExplosionTimer > detonationTime || proximityTimer > detonationTimeOnDetect)
         {
             InternalCalls.Destroy(thisReference);
-            Vector3 scale = new Vector3(0.07f, 0.07f, 0.07f);
-               
-            Vector3 position = new Vector3(0.0f, 0.0f, 0.0f); ;
-            position.y = 0.25f;
+            Audio.StopAudio(gameObject);
+            Audio.PlayAudio(gameObject, "Play_Mando_Grenade_Explosion_1_Charge");
 
-            position.x = 0.45f;
-            position.z = 0f;
-            //  InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab", position, thisReference.transform.globalRotation, scale);
-            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
-            
-            position.x = 0f;
-            position.z = -0.45f;
-            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
+            SpawnMiniGrenades();
 
-            position.x = -0.45f;
-            position.z = 0f;
-            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
+        }
 
-            position.x  = 0f;
-            position.z  = 0.45f;
-            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
+        UpdateTimers();
 
-            position.x = 0f;
-            position.z = 0.9f;
-            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale); 
-            
-            position.x = 0.675f;
-            position.z = 0.675f;
-            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab", thisReference.transform.globalPosition +  position, thisReference.transform.globalRotation, scale);
+    }
 
-            position.x = 0.9f;
-            position.z = 0f;
-            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
+    private void Move()
+    {
+        if (grenadeSetUp == true)
+            return;
 
-            position.x = 0.675f;
-            position.z = -0.675f;
-            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
+        gameObject.transform.localPosition += targetDirection * (speed * Time.deltaTime);
 
-            position.x = 0f;
-            position.z = -0.9f;
-            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
-
-            position.x = -0.675f;
-            position.z = -0.675f;
-            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
-
-            position.x = -0.9f;
-            position.z = 0f;
-            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
-
-            position.x = -0.675f;
-            position.z = 0.675f;
-            InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab",  thisReference.transform.globalPosition + position, thisReference.transform.globalRotation, scale);
+        if (setUpTimer >= timeToGetToTarget)
+        {
+            grenadeSetUp = true;
         }
 
     }
+
+    private void UpdateTimers()
+    {
+        if (grenadeSetUp == true)
+        {
+            dftExplosionTimer += Time.deltaTime;
+        }
+        else
+        {
+            setUpTimer += Time.deltaTime;
+        }
+
+        if (enemiesNearby == true)
+        {
+            proximityTimer += Time.deltaTime;
+        }
+
+    }
+
+    private void SpawnMiniGrenades()
+    {
+        Vector3 scale = new Vector3(0.125f, 0.125f, 0.125f);
+
+        Vector3 position = new Vector3(0.0f, 0.0f, 0.0f); ;
+        position.y = 0.25f;
+
+        float scatteringMult = 1.9f;
+
+        position.x = 0.45f;
+        position.z = 0f;
+        InstanciateMiniGrenade(position * scatteringMult, scale);
+
+        position.x = 0f;
+        position.z = -0.45f;
+        InstanciateMiniGrenade(position * scatteringMult, scale);
+
+        position.x = -0.45f;
+        position.z = 0f;
+        InstanciateMiniGrenade(position * scatteringMult, scale);
+
+        position.x = 0f;
+        position.z = 0.45f;
+        InstanciateMiniGrenade(position * scatteringMult, scale);
+
+        position.x = 0f;
+        position.z = 0.9f;
+        InstanciateMiniGrenade(position * scatteringMult, scale);
+
+        position.x = 0.675f;
+        position.z = 0.675f;
+        InstanciateMiniGrenade(position * scatteringMult, scale);
+
+        position.x = 0.9f;
+        position.z = 0f;
+        InstanciateMiniGrenade(position * scatteringMult, scale);
+
+        position.x = 0.675f;
+        position.z = -0.675f;
+        InstanciateMiniGrenade(position * scatteringMult, scale);
+
+        position.x = 0f;
+        position.z = -0.9f;
+        InstanciateMiniGrenade(position * scatteringMult, scale);
+
+        position.x = -0.675f;
+        position.z = -0.675f;
+        InstanciateMiniGrenade(position * scatteringMult, scale);
+
+        position.x = -0.9f;
+        position.z = 0f;
+        InstanciateMiniGrenade(position * scatteringMult, scale);
+
+        position.x = -0.675f;
+        position.z = 0.675f;
+        InstanciateMiniGrenade(position * scatteringMult, scale);
+    }
+
+    private void InstanciateMiniGrenade(Vector3 positionOffset, Vector3 scale)
+    {
+        smallGrenade smalLGre = InternalCalls.CreatePrefab("Library/Prefabs/1968664915.prefab", thisReference.transform.globalPosition + positionOffset, thisReference.transform.globalRotation, scale).GetComponent<smallGrenade>();
+
+        if (smalLGre != null)
+        {
+            var rand = new Random();
+            smalLGre.InitMiniGrenades((float)rand.NextDouble());
+        }
+
+    }
+
+    public void OnCollisionEnter(GameObject collidedGameObject)
+    {
+        if (collidedGameObject.CompareTag("Enemy") && grenadeSetUp == true)
+        {
+            enemiesNearby = true;
+        }
+
+    }
+
+
+    public float GetDamage()
+    {
+        return damage;
+    }
+
+    public void InitGrenade(Vector3 position, float timeToGetToPos, float damage = 0f)
+    {
+        targetPos = position;
+        timeToGetToTarget = timeToGetToPos;
+
+        targetDirection = targetPos - gameObject.transform.globalPosition;
+        speed = gameObject.transform.globalPosition.Distance(targetPos) / timeToGetToPos;
+
+        if (damage != 0f)
+            this.damage = damage;
+
+        Audio.PlayAudio(gameObject, "Play_Mando_Grenade_1_Charge");
+
+    }
+
 
 }
