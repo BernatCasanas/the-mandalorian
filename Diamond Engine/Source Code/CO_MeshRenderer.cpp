@@ -137,6 +137,13 @@ void C_MeshRenderer::SaveData(JSON_Object* nObj)
 		DEJson::WriteInt(nObj, "UID", _mesh->GetUID());
 	}
 
+	if (normalMap != nullptr)
+	{
+		DEJson::WriteString(nObj, "NormalMapAssetPath", normalMap->GetAssetPath());
+		DEJson::WriteString(nObj, "NormalMapLibraryPath", normalMap->GetLibraryPath());
+		DEJson::WriteInt(nObj, "NormalMapUID", normalMap->GetUID());
+	}
+
 	DEJson::WriteVector3(nObj, "alternColor", &alternColor.x);
 }
 
@@ -152,6 +159,12 @@ void C_MeshRenderer::LoadData(DEConfig& nObj)
 		return;
 
 	_mesh->generalWireframe = &EngineExternal->moduleRenderer3D->wireframe;
+
+	std::string texPath = nObj.ReadString("NormalMapAssetPath");
+	std::string texName = nObj.ReadString("NormalMapLibraryPath");
+
+	if (texName != "")
+		normalMap = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("NormalMapUID"), texName.c_str()));
 
 	gameObject->transform->UpdateBoxes();
 }
