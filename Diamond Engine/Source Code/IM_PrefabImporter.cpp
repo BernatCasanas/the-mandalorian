@@ -53,11 +53,39 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 	GameObject* parent = rootObject;
 	std::map<uint, GameObject*> prefabObjects;
 
+	std::vector<uint> prefabReferences;
 	for (size_t j = 0; j < json_array_get_count(gameObjectsArray); j++)
 	{
 		bool newObject = true;
 		JSON_Object* jsonObject = json_array_get_object(gameObjectsArray, j);
 		int uid = json_object_get_number(jsonObject, "UID");
+		int prefabID = json_object_get_number(jsonObject, "PrefabID");
+		int prefabReference = json_object_get_number(jsonObject, "PrefabReference");
+
+		if (prefabID != 0 && j != 0 && overriding)
+		{
+			for (size_t k = 0; k < sceneObjects.size(); k++)
+			{
+				if (sceneObjects[k]->prefabID == prefabID)
+				{
+					std::vector<GameObject*> childObjects;
+					sceneObjects[k]->CollectChilds(childObjects);
+
+					for (size_t m = 0; m < childObjects.size(); m++)
+					{
+						prefabReferences.push_back(childObjects[m]->prefabReference);
+						prefabObjects[childObjects[m]->prefabReference] = childObjects[m];
+					}
+					
+					std::string childPrefabPath = EngineExternal->moduleResources->GenLibraryPath(prefabID, Resource::Type::PREFAB);
+					LoadPrefab(childPrefabPath.c_str(), childObjects, overriding);
+					break;
+				}
+			}
+		}
+	
+		if (std::find(prefabReferences.begin(), prefabReferences.end(), prefabReference) != prefabReferences.end())
+			continue;
 
 		for (size_t i = 0; i < sceneObjects.size() && newObject; i++)
 		{
@@ -127,6 +155,7 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 	//Free memory
 	json_value_free(prefab);
 	prefabObjects.clear();
+	prefabReferences.clear();
 
 	return rootObject;
 }

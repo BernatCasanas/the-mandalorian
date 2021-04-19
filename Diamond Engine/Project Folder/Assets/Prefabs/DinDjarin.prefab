@@ -100,24 +100,14 @@
                     ]
                 },
                 {
-                    "Type": 16,
-                    "Active": true,
-                    "RootBone UID": 997381826,
-                    "MeshRendererUID": 199089793,
-                    "Animations": [
-                        1169846379,
-                        2130902709,
-                        942859953,
-                        720149964
-                    ]
-                },
-                {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "PlayerHealth",
-                    "<currMaxHealth>k__BackingField": 0,
-                    "<currHealth>k__BackingField": 0,
-                    "<healWhenKillingAnEnemy>k__BackingField": 0
+                    "ScriptName": "AimBot",
+                    "startAimConeAngle": 90,
+                    "maxRange": 50,
+                    "angleWeight": 0.5,
+                    "distanceWeight": 0.5,
+                    "isShooting": false
                 },
                 {
                     "Type": 5,
@@ -127,14 +117,11 @@
                     "separation": 3.5
                 },
                 {
-                    "Type": 5,
+                    "Type": 16,
                     "Active": true,
-                    "ScriptName": "AimBot",
-                    "startAimConeAngle": 90,
-                    "maxRange": 50,
-                    "angleWeight": 0.5,
-                    "distanceWeight": 0.5,
-                    "isShooting": false
+                    "RootBone UID": 7572352,
+                    "MeshRendererUID": 713750560,
+                    "Animations": []
                 }
             ]
         },
@@ -2361,16 +2348,16 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1765915077,
-            "PrefabReference": 0,
-            "ParentUID": 511481103,
+            "UID": 1777923290,
+            "PrefabReference": 416561006,
+            "ParentUID": 1040122809,
             "PrefabID": 2124140914,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                1.7088297605514526,
-                0.78730094432830811,
-                2.9517827033996582
+                1.1127376556396484,
+                0.33532601594924927,
+                1.1685707569122314
             ],
             "Rotation": [
                 0,
@@ -2383,212 +2370,118 @@
                 1,
                 1
             ],
-            "Components": [
+            "PrefabObjects": [
                 {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
+                    "name": "GroguMesh",
+                    "tag": "Untagged",
+                    "layer": "Default",
                     "Active": true,
-                    "ScriptName": "BabyYoda",
-                    "verticalSpeed": 0.80000001192092896,
-                    "verticalTimeInterval": 1.2000000476837158,
-                    "horizontalSpeed": 4,
-                    "skillPushDuration": 1
-                }
-            ]
-        },
-        {
-            "name": "GroguMesh",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1334785067,
-            "PrefabReference": 0,
-            "ParentUID": 1765915077,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "GrogusBody",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1011292976,
-            "PrefabReference": 0,
-            "ParentUID": 1334785067,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2081829869.mmh",
-                    "UID": 2081829869,
-                    "alternColor": [
+                    "UID": 1987443657,
+                    "PrefabID": 0,
+                    "PrefabReference": 1334785067,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "ParentUID": 1777923290
                 },
                 {
-                    "Type": 3,
+                    "name": "GrogusBody",
+                    "tag": "Untagged",
+                    "layer": "Default",
                     "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/715565838.mat",
-                    "MaterialUID": 715565838
-                }
-            ]
-        },
-        {
-            "name": "CapsuleDoor",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1976915201,
-            "PrefabReference": 0,
-            "ParentUID": 1334785067,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/1111006325.mmh",
-                    "UID": 1111006325,
-                    "alternColor": [
+                    "UID": 1148500493,
+                    "PrefabID": 0,
+                    "PrefabReference": 1011292976,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "ParentUID": 1987443657
                 },
                 {
-                    "Type": 3,
+                    "name": "CapsuleDoor",
+                    "tag": "Untagged",
+                    "layer": "Default",
                     "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/715565838.mat",
-                    "MaterialUID": 715565838
-                }
-            ]
-        },
-        {
-            "name": "Capsule",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 438788944,
-            "PrefabReference": 0,
-            "ParentUID": 1334785067,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/772459766.mmh",
-                    "UID": 772459766,
-                    "alternColor": [
+                    "UID": 346710755,
+                    "PrefabID": 0,
+                    "PrefabReference": 1976915201,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "ParentUID": 1987443657
                 },
                 {
-                    "Type": 3,
+                    "name": "Capsule",
+                    "tag": "Untagged",
+                    "layer": "Default",
                     "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/715565838.mat",
-                    "MaterialUID": 715565838
+                    "UID": 633281575,
+                    "PrefabID": 0,
+                    "PrefabReference": 438788944,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "ParentUID": 1987443657
                 }
             ]
         }

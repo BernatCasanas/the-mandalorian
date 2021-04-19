@@ -462,7 +462,11 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
 
 	for (size_t i = 0; i < children.size(); i++)
 	{
-		children[i]->SaveToJson(_goArray, saveAllData);
+		if (children[i]->prefabID != 0u)
+			children[i]->SaveToJson(_goArray, false);
+		else	
+			children[i]->SaveToJson(_goArray, saveAllData);
+	
 	}
 }
 
@@ -622,7 +626,10 @@ void GameObject::ChangeParent(GameObject* newParent)
 	parent->children.push_back(this);
 
 	if (parent->prefabID != 0u || parent->prefabReference != 0u)
-		prefabReference = UID;
+	{
+		if(prefabReference == 0u)
+			prefabReference = UID;
+	}
 	else
 		prefabReference = 0u;
 
