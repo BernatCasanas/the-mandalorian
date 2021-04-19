@@ -7,9 +7,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                -11.882746696472168,
-                8.9119129180908203,
-                -3.8349010944366455
+                -24.582571029663086,
+                17.292133331298828,
+                -5.2490224838256836
             ],
             "Rotation": [
                 0,
@@ -22,7 +22,7 @@
                 1,
                 1
             ],
-            "UID": 1747144617,
+            "UID": 1511260038,
             "PrefabID": 1265377444,
             "DontDestroy": false,
             "Static": false,
@@ -40,26 +40,26 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                0,
+                0.39561080932617188,
                 0,
                 0.2265477180480957
             ],
             "Rotation": [
-                -0.2989012598991394,
-                -0.66115087270736694,
-                -0.56400620937347412,
-                0.39425197243690491
+                -0.44073605537414551,
+                0.58288758993148804,
+                0.4617273211479187,
+                0.50279384851455688
             ],
             "Scale": [
-                1.000001072883606,
-                0.99998795986175537,
-                0.99998593330383301
+                1.0000214576721191,
+                0.99999749660491943,
+                0.99999785423278809
             ],
-            "UID": 2105229323,
+            "UID": 1621304480,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1747144617,
+            "ParentUID": 1511260038,
             "Components": [
                 {
                     "Type": 1,
@@ -78,7 +78,7 @@
                     "Active": true,
                     "systemActive": false,
                     "looping": false,
-                    "maxDuration": 0.17499999701976776,
+                    "maxDuration": 0.24500000476837158,
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
@@ -86,8 +86,8 @@
                             "texUID": 1118915037,
                             "paEmitterName": "White sparks",
                             "paLifeTime": [
-                                0.30000001192092896,
-                                0.5
+                                0.5,
+                                0.75
                             ],
                             "paSize": [
                                 0.05000000074505806,
@@ -109,8 +109,8 @@
                                         0
                                     ],
                                     "paFOLT_magnitude": 0,
-                                    "paFOLT_gravityMod": 0.69999998807907104,
-                                    "paFOLT_gravity": -6.8600001335144043,
+                                    "paFOLT_gravityMod": 1,
+                                    "paFOLT_gravity": -9.8000001907348633,
                                     "paFOLT_forceType": 0
                                 },
                                 {
@@ -157,16 +157,13 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 0.20000000298023224,
+                                    "paShapePartSpeed": 0.75,
                                     "paShapeRandSpeed": 0,
-                                    "PaShapeAreaDimensions": [
-                                        0.05000000074505806,
-                                        0.05000000074505806,
-                                        0.05000000074505806
-                                    ],
-                                    "PaShapeSphereDirection": false,
-                                    "PaShapeSphereAngle": 0,
-                                    "paShapeType": 0,
+                                    "PaShapeConeRadius": 0.10000000149011612,
+                                    "PaShapeConeHeight": 1,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 20,
+                                    "paShapeType": 2,
                                     "PaShapeOffset": [
                                         0,
                                         0,
