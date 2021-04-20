@@ -118,7 +118,7 @@ void ResourceMesh::RenderMesh(GLuint textureID, float3 color, bool renderTexture
 		material->shader->Bind();
 		material->PushUniforms();
 
-		PushDefaultMeshUniforms(material->shader->shaderProgramID, textureID, _transform, color);
+		PushDefaultMeshUniforms(material->shader->shaderProgramID, textureID, _transform, color, normalMap);
 
 
 		if (EngineExternal->moduleRenderer3D->directLight)
@@ -396,7 +396,7 @@ void ResourceMesh::LoadBones(char** cursor)
 	}
 }
 
-void ResourceMesh::PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Transform* _transform, float3 color) 
+void ResourceMesh::PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Transform* _transform, float3 color, ResourceTexture* normalMap) 
 {
 	if (textureID != 0)
 		glUniform1i(glGetUniformLocation(shaderID, "hasTexture"), 1);
@@ -437,7 +437,7 @@ void ResourceMesh::PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Tran
 	glUniform3fv(modelLoc, 1, &lightPosition.x);
 
 	glActiveTexture(GL_TEXTURE8);
-	glUniform1i(glGetUniformLocation(material->shader->shaderProgramID, "normalMap"), 8);
+	glUniform1i(glGetUniformLocation(shaderID, "normalMap"), 8);
 
 	if (normalMap != nullptr)
 		glBindTexture(GL_TEXTURE_2D, normalMap->textureID);

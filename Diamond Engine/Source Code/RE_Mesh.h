@@ -42,7 +42,7 @@ public:
 	int* GetTriangles() const;
 
 	void OGL_GPU_Render();
-	void PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Transform* _transform, float3 color);
+	void PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Transform* _transform, float3 color, ResourceTexture* normalMap = nullptr);
 
 public:
 
