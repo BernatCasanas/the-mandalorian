@@ -211,8 +211,11 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            int newHP = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementMaxHpPercent(0.1f, true);
-            Debug.Log("MAX HP: " + newHP);
+            if(Core.instance != null)
+            {
+                int newHP = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementMaxHpPercent(0.1f, true);
+                Debug.Log("MAX HP: " + newHP);
+            }
         }
 
         public override void AssignCharacteristics()
@@ -276,7 +279,8 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            Core.instance.gameObject.GetComponent<PlayerHealth>().SetSkill("DAvoidDmg", 10); //10%
+            if(Core.instance != null)
+                Core.instance.gameObject.GetComponent<PlayerHealth>().SetSkill("DAvoidDmg", 10); //10%
         }
 
         public override void AssignCharacteristics()
@@ -304,7 +308,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "[NOT IMPLEMENTED] For each 10% of HP Mando is missing, gain 1 more passive Force Regeneration per second.";
+            description = "For each 10% of HP Mando is missing, gain 1 more passive Force Regeneration per second.";
             price = 0;
             type_of_price = RewardType.REWARD_MACARON;
         }
@@ -385,7 +389,6 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            //TODO: Priority
             Enemy.skill_slowDownEnabled = true;
             Enemy.skill_slowDownAmount = 0.2f;
             Enemy.skill_slowDownDuration = 3.0f;
@@ -461,8 +464,11 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            Core.instance.SetSkill("SeDelay", 0.3f);
-            //Debug.Log("Secondary gun: Delay between uses reduced by 30%."); //Uncommenting that crashes the game
+            if(Core.instance != null)
+            {
+                Core.instance.SetSkill("SeDelay", 0.3f);
+                //Debug.Log("Secondary gun: Delay between uses reduced by 30%."); //Uncommenting that crashes the game
+            }
         }
 
         public override void AssignCharacteristics()
