@@ -26,6 +26,11 @@ public class BabyYoda : DiamondComponent
     private static int skillPushForceCost = 40;
     private static int skillWallForceCost = 60;
 
+    //Skills
+    private static bool skill_fasterForceRegenerationActive = false; //For each 10% of HP Mando is missing, gain 1 more passive Force Regeneration per second
+    private static float skill_fasterForceRegenerationHealthStep = 0.0f;
+    private static float skill_fasterForceRegenerationForceRegen = 0.0f;
+
     //State (INPUT AND STATE LOGIC)
     #region STATE
     private STATE state = STATE.MOVE;
@@ -73,7 +78,9 @@ public class BabyYoda : DiamondComponent
 
         if (currentForce < totalForce)
         {
-            currentForce += (forceRegenerationSpeed * Time.deltaTime);
+            if (skill_fasterForceRegenerationActive)
+                currentForce += (GetForceRegenSpeedWithSkill() * Time.deltaTime);
+            else currentForce += (forceRegenerationSpeed * Time.deltaTime);
 
             if (currentForce > totalForce)
                 currentForce = totalForce;
@@ -355,7 +362,8 @@ public class BabyYoda : DiamondComponent
 
     public static float GetForceRegenerationSpeed()
     {
-        return forceRegenerationSpeed;
+        if (skill_fasterForceRegenerationActive) return GetForceRegenSpeedWithSkill();
+        else return forceRegenerationSpeed;
     }
 
     public static void AugmentForceRegenSpeed(float newSpeed)
@@ -406,5 +414,21 @@ public class BabyYoda : DiamondComponent
         forceRegenerationSpeed = forceRegenerationSpeedDft;
     }
 
+    private static float GetForceRegenSpeedWithSkill()
+    {
+        int HPDiff = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
+        float steps = (float)HPDiff / skill_fasterForceRegenerationHealthStep;
+        
+        return forceRegenerationSpeed + steps * skill_fasterForceRegenerationForceRegen;
+    }
 
+    public static void SetSkill(string skillName, float value1 = 0.0f, float value2 = 0.0f)
+    {
+        if (skillName == "GroguForceRegenerationSkill")
+        {
+            skill_fasterForceRegenerationActive = true;
+            skill_fasterForceRegenerationHealthStep = value1;
+            skill_fasterForceRegenerationForceRegen = value2;
+        }
+    }
 }
