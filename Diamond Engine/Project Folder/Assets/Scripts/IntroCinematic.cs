@@ -23,19 +23,21 @@ public class IntroCinematic : DiamondComponent
 
     public void Awake()
     {
-        cameraObject.transform.localPosition = point3.transform.localPosition;  // This should be point1
+        /*cameraObject.transform.localPosition = point3.transform.localPosition;  // This should be point1
 
-        toGoVector = point1.transform.localPosition;
-        toRotateQuaternion = point1.transform.localRotation;
+        toGoVector = point4.transform.localPosition;    // This should be point2
+        toRotateQuaternion = point4.transform.localRotation;    // This should be point2
 
         pointArray = new GameObject[] { point1, point2, point3, point4, point5, point6, point7, point8 };
-        speedArray = new float[] { 1.0f, 1.0f, 1.0f, 1.0f}; // Clean values
+        speedArray = new float[] { 1.0f, 1.0f, 1.0f, 1.0f}; // Clean values*/
     }
 
     public void Update()
     {
+       /* Debug.Log("Distance is " + Mathf.Distance(cameraObject.transform.localPosition, toGoVector).ToString());
         if (Mathf.Distance(cameraObject.transform.localPosition, toGoVector) < 0.5f)
         {
+            Debug.Log("Duh");
             arrayCount++;
             if (arrayCount >= 4)
             {
@@ -49,9 +51,14 @@ public class IntroCinematic : DiamondComponent
 
         if (toGoVector != null)
         {
+            Debug.Log("Um, obviously");
+            Debug.Log("Camera position " + cameraObject.transform.localPosition);
+            Debug.Log("Go vector position " + toGoVector);
+            Debug.Log("Speed " + currentSpeed);
+            Debug.Log("Array count " + arrayCount);
             cameraObject.transform.localPosition += (toGoVector - cameraObject.transform.localPosition).normalized * Time.deltaTime * currentSpeed;
             cameraObject.transform.localRotation = Quaternion.Slerp(cameraObject.transform.localRotation, toRotateQuaternion, 0.25f * Time.deltaTime);
-        }
+        }*/
     }
 
 }
