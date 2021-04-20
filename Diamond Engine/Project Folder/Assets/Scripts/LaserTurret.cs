@@ -5,17 +5,14 @@ using System.Collections.Generic;
 
 using DiamondEngine;
 
-public class Skytrooper : Enemy
+public class LaserTurret : Enemy
 {
     enum STATE : int
     {
         NONE = -1,
         IDLE,
-        WANDER,
-        DASH,
-        PUSHED,
+        LOAD,
         SHOOT,
-        HIT,
         DIE
     }
 
@@ -23,15 +20,9 @@ public class Skytrooper : Enemy
     {
         IN_IDLE,
         IN_IDLE_END,
-        IN_DASH,
-        IN_DASH_END,
-        IN_WANDER,
-        IN_PUSHED,
+        IN_LOAD,
         IN_SHOOT,
-        IN_HIT,
-        IN_DIE,
-        IN_PLAYER_IN_RANGE,
-
+        IN_DIE
     }
 
     //State
@@ -44,41 +35,29 @@ public class Skytrooper : Enemy
     private GameObject visualFeedback = null;
 
     //Action times
-    public float idleTime = 5.0f;
-    public float dashTime = 0.0f;
-    private float dieTime = 3.0f;
-    public float timeBewteenShots = 0.5f;
-    public float timeBewteenStates = 1.5f;
+    public float idleTime = 0.0f;
+    public float loadTime = 0.0f;
+    public float shotTime = 0.0f;
+    private float dieTime = 0.0f;
     public float feedbackTime = 0.0f;
 
     //Speeds
-    public float wanderSpeed = 3.5f;
-    public float dashSpeed = 7.5f;
-    //public float bulletSpeed = 10.0f;
-    private bool skill_slowDownActive = false;
+    public float rotationSpeed = 0.0f;
 
     //Ranges
-    public float wanderRange = 7.5f;
-    public float dashRange = 12.5f;
+    public float laserRange = 0.0f;
 
     //Timers
     private float idleTimer = 0.0f;
-    private float dashTimer = 0.0f;
-    //private float shotTimer = 0.0f;
+    private float loadTimer = 0.0f;
+    private float shotTimer = 0.0f;
     private float dieTimer = 0.0f;
-    private float statesTimer = 0.0f;
-    private float pushTimer = 0.0f;
-    private float skill_slowDownTimer = 0.0f;
     private float feedbackTimer = 0.0f;
 
     //Action variables
-    int shotTimes = 0;
-    public int maxShots = 2;
+    //int shotTimes = 0;
+    //public int maxShots = 2;
 
-    //push
-    public float pushHorizontalForce = 100;
-    public float pushVerticalForce = 10;
-    public float PushStun = 2;
 
     public void Awake()
     {
@@ -86,9 +65,9 @@ public class Skytrooper : Enemy
         targetPosition = null;
 
         currentState = STATE.IDLE;
-        Animator.Play(gameObject, "SK_Idle");
+        //Animator.Play(gameObject, "SK_Idle");
 
-        shotTimes = 0;
+        //shotTimes = 0;
 
         idleTimer = idleTime;
         //dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
@@ -123,15 +102,15 @@ public class Skytrooper : Enemy
             player = Core.instance.gameObject;
         }
 
-        if (skill_slowDownActive)
-        {
-            skill_slowDownTimer += Time.deltaTime;
-            if (skill_slowDownTimer >= skill_slowDownDuration)
-            {
-                skill_slowDownTimer = 0.0f;
-                skill_slowDownActive = false;
-            }
-        }
+        //if (skill_slowDownActive)
+        //{
+        //    skill_slowDownTimer += Time.deltaTime;
+        //    if (skill_slowDownTimer >= skill_slowDownDuration)
+        //    {
+        //        skill_slowDownTimer = 0.0f;
+        //        skill_slowDownActive = false;
+        //    }
+        //}
 
         #region STATE MACHINE
 
@@ -154,24 +133,35 @@ public class Skytrooper : Enemy
 
             if (idleTimer <= 0.0f)
             {
-                inputsList.Add(INPUT.IN_WANDER);
+                inputsList.Add(INPUT.IN_LOAD);
             }
         }
 
-        if (currentState == STATE.DASH || currentState == STATE.WANDER)
+        if (loadTimer > 0.0f)
         {
-            if (Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance)
+            loadTimer -= Time.deltaTime;
+
+            if (loadTimer <= 0.0f)
+            {
+                inputsList.Add(INPUT.IN_SHOOT);
+            }
+        }
+
+        //if (currentState == STATE.SHOOT)
+        //{
+        //    if (Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance) //THIS IF SHOULD VE TO TAKE INTO ACCOUNT THE FINAL ANGLE LIKE STOPPPING DISTANCE
+        //    {
+        //        inputsList.Add(INPUT.IN_IDLE);
+        //    }
+        //}
+
+        if (shotTimer > 0.0f)
+        {
+            shotTimer -= Time.deltaTime;
+
+            if (shotTimer <= 0.0f)
             {
                 inputsList.Add(INPUT.IN_IDLE);
-            }
-        }
-
-        if (currentState == STATE.DASH && dashTimer > 0.0f)
-        {
-            dashTimer -= Time.deltaTime;
-            if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) <= agent.stoppingDistance || dashTimer < 0.0f)
-            {
-                inputsList.Add(INPUT.IN_DASH_END);
             }
         }
 
@@ -189,16 +179,16 @@ public class Skytrooper : Enemy
     //All events from outside the stormtrooper
     private void ProcessExternalInput()
     {
-        if (currentState != STATE.DIE && currentState != STATE.DASH)
-        {
-            if (InRange(player.transform.globalPosition, detectionRange))
-            {
-                inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
+        //if (currentState != STATE.DIE && currentState != STATE.DASH)
+        //{
+        //    if (InRange(player.transform.globalPosition, detectionRange))
+        //    {
+        //        inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
 
-                if (player != null)
-                    LookAt(player.transform.globalPosition);
-            }
-        }
+        //        if (player != null)
+        //            LookAt(player.transform.globalPosition);
+        //    }
+        //}
     }
 
     //Manages state changes throught inputs
@@ -217,83 +207,31 @@ public class Skytrooper : Enemy
                 case STATE.IDLE:
                     switch (input)
                     {
-                        case INPUT.IN_WANDER:
-                            currentState = STATE.WANDER;
-                            StartWander();
+                        case INPUT.IN_LOAD:
+                            currentState = STATE.LOAD;
+                            ShootEnd();
+                            StartLoad();
                             break;
 
-                        case INPUT.IN_PLAYER_IN_RANGE:
+                        case INPUT.IN_DIE:
+                            currentState = STATE.DIE;
+                            ShootEnd();
+                            StartDie();
+                            break;
+                    }
+                    break;
+
+                case STATE.LOAD:
+                    switch (input)
+                    {
+                        case INPUT.IN_SHOOT:
                             currentState = STATE.SHOOT;
-                            PlayerDetected();
                             StartShoot();
                             break;
 
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
                             StartDie();
-                            break;
-
-                        case INPUT.IN_PUSHED:
-                            currentState = STATE.PUSHED;
-                            StartPush();
-                            break;
-                    }
-                    break;
-
-                case STATE.WANDER:
-                    switch (input)
-                    {
-                        case INPUT.IN_IDLE:
-                            currentState = STATE.IDLE;
-                            WanderEnd();
-                            StartIdle();
-                            break;
-
-                        case INPUT.IN_PLAYER_IN_RANGE:
-                            currentState = STATE.SHOOT;
-                            WanderEnd();
-                            PlayerDetected();
-                            StartShoot();
-                            break;
-
-                        case INPUT.IN_DIE:
-                            currentState = STATE.DIE;
-                            WanderEnd();
-                            StartDie();
-                            break;
-
-                        case INPUT.IN_PUSHED:
-                            currentState = STATE.PUSHED;
-                            StartPush();
-                            break;
-                    }
-                    break;
-
-                case STATE.DASH:
-                    switch (input)
-                    {
-                        case INPUT.IN_IDLE:
-                            currentState = STATE.IDLE;
-                            DashEnd();
-                            StartIdle();
-                            break;
-
-                        case INPUT.IN_WANDER:
-                            currentState = STATE.WANDER;
-                            DashEnd();
-                            StartWander();
-                            break;
-
-                        case INPUT.IN_DIE:
-                            currentState = STATE.DIE;
-                            DashEnd();
-                            StartDie();
-                            break;
-
-                        case INPUT.IN_PUSHED:
-                            currentState = STATE.PUSHED;
-                            DashEnd();
-                            StartPush();
                             break;
                     }
                     break;
@@ -301,35 +239,20 @@ public class Skytrooper : Enemy
                 case STATE.SHOOT:
                     switch (input)
                     {
-                        case INPUT.IN_DASH:
-                            currentState = STATE.DASH;
-                            StartDash();
+                        case INPUT.IN_IDLE:
+                            currentState = STATE.IDLE;
+                            LoadEnd();
+                            StartIdle();
                             break;
 
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
+                            LoadEnd();
                             StartDie();
-                            break;
-                        case INPUT.IN_PUSHED:
-                            currentState = STATE.PUSHED;
-                            StartPush();
                             break;
                     }
                     break;
-                case STATE.PUSHED:
-                    switch (input)
-                    {
-                        case INPUT.IN_DIE:
-                            currentState = STATE.DIE;
-                            StartDie();
-                            break;
-                        case INPUT.IN_IDLE:
-                            currentState = STATE.IDLE;
-                            DashEnd();
-                            StartIdle();
-                            break;
-                    }
-                    break;
+
                 default:
                     Debug.Log("NEED TO ADD STATE TO CORE SWITCH");
                     break;
@@ -347,20 +270,14 @@ public class Skytrooper : Enemy
                 break;
             case STATE.IDLE:
                 break;
-            case STATE.DASH:
-                UpdateDash();
-                break;
-            case STATE.WANDER:
-                UpdateWander();
+            case STATE.LOAD:
+                UpdateLoad();
                 break;
             case STATE.SHOOT:
                 UpdateShoot();
                 break;
             case STATE.DIE:
                 UpdateDie();
-                break;
-            case STATE.PUSHED:
-                UpdatePush();
                 break;
             default:
                 Debug.Log("NEED TO ADD STATE TO CORE");
@@ -371,49 +288,28 @@ public class Skytrooper : Enemy
     #region IDLE
     private void StartIdle()
     {
-        Debug.Log("SKYTROOPER IDLE");
+        Debug.Log("TURRET IDLE");
         idleTimer = idleTime;
         Animator.Play(gameObject, "SK_Idle");
     }
     #endregion
 
-    #region WANDER
-    private void StartWander()
+    #region LOAD
+    private void StartLoad()
     {
-        Debug.Log("SKYTROOPER WANDER");
-        agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
+        //Debug.Log("SKYTROOPER WANDER");
+        //agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
-        Animator.Play(gameObject, "SK_Dash");
-        Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
+        //Animator.Play(gameObject, "SK_Dash");
+        //Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
     }
-    private void UpdateWander()
+    private void UpdateLoad()
     {
-        LookAt(agent.GetDestination());
-        if (skill_slowDownActive) agent.MoveToCalculatedPos(wanderSpeed * (1 - skill_slowDownAmount));
-        else agent.MoveToCalculatedPos(wanderSpeed);
+        //LookAt(agent.GetDestination());
+        //if (skill_slowDownActive) agent.MoveToCalculatedPos(wanderSpeed * (1 - skill_slowDownAmount));
+        //else agent.MoveToCalculatedPos(wanderSpeed);
     }
-    private void WanderEnd()
-    {
-        Audio.StopAudio(gameObject);
-    }
-    #endregion
-
-    #region DASH
-    private void StartDash()
-    {
-        Debug.Log("SKYTROOPER DASH");
-        agent.CalculateRandomPath(gameObject.transform.globalPosition, dashRange);
-
-        Animator.Play(gameObject, "SK_Dash");
-        Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
-    }
-    private void UpdateDash()
-    {
-        LookAt(agent.GetDestination());
-        if (skill_slowDownActive) agent.MoveToCalculatedPos(dashSpeed * (1 - skill_slowDownAmount));
-        else agent.MoveToCalculatedPos(dashSpeed);
-    }
-    private void DashEnd()
+    private void LoadEnd()
     {
         Audio.StopAudio(gameObject);
     }
@@ -422,45 +318,44 @@ public class Skytrooper : Enemy
     #region SHOOT
     private void StartShoot()
     {
-        Debug.Log("SKYTROOPER SHOOT");
-        statesTimer = timeBewteenStates;
+        Debug.Log("TURRET SHOOT");
+        shotTimer = shotTime;
     }
 
     private void UpdateShoot()
     {
-        if (statesTimer > 0.0f)
-        {
-            statesTimer -= Time.deltaTime;
+        //if (statesTimer > 0.0f)
+        //{
+        //    statesTimer -= Time.deltaTime;
 
-            if (statesTimer <= 0.0f)
-            {
-                Shoot();
-                feedbackTimer = feedbackTime;
-                inputsList.Add(INPUT.IN_DASH);
-            }
-        }
+        //    if (statesTimer <= 0.0f)
+        //    {
+        //        Shoot();
+        //        feedbackTimer = feedbackTime;
+        //        inputsList.Add(INPUT.IN_DASH);
+        //    }
+        //}
+    }
+    private void ShootEnd()
+    {
+        Audio.StopAudio(gameObject);
     }
 
     private void Shoot()
     {
         //GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         //bullet.GetComponent<BH_Bullet>().damage = damage;
-        visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
+        visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, gameObject.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
         Animator.Play(gameObject, "SK_Shoot");
         Audio.PlayAudio(gameObject, "PLay_Blaster_Stormtrooper");
-        shotTimes++;
-    }
-    private void PlayerDetected()
-    {
-        Debug.Log("SKYTROOPER PLAYER DETECTED");
-        Audio.PlayAudio(gameObject, "Play_Enemy_Detection");
+        //shotTimes++;
     }
     #endregion
 
     #region DIE
     private void StartDie()
     {
-        Debug.Log("SKYTROOPER DIE");
+        Debug.Log("TURRET DIE");
         dieTimer = dieTime;
         //Audio.StopAudio(gameObject);
 
@@ -541,24 +436,6 @@ public class Skytrooper : Enemy
 
     #endregion
 
-    #region PUSH
-
-    private void StartPush()
-    {
-        Vector3 force = gameObject.transform.globalPosition - player.transform.globalPosition;
-        force.y = pushVerticalForce;
-        gameObject.AddForce(force * pushHorizontalForce);
-        pushTimer = 0.0f;
-    }
-    private void UpdatePush()
-    {
-        pushTimer += Time.deltaTime;
-        if (pushTimer >= PushStun)
-            inputsList.Add(INPUT.IN_IDLE);
-
-    }
-    #endregion
-
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
         if (collidedGameObject.CompareTag("Bullet"))
@@ -577,11 +454,6 @@ public class Skytrooper : Enemy
                 inputsList.Add(INPUT.IN_DIE);
             }
 
-            if (skill_slowDownEnabled)
-            {
-                skill_slowDownActive = true;
-                skill_slowDownTimer = 0.0f;
-            }
         }
         else if (collidedGameObject.CompareTag("Grenade"))
         {
@@ -598,11 +470,6 @@ public class Skytrooper : Enemy
                 inputsList.Add(INPUT.IN_DIE);
             }
 
-            if (skill_slowDownEnabled)
-            {
-                skill_slowDownActive = true;
-                skill_slowDownTimer = 0.0f;
-            }
         }
         //else if (collidedGameObject.CompareTag("WorldLimit"))
         //{
@@ -616,13 +483,5 @@ public class Skytrooper : Enemy
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-        if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
-        {
-            if (player != null)
-            {
-                inputsList.Add(INPUT.IN_PUSHED);
-
-            }
-        }
     }
 }
