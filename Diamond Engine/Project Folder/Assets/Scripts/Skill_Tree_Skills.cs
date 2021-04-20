@@ -95,12 +95,12 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            //TODO: Priority
+            BabyYoda.SetSkill("UtilityHealSkill", 0.0f, 0.0f, 10);
         }
 
         public override void AssignCharacteristics()
         {
-            description = "[NOT IMPLEMENTED] Mando heals 10 HP when Grogu uses a Skill";
+            description = "Mando heals 10 HP when Grogu uses a Skill";
             price = 0;
             type_of_price = RewardType.REWARD_BESKAR;
         }
