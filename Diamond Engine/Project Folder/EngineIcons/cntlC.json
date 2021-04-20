@@ -1,14 +1,14 @@
 {
     "Game Objects": [
         {
-            "name": "Empty",
+            "name": "DirectionalLight",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
-                0,
-                0,
-                0
+                5.5973329544067383,
+                24.780523300170898,
+                20.119379043579102
             ],
             "Rotation": [
                 0,
@@ -21,7 +21,7 @@
                 1,
                 1
             ],
-            "UID": 714003999,
+            "UID": 1017208032,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
@@ -32,77 +32,25 @@
                     "Active": true
                 },
                 {
-                    "Type": 20,
+                    "Type": 23,
                     "Active": true,
-                    "systemActive": false,
-                    "looping": true,
-                    "maxDuration": 0.87900000810623169,
-                    "ParticleEmitters": [
-                        {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/920411250.dds",
-                            "texUID": 920411250,
-                            "paEmitterName": "Test",
-                            "paLifeTime": [
-                                2.2999999523162842,
-                                4.3000001907348633
-                            ],
-                            "paSize": [
-                                1,
-                                1
-                            ],
-                            "paColor": [
-                                1,
-                                1,
-                                1,
-                                1
-                            ],
-                            "paPerSec": 1,
-                            "ParticleEffects": [
-                                {
-                                    "paEffectType": 0,
-                                    "paFOLT_direction": [
-                                        0,
-                                        2.5999999046325684,
-                                        0
-                                    ],
-                                    "paFOLT_magnitude": 10,
-                                    "paFOLT_gravityMod": 1,
-                                    "paFOLT_gravity": -9.8000001907348633,
-                                    "paFOLT_forceType": 0
-                                },
-                                {
-                                    "paEffectType": 5,
-                                    "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 5,
-                                    "paShapeRandSpeed": 0,
-                                    "PaShapeSphereRadius": 1,
-                                    "PaShapeSphereDirection": true,
-                                    "PaShapeSphereAngle": 0,
-                                    "paShapeType": 1,
-                                    "PaShapeOffset": [
-                                        0,
-                                        0,
-                                        0
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "Type": 21,
-                    "Active": false,
-                    "billboardAlignment": 0,
-                    "horizantalAligned": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
-                    "MaterialUID": 355756108
+                    "orthoSize": [
+                        10,
+                        10
+                    ],
+                    "lightColor": [
+                        1,
+                        0.99998998641967773,
+                        0.99998998641967773
+                    ],
+                    "ambientLightColor": [
+                        0.31764706969261169,
+                        0.22745098173618317,
+                        0.23921568691730499
+                    ],
+                    "lightIntensity": 1.6000000238418579,
+                    "specularValue": 64,
+                    "calculateShadows": false
                 }
             ]
         }

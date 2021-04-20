@@ -25,7 +25,7 @@ public:
 	void LoadData(DEConfig& nObj) override;
 
 	void StartPass();
-	void PushLightUniforms(ResourceMaterial* material);
+	void PushLightUniforms(ResourceMaterial* material, int lightNumber);
 	void EndPass();
 
 	float3 GetPosition() const;

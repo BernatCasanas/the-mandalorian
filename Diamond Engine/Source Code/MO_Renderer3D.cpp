@@ -13,7 +13,8 @@
 
 #include "RE_Mesh.h"
 #include "RE_Texture.h"
-#include"RE_Shader.h"
+#include "RE_Shader.h"
+#include "RE_Material.h"
 #include "mmgr/mmgr.h"
 
 #include"WI_Game.h"
@@ -42,7 +43,7 @@
 
 
 ModuleRenderer3D::ModuleRenderer3D(Application* app, bool start_enabled) : Module(app, start_enabled), str_CAPS(""),
-vsync(false), wireframe(false), gameCamera(nullptr),resolution(2), directLight(nullptr)
+vsync(false), wireframe(false), gameCamera(nullptr),resolution(2)
 {
 	GetCAPS(str_CAPS);
 	/*depth =*/ cull = lightng = color_material = texture_2d = true;
@@ -244,45 +245,48 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 	//Render light depth pass
-	if (directLight)
+	if (directLightVector.size() > 0)
 	{
-		if (directLight->calculateShadows == true)
+		for (int i = 0; i < directLightVector.size(); ++i)
 		{
-			directLight->StartPass();
-			if (!renderQueue.empty())
+			if (directLightVector[i]->calculateShadows == true)
 			{
-				for (size_t i = 0; i < renderQueue.size(); i++)
+				directLightVector[i]->StartPass();
+				if (!renderQueue.empty())
 				{
-					float distance = directLight->orthoFrustum.pos.DistanceSq(renderQueue[i]->globalOBB.pos);
-					renderQueueMap.emplace(distance, renderQueue[i]);
-				}
-
-
-				if (!renderQueueMap.empty())
-				{
-					for (auto i = renderQueueMap.rbegin(); i != renderQueueMap.rend(); ++i)
+					for (size_t j = 0; j < renderQueue.size(); ++j)
 					{
-						// Get the range of the current key
-						auto range = renderQueueMap.equal_range(i->first);
-
-						// Now render out that whole range
-						for (auto d = range.first; d != range.second; ++d)
-						{
-							GLint modelLoc = glGetUniformLocation(directLight->depthShader->shaderProgramID, "model");
-							glUniformMatrix4fv(modelLoc, 1, GL_FALSE, d->second->GetGO()->transform->GetGlobalTransposed());
-
-							modelLoc = glGetUniformLocation(directLight->depthShader->shaderProgramID, "lightSpaceMatrix");
-							glUniformMatrix4fv(modelLoc, 1, GL_FALSE, directLight->spaceMatrixOpenGL.ptr());
-
-							d->second->GetRenderMesh()->PushDefaultMeshUniforms(directLight->depthShader->shaderProgramID, 0, d->second->GetGO()->transform, float3::one);
-							d->second->GetRenderMesh()->OGL_GPU_Render();
-						}
+						float distance = directLightVector[i]->orthoFrustum.pos.DistanceSq(renderQueue[j]->globalOBB.pos);
+						renderQueueMap.emplace(distance, renderQueue[j]);
 					}
 
-					renderQueueMap.clear();
+
+					if (!renderQueueMap.empty())
+					{
+						for (auto j = renderQueueMap.rbegin(); j != renderQueueMap.rend(); ++j)
+						{
+							// Get the range of the current key
+							auto range = renderQueueMap.equal_range(j->first);
+
+							// Now render out that whole range
+							for (auto d = range.first; d != range.second; ++d)
+							{
+								GLint modelLoc = glGetUniformLocation(directLightVector[i]->depthShader->shaderProgramID, "model");
+								glUniformMatrix4fv(modelLoc, 1, GL_FALSE, d->second->GetGO()->transform->GetGlobalTransposed());
+
+								modelLoc = glGetUniformLocation(directLightVector[i]->depthShader->shaderProgramID, "lightSpaceMatrix");
+								glUniformMatrix4fv(modelLoc, 1, GL_FALSE, directLightVector[i]->spaceMatrixOpenGL.ptr());
+
+								d->second->GetRenderMesh()->PushDefaultMeshUniforms(directLightVector[i]->depthShader->shaderProgramID, 0, d->second->GetGO()->transform, float3::one);
+								d->second->GetRenderMesh()->OGL_GPU_Render();
+							}
+						}
+
+						renderQueueMap.clear();
+					}
 				}
+				directLightVector[i]->EndPass();
 			}
-			directLight->EndPass();
 		}
 	}
 
@@ -721,6 +725,51 @@ bool ModuleRenderer3D::IsWalkable(float3 pointToCheck)
 	}*/
 
 	return false;
+}
+
+
+void ModuleRenderer3D::AddLight(C_DirectionalLight* light)
+{
+	directLightVector.push_back(light);
+
+	if (directLightVector.size() > MAX_DIRECTIONAL_LIGHTS)
+		directLightVector.erase(directLightVector.begin());
+}
+
+
+void ModuleRenderer3D::RemoveLight(C_DirectionalLight* light)
+{
+
+	for (int i = 0; i < directLightVector.size(); ++i)
+	{
+		if (directLightVector[i] == light)
+		{
+			directLightVector.erase(directLightVector.begin() + i);
+			return;
+		}
+	}
+}
+
+
+void ModuleRenderer3D::PushLightUniforms(ResourceMaterial* material)
+{
+	char buffer[64];
+
+	for (int i = 0; i < directLightVector.size(); ++i)
+	{
+		sprintf(buffer, "lightInfo[%i].active", i);
+		GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
+		glUniform1i(modelLoc, true);
+
+		directLightVector[i]->PushLightUniforms(material, i);
+	}
+
+	for (int i = directLightVector.size(); i < MAX_DIRECTIONAL_LIGHTS; ++i)
+	{
+		sprintf(buffer, "lightInfo[%i].active", i);
+		GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
+		glUniform1i(modelLoc, false);
+	}
 }
 
 

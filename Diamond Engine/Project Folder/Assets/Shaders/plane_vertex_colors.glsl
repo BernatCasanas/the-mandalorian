@@ -11,9 +11,9 @@ out VS_OUT {
     vec3 FragPos;
     vec3 Normal;
     vec2 TexCoords;
-    vec4 FragPosLightSpace;
+    vec4 FragPosLightSpace[2];
     
-    vec3 TangentLightPos;
+    vec3 TangentLightPos[2];
     vec3 TangentViewPos;
     vec3 TangentFragPos;
     
@@ -37,11 +37,12 @@ struct LightInfo
 	float specularValue;
 	
 	bool calculateShadows;
+	bool active;
 
 };
 
 
-uniform LightInfo lightInfo;
+uniform LightInfo lightInfo[2];
 
 uniform vec3 cameraPosition;
 
@@ -52,7 +53,8 @@ void main()
     vs_out.FragPos = vec3(model_matrix * vec4(position, 1.0));
     vs_out.Normal = normalize(transpose(inverse(mat3(model_matrix))) * normals);
     vs_out.TexCoords = texCoord;
-    vs_out.FragPosLightSpace = lightInfo.lightSpaceMatrix * vec4(vs_out.FragPos, 1.0);
+    vs_out.FragPosLightSpace[0] = lightInfo[0].lightSpaceMatrix * vec4(vs_out.FragPos, 1.0);
+    vs_out.FragPosLightSpace[1] = lightInfo[1].lightSpaceMatrix * vec4(vs_out.FragPos, 1.0);
 
 	
 	//Calculate tangent vars
@@ -61,7 +63,8 @@ void main()
     vec3 B = cross(N, T);
 	
 	mat3 TBN = transpose(mat3(T, B, N));
-    vs_out.TangentLightPos = TBN * lightInfo.lightPosition;
+    vs_out.TangentLightPos[0] = TBN * lightInfo[0].lightPosition;
+    vs_out.TangentLightPos[1] = TBN * lightInfo[1].lightPosition;
     vs_out.TangentViewPos  = TBN * cameraPosition;
     vs_out.TangentFragPos  = TBN * vec3(model_matrix * vec4(position, 1.0));
 
@@ -77,9 +80,9 @@ in VS_OUT {
     vec3 FragPos;
     vec3 Normal;
     vec2 TexCoords;
-    vec4 FragPosLightSpace;
+    vec4 FragPosLightSpace[2];
     
-    vec3 TangentLightPos;
+    vec3 TangentLightPos[2];
     vec3 TangentViewPos;
     vec3 TangentFragPos;
     
@@ -99,11 +102,11 @@ struct LightInfo
 	float specularValue;
 	
 	bool calculateShadows;
-
+	bool active;
 };
 
 
-uniform LightInfo lightInfo;
+uniform LightInfo lightInfo[2];
 
 uniform sampler2D shadowMap;
 uniform sampler2D normalMap;
@@ -113,15 +116,15 @@ out vec4 color;
 
 
 
-float ShadowCalculation(vec4 fragPosLightSpace, vec3 lightDir, vec3 normal)
+float ShadowCalculation(vec4 fragPosLightSpace, vec3 lightDir, vec3 normal, int iterator)
 {
 
-	if (lightInfo.calculateShadows == false)
+	if (lightInfo[iterator].calculateShadows == false)
 		return 0.0;
 	
 // perform perspective divide
     vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
-    
+   
     if(projCoords.z > 1.0)
     	return 0.0;
     
@@ -158,25 +161,44 @@ void main()
 	vec3 normal = texture(normalMap, fs_in.TexCoords).rgb;
     normal = normalize(normal * 2.0 - 1.0);
     
-    vec3 lightDir = normalize(fs_in.TangentLightPos - vec3(0, 0, 0));
+    vec3 lighting = vec3(0.0, 0.0, 0.0);
     
-    // diffusesssaasw
-    float diff = max(dot(lightDir, normal), 0.0);
-    vec3 diffuse = diff * lightInfo.lightColor;
-    // specular
-    vec3 viewDir = normalize(fs_in.TangentViewPos - fs_in.TangentFragPos);
-    float spec = 0.0;
-    vec3 halfwayDir = normalize(lightDir + viewDir);  
-    spec = pow(max(dot(normal, halfwayDir), 0.0), lightInfo.specularValue);
-    vec3 specular = spec * lightInfo.lightColor;
-        
-    // calculate shadow
-    float shadow = ShadowCalculation(fs_in.FragPosLightSpace, lightDir, normal);
-    vec3 lighting = (lightInfo.ambientLightColor + (1.0 - shadow) * (diffuse + specular)) * lightInfo.lightIntensity;
+    int activeShadow = 0;
+    for	(int i = 0; i < 2; i++)
+    {
+    	if(lightInfo[i].calculateShadows == true)
+    	{
+    		activeShadow = i;
+    	}
+    }
+    
+    for (int i = 0; i < 2; i++)
+    {
+    	if (lightInfo[i].active == true)
+    	{
+    		vec3 lightDir = normalize(fs_in.TangentLightPos[i] - vec3(0, 0, 0));
+    
+   	 	// diffusesssaasw
+    		float diff = max(dot(lightDir, normal), 0.0);
+    		vec3 diffuse = diff * lightInfo[i].lightColor;
+   	 	// specular
+   	 		vec3 viewDir = normalize(fs_in.TangentViewPos - fs_in.TangentFragPos[i]);
+    		float spec = 0.0;
+    		vec3 halfwayDir = normalize(lightDir + viewDir);  
+    		spec = pow(max(dot(normal, halfwayDir), 0.0), lightInfo[i].specularValue);
+    		vec3 specular = spec * lightInfo[i].lightColor;
+        	
+    	 // calculate shadow
+    		float shadow = ShadowCalculation(fs_in.FragPosLightSpace[activeShadow], lightDir, normal, activeShadow);
+    		lighting += (lightInfo[i].ambientLightColor + (1.0 - shadow) * (diffuse + specular)) * lightInfo[i].lightIntensity;
+    	}
+    }
     
     color = vec4(lighting * fs_in.vertexColor, 1.0);
 }
 #endif
+
+
 
 
 

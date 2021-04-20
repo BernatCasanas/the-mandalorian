@@ -121,8 +121,7 @@ void ResourceMesh::RenderMesh(GLuint textureID, float3 color, bool renderTexture
 		PushDefaultMeshUniforms(material->shader->shaderProgramID, textureID, _transform, color, normalMap);
 
 
-		if (EngineExternal->moduleRenderer3D->directLight)
-			EngineExternal->moduleRenderer3D->directLight->PushLightUniforms(material);
+		EngineExternal->moduleRenderer3D->PushLightUniforms(material);
 	}
 
 	//vertices
