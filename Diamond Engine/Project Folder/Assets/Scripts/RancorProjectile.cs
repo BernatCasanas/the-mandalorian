@@ -3,7 +3,7 @@ using DiamondEngine;
 
 public class RancorProjectile : DiamondComponent
 {
-	public float speed = 4.0f;
+	public float speed = 5.5f;
 	public float lifeTime = 20.0f;
 	public int damage = 10;
 

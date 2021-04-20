@@ -937,7 +937,7 @@ public class Rancor : DiamondComponent
 
         }
 
-        if (handSlamTimer < 0.6f)
+        if (handSlamTimer < 0.9f)
         {
             if (handSlamHitBox == null)
                 return;
@@ -946,7 +946,7 @@ public class Rancor : DiamondComponent
 
         }
 
-        if (handSlamTimer < 0.6f)
+        if (handSlamTimer < 0.9f)
         {
             if (activateWave)
             {
