@@ -990,7 +990,7 @@ public class Rancor : DiamondComponent
     #region DIE
     private void StartDie()
     {
-        //Audio.StopAudio(gameObject);
+        Audio.StopAudio(gameObject);
 
         dieTimer = dieTime;
 
