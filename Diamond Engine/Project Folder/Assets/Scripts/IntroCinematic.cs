@@ -23,7 +23,7 @@ public class IntroCinematic : DiamondComponent
 
     public void Awake()
     {
-        // Put CameraController component is Active(false)? Or leave it like that in the inspector, then activate it from here when cinematic is done
+        cameraObject.transform.localPosition = point3.transform.localPosition;  // This should be point1
 
         toGoVector = point1.transform.localPosition;
         toRotateQuaternion = point1.transform.localRotation;
@@ -34,12 +34,12 @@ public class IntroCinematic : DiamondComponent
 
     public void Update()
     {
-        if (Mathf.Distance(gameObject.transform.localPosition, toGoVector) < 0.5f)
+        if (Mathf.Distance(cameraObject.transform.localPosition, toGoVector) < 0.5f)
         {
             arrayCount++;
             if (arrayCount >= 4)
             {
-                // I could probably recieve the camera disabled from the editor, then disable this gameObject, enable real camera, pim pam pum
+                gameObject.Enable(false);
             }
 
             currentSpeed = speedArray[arrayCount];
@@ -49,8 +49,8 @@ public class IntroCinematic : DiamondComponent
 
         if (toGoVector != null)
         {
-            gameObject.transform.localPosition += (toGoVector - gameObject.transform.localPosition).normalized * Time.deltaTime * currentSpeed;
-            gameObject.transform.localRotation = Quaternion.Slerp(gameObject.transform.localRotation, toRotateQuaternion, 0.25f * Time.deltaTime);
+            cameraObject.transform.localPosition += (toGoVector - cameraObject.transform.localPosition).normalized * Time.deltaTime * currentSpeed;
+            cameraObject.transform.localRotation = Quaternion.Slerp(cameraObject.transform.localRotation, toRotateQuaternion, 0.25f * Time.deltaTime);
         }
     }
 
