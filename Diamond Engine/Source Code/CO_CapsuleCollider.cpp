@@ -349,16 +349,11 @@ bool C_CapsuleCollider::OnEditor()
 			it = std::find(rigidbody->collider_info.begin(), rigidbody->collider_info.end(), this);
 			index = std::distance(rigidbody->collider_info.begin(), it);
 		}
-		
-		
-		bool trigger = isTrigger;
-		std::string suffix = "isTrigger##" + std::to_string(index);
-		ImGui::Checkbox(suffix.c_str(), &trigger);
 
-		if (trigger != isTrigger)
-		{
-			SetTrigger(trigger);
-			isTrigger = trigger;
+		std::string suffix;
+		suffix = "isTrigger##" + std::to_string(index);
+		if (ImGui::Checkbox(suffix.c_str(), &isTrigger)) {
+			SetTrigger(isTrigger);
 		}
 
 		ImGui::Separator();

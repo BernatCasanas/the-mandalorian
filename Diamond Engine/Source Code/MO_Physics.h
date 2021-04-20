@@ -104,11 +104,8 @@ public:
     void SceneSimulation(double gameTimesetp, bool fetchResults = true);
     void RenderGeometry();
 
-
     float4x4 PhysXTransformToF4F(physx::PxTransform transform);
-
- 
-
+    GameObject* ShootRay(float3 origin, float3 direction, float maxDistance);
     physx::PxRigidDynamic* CreateRigidDynamic(float3 pos, Quat rot);
     physx::PxShape* CreateBoxCollider(float3 size, physx::PxMaterial* material = nullptr);
     physx::PxShape* CreateSphereCollider(float radius, physx::PxMaterial* material = nullptr);

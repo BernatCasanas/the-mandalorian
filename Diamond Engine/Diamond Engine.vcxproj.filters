@@ -808,7 +808,6 @@
     <ClInclude Include="Source Code\COMM_Transform2D.h">
       <Filter>Sources\Editor\Commands\Derived</Filter>
     </ClInclude>
-    <ClInclude Include="Source Code\CS_Scene_Bindings.h" />
     <ClInclude Include="Source Code\CS_Animation_Bindings.h">
       <Filter>Sources\Tools\Bindings</Filter>
     </ClInclude>
@@ -915,7 +914,6 @@
     <ClInclude Include="Source Code\CS_ParticleSystem_Bindings.h">
       <Filter>Sources\Tools\Bindings</Filter>
     </ClInclude>
-    <ClInclude Include="Source Code\CS_Camera_Bindings.h" />
     <ClInclude Include="Source Code\CO_DirectionalLight.h">
       <Filter>Sources\Components\Derived\Lights</Filter>
     </ClInclude>
@@ -1015,11 +1013,23 @@
     <ClInclude Include="Source Code\CS_Transform_Bindings.h">
       <Filter>Sources\Tools\Bindings</Filter>
     </ClInclude>
-    <ClInclude Include="Source Code\CS_Button_Bindings.h">
-      <Filter>Sources\Tools</Filter>
-    </ClInclude>
     <ClInclude Include="Source Code\CO_CapsuleCollider.h">
       <Filter>Sources\Components\Derived\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\PE_Spawn_Circumference.h">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived\SpawnShapes\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CS_Scene_Bindings.h">
+      <Filter>Sources\Tools\Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CS_Camera_Bindings.h">
+      <Filter>Sources\Tools\Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CO_StencilMaterial.h">
+      <Filter>Sources\Components\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\CS_Button_Bindings.h">
+      <Filter>Sources\Tools\Bindings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1584,6 +1594,12 @@
     </ClCompile>
     <ClCompile Include="Source Code\CO_CapsuleCollider.cpp">
       <Filter>Sources\Components\Derived\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\PE_Spawn_Circumference.cpp">
+      <Filter>Sources\Containers\ParticleSystem\ParticleEffects\Derived\SpawnShapes\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\CO_StencilMaterial.cpp">
+      <Filter>Sources\Components\Derived</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
