@@ -782,7 +782,7 @@ public class Rancor : DiamondComponent
             agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
 
         //Move character
-        if (agent != null && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) > agent.stoppingDistance)
+        if (agent != null && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance)
         {
             LookAt(agent.GetDestination());
             agent.MoveToCalculatedPos(followSpeed);
