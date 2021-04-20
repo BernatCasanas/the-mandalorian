@@ -3,6 +3,7 @@ using DiamondEngine;
 
 public class IntroCinematic : DiamondComponent
 {
+    public GameObject cameraObject = null;
     public GameObject point1 = null;
     public GameObject point2 = null;
     public GameObject point3 = null;
