@@ -274,6 +274,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 							modelLoc = glGetUniformLocation(directLight->depthShader->shaderProgramID, "lightSpaceMatrix");
 							glUniformMatrix4fv(modelLoc, 1, GL_FALSE, directLight->spaceMatrixOpenGL.ptr());
 
+							d->second->GetRenderMesh()->PushDefaultMeshUniforms(directLight->depthShader->shaderProgramID, 0, d->second->GetGO()->transform, float3::one);
 							d->second->GetRenderMesh()->OGL_GPU_Render();
 						}
 					}

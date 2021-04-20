@@ -118,50 +118,7 @@ void ResourceMesh::RenderMesh(GLuint textureID, float3 color, bool renderTexture
 		material->shader->Bind();
 		material->PushUniforms();
 
-		if(textureID != 0)
-			glUniform1i(glGetUniformLocation(material->shader->shaderProgramID, "hasTexture"), 1);
-		else
-			glUniform1i(glGetUniformLocation(material->shader->shaderProgramID, "hasTexture"), 0);
-
-		GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "model_matrix");
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, _transform->GetGlobalTransposed());
-
-		modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "view");
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, EngineExternal->moduleRenderer3D->activeRenderCamera->ViewMatrixOpenGL().ptr());
-
-		modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "projection");
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, EngineExternal->moduleRenderer3D->activeRenderCamera->ProjectionMatrixOpenGL().ptr());
-
-		modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "normalMatrix");
-		float3x3 normalMatrix = _transform->globalTransform.Float3x3Part().Transposed();
-		normalMatrix.Inverse();
-		normalMatrix.Transpose();
-		glUniformMatrix3fv(modelLoc, 1, GL_FALSE, normalMatrix.ptr());
-
-		modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "time");
-		glUniform1f(modelLoc, DETime::realTimeSinceStartup);
-
-		modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "cameraPosition");
-		float3 cameraPosition = EngineExternal->moduleRenderer3D->activeRenderCamera->GetPosition();
-		glUniform3fv(modelLoc, 1, &cameraPosition.x);
-
-		modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "altColor");
-		glUniform3fv(modelLoc, 1, &color.x);
-
-		glActiveTexture(GL_TEXTURE8);
-		glUniform1i(glGetUniformLocation(material->shader->shaderProgramID, "normalMap"), 8);
-
-		if (normalMap != nullptr)
-			glBindTexture(GL_TEXTURE_2D, normalMap->textureID);
-
-		else
-			glBindTexture(GL_TEXTURE_2D, EngineExternal->moduleRenderer3D->defaultNormalMap);
-
-		if (boneTransforms.size() > 0)
-		{
-			modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "jointTransforms");
-			glUniformMatrix4fv(modelLoc, boneTransforms.size(), GL_FALSE, (GLfloat*)&boneTransforms[0]);
-		}		
+		PushDefaultMeshUniforms(material->shader->shaderProgramID, textureID, _transform, color);
 
 
 		if (EngineExternal->moduleRenderer3D->directLight)
@@ -436,5 +393,72 @@ void ResourceMesh::LoadBones(char** cursor)
 		name[nameSize] = '\0';
 		std::string str(name);
 		bonesMap[str.c_str()] = i;
+	}
+}
+
+void ResourceMesh::PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Transform* _transform, float3 color) 
+{
+	if (textureID != 0)
+		glUniform1i(glGetUniformLocation(shaderID, "hasTexture"), 1);
+	else
+		glUniform1i(glGetUniformLocation(shaderID, "hasTexture"), 0);
+
+	GLint modelLoc = glGetUniformLocation(shaderID, "model_matrix");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, _transform->GetGlobalTransposed());
+
+	if (EngineExternal->moduleRenderer3D->activeRenderCamera != nullptr) 
+	{
+		modelLoc = glGetUniformLocation(shaderID, "view");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, EngineExternal->moduleRenderer3D->activeRenderCamera->ViewMatrixOpenGL().ptr());
+
+		modelLoc = glGetUniformLocation(shaderID, "projection");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, EngineExternal->moduleRenderer3D->activeRenderCamera->ProjectionMatrixOpenGL().ptr());
+
+		modelLoc = glGetUniformLocation(shaderID, "cameraPosition");
+		float3 cameraPosition = EngineExternal->moduleRenderer3D->activeRenderCamera->GetPosition();
+		glUniform3fv(modelLoc, 1, &cameraPosition.x);
+	}
+
+	modelLoc = glGetUniformLocation(shaderID, "normalMatrix");
+	float3x3 normalMatrix = _transform->globalTransform.Float3x3Part().Transposed();
+	normalMatrix.Inverse();
+	normalMatrix.Transpose();
+	glUniformMatrix3fv(modelLoc, 1, GL_FALSE, normalMatrix.ptr());
+
+	modelLoc = glGetUniformLocation(shaderID, "time");
+	glUniform1f(modelLoc, DETime::realTimeSinceStartup);
+
+
+	modelLoc = glGetUniformLocation(shaderID, "altColor");
+	glUniform3fv(modelLoc, 1, &color.x);
+
+	float3 lightPosition = float3(0.0f, 0.0f, 1.0f);
+	modelLoc = glGetUniformLocation(shaderID, "lightPosition");
+	glUniform3fv(modelLoc, 1, &lightPosition.x);
+
+	glActiveTexture(GL_TEXTURE8);
+	glUniform1i(glGetUniformLocation(material->shader->shaderProgramID, "normalMap"), 8);
+
+	if (normalMap != nullptr)
+		glBindTexture(GL_TEXTURE_2D, normalMap->textureID);
+
+	else
+		glBindTexture(GL_TEXTURE_2D, EngineExternal->moduleRenderer3D->defaultNormalMap);
+
+	if (boneTransforms.size() > 0)
+	{
+		modelLoc = glGetUniformLocation(shaderID, "jointTransforms");
+		glUniformMatrix4fv(modelLoc, boneTransforms.size(), GL_FALSE, (GLfloat*)&boneTransforms[0]);
+
+		modelLoc = glGetUniformLocation(shaderID, "jointTransforms");
+		glUniformMatrix4fv(modelLoc, boneTransforms.size(), GL_FALSE, (GLfloat*)&boneTransforms[0]);
+
+		modelLoc = glGetUniformLocation(shaderID, "hasAnimations");
+		glUniform1i(modelLoc, 1);
+	}
+	else
+	{
+		modelLoc = glGetUniformLocation(shaderID, "hasAnimations");
+		glUniform1i(modelLoc, 0);
 	}
 }
