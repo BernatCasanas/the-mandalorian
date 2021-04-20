@@ -171,6 +171,7 @@ namespace DiamondEngine
         public override void Use()
         {
             //TODO: Priority
+            Rancor.SetSkill("AggressionDamageBossesSkill", 0.2f);
         }
 
         public override void AssignCharacteristics()

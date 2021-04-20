@@ -58,6 +58,10 @@ public class Rancor : DiamondComponent
 
     public float slerpSpeed = 5.0f;
 
+    //Skills
+    private static bool skill_increaseDamageToBossActive = false;
+    private static float skill_increaseDamageToBossAmount = 0.0f;
+
     //Stats
     public float healthPoints = 60.0f;          //IF INITAL HEALTH IS CHANGED, CHANGE MAX HEALTH AS WELL!
     public float maxHealthPoints = 60.0f;
@@ -1057,7 +1061,8 @@ public class Rancor : DiamondComponent
     {
         if (collidedGameObject.CompareTag("Bullet"))
         {
-            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+            if(skill_increaseDamageToBossActive) healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage * (1.0f + skill_increaseDamageToBossAmount);
+            else healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
             Debug.Log("Rancor HP: " + healthPoints.ToString());
             damaged = 1.0f;
             //CHANGE FOR APPROPIATE RANCOR HIT
@@ -1121,5 +1126,15 @@ public class Rancor : DiamondComponent
                 }
             }
         }
+    }
+
+    public static void SetSkill(string skillName, float value1 = 0.0f)
+    {
+        if (skillName == "AggressionDamageBossesSkill") //Increase damage to Bosses and greater enemies by 20%
+        {
+            skill_increaseDamageToBossActive = true;
+            skill_increaseDamageToBossAmount = value1;
+        }
+        
     }
 }

@@ -78,7 +78,7 @@ public class Core : DiamondComponent
     private float dashTimer = 0.0f;
     private float dashCDTimer = 0.0f;
     private float dashStartYPos = 0.0f;
-    private bool dashAvaliable = true;
+    private bool dashAvailable = true;
 
     // Shooting
     public float fireRate = 0.2f;
@@ -217,12 +217,12 @@ public class Core : DiamondComponent
                 inputsList.Add(INPUT.IN_DASH_END);
         }
 
-        if (dashCDTimer > 0 && dashAvaliable == false)
+        if (dashCDTimer > 0 && dashAvailable == false)
         {
             dashCDTimer -= Time.deltaTime;
 
             if (dashCDTimer <= 0)
-                dashAvaliable = true;
+                dashAvailable = true;
         }
 
         if (shootingTimer > 0)
@@ -266,7 +266,7 @@ public class Core : DiamondComponent
             else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
                 inputsList.Add(INPUT.IN_IDLE);
 
-            if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false && dashAvaliable == true)
+            if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false && dashAvailable == true)
             {
                 inputsList.Add(INPUT.IN_DASH);
                 rightTriggerPressed = true;
@@ -653,7 +653,7 @@ public class Core : DiamondComponent
     private void EndDash()
     {
         dashCDTimer = dashCD;
-        dashAvaliable = false;
+        dashAvailable = false;
         //Debug.Log(dashCDTimer.ToString());
         //Debug.Log(dashAvaliable.ToString());
 
