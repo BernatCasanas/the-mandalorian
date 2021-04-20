@@ -39,16 +39,16 @@
 
 
 GameObject::GameObject(const char* _name, GameObject* parent, int _uid) : parent(parent), name(_name), showChildren(false),
-active(true), isStatic(false), toDelete(false),dontDestroy(false), UID(_uid), transform(nullptr), dumpComponent(nullptr), 
+active(true), isStatic(false), toDelete(false), dontDestroy(false), UID(_uid), transform(nullptr), dumpComponent(nullptr),
 prefabID(0u), prefabReference(0u), tag("Untagged"), layer("Default")
 {
-	if(parent != nullptr)
+	if (parent != nullptr)
 		parent->children.push_back(this);
 
 	transform = dynamic_cast<C_Transform*>(AddComponent(Component::TYPE::TRANSFORM));
 
 	//TODO: Should make sure there are not duplicated ID's
-	if (UID == -1) 
+	if (UID == -1)
 	{
 		UID = EngineExternal->GetRandomInt();
 	}
@@ -89,7 +89,7 @@ GameObject::~GameObject()
 
 void GameObject::Update()
 {
-	if (dumpComponent != nullptr) 
+	if (dumpComponent != nullptr)
 	{
 		components.erase(std::find(components.begin(), components.end(), dumpComponent));
 		delete dumpComponent;
@@ -98,7 +98,7 @@ void GameObject::Update()
 
 	for (size_t i = 0; i < components.size(); i++)
 	{
-		if(components[i]->IsActive())
+		if (components[i]->IsActive())
 			components[i]->Update();
 	}
 }
@@ -121,7 +121,7 @@ Component* GameObject::AddComponent(Component::TYPE _type, const char* params)
 	switch (_type)
 	{
 	case Component::TYPE::TRANSFORM:
-		if(transform == nullptr)
+		if (transform == nullptr)
 			ret = new C_Transform(this);
 		break;
 	case Component::TYPE::MESH_RENDERER:
@@ -140,7 +140,7 @@ Component* GameObject::AddComponent(Component::TYPE _type, const char* params)
 		break;
 	case Component::TYPE::ANIMATOR:
 		ret = new C_Animator(this);
-      break;
+		break;
 	case Component::TYPE::RIGIDBODY:
 		ret = new C_RigidBody(this);
 		break;
@@ -149,7 +149,7 @@ Component* GameObject::AddComponent(Component::TYPE _type, const char* params)
 		break;
 	case Component::TYPE::BOXCOLLIDER:
 		ret = new C_BoxCollider(this);
-      break;
+		break;
 	case Component::TYPE::SPHERECOLLIDER:
 		ret = new C_SphereCollider(this);
 		break;
@@ -181,7 +181,7 @@ Component* GameObject::AddComponent(Component::TYPE _type, const char* params)
 			ret = new C_Navigation(this, Component::TYPE::BUTTON);
 		else if ("Checkbox" == params)
 			ret = new C_Navigation(this, Component::TYPE::CHECKBOX);
-		else 
+		else
 			LOG(LogType::L_WARNING, "The Navigation component hasn't been created because the type wasn't correct");
 		break;
 
@@ -212,7 +212,7 @@ Component* GameObject::AddComponent(Component::TYPE _type, const char* params)
 	}
 
 	if (ret != nullptr)
-	{		
+	{
 		ret->type = _type;
 		components.push_back(ret);
 	}
@@ -292,7 +292,7 @@ void GameObject::OverrideGameObject(uint _prefabID, bool prefabChild)
 {
 	if (prefabID == _prefabID || prefabChild == true)
 	{
-		for (size_t i = components.size() - 1; i > 0 ; --i)
+		for (size_t i = components.size() - 1; i > 0; --i)
 		{
 			delete components[i];
 			components[i] = nullptr;
@@ -304,7 +304,7 @@ void GameObject::OverrideGameObject(uint _prefabID, bool prefabChild)
 			children[i]->OverrideGameObject(_prefabID, true);
 		}
 
-		if(prefabID == _prefabID)
+		if (prefabID == _prefabID)
 			PrefabImporter::OverrideGameObject(prefabID, this);
 	}
 	else
@@ -349,7 +349,7 @@ void GameObject::Disable()
 
 void GameObject::EnableTopDown()
 {
-	for (int i = 0;i< children.size(); i++) {
+	for (int i = 0; i < children.size(); i++) {
 		children[i]->EnableTopDown();
 	}
 	Component* nav = GetComponent(Component::TYPE::NAVIGATION);
@@ -382,7 +382,7 @@ void GameObject::Destroy()
 }
 
 
-void GameObject::SaveScene(JSON_Array* _goArray, bool saveAllData)
+void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
 {
 	JSON_Value* goValue = json_value_init_object();
 	JSON_Object* goData = json_value_get_object(goValue);
@@ -394,23 +394,14 @@ void GameObject::SaveScene(JSON_Array* _goArray, bool saveAllData)
 	//Save all gameObject data
 	DEJson::WriteBool(goData, "Active", active);
 
-	if (saveAllData)
-	{
-		DEJson::WriteInt(goData, "UID", prefabReference);
-		if (parent)
-			DEJson::WriteInt(goData, "ParentUID", parent->prefabReference);
-		
-		DEJson::WriteInt(goData, "PrefabReference", 0);
-
-	}
-	else
+	//Saving Scene
+	if (!saveAllData)
 	{
 		DEJson::WriteInt(goData, "UID", UID);
 		if (parent)
 			DEJson::WriteInt(goData, "ParentUID", parent->UID);
 
 		DEJson::WriteInt(goData, "PrefabReference", prefabReference);
-
 	}
 
 	DEJson::WriteInt(goData, "PrefabID", prefabID);
@@ -424,30 +415,8 @@ void GameObject::SaveScene(JSON_Array* _goArray, bool saveAllData)
 
 	json_array_append_value(_goArray, goValue);
 
-	if (prefabID != 0 && !saveAllData)
-	{
-		JSON_Value* childrenValue = json_value_init_array();
-		JSON_Array* childrenArray = json_value_get_array(childrenValue);
-
-		for (size_t i = 0; i < children.size(); i++)
-		{
-			if (children[i]->prefabID != 0)
-			{
-				children[i]->SaveScene(childrenArray, false);
-			}
-			else
-			{
-				children[i]->SaveReducedData(childrenArray);
-			}
-		}
-
-		json_object_set_value(goData, "PrefabObjects", childrenValue);
-
-		return;
-	}
-
-	//TODO: Move inside component base
-	{
+	//if (saveAllData)
+	//{
 		//Save components
 		JSON_Value* goArray = json_value_init_array();
 		JSON_Array* jsArray = json_value_get_array(goArray);
@@ -460,15 +429,17 @@ void GameObject::SaveScene(JSON_Array* _goArray, bool saveAllData)
 			json_array_append_value(jsArray, nVal);
 		}
 		json_object_set_value(goData, "Components", goArray);
+	//}
+
+	if (prefabID != 0 /*&& !saveAllData*/)
+	{
+		SaveAsPrefabRoot(goData, false);
+		return;
 	}
 
 	for (size_t i = 0; i < children.size(); i++)
 	{
-		if (children[i]->prefabID != 0u)
-			children[i]->SaveScene(_goArray, false);
-		else	
-			children[i]->SaveScene(_goArray, saveAllData);
-	
+		children[i]->SaveToJson(_goArray, children[i]->prefabID == 0u);
 	}
 }
 
@@ -484,24 +455,11 @@ void GameObject::SavePrefab(JSON_Array* _goArray, bool saveAllData)
 	//Save all gameObject data
 	DEJson::WriteBool(goData, "Active", active);
 
-	if (saveAllData)
-	{
-		DEJson::WriteInt(goData, "UID", prefabReference);
-		if (parent)
-			DEJson::WriteInt(goData, "ParentUID", parent->prefabReference);
+	DEJson::WriteInt(goData, "UID", prefabReference);
+	if (parent)
+		DEJson::WriteInt(goData, "ParentUID", parent->prefabReference);
 
-		DEJson::WriteInt(goData, "PrefabReference", 0);
-
-	}
-	else
-	{
-		DEJson::WriteInt(goData, "UID", UID);
-		if (parent)
-			DEJson::WriteInt(goData, "ParentUID", parent->UID);
-
-		DEJson::WriteInt(goData, "PrefabReference", prefabReference);
-
-	}
+	DEJson::WriteInt(goData, "PrefabReference", 0);
 
 	DEJson::WriteInt(goData, "PrefabID", prefabID);
 
@@ -514,29 +472,7 @@ void GameObject::SavePrefab(JSON_Array* _goArray, bool saveAllData)
 
 	json_array_append_value(_goArray, goValue);
 
-	if (prefabID != 0 && !saveAllData)
-	{
-		JSON_Value* childrenValue = json_value_init_array();
-		JSON_Array* childrenArray = json_value_get_array(childrenValue);
-
-		for (size_t i = 0; i < children.size(); i++)
-		{
-			if (children[i]->prefabID != 0)
-			{
-				children[i]->SaveScene(childrenArray, false);
-			}
-			else
-			{
-				children[i]->SaveReducedData(childrenArray);
-			}
-		}
-
-		json_object_set_value(goData, "PrefabObjects", childrenValue);
-
-		return;
-	}
-
-	//TODO: Move inside component base
+	if (saveAllData)
 	{
 		//Save components
 		JSON_Value* goArray = json_value_init_array();
@@ -552,17 +488,39 @@ void GameObject::SavePrefab(JSON_Array* _goArray, bool saveAllData)
 		json_object_set_value(goData, "Components", goArray);
 	}
 
+	if (prefabID != 0u && !saveAllData)
+	{
+		SaveAsPrefabRoot(goData, true);
+		return;
+	}
+
 	for (size_t i = 0; i < children.size(); i++)
 	{
-		if (children[i]->prefabID != 0u)
-			children[i]->SaveScene(_goArray, false);
-		else
-			children[i]->SaveScene(_goArray, saveAllData);
-
+		children[i]->SavePrefab(_goArray, children[i]->prefabID == 0u);
 	}
 }
 
-void GameObject::SaveReducedData(JSON_Array* goArray)
+void GameObject::SaveAsPrefabRoot(JSON_Object* goData, bool prefabInsidePrefab)
+{
+	JSON_Value* childrenValue = json_value_init_array();
+	JSON_Array* childrenArray = json_value_get_array(childrenValue);
+
+	for (size_t i = 0; i < children.size(); i++)
+	{
+		if (children[i]->prefabID != 0u)
+		{
+			children[i]->SaveToJson(childrenArray, false);
+		}
+		else
+		{
+			children[i]->SaveReducedData(childrenArray, prefabInsidePrefab);
+		}
+	}
+
+	json_object_set_value(goData, "PrefabObjects", childrenValue);
+}
+
+void GameObject::SaveReducedData(JSON_Array* goArray, bool prefabInsidePrefab)
 {
 	JSON_Value* goValue = json_value_init_object();
 	JSON_Object* goData = json_value_get_object(goValue);
@@ -576,7 +534,7 @@ void GameObject::SaveReducedData(JSON_Array* goArray)
 
 	DEJson::WriteInt(goData, "UID", UID);
 	if (parent)
-		DEJson::WriteInt(goData, "ParentUID", parent->UID);
+		DEJson::WriteInt(goData, "ParentUID", prefabInsidePrefab == false ? parent->UID : parent->prefabReference);
 
 	DEJson::WriteInt(goData, "PrefabID", prefabID);
 	DEJson::WriteInt(goData, "PrefabReference", prefabReference);
@@ -619,6 +577,7 @@ void GameObject::LoadFromJson(JSON_Object* _obj)
 
 void GameObject::LoadForPrefab(JSON_Object* _obj)
 {
+	UID = DEJson::ReadInt(_obj, "UID");
 	active = DEJson::ReadBool(_obj, "Active");
 	transform->SetTransformMatrix(DEJson::ReadVector3(_obj, "Position"), DEJson::ReadQuat(_obj, "Rotation"), DEJson::ReadVector3(_obj, "Scale"));
 	prefabID = DEJson::ReadInt(_obj, "PrefabID");
@@ -688,7 +647,7 @@ void GameObject::LoadComponents(JSON_Array* componentArray)
 		}
 		Component* comp = AddComponent((Component::TYPE)conf.ReadInt("Type"), scName);
 
-		if(comp != nullptr)
+		if (comp != nullptr)
 			comp->LoadData(conf);
 	}
 }
@@ -712,13 +671,13 @@ void GameObject::ChangeParent(GameObject* newParent)
 
 	if (parent != nullptr)
 		parent->RemoveChild(this);
-	
+
 	parent = newParent;
 	parent->children.push_back(this);
 
 	if (parent->prefabID != 0u || parent->prefabReference != 0u)
 	{
-		if(prefabReference == 0u)
+		if (prefabReference == 0u)
 			prefabReference = UID;
 	}
 	else

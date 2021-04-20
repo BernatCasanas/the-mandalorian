@@ -42,7 +42,7 @@ public:
 #ifndef STANDALONE
 	void OnGUI() override;
 
-	void SaveScene(const char* name);
+	void SaveToJson(const char* name);
 #endif // !STANDALONE
 	void LoadScene(const char* name);
 

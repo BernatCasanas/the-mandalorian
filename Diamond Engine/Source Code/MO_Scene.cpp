@@ -160,7 +160,7 @@ update_status M_Scene::Update(float dt)
 			App->moduleFileSystem->ToLocalAssetsPath(sceneDir);
 			if (!sceneDir.empty())
 			{
-				App->moduleScene->SaveScene(sceneDir.c_str());
+				App->moduleScene->SaveToJson(sceneDir.c_str());
 				App->moduleResources->NeedsDirsUpdate(App->moduleResources->assetsRoot);
 				strcpy(current_scene, sceneDir.c_str());
 
@@ -171,7 +171,7 @@ update_status M_Scene::Update(float dt)
 		}
 		else
 		{
-			App->moduleScene->SaveScene(current_scene);
+			App->moduleScene->SaveToJson(current_scene);
 			App->moduleResources->NeedsDirsUpdate(App->moduleResources->assetsRoot);
 		}
 	}
@@ -457,7 +457,7 @@ void M_Scene::OnGUI()
 	}
 }
 
-void M_Scene::SaveScene(const char* name)
+void M_Scene::SaveToJson(const char* name)
 {
 	JSON_Value* file = json_value_init_object();
 	DEConfig root_object(json_value_get_object(file));
