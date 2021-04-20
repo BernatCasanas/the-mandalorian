@@ -65,6 +65,10 @@ public class Core : DiamondComponent
     private float runTime = 0.0f;
     private float dustTime = 0.0f;
 
+    //Skill
+    private static bool skill_extraDamageActive = false;
+    private static float skill_extraDamageHPStep = 0.0f;
+    private static float skill_extraDamageAmount = 0.0f;
 
     // Dash
     //private float timeSinceLastDash = 0.0f;
@@ -525,8 +529,12 @@ public class Core : DiamondComponent
         if (hud != null)
             hud.GetComponent<HUD>().ShootSwapImage(true);
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1821505626.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
-        if(bullet!=null)
-            bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
+        if (bullet != null)
+        {
+            if (skill_extraDamageActive) bullet.GetComponent<BH_Bullet>().damage = GetExtraDamageWithSkill();
+            else bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
+        }
+            
         inputsList.Add(INPUT.IN_SHOOT_END);
         hasShot = true;
     }
@@ -876,12 +884,24 @@ public class Core : DiamondComponent
         }
     }
 
-    public void SetSkill(string skillName, float value = 0.0f)
+    public void SetSkill(string skillName, float value1 = 0.0f, float value2 = 0.0f)
     {
         if (skillName == "SeDelay") //Secondary Delay Skill
         {
-            grenadesFireRate -= grenadesFireRate * value;
+            grenadesFireRate -= grenadesFireRate * value1;
         }
+        else if(skillName == "AggressionHPMissingDamageSkill") //For each 1% of hp missing, gain 1% damage
+        {
+            skill_extraDamageActive = true;
+            skill_extraDamageHPStep = value1;
+            skill_extraDamageAmount = value2;
+        }
+    }
+
+    private static float GetExtraDamageWithSkill()
+    {
+        float HPMissing = 1.0f - ((float)PlayerHealth.currHealth / (float)PlayerHealth.currMaxHealth);
+        return bulletDamage + (bulletDamage * skill_extraDamageAmount * (HPMissing / skill_extraDamageHPStep));
     }
 
     public void OnApplicationQuit()

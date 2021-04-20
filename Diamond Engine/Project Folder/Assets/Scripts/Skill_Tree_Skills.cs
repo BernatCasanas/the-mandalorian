@@ -186,11 +186,12 @@ namespace DiamondEngine
         public override void Use()
         {
             //TODO: Priority
+            Core.instance.SetSkill("AggressionHPMissingDamageSkill", 1.0f, 1.0f);
         }
 
         public override void AssignCharacteristics()
         {
-            description = "[NOT IMPLEMENTED] For each 1% of hp missing, gain 1% damage";
+            description = "For each 1% of hp missing, gain 1% damage";
             price = 0;
             type_of_price = RewardType.REWARD_BESKAR;
         }
