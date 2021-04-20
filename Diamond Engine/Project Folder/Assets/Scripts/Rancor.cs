@@ -820,6 +820,8 @@ public class Rancor : DiamondComponent
         {
             prepareShotTimer -= Time.deltaTime;
 
+            LookAt(Core.instance.gameObject.transform.globalPosition);
+
             if (prepareShotTimer <= 0.0f)
             {
                 if (projectilePoint != null)
