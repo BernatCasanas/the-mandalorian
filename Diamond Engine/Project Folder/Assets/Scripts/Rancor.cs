@@ -827,10 +827,14 @@ public class Rancor : DiamondComponent
                 if (projectilePoint != null)
                 {
                     Vector3 pos = projectilePoint.transform.globalPosition;
-                    Vector3 scale = new Vector3(.9f, .9f, .9f);
+                    Vector3 scale = new Vector3(1f, 1f, 1f);
 
                     GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1225675544.prefab", pos, Quaternion.identity, scale);
-                    projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
+                    projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition - new Vector3(-3f,-1f,0f);
+                    GameObject projectile1 = InternalCalls.CreatePrefab("Library/Prefabs/1225675544.prefab", pos, Quaternion.identity, scale);
+                    projectile1.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition - new Vector3(3f,-1f,0f);
+                    GameObject projectile2 = InternalCalls.CreatePrefab("Library/Prefabs/1225675544.prefab", pos, Quaternion.identity, scale);
+                    projectile2.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition - new Vector3(0f,-1f,0f);
                 }
             }
         }
