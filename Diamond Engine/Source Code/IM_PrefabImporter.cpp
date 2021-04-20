@@ -94,6 +94,10 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 			{
 				prefabObjects[sceneObjects[i]->prefabReference] = sceneObjects[i];
 				sceneObjects[i]->LoadComponents(json_object_get_array(jsonObject, "Components"));
+				
+				if(j != 0)
+					sceneObjects[i]->transform->SetTransformMatrix(DEJson::ReadVector3(jsonObject, "Position"), DEJson::ReadQuat(jsonObject, "Rotation"), DEJson::ReadVector3(jsonObject, "Scale"));
+				
 				newObject = false;
 			}
 		}
@@ -313,7 +317,7 @@ GameObject* PrefabImporter::LoadGOPrefabData(JSON_Object* goJsonObj, GameObject*
 	else
 	{
 		parent = new GameObject(json_object_get_string(goJsonObj, "name"), parent, json_object_get_number(goJsonObj, "UID"));
-		parent->LoadFromJson(goJsonObj);
+		parent->LoadFromJson(goJsonObj);		
 	}
 
 	return parent;

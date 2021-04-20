@@ -24,6 +24,7 @@ public:
 	Component* GetComponent(Component::TYPE _type, const char* scriptName = nullptr);
 	std::vector<Component*> GetComponentsOfType(Component::TYPE type);
 
+	void RecursivePrefabReferenceGeneration();
 	void RecursiveUIDRegeneration();
 	void RecursiveUIDRegenerationSavingReferences(std::map<uint, GameObject*>& gameObjects);
 	void UnlinkFromPrefab();

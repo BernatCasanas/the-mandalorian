@@ -253,6 +253,17 @@ std::vector<Component*> GameObject::GetComponentsOfType(Component::TYPE type)
 	return ret;
 }
 
+void GameObject::RecursivePrefabReferenceGeneration()
+{
+	if (prefabReference == 0u)
+		prefabReference = UID;
+
+	for (size_t i = 0; i < children.size(); i++)
+	{
+		children[i]->RecursivePrefabReferenceGeneration();
+	}
+}
+
 //When we load models from model trees the UID should get regenerated
 //because the .model UID are not unique.
 void GameObject::RecursiveUIDRegeneration()
