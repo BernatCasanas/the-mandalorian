@@ -1,19 +1,19 @@
 {
     "NavMesh": 141075303,
     "EditorCameraPosition": [
-        -7.6381416320800781,
-        10.683340072631836,
-        5.5585441589355469
+        -15.423927307128906,
+        47.633739471435547,
+        -23.48046875
     ],
     "EditorCameraZ": [
-        0.96545469760894775,
-        -0.25064253807067871,
-        -0.071243107318878174
+        0.61974442005157471,
+        -0.68856054544448853,
+        0.37656497955322266
     ],
     "EditorCameraY": [
-        0.24996277689933777,
-        0.96807968616485596,
-        -0.018446952104568481
+        0.58846402168273926,
+        0.72517883777618408,
+        0.35752719640731812
     ],
     "tags": [
         "Enemy",
@@ -90,7 +90,7 @@
                     "Type": 4,
                     "Active": true,
                     "fType": 1,
-                    "fSize": 50,
+                    "fSize": 39,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
                     "vFOV": 1.0471975803375244,
@@ -18670,138 +18670,6 @@
             ]
         },
         {
-            "name": "Prop_Barrel4",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0.029999999329447746,
-                6.0828776359558105,
-                -5.3299999237060547
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 2012383179,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 206611769,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
-                },
-                {
-                    "Type": 15,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        1.2000000476837158,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        0.80000001192092896,
-                        1.5,
-                        0.80000001192092896
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "BH_DestructBox",
-                    "explosionTime": 0
-                }
-            ]
-        },
-        {
-            "name": "Barrel",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 148691232,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 2012383179,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/1726883054.mmh",
-                    "UID": 1726883054,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "doNotDrawStencil": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
-                }
-            ]
-        },
-        {
             "name": "BigDoor_Collider",
             "tag": "Wall",
             "layer": "Default",
@@ -18972,6 +18840,64 @@
             ]
         },
         {
+            "name": "Rocks",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1.3600000143051147,
+                1.3600000143051147,
+                1.3600000143051147
+            ],
+            "UID": 1917945234,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1987375770,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1322822785.mmh",
+                    "UID": 1322822785,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
             "name": "Rancor",
             "tag": "Untagged",
             "layer": "Default",
@@ -19042,6 +18968,8 @@
                     "Active": true,
                     "ScriptName": "Rancor",
                     "slerpSpeed": 20,
+                    "skill_increaseDamageToBossActive": true,
+                    "skill_increaseDamageToBossAmount": 0,
                     "healthPoints": 1092,
                     "maxHealthPoints": 0,
                     "attackProbability": 66,
@@ -19073,7 +19001,7 @@
                     "Active": true,
                     "Speed": 0,
                     "Angular Speed": 0,
-                    "Stopping Distance": 0.0099999997764825821
+                    "Stopping Distance": 10
                 },
                 {
                     "Type": 16,
