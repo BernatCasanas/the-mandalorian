@@ -246,40 +246,43 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	//Render light depth pass
 	if (directLight)
 	{
-		directLight->StartPass();
-		if (!renderQueue.empty())
+		if (directLight->calculateShadows == true)
 		{
-			for (size_t i = 0; i < renderQueue.size(); i++)
+			directLight->StartPass();
+			if (!renderQueue.empty())
 			{
-				float distance = directLight->orthoFrustum.pos.DistanceSq(renderQueue[i]->globalOBB.pos);
-				renderQueueMap.emplace(distance, renderQueue[i]);
-			}
-
-
-			if (!renderQueueMap.empty())
-			{
-				for (auto i = renderQueueMap.rbegin(); i != renderQueueMap.rend(); ++i)
+				for (size_t i = 0; i < renderQueue.size(); i++)
 				{
-					// Get the range of the current key
-					auto range = renderQueueMap.equal_range(i->first);
-
-					// Now render out that whole range
-					for (auto d = range.first; d != range.second; ++d)
-					{
-						GLint modelLoc = glGetUniformLocation(directLight->depthShader->shaderProgramID, "model");
-						glUniformMatrix4fv(modelLoc, 1, GL_FALSE, d->second->GetGO()->transform->GetGlobalTransposed());
-
-						modelLoc = glGetUniformLocation(directLight->depthShader->shaderProgramID, "lightSpaceMatrix");
-						glUniformMatrix4fv(modelLoc, 1, GL_FALSE, directLight->spaceMatrixOpenGL.ptr());
-
-						d->second->GetRenderMesh()->OGL_GPU_Render();
-					}
+					float distance = directLight->orthoFrustum.pos.DistanceSq(renderQueue[i]->globalOBB.pos);
+					renderQueueMap.emplace(distance, renderQueue[i]);
 				}
 
-				renderQueueMap.clear();
+
+				if (!renderQueueMap.empty())
+				{
+					for (auto i = renderQueueMap.rbegin(); i != renderQueueMap.rend(); ++i)
+					{
+						// Get the range of the current key
+						auto range = renderQueueMap.equal_range(i->first);
+
+						// Now render out that whole range
+						for (auto d = range.first; d != range.second; ++d)
+						{
+							GLint modelLoc = glGetUniformLocation(directLight->depthShader->shaderProgramID, "model");
+							glUniformMatrix4fv(modelLoc, 1, GL_FALSE, d->second->GetGO()->transform->GetGlobalTransposed());
+
+							modelLoc = glGetUniformLocation(directLight->depthShader->shaderProgramID, "lightSpaceMatrix");
+							glUniformMatrix4fv(modelLoc, 1, GL_FALSE, directLight->spaceMatrixOpenGL.ptr());
+
+							d->second->GetRenderMesh()->OGL_GPU_Render();
+						}
+					}
+
+					renderQueueMap.clear();
+				}
 			}
+			directLight->EndPass();
 		}
-		directLight->EndPass();
 	}
 
 #ifndef STANDALONE
@@ -322,11 +325,6 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	if (gameCamera != nullptr) 
 	{
 		gameCamera->StartDraw();
-
-		lights[0].SetPos(5, 5, 5);
-
-		for (uint i = 0; i < MAX_LIGHTS; ++i)
-			lights[i].Render();
 
 		if (!renderQueue.empty())
 		{

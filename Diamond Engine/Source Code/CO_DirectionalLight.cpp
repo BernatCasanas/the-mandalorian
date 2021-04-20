@@ -16,7 +16,8 @@
 
 const unsigned int SHADOW_WIDTH = 4096, SHADOW_HEIGHT = 4096;
 C_DirectionalLight::C_DirectionalLight(GameObject* _gm) : Component(_gm), 
-	orthoSize(10.0f, 10.0f), 
+	orthoSize(10.0f, 10.0f),
+	calculateShadows(true),
 	lightColor(float3::one), 
 	ambientLightColor(float3::one),
 	lightIntensity(1.0f),
@@ -114,6 +115,8 @@ bool C_DirectionalLight::OnEditor()
 
 		ImGui::Image((ImTextureID)depthMap, ImVec2(250, 250), ImVec2(0, 1), ImVec2(1, 0));
 
+		ImGui::Checkbox("Calculate shadows", &calculateShadows);
+
 		if (ImGui::DragFloat2("Ortho size", orthoSize.ptr(), 0.001f))
 		{
 			orthoFrustum.orthographicWidth = SHADOW_WIDTH / orthoSize.x;
@@ -136,6 +139,7 @@ void C_DirectionalLight::SaveData(JSON_Object* nObj)
 	data.WriteVector3("ambientLightColor", ambientLightColor.ptr());
 	data.WriteFloat("lightIntensity", lightIntensity);
 	data.WriteFloat("specularValue", specularValue);
+	data.WriteBool("calculateShadows", calculateShadows);
 }
 
 
@@ -148,6 +152,7 @@ void C_DirectionalLight::LoadData(DEConfig& nObj)
 	ambientLightColor = nObj.ReadVector3("ambientLightColor");
 	lightIntensity = nObj.ReadFloat("lightIntensity");
 	specularValue = nObj.ReadFloat("specularValue");
+	calculateShadows = nObj.ReadBool("calculateShadows");
 }
 
 
@@ -206,6 +211,9 @@ void C_DirectionalLight::PushLightUniforms(ResourceMaterial* material)
 	glUniform1f(modelLoc, specularValue);
 
 	//glUniform1i(glGetUniformLocation(material->shader->shaderProgramID, shadowMap), used_textures);
+
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "calculateShadows");
+	glUniform1i(modelLoc, calculateShadows);
 
 	glActiveTexture(GL_TEXTURE0 + 5);
 	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "shadowMap");

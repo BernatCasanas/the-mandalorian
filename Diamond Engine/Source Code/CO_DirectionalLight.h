@@ -37,6 +37,8 @@ public:
 
 	float2 orthoSize;
 
+	bool calculateShadows = true;
+
 private:
 	unsigned int depthMapFBO;	//Framebuffer
 	unsigned int depthMap;		//Depth texture
@@ -45,4 +47,6 @@ private:
 	float3 ambientLightColor;
 	float lightIntensity;
 	float specularValue;
+
+	
 };

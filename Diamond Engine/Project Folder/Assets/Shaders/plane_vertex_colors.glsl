@@ -80,6 +80,7 @@ uniform vec3 ambientLightColor;
 uniform float lightIntensity;
 uniform float specularValue;
 uniform vec3 cameraPosition;
+uniform bool calculateShadows;
 
 out vec4 color;
 
@@ -87,6 +88,10 @@ out vec4 color;
 
 float ShadowCalculation(vec4 fragPosLightSpace, vec3 lightDir, vec3 normal)
 {
+
+	if (calculateShadows == false)
+		return 0.0;
+	
 // perform perspective divide
     vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
     
@@ -126,7 +131,7 @@ void main()
 	vec3 normal = texture(normalMap, fs_in.TexCoords).rgb;
     normal = normalize(normal * 2.0 - 1.0);
     
-    vec3 lightDir = normalize(fs_in.TangentLightPos - fs_in.TangentFragPos);
+    vec3 lightDir = normalize(fs_in.TangentLightPos - vec3(0, 0, 0));
     
     // diffusesssaasw
     float diff = max(dot(lightDir, normal), 0.0);
@@ -145,4 +150,5 @@ void main()
     color = vec4(lighting * fs_in.vertexColor, 1.0);
 }
 #endif
+
 
