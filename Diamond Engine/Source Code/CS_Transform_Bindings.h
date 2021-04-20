@@ -58,6 +58,19 @@ MonoObject* CS_Get_GO_Parent(MonoObject* go)
 			EngineExternal->moduleMono->GameObject_From_CSGO(go)->parent);
 }
 
+void CS_Component_SetActive(MonoObject* go, bool active)
+{
+	if (active)
+		DECS_CompToComp<Component*>(go)->Enable();
+	else
+		DECS_CompToComp<Component*>(go)->Disable();
+}
+
+bool CS_Component_GetActive(MonoObject* go)
+{
+	return DECS_CompToComp<Component*>(go)->IsActive();
+}
+
 void CS_EnableGO(MonoObject* go, bool enable)
 {
 	GameObject* ref = EngineExternal->moduleMono->GameObject_From_CSGO(go);
