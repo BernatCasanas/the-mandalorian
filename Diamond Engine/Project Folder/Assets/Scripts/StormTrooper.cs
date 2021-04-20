@@ -213,6 +213,7 @@ public class StormTrooper : Enemy
                             currentState = STATE.DIE;
                             StartDie();
                             break;
+
                         case INPUT.IN_PUSHED:
                             currentState = STATE.PUSHED;
                             StartPush();
@@ -241,8 +242,10 @@ public class StormTrooper : Enemy
                             WanderEnd();
                             StartDie();
                             break;
+
                         case INPUT.IN_PUSHED:
                             currentState = STATE.PUSHED;
+                            WanderEnd();
                             StartPush();
                             break;
                     }
@@ -268,8 +271,10 @@ public class StormTrooper : Enemy
                             RunEnd();
                             StartDie();
                             break;
+
                         case INPUT.IN_PUSHED:
                             currentState = STATE.PUSHED;
+                            RunEnd();
                             StartPush();
                             break;
                     }
@@ -300,9 +305,9 @@ public class StormTrooper : Enemy
                             currentState = STATE.DIE;
                             StartDie();
                             break;
+
                         case INPUT.IN_IDLE:
                             currentState = STATE.IDLE;
-                            RunEnd();
                             StartIdle();
                             break;
                     }
@@ -364,8 +369,8 @@ public class StormTrooper : Enemy
     private void UpdateWander()
     {
         LookAt(agent.GetDestination());
-        if (skill_slowDownActive) agent.MoveToCalculatedPos(runningSpeed * (1 - skill_slowDownAmount));
-        else agent.MoveToCalculatedPos(runningSpeed);
+        if (skill_slowDownActive) agent.MoveToCalculatedPos(wanderSpeed * (1 - skill_slowDownAmount));
+        else agent.MoveToCalculatedPos(wanderSpeed);
     }
     private void WanderEnd()
     {
@@ -376,7 +381,7 @@ public class StormTrooper : Enemy
     #region RUN
     private void StartRun()
     {
-        agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
+        agent.CalculateRandomPath(gameObject.transform.globalPosition, runningRange);
 
         Animator.Play(gameObject, "ST_Run");
         Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
