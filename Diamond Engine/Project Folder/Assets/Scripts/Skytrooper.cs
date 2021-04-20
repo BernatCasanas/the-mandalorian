@@ -1,11 +1,11 @@
-﻿//using System;
+//using System;
 //using System.Runtime.CompilerServices;
 //using System.Runtime.InteropServices;
 //using System.Collections.Generic;
 
 //using DiamondEngine;
 
-//public class SkyTrooper : Enemy
+//public class Skytrooper : Enemy
 //{
 //    enum STATE : int
 //    {
@@ -31,6 +31,7 @@
 //        IN_HIT,
 //        IN_DIE,
 //        IN_PLAYER_IN_RANGE,
+
 //    }
 
 //    //State
@@ -45,13 +46,13 @@
 //    public float idleTime = 5.0f;
 //    private float dieTime = 3.0f;
 //    public float timeBewteenShots = 0.5f;
-//    public float timeBewteenSequences = 0.5f;
 //    public float timeBewteenStates = 1.5f;
 
 //    //Speeds
 //    public float wanderSpeed = 3.5f;
-//    public float runningSpeed = 7.5f;
-//    public float bulletSpeed = 10.0f;
+//    public float dashSpeed = 7.5f;
+//    //public float bulletSpeed = 10.0f;
+//    private bool skill_slowDownActive = false;
 
 //    //Ranges
 //    public float wanderRange = 7.5f;
@@ -60,15 +61,14 @@
 //    //Timers
 //    private float idleTimer = 0.0f;
 //    private float shotTimer = 0.0f;
-//    private float sequenceTimer = 0.0f;
 //    private float dieTimer = 0.0f;
 //    private float statesTimer = 0.0f;
 //    private float pushTimer = 0.0f;
+//    private float skill_slowDownTimer = 0.0f;
+
 //    //Action variables
 //    int shotTimes = 0;
 //    public int maxShots = 2;
-//    private int shotSequences = 0;
-//    public int maxSequences = 2;
 
 //    //push
 //    public float pushHorizontalForce = 100;
@@ -84,7 +84,6 @@
 //        Animator.Play(gameObject, "ST_Idle");
 
 //        shotTimes = 0;
-//        shotSequences = 0;
 
 //        idleTimer = idleTime;
 //        dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
@@ -117,6 +116,16 @@
 //        {
 //            Debug.Log("Null player");
 //            player = Core.instance.gameObject;
+//        }
+
+//        if (skill_slowDownActive)
+//        {
+//            skill_slowDownTimer += Time.deltaTime;
+//            if (skill_slowDownTimer >= skill_slowDownDuration)
+//            {
+//                skill_slowDownTimer = 0.0f;
+//                skill_slowDownActive = false;
+//            }
 //        }
 
 //        #region STATE MACHINE
@@ -156,7 +165,7 @@
 //    //All events from outside the stormtrooper
 //    private void ProcessExternalInput()
 //    {
-//        if (currentState != STATE.DIE && currentState != STATE.DASH)
+//        if (currentState != STATE.DIE && currentState != STATE.RUN)
 //        {
 //            if (InRange(player.transform.globalPosition, detectionRange))
 //            {
@@ -234,7 +243,7 @@
 //                    }
 //                    break;
 
-//                case STATE.DASH:
+//                case STATE.RUN:
 //                    switch (input)
 //                    {
 //                        case INPUT.IN_IDLE:
@@ -257,9 +266,6 @@
 //                        case INPUT.IN_PUSHED:
 //                            currentState = STATE.PUSHED;
 //                            StartPush();
-//                            break;
-//                        case INPUT.IN_DASH_END:
-//                            currentState = STATE.SHOOT;
 //                            break;
 //                    }
 //                    break;
@@ -353,7 +359,8 @@
 //    private void UpdateWander()
 //    {
 //        LookAt(agent.GetDestination());
-//        agent.MoveToCalculatedPos(runningSpeed);
+//        if (skill_slowDownActive) agent.MoveToCalculatedPos(runningSpeed * (1 - skill_slowDownAmount));
+//        else agent.MoveToCalculatedPos(runningSpeed);
 //    }
 //    private void WanderEnd()
 //    {
@@ -372,7 +379,8 @@
 //    private void UpdateRun()
 //    {
 //        LookAt(agent.GetDestination());
-//        agent.MoveToCalculatedPos(runningSpeed);
+//        if (skill_slowDownActive) agent.MoveToCalculatedPos(runningSpeed * (1 - skill_slowDownAmount));
+//        else agent.MoveToCalculatedPos(runningSpeed);
 //    }
 //    private void RunEnd()
 //    {
@@ -505,9 +513,13 @@
 //            souls.Play();
 //        }
 
+//        //Combo
+//        if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
+//        {
+//            Core.instance.hud.GetComponent<HUD>().AddToCombo(300, 1.0f);
+//        }
+
 //        RemoveFromEnemyList();
-
-
 //    }
 //    private void UpdateDie()
 //    {
@@ -531,6 +543,7 @@
 //        {
 //            Counter.allEnemiesDead = true;
 //        }
+
 //        //Created dropped coins
 //        var rand = new Random();
 //        int droppedCoins = rand.Next(1, 4);
@@ -582,6 +595,12 @@
 //            {
 //                inputsList.Add(INPUT.IN_DIE);
 //            }
+
+//            if (skill_slowDownEnabled)
+//            {
+//                skill_slowDownActive = true;
+//                skill_slowDownTimer = 0.0f;
+//            }
 //        }
 //        else if (collidedGameObject.CompareTag("Grenade"))
 //        {
@@ -596,6 +615,12 @@
 //            if (currentState != STATE.DIE && healthPoints <= 0.0f)
 //            {
 //                inputsList.Add(INPUT.IN_DIE);
+//            }
+
+//            if (skill_slowDownEnabled)
+//            {
+//                skill_slowDownActive = true;
+//                skill_slowDownTimer = 0.0f;
 //            }
 //        }
 //        else if (collidedGameObject.CompareTag("WorldLimit"))
