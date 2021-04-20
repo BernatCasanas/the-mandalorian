@@ -680,7 +680,7 @@ void GameObject::ChangeParent(GameObject* newParent)
 		if (prefabReference == 0u)
 			prefabReference = UID;
 	}
-	else
+	else if(prefabID == 0u)
 		prefabReference = 0u;
 
 	//TODO: This could be improved, you are setting up the local matrix 2 times
