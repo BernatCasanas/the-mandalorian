@@ -211,8 +211,8 @@ void C_BoxCollider::LoadData(DEConfig& nObj)
 	Component::LoadData(nObj);
 	float3 pos, scale;
 	Quat rot;
-	bool trigger;
 
+	bool trigger;
 	trigger = nObj.ReadBool("isTrigger");
 	if (trigger != isTrigger)
 	{

@@ -201,7 +201,6 @@ void C_SphereCollider::SaveData(JSON_Object* nObj)
 	localTransform.Decompose(pos, rot, scale);
 
 	Component::SaveData(nObj);
-
 	DEJson::WriteBool(nObj, "isTrigger", isTrigger);
 
 	DEJson::WriteVector3(nObj, "Position", pos.ptr());
@@ -258,8 +257,11 @@ bool C_SphereCollider::OnEditor()
 			index = std::distance(rigidbody->collider_info.begin(), it);
 		}
 
+
+		std::string suffix;
+
 		bool trigger = isTrigger;
-		std::string suffix = "isTrigger##" + std::to_string(index);
+		suffix = "isTrigger##" + std::to_string(index);
 		ImGui::Checkbox(suffix.c_str(), &trigger);
 
 		if (trigger != isTrigger)

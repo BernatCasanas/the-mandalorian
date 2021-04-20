@@ -214,6 +214,8 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.GameObject::get_tag", GetTag);
 	mono_add_internal_call("DiamondEngine.GameObject::SetVelocity", SetVelocity);
 	mono_add_internal_call("DiamondEngine.GameObject::AddForce", AddForce);
+	mono_add_internal_call("DiamondEngine.GameObject::EnableCollider", EnableCollider);
+	mono_add_internal_call("DiamondEngine.GameObject::DisableCollider", DisableCollider);
 	mono_add_internal_call("DiamondEngine.GameObject::SetParent", CS_SetParent);
 	mono_add_internal_call("DiamondEngine.GameObject::GetUid", GetUid);
 	mono_add_internal_call("DiamondEngine.GameObject::AssignLibraryTextureToMaterial", AssignLibraryTextureToMaterial);
