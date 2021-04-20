@@ -58,6 +58,7 @@ C_DirectionalLight::C_DirectionalLight(GameObject* _gm) : Component(_gm),
 	EngineExternal->moduleRenderer3D->directLight = this;
 }
 
+
 C_DirectionalLight::~C_DirectionalLight()
 {
 	if (depthMapFBO != 0)
@@ -69,6 +70,7 @@ C_DirectionalLight::~C_DirectionalLight()
 	EngineExternal->moduleResources->UnloadResource(depthShader->GetUID());
 	EngineExternal->moduleRenderer3D->directLight = nullptr;
 }
+
 
 void C_DirectionalLight::Update()
 {
@@ -91,6 +93,7 @@ void C_DirectionalLight::Update()
 #endif // !STANDALONE
 
 }
+
 
 #ifndef STANDALONE
 bool C_DirectionalLight::OnEditor()
@@ -128,6 +131,7 @@ bool C_DirectionalLight::OnEditor()
 	return false;
 }
 #endif // !STANDALONE
+
 
 void C_DirectionalLight::SaveData(JSON_Object* nObj)
 {
@@ -186,33 +190,33 @@ void C_DirectionalLight::StartPass()
 
 void C_DirectionalLight::PushLightUniforms(ResourceMaterial* material)
 {
-	GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightSpaceMatrix");
+	GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightInfo.lightSpaceMatrix");
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, this->spaceMatrixOpenGL.ptr());
 
-	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightPos");
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightInfo.lightPos");
 	glUniform3fv(modelLoc, 1, &gameObject->transform->position.x);
 
-	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightPosition");
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightInfo.lightPosition");
 	glUniform3fv(modelLoc, 1, &gameObject->transform->position.x);
 
-	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "viewPos");
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightInfo.viewPos");
 	glUniform3fv(modelLoc, 1, EngineExternal->moduleRenderer3D->activeRenderCamera->GetPosition().ptr());
 
-	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightColor");
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightInfo.lightColor");
 	glUniform3fv(modelLoc, 1, &lightColor.x);
 
-	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "ambientLightColor");
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightInfo.ambientLightColor");
 	glUniform3fv(modelLoc, 1, &ambientLightColor.x);
 
-	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightIntensity");
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightInfo.lightIntensity");
 	glUniform1f(modelLoc, lightIntensity);
 
-	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "specularValue");
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightInfo.specularValue");
 	glUniform1f(modelLoc, specularValue);
 
 	//glUniform1i(glGetUniformLocation(material->shader->shaderProgramID, shadowMap), used_textures);
 
-	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "calculateShadows");
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightInfo.calculateShadows");
 	glUniform1i(modelLoc, calculateShadows);
 
 	glActiveTexture(GL_TEXTURE0 + 5);

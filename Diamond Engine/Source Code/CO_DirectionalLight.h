@@ -47,6 +47,4 @@ private:
 	float3 ambientLightColor;
 	float lightIntensity;
 	float specularValue;
-
-	
 };

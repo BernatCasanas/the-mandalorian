@@ -20,12 +20,29 @@ out VS_OUT {
     vec3 vertexColor;
 } vs_out;
 
+
+
 uniform mat4 model_matrix;
 uniform mat4 view;
 uniform mat4 projection;
-uniform mat4 lightSpaceMatrix;
 
-uniform vec3 lightPosition;
+struct LightInfo 
+{
+	vec3 lightPosition;
+	mat4 lightSpaceMatrix;
+	
+	vec3 lightColor;
+	vec3 ambientLightColor;
+	float lightIntensity;
+	float specularValue;
+	
+	bool calculateShadows;
+
+};
+
+
+uniform LightInfo lightInfo;
+
 uniform vec3 cameraPosition;
 
 void main()
@@ -35,7 +52,7 @@ void main()
     vs_out.FragPos = vec3(model_matrix * vec4(position, 1.0));
     vs_out.Normal = normalize(transpose(inverse(mat3(model_matrix))) * normals);
     vs_out.TexCoords = texCoord;
-    vs_out.FragPosLightSpace = lightSpaceMatrix * vec4(vs_out.FragPos, 1.0);
+    vs_out.FragPosLightSpace = lightInfo.lightSpaceMatrix * vec4(vs_out.FragPos, 1.0);
 
 	
 	//Calculate tangent vars
@@ -44,7 +61,7 @@ void main()
     vec3 B = cross(N, T);
 	
 	mat3 TBN = transpose(mat3(T, B, N));
-    vs_out.TangentLightPos = TBN * lightPosition;
+    vs_out.TangentLightPos = TBN * lightInfo.lightPosition;
     vs_out.TangentViewPos  = TBN * cameraPosition;
     vs_out.TangentFragPos  = TBN * vec3(model_matrix * vec4(position, 1.0));
 
@@ -71,16 +88,26 @@ in VS_OUT {
 
 in vec3 vertexColor;  
 
+struct LightInfo 
+{
+	vec3 lightPosition;
+	mat4 lightSpaceMatrix;
+	
+	vec3 lightColor;
+	vec3 ambientLightColor;
+	float lightIntensity;
+	float specularValue;
+	
+	bool calculateShadows;
+
+};
+
+
+uniform LightInfo lightInfo;
+
 uniform sampler2D shadowMap;
 uniform sampler2D normalMap;
-
-
-uniform vec3 lightColor;
-uniform vec3 ambientLightColor;
-uniform float lightIntensity;
-uniform float specularValue;
 uniform vec3 cameraPosition;
-uniform bool calculateShadows;
 
 out vec4 color;
 
@@ -89,7 +116,7 @@ out vec4 color;
 float ShadowCalculation(vec4 fragPosLightSpace, vec3 lightDir, vec3 normal)
 {
 
-	if (calculateShadows == false)
+	if (lightInfo.calculateShadows == false)
 		return 0.0;
 	
 // perform perspective divide
@@ -135,20 +162,21 @@ void main()
     
     // diffusesssaasw
     float diff = max(dot(lightDir, normal), 0.0);
-    vec3 diffuse = diff * lightColor;
+    vec3 diffuse = diff * lightInfo.lightColor;
     // specular
     vec3 viewDir = normalize(fs_in.TangentViewPos - fs_in.TangentFragPos);
     float spec = 0.0;
     vec3 halfwayDir = normalize(lightDir + viewDir);  
-    spec = pow(max(dot(normal, halfwayDir), 0.0), specularValue);
-    vec3 specular = spec * lightColor;
+    spec = pow(max(dot(normal, halfwayDir), 0.0), lightInfo.specularValue);
+    vec3 specular = spec * lightInfo.lightColor;
         
     // calculate shadow
     float shadow = ShadowCalculation(fs_in.FragPosLightSpace, lightDir, normal);
-    vec3 lighting = (ambientLightColor + (1.0 - shadow) * (diffuse + specular)) * lightIntensity;
+    vec3 lighting = (lightInfo.ambientLightColor + (1.0 - shadow) * (diffuse + specular)) * lightInfo.lightIntensity;
     
     color = vec4(lighting * fs_in.vertexColor, 1.0);
 }
 #endif
+
 
 
