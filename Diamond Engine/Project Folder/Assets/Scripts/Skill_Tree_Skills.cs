@@ -298,14 +298,14 @@ namespace DiamondEngine
         {
             if (BabyYoda.instance != null)
             {
-                BabyYoda.AugmentForceRegenSpeed(1f);
+                BabyYoda.SetSkill("GroguForceRegenerationSkill", 10.0f, 1.0f);
             }
         }
 
         public override void AssignCharacteristics()
         {
-            description = "Increase Grogu's Force regeneration by 1 Force/Second. Press 'A' to buy it. Price: 1 Blue Macaron";
-            price = 1;
+            description = "[NOT IMPLEMENTED] For each 10% of HP Mando is missing, gain 1 more passive Force Regeneration per second.";
+            price = 0;
             type_of_price = RewardType.REWARD_MACARON;
         }
     }
