@@ -44,6 +44,8 @@ public:
 	void LoadData(DEConfig& nObj) override;
 	void SetRotation(Quat rotation);
 
+	void Enable() override;
+	void Disable() override;
 #ifndef STANDALONE
 	void Update() override;
 
@@ -51,7 +53,6 @@ public:
 #endif // !STANDALONE
 public:
 	bool isTrigger;
-
 	physx::PxShape* colliderShape;
 	physx::PxMaterial* colliderMaterial;
 	C_Transform* transform;

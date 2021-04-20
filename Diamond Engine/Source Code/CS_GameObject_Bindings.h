@@ -43,7 +43,67 @@ void AddForce(MonoObject* cs_GameObject, MonoObject* cs_Force)
 
 }
 
+void EnableCollider(MonoObject* cs_GameObject)
+{
+	GameObject* cpp_gameObject = EngineExternal->moduleMono->GameObject_From_CSGO(cs_GameObject);
+	
+	std::vector<Component*> iWantToDie;
+	std::vector<Component*> b;
 
+	b = cpp_gameObject->GetComponentsOfType(Component::TYPE::BOXCOLLIDER);
+	iWantToDie.insert(iWantToDie.end(), b.begin(), b.end());
+	b.clear();
+
+	b = cpp_gameObject->GetComponentsOfType(Component::TYPE::MESHCOLLIDER);
+	iWantToDie.insert(iWantToDie.end(), b.begin(), b.end());
+	b.clear();
+
+	b = cpp_gameObject->GetComponentsOfType(Component::TYPE::SPHERECOLLIDER);
+	iWantToDie.insert(iWantToDie.end(), b.begin(), b.end());
+	b.clear();
+
+	b = cpp_gameObject->GetComponentsOfType(Component::TYPE::CAPSULECOLLIDER);
+	iWantToDie.insert(iWantToDie.end(), b.begin(), b.end());
+	b.clear();
+
+
+	for (int i = 0; i < iWantToDie.size(); i++)
+	{
+		C_Collider* col = dynamic_cast<C_Collider*>(iWantToDie[i]);
+		col->Enable();
+	}
+}
+
+void DisableCollider(MonoObject* cs_GameObject)
+{
+	GameObject* cpp_gameObject = EngineExternal->moduleMono->GameObject_From_CSGO(cs_GameObject);
+
+	std::vector<Component*> iWantToDie;
+	std::vector<Component*> b;
+
+	b = cpp_gameObject->GetComponentsOfType(Component::TYPE::BOXCOLLIDER);
+	iWantToDie.insert(iWantToDie.end(), b.begin(), b.end());
+	b.clear();
+
+	b = cpp_gameObject->GetComponentsOfType(Component::TYPE::MESHCOLLIDER);
+	iWantToDie.insert(iWantToDie.end(), b.begin(), b.end());
+	b.clear();
+
+	b = cpp_gameObject->GetComponentsOfType(Component::TYPE::SPHERECOLLIDER);
+	iWantToDie.insert(iWantToDie.end(), b.begin(), b.end());
+	b.clear();
+
+	b = cpp_gameObject->GetComponentsOfType(Component::TYPE::CAPSULECOLLIDER);
+	iWantToDie.insert(iWantToDie.end(), b.begin(), b.end());
+	b.clear();
+
+
+	for (int i = 0; i < iWantToDie.size(); i++)
+	{
+		C_Collider* col = dynamic_cast<C_Collider*>(iWantToDie[i]);
+		col->Disable();
+	}
+}
 MonoObject* FindObjectWithName(MonoString* name) {
 
 	std::vector<GameObject*> gameObjectVec;
