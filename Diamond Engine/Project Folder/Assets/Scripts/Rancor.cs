@@ -734,7 +734,11 @@ public class Rancor : DiamondComponent
             jumpDelayTimer -= Time.deltaTime;
 
             if (jumpDelayTimer <= 0.0f)
+            {
+                //TODO: Disable collider component
                 startedJumping = true;
+            }
+
         }
 
         if (startedJumping)
@@ -742,7 +746,7 @@ public class Rancor : DiamondComponent
             float x = Mathf.Lerp(gameObject.transform.localPosition.x, jumpAttackTarget.x, jumpAttackSpeed * Time.deltaTime);
             float z = Mathf.Lerp(gameObject.transform.localPosition.z, jumpAttackTarget.z, jumpAttackSpeed * Time.deltaTime);
             gameObject.transform.localPosition = new Vector3(x, gameObject.transform.localPosition.y, z);
-            //TODO: Disable collider component
+
         }
         LookAt(jumpAttackTarget);
     }
@@ -997,7 +1001,7 @@ public class Rancor : DiamondComponent
     #region DIE
     private void StartDie()
     {
-        Audio.StopAudio(gameObject);
+        Audio.StopAudio(gameObject);    
 
         dieTimer = dieTime;
 
