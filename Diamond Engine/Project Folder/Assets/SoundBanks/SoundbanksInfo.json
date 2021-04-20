@@ -207,7 +207,7 @@
    {
     "Id": "1093318992",
     "Language": "SFX",
-    "Hash": "1495593866",
+    "Hash": "532972233",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Mando",
     "ShortName": "Mando",
     "Path": "Mando.bnk",
@@ -269,9 +269,47 @@
       ]
      },
      {
-      "Id": "3123219165",
-      "Name": "Play_Footsteps_Mando",
-      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Footsteps_Mando",
+      "Id": "1421476365",
+      "Name": "Play_Footsteps_Metal_Platform_Mando",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Footsteps_Metal_Platform_Mando",
+      "DurationType": "Infinite",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "217252079",
+        "Language": "SFX",
+        "ShortName": "Footstep metal platform 1.wav",
+        "Path": "SFX\\Footstep metal platform 1_10C4C929.wem"
+       },
+       {
+        "Id": "235402370",
+        "Language": "SFX",
+        "ShortName": "Footstep metal platform 5.wav",
+        "Path": "SFX\\Footstep metal platform 5_10C4C929.wem"
+       },
+       {
+        "Id": "367905920",
+        "Language": "SFX",
+        "ShortName": "Footstep metal platform 4.wav",
+        "Path": "SFX\\Footstep metal platform 4_10C4C929.wem"
+       },
+       {
+        "Id": "709294232",
+        "Language": "SFX",
+        "ShortName": "Footstep metal platform 2.wav",
+        "Path": "SFX\\Footstep metal platform 2_10C4C929.wem"
+       },
+       {
+        "Id": "932035095",
+        "Language": "SFX",
+        "ShortName": "Footstep metal platform 3.wav",
+        "Path": "SFX\\Footstep metal platform 3_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "329581270",
+      "Name": "Play_Footsteps_Sand_Mando",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Footsteps_Sand_Mando",
       "DurationType": "Infinite",
       "IncludedMemoryFiles": [
        {
@@ -301,6 +339,28 @@
       ]
      },
      {
+      "Id": "3216889748",
+      "Name": "Play_Mando_Clean_Room_Voice",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Clean_Room_Voice",
+      "DurationType": "OneShot",
+      "DurationMin": "0.709125",
+      "DurationMax": "0.793208",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "286980711",
+        "Language": "SFX",
+        "ShortName": "Mando cleared room voice 2.wav",
+        "Path": "SFX\\Mando cleared room voice 2_10C4C929.wem"
+       },
+       {
+        "Id": "572686326",
+        "Language": "SFX",
+        "ShortName": "Mando cleared room voice 1.wav",
+        "Path": "SFX\\Mando cleared room voice 1_10C4C929.wem"
+       }
+      ]
+     },
+     {
       "Id": "2270035798",
       "Name": "Play_Mando_Death",
       "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Death",
@@ -317,12 +377,12 @@
       ]
      },
      {
-      "Id": "802422601",
-      "Name": "Play_Mando_Grenade_1_Charge",
-      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Grenade_1_Charge",
+      "Id": "3454536245",
+      "Name": "Play_Mando_Grenade_Charge_1",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Grenade_Charge_1",
       "DurationType": "OneShot",
-      "DurationMin": "1.401927",
-      "DurationMax": "1.401927",
+      "DurationMin": "0.163991",
+      "DurationMax": "0.163991",
       "IncludedMemoryFiles": [
        {
         "Id": "371786017",
@@ -333,18 +393,34 @@
       ]
      },
      {
-      "Id": "223609541",
-      "Name": "Play_Mando_Grenade_Explosion_1_Charge",
-      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Grenade_Explosion_1_Charge",
+      "Id": "3454536246",
+      "Name": "Play_Mando_Grenade_Charge_2",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Grenade_Charge_2",
       "DurationType": "OneShot",
-      "DurationMin": "1.570045",
-      "DurationMax": "1.570045",
+      "DurationMin": "0.693152",
+      "DurationMax": "0.693152",
       "IncludedMemoryFiles": [
        {
-        "Id": "604637895",
+        "Id": "445754893",
         "Language": "SFX",
-        "ShortName": "Grenade explosion 1 and charge 2.wav",
-        "Path": "SFX\\Grenade explosion 1 and charge 2_10C4C929.wem"
+        "ShortName": "Grenade charge 2.wav",
+        "Path": "SFX\\Grenade charge 2_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "3924203422",
+      "Name": "Play_Mando_Grenade_Explosion_1",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Grenade_Explosion_1",
+      "DurationType": "OneShot",
+      "DurationMin": "0.862404",
+      "DurationMax": "0.862404",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "626340448",
+        "Language": "SFX",
+        "ShortName": "Grenade explosion 1.wav",
+        "Path": "SFX\\Grenade explosion 1_10C4C929.wem"
        }
       ]
      },
@@ -361,6 +437,22 @@
         "Language": "SFX",
         "ShortName": "Grenade explosion 2.wav",
         "Path": "SFX\\Grenade explosion 2_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "4068193085",
+      "Name": "Play_Mando_Grenade_Nail",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Grenade_Nail",
+      "DurationType": "OneShot",
+      "DurationMin": "0.828005",
+      "DurationMax": "0.828005",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "280654454",
+        "Language": "SFX",
+        "ShortName": "Grenade nail 1.wav",
+        "Path": "SFX\\Grenade nail 1_10C4C929.wem"
        }
       ]
      },
@@ -405,9 +497,9 @@
       ]
      },
      {
-      "Id": "3609957406",
-      "Name": "Play_Mando_Voice",
-      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Voice",
+      "Id": "103321515",
+      "Name": "Play_Mando_Kill_Voice",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Kill_Voice",
       "DurationType": "OneShot",
       "DurationMin": "0.000000",
       "DurationMax": "0.823832",
@@ -612,7 +704,7 @@
    {
     "Id": "1551306167",
     "Language": "SFX",
-    "Hash": "1282771687",
+    "Hash": "2191256746",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI",
     "ShortName": "UI",
     "Path": "UI.bnk",
@@ -670,6 +762,22 @@
         "Language": "SFX",
         "ShortName": "UI Button select.wav",
         "Path": "SFX\\UI Button select_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "3589147915",
+      "Name": "Play_UI_Credit_Pickup",
+      "ObjectPath": "\\Events\\Default Work Unit\\UI\\Play_UI_Credit_Pickup",
+      "DurationType": "OneShot",
+      "DurationMin": "0.645601",
+      "DurationMax": "0.645601",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "283926928",
+        "Language": "SFX",
+        "ShortName": "UI Credit_Pickup.wav",
+        "Path": "SFX\\UI Credit_Pickup_10C4C929.wem"
        }
       ]
      },
@@ -1026,7 +1134,7 @@
    {
     "Id": "3795682265",
     "Language": "SFX",
-    "Hash": "4222252359",
+    "Hash": "4078665599",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Bantha",
     "ShortName": "Bantha",
     "Path": "Bantha.bnk",
@@ -1058,6 +1166,20 @@
         "Language": "SFX",
         "ShortName": "Bantha attack 1.wav",
         "Path": "SFX\\Bantha attack 1_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "3322588403",
+      "Name": "Play_Bantha_Breath",
+      "ObjectPath": "\\Events\\Default Work Unit\\Bantha\\Play_Bantha_Breath",
+      "DurationType": "Infinite",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "403063460",
+        "Language": "SFX",
+        "ShortName": "Bantha tired breath.wav",
+        "Path": "SFX\\Bantha tired breath_D79FB2B7.wem"
        }
       ]
      },
@@ -1599,7 +1721,7 @@
    {
     "Id": "4179269225",
     "Language": "SFX",
-    "Hash": "4208834724",
+    "Hash": "2286334323",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Grogu",
     "ShortName": "Grogu",
     "Path": "Grogu.bnk",
@@ -1617,8 +1739,8 @@
       "Name": "Play_Force_Pull",
       "ObjectPath": "\\Events\\Default Work Unit\\Grogu\\Play_Force_Pull",
       "DurationType": "OneShot",
-      "DurationMin": "0.640454",
-      "DurationMax": "0.640454",
+      "DurationMin": "0.782880",
+      "DurationMax": "0.782880",
       "IncludedMemoryFiles": [
        {
         "Id": "220532221",
@@ -1633,14 +1755,30 @@
       "Name": "Play_Force_Push",
       "ObjectPath": "\\Events\\Default Work Unit\\Grogu\\Play_Force_Push",
       "DurationType": "OneShot",
-      "DurationMin": "0.640454",
-      "DurationMax": "0.640454",
+      "DurationMin": "0.840431",
+      "DurationMax": "0.840431",
       "IncludedMemoryFiles": [
        {
         "Id": "927955603",
         "Language": "SFX",
         "ShortName": "Force push.wav",
         "Path": "SFX\\Force push_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1808638179",
+      "Name": "Play_Grogu_Wall",
+      "ObjectPath": "\\Events\\Default Work Unit\\Grogu\\Play_Grogu_Wall",
+      "DurationType": "OneShot",
+      "DurationMin": "1.101229",
+      "DurationMax": "1.101229",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "532606562",
+        "Language": "SFX",
+        "ShortName": "Grogu wall.wav",
+        "Path": "SFX\\Grogu wall_10C4C929.wem"
        }
       ]
      },
