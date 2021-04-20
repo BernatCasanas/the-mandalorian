@@ -1,19 +1,19 @@
 {
     "NavMesh": 1404428461,
     "EditorCameraPosition": [
-        -23.346548080444336,
-        34.234928131103516,
-        -17.675315856933594
+        -41.662387847900391,
+        47.695537567138672,
+        -23.105434417724609
     ],
     "EditorCameraZ": [
-        0.53383362293243408,
-        -0.84029150009155273,
-        0.094509124755859375
+        0.64428079128265381,
+        -0.69051641225814819,
+        0.32876944541931152
     ],
     "EditorCameraY": [
-        0.82747519016265869,
-        0.54213488101959229,
-        0.1462005078792572
+        0.61516618728637695,
+        0.7233167290687561,
+        0.31366139650344849
     ],
     "tags": [],
     "layers": [],
@@ -93,6 +93,9 @@
                     "forceRegenerationSpeed": 0,
                     "skillPushForceCost": 0,
                     "skillWallForceCost": 0,
+                    "skill_fasterForceRegenerationActive": true,
+                    "skill_fasterForceRegenerationHealthStep": 0,
+                    "skill_fasterForceRegenerationForceRegen": 0,
                     "skillPushDuration": 1
                 }
             ]
@@ -18371,6 +18374,7 @@
                     "gadgetFireRate": 0.20000000298023224,
                     "fireRateAfterDashRecoverRatio": 1.75,
                     "fireRateMultCap": 2,
+                    "grenadesFireRate": 0,
                     "lockInputs": true,
                     "background": 122581790,
                     "pause": 1852710895,
@@ -18440,6 +18444,7 @@
                     "<currMaxHealth>k__BackingField": 0,
                     "<currHealth>k__BackingField": 0,
                     "<healWhenKillingAnEnemy>k__BackingField": 0,
+                    "<skill_chanceToAvoidDamage>k__BackingField": 0,
                     "character_mesh": 2113394218,
                     "damage_screen": 1415984252
                 },
@@ -21703,6 +21708,64 @@
                     "Active": true,
                     "billboardAlignment": 0,
                     "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "Plane",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -2.4634571075439453,
+                0.14317154884338379,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                36.857891082763672,
+                36.857891082763672,
+                36.857891082763672
+            ],
+            "UID": 425931547,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 590099293,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1342727876.mmh",
+                    "UID": 1342727876,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/water.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/153880261.mat",
+                    "MaterialUID": 153880261
                 }
             ]
         }
