@@ -31,6 +31,7 @@ public class RancorProjectile : DiamondComponent
 			PlayerHealth health = triggeredGameObject.GetComponent<PlayerHealth>();
             if (health != null)
 				health.TakeDamage(damage);
+			InternalCalls.Destroy(gameObject);
 		}
     }
 }
