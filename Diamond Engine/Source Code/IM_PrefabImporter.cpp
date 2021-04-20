@@ -90,7 +90,7 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 
 		for (size_t i = 0; i < sceneObjects.size() && newObject; i++)
 		{
-			if (uid == sceneObjects[i]->prefabReference)
+			if (uid == sceneObjects[i]->prefabReference || uid == sceneObjects[i]->UID)
 			{
 				prefabObjects[sceneObjects[i]->prefabReference] = sceneObjects[i];
 				sceneObjects[i]->LoadComponents(json_object_get_array(jsonObject, "Components"));
@@ -183,11 +183,10 @@ GameObject* PrefabImporter::InstantiatePrefab(const char* libraryPath)
 
 	for (size_t i = 1; i < json_array_get_count(gameObjectsArray); i++)
 	{
-		parent = EngineExternal->moduleScene->LoadGOData(json_array_get_object(gameObjectsArray, i), parent);
+		parent = LoadGOPrefabData(json_array_get_object(gameObjectsArray, i), parent);
 	}
 
 	EngineExternal->moduleScene->LoadNavigationData();
-	//rootObject->RecursiveUIDRegeneration();
 	EngineExternal->moduleScene->LoadScriptsData(rootObject);
 
 	//Save all references to game objects with their old UID
@@ -271,4 +270,51 @@ void PrefabImporter::OverrideGameObject(uint prefabID, GameObject* objectToRepla
 	objectToReplace->CollectChilds(childs);
 
 	LoadPrefab(libraryPath.c_str(), childs, true);
+}
+
+GameObject* PrefabImporter::LoadGOPrefabData(JSON_Object* goJsonObj, GameObject* parent)
+{
+	GameObject* originalParent = parent;
+
+	while (parent != nullptr && json_object_get_number(goJsonObj, "ParentUID") != parent->UID)
+		parent = parent->parent;
+
+	if (parent == nullptr)
+		parent = originalParent;
+
+	int prefabID = json_object_get_number(goJsonObj, "PrefabID");
+
+	if (prefabID != 0)
+	{
+		std::string prefabPath = EngineExternal->moduleResources->GenLibraryPath(prefabID, Resource::Type::PREFAB);
+
+		if (FileSystem::Exists(prefabPath.c_str()))
+		{
+			parent = new GameObject(json_object_get_string(goJsonObj, "name"), parent, json_object_get_number(goJsonObj, "UID"));
+			parent->LoadForPrefab(goJsonObj);
+
+			JSON_Array* prefabGO = json_object_get_array(goJsonObj, "PrefabObjects");
+			JSON_Object* prefabJsonObj = json_array_get_object(prefabGO, 0);
+
+			int prefabObjectsCount = json_array_get_count(prefabGO);
+
+			GameObject* prefabRoot = parent;
+			for (size_t i = 0; i < json_array_get_count(prefabGO); i++)
+			{
+				parent = LoadGOPrefabData(json_array_get_object(prefabGO, i), parent);
+			}
+			std::vector<GameObject*> prefabObjects;
+			prefabRoot->CollectChilds(prefabObjects);
+
+			parent = PrefabImporter::LoadPrefab(prefabPath.c_str(), prefabObjects);
+			//prefabRoot->ChangeParent(parent);
+		}
+	}
+	else
+	{
+		parent = new GameObject(json_object_get_string(goJsonObj, "name"), parent, json_object_get_number(goJsonObj, "UID"));
+		parent->LoadFromJson(goJsonObj);
+	}
+
+	return parent;
 }

@@ -666,29 +666,7 @@ GameObject* M_Scene::LoadGOData(JSON_Object* goJsonObj, GameObject* parent)
 
 	if (prefabID != 0)
 	{
-		std::string prefabPath = EngineExternal->moduleResources->GenLibraryPath(prefabID, Resource::Type::PREFAB);
-
-		if (FileSystem::Exists(prefabPath.c_str()))
-		{
-			parent = CreateGameObject(json_object_get_string(goJsonObj, "name"), parent, json_object_get_number(goJsonObj, "UID"));
-			parent->LoadForPrefab(goJsonObj);
-
-			JSON_Array* prefabGO = json_object_get_array(goJsonObj, "PrefabObjects");
-			JSON_Object* prefabJsonObj = json_array_get_object(prefabGO, 0);
-
-			int prefabObjectsCount = json_array_get_count(prefabGO);
-
-			GameObject* prefabRoot = parent;
-			for (size_t i = 0; i < json_array_get_count(prefabGO); i++)
-			{
-				parent = LoadGOData(json_array_get_object(prefabGO, i), parent);
-			}
-			std::vector<GameObject*> prefabObjects;
-			prefabRoot->CollectChilds(prefabObjects);
-
-			parent = PrefabImporter::LoadPrefab(prefabPath.c_str(), prefabObjects);
-			//prefabRoot->ChangeParent(parent);
-		}
+		parent = PrefabImporter::LoadGOPrefabData(goJsonObj, parent);
 	}
 	else
 	{

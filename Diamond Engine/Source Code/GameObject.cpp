@@ -395,14 +395,14 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
 	DEJson::WriteBool(goData, "Active", active);
 
 	//Saving Scene
-	if (!saveAllData)
-	{
+	//if (!saveAllData)
+	//{
 		DEJson::WriteInt(goData, "UID", UID);
 		if (parent)
 			DEJson::WriteInt(goData, "ParentUID", parent->UID);
 
 		DEJson::WriteInt(goData, "PrefabReference", prefabReference);
-	}
+	//}
 
 	DEJson::WriteInt(goData, "PrefabID", prefabID);
 
