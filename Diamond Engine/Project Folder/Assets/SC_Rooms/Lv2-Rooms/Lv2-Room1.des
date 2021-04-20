@@ -1,19 +1,19 @@
 {
     "NavMesh": 1404428461,
     "EditorCameraPosition": [
-        -23.346548080444336,
-        34.234928131103516,
-        -17.675315856933594
+        31.91486930847168,
+        38.47271728515625,
+        21.485652923583984
     ],
     "EditorCameraZ": [
-        0.53383362293243408,
-        -0.84029150009155273,
-        0.094509124755859375
+        -0.64471578598022461,
+        -0.67150485515594482,
+        -0.36527079343795776
     ],
     "EditorCameraY": [
-        0.82747519016265869,
-        0.54213488101959229,
-        0.1462005078792572
+        -0.58433830738067627,
+        0.74100011587142944,
+        -0.33085879683494568
     ],
     "tags": [],
     "layers": [],
@@ -93,6 +93,9 @@
                     "forceRegenerationSpeed": 0,
                     "skillPushForceCost": 0,
                     "skillWallForceCost": 0,
+                    "skill_fasterForceRegenerationActive": true,
+                    "skill_fasterForceRegenerationHealthStep": 0,
+                    "skill_fasterForceRegenerationForceRegen": 0,
                     "skillPushDuration": 1
                 }
             ]
@@ -3773,6 +3776,91 @@
             ]
         },
         {
+            "name": "Floor208",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -1.240373969078064,
+                -2.4389188289642334,
+                -5.8955841064453125
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1052698269,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": true,
+            "ParentUID": 1562791256,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/966562131.mmh",
+                    "UID": 966562131,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
             "name": "Ice85",
             "tag": "Untagged",
             "layer": "Default",
@@ -3805,7 +3893,7 @@
                 },
                 {
                     "Type": 2,
-                    "Active": true,
+                    "Active": false,
                     "Path": "Library\/Meshes\/209515455.mmh",
                     "UID": 209515455,
                     "alternColor": [
@@ -3897,91 +3985,6 @@
                         0.20820693671703339,
                         0.23903629183769226,
                         0.64039409160614014
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "doNotDrawStencil": true
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Floor208",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                -1.240373969078064,
-                -2.4389188289642334,
-                -5.8955841064453125
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1052698269,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": true,
-            "ParentUID": 1562791256,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/966562131.mmh",
-                    "UID": 966562131,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
                     ],
                     "alternColorStencil": [
                         1,
@@ -18371,6 +18374,7 @@
                     "gadgetFireRate": 0.20000000298023224,
                     "fireRateAfterDashRecoverRatio": 1.75,
                     "fireRateMultCap": 2,
+                    "grenadesFireRate": 0,
                     "lockInputs": true,
                     "background": 122581790,
                     "pause": 1852710895,
@@ -18440,6 +18444,7 @@
                     "<currMaxHealth>k__BackingField": 0,
                     "<currHealth>k__BackingField": 0,
                     "<healWhenKillingAnEnemy>k__BackingField": 0,
+                    "<skill_chanceToAvoidDamage>k__BackingField": 0,
                     "character_mesh": 2113394218,
                     "damage_screen": 1415984252
                 },
@@ -21703,6 +21708,180 @@
                     "Active": true,
                     "billboardAlignment": 0,
                     "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "Plane",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -1.701138973236084,
+                -0.61629486083984375,
+                -2.9376037120819092
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                40,
+                1,
+                75
+            ],
+            "UID": 2111850034,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 590099293,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1342727876.mmh",
+                    "UID": 1342727876,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/water.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/153880261.mat",
+                    "MaterialUID": 153880261
+                }
+            ]
+        },
+        {
+            "name": "Plane",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -1.701138973236084,
+                -0.61629486083984375,
+                -2.9376037120819092
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                40,
+                1,
+                75
+            ],
+            "UID": 609079267,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 590099293,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1342727876.mmh",
+                    "UID": 1342727876,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/water.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/153880261.mat",
+                    "MaterialUID": 153880261
+                }
+            ]
+        },
+        {
+            "name": "Plane",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -1.701138973236084,
+                -0.61629486083984375,
+                -2.9376037120819092
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                40,
+                1,
+                75
+            ],
+            "UID": 495554145,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 590099293,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1342727876.mmh",
+                    "UID": 1342727876,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/water.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/153880261.mat",
+                    "MaterialUID": 153880261
                 }
             ]
         }

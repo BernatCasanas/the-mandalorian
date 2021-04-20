@@ -11,16 +11,15 @@ uniform mat4 model_matrix;
 uniform mat4 view;
 uniform mat4 projection;
 uniform vec3 cameraPosition;
-uniform vec2 normalMapTiling;
 
 uniform float time;
-float speed = 0.25;
-uniform float wave_length;
-float steepness = 0.5;
+float speed = 0.035;
+float wave_length = 0.1;
+float steepness = 0.4;
 
-uniform vec3 direction_1;
-vec3 direction_2 = vec3(0.5, 0.5, 0.5);
-vec3 direction_3 = vec3(0.5, 0.5, 0.5);
+vec3 direction_1 = vec3(0.25,0.15,0.1);
+vec3 direction_2 = vec3(0.1, 0.15, 0.5);
+vec3 direction_3 = vec3(0.3, 0.5, 0.2);
 
 out float relative_position;
 
@@ -28,9 +27,7 @@ out VS_OUT {
 	vec4 clipSpace;
     vec3 FragPos;
     vec2 TexCoords;
-    vec3 TangentLightPos;
-    vec3 TangentViewPos;
-    vec3 TangentFragPos;
+    vec3 Normals;
 } vs_out;
 
 vec3 lightPos = vec3(0.0, 10.0, 0.0);
@@ -45,7 +42,7 @@ void main()
  float w = sqrt(9.81 * (2 * pi / wave_length));
  float num_waves = 3.0;
  
- float amp1 = 0.5;
+ float amp1 = 0.2;
  vec3 wave1 = generateWave(amp1, direction_1, num_waves, steepness, phase_constant, w);
  
  float amp2 = 0.035;
@@ -55,25 +52,13 @@ void main()
  vec3 wave3 = generateWave(amp3, direction_3, num_waves, steepness, phase_constant, w);
 
  fPosition += wave1 + wave2 + wave3;
- relative_position = fPosition.z / ((amp1 * 2.0 + amp2 * 2.0 + amp3 * 2.0) / num_waves);
+ relative_position = fPosition.y / ((amp1 + amp2 + amp3) / num_waves);
  relative_position = (relative_position + 0.5) * 0.5;
  relative_position = max(relative_position, 0.0);
  
  vs_out.FragPos = vec3(model_matrix * vec4(position, 1.0));
 
- vs_out.TexCoords = texCoord * normalMapTiling;
- vs_out.TexCoords.x += cos(time) * speed * 0.25;
- vs_out.TexCoords.y += sin(time) * speed * 0.25;
- 
- vec3 T = normalize(normalMatrix * tangent);
- vec3 N = normalize(normalMatrix * normal);
- T = normalize(T - dot(T, N) * N);
- vec3 B = cross(N,T);
- 
- mat3 TBN = transpose(mat3(T,B,N));
- vs_out.TangentLightPos = TBN * lightPos;
- vs_out.TangentViewPos  = TBN * cameraPosition;
- vs_out.TangentFragPos  = TBN * vs_out.FragPos;
+ vs_out.Normals = normalMatrix * normal;
  
  vs_out.clipSpace = projection * view * model_matrix * vec4(fPosition, 1.0);
  gl_Position = projection * view * model_matrix * vec4(fPosition, 1.0);
@@ -87,40 +72,34 @@ vec3 generateWave(float amp, vec3 direction, float num_waves, float steepness,
  
  vec3 wave;
  wave.x = q * amp * dir.x * cos(dot(w * dir, position) + phase_constant * time);
- wave.y = q * amp * dir.y * cos(dot(w * dir, position) + phase_constant * time);
- wave.z = amp * sin(dot(w * dir, position) + phase_constant * time);
+ wave.z = q * amp * dir.y * cos(dot(w * dir, position) + phase_constant * time);
+ wave.y = amp * sin(dot(w * dir, position) + phase_constant * time);
  
  return wave;
 }
+
 #endif
 
 #ifdef fragment
 #version 330 core
 out vec4 FragColor;
 
-uniform sampler2D diffuseMap;
-uniform sampler2D normalMap;
-uniform sampler2D depthMap;
-
+uniform vec3 viewPos;
 uniform vec3 cameraPosition;
+uniform vec3 lightPosition;
 uniform float time;
 
 uniform float opacity;
-uniform vec3 color;
 uniform float contrast;
 uniform float speed;
 uniform float steepness;
-uniform vec2 normalMapTiling;
 in float relative_position;
-in vec3 Normal;
 
 in VS_OUT {
 	vec4 clipSpace;
     vec3 FragPos;
     vec2 TexCoords;
-    vec3 TangentLightPos;
-    vec3 TangentViewPos;
-    vec3 TangentFragPos;
+    vec3 Normals;
 } fs_in;
 
 vec2 rand2( vec2 coord );
@@ -130,35 +109,7 @@ float LinearizeDepth(float depth);
 
 void main()
 {
-    vec2 coord = fs_in.FragPos.xz * (2 /normalMapTiling.x);
-    float value = fbm(coord);   
-    
-    vec3 normal = texture(normalMap, fs_in.TexCoords * 1.5).rgb;
-    normal = normalize(normal * 2.0 - 1.0);
-    
-    //ambient 
-    float ambientStrength = 0.75;
-    vec3 ambient = ambientStrength * color;
-  	
-    // diffuse 
-    vec3 lightDir = normalize(fs_in.TangentLightPos - fs_in.TangentFragPos);
-    float diff = max(dot(lightDir, normal), 0.0);
-    vec3 diffuse = diff * color;
-    
-    // specular
-    vec3 viewDir = normalize(fs_in.TangentViewPos - fs_in.TangentFragPos);
-    vec3 reflectDir = reflect(-lightDir, normal);
-    vec3 halfwayDir = normalize(lightDir + viewDir);  
-    float spec = pow(max(dot(normal, halfwayDir), 0.0), 32.0);
-    
-    vec3 specular = vec3(0.5) * spec;  
-    
-    vec3 foam = vec3(value);
-
-    vec4 waterColor = vec4(ambient + diffuse + specular, opacity);
-	vec4 foamColor = vec4(vec3(value * relative_position), value * relative_position);
-	
-	FragColor = vec4(waterColor.rgb, opacity) + foamColor;
+   FragColor = vec4(0.2+ relative_position * 0.2, 0.25 + relative_position * 0.2, 0.4+ relative_position * 0.2, 1.0);
 } 
 
 
@@ -211,7 +162,6 @@ float LinearizeDepth(float depth)
  float far = 1000.0;
  return 2.0 * near * far / (far + near - (2.0 * depth - 1.0) * (far - near));
 }
+
 #endif
-
-
 
