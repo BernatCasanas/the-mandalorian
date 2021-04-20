@@ -84,6 +84,12 @@ namespace DiamondEngine
         public extern void SetVelocity(Vector3 velocity);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern void EnableCollider();
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern void DisableCollider();
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern void SetParent(GameObject newParent);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]

@@ -13,10 +13,13 @@ Component::~Component()
 
 void Component::Enable()
 {
+	active = true;
 }
 
 void Component::Disable()
-{}
+{
+	active = false;
+}
 
 void Component::Update()
 {}
@@ -42,7 +45,11 @@ bool Component::OnEditor()
 
 	if (this->type != Component::TYPE::TRANSFORM)
 	{
-		ImGui::Text("Active: "); ImGui::SameLine(); ImGui::Checkbox("##MeshActive", &active);
+		ImGui::Text("Active: "); ImGui::SameLine(); 
+		
+		if (ImGui::Checkbox("##MeshActive", &active)) {
+			(active == true) ? Enable() : Disable();
+		}
 
 		ImGui::SameLine(ImGui::GetWindowContentRegionMax().x - (ImGui::CalcTextSize("Remove").x * 1.2f));
 
@@ -64,4 +71,5 @@ void Component::SaveData(JSON_Object* nObj)
 void Component::LoadData(DEConfig& nObj)
 {
 	active = nObj.ReadBool("Active");
+	(active == true) ? Enable() : Disable();
 }
