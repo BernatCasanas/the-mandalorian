@@ -13,52 +13,58 @@ public class IntroCinematic : DiamondComponent
     public GameObject point7 = null;
     public GameObject point8 = null;
     
-    Vector3 toGoVector = null;
+    Vector3 toGoPosition = null;
+    Vector3 cameraAuxPosition = null;
+    Quaternion auxCameraTransform;
     Quaternion toRotateQuaternion = null;
     float currentSpeed = 0;
 
     GameObject[] pointArray;
-    float[] speedArray;
+    float[] speedArray = new float[] { 4.0f, 1.0f, 1.0f, 1.0f };    // Adapt values
     int arrayCount = -1;
 
     public void Awake()
     {
-        /*cameraObject.transform.localPosition = point3.transform.localPosition;  // This should be point1
-
-        toGoVector = point4.transform.localPosition;    // This should be point2
-        toRotateQuaternion = point4.transform.localRotation;    // This should be point2
-
+        /*auxCameraTransform = cameraObject.transform.localRotation;
         pointArray = new GameObject[] { point1, point2, point3, point4, point5, point6, point7, point8 };
-        speedArray = new float[] { 1.0f, 1.0f, 1.0f, 1.0f}; // Clean values*/
+        UpdateValues();
+        // Take player's controls away*/
     }
 
     public void Update()
     {
-       /* Debug.Log("Distance is " + Mathf.Distance(cameraObject.transform.localPosition, toGoVector).ToString());
-        if (Mathf.Distance(cameraObject.transform.localPosition, toGoVector) < 0.5f)
+        /*if (toGoPosition != null)
         {
-            Debug.Log("Duh");
-            arrayCount++;
-            if (arrayCount >= 4)
-            {
-                gameObject.Enable(false);
-            }
-
-            currentSpeed = speedArray[arrayCount];
-            toGoVector = pointArray[(arrayCount + 1) * 2].transform.localPosition;
-            toRotateQuaternion = pointArray[(arrayCount + 1) * 2].transform.globalRotation;
+            Debug.Log("Camera position " + cameraAuxPosition);
+            Debug.Log("Go vector position " + toGoPosition);
+            Debug.Log("Array count " + arrayCount);
+            cameraAuxPosition += (toGoPosition - cameraAuxPosition).normalized * Time.deltaTime * currentSpeed;
+            cameraObject.transform.localRotation = Quaternion.Slerp(cameraObject.transform.localRotation, toRotateQuaternion, 0.25f * Time.deltaTime);
+            cameraObject.transform.localPosition = cameraAuxPosition;
         }
 
-        if (toGoVector != null)
+        Debug.Log("Distance is " + Mathf.Distance(cameraObject.transform.localPosition, toGoPosition).ToString());
+        if (Mathf.Distance(cameraAuxPosition, toGoPosition) < 0.5f)
         {
-            Debug.Log("Um, obviously");
-            Debug.Log("Camera position " + cameraObject.transform.localPosition);
-            Debug.Log("Go vector position " + toGoVector);
-            Debug.Log("Speed " + currentSpeed);
-            Debug.Log("Array count " + arrayCount);
-            cameraObject.transform.localPosition += (toGoVector - cameraObject.transform.localPosition).normalized * Time.deltaTime * currentSpeed;
-            cameraObject.transform.localRotation = Quaternion.Slerp(cameraObject.transform.localRotation, toRotateQuaternion, 0.25f * Time.deltaTime);
+            UpdateValues();
         }*/
     }
 
+    public void UpdateValues()
+    {
+        arrayCount++;
+
+        if (arrayCount >= 4)
+        {
+            gameObject.Enable(false);
+            cameraObject.transform.localRotation = auxCameraTransform;
+            // Re-activate player's control
+            return;
+        }
+
+        currentSpeed = speedArray[arrayCount];
+        cameraAuxPosition = cameraObject.transform.localPosition = pointArray[arrayCount * 2].transform.localPosition;
+        toGoPosition = pointArray[(arrayCount * 2) + 1].transform.localPosition;
+        toRotateQuaternion = pointArray[(arrayCount * 2) + 1].transform.localRotation;
+    }
 }
