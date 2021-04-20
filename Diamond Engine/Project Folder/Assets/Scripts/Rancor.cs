@@ -58,6 +58,10 @@ public class Rancor : DiamondComponent
 
     public float slerpSpeed = 5.0f;
 
+    //Skills
+    private static bool skill_increaseDamageToBossActive = false;
+    private static float skill_increaseDamageToBossAmount = 0.0f;
+
     //Stats
     public float healthPoints = 60.0f;          //IF INITAL HEALTH IS CHANGED, CHANGE MAX HEALTH AS WELL!
     public float maxHealthPoints = 60.0f;
@@ -730,7 +734,11 @@ public class Rancor : DiamondComponent
             jumpDelayTimer -= Time.deltaTime;
 
             if (jumpDelayTimer <= 0.0f)
+            {
+                //TODO: Disable collider component
                 startedJumping = true;
+            }
+
         }
 
         if (startedJumping)
@@ -738,7 +746,7 @@ public class Rancor : DiamondComponent
             float x = Mathf.Lerp(gameObject.transform.localPosition.x, jumpAttackTarget.x, jumpAttackSpeed * Time.deltaTime);
             float z = Mathf.Lerp(gameObject.transform.localPosition.z, jumpAttackTarget.z, jumpAttackSpeed * Time.deltaTime);
             gameObject.transform.localPosition = new Vector3(x, gameObject.transform.localPosition.y, z);
-            //TODO: Disable collider component
+
         }
         LookAt(jumpAttackTarget);
     }
@@ -827,10 +835,14 @@ public class Rancor : DiamondComponent
                 if (projectilePoint != null)
                 {
                     Vector3 pos = projectilePoint.transform.globalPosition;
-                    Vector3 scale = new Vector3(.9f, .9f, .9f);
+                    Vector3 scale = new Vector3(1f, 1f, 1f);
 
                     GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1225675544.prefab", pos, Quaternion.identity, scale);
-                    projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
+                    projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition - new Vector3(-3f,-1f,0f);
+                    GameObject projectile1 = InternalCalls.CreatePrefab("Library/Prefabs/1225675544.prefab", pos, Quaternion.identity, scale);
+                    projectile1.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition - new Vector3(3f,-1f,0f);
+                    GameObject projectile2 = InternalCalls.CreatePrefab("Library/Prefabs/1225675544.prefab", pos, Quaternion.identity, scale);
+                    projectile2.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition - new Vector3(0f,-1f,0f);
                 }
             }
         }
@@ -989,7 +1001,7 @@ public class Rancor : DiamondComponent
     #region DIE
     private void StartDie()
     {
-        Audio.StopAudio(gameObject);
+        Audio.StopAudio(gameObject);    
 
         dieTimer = dieTime;
 
@@ -1053,11 +1065,12 @@ public class Rancor : DiamondComponent
     {
         if (collidedGameObject.CompareTag("Bullet"))
         {
-            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+            if(skill_increaseDamageToBossActive) healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage * (1.0f + skill_increaseDamageToBossAmount);
+            else healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
             Debug.Log("Rancor HP: " + healthPoints.ToString());
             damaged = 1.0f;
             //CHANGE FOR APPROPIATE RANCOR HIT
-            //Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
+            Audio.PlayAudio(gameObject, "Play_Rancor_Hit");
 
             if (Core.instance.hud != null)
             {
@@ -1080,8 +1093,8 @@ public class Rancor : DiamondComponent
             if (sGrenade != null)
                 healthPoints -= sGrenade.damage;
 
-           //CHANGE FOR APPROPIATE RANCOR HIT
-            //Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
+            //CHANGE FOR APPROPIATE RANCOR HIT
+            Audio.PlayAudio(gameObject, "Play_Rancor_Hit");
 
             if (Core.instance.hud != null)
             {
@@ -1117,5 +1130,15 @@ public class Rancor : DiamondComponent
                 }
             }
         }
+    }
+
+    public static void SetSkill(string skillName, float value1 = 0.0f)
+    {
+        if (skillName == "AggressionDamageBossesSkill") //Increase damage to Bosses and greater enemies by 20%
+        {
+            skill_increaseDamageToBossActive = true;
+            skill_increaseDamageToBossAmount = value1;
+        }
+        
     }
 }

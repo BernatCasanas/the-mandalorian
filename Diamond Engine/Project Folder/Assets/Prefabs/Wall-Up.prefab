@@ -1,32 +1,32 @@
 {
-    "assets_path": "Assets\/Prefabs\/Jump Impact Rancor.prefab",
+    "assets_path": "Assets\/Prefabs\/Wall-Up.prefab",
     "Game Objects": [
         {
-            "name": "Jump Impact Rancor",
+            "name": "Wall-Up",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
-                6.9141387939453125e-06,
-                0.20412349700927734,
-                -1.3113021850585938e-05
+                -2.3645741939544678,
+                7,
+                -15.450735092163086
             ],
             "Rotation": [
-                -1.8175501281803008e-07,
-                -0.9979214072227478,
-                -1.8175501281803008e-07,
-                0.0644427090883255
+                0,
+                0,
+                0,
+                1
             ],
             "Scale": [
-                0.99999827146530151,
                 1,
-                0.99999827146530151
+                1,
+                1
             ],
-            "UID": 270499088,
-            "PrefabID": 1107700489,
+            "UID": 337577197,
+            "PrefabID": 703582349,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 62803088,
+            "ParentUID": 1676501951,
             "Components": [
                 {
                     "Type": 1,
@@ -35,7 +35,7 @@
             ]
         },
         {
-            "name": "Impact",
+            "name": "Rubble",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -55,11 +55,11 @@
                 1,
                 1
             ],
-            "UID": 1132905105,
+            "UID": 400999569,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 270499088,
+            "ParentUID": 337577197,
             "Components": [
                 {
                     "Type": 1,
@@ -69,7 +69,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -78,39 +78,39 @@
                     "Active": true,
                     "systemActive": false,
                     "looping": false,
-                    "maxDuration": 0.31499999761581421,
+                    "maxDuration": 1.0140000581741333,
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
                             "LibraryPath": "Library\/Textures\/170375526.dds",
                             "texUID": 170375526,
-                            "paEmitterName": "Boom",
+                            "paEmitterName": "Dust",
                             "paLifeTime": [
-                                0.69999998807907104,
-                                1.2999999523162842
-                            ],
-                            "paSize": [
-                                0.10000000149011612,
-                                0.69999998807907104
-                            ],
-                            "paColor": [
-                                1,
-                                1,
-                                1,
+                                0.5,
                                 1
                             ],
-                            "paPerSec": 750,
+                            "paSize": [
+                                0.0099999997764825821,
+                                0.10000000149011612
+                            ],
+                            "paColor": [
+                                0.44313725829124451,
+                                0.094117648899555206,
+                                0,
+                                1
+                            ],
+                            "paPerSec": 100,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 0,
                                     "paFOLT_direction": [
                                         0,
-                                        10,
+                                        5,
                                         0
                                     ],
-                                    "paFOLT_magnitude": 4,
-                                    "paFOLT_gravityMod": 0.30000001192092896,
-                                    "paFOLT_gravity": -2.940000057220459,
+                                    "paFOLT_magnitude": 2,
+                                    "paFOLT_gravityMod": 0,
+                                    "paFOLT_gravity": -0,
                                     "paFOLT_forceType": 0
                                 },
                                 {
@@ -120,8 +120,8 @@
                                         0
                                     ],
                                     "paROLT_rotationSpeed": [
-                                        -1,
-                                        1
+                                        -5,
+                                        5
                                     ]
                                 },
                                 {
@@ -148,65 +148,23 @@
                                     ]
                                 },
                                 {
-                                    "paEffectType": 5,
-                                    "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 0.5,
-                                    "paShapeRandSpeed": 3,
-                                    "PaShapeCircumferenceinnerRadius": 1,
-                                    "PaShapeCircumferenceoutterRadius": 3,
-                                    "PaShapeCircumferenceDirection": false,
-                                    "PaShapeCircumferenceAngle": 0,
-                                    "paShapeType": 3,
-                                    "PaShapeOffset": [
-                                        0,
-                                        0,
-                                        0
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/39569920.dds",
-                            "texUID": 39569920,
-                            "paEmitterName": "Piedrecitas",
-                            "paLifeTime": [
-                                0.60000002384185791,
-                                0.60000002384185791
-                            ],
-                            "paSize": [
-                                0.10000000149011612,
-                                0.20000000298023224
-                            ],
-                            "paColor": [
-                                0.15942031145095825,
-                                0.038122259080410004,
-                                0,
-                                1
-                            ],
-                            "paPerSec": 500,
-                            "ParticleEffects": [
-                                {
-                                    "paEffectType": 0,
-                                    "paFOLT_direction": [
-                                        0,
-                                        0,
-                                        0
-                                    ],
-                                    "paFOLT_magnitude": 0,
-                                    "paFOLT_gravityMod": 2,
-                                    "paFOLT_gravity": -19.600000381469726,
-                                    "paFOLT_forceType": 0
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0.5,
+                                    "paSizeOLTEndSize": 0
                                 },
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 2.5,
-                                    "paShapeRandSpeed": 2,
-                                    "PaShapeSphereRadius": 2,
+                                    "paShapePartSpeed": 1,
+                                    "paShapeRandSpeed": 0.5,
+                                    "PaShapeAreaDimensions": [
+                                        1.5,
+                                        0.05000000074505806,
+                                        0.5
+                                    ],
                                     "PaShapeSphereDirection": false,
                                     "PaShapeSphereAngle": 0,
-                                    "paShapeType": 1,
+                                    "paShapeType": 0,
                                     "PaShapeOffset": [
                                         0,
                                         0,

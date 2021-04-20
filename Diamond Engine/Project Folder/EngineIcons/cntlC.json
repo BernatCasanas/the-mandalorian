@@ -1,150 +1,60 @@
 {
     "Game Objects": [
         {
-            "name": "Sparks 1",
+            "name": "Rocks",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
                 0,
                 0,
-                -0.098833084106445312
+                0
             ],
             "Rotation": [
-                -0.7071068286895752,
                 0,
                 0,
-                0.70710670948028564
+                0,
+                1
             ],
             "Scale": [
                 1,
-                0.99998706579208374,
-                0.99998706579208374
+                1,
+                1
             ],
-            "UID": 476466744,
+            "UID": 1003836704,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 464352642,
+            "ParentUID": 1987375770,
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
                 },
                 {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1322822785.mmh",
+                    "UID": 1322822785,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                },
+                {
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
                     "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
-                    "MaterialUID": 355756108
-                },
-                {
-                    "Type": 20,
-                    "Active": true,
-                    "systemActive": false,
-                    "looping": false,
-                    "maxDuration": 0.625,
-                    "ParticleEmitters": [
-                        {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/39569920.dds",
-                            "texUID": 39569920,
-                            "paEmitterName": "White sparks",
-                            "paLifeTime": [
-                                0.30000001192092896,
-                                0.69999998807907104
-                            ],
-                            "paSize": [
-                                0.05000000074505806,
-                                0.070000000298023224
-                            ],
-                            "paColor": [
-                                1,
-                                0.99999845027923584,
-                                0.99998998641967773,
-                                1
-                            ],
-                            "paPerSec": 70,
-                            "ParticleEffects": [
-                                {
-                                    "paEffectType": 0,
-                                    "paFOLT_direction": [
-                                        0,
-                                        0,
-                                        0
-                                    ],
-                                    "paFOLT_magnitude": 0,
-                                    "paFOLT_gravityMod": 1,
-                                    "paFOLT_gravity": -9.8000001907348633,
-                                    "paFOLT_forceType": 0
-                                },
-                                {
-                                    "paEffectType": 2,
-                                    "Gradients": [
-                                        {
-                                            "paColorOLTcolor": [
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ],
-                                            "paColorOLTposition": 0
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                0.61924684047698975,
-                                                0.30917355418205261,
-                                                0.29278197884559631,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 0.26361030340194702
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0.85534650087356567,
-                                                0.26359832286834717,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 0.67048740386962891
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0.91534650325775146,
-                                                0.56903767585754395,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 1
-                                        }
-                                    ]
-                                },
-                                {
-                                    "paEffectType": 5,
-                                    "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 1,
-                                    "paShapeRandSpeed": 0,
-                                    "PaShapeConeRadius": 0.20000000298023224,
-                                    "PaShapeConeHeight": 0.10000000149011612,
-                                    "PaShapeSphereDirection": false,
-                                    "PaShapeSphereAngle": 0,
-                                    "paShapeType": 2,
-                                    "PaShapeOffset": [
-                                        0,
-                                        0,
-                                        0
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "Type": 21,
-                    "Active": true,
-                    "billboardAlignment": 0,
-                    "horizantalAligned": true
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
                 }
             ]
         }

@@ -445,7 +445,7 @@ public class Skytrooper : Enemy
     {
         //GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         //bullet.GetComponent<BH_Bullet>().damage = damage;
-        visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, gameObject.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
+        visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
         Animator.Play(gameObject, "SK_Shoot");
         Audio.PlayAudio(gameObject, "PLay_Blaster_Stormtrooper");
         shotTimes++;
