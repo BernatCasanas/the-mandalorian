@@ -1,19 +1,19 @@
 {
     "NavMesh": 1781024148,
     "EditorCameraPosition": [
-        -5.3927679061889648,
-        7.0458884239196777,
-        21.491952896118164
+        -24.773853302001953,
+        15.144742965698242,
+        11.785104751586914
     ],
     "EditorCameraZ": [
-        0.23193241655826569,
-        -0.30302989482879639,
-        -0.92432689666748047
+        0.56466943025588989,
+        -0.65134388208389282,
+        -0.50685280561447144
     ],
     "EditorCameraY": [
-        0.073750108480453491,
-        0.95298105478286743,
-        -0.2939184308052063
+        0.48471575975418091,
+        0.75878274440765381,
+        -0.43508559465408325
     ],
     "tags": [
         "Bantha"
@@ -2547,7 +2547,7 @@
                     "Active": true,
                     "ScriptName": "Skytrooper",
                     "player": 915476630,
-                    "detectionRange": 12.5,
+                    "detectionRange": 40,
                     "damage": 5,
                     "healthPoints": 60,
                     "stoppingDistance": 1,
@@ -2557,14 +2557,16 @@
                     "skill_slowDownEnabled": false,
                     "skill_slowDownAmount": 0,
                     "skill_slowDownDuration": 0,
+                    "shootPoint": 1656808377,
                     "idleTime": 2,
                     "dashTime": 0.5,
-                    "timeBewteenShots": 0,
-                    "timeBewteenStates": 0,
+                    "timeBewteenShots": 0.5,
+                    "timeBewteenStates": 2,
+                    "feedbackTime": 1,
                     "wanderSpeed": 4,
-                    "dashSpeed": 20,
-                    "wanderRange": 10,
-                    "dashRange": 20,
+                    "dashSpeed": 40,
+                    "wanderRange": 5,
+                    "dashRange": 10,
                     "maxShots": 0,
                     "pushHorizontalForce": 0,
                     "pushVerticalForce": 0,
@@ -5011,6 +5013,130 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
                     "MaterialUID": 1948688504
+                }
+            ]
+        },
+        {
+            "name": "ShootPoint",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                1.7211594581604004,
+                1.5539275407791138
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1656808377,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1558360682,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "SkytrooperVisualFeedback",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -11.644423484802246,
+                0.36202207207679749,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 389446765,
+            "PrefabID": 203996773,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 143570472,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Plane",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                6,
+                1,
+                6
+            ],
+            "UID": 1692182690,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 389446765,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1342727876.mmh",
+                    "UID": 1342727876,
+                    "alternColor": [
+                        1,
+                        0,
+                        0
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/498186070.mat",
+                    "MaterialUID": 498186070
                 }
             ]
         }

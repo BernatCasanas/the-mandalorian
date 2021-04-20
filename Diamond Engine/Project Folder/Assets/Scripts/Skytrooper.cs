@@ -41,6 +41,7 @@ public class Skytrooper : Enemy
 
     public GameObject shootPoint = null;
     public GameObject hitParticles = null;
+    private GameObject visualFeedback = null;
 
     //Action times
     public float idleTime = 5.0f;
@@ -48,6 +49,7 @@ public class Skytrooper : Enemy
     private float dieTime = 3.0f;
     public float timeBewteenShots = 0.5f;
     public float timeBewteenStates = 1.5f;
+    public float feedbackTime = 0.0f;
 
     //Speeds
     public float wanderSpeed = 3.5f;
@@ -67,6 +69,7 @@ public class Skytrooper : Enemy
     private float statesTimer = 0.0f;
     private float pushTimer = 0.0f;
     private float skill_slowDownTimer = 0.0f;
+    private float feedbackTimer = 0.0f;
 
     //Action variables
     int shotTimes = 0;
@@ -169,6 +172,16 @@ public class Skytrooper : Enemy
             if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) <= agent.stoppingDistance || dashTimer < 0.0f)
             {
                 inputsList.Add(INPUT.IN_DASH_END);
+            }
+        }
+
+        if (feedbackTimer > 0.0f)
+        {
+            feedbackTimer -= Time.deltaTime;
+
+            if (feedbackTimer <= 0.0f)
+            {
+                InternalCalls.Destroy(visualFeedback);
             }
         }
     }
@@ -421,6 +434,8 @@ public class Skytrooper : Enemy
 
             if (statesTimer <= 0.0f)
             {
+                Shoot();
+                feedbackTimer = feedbackTime;
                 inputsList.Add(INPUT.IN_DASH);
             }
         }
@@ -428,9 +443,9 @@ public class Skytrooper : Enemy
 
     private void Shoot()
     {
-        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
-        bullet.GetComponent<BH_Bullet>().damage = damage;
-
+        //GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+        //bullet.GetComponent<BH_Bullet>().damage = damage;
+        visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, gameObject.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
         Animator.Play(gameObject, "SK_Shoot");
         Audio.PlayAudio(gameObject, "PLay_Blaster_Stormtrooper");
         shotTimes++;
