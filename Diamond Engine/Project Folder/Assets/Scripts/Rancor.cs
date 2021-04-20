@@ -8,6 +8,7 @@ public class Rancor : DiamondComponent
     enum RANCOR_STATE : int
     {
         NONE = -1,
+        ROAR,
         SEARCH_STATE,
         FOLLOW,
         LOADING_RUSH,
@@ -24,6 +25,8 @@ public class Rancor : DiamondComponent
     enum RANCOR_INPUT : int
     {
         NONE = -1,
+        IN_ROAR,
+        IN_ROAR_END,
         IN_FOLLOW_SHORT,
         IN_FOLLOW_LONG,
         IN_FOLLOW_END,
@@ -49,7 +52,7 @@ public class Rancor : DiamondComponent
     private Vector3 targetDirection = null;
 
     //State
-    private RANCOR_STATE currentState = RANCOR_STATE.FOLLOW;   //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS
+    private RANCOR_STATE currentState = RANCOR_STATE.ROAR;   //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS
                                                                //Setting states directlly will break the behaviour  -Jose
     private List<RANCOR_INPUT> inputsList = new List<RANCOR_INPUT>();
     Random randomNum = new Random();
@@ -149,6 +152,10 @@ public class Rancor : DiamondComponent
     private float dieTime = 0.0f;
     private float dieTimer = 0.0f;
 
+    //Roar
+    private float roarTime = 0.0f;
+    private float roarTimer = 0.0f;
+
     //Boss bar updating
     public GameObject boss_bar = null;
     public GameObject rancor_mesh = null;
@@ -165,6 +172,8 @@ public class Rancor : DiamondComponent
         meleeComboHit2Time = Animator.GetAnimationDuration(gameObject, "RN_MeleeComboP2") - 0.016f;
         meleeComboHit3Time = Animator.GetAnimationDuration(gameObject, "RN_MeleeComboP3") - 0.016f;
 
+        roarTime = Animator.GetAnimationDuration(gameObject, "RN_Roar") - 0.016f;
+
         projectileTime = Animator.GetAnimationDuration(gameObject, "RN_ProjectileThrow") - 0.016f;
 
         handSlamTime = Animator.GetAnimationDuration(gameObject, "RN_HandSlam") - 0.016f;
@@ -179,6 +188,9 @@ public class Rancor : DiamondComponent
         Counter.SumToCounterType(Counter.CounterTypes.RANCOR);
         limbo_health = maxHealthPoints = healthPoints;
         damaged = 0.0f;
+
+        StartRoar();
+
     }
 
     public void Awake()
@@ -188,8 +200,7 @@ public class Rancor : DiamondComponent
         if (agent == null)
             Debug.Log("Null agent, add a NavMeshAgent Component");
 
-        Animator.Play(gameObject, "RN_Idle");
-        Audio.PlayAudio(gameObject, "Play_Rancor_Breath");
+
         Counter.roomEnemies++;  // If we had a manager...
         EnemyManager.AddEnemy(gameObject);
     }
@@ -287,6 +298,17 @@ public class Rancor : DiamondComponent
             if (rushStunTimer <= 0)
                 inputsList.Add(RANCOR_INPUT.IN_RUSH_STUN_END);
         }
+
+        if (roarTimer > 0)
+        {
+            roarTimer -= Time.deltaTime;
+
+            if (roarTimer <= 0)
+            {
+                inputsList.Add(RANCOR_INPUT.IN_ROAR_END);
+                Debug.Log("finishing roar");
+            }
+        }
     }
 
     private void ProcessExternalInput()
@@ -346,6 +368,16 @@ public class Rancor : DiamondComponent
                     }
                     break;
 
+                case RANCOR_STATE.ROAR:
+                    switch (input)
+                    {
+                        case RANCOR_INPUT.IN_ROAR_END:
+                            currentState = RANCOR_STATE.SEARCH_STATE;
+                            EndRoar();
+                            break;
+                    }
+                    break;
+
                 case RANCOR_STATE.FOLLOW:
                     switch (input)
                     {
@@ -356,6 +388,7 @@ public class Rancor : DiamondComponent
 
                         case RANCOR_INPUT.IN_DEAD:
                             currentState = RANCOR_STATE.DEAD;
+                            EndFollow();
                             StartDie();
                             break;
                     }
@@ -392,6 +425,7 @@ public class Rancor : DiamondComponent
 
                         case RANCOR_INPUT.IN_DEAD:
                             currentState = RANCOR_STATE.DEAD;
+                            EndRush();
                             StartDie();
                             break;
                     }
@@ -407,6 +441,7 @@ public class Rancor : DiamondComponent
 
                         case RANCOR_INPUT.IN_DEAD:
                             currentState = RANCOR_STATE.DEAD;
+                            EndRushStun();
                             StartDie();
                             break;
                     }
@@ -422,6 +457,7 @@ public class Rancor : DiamondComponent
 
                         case RANCOR_INPUT.IN_DEAD:
                             currentState = RANCOR_STATE.DEAD;
+                            EndHandSlam();
                             StartDie();
                             break;
                     }
@@ -437,6 +473,7 @@ public class Rancor : DiamondComponent
 
                         case RANCOR_INPUT.IN_DEAD:
                             currentState = RANCOR_STATE.DEAD;
+                            EndProjectile();
                             StartDie();
                             break;
                     }
@@ -453,6 +490,7 @@ public class Rancor : DiamondComponent
 
                         case RANCOR_INPUT.IN_DEAD:
                             currentState = RANCOR_STATE.DEAD;
+                            EndMCHit1();
                             StartDie();
                             break;
                     }
@@ -469,6 +507,7 @@ public class Rancor : DiamondComponent
 
                         case RANCOR_INPUT.IN_DEAD:
                             currentState = RANCOR_STATE.DEAD;
+                            EndMCHit2();
                             StartDie();
                             break;
                     }
@@ -484,6 +523,7 @@ public class Rancor : DiamondComponent
 
                         case RANCOR_INPUT.IN_DEAD:
                             currentState = RANCOR_STATE.DEAD;
+                            EndMCHit3();
                             StartDie();
                             break;
                     }
@@ -503,6 +543,9 @@ public class Rancor : DiamondComponent
         {
             case RANCOR_STATE.NONE:
                 Debug.Log("CORE ERROR STATE");
+                break;
+
+            case RANCOR_STATE.ROAR:
                 break;
 
             case RANCOR_STATE.SEARCH_STATE:
@@ -629,7 +672,6 @@ public class Rancor : DiamondComponent
     private void UpdateMCHit1()
     {
         Debug.Log("Combo hit 1");
-        //TODO: Activate collider
 
         if (meleeCH1ColliderTimer > 0.0f)
         {
@@ -715,6 +757,7 @@ public class Rancor : DiamondComponent
                 pos.y += 3;
 
                 InternalCalls.CreatePrefab("Library/Prefabs/376114835.prefab", pos, gameObject.transform.localRotation, gameObject.transform.localScale);
+                //gameObject.DisableCollider();
             }
            
         }
@@ -737,6 +780,7 @@ public class Rancor : DiamondComponent
             {
                 //TODO: Disable collider component
                 startedJumping = true;
+                //gameObject.EnableCollider();
             }
 
         }
@@ -746,7 +790,6 @@ public class Rancor : DiamondComponent
             float x = Mathf.Lerp(gameObject.transform.localPosition.x, jumpAttackTarget.x, jumpAttackSpeed * Time.deltaTime);
             float z = Mathf.Lerp(gameObject.transform.localPosition.z, jumpAttackTarget.z, jumpAttackSpeed * Time.deltaTime);
             gameObject.transform.localPosition = new Vector3(x, gameObject.transform.localPosition.y, z);
-
         }
         LookAt(jumpAttackTarget);
     }
@@ -754,6 +797,7 @@ public class Rancor : DiamondComponent
     private void EndMCHit3()
     {
         startedJumping = false;
+
     }
 
     #endregion
@@ -852,7 +896,7 @@ public class Rancor : DiamondComponent
 
     private void EndProjectile()
     {
-
+        Audio.StopAudio(gameObject);
     }
 
     #endregion
@@ -919,7 +963,7 @@ public class Rancor : DiamondComponent
 
     private void EndHandSlam()
     {
-
+        Audio.StopAudio(gameObject);
 
     }
 
@@ -993,16 +1037,29 @@ public class Rancor : DiamondComponent
 
     private void EndRushStun()
     {
-
+        Audio.StopAudio(gameObject);
     }
 
+    #endregion
+
+    #region ROAR
+    private void StartRoar()
+    {
+        Animator.Play(gameObject, "RN_Roar");
+        Audio.PlayAudio(gameObject, "Play_Rancor_Breath");
+        Input.PlayHaptic(0.9f, (int)roarTime*1000);
+        roarTimer = roarTime;
+    }
+
+    private void EndRoar()
+    {
+        Audio.StopAudio(gameObject);
+    }
     #endregion
 
     #region DIE
     private void StartDie()
     {
-        Audio.StopAudio(gameObject);    
-
         dieTimer = dieTime;
 
         Animator.Play(gameObject, "RN_Die", 1.0f);
