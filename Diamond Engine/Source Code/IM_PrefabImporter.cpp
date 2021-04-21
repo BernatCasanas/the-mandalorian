@@ -2,10 +2,14 @@
 #include "Globals.h"
 #include "GameObject.h"
 #include "DEJsonSupport.h"
+
 #include "Application.h"
 #include "MO_ResourceManager.h"
-#include "IM_FileSystem.h"
 #include "MO_Scene.h"
+#include "MO_GUI.h"
+
+#include "IM_FileSystem.h"
+
 #include "CO_Transform.h"
 #include "CO_Script.h"
 
@@ -205,6 +209,75 @@ GameObject* PrefabImporter::InstantiatePrefab(const char* libraryPath)
 	for (it; it != gameObjects.end(); it++)
 	{
 		it->second->prefabReference = it->first;
+		for (size_t i = 0; i < it->second->components.size(); i++)
+		{
+			it->second->components[i]->OnRecursiveUIDChange(gameObjects);
+		}
+	}
+
+	std::vector<C_Script*> saveCopy; //We need to do this in case someone decides to create an instance inside the awake method
+	for (int i = oldSize; i < EngineExternal->moduleScene->activeScriptsVector.size(); ++i)
+		saveCopy.push_back(EngineExternal->moduleScene->activeScriptsVector[i]);
+
+	for (size_t i = 0; i < saveCopy.size(); i++)
+		saveCopy[i]->OnAwake();
+
+	std::string id_string;
+	FileSystem::GetFileName(libraryPath, id_string, false);
+	rootObject->prefabID = (uint)atoi(id_string.c_str());
+
+	//Free memory
+	json_value_free(prefab);
+	gameObjects.clear();
+
+	return rootObject;
+}
+
+
+GameObject* PrefabImporter::LoadUIPrefab(const char* libraryPath)
+{
+
+	int oldSize = EngineExternal->moduleScene->activeScriptsVector.size();
+
+	GameObject* rootObject = nullptr;
+
+	JSON_Value* prefab = json_parse_file(libraryPath);
+
+	if (prefab == nullptr)
+		return nullptr;
+
+	JSON_Object* prefabObj = json_value_get_object(prefab);
+	JSON_Array* gameObjectsArray = json_object_get_array(prefabObj, "Game Objects");
+	JSON_Object* goJsonObj = json_array_get_object(gameObjectsArray, 0);
+
+	GameObject* canvas = EngineExternal->moduleScene->GetGOFromUID(EngineExternal->moduleScene->root, EngineExternal->moduleGui->GetCanvasId());
+
+	if (canvas == nullptr)
+		canvas = EngineExternal->moduleScene->root;
+
+	rootObject = new GameObject(json_object_get_string(goJsonObj, "name"), canvas, json_object_get_number(goJsonObj, "UID"));
+	rootObject->LoadFromJson(goJsonObj);
+
+	GameObject* parent = rootObject;
+
+	for (size_t i = 1; i < json_array_get_count(gameObjectsArray); i++)
+	{
+		parent = LoadGOData(json_array_get_object(gameObjectsArray, i), parent);
+	}
+
+	EngineExternal->moduleScene->LoadNavigationData();
+	//rootObject->RecursiveUIDRegeneration();
+	EngineExternal->moduleScene->LoadScriptsData(rootObject);
+
+
+	//Save all references to game objects with their old UID
+	std::map<uint, GameObject*> gameObjects;
+	rootObject->RecursiveUIDRegenerationSavingReferences(gameObjects);
+
+	//replace the components references with the new GameObjects using their old UIDs
+	std::map<uint, GameObject*>::const_iterator it = gameObjects.begin();
+	for (it; it != gameObjects.end(); it++)
+	{
 		for (size_t i = 0; i < it->second->components.size(); i++)
 		{
 			it->second->components[i]->OnRecursiveUIDChange(gameObjects);

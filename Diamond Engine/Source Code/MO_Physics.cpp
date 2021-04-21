@@ -187,22 +187,18 @@ update_status ModulePhysics::PreUpdate(float dt)
 update_status ModulePhysics::Update(float gameTimestep) {
 
 	//RenderGeometry();
-	const PxRenderBuffer& rb = mScene->getRenderBuffer();
-	for (PxU32 i = 0; i < rb.getNbLines(); i++)
-	{
-		const PxDebugLine& line = rb.getLines()[i];
+	//const PxRenderBuffer& rb = mScene->getRenderBuffer();
+	//for (PxU32 i = 0; i < rb.getNbLines(); i++)
+	//{
+	//	const PxDebugLine& line = rb.getLines()[i];
 
+	//	LineSegment drawLine;
+	//	drawLine.a.Set(line.pos0.x, line.pos0.y, line.pos0.z);
+	//	drawLine.b.Set(line.pos1.x, line.pos1.y, line.pos1.z);
 
-	/*	glLineWidth(2.0f);
-		glColor3f(0.0f, 1.0f, 0.0f);
-		glBegin(GL_LINES);
-		glVertex3f(line.pos0.x, line.pos0.y, line.pos0.z);
-		glVertex3f(line.pos1.x, line.pos1.y, line.pos1.z);
-		
-		glEnd();
-		glColor3f(1.0f, 1.0f, 1.0f);*/
+	//	EngineExternal->moduleRenderer3D->AddDebugLines(drawLine.a, drawLine.b, float3(1.0f, 0.0f, 0.0f));
 
-	}
+	//}
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -300,8 +296,26 @@ physx::PxShape* ModulePhysics::CreateSphereCollider(float radius, PxMaterial* ma
 	if (material == nullptr)
 		material = mMaterial;
 
-
 	colliderShape = mPhysics->createShape(PxSphereGeometry(radius), *material, true);
+
+	return colliderShape;
+}
+
+physx::PxShape* ModulePhysics::CreateCapsuleCollider(float radius, float halfHeight, PxMaterial* material) {
+	PxShape* colliderShape = nullptr;
+
+	if (material == nullptr)
+		material = mMaterial;
+
+	colliderShape = mPhysics->createShape(PxCapsuleGeometry(radius, halfHeight), *material, true);
+
+	PxVec3 Pxposition(0, 0, 0);
+
+	PxQuat PxRotation(0, 0, 0.7071068, 0.7071068);
+
+	physx::PxTransform trans(Pxposition,PxRotation);
+	colliderShape->setLocalPose(trans);
+
 
 	return colliderShape;
 }
@@ -414,6 +428,22 @@ PxTransform ModulePhysics::TRStoPxTransform(float3 pos, float3 rot) {
 	PxQuat PxRotation(rotation.x, rotation.y, rotation.z, rotation.w);
 
 	return PxTransform(Pxposition, PxRotation);
+}
+
+GameObject* ModulePhysics::ShootRay(float3 origin, float3 direction, float maxDistance)
+{
+	PxVec3 PxOrigin = { origin.x, origin.y, origin.z };                 // [in] Ray origin
+	PxVec3 PxUnitDir = { direction.x, direction.y, direction.z };                // [in] Normalized ray direction
+	PxReal PxMaxDistance = maxDistance;            // [in] Raycast max distance
+	PxRaycastBuffer hit;
+
+	bool status = mScene->raycast(PxOrigin, PxUnitDir, maxDistance, hit);
+	if (hit.hasBlock)
+	{
+		return static_cast<GameObject*>(hit.block.actor->userData);
+	}
+	else
+		return nullptr;
 }
 
 CollisionDetector::CollisionDetector()
@@ -558,3 +588,6 @@ void CollisionDetector::onTrigger(physx::PxTriggerPair* pairs, physx::PxU32 coun
 
 	}
 }
+
+
+

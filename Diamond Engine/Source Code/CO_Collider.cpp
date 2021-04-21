@@ -15,6 +15,7 @@
 
 
 
+
 C_Collider::C_Collider() : Component(nullptr)
 {
 	name = "Collider";
@@ -36,12 +37,14 @@ C_Collider::~C_Collider()
 {
 	
 }
+#ifndef STANDALONE
 
 void C_Collider::Update()
 {
 
 	
 }
+#endif
 
 void C_Collider::SetPosition(float3 position) {
 
@@ -178,6 +181,18 @@ void C_Collider::LoadData(DEConfig& nObj)
 
 }
 
+void C_Collider::Enable()
+{
+	Component::Enable();
+	colliderShape->setFlag(physx::PxShapeFlag::eSIMULATION_SHAPE, active);
+}
+
+void C_Collider::Disable() 
+{
+	Component::Disable();
+	colliderShape->setFlag(physx::PxShapeFlag::eSIMULATION_SHAPE, active);
+}
+
 #ifndef STANDALONE
 bool C_Collider::OnEditor()
 {
@@ -185,8 +200,19 @@ bool C_Collider::OnEditor()
 	{
 		ImGuiTreeNodeFlags node_flags = ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
 		
+		int index = 0;
+		if (rigidbody != nullptr)
+		{
+			std::vector<Component*>::iterator it;
+			it = std::find(rigidbody->collider_info.begin(), rigidbody->collider_info.end(), this);
+			index = std::distance(rigidbody->collider_info.begin(), it);
+		}
+
+		std::string suffix;
+
 		bool trigger = isTrigger;
-		ImGui::Checkbox("isTrigger", &trigger);
+		suffix = "isTrigger##" + std::to_string(index);
+		ImGui::Checkbox(suffix.c_str(), &trigger);
 
 		if (trigger != isTrigger)
 		{
@@ -195,7 +221,7 @@ bool C_Collider::OnEditor()
 		}
 
 		ImGui::Separator();
-		if (ImGui::TreeNodeEx(std::string("Edit Collider: " + name).c_str(), node_flags))
+		if (ImGui::TreeNodeEx(std::string("Edit Collider: " + name + "##" + std::to_string(index)).c_str(), node_flags))
 		{
 
 
@@ -214,7 +240,9 @@ bool C_Collider::OnEditor()
 
 			float t = pos.x;
 			ImGui::SetNextItemWidth(50);
-			ImGui::DragFloat(" ", &t);
+			suffix = "##Posx" + std::to_string(index);
+
+			ImGui::DragFloat(suffix.c_str(), &t);
 			if (ImGui::IsItemActive())
 			{
 				pos.x = t;
@@ -227,7 +255,8 @@ bool C_Collider::OnEditor()
 			//Rotation
 			float r1 = rotation.x;
 			ImGui::SetNextItemWidth(50);
-			ImGui::DragFloat("  ", &r1);
+			suffix = "##Rotx" + std::to_string(index);
+			ImGui::DragFloat(suffix.c_str(), &r1);
 			if (ImGui::IsItemActive())
 			{
 				float newrot = r1 - rotation.x;
@@ -244,8 +273,8 @@ bool C_Collider::OnEditor()
 			//Scale
 			ImGui::SetNextItemWidth(50);
 			float s1 = scale.x;
-
-			ImGui::DragFloat("   ", &s1, 0.1f);
+			suffix = "##Scalex" + std::to_string(index);
+			ImGui::DragFloat(suffix.c_str(), &s1, 0.1f);
 			if (ImGui::IsItemActive())
 			{
 				
@@ -272,7 +301,9 @@ bool C_Collider::OnEditor()
 		
 			float t1 = pos.y;
 			ImGui::SetNextItemWidth(50);
-			ImGui::DragFloat("    ", &t1);
+			suffix = "##Posy" + std::to_string(index);
+
+			ImGui::DragFloat(suffix.c_str(), &t1);
 			if (ImGui::IsItemActive())
 			{
 				pos.y = t1;
@@ -284,7 +315,8 @@ bool C_Collider::OnEditor()
 	
 			float r2 = rotation.y;
 			ImGui::SetNextItemWidth(50);
-			ImGui::DragFloat("     ", &r2);
+			suffix = "##Roty" + std::to_string(index);
+			ImGui::DragFloat(suffix.c_str(), &r2);
 			if (ImGui::IsItemActive())
 			{
 				float newrot = r2 - rotation.y;
@@ -300,8 +332,9 @@ bool C_Collider::OnEditor()
 			}
 			//Scale
 			float s2 = scale.y;
+			suffix = "##Scaley" + std::to_string(index);
 			ImGui::SetNextItemWidth(50);
-			ImGui::DragFloat("      ", &s2, 0.1f);
+			ImGui::DragFloat(suffix.c_str(), &s2, 0.1f);
 			if (ImGui::IsItemActive())
 			{
 				if (scale.y != s2)
@@ -322,7 +355,8 @@ bool C_Collider::OnEditor()
 			// Position
 			float t2 = pos.z;
 			ImGui::SetNextItemWidth(50);
-			ImGui::DragFloat("       ", &t2);
+			suffix = "##Posz" + std::to_string(index);
+			ImGui::DragFloat(suffix.c_str(), &t2);
 			if (ImGui::IsItemActive())
 			{
 				pos.z = t2;
@@ -333,7 +367,8 @@ bool C_Collider::OnEditor()
 			// Rotation
 			float r3 = rotation.z;
 			ImGui::SetNextItemWidth(50);
-			ImGui::DragFloat("        ", &r3);
+			suffix = "##Rotz" + std::to_string(index);
+			ImGui::DragFloat(suffix.c_str(), &r3);
 			if (ImGui::IsItemActive())
 			{
 				float newrot = r3 - rotation.z;
@@ -349,8 +384,9 @@ bool C_Collider::OnEditor()
 			}
 			//Scale
 			float s3 = scale.z;
+			suffix = "##Scalez" + std::to_string(index);
 			ImGui::SetNextItemWidth(50);
-			ImGui::DragFloat("         ", &s3, 0.1f);
+			ImGui::DragFloat(suffix.c_str(), &s3, 0.1f);
 			if (ImGui::IsItemActive())
 			{
 				if (scale.z != s3)

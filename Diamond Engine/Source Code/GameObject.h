@@ -62,6 +62,8 @@ public:
 
 	bool CompareTag(const char* _tag);
 
+	GameObject* GetChild(std::string childName);
+
 	template<typename A>
 	A* GetComponent()
 	{

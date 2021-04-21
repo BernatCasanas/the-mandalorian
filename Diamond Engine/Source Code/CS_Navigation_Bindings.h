@@ -104,6 +104,18 @@ bool GetIsSelectedNav(MonoObject* obj)
 	
 
 	return workNav->IsSelectedNav();
+}
 
 
+void SetUIElementAsActive(MonoObject* obj, bool state)
+{
+	if (EngineExternal == nullptr)
+		return;
+
+	C_Navigation* workNav = DECS_CompToComp<C_Navigation*>(obj);
+
+	if (workNav == nullptr)
+		return;
+
+	workNav->SetUIActive(state);
 }

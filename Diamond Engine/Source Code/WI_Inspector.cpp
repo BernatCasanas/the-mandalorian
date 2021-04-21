@@ -42,7 +42,8 @@ void W_Inspector::Draw()
 	{
 		if (editingRes != nullptr && editingRes->GetType() == Resource::Type::MATERIAL)
 		{
-			dynamic_cast<ResourceMaterial*>(editingRes)->DrawEditor();
+			std::string matSuffix = "##Mat";
+			dynamic_cast<ResourceMaterial*>(editingRes)->DrawEditor(matSuffix);
 		}
 		else
 		{
@@ -201,6 +202,11 @@ void W_Inspector::Draw()
 						if (selectedGO->GetComponent(Component::TYPE::MATERIAL) == nullptr)
 							selectedGO->AddComponent(Component::TYPE::MATERIAL);
 					}
+					if (ImGui::Selectable("Stencil Material"))
+					{
+						if (selectedGO->GetComponent(Component::TYPE::STENCIL_MATERIAL) == nullptr)
+							selectedGO->AddComponent(Component::TYPE::STENCIL_MATERIAL);
+					}
 					if (ImGui::Selectable("Camera"))
 					{
 						if (selectedGO->GetComponent(Component::TYPE::CAMERA) == nullptr)
@@ -225,6 +231,12 @@ void W_Inspector::Draw()
 					if (ImGui::Selectable("Sphere Collider"))
 					{
 						selectedGO->AddComponent(Component::TYPE::SPHERECOLLIDER);
+
+					}
+					if (ImGui::Selectable("Capsule Collider"))
+					{
+						if (selectedGO->GetComponent(Component::TYPE::RIGIDBODY) != nullptr)
+						selectedGO->AddComponent(Component::TYPE::CAPSULECOLLIDER);
 
 					}
 					if (ImGui::Selectable("AudioListener"))

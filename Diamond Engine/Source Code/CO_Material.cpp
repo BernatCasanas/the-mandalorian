@@ -58,7 +58,9 @@ bool C_Material::OnEditor()
 		if (material == nullptr)
 			ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "No material");
 		else
-			material->DrawEditor();
+		{
+			material->DrawEditor("##Mat");
+		}
 
 		if (material && material->shader) 
 		{

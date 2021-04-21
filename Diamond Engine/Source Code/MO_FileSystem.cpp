@@ -123,6 +123,13 @@ uint64 M_FileSystem::GetLastModTime(const char* filename)
 	return stat.modtime;
 }
 
+uint64 M_FileSystem::GetCreationTime(const char* filename)
+{
+	PHYSFS_Stat stat;
+	PHYSFS_stat(filename, &stat);
+	return stat.createtime;
+}
+
 std::string M_FileSystem::OpenFileSelectDialog()
 {
 	char filename[MAX_PATH];

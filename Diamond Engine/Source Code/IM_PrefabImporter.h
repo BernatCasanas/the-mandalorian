@@ -9,9 +9,12 @@ class GameObject;
 namespace PrefabImporter
 {
 	int SavePrefab(const char* assets_path, GameObject* gameObject);
+
 	GameObject* LoadPrefab(const char* libraryPath, std::vector<GameObject*>& objects, bool loadingScene, bool overriding = false);
 	GameObject* InstantiatePrefab(const char* libraryPath);
 	GameObject* InstantiatePrefabAt(uint prefabID, float3 position, Quat rotation, float3 scale);
+	GameObject* LoadUIPrefab(const char* libraryPath);
+
 
 	void OverridePrefab(uint prefabID, GameObject* referenceObject);
 	void OverrideGameObject(uint prefabID, GameObject* objectToReplace);

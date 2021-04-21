@@ -72,6 +72,7 @@ private:
 
 	float fileCheckTime;
 	float fileUpdateDelay;
+	bool recompileCS;
 
 public:
 	AssetDir assetsRoot;

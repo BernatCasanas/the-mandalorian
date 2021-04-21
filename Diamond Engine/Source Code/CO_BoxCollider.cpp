@@ -134,10 +134,10 @@ C_BoxCollider::~C_BoxCollider()
 		colliderShape->release();
 
 }
+#ifndef STANDALONE
 
 void C_BoxCollider::Update()
 {
-#ifndef STANDALONE
 
 	if (rigidbody == nullptr)
 		rigidbody = dynamic_cast<C_RigidBody*>(gameObject->GetComponent(Component::TYPE::RIGIDBODY));
@@ -182,9 +182,9 @@ void C_BoxCollider::Update()
 
 		glColor3f(1.0f, 1.0f, 1.0f);
 	}
-#endif // !STANDALONE
 
 }
+#endif // !STANDALONE
 
 void C_BoxCollider::SaveData(JSON_Object* nObj)
 {
@@ -210,8 +210,8 @@ void C_BoxCollider::LoadData(DEConfig& nObj)
 	Component::LoadData(nObj);
 	float3 pos, scale;
 	Quat rot;
-	bool trigger;
 
+	bool trigger;
 	trigger = nObj.ReadBool("isTrigger");
 	if (trigger != isTrigger)
 	{
