@@ -69,7 +69,7 @@ public class Rancor : DiamondComponent
     public float healthPoints = 60.0f;          //IF INITAL HEALTH IS CHANGED, CHANGE MAX HEALTH AS WELL!
     public float maxHealthPoints = 60.0f;
 
-    public int attackProbability = 66;  //FROM 1 TO A 100
+    public int attackProbability = 80;  //FROM 1 TO A 100
     public int shortFollowProbability = 90; //FROM THE PREVIOS VALUE TO HERE
 
     public float meleeRange = 14.0f;
@@ -135,6 +135,7 @@ public class Rancor : DiamondComponent
 
     //Rush
     public float rushDamage = 10.0f;
+    public float touchDamage = 5.0f;
     public float loadRushTime = 0.4f;
     private float loadRushTimer = 0.0f;
 
@@ -1096,7 +1097,10 @@ public class Rancor : DiamondComponent
             Counter.allEnemiesDead = true;
 
         EnemyManager.RemoveEnemy(gameObject);
-        InternalCalls.Destroy(gameObject);
+        Animator.Pause(gameObject);
+        Audio.StopAudio(gameObject);
+        Input.PlayHaptic(0.3f, 3);
+        //InternalCalls.Destroy(gameObject);
     }
     #endregion
 
@@ -1184,6 +1188,14 @@ public class Rancor : DiamondComponent
                 if (playerHealth != null)
                 {
                     playerHealth.TakeDamage((int)rushDamage);
+                }
+            }
+            else
+            {
+                PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage((int)touchDamage);
                 }
             }
         }
