@@ -173,10 +173,14 @@ public class Bantha : Enemy
     {
         if (currentState != STATE.DIE)
         {
+            //Detection Range
             if (InRange(player.transform.globalPosition, detectionRange))
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
             }
+
+            //Charge Range
+
             if (InRange(player.transform.globalPosition, chargeRange))
             {
                 inputsList.Add(INPUT.IN_CHARGE_RANGE);
@@ -404,14 +408,26 @@ public class Bantha : Enemy
     #region RUN
     private void StartRun()
     {
-        Animator.Play(gameObject, "BT_Walk");
+        Animator.Play(gameObject, "BT_Run");
+
+        if(agent != null)
+            agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition);
     }
     private void UpdateRun()
     {
-        agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition);
         LookAt(agent.GetDestination());
-        if (skill_slowDownActive) agent.MoveToCalculatedPos(runningSpeed * (1 - skill_slowDownAmount));
-        else agent.MoveToCalculatedPos(runningSpeed);
+
+        if (Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) < agent.stoppingDistance)
+        {
+            inputsList.Add(INPUT.IN_IDLE);
+        }
+        else
+        {
+            if (skill_slowDownActive)
+                agent.MoveToCalculatedPos(runningSpeed * (1 - skill_slowDownAmount));
+            else
+                agent.MoveToCalculatedPos(runningSpeed);
+        }
     }
     private void RunEnd()
     {
@@ -476,7 +492,7 @@ public class Bantha : Enemy
         if (skill_slowDownActive) chargeTimer = chargeLength / (chargeSpeed * (1 - skill_slowDownAmount));
         else chargeTimer = chargeLength / chargeSpeed;
 
-        Animator.Play(gameObject, "BT_Run");
+        Animator.Play(gameObject, "BT_Charge");
 
         InternalCalls.Destroy(visualFeedback);
         Audio.PlayAudio(gameObject, "Play_Bantha_Attack");
@@ -489,8 +505,18 @@ public class Bantha : Enemy
     {
         LookAt(agent.GetDestination());
         
-        if (skill_slowDownActive) agent.MoveToCalculatedPos(chargeSpeed * (1 - skill_slowDownAmount));
-        else agent.MoveToCalculatedPos(chargeSpeed);
+        //Destination reached, stop charging
+        if(Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance && agent.GetPathSize() < 1)
+        {
+            inputsList.Add(INPUT.IN_WANDER);
+        }
+        else
+        {
+            if (skill_slowDownActive) 
+                agent.MoveToCalculatedPos(chargeSpeed * (1 - skill_slowDownAmount));
+            else 
+                agent.MoveToCalculatedPos(chargeSpeed);
+        }
     }
     #endregion
 
@@ -554,6 +580,30 @@ public class Bantha : Enemy
         InternalCalls.Destroy(gameObject);
     }
     #endregion
+
+    public bool CanCharge()
+    {
+        if (targetPosition == null || agent == null)
+            return false;
+
+        Vector2 target2D = new Vector2(targetPosition.x, targetPosition.y);
+        Vector2 bantha2D = new Vector2(gameObject.transform.globalPosition.x, gameObject.transform.globalPosition.y);
+
+        Vector3 penultimatePoint = agent.GetPointAt(agent.GetPathSize() - 1);
+
+        if (penultimatePoint == null)
+        {
+            Debug.Log("No penultimate point");
+            return false;
+        }
+
+        Vector2 penultimatePoint2D = new Vector2(penultimatePoint.x, penultimatePoint.y);
+        if (Vector2.Dot(target2D - bantha2D, target2D - penultimatePoint2D) >= 0.9f)
+            return true;
+
+        Debug.Log("No Dot");
+        return false;
+    }
 
     public void OnCollisionEnter(GameObject collidedGameObject)
     {

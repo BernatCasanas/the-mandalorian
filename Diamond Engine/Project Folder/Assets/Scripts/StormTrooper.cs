@@ -14,6 +14,7 @@ public class StormTrooper : Enemy
         WANDER,
         RUN,
         PUSHED,
+        FIND_AIM,
         SHOOT,
         HIT,
         DIE
@@ -27,11 +28,12 @@ public class StormTrooper : Enemy
         IN_RUN_END,
         IN_WANDER,
         IN_PUSHED,
+        IN_FIND_AIM,
         IN_SHOOT,
         IN_HIT,
         IN_DIE,
         IN_PLAYER_IN_RANGE,
-        
+        IN_PLAYER_SHOOTABLE
     }
 
     //State
@@ -48,6 +50,7 @@ public class StormTrooper : Enemy
     public float timeBewteenShots = 0.5f;
     public float timeBewteenSequences = 0.5f;
     public float timeBewteenStates = 1.5f;
+    private float reAimTime = 0.5f;
 
     //Speeds
     public float wanderSpeed = 3.5f;
@@ -66,6 +69,7 @@ public class StormTrooper : Enemy
     private float dieTimer = 0.0f;
     private float statesTimer = 0.0f;
     private float pushTimer = 0.0f;
+    private float reAimTimer = 0.0f;
     private float skill_slowDownTimer = 0.0f;
 
     //Action variables
@@ -280,6 +284,27 @@ public class StormTrooper : Enemy
                     }
                     break;
 
+                case STATE.FIND_AIM:
+                    switch(input)
+                    {
+                        case INPUT.IN_SHOOT:
+                            currentState = STATE.SHOOT;
+                            RunEnd();
+                            StartShoot();
+                            break;
+
+                        case INPUT.IN_PUSHED:
+                            currentState = STATE.PUSHED;
+                            StartPush();
+                            break;
+
+                        case INPUT.IN_DIE:
+                            currentState = STATE.DIE;
+                            StartDie();
+                            break;
+                    }
+                    break;
+
                 case STATE.SHOOT:
                     switch (input)
                     {
@@ -288,16 +313,23 @@ public class StormTrooper : Enemy
                             StartRun();
                             break;
 
+                        case INPUT.IN_FIND_AIM:
+                            currentState = STATE.FIND_AIM;
+                            StartFindAim();
+                            break;
+
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
                             StartDie();
                             break;
+
                         case INPUT.IN_PUSHED:
                             currentState = STATE.PUSHED;
                             StartPush();
                             break;
                     }
                     break;
+
                 case STATE.PUSHED:
                     switch (input)
                     {
@@ -334,6 +366,9 @@ public class StormTrooper : Enemy
                 break;
             case STATE.WANDER:
                 UpdateWander();
+                break;
+            case STATE.FIND_AIM:
+                UpdateFindAim();
                 break;
             case STATE.SHOOT:
                 UpdateShoot();
@@ -389,13 +424,71 @@ public class StormTrooper : Enemy
     private void UpdateRun()
     {
         LookAt(agent.GetDestination());
-        if (skill_slowDownActive) agent.MoveToCalculatedPos(runningSpeed * (1 - skill_slowDownAmount));
-        else agent.MoveToCalculatedPos(runningSpeed);
+
+        if (skill_slowDownActive) 
+            agent.MoveToCalculatedPos(runningSpeed * (1 - skill_slowDownAmount));
+        else 
+            agent.MoveToCalculatedPos(runningSpeed);
     }
     private void RunEnd()
     {
         Audio.StopAudio(gameObject);
     }
+    #endregion
+
+    #region FIND_AIM
+
+    private void StartFindAim()
+    {
+        if(agent != null && player != null)
+        {
+            if(!agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition))
+            {
+                inputsList.Add(INPUT.IN_SHOOT);
+                return;
+            }
+
+            targetPosition = agent.GetPointAt(agent.GetPathSize() - 1);
+
+            if (targetPosition == null)
+            {
+                inputsList.Add(INPUT.IN_SHOOT);
+                return;
+            }
+
+            targetPosition = (targetPosition - gameObject.transform.globalPosition).normalized * wanderRange;
+
+            Animator.Play(gameObject, "ST_Run");
+            reAimTimer = reAimTime;
+        }
+    }
+
+    private void UpdateFindAim()
+    {
+        if(targetPosition != null)
+        {
+            if (reAimTimer > 0.0f)
+            {
+                reAimTimer -= Time.deltaTime;
+
+                LookAt(targetPosition);
+                MoveToPosition(targetPosition, wanderSpeed);
+
+                if (reAimTime <= 0.0f)
+                {
+                    if (PlayerIsShootable())
+                    {
+                        inputsList.Add(INPUT.IN_SHOOT);
+                    }
+                    else
+                    {
+                        reAimTimer = reAimTime;
+                    }
+                }
+            }
+        }
+    }
+
     #endregion
 
     #region SHOOT
@@ -412,6 +505,13 @@ public class StormTrooper : Enemy
 
             if (statesTimer <= 0.0f)
             {
+                if(!PlayerIsShootable())
+                {
+                    inputsList.Add(INPUT.IN_FIND_AIM);
+                    statesTimer = 0.0f;
+                    return;
+                }
+
                 //First Timer
                 if (shotSequences == 0)
                 {
@@ -432,6 +532,16 @@ public class StormTrooper : Enemy
 
         if (shotTimer > 0.0f)
         {
+            if (!PlayerIsShootable())
+            {
+                inputsList.Add(INPUT.IN_FIND_AIM);
+                shotTimes = 0;
+                shotTimer = 0.0f;
+                shotSequences = 0;
+                sequenceTimer = 0.0f;
+                return;
+            }
+
             shotTimer -= Time.deltaTime;
 
             if (shotTimer <= 0.0f)
@@ -587,6 +697,22 @@ public class StormTrooper : Enemy
 
     }
     #endregion
+
+    private bool PlayerIsShootable()
+    {
+        if (player != null)
+        {
+            float distance = 0.0f;
+            GameObject raycastHit = InternalCalls.RayCast(gameObject.transform.globalPosition, player.transform.globalPosition, distance);
+
+            if (raycastHit != null && raycastHit == player)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
