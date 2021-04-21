@@ -14,7 +14,7 @@
 #include"RE_Shader.h"
 #include"MO_Window.h"
 
-const unsigned int SHADOW_WIDTH = 4096, SHADOW_HEIGHT = 4096;
+const unsigned int SHADOW_WIDTH = 2048, SHADOW_HEIGHT = 2048;
 C_DirectionalLight::C_DirectionalLight(GameObject* _gm) : Component(_gm), 
 	orthoSize(10.0f, 10.0f),
 	calculateShadows(true),
@@ -231,7 +231,7 @@ void C_DirectionalLight::PushLightUniforms(ResourceMaterial* material, int light
 
 	if (calculateShadows == true)
 	{
-		glActiveTexture(GL_TEXTURE0 + 5);
+		glActiveTexture(GL_TEXTURE5);
 		modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "shadowMap");
 		glUniform1i(modelLoc, 5);
 		glBindTexture(GL_TEXTURE_2D, depthMap);
@@ -243,7 +243,7 @@ void C_DirectionalLight::EndPass()
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glActiveTexture(GL_TEXTURE0 + 5);
+	glActiveTexture(GL_TEXTURE5);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	glActiveTexture(GL_TEXTURE0);
