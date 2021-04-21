@@ -2,14 +2,14 @@
     "assets_path": "Assets\/Prefabs\/SpikeTrap.prefab",
     "Game Objects": [
         {
-            "name": "SpikeTrap",
+            "name": "SpikeTrap_LB",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
-                0,
-                6.1522336006164551,
-                0
+                9.0958366394042969,
+                6.1500000953674316,
+                -9.1486186981201172
             ],
             "Rotation": [
                 0,
@@ -22,10 +22,11 @@
                 1.4900000095367432,
                 1.4900000095367432
             ],
-            "UID": 1066107746,
+            "UID": 560868052,
             "PrefabID": 878514279,
             "DontDestroy": false,
-            "ParentUID": 1073559014,
+            "Static": false,
+            "ParentUID": 206611769,
             "Components": [
                 {
                     "Type": 1,
@@ -39,9 +40,9 @@
             "layer": "Default",
             "Active": true,
             "Position": [
-                0,
-                0,
-                0
+                0.0027942657470703125,
+                -0.0015521049499511719,
+                -0.000926971435546875
             ],
             "Rotation": [
                 0,
@@ -50,14 +51,15 @@
                 1
             ],
             "Scale": [
-                1,
-                1,
-                1
+                0.99999988079071045,
+                0.99999988079071045,
+                0.99999988079071045
             ],
-            "UID": 10093005,
+            "UID": 499494891,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1066107746,
+            "Static": false,
+            "ParentUID": 560868052,
             "Components": [
                 {
                     "Type": 1,
@@ -72,7 +74,13 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -112,10 +120,16 @@
                         1
                     ],
                     "Scale": [
+                        0.74000000953674316,
                         1,
-                        1,
-                        1
+                        0.74000000953674316
                     ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "ColliderDamage",
+                    "damage": 10
                 }
             ]
         },
@@ -140,10 +154,11 @@
                 1,
                 1
             ],
-            "UID": 457948536,
+            "UID": 1131110440,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1066107746,
+            "Static": false,
+            "ParentUID": 560868052,
             "Components": [
                 {
                     "Type": 1,
@@ -172,10 +187,11 @@
                 1,
                 1
             ],
-            "UID": 1292801494,
+            "UID": 814607750,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -204,10 +220,11 @@
                 1,
                 1
             ],
-            "UID": 798200710,
+            "UID": 910529127,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -236,10 +253,11 @@
                 1,
                 1
             ],
-            "UID": 1097297491,
+            "UID": 378575074,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -268,10 +286,11 @@
                 1,
                 1
             ],
-            "UID": 365362533,
+            "UID": 708427323,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -300,10 +319,11 @@
                 1,
                 1
             ],
-            "UID": 2108594925,
+            "UID": 161733934,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -332,10 +352,11 @@
                 1,
                 1
             ],
-            "UID": 505164505,
+            "UID": 821457793,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -364,10 +385,11 @@
                 1,
                 1
             ],
-            "UID": 718315686,
+            "UID": 1076003196,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -396,10 +418,11 @@
                 1,
                 1
             ],
-            "UID": 1404687317,
+            "UID": 1746450415,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -428,10 +451,11 @@
                 1,
                 1
             ],
-            "UID": 1477896124,
+            "UID": 1247733222,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -460,10 +484,11 @@
                 1,
                 1
             ],
-            "UID": 222070293,
+            "UID": 573644065,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -492,10 +517,11 @@
                 1,
                 1
             ],
-            "UID": 1021094200,
+            "UID": 920066106,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -524,10 +550,11 @@
                 1,
                 1
             ],
-            "UID": 1448131559,
+            "UID": 780143110,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -556,10 +583,11 @@
                 1,
                 1
             ],
-            "UID": 305009783,
+            "UID": 187061386,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -588,10 +616,11 @@
                 1,
                 1
             ],
-            "UID": 767800707,
+            "UID": 1059919298,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -620,10 +649,11 @@
                 1,
                 1
             ],
-            "UID": 2037564570,
+            "UID": 808367844,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -652,10 +682,11 @@
                 1,
                 1
             ],
-            "UID": 955658091,
+            "UID": 273730195,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -684,10 +715,11 @@
                 1,
                 1
             ],
-            "UID": 533602157,
+            "UID": 600022617,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -716,10 +748,11 @@
                 1,
                 1
             ],
-            "UID": 596163044,
+            "UID": 1322716713,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -748,10 +781,11 @@
                 1,
                 1
             ],
-            "UID": 1050840755,
+            "UID": 466525119,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -780,10 +814,11 @@
                 1,
                 1
             ],
-            "UID": 111317859,
+            "UID": 1402632671,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -812,10 +847,11 @@
                 1,
                 1
             ],
-            "UID": 1939663063,
+            "UID": 165307660,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -844,10 +880,11 @@
                 1,
                 1
             ],
-            "UID": 1067934822,
+            "UID": 519732587,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -876,10 +913,11 @@
                 1,
                 1
             ],
-            "UID": 511416028,
+            "UID": 1350471224,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -908,10 +946,11 @@
                 1,
                 1
             ],
-            "UID": 16418128,
+            "UID": 28053150,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -940,10 +979,11 @@
                 1,
                 1
             ],
-            "UID": 585189284,
+            "UID": 1025721027,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 457948536,
+            "Static": false,
+            "ParentUID": 1131110440,
             "Components": [
                 {
                     "Type": 1,
@@ -972,10 +1012,11 @@
                 1,
                 1
             ],
-            "UID": 1550874127,
+            "UID": 1449907076,
             "PrefabID": 0,
             "DontDestroy": false,
-            "ParentUID": 1066107746,
+            "Static": false,
+            "ParentUID": 560868052,
             "Components": [
                 {
                     "Type": 1,
