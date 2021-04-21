@@ -3,9 +3,9 @@ using DiamondEngine;
 
 public class DebugSkipLevel : DiamondComponent
 {
-	public void Update()
-	{
-
-	}
-
+    public void OnExecuteButton()
+    {
+        Debug.Log("Skip level");
+        RoomSwitch.SwitchLevel(RoomSwitch.GetNextLevel());
+    }
 }
