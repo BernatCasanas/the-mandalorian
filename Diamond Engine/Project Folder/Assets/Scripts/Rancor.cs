@@ -207,7 +207,6 @@ public class Rancor : DiamondComponent
         dieTime = Animator.GetAnimationDuration(gameObject, "RN_Die") - 0.016f;
 
         Counter.SumToCounterType(Counter.CounterTypes.RANCOR);
-        limbo_health = maxHealthPoints = healthPoints;
         damaged = 0.0f;
         runTime = (Animator.GetAnimationDuration(gameObject, "RN_Walk"))/2;
         dustTime = (Animator.GetAnimationDuration(gameObject, "RN_Walk")) / 4;
@@ -326,9 +325,12 @@ public class Rancor : DiamondComponent
         if (roarTimer > 0)
         {
             roarTimer -= Time.deltaTime;
-
+            healthPoints = (1 - (roarTimer / roarTime)) * maxHealthPoints;
+            Debug.Log("Rancor health: " + healthPoints.ToString());
             if (roarTimer <= 0)
             {
+                healthPoints = maxHealthPoints;
+                limbo_health = healthPoints;
                 inputsList.Add(RANCOR_INPUT.IN_ROAR_END);
                 Debug.Log("finishing roar");
             }

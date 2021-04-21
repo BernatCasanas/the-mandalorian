@@ -14,7 +14,14 @@ public class BH_DestructBox : DiamondComponent
 	private float timer = 0;
 	private ParticleSystem partExp = null;
 	private ParticleSystem partWave = null;
+	private BoxCollider boxColl = null;
+	private SphereCollider sphereColl = null;
 
+	public void Start()
+    {
+		boxColl = gameObject.GetComponent<BoxCollider>();
+		sphereColl = gameObject.GetComponent<SphereCollider>();
+    }
 
 	public void Update()
 	{
@@ -46,8 +53,9 @@ public class BH_DestructBox : DiamondComponent
 
 			if (mesh != null)
 				InternalCalls.Destroy(mesh);
-
+			sphereColl.active = true;
 			triggered = true;
+			boxColl.active = false;
 		}
 		
 	}
