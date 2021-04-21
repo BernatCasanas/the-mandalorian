@@ -204,7 +204,7 @@
                 1
             ],
             "UID": 1984885013,
-            "PrefabID": 551315197,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 665090501,
@@ -1632,7 +1632,7 @@
                 1
             ],
             "UID": 940571457,
-            "PrefabID": 131620332,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 665090501,
@@ -1665,7 +1665,7 @@
                 1
             ],
             "UID": 306559826,
-            "PrefabID": 1110241348,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 940571457,
@@ -3422,7 +3422,7 @@
                 1
             ],
             "UID": 1886328398,
-            "PrefabID": 870255131,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 940571457,
@@ -4940,7 +4940,7 @@
                 1
             ],
             "UID": 745224714,
-            "PrefabID": 811954472,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 940571457,
@@ -7468,7 +7468,7 @@
                 1
             ],
             "UID": 999841797,
-            "PrefabID": 1076342540,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 940571457,
@@ -7730,7 +7730,7 @@
                 1
             ],
             "UID": 748215578,
-            "PrefabID": 1733982637,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 940571457,
@@ -8680,7 +8680,7 @@
                 1
             ],
             "UID": 2146892252,
-            "PrefabID": 829475632,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1210710562,
@@ -9023,7 +9023,7 @@
                 0.99995362758636475
             ],
             "UID": 1026311423,
-            "PrefabID": 2043639852,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1676501951,
@@ -9114,7 +9114,7 @@
                 1
             ],
             "UID": 779486749,
-            "PrefabID": 2124140914,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1676501951,
@@ -9135,6 +9135,11 @@
                     "forceRegenerationSpeed": 0,
                     "skillPushForceCost": 0,
                     "skillWallForceCost": 0,
+                    "skill_fasterForceRegenerationActive": true,
+                    "skill_fasterForceRegenerationHealthStep": 0,
+                    "skill_fasterForceRegenerationForceRegen": 0,
+                    "skill_healActive": true,
+                    "skill_healAmount": 0,
                     "skillPushDuration": 1
                 }
             ]
@@ -9368,7 +9373,7 @@
                 0.9999997615814209
             ],
             "UID": 400702684,
-            "PrefabID": 1599948487,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1676501951,
@@ -12376,7 +12381,7 @@
                 1
             ],
             "UID": 889555251,
-            "PrefabID": 698426833,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1676501951,
@@ -13162,7 +13167,7 @@
                 1.0000005960464478
             ],
             "UID": 1894357097,
-            "PrefabID": 1844396977,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1676501951,
@@ -13261,7 +13266,7 @@
                 0.99999922513961792
             ],
             "UID": 464352642,
-            "PrefabID": 195124493,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1894357097,
@@ -13431,10 +13436,10 @@
                 -12.235576629638672
             ],
             "Rotation": [
-                -1.9742776302678067e-09,
-                0.16613860428333282,
-                3.4309832752654756e-10,
-                0.9861024022102356
+                -1.9742778523124116e-09,
+                0.16613861918449402,
+                3.4309835528212318e-10,
+                0.98610252141952515
             ],
             "Scale": [
                 0.99999815225601196,
@@ -13442,7 +13447,7 @@
                 0.99999815225601196
             ],
             "UID": 1640256150,
-            "PrefabID": 1075888511,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1676501951,
@@ -13460,6 +13465,12 @@
                     "rotationSpeed": 2,
                     "movementSpeed": 5.5,
                     "mouseSens": 1,
+                    "skill_extraDamageActive": true,
+                    "skill_extraDamageHPStep": 0,
+                    "skill_extraDamageAmount": 0,
+                    "skill_damageReductionDashEnabled": true,
+                    "skill_damageReductionDashDuration": 0,
+                    "skill_damageReductionDashAmount": 0,
                     "dashCD": 0.33000001311302185,
                     "dashDuration": 0.20000000298023224,
                     "dashSpeed": 30,
@@ -13467,6 +13478,7 @@
                     "gadgetFireRate": 0.20000000298023224,
                     "fireRateAfterDashRecoverRatio": 1.75,
                     "fireRateMultCap": 2,
+                    "grenadesFireRate": 0,
                     "lockInputs": true,
                     "background": 1210710562,
                     "pause": 306559826,
@@ -13536,6 +13548,7 @@
                     "<currMaxHealth>k__BackingField": 0,
                     "<currHealth>k__BackingField": 0,
                     "<healWhenKillingAnEnemy>k__BackingField": 0,
+                    "<skill_chanceToAvoidDamage>k__BackingField": 0,
                     "character_mesh": 1742111162,
                     "damage_screen": 562774903
                 },
@@ -15761,7 +15774,7 @@
                 1
             ],
             "UID": 1391336988,
-            "PrefabID": 1187362402,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1640256150,
@@ -15952,7 +15965,7 @@
                 0.5
             ],
             "UID": 166475403,
-            "PrefabID": 1564072956,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1640256150,
@@ -16161,7 +16174,7 @@
                 1
             ],
             "UID": 924461823,
-            "PrefabID": 1747705162,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1640256150,
@@ -16606,7 +16619,7 @@
                 1
             ],
             "UID": 968144840,
-            "PrefabID": 1737173148,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1640256150,
@@ -16825,7 +16838,7 @@
                 1
             ],
             "UID": 820731430,
-            "PrefabID": 1796667987,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1676501951,
@@ -16961,7 +16974,7 @@
                 1
             ],
             "UID": 988920763,
-            "PrefabID": 436147261,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 820731430,
@@ -17579,7 +17592,7 @@
                 1
             ],
             "UID": 923377220,
-            "PrefabID": 2128758711,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1676501951,
@@ -17959,7 +17972,7 @@
                 1
             ],
             "UID": 844382421,
-            "PrefabID": 2128758711,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1676501951,
@@ -18339,7 +18352,7 @@
                 1
             ],
             "UID": 1455749016,
-            "PrefabID": 1796667987,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1676501951,
@@ -18475,7 +18488,7 @@
                 1
             ],
             "UID": 1131472312,
-            "PrefabID": 436147261,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1455749016,
@@ -19093,7 +19106,7 @@
                 1
             ],
             "UID": 1353377404,
-            "PrefabID": 1796667987,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1676501951,
@@ -19229,7 +19242,7 @@
                 1
             ],
             "UID": 122130968,
-            "PrefabID": 436147261,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1353377404,
@@ -19847,7 +19860,7 @@
                 1.4900000095367432
             ],
             "UID": 1770426502,
-            "PrefabID": 878514279,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1676501951,
