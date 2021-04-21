@@ -156,6 +156,24 @@ float ShadowCalculation(vec4 fragPosLightSpace, vec3 lightDir, vec3 normal, int 
     return shadow;  
 }
 
+
+float GetShadowValue()
+{
+	vec3 normal = texture(normalMap, fs_in.TexCoords).rgb;
+    normal = normalize(normal * 2.0 - 1.0);
+    
+	for	(int i = 0; i < 2; i++)
+    {
+    	if(lightInfo[i].calculateShadows == true)
+    	{
+    		vec3 lightDir = normalize(fs_in.TangentLightPos[i] - vec3(0, 0, 0));
+    		return ShadowCalculation(fs_in.FragPosLightSpace[i], lightDir, normal, i);
+    	}
+    }
+
+}
+
+
 void main()
 {
 	vec3 normal = texture(normalMap, fs_in.TexCoords).rgb;
@@ -163,14 +181,8 @@ void main()
     
     vec3 lighting = vec3(0.0, 0.0, 0.0);
     
-    int activeShadow = 0;
-    for	(int i = 0; i < 2; i++)
-    {
-    	if(lightInfo[i].calculateShadows == true)
-    	{
-    		activeShadow = i;
-    	}
-    }
+    float shadow = GetShadowValue();
+    
     
     for (int i = 0; i < 2; i++)
     {
@@ -189,7 +201,6 @@ void main()
     		vec3 specular = spec * lightInfo[i].lightColor;
         	
     	 // calculate shadow
-    		float shadow = ShadowCalculation(fs_in.FragPosLightSpace[activeShadow], lightDir, normal, activeShadow);
     		lighting += (lightInfo[i].ambientLightColor + (1.0 - shadow) * (diffuse + specular)) * lightInfo[i].lightIntensity;
     	}
     }
@@ -197,6 +208,7 @@ void main()
     color = vec4(lighting * fs_in.vertexColor, 1.0);
 }
 #endif
+
 
 
 
