@@ -73,6 +73,7 @@ void W_Assets::Draw()
 
 				std::string assets_path = bigDisplayFolder->importPath.c_str();
 				assets_path += "/" + std::string(droppedGO->name) + ".prefab";
+				droppedGO->RecursivePrefabReferenceGeneration();
 				droppedGO->prefabID = PrefabImporter::SavePrefab(assets_path.c_str(), droppedGO);
 			}
 			ImGui::EndDragDropTarget();

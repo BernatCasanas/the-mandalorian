@@ -32,12 +32,12 @@
 
 extern bool LOADING_SCENE = false;
 M_Scene::M_Scene(Application* app, bool start_enabled) : Module(app, start_enabled), root(nullptr),
-defaultMaterial(nullptr), holdUID(0)
+defaultMaterial(nullptr), holdUID(0), prefabToOverride(0)
 {
 	current_scene[0] = '\0';
 	current_scene_name[0] = '\0';
 
-	tags = { "Untagged"};
+	tags = { "Untagged" };
 	layers = { "Default" };
 }
 
@@ -61,12 +61,12 @@ bool M_Scene::Init()
 bool M_Scene::Start()
 {
 	CreateGameCamera("Main Camera");
-	LoadScene("Library/Scenes/1726826608.des");
+	LoadScene("Library/Scenes/790373974.des");
 	//LoadScene("Library/Scenes/1482507639.des");
 
 	//LoadScene("Library/Scenes/884741631.des");
 	//LoadScene("Library/Scenes/tmp.des");
-	
+
 #ifndef STANDALONE
 	//TODO IMPORTANT: This is why we should save icons .meta, or we could generate them every time
 	//But this will introduce some randomized problems with ID duplications
@@ -80,7 +80,7 @@ bool M_Scene::Start()
 update_status M_Scene::PreUpdate(float dt)
 {
 	/*Destroy gameobjects inside the destroy queue*/
-	if (destroyList.size() > 0) 
+	if (destroyList.size() > 0)
 	{
 		for (size_t i = 0; i < destroyList.size(); ++i)
 		{
@@ -88,6 +88,13 @@ update_status M_Scene::PreUpdate(float dt)
 		}
 		destroyList.clear();
 	}
+
+	if (prefabToOverride != 0)
+	{		
+		root->OverrideGameObject(prefabToOverride);
+		prefabToOverride = 0;
+	}
+
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -102,7 +109,7 @@ update_status M_Scene::Update(float dt)
 		DEConfig root_object(json_value_get_object(file));
 
 		JSON_Value* goArray = json_value_init_array();
-		App->moduleEditor->GetSelectedGO()->SaveToJson(json_value_get_array(goArray));
+		App->moduleEditor->GetSelectedGO()->SaveToJson(json_value_get_array(goArray), false);
 		json_object_set_value(root_object.nObj, "Game Objects", goArray);
 
 		//Save file 
@@ -113,22 +120,23 @@ update_status M_Scene::Update(float dt)
 	}
 	if (App->moduleInput->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && App->moduleInput->GetKey(SDL_SCANCODE_V) == KEY_DOWN)
 	{
-		if (FileSystem::Exists("EngineIcons/cntlC.json") == true) 
+		if (FileSystem::Exists("EngineIcons/cntlC.json") == true)
 		{
 			JSON_Value* scene = json_parse_file("EngineIcons/cntlC.json");
 
 			//TODO: Duplicated code from scene loading && delete command, move to method
-			if (scene != NULL) 
+			if (scene != NULL)
 			{
 				JSON_Object* sceneObj = json_value_get_object(scene);
 				JSON_Array* sceneGO = json_object_get_array(sceneObj, "Game Objects");
 
 				GameObject* parent = (App->moduleEditor->GetSelectedGO() == nullptr) ? root : App->moduleEditor->GetSelectedGO();
 				GameObject* gameObjectRoot = nullptr;
+
 				for (size_t i = 0; i < json_array_get_count(sceneGO); i++)
 				{
 					parent = LoadGOData(json_array_get_object(sceneGO, i), parent);
-					
+
 					if (i == 0)
 						gameObjectRoot = parent;
 				}
@@ -152,10 +160,10 @@ update_status M_Scene::Update(float dt)
 			App->moduleFileSystem->ToLocalAssetsPath(sceneDir);
 			if (!sceneDir.empty())
 			{
-				App->moduleScene->SaveScene(sceneDir.c_str());
+				App->moduleScene->SaveToJson(sceneDir.c_str());
 				App->moduleResources->NeedsDirsUpdate(App->moduleResources->assetsRoot);
 				strcpy(current_scene, sceneDir.c_str());
-			
+
 				std::string scene_name;
 				FileSystem::GetFileName(sceneDir.c_str(), scene_name, false);
 				strcpy(current_scene_name, scene_name.c_str());
@@ -163,7 +171,7 @@ update_status M_Scene::Update(float dt)
 		}
 		else
 		{
-			App->moduleScene->SaveScene(current_scene);
+			App->moduleScene->SaveToJson(current_scene);
 			App->moduleResources->NeedsDirsUpdate(App->moduleResources->assetsRoot);
 		}
 	}
@@ -250,7 +258,7 @@ void M_Scene::LoadScriptsData(GameObject* rootObject)
 				GameObject* gameObject = GetGOFromUID(rootObject, d->first);
 
 				if (gameObject != nullptr)
-					d->second->fiValue.goValue = gameObject;	
+					d->second->fiValue.goValue = gameObject;
 				else
 					d->second->fiValue.goValue = GetGOFromUID(EngineExternal->moduleScene->root, d->first);
 			}
@@ -291,12 +299,12 @@ void M_Scene::LoadNavigationData()
 	{
 		// Get the range of the current key
 		auto range = navigationReferenceMap.equal_range(i->first);
-		
+
 		GameObject* ref = GetGOFromUID(EngineExternal->moduleScene->root, i->first);
 		// Now render out that whole range
 		for (auto d = range.first; d != range.second; ++d)
 		{
-			d->second->referenceGO = ref;			
+			d->second->referenceGO = ref;
 		}
 	}
 
@@ -356,7 +364,7 @@ void M_Scene::Destroy(GameObject* gm)
 {
 	for (std::vector<GameObject*>::iterator i = gm->parent->children.begin(); i != gm->parent->children.end(); ++i)
 	{
-		if (*i._Ptr == gm) 
+		if (*i._Ptr == gm)
 		{
 			gm->parent->children.erase(i);
 			break;
@@ -381,7 +389,7 @@ void M_Scene::RecursiveUpdate(GameObject* parent)
 		return;
 	}
 
-	if (parent->isActive()) 
+	if (parent->isActive())
 	{
 		parent->Update();
 
@@ -425,9 +433,9 @@ void M_Scene::RecursiveDontDestroy(GameObject* child, std::vector<GameObject*>& 
 		child->parent->RemoveChild(child);
 	}
 	else {
-		for (int i = child->children.size()-1; i >= 0; --i)
+		for (int i = child->children.size() - 1; i >= 0; --i)
 		{
-			RecursiveDontDestroy(child->children[i],dontDestroyList);
+			RecursiveDontDestroy(child->children[i], dontDestroyList);
 		}
 	}
 
@@ -449,7 +457,7 @@ void M_Scene::OnGUI()
 	}
 }
 
-void M_Scene::SaveScene(const char* name)
+void M_Scene::SaveToJson(const char* name)
 {
 	JSON_Value* file = json_value_init_object();
 	DEConfig root_object(json_value_get_object(file));
@@ -464,7 +472,7 @@ void M_Scene::SaveScene(const char* name)
 	JSON_Array* tagsArray = json_value_get_array(tagsValue);
 	for (size_t t = 0; t < tags.size(); t++)
 	{
-		if(strcmp(tags[t].c_str(), "Untagged") != 0)
+		if (strcmp(tags[t].c_str(), "Untagged") != 0)
 			json_array_append_string(tagsArray, tags[t].c_str());
 	}
 	json_object_set_value(root_object.nObj, "tags", tagsValue);
@@ -480,7 +488,7 @@ void M_Scene::SaveScene(const char* name)
 	json_object_set_value(root_object.nObj, "layers", layersValue);
 
 	JSON_Value* goArray = json_value_init_array();
-	root->SaveToJson(json_value_get_array(goArray), true);
+	root->SaveToJson(json_value_get_array(goArray), false);
 	json_object_set_value(root_object.nObj, "Game Objects", goArray);
 
 	//Save file 
@@ -527,7 +535,6 @@ void M_Scene::LoadScene(const char* name)
 		EngineExternal->modulePathfinding->Load(navMeshId);
 
 #ifndef STANDALONE
-
 	MaykMath::GeneralDataSet(&App->moduleCamera->editorCamera.camFrustrum.pos.x, &DEJson::ReadVector3(sceneObj, "EditorCameraPosition")[0], 3);
 	MaykMath::GeneralDataSet(&App->moduleCamera->editorCamera.camFrustrum.front.x, &DEJson::ReadVector3(sceneObj, "EditorCameraZ")[0], 3);
 	MaykMath::GeneralDataSet(&App->moduleCamera->editorCamera.camFrustrum.up.x, &DEJson::ReadVector3(sceneObj, "EditorCameraY")[0], 3);
@@ -551,7 +558,7 @@ void M_Scene::LoadScene(const char* name)
 
 	JSON_Array* sceneGO = json_object_get_array(sceneObj, "Game Objects");
 	JSON_Object* goJsonObj = json_array_get_object(sceneGO, 0);
-	
+
 	root = CreateGameObject(json_object_get_string(goJsonObj, "name"), nullptr, json_object_get_number(goJsonObj, "UID"));
 
 	GameObject* parent = root;
@@ -564,12 +571,11 @@ void M_Scene::LoadScene(const char* name)
 	LoadScriptsData();
 
 	//Insert Dont destroy objects to new scene
-	for (size_t i = 0; i < dontDestroyList.size(); i++)
-	{
+	for (size_t i = 0; i < dontDestroyList.size(); i++) {
 		dontDestroyList[i]->ChangeParent(root);
 	}
 
-	if (DETime::state == GameState::PLAY) 
+	if (DETime::state == GameState::PLAY)
 	{
 		std::vector<C_Script*> newScriptsAdded;
 		newScriptsAdded.reserve(activeScriptsVector.size() - oldSize);
@@ -585,7 +591,7 @@ void M_Scene::LoadScene(const char* name)
 	//Free memory
 	json_value_free(scene);
 
-	if(strcmp(name, "Library/Scenes/tmp.des") != 0)
+	if (strcmp(name, "Library/Scenes/tmp.des") != 0)
 		strcpy(current_scene, name);
 
 	std::string scene_name;
@@ -658,23 +664,15 @@ GameObject* M_Scene::LoadGOData(JSON_Object* goJsonObj, GameObject* parent)
 
 	int prefabID = json_object_get_number(goJsonObj, "PrefabID");
 
-	/*if(prefabID != 0)
+	if (prefabID != 0)
 	{
-		std::string prefabPath = EngineExternal->moduleResources->GenLibraryPath(prefabID, Resource::Type::PREFAB);
+		parent = PrefabImporter::LoadGOPrefabData(goJsonObj, parent, true);
+	}
+	else
+	{
+		parent = CreateGameObject(json_object_get_string(goJsonObj, "name"), parent, json_object_get_number(goJsonObj, "UID"));
+		parent->LoadFromJson(goJsonObj);
+	}
 
-		if (FileSystem::Exists(prefabPath.c_str()))
-		{
-			GameObject* prefabObject = PrefabImporter::LoadPrefab(prefabPath.c_str());
-			
-			if (prefabObject != nullptr)
-			{
-				prefabObject->ChangeParent(parent);
-				return parent;
-			}
-		}
-	}*/
-
-	parent = CreateGameObject(json_object_get_string(goJsonObj, "name"), parent, json_object_get_number(goJsonObj, "UID"));
-	parent->LoadFromJson(goJsonObj);
 	return parent;
 }

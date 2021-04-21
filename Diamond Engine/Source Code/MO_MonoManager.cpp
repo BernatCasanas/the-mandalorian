@@ -290,7 +290,7 @@ void M_MonoManager::ReCompileCS()
 	if (DETime::state == GameState::PLAY)
 		return;
 
-	App->moduleScene->SaveScene("Library/Scenes/tmp.des");
+	App->moduleScene->SaveToJson("Library/Scenes/tmp.des");
 
 	App->moduleScene->CleanScene();
 	App->moduleRenderer3D->ClearAllRenderData();
