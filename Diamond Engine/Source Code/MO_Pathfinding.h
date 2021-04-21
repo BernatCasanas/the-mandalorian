@@ -35,6 +35,7 @@ struct Pathfinder
 	Pathfinder();
 	~Pathfinder();
 	void Init(NavMeshBuilder* builder);
+	void CleanUp();
 
 	bool CalculatePath();
 	bool CalculatePath(float3 origin, float3 destination, std::vector<float3>& path);

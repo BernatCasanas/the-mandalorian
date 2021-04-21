@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include "MO_Pathfinding.h"
 #include "MO_MonoManager.h"
 #include "CO_NavMeshAgent.h"
@@ -7,35 +6,81 @@
 #include <math.h>
 #include <vector>
 
-void CS_CalculateRandomPath(MonoObject* go, MonoObject* startPos, float radius)
+bool CS_CalculateRandomPath(MonoObject* go, MonoObject* startPos, float radius)
 {
 	if (EngineExternal == nullptr || go == nullptr)
-		return;
+		return false;
 
 	C_NavMeshAgent* comp = DECS_CompToComp<C_NavMeshAgent*>(go);
 
 	if (comp == nullptr)
-		return;
+		return false;
+
 	comp->path.clear();
 	MonoClass* klass = mono_object_get_class(startPos);
 
 	const char* name = mono_class_get_name(klass);
 	float3 destination = EngineExternal->modulePathfinding->FindRandomPointAround(EngineExternal->moduleMono->UnboxVector(startPos), radius);
-	EngineExternal->modulePathfinding->FindPath(EngineExternal->moduleMono->UnboxVector(startPos), destination, comp->path);
+	if (!EngineExternal->modulePathfinding->FindPath(EngineExternal->moduleMono->UnboxVector(startPos), destination, comp->path))
+	{
+		comp->path.push_back(destination);
+	}
+	return EngineExternal->modulePathfinding->FindPath(EngineExternal->moduleMono->UnboxVector(startPos), destination, comp->path);
 }
 
-void CS_CalculatePath(MonoObject* go, MonoObject* startPos, MonoObject* endPos)
+bool CS_CalculatePath(MonoObject* go, MonoObject* startPos, MonoObject* endPos)
 {
 	if (EngineExternal == nullptr || go == nullptr)
-		return;
+		return false;
 
 	C_NavMeshAgent* comp = DECS_CompToComp<C_NavMeshAgent*>(go);
 
 	if (comp == nullptr)
-		return;
+		return false;
 
 	comp->path.clear();
-	EngineExternal->modulePathfinding->FindPath(EngineExternal->moduleMono->UnboxVector(startPos), EngineExternal->moduleMono->UnboxVector(endPos), comp->path);
+	return EngineExternal->modulePathfinding->FindPath(EngineExternal->moduleMono->UnboxVector(startPos), EngineExternal->moduleMono->UnboxVector(endPos), comp->path);
+}
+
+int CS_GetPathSize(MonoObject* go)
+{
+	if (EngineExternal == nullptr || go == nullptr)
+		return 0;
+
+	C_NavMeshAgent* agent = DECS_CompToComp<C_NavMeshAgent*>(go);
+
+	if (agent == nullptr)
+		return 0;
+
+	return agent->path.size();
+}
+
+MonoObject* CS_GetPointAt(MonoObject* cs_agent, int index)
+{
+	if (EngineExternal == nullptr || cs_agent == nullptr)
+		return nullptr;
+
+	C_NavMeshAgent* agent = DECS_CompToComp< C_NavMeshAgent*>(cs_agent);
+
+	if (agent == nullptr || agent->path.size() < index)
+		return nullptr;
+
+	float3 position = agent->path[index];
+
+	return EngineExternal->moduleMono->Float3ToCS(position);
+}
+
+void CS_ClearPath(MonoObject* go)
+{
+	if (EngineExternal == nullptr || go == nullptr)
+		return;
+
+	C_NavMeshAgent* agent = DECS_CompToComp<C_NavMeshAgent*>(go);
+
+	if (agent == nullptr)
+		return;
+
+	agent->path.clear();
 }
 
 MonoObject* CS_GetDestination(MonoObject* go)
