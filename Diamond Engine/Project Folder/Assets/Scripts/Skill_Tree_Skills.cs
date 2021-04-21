@@ -65,12 +65,16 @@ namespace DiamondEngine
         public override void Use()
         {
             //TODO: Priority
-            Debug.Log("Reduction");
+            float seconds = 2.0f;
+            float damageReduction = 0.2f;
+
+            if (Core.instance != null)
+                Core.instance.SetSkill("UtilityDamageReductionSkill", seconds, damageReduction);
         }
 
         public override void AssignCharacteristics()
         {
-            description = "[NOT IMPLEMENTED] 20% Damage reduction 2 seconds after dash (doesn't attack)";
+            description = "20% Damage reduction 2 seconds after dash (doesn't attack)";
             price = 0;
             type_of_price = RewardType.REWARD_BESKAR;
         }
@@ -176,7 +180,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "[NOT IMPLEMENTED] Increase damage to Bosses and greater enemies by 20%";
+            description = "Increase damage to Bosses and greater enemies by 20%";
             price = 0;
             type_of_price = RewardType.REWARD_BESKAR;
         }
@@ -223,7 +227,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = "Increase Mando's Max HP by 10%. Press 'A' to buy it. Price: 1 Beskar Ingot";
-            price = 1;
+            price = 0;
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -232,12 +236,15 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+
         }
 
-        //public override void AssignCharacteristics()
-        //{
-        //    description = "Decrease the Damage Reduction Skill. Press 'A' to buy it. Price: it's free!";
-        //}
+        public override void AssignCharacteristics()
+        {
+            description = "Decrease the Damage Reduction Skill. Press 'A' to buy it. Price: it's free!";
+            price = 0;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
     public class DefenseComboDamageReductionSkill : Skills
@@ -468,7 +475,7 @@ namespace DiamondEngine
         {
             if(Core.instance != null)
             {
-                Core.instance.SetSkill("SeDelay", 0.3f);
+                Core.instance.SetSkill("SecondaryDelaySkill", 0.3f);
                 //Debug.Log("Secondary gun: Delay between uses reduced by 30%."); //Uncommenting that crashes the game
             }
         }
