@@ -7,26 +7,26 @@
             "layer": "Default",
             "Active": true,
             "UID": 57931818,
-            "ParentUID": 0,
+            "ParentUID": 1908694898,
             "PrefabReference": 0,
-            "PrefabID": 0,
+            "PrefabID": 230945350,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                2.3372070789337158,
+                0,
                 0,
                 0
             ],
             "Rotation": [
-                0,
-                0,
-                0,
+                1.0408331591437982e-16,
+                3.7252854134806057e-09,
+                -2.7755575615628914e-17,
                 1
             ],
             "Scale": [
-                1.0000005960464478,
+                1.0000013113021851,
                 1,
-                1.0000005960464478
+                1.0000011920928955
             ],
             "Components": [
                 {
@@ -47,20 +47,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                0,
-                0
+                -0.15291213989257812,
+                -0.12383413314819336,
+                -0.78673696517944336
             ],
             "Rotation": [
-                0,
-                0,
-                0,
+                9.4439647074784361e-14,
+                1.3038692259215168e-07,
+                -7.729929164205368e-14,
                 1
             ],
             "Scale": [
+                0.99999964237213135,
                 1,
-                1,
-                1
+                0.99997240304946899
             ],
             "Components": [
                 {
@@ -80,7 +80,7 @@
                     "Active": true,
                     "systemActive": false,
                     "looping": false,
-                    "maxDuration": 0.62300002574920654,
+                    "maxDuration": 0.31499999761581421,
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
@@ -89,19 +89,19 @@
                             "paEmitterName": "Smoke",
                             "paLifeTime": [
                                 0.5,
-                                0.69999998807907104
+                                1
                             ],
                             "paSize": [
-                                0.20000000298023224,
+                                0.05000000074505806,
                                 0.5
                             ],
                             "paColor": [
-                                1,
-                                1,
-                                1,
+                                0.11231881380081177,
+                                0.11231768876314163,
+                                0.11231768876314163,
                                 1
                             ],
-                            "paPerSec": 100,
+                            "paPerSec": 200,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 1,
@@ -115,46 +115,18 @@
                                     ]
                                 },
                                 {
-                                    "paEffectType": 2,
-                                    "Gradients": [
-                                        {
-                                            "paColorOLTcolor": [
-                                                0.17578125,
-                                                0.17577949166297913,
-                                                0.17577949166297913,
-                                                0
-                                            ],
-                                            "paColorOLTposition": 0
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                0.12492340058088303,
-                                                0.12492215633392334,
-                                                0.12492215633392334,
-                                                0.87890625
-                                            ],
-                                            "paColorOLTposition": 0.65333330631256104
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                0.09765625,
-                                                0.097655273973941803,
-                                                0.097655273973941803,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 1
-                                        }
-                                    ]
-                                },
-                                {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
                                     "paShapePartSpeed": 1,
                                     "paShapeRandSpeed": 0,
-                                    "PaShapeSphereRadius": 0.5,
+                                    "PaShapeAreaDimensions": [
+                                        0.30000001192092896,
+                                        0.30000001192092896,
+                                        0.69999998807907104
+                                    ],
                                     "PaShapeSphereDirection": false,
                                     "PaShapeSphereAngle": 0,
-                                    "paShapeType": 1,
+                                    "paShapeType": 0,
                                     "PaShapeOffset": [
                                         0,
                                         0.5,
@@ -170,11 +142,11 @@
                             "paEmitterName": "Smoke 2",
                             "paLifeTime": [
                                 0.5,
-                                0.69999998807907104
+                                1
                             ],
                             "paSize": [
-                                0.20000000298023224,
-                                0.5
+                                0.05000000074505806,
+                                0.40000000596046448
                             ],
                             "paColor": [
                                 1,
@@ -182,7 +154,7 @@
                                 1,
                                 1
                             ],
-                            "paPerSec": 200,
+                            "paPerSec": 300,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 2,
@@ -198,36 +170,36 @@
                                         },
                                         {
                                             "paColorOLTcolor": [
-                                                0.25390625,
-                                                0.25390371680259705,
-                                                0.25390371680259705,
+                                                0.13833993673324585,
+                                                0.13833855092525482,
+                                                0.13833855092525482,
+                                                0.89019608497619629
+                                            ],
+                                            "paColorOLTposition": 0.77185559272766113
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.15810275077819824,
+                                                0.15810117125511169,
+                                                0.15810117125511169,
+                                                0.87925428152084351
+                                            ],
+                                            "paColorOLTposition": 0.83942323923110962
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.15810275077819824,
+                                                0.15810117125511169,
+                                                0.15810117125511169,
                                                 0.87112897634506226
                                             ],
                                             "paColorOLTposition": 0.87733334302902222
                                         },
                                         {
                                             "paColorOLTcolor": [
-                                                0.2850707471370697,
-                                                0.28506788611412048,
-                                                0.28506788611412048,
-                                                0.87925428152084351
-                                            ],
-                                            "paColorOLTposition": 0.88266664743423462
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                0.21875,
-                                                0.2187478095293045,
-                                                0.2187478095293045,
-                                                0.89019608497619629
-                                            ],
-                                            "paColorOLTposition": 0.88266670703887939
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                0.32421875,
-                                                0.32421550154685974,
-                                                0.32421550154685974,
+                                                0.20553362369537354,
+                                                0.20553156733512878,
+                                                0.20553156733512878,
                                                 1
                                             ],
                                             "paColorOLTposition": 1
@@ -240,7 +212,7 @@
                                     "paShapePartSpeed": 1,
                                     "paShapeRandSpeed": 0,
                                     "PaShapeConeRadius": 1,
-                                    "PaShapeConeHeight": 2,
+                                    "PaShapeConeHeight": 1,
                                     "PaShapeSphereDirection": true,
                                     "PaShapeSphereAngle": 0,
                                     "paShapeType": 2,
@@ -274,20 +246,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
+                -0.15979480743408203,
                 0,
-                0,
-                0
+                -0.82215070724487305
             ],
             "Rotation": [
-                0,
-                0,
-                0,
+                6.1305622308261559e-14,
+                6.3330425348340214e-08,
+                -2.0899953520766255e-14,
                 1
             ],
             "Scale": [
+                0.99999970197677612,
                 1,
-                1,
-                1
+                0.99998390674591064
             ],
             "Components": [
                 {
@@ -307,7 +279,7 @@
                     "Active": true,
                     "systemActive": false,
                     "looping": false,
-                    "maxDuration": 1.0379999876022339,
+                    "maxDuration": 0.83899998664855957,
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
@@ -382,8 +354,8 @@
                                 },
                                 {
                                     "paEffectType": 3,
-                                    "paSizeOLTStartSize": 1,
-                                    "paSizeOLTEndSize": 1.5
+                                    "paSizeOLTStartSize": 0.69999998807907104,
+                                    "paSizeOLTEndSize": 1
                                 }
                             ]
                         },
@@ -401,9 +373,9 @@
                                 0.80000001192092896
                             ],
                             "paColor": [
-                                1,
-                                1,
-                                1,
+                                0.27898550033569336,
+                                0.023248786106705666,
+                                0.023248786106705666,
                                 1
                             ],
                             "paPerSec": 15,
@@ -425,18 +397,27 @@
                                                 5.0626806569198379e-07,
                                                 5.0626300662770518e-07,
                                                 5.0626300662770518e-07,
-                                                0.54296875
+                                                0.64426875114440918
                                             ],
-                                            "paColorOLTposition": 0.24799999594688416
+                                            "paColorOLTposition": 0.13448666036128998
                                         },
                                         {
                                             "paColorOLTcolor": [
                                                 9.9999999747524271e-07,
                                                 9.9998999303352321e-07,
                                                 9.9998999303352321e-07,
-                                                0.5078125
+                                                0.93280631303787231
                                             ],
                                             "paColorOLTposition": 0.48266670107841492
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                9.9999886060686549e-07,
+                                                9.9999999747524271e-07,
+                                                9.9998999303352321e-07,
+                                                0.72727274894714355
+                                            ],
+                                            "paColorOLTposition": 0.89729750156402588
                                         },
                                         {
                                             "paColorOLTcolor": [
@@ -459,10 +440,14 @@
                                     "paShapeHasInitSpeed": false,
                                     "paShapePartSpeed": 0,
                                     "paShapeRandSpeed": 0,
-                                    "PaShapeSphereRadius": 1.5,
-                                    "PaShapeSphereDirection": true,
+                                    "PaShapeAreaDimensions": [
+                                        0.40000000596046448,
+                                        0.10000000149011612,
+                                        1
+                                    ],
+                                    "PaShapeSphereDirection": false,
                                     "PaShapeSphereAngle": 0,
-                                    "paShapeType": 1,
+                                    "paShapeType": 0,
                                     "PaShapeOffset": [
                                         0,
                                         0,
@@ -493,20 +478,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                -0.44529104232788086,
-                0
+                -0.13254070281982422,
+                0.15642547607421875,
+                -0.68192005157470703
             ],
             "Rotation": [
-                0,
-                0,
-                0,
+                1.015104816068195e-13,
+                1.3038692259215168e-07,
+                -4.1050503111778741e-14,
                 1
             ],
             "Scale": [
+                0.99999964237213135,
                 1,
-                1,
-                1
+                0.99997240304946899
             ],
             "Components": [
                 {
@@ -526,19 +511,19 @@
                     "Active": true,
                     "systemActive": false,
                     "looping": false,
-                    "maxDuration": 4.0809998512268066,
+                    "maxDuration": 1.6430000066757202,
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/2059805849.dds",
-                            "texUID": 2059805849,
+                            "LibraryPath": "Library\/Textures\/39569920.dds",
+                            "texUID": 39569920,
                             "paEmitterName": "Soul",
                             "paLifeTime": [
-                                0.30000001192092896,
-                                1.2999999523162842
+                                1,
+                                2
                             ],
                             "paSize": [
-                                0.10000000149011612,
+                                0.029999999329447746,
                                 0.10000000149011612
                             ],
                             "paColor": [
@@ -547,8 +532,31 @@
                                 1,
                                 1
                             ],
-                            "paPerSec": 5,
+                            "paPerSec": 15,
                             "ParticleEffects": [
+                                {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        0,
+                                        5,
+                                        0
+                                    ],
+                                    "paFOLT_magnitude": 1,
+                                    "paFOLT_gravityMod": 0,
+                                    "paFOLT_gravity": -0,
+                                    "paFOLT_forceType": 0
+                                },
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        -1,
+                                        1
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        -1,
+                                        1
+                                    ]
+                                },
                                 {
                                     "paEffectType": 2,
                                     "Gradients": [
@@ -575,7 +583,7 @@
                                                 9.9999999747524271e-07,
                                                 9.9998999303352321e-07,
                                                 9.9998999303352321e-07,
-                                                0.47265625
+                                                0.71146243810653687
                                             ],
                                             "paColorOLTposition": 1
                                         }
@@ -584,13 +592,16 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 0.5,
-                                    "paShapeRandSpeed": 0.5,
-                                    "PaShapeConeRadius": 0.5,
-                                    "PaShapeConeHeight": 1,
-                                    "PaShapeSphereDirection": true,
+                                    "paShapePartSpeed": 0,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeAreaDimensions": [
+                                        0.40000000596046448,
+                                        0.10000000149011612,
+                                        1
+                                    ],
+                                    "PaShapeSphereDirection": false,
                                     "PaShapeSphereAngle": 0,
-                                    "paShapeType": 2,
+                                    "paShapeType": 0,
                                     "PaShapeOffset": [
                                         0,
                                         0,
@@ -605,12 +616,12 @@
                             "texUID": 14496052,
                             "paEmitterName": "Heart",
                             "paLifeTime": [
-                                0.69999998807907104,
-                                1.2999999523162842
+                                1.5,
+                                1.5
                             ],
                             "paSize": [
-                                0.10000000149011612,
-                                0.10000000149011612
+                                0.20000000298023224,
+                                0.20000000298023224
                             ],
                             "paColor": [
                                 1,
@@ -620,6 +631,29 @@
                             ],
                             "paPerSec": 1,
                             "ParticleEffects": [
+                                {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        0,
+                                        5,
+                                        0
+                                    ],
+                                    "paFOLT_magnitude": 1,
+                                    "paFOLT_gravityMod": 0,
+                                    "paFOLT_gravity": -0,
+                                    "paFOLT_forceType": 0
+                                },
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        -1,
+                                        1
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        -1,
+                                        1
+                                    ]
+                                },
                                 {
                                     "paEffectType": 2,
                                     "Gradients": [
@@ -634,10 +668,10 @@
                                         },
                                         {
                                             "paColorOLTcolor": [
-                                                0.3515625,
+                                                0.68379449844360352,
                                                 0,
                                                 0,
-                                                0.65234375
+                                                0.85375493764877319
                                             ],
                                             "paColorOLTposition": 0.50133335590362549
                                         },
@@ -655,13 +689,16 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 0.5,
-                                    "paShapeRandSpeed": 0.5,
-                                    "PaShapeConeRadius": 0.5,
-                                    "PaShapeConeHeight": 1,
-                                    "PaShapeSphereDirection": true,
+                                    "paShapePartSpeed": 0,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeAreaDimensions": [
+                                        0.40000000596046448,
+                                        0.10000000149011612,
+                                        1
+                                    ],
+                                    "PaShapeSphereDirection": false,
                                     "PaShapeSphereAngle": 0,
-                                    "paShapeType": 2,
+                                    "paShapeType": 0,
                                     "PaShapeOffset": [
                                         0,
                                         0,
@@ -672,16 +709,16 @@
                         },
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1129325781.dds",
-                            "texUID": 1129325781,
+                            "LibraryPath": "Library\/Textures\/568017479.dds",
+                            "texUID": 568017479,
                             "paEmitterName": "Cries",
                             "paLifeTime": [
-                                0.30000001192092896,
-                                1.2999999523162842
+                                2,
+                                2
                             ],
                             "paSize": [
                                 0.10000000149011612,
-                                0.10000000149011612
+                                0.30000001192092896
                             ],
                             "paColor": [
                                 1,
@@ -689,8 +726,20 @@
                                 1,
                                 1
                             ],
-                            "paPerSec": 5,
+                            "paPerSec": 7,
                             "ParticleEffects": [
+                                {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        0,
+                                        5,
+                                        0
+                                    ],
+                                    "paFOLT_magnitude": 0.5,
+                                    "paFOLT_gravityMod": 0,
+                                    "paFOLT_gravity": -0,
+                                    "paFOLT_forceType": 0
+                                },
                                 {
                                     "paEffectType": 2,
                                     "Gradients": [
@@ -726,13 +775,16 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 0.5,
-                                    "paShapeRandSpeed": 0.5,
-                                    "PaShapeConeRadius": 0.5,
-                                    "PaShapeConeHeight": 1,
-                                    "PaShapeSphereDirection": true,
+                                    "paShapePartSpeed": 0,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeAreaDimensions": [
+                                        0.40000000596046448,
+                                        0.10000000149011612,
+                                        1
+                                    ],
+                                    "PaShapeSphereDirection": false,
                                     "PaShapeSphereAngle": 0,
-                                    "paShapeType": 2,
+                                    "paShapeType": 0,
                                     "PaShapeOffset": [
                                         0,
                                         0,
