@@ -1099,6 +1099,7 @@ public class Rancor : DiamondComponent
         EnemyManager.RemoveEnemy(gameObject);
         Animator.Pause(gameObject);
         Audio.StopAudio(gameObject);
+        Input.PlayHaptic(0.3f, 3);
         //InternalCalls.Destroy(gameObject);
     }
     #endregion
