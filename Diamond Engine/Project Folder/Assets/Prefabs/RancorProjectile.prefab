@@ -1,0 +1,141 @@
+{
+    "assets_path": "Assets\/Prefabs\/RancorProjectile.prefab",
+    "Game Objects": [
+        {
+            "name": "RancorProjectile",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1511402788,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.21656683087348938,
+                9.5863056182861328,
+                1.513077974319458
+            ],
+            "Rotation": [
+                -1.8188917039196895e-08,
+                -0.88386189937591553,
+                -1.8188917039196895e-08,
+                0.46774798631668091
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "RancorProjectile",
+                    "speed": 30,
+                    "lifeTime": 5,
+                    "damage": 10
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": true,
+                    "LockLinearY": true,
+                    "LockLinearZ": true,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0.079999998211860657,
+                        0
+                    ],
+                    "Rotation": [
+                        0.1265559047460556,
+                        -0.00018361756519880146,
+                        0.00020386080723255873,
+                        0.99195945262908936
+                    ],
+                    "Scale": [
+                        0.76200002431869507,
+                        0.78900086879730225,
+                        1.3359999656677246
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "RancorProjectile",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 822283995,
+            "ParentUID": 1511402788,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -4.76837158203125e-07,
+                0,
+                -1.7881393432617188e-07
+            ],
+            "Rotation": [
+                -0.57230955362319946,
+                0.38601380586624146,
+                0.65954262018203735,
+                -0.29742011427879333
+            ],
+            "Scale": [
+                0.47000384330749512,
+                0.47000527381896973,
+                0.47000131011009216
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/57267156.mmh",
+                    "UID": 57267156,
+                    "alternColor": [
+                        0.61032867431640625,
+                        0.61032599210739136,
+                        0.61032253503799438
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        }
+    ]
+}

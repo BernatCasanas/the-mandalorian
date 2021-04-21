@@ -1,0 +1,220 @@
+{
+    "assets_path": "Assets\/Prefabs\/Ice Trail.prefab",
+    "Game Objects": [
+        {
+            "name": "Ice Trail",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1319058918,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0.3264886736869812,
+                0,
+                0,
+                0.94520109891891479
+            ],
+            "Scale": [
+                1,
+                0.9999995231628418,
+                0.9999995231628418
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Ice",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1357733417,
+            "ParentUID": 1319058918,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                -0.0081729888916015625
+            ],
+            "Rotation": [
+                -0.71074628829956055,
+                0,
+                0,
+                0.70344847440719604
+            ],
+            "Scale": [
+                1,
+                0.99999892711639404,
+                0.99999892711639404
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 0.096000000834465027,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1755453139.dds",
+                            "texUID": 1755453139,
+                            "paEmitterName": "Dust 1",
+                            "paLifeTime": [
+                                0.30000001192092896,
+                                2
+                            ],
+                            "paSize": [
+                                0.0099999997764825821,
+                                0.10000000149011612
+                            ],
+                            "paColor": [
+                                0.99998998641967773,
+                                0.99999827146530151,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 15,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    "paFOLT_magnitude": 0,
+                                    "paFOLT_gravityMod": 0.10000000149011612,
+                                    "paFOLT_gravity": -0.98000001907348633,
+                                    "paFOLT_forceType": 0
+                                },
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        10,
+                                        10
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        1,
+                                        10
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 1,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeConeRadius": 0.10000000149011612,
+                                    "PaShapeConeHeight": 0.10000000149011612,
+                                    "PaShapeSphereDirection": false,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 2,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1723061674.dds",
+                            "texUID": 1723061674,
+                            "paEmitterName": "Dust 2",
+                            "paLifeTime": [
+                                0.30000001192092896,
+                                2
+                            ],
+                            "paSize": [
+                                0.0099999997764825821,
+                                0.10000000149011612
+                            ],
+                            "paColor": [
+                                0,
+                                1,
+                                0.95652174949645996,
+                                1
+                            ],
+                            "paPerSec": 30,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    "paFOLT_magnitude": 0,
+                                    "paFOLT_gravityMod": 0.40000000596046448,
+                                    "paFOLT_gravity": -3.9200000762939453,
+                                    "paFOLT_forceType": 0
+                                },
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        0,
+                                        0
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        1,
+                                        5
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 1,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeConeRadius": 0.20000000298023224,
+                                    "PaShapeConeHeight": 0.20000000298023224,
+                                    "PaShapeSphereDirection": false,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 2,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        }
+    ]
+}
