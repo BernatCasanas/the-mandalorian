@@ -10,6 +10,7 @@ namespace DiamondEngine
         public static bool noClip = false;
         public static bool showTris = false;
         public static bool goToNextRoom = false;
+        //public static bool goToNextLevel = false;
 
         public static void ResetDebugOptions()
         {
@@ -18,6 +19,7 @@ namespace DiamondEngine
             noClip = false;
             showTris = false;
             goToNextRoom = false;
+            //goToNextLevel = false;
         }
 
     }
