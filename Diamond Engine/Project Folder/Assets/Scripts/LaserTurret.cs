@@ -32,7 +32,10 @@ public class LaserTurret : Enemy
 
     public GameObject shootPoint = null;
     public GameObject hitParticles = null;
-    private GameObject visualFeedback = null;
+    private GameObject laser1 = null;
+    private GameObject laser2 = null;
+    private GameObject laser3 = null;
+    private GameObject laser4 = null;
 
     //Action times
     public float idleTime = 0.0f;
@@ -42,6 +45,7 @@ public class LaserTurret : Enemy
     public float feedbackTime = 0.0f;
 
     //Speeds
+    private float angle = 0.0f;
     public float rotationSpeed = 0.0f;
 
     //Ranges
@@ -164,16 +168,6 @@ public class LaserTurret : Enemy
                 inputsList.Add(INPUT.IN_IDLE);
             }
         }
-
-        if (feedbackTimer > 0.0f)
-        {
-            feedbackTimer -= Time.deltaTime;
-
-            if (feedbackTimer <= 0.0f)
-            {
-                InternalCalls.Destroy(visualFeedback);
-            }
-        }
     }
 
     //All events from outside the stormtrooper
@@ -209,13 +203,11 @@ public class LaserTurret : Enemy
                     {
                         case INPUT.IN_LOAD:
                             currentState = STATE.LOAD;
-                            ShootEnd();
                             StartLoad();
                             break;
 
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
-                            ShootEnd();
                             StartDie();
                             break;
                     }
@@ -226,11 +218,13 @@ public class LaserTurret : Enemy
                     {
                         case INPUT.IN_SHOOT:
                             currentState = STATE.SHOOT;
+                            LoadEnd();
                             StartShoot();
                             break;
 
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
+                            LoadEnd();
                             StartDie();
                             break;
                     }
@@ -241,13 +235,13 @@ public class LaserTurret : Enemy
                     {
                         case INPUT.IN_IDLE:
                             currentState = STATE.IDLE;
-                            LoadEnd();
+                            ShootEnd();
                             StartIdle();
                             break;
 
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
-                            LoadEnd();
+                            ShootEnd();
                             StartDie();
                             break;
                     }
@@ -297,7 +291,8 @@ public class LaserTurret : Enemy
     #region LOAD
     private void StartLoad()
     {
-        //Debug.Log("SKYTROOPER WANDER");
+        Debug.Log("TURRET LOAD");
+        loadTimer = loadTime;
         //agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
         //Animator.Play(gameObject, "SK_Dash");
@@ -320,35 +315,43 @@ public class LaserTurret : Enemy
     {
         Debug.Log("TURRET SHOOT");
         shotTimer = shotTime;
+        laser1 = InternalCalls.CreatePrefab("Library/Prefabs/1137197426.prefab", gameObject.transform.globalPosition, gameObject.transform.localRotation, new Vector3(1.0f, 1.0f, 1.0f));
+        laser2 = InternalCalls.CreatePrefab("Library/Prefabs/1137197426.prefab", gameObject.transform.globalPosition, gameObject.transform.localRotation + new Quaternion(0.0f, 90.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
+        laser3 = InternalCalls.CreatePrefab("Library/Prefabs/1137197426.prefab", gameObject.transform.globalPosition, gameObject.transform.localRotation + Quaternion.RotateAroundAxis(Vector3.up, 3.14f), new Vector3(1.0f, 1.0f, 1.0f));
+        laser4 = InternalCalls.CreatePrefab("Library/Prefabs/1137197426.prefab", gameObject.transform.globalPosition, gameObject.transform.localRotation + Quaternion.RotateAroundAxis(Vector3.up, 4.71f), new Vector3(1.0f, 1.0f, 1.0f));
     }
 
     private void UpdateShoot()
     {
-        //if (statesTimer > 0.0f)
-        //{
-        //    statesTimer -= Time.deltaTime;
+        angle += rotationSpeed;
+        gameObject.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, angle);
 
-        //    if (statesTimer <= 0.0f)
-        //    {
-        //        Shoot();
-        //        feedbackTimer = feedbackTime;
-        //        inputsList.Add(INPUT.IN_DASH);
-        //    }
-        //}
+        //LASER ROTATION
+        CalculateLaserRotation();
     }
     private void ShootEnd()
     {
+        InternalCalls.Destroy(laser1);
+        InternalCalls.Destroy(laser2);
+        InternalCalls.Destroy(laser3);
+        InternalCalls.Destroy(laser4);
         Audio.StopAudio(gameObject);
     }
-
     private void Shoot()
     {
         //GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         //bullet.GetComponent<BH_Bullet>().damage = damage;
-        visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, gameObject.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
-        Animator.Play(gameObject, "SK_Shoot");
+        //visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, gameObject.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
+        //Animator.Play(gameObject, "SK_Shoot");
         Audio.PlayAudio(gameObject, "PLay_Blaster_Stormtrooper");
         //shotTimes++;
+    }
+    private void CalculateLaserRotation()
+    {
+        //laser1.transform.localRotation = gameObject.transform.localRotation;
+        //laser3.transform.localRotation = gameObject.transform.localRotation + Quaternion.RotateAroundAxis(Vector3.up, 1.57f);
+        //laser3.transform.localRotation = gameObject.transform.localRotation + Quaternion.RotateAroundAxis(Vector3.up, 3.14f);
+        //laser3.transform.localRotation = gameObject.transform.localRotation + Quaternion.RotateAroundAxis(Vector3.up, 4.71f);
     }
     #endregion
 
