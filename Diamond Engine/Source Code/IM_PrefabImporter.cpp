@@ -35,7 +35,7 @@ int PrefabImporter::SavePrefab(const char* assets_path, GameObject* gameObject)
 	return uid;
 }
 
-GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<GameObject*>& sceneObjects, bool overriding)
+GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<GameObject*>& sceneObjects, bool loadingScene, bool overriding)
 {
 	int oldSize = EngineExternal->moduleScene->activeScriptsVector.size();
 
@@ -78,7 +78,7 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 					}
 					if (overriding) {
 						std::string childPrefabPath = EngineExternal->moduleResources->GenLibraryPath(prefabID, Resource::Type::PREFAB);
-						LoadPrefab(childPrefabPath.c_str(), childObjects, overriding);
+						LoadPrefab(childPrefabPath.c_str(), childObjects, loadingScene, overriding);
 					}
 					break;
 				}
@@ -133,8 +133,11 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 		}
 	}
 
-	EngineExternal->moduleScene->LoadNavigationData();
-	EngineExternal->moduleScene->LoadScriptsData(rootObject);
+	if(!loadingScene)
+	{
+		EngineExternal->moduleScene->LoadNavigationData();
+		EngineExternal->moduleScene->LoadScriptsData(rootObject);
+	}
 
 	//replace the components references with the new GameObjects using their old UIDs
 	std::map<uint, GameObject*>::const_iterator it = prefabObjects.begin();
@@ -187,7 +190,7 @@ GameObject* PrefabImporter::InstantiatePrefab(const char* libraryPath)
 
 	for (size_t i = 1; i < json_array_get_count(gameObjectsArray); i++)
 	{
-		parent = LoadGOPrefabData(json_array_get_object(gameObjectsArray, i), parent);
+		parent = LoadGOPrefabData(json_array_get_object(gameObjectsArray, i), parent, false);
 	}
 
 	EngineExternal->moduleScene->LoadNavigationData();
@@ -273,10 +276,10 @@ void PrefabImporter::OverrideGameObject(uint prefabID, GameObject* objectToRepla
 	std::vector<GameObject*> childs;
 	objectToReplace->CollectChilds(childs);
 
-	LoadPrefab(libraryPath.c_str(), childs, true);
+	LoadPrefab(libraryPath.c_str(), childs, false, true);
 }
 
-GameObject* PrefabImporter::LoadGOPrefabData(JSON_Object* goJsonObj, GameObject* parent)
+GameObject* PrefabImporter::LoadGOPrefabData(JSON_Object* goJsonObj, GameObject* parent, bool loadingScene)
 {
 	GameObject* originalParent = parent;
 
@@ -305,12 +308,12 @@ GameObject* PrefabImporter::LoadGOPrefabData(JSON_Object* goJsonObj, GameObject*
 			GameObject* prefabRoot = parent;
 			for (size_t i = 0; i < json_array_get_count(prefabGO); i++)
 			{
-				parent = LoadGOPrefabData(json_array_get_object(prefabGO, i), parent);
+				parent = LoadGOPrefabData(json_array_get_object(prefabGO, i), parent, loadingScene);
 			}
 			std::vector<GameObject*> prefabObjects;
 			prefabRoot->CollectChilds(prefabObjects);
 
-			parent = PrefabImporter::LoadPrefab(prefabPath.c_str(), prefabObjects);
+			parent = PrefabImporter::LoadPrefab(prefabPath.c_str(), prefabObjects, loadingScene);
 			//prefabRoot->ChangeParent(parent);
 		}
 	}

@@ -666,7 +666,7 @@ GameObject* M_Scene::LoadGOData(JSON_Object* goJsonObj, GameObject* parent)
 
 	if (prefabID != 0)
 	{
-		parent = PrefabImporter::LoadGOPrefabData(goJsonObj, parent);
+		parent = PrefabImporter::LoadGOPrefabData(goJsonObj, parent, true);
 	}
 	else
 	{

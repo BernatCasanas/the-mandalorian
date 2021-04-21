@@ -596,13 +596,13 @@ void GameObject::LoadForPrefab(JSON_Object* _obj)
 	dontDestroy = DEJson::ReadBool(_obj, "DontDestroy");
 	isStatic = DEJson::ReadBool(_obj, "Static");
 
+	//Comment this lines if you want to load the GameObject's tag instead of the prefab tag
 	const char* json_tag = DEJson::ReadString(_obj, "tag");
-
 	if (json_tag == nullptr) sprintf_s(tag, "Untagged");
 	else sprintf_s(tag, json_tag);
 
+	//Comment this lines if you want to load the GameObject's layer instead of the prefab layer
 	const char* json_layer = DEJson::ReadString(_obj, "layer");
-
 	if (json_layer == nullptr) sprintf_s(layer, "Default");
 	else sprintf_s(layer, json_layer);
 }
