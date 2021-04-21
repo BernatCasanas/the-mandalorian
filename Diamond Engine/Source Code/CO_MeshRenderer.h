@@ -17,6 +17,7 @@ public:
 	void Update() override;
 
 	void RenderMesh(bool rTex = false);
+	void RenderMeshStencil(bool rTex = false);
 
 	void SaveData(JSON_Object* nObj) override;
 	void LoadData(DEConfig& nObj) override;
@@ -45,7 +46,9 @@ private:
 	ResourceTexture* normalMap = nullptr;
 
 	float3 alternColor;
+	float3 alternColorStencil;
 	bool drawDebugVertices;
 	C_Transform* gameObjectTransform = nullptr;
 	std::vector<C_Transform*> bonesMap;
+	bool drawStencil;
 };

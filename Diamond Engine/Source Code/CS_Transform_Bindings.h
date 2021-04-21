@@ -386,6 +386,17 @@ bool CompareTag(MonoObject* cs_gameObject, MonoString* cs_tag)
 	return false;
 }
 
+MonoObject* RayCast(MonoObject* cs_Position, MonoObject* cs_Direction, float MaxDistance)
+{
+	float3 pos = M_MonoManager::UnboxVector(cs_Position);
+	float3 dir = M_MonoManager::UnboxVector(cs_Direction);
+
+	GameObject* ret = EngineExternal->modulePhysics->ShootRay(pos, dir, MaxDistance);
+	if (ret == nullptr)
+		return nullptr;
+	return EngineExternal->moduleMono->GoToCSGO(ret);
+}
+
 MonoObject* CreatePrefab(MonoString* prefabPath, MonoObject* position, MonoObject* rotation, MonoObject* scale)
 {
 	if (prefabPath == nullptr)
@@ -395,15 +406,22 @@ MonoObject* CreatePrefab(MonoString* prefabPath, MonoObject* position, MonoObjec
 	GameObject* prefab_object = PrefabImporter::LoadPrefab(library_path);
 	mono_free(library_path);
 
-	if(prefab_object != nullptr)
-	{ 
+	if (prefab_object != nullptr)
+	{
 		C_Transform* object_transform = dynamic_cast<C_Transform*>(prefab_object->GetComponent(Component::TYPE::TRANSFORM));
 
 		float3 posVector = M_MonoManager::UnboxVector(position);
 		Quat rotQuat = M_MonoManager::UnboxQuat(rotation);
-		float3 scaleVector = M_MonoManager::UnboxVector(scale);
+
+		float3 scaleVector;
+		if (scale != nullptr)
+			scaleVector = M_MonoManager::UnboxVector(scale);
+		else
+			scaleVector = prefab_object->transform->localScale;
 
 		prefab_object->transform->SetTransformMatrix(posVector, rotQuat, scaleVector);
+
+
 		prefab_object->transform->updateTransform = true;
 	}
 

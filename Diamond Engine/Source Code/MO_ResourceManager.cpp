@@ -178,7 +178,7 @@ int M_ResourceManager::GenerateNewUID()
 
 void M_ResourceManager::NeedsDirsUpdate(AssetDir& dir)
 {
-	if (dir.lastModTime == App->moduleFileSystem->GetLastModTime(dir.importPath.c_str()))// && !dir.isDir  //if it is a folder and it is up to date
+	if (dir.lastModTime == App->moduleFileSystem->GetLastModTime(dir.importPath.c_str()) && dir.isDir)// && !dir.isDir  //if it is a folder and it is up to date
 		//|| (!dir.isDir && dir.lastModTime <= App->moduleFileSystem->GetLastModTime(dir.libraryPath.c_str()))) //or it is a file and it is 
 	{
 		for (unsigned int i = 0; i < dir.childDirs.size(); i++)
@@ -225,7 +225,7 @@ void M_ResourceManager::NeedsDirsUpdate(AssetDir& dir)
 			}
 
 		}
-		else
+		else if (dir.lastModTime > EngineExternal->moduleFileSystem->GetLastModTime(dir.libraryPath.c_str()))
 		{
 			//TODO: Then find modified files and create o recalulate .meta and library files
 			//SUPER IMPOIRTANT TODO DONT FFORGET, REGENERATE LIBRARY FILE BUT NEVER MODIFY META FILE
@@ -233,7 +233,6 @@ void M_ResourceManager::NeedsDirsUpdate(AssetDir& dir)
 
 			UpdateFile(dir);
 		}
-
 	}
 	fileCheckTime = 0.f;
 }
@@ -318,7 +317,7 @@ Resource* M_ResourceManager::RequestResource(int uid, const char* libraryPath)
 
 				ret->LoadToMemory();
 			}
-			LOG(LogType::L_NORMAL, "Requested resource loaded as new"); //UNCOMMENTrec
+			//LOG(LogType::L_NORMAL, "Requested resource loaded as new"); //UNCOMMENTrec
 		}
 		else
 			LOG(LogType::L_ERROR, "Requested resource does not exist");
@@ -609,15 +608,9 @@ void M_ResourceManager::UpdateFile(AssetDir& modDir)
 {
 	LOG(LogType::L_WARNING, "File %s was modified, reimporting", modDir.dirName.c_str());
 	ImportFile(modDir.importPath.c_str(), App->moduleResources->GetMetaType(modDir.metaFileDir.c_str()));
-
-	if(modDir.isDir)
-		modDir.lastModTime = App->moduleFileSystem->GetLastModTime(modDir.importPath.c_str());
-	else
-		modDir.UpdateMetaLastModTime();
-}
-
-void M_ResourceManager::UpdateFileAndMeta(const char* assetsPath)
-{
+	modDir.lastModTime = App->moduleFileSystem->GetLastModTime(modDir.importPath.c_str());
+	//else
+		//modDir.UpdateMetaLastModTime();
 }
 
 Resource::Type M_ResourceManager::GetTypeFromAssetExtension(const char* assetFile) const

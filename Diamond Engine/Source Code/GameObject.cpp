@@ -26,6 +26,7 @@
 #include "CO_Navigation.h"
 #include "CO_DirectionalLight.h"
 #include "CO_NavMeshAgent.h"
+#include "CO_StencilMaterial.h"
 
 #include"MO_Scene.h"
 
@@ -209,6 +210,9 @@ Component* GameObject::AddComponent(Component::TYPE _type, const char* params)
 		break;
 	case Component::TYPE::NAVMESHAGENT:
 		ret = new C_NavMeshAgent(this);
+		break;
+	case Component::TYPE::STENCIL_MATERIAL:
+		ret = new C_StencilMaterial(this);
 		break;
 	}
 
@@ -512,4 +516,18 @@ void GameObject::CollectChilds(std::vector<GameObject*>& vector)
 bool GameObject::CompareTag(const char* _tag)
 {
 	return strcmp(tag, _tag) == 0;
+}
+
+GameObject* GameObject::GetChild(std::string childName)
+{
+	for (size_t i = 0; i < children.size(); i++)
+	{
+		if (children[i]->name == childName)
+			return children[i];
+
+		GameObject* child = children[i]->GetChild(childName);
+		
+		if (child != nullptr)
+			return child;
+	}
 }

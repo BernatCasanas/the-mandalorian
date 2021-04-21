@@ -203,7 +203,7 @@ void C_MeshCollider::LoadData(DEConfig& nObj)
 	float3 pos, scale;
 	Quat rot;
 	bool trigger;
-	
+
 	trigger = nObj.ReadBool("isTrigger");
 	if (trigger != isTrigger)
 	{

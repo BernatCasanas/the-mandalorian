@@ -67,7 +67,7 @@ public:
 	void SetShader(ResourceShader* res);
 
 #ifndef STANDALONE
-	void DrawEditor();
+	void DrawEditor(std::string suffix);
 #endif // !STANDALONE
 	void SaveToJson(JSON_Array* json);
 
