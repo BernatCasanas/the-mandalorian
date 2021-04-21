@@ -1,0 +1,104 @@
+{
+    "assets_path": "Assets\/Prefabs\/WreckersResilience_Boon.prefab",
+    "Game Objects": [
+        {
+            "name": "WreckersResilience_Boon",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 293067379,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                16.162811279296875,
+                0,
+                0
+            ],
+            "Rotation": [
+                -7.2075021506634585e-09,
+                -0.7847282886505127,
+                -7.2075021506634585e-09,
+                0.61983990669250488
+            ],
+            "Scale": [
+                1.0000042915344238,
+                1,
+                1.0000042915344238
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/594872041.mmh",
+                    "UID": 594872041,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/520652826.mat",
+                    "MaterialUID": 520652826
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "BoonInstance"
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                }
+            ]
+        }
+    ]
+}
