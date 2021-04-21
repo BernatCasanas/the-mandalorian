@@ -301,9 +301,7 @@ bool M_Pathfinding::CleanUp()
 		navMeshBuilder = nullptr;
 	}
 
-	pathfinder.m_navMesh = nullptr;
-	pathfinder.m_navQuery = nullptr;
-	pathfinder.m_navMeshBuilder = nullptr;
+	pathfinder.CleanUp();
 
 	return true;
 }
@@ -408,8 +406,7 @@ m_nstraightPath(0), m_pathIterNum(0)
 
 Pathfinder::~Pathfinder()
 {
-	if (m_navQuery != nullptr)
-		m_navQuery = nullptr;
+	CleanUp();
 }
 
 void Pathfinder::Init(NavMeshBuilder* builder)
@@ -421,6 +418,18 @@ void Pathfinder::Init(NavMeshBuilder* builder)
 
 	m_navMesh = builder->GetNavMesh();
 	m_navQuery = builder->GetNavMeshQuery();
+}
+
+void Pathfinder::CleanUp()
+{
+	if (m_navQuery != nullptr)
+		m_navQuery = nullptr;
+
+	m_navMesh = nullptr;
+	m_navQuery = nullptr;
+	m_navMeshBuilder = nullptr;
+	startPosSet = false;
+	endPosSet = false;
 }
 
 inline bool InRange(const float* v1, const float* v2, const float r, const float h)

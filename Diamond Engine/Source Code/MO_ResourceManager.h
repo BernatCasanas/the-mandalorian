@@ -63,7 +63,6 @@ private:
 	void LoadResource(int uid);
 	void ReleaseResource(int uid);
 	void UpdateFile(AssetDir& modDir);
-	void UpdateFileAndMeta(const char* assetsPath);
 
 	bool IsResourceLoaded(int uid);
 
