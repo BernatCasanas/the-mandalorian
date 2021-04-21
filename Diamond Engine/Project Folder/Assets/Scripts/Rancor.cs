@@ -168,6 +168,21 @@ public class Rancor : DiamondComponent
 
     private bool start = false;
 
+    //Particles timers
+    private float runTime = 0.0f;
+    private float dustTime = 0.0f;
+    private bool toggleLegParticle;
+    enum PARTICLES : int
+    {
+        NONE = -1,
+        TRAILLEFT,
+        TRAILRIGHT,
+        IMPACT,
+        RUSH,
+        SWING,
+        HANDSLAM
+    }
+    RancorParticles rancorParticles = null;
     private void Start()
     {
         followTimer = shortFollowTime;
@@ -194,7 +209,10 @@ public class Rancor : DiamondComponent
         Counter.SumToCounterType(Counter.CounterTypes.RANCOR);
         limbo_health = maxHealthPoints = healthPoints;
         damaged = 0.0f;
-
+        runTime = (Animator.GetAnimationDuration(gameObject, "RN_Walk"))/2;
+        dustTime = (Animator.GetAnimationDuration(gameObject, "RN_Walk")) / 4;
+        rancorParticles = gameObject.GetComponent<RancorParticles>();
+        toggleLegParticle = true;
         StartRoar();
 
     }
@@ -827,7 +845,7 @@ public class Rancor : DiamondComponent
         Audio.PlayAudio(gameObject, "PLay_Rancor_Footsteps");
         //Search point
         followTimer = shortFollowTime;
-
+        toggleLegParticle = true;
 
     }
 
@@ -840,7 +858,7 @@ public class Rancor : DiamondComponent
         Animator.Play(gameObject, "RN_Walk");
         Audio.PlayAudio(gameObject, "PLay_Rancor_Footsteps");
         followTimer = longFollowTime;
-
+        toggleLegParticle = true;
     }
 
 
@@ -854,6 +872,17 @@ public class Rancor : DiamondComponent
         {
             LookAt(agent.GetDestination());
             agent.MoveToCalculatedPos(followSpeed);
+        }
+
+        dustTime += Time.deltaTime;
+        if (dustTime >= runTime)
+        {
+            if (toggleLegParticle)
+                PlayParticles(PARTICLES.TRAILLEFT);
+            else
+                PlayParticles(PARTICLES.TRAILRIGHT);
+            toggleLegParticle = !toggleLegParticle;
+            dustTime = 0.0f;
         }
 
         Debug.Log("Following");
@@ -1227,5 +1256,61 @@ public class Rancor : DiamondComponent
             skill_increaseDamageToBossAmount = value1;
         }
         
+    }
+    private void PlayParticles(PARTICLES particleType)
+    {
+        if (rancorParticles == null)
+        {
+            Debug.Log("Rancor Particles not found!");
+            return;
+        }
+        ParticleSystem particle = null;
+        switch (particleType)
+        {
+            case PARTICLES.NONE:
+                break;
+            case PARTICLES.TRAILLEFT:
+                particle = rancorParticles.trailLeft;
+                if (particle != null)
+                    particle.Play();
+                else
+                    Debug.Log("Rancor Trail Left particle not found!");
+                break;
+            case PARTICLES.TRAILRIGHT:
+                particle = rancorParticles.trailRight;
+                if (particle != null)
+                    particle.Play();
+                else
+                    Debug.Log("Rancor Trail Left particle not found!");
+                break;
+            case PARTICLES.IMPACT:
+                particle = rancorParticles.impact;
+                if (particle != null)
+                    particle.Play();
+                else
+                    Debug.Log("Rancor Impact particle not found!");
+                break;
+            case PARTICLES.RUSH:
+                particle = rancorParticles.rush;
+                if (particle != null)
+                    particle.Play();
+                else
+                    Debug.Log("Rancor Rush particle not found!");
+                break;
+            case PARTICLES.SWING:
+                particle = rancorParticles.swing;
+                if (particle != null)
+                    particle.Play();
+                else
+                    Debug.Log("Rancor Swing particle not found!");
+                break;
+            case PARTICLES.HANDSLAM:
+                particle = rancorParticles.handSlam;
+                if (particle != null)
+                    particle.Play();
+                else
+                    Debug.Log("Rancor Hand Slam particle not found!");
+                break;
+        }
     }
 }

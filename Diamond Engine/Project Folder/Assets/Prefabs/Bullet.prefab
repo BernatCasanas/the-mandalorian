@@ -1,0 +1,111 @@
+{
+    "assets_path": "Assets\/Prefabs\/Bullet.prefab",
+    "Game Objects": [
+        {
+            "name": "Bullet",
+            "tag": "Bullet",
+            "layer": "Default",
+            "Active": true,
+            "UID": 232474747,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                4.8880033493041992,
+                0,
+                0
+            ],
+            "Rotation": [
+                1.3422223332781869e-09,
+                -0.72229331731796265,
+                1.3422223332781869e-09,
+                0.69158685207366943
+            ],
+            "Scale": [
+                0.050000008195638657,
+                0.05000000074505806,
+                0.60000008344650269
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/965117995.mmh",
+                    "UID": 965117995,
+                    "alternColor": [
+                        1,
+                        0,
+                        6.008148193359375e-05
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "BH_Bullet",
+                    "speed": 50,
+                    "maxLifeTime": 10,
+                    "currentLifeTime": 0.74599999189376831,
+                    "range_squared": 0,
+                    "use_range_instead_of_time": false,
+                    "yVel": 0,
+                    "damage": 9
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/571028171.mat",
+                    "MaterialUID": 571028171
+                }
+            ]
+        }
+    ]
+}
