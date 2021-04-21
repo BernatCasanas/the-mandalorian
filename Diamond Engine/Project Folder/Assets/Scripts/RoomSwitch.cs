@@ -75,12 +75,44 @@ public static class RoomSwitch
 		return currentLevelIndicator;
     }
 
+	public static LEVELS GetNextLevel()
+	{
+		switch (currentLevelIndicator)
+		{
+			case LEVELS.ONE:
+				return LEVELS.TWO;
+			case LEVELS.TWO:
+				return LEVELS.MAX;
+			default:
+				return LEVELS.MAX;
+		}
+	}
+
+	public static void SwitchLevel(LEVELS lvl)
+	{
+		currentLevelIndicator = lvl;
+
+		switch (lvl)
+		{
+			case LEVELS.ONE:
+				//Debug.Log("Level 1 loaded");
+				//currentroom = levelLists[0].finalScene;
+				break;
+			case LEVELS.TWO:
+				Debug.Log("Level 2 loaded");
+				currentroom = levelLists[(int)currentLevelIndicator - 1].finalScene;
+				break;
+			case LEVELS.MAX:
+				break;
+		}
+		SwitchRooms();
+	}
+
 	public static void SwitchRooms()
 	{
-
 		int index = (int)currentLevelIndicator;
 
-		if(index > 0 && currentLevelIndicator == LEVELS.TWO && levelLists[index-1].finalScene == currentroom  /*&& currentLevelIndicator == LEVELS.TWO*/)
+		if (index > 0 && currentLevelIndicator == LEVELS.TWO && levelLists[index-1].finalScene == currentroom  /*&& currentLevelIndicator == LEVELS.TWO*/)
         {
 			Debug.Log("PostBoss loaded");
 			SceneManager.LoadScene(postBossRoom);

@@ -58,7 +58,9 @@ public class GameSceneManager : DiamondComponent
             ChangeScene();
             DebugOptionsHolder.goToNextRoom = false;
         }
+
         // We should clean boons when ending a run :3
+        PlayerResources.ResetRunBoons();
     }
 
 
