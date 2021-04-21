@@ -139,7 +139,7 @@ public class SHOP : DiamondComponent
                     if (currency >= (int)item.price_type)
                     {
                         Debug.Log("Bought Greedo’s quick shooting");
-                        player.GetComponent<Core>().fireRate -= player.GetComponent<Core>().fireRate * 0.3f;
+                        player.GetComponent<Core>().baseFireRate -= player.GetComponent<Core>().baseFireRate * 0.3f;
                         currency -= (int)item.price_type;
                         PlayerResources.AddBoon(BOONS.BOON_GREEDOQUICKSHOOTER);
                         ret = true;
