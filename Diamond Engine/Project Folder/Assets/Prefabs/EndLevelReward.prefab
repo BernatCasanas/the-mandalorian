@@ -1,0 +1,830 @@
+{
+    "assets_path": "Assets\/Prefabs\/EndLevelReward.prefab",
+    "Game Objects": [
+        {
+            "name": "EndLevelReward",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1345721583,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                6.0510244369506836,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "RewardBackgroundImage",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 65778727,
+            "ParentUID": 1345721583,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        60,
+                        67.400001525878906
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1997051888.dds",
+                    "UID": 1997051888
+                }
+            ]
+        },
+        {
+            "name": "FirstRewardButton",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1145617063,
+            "ParentUID": 65778727,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        40
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        50,
+                        15
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/reward_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/714840640.dds",
+                    "Pressed_UID": 714840640,
+                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/reward_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1717170530.dds",
+                    "Hovered_UID": 1717170530,
+                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/reward_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1937759977.dds",
+                    "Unhovered_UID": 1937759977,
+                    "Script_Name": "EndLevelRewardsButtons",
+                    "ButtonState": 1,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/reward_button_hover.png",
+                    "LibraryPath": "Library\/Textures\/1717170530.dds",
+                    "UID": 1717170530
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1145617063,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 2055020463,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 1647795937,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "EndLevelRewardsButtons",
+                    "pressed": false
+                }
+            ]
+        },
+        {
+            "name": "FirstRewardText",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1462893543,
+            "ParentUID": 1145617063,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -28,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        6.5,
+                        11.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Each enemy kill heals 1 HP ",
+                    "maxTextLenght": 1191,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "FirstRewardImage",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1551914581,
+            "ParentUID": 1145617063,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -40,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        10,
+                        15
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1240646973.dds",
+                    "UID": 1240646973
+                }
+            ]
+        },
+        {
+            "name": "SecondRewardButton",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1647795937,
+            "ParentUID": 65778727,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        50,
+                        15
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/second_button.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/1618474496.dds",
+                    "Pressed_UID": 1618474496,
+                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/reward_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1717170530.dds",
+                    "Hovered_UID": 1717170530,
+                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/reward_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1937759977.dds",
+                    "Unhovered_UID": 1937759977,
+                    "Script_Name": "EndLevelRewardsButtons",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/reward_button.png",
+                    "LibraryPath": "Library\/Textures\/1937759977.dds",
+                    "UID": 1937759977
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1647795937,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 1145617063,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 2055020463,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "EndLevelRewardsButtons",
+                    "pressed": false
+                }
+            ]
+        },
+        {
+            "name": "SecondRewardText",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 477023490,
+            "ParentUID": 1647795937,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -28,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        6.5,
+                        11.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Increments +20 health",
+                    "maxTextLenght": 1191,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "SecondRewardImage",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 17796435,
+            "ParentUID": 1647795937,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -40,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        10,
+                        15
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1143141246.dds",
+                    "UID": 1143141246
+                }
+            ]
+        },
+        {
+            "name": "ThirdRewardButton",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 2055020463,
+            "ParentUID": 65778727,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        -40
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        50,
+                        15
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/reward_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/714840640.dds",
+                    "Pressed_UID": 714840640,
+                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/reward_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1717170530.dds",
+                    "Hovered_UID": 1717170530,
+                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/reward_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1937759977.dds",
+                    "Unhovered_UID": 1937759977,
+                    "Script_Name": "EndLevelRewardsButtons",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/reward_button.png",
+                    "LibraryPath": "Library\/Textures\/1937759977.dds",
+                    "UID": 1937759977
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 2055020463,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 1647795937,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 1145617063,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "EndLevelRewardsButtons",
+                    "pressed": false
+                }
+            ]
+        },
+        {
+            "name": "ThirdRewardText",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 776640442,
+            "ParentUID": 2055020463,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -28,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        6.5,
+                        11.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "The metal of the mandalorian people, second to none in the galaxy.",
+                    "maxTextLenght": 1191,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ThirdRewardImage",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1140948316,
+            "ParentUID": 2055020463,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -40,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        10,
+                        15
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1068400135.dds",
+                    "UID": 1068400135
+                }
+            ]
+        }
+    ]
+}
