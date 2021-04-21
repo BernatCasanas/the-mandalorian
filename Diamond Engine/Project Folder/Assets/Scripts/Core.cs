@@ -77,17 +77,23 @@ public class Core : DiamondComponent
     private bool skill_damageReductionDashActive = false;
 
     // Dash
-    //private float timeSinceLastDash = 0.0f;
     public float dashCD = 0.33f;
     public float dashDuration = 0.2f;
-    public float dashSpeed = 30.0f;
+    public float dashDistance = 6f;
+    private float dashSpeed = 30.0f;
+    public int maxDashNumber = 1;
+    public float betweeMultiplenDashesCD = 0.12f;
     private float dashTimer = 0.0f;
     private float dashCDTimer = 0.0f;
+    private int currentDashes = 1;
+    private float betweenDashesCDTimer = 0.0f;
     private float dashStartYPos = 0.0f;
     private bool dashAvailable = true;
+    private float timeSinceLastDash = 0.0f;
 
     // Shooting
-    public float fireRate = 0.2f;
+    public float baseFireRate = 0.2f;
+    private float currFireRate = 0f;
     public float gadgetFireRate = 0.2f;
     private float shootingTimer = 0.0f;
     private float gadgetShootTimer = 0.0f;
@@ -149,10 +155,14 @@ public class Core : DiamondComponent
 
         #region SHOOT
 
-        normalShootSpeed = shootAnimationTotalTime / fireRate;
+        baseFireRate = Math.Max(baseFireRate, 0.1f);
+
+        normalShootSpeed = shootAnimationTotalTime / baseFireRate;
         gadgetShootSkill = shootAnimationTotalTime / gadgetFireRate;
 
         myAimbot = gameObject.GetComponent<AimBot>();
+
+        currFireRate = baseFireRate;
 
         grenadesFireRate = 4.0f;
         #endregion
@@ -161,8 +171,10 @@ public class Core : DiamondComponent
 
         // Dash
         dashTimer = 0.0f;
-        //dashSpeed = dashDistance / dashDuration;
-        
+        maxDashNumber = Math.Max(maxDashNumber, 1);
+        currentDashes = maxDashNumber;
+        dashSpeed = dashDistance / dashDuration;
+
         #endregion
 
         #region OTHERS
@@ -230,12 +242,17 @@ public class Core : DiamondComponent
                 inputsList.Add(INPUT.IN_DASH_END);
         }
 
-        if (dashCDTimer > 0 && dashAvailable == false)
+        if (dashCDTimer > 0)
         {
             dashCDTimer -= Time.deltaTime;
+            betweenDashesCDTimer -= Time.deltaTime;
 
-            if (dashCDTimer <= 0)
+            if (dashCDTimer <= 0f)
+                currentDashes = maxDashNumber;
+
+            if (currentDashes > 0 && betweenDashesCDTimer <= 0f)
                 dashAvailable = true;
+
         }
 
         if (shootingTimer > 0)
@@ -265,6 +282,8 @@ public class Core : DiamondComponent
             if (skill_damageReductionDashTimer <= 0)
                 skill_damageReductionDashActive = false;
         }
+
+        timeSinceLastDash += Time.deltaTime;
     }
 
 
@@ -297,8 +316,8 @@ public class Core : DiamondComponent
                 rightTriggerPressed = false;
 
 
-            if (Input.GetKey(DEKeyCode.LSHIFT) == KeyState.KEY_REPEAT && Input.GetKey(DEKeyCode.LALT) == KeyState.KEY_REPEAT && 
-                Input.GetKey(DEKeyCode.D) == KeyState.KEY_DOWN && Time.deltaTime != 0.0f)
+            if ((Input.GetKey(DEKeyCode.LSHIFT) == KeyState.KEY_REPEAT && Input.GetKey(DEKeyCode.LALT) == KeyState.KEY_REPEAT &&
+                Input.GetKey(DEKeyCode.D) == KeyState.KEY_DOWN && Time.deltaTime != 0.0f) || Input.GetGamepadButton(DEControllerButton.BACK) == KeyState.KEY_DOWN)
             {
                 InternalCalls.CreateUIPrefab("Library/Prefabs/1871660106.prefab", new Vector3(0, 0, 0), new Quaternion(0, 0, 0), new Vector3(1, 1, 1));
             }
@@ -512,9 +531,15 @@ public class Core : DiamondComponent
 
     private void StartShooting()
     {
+        shootingTimer = GetCurrentFireRate();
+
+        if (currFireRate != shootingTimer)
+        {
+            normalShootSpeed = shootAnimationTotalTime / currFireRate;
+            currFireRate = shootingTimer;
+        }
         Animator.Play(gameObject, "Shoot", normalShootSpeed);
 
-        shootingTimer = fireRate;
         PlayParticles(PARTICLES.MUZZLE);
         if (myAimbot != null)
         {
@@ -540,25 +565,32 @@ public class Core : DiamondComponent
 
     private bool CanStopShooting()
     {
-        return shootingTimer > fireRate * 0.5 ? true : false;
+        return shootingTimer > currFireRate * 0.5 ? true : false;
     }
 
     private void StartShoot()
     {
+        inputsList.Add(INPUT.IN_SHOOT_END);
+        hasShot = true;
+
+        if(shootPoint == null)
+        {
+            Debug.Log("Shootpoint reference is null!");
+            return;
+        }
+
         Audio.StopAudio(gameObject);
         Audio.PlayAudio(shootPoint, "Play_Blaster_Shoot_Mando");
         Input.PlayHaptic(.3f, 10);
         if (hud != null)
             hud.GetComponent<HUD>().ShootSwapImage(true);
-        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1821505626.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1606118587.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         if (bullet != null)
         {
             if (skill_extraDamageActive) bullet.GetComponent<BH_Bullet>().damage = GetExtraDamageWithSkill();
             else bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
         }
             
-        inputsList.Add(INPUT.IN_SHOOT_END);
-        hasShot = true;
     }
 
 
@@ -571,6 +603,12 @@ public class Core : DiamondComponent
 
     private void EndGadgetShoot()
     {
+        if (shootPoint == null)
+        {
+            Debug.Log("Shootpoint reference is null!");
+            return;
+        }
+
         Audio.StopAudio(gameObject);
         Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot_Mando");
 
@@ -676,7 +714,10 @@ public class Core : DiamondComponent
     private void EndDash()
     {
         dashCDTimer = dashCD;
+        betweenDashesCDTimer = betweeMultiplenDashesCD;
         dashAvailable = false;
+        --currentDashes;
+        timeSinceLastDash = 0.01f;
         //Debug.Log(dashCDTimer.ToString());
         //Debug.Log(dashAvaliable.ToString());
 
@@ -787,6 +828,20 @@ public class Core : DiamondComponent
     private bool IsJoystickMoving()
     {
         return gamepadInput.magnitude > deathZone;
+    }
+
+    private float GetCurrentFireRate()
+    {
+        float ret = baseFireRate;
+
+        ret = (float)(Math.Log(timeSinceLastDash * fireRateAfterDashRecoverRatio) - Math.Log(0.01f)) / (3f / baseFireRate);
+
+        ret = Math.Min(ret, baseFireRate * fireRateMultCap);
+        ret = Math.Max(ret, baseFireRate / fireRateMultCap);
+
+        Debug.Log("FireRate: " + ret.ToString());
+
+        return ret;
     }
 
     #endregion
