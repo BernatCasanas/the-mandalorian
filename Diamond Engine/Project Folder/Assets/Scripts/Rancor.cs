@@ -69,7 +69,7 @@ public class Rancor : DiamondComponent
     public float healthPoints = 60.0f;          //IF INITAL HEALTH IS CHANGED, CHANGE MAX HEALTH AS WELL!
     public float maxHealthPoints = 60.0f;
 
-    public int attackProbability = 66;  //FROM 1 TO A 100
+    public int attackProbability = 80;  //FROM 1 TO A 100
     public int shortFollowProbability = 90; //FROM THE PREVIOS VALUE TO HERE
 
     public float meleeRange = 14.0f;
