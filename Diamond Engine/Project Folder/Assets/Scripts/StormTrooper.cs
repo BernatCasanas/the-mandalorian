@@ -741,17 +741,17 @@ public class StormTrooper : Enemy
         else if (collidedGameObject.CompareTag("Grenade"))
         {
             //healthPoints -= collidedGameObject.GetComponent<smallGrenade>().damage;
-            healthPoints -= 5; //TODO: Hardcoded value, talk with adria
+          //  healthPoints -= 5; //TODO: Hardcoded value, talk with adria
 
             if (Core.instance.hud != null)
             {
                 Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 0.5f);
             }
 
-            if (currentState != STATE.DIE && healthPoints <= 0.0f)
-            {
-                inputsList.Add(INPUT.IN_DIE);
-            }
+            //if (currentState != STATE.DIE && healthPoints <= 0.0f)
+            //{
+            //    inputsList.Add(INPUT.IN_DIE);
+            //}
 
             if (skill_slowDownEnabled)
             {

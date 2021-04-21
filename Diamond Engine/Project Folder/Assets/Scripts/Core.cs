@@ -614,27 +614,30 @@ public class Core : DiamondComponent
 
         Input.PlayHaptic(2f, 30);
 
-        Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
-        Quaternion rotation = Quaternion.RotateAroundAxis(Vector3.up, 0.383972f);
+        //Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
+        //Quaternion rotation = Quaternion.RotateAroundAxis(Vector3.up, 0.383972f);
 
         //TODO: Some of this is hardcoded, will change it once I have all the Mando's new numbers. Besis, Alex <3
 
-        bigGrenade grenadeComp = InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation * rotation, scale).GetComponent<bigGrenade>();
-        
-        if(grenadeComp != null)
-        {
-            Vector3 targetPos = grenadeComp.gameObject.transform.globalPosition + grenadeComp.gameObject.transform.GetForward() * 1.9f;
-            grenadeComp.InitGrenade(targetPos, 0.204f, 10);
-        }
-        
-        rotation = Quaternion.RotateAroundAxis(Vector3.up, -0.383972f);
-        grenadeComp = InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation * rotation, scale).GetComponent<bigGrenade>();
+        // bigGrenade grenadeComp = InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation * rotation, scale).GetComponent<bigGrenade>();
 
-        if (grenadeComp != null)
-        {
-            Vector3 targetPos = grenadeComp.gameObject.transform.globalPosition + grenadeComp.gameObject.transform.GetForward() * 1.9f;
-            grenadeComp.InitGrenade(targetPos, 0.204f, 10);
-        }
+        //if(grenadeComp != null)
+        //{
+        //    Vector3 targetPos = grenadeComp.gameObject.transform.globalPosition + grenadeComp.gameObject.transform.GetForward() * 1.9f;
+        //    grenadeComp.InitGrenade(targetPos, 0.204f, 10);
+        //}
+
+        //rotation = Quaternion.RotateAroundAxis(Vector3.up, -0.383972f);
+        //grenadeComp = InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation * rotation, scale).GetComponent<bigGrenade>();
+
+        //if (grenadeComp != null)
+        //{
+        //    Vector3 targetPos = grenadeComp.gameObject.transform.globalPosition + grenadeComp.gameObject.transform.GetForward() * 1.9f;
+        //    grenadeComp.InitGrenade(targetPos, 0.204f, 10);
+        //}
+
+        Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
+        InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation, scale);
 
     }
 
