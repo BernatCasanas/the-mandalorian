@@ -108,6 +108,36 @@ public static class PlayerResources
         return resourceLeft;
     }
 
+    public static int AddResourceByValue(RewardType type, int num)
+    {
+        int resourceLeft = 0;
+
+        switch (type)
+        {
+            case RewardType.REWARD_BESKAR:
+                beskarCounter += num;
+                resourceLeft = beskarCounter;
+                break;
+
+            case RewardType.REWARD_MACARON:
+                macaronCounter += num;
+                resourceLeft = macaronCounter;
+                break;
+
+            case RewardType.REWARD_SCRAP:
+                scrapCounter += num;
+                resourceLeft = scrapCounter;
+                break;
+
+            case RewardType.REWARD_MILK:
+                milkCounter += num;
+                resourceLeft = milkCounter;
+                break;
+        }
+
+        return resourceLeft;
+    }
+
     public static int SubstractResource(RewardType type, int total_to_substract, Type boonType = null)
     {
         int resourceLeft = 0;
