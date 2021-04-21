@@ -42,7 +42,7 @@ public:
 #ifndef STANDALONE
 	void OnGUI() override;
 
-	void SaveScene(const char* name);
+	void SaveToJson(const char* name);
 #endif // !STANDALONE
 	void LoadScene(const char* name);
 
@@ -57,6 +57,7 @@ public:
 	int holdUID;
 
 	GameObject* root;
+	int prefabToOverride;
 	std::vector<GameObject*> destroyList;
 	std::multimap<uint, SerializedField*> referenceMap;
 	std::multimap<uint, ActionToRealize*> navigationReferenceMap;

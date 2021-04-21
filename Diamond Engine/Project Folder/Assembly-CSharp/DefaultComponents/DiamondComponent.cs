@@ -50,6 +50,10 @@ namespace DiamondEngine
             { typeof(Transform2D), ComponentType.TRANSFORM_2D  },
             { typeof(NavMeshAgent), ComponentType.NAVMESHAGENT  },
             { typeof(Button), ComponentType.BUTTON  },
+            { typeof(Collider), ComponentType.COLLIDER},
+            { typeof(BoxCollider), ComponentType.BOXCOLLIDER},
+            { typeof(MeshCollider), ComponentType.MESHCOLLIDER},
+            { typeof(SphereCollider), ComponentType.SPHERECOLLIDER},
         };
 
         public DiamondComponent()
@@ -66,6 +70,15 @@ namespace DiamondEngine
         public ComponentType GetComponentType()
         {
             return type;
+        }
+
+        public extern bool active
+        {
+            [MethodImplAttribute(MethodImplOptions.InternalCall)]
+            get;
+
+            [MethodImplAttribute(MethodImplOptions.InternalCall)]
+            set;
         }
     }
 }
