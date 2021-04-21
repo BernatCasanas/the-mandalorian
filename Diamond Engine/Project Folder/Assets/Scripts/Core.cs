@@ -133,6 +133,13 @@ public class Core : DiamondComponent
     private static float bulletDamage = 9f;
     private float bulletDamageDefault = 9f;
 
+    //Telemetry
+    int numberOfShots = 0;
+    int damageTaken = 0;
+    int timesFellOfMap = 0;
+    float distanceMoved = 0;
+    
+
     private void Start()
     {
         #region VARIABLES WITH DEPENDENCIES
@@ -256,6 +263,7 @@ public class Core : DiamondComponent
             {
                 inputsList.Add(INPUT.IN_SHOOT);
                 Debug.Log("In shoot");
+                numberOfShots += 1;
             }
         }
 
@@ -700,6 +708,7 @@ public class Core : DiamondComponent
         StopPlayer();
         //gameObject.AddForce(gameObject.transform.GetForward().normalized * dashSpeed);
         gameObject.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.GetForward().normalized * dashSpeed * Time.deltaTime;
+        distanceMoved += dashSpeed * Time.deltaTime;
     }
 
     private void EndDash()
@@ -745,6 +754,7 @@ public class Core : DiamondComponent
 
         //gameObject.SetVelocity(gameObject.transform.GetForward() * movementSpeed);
         gameObject.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.GetForward().normalized * movementSpeed * Time.deltaTime;
+        distanceMoved += movementSpeed * Time.deltaTime;
     }
     private void MoveEnd()
     {
@@ -851,8 +861,12 @@ public class Core : DiamondComponent
 
             if (bulletScript != null)
             {
-                if (skill_damageReductionDashActive)gameObject.GetComponent<PlayerHealth>().TakeDamage((int)(bulletScript.damage * (1.0f - skill_damageReductionDashAmount)));
-                else gameObject.GetComponent<PlayerHealth>().TakeDamage((int)bulletScript.damage);
+                int damageFromBullet = 0;
+                if (skill_damageReductionDashActive) damageFromBullet = (int)(bulletScript.damage * (1.0f - skill_damageReductionDashAmount));
+                else damageFromBullet = (int)bulletScript.damage;
+
+                gameObject.GetComponent<PlayerHealth>().TakeDamage(damageFromBullet);
+                damageTaken += damageFromBullet;
             }
                 
         }
@@ -864,8 +878,13 @@ public class Core : DiamondComponent
 
             if (damage != 0)
             {
-                if (skill_damageReductionDashActive) gameObject.GetComponent<PlayerHealth>().TakeDamage((int)(damage * (1.0f - skill_damageReductionDashAmount)));                
-                else gameObject.GetComponent<PlayerHealth>().TakeDamage((int)damage);
+
+                int damageFromEnemy = 0;
+                if (skill_damageReductionDashActive) damageFromEnemy = (int)(damage * (1.0f - skill_damageReductionDashAmount));                
+                else damageFromEnemy = (int)damage;
+
+                gameObject.GetComponent<PlayerHealth>().TakeDamage(damageFromEnemy);
+                damageTaken += damageFromEnemy;
             }
         }
     }
@@ -897,6 +916,8 @@ public class Core : DiamondComponent
             }
 
             myHealth.TakeDamage(finalHealthSubstract); //TODO whats the right amount we have to substract?
+            damageTaken += finalHealthSubstract;
+            timesFellOfMap += 1;
 
         }
     }
