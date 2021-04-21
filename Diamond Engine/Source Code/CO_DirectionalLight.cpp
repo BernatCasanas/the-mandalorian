@@ -229,10 +229,13 @@ void C_DirectionalLight::PushLightUniforms(ResourceMaterial* material, int light
 	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
 	glUniform1i(modelLoc, calculateShadows);
 
-	glActiveTexture(GL_TEXTURE0 + 5);
-	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "shadowMap");
-	glUniform1i(modelLoc, 5);
-	glBindTexture(GL_TEXTURE_2D, depthMap);
+	if (calculateShadows == true)
+	{
+		glActiveTexture(GL_TEXTURE0 + 5);
+		modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "shadowMap");
+		glUniform1i(modelLoc, 5);
+		glBindTexture(GL_TEXTURE_2D, depthMap);
+	}
 }
 
 void C_DirectionalLight::EndPass()
