@@ -1,0 +1,111 @@
+{
+    "assets_path": "Assets\/Prefabs\/StormTrooperBullet.prefab",
+    "Game Objects": [
+        {
+            "name": "StormTrooperBullet",
+            "tag": "StormTrooperBullet",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1482372115,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -21.669652938842773,
+                0,
+                0
+            ],
+            "Rotation": [
+                1.3410321741957887e-09,
+                -0.72228002548217773,
+                1.3410321741957887e-09,
+                0.6916007399559021
+            ],
+            "Scale": [
+                0.18304650485515594,
+                0.076499998569488525,
+                1.4558422565460205
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/965117995.mmh",
+                    "UID": 965117995,
+                    "alternColor": [
+                        1,
+                        0,
+                        6.008148193359375e-05
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "BH_Bullet",
+                    "speed": 20,
+                    "maxLifeTime": 10,
+                    "currentLifeTime": 0.74599999189376831,
+                    "range_squared": 0,
+                    "use_range_instead_of_time": true,
+                    "yVel": 0,
+                    "damage": 5
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/571028171.mat",
+                    "MaterialUID": 571028171
+                }
+            ]
+        }
+    ]
+}
