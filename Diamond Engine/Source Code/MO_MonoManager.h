@@ -25,6 +25,7 @@ union FieldValue
 	bool bValue;
 	char strValue[50];
 	GameObject* goValue;
+	uint goUID;
 };
 struct SerializedField
 {

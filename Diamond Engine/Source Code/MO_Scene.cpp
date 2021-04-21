@@ -92,6 +92,8 @@ update_status M_Scene::PreUpdate(float dt)
 	if (prefabToOverride != 0)
 	{		
 		root->OverrideGameObject(prefabToOverride);
+		LoadScriptsData();
+		LoadNavigationData();
 		prefabToOverride = 0;
 	}
 
@@ -161,7 +163,8 @@ update_status M_Scene::Update(float dt)
 			if (!sceneDir.empty())
 			{
 				App->moduleScene->SaveToJson(sceneDir.c_str());
-				App->moduleResources->NeedsDirsUpdate(App->moduleResources->assetsRoot);
+				App->moduleResources->ImportFile(sceneDir.c_str(), Resource::Type::SCENE);
+				//App->moduleResources->NeedsDirsUpdate(App->moduleResources->assetsRoot);
 				strcpy(current_scene, sceneDir.c_str());
 
 				std::string scene_name;
@@ -172,7 +175,8 @@ update_status M_Scene::Update(float dt)
 		else
 		{
 			App->moduleScene->SaveToJson(current_scene);
-			App->moduleResources->NeedsDirsUpdate(App->moduleResources->assetsRoot);
+			App->moduleResources->ImportFile(current_scene, Resource::Type::SCENE);
+			//App->moduleResources->NeedsDirsUpdate(App->moduleResources->assetsRoot);
 		}
 	}
 

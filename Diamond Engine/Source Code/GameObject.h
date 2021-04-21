@@ -39,7 +39,6 @@ public:
 	void DisableTopDown();
 
 	bool IsRoot();
-
 	void Destroy();
 
 	void SaveToJson(JSON_Array* _goArray, bool saveAllData = true);
@@ -59,10 +58,11 @@ public:
 
 	void RemoveChild(GameObject*);
 	void CollectChilds(std::vector<GameObject*>& vector);
+	void RemoveCSReference(SerializedField* fieldToRemove);
 
 	bool CompareTag(const char* _tag);
 
-	GameObject* GetChild(std::string childName);
+	GameObject* GetChild(std::string& childName);
 
 	template<typename A>
 	A* GetComponent()
