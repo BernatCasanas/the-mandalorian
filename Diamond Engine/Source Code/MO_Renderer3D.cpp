@@ -589,7 +589,11 @@ void ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray)
 		if (ray.Intersects((*i)->globalAABB, nHit, fHit))
 			canSelect[nHit] = (*i);
 	}
-
+	for (std::vector<C_MeshRenderer*>::iterator i = renderQueuePostStencil.begin(); i != renderQueuePostStencil.end(); ++i)
+	{
+		if (ray.Intersects((*i)->globalAABB, nHit, fHit))
+			canSelect[nHit] = (*i);
+	}
 
 	//Add all meshes with a triangle hit and store the distance from the ray to the triangle, then pick the closest one
 	std::map<float, C_MeshRenderer*> distMap;
@@ -994,6 +998,15 @@ bool ModuleRenderer3D::IsWalkable(float3 pointToCheck)
 	float fHit = 0;
 
 	for (std::vector<C_MeshRenderer*>::iterator i = renderQueue.begin(); i != renderQueue.end(); ++i)
+	{
+		if (walkablePoint.Intersects((*i)->globalAABB, nHit, fHit))
+		{
+			//walkablePoints.push_back(walkablePoint);
+			return true;
+		}
+	}
+
+	for (std::vector<C_MeshRenderer*>::iterator i = renderQueuePostStencil.begin(); i != renderQueuePostStencil.end(); ++i)
 	{
 		if (walkablePoint.Intersects((*i)->globalAABB, nHit, fHit))
 		{
