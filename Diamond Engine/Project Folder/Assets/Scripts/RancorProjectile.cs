@@ -3,7 +3,7 @@ using DiamondEngine;
 
 public class RancorProjectile : DiamondComponent
 {
-	public float speed = 5.5f;
+	public float speed = 30.0f;
 	public float lifeTime = 20.0f;
 	public int damage = 10;
 
@@ -31,7 +31,11 @@ public class RancorProjectile : DiamondComponent
 			PlayerHealth health = triggeredGameObject.GetComponent<PlayerHealth>();
             if (health != null)
 				health.TakeDamage(damage);
-			InternalCalls.Destroy(gameObject);
 		}
+    }
+	public void OnCollisionEnter(GameObject collidedGameObject)
+	{
+		InternalCalls.Destroy(gameObject);
+		Debug.Log("PUTA RATA");
     }
 }

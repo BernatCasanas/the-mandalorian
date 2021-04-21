@@ -139,6 +139,9 @@ public class Rancor : DiamondComponent
     public float loadRushTime = 0.4f;
     private float loadRushTimer = 0.0f;
 
+    private float rushRecoveryTimer = 0.0f;
+    private float rushRecoveryTime = 0.0f;
+
     public float rushSpeed = 15.0f;
     private float rushTime = 0.0f;
     private float rushTimer = 0.0f;
@@ -176,6 +179,8 @@ public class Rancor : DiamondComponent
         roarTime = Animator.GetAnimationDuration(gameObject, "RN_Roar") - 0.016f;
 
         projectileTime = Animator.GetAnimationDuration(gameObject, "RN_ProjectileThrow") - 0.016f;
+
+        rushRecoveryTime = Animator.GetAnimationDuration(gameObject, "RN_RushRecover") - 0.016f;
 
         handSlamTime = Animator.GetAnimationDuration(gameObject, "RN_HandSlam") - 0.016f;
 
@@ -308,6 +313,16 @@ public class Rancor : DiamondComponent
             {
                 inputsList.Add(RANCOR_INPUT.IN_ROAR_END);
                 Debug.Log("finishing roar");
+            }
+        }
+
+        if (rushRecoveryTimer > 0)
+        {
+            rushRecoveryTimer -= Time.deltaTime;
+
+            if (rushRecoveryTimer <= 0)
+            {
+                inputsList.Add(RANCOR_INPUT.IN_RUSH_STUN_END);
             }
         }
     }
@@ -1024,6 +1039,7 @@ public class Rancor : DiamondComponent
 
     private void StartRushStun()
     {
+        rushRecoveryTimer = rushRecoveryTime;
         rushStunTimer = rushStunDuration;
         Animator.Play(gameObject, "RN_RushRecover");
         Audio.PlayAudio(gameObject, "Play_Rancor_Recovery");
