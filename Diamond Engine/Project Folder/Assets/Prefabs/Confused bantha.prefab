@@ -1,0 +1,187 @@
+{
+    "assets_path": "Assets\/Prefabs\/Confused bantha.prefab",
+    "Game Objects": [
+        {
+            "name": "Confused bantha",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1585595774,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -1.0816488265991211,
+                3.0648703575134277,
+                1.8330163955688477
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Stars",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1513991266,
+            "ParentUID": 1585595774,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 1.9930000305175781,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1366742644.dds",
+                            "texUID": 1366742644,
+                            "paEmitterName": "Stars",
+                            "paLifeTime": [
+                                0.69999998807907104,
+                                1.5
+                            ],
+                            "paSize": [
+                                0.10000000149011612,
+                                0.30000001192092896
+                            ],
+                            "paColor": [
+                                1,
+                                0.73809516429901123,
+                                0,
+                                1
+                            ],
+                            "paPerSec": 10,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        360,
+                                        0
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        -4,
+                                        4
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 0.20000000298023224,
+                                    "paShapeRandSpeed": 1,
+                                    "PaShapeAreaDimensions": [
+                                        1,
+                                        0.5,
+                                        1
+                                    ],
+                                    "PaShapeSphereDirection": false,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 0,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/2134419253.dds",
+                            "texUID": 2134419253,
+                            "paEmitterName": "PExtra",
+                            "paLifeTime": [
+                                0.5,
+                                1.5
+                            ],
+                            "paSize": [
+                                0.05000000074505806,
+                                0.05000000074505806
+                            ],
+                            "paColor": [
+                                1,
+                                0.79235231876373291,
+                                0.39855074882507324,
+                                1
+                            ],
+                            "paPerSec": 10,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 0.20000000298023224,
+                                    "paShapeRandSpeed": 1,
+                                    "PaShapeSphereRadius": 0.5,
+                                    "PaShapeSphereDirection": false,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 1,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        }
+    ]
+}
