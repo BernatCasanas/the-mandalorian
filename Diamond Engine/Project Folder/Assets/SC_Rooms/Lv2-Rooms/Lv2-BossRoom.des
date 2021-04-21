@@ -1,19 +1,19 @@
 {
     "NavMesh": 942369955,
     "EditorCameraPosition": [
-        -12.956077575683594,
-        25.990200042724609,
-        -6.2312831878662109
+        1.5562193393707275,
+        11.955269813537598,
+        -13.520219802856445
     ],
     "EditorCameraZ": [
-        0.58591389656066895,
-        -0.79522478580474854,
-        -0.1559569239616394
+        0.043886929750442505,
+        -0.67144298553466797,
+        0.73975563049316406
     ],
     "EditorCameraY": [
-        0.76845753192901611,
-        0.60631477832794189,
-        -0.20458588004112244
+        0.039896298199892044,
+        0.74105626344680786,
+        0.67025661468505859
     ],
     "tags": [],
     "layers": [],
@@ -1566,6 +1566,11 @@
                     "forceRegenerationSpeed": 0,
                     "skillPushForceCost": 0,
                     "skillWallForceCost": 0,
+                    "skill_fasterForceRegenerationActive": true,
+                    "skill_fasterForceRegenerationHealthStep": 0,
+                    "skill_fasterForceRegenerationForceRegen": 0,
+                    "skill_healActive": true,
+                    "skill_healAmount": 0,
                     "skillPushDuration": 1
                 }
             ]
@@ -11050,6 +11055,9 @@
                     "rotationSpeed": 2,
                     "movementSpeed": 5.5,
                     "mouseSens": 1,
+                    "skill_extraDamageActive": true,
+                    "skill_extraDamageHPStep": 0,
+                    "skill_extraDamageAmount": 0,
                     "dashCD": 0.33000001311302185,
                     "dashDuration": 0.20000000298023224,
                     "dashSpeed": 30,
@@ -11057,6 +11065,7 @@
                     "gadgetFireRate": 0.20000000298023224,
                     "fireRateAfterDashRecoverRatio": 1.75,
                     "fireRateMultCap": 2,
+                    "grenadesFireRate": 0,
                     "lockInputs": true,
                     "background": 179435110,
                     "pause": 928993896,
@@ -11126,6 +11135,7 @@
                     "<currMaxHealth>k__BackingField": 0,
                     "<currHealth>k__BackingField": 0,
                     "<healWhenKillingAnEnemy>k__BackingField": 0,
+                    "<skill_chanceToAvoidDamage>k__BackingField": 0,
                     "character_mesh": 494821367,
                     "damage_screen": 551698116
                 },
@@ -14423,6 +14433,1407 @@
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Wampa",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                3.0226202011108398,
+                0,
+                -4.8577651977539063
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1420553443,
+            "PrefabID": 1176866319,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 329214743,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Wampa",
+                    "slerpSpeed": 5,
+                    "probFollow": 60,
+                    "probWander": 40,
+                    "projectilePoint": 139376165,
+                    "distanceProjectile": 15,
+                    "wanderRange": 7.5,
+                    "healthPoints": 1920,
+                    "speed": 3.5,
+                    "fastRushSpeed": 14,
+                    "slowRushSpeed": 7,
+                    "fastChasingTime": 0.5,
+                    "slowChasingTime": 3.5,
+                    "shootingTime": 1,
+                    "projectileAngle": 30,
+                    "projectileRange": 6,
+                    "projectileDamage": 10,
+                    "rushDamage": 15
+                }
+            ]
+        },
+        {
+            "name": "Wampa_Rig",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1026653116,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1420553443,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Wampa",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -0.094962596893310547,
+                -2.6807910558090953e-08,
+                -0.35657739639282227
+            ],
+            "Rotation": [
+                -4.2488004226015619e-08,
+                -0.99961888790130615,
+                -4.2488004226015619e-08,
+                0.027606649324297905
+            ],
+            "Scale": [
+                0.99999701976776123,
+                1,
+                0.99999701976776123
+            ],
+            "UID": 1918365935,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1026653116,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/143174166.mmh",
+                    "UID": 143174166,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Wampa",
+                    "slerpSpeed": 5,
+                    "probFollow": 60,
+                    "probWander": 40,
+                    "distanceProjectile": 15,
+                    "wanderRange": 7.5,
+                    "healthPoints": 1920,
+                    "speed": 3.5,
+                    "fastRushSpeed": 14,
+                    "slowRushSpeed": 7,
+                    "fastChasingTime": 0.5,
+                    "slowChasingTime": 3.5,
+                    "shootingTime": 1,
+                    "projectileAngle": 30,
+                    "projectileRange": 6,
+                    "projectileDamage": 10,
+                    "rushDamage": 15
+                }
+            ]
+        },
+        {
+            "name": "Master_CTRL",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 104302764,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1026653116,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Hips",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.0086096925660967827,
+                1.8280470371246338,
+                0.13641603291034698
+            ],
+            "Rotation": [
+                -0.014105846174061298,
+                0.024298619478940964,
+                -0.27249065041542053,
+                0.96174812316894531
+            ],
+            "Scale": [
+                0.99999988079071045,
+                0.99999994039535522,
+                1
+            ],
+            "UID": 1020521937,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1026653116,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Left_Leg",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.50809156894683838,
+                0.052463054656982422,
+                0.0020410818979144096
+            ],
+            "Rotation": [
+                0.14804771542549133,
+                -0.097872897982597351,
+                -0.37962579727172852,
+                0.90795767307281494
+            ],
+            "Scale": [
+                0.99999994039535522,
+                0.99999994039535522,
+                0.99999994039535522
+            ],
+            "UID": 261314882,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1020521937,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_Knee",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.63812136650085449,
+                -0.091169111430644989,
+                0.032011527568101883
+            ],
+            "Rotation": [
+                -0.71073365211486816,
+                0.17349426448345184,
+                0.0071856388822197914,
+                0.68169331550598145
+            ],
+            "Scale": [
+                0.99999994039535522,
+                0.99999994039535522,
+                1
+            ],
+            "UID": 1669425985,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 261314882,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_Foot",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.77731150388717651,
+                -0.0044422708451747894,
+                -0.019361633807420731
+            ],
+            "Rotation": [
+                0.73355138301849365,
+                -0.66632729768753052,
+                0.062740512192249298,
+                0.11821185052394867
+            ],
+            "Scale": [
+                0.99999994039535522,
+                0.99999994039535522,
+                1
+            ],
+            "UID": 996558751,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1669425985,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_Tiptoe",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.44074758887290955,
+                -5.5511151231257827e-17,
+                -5.5511151231257827e-16
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 515136095,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 996558751,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Spine",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -0.089575499296188354,
+                0.13987122476100922,
+                -0.01217986736446619
+            ],
+            "Rotation": [
+                -0.023844076320528984,
+                0.013343618251383305,
+                0.87417614459991455,
+                0.48483982682228088
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1313165095,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1020521937,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Spine1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.18918177485466003,
+                -2.6497901095545728e-16,
+                -2.7755575615628914e-17
+            ],
+            "Rotation": [
+                0.68728125095367432,
+                -0.0076561952009797096,
+                0.0017067193984985352,
+                0.72634905576705933
+            ],
+            "Scale": [
+                1,
+                0.99999994039535522,
+                0.99999994039535522
+            ],
+            "UID": 1193258911,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1313165095,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Spine2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.18518391251564026,
+                2.2204460492503131e-16,
+                -2.0036056147532122e-16
+            ],
+            "Rotation": [
+                2.1197140085860156e-05,
+                -0.0019951916765421629,
+                0.0038926969282329082,
+                0.99999046325683594
+            ],
+            "Scale": [
+                0.99999994039535522,
+                1,
+                0.99999994039535522
+            ],
+            "UID": 473758536,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1193258911,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Chest",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.44085684418678284,
+                1.3322676295501878e-15,
+                -7.832276494035284e-16
+            ],
+            "Rotation": [
+                0.034996356815099716,
+                0.0045492616482079029,
+                -0.061513692140579224,
+                0.99748218059539795
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 341700583,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 473758536,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Neck",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.22293436527252197,
+                -8.8817841970012523e-16,
+                3.2417644957316583e-17
+            ],
+            "Rotation": [
+                -0.72813910245895386,
+                -0.067306734621524811,
+                0.053357921540737152,
+                0.6800265908241272
+            ],
+            "Scale": [
+                1,
+                0.99999994039535522,
+                0.99999994039535522
+            ],
+            "UID": 1859931224,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 341700583,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Head",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.63255554437637329,
+                8.3266726846886741e-17,
+                6.8695049648681561e-16
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1302799298,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1859931224,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "joint1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.21157011389732361,
+                0.0059650023467838764,
+                0.31109198927879333
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1070611366,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1859931224,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Left_Shoulder",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.066208317875862122,
+                -0.043497484177350998,
+                0.28364810347557068
+            ],
+            "Rotation": [
+                -0.42853549122810364,
+                -0.44565320014953613,
+                -0.46631348133087158,
+                0.6326945424079895
+            ],
+            "Scale": [
+                1,
+                0.99999988079071045,
+                1
+            ],
+            "UID": 24008563,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 341700583,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Left_Arm",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.2951856255531311,
+                2.2204460492503131e-15,
+                2.2204460492503131e-16
+            ],
+            "Rotation": [
+                -0.0082283392548561096,
+                -0.048586815595626831,
+                -0.014744007028639317,
+                0.99867624044418335
+            ],
+            "Scale": [
+                0.99999988079071045,
+                0.99999988079071045,
+                0.99999994039535522
+            ],
+            "UID": 757887257,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 24008563,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_Elbow",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.65989619493484497,
+                0,
+                1.0408340855860843e-16
+            ],
+            "Rotation": [
+                -0.0082342531532049179,
+                -0.16987970471382141,
+                -0.051317363977432251,
+                0.9840933084487915
+            ],
+            "Scale": [
+                0.99999994039535522,
+                1,
+                0.99999994039535522
+            ],
+            "UID": 1195512807,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 757887257,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_Wrist",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.73293799161911011,
+                -3.5527136788005009e-15,
+                -4.4408920985006262e-16
+            ],
+            "Rotation": [
+                0.033384133130311966,
+                -0.22524955868721008,
+                -0.12921018898487091,
+                0.96511811017990112
+            ],
+            "Scale": [
+                0.99999994039535522,
+                1,
+                0.99999994039535522
+            ],
+            "UID": 625945721,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1195512807,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_Thumb",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.29201811552047729,
+                1.7763568394002505e-15,
+                -1.1102230246251565e-15
+            ],
+            "Rotation": [
+                -0.00094224727945402265,
+                0.0038661262951791286,
+                0.028922664001584053,
+                0.99957382678985596
+            ],
+            "Scale": [
+                1,
+                0.99999994039535522,
+                1
+            ],
+            "UID": 81393170,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 625945721,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_T_End",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.26050817966461182,
+                4.4408920985006262e-16,
+                6.6613381477509392e-16
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1612027784,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 81393170,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_Palm",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.14421434700489044,
+                0.084805801510810852,
+                -0.096044108271598816
+            ],
+            "Rotation": [
+                -0.02713349275290966,
+                0.25406676530838013,
+                0.15554875135421753,
+                0.95421093702316284
+            ],
+            "Scale": [
+                1,
+                1,
+                0.99999994039535522
+            ],
+            "UID": 1343473997,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 625945721,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_P_Middle",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.19554170966148376,
+                4.4408920985006262e-16,
+                1.1657341758564144e-15
+            ],
+            "Rotation": [
+                -0.0083624478429555893,
+                0.050988655537366867,
+                -0.21575163304805756,
+                0.97508025169372559
+            ],
+            "Scale": [
+                0.99999994039535522,
+                1,
+                0.99999994039535522
+            ],
+            "UID": 352900052,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1343473997,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_P_End",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.15389819443225861,
+                -1.3322676295501878e-15,
+                -1.8735013540549517e-16
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 2041598612,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 352900052,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Right_Shoulder",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.073677986860275269,
+                -0.082148179411888123,
+                -0.27304819226264954
+            ],
+            "Rotation": [
+                0.38851335644721985,
+                0.40635460615158081,
+                -0.49167934060096741,
+                0.664969801902771
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 489338416,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 341700583,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Right_Arm",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.29518476128578186,
+                -2.6645352591003757e-15,
+                -7.0776717819853729e-16
+            ],
+            "Rotation": [
+                0.011685213074088097,
+                0.049546509981155396,
+                -0.016550527885556221,
+                0.99856632947921753
+            ],
+            "Scale": [
+                1,
+                1,
+                0.99999994039535522
+            ],
+            "UID": 549284328,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 489338416,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_Elbow",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.65989822149276733,
+                8.8817841970012523e-16,
+                -3.3306690738754696e-16
+            ],
+            "Rotation": [
+                0.0082392795011401176,
+                0.16809350252151489,
+                -0.050772838294506073,
+                0.98442816734313965
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1482897559,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 549284328,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_Wrist",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.73293972015380859,
+                -2.2204460492503131e-15,
+                5.5511151231257827e-17
+            ],
+            "Rotation": [
+                -0.037044908851385117,
+                0.22520074248313904,
+                -0.13019222021102905,
+                0.96486395597457886
+            ],
+            "Scale": [
+                0.99999988079071045,
+                1,
+                0.99999994039535522
+            ],
+            "UID": 534625614,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1482897559,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_Thumb",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.29201996326446533,
+                -3.5527136788005009e-15,
+                1.1102230246251565e-15
+            ],
+            "Rotation": [
+                0.00094266852829605341,
+                -0.0038674930110573769,
+                0.028932061046361923,
+                0.9995734691619873
+            ],
+            "Scale": [
+                1,
+                1,
+                0.99999994039535522
+            ],
+            "UID": 983302490,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 534625614,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_T_End",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.26050886511802673,
+                8.8817841970012523e-16,
+                2.2204460492503131e-16
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1018957224,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 983302490,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_Palm",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.14420908689498901,
+                0.084805622696876526,
+                0.096040785312652588
+            ],
+            "Rotation": [
+                0.027135509997606277,
+                -0.2540690004825592,
+                0.15556336939334869,
+                0.9542078971862793
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 846097106,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 534625614,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_P_Middle",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.19554735720157623,
+                -8.8817841970012523e-16,
+                -1.27675647831893e-15
+            ],
+            "Rotation": [
+                0.0083625521510839462,
+                -0.05098704993724823,
+                -0.2157665491104126,
+                0.97507703304290771
+            ],
+            "Scale": [
+                1,
+                0.99999994039535522,
+                0.99999994039535522
+            ],
+            "UID": 650179616,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 846097106,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_P_End",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.153891921043396,
+                3.5527136788005009e-15,
+                3.2612801348363973e-16
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1494734070,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 650179616,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Right_Leg",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                -0.27353957295417786,
+                -0.42870360612869263,
+                -0.047988604754209518
+            ],
+            "Rotation": [
+                0.78583335876464844,
+                -0.48870626091957092,
+                -0.17428195476531982,
+                0.33653849363327026
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 2118121144,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1020521937,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_Knee",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.64539521932601929,
+                -2.2204460492503131e-16,
+                5.5511151231257827e-17
+            ],
+            "Rotation": [
+                0.95654064416885376,
+                -0.16784550249576569,
+                0.018196087330579758,
+                0.23775386810302734
+            ],
+            "Scale": [
+                0.99999988079071045,
+                0.99999994039535522,
+                1
+            ],
+            "UID": 157610581,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 2118121144,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_Foot",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.77469414472579956,
+                -0.015069856308400631,
+                -0.065035626292228699
+            ],
+            "Rotation": [
+                0.73815375566482544,
+                -0.65822392702102661,
+                0.070346526801586151,
+                0.13008345663547516
+            ],
+            "Scale": [
+                0.99999994039535522,
+                0.99999988079071045,
+                0.99999994039535522
+            ],
+            "UID": 1512307278,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 157610581,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_Tiptoe",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.43973895907402039,
+                -0.00040903146145865321,
+                0.029802273958921432
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1516756522,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1512307278,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "SpawnProjectiledwdd",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                3.8216471672058105,
+                3.0305037498474121,
+                5.3717637062072754
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 139376165,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1420553443,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Light",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0,
+                29.762351989746094,
+                -12.648305892944336
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 2039927878,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 329214743,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 23,
+                    "Active": true,
+                    "orthoSize": [
+                        10,
+                        10
+                    ],
+                    "lightColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }
