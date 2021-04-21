@@ -16,6 +16,98 @@
   "MediaFilesNotInAnyBank": [],
   "SoundBanks": [
    {
+    "Id": "225682233",
+    "Language": "SFX",
+    "Hash": "499699564",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Skytrooper",
+    "ShortName": "Skytrooper",
+    "Path": "Skytrooper.bnk",
+    "IncludedEvents": [
+     {
+      "Id": "192623117",
+      "Name": "Pause_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Pause_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "725663949",
+      "Name": "Play_Skytrooper_Dash",
+      "ObjectPath": "\\Events\\Default Work Unit\\Skytrooper\\Play_Skytrooper_Dash",
+      "DurationType": "OneShot",
+      "DurationMin": "0.587868",
+      "DurationMax": "0.587868",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "125444133",
+        "Language": "SFX",
+        "ShortName": "Skytrooper dash.wav",
+        "Path": "SFX\\Skytrooper dash_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "2477876733",
+      "Name": "Play_Skytrooper_Grenade_Launch",
+      "ObjectPath": "\\Events\\Default Work Unit\\Skytrooper\\Play_Skytrooper_Grenade_Launch",
+      "DurationType": "OneShot",
+      "DurationMin": "0.470726",
+      "DurationMax": "0.470726",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "205445711",
+        "Language": "SFX",
+        "ShortName": "Skytrooper grenade launch.wav",
+        "Path": "SFX\\Skytrooper grenade launch_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "223439734",
+      "Name": "Play_Skytrooper_Jetpack_Loop",
+      "ObjectPath": "\\Events\\Default Work Unit\\Skytrooper\\Play_Skytrooper_Jetpack_Loop",
+      "DurationType": "Infinite",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "1056824333",
+        "Language": "SFX",
+        "ShortName": "Skytrooper dash loop.wav",
+        "Path": "SFX\\Skytrooper dash loop_D79FB2B7.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1931338186",
+      "Name": "Resume_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Resume_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "3318621861",
+      "Name": "Stop_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     }
+    ],
+    "GameParameters": [
+     {
+      "Id": "467158820",
+      "Name": "SourceVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
+     },
+     {
+      "Id": "2704707011",
+      "Name": "BusVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\BusVolume"
+     }
+    ]
+   },
+   {
     "Id": "833070093",
     "Language": "SFX",
     "Hash": "1585385358",
@@ -207,7 +299,7 @@
    {
     "Id": "1093318992",
     "Language": "SFX",
-    "Hash": "532972233",
+    "Hash": "1449156186",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Mando",
     "ShortName": "Mando",
     "Path": "Mando.bnk",
@@ -335,6 +427,38 @@
         "Language": "SFX",
         "ShortName": "Footstep sand 4.wav",
         "Path": "SFX\\Footstep sand 4_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "500889257",
+      "Name": "Play_Footsteps_Snow_Mando",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Footsteps_Snow_Mando",
+      "DurationType": "Infinite",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "180750331",
+        "Language": "SFX",
+        "ShortName": "Footstep mando snow 4.wav",
+        "Path": "SFX\\Footstep mando snow 4_10C4C929.wem"
+       },
+       {
+        "Id": "789166724",
+        "Language": "SFX",
+        "ShortName": "Footstep mando snow 1.wav",
+        "Path": "SFX\\Footstep mando snow 1_10C4C929.wem"
+       },
+       {
+        "Id": "878029040",
+        "Language": "SFX",
+        "ShortName": "Footstep mando snow 3.wav",
+        "Path": "SFX\\Footstep mando snow 3_10C4C929.wem"
+       },
+       {
+        "Id": "892476851",
+        "Language": "SFX",
+        "ShortName": "Footstep mando snow 2.wav",
+        "Path": "SFX\\Footstep mando snow 2_10C4C929.wem"
        }
       ]
      },
@@ -704,7 +828,7 @@
    {
     "Id": "1551306167",
     "Language": "SFX",
-    "Hash": "2191256746",
+    "Hash": "3176389987",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI",
     "ShortName": "UI",
     "Path": "UI.bnk",
@@ -778,6 +902,54 @@
         "Language": "SFX",
         "ShortName": "UI Credit_Pickup.wav",
         "Path": "SFX\\UI Credit_Pickup_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "3624587671",
+      "Name": "Play_UI_Pause",
+      "ObjectPath": "\\Events\\Default Work Unit\\UI\\Play_UI_Pause",
+      "DurationType": "OneShot",
+      "DurationMin": "0.633958",
+      "DurationMax": "0.633958",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "694268143",
+        "Language": "SFX",
+        "ShortName": "UI Pause.wav",
+        "Path": "SFX\\UI Pause_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1792993798",
+      "Name": "Play_UI_Resume",
+      "ObjectPath": "\\Events\\Default Work Unit\\UI\\Play_UI_Resume",
+      "DurationType": "OneShot",
+      "DurationMin": "0.669344",
+      "DurationMax": "0.669344",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "64859236",
+        "Language": "SFX",
+        "ShortName": "UI Resume.wav",
+        "Path": "SFX\\UI Resume_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "2780742664",
+      "Name": "Play_UI_Skill_Tree_Open",
+      "ObjectPath": "\\Events\\Default Work Unit\\UI\\Play_UI_Skill_Tree_Open",
+      "DurationType": "OneShot",
+      "DurationMin": "0.579615",
+      "DurationMax": "0.579615",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "259657947",
+        "Language": "SFX",
+        "ShortName": "UI Skill tree open.wav",
+        "Path": "SFX\\UI Skill tree open_10C4C929.wem"
        }
       ]
      },
