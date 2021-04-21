@@ -135,6 +135,7 @@ public class Rancor : DiamondComponent
 
     //Rush
     public float rushDamage = 10.0f;
+    public float touchDamage = 5.0f;
     public float loadRushTime = 0.4f;
     private float loadRushTimer = 0.0f;
 
@@ -1096,7 +1097,9 @@ public class Rancor : DiamondComponent
             Counter.allEnemiesDead = true;
 
         EnemyManager.RemoveEnemy(gameObject);
-        InternalCalls.Destroy(gameObject);
+        Animator.Pause(gameObject);
+        Audio.StopAudio(gameObject);
+        //InternalCalls.Destroy(gameObject);
     }
     #endregion
 
@@ -1184,6 +1187,14 @@ public class Rancor : DiamondComponent
                 if (playerHealth != null)
                 {
                     playerHealth.TakeDamage((int)rushDamage);
+                }
+            }
+            else
+            {
+                PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage((int)touchDamage);
                 }
             }
         }
