@@ -66,14 +66,14 @@ public class Rancor : DiamondComponent
     private static float skill_increaseDamageToBossAmount = 0.0f;
 
     //Stats
-    public float healthPoints = 60.0f;          //IF INITAL HEALTH IS CHANGED, CHANGE MAX HEALTH AS WELL!
-    public float maxHealthPoints = 60.0f;
+    public float healthPoints = 1500.0f;          //IF INITAL HEALTH IS CHANGED, CHANGE MAX HEALTH AS WELL!
+    public float maxHealthPoints = 1500.0f;
 
     public int attackProbability = 80;  //FROM 1 TO A 100
     public int shortFollowProbability = 90; //FROM THE PREVIOS VALUE TO HERE
 
-    public float meleeRange = 14.0f;
-    public float longRange = 21.0f;
+    public float meleeRange = 10.0f;
+    public float longRange = 22.0f;
 
     //Follow
     public float shortFollowTime = 2.0f;
@@ -1197,6 +1197,8 @@ public class Rancor : DiamondComponent
         }
         else if (collidedGameObject.CompareTag("Player"))
         {
+            if (currentState == RANCOR_STATE.DEAD) return;
+
             if (currentState == RANCOR_STATE.RUSH)
             {
                 inputsList.Add(RANCOR_INPUT.IN_RUSH_END);

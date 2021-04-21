@@ -64,7 +64,7 @@ public class Wampa : DiamondComponent
     public float slowRushSpeed = 7.0f;
 
     //Timers
-    private float walkingTime = 4.0f;
+    public float walkingTime = 4.0f;
     private float walkingTimer = 0.0f;
     public float fastChasingTime = 0.5f;
     private float fastChasingTimer = 0.0f;
@@ -72,9 +72,9 @@ public class Wampa : DiamondComponent
     private float slowChasingTimer = 0.0f;
     public float shootingTime = 1.0f;
     private float shootingTimer = 0.0f;
-    private float dieTime = 2.0f;
+    public float dieTime = 2.0f;
     private float dieTimer = 0.0f;
-    private float restingTime = 4.0f;
+    public float restingTime = 4.0f;
     private float restingTimer = 0.0f;
 
     //Atacks
@@ -407,13 +407,14 @@ public class Wampa : DiamondComponent
     private void StartFollowing()
     {
         walkingTimer = walkingTime;
-        Debug.Log("Following player");
     }
     private void UpdateFollowing()
     {
         agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(speed);
+        Debug.Log("Following player");
+        Debug.Log(walkingTimer.ToString());
     }
 
     private void EndFollowing()
@@ -433,6 +434,7 @@ public class Wampa : DiamondComponent
     {
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(speed);
+        Debug.Log("Following player");
     }
 
     private void EndWander()
