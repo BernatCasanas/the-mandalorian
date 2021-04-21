@@ -262,7 +262,7 @@ GameObject* PrefabImporter::LoadUIPrefab(const char* libraryPath)
 
 	for (size_t i = 1; i < json_array_get_count(gameObjectsArray); i++)
 	{
-		parent = LoadGOData(json_array_get_object(gameObjectsArray, i), parent);
+		parent = LoadGOPrefabData(json_array_get_object(gameObjectsArray, i), parent, false);
 	}
 
 	EngineExternal->moduleScene->LoadNavigationData();
