@@ -89,7 +89,7 @@ void W_Scene::Draw()
 				std::string* name = (std::string*)payload->Data;
 
 				std::string libraryPath = EngineExternal->moduleResources->LibraryFromMeta((*name).c_str());
-				GameObject* rootObject = PrefabImporter::LoadPrefab(libraryPath.c_str());
+				GameObject* rootObject = PrefabImporter::InstantiatePrefab(libraryPath.c_str());
 
 				//if(rootObject != nullptr)
 					//EngineExternal->moduleScene->

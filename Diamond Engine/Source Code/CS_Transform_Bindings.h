@@ -55,7 +55,20 @@ MonoObject* CS_Component_Get_GO(MonoObject* thisRef)
 MonoObject* CS_Get_GO_Parent(MonoObject* go)
 {
 	return EngineExternal->moduleMono->GoToCSGO(
-			EngineExternal->moduleMono->GameObject_From_CSGO(go)->parent);
+		EngineExternal->moduleMono->GameObject_From_CSGO(go)->parent);
+}
+
+void CS_Component_SetActive(MonoObject* go, bool active)
+{
+	if (active)
+		DECS_CompToComp<Component*>(go)->Enable();
+	else
+		DECS_CompToComp<Component*>(go)->Disable();
+}
+
+bool CS_Component_GetActive(MonoObject* go)
+{
+	return DECS_CompToComp<Component*>(go)->IsActive();
 }
 
 void CS_EnableGO(MonoObject* go, bool enable)
@@ -64,7 +77,7 @@ void CS_EnableGO(MonoObject* go, bool enable)
 	if (ref != nullptr) {
 		if (enable) {
 			ref->Enable();
-			
+
 		}
 		else {
 			ref->Disable();
@@ -309,7 +322,7 @@ void LookAt(MonoObject* cs_component, MonoObject* pointObject)
 {
 	float3 pointToLook = EngineExternal->moduleMono->UnboxVector(pointObject);
 	C_Transform* transform = DECS_CompToComp<C_Transform*>(cs_component);
-	
+
 	if (transform)
 	{
 		transform->LookAt(pointToLook);
@@ -372,7 +385,7 @@ bool CompareTag(MonoObject* cs_gameObject, MonoString* cs_tag)
 
 	GameObject* gameObject = EngineExternal->moduleMono->GameObject_From_CSGO(cs_gameObject);
 
-	if (gameObject == nullptr) 
+	if (gameObject == nullptr)
 	{
 		LOG(LogType::L_ERROR, "GameObject's tag to be compared does not exist");
 	}
@@ -403,7 +416,7 @@ MonoObject* CreatePrefab(MonoString* prefabPath, MonoObject* position, MonoObjec
 		return nullptr;
 
 	char* library_path = mono_string_to_utf8(prefabPath);
-	GameObject* prefab_object = PrefabImporter::LoadPrefab(library_path);
+	GameObject* prefab_object = PrefabImporter::InstantiatePrefab(library_path);
 	mono_free(library_path);
 
 	if (prefab_object != nullptr)
@@ -444,9 +457,16 @@ MonoObject* CreateUIPrefab(MonoString* prefabPath, MonoObject* position, MonoObj
 
 		float3 posVector = M_MonoManager::UnboxVector(position);
 		Quat rotQuat = M_MonoManager::UnboxQuat(rotation);
-		float3 scaleVector = M_MonoManager::UnboxVector(scale);
+
+		float3 scaleVector;
+		if (scale != nullptr)
+			scaleVector = M_MonoManager::UnboxVector(scale);
+		else
+			scaleVector = prefab_object->transform->localScale;
 
 		prefab_object->transform->SetTransformMatrix(posVector, rotQuat, scaleVector);
+
+
 		prefab_object->transform->updateTransform = true;
 	}
 
@@ -543,7 +563,7 @@ MonoObject* MonoSlerp(MonoObject* cs_q1, MonoObject* cs_q2, float t)
 	Quat q1 = M_MonoManager::UnboxQuat(cs_q1);
 	Quat q2 = M_MonoManager::UnboxQuat(cs_q2);
 
-	return  EngineExternal->moduleMono->QuatToCS(Slerp(q1, q2, t)); 
+	return  EngineExternal->moduleMono->QuatToCS(Slerp(q1, q2, t));
 }
 
 #pragma region Config

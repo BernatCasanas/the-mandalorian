@@ -205,6 +205,8 @@ bool M_MonoManager::Init()
 #pragma endregion
 
 	mono_add_internal_call("DiamondEngine.DiamondComponent::get_gameObject", CS_Component_Get_GO);
+	mono_add_internal_call("DiamondEngine.DiamondComponent::get_active", CS_Component_GetActive);
+	mono_add_internal_call("DiamondEngine.DiamondComponent::set_active", CS_Component_SetActive);
 	mono_add_internal_call("DiamondEngine.GameObject::TryGetComponent", CS_GetComponent);
 	mono_add_internal_call("DiamondEngine.GameObject::get_Name", CS_Get_GO_Name);
 	mono_add_internal_call("DiamondEngine.GameObject::get_parent", CS_Get_GO_Parent);
@@ -288,7 +290,7 @@ void M_MonoManager::ReCompileCS()
 	if (DETime::state == GameState::PLAY)
 		return;
 
-	App->moduleScene->SaveScene("Library/Scenes/tmp.des");
+	App->moduleScene->SaveToJson("Library/Scenes/tmp.des");
 
 	App->moduleScene->CleanScene();
 	App->moduleRenderer3D->ClearAllRenderData();

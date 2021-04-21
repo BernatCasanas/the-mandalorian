@@ -237,7 +237,7 @@ void M_Editor::DrawMenuBar()
 				App->moduleFileSystem->ToLocalAssetsPath(sceneDir);
 				if (!sceneDir.empty())
 				{
-					App->moduleScene->SaveScene(sceneDir.c_str());
+					App->moduleScene->SaveToJson(sceneDir.c_str());
 					App->moduleResources->NeedsDirsUpdate(App->moduleResources->assetsRoot);
 				}
 
@@ -404,7 +404,7 @@ void M_Editor::DrawTopBar()
 			{
 				if (DETime::state == GameState::STOP) 
 				{
-					App->moduleScene->SaveScene("Library/Scenes/tmp.des");
+					App->moduleScene->SaveToJson("Library/Scenes/tmp.des");
 					DETime::Play(App->moduleScene->activeScriptsVector);
 					EngineExternal->moduleAudio->StopAllSounds();
 					EngineExternal->moduleAudio->PlayOnAwake();
