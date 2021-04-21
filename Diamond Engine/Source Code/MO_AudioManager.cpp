@@ -264,8 +264,16 @@ void ModuleAudioManager::PlayEvent(unsigned int id, std::string& eventName)
 
 void ModuleAudioManager::StopEvent(unsigned int id, std::string& eventName) const
 {
-	AK::SoundEngine::ExecuteActionOnEvent(eventName.c_str(), AK::SoundEngine::AkActionOnEventType::AkActionOnEventType_Stop, id);
+		AK::SoundEngine::ExecuteActionOnEvent(eventName.c_str(), AK::SoundEngine::AkActionOnEventType::AkActionOnEventType_Stop, id);
 }
+
+void ModuleAudioManager::StopEvent(unsigned int id) const
+{
+
+		AK::SoundEngine::StopAll(id);
+	
+}
+
 
 void ModuleAudioManager::PauseEvent(unsigned int id, std::string& eventName) const
 {

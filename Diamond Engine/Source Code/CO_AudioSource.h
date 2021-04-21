@@ -37,7 +37,10 @@ public:
 	void PlayEvent();
 	void PauseEvent();
 	void ResumeEvent();
+	void StopEvent(std::string eventName);
+
 	void StopEvent();
+
 
 	unsigned int GetWwiseID();
 	void SetSwitch(std::string groupSwitch, std::string stateSwitch);
