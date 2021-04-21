@@ -58,14 +58,7 @@ public class SHOP : DiamondComponent
                 CloseShop();
                 if (currency != null)
                     currency.SetParent(hud);
-            }
-            //Debug 
-            if (Input.GetKey(DEKeyCode.Alpha7) == KeyState.KEY_DOWN)
-            {
-                PlayerResources.AddRunCoins(500);
-                hud.GetComponent<HUD>().UpdateCurrency(PlayerResources.GetRunCoins());
-            }
-            //
+            }           
         }
         else 
         {

@@ -70,6 +70,12 @@ public class Core : DiamondComponent
     private static float skill_extraDamageHPStep = 0.0f;
     private static float skill_extraDamageAmount = 0.0f;
 
+    private static bool skill_damageReductionDashEnabled = false;
+    private static float skill_damageReductionDashDuration = 0.0f;
+    private static float skill_damageReductionDashAmount = 0.0f;
+    private float skill_damageReductionDashTimer = 0.0f;
+    private bool skill_damageReductionDashActive = false;
+
     // Dash
     //private float timeSinceLastDash = 0.0f;
     public float dashCD = 0.33f;
@@ -242,6 +248,14 @@ public class Core : DiamondComponent
 
             if (gadgetShootTimer <= 0)
                 inputsList.Add(INPUT.IN_GADGET_SHOOT_END);
+        }
+
+        if (skill_damageReductionDashEnabled && skill_damageReductionDashTimer > 0)
+        {            
+            skill_damageReductionDashTimer -= Time.deltaTime;
+
+            if (skill_damageReductionDashTimer <= 0)
+                skill_damageReductionDashActive = false;
         }
     }
 
@@ -659,7 +673,12 @@ public class Core : DiamondComponent
 
         StopPlayer();
         gameObject.transform.localPosition.y = dashStartYPos;
-        
+
+        if (skill_damageReductionDashEnabled)
+        {
+            skill_damageReductionDashActive = true;
+            skill_damageReductionDashTimer = skill_damageReductionDashDuration;
+        }            
     }
 
     #endregion
@@ -776,7 +795,11 @@ public class Core : DiamondComponent
             Audio.PlayAudio(gameObject, "Play_Mando_Hit");
 
             if (bulletScript != null)
-                gameObject.GetComponent<PlayerHealth>().TakeDamage((int)bulletScript.damage);
+            {
+                if (skill_damageReductionDashActive)gameObject.GetComponent<PlayerHealth>().TakeDamage((int)(bulletScript.damage * (1.0f - skill_damageReductionDashAmount)));
+                else gameObject.GetComponent<PlayerHealth>().TakeDamage((int)bulletScript.damage);
+            }
+                
         }
         if (collidedGameObject.CompareTag("Bantha"))
         {
@@ -785,7 +808,10 @@ public class Core : DiamondComponent
             float damage = collidedGameObject.GetComponent<Enemy>().damage;
 
             if (damage != 0)
-                gameObject.GetComponent<PlayerHealth>().TakeDamage((int)damage);
+            {
+                if (skill_damageReductionDashActive) gameObject.GetComponent<PlayerHealth>().TakeDamage((int)(damage * (1.0f - skill_damageReductionDashAmount)));                
+                else gameObject.GetComponent<PlayerHealth>().TakeDamage((int)damage);
+            }
         }
     }
 
@@ -886,7 +912,7 @@ public class Core : DiamondComponent
 
     public void SetSkill(string skillName, float value1 = 0.0f, float value2 = 0.0f)
     {
-        if (skillName == "SeDelay") //Secondary Delay Skill
+        if (skillName == "SecondaryDelaySkill") //Secondary Delay Skill
         {
             grenadesFireRate -= grenadesFireRate * value1;
         }
@@ -895,6 +921,11 @@ public class Core : DiamondComponent
             skill_extraDamageActive = true;
             skill_extraDamageHPStep = value1;
             skill_extraDamageAmount = value2;
+        }else if(skillName == "UtilityDamageReductionSkill")
+        {
+            skill_damageReductionDashEnabled = true;
+            skill_damageReductionDashDuration = value1;
+            skill_damageReductionDashAmount = value2;
         }
     }
 
