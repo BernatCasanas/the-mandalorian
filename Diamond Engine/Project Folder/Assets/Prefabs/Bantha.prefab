@@ -9,24 +9,24 @@
             "UID": 1855636635,
             "ParentUID": 0,
             "PrefabReference": 0,
-            "PrefabID": 0,
+            "PrefabID": 978476012,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -37.933113098144531,
+                0,
                 0,
                 0
             ],
             "Rotation": [
-                3.1391647326017846e-07,
-                -1,
-                3.1391647326017846e-07,
-                9.8543548809285758e-14
+                0,
+                0,
+                0,
+                1
             ],
             "Scale": [
-                1.0000094175338745,
                 1,
-                1.0000094175338745
+                1,
+                1
             ],
             "Components": [
                 {
@@ -56,15 +56,15 @@
                     "stoppingDistance": 1,
                     "coinDropPath": "Library\/Prefabs\/1907169014.prefab",
                     "slerpSpeed": 5,
-                    "turretMode": false,
                     "skill_slowDownEnabled": true,
                     "skill_slowDownAmount": 0,
                     "skill_slowDownDuration": 0,
+                    "chargePoint": 2062391757,
                     "idleTime": 2,
                     "tiredTime": 2,
                     "loadingTime": 1.5,
                     "timeBewteenStates": 1.5,
-                    "directionDecisionTime": 0,
+                    "directionDecisionTime": 0.80000001192092896,
                     "wanderSpeed": 3.5,
                     "runningSpeed": 7,
                     "chargeSpeed": 40,
@@ -2278,6 +2278,40 @@
                     "Active": true,
                     "billboardAlignment": 0,
                     "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "ChargePoint",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 2062391757,
+            "ParentUID": 1855636635,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0.30000001192092896,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
                 }
             ]
         }

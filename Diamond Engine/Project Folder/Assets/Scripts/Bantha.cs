@@ -7,7 +7,7 @@ using DiamondEngine;
 
 public class Bantha : Enemy
 {
-    enum STATE: int
+    enum STATE : int
     {
         NONE = -1,
         IDLE,
@@ -40,7 +40,7 @@ public class Bantha : Enemy
 
     //State
     private STATE currentState = STATE.NONE;
-                                             
+
     private List<INPUT> inputsList = new List<INPUT>();
 
     public GameObject chargePoint = null;
@@ -78,13 +78,13 @@ public class Bantha : Enemy
 
     public void Awake()
     {
+        StartIdle();
         agent = gameObject.GetComponent<NavMeshAgent>();
         targetPosition = null;
-        loadingTime = Animator.GetAnimationDuration(gameObject, "BT_Charge");
 
         currentState = STATE.IDLE;
-        StartIdle();
 
+        loadingTime = Animator.GetAnimationDuration(gameObject, "BT_Charge");
         dieTime = Animator.GetAnimationDuration(gameObject, "BT_Die");
     }
 
@@ -107,7 +107,7 @@ public class Bantha : Enemy
         if (skill_slowDownActive)
         {
             skill_slowDownTimer += Time.deltaTime;
-            if(skill_slowDownTimer >= skill_slowDownDuration)
+            if (skill_slowDownTimer >= skill_slowDownDuration)
             {
                 skill_slowDownTimer = 0.0f;
                 skill_slowDownActive = false;
@@ -148,6 +148,15 @@ public class Bantha : Enemy
             }
         }
 
+        if (currentState == STATE.CHARGE && chargeTimer > 0.0f)
+        {
+            chargeTimer -= Time.deltaTime;
+            if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) <= agent.stoppingDistance || chargeTimer < 0.0f)
+            {
+                inputsList.Add(INPUT.IN_CHARGE_END);
+            }
+        }
+
         if (tiredTimer > 0.0f)
         {
             tiredTimer -= Time.deltaTime;
@@ -164,22 +173,18 @@ public class Bantha : Enemy
     {
         if (currentState != STATE.DIE)
         {
-            //Detection Range
             if (InRange(player.transform.globalPosition, detectionRange))
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
             }
-
-            //Charge Range
-
             if (InRange(player.transform.globalPosition, chargeRange))
             {
                 inputsList.Add(INPUT.IN_CHARGE_RANGE);
             }
         }
-        if(currentState == STATE.RUN)
+        if (currentState == STATE.RUN)
         {
-            if(!InRange(player.transform.globalPosition, detectionRange))
+            if (!InRange(player.transform.globalPosition, detectionRange))
             {
                 inputsList.Add(INPUT.IN_WANDER);
             }
@@ -399,26 +404,14 @@ public class Bantha : Enemy
     #region RUN
     private void StartRun()
     {
-        Animator.Play(gameObject, "BT_Run");
-
-        if(agent != null)
-            agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition);
+        Animator.Play(gameObject, "BT_Walk");
     }
     private void UpdateRun()
     {
+        agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition);
         LookAt(agent.GetDestination());
-
-        if (Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) < agent.stoppingDistance)
-        {
-            inputsList.Add(INPUT.IN_IDLE);
-        }
-        else
-        {
-            if (skill_slowDownActive)
-                agent.MoveToCalculatedPos(runningSpeed * (1 - skill_slowDownAmount));
-            else
-                agent.MoveToCalculatedPos(runningSpeed);
-        }
+        if (skill_slowDownActive) agent.MoveToCalculatedPos(runningSpeed * (1 - skill_slowDownAmount));
+        else agent.MoveToCalculatedPos(runningSpeed);
     }
     private void RunEnd()
     {
@@ -436,7 +429,7 @@ public class Bantha : Enemy
     }
     private void UpdateWander()
     {
-        LookAt(agent.GetDestination());        
+        LookAt(agent.GetDestination());
         if (skill_slowDownActive) agent.MoveToCalculatedPos(wanderSpeed * (1 - skill_slowDownAmount));
         else agent.MoveToCalculatedPos(wanderSpeed);
     }
@@ -462,14 +455,14 @@ public class Bantha : Enemy
             directionDecisionTimer -= Time.deltaTime;
             LookAt(player.transform.globalPosition);
 
-            if(directionDecisionTimer < 0.1f)
+            if (directionDecisionTimer < 0.1f)
             {
                 Vector3 direction = player.transform.globalPosition - gameObject.transform.globalPosition;
                 targetPosition = direction.normalized * chargeLength + gameObject.transform.globalPosition;
                 agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
             }
         }
-        if(visualFeedback.transform.globalScale.z < 1.0)
+        if (visualFeedback.transform.globalScale.z < 1.0)
         {
             visualFeedback.transform.localScale = new Vector3(1.0f, 1.0f, Mathf.Lerp(visualFeedback.transform.localScale.z, 1.0f, Time.deltaTime * (loadingTime / loadingTimer)));
             visualFeedback.transform.localRotation = gameObject.transform.globalRotation;
@@ -483,41 +476,27 @@ public class Bantha : Enemy
         if (skill_slowDownActive) chargeTimer = chargeLength / (chargeSpeed * (1 - skill_slowDownAmount));
         else chargeTimer = chargeLength / chargeSpeed;
 
-        Animator.Play(gameObject, "BT_Charge");
-
+        Animator.Play(gameObject, "BT_Run");
         InternalCalls.Destroy(visualFeedback);
+
         Audio.PlayAudio(gameObject, "Play_Bantha_Attack");
         Audio.PlayAudio(gameObject, "Play_Bantha_Ramming");
         Audio.PlayAudio(gameObject, "Play_Footsteps_Bantha");
 
-       
+        if (agent != null)
+            agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition);
+
     }
     private void UpdateCharge()
     {
+        Debug.Log("Chaaaaarge");
+
         LookAt(agent.GetDestination());
 
-        if (chargeTimer > 0.0f)
-        {
-            chargeTimer -= Time.deltaTime;
-            if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) <= agent.stoppingDistance || chargeTimer < 0.0f)
-            {
-                inputsList.Add(INPUT.IN_CHARGE_END);
-            }
-        }
-
-        if (skill_slowDownActive)
+        if (skill_slowDownActive) 
             agent.MoveToCalculatedPos(chargeSpeed * (1 - skill_slowDownAmount));
         else
             agent.MoveToCalculatedPos(chargeSpeed);
-
-        ////Destination reached, stop charging
-        //if (Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance && agent.GetPathSize() < 1)
-        //{
-        //    inputsList.Add(INPUT.IN_WANDER);
-        //}
-        //else
-        //{
-        //}
     }
     #endregion
 
@@ -561,15 +540,15 @@ public class Bantha : Enemy
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_BANTHA);
         Counter.roomEnemies--;
         Debug.Log("Enemies: " + Counter.roomEnemies.ToString());
-        if(Counter.roomEnemies <= 0)
+        if (Counter.roomEnemies <= 0)
         {
             Counter.allEnemiesDead = true;
         }
-        
+
         //Created dropped coins
         var rand = new Random();
-        int droppedCoins = rand.Next(1,4);
-        for (int i = 0;i < droppedCoins;i++)
+        int droppedCoins = rand.Next(1, 4);
+        for (int i = 0; i < droppedCoins; i++)
         {
             Vector3 pos = gameObject.transform.globalPosition;
             pos.x += rand.Next(-200, 201) / 100;
@@ -582,30 +561,6 @@ public class Bantha : Enemy
     }
     #endregion
 
-    public bool CanCharge()
-    {
-        if (targetPosition == null || agent == null)
-            return false;
-
-        Vector2 target2D = new Vector2(targetPosition.x, targetPosition.y);
-        Vector2 bantha2D = new Vector2(gameObject.transform.globalPosition.x, gameObject.transform.globalPosition.y);
-
-        Vector3 penultimatePoint = agent.GetPointAt(agent.GetPathSize() - 1);
-
-        if (penultimatePoint == null)
-        {
-            Debug.Log("No penultimate point");
-            return false;
-        }
-
-        Vector2 penultimatePoint2D = new Vector2(penultimatePoint.x, penultimatePoint.y);
-        if (Vector2.Dot(target2D - bantha2D, target2D - penultimatePoint2D) >= 0.9f)
-            return true;
-
-        Debug.Log("No Dot");
-        return false;
-    }
-
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
 
@@ -617,7 +572,7 @@ public class Bantha : Enemy
 
             if (Core.instance.hud != null)
             {
-                Core.instance.hud.GetComponent<HUD>().AddToCombo(25, 0.95f);
+                Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 1.0f);
             }
 
             if (currentState != STATE.DIE && healthPoints <= 0.0f)
@@ -634,7 +589,7 @@ public class Bantha : Enemy
         else if (collidedGameObject.CompareTag("Grenade"))
         {
             smallGrenade smallGrenade = collidedGameObject.GetComponent<smallGrenade>();
-          //  bigGrenade bigGrenade = collidedGameObject.GetComponent<bigGrenade>();
+            //  bigGrenade bigGrenade = collidedGameObject.GetComponent<bigGrenade>();
 
             if (smallGrenade != null)
                 healthPoints -= smallGrenade.damage;
@@ -644,7 +599,7 @@ public class Bantha : Enemy
 
             if (Core.instance.hud != null)
             {
-                Core.instance.hud.GetComponent<HUD>().AddToCombo(8, 1.5f);
+                Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 0.5f);
             }
 
             if (currentState != STATE.DIE && healthPoints <= 0.0f)
@@ -656,7 +611,7 @@ public class Bantha : Enemy
             {
                 skill_slowDownActive = true;
                 skill_slowDownTimer = 0.0f;
-            }                           
+            }
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))
         {
