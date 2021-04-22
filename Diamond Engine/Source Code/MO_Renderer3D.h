@@ -67,6 +67,8 @@ public:
 #endif // !STANDALONE
 
 	
+	void AddRay(float3& a, float3& b, float3& color);
+	void DrawRays();
 	void RayToMeshQueueIntersection(LineSegment& ray);
 
 	C_Camera* GetGameRenderTarget()const;
@@ -119,6 +121,7 @@ private:
 	std::vector<LineRender> lines;
 	std::vector<DebugTriangle> triangles;
 	std::vector<DebugPoint> points;
+	std::vector<LineRender> rays;
 	C_Camera* gameCamera;
 	LineSegment pickingDebug;
 	std::string str_CAPS;
