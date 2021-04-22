@@ -88,23 +88,12 @@ public static class RoomSwitch
 		}
 	}
 
-	public static void SwitchLevel(LEVELS lvl)
+	public static void SwitchToLevel2()
 	{
-		currentLevelIndicator = lvl;
-
-		switch (lvl)
-		{
-			case LEVELS.ONE:
-				//Debug.Log("Level 1 loaded");
-				//currentroom = levelLists[0].finalScene;
-				break;
-			case LEVELS.TWO:
-				Debug.Log("Level 2 loaded");
-				currentroom = levelLists[(int)currentLevelIndicator - 1].finalScene;
-				break;
-			case LEVELS.MAX:
-				break;
-		}
+		currentLevelIndicator = LEVELS.TWO;
+		Debug.Log("Level 2 loaded");
+		currentroom = levelLists[(int)currentLevelIndicator - 1].finalScene;
+		levelLists[0].ClearData(originalLevelPools[0]);
 		SwitchRooms();
 	}
 

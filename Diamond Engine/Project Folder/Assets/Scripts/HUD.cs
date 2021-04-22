@@ -271,12 +271,13 @@ public class HUD : DiamondComponent
             ++comboNumber;
 
         lastWeaponDecrementMultiplier = weaponDecreaseTimeMultiplier;
-        currComboTime += comboUnitsToAdd * (1 / (lastWeaponDecrementMultiplier * comboDecrementMultiplier));
+        float tmpLastWeaponMod = lastWeaponDecrementMultiplier >= 1.0f ? lastWeaponDecrementMultiplier : 1.0f;
+        currComboTime += comboUnitsToAdd * (1 / (tmpLastWeaponMod * comboDecrementMultiplier));
 
         if (currComboTime > fullComboTime)
         {
             float extraCombo = currComboTime - fullComboTime;
-            IncrementCombo();
+            extraCombo = IncrementCombo(extraCombo);
             AddToCombo(extraCombo, weaponDecreaseTimeMultiplier);
 
             OnLvlUpComboChange();
@@ -290,12 +291,26 @@ public class HUD : DiamondComponent
         comboHUDneedsUpdate = true;
     }
 
-    void IncrementCombo()
+    float IncrementCombo(float extraCombo = 0f)
     {
         //TODO make full combo time not a linear function
         ++comboNumber;
-        currComboTime = 0.0f;
-        comboDecrementMultiplier += 0.05f;
+        comboDecrementMultiplier += 0.06f;
+
+        if (extraCombo > (fullComboTime * 0.33f))
+        {
+            currComboTime = 0f;
+        }
+        else if (extraCombo > 0f)
+        {
+            float percentageToSum = (extraCombo / fullComboTime);
+            percentageToSum = Math.Max(percentageToSum, 0.25f);
+
+            currComboTime = fullComboTime * percentageToSum;
+            extraCombo = 0;
+        }
+
+
         if (!anakinBoonApplied && PlayerResources.CheckBoon(BOONS.BOON_ANAKINKILLSTREAK))
         {
             if (comboNumber >= 50)
@@ -312,6 +327,8 @@ public class HUD : DiamondComponent
                 anakinBoonApplied = false;
             }
         }
+
+        return extraCombo;
     }
 
     bool UpdateCombo()
@@ -319,7 +336,7 @@ public class HUD : DiamondComponent
         float toSubstract = currComboTime - Mathf.Lerp(currComboTime, -0.0f, Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier);
 
         toSubstract = Math.Max(toSubstract, Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier);
-        toSubstract = Math.Min(toSubstract, Time.deltaTime * (1 / comboDecrementMultiplier) * fullComboTime * 0.25f);
+        toSubstract = Math.Min(toSubstract, Time.deltaTime * 3f *  comboDecrementMultiplier * fullComboTime * 0.085f);
         currComboTime -= toSubstract;
 
         if (currComboTime <= 0.0f)

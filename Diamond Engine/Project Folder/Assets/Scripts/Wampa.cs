@@ -510,7 +510,7 @@ public class Wampa : DiamondComponent
 
             if (Core.instance.hud != null)
             {
-                Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 1.0f);
+                Core.instance.hud.GetComponent<HUD>().AddToCombo(25, 0.95f);
             }
 
             if (currentState != WAMPA_STATE.DEAD && healthPoints <= 0.0f)
@@ -531,7 +531,7 @@ public class Wampa : DiamondComponent
 
             if (Core.instance.hud != null)
             {
-                Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 0.5f);
+                Core.instance.hud.GetComponent<HUD>().AddToCombo(8, 1.5f);
             }
 
             if (currentState != WAMPA_STATE.DEAD && healthPoints <= 0.0f)
