@@ -27,8 +27,10 @@
 #include "MathGeoLib/include/Geometry/Frustum.h"
 #include "MathGeoLib/include/Geometry/Plane.h"
 
+
 C_MeshRenderer::C_MeshRenderer(GameObject* _gm) : Component(_gm), _mesh(nullptr), normalMap(nullptr),
-faceNormals(false), vertexNormals(false), showAABB(false), showOBB(false), drawDebugVertices(false), drawStencil(false)
+faceNormals(false), vertexNormals(false), showAABB(false), showOBB(false), drawDebugVertices(false), drawStencil(false),
+calculatedBonesThisFrame(false)
 {
 	name = "Mesh Renderer";
 	alternColor = float3::one;
@@ -60,6 +62,8 @@ void C_MeshRenderer::Update()
 {
 	if (EngineExternal->moduleRenderer3D->GetGameRenderTarget() != nullptr && EngineExternal->moduleRenderer3D->GetGameRenderTarget()->cullingState == true && !IsInsideFrustum(&EngineExternal->moduleRenderer3D->GetGameRenderTarget()->camFrustrum))
 		return;
+
+	calculatedBonesThisFrame = false;
 
 	if (drawStencil)
 	{
@@ -105,28 +109,7 @@ void C_MeshRenderer::RenderMesh(bool rTex)
 	if (material != nullptr && material->IsActive())
 		id = material->GetTextureID();
 
-	//Mesh array with transform matrix of each bone
-	if (rootBone != nullptr)
-	{
-		//float4x4 invertedMatrix = dynamic_cast<C_Transform*>(gameObject->GetComponent(Component::TYPE::TRANSFORM))->globalTransform.Inverted();
-		float4x4 invertedMatrix = gameObjectTransform->globalTransform.Inverted();
-
-		//Get each bone
-		for (int i = 0; i < _mesh->bonesMap.size(); ++i)
-		{
-			C_Transform* bone = bonesMap[i];
-
-			if (bone != nullptr)
-			{
-				//Calcule of Delta Matrix
-				float4x4 Delta = CalculateDeltaMatrix(bone->globalTransform, invertedMatrix);
-				Delta = Delta * _mesh->bonesOffsets[i];
-
-				//Storage of Delta Matrix (Transformation applied to each bone)
-				_mesh->boneTransforms[i] = Delta.Transposed();
-			}
-		}
-	}
+	TryCalculateBones();
 
 	if (drawDebugVertices)
 		DrawDebugVertices();
@@ -160,29 +143,7 @@ void C_MeshRenderer::RenderMeshStencil(bool rTex)
 		id = material->GetTextureID();
 	}
 
-	//TODO do not want to recalculate bones again, ask marc pages what can be done to avoid this 
-	//Mesh array with transform matrix of each bone
-	if (rootBone != nullptr)
-	{
-		//float4x4 invertedMatrix = dynamic_cast<C_Transform*>(gameObject->GetComponent(Component::TYPE::TRANSFORM))->globalTransform.Inverted();
-		float4x4 invertedMatrix = gameObjectTransform->globalTransform.Inverted();
-
-		//Get each bone
-		for (int i = 0; i < _mesh->bonesMap.size(); ++i)
-		{
-			C_Transform* bone = bonesMap[i];
-
-			if (bone != nullptr)
-			{
-				//Calcule of Delta Matrix
-				float4x4 Delta = CalculateDeltaMatrix(bone->globalTransform, invertedMatrix);
-				Delta = Delta * _mesh->bonesOffsets[i];
-
-				//Storage of Delta Matrix (Transformation applied to each bone)
-				_mesh->boneTransforms[i] = Delta.Transposed();
-			}
-		}
-	}
+	TryCalculateBones();
 
 	if (hasStencilMatActive)
 		_mesh->RenderMesh(id, alternColorStencil, rTex, (stencilMaterial && stencilMaterial->material != nullptr) ? stencilMaterial->material : EngineExternal->moduleScene->defaultMaterial, transform);
@@ -327,7 +288,7 @@ bool C_MeshRenderer::OnEditor()
 
 		ImGui::ColorPicker3("No texture color: ", &alternColor.x);
 
-		if(drawStencil)
+		if (drawStencil)
 			ImGui::ColorPicker3("No texture Stencil color: ", &alternColorStencil.x);
 
 		return true;
@@ -486,4 +447,34 @@ void C_MeshRenderer::DrawDebugVertices()
 			glPopMatrix();
 		}
 	}
+}
+
+void C_MeshRenderer::TryCalculateBones()
+{
+	if (calculatedBonesThisFrame == true)
+		return;
+
+	//Mesh array with transform matrix of each bone
+	if (rootBone != nullptr)
+	{
+		//float4x4 invertedMatrix = dynamic_cast<C_Transform*>(gameObject->GetComponent(Component::TYPE::TRANSFORM))->globalTransform.Inverted();
+		float4x4 invertedMatrix = gameObjectTransform->globalTransform.Inverted();
+
+		//Get each bone
+		for (int i = 0; i < _mesh->bonesMap.size(); ++i)
+		{
+			C_Transform* bone = bonesMap[i];
+
+			if (bone != nullptr)
+			{
+				//Calcule of Delta Matrix
+				float4x4 Delta = CalculateDeltaMatrix(bone->globalTransform, invertedMatrix);
+				Delta = Delta * _mesh->bonesOffsets[i];
+
+				//Storage of Delta Matrix (Transformation applied to each bone)
+				_mesh->boneTransforms[i] = Delta.Transposed();
+			}
+		}
+	}
+	calculatedBonesThisFrame = true;
 }
