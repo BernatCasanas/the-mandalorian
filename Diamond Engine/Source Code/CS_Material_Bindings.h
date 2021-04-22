@@ -58,3 +58,33 @@ void SetIntUniform(MonoObject* obj, MonoString* name_uniform, int value)
 	workMat->material->PushUniforms();
 
 }
+
+void SetVectorUniform(MonoObject* obj, MonoString* name_uniform, MonoObject* objVector)
+{
+	if (EngineExternal == nullptr)
+		return;
+
+
+
+
+	C_Material* workMat = DECS_CompToComp<C_Material*>(obj);
+
+	if (workMat == nullptr)
+		return;
+	char* text = mono_string_to_utf8(name_uniform);
+	int i;
+	bool uniform_found = false;
+	for (i = 0; i < workMat->material->uniforms.size(); i++) {
+		if (strcmp(workMat->material->uniforms[i].name, text) == 0) {
+			uniform_found = true;
+			break;
+		}
+	}
+	if (!uniform_found)
+		return;
+
+	float3 newVector = M_MonoManager::UnboxVector(objVector);
+	workMat->material->uniforms[i].data.vector3Value = newVector;
+	workMat->material->PushUniforms();
+
+}
