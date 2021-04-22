@@ -14,8 +14,14 @@
 #include"RE_Shader.h"
 #include"MO_Window.h"
 
-const unsigned int SHADOW_WIDTH = 4096, SHADOW_HEIGHT = 4096;
-C_DirectionalLight::C_DirectionalLight(GameObject* _gm) : Component(_gm), orthoSize(10.0f, 10.0f), lightColor(float3::one)
+const unsigned int SHADOW_WIDTH = 2048, SHADOW_HEIGHT = 2048;
+C_DirectionalLight::C_DirectionalLight(GameObject* _gm) : Component(_gm), 
+	orthoSize(10.0f, 10.0f),
+	calculateShadows(true),
+	lightColor(float3::one), 
+	ambientLightColor(float3::one),
+	lightIntensity(1.0f),
+	specularValue(64.0f)
 {
 	name = "Directional Light";
 
@@ -49,8 +55,9 @@ C_DirectionalLight::C_DirectionalLight(GameObject* _gm) : Component(_gm), orthoS
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	depthShader = dynamic_cast<ResourceShader*>(EngineExternal->moduleResources->RequestResource(248150058, Resource::Type::SHADER));
-	EngineExternal->moduleRenderer3D->directLight = this;
+	EngineExternal->moduleRenderer3D->AddLight(this);
 }
+
 
 C_DirectionalLight::~C_DirectionalLight()
 {
@@ -61,8 +68,9 @@ C_DirectionalLight::~C_DirectionalLight()
 		glDeleteTextures(1, (GLuint*)&depthMap);
 
 	EngineExternal->moduleResources->UnloadResource(depthShader->GetUID());
-	EngineExternal->moduleRenderer3D->directLight = nullptr;
+	EngineExternal->moduleRenderer3D->RemoveLight(this);
 }
+
 
 void C_DirectionalLight::Update()
 {
@@ -86,12 +94,31 @@ void C_DirectionalLight::Update()
 
 }
 
+
 #ifndef STANDALONE
 bool C_DirectionalLight::OnEditor()
 {
 	if (Component::OnEditor() == true)
 	{
+		ImGui::ColorPicker3("Color", lightColor.ptr());
+
+		ImGui::NewLine();
+
+		ImGui::ColorPicker3("Ambient color", ambientLightColor.ptr());
+
+		ImGui::NewLine();
+
+		ImGui::DragFloat("Light intensity", &lightIntensity, 0.05, 0.0f);
+		ImGui::DragFloat("Specular value", &specularValue, 0.1, 0.0f);
+
+		ImGui::NewLine();
+
+		if (ImGui::Button("Set light source", ImVec2(0, 50)))
+			EngineExternal->moduleRenderer3D->AddLight(this);
+
 		ImGui::Image((ImTextureID)depthMap, ImVec2(250, 250), ImVec2(0, 1), ImVec2(1, 0));
+
+		ImGui::Checkbox("Calculate shadows", &calculateShadows);
 
 		if (ImGui::DragFloat2("Ortho size", orthoSize.ptr(), 0.001f))
 		{
@@ -99,16 +126,12 @@ bool C_DirectionalLight::OnEditor()
 			orthoFrustum.orthographicHeight = SHADOW_HEIGHT / orthoSize.y;
 		}
 
-		ImGui::ColorPicker3("Color", lightColor.ptr());
-
-		if (ImGui::Button("Set light source", ImVec2(0, 50)))
-			EngineExternal->moduleRenderer3D->directLight = this;
-
 		return true;
 	}
 	return false;
 }
 #endif // !STANDALONE
+
 
 void C_DirectionalLight::SaveData(JSON_Object* nObj)
 {
@@ -117,15 +140,25 @@ void C_DirectionalLight::SaveData(JSON_Object* nObj)
 	DEConfig data(nObj);
 	data.WriteVector2("orthoSize", orthoSize.ptr());
 	data.WriteVector3("lightColor", lightColor.ptr());
+	data.WriteVector3("ambientLightColor", ambientLightColor.ptr());
+	data.WriteFloat("lightIntensity", lightIntensity);
+	data.WriteFloat("specularValue", specularValue);
+	data.WriteBool("calculateShadows", calculateShadows);
 }
+
+
 void C_DirectionalLight::LoadData(DEConfig& nObj)
 {
 	Component::LoadData(nObj);
 
 	orthoSize = nObj.ReadVector2("orthoSize");
 	lightColor = nObj.ReadVector3("lightColor");
-
+	ambientLightColor = nObj.ReadVector3("ambientLightColor");
+	lightIntensity = nObj.ReadFloat("lightIntensity");
+	specularValue = nObj.ReadFloat("specularValue");
+	calculateShadows = nObj.ReadBool("calculateShadows");
 }
+
 
 void C_DirectionalLight::StartPass()
 {
@@ -155,26 +188,54 @@ void C_DirectionalLight::StartPass()
 	depthShader->Bind();
 }
 
-void C_DirectionalLight::PushLightUniforms(ResourceMaterial* material)
+void C_DirectionalLight::PushLightUniforms(ResourceMaterial* material, int lightNumber)
 {
-	GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightSpaceMatrix");
+	char buffer[64];
+	sprintf(buffer, "lightInfo[%i].lightSpaceMatrix", lightNumber);
+
+	GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, this->spaceMatrixOpenGL.ptr());
 
-	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightPos");
+	sprintf(buffer, "lightInfo[%i].lightPos", lightNumber);
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
 	glUniform3fv(modelLoc, 1, &gameObject->transform->position.x);
 
-	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "viewPos");
+	sprintf(buffer, "lightInfo[%i].lightPosition", lightNumber);
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
+	glUniform3fv(modelLoc, 1, &gameObject->transform->position.x);
+
+	sprintf(buffer, "lightInfo[%i].viewPos", lightNumber);
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
 	glUniform3fv(modelLoc, 1, EngineExternal->moduleRenderer3D->activeRenderCamera->GetPosition().ptr());
 
-	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "lightColor");
+	sprintf(buffer, "lightInfo[%i].lightColor", lightNumber);
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
 	glUniform3fv(modelLoc, 1, &lightColor.x);
 
-	//glUniform1i(glGetUniformLocation(material->shader->shaderProgramID, shadowMap), used_textures);
+	sprintf(buffer, "lightInfo[%i].ambientLightColor", lightNumber);
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
+	glUniform3fv(modelLoc, 1, &ambientLightColor.x);
 
-	glActiveTexture(GL_TEXTURE0 + 5);
-	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "shadowMap");
-	glUniform1i(modelLoc, 5);
-	glBindTexture(GL_TEXTURE_2D, depthMap);
+	sprintf(buffer, "lightInfo[%i].lightIntensity", lightNumber);
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
+	glUniform1f(modelLoc, lightIntensity);
+
+	sprintf(buffer, "lightInfo[%i].specularValue", lightNumber);
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
+	glUniform1f(modelLoc, specularValue);
+
+	//glUniform1i(glGetUniformLocation(material->shader->shaderProgramID, shadowMap), used_textures);
+	sprintf(buffer, "lightInfo[%i].calculateShadows", lightNumber);
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
+	glUniform1i(modelLoc, calculateShadows);
+
+	if (calculateShadows == true)
+	{
+		glActiveTexture(GL_TEXTURE5);
+		modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "shadowMap");
+		glUniform1i(modelLoc, 5);
+		glBindTexture(GL_TEXTURE_2D, depthMap);
+	}
 }
 
 void C_DirectionalLight::EndPass()
@@ -182,7 +243,7 @@ void C_DirectionalLight::EndPass()
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glActiveTexture(GL_TEXTURE0 + 5);
+	glActiveTexture(GL_TEXTURE5);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	glActiveTexture(GL_TEXTURE0);
@@ -193,4 +254,10 @@ void C_DirectionalLight::EndPass()
 
 	glEnable(GL_CULL_FACE);
 	glViewport(0, 0, EngineExternal->moduleWindow->s_width, EngineExternal->moduleWindow->s_height);
+}
+
+
+float3 C_DirectionalLight::GetPosition() const
+{
+	return orthoFrustum.pos;
 }

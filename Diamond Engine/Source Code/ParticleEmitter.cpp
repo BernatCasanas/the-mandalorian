@@ -222,9 +222,12 @@ void Emitter::Draw(unsigned int shaderId, Quat newRotation)
 
 	glBindVertexArray(VAO);
 
-	glDrawArraysInstanced(GL_TRIANGLES, 0, 6, particlesAlive);
+	if (particlesAlive > 0)
+		glDrawArraysInstanced(GL_TRIANGLES, 0, 6, particlesAlive);
+	
 
 	glBindVertexArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 	vboInfo.clear();
