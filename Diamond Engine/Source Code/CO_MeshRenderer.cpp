@@ -150,30 +150,6 @@ void C_MeshRenderer::RenderMeshStencil(bool rTex)
 		id = material->GetTextureID();
 	}
 
-	//TODO do not want to recalculate bones again, ask marc pages what can be done to avoid this 
-	//Mesh array with transform matrix of each bone
-	if (rootBone != nullptr)
-	{
-		//float4x4 invertedMatrix = dynamic_cast<C_Transform*>(gameObject->GetComponent(Component::TYPE::TRANSFORM))->globalTransform.Inverted();
-		float4x4 invertedMatrix = gameObjectTransform->globalTransform.Inverted();
-
-		//Get each bone
-		for (int i = 0; i < _mesh->bonesMap.size(); ++i)
-		{
-			C_Transform* bone = bonesMap[i];
-
-			if (bone != nullptr)
-			{
-				//Calcule of Delta Matrix
-				float4x4 Delta = CalculateDeltaMatrix(bone->globalTransform, invertedMatrix);
-				Delta = Delta * _mesh->bonesOffsets[i];
-
-				//Storage of Delta Matrix (Transformation applied to each bone)
-				_mesh->boneTransforms[i] = Delta.Transposed();
-			}
-		}
-	}
-
 	if (hasStencilMatActive)
 		_mesh->RenderMesh(id, alternColorStencil, rTex, (stencilMaterial && stencilMaterial->material != nullptr) ? stencilMaterial->material : EngineExternal->moduleScene->defaultMaterial, transform);
 	else
