@@ -148,15 +148,6 @@ public class Bantha : Enemy
             }
         }
 
-        if (currentState == STATE.CHARGE && chargeTimer > 0.0f)
-        {
-            chargeTimer -= Time.deltaTime;
-            if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) <= agent.stoppingDistance || chargeTimer < 0.0f)
-            {
-                inputsList.Add(INPUT.IN_CHARGE_END);
-            }
-        }
-
         if (tiredTimer > 0.0f)
         {
             tiredTimer -= Time.deltaTime;
@@ -504,19 +495,29 @@ public class Bantha : Enemy
     private void UpdateCharge()
     {
         LookAt(agent.GetDestination());
-        
-        //Destination reached, stop charging
-        if(Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance && agent.GetPathSize() < 1)
+
+        if (chargeTimer > 0.0f)
         {
-            inputsList.Add(INPUT.IN_WANDER);
+            chargeTimer -= Time.deltaTime;
+            if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) <= agent.stoppingDistance || chargeTimer < 0.0f)
+            {
+                inputsList.Add(INPUT.IN_CHARGE_END);
+            }
         }
+
+        if (skill_slowDownActive)
+            agent.MoveToCalculatedPos(chargeSpeed * (1 - skill_slowDownAmount));
         else
-        {
-            if (skill_slowDownActive) 
-                agent.MoveToCalculatedPos(chargeSpeed * (1 - skill_slowDownAmount));
-            else 
-                agent.MoveToCalculatedPos(chargeSpeed);
-        }
+            agent.MoveToCalculatedPos(chargeSpeed);
+
+        ////Destination reached, stop charging
+        //if (Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance && agent.GetPathSize() < 1)
+        //{
+        //    inputsList.Add(INPUT.IN_WANDER);
+        //}
+        //else
+        //{
+        //}
     }
     #endregion
 

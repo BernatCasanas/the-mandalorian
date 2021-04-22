@@ -36,6 +36,7 @@ struct SerializedField
 	FieldValue fiValue;
 	C_Script* parentSC;
 	std::string displayName;
+	uint goUID;
 };
 
 class M_MonoManager : public Module

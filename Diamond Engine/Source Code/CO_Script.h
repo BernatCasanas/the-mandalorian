@@ -29,6 +29,7 @@ public:
 	void SetField(MonoClassField* field, GameObject* value);
 	void DropField(SerializedField& fieldName, const char* dropType);
 
+	void OnRecursiveUIDChange(std::map<uint, GameObject*> gameObjects) override;
 	void LoadScriptData(const char*);
 
 	void CollisionCallback(bool isTrigger, GameObject* collidedGameObject);

@@ -89,6 +89,7 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreateBullet", CreateBullet);
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreatePrefab", CreatePrefab);
 	mono_add_internal_call("DiamondEngine.InternalCalls::RayCast", RayCast);
+	mono_add_internal_call("DiamondEngine.InternalCalls::DrawRay", CS_DrawRay);
 
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreateUIPrefab", CreateUIPrefab);
 

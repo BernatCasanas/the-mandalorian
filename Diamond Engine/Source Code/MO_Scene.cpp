@@ -61,7 +61,7 @@ bool M_Scene::Init()
 bool M_Scene::Start()
 {
 	CreateGameCamera("Main Camera");
-	LoadScene("Library/Scenes/790373974.des");
+	LoadScene("Library/Scenes/1726826608.des");
 	//LoadScene("Library/Scenes/1482507639.des");
 
 	//LoadScene("Library/Scenes/884741631.des");
@@ -92,6 +92,8 @@ update_status M_Scene::PreUpdate(float dt)
 	if (prefabToOverride != 0)
 	{		
 		root->OverrideGameObject(prefabToOverride);
+		LoadScriptsData();
+		LoadNavigationData();
 		prefabToOverride = 0;
 	}
 
@@ -161,7 +163,8 @@ update_status M_Scene::Update(float dt)
 			if (!sceneDir.empty())
 			{
 				App->moduleScene->SaveToJson(sceneDir.c_str());
-				App->moduleResources->NeedsDirsUpdate(App->moduleResources->assetsRoot);
+				App->moduleResources->ImportFile(sceneDir.c_str(), Resource::Type::SCENE);
+				//App->moduleResources->NeedsDirsUpdate(App->moduleResources->assetsRoot);
 				strcpy(current_scene, sceneDir.c_str());
 
 				std::string scene_name;
@@ -172,7 +175,8 @@ update_status M_Scene::Update(float dt)
 		else
 		{
 			App->moduleScene->SaveToJson(current_scene);
-			App->moduleResources->NeedsDirsUpdate(App->moduleResources->assetsRoot);
+			App->moduleResources->ImportFile(current_scene, Resource::Type::SCENE);
+			//App->moduleResources->NeedsDirsUpdate(App->moduleResources->assetsRoot);
 		}
 	}
 
@@ -269,9 +273,11 @@ void M_Scene::LoadScriptsData(GameObject* rootObject)
 
 			if (d->second->fiValue.goValue)
 			{
+				//d->second->goUID = d->first;
+
 				if (std::find(d->second->fiValue.goValue->csReferences.begin(), d->second->fiValue.goValue->csReferences.end(), d->second) == d->second->fiValue.goValue->csReferences.end())
 					d->second->fiValue.goValue->csReferences.push_back(d->second);
-
+				
 				d->second->parentSC->SetField(d->second->field, d->second->fiValue.goValue);
 
 				//d->second = nullptr;
