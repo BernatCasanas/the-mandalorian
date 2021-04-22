@@ -27,7 +27,8 @@ public class SkyTrooperShot : DiamondComponent
 	{
         if (time < lifeTime && !hasImpacted)
         {
-			time += Time.deltaTime;
+			for(int i=0;i<5;i++)
+				time += Time.deltaTime;
 			Vector3 pos = new Vector3(initialPos.x,initialPos.y,initialPos.z);
 			pos.x += velocity.x * time;
 			pos.z += velocity.z * time;
@@ -50,11 +51,9 @@ public class SkyTrooperShot : DiamondComponent
         }
 	}
 
-	public void SetTarget(Vector3 target)
+	public void SetTarget(Vector3 target, bool low_angle)
     {
-
 		initialPos = gameObject.transform.localPosition;
-
 		targetPosition = target;
 
 		float distanceX;
@@ -82,8 +81,16 @@ public class SkyTrooperShot : DiamondComponent
 
 			distanceHorizontal = (float)Math.Sqrt(distanceX*distanceX+distanceZ*distanceZ);
 		}
+		Debug.Log(distanceHorizontal.ToString());
+		Debug.Log(distanceY.ToString());
+
 		float calcAngleSubFunction = (speed * speed) / (-gravity * distanceHorizontal);
-		float angleSpeed = (float)Math.Atan(calcAngleSubFunction+ (float)Math.Sqrt(calcAngleSubFunction * calcAngleSubFunction - 1 - 2*calcAngleSubFunction* distanceY/ distanceHorizontal));
+		float angleSpeed;
+		if (low_angle)
+			angleSpeed = (float)Math.Atan(calcAngleSubFunction - (float)Math.Sqrt(calcAngleSubFunction * calcAngleSubFunction - 1 - 2 * calcAngleSubFunction * distanceY / distanceHorizontal));
+		else 
+			angleSpeed = (float)Math.Atan(calcAngleSubFunction + (float)Math.Sqrt(calcAngleSubFunction * calcAngleSubFunction - 1 - 2 * calcAngleSubFunction * distanceY / distanceHorizontal));
+
 
 		float velocityHorizontal = speed * (float)Math.Cos(angleSpeed);
 		
@@ -112,6 +119,9 @@ public class SkyTrooperShot : DiamondComponent
 
 		if ((distanceZ < 0 && velocity.z > 0) || (distanceZ > 0 && velocity.z < 0))
 			velocity.z = -velocity.z;
+
+		Debug.Log(velocity.ToString());
+
 	}
 
 	public void OnCollisionEnter(GameObject collidedGameObject)
