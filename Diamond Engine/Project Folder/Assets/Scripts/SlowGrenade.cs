@@ -106,8 +106,18 @@ public class SlowGrenade : DiamondComponent
 		{
 			if (triggeredGameObject.tag == "Enemy")
 			{
-				if (!enemies.Remove(triggeredGameObject))
-					Debug.Log("can't remove");
+				//if (!enemies.Remove(triggeredGameObject))
+				//	Debug.Log("can't remove");
+
+				foreach (GameObject item in enemies)
+                {
+					if (item.GetUid() == triggeredGameObject.GetUid())
+                        
+						if (!enemies.Remove(item))
+                            Debug.Log("can't remove");
+
+						break;
+                }
 			}
 		}
 	}
