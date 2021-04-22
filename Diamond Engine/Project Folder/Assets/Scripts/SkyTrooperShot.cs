@@ -27,8 +27,7 @@ public class SkyTrooperShot : DiamondComponent
 	{
         if (time < lifeTime && !hasImpacted)
         {
-			for(int i=0;i<5;i++)
-				time += Time.deltaTime;
+			time += Time.deltaTime;
 			Vector3 pos = new Vector3(initialPos.x,initialPos.y,initialPos.z);
 			pos.x += velocity.x * time;
 			pos.z += velocity.z * time;
