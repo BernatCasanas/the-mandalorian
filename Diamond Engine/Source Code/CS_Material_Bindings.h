@@ -27,7 +27,6 @@ void SetFloatUniform(MonoObject* obj, MonoString* name_uniform, float value)
 	if (!uniform_found)
 		return;
 	workMat->material->uniforms[i].data.floatValue = value;
-	workMat->material->PushUniforms();
 
 }
 
@@ -55,7 +54,6 @@ void SetIntUniform(MonoObject* obj, MonoString* name_uniform, int value)
 	if (!uniform_found)
 		return;
 	workMat->material->uniforms[i].data.intValue = value;
-	workMat->material->PushUniforms();
 
 }
 
@@ -85,6 +83,5 @@ void SetVectorUniform(MonoObject* obj, MonoString* name_uniform, MonoObject* obj
 
 	float3 newVector = M_MonoManager::UnboxVector(objVector);
 	workMat->material->uniforms[i].data.vector3Value = newVector;
-	workMat->material->PushUniforms();
 
 }
