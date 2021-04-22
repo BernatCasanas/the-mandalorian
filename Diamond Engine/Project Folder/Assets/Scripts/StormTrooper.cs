@@ -391,10 +391,6 @@ public class StormTrooper : Enemy
         idleTimer = idleTime;
         Animator.Play(gameObject, "ST_Idle");
 
-        if (currentState != STATE.DIE && healthPoints <= 0.0f)
-        {
-            inputsList.Add(INPUT.IN_DIE);
-        }
     }
     #endregion
 
@@ -412,10 +408,6 @@ public class StormTrooper : Enemy
         if (skill_slowDownActive) agent.MoveToCalculatedPos(wanderSpeed * (1 - skill_slowDownAmount));
         else agent.MoveToCalculatedPos(wanderSpeed);
 
-        if (currentState != STATE.DIE && healthPoints <= 0.0f)
-        {
-            inputsList.Add(INPUT.IN_DIE);
-        }
     }
     private void WanderEnd()
     {
@@ -440,10 +432,6 @@ public class StormTrooper : Enemy
         else 
             agent.MoveToCalculatedPos(runningSpeed);
 
-        if (currentState != STATE.DIE && healthPoints <= 0.0f)
-        {
-            inputsList.Add(INPUT.IN_DIE);
-        }
     }
     private void RunEnd()
     {
@@ -504,10 +492,6 @@ public class StormTrooper : Enemy
             }
         }
 
-        if (currentState != STATE.DIE && healthPoints <= 0.0f)
-        {
-            inputsList.Add(INPUT.IN_DIE);
-        }
     }
 
     #endregion
@@ -601,10 +585,7 @@ public class StormTrooper : Enemy
                 shotTimer = timeBewteenShots;
             }
         }
-        if (currentState != STATE.DIE && healthPoints <= 0.0f)
-        {
-            inputsList.Add(INPUT.IN_DIE);
-        }
+      
     }
 
     private void Shoot()
@@ -719,10 +700,7 @@ public class StormTrooper : Enemy
         pushTimer += Time.deltaTime;
         if(pushTimer >= PushStun)
             inputsList.Add(INPUT.IN_IDLE);
-        if (currentState != STATE.DIE && healthPoints <= 0.0f)
-        {
-            inputsList.Add(INPUT.IN_DIE);
-        }
+       
     }
     #endregion
 
@@ -746,7 +724,13 @@ public class StormTrooper : Enemy
     {
         if (collidedGameObject.CompareTag("Bullet"))
         {
-            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+
+            //healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+            //if (currentState != STATE.DIE && healthPoints <= 0.0f)
+            //{
+            //    inputsList.Add(INPUT.IN_DIE);
+            //}
+            TakeDamage(collidedGameObject.GetComponent<BH_Bullet>().damage);
 
             Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -755,10 +739,6 @@ public class StormTrooper : Enemy
                 Core.instance.hud.GetComponent<HUD>().AddToCombo(25, 0.95f);
             }
 
-            if (currentState != STATE.DIE && healthPoints <= 0.0f)
-            {
-                inputsList.Add(INPUT.IN_DIE);
-            }
 
             if (skill_slowDownEnabled)
             {
@@ -768,18 +748,14 @@ public class StormTrooper : Enemy
         }
         else if (collidedGameObject.CompareTag("Grenade"))
         {
-            //healthPoints -= collidedGameObject.GetComponent<smallGrenade>().damage;
-          //  healthPoints -= 5; //TODO: Hardcoded value, talk with adria
+          
 
             if (Core.instance.hud != null)
             {
                 Core.instance.hud.GetComponent<HUD>().AddToCombo(8, 1.5f);
             }
 
-            //if (currentState != STATE.DIE && healthPoints <= 0.0f)
-            //{
-            //    inputsList.Add(INPUT.IN_DIE);
-            //}
+        
 
             if (skill_slowDownEnabled)
             {
@@ -807,5 +783,21 @@ public class StormTrooper : Enemy
 
             }
         }
+    }
+
+    public override void TakeDamage(float damage)
+    {
+
+        if (currentState != STATE.DIE)
+        {
+            healthPoints -= damage;
+
+            if (healthPoints <= 0.0f)
+            {
+                inputsList.Add(INPUT.IN_DIE);
+            }
+        }
+
+        
     }
 }

@@ -26,9 +26,8 @@ public class Enemy : DiamondComponent
 	public static float skill_slowDownAmount = 0.0f;
 	public static float skill_slowDownDuration = 0.0f;
 
-	public virtual bool TakeDamage()
+	public virtual void TakeDamage(float damage)
 	{
-		return true;
 	}
 
 	public virtual Vector3 CalculateNewPosition(float maxPos)
