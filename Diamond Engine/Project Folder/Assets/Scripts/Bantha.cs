@@ -591,8 +591,8 @@ public class Bantha : Enemy
             smallGrenade smallGrenade = collidedGameObject.GetComponent<smallGrenade>();
             //  bigGrenade bigGrenade = collidedGameObject.GetComponent<bigGrenade>();
 
-            if (smallGrenade != null)
-                healthPoints -= smallGrenade.damage;
+            //if (smallGrenade != null)
+            //    healthPoints -= smallGrenade.damage;
 
             //if (bigGrenade != null)
             //    healthPoints -= bigGrenade.damage;
@@ -648,5 +648,19 @@ public class Bantha : Enemy
         {
             inputsList.Add(INPUT.IN_PUSHED);
         }
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        healthPoints -= damage;
+
+        if (currentState != STATE.DIE)
+        {
+            if (healthPoints <= 0.0f)
+            {
+                inputsList.Add(INPUT.IN_DIE);
+            }
+        }
+
     }
 }

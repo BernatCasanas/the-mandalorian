@@ -39,6 +39,8 @@ public class SlowGrenade : DiamondComponent
 			myForce.y = upForce;
 
 			gameObject.AddForce(myForce);
+
+			damage *= 4;
 		}
 		
 		if (!detonate)
@@ -50,22 +52,41 @@ public class SlowGrenade : DiamondComponent
 			explosionTimer += Time.deltaTime;
 			for (int i = 0; i < enemies.Count; i++)
             {
+				Enemy script = enemies[i].GetComponent<StormTrooper>();
+				if (script == null)
+                {
+					script = enemies[i].GetComponent<Bantha>();
+				}
 
-				StormTrooper script = enemies[i].GetComponent<StormTrooper>();
-				if(script !=  null)
+				if (script !=  null)
                 {
 					if (script.healthPoints <= 0)
                     {
 						enemies.Remove(enemies[i]);
+						i--;
 					}
 					else
                     {
-						Debug.Log("Grenade Dealing Damage");
-						script.healthPoints -= (damage * Time.deltaTime);
+						script.TakeDamage(damage * Time.deltaTime);
 
 					}
 
 				}
+				else
+                {
+					Rancor RancorScript = enemies[i].GetComponent<Rancor>();
+					if (RancorScript.healthPoints <= 0)
+					{
+						enemies.Remove(enemies[i]);
+						i--;
+					}
+					else
+					{
+						RancorScript.TakeDamage(damage * Time.deltaTime);
+
+					}
+				}
+				
 
 			}
 		}
@@ -113,8 +134,8 @@ public class SlowGrenade : DiamondComponent
                 {
 					if (item.GetUid() == triggeredGameObject.GetUid())
                         
-						if (!enemies.Remove(item))
-                            Debug.Log("can't remove");
+						if (enemies.Remove(item))
+                            Debug.Log("removed");
 
 						break;
                 }

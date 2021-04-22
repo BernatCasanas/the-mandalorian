@@ -1193,8 +1193,8 @@ public class Rancor : DiamondComponent
     {
         if (collidedGameObject.CompareTag("Bullet"))
         {
-            if(skill_increaseDamageToBossActive) healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage * (1.0f + skill_increaseDamageToBossAmount);
-            else healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+            if(skill_increaseDamageToBossActive) TakeDamage(collidedGameObject.GetComponent<BH_Bullet>().damage * (1.0f + skill_increaseDamageToBossAmount));
+            else TakeDamage(collidedGameObject.GetComponent<BH_Bullet>().damage);
             Debug.Log("Rancor HP: " + healthPoints.ToString());
             damaged = 1.0f;
             //CHANGE FOR APPROPIATE RANCOR HIT
@@ -1215,11 +1215,11 @@ public class Rancor : DiamondComponent
             bigGrenade bGrenade = collidedGameObject.GetComponent<bigGrenade>();
             smallGrenade sGrenade = collidedGameObject.GetComponent<smallGrenade>();
 
-            if (bGrenade != null)
-                healthPoints -= bGrenade.GetDamage() ;
+            //if (bGrenade != null)
+            //    healthPoints -= bGrenade.GetDamage() ;
 
-            if (sGrenade != null)
-                healthPoints -= sGrenade.damage;
+            //if (sGrenade != null)
+            //    healthPoints -= sGrenade.damage;
 
             //CHANGE FOR APPROPIATE RANCOR HIT
             Audio.PlayAudio(gameObject, "Play_Rancor_Hit");
@@ -1335,4 +1335,20 @@ public class Rancor : DiamondComponent
                 break;
         }
     }
+
+    public void TakeDamage(float damage)
+    {
+        Debug.Log("Rancor damage" + damage.ToString());
+        if (currentState != RANCOR_STATE.DEAD)
+        {
+            healthPoints -= damage;
+
+         if(healthPoints <= 0.0f)
+          {
+            inputsList.Add(RANCOR_INPUT.IN_DEAD);
+          }
+        }
+       
+    }
+
 }
