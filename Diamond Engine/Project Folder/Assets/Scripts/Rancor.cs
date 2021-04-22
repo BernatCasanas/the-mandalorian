@@ -174,6 +174,8 @@ public class Rancor : DiamondComponent
     private float runTime = 0.0f;
     private float dustTime = 0.0f;
     private bool toggleLegParticle;
+
+    private bool impact = true;
     enum PARTICLES : int
     {
         NONE = -1,
@@ -810,6 +812,11 @@ public class Rancor : DiamondComponent
                 Debug.Log("Hpatic Jump");
             }
         }
+        if (meleeCH3Timer < (meleeComboHit3Time / 2)+0.2f && impact) 
+        { 
+            PlayParticles(PARTICLES.IMPACT); 
+            impact = false; 
+        }
 
         if (jumpDelayTimer > 0.0f)
         {
@@ -836,7 +843,7 @@ public class Rancor : DiamondComponent
     private void EndMCHit3()
     {
         startedJumping = false;
-
+        impact = true;
     }
 
     #endregion
