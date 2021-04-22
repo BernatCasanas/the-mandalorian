@@ -183,7 +183,8 @@ public class Rancor : DiamondComponent
         TRAILRIGHT,
         IMPACT,
         RUSH,
-        SWING,
+        SWINGLEFT,
+        SWINGRIGHT,
         HANDSLAM
     }
     RancorParticles rancorParticles = null;
@@ -724,12 +725,19 @@ public class Rancor : DiamondComponent
             }
         }
 
+        if (meleeCH1Timer < (meleeComboHit1Time / 4) + 0.2f && impact)
+        {
+            PlayParticles(PARTICLES.SWINGRIGHT);
+            impact = false;
+        }
+
         LookAt(Core.instance.gameObject.transform.globalPosition);
         gameObject.transform.localPosition += gameObject.transform.GetForward().normalized * meleeComboMovSpeed * Time.deltaTime;
     }
 
     private void EndMCHit1()
     {
+        impact = true;
     }
 
 
@@ -757,12 +765,19 @@ public class Rancor : DiamondComponent
             }
         }
 
+        if (meleeCH2Timer < (meleeComboHit2Time / 2) + 0.2f && impact)
+        {
+            PlayParticles(PARTICLES.SWINGLEFT);
+            impact = false;
+        }
+
         LookAt(Core.instance.gameObject.transform.globalPosition);
         gameObject.transform.localPosition += gameObject.transform.GetForward().normalized * meleeComboMovSpeed * Time.deltaTime;
     }
 
     private void EndMCHit2()
     {
+        impact = true;
     }
 
 
@@ -1326,12 +1341,19 @@ public class Rancor : DiamondComponent
                 else
                     Debug.Log("Rancor Rush particle not found!");
                 break;
-            case PARTICLES.SWING:
-                particle = rancorParticles.swing;
+            case PARTICLES.SWINGLEFT:
+                particle = rancorParticles.swingLeft;
                 if (particle != null)
                     particle.Play();
                 else
-                    Debug.Log("Rancor Swing particle not found!");
+                    Debug.Log("Rancor Swing Left particle not found!");
+                break;
+            case PARTICLES.SWINGRIGHT:
+                particle = rancorParticles.swingRight;
+                if (particle != null)
+                    particle.Play();
+                else
+                    Debug.Log("Rancor Swing Right particle not found!");
                 break;
             case PARTICLES.HANDSLAM:
                 particle = rancorParticles.handSlam;
