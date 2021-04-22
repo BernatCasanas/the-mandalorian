@@ -435,6 +435,7 @@ public class Skytrooper : Enemy
         Debug.Log("SKYTROOPER SHOOT");
         shootTimer = timeBewteenShootingStates;
         shotsShooted=0;
+        Animator.Play(gameObject, "SK_Idle");
     }
 
     private void UpdateShoot()
@@ -480,7 +481,11 @@ public class Skytrooper : Enemy
         if (shotsShooted < maxShots)
             shootTimer = timeBewteenShots;
         else
+        {
             shootTimer = timeBewteenShootingStates;
+            Animator.Play(gameObject, "SK_Idle");
+        }
+           
     }
     private void PlayerDetected()
     {
