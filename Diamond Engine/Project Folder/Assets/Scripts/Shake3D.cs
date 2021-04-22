@@ -6,7 +6,7 @@ public class Shake3D : DiamondComponent
 
     private float shakeTimer = 0f;
     private float shakeMaxDistance = 0.7f;
-    private float decreaseFactor = 1.0f; //if we want to polish it
+    //private float decreaseFactor = 1.0f; //if we want to polish it
 
     private bool enable = false;
     private Random random;
