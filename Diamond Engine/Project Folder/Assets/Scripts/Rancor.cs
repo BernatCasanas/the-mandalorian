@@ -1131,7 +1131,6 @@ public class Rancor : DiamondComponent
         Audio.PlayAudio(gameObject, "Play_Rancor_Breath");
         Input.PlayHaptic(0.9f, (int)roarTime*1000);
         roarTimer = roarTime;
-        PlayParticles(PARTICLES.ROAR);
     }
 
     private void UpdateRoar()
@@ -1141,6 +1140,7 @@ public class Rancor : DiamondComponent
         {
             shake.StartShaking(2f, 0.1f);
             roarShaked = true;
+            PlayParticles(PARTICLES.ROAR);
         }
     }
 
