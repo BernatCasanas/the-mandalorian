@@ -10,6 +10,7 @@ public class RancorParticles : DiamondComponent
     public GameObject swingLeftObj = null;
     public GameObject swingRightObj = null;
     public GameObject handSlamObj = null;
+    public GameObject roarObj = null;
     public ParticleSystem trailLeft = null;
     public ParticleSystem trailRight = null;
     public ParticleSystem impact = null;
@@ -17,6 +18,7 @@ public class RancorParticles : DiamondComponent
     public ParticleSystem swingLeft = null;
     public ParticleSystem swingRight = null;
     public ParticleSystem handSlam = null;
+    public ParticleSystem roar = null;
     public void Awake()
     {
         if (trailLeftObj != null)
@@ -46,6 +48,10 @@ public class RancorParticles : DiamondComponent
         if (handSlamObj != null)
         {
             handSlam = handSlamObj.GetComponent<ParticleSystem>();
+        }
+        if (roarObj != null)
+        {
+            roar = roarObj.GetComponent<ParticleSystem>();
         }
     }
     public void Update()
