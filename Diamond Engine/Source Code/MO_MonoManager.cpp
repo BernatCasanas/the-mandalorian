@@ -129,6 +129,7 @@ bool M_MonoManager::Init()
 #pragma region Material
 	mono_add_internal_call("DiamondEngine.Material::SetFloatUniform", SetFloatUniform);
 	mono_add_internal_call("DiamondEngine.Material::SetIntUniform", SetIntUniform);
+	mono_add_internal_call("DiamondEngine.Material::SetVectorUniform", SetVectorUniform);
 #pragma endregion
 
 #pragma region Image2D
