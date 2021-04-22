@@ -70,17 +70,16 @@ void main()
 in vec3 influenceColor;
 in vec3 vertexColor; 
 in vec3 diffuseColor; 
-uniform vec3 customColor;
-uniform float customColorMix;
+uniform vec3 altColor;
+uniform float emissiveAmmount;
 out vec4 color;
 
 void main()
 {
-float newMixPercentage = clamp(customColorMix,0.0,1.0);
-vec4 finalDiffuseColor= vec4(vertexColor + diffuseColor, 1.0);
- 	vec4 finalFillColor = vec4(customColor,1.0);
+	float mixEmissive = clamp(emissiveAmmount,0.0,1.0);
+	vec4 finalDiffuseColor= vec4(vertexColor + diffuseColor, 1.0);
  	//color = vec4(influenceColor, 1.0);
- 	color = (finalFillColor*newMixPercentage) +(finalDiffuseColor*(1.0-newMixPercentage));
+ 	color = (finalDiffuseColor* (1.0-mixEmissive)) + (vec4(altColor,1.0)*mixEmissive);
 }
 #endif
 
