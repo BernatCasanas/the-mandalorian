@@ -332,12 +332,12 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	{
 		for (size_t i = 0; i < renderQueueStencil.size(); i++)
 		{
-			float distance = gameCamera->camFrustrum.pos.DistanceSq(renderQueueStencil[i]->globalOBB.pos);
+			float distance = App->moduleCamera->editorCamera.camFrustrum.pos.DistanceSq(renderQueueStencil[i]->globalOBB.pos);
 			renderQueueMapStencil.emplace(distance, renderQueueStencil[i]);
 		}
 		for (size_t i = 0; i < renderQueuePostStencil.size(); i++)
 		{
-			float distance = gameCamera->camFrustrum.pos.DistanceSq(renderQueuePostStencil[i]->globalOBB.pos);
+			float distance = App->moduleCamera->editorCamera.camFrustrum.pos.DistanceSq(renderQueuePostStencil[i]->globalOBB.pos);
 			renderQueueMapPostStencil.emplace(distance, renderQueuePostStencil[i]);
 		}
 
