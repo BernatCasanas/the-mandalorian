@@ -41,14 +41,22 @@ namespace DiamondEngine
 
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public extern void CalculateRandomPath(object startPos, float radius);
+        public extern bool CalculateRandomPath(object startPos, float radius);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public extern void CalculatePath(object startPos, object endPos);
+        public extern bool CalculatePath(object startPos, object endPos);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern Vector3 GetDestination();
 
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern Vector3 GetPointAt(int index);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern int GetPathSize();
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern void ClearPath();
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern Vector3 GetLastVector();
 

@@ -147,8 +147,19 @@ void C_Animator::Update()
 void C_Animator::SaveData(JSON_Object* nObj)
 {
 	Component::SaveData(nObj);
-	DEJson::WriteInt(nObj, "RootBone UID", rootBone == nullptr ? 0 : rootBone->UID);
-	DEJson::WriteInt(nObj, "MeshRendererUID", meshRendererUID);
+	if (rootBone != nullptr)
+		DEJson::WriteInt(nObj, "RootBone UID", rootBone->prefabReference != 0u ? rootBone->prefabReference : rootBone->UID);
+	else
+		DEJson::WriteInt(nObj, "RootBone UID", 0);
+
+	GameObject* meshRendererObject = EngineExternal->moduleScene->GetGOFromUID(EngineExternal->moduleScene->root, meshRendererUID);
+	if (meshRendererObject != nullptr)
+	{
+		if (meshRendererObject->prefabReference != 0u)
+			DEJson::WriteInt(nObj, "MeshRendererUID", meshRendererObject->prefabReference);
+		else 
+			DEJson::WriteInt(nObj, "MeshRendererUID", meshRendererObject->UID);
+	}
 
 	JSON_Value* animationsValue = json_value_init_array();
 	JSON_Array* animationsArray = json_value_get_array(animationsValue);
@@ -184,10 +195,26 @@ void C_Animator::OnRecursiveUIDChange(std::map<uint, GameObject*> gameObjects)
 {
 	if (rootBoneUID != 0u)
 	{
-		std::map<uint, GameObject*>::iterator boneIt = gameObjects.find(rootBoneUID);
-		if (boneIt != gameObjects.end())
+		GameObject* _rootBone = nullptr;
+		std::map<uint, GameObject*>::iterator boneIt = gameObjects.begin();
+		for (boneIt; boneIt !=  gameObjects.end(); ++boneIt)
 		{
-			rootBone = boneIt->second;
+			if (boneIt->second->UID == rootBoneUID)
+				rootBone = _rootBone;
+		}
+
+		if (rootBone == nullptr)
+		{
+			boneIt = gameObjects.find(rootBoneUID);
+
+			if (boneIt != gameObjects.end())
+				rootBone = boneIt->second;
+		
+		}
+
+		//std::map<uint, GameObject*>::iterator boneIt = gameObjects.find(rootBoneUID);
+		if (rootBone != nullptr)
+		{
 			rootBoneUID = rootBone->UID;
 
 			boneMapping.clear();
@@ -195,14 +222,32 @@ void C_Animator::OnRecursiveUIDChange(std::map<uint, GameObject*> gameObjects)
 
 			if (meshRendererUID != 0u)
 			{
+				GameObject* meshRendererObject = nullptr;
 				std::map<uint, GameObject*>::iterator meshRendererIt = gameObjects.find(meshRendererUID);
-				if (meshRendererIt != gameObjects.end())
+
+				if (meshRendererIt == gameObjects.end())
 				{
-					C_MeshRenderer* meshRenderer = dynamic_cast<C_MeshRenderer*>(meshRendererIt->second->GetComponent(Component::TYPE::MESH_RENDERER));
+					for(meshRendererIt = gameObjects.begin();  meshRendererIt != gameObjects.end(); ++meshRendererIt)
+					{
+						if (meshRendererIt->second->UID == meshRendererUID)
+						{
+							meshRendererObject = meshRendererIt->second;
+							break;
+						}
+					}
+				}
+				else
+				{
+					meshRendererObject = meshRendererIt->second;
+				}
+
+				if (meshRendererObject != nullptr)
+				{
+					C_MeshRenderer* meshRenderer = dynamic_cast<C_MeshRenderer*>(meshRendererObject->GetComponent(Component::TYPE::MESH_RENDERER));
 					if (meshRenderer != nullptr)
 					{
 						meshRenderer->SetRootBone(rootBone);
-						meshRendererUID = meshRendererIt->second->UID;
+						meshRendererUID = meshRendererObject->UID;
 					}
 				}
 			}

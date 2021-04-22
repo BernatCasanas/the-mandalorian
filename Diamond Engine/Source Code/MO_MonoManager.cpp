@@ -152,8 +152,6 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.ParticleSystem::Stop", StopParticles);
 	mono_add_internal_call("DiamondEngine.ParticleSystem::get_playing", IsPlayingParticles);
 	mono_add_internal_call("DiamondEngine.ParticleSystem::get_looping", GetLoopingParticles);
-
-
 #pragma endregion
 
 
@@ -190,6 +188,9 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::CalculateRandomPath", CS_CalculateRandomPath);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::CalculatePath", CS_CalculatePath);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::GetDestination", CS_GetDestination);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::GetPointAt", CS_GetPointAt);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::GetPathSize", CS_GetPathSize);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::ClearPath", CS_ClearPath);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::GetLastVector", CS_GetLastVector);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::get_speed", CS_GetSpeed);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::set_speed", CS_SetSpeed);
@@ -204,6 +205,8 @@ bool M_MonoManager::Init()
 #pragma endregion
 
 	mono_add_internal_call("DiamondEngine.DiamondComponent::get_gameObject", CS_Component_Get_GO);
+	mono_add_internal_call("DiamondEngine.DiamondComponent::get_active", CS_Component_GetActive);
+	mono_add_internal_call("DiamondEngine.DiamondComponent::set_active", CS_Component_SetActive);
 	mono_add_internal_call("DiamondEngine.GameObject::TryGetComponent", CS_GetComponent);
 	mono_add_internal_call("DiamondEngine.GameObject::get_Name", CS_Get_GO_Name);
 	mono_add_internal_call("DiamondEngine.GameObject::get_parent", CS_Get_GO_Parent);
@@ -287,7 +290,7 @@ void M_MonoManager::ReCompileCS()
 	if (DETime::state == GameState::PLAY)
 		return;
 
-	App->moduleScene->SaveScene("Library/Scenes/tmp.des");
+	App->moduleScene->SaveToJson("Library/Scenes/tmp.des");
 
 	App->moduleScene->CleanScene();
 	App->moduleRenderer3D->ClearAllRenderData();
