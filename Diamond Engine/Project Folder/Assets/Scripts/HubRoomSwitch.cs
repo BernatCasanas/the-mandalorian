@@ -12,7 +12,7 @@ public class HubRoomSwitch : DiamondComponent
 		if(isHubScene == true)
 			RoomSwitch.ClearStaticData();
 
-		PlayerResources.ResetRunBoons();
+		//PlayerResources.ResetRunBoons(); //TODO: This has a bug when starting the run at the HUB
 		SceneManager.LoadScene(nextRoomUID);
 		Audio.SetState("Player_State", "Alive");
 		Audio.SetState("Game_State", "Run");
