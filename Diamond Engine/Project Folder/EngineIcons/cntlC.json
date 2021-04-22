@@ -1,20 +1,20 @@
 {
     "Game Objects": [
         {
-            "name": "ButtonNextRoom",
+            "name": "Greef Particles",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 92766785,
-            "ParentUID": 847292068,
-            "PrefabReference": 0,
-            "PrefabID": 0,
+            "UID": 719456677,
+            "ParentUID": 1481651339,
+            "PrefabReference": 1947430717,
+            "PrefabID": 738247575,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                0,
-                0
+                2.0416436195373535,
+                0.28287601470947266,
+                20.776374816894531
             ],
             "Rotation": [
                 0,
@@ -31,73 +31,64 @@
                 {
                     "Type": 1,
                     "Active": true
-                },
+                }
+            ],
+            "PrefabObjects": [
                 {
-                    "Type": 6,
+                    "name": "New Feature",
+                    "tag": "Untagged",
+                    "layer": "Default",
                     "Active": true,
+                    "UID": 1384726789,
+                    "ParentUID": 719456677,
+                    "PrefabID": 0,
+                    "PrefabReference": 693894912,
+                    "DontDestroy": false,
+                    "Static": false,
                     "Position": [
-                        54.099998474121094,
-                        -11.899999618530273
+                        0,
+                        -0.15037441253662109,
+                        0
                     ],
-                    "Rotation": 0,
-                    "Size": [
-                        2.9000000953674316,
-                        6.0999999046325684
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
                     ]
                 },
                 {
-                    "Type": 3,
+                    "name": "Particle System",
+                    "tag": "Untagged",
+                    "layer": "Default",
                     "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 7,
-                    "Active": true,
-                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_right_pressed.png",
-                    "Pressed_LibraryPath": "Library\/Textures\/70978250.dds",
-                    "Pressed_UID": 70978250,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/1346482548.dds",
-                    "Hovered_UID": 1346482548,
-                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
-                    "Unhovered_LibraryPath": "Library\/Textures\/1346482548.dds",
-                    "Unhovered_UID": 1346482548,
-                    "Script_Name": "HubRoomSwitch",
-                    "ButtonState": 2,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/arrow_right.png",
-                    "LibraryPath": "Library\/Textures\/1346482548.dds",
-                    "UID": 1346482548
-                },
-                {
-                    "Type": 17,
-                    "Active": true,
-                    "Map": [
-                        {
-                            "Index": 0,
-                            "UID": 92766785,
-                            "Action": 2,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        }
+                    "UID": 1227895845,
+                    "ParentUID": 719456677,
+                    "PrefabID": 0,
+                    "PrefabReference": 2013029087,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
                     ],
-                    "Button Being Used": -1,
-                    "Type Of UI": 7,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "HubRoomSwitch",
-                    "nextRoomUID": 1341124272,
-                    "isHubScene": true
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }
