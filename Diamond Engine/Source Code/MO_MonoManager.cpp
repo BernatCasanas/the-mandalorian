@@ -258,6 +258,8 @@ bool M_MonoManager::Init()
 
 	mono_add_internal_call("DiamondEngine.CameraManager::SetOrthSize", SetOrthSize);
 	mono_add_internal_call("DiamondEngine.CameraManager::GetOrthSize", GetOrthSize);
+	mono_add_internal_call("DiamondEngine.CameraManager::SetCameraOrthographic", CS_SetCameraOrthographic);
+	mono_add_internal_call("DiamondEngine.CameraManager::SetCameraPerspective", CS_SetCameraPerspective);
 
 	InitMono();
 
