@@ -202,7 +202,7 @@ void C_Script::SaveData(JSON_Object* nObj)
 		case MonoTypeEnum::MONO_TYPE_CLASS:
 			if (fields[i].fiValue.goValue != nullptr)
 			{
-				if (fields[i].fiValue.goValue->prefabReference != 0u) {
+				if (fields[i].fiValue.goValue->prefabReference != 0u && gameObject->prefabReference != 0u) {
 					DEJson::WriteInt(nObj, mono_field_get_name(fields[i].field), fields[i].fiValue.goValue->prefabReference);}
 				else {
 					DEJson::WriteInt(nObj, mono_field_get_name(fields[i].field), fields[i].fiValue.goValue->UID); }

@@ -185,7 +185,8 @@ public class Rancor : DiamondComponent
         RUSH,
         SWINGLEFT,
         SWINGRIGHT,
-        HANDSLAM
+        HANDSLAM,
+        ROAR
     }
     RancorParticles rancorParticles = null;
     private void Start()
@@ -1024,6 +1025,7 @@ public class Rancor : DiamondComponent
             {
                 InternalCalls.CreatePrefab("Library/Prefabs/1923485827.prefab", gameObject.transform.localPosition, gameObject.transform.localRotation, new Vector3(0.767f, 0.225f, 1.152f));
                 Input.PlayHaptic(.8f, 350);
+                PlayParticles(PARTICLES.HANDSLAM);
                 activateWave = false;
             }
         }
@@ -1138,6 +1140,7 @@ public class Rancor : DiamondComponent
         {
             shake.StartShaking(2f, 0.1f);
             roarShaked = true;
+            PlayParticles(PARTICLES.ROAR);
         }
     }
 
@@ -1363,6 +1366,13 @@ public class Rancor : DiamondComponent
                     particle.Play();
                 else
                     Debug.Log("Rancor Hand Slam particle not found!");
+                break;
+            case PARTICLES.ROAR:
+                particle = rancorParticles.roar;
+                if (particle != null)
+                    particle.Play();
+                else
+                    Debug.Log("Rancor Roar particle not found!");
                 break;
         }
     }
