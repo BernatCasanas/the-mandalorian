@@ -1,19 +1,19 @@
 {
     "Game Objects": [
         {
-            "name": "Rubble",
+            "name": "ButtonNextRoom",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1658960553,
-            "ParentUID": 2130665918,
-            "PrefabReference": 1430729798,
+            "UID": 92766785,
+            "ParentUID": 847292068,
+            "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
                 0,
-                -0.13711071014404297,
+                0,
                 0
             ],
             "Rotation": [
@@ -33,202 +33,71 @@
                     "Active": true
                 },
                 {
-                    "Type": 3,
+                    "Type": 6,
                     "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
-                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
-                    "MaterialUID": 355756108
-                },
-                {
-                    "Type": 20,
-                    "Active": true,
-                    "systemActive": false,
-                    "looping": false,
-                    "maxDuration": 1.0140000581741333,
-                    "ParticleEmitters": [
-                        {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/170375526.dds",
-                            "texUID": 170375526,
-                            "paEmitterName": "Dust",
-                            "paLifeTime": [
-                                0.5,
-                                1
-                            ],
-                            "paSize": [
-                                0.0099999997764825821,
-                                0.10000000149011612
-                            ],
-                            "paColor": [
-                                0.34420287609100342,
-                                0.073105022311210632,
-                                0,
-                                1
-                            ],
-                            "paPerSec": 400,
-                            "ParticleEffects": [
-                                {
-                                    "paEffectType": 0,
-                                    "paFOLT_direction": [
-                                        0,
-                                        5,
-                                        0
-                                    ],
-                                    "paFOLT_magnitude": 2,
-                                    "paFOLT_gravityMod": 0,
-                                    "paFOLT_gravity": -0,
-                                    "paFOLT_forceType": 0
-                                },
-                                {
-                                    "paEffectType": 1,
-                                    "paROLT_rotation": [
-                                        360,
-                                        0
-                                    ],
-                                    "paROLT_rotationSpeed": [
-                                        -5,
-                                        5
-                                    ]
-                                },
-                                {
-                                    "paEffectType": 2,
-                                    "Gradients": [
-                                        {
-                                            "paColorOLTcolor": [
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ],
-                                            "paColorOLTposition": 0
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                0.31225293874740601,
-                                                0.066319160163402557,
-                                                0,
-                                                0.85375493764877319
-                                            ],
-                                            "paColorOLTposition": 1
-                                        }
-                                    ]
-                                },
-                                {
-                                    "paEffectType": 3,
-                                    "paSizeOLTStartSize": 0.30000001192092896,
-                                    "paSizeOLTEndSize": 0
-                                },
-                                {
-                                    "paEffectType": 5,
-                                    "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 1,
-                                    "paShapeRandSpeed": 0.5,
-                                    "PaShapeAreaDimensions": [
-                                        2.7000000476837158,
-                                        0.10000000149011612,
-                                        0.69999998807907104
-                                    ],
-                                    "PaShapeSphereDirection": false,
-                                    "PaShapeSphereAngle": 0,
-                                    "paShapeType": 0,
-                                    "PaShapeOffset": [
-                                        0,
-                                        0,
-                                        0
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1162313265.dds",
-                            "texUID": 1162313265,
-                            "paEmitterName": "Rubble 2",
-                            "paLifeTime": [
-                                0.5,
-                                1
-                            ],
-                            "paSize": [
-                                0,
-                                1
-                            ],
-                            "paColor": [
-                                1,
-                                1,
-                                1,
-                                1
-                            ],
-                            "paPerSec": 250,
-                            "ParticleEffects": [
-                                {
-                                    "paEffectType": 0,
-                                    "paFOLT_direction": [
-                                        0,
-                                        5,
-                                        0
-                                    ],
-                                    "paFOLT_magnitude": 4,
-                                    "paFOLT_gravityMod": 1,
-                                    "paFOLT_gravity": -9.8000001907348633,
-                                    "paFOLT_forceType": 0
-                                },
-                                {
-                                    "paEffectType": 2,
-                                    "Gradients": [
-                                        {
-                                            "paColorOLTcolor": [
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ],
-                                            "paColorOLTposition": 0
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                0.39525693655014038,
-                                                0.12127199023962021,
-                                                0,
-                                                0.82608693838119507
-                                            ],
-                                            "paColorOLTposition": 1
-                                        }
-                                    ]
-                                },
-                                {
-                                    "paEffectType": 3,
-                                    "paSizeOLTStartSize": 0.40000000596046448,
-                                    "paSizeOLTEndSize": 0.10000000149011612
-                                },
-                                {
-                                    "paEffectType": 5,
-                                    "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 1,
-                                    "paShapeRandSpeed": 2,
-                                    "PaShapeAreaDimensions": [
-                                        2.7000000476837158,
-                                        0.20000000298023224,
-                                        0.69999998807907104
-                                    ],
-                                    "PaShapeSphereDirection": false,
-                                    "PaShapeSphereAngle": 0,
-                                    "paShapeType": 0,
-                                    "PaShapeOffset": [
-                                        0,
-                                        0,
-                                        0
-                                    ]
-                                }
-                            ]
-                        }
+                    "Position": [
+                        54.099998474121094,
+                        -11.899999618530273
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        2.9000000953674316,
+                        6.0999999046325684
                     ]
                 },
                 {
-                    "Type": 21,
+                    "Type": 3,
                     "Active": true,
-                    "billboardAlignment": 0,
-                    "horizantalAligned": true
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_right_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/70978250.dds",
+                    "Pressed_UID": 70978250,
+                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1346482548.dds",
+                    "Hovered_UID": 1346482548,
+                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1346482548.dds",
+                    "Unhovered_UID": 1346482548,
+                    "Script_Name": "HubRoomSwitch",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/arrow_right.png",
+                    "LibraryPath": "Library\/Textures\/1346482548.dds",
+                    "UID": 1346482548
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 92766785,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "HubRoomSwitch",
+                    "nextRoomUID": 1341124272,
+                    "isHubScene": true
                 }
             ]
         }

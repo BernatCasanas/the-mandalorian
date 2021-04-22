@@ -138,8 +138,9 @@ public class Core : DiamondComponent
     int numberOfShots = 0;
     int damageTaken = 0;
     int timesFellOfMap = 0;
-    float distanceMoved = 0;
-    
+    float distanceMoved = 0f;
+    float timeOfRoom = 0f;
+
 
     private void Start()
     {
@@ -241,13 +242,13 @@ public class Core : DiamondComponent
 
             if (dashTimer <= 0)
             {
-               // Debug.Log(dashTimer.ToString());
+                // Debug.Log(dashTimer.ToString());
 
                 GameObject hit = null;
                 if (RayCastObj != null)
                 {
                     hit = InternalCalls.RayCast(RayCastObj.transform.globalPosition, RayCastObj.transform.GetForward(), 100);
-                    
+
                 }
                 else
                     Debug.Log("Raycast obj == null");
@@ -293,7 +294,6 @@ public class Core : DiamondComponent
             {
                 inputsList.Add(INPUT.IN_SHOOT);
                 Debug.Log("In shoot");
-                numberOfShots += 1;
             }
         }
 
@@ -306,7 +306,7 @@ public class Core : DiamondComponent
         }
 
         if (skill_damageReductionDashEnabled && skill_damageReductionDashTimer > 0)
-        {            
+        {
             skill_damageReductionDashTimer -= Time.deltaTime;
 
             if (skill_damageReductionDashTimer <= 0)
@@ -352,6 +352,13 @@ public class Core : DiamondComponent
                 InternalCalls.CreateUIPrefab("Library/Prefabs/1871660106.prefab", new Vector3(0, 0, 0), new Quaternion(0, 0, 0), new Vector3(1, 1, 1));
             }
 
+            if (Input.GetKey(DEKeyCode.T) == KeyState.KEY_DOWN)
+            {
+                Debug.Log("Amount of bullets fired: " + numberOfShots.ToString());
+                Debug.Log("Time to complete room: " + timeOfRoom.ToString() + " seconds");
+                Debug.Log("Times fallen of the map: " + timesFellOfMap.ToString());
+                Debug.Log("Total distance moved: " + distanceMoved.ToString() + " mandos");
+            }
 
             if (Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_DOWN && grenadesFireRateTimer <= 0.0f)
             {
@@ -360,6 +367,8 @@ public class Core : DiamondComponent
             }
         }
         grenadesFireRateTimer -= Time.deltaTime;
+
+        timeOfRoom += Time.deltaTime;
     }
 
 
@@ -567,8 +576,10 @@ public class Core : DiamondComponent
         {
             normalShootSpeed = shootAnimationTotalTime / currFireRate;
             currFireRate = shootingTimer;
+            numberOfShots += 1;
         }
         Animator.Play(gameObject, "Shoot", normalShootSpeed);
+
 
         PlayParticles(PARTICLES.MUZZLE);
         if (myAimbot != null)
@@ -603,7 +614,7 @@ public class Core : DiamondComponent
         inputsList.Add(INPUT.IN_SHOOT_END);
         hasShot = true;
 
-        if(shootPoint == null)
+        if (shootPoint == null)
         {
             Debug.Log("Shootpoint reference is null!");
             return;
@@ -620,7 +631,7 @@ public class Core : DiamondComponent
             if (skill_extraDamageActive) bullet.GetComponent<BH_Bullet>().damage = GetExtraDamageWithSkill();
             else bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
         }
-            
+
     }
 
 
@@ -761,7 +772,7 @@ public class Core : DiamondComponent
         {
             skill_damageReductionDashActive = true;
             skill_damageReductionDashTimer = skill_damageReductionDashDuration;
-        }            
+        }
     }
 
     #endregion
@@ -901,7 +912,7 @@ public class Core : DiamondComponent
                 gameObject.GetComponent<PlayerHealth>().TakeDamage(damageFromBullet);
                 damageTaken += damageFromBullet;
             }
-                
+
         }
         if (collidedGameObject.CompareTag("Bantha"))
         {
@@ -913,7 +924,7 @@ public class Core : DiamondComponent
             {
 
                 int damageFromEnemy = 0;
-                if (skill_damageReductionDashActive) damageFromEnemy = (int)(damage * (1.0f - skill_damageReductionDashAmount));                
+                if (skill_damageReductionDashActive) damageFromEnemy = (int)(damage * (1.0f - skill_damageReductionDashAmount));
                 else damageFromEnemy = (int)damage;
 
                 gameObject.GetComponent<PlayerHealth>().TakeDamage(damageFromEnemy);
@@ -922,7 +933,7 @@ public class Core : DiamondComponent
         }
     }
 
-    
+
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
         if (triggeredGameObject.CompareTag("Coin"))
@@ -932,7 +943,7 @@ public class Core : DiamondComponent
             InternalCalls.Destroy(triggeredGameObject);
         }
     }
-    
+
 
     public void RespawnOnFall()
     {
@@ -1025,12 +1036,13 @@ public class Core : DiamondComponent
         {
             grenadesFireRate -= grenadesFireRate * value1;
         }
-        else if(skillName == "AggressionHPMissingDamageSkill") //For each 1% of hp missing, gain 1% damage
+        else if (skillName == "AggressionHPMissingDamageSkill") //For each 1% of hp missing, gain 1% damage
         {
             skill_extraDamageActive = true;
             skill_extraDamageHPStep = value1;
             skill_extraDamageAmount = value2;
-        }else if(skillName == "UtilityDamageReductionSkill")
+        }
+        else if (skillName == "UtilityDamageReductionSkill")
         {
             skill_damageReductionDashEnabled = true;
             skill_damageReductionDashDuration = value1;
