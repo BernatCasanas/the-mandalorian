@@ -47,6 +47,7 @@ public class Rancor : DiamondComponent
     }
 
     private NavMeshAgent agent = null;
+    public GameObject camera = null;
 
     //private Vector3 targetPosition = null;
     private Vector3 targetDirection = null;
@@ -159,6 +160,7 @@ public class Rancor : DiamondComponent
     //Roar
     private float roarTime = 0.0f;
     private float roarTimer = 0.0f;
+    private bool roarShaked = false;
 
     //Boss bar updating
     public GameObject boss_bar = null;
@@ -582,6 +584,7 @@ public class Rancor : DiamondComponent
                 break;
 
             case RANCOR_STATE.ROAR:
+                UpdateRoar();
                 break;
 
             case RANCOR_STATE.SEARCH_STATE:
@@ -1097,6 +1100,16 @@ public class Rancor : DiamondComponent
         Audio.PlayAudio(gameObject, "Play_Rancor_Breath");
         Input.PlayHaptic(0.9f, (int)roarTime*1000);
         roarTimer = roarTime;
+    }
+
+    private void UpdateRoar()
+    {
+        Shake3D shake = camera.GetComponent<Shake3D>();
+        if (shake != null && roarTimer <= 2.5 && !roarShaked)
+        {
+            shake.StartShaking(2f, 0.2f);
+            roarShaked = true;
+        }
     }
 
     private void EndRoar()
