@@ -123,10 +123,6 @@ bool M_Editor::Init()
 
 bool M_Editor::Start()
 {
-	//W_TextEditor* txtEditor = dynamic_cast<W_TextEditor*>(GetEditorWindow(EditorWindow::TEXTEDITOR));
-	//if(txtEditor != nullptr)
-	//	txtEditor->SetTextFromFile("Assets/Scripts/Core.cs");
-
 	return true;
 }
 
@@ -238,6 +234,7 @@ void M_Editor::DrawMenuBar()
 				if (!sceneDir.empty())
 				{
 					App->moduleScene->SaveToJson(sceneDir.c_str());
+					App->moduleResources->ImportFile(sceneDir.c_str(), Resource::Type::SCENE);
 					App->moduleResources->NeedsDirsUpdate(App->moduleResources->assetsRoot);
 				}
 
