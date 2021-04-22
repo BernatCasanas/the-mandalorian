@@ -1077,6 +1077,13 @@ public class Rancor : DiamondComponent
         rushStunTimer = rushStunDuration;
         Animator.Play(gameObject, "RN_RushRecover");
         Audio.PlayAudio(gameObject, "Play_Rancor_Recovery");
+
+        Shake3D shake = camera.GetComponent<Shake3D>();
+        if (shake != null)
+        {
+            shake.StartShaking(1f, 0.1f);
+        }
+
     }
 
     private void UpdateRushStun()
