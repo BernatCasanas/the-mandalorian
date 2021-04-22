@@ -818,8 +818,10 @@ bool Pathfinder::CalculatePath(float3 origin, float3 destination, std::vector<fl
 	}
 
 	if (dtStatusFailed(status) || (status & DT_STATUS_DETAIL_MASK) || m_nstraightPath == 0) {
-		LOG(LogType::L_ERROR, "Could not create straight path");
-		return false;}
+		//LOG(LogType::L_ERROR, "Could not create straight path");
+		path.clear();
+		return false;
+	}
 
 	path.resize(m_nstraightPath);
 	memcpy(path.data(), m_straightPath, sizeof(float) * m_nstraightPath * 3);

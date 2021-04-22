@@ -57,6 +57,7 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 	GameObject* parent = rootObject;
 	std::map<uint, GameObject*> prefabObjects;
 
+	uint firstPrefabId = 0u;
 	std::vector<uint> prefabReferences;
 	for (size_t j = 0; j < json_array_get_count(gameObjectsArray); j++)
 	{
@@ -65,6 +66,9 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 		int uid = json_object_get_number(jsonObject, "UID");
 		int prefabID = json_object_get_number(jsonObject, "PrefabID");
 		int prefabReference = json_object_get_number(jsonObject, "PrefabReference");
+
+		if (firstPrefabId == 0u && prefabID != 0)
+			firstPrefabId = prefabID;
 
 		if (prefabID != 0 && j != 0)
 		{
@@ -137,12 +141,6 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 		}
 	}
 
-	if(!loadingScene)
-	{
-		EngineExternal->moduleScene->LoadNavigationData();
-		EngineExternal->moduleScene->LoadScriptsData(rootObject);
-	}
-
 	//replace the components references with the new GameObjects using their old UIDs
 	std::map<uint, GameObject*>::const_iterator it = prefabObjects.begin();
 	for (it; it != prefabObjects.end(); it++)
@@ -151,6 +149,12 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 		{
 			it->second->components[i]->OnRecursiveUIDChange(prefabObjects);
 		}
+	}
+
+	if (!loadingScene)
+	{
+		//EngineExternal->moduleScene->LoadNavigationData();
+		//EngineExternal->moduleScene->LoadScriptsData(rootObject);
 	}
 
 	std::vector<C_Script*> saveCopy; //We need to do this in case someone decides to create an instance inside the awake method
@@ -266,7 +270,6 @@ GameObject* PrefabImporter::LoadUIPrefab(const char* libraryPath)
 	}
 
 	EngineExternal->moduleScene->LoadNavigationData();
-	//rootObject->RecursiveUIDRegeneration();
 	EngineExternal->moduleScene->LoadScriptsData(rootObject);
 
 

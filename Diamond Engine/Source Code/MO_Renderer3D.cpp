@@ -314,7 +314,9 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 		(wireframe) ? glPolygonMode(GL_FRONT_AND_BACK, GL_FILL) : glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
 
+	DrawRays();
 	DrawParticleSystems();
+
 	if (App->moduleCamera->editorCamera.drawSkybox)
 		skybox.DrawAsSkybox(&App->moduleCamera->editorCamera);
 
@@ -359,6 +361,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 			RenderStencilWithOrdering(true);
 		}
 
+		DrawRays();
 		DrawParticleSystems();
 
 		if (gameCamera->drawSkybox)
@@ -580,6 +583,28 @@ void ModuleRenderer3D::DebugLine(LineSegment& line)
 }
 #endif // !STANDALONE
 
+void ModuleRenderer3D::AddRay(float3& a, float3& b, float3& color)
+{
+	rays.push_back(LineRender(a, b, color));
+}
+
+void ModuleRenderer3D::DrawRays()
+{
+	glLineWidth(10.0f);
+	glBegin(GL_LINES);
+	for (size_t i = 0; i < rays.size(); i++)
+	{
+		glColor3fv(rays[i].color.ptr());
+		glVertex3fv(rays[i].a.ptr());
+		glVertex3fv(rays[i].b.ptr());
+
+		glColor3f(255.f, 255.f, 255.f);
+	}
+	glEnd();
+	//rays.clear();
+	glLineWidth(1.0f);
+}
+
 void ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray)
 {
 	pickingDebug = ray;
@@ -756,6 +781,7 @@ void ModuleRenderer3D::ClearAllRenderData()
 	renderQueueMapPostStencil.clear();
 
 	particleSystemQueue.clear();
+	rays.clear();
 }
 
 bool ModuleRenderer3D::IsWalkable(float3 pointToCheck)

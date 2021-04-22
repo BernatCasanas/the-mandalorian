@@ -643,7 +643,6 @@ void GameObject::GetChildrenUIDs(std::vector<uint>& UIDs)
 	}
 }
 
-
 void GameObject::LoadComponents(JSON_Array* componentArray)
 {
 	DEConfig conf(nullptr);
@@ -670,8 +669,6 @@ void GameObject::LoadComponents(JSON_Array* componentArray)
 			comp->LoadData(conf);
 	}
 }
-
-
 
 void GameObject::RemoveComponent(Component* ptr)
 {
@@ -743,12 +740,24 @@ void GameObject::CollectChilds(std::vector<GameObject*>& vector)
 		children[i]->CollectChilds(vector);
 }
 
+void GameObject::RemoveCSReference(SerializedField* fieldToRemove)
+{
+	for (size_t i = 0; i < csReferences.size(); i++)
+	{
+		if (csReferences[i]->goUID == fieldToRemove->goUID)
+		{
+			mono_field_set_value(mono_gchandle_get_target(csReferences[i]->parentSC->noGCobject), csReferences[i]->field, NULL);
+			csReferences.erase(csReferences.begin() + i);
+		}
+	}
+}
+
 bool GameObject::CompareTag(const char* _tag)
 {
 	return strcmp(tag, _tag) == 0;
 }
 
-GameObject* GameObject::GetChild(std::string childName)
+GameObject* GameObject::GetChild(std::string& childName)
 {
 	for (size_t i = 0; i < children.size(); i++)
 	{
@@ -760,4 +769,6 @@ GameObject* GameObject::GetChild(std::string childName)
 		if (child != nullptr)
 			return child;
 	}
+
+	return nullptr;
 }
