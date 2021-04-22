@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        17.78936767578125,
-        22.163923263549805,
-        -7.7792820930480957
+        -9.3449411392211914,
+        5.8948936462402344,
+        3.3311660289764404
     ],
     "EditorCameraZ": [
-        -0.51553869247436523,
-        -0.79435789585113525,
-        0.32127165794372559
+        0.74252992868423462,
+        -0.61013877391815186,
+        -0.27636933326721191
     ],
     "EditorCameraY": [
-        -0.67427706718444824,
-        0.60745000839233398,
-        0.41994631290435791
+        0.57184207439422607,
+        0.79229456186294556,
+        -0.21275800466537476
     ],
     "tags": [
         "Player",
@@ -91,8 +91,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 11.739999771118164,
-                    "hFOV": -1.3828117847442627,
+                    "vFOV": 1.0471975803375244,
+                    "hFOV": 1.5521194934844971,
                     "culling": false,
                     "drawSkybox": true
                 },
@@ -205,7 +205,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/AreaLightTest.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/191464233.mat",
                     "MaterialUID": 191464233
                 }
@@ -263,9 +263,58 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/AreaLightTest.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/191464233.mat",
                     "MaterialUID": 191464233
+                }
+            ]
+        },
+        {
+            "name": "Empty",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "Position": [
+                0.32701766490936279,
+                1.4092673063278198,
+                0.079390645027160645
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "UID": 1294708416,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "ParentUID": 1676501951,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 27,
+                    "Active": true,
+                    "lightColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "ambientLightColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "lightIntensity": 0.80000001192092896,
+                    "specularValue": 64
                 }
             ]
         }
