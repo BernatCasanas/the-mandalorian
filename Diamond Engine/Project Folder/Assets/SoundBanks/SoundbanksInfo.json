@@ -299,7 +299,7 @@
    {
     "Id": "1093318992",
     "Language": "SFX",
-    "Hash": "1449156186",
+    "Hash": "421902220",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Mando",
     "ShortName": "Mando",
     "Path": "Mando.bnk",
@@ -459,6 +459,32 @@
         "Language": "SFX",
         "ShortName": "Footstep mando snow 2.wav",
         "Path": "SFX\\Footstep mando snow 2_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1398027825",
+      "Name": "Play_Footsteps_Water_Mando",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Footsteps_Water_Mando",
+      "DurationType": "Infinite",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "151403726",
+        "Language": "SFX",
+        "ShortName": "Footstep mando water 3.wav",
+        "Path": "SFX\\Footstep mando water 3_10C4C929.wem"
+       },
+       {
+        "Id": "311734150",
+        "Language": "SFX",
+        "ShortName": "Footstep mando water 1.wav",
+        "Path": "SFX\\Footstep mando water 1_10C4C929.wem"
+       },
+       {
+        "Id": "472984334",
+        "Language": "SFX",
+        "ShortName": "Footstep mando water 4.wav",
+        "Path": "SFX\\Footstep mando water 4_10C4C929.wem"
        }
       ]
      },
@@ -1563,7 +1589,7 @@
    {
     "Id": "3991942870",
     "Language": "SFX",
-    "Hash": "2028768608",
+    "Hash": "1935505629",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Music",
     "ShortName": "Music",
     "Path": "Music.bnk",
@@ -1587,6 +1613,12 @@
         "Language": "SFX",
         "ShortName": "Combat Music A\\OST A-Reverb.wav",
         "Path": "SFX\\Combat Music A\\OST A-Reverb_4811579D.wem"
+       },
+       {
+        "Id": "32521209",
+        "Language": "SFX",
+        "ShortName": "Rancor level music 1.wav",
+        "Path": "SFX\\Rancor level music 1_4811579D.wem"
        },
        {
         "Id": "72485731",
@@ -1805,6 +1837,24 @@
           ]
          }
         ]
+       },
+       {
+        "SwitchValue": "{D651359C-1684-4E02-8D22-5225AA612899}",
+        "Children": [
+         {
+          "SwitchValue": "{285AA9B7-4013-42DA-8E6A-E0C4EB75AE03}",
+          "Children": [
+           {
+            "SwitchValue": "{979A83A1-5FD3-4444-AB96-1ABEDBCBCCEC}",
+            "Media": [
+             {
+              "Id": "32521209"
+             }
+            ]
+           }
+          ]
+         }
+        ]
        }
       ]
      },
@@ -1862,6 +1912,11 @@
         "Id": "712161704",
         "Name": "Run",
         "ObjectPath": "\\States\\Default Work Unit\\Game_State\\Run"
+       },
+       {
+        "Id": "794633738",
+        "Name": "Rancor_Room",
+        "ObjectPath": "\\States\\Default Work Unit\\Game_State\\Rancor_Room"
        }
       ]
      },
