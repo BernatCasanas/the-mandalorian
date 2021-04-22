@@ -122,6 +122,11 @@
                     "cornerTopLeftY": -100,
                     "cornerBotRightX": 100,
                     "cornerBotRightY": 100
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Shake3D"
                 }
             ]
         },
@@ -12249,7 +12254,15 @@
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "ambientLightColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "lightIntensity": 0.85000002384185791,
+                    "specularValue": 64,
+                    "calculateShadows": true
                 }
             ]
         },
@@ -19360,6 +19373,7 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Rancor",
+                    "camera": 71863204,
                     "slerpSpeed": 30,
                     "skill_increaseDamageToBossActive": true,
                     "skill_increaseDamageToBossAmount": 0,

@@ -9,7 +9,6 @@ public class Shake3D : DiamondComponent
     private float decreaseFactor = 1.0f;
 
     private bool enable = false;
-    private Vector3 originPos;
     private Random random;
 
 	public void Awake()
@@ -23,7 +22,6 @@ public class Shake3D : DiamondComponent
 
     public void StartShaking(float duration, float maxDistance)
     {
-        originPos = gameObject.transform.localPosition;
         shakeMaxDistance = maxDistance;
         enable = true;
         shakeTimer = duration;
@@ -36,19 +34,15 @@ public class Shake3D : DiamondComponent
         if (shakeTimer > 0)
         {
             int intShake = (int)(shakeMaxDistance * 100);
-            int x = random.Next(-intShake, intShake);
-            int y = random.Next(-intShake, intShake);
-            int z = random.Next(-intShake, intShake);
             Debug.Log(random.Next(-intShake, intShake).ToString());
-            Vector3 randomPos = new Vector3((float)x/100, (float)z / 100, (float)z / 100);
+            Vector3 randomPos = new Vector3((float)random.Next(-intShake, intShake) / 100, (float)random.Next(-intShake, intShake) / 100, (float)random.Next(-intShake, intShake) / 100);
             Debug.Log(randomPos.ToString());
-            gameObject.transform.localPosition = originPos + randomPos;
+            gameObject.transform.localPosition += randomPos;
 
             shakeTimer -= Time.deltaTime;
         }
         else
         {
-            gameObject.transform.localPosition = originPos;
             enable = false;
         }
 	}

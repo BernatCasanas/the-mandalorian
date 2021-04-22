@@ -1107,7 +1107,7 @@ public class Rancor : DiamondComponent
         Shake3D shake = camera.GetComponent<Shake3D>();
         if (shake != null && roarTimer <= 2.5 && !roarShaked)
         {
-            shake.StartShaking(2f, 0.2f);
+            shake.StartShaking(2f, 0.1f);
             roarShaked = true;
         }
     }
