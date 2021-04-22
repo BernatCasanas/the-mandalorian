@@ -40,7 +40,7 @@ public class Wampa : DiamondComponent
     private NavMeshAgent agent = null;
     Random randomNum = new Random();
 
-    private WAMPA_STATE currentState = WAMPA_STATE.FOLLOW;
+    private WAMPA_STATE currentState = WAMPA_STATE.SEARCH_STATE;
     private List<WAMPA_INPUT> inputsList = new List<WAMPA_INPUT>();
 
     public float slerpSpeed = 5.0f;
@@ -93,6 +93,7 @@ public class Wampa : DiamondComponent
         Audio.PlayAudio(gameObject, "");
         Counter.roomEnemies++;  // Just in case
         EnemyManager.AddEnemy(gameObject);
+
     }
 
     public void Update()
@@ -102,6 +103,7 @@ public class Wampa : DiamondComponent
         ProcessState();
 
         UpdateState();
+
     }
 
     private void ProcessInternalInput()
@@ -343,6 +345,10 @@ public class Wampa : DiamondComponent
                 }
             }
         }
+        Debug.Log("Projectile");
+        Debug.Log(shootingTimer.ToString());
+        Debug.Log("Prohjectile null");
+
     }
 
     private void EndProjectile()
@@ -362,6 +368,7 @@ public class Wampa : DiamondComponent
         agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(fastRushSpeed);
+        Debug.Log("Rush");
     }
 
     private void EndFastRush()
@@ -394,7 +401,7 @@ public class Wampa : DiamondComponent
     }
     private void UpdateRushStun()
     {
-
+        Debug.Log("Rush Stun");
     }
 
     private void EndRushStun()
@@ -414,7 +421,6 @@ public class Wampa : DiamondComponent
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(speed);
         Debug.Log("Following player");
-        Debug.Log(walkingTimer.ToString());
     }
 
     private void EndFollowing()
