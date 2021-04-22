@@ -14,13 +14,15 @@
 #include<map>
 
 class ResourceMesh;
-class C_MeshRenderer;
 class ResourceTexture;
-class C_Camera;
+class ResourceMaterial;
+
 class GameObject;
+class C_MeshRenderer;
+class C_Camera;
 class C_DirectionalLight;
 
-#define MAX_LIGHTS 1
+#define MAX_DIRECTIONAL_LIGHTS 2	//IF YOU MODIFY THIS VALUE, YOU MUST MODIFY THE SIZE OF THE ARRAY IN THE SHADER
 
 #define SQUARE_TEXTURE_W 256
 #define SQUARE_TEXTURE_H 256
@@ -76,6 +78,11 @@ public:
 
 	bool IsWalkable(float3 pointToCheck);
 
+	void AddLight(C_DirectionalLight* light);
+	void RemoveLight(C_DirectionalLight* light);
+
+	void PushLightUniforms(ResourceMaterial* material);
+
 private:
 
 	void RenderWithOrdering(bool rTex = false);
@@ -95,6 +102,9 @@ public:
 	GLuint checkersTexture;
 	GLubyte checkerImage[SQUARE_TEXTURE_W][SQUARE_TEXTURE_H][4];
 
+	GLuint defaultNormalMap;
+	GLubyte defaultNormalMapImage[SQUARE_TEXTURE_W][SQUARE_TEXTURE_H][4];
+
 	std::vector<C_MeshRenderer*> renderQueue;
 	std::vector<C_MeshRenderer*> renderQueueStencil;
 	std::vector<C_MeshRenderer*> renderQueuePostStencil;
@@ -106,12 +116,13 @@ public:
 
 	std::vector<LineSegment> walkablePoints;
 
-	Light lights[MAX_LIGHTS];
+	Light lights[1];
 	SDL_GLContext context;
 
 	C_Camera* activeRenderCamera = nullptr; //TODO: This is temporal
 	DE_Cubemap skybox;
-	C_DirectionalLight* directLight;
+
+	std::vector<C_DirectionalLight*> directLightVector;
 
 	unsigned int resolution;
 

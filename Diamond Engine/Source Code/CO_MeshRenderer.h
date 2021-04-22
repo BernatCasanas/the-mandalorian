@@ -5,6 +5,7 @@
 #include"MathGeoLib/include/Geometry/OBB.h"
 
 class ResourceMesh;
+class ResourceTexture;
 class C_Transform;
 
 class C_MeshRenderer : public Component
@@ -41,11 +42,13 @@ public:
 	GameObject* rootBone = nullptr;
 
 private:
-	ResourceMesh* _mesh;
+	ResourceMesh* _mesh = nullptr;
+	ResourceTexture* normalMap = nullptr;
+
 	float3 alternColor;
 	float3 alternColorStencil;
 	bool drawDebugVertices;
-	C_Transform* gameObjectTransform;
+	C_Transform* gameObjectTransform = nullptr;
 	std::vector<C_Transform*> bonesMap;
 	bool drawStencil;
 };
