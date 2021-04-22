@@ -81,8 +81,6 @@ public class SkyTrooperShot : DiamondComponent
 
 			distanceHorizontal = (float)Math.Sqrt(distanceX*distanceX+distanceZ*distanceZ);
 		}
-		Debug.Log(distanceHorizontal.ToString());
-		Debug.Log(distanceY.ToString());
 
 		float calcAngleSubFunction = (speed * speed) / (-gravity * distanceHorizontal);
 		float angleSpeed;
@@ -119,8 +117,6 @@ public class SkyTrooperShot : DiamondComponent
 
 		if ((distanceZ < 0 && velocity.z > 0) || (distanceZ > 0 && velocity.z < 0))
 			velocity.z = -velocity.z;
-
-		Debug.Log(velocity.ToString());
 
 	}
 
