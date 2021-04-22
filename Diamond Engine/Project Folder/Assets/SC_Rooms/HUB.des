@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -13.758808135986328,
-        8.0434684753417969,
-        -6.153902530670166
+        7.3808698654174805,
+        -15.013574600219727,
+        -10.932223320007324
     ],
     "EditorCameraZ": [
-        0.67244768142700195,
-        -0.58248651027679443,
-        0.45664393901824951
+        -0.11577658355236053,
+        -0.098046742379665375,
+        0.98842436075210571
     ],
     "EditorCameraY": [
-        0.48188751935958862,
-        0.81284040212631226,
-        0.32722306251525879
+        -0.011406474746763706,
+        0.9951818585395813,
+        0.097380980849266052
     ],
     "tags": [],
     "layers": [],
@@ -105,6 +105,7 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "CameraController",
+                    "targetLoaded": true,
                     "x": -10.300000190734863,
                     "y": 9.3000001907348633,
                     "z": -10,
@@ -40780,8 +40781,8 @@
             "Static": false,
             "Position": [
                 0,
-                0,
-                -22.232479095458984
+                -20,
+                0
             ],
             "Rotation": [
                 0,
@@ -40814,8 +40815,8 @@
             "Static": false,
             "Position": [
                 0,
-                0,
-                -14.811494827270508
+                -20,
+                6
             ],
             "Rotation": [
                 0,
@@ -43005,6 +43006,346 @@
                         1,
                         1
                     ]
+                }
+            ]
+        },
+        {
+            "name": "Dark Trooper Helmet",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 849211245,
+            "ParentUID": 1481651339,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                10.886846542358398,
+                -19.195938110351563,
+                -1.7499237060546875
+            ],
+            "Rotation": [
+                0,
+                -0.7071068286895752,
+                0,
+                0.7071068286895752
+            ],
+            "Scale": [
+                3,
+                3,
+                3
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Helmet",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 563802588,
+            "ParentUID": 849211245,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                0.010100012645125389,
+                0.010780846700072289,
+                0.010471614077687263
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/731118130.mmh",
+                    "UID": 731118130,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                }
+            ]
+        },
+        {
+            "name": "TaatoineIntro",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 226045245,
+            "ParentUID": 1481651339,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                15.019651412963867,
+                -20.726865768432617,
+                16.601894378662109
+            ],
+            "Rotation": [
+                1.0672351891116705e-11,
+                -0.70722883939743042,
+                1.0672351891116705e-11,
+                0.70698469877243042
+            ],
+            "Scale": [
+                0.20000015199184418,
+                0.20000000298023224,
+                0.20000015199184418
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "SceneIntro",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 735836929,
+            "ParentUID": 226045245,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Background",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1480434724,
+            "ParentUID": 735836929,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/875198052.mmh",
+                    "UID": 875198052,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                }
+            ]
+        },
+        {
+            "name": "Planet",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 868281839,
+            "ParentUID": 735836929,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Taatoine",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1132733616,
+            "ParentUID": 868281839,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1610061961.mmh",
+                    "UID": 1610061961,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                }
+            ]
+        },
+        {
+            "name": "Atmosphere",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 5110755,
+            "ParentUID": 868281839,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1919864322.mmh",
+                    "UID": 1919864322,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
                 }
             ]
         }
