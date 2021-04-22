@@ -1,0 +1,147 @@
+{
+    "assets_path": "Assets\/Prefabs\/Rancor Roar.prefab",
+    "Game Objects": [
+        {
+            "name": "Rancor Roar",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 0,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 2078871507,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.31405669450759888,
+                2.3980894088745117,
+                1.7920446395874023
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Particle System",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 0,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": true,
+                    "looping": true,
+                    "maxDuration": 3.0120000839233398,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1834899011.dds",
+                            "texUID": 1834899011,
+                            "paEmitterName": "Empty",
+                            "paLifeTime": [
+                                0.30000001192092896,
+                                0.30000001192092896
+                            ],
+                            "paSize": [
+                                1,
+                                1
+                            ],
+                            "paColor": [
+                                9.9999999747524271e-07,
+                                1.6867470264969597e-07,
+                                1.6867470264969597e-07,
+                                1
+                            ],
+                            "paPerSec": 7,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        0,
+                                        0
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        -1,
+                                        1
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0.05000000074505806,
+                                    "paSizeOLTEndSize": 2.5
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 6,
+                                    "paShapeRandSpeed": 0,
+                                    "paShapeType": 4,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        }
+    ]
+}
