@@ -1084,6 +1084,8 @@ public class Rancor : DiamondComponent
             gameObject.transform.localPosition += targetDirection.normalized * rushSpeed * Time.deltaTime; //ADD SPEED IN RUSH DIRECTION
         }
 
+        PlayParticles(PARTICLES.RUSH);
+
     }
 
 

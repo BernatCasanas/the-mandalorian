@@ -53,7 +53,7 @@ update_status M_ResourceManager::PreUpdate(float dt)
 	fileCheckTime += dt;
 	if (fileCheckTime >= fileUpdateDelay && (SDL_GetWindowFlags(App->moduleWindow->window) & SDL_WindowFlags::SDL_WINDOW_MOUSE_FOCUS || SDL_GetWindowFlags(App->moduleWindow->window) & SDL_WindowFlags::SDL_WINDOW_INPUT_FOCUS))
 	{
-		//NeedsDirsUpdate(assetsRoot);
+		NeedsDirsUpdate(assetsRoot);
 	}
 	
 	if (recompileCS)
