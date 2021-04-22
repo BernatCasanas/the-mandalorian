@@ -632,6 +632,14 @@ public class Bantha : Enemy
                 }
             }
         }
+        else if (collidedGameObject.CompareTag("ExplosiveBarrel") && collidedGameObject.GetComponent<SphereCollider>().active)
+        {
+            healthPoints -= collidedGameObject.GetComponent<BH_DestructBox>().explosion_damage;
+            if (currentState != STATE.DIE && healthPoints <= 0.0f)
+            {
+                inputsList.Add(INPUT.IN_DIE);
+            }
+        }
     }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)

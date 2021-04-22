@@ -3,19 +3,19 @@
     "Game Objects": [
         {
             "name": "Prop_Barrel",
-            "tag": "Untagged",
+            "tag": "ExplosiveBarrel",
             "layer": "Default",
             "Active": true,
             "UID": 1874412914,
             "ParentUID": 0,
             "PrefabReference": 0,
-            "PrefabID": 0,
+            "PrefabID": 1796667987,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                15.66752815246582,
-                6.0797181129455566,
-                -14.470905303955078
+                15.668000221252441,
+                6.0799999237060547,
+                -14.470999717712402
             ],
             "Rotation": [
                 0,
@@ -76,7 +76,25 @@
                     "explosion": 1319959153,
                     "wave": 1755968589,
                     "mesh": 215224698,
-                    "explosionTime": 1.5
+                    "explosionTime": 1.5,
+                    "explosion_damage": 42
+                },
+                {
+                    "Type": 22,
+                    "Active": false,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Radius": 3
                 }
             ]
         },

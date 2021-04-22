@@ -931,6 +931,10 @@ public class Core : DiamondComponent
                 damageTaken += damageFromEnemy;
             }
         }
+        else if (collidedGameObject.CompareTag("ExplosiveBarrel") && collidedGameObject.GetComponent<SphereCollider>().active)
+        {
+            gameObject.GetComponent<PlayerHealth>().TakeDamage(collidedGameObject.GetComponent<BH_DestructBox>().explosion_damage/2);
+        }
     }
 
 
