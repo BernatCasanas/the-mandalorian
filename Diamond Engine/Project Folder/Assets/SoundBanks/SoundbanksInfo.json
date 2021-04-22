@@ -297,6 +297,100 @@
     ]
    },
    {
+    "Id": "913881297",
+    "Language": "SFX",
+    "Hash": "2119585125",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Wampa_Skell",
+    "ShortName": "Wampa_Skell",
+    "Path": "Wampa_Skell.bnk",
+    "IncludedEvents": [
+     {
+      "Id": "192623117",
+      "Name": "Pause_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Pause_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "20333440",
+      "Name": "Play_Wampa_Skell_Jump_Impact",
+      "ObjectPath": "\\Events\\Default Work Unit\\Wampa Skel\\Play_Wampa_Skell_Jump_Impact",
+      "DurationType": "OneShot",
+      "DurationMin": "0.810000",
+      "DurationMax": "0.810000",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "720485806",
+        "Language": "SFX",
+        "ShortName": "wampa skell jump impact.wav",
+        "Path": "SFX\\wampa skell jump impact_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1184761655",
+      "Name": "Play_Wampa_Skell_Jump_Snow",
+      "ObjectPath": "\\Events\\Default Work Unit\\Wampa Skel\\Play_Wampa_Skell_Jump_Snow",
+      "DurationType": "OneShot",
+      "DurationMin": "0.683333",
+      "DurationMax": "0.683333",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "860861954",
+        "Language": "SFX",
+        "ShortName": "wampa skell jump from snow.wav",
+        "Path": "SFX\\wampa skell jump from snow_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1453071388",
+      "Name": "Play_Wampa_Skell_Previous_Rush_Roar",
+      "ObjectPath": "\\Events\\Default Work Unit\\Wampa Skel\\Play_Wampa_Skell_Previous_Rush_Roar",
+      "DurationType": "OneShot",
+      "DurationMin": "0.796916",
+      "DurationMax": "0.796916",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "918610368",
+        "Language": "SFX",
+        "ShortName": "wampa skell roar preparation.wav",
+        "Path": "SFX\\wampa skell roar preparation_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1931338186",
+      "Name": "Resume_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Resume_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "3318621861",
+      "Name": "Stop_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     }
+    ],
+    "GameParameters": [
+     {
+      "Id": "467158820",
+      "Name": "SourceVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
+     },
+     {
+      "Id": "2704707011",
+      "Name": "BusVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\BusVolume"
+     }
+    ]
+   },
+   {
     "Id": "1093318992",
     "Language": "SFX",
     "Hash": "421902220",
@@ -779,7 +873,7 @@
    {
     "Id": "1229948536",
     "Language": "SFX",
-    "Hash": "400883588",
+    "Hash": "3411849662",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Environment",
     "ShortName": "Environment",
     "Path": "Environment.bnk",
@@ -791,6 +885,22 @@
       "DurationType": "OneShot",
       "DurationMin": "0.000000",
       "DurationMax": "0.000000"
+     },
+     {
+      "Id": "523516158",
+      "Name": "Play_Barrel_Explosion",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\Play_Barrel_Explosion",
+      "DurationType": "OneShot",
+      "DurationMin": "0.976145",
+      "DurationMax": "0.976145",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "728629294",
+        "Language": "SFX",
+        "ShortName": "Barrel explosion.wav",
+        "Path": "SFX\\Barrel explosion_10C4C929.wem"
+       }
+      ]
      },
      {
       "Id": "3984843485",
@@ -1031,7 +1141,7 @@
    {
     "Id": "3049191116",
     "Language": "SFX",
-    "Hash": "3831422117",
+    "Hash": "890880854",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Rancor",
     "ShortName": "Rancor",
     "Path": "Rancor.bnk",
@@ -1318,13 +1428,18 @@
       "Id": "467158820",
       "Name": "SourceVolume",
       "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
+     },
+     {
+      "Id": "2704707011",
+      "Name": "BusVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\BusVolume"
      }
     ]
    },
    {
     "Id": "3434002875",
     "Language": "SFX",
-    "Hash": "3572120190",
+    "Hash": "2433358557",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Cantine",
     "ShortName": "Cantine",
     "Path": "Cantine.bnk",
@@ -1338,16 +1453,40 @@
       "DurationMax": "0.000000"
      },
      {
-      "Id": "3663622300",
-      "Name": "Play_Cantine_Voices",
-      "ObjectPath": "\\Events\\Default Work Unit\\Cantine\\Play_Cantine_Voices",
+      "Id": "1158205789",
+      "Name": "Play_Cantine_Ambience",
+      "ObjectPath": "\\Events\\Default Work Unit\\Cantine\\Play_Cantine_Ambience",
       "DurationType": "Infinite",
       "IncludedMemoryFiles": [
+       {
+        "Id": "346414874",
+        "Language": "SFX",
+        "ShortName": "Cantine plates and glasses 1.wav",
+        "Path": "SFX\\Cantine plates and glasses 1_10C4C929.wem"
+       },
+       {
+        "Id": "629531791",
+        "Language": "SFX",
+        "ShortName": "Cantine plates and glasses 4.wav",
+        "Path": "SFX\\Cantine plates and glasses 4_10C4C929.wem"
+       },
        {
         "Id": "729275084",
         "Language": "SFX",
         "ShortName": "Cantine ambience.wav",
         "Path": "SFX\\Cantine ambience_D79FB2B7.wem"
+       },
+       {
+        "Id": "975946049",
+        "Language": "SFX",
+        "ShortName": "Cantine plates and glasses 2.wav",
+        "Path": "SFX\\Cantine plates and glasses 2_10C4C929.wem"
+       },
+       {
+        "Id": "994174341",
+        "Language": "SFX",
+        "ShortName": "Cantine plates and glasses 3.wav",
+        "Path": "SFX\\Cantine plates and glasses 3_10C4C929.wem"
        }
       ]
      },
@@ -1366,6 +1505,18 @@
       "DurationType": "OneShot",
       "DurationMin": "0.000000",
       "DurationMax": "0.000000"
+     }
+    ],
+    "GameParameters": [
+     {
+      "Id": "467158820",
+      "Name": "SourceVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
+     },
+     {
+      "Id": "2704707011",
+      "Name": "BusVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\BusVolume"
      }
     ]
    },
