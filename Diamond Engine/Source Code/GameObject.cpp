@@ -744,11 +744,10 @@ void GameObject::RemoveCSReference(SerializedField* fieldToRemove)
 {
 	for (size_t i = 0; i < csReferences.size(); i++)
 	{
-		if (csReferences[i] == fieldToRemove)
+		if (csReferences[i]->goUID == fieldToRemove->goUID)
 		{
-			//TODO: Talk to Mayk about deleting monoreferences
-			csReferences.erase(csReferences.begin() + i);
 			mono_field_set_value(mono_gchandle_get_target(csReferences[i]->parentSC->noGCobject), csReferences[i]->field, NULL);
+			csReferences.erase(csReferences.begin() + i);
 		}
 	}
 }

@@ -130,15 +130,18 @@ void C_Script::DropField(SerializedField& field, const char* dropType)
 		{
 			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload(dropType))
 			{
-				field.fiValue.goValue = EngineExternal->moduleEditor->GetDraggingGO();
-				
 				if (field.fiValue.goValue != nullptr)
 					field.fiValue.goValue->RemoveCSReference(&field);
+
+				field.fiValue.goValue = EngineExternal->moduleEditor->GetDraggingGO();
 
 				SetField(field.field, field.fiValue.goValue);
 			}
 			ImGui::EndDragDropTarget();
 		}
+
+		//ImGui::TextColored(ImVec4(1.f, 1.f, 0.f, 1.f), "UID: %d", field.goUID);
+
 		break;
 
 	case MonoTypeEnum::MONO_TYPE_R4: {
@@ -251,7 +254,7 @@ void C_Script::LoadData(DEConfig& nObj)
 			if (strcmp(mono_type_get_name(mono_field_get_type(_field->field)), "DiamondEngine.GameObject") == 0)
 			{
 				int uid = nObj.ReadInt(mono_field_get_name(_field->field));
-				_field->fiValue.goUID = uid;
+				_field->goUID = uid;
 				EngineExternal->moduleScene->referenceMap.emplace(uid, _field);
 			}
 
@@ -290,12 +293,13 @@ void C_Script::OnRecursiveUIDChange(std::map<uint, GameObject*> gameObjects)
 	{
 		if (fields[i].type == MonoTypeEnum::MONO_TYPE_CLASS)
 		{
-			std::map<uint, GameObject*>::iterator gameObjectIt = gameObjects.find(fields[i].fiValue.goUID);
+			std::map<uint, GameObject*>::iterator gameObjectIt = gameObjects.find(fields[i].goUID);
 
 			if (gameObjectIt != gameObjects.end())
 			{
-				//EngineExternal->moduleScene->referenceMap.erase(gameObjectIt->first);
+				EngineExternal->moduleScene->referenceMap.erase(gameObjectIt->first);
 				EngineExternal->moduleScene->referenceMap.emplace((uint)gameObjectIt->second->UID, &fields[i]);
+				fields[i].goUID = (uint)gameObjectIt->second->UID;
 			}
 		}
 	}

@@ -273,9 +273,11 @@ void M_Scene::LoadScriptsData(GameObject* rootObject)
 
 			if (d->second->fiValue.goValue)
 			{
+				//d->second->goUID = d->first;
+
 				if (std::find(d->second->fiValue.goValue->csReferences.begin(), d->second->fiValue.goValue->csReferences.end(), d->second) == d->second->fiValue.goValue->csReferences.end())
 					d->second->fiValue.goValue->csReferences.push_back(d->second);
-
+				
 				d->second->parentSC->SetField(d->second->field, d->second->fiValue.goValue);
 
 				//d->second = nullptr;

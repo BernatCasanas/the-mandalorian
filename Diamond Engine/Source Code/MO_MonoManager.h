@@ -25,7 +25,6 @@ union FieldValue
 	bool bValue;
 	char strValue[50];
 	GameObject* goValue;
-	uint goUID;
 };
 struct SerializedField
 {
@@ -37,6 +36,7 @@ struct SerializedField
 	FieldValue fiValue;
 	C_Script* parentSC;
 	std::string displayName;
+	uint goUID;
 };
 
 class M_MonoManager : public Module
