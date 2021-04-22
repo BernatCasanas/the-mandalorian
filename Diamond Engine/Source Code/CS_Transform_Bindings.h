@@ -410,6 +410,18 @@ MonoObject* RayCast(MonoObject* cs_Position, MonoObject* cs_Direction, float Max
 	return EngineExternal->moduleMono->GoToCSGO(ret);
 }
 
+void CS_DrawRay(MonoObject* cs_startPosition, MonoObject* cs_endPosition, MonoObject* cs_color)
+{
+	if (cs_startPosition == nullptr || cs_endPosition == nullptr || cs_color == nullptr)
+		return;
+
+	float3 startPosition = M_MonoManager::UnboxVector(cs_startPosition);
+	float3 endPosition = M_MonoManager::UnboxVector(cs_endPosition);
+	float3 color = M_MonoManager::UnboxVector(cs_color);
+
+	EngineExternal->moduleRenderer3D->AddRay(startPosition, endPosition, color);
+}
+
 MonoObject* CreatePrefab(MonoString* prefabPath, MonoObject* position, MonoObject* rotation, MonoObject* scale)
 {
 	if (prefabPath == nullptr)

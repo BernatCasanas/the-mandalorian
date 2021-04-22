@@ -148,6 +148,7 @@ void C_ParticleSystem::Draw()
 		{
 			material->PushUniforms();
 			myEmitters[i]->Draw(material->shader->shaderProgramID, bill->GetAlignment());
+			glBindTexture(GL_TEXTURE_2D, 0);
 		}
 
 		material->shader->Unbind();

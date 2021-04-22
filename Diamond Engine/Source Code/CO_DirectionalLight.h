@@ -25,18 +25,26 @@ public:
 	void LoadData(DEConfig& nObj) override;
 
 	void StartPass();
-	void PushLightUniforms(ResourceMaterial* material);
+	void PushLightUniforms(ResourceMaterial* material, int lightNumber);
 	void EndPass();
 
+	float3 GetPosition() const;
+
+public:
 	Frustum orthoFrustum;
 	ResourceShader* depthShader;
 	float4x4 spaceMatrixOpenGL;
 
 	float2 orthoSize;
 
+	bool calculateShadows = true;
+
 private:
 	unsigned int depthMapFBO;	//Framebuffer
 	unsigned int depthMap;		//Depth texture
 
 	float3 lightColor;
+	float3 ambientLightColor;
+	float lightIntensity;
+	float specularValue;
 };

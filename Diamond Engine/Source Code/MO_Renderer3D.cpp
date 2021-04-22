@@ -13,7 +13,8 @@
 
 #include "RE_Mesh.h"
 #include "RE_Texture.h"
-#include"RE_Shader.h"
+#include "RE_Shader.h"
+#include "RE_Material.h"
 #include "mmgr/mmgr.h"
 
 #include"WI_Game.h"
@@ -42,7 +43,7 @@
 
 
 ModuleRenderer3D::ModuleRenderer3D(Application* app, bool start_enabled) : Module(app, start_enabled), str_CAPS(""),
-vsync(false), wireframe(false), gameCamera(nullptr), resolution(2), directLight(nullptr)
+vsync(false), wireframe(false), gameCamera(nullptr),resolution(2)
 {
 	GetCAPS(str_CAPS);
 	/*depth =*/ cull = lightng = color_material = texture_2d = true;
@@ -192,6 +193,27 @@ bool ModuleRenderer3D::Init()
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, SQUARE_TEXTURE_W, SQUARE_TEXTURE_H, 0, GL_RGBA, GL_UNSIGNED_BYTE, checkerImage);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
+	//Generate default normal map
+
+	for (int i = 0; i < SQUARE_TEXTURE_W; i++) {
+		for (int j = 0; j < SQUARE_TEXTURE_H; j++) {
+			defaultNormalMapImage[i][j][0] = (GLubyte)127;
+			defaultNormalMapImage[i][j][1] = (GLubyte)127;
+			defaultNormalMapImage[i][j][2] = (GLubyte)255;
+			defaultNormalMapImage[i][j][3] = (GLubyte)255;
+		}
+	}
+
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glGenTextures(1, &defaultNormalMap);
+	glBindTexture(GL_TEXTURE_2D, defaultNormalMap);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, SQUARE_TEXTURE_W, SQUARE_TEXTURE_H, 0, GL_RGBA, GL_UNSIGNED_BYTE, defaultNormalMapImage);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
 
 	// Projection matrix for
 	OnResize(App->moduleWindow->s_width, App->moduleWindow->s_height);
@@ -222,49 +244,55 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
-
 	//Render light depth pass
-	if (directLight)
+	if (directLightVector.size() > 0)
 	{
-		directLight->StartPass();
-		if (!renderQueue.empty())
+		for (int i = 0; i < directLightVector.size(); ++i)
 		{
-			for (size_t i = 0; i < renderQueue.size(); i++)
+			if (directLightVector[i]->calculateShadows == true)
 			{
-				float distance = directLight->orthoFrustum.pos.DistanceSq(renderQueue[i]->globalOBB.pos);
-				renderQueueMap.emplace(distance, renderQueue[i]);
-			}
-
-			for (size_t i = 0; i < renderQueuePostStencil.size(); i++)
-			{
-				float distance = directLight->orthoFrustum.pos.DistanceSq(renderQueuePostStencil[i]->globalOBB.pos);
-				renderQueueMap.emplace(distance, renderQueuePostStencil[i]);
-			}
-
-			if (!renderQueueMap.empty())
-			{
-				for (auto i = renderQueueMap.rbegin(); i != renderQueueMap.rend(); ++i)
+        directLightVector[i]->StartPass();
+				if (!renderQueue.empty())
 				{
-					// Get the range of the current key
-					auto range = renderQueueMap.equal_range(i->first);
-
-					// Now render out that whole range
-					for (auto d = range.first; d != range.second; ++d)
+					for (size_t j = 0; j < renderQueue.size(); ++j)
 					{
-						GLint modelLoc = glGetUniformLocation(directLight->depthShader->shaderProgramID, "model");
-						glUniformMatrix4fv(modelLoc, 1, GL_FALSE, d->second->GetGO()->transform->GetGlobalTransposed());
+						float distance = directLightVector[i]->orthoFrustum.pos.DistanceSq(renderQueue[j]->globalOBB.pos);
+						renderQueueMap.emplace(distance, renderQueue[j]);
+					}
 
-						modelLoc = glGetUniformLocation(directLight->depthShader->shaderProgramID, "lightSpaceMatrix");
-						glUniformMatrix4fv(modelLoc, 1, GL_FALSE, directLight->spaceMatrixOpenGL.ptr());
+          for (size_t j = 0; j < renderQueuePostStencil.size(); ++j)
+          {
+            float distance = directLight->orthoFrustum.pos.DistanceSq(renderQueuePostStencil[j]->globalOBB.pos);
+            renderQueueMap.emplace(distance, renderQueuePostStencil[j]);
+          }
 
-						d->second->GetRenderMesh()->OGL_GPU_Render();
+					if (!renderQueueMap.empty())
+					{
+						for (auto j = renderQueueMap.rbegin(); j != renderQueueMap.rend(); ++j)
+						{
+							// Get the range of the current key
+							auto range = renderQueueMap.equal_range(j->first);
+
+							// Now render out that whole range
+							for (auto d = range.first; d != range.second; ++d)
+							{
+								GLint modelLoc = glGetUniformLocation(directLightVector[i]->depthShader->shaderProgramID, "model");
+								glUniformMatrix4fv(modelLoc, 1, GL_FALSE, d->second->GetGO()->transform->GetGlobalTransposed());
+
+								modelLoc = glGetUniformLocation(directLightVector[i]->depthShader->shaderProgramID, "lightSpaceMatrix");
+								glUniformMatrix4fv(modelLoc, 1, GL_FALSE, directLightVector[i]->spaceMatrixOpenGL.ptr());
+
+								d->second->GetRenderMesh()->PushDefaultMeshUniforms(directLightVector[i]->depthShader->shaderProgramID, 0, d->second->GetGO()->transform, float3::one);
+								d->second->GetRenderMesh()->OGL_GPU_Render();
+							}
+						}
+
+						renderQueueMap.clear();
 					}
 				}
-
-				renderQueueMap.clear();
+				directLightVector[i]->EndPass();
 			}
 		}
-		directLight->EndPass();
 	}
 
 #ifndef STANDALONE
@@ -291,7 +319,9 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	}
 
 
+	DrawRays();
 	DrawParticleSystems();
+
 	if (App->moduleCamera->editorCamera.drawSkybox)
 		skybox.DrawAsSkybox(&App->moduleCamera->editorCamera);
 
@@ -323,11 +353,6 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	{
 		gameCamera->StartDraw();
 
-		lights[0].SetPos(5, 5, 5);
-
-		for (uint i = 0; i < MAX_LIGHTS; ++i)
-			lights[i].Render();
-
 		if (!renderQueue.empty())
 		{
 			for (size_t i = 0; i < renderQueue.size(); i++)
@@ -339,7 +364,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 			RenderWithOrdering(true);
 		}
 
-
+		DrawRays();
 		DrawParticleSystems();
 
 		if (gameCamera->drawSkybox)
@@ -360,6 +385,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 			RenderStencilWithOrdering(true);
 		}
+    
 		glClear(GL_DEPTH_BUFFER_BIT);
 		App->moduleGui->RenderCanvas2D();
 		gameCamera->EndDraw();
@@ -387,6 +413,7 @@ bool ModuleRenderer3D::CleanUp()
 	skybox.ClearMemory();
 
 	glDeleteTextures(1, &checkersTexture);
+	glDeleteTextures(1, &defaultNormalMap);
 
 	SDL_GL_DeleteContext(context);
 	ClearAllRenderData();
@@ -574,6 +601,28 @@ void ModuleRenderer3D::DebugLine(LineSegment& line)
 	glLineWidth(1.f);
 }
 #endif // !STANDALONE
+
+void ModuleRenderer3D::AddRay(float3& a, float3& b, float3& color)
+{
+	rays.push_back(LineRender(a, b, color));
+}
+
+void ModuleRenderer3D::DrawRays()
+{
+	glLineWidth(10.0f);
+	glBegin(GL_LINES);
+	for (size_t i = 0; i < rays.size(); i++)
+	{
+		glColor3fv(rays[i].color.ptr());
+		glVertex3fv(rays[i].a.ptr());
+		glVertex3fv(rays[i].b.ptr());
+
+		glColor3f(255.f, 255.f, 255.f);
+	}
+	glEnd();
+	//rays.clear();
+	glLineWidth(1.0f);
+}
 
 void ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray)
 {
@@ -782,6 +831,7 @@ void ModuleRenderer3D::ClearAllRenderData()
 	renderQueueMapPostStencil.clear();
 
 	particleSystemQueue.clear();
+	rays.clear();
 }
 
 bool ModuleRenderer3D::IsWalkable(float3 pointToCheck)
@@ -833,6 +883,51 @@ bool ModuleRenderer3D::IsWalkable(float3 pointToCheck)
 	}*/
 
 	return false;
+}
+
+
+void ModuleRenderer3D::AddLight(C_DirectionalLight* light)
+{
+	directLightVector.push_back(light);
+
+	if (directLightVector.size() > MAX_DIRECTIONAL_LIGHTS)
+		directLightVector.erase(directLightVector.begin());
+}
+
+
+void ModuleRenderer3D::RemoveLight(C_DirectionalLight* light)
+{
+
+	for (int i = 0; i < directLightVector.size(); ++i)
+	{
+		if (directLightVector[i] == light)
+		{
+			directLightVector.erase(directLightVector.begin() + i);
+			return;
+		}
+	}
+}
+
+
+void ModuleRenderer3D::PushLightUniforms(ResourceMaterial* material)
+{
+	char buffer[64];
+
+	for (int i = 0; i < directLightVector.size(); ++i)
+	{
+		sprintf(buffer, "lightInfo[%i].active", i);
+		GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
+		glUniform1i(modelLoc, true);
+
+		directLightVector[i]->PushLightUniforms(material, i);
+	}
+
+	for (int i = directLightVector.size(); i < MAX_DIRECTIONAL_LIGHTS; ++i)
+	{
+		sprintf(buffer, "lightInfo[%i].active", i);
+		GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
+		glUniform1i(modelLoc, false);
+	}
 }
 
 

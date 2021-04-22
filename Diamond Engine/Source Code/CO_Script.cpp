@@ -97,7 +97,6 @@ bool C_Script::OnEditor()
 
 void C_Script::DropField(SerializedField& field, const char* dropType)
 {
-
 	const char* fieldName = mono_field_get_name(field.field);
 	ImGui::PushID(fieldName);
 
@@ -131,11 +130,18 @@ void C_Script::DropField(SerializedField& field, const char* dropType)
 		{
 			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload(dropType))
 			{
+				if (field.fiValue.goValue != nullptr)
+					field.fiValue.goValue->RemoveCSReference(&field);
+
 				field.fiValue.goValue = EngineExternal->moduleEditor->GetDraggingGO();
+
 				SetField(field.field, field.fiValue.goValue);
 			}
 			ImGui::EndDragDropTarget();
 		}
+
+		//ImGui::TextColored(ImVec4(1.f, 1.f, 0.f, 1.f), "UID: %d", field.goUID);
+
 		break;
 
 	case MonoTypeEnum::MONO_TYPE_R4: {
@@ -246,7 +252,11 @@ void C_Script::LoadData(DEConfig& nObj)
 		case MonoTypeEnum::MONO_TYPE_CLASS:
 		{
 			if (strcmp(mono_type_get_name(mono_field_get_type(_field->field)), "DiamondEngine.GameObject") == 0)
-				EngineExternal->moduleScene->referenceMap.emplace(nObj.ReadInt(mono_field_get_name(_field->field)), _field);
+			{
+				int uid = nObj.ReadInt(mono_field_get_name(_field->field));
+				_field->goUID = uid;
+				EngineExternal->moduleScene->referenceMap.emplace(uid, _field);
+			}
 
 			break;
 		}
@@ -273,6 +283,24 @@ void C_Script::LoadData(DEConfig& nObj)
 			_field->fiValue.iValue = nObj.ReadInt(mono_field_get_name(_field->field));
 			mono_field_set_value(mono_gchandle_get_target(noGCobject), _field->field, &_field->fiValue.iValue);
 			break;
+		}
+	}
+}
+
+void C_Script::OnRecursiveUIDChange(std::map<uint, GameObject*> gameObjects)
+{
+	for (size_t i = 0; i < fields.size(); i++)
+	{
+		if (fields[i].type == MonoTypeEnum::MONO_TYPE_CLASS)
+		{
+			std::map<uint, GameObject*>::iterator gameObjectIt = gameObjects.find(fields[i].goUID);
+
+			if (gameObjectIt != gameObjects.end())
+			{
+				EngineExternal->moduleScene->referenceMap.erase(gameObjectIt->first);
+				EngineExternal->moduleScene->referenceMap.emplace((uint)gameObjectIt->second->UID, &fields[i]);
+				fields[i].goUID = (uint)gameObjectIt->second->UID;
+			}
 		}
 	}
 }
