@@ -60,7 +60,7 @@ public class GameSceneManager : DiamondComponent
         }
 
         // We should clean boons when ending a run :3
-        PlayerResources.ResetRunBoons();
+        //PlayerResources.ResetRunBoons();
     }
 
 

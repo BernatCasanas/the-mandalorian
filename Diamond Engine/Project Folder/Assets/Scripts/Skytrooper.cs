@@ -42,13 +42,14 @@ public class Skytrooper : Enemy
     public GameObject shootPoint = null;
     public GameObject hitParticles = null;
     private GameObject visualFeedback = null;
+    private GameObject visualFeedbackAux = null;
 
     //Action times
     public float idleTime = 5.0f;
     public float dashTime = 0.0f;
     private float dieTime = 3.0f;
     public float timeBewteenShots = 0.5f;
-    public float timeBewteenStates = 1.5f;
+    public float timeBewteenShootingStates = 1.5f;
     public float feedbackTime = 0.0f;
 
     //Speeds
@@ -66,14 +67,16 @@ public class Skytrooper : Enemy
     private float dashTimer = 0.0f;
     //private float shotTimer = 0.0f;
     private float dieTimer = 0.0f;
-    private float statesTimer = 0.0f;
+    private float shootTimer = 0.0f;
     private float pushTimer = 0.0f;
     private float skill_slowDownTimer = 0.0f;
     private float feedbackTimer = 0.0f;
+    private float feedbackTimerAux = 0.0f;
 
     //Action variables
-    int shotTimes = 0;
+    private int shotsShooted = 0;
     public int maxShots = 2;
+
 
     //push
     public float pushHorizontalForce = 100;
@@ -87,8 +90,6 @@ public class Skytrooper : Enemy
 
         currentState = STATE.IDLE;
         Animator.Play(gameObject, "SK_Idle");
-
-        shotTimes = 0;
 
         idleTimer = idleTime;
         //dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
@@ -182,6 +183,15 @@ public class Skytrooper : Enemy
             if (feedbackTimer <= 0.0f)
             {
                 InternalCalls.Destroy(visualFeedback);
+            }
+        }
+        if (feedbackTimerAux > 0.0f)
+        {
+            feedbackTimerAux -= Time.deltaTime;
+
+            if (feedbackTimerAux <= 0.0f)
+            {
+                InternalCalls.Destroy(visualFeedbackAux);
             }
         }
     }
@@ -423,32 +433,54 @@ public class Skytrooper : Enemy
     private void StartShoot()
     {
         Debug.Log("SKYTROOPER SHOOT");
-        statesTimer = timeBewteenStates;
+        shootTimer = timeBewteenShootingStates;
+        shotsShooted=0;
     }
 
     private void UpdateShoot()
     {
-        if (statesTimer > 0.0f)
-        {
-            statesTimer -= Time.deltaTime;
+        shootTimer -= Time.deltaTime;
 
-            if (statesTimer <= 0.0f)
+        if (shootTimer <= 0.0f)
+        {
+            if (shotsShooted == maxShots)
             {
-                Shoot();
-                feedbackTimer = feedbackTime;
                 inputsList.Add(INPUT.IN_DASH);
+            }
+            else
+            {
+                if ((shotsShooted + 1) % 2 != 0)
+                {
+                    Shoot(false);
+                    feedbackTimer = feedbackTime;
+                    Debug.Log("HEY");
+                }
+                else
+                {
+                    Shoot(true);
+                    feedbackTimerAux = feedbackTime;
+                }
             }
         }
     }
 
-    private void Shoot()
+    private void Shoot(bool aux)
     {
         //GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         //bullet.GetComponent<BH_Bullet>().damage = damage;
-        visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
+        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/88418274.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, new Vector3(0.5f, 0.5f, 0.5f));
+        bullet.GetComponent<SkyTrooperShot>().SetTarget(player.transform.globalPosition, false);
+        if (aux)
+            visualFeedbackAux = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, player.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
+        else
+            visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, player.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
         Animator.Play(gameObject, "SK_Shoot");
         Audio.PlayAudio(gameObject, "PLay_Blaster_Stormtrooper");
-        shotTimes++;
+        shotsShooted++;
+        if (shotsShooted < maxShots)
+            shootTimer = timeBewteenShots;
+        else
+            shootTimer = timeBewteenShootingStates;
     }
     private void PlayerDetected()
     {

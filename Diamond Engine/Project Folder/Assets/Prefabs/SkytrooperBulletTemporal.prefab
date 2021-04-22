@@ -1,0 +1,64 @@
+{
+    "assets_path": "Assets\/Prefabs\/SkytrooperBulletTemporal.prefab",
+    "Game Objects": [
+        {
+            "name": "SkytrooperBulletTemporal",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1356486933,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 88418274,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -5.4742560386657715,
+                6.187410831451416,
+                0
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                0.5,
+                0.5,
+                0.5
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/965117995.mmh",
+                    "UID": 965117995,
+                    "alternColor": [
+                        1,
+                        0.99998998641967773,
+                        0.99998998641967773
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SkyTrooperShot",
+                    "speed": 16,
+                    "gravity": -9.8000001907348633,
+                    "lifeTime": 6
+                }
+            ]
+        }
+    ]
+}
