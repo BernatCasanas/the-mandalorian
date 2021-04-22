@@ -390,6 +390,11 @@ public class StormTrooper : Enemy
     {
         idleTimer = idleTime;
         Animator.Play(gameObject, "ST_Idle");
+
+        if (currentState != STATE.DIE && healthPoints <= 0.0f)
+        {
+            inputsList.Add(INPUT.IN_DIE);
+        }
     }
     #endregion
 
@@ -406,6 +411,11 @@ public class StormTrooper : Enemy
         LookAt(agent.GetDestination());
         if (skill_slowDownActive) agent.MoveToCalculatedPos(wanderSpeed * (1 - skill_slowDownAmount));
         else agent.MoveToCalculatedPos(wanderSpeed);
+
+        if (currentState != STATE.DIE && healthPoints <= 0.0f)
+        {
+            inputsList.Add(INPUT.IN_DIE);
+        }
     }
     private void WanderEnd()
     {
@@ -429,6 +439,11 @@ public class StormTrooper : Enemy
             agent.MoveToCalculatedPos(runningSpeed * (1 - skill_slowDownAmount));
         else 
             agent.MoveToCalculatedPos(runningSpeed);
+
+        if (currentState != STATE.DIE && healthPoints <= 0.0f)
+        {
+            inputsList.Add(INPUT.IN_DIE);
+        }
     }
     private void RunEnd()
     {
@@ -461,6 +476,7 @@ public class StormTrooper : Enemy
             Animator.Play(gameObject, "ST_Run");
             reAimTimer = reAimTime;
         }
+
     }
 
     private void UpdateFindAim()
@@ -486,6 +502,11 @@ public class StormTrooper : Enemy
                     }
                 }
             }
+        }
+
+        if (currentState != STATE.DIE && healthPoints <= 0.0f)
+        {
+            inputsList.Add(INPUT.IN_DIE);
         }
     }
 
@@ -579,6 +600,10 @@ public class StormTrooper : Enemy
                 Shoot();
                 shotTimer = timeBewteenShots;
             }
+        }
+        if (currentState != STATE.DIE && healthPoints <= 0.0f)
+        {
+            inputsList.Add(INPUT.IN_DIE);
         }
     }
 
@@ -694,7 +719,10 @@ public class StormTrooper : Enemy
         pushTimer += Time.deltaTime;
         if(pushTimer >= PushStun)
             inputsList.Add(INPUT.IN_IDLE);
-
+        if (currentState != STATE.DIE && healthPoints <= 0.0f)
+        {
+            inputsList.Add(INPUT.IN_DIE);
+        }
     }
     #endregion
 
