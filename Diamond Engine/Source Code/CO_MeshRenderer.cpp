@@ -29,7 +29,7 @@
 
 
 C_MeshRenderer::C_MeshRenderer(GameObject* _gm) : Component(_gm), _mesh(nullptr), normalMap(nullptr),
-faceNormals(false), vertexNormals(false), showAABB(false), showOBB(false), drawDebugVertices(false), drawStencil(false)
+faceNormals(false), vertexNormals(false), showAABB(false), showOBB(false), drawDebugVertices(false), drawStencil(false),
 calculatedBonesThisFrame(false)
 {
 	name = "Mesh Renderer";
