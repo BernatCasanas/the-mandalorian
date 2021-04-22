@@ -1066,7 +1066,7 @@ public class Rancor : DiamondComponent
         Audio.PlayAudio(gameObject, "Play_Rancor_Hand_Slam");
         targetDirection = Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition; //RANCOR CALCULATES RUSH DIRECTION
         startRush = true;
-
+        PlayParticles(PARTICLES.RUSH);
     }
 
 
@@ -1083,9 +1083,6 @@ public class Rancor : DiamondComponent
             }
             gameObject.transform.localPosition += targetDirection.normalized * rushSpeed * Time.deltaTime; //ADD SPEED IN RUSH DIRECTION
         }
-
-        PlayParticles(PARTICLES.RUSH);
-
     }
 
 
@@ -1120,6 +1117,7 @@ public class Rancor : DiamondComponent
     private void EndRushStun()
     {
         Audio.StopAudio(gameObject);
+        PlayParticles(PARTICLES.RUSH);
     }
 
     #endregion
@@ -1338,8 +1336,10 @@ public class Rancor : DiamondComponent
                 break;
             case PARTICLES.RUSH:
                 particle = rancorParticles.rush;
-                if (particle != null)
+                if (particle != null && !particle.playing)
                     particle.Play();
+                else if (particle != null && particle.playing)
+                    particle.Stop();
                 else
                     Debug.Log("Rancor Rush particle not found!");
                 break;
