@@ -1182,7 +1182,7 @@ public class Rancor : DiamondComponent
 
             if (Core.instance.hud != null)
             {
-                Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 1.0f);
+                Core.instance.hud.GetComponent<HUD>().AddToCombo(25, 0.95f);
             }
 
             if (currentState != RANCOR_STATE.DEAD && healthPoints <= 0.0f)
