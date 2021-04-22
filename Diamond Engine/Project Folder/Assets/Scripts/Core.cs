@@ -90,6 +90,7 @@ public class Core : DiamondComponent
     private float dashStartYPos = 0.0f;
     private bool dashAvailable = true;
     private float timeSinceLastDash = 0.0f;
+    public GameObject RayCastObj = null;
 
     // Shooting
     public float baseFireRate = 0.2f;
@@ -239,7 +240,36 @@ public class Core : DiamondComponent
             dashTimer -= Time.deltaTime;
 
             if (dashTimer <= 0)
-                inputsList.Add(INPUT.IN_DASH_END);
+            {
+               // Debug.Log(dashTimer.ToString());
+
+                GameObject hit = null;
+                if (RayCastObj != null)
+                {
+                    hit = InternalCalls.RayCast(RayCastObj.transform.globalPosition, RayCastObj.transform.GetForward(), 100);
+                    
+                }
+                else
+                    Debug.Log("Raycast obj == null");
+
+                if (hit != null)
+                {
+                    Debug.Log(hit.tag);
+
+                    if (hit.CompareTag("Gap"))
+                    {
+                        dashTimer = 0.1f;
+                    }
+                    else
+                        inputsList.Add(INPUT.IN_DASH_END);
+
+                }
+                else
+                {
+                    inputsList.Add(INPUT.IN_DASH_END);
+                    Debug.Log("Problem with raycast");
+                }
+            }
         }
 
         if (dashCDTimer > 0)
