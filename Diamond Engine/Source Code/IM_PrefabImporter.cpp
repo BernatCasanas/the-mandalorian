@@ -151,11 +151,6 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 		}
 	}
 
-	if (!loadingScene)
-	{
-		//EngineExternal->moduleScene->LoadNavigationData();
-		//EngineExternal->moduleScene->LoadScriptsData(rootObject);
-	}
 
 	std::vector<C_Script*> saveCopy; //We need to do this in case someone decides to create an instance inside the awake method
 	for (int i = oldSize; i < EngineExternal->moduleScene->activeScriptsVector.size(); ++i)
@@ -240,7 +235,6 @@ GameObject* PrefabImporter::InstantiatePrefab(const char* libraryPath)
 
 GameObject* PrefabImporter::LoadUIPrefab(const char* libraryPath)
 {
-
 	int oldSize = EngineExternal->moduleScene->activeScriptsVector.size();
 
 	GameObject* rootObject = nullptr;

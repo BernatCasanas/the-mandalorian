@@ -114,13 +114,14 @@ void W_Hierarchy::DrawGameObjectsTree(GameObject* node, bool drawAsDisabled)
 	if (node == EngineExternal->moduleEditor->GetSelectedGO())
 		flags |= ImGuiTreeNodeFlags_::ImGuiTreeNodeFlags_Selected;
 
-
-	if (drawAsDisabled)
+	if(node->prefabReference != 0u)
+		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 0.7f, 0.9f, 1.0f));
+	else if (drawAsDisabled)
 		ImGui::PushStyleColor(ImGuiCol_Text, ImGui::GetStyle().Colors[ImGuiCol_TextDisabled]);
 
 	bool nodeOpen = ImGui::TreeNodeEx(node, flags, node->name.c_str());
 
-	if (drawAsDisabled)
+	if (node->prefabReference != 0u || drawAsDisabled)
 		ImGui::PopStyleColor();
 
 	//Only can use if this is not the root node
