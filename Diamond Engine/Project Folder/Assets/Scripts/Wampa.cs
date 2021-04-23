@@ -8,8 +8,7 @@ using DiamondEngine;
 
 public class Wampa : Bosseslv2
 {
-    private bool start = false;
-    private void Start()
+    public void Awake()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
         if (agent == null)
@@ -19,19 +18,11 @@ public class Wampa : Bosseslv2
         Audio.PlayAudio(gameObject, "");
         Counter.roomEnemies++;  // Just in case
         EnemyManager.AddEnemy(gameObject);
-        Debug.Log("Null agent, add a NavMeshAgent Component");
-        Debug.Log("Null agent, add a NavMeshAgent Component");
-        Debug.Log("Null agent, add a NavMeshAgent Component");
-        Debug.Log("Null agent, add a NavMeshAgent Component");
-        Debug.Log("Null agent, add a NavMeshAgent Component");
-        Debug.Log("Null agent, add a NavMeshAgent Component");
     
     }
 
     public void Update()
     {
-        if (!start) Start();
-
         ProcessInternalInput();
         ProcessExternalInput();
         ProcessState();

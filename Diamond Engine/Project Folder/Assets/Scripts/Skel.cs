@@ -6,8 +6,7 @@ using System.Collections.Generic;
 using DiamondEngine;
 public class Skel : Bosseslv2
 {
-    private bool start = false;
-    private void Start()
+    public void Awake()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
         if (agent == null)
@@ -21,9 +20,7 @@ public class Skel : Bosseslv2
 
     public void Update()
 	{
-        if (!start) Start();
-
-		Debug.Log("ghola");
+        Debug.Log("ghola");
 	}
 
 }
