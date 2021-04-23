@@ -14,7 +14,7 @@ public class StormTrooper : Enemy
         WANDER,
         RUN,
         PUSHED,
-        FIND_AIM,
+        //FIND_AIM,
         SHOOT,
         HIT,
         DIE
@@ -28,7 +28,7 @@ public class StormTrooper : Enemy
         IN_RUN_END,
         IN_WANDER,
         IN_PUSHED,
-        IN_FIND_AIM,
+        //IN_FIND_AIM,
         IN_SHOOT,
         IN_HIT,
         IN_DIE,
@@ -114,11 +114,6 @@ public class StormTrooper : Enemy
         { Debug.Log("CAN'T PLAY SPAWN!!!"); }
     }
 
-    public void Start()
-    {
-      
-       
-    }
     public void Update()
     {
         if (player == null)
@@ -284,26 +279,26 @@ public class StormTrooper : Enemy
                     }
                     break;
 
-                case STATE.FIND_AIM:
-                    switch(input)
-                    {
-                        case INPUT.IN_SHOOT:
-                            currentState = STATE.SHOOT;
-                            RunEnd();
-                            StartShoot();
-                            break;
+                //case STATE.FIND_AIM:
+                //    switch(input)
+                //    {
+                //        case INPUT.IN_SHOOT:
+                //            currentState = STATE.SHOOT;
+                //            RunEnd();
+                //            StartShoot();
+                //            break;
 
-                        case INPUT.IN_PUSHED:
-                            currentState = STATE.PUSHED;
-                            StartPush();
-                            break;
+                //        case INPUT.IN_PUSHED:
+                //            currentState = STATE.PUSHED;
+                //            StartPush();
+                //            break;
 
-                        case INPUT.IN_DIE:
-                            currentState = STATE.DIE;
-                            StartDie();
-                            break;
-                    }
-                    break;
+                //        case INPUT.IN_DIE:
+                //            currentState = STATE.DIE;
+                //            StartDie();
+                //            break;
+                //    }
+                //    break;
 
                 case STATE.SHOOT:
                     switch (input)
@@ -313,10 +308,10 @@ public class StormTrooper : Enemy
                             StartRun();
                             break;
 
-                        case INPUT.IN_FIND_AIM:
-                            currentState = STATE.FIND_AIM;
-                            StartFindAim();
-                            break;
+                        //case INPUT.IN_FIND_AIM:
+                        //    currentState = STATE.FIND_AIM;
+                        //    StartFindAim();
+                        //    break;
 
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
@@ -367,9 +362,9 @@ public class StormTrooper : Enemy
             case STATE.WANDER:
                 UpdateWander();
                 break;
-            case STATE.FIND_AIM:
-                UpdateFindAim();
-                break;
+            //case STATE.FIND_AIM:
+            //    UpdateFindAim();
+            //    break;
             case STATE.SHOOT:
                 UpdateShoot();
                 break;
@@ -500,6 +495,7 @@ public class StormTrooper : Enemy
     private void StartShoot()
     {
         statesTimer = timeBewteenStates;
+        Animator.Play(gameObject, "ST_Idle");
     }
 
     private void UpdateShoot()
@@ -510,12 +506,12 @@ public class StormTrooper : Enemy
 
             if (statesTimer <= 0.0f)
             {
-                if(!PlayerIsShootable())
-                {
-                    inputsList.Add(INPUT.IN_FIND_AIM);
-                    statesTimer = 0.0f;
-                    return;
-                }
+                //if(!PlayerIsShootable())
+                //{
+                //    inputsList.Add(INPUT.IN_FIND_AIM);
+                //    statesTimer = 0.0f;
+                //    return;
+                //}
 
                 //First Timer
                 if (shotSequences == 0)
@@ -537,15 +533,15 @@ public class StormTrooper : Enemy
 
         if (shotTimer > 0.0f)
         {
-            if (!PlayerIsShootable())
-            {
-                inputsList.Add(INPUT.IN_FIND_AIM);
-                shotTimes = 0;
-                shotTimer = 0.0f;
-                shotSequences = 0;
-                sequenceTimer = 0.0f;
-                return;
-            }
+            //if (!PlayerIsShootable())
+            //{
+            //    inputsList.Add(INPUT.IN_FIND_AIM);
+            //    shotTimes = 0;
+            //    shotTimer = 0.0f;
+            //    shotSequences = 0;
+            //    sequenceTimer = 0.0f;
+            //    return;
+            //}
 
             shotTimer -= Time.deltaTime;
 
