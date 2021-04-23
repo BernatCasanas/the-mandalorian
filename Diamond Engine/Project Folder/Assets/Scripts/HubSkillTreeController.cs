@@ -32,6 +32,9 @@ public class HubSkillTreeController : DiamondComponent
 
 	public void Update()
 	{
+		if (Core.instance.gameObject != null)
+			mando = Core.instance.gameObject;
+
 		if (mando == null || (Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN && Input.GetGamepadButton(DEControllerButton.B) != KeyState.KEY_DOWN))
 			return;
 		bool activate_tree = Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN ? true : false;

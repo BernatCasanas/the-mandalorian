@@ -7,15 +7,11 @@ public class InsideCollider : DiamondComponent
 	public GameObject player;
     public float maxDistance = 5;
     public GameObject displayText;
-    private bool playerLoaded = false; //TODO: Delete this variable when the bug of not being able to assign the player is solved
 
     public void Update()
 	{
-        if (!playerLoaded && Core.instance != null)
-        {
+        if (Core.instance != null)
             player = Core.instance.gameObject;
-            playerLoaded = true;
-        }            
 
         if (displayText == null)
             return;

@@ -4,7 +4,6 @@ using DiamondEngine;
 public class CameraController : DiamondComponent
 {
     public GameObject target = null;
-    //private static bool targetLoaded = false; //TODO: Delete this variable when the bug of not being able to assign the player is solved
 
     public float x = 0.0f;
     public float y = 0.0f;
@@ -24,11 +23,8 @@ public class CameraController : DiamondComponent
 
     public void Update()
     {
-        if (/*!targetLoaded && */ Core.instance.gameObject != null)
-        {
+        if (Core.instance.gameObject != null)        
             target = Core.instance.gameObject;
-            //targetLoaded = true;
-        }
 
         Vector3 offset = new Vector3(x, y, z);
         Vector3 desiredPosition = new Vector3(0.0f, 0.0f, 0.0f);
