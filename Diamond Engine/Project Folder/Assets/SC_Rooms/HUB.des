@@ -90,8 +90,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 11.659999847412109,
-                    "hFOV": 22.520000457763672,
+                    "vFOV": 13.020000457763672,
+                    "hFOV": 22.979999542236328,
                     "culling": false,
                     "drawSkybox": true
                 },
@@ -27965,12 +27965,6 @@
                 1,
                 0.99999994039535522
             ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ],
             "PrefabObjects": [
                 {
                     "name": "New Feature",
@@ -35161,12 +35155,6 @@
                 0.85979658365249634,
                 0.85979640483856201
             ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ],
             "PrefabObjects": [
                 {
                     "name": "New Feature",
@@ -40578,13 +40566,18 @@
                     "Active": true
                 },
                 {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "HUBAudio"
+                },
+                {
                     "Type": 13,
                     "Active": true,
-                    "evName": "Play_Cantine_Voices",
+                    "evName": "Empty",
                     "audBankReference": "Cantine",
                     "volume": 50,
                     "pitch": 50,
-                    "playOnAwake": true,
+                    "playOnAwake": false,
                     "isMuted": false
                 }
             ]
@@ -40935,130 +40928,6 @@
                 0.99999821186065674,
                 1,
                 0.99999821186065674
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "Core",
-                    "shootPoint": 158286609,
-                    "rotationSpeed": 2,
-                    "movementSpeed": 6.25,
-                    "mouseSens": 1,
-                    "skill_extraDamageActive": true,
-                    "skill_extraDamageHPStep": 0,
-                    "skill_extraDamageAmount": 0,
-                    "skill_damageReductionDashEnabled": true,
-                    "skill_damageReductionDashDuration": 0,
-                    "skill_damageReductionDashAmount": 0,
-                    "dashCD": 0.47999998927116394,
-                    "dashDuration": 0.2199999988079071,
-                    "dashDistance": 6.1500000953674316,
-                    "maxDashNumber": 1,
-                    "betweeMultiplenDashesCD": 0.11999999731779099,
-                    "baseFireRate": 0.15000000596046448,
-                    "gadgetFireRate": 0.20000000298023224,
-                    "fireRateAfterDashRecoverRatio": 0.75,
-                    "fireRateMultCap": 4.5,
-                    "grenadesFireRate": 0,
-                    "lockInputs": false,
-                    "bulletDamage": 0
-                },
-                {
-                    "Type": 13,
-                    "Active": true,
-                    "evName": "Empty",
-                    "audBankReference": "Mando",
-                    "volume": 50,
-                    "pitch": 50,
-                    "playOnAwake": false,
-                    "isMuted": false
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": false,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": true,
-                    "LockAngularY": true,
-                    "LockAngularZ": true,
-                    "Mass": 10,
-                    "Density": 1
-                },
-                {
-                    "Type": 15,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0.85000002384185791,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1.7999999523162842,
-                        1
-                    ]
-                },
-                {
-                    "Type": 16,
-                    "Active": true,
-                    "RootBone UID": 1333412432,
-                    "MeshRendererUID": 459171094,
-                    "Animations": [
-                        814877702,
-                        2130902709,
-                        942859953,
-                        720149964
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "PlayerHealth",
-                    "<currMaxHealth>k__BackingField": 0,
-                    "<currHealth>k__BackingField": 0,
-                    "<healWhenKillingAnEnemy>k__BackingField": 0,
-                    "<skill_chanceToAvoidDamage>k__BackingField": 0,
-                    "character_mesh": 459171094
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "BoonSpawn"
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "AimBot",
-                    "startAimConeAngle": 120,
-                    "maxRange": 50,
-                    "angleWeight": 0.75,
-                    "distanceWeight": 0.25,
-                    "isShooting": false
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "PlayerParticles",
-                    "dustObj": 448208244,
-                    "muzzleObj": 6421373,
-                    "jetpackObj": 1973626368,
-                    "impactObj": 190961330
-                }
             ],
             "PrefabObjects": [
                 {
@@ -43249,12 +43118,6 @@
                 1,
                 1,
                 1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
             ],
             "PrefabObjects": [
                 {
