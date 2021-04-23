@@ -6,14 +6,14 @@
         -16.342975616455078
     ],
     "EditorCameraZ": [
-        0.66534262895584106,
-        -0.61673527956008911,
-        0.4206622838973999
+        0.79108625650405884,
+        -0.44741785526275635,
+        0.41713297367095947
     ],
     "EditorCameraY": [
-        0.52132654190063477,
-        0.7871706485748291,
-        0.32951635122299194
+        0.3958011269569397,
+        0.89432501792907715,
+        0.20862449705600739
     ],
     "tags": [
         "Player",
@@ -10231,7 +10231,6 @@
                     "Active": true,
                     "ScriptName": "CameraController",
                     "target": 88002790,
-                    "targetLoaded": true,
                     "x": -10.300000190734863,
                     "y": 9.3000001907348633,
                     "z": -10,
@@ -14819,129 +14818,6 @@
                 1,
                 0.99999821186065674
             ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "Core",
-                    "shootPoint": 158286609,
-                    "rotationSpeed": 2,
-                    "movementSpeed": 6.25,
-                    "mouseSens": 1,
-                    "skill_extraDamageActive": true,
-                    "skill_extraDamageHPStep": 0,
-                    "skill_extraDamageAmount": 0,
-                    "skill_damageReductionDashEnabled": true,
-                    "skill_damageReductionDashDuration": 0,
-                    "skill_damageReductionDashAmount": 0,
-                    "dashCD": 0.47999998927116394,
-                    "dashDuration": 0.20000000298023224,
-                    "dashDistance": 6.1500000953674316,
-                    "maxDashNumber": 1,
-                    "betweeMultiplenDashesCD": 0.11999999731779099,
-                    "baseFireRate": 0.15000000596046448,
-                    "gadgetFireRate": 0.20000000298023224,
-                    "fireRateAfterDashRecoverRatio": 0.75,
-                    "fireRateMultCap": 4.5,
-                    "grenadesFireRate": 0,
-                    "lockInputs": true,
-                    "bulletDamage": 0
-                },
-                {
-                    "Type": 13,
-                    "Active": true,
-                    "evName": "Empty",
-                    "audBankReference": "Mando",
-                    "volume": 50,
-                    "pitch": 50,
-                    "playOnAwake": false,
-                    "isMuted": false
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": false,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": true,
-                    "LockAngularY": true,
-                    "LockAngularZ": true,
-                    "Mass": 10,
-                    "Density": 1
-                },
-                {
-                    "Type": 15,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0.85000002384185791,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1.7999999523162842,
-                        1
-                    ]
-                },
-                {
-                    "Type": 16,
-                    "Active": true,
-                    "RootBone UID": 1333412432,
-                    "MeshRendererUID": 459171094,
-                    "Animations": [
-                        814877702,
-                        2130902709,
-                        942859953,
-                        720149964
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "PlayerHealth",
-                    "<currMaxHealth>k__BackingField": 0,
-                    "<currHealth>k__BackingField": 0,
-                    "<healWhenKillingAnEnemy>k__BackingField": 0,
-                    "<skill_chanceToAvoidDamage>k__BackingField": 0
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "BoonSpawn"
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "AimBot",
-                    "startAimConeAngle": 120,
-                    "maxRange": 50,
-                    "angleWeight": 0.75,
-                    "distanceWeight": 0.25,
-                    "isShooting": false
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "PlayerParticles",
-                    "dustObj": 448208244,
-                    "muzzleObj": 6421373,
-                    "jetpackObj": 1973626368,
-                    "impactObj": 190961330
-                }
-            ],
             "PrefabObjects": [
                 {
                     "name": "ShootPoint",
@@ -16791,30 +16667,6 @@
                 1,
                 1,
                 1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "BabyYoda",
-                    "verticalSpeed": 0.80000001192092896,
-                    "verticalTimeInterval": 1.2000000476837158,
-                    "horizontalSpeed": 4,
-                    "totalForce": 0,
-                    "forceRegenerationSpeed": 0,
-                    "skillPushForceCost": 0,
-                    "skillWallForceCost": 0,
-                    "skill_fasterForceRegenerationActive": true,
-                    "skill_fasterForceRegenerationHealthStep": 0,
-                    "skill_fasterForceRegenerationForceRegen": 0,
-                    "skill_healActive": true,
-                    "skill_healAmount": 0,
-                    "skillPushDuration": 1
-                }
             ],
             "PrefabObjects": [
                 {
