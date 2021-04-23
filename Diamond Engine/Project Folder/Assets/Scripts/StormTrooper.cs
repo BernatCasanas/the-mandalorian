@@ -85,6 +85,8 @@ public class StormTrooper : Enemy
 
     public void Awake()
     {
+        Debug.Log("Stormtrooper Awake");
+
         player = Core.instance.gameObject;
 
         agent = gameObject.GetComponent<NavMeshAgent>();

@@ -14,6 +14,12 @@ public class GameSceneManager : DiamondComponent
 
     public void Awake()
     {
+        if (rewardMenu == null)
+            rewardMenu = new EndLevelRewards();
+
+        if (rewardInitialPos == null)
+            rewardInitialPos = new Vector3(0.0f, 0.0f, 0.0f);
+
         rewardObject = InternalCalls.CreatePrefab("Library/Prefabs/1394471616.prefab", new Vector3(rewardInitialPos.x, rewardInitialPos.y, rewardInitialPos.z), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
       
         if(rewardObject != null)
@@ -48,7 +54,7 @@ public class GameSceneManager : DiamondComponent
             }
         }
 
-        else if (rewardData != null && rewardObject != null)
+        else if (rewardData != null && rewardObject != null && rewardSpawnComponent != null)
         {
             rewardSpawnComponent.AdvanceVerticalMovement(rewardInitialPos);
             rewardSpawnComponent.AdvanceRotation();
@@ -74,8 +80,11 @@ public class GameSceneManager : DiamondComponent
         {
             rewardData.Use();
             rewardMenu.selectedReward = null;
-            rewardObject.Enable(false);
-            rewardSpawnComponent.trigger = false;
+            if(rewardObject != null)
+                rewardObject.Enable(false);
+
+            if(rewardSpawnComponent != null)
+                rewardSpawnComponent.trigger = false;
             rewardData = null;
         }
 

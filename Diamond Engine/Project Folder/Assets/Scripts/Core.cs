@@ -153,6 +153,11 @@ public class Core : DiamondComponent
         //Dash - if scene doesnt have its values
         //dashDuration = 0.2f;
         //dashDistance = 4.5f;
+        hud = InternalCalls.FindObjectWithName("HUD");
+
+        if (hud == null)
+            Debug.Log("No HUD found");
+
         #endregion
 
         #region SHOOT
