@@ -59,6 +59,12 @@ public class Pause : DiamondComponent
 		}
 	}
 
+	public void Awake()
+	{
+		Core.instance.pause = this.gameObject;
+		Core.instance.background = background;
+	}
+
 	public void Update()
 	{
 		

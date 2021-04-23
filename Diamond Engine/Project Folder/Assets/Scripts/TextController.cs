@@ -23,6 +23,12 @@ public class TextController : DiamondComponent
 
 	private bool startMenu = true;
 	private bool finished = false;
+
+	public void Awake()
+    {
+		gui = Core.instance.hud;
+    }
+
 	public void OnExecuteButton()
 	{
 		if (startMenu==true)
