@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -6.2590980529785156,
-        9.8280754089355469,
-        4.5288057327270508
+        -20.721164703369141,
+        17.710250854492188,
+        -17.098056793212891
     ],
     "EditorCameraZ": [
-        0.7869986891746521,
-        -0.34017911553382874,
-        0.51469528675079346
+        0.69070857763290405,
+        -0.55030345916748047,
+        0.46913528442382813
     ],
     "EditorCameraY": [
-        0.28469982743263245,
-        0.94036060571670532,
-        0.18619300425052643
+        0.45522868633270264,
+        0.83496475219726563,
+        0.30919367074966431
     ],
     "tags": [],
     "layers": [],
@@ -90,8 +90,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 1.0471975803375244,
-                    "hFOV": 1.5521194934844971,
+                    "vFOV": 11.659999847412109,
+                    "hFOV": 22.520000457763672,
                     "culling": false,
                     "drawSkybox": true
                 },
@@ -106,7 +106,6 @@
                     "Active": true,
                     "ScriptName": "CameraController",
                     "target": 728409309,
-                    "targetLoaded": true,
                     "x": -10.300000190734863,
                     "y": 9.3000001907348633,
                     "z": -10,
@@ -781,7 +780,7 @@
                     "Unhovered_UID": 1346482548,
                     "Script_Name": "HubRoomSwitch",
                     "ButtonState": 2,
-                    "Is Selected": true
+                    "Is Selected": false
                 },
                 {
                     "Type": 11,
@@ -804,7 +803,7 @@
                     ],
                     "Button Being Used": -1,
                     "Type Of UI": 7,
-                    "Is Selected": true
+                    "Is Selected": false
                 },
                 {
                     "Type": 5,
@@ -9386,8 +9385,8 @@
                     "Unhovered_LibraryPath": "Library\/Textures\/1346482548.dds",
                     "Unhovered_UID": 1346482548,
                     "Script_Name": "Enable",
-                    "ButtonState": 2,
-                    "Is Selected": false
+                    "ButtonState": 1,
+                    "Is Selected": true
                 },
                 {
                     "Type": 11,
@@ -9410,12 +9409,13 @@
                     ],
                     "Button Being Used": -1,
                     "Type Of UI": 7,
-                    "Is Selected": false
+                    "Is Selected": true
                 },
                 {
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Enable",
+                    "enable": 1603578304,
                     "disable": 254437374,
                     "disable2": 346540431
                 }
@@ -40956,7 +40956,7 @@
                     "skill_damageReductionDashDuration": 0,
                     "skill_damageReductionDashAmount": 0,
                     "dashCD": 0.47999998927116394,
-                    "dashDuration": 0.20000000298023224,
+                    "dashDuration": 0.2199999988079071,
                     "dashDistance": 6.1500000953674316,
                     "maxDashNumber": 1,
                     "betweeMultiplenDashesCD": 0.11999999731779099,
@@ -40965,7 +40965,7 @@
                     "fireRateAfterDashRecoverRatio": 0.75,
                     "fireRateMultCap": 4.5,
                     "grenadesFireRate": 0,
-                    "lockInputs": true,
+                    "lockInputs": false,
                     "bulletDamage": 0
                 },
                 {
@@ -41032,7 +41032,8 @@
                     "<currMaxHealth>k__BackingField": 0,
                     "<currHealth>k__BackingField": 0,
                     "<healWhenKillingAnEnemy>k__BackingField": 0,
-                    "<skill_chanceToAvoidDamage>k__BackingField": 0
+                    "<skill_chanceToAvoidDamage>k__BackingField": 0,
+                    "character_mesh": 459171094
                 },
                 {
                     "Type": 5,
@@ -41052,7 +41053,11 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "PlayerParticles"
+                    "ScriptName": "PlayerParticles",
+                    "dustObj": 448208244,
+                    "muzzleObj": 6421373,
+                    "jetpackObj": 1973626368,
+                    "impactObj": 190961330
                 }
             ],
             "PrefabObjects": [
