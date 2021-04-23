@@ -906,34 +906,56 @@ public class Core : DiamondComponent
             if (bulletScript != null)
             {
                 int damageFromBullet = 0;
-                if (skill_damageReductionDashActive) damageFromBullet = (int)(bulletScript.damage * (1.0f - skill_damageReductionDashAmount));
-                else damageFromBullet = (int)bulletScript.damage;
 
-                gameObject.GetComponent<PlayerHealth>().TakeDamage(damageFromBullet);
+                if (skill_damageReductionDashActive) 
+                    damageFromBullet = (int)(bulletScript.damage * (1.0f - skill_damageReductionDashAmount));
+                else 
+                    damageFromBullet = (int)bulletScript.damage;
+
+                PlayerHealth healthScript = gameObject.GetComponent<PlayerHealth>();
+
+                if (healthScript != null)
+                    healthScript.TakeDamage(damageFromBullet);
+
                 damageTaken += damageFromBullet;
             }
-
         }
         if (collidedGameObject.CompareTag("Bantha"))
         {
             //InternalCalls.Destroy(gameObject);
             Audio.PlayAudio(gameObject, "Play_Mando_Hit");
-            float damage = collidedGameObject.GetComponent<Enemy>().damage;
 
-            if (damage != 0)
+            Enemy enemy = collidedGameObject.GetComponent<Enemy>();
+
+            if (enemy != null)
             {
+                float damage = enemy.damage;
 
-                int damageFromEnemy = 0;
-                if (skill_damageReductionDashActive) damageFromEnemy = (int)(damage * (1.0f - skill_damageReductionDashAmount));
-                else damageFromEnemy = (int)damage;
+                if (damage != 0)
+                {
+                    int damageFromEnemy = 0;
+                    if (skill_damageReductionDashActive) 
+                        damageFromEnemy = (int)(damage * (1.0f - skill_damageReductionDashAmount));
+                    else 
+                        damageFromEnemy = (int)damage;
 
-                gameObject.GetComponent<PlayerHealth>().TakeDamage(damageFromEnemy);
-                damageTaken += damageFromEnemy;
+                    PlayerHealth playerHealth = gameObject.GetComponent<PlayerHealth>();
+                    if (playerHealth != null)
+                        playerHealth.TakeDamage(damageFromEnemy);
+
+                    damageTaken += damageFromEnemy;
+                }
             }
         }
-        else if (collidedGameObject.CompareTag("ExplosiveBarrel") && collidedGameObject.GetComponent<SphereCollider>().active)
+        else if (collidedGameObject.CompareTag("ExplosiveBarrel"))
         {
-            gameObject.GetComponent<PlayerHealth>().TakeDamage(collidedGameObject.GetComponent<BH_DestructBox>().explosion_damage/2);
+            SphereCollider sphereColl = collidedGameObject.GetComponent<SphereCollider>();
+
+            if (sphereColl != null)
+            {
+                if (sphereColl.active)
+                    gameObject.GetComponent<PlayerHealth>().TakeDamage(collidedGameObject.GetComponent<BH_DestructBox>().explosion_damage/2);
+            }
         }
     }
 
@@ -943,7 +965,15 @@ public class Core : DiamondComponent
         if (triggeredGameObject.CompareTag("Coin"))
         {
             PlayerResources.AddRunCoins(1);
-            hud.GetComponent<HUD>().UpdateCurrency(PlayerResources.GetRunCoins());
+
+            if (hud != null)
+            {
+                HUD hudComponent = hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                    hudComponent.UpdateCurrency(PlayerResources.GetRunCoins());
+            }
+
             InternalCalls.Destroy(triggeredGameObject);
         }
     }
