@@ -434,8 +434,8 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
 
 	json_array_append_value(_goArray, goValue);
 
-	//if (saveAllData)
-	//{
+	if (prefabID == 0u)
+	{
 		//Save components
 		JSON_Value* goArray = json_value_init_array();
 		JSON_Array* jsArray = json_value_get_array(goArray);
@@ -448,7 +448,7 @@ void GameObject::SaveToJson(JSON_Array* _goArray, bool saveAllData)
 			json_array_append_value(jsArray, nVal);
 		}
 		json_object_set_value(goData, "Components", goArray);
-	//}
+	}
 
 	if (prefabID != 0 /*&& !saveAllData*/)
 	{

@@ -13,6 +13,8 @@
 #include "CO_Transform.h"
 #include "CO_Script.h"
 
+#include "DETime.h"
+
 #include <string>
 #include"DETime.h"
 
@@ -152,13 +154,7 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 		}
 	}
 
-	if (!loadingScene)
-	{
-		//EngineExternal->moduleScene->LoadNavigationData();
-		//EngineExternal->moduleScene->LoadScriptsData(rootObject);
-	}
-
-	if (DETime::state == GameState::PLAY) 
+	if (DETime::state == GameState::PLAY)
 	{
 		std::vector<C_Script*> saveCopy; //We need to do this in case someone decides to create an instance inside the awake method
 		for (int i = oldSize; i < EngineExternal->moduleScene->activeScriptsVector.size(); ++i)
@@ -223,12 +219,15 @@ GameObject* PrefabImporter::InstantiatePrefab(const char* libraryPath)
 		}
 	}
 
-	std::vector<C_Script*> saveCopy; //We need to do this in case someone decides to create an instance inside the awake method
-	for (int i = oldSize; i < EngineExternal->moduleScene->activeScriptsVector.size(); ++i)
-		saveCopy.push_back(EngineExternal->moduleScene->activeScriptsVector[i]);
+	if (DETime::state == GameState::PLAY)
+	{
+		std::vector<C_Script*> saveCopy; //We need to do this in case someone decides to create an instance inside the awake method
+		for (int i = oldSize; i < EngineExternal->moduleScene->activeScriptsVector.size(); ++i)
+			saveCopy.push_back(EngineExternal->moduleScene->activeScriptsVector[i]);
 
-	for (size_t i = 0; i < saveCopy.size(); i++)
-		saveCopy[i]->OnAwake();
+		for (size_t i = 0; i < saveCopy.size(); i++)
+			saveCopy[i]->OnAwake();
+	}
 
 	std::string id_string;
 	FileSystem::GetFileName(libraryPath, id_string, false);
@@ -244,7 +243,6 @@ GameObject* PrefabImporter::InstantiatePrefab(const char* libraryPath)
 
 GameObject* PrefabImporter::LoadUIPrefab(const char* libraryPath)
 {
-
 	int oldSize = EngineExternal->moduleScene->activeScriptsVector.size();
 
 	GameObject* rootObject = nullptr;
