@@ -142,7 +142,7 @@ public class Core : DiamondComponent
     float timeOfRoom = 0f;
 
 
-    private void Start()
+    public void Awake()
     {
         #region VARIABLES WITH DEPENDENCIES
 
@@ -200,7 +200,7 @@ public class Core : DiamondComponent
         // Placeholder for Start() function
         if (scriptStart == true)
         {
-            Start();
+            //Start();
             scriptStart = false;
         }
 
