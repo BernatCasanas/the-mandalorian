@@ -8,7 +8,6 @@ public class AimBot : DiamondComponent
     public float maxRange = 50.0f; //maximum distance at wich it will
     public float angleWeight = 0.5f;
     public float distanceWeight = 0.5f;
-    public GameObject spawnGameObject = null;
     float dotMin = 0;
     bool start = true;
 

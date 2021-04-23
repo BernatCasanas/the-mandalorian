@@ -13,9 +13,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -11.015664100646973,
-                8.8377418518066406,
-                -11.111222267150879
+                -0.027314811944961548,
+                7.742091178894043,
+                -7.4604811668395996
             ],
             "Rotation": [
                 -2.120925657322914e-09,
@@ -38,6 +38,7 @@
                     "Active": true,
                     "ScriptName": "Core",
                     "shootPoint": 158286609,
+                    "hud": 118565339,
                     "rotationSpeed": 2,
                     "movementSpeed": 6.25,
                     "mouseSens": 1,
@@ -48,7 +49,7 @@
                     "skill_damageReductionDashDuration": 0,
                     "skill_damageReductionDashAmount": 0,
                     "dashCD": 0.47999998927116394,
-                    "dashDuration": 0.20000000298023224,
+                    "dashDuration": 0.2199999988079071,
                     "dashDistance": 6.1500000953674316,
                     "maxDashNumber": 1,
                     "betweeMultiplenDashesCD": 0.11999999731779099,
@@ -57,7 +58,12 @@
                     "fireRateAfterDashRecoverRatio": 0.75,
                     "fireRateMultCap": 4.5,
                     "grenadesFireRate": 0,
+                    "timeToPerfectCharge": 0.42399999499320984,
+                    "framesForPerfectCharge": 4,
+                    "timeToAutomaticallyShootCharge": 1.2400000095367432,
                     "lockInputs": true,
+                    "background": 1022032849,
+                    "pause": 809125827,
                     "bulletDamage": 0
                 },
                 {
@@ -124,7 +130,9 @@
                     "<currMaxHealth>k__BackingField": 0,
                     "<currHealth>k__BackingField": 0,
                     "<healWhenKillingAnEnemy>k__BackingField": 0,
-                    "<skill_chanceToAvoidDamage>k__BackingField": 0
+                    "<skill_chanceToAvoidDamage>k__BackingField": 0,
+                    "character_mesh": 459171094,
+                    "damage_screen": 593514518
                 },
                 {
                     "Type": 5,
@@ -1872,8 +1880,8 @@
                     ],
                     "alternColorStencil": [
                         1,
-                        1,
-                        1
+                        0.44642853736877441,
+                        0
                     ],
                     "doNotDrawStencil": true
                 },
@@ -1884,6 +1892,14 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/637612837.mat",
                     "MaterialUID": 637612837
+                },
+                {
+                    "Type": 26,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/2086070049.mat",
+                    "MaterialUID": 2086070049
                 }
             ]
         },

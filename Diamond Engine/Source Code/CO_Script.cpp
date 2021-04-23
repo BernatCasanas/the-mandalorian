@@ -291,7 +291,7 @@ void C_Script::OnRecursiveUIDChange(std::map<uint, GameObject*> gameObjects)
 {
 	for (size_t i = 0; i < fields.size(); i++)
 	{
-		if (fields[i].type == MonoTypeEnum::MONO_TYPE_CLASS)
+		if (fields[i].type == MonoTypeEnum::MONO_TYPE_CLASS && strcmp(mono_type_get_name(mono_field_get_type(fields[i].field)), "DiamondEngine.GameObject") == 0)
 		{
 			std::map<uint, GameObject*>::iterator gameObjectIt = gameObjects.find(fields[i].goUID);
 
