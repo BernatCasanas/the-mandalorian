@@ -15,9 +15,13 @@ public class GameSceneManager : DiamondComponent
     public void Awake()
     {
         rewardObject = InternalCalls.CreatePrefab("Library/Prefabs/1394471616.prefab", new Vector3(rewardInitialPos.x, rewardInitialPos.y, rewardInitialPos.z), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
-        rewardObject.SetParent(gameObject);
-        rewardObject.Enable(false);
-        rewardSpawnComponent = rewardObject.GetComponent<EndLevelRewardSpawn>();
+      
+        if(rewardObject != null)
+        {
+            rewardObject.SetParent(gameObject);
+            rewardObject.Enable(false);
+            rewardSpawnComponent = rewardObject.GetComponent<EndLevelRewardSpawn>();
+        }
     }
 
     public void Update()

@@ -425,7 +425,7 @@
    {
     "Id": "1093318992",
     "Language": "SFX",
-    "Hash": "4104706658",
+    "Hash": "1058035588",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Mando",
     "ShortName": "Mando",
     "Path": "Mando.bnk",
@@ -633,6 +633,38 @@
         "Language": "SFX",
         "ShortName": "Mando cleared room voice 1.wav",
         "Path": "SFX\\Mando cleared room voice 1_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1184164898",
+      "Name": "Play_Mando_Damaging_Water",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Damaging_Water",
+      "DurationType": "Infinite",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "211480778",
+        "Language": "SFX",
+        "ShortName": "Mando water hit 3.wav",
+        "Path": "SFX\\Mando water hit 3_10C4C929.wem"
+       },
+       {
+        "Id": "590827425",
+        "Language": "SFX",
+        "ShortName": "Mando water hit 1.wav",
+        "Path": "SFX\\Mando water hit 1_10C4C929.wem"
+       },
+       {
+        "Id": "659686596",
+        "Language": "SFX",
+        "ShortName": "damaging water.wav",
+        "Path": "SFX\\damaging water_10C4C929.wem"
+       },
+       {
+        "Id": "921796997",
+        "Language": "SFX",
+        "ShortName": "Mando water hit 2.wav",
+        "Path": "SFX\\Mando water hit 2_10C4C929.wem"
        }
       ]
      },
@@ -911,7 +943,7 @@
    {
     "Id": "1229948536",
     "Language": "SFX",
-    "Hash": "3411849662",
+    "Hash": "1479327053",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Environment",
     "ShortName": "Environment",
     "Path": "Environment.bnk",
@@ -941,16 +973,34 @@
       ]
      },
      {
-      "Id": "3984843485",
-      "Name": "Play_Wind_Exterior",
-      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\Play_Wind_Exterior",
-      "DurationType": "Infinite",
+      "Id": "3825394181",
+      "Name": "Play_Post_Boss_Room_1_Ambience",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\Play_Post_Boss_Room_1_Ambience",
+      "DurationType": "OneShot",
+      "DurationMin": "31.600702",
+      "DurationMax": "31.600702",
       "IncludedMemoryFiles": [
        {
-        "Id": "420370470",
+        "Id": "961002533",
         "Language": "SFX",
-        "ShortName": "Wind Exterior.wav",
-        "Path": "SFX\\Wind Exterior_D79FB2B7.wem"
+        "ShortName": "post boss room 1 ambience.wav",
+        "Path": "SFX\\post boss room 1 ambience_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "519053172",
+      "Name": "Play_Post_Boss_Room_2_Ambience",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\Play_Post_Boss_Room_2_Ambience",
+      "DurationType": "OneShot",
+      "DurationMin": "18.034195",
+      "DurationMax": "18.034195",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "368617914",
+        "Language": "SFX",
+        "ShortName": "post boss room 2 ambience.wav",
+        "Path": "SFX\\post boss room 2 ambience_10C4C929.wem"
        }
       ]
      },
@@ -1173,6 +1223,96 @@
         "ObjectPath": "\\Switches\\Default Work Unit\\UI\\Button_hover"
        }
       ]
+     }
+    ]
+   },
+   {
+    "Id": "2674766611",
+    "Language": "SFX",
+    "Hash": "1883919403",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Turret",
+    "ShortName": "Turret",
+    "Path": "Turret.bnk",
+    "IncludedEvents": [
+     {
+      "Id": "192623117",
+      "Name": "Pause_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Pause_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "3393910755",
+      "Name": "Play_Turret_Charge",
+      "ObjectPath": "\\Events\\Default Work Unit\\Turret\\Play_Turret_Charge",
+      "DurationType": "Infinite",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "397694861",
+        "Language": "SFX",
+        "ShortName": "turret charge.wav",
+        "Path": "SFX\\turret charge_D79FB2B7.wem"
+       }
+      ]
+     },
+     {
+      "Id": "459323551",
+      "Name": "Play_Turret_Shot",
+      "ObjectPath": "\\Events\\Default Work Unit\\Turret\\Play_Turret_Shot",
+      "DurationType": "OneShot",
+      "DurationMin": "1.792562",
+      "DurationMax": "1.792562",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "555640771",
+        "Language": "SFX",
+        "ShortName": "turret shot.wav",
+        "Path": "SFX\\turret shot_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1132107266",
+      "Name": "Play_Turret_Shot_Charge",
+      "ObjectPath": "\\Events\\Default Work Unit\\Turret\\Play_Turret_Shot_Charge",
+      "DurationType": "Infinite",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "1003305065",
+        "Language": "SFX",
+        "ShortName": "turret charge shot.wav",
+        "Path": "SFX\\turret charge shot_D79FB2B7.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1931338186",
+      "Name": "Resume_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Resume_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "3318621861",
+      "Name": "Stop_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     }
+    ],
+    "GameParameters": [
+     {
+      "Id": "467158820",
+      "Name": "SourceVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
+     },
+     {
+      "Id": "2704707011",
+      "Name": "BusVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\BusVolume"
      }
     ]
    },

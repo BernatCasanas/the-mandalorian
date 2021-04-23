@@ -56,6 +56,7 @@ void DE_Cubemap::DrawAsSkybox(C_Camera* _camera)
 	bool cameraNeedsChange = false;
 	FrustumType cameraType = _camera->camFrustrum.type;
 
+	Frustum saveCopy = _camera->camFrustrum;
 	if(cameraType != FrustumType::PerspectiveFrustum)
 	{ 
 		cameraNeedsChange = true;
@@ -94,8 +95,8 @@ void DE_Cubemap::DrawAsSkybox(C_Camera* _camera)
 
 	//glBindVertexArray(0);
 
-	if(cameraNeedsChange)
-		_camera->camFrustrum.type = FrustumType::OrthographicFrustum;
+	if (cameraNeedsChange)
+		_camera->camFrustrum = saveCopy;
 
 	shaderRes->Unbind();
 }
