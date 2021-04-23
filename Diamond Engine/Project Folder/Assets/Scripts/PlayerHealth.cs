@@ -19,10 +19,19 @@ public class PlayerHealth : DiamondComponent
 
     public void Awake()
     {
-        if (damage_screen != null)
-            damage_screen.GetComponent<Material>().SetFloatUniform("alpha", 1.0f);
+        if (Core.instance.hud != null)
+            damage_screen = InternalCalls.FindObjectWithName("DamageScreen");
 
         skill_chanceToAvoidDamage = 0;
+    }
+
+    public void Start()
+    {
+        if (damage_screen != null)
+        {
+            damage_screen.GetComponent<Material>().SetFloatUniform("alpha", 1.0f);
+            Debug.Log("DamageScreen Found");
+        }
     }
 
     public void Update()

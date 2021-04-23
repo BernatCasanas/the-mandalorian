@@ -110,7 +110,10 @@ public class HUD : DiamondComponent
         { 25,   new ComboResetEffects( 0.2f)},
             //TODO Add endOfComboRewards here
     };
-
+    public void Awake()
+    {
+        Core.instance.hud = this.gameObject;
+    }
 
     public void Update()
     {
