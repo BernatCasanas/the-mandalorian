@@ -76,6 +76,11 @@ bool C_AudioSource::OnEditor()
 		ImGui::SameLine();
 		if (ImGui::Button("Stop"))
 		{
+			StopEvent(evName);
+		}	
+		ImGui::SameLine();
+		if (ImGui::Button("Stop All"))
+		{
 			StopEvent();
 		}
 
@@ -219,10 +224,16 @@ void C_AudioSource::ResumeEvent()
 	EngineExternal->moduleAudio->ResumeEvent(this->id, this->evName);
 }
 
+void C_AudioSource::StopEvent(std::string eventName)
+{
+	EngineExternal->moduleAudio->StopEvent(this->id, eventName);
+}
+
 void C_AudioSource::StopEvent()
 {
-	EngineExternal->moduleAudio->StopEvent(this->id, this->evName);
+	EngineExternal->moduleAudio->StopEvent(this->id);
 }
+
 
 unsigned int C_AudioSource::GetWwiseID()
 {
