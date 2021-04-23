@@ -98,6 +98,10 @@ public class BabyYoda : DiamondComponent
         wallSkillOffset = new Vector3(0.0f, 1.5f, 3.0f);
 
         currentForce = totalForce;
+        followPoint = InternalCalls.FindObjectWithName("GroguFollowPoint");
+
+        if (followPoint == null)
+            Debug.Log("Grogu's follow point not found");
     }
 
     public void Update()

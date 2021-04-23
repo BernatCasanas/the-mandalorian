@@ -489,8 +489,6 @@ public class Bantha : Enemy
     }
     private void UpdateCharge()
     {
-        Debug.Log("Chaaaaarge");
-
         LookAt(agent.GetDestination());
 
         if (skill_slowDownActive) 
