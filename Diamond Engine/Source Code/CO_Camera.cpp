@@ -61,6 +61,9 @@ C_Camera::~C_Camera()
 
 	if (EngineExternal && EngineExternal->moduleRenderer3D->GetGameRenderTarget() == this)
 		EngineExternal->moduleRenderer3D->SetGameRenderTarget(nullptr);
+
+	if (EngineExternal && EngineExternal->moduleRenderer3D->activeRenderCamera == this)
+		EngineExternal->moduleRenderer3D->activeRenderCamera = nullptr;
 }
 
 #ifndef STANDALONE
@@ -258,6 +261,7 @@ void C_Camera::EndDraw()
 
 
 	glDisable(GL_DEPTH_TEST);
+	EngineExternal->moduleRenderer3D->activeRenderCamera = nullptr;
 }
 
 void C_Camera::ReGenerateBuffer(int w, int h)
