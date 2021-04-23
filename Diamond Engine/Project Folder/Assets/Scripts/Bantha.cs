@@ -566,24 +566,29 @@ public class Bantha : Enemy
 
         if (collidedGameObject.CompareTag("Bullet"))
         {
-            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
-
-            Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
-
-            if (Core.instance.hud != null)
+            BH_Bullet bullet = collidedGameObject.GetComponent<BH_Bullet>();
+            if (bullet != null)
             {
-                Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 1.0f);
-            }
+                healthPoints -= bullet.damage;
 
-            if (currentState != STATE.DIE && healthPoints <= 0.0f)
-            {
-                inputsList.Add(INPUT.IN_DIE);
-            }
+                Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
 
-            if (skill_slowDownEnabled)
-            {
-                skill_slowDownActive = true;
-                skill_slowDownTimer = 0.0f;
+                if (Core.instance.hud != null)
+                {
+                    HUD hud = Core.instance.hud.GetComponent<HUD>();
+
+                    if (hud != null)
+                        hud.AddToCombo(20, 1.0f);
+                }
+
+                if (currentState != STATE.DIE && healthPoints <= 0.0f)
+                    inputsList.Add(INPUT.IN_DIE);
+
+                if (skill_slowDownEnabled)
+                {
+                    skill_slowDownActive = true;
+                    skill_slowDownTimer = 0.0f;
+                }
             }
         }
         else if (collidedGameObject.CompareTag("Grenade"))
@@ -599,13 +604,14 @@ public class Bantha : Enemy
 
             if (Core.instance.hud != null)
             {
-                Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 0.5f);
+                HUD hud = Core.instance.hud.GetComponent<HUD>();
+                
+                if (hud != null)
+                    hud.AddToCombo(20, 0.5f);
             }
 
             if (currentState != STATE.DIE && healthPoints <= 0.0f)
-            {
                 inputsList.Add(INPUT.IN_DIE);
-            }
 
             if (skill_slowDownEnabled)
             {
@@ -616,9 +622,7 @@ public class Bantha : Enemy
         else if (collidedGameObject.CompareTag("WorldLimit"))
         {
             if (currentState != STATE.DIE)
-            {
                 inputsList.Add(INPUT.IN_DIE);
-            }
         }
         else if (collidedGameObject.CompareTag("Player"))
         {
@@ -627,17 +631,25 @@ public class Bantha : Enemy
                 inputsList.Add(INPUT.IN_CHARGE_END);
                 PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
-                {
                     playerHealth.TakeDamage((int)damage);
-                }
             }
         }
-        else if (collidedGameObject.CompareTag("ExplosiveBarrel") && collidedGameObject.GetComponent<SphereCollider>().active)
+        else if (collidedGameObject.CompareTag("ExplosiveBarrel"))
         {
-            healthPoints -= collidedGameObject.GetComponent<BH_DestructBox>().explosion_damage;
-            if (currentState != STATE.DIE && healthPoints <= 0.0f)
+            SphereCollider sphereColl = collidedGameObject.GetComponent<SphereCollider>();
+            if (sphereColl != null)
             {
-                inputsList.Add(INPUT.IN_DIE);
+                if (sphereColl.active)
+                {
+                    BH_DestructBox explosion = collidedGameObject.GetComponent<BH_DestructBox>();
+
+                    if (explosion != null)
+                    {
+                        healthPoints -= explosion.explosion_damage;
+                        if (currentState != STATE.DIE && healthPoints <= 0.0f)
+                            inputsList.Add(INPUT.IN_DIE);
+                    }
+                }
             }
         }
     }
@@ -645,9 +657,7 @@ public class Bantha : Enemy
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
-        {
             inputsList.Add(INPUT.IN_PUSHED);
-        }
     }
 
     public override void TakeDamage(float damage)
@@ -657,9 +667,7 @@ public class Bantha : Enemy
         if (currentState != STATE.DIE)
         {
             if (healthPoints <= 0.0f)
-            {
                 inputsList.Add(INPUT.IN_DIE);
-            }
         }
 
     }
