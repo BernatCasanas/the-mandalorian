@@ -408,7 +408,9 @@ public class Bantha : Enemy
     }
     private void UpdateRun()
     {
-        agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition);
+        if(player != null)
+            agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition);
+
         LookAt(agent.GetDestination());
         if (skill_slowDownActive) agent.MoveToCalculatedPos(runningSpeed * (1 - skill_slowDownAmount));
         else agent.MoveToCalculatedPos(runningSpeed);

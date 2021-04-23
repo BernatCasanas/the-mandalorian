@@ -85,6 +85,8 @@ public class StormTrooper : Enemy
 
     public void Awake()
     {
+        player = Core.instance.gameObject;
+
         agent = gameObject.GetComponent<NavMeshAgent>();
         targetPosition = null;
 
@@ -418,6 +420,7 @@ public class StormTrooper : Enemy
         Animator.Play(gameObject, "ST_Run");
         Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
     }
+
     private void UpdateRun()
     {
         LookAt(agent.GetDestination());
