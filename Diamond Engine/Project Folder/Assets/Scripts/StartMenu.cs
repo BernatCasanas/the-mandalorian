@@ -22,7 +22,7 @@ public class StartMenu : DiamondComponent
 				Debug.Log("Exploring");
 			}
 			Audio.SetState("Game_State", "HUB");
-			//Audio.PlayAudio(gameObject, "Play_Cantine_Voices");
+			Audio.PlayAudio(gameObject, "Play_Cantine_Ambience");
 		}
 		else if (gameObject.Name == "Options")
 		{

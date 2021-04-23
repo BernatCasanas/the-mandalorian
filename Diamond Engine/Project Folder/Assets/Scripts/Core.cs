@@ -781,7 +781,7 @@ public class Core : DiamondComponent
     private void StartMove()
     {
         Animator.Play(gameObject, "Run");
-        Audio.PlayAudio(this.gameObject, "Play_Footsteps_Mando");
+        Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
     }
 
     private void UpdateMove()
