@@ -1237,8 +1237,8 @@ public class Rancor : DiamondComponent
         }
         else if (collidedGameObject.CompareTag("Grenade"))
         {
-            bigGrenade bGrenade = collidedGameObject.GetComponent<bigGrenade>();
-            smallGrenade sGrenade = collidedGameObject.GetComponent<smallGrenade>();
+            //bigGrenade bGrenade = collidedGameObject.GetComponent<bigGrenade>();
+            //smallGrenade sGrenade = collidedGameObject.GetComponent<smallGrenade>();
 
             //if (bGrenade != null)
             //    healthPoints -= bGrenade.GetDamage() ;
@@ -1251,7 +1251,10 @@ public class Rancor : DiamondComponent
 
             if (Core.instance.hud != null)
             {
-                Core.instance.hud.GetComponent<HUD>().AddToCombo(20, 0.5f);
+                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                    hudComponent.AddToCombo(20, 0.5f);
             }
 
             if (currentState != RANCOR_STATE.DEAD && healthPoints <= 0.0f)
@@ -1280,17 +1283,13 @@ public class Rancor : DiamondComponent
                 inputsList.Add(RANCOR_INPUT.IN_RUSH_END);
                 PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
-                {
                     playerHealth.TakeDamage((int)rushDamage);
-                }
             }
             else
             {
                 PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
-                {
                     playerHealth.TakeDamage((int)touchDamage);
-                }
             }
         }
     }
