@@ -365,7 +365,7 @@ public class LaserTurret : Enemy
         //Animator.Play(gameObject, "ST_Die", 1.0f);
 
         Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
-        Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
+        Audio.PlayAudio(gameObject, "Play_Mando_Voice");
 
         ParticleSystem dead = null;
         ParticleSystem wave = null;
