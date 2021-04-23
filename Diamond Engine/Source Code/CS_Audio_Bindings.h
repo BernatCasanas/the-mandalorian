@@ -63,15 +63,33 @@ void PauseAudio(MonoObject* go)
 	}
 }
 
+
+void StopOneAudio(MonoObject* go, MonoString* eventAudio)
+{
+	if (EngineExternal == nullptr)
+		return;
+
+	GameObject* GO = EngineExternal->moduleMono->GameObject_From_CSGO(go);
+	C_AudioSource* audSource = dynamic_cast<C_AudioSource*>(GO->GetComponent(Component::TYPE::AUDIO_SOURCE));
+	if (audSource != nullptr && eventAudio != nullptr) 
+	{
+		std::string ev = mono_string_to_utf8(eventAudio);
+		audSource->StopEvent(ev);
+	}
+	else
+	{
+		LOG(LogType::L_WARNING, "Couldn't stop the audio. Component was null pointer");
+	}
+}
+
 void StopAudio(MonoObject* go)
 {
 	if (EngineExternal == nullptr)
 		return;
 
 	GameObject* GO = EngineExternal->moduleMono->GameObject_From_CSGO(go);
-
 	C_AudioSource* audSource = dynamic_cast<C_AudioSource*>(GO->GetComponent(Component::TYPE::AUDIO_SOURCE));
-	if (audSource != nullptr)
+	if (audSource != nullptr) 
 	{
 		audSource->StopEvent();
 	}
@@ -80,6 +98,7 @@ void StopAudio(MonoObject* go)
 		LOG(LogType::L_WARNING, "Couldn't stop the audio. Component was null pointer");
 	}
 }
+
 
 void SetState(MonoString* stateGroupString, MonoString* stateString)
 {
