@@ -37,11 +37,14 @@ public class GameSceneManager : DiamondComponent
             if (PlayerResources.CheckBoon(BOONS.BOON_BOUNTYHUNTERSKILLS))
             {
                 PlayerResources.AddRunCoins(2);
-                //TODO: Update hud coin text
             }
 
-            rewardData = rewardMenu.GenerateRewardPipeline();
-            Debug.Log("Reward data texture id is " + rewardData.libraryTextureID + " and reward type is " + rewardData.resourceType);
+            if(rewardMenu != null)
+                rewardData = rewardMenu.GenerateRewardPipeline();
+
+            //Debug.Log("Hi");
+            if(rewardData != null)
+                Debug.Log("Reward data texture id is " + rewardData.libraryTextureID + " and reward type is " + rewardData.resourceType);
 
             if (rewardData != null && rewardObject != null)
             {
@@ -53,7 +56,6 @@ public class GameSceneManager : DiamondComponent
                 rewardObject.Enable(true);
             }
         }
-
         else if (rewardData != null && rewardObject != null && rewardSpawnComponent != null)
         {
             rewardSpawnComponent.AdvanceVerticalMovement(rewardInitialPos);

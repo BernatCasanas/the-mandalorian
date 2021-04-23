@@ -52,7 +52,8 @@ public class EndLevelRewards
             secondButton = InternalCalls.FindObjectWithName("SecondRewardButton").GetComponent<EndLevelRewardsButtons>();
             thirdButton = InternalCalls.FindObjectWithName("ThirdRewardButton").GetComponent<EndLevelRewardsButtons>();
 
-            firstButton.gameObject.GetComponent<Navigation>().Select(); // Line added because buttons crashed. For... some reason
+            if(firstButton != null)
+                firstButton.gameObject.GetComponent<Navigation>().Select(); // Line added because buttons crashed. For... some reason
         }
 
         if (CheckRewardSelected())
@@ -114,7 +115,6 @@ public class EndLevelRewards
 
         newReward = new EndLevelReward(RequestRandomBoon(), RewardType.REWARD_BOON); // Spawn boon, just in case, but we should always quit from the previous return
         return newReward;
-
     }
 
     public int RequestRandomBoon()
@@ -230,19 +230,19 @@ public class EndLevelRewards
 
     public bool CheckRewardSelected()   // I know. Shut up
     {
-        if (firstButton.pressed)
+        if (firstButton != null && firstButton.pressed)
         {
             selectedReward = ConvertRewardtoRewardResource(firstReward);
             return true;
         }
 
-        else if (secondButton.pressed)
+        else if (secondButton != null && secondButton.pressed)
         {
             selectedReward = ConvertRewardtoRewardResource(secondReward);
             return true;
         }
 
-        else if (thirdButton.pressed)
+        else if (thirdButton != null && thirdButton.pressed)
         {
             selectedReward = ConvertRewardtoRewardResource(thirdReward);
             return true;
