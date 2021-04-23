@@ -24,10 +24,13 @@ public class PlayerHealth : DiamondComponent
         if (damage_screen != null)
         {
             damage_screen.GetComponent<Material>().SetFloatUniform("alpha", 1.0f);
+        }
         else
+        { 
             Debug.Log("Damage Screen not found");
 
-        skill_chanceToAvoidDamage = 0;
+            skill_chanceToAvoidDamage = 0;
+        }
     }
 
     public void Update()
