@@ -6,6 +6,9 @@
 #include "MathGeoLib/include/MathGeoLib.h"
 #include "DEJsonSupport.h"
 
+#include "Wwise/AK/Plugin/AkVorbisDecoderFactory.h"
+#pragma comment(lib, "Wwise/Release(StaticCRT)/lib/AkVorbisDecoder.lib")
+
 #include <assert.h>
 
 CAkFilePackageLowLevelIOBlocking g_lowLevelIO;
