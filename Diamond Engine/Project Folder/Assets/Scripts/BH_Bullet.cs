@@ -10,7 +10,7 @@ public class BH_Bullet : DiamondComponent
     public float currentLifeTime = 0.0f;
 
     public float range_squared = 0.0f;
-    public Vector3 initial_pos = new Vector3(0.0f,0.0f,0.0f);
+    public Vector3 initial_pos = new Vector3(0.0f, 0.0f, 0.0f);
     public bool use_range_instead_of_time = false;
 
     private float actual_range_squared = 0.0f;
@@ -42,10 +42,11 @@ public class BH_Bullet : DiamondComponent
             actual_range_squared = gameObject.transform.globalPosition.DistanceNoSqrt(initial_pos);
 
         // gameObject.transform.localPosition += gameObject.transform.GetForward() * (speed * Time.deltaTime);
-       if(!triggered)
-        gameObject.SetVelocity(gameObject.transform.GetForward() * speed);
-       else
-        {  if(mesh != null)
+        if (!triggered)
+            gameObject.SetVelocity(gameObject.transform.GetForward() * speed);
+        else
+        {
+            if (mesh != null)
             {
                 InternalCalls.Destroy(mesh);
                 mesh = null;
@@ -57,13 +58,13 @@ public class BH_Bullet : DiamondComponent
         //yVel -= Time.deltaTime / 15.0f;
         //gameObject.transform.localPosition += (Vector3.up * yVel);
 
-        if ((!use_range_instead_of_time && currentLifeTime >= maxLifeTime)||(use_range_instead_of_time && actual_range_squared >= range_squared))
+        if ((!use_range_instead_of_time && currentLifeTime >= maxLifeTime) || (use_range_instead_of_time && actual_range_squared >= range_squared))
         {
             InternalCalls.Destroy(this.gameObject);
         }
-  
+
         if (timer > 0.5)
-        InternalCalls.Destroy(gameObject);
+            InternalCalls.Destroy(gameObject);
 
     }
 
@@ -71,15 +72,15 @@ public class BH_Bullet : DiamondComponent
     {
         //if (triggeredGameObject.tag != "Player")
         //{
-            triggered = true;
+        triggered = true;
 
-            if (destroyOBJ != null)
-            {
-                destroyPar = destroyOBJ.GetComponent<ParticleSystem>();
+        if (destroyOBJ != null)
+        {
+            destroyPar = destroyOBJ.GetComponent<ParticleSystem>();
 
-                if (destroyPar != null)
-                    destroyPar.Play();
-            }
+            if (destroyPar != null)
+                destroyPar.Play();
+        }
         //}
     }
 }

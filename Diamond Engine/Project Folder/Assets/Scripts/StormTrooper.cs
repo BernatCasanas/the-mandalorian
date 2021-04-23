@@ -729,13 +729,19 @@ public class StormTrooper : Enemy
             //{
             //    inputsList.Add(INPUT.IN_DIE);
             //}
-            TakeDamage(collidedGameObject.GetComponent<BH_Bullet>().damage);
+            BH_Bullet bullet = collidedGameObject.GetComponent<BH_Bullet>();
+
+            if (bullet != null)
+                TakeDamage(bullet.damage);
 
             Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
             if (Core.instance.hud != null)
             {
-                Core.instance.hud.GetComponent<HUD>().AddToCombo(25, 0.95f);
+                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+                    
+                if (hudComponent!= null)
+                    hudComponent.AddToCombo(25, 0.95f);
             }
 
 
@@ -747,11 +753,12 @@ public class StormTrooper : Enemy
         }
         else if (collidedGameObject.CompareTag("Grenade"))
         {
-          
-
             if (Core.instance.hud != null)
             {
-                Core.instance.hud.GetComponent<HUD>().AddToCombo(8, 1.5f);
+                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                    hudComponent.AddToCombo(8, 1.5f);
             }
 
         
@@ -771,11 +778,15 @@ public class StormTrooper : Enemy
         }
         else if (collidedGameObject.CompareTag("ExplosiveBarrel") && collidedGameObject.GetComponent<SphereCollider>().active)
         {
-            healthPoints -= collidedGameObject.GetComponent<BH_DestructBox>().explosion_damage * 2;
-            if (currentState != STATE.DIE && healthPoints <= 0.0f)
+            BH_DestructBox explosion = collidedGameObject.GetComponent<BH_DestructBox>();
+
+            if (explosion != null)
             {
-                inputsList.Add(INPUT.IN_DIE);
+                healthPoints -= explosion.explosion_damage * 2;
+                if (currentState != STATE.DIE && healthPoints <= 0.0f)
+                    inputsList.Add(INPUT.IN_DIE);
             }
+            
         }
 
 
