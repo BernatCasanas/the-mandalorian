@@ -513,8 +513,7 @@ public class HUD : DiamondComponent
         if (skill_push == null)
             return;
 
-        Debug.Log("UUUUUUUUUUUUUUUUUUUU: " + alpha.ToString());
-
+        //Debug.Log("UUUUUUUUUUUUUUUUUUUU: " + alpha.ToString());
 
         skill_push.GetComponent<Material>().SetFloatUniform("alpha", alpha);
     }

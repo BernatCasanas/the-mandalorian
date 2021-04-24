@@ -480,6 +480,7 @@ public class Bantha : Enemy
 
         Animator.Play(gameObject, "BT_Run");
         InternalCalls.Destroy(visualFeedback);
+        visualFeedback = null;
 
         Audio.PlayAudio(gameObject, "Play_Bantha_Attack");
         Audio.PlayAudio(gameObject, "Play_Bantha_Ramming");
@@ -504,6 +505,9 @@ public class Bantha : Enemy
     private void StartDie()
     {
         //Audio.StopAudio(gameObject);
+
+        if (visualFeedback != null)
+            InternalCalls.Destroy(visualFeedback);
 
         dieTimer = dieTime;
 

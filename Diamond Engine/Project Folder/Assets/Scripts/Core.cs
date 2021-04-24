@@ -166,7 +166,17 @@ public class Core : DiamondComponent
         hud = InternalCalls.FindObjectWithName("HUD");
 
         if (hud == null)
-            Debug.Log("No HUD found");
+            Debug.Log("Core: HUD not found");
+
+        pause = InternalCalls.FindObjectWithName("PauseMenu");
+
+        if (pause == null)
+            Debug.Log("Core: Pause menu not found");
+
+        background = InternalCalls.FindObjectWithName("Background");
+
+        if (pause == null)
+            Debug.Log("Core: Background not found");
 
         #endregion
 

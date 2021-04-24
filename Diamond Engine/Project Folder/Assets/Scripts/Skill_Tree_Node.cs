@@ -11,7 +11,6 @@ public class Skill_Tree_Node : DiamondComponent
         OWNED,
     };
 
-
     #region Style
     public int unlockedButtonPressed = 0;
     public int unlockedButtonHovered = 0;
@@ -34,10 +33,8 @@ public class Skill_Tree_Node : DiamondComponent
 
     public GameObject oppositeNode = null;
 
-
     public GameObject text_description = null;
     public GameObject hub_skill_controller = null; 
-
 
     private Skills skill = null;
 
@@ -71,14 +68,13 @@ public class Skill_Tree_Node : DiamondComponent
     }
     #endregion
 
-
-
     public void Awake()
     {
         if (isRootNode)
             state = NODE_STATE.UNLOCKED;
         else
             state = NODE_STATE.LOCKED;
+
         if (SkillDictionary.skill_type.ContainsKey(skill_name))
         {
             Type t = SkillDictionary.skill_type[skill_name];
@@ -99,12 +95,20 @@ public class Skill_Tree_Node : DiamondComponent
     }
     public void Update()
 	{
-
-        if (hub_skill_controller == null || hub_skill_controller.GetComponent<HubSkillTreeController>().skill_selected == skill || gameObject.GetComponent<Navigation>().is_selected == false)
+        if (skill == null)
             return;
-        
+
+        if (gameObject.GetComponent<Navigation>().is_selected == false)
+            return;
+
+        if (hub_skill_controller == null)
+            return;
+
+        if (hub_skill_controller.GetComponent<HubSkillTreeController>().skill_selected == skill)
+            return;
 
         hub_skill_controller.GetComponent<HubSkillTreeController>().skill_selected = skill;
+
         if (text_description != null)
             text_description.GetComponent<Text>().text = skill.description;
 
@@ -114,10 +118,8 @@ public class Skill_Tree_Node : DiamondComponent
             PlayerResources.AddResourceBy1(RewardType.REWARD_BESKAR);
             Debug.Log("Beskar: " + PlayerResources.GetResourceCount(RewardType.REWARD_BESKAR));
         }
-
-
-
     }
+
     public void OnExecuteButton()
     {
         if (state == NODE_STATE.LOCKED || state == NODE_STATE.OWNED)
