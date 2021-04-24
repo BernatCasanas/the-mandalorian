@@ -86,11 +86,13 @@ public class LaserTurret : Enemy
 
         if (spawnparticles != null)
         {
-            Debug.Log("PLAY SPAWN!!!");
+           // Debug.Log("PLAY SPAWN!!!");
             spawnparticles.Play();
         }
         else
-        { Debug.Log("CAN'T PLAY SPAWN!!!"); }
+        {
+            //Debug.Log("CAN'T PLAY SPAWN!!!"); 
+        }
     }
 
     public void Start()
