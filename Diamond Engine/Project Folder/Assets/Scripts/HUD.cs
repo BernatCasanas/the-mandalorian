@@ -341,6 +341,28 @@ public class HUD : DiamondComponent
         return extraCombo;
     }
 
+    public void SubstractToCombo(float amount)
+    {
+        if (currComboTime <= 0.0f)
+        {
+            return;
+        }
+
+        if (amount < 0f)
+            amount = -amount;
+
+        Debug.Log("Combo amount substracted on hit: " + amount.ToString());
+
+        currComboTime -= amount;
+
+        if (currComboTime <= 0.0f)
+        {
+            currComboTime = 0f;
+            ResetCombo(true);
+        }
+
+    }
+
     bool UpdateCombo()
     {
         float toSubstract = currComboTime - Mathf.Lerp(currComboTime, -0.0f, Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier);
