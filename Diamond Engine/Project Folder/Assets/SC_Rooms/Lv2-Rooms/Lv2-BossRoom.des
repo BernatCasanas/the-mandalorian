@@ -1,19 +1,19 @@
 {
     "NavMesh": 942369955,
     "EditorCameraPosition": [
-        -25.970569610595703,
-        11.052737236022949,
-        -9.0978231430053711
+        -32.402839660644531,
+        18.627727508544922,
+        0.7490849494934082
     ],
     "EditorCameraZ": [
-        0.92244827747344971,
-        -0.22848799824714661,
-        0.31125950813293457
+        0.85921049118041992,
+        -0.50316733121871948,
+        0.092628002166748047
     ],
     "EditorCameraY": [
-        0.21651703119277954,
-        0.97354674339294434,
-        0.072987288236618042
+        0.50028038024902344,
+        0.8641890287399292,
+        0.053823232650756836
     ],
     "tags": [],
     "layers": [],
@@ -90,8 +90,8 @@
                     "fSize": 25,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 26.040000915527344,
-                    "hFOV": 45.959999084472656,
+                    "vFOV": 23.319999694824219,
+                    "hFOV": 48.040000915527344,
                     "culling": false,
                     "drawSkybox": true
                 },
@@ -12268,6 +12268,17 @@
                 {
                     "Type": 1,
                     "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Level2BossRoom",
+                    "column01": 1167213920,
+                    "column02": 1819121840,
+                    "column03": 1233540815,
+                    "column04": 326553938,
+                    "column05": 1749830356,
+                    "column06": 339404413
                 }
             ]
         },
@@ -14044,6 +14055,282 @@
             ]
         },
         {
+            "name": "ArrayColumns",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1348482639,
+            "ParentUID": 1941018245,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                0.99999988079071045,
+                1,
+                0.99999988079071045
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Column01",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1167213920,
+            "ParentUID": 1348482639,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -7.6999998092651367,
+                4,
+                -3.0999999046325684
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "TargetColumn",
+                    "target01": 326553938
+                }
+            ]
+        },
+        {
+            "name": "Column02",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1819121840,
+            "ParentUID": 1348482639,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                10,
+                4,
+                -3.1000020503997803
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "TargetColumn",
+                    "target01": 1233540815
+                }
+            ]
+        },
+        {
+            "name": "Column03",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1233540815,
+            "ParentUID": 1348482639,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -7.6999983787536621,
+                4,
+                6.6573591232299805
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "TargetColumn",
+                    "target01": 1819121840,
+                    "target02": 339404413
+                }
+            ]
+        },
+        {
+            "name": "Column04",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 326553938,
+            "ParentUID": 1348482639,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                9.5780506134033203,
+                4.0000019073486328,
+                6.5436906814575195
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "TargetColumn",
+                    "target01": 1167213920,
+                    "target02": 1749830356
+                }
+            ]
+        },
+        {
+            "name": "Column05",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1749830356,
+            "ParentUID": 1348482639,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -7.6999974250793457,
+                4,
+                16.358451843261719
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "TargetColumn",
+                    "target01": 326553938
+                }
+            ]
+        },
+        {
+            "name": "Column06",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 339404413,
+            "ParentUID": 1348482639,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                10.467690467834473,
+                4,
+                16.648006439208984
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "TargetColumn",
+                    "target01": 1233540815
+                }
+            ]
+        },
+        {
             "name": "Main Light",
             "tag": "Untagged",
             "layer": "Default",
@@ -15101,10 +15388,10 @@
                         -1.7598722479306161e-08
                     ],
                     "Rotation": [
-                        -8.0803941315821248e-09,
-                        6.3259286697814332e-09,
-                        -0.61643779277801514,
-                        0.78740376234054565
+                        -8.0803932434037051e-09,
+                        6.3259277816030135e-09,
+                        -0.61643773317337036,
+                        0.7874036431312561
                     ],
                     "Scale": [
                         1,

@@ -117,6 +117,25 @@ public class Skel : Bosseslv2
             }
         }
 
+        if (totalJumpSlamTimer > 0)
+        {
+            totalJumpSlamTimer -= Time.deltaTime;
+
+            if (totalJumpSlamTimer <= 0)
+            {
+                inputsList.Add(INPUT.IN_JUMPSLAM_END);
+            }
+        }
+        if(bounceRushTimer > 0)
+        {
+            bounceRushTimer -= Time.deltaTime;
+
+            if(bounceRushTimer <= 0)
+            {
+                inputsList.Add(INPUT.IN_BOUNCERUSH_END);
+            }
+        }
+
     }
 
     private void ProcessExternalInput()
