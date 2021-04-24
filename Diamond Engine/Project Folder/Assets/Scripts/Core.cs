@@ -1149,6 +1149,30 @@ public class Core : DiamondComponent
                         gameObject.GetComponent<PlayerHealth>().TakeDamage(collidedGameObject.GetComponent<BH_DestructBox>().explosion_damage / 2);
                 }
             }
+            if (collidedGameObject.CompareTag("SkytrooperAttack"))
+            {
+                //InternalCalls.Destroy(gameObject);
+                PlayParticles(PARTICLES.IMPACT);
+                //BH_Bullet bulletScript = collidedGameObject.GetComponent<BH_Bullet>();
+                Audio.PlayAudio(gameObject, "Play_Mando_Hit");
+
+                //if (bulletScript != null)
+                //{
+                //    int damageFromBullet = 0;
+
+                //    if (skill_damageReductionDashActive)
+                //        damageFromBullet = (int)(bulletScript.damage * (1.0f - skill_damageReductionDashAmount));
+                //    else
+                //        damageFromBullet = (int)bulletScript.damage;
+
+                //    PlayerHealth healthScript = gameObject.GetComponent<PlayerHealth>();
+
+                //    if (healthScript != null)
+                //        healthScript.TakeDamage(damageFromBullet);
+
+                //    damageTaken += damageFromBullet;
+                //}
+            }
         }
 
     }
