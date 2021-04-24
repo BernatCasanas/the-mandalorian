@@ -275,6 +275,9 @@ public class Wampa : Bosseslv2
             case BOSS_STATE.FAST_RUSH:
                 UpdateFastRush();
                 break;
+            case BOSS_STATE.SLOW_RUSH:
+                UpdateSlowRush();
+                break;
             case BOSS_STATE.RUSH_STUN:
                 UpdateRushStun();
                 break;
