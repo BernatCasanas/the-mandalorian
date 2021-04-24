@@ -58,13 +58,21 @@ public class BH_Bullet : DiamondComponent
         //yVel -= Time.deltaTime / 15.0f;
         //gameObject.transform.localPosition += (Vector3.up * yVel);
 
-        if ((!use_range_instead_of_time && currentLifeTime >= maxLifeTime) || (use_range_instead_of_time && actual_range_squared >= range_squared))
+        if(!triggered)
         {
-            InternalCalls.Destroy(this.gameObject);
+            if ((!use_range_instead_of_time && currentLifeTime >= maxLifeTime) || (use_range_instead_of_time && actual_range_squared >= range_squared) && gameObject != null)
+            {
+                InternalCalls.Destroy(gameObject);
+            }
         }
-
-        if (timer > 0.5)
-            InternalCalls.Destroy(gameObject);
+        else
+            {
+                if (timer > 0.5 && gameObject != null)
+                {
+                    InternalCalls.Destroy(gameObject);
+                }
+            }
+      
 
     }
 
@@ -72,15 +80,19 @@ public class BH_Bullet : DiamondComponent
     {
         //if (triggeredGameObject.tag != "Player")
         //{
-        triggered = true;
-
-        if (destroyOBJ != null)
+        if(!triggered)
         {
-            destroyPar = destroyOBJ.GetComponent<ParticleSystem>();
+            triggered = true;
 
-            if (destroyPar != null)
-                destroyPar.Play();
+            if (destroyOBJ != null)
+            {
+                destroyPar = destroyOBJ.GetComponent<ParticleSystem>();
+
+                if (destroyPar != null)
+                    destroyPar.Play();
+            }
         }
+        
         //}
     }
 }
