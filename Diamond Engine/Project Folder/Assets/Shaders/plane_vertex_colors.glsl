@@ -41,7 +41,6 @@ struct LightInfo
 
 };
 
-
 uniform LightInfo lightInfo[2];
 
 uniform vec3 cameraPosition;
@@ -105,8 +104,24 @@ struct LightInfo
 	bool active;
 };
 
+struct AreaLightInfo 
+{
+	vec3 lightPosition;
+	mat4 lightSpaceMatrix;
+	
+	vec3 lightColor;
+	vec3 ambientLightColor;
+	float lightIntensity;
+	float specularValue;
+	
+	bool active;
+
+};
+
 
 uniform LightInfo lightInfo[2];
+uniform AreaLightInfo areaLightInfo[5];
+
 
 uniform sampler2D shadowMap;
 uniform sampler2D normalMap;
@@ -174,12 +189,13 @@ float GetShadowValue()
 }
 
 
-void main()
+vec3 CalculateDirectionalLight()
 {
 	vec3 normal = texture(normalMap, fs_in.TexCoords).rgb;
     normal = normalize(normal * 2.0 - 1.0);
     
-    vec3 lighting = vec3(0.0, 0.0, 0.0);
+    
+	vec3 lighting = vec3(0.0, 0.0, 0.0);
     
     float shadow = GetShadowValue();
     
@@ -205,9 +221,50 @@ void main()
     	}
     }
     
-    color = vec4(lighting * fs_in.vertexColor, 1.0);
+    return lighting;
+
+}
+
+
+vec3 CalculatePointLight()
+{
+	vec3 lighting = vec3(0.0, 0.0, 0.0);
+    
+    for (int i = 0; i < 5; i++)
+    {
+		if (areaLightInfo[i].active == true)
+		{
+    		vec3 lightDir = normalize(areaLightInfo[i].lightPosition - fs_in.FragPos);
+    
+   	 		// diffusesssaasw
+    		float diff = max(dot(lightDir, fs_in.Normal), 0.0);
+    		vec3 diffuse = diff * areaLightInfo[i].lightColor;
+   	 		// specular
+   			vec3 viewDir = normalize(cameraPosition - fs_in.FragPos);
+    		float spec = 0.0;
+    		vec3 halfwayDir = normalize(lightDir + viewDir);  
+    		spec = pow(max(dot(fs_in.Normal, halfwayDir), 0.0), areaLightInfo[i].specularValue);
+    		vec3 specular = spec * areaLightInfo[i].lightColor;
+        	
+    	 // calculate shadow
+    		lighting += (areaLightInfo[i].ambientLightColor + (diffuse + specular)) * areaLightInfo[i].lightIntensity;
+    	}
+    }
+
+return lighting;
+}
+
+
+void main()
+{
+    vec3 directionalLight = CalculateDirectionalLight();
+    vec3 pointLight = CalculatePointLight();
+    
+    color = vec4(directionalLight * pointLight * fs_in.vertexColor, 1.0);
 }
 #endif
+
+
 
 
 

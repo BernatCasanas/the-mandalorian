@@ -29,6 +29,7 @@ C_AreaLight::C_AreaLight(GameObject* gameObject) : Component(gameObject),
 C_AreaLight::~C_AreaLight()
 {
 	//Remove light
+	EngineExternal->moduleRenderer3D->RemoveAreaLight(this);
 }
 
 
