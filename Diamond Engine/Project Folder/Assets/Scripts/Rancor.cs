@@ -208,7 +208,6 @@ public class Rancor : DiamondComponent
 
         dieTime = Animator.GetAnimationDuration(gameObject, "RN_Die") - 0.016f;
 
-
         Counter.SumToCounterType(Counter.CounterTypes.RANCOR);
         damaged = 0.0f;
         runTime = (Animator.GetAnimationDuration(gameObject, "RN_Walk")) / 2;
@@ -1073,7 +1072,6 @@ public class Rancor : DiamondComponent
                 activateWave = false;
             }
         }
-
 
         Debug.Log("Hand slam");
     }
