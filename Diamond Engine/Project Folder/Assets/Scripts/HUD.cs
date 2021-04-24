@@ -75,11 +75,12 @@ public class HUD : DiamondComponent
     public GameObject combo_text = null;
     public GameObject combo_gameobject = null;
     public GameObject max_hp_number = null;
+    public GameObject fpsText = null;
     private bool start = true;
     private float pulsation_rate = 0.0f;
     private bool pulsation_forward = true;
 
-
+    private float lastFrameTime = 0.0f;
     private float fullComboTime = 0.0f;
     private float currComboTime = 0.0f;
     public int comboNumber = 0;
@@ -273,6 +274,14 @@ public class HUD : DiamondComponent
         {
             UpdateComboHUD();
         }
+
+
+        if (DebugOptionsHolder.showFPS && fpsText != null)
+        {
+            if(!fpsText.IsEnabled()) fpsText.Enable(true);
+            fpsText.GetComponent<Text>().text = ((int)(1000 * Time.deltaTime)).ToString();
+        }
+        else if (fpsText != null && fpsText.IsEnabled()) fpsText.Enable(false);
     }
 
     public void AddToCombo(float comboUnitsToAdd, float weaponDecreaseTimeMultiplier)

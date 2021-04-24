@@ -7,7 +7,7 @@ public class BH_Bullet : DiamondComponent
     public float speed = 60.0f;
     public float maxLifeTime = 5.0f;
 
-    public float currentLifeTime = 0.0f;
+    private float currentLifeTime = 0.0f;
 
     public float range_squared = 0.0f;
     public Vector3 initial_pos = new Vector3(0.0f, 0.0f, 0.0f);
@@ -18,12 +18,13 @@ public class BH_Bullet : DiamondComponent
     public float yVel = 0.0f;
     public float damage = 9.0f;
 
+    private bool destroyed = false;
     private bool started = false;
     private bool triggered = false;
     private float timer = 0;
 
-    public GameObject destroyOBJ = null;
-    public GameObject mesh = null;
+    private GameObject destroyOBJ = null;
+    private GameObject mesh = null;
 
     public ParticleSystem destroyPar = null;
 
@@ -31,6 +32,8 @@ public class BH_Bullet : DiamondComponent
     {
         if (started == false)
         {
+            mesh = this.gameObject.GetChild("bulletmesh");
+            destroyOBJ = this.gameObject.GetChild("STimpact Particle");
             started = true;
             initial_pos = gameObject.transform.globalPosition;
             //InternalCalls.CreatePrefab("Library/Prefabs/1564072956.prefab", gameObject.transform.globalPosition, gameObject.transform.globalRotation, gameObject.transform.globalScale);
@@ -39,17 +42,18 @@ public class BH_Bullet : DiamondComponent
         if (!use_range_instead_of_time)
             currentLifeTime += Time.deltaTime;
         else
-            actual_range_squared = gameObject.transform.globalPosition.DistanceNoSqrt(initial_pos);
+            actual_range_squared = (gameObject.transform.globalPosition -initial_pos).magnitude;
 
         // gameObject.transform.localPosition += gameObject.transform.GetForward() * (speed * Time.deltaTime);
         if (!triggered)
+        {
             gameObject.SetVelocity(gameObject.transform.GetForward() * speed);
+        }
         else
         {
-            if (mesh != null)
+            if (mesh.IsEnabled() == true)
             {
-                InternalCalls.Destroy(mesh);
-                mesh = null;
+                mesh.Enable(false);
             }
             timer += Time.deltaTime;
             gameObject.SetVelocity(new Vector3(0, 0, 0));
@@ -58,29 +62,25 @@ public class BH_Bullet : DiamondComponent
         //yVel -= Time.deltaTime / 15.0f;
         //gameObject.transform.localPosition += (Vector3.up * yVel);
 
-        if(!triggered)
+        if (triggered == true)
         {
-            if ((!use_range_instead_of_time && currentLifeTime >= maxLifeTime) || (use_range_instead_of_time && actual_range_squared >= range_squared) && gameObject != null)
+            if (timer > 0.5 && gameObject != null)
             {
                 InternalCalls.Destroy(gameObject);
             }
         }
-        else
-            {
-                if (timer > 0.5 && gameObject != null)
-                {
-                    InternalCalls.Destroy(gameObject);
-                }
-            }
-      
+        else if (((!use_range_instead_of_time && currentLifeTime >= maxLifeTime) || (use_range_instead_of_time && actual_range_squared >= range_squared)) && gameObject != null)
+        {
+            InternalCalls.Destroy(gameObject);
+        }
+
 
     }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-        //if (triggeredGameObject.tag != "Player")
-        //{
-        if(!triggered)
+
+        if (triggered == false)
         {
             triggered = true;
 
@@ -92,7 +92,7 @@ public class BH_Bullet : DiamondComponent
                     destroyPar.Play();
             }
         }
-        
-        //}
+
+
     }
 }
