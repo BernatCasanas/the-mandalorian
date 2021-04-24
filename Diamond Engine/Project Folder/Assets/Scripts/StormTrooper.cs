@@ -130,16 +130,6 @@ public class StormTrooper : Enemy
             player = Core.instance.gameObject;
         }
 
-        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
-        {
-            skill_slowDownTimer += Time.deltaTime;
-            if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownDuration)
-            {
-                skill_slowDownTimer = 0.0f;
-                skill_slowDownActive = false;
-            }
-        }
-
         #region STATE MACHINE
 
         ProcessInternalInput();
@@ -170,6 +160,16 @@ public class StormTrooper : Enemy
             if (Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance)
             {
                 inputsList.Add(INPUT.IN_IDLE);
+            }
+        }
+
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
+        {
+            skill_slowDownTimer += Time.deltaTime;
+            if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownDuration)
+            {
+                skill_slowDownTimer = 0.0f;
+                skill_slowDownActive = false;
             }
         }
     }

@@ -122,17 +122,7 @@ public class Skytrooper : Enemy
         {
             Debug.Log("Null player");
             player = Core.instance.gameObject;
-        }
-
-        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
-        {
-            skill_slowDownTimer += Time.deltaTime;
-            if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownDuration)
-            {
-                skill_slowDownTimer = 0.0f;
-                skill_slowDownActive = false;
-            }
-        }
+        }        
 
         #region STATE MACHINE
 
@@ -174,6 +164,16 @@ public class Skytrooper : Enemy
             if (dashTimer < 0.0f)
             {
                 inputsList.Add(INPUT.IN_DASH_END);
+            }
+        }
+
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
+        {
+            skill_slowDownTimer += Time.deltaTime;
+            if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownDuration)
+            {
+                skill_slowDownTimer = 0.0f;
+                skill_slowDownActive = false;
             }
         }
     }

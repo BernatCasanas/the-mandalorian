@@ -164,17 +164,15 @@ public class Bantha : Enemy
             }
         }
 
-        if (skill_slowDownActive)
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
         {
             skill_slowDownTimer += Time.deltaTime;
-            if (Skill_Tree_Data.instance != null)
+
+            if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownDuration) //Get duration from Primary Weapon Skill 4
             {
-                if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownDuration) //Get duration from Primary Weapon Skill 4
-                {
-                    skill_slowDownTimer = 0.0f;
-                    skill_slowDownActive = false;
-                }
-            }
+                skill_slowDownTimer = 0.0f;
+                skill_slowDownActive = false;
+            }            
         }
     }
 
