@@ -40,7 +40,7 @@ public class Skytrooper : Enemy
     private List<INPUT> inputsList = new List<INPUT>();
 
     public GameObject shootPoint = null;
-    public GameObject hitParticles = null;
+    //public GameObject hitParticles = null;
     private GameObject visualFeedback = null;
     private GameObject visualFeedbackAux = null;
 
@@ -94,23 +94,23 @@ public class Skytrooper : Enemy
         idleTimer = idleTime;
         //dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
 
-        ParticleSystem spawnparticles = null;
+        //ParticleSystem spawnparticles = null;
 
-        StormTrooperParticles myParticles = gameObject.GetComponent<StormTrooperParticles>();
-        if (myParticles != null)
-        {
-            spawnparticles = myParticles.spawn;
-        }
+        //StormTrooperParticles myParticles = gameObject.GetComponent<StormTrooperParticles>();
+        //if (myParticles != null)
+        //{
+        //    spawnparticles = myParticles.spawn;
+        //}
 
-        if (spawnparticles != null)
-        {
-            //Debug.Log("PLAY SPAWN!!!");
-            spawnparticles.Play();
-        }
-        else
-        {
-            //Debug.Log("CAN'T PLAY SPAWN!!!"); 
-        }
+        //if (spawnparticles != null)
+        //{
+        //    //Debug.Log("PLAY SPAWN!!!");
+        //    spawnparticles.Play();
+        //}
+        //else
+        //{
+        //    //Debug.Log("CAN'T PLAY SPAWN!!!"); 
+        //}
     }
 
     public void Start()
@@ -184,7 +184,7 @@ public class Skytrooper : Enemy
 
             if (feedbackTimer <= 0.0f)
             {
-                InternalCalls.Destroy(visualFeedback);
+                //InternalCalls.Destroy(visualFeedback);
             }
         }
         if (feedbackTimerAux > 0.0f)
@@ -193,7 +193,7 @@ public class Skytrooper : Enemy
 
             if (feedbackTimerAux <= 0.0f)
             {
-                InternalCalls.Destroy(visualFeedbackAux);
+                //InternalCalls.Destroy(visualFeedbackAux);
             }
         }
     }

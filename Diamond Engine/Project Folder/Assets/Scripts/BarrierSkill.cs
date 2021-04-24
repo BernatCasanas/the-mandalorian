@@ -1,9 +1,16 @@
 using System;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Collections.Generic;
 using DiamondEngine;
 
 public class BarrierSkill : DiamondComponent
 {
     public GameObject myMeshPivot = null;
+    public GameObject wall_up = null;
+    private ParticleSystem up = null;
+    public GameObject wall_effects = null;
+    private ParticleSystem effects = null;
 
     public float maxTimeAlive = 5.0f;
     float currTimeAlive = 0.0f;
@@ -15,8 +22,13 @@ public class BarrierSkill : DiamondComponent
     float currSpawnTimeAnim = 0.0f;
 
     bool hasSpawned = false;
+    bool once = true;
     public void Awake()
     {
+        if (wall_up!=null)
+            up = wall_up.GetComponent<ParticleSystem>();
+        if(wall_effects != null)
+            effects = wall_effects.GetComponent<ParticleSystem>();
         Reset();
     }
 
@@ -35,11 +47,17 @@ public class BarrierSkill : DiamondComponent
 
     private void Spawning()
     {
+        if (once && up != null)
+        {
+            up.Play();
+            once = false;
+        }
 
         if (currSpawnTimeAnim <= 0.0f)
         {
             currSpawnTimeAnim = 0.0f;
             hasSpawned = true;
+            once = true;
         }
 
         if (myMeshPivot != null)
@@ -52,9 +70,16 @@ public class BarrierSkill : DiamondComponent
     }
     private void Living()
     {
+        if (once && effects != null)
+        {
+            effects.Play();
+            once = false;
+        }
+
         if (currTimeAlive <= 0.0f)
         {
             Die();
+            once = true;
         }
     }
 

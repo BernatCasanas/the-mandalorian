@@ -22,6 +22,7 @@ public class Bosseslv2 : DiamondComponent
     //Private Variables
     public bool resting = false;
     public bool firstShot = true;
+    public bool secondShot = false;
 
     //Stats
     public float healthPoints = 1920.0f;
@@ -40,7 +41,7 @@ public class Bosseslv2 : DiamondComponent
     public float shootingTimer = 0.0f;
     public float dieTime = 2.0f;
     public float dieTimer = 0.0f;
-    public float restingTime = 4.0f;
+    public float restingTime = 3.0f;
     public float restingTimer = 0.0f;
 
     //Atacks
@@ -60,6 +61,7 @@ public class Bosseslv2 : DiamondComponent
     }
     public void UpdateProjectile()
     {
+        LookAt(Core.instance.gameObject.transform.globalPosition);
         if (shootingTimer > 0.0f)
         {
             shootingTimer -= Time.deltaTime;
@@ -80,6 +82,8 @@ public class Bosseslv2 : DiamondComponent
                         shootingTimer = shootingTime;
                         firstShot = false;
                     }
+                    else
+                        secondShot = true;
                 }
             }
         }
@@ -91,7 +95,10 @@ public class Bosseslv2 : DiamondComponent
 
     public void EndProjectile()
     {
-
+        firstShot = true;
+        secondShot = false;
+        resting = true;
+        restingTimer = restingTime;
     }
     #endregion
 
@@ -121,6 +128,7 @@ public class Bosseslv2 : DiamondComponent
     }
     public void UpdateSlowRush()
     {
+        Debug.Log("Slow Rush");
         agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(slowRushSpeed);
@@ -128,7 +136,8 @@ public class Bosseslv2 : DiamondComponent
 
     public void EndSlowRush()
     {
-
+        resting = true;
+        restingTimer = restingTime;
     }
     #endregion
 
@@ -144,7 +153,8 @@ public class Bosseslv2 : DiamondComponent
 
     public void EndRushStun()
     {
-
+        resting = true;
+        restingTimer = restingTime;
     }
     #endregion
 
@@ -204,6 +214,7 @@ public class Bosseslv2 : DiamondComponent
                 EndDie();
             }
         }
+        Debug.Log("Dying");
     }
 
     public void EndDie()
