@@ -47,6 +47,8 @@ public class Bantha : Enemy
     public GameObject hitParticles = null;
     private GameObject visualFeedback = null;
 
+    private bool straightPath = false;
+    private bool semiCharge = false;
 
     //Action times
     public float idleTime = 5.0f;
@@ -60,6 +62,7 @@ public class Bantha : Enemy
     public float wanderSpeed = 3.5f;
     public float runningSpeed = 7.5f;
     public float chargeSpeed = 60.0f;
+    public float chargeSpeedReduction = 0.3f;
     private bool skill_slowDownActive = false;
 
     //Ranges
@@ -185,7 +188,7 @@ public class Bantha : Enemy
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
             }
-            if (InRange(player.transform.globalPosition, chargeRange))
+            if (InRange(player.transform.globalPosition, chargeRange) && straightPath)
             {
                 inputsList.Add(INPUT.IN_CHARGE_RANGE);
             }
@@ -425,6 +428,8 @@ public class Bantha : Enemy
             agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
         else
             agent.MoveToCalculatedPos(runningSpeed);
+
+        StraightPath();
     }
     private void RunEnd()
     {
@@ -489,6 +494,8 @@ public class Bantha : Enemy
     {
         if (skill_slowDownActive && Skill_Tree_Data.instance != null)
             chargeTimer = chargeLength / (chargeSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
+        else if (!straightPath)
+            chargeTimer = chargeLength / (chargeSpeed * chargeSpeedReduction);
         else chargeTimer = chargeLength / chargeSpeed;
 
         Animator.Play(gameObject, "BT_Run");
@@ -499,6 +506,7 @@ public class Bantha : Enemy
         Audio.PlayAudio(gameObject, "Play_Bantha_Ramming");
         Audio.PlayAudio(gameObject, "Play_Footsteps_Bantha");
 
+        StraightPath();
     }
     private void UpdateCharge()
     {
@@ -506,6 +514,8 @@ public class Bantha : Enemy
 
         if (skill_slowDownActive && Skill_Tree_Data.instance != null)
             agent.MoveToCalculatedPos(chargeSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
+        else if (!straightPath)
+            agent.MoveToCalculatedPos(chargeSpeed * chargeSpeedReduction);
         else
             agent.MoveToCalculatedPos(chargeSpeed);
     }
@@ -690,5 +700,20 @@ public class Bantha : Enemy
                 inputsList.Add(INPUT.IN_DIE);
         }
 
+    }
+
+   
+
+    public void StraightPath()
+    {
+        if (Vector2.Dot(agent.GetLastVector().ToVector2(), (agent.GetDestination() - gameObject.transform.localPosition).ToVector2()) > 0.9f)
+        {
+            straightPath = true;
+        }
+        else
+        {
+            straightPath = false;
+        }
+        Debug.Log("StraightPath: " + straightPath);
     }
 }
