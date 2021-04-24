@@ -925,8 +925,14 @@ public class Core : DiamondComponent
     {
         Animator.Play(gameObject, "Run");
 
-        //NEED TO ADD SOME LOGIC ABOT IN WHICH ROOM MANDO IS TO APPLY DIFFERENT FOOTSTEPS
-        Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
+        if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
+        {
+            Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
+        }
+        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
+        {
+            Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
+        }
     }
 
     private void UpdateMove()
@@ -1142,6 +1148,30 @@ public class Core : DiamondComponent
                     if (sphereColl.active)
                         gameObject.GetComponent<PlayerHealth>().TakeDamage(collidedGameObject.GetComponent<BH_DestructBox>().explosion_damage / 2);
                 }
+            }
+            if (collidedGameObject.CompareTag("SkytrooperAttack"))
+            {
+                //InternalCalls.Destroy(gameObject);
+                PlayParticles(PARTICLES.IMPACT);
+                //BH_Bullet bulletScript = collidedGameObject.GetComponent<BH_Bullet>();
+                Audio.PlayAudio(gameObject, "Play_Mando_Hit");
+
+                //if (bulletScript != null)
+                //{
+                //    int damageFromBullet = 0;
+
+                //    if (skill_damageReductionDashActive)
+                //        damageFromBullet = (int)(bulletScript.damage * (1.0f - skill_damageReductionDashAmount));
+                //    else
+                //        damageFromBullet = (int)bulletScript.damage;
+
+                //    PlayerHealth healthScript = gameObject.GetComponent<PlayerHealth>();
+
+                //    if (healthScript != null)
+                //        healthScript.TakeDamage(damageFromBullet);
+
+                //    damageTaken += damageFromBullet;
+                //}
             }
         }
 
