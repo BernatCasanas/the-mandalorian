@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using DiamondEngine;
 public class Skel : Bosseslv2
 {
+    public NavMeshAgent agent = null;
+
     public void Awake()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();

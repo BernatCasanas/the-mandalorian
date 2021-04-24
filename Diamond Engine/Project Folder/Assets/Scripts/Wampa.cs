@@ -8,6 +8,46 @@ using DiamondEngine;
 
 public class Wampa : Bosseslv2
 {
+    enum BOSS_STATE : int
+    {
+        NONE = -1,
+        SEARCH_STATE,
+        FOLLOW,
+        WANDER,
+        FAST_RUSH,
+        SLOW_RUSH,
+        RUSH_STUN,
+        PROJECTILE,
+        JUMP_SLAM,
+        BOUNCE_RUSH,
+        DEAD
+    }
+
+    enum BOSS_INPUT : int
+    {
+        NONE = -1,
+        IN_FOLLOW,
+        IN_FOLLOW_END,
+        IN_WANDER,
+        IN_WANDER_END,
+        IN_FAST_RUSH,
+        IN_FAST_RUSH_END,
+        IN_SLOW_RUSH,
+        IN_SLOW_RUSH_END,
+        IN_RUSH_STUN,
+        IN_RUSH_STUN_END,
+        IN_PROJECTILE,
+        IN_PROJECTILE_END,
+        IN_JUMPSLAM,
+        IN_JUMPSLAM_END,
+        IN_BOUNCERUSH,
+        IN_BOUNCERUSH_END,
+        IN_DEAD
+    }
+
+    private BOSS_STATE currentState = BOSS_STATE.SEARCH_STATE;
+    private List<BOSS_INPUT> inputsList = new List<BOSS_INPUT>();
+
     public void Awake()
     {
         Debug.Log("Wampa Awake");
@@ -15,12 +55,14 @@ public class Wampa : Bosseslv2
         agent = gameObject.GetComponent<NavMeshAgent>();
         if (agent == null)
             Debug.Log("Null agent, add a NavMeshAgent Component");
+        else
+            Debug.Log("Agent is located");
 
         //Animator.Play(gameObject, "");
         //Audio.PlayAudio(gameObject, "");
         Counter.roomEnemies++;  // Just in case
         EnemyManager.AddEnemy(gameObject);
-    
+
     }
 
     public void Update()
@@ -30,7 +72,6 @@ public class Wampa : Bosseslv2
         ProcessState();
 
         UpdateState();
-        Debug.Log("is working");
     }
 
     private void ProcessInternalInput()
@@ -91,8 +132,9 @@ public class Wampa : Bosseslv2
     {
         while (inputsList.Count > 0)
         {
-            BOSS_INPUT input = inputsList[0];
+            Debug.Log("is working");
 
+            BOSS_INPUT input = inputsList[0];
             switch (currentState)
             {
                 case BOSS_STATE.NONE:
