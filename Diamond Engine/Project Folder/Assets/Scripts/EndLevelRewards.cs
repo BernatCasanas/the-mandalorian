@@ -34,6 +34,8 @@ public class EndLevelRewards
     EndLevelRewardsButtons secondButton = null;
     EndLevelRewardsButtons thirdButton = null;
 
+    GameObject rewardMenu = null;
+
     public GameResources selectedReward = null;
     bool rewardsGenerated = false;
 
@@ -48,9 +50,9 @@ public class EndLevelRewards
 
             CreatePopUpGameObject();
 
-            firstButton = InternalCalls.FindObjectWithName("FirstRewardButton").GetComponent<EndLevelRewardsButtons>();
-            secondButton = InternalCalls.FindObjectWithName("SecondRewardButton").GetComponent<EndLevelRewardsButtons>();
-            thirdButton = InternalCalls.FindObjectWithName("ThirdRewardButton").GetComponent<EndLevelRewardsButtons>();
+            firstButton = rewardMenu.GetChild("FirstRewardButton").GetComponent<EndLevelRewardsButtons>();
+            secondButton = rewardMenu.GetChild("SecondRewardButton").GetComponent<EndLevelRewardsButtons>();
+            thirdButton = rewardMenu.GetChild("ThirdRewardButton").GetComponent<EndLevelRewardsButtons>();
 
             if(firstButton != null)
                 firstButton.gameObject.GetComponent<Navigation>().Select(); // Line added because buttons crashed. For... some reason
@@ -135,16 +137,16 @@ public class EndLevelRewards
 
     void CreatePopUpGameObject()
     {
-        GameObject rewardMenu = InternalCalls.CreatePrefab("Library/Prefabs/18131542.prefab", new Vector3(0.0f, 0.0f, 0.0f), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
+        rewardMenu = InternalCalls.CreatePrefab("Library/Prefabs/18131542.prefab", new Vector3(0.0f, 0.0f, 0.0f), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
         GameObject canvas = InternalCalls.FindObjectWithName("Canvas");
 
-        GameObject firstText = InternalCalls.FindObjectWithName("FirstRewardText");
-        GameObject secondText = InternalCalls.FindObjectWithName("SecondRewardText");
-        GameObject thirdText = InternalCalls.FindObjectWithName("ThirdRewardText");
+        GameObject firstText = rewardMenu.GetChild("FirstRewardText");
+        GameObject secondText = rewardMenu.GetChild("SecondRewardText");
+        GameObject thirdText = rewardMenu.GetChild("ThirdRewardText");
 
-        GameObject firstImage = InternalCalls.FindObjectWithName("FirstRewardImage");
-        GameObject secondImage = InternalCalls.FindObjectWithName("SecondRewardImage");
-        GameObject thirdImage = InternalCalls.FindObjectWithName("ThirdRewardImage");
+        GameObject firstImage = rewardMenu.GetChild("FirstRewardImage");
+        GameObject secondImage = rewardMenu.GetChild("SecondRewardImage");
+        GameObject thirdImage = rewardMenu.GetChild("ThirdRewardImage");
 
         if (canvas == null)
         {
