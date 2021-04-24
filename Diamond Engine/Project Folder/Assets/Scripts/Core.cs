@@ -159,7 +159,7 @@ public class Core : DiamondComponent
         // INIT VARIABLES WITH DEPENDENCIES //
         //Animation
         shootAnimationTotalTime = 0.288f;
-        lockInputs = false;
+
         //Dash - if scene doesnt have its values
         //dashDuration = 0.2f;
         //dashDistance = 4.5f;
@@ -178,9 +178,14 @@ public class Core : DiamondComponent
         if (pause == null)
             Debug.Log("Core: Background not found");
 
-        #endregion
+        GameObject lockInputsScene = InternalCalls.FindObjectWithName("LockInputsBool");
 
-        #region SHOOT
+        if (lockInputsScene != null)
+            lockInputs = true;
+
+            #endregion
+
+            #region SHOOT
 
         baseFireRate = Math.Max(baseFireRate, 0.1f);
 
@@ -385,13 +390,6 @@ public class Core : DiamondComponent
                 inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
             }
 
-
-            if (IsJoystickMoving() == true)
-                inputsList.Add(INPUT.IN_MOVE);
-
-            else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
-                inputsList.Add(INPUT.IN_IDLE);
-
             if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false && dashAvailable == true)
             {
                 inputsList.Add(INPUT.IN_DASH);
@@ -421,6 +419,13 @@ public class Core : DiamondComponent
                 grenadesFireRateTimer = grenadesFireRate;
             }
         }
+
+        if (IsJoystickMoving() == true)
+            inputsList.Add(INPUT.IN_MOVE);
+
+        else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
+            inputsList.Add(INPUT.IN_IDLE);
+
         grenadesFireRateTimer -= Time.deltaTime;
 
         timeOfRoom += Time.deltaTime;
