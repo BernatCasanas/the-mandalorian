@@ -28,15 +28,15 @@ public class Skill_Tree_Data : DiamondComponent
     #region Primary Weapon Variables
     //Primary Weapon Skill 1
     //Primary Weapon Skill 2
-    //Primary Weapon Skill 3
+    //Primary Weapon Skill 3    
+    public float PrimaryWeapon3_SlowDownAmount = 0.2f;
+    public float PrimaryWeapon3_SlowDownDuration = 3.0f;
     //Primary Weapon Skill 4
-    public float PrimaryWeapon4_SlowDownAmount = 0.2f;
-    public float PrimaryWeapon4_SlowDownDuration = 3.0f;
     //Primary Weapon Skill 5
     //Primary Weapon Skill 6
+    public float PrimaryWeapon6_IncreaseDamageAmount = 0.25f;
     //Primary Weapon Skill 7
-    public float PrimaryWeapon7_IncreaseDamageAmount = 0.25f;
-    //Primary Weapon Skill 8
+
     #endregion
     #region Secondary Weapon Variables
     //Secondary Weapon Skill 1
@@ -65,6 +65,7 @@ public class Skill_Tree_Data : DiamondComponent
     //Utility Skill 5
     //Utility Skill 6
     //Utility Skill 7
+    public int Utility7_healAmount = 10;
     //Utility Skill 8
     #endregion
     #region Aggression Variables
@@ -145,7 +146,7 @@ public class Skill_Tree_Data : DiamondComponent
         UTILITY_DAMAGE_REDUCTION_DASH = 4, //Damage reduction after dash
         UTILITY5 = 5,
         UTILITY6 = 6,
-        UTILITY7 = 7,
+        UTILITY_HEAL_WHEN_GROGU_SKILL = 7,
         UTILITY8 = 8,
         AGGRESION1 = 9,
         AGGRESION2 = 10,
@@ -305,6 +306,8 @@ public class Skill_Tree_Data : DiamondComponent
         //Utility Skill 4
         public float U4_seconds = -1.0f;
         public float U4_damageReduction = -1.0f;
+        //Utility Skill 7
+        public int U7_healAmount = -1;
         //Aggression Skill 6
         public float A6_increaseDamageToBossAmount = -1.0f;
         //Aggression Skill 7
@@ -319,12 +322,12 @@ public class Skill_Tree_Data : DiamondComponent
         //Primary Weapon Skill 2
         //Primary Weapon Skill 3
         //Primary Weapon Skill 4
-        public float PW4_SlowDownAmount = -1.0f;
-        public float PW4_SlowDownDuration = -1.0f;
+        public float PW3_SlowDownAmount = -1.0f;
+        public float PW3_SlowDownDuration = -1.0f;
         //Primary Weapon Skill 5
         //Primary Weapon Skill 6
         //Primary Weapon Skill 7
-        public float PW7_IncreaseDamageAmount = -1.0f;
+        public float PW6_IncreaseDamageAmount = -1.0f;
         //Primary Weapon Skill 8
 
         //Secondary Weapon Skill 1
@@ -354,13 +357,14 @@ public class Skill_Tree_Data : DiamondComponent
         groguSkillTree.Grogu8_gainPassiveForceRegeneration = Grogu8_gainPassiveForceRegeneration;
         groguSkillTree.Grogu8_HPMissingPercentage = Grogu8_HPMissingPercentage;
 
-        weaponsSkillTree.PW4_SlowDownAmount = PrimaryWeapon4_SlowDownAmount;
-        weaponsSkillTree.PW4_SlowDownDuration = PrimaryWeapon4_SlowDownDuration;
+        weaponsSkillTree.PW3_SlowDownAmount = PrimaryWeapon3_SlowDownAmount;
+        weaponsSkillTree.PW3_SlowDownDuration = PrimaryWeapon3_SlowDownDuration;
         weaponsSkillTree.SW4_DelayReducedAmount = SecondaryWeapon4_DelayReducedAmount;
-        weaponsSkillTree.PW7_IncreaseDamageAmount = PrimaryWeapon7_IncreaseDamageAmount;
+        weaponsSkillTree.PW6_IncreaseDamageAmount = PrimaryWeapon6_IncreaseDamageAmount;
 
         mandoSkillTree.U4_damageReduction = Utility4_damageReduction;
         mandoSkillTree.U4_seconds = Utility4_seconds;
+        mandoSkillTree.U7_healAmount = Utility7_healAmount;
         mandoSkillTree.A6_increaseDamageToBossAmount = Aggression6_increaseDamageToBossAmount;
         mandoSkillTree.A7_extraDamageAmount = Aggression7_extraDamageAmount;
         mandoSkillTree.A7_extraDamageHPStep = Aggression7_extraDamageHPStep;

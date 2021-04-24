@@ -170,7 +170,7 @@ public class Skytrooper : Enemy
         if (skill_slowDownActive && Skill_Tree_Data.instance != null)
         {
             skill_slowDownTimer += Time.deltaTime;
-            if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownDuration)
+            if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownDuration)
             {
                 skill_slowDownTimer = 0.0f;
                 skill_slowDownActive = false;
@@ -394,7 +394,7 @@ public class Skytrooper : Enemy
         LookAt(targetPosition);
 
         if (skill_slowDownActive && Skill_Tree_Data.instance != null)
-            MoveToPosition(targetPosition, wanderSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
+            MoveToPosition(targetPosition, wanderSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownAmount));
         else MoveToPosition(targetPosition, wanderSpeed);
     }
     private void WanderEnd()
@@ -421,7 +421,7 @@ public class Skytrooper : Enemy
         LookAt(targetPosition);
         
         if (skill_slowDownActive && Skill_Tree_Data.instance != null) 
-            MoveToPosition(targetPosition, dashSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
+            MoveToPosition(targetPosition, dashSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownAmount));
         else MoveToPosition(targetPosition, dashSpeed);
     }
     private void DashEnd()

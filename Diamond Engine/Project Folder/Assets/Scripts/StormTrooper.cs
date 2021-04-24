@@ -166,7 +166,7 @@ public class StormTrooper : Enemy
         if (skill_slowDownActive && Skill_Tree_Data.instance != null)
         {
             skill_slowDownTimer += Time.deltaTime;
-            if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownDuration)
+            if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownDuration)
             {
                 skill_slowDownTimer = 0.0f;
                 skill_slowDownActive = false;
@@ -409,7 +409,7 @@ public class StormTrooper : Enemy
     {
         LookAt(agent.GetDestination());
         if (skill_slowDownActive && Skill_Tree_Data.instance != null) 
-            agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
+            agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownAmount));
         else agent.MoveToCalculatedPos(wanderSpeed);
 
     }
@@ -433,7 +433,7 @@ public class StormTrooper : Enemy
         LookAt(agent.GetDestination());
 
         if (skill_slowDownActive && Skill_Tree_Data.instance != null)
-            agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
+            agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownAmount));
         else
             agent.MoveToCalculatedPos(runningSpeed);
 
