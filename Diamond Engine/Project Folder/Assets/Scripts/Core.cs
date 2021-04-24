@@ -925,8 +925,14 @@ public class Core : DiamondComponent
     {
         Animator.Play(gameObject, "Run");
 
-        //NEED TO ADD SOME LOGIC ABOT IN WHICH ROOM MANDO IS TO APPLY DIFFERENT FOOTSTEPS
-        Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
+        if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
+        {
+            Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
+        }
+        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
+        {
+            Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
+        }
     }
 
     private void UpdateMove()

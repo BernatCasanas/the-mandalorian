@@ -140,7 +140,7 @@ public class NPCSpawnController : DiamondComponent
     {
         if (spawnPoints[index] != null)
             return spawnPoints[index].Item1;
-        Debug.Log("texto");
+
         Vector3 defaultVal = new Vector3(0,1,0);
         return defaultVal;
     }

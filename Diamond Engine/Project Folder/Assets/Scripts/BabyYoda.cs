@@ -27,9 +27,6 @@ public class BabyYoda : DiamondComponent
     private static int skillWallForceCost = 60;
 
     //Skills
-    private static bool skill_fasterForceRegenerationActive = false; //For each 10% of HP Mando is missing, gain 1 more passive Force Regeneration per second
-    private static float skill_fasterForceRegenerationHealthStep = 0.0f;
-    private static float skill_fasterForceRegenerationForceRegen = 0.0f;
     private static bool skill_healActive = false; //Mando heals 10 HP when Grogu uses a Skill
     private static int skill_healAmount = 0;
 
@@ -80,7 +77,7 @@ public class BabyYoda : DiamondComponent
 
         if (currentForce < totalForce)
         {
-            if (skill_fasterForceRegenerationActive)
+            if (Skill_Tree_Data.instance.IsActive(1,(int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION))
                 currentForce += (GetForceRegenSpeedWithSkill() * Time.deltaTime);
             else currentForce += (forceRegenerationSpeed * Time.deltaTime);
 
@@ -334,7 +331,7 @@ public class BabyYoda : DiamondComponent
 
         Transform mandoTransform = Core.instance.gameObject.transform;
         InternalCalls.CreatePrefab("Library/Prefabs/541990364.prefab", new Vector3(mandoTransform.globalPosition.x, mandoTransform.globalPosition.y + 1, mandoTransform.globalPosition.z), mandoTransform.globalRotation, new Vector3(1, 1, 1));
-
+        Audio.PlayAudio(gameObject, "Play_Force_Push");
         if (skill_healActive) Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-skill_healAmount);
 
         return true;
@@ -361,7 +358,7 @@ public class BabyYoda : DiamondComponent
         spawnPos += mandoTransform.GetForward() * wallSkillOffset.z;
 
         InternalCalls.CreatePrefab("Library/Prefabs/1850725718.prefab", spawnPos, mandoTransform.globalRotation, new Vector3(1, 1, 1));
-
+        Audio.PlayAudio(gameObject, "Play_Grogu_Wall");
         if (skill_healActive) Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-skill_healAmount);
 
         return true;
@@ -369,7 +366,8 @@ public class BabyYoda : DiamondComponent
 
     public static float GetForceRegenerationSpeed()
     {
-        if (skill_fasterForceRegenerationActive) return GetForceRegenSpeedWithSkill();
+        if (Skill_Tree_Data.instance.IsActive(1, (int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION))
+            return GetForceRegenSpeedWithSkill();
         else return forceRegenerationSpeed;
     }
 
@@ -424,19 +422,14 @@ public class BabyYoda : DiamondComponent
     private static float GetForceRegenSpeedWithSkill()
     {
         int HPDiff = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
-        float steps = (float)HPDiff / skill_fasterForceRegenerationHealthStep;
-        
-        return forceRegenerationSpeed + steps * skill_fasterForceRegenerationForceRegen;
+        float steps = (float)HPDiff / Skill_Tree_Data.instance.GetGroguSkillTree().Grogu8_HPMissingPercentage;
+
+        return forceRegenerationSpeed + steps * Skill_Tree_Data.instance.GetGroguSkillTree().Grogu8_gainPassiveForceRegeneration;
     }
 
     public static void SetSkill(string skillName, float value1 = 0.0f, float value2 = 0.0f, int value3 = 0)
     {
-        if (skillName == "GroguForceRegenerationSkill")
-        {
-            skill_fasterForceRegenerationActive = true;
-            skill_fasterForceRegenerationHealthStep = value1;
-            skill_fasterForceRegenerationForceRegen = value2;
-        }else if(skillName == "UtilityHealSkill")
+        if(skillName == "UtilityHealSkill")
         {
             skill_healActive = true;
             skill_healAmount = value3;
