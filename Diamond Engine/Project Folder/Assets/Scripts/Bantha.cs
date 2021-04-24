@@ -398,6 +398,7 @@ public class Bantha : Enemy
 
         tiredTimer = tiredTime;
         Animator.Play(gameObject, "BT_Idle");
+        Audio.PlayAudio(gameObject, "Play_Bantha_Breath");
     }
     #endregion
 
@@ -511,7 +512,7 @@ public class Bantha : Enemy
         Animator.Play(gameObject, "BT_Die", 1.0f);
 
         Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Death");
-        //Audio.PlayAudio(gameObject, "Play_Mando_Voice");
+        Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
 
         if (hitParticles != null)
             hitParticles.GetComponent<ParticleSystem>().Play();

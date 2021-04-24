@@ -47,6 +47,7 @@ public class SHOP : DiamondComponent
     public void Awake()
     {
         if(autoGenerateItems) RandomiseItems();
+        //Audio.PlayAudio(gameObject, "Play_Post_Boss_Room_1_Ambience");
     }
 
     public void Update()
