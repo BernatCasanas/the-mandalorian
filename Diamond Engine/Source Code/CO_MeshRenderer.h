@@ -50,6 +50,7 @@ private:
 	bool drawDebugVertices;
 	C_Transform* gameObjectTransform = nullptr;
 	std::vector<C_Transform*> bonesMap;
+	std::vector<float4x4> boneTransforms;
 	bool drawStencil;
 	bool calculatedBonesThisFrame;
 };

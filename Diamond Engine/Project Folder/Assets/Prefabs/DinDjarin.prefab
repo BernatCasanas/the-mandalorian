@@ -13,9 +13,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -2.2259764671325684,
-                7.9174470901489258,
-                -5.9180746078491211
+                -11.015664100646973,
+                8.8377418518066406,
+                -11.111222267150879
             ],
             "Rotation": [
                 -2.120925657322914e-09,
@@ -52,6 +52,7 @@
                     "dashDistance": 5.25,
                     "maxDashNumber": 1,
                     "betweeMultiplenDashesCD": 0.11999999731779099,
+                    "RayCastObj": 1500028372,
                     "baseFireRate": 0.13500000536441803,
                     "gadgetFireRate": 0.20000000298023224,
                     "fireRateAfterDashRecoverRatio": 0.75,
@@ -86,27 +87,6 @@
                     "LockAngularZ": true,
                     "Mass": 10,
                     "Density": 1
-                },
-                {
-                    "Type": 15,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0.85000002384185791,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1.7999999523162842,
-                        1
-                    ]
                 },
                 {
                     "Type": 16,
@@ -153,6 +133,24 @@
                     "muzzleObj": 6421373,
                     "jetpackObj": 1973626368,
                     "impactObj": 190961330
+                },
+                {
+                    "Type": 25,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0.69999998807907104,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Radius": 0.5,
+                    "HalfHeight": 0.5
                 }
             ]
         },
@@ -168,14 +166,14 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -0.25,
+                -0.25000095367431641,
                 1.3999996185302734,
-                1.2999999523162842
+                1.3000001907348633
             ],
             "Rotation": [
                 0,
-                0,
-                0,
+                1.2924697071141057e-25,
+                -3.4694469519536142e-17,
                 1
             ],
             "Scale": [
@@ -2815,15 +2813,15 @@
                 -0.19471836090087891
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                0.1939222663640976,
+                -2.7353402876073574e-10,
+                1.3877787807814457e-17,
+                0.98101687431335449
             ],
             "Scale": [
                 1,
-                1,
-                1
+                0.99999964237213135,
+                0.99999922513961792
             ],
             "Components": [
                 {
@@ -3463,6 +3461,40 @@
                     "Active": true,
                     "billboardAlignment": 0,
                     "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "RaycastObj",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1500028372,
+            "ParentUID": 47750865,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                -0.48318958282470703,
+                0
+            ],
+            "Rotation": [
+                0.7071068286895752,
+                2.2168647939493219e-15,
+                -9.7533726293964548e-15,
+                0.70710670948028564
+            ],
+            "Scale": [
+                0.99999600648880005,
+                0.99998235702514648,
+                0.99998664855957031
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
                 }
             ]
         }
