@@ -258,6 +258,7 @@ public class LaserTurret : Enemy
     {
         Debug.Log("TURRET LOAD");
         loadTimer = loadTime;
+        Audio.PlayAudio(gameObject, "Play_Turret_Shot_Charge");
     }
     private void UpdateLoad()
     {
@@ -274,6 +275,8 @@ public class LaserTurret : Enemy
     {
         Debug.Log("TURRET SHOOT");
         shotTimer = shotTime;
+        Audio.PlayAudio(gameObject, "Play_Turret_Shot");
+        Audio.PlayAudio(gameObject, "Play_Turret_Charge"); 
     }
 
     private void UpdateShoot()
