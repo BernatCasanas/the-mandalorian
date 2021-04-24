@@ -1244,6 +1244,7 @@ public class Rancor : DiamondComponent
         Audio.StopAudio(gameObject);
         Input.PlayHaptic(0.3f, 3);
         InternalCalls.Destroy(gameObject);
+        Counter.allEnemiesDead = true;
     }
     #endregion
 

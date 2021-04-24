@@ -74,8 +74,8 @@ public class Bosseslv2 : DiamondComponent
                     Quaternion rot = projectilePoint.transform.globalRotation;
                     Vector3 scale = new Vector3(1, 1, 1);
 
-                    //GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/tocreate.prefab", pos, rot, scale);
-                    //projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
+                    GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1052835205.prefab", pos, rot, scale);
+                    projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
                     Debug.Log("Throwing projectile");
 
                     if (firstShot)
