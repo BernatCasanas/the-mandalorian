@@ -73,9 +73,6 @@ public class Core : DiamondComponent
     private static float skill_extraDamageHPStep = 0.0f;
     private static float skill_extraDamageAmount = 0.0f;
 
-    private static bool skill_damageReductionDashEnabled = false;
-    private static float skill_damageReductionDashDuration = 0.0f;
-    private static float skill_damageReductionDashAmount = 0.0f;
     private float skill_damageReductionDashTimer = 0.0f;
     private bool skill_damageReductionDashActive = false;
 
@@ -335,13 +332,17 @@ public class Core : DiamondComponent
                 inputsList.Add(INPUT.IN_GADGET_SHOOT_END);
         }
 
-        if (skill_damageReductionDashEnabled && skill_damageReductionDashTimer > 0)
+        if(Skill_Tree_Data.instance != null)
         {
-            skill_damageReductionDashTimer -= Time.deltaTime;
+            if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_DAMAGE_REDUCTION_DASH)
+                && skill_damageReductionDashTimer > 0)
+            {
+                skill_damageReductionDashTimer -= Time.deltaTime;
 
-            if (skill_damageReductionDashTimer <= 0)
-                skill_damageReductionDashActive = false;
-        }
+                if (skill_damageReductionDashTimer <= 0)
+                    skill_damageReductionDashActive = false;
+            }
+        }        
 
         if (currentState == STATE.CHARGING_SEC_SHOOT)
         {
@@ -916,11 +917,14 @@ public class Core : DiamondComponent
         StopPlayer();
         gameObject.transform.localPosition.y = dashStartYPos;
 
-        if (skill_damageReductionDashEnabled)
+        if(Skill_Tree_Data.instance != null)
         {
-            skill_damageReductionDashActive = true;
-            skill_damageReductionDashTimer = skill_damageReductionDashDuration;
-        }
+            if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_DAMAGE_REDUCTION_DASH))
+            {
+                skill_damageReductionDashActive = true;
+                skill_damageReductionDashTimer = Skill_Tree_Data.instance.GetMandoSkillTree().U4_seconds;
+            }
+        }        
     }
 
     #endregion
@@ -1104,8 +1108,8 @@ public class Core : DiamondComponent
                 {
                     int damageFromBullet = 0;
 
-                    if (skill_damageReductionDashActive)
-                        damageFromBullet = (int)(bulletScript.damage * (1.0f - skill_damageReductionDashAmount));
+                    if (skill_damageReductionDashActive && Skill_Tree_Data.instance != null)
+                        damageFromBullet = (int)(bulletScript.damage * (1.0f - Skill_Tree_Data.instance.GetMandoSkillTree().U4_damageReduction));
                     else
                         damageFromBullet = (int)bulletScript.damage;
 
@@ -1131,8 +1135,8 @@ public class Core : DiamondComponent
                     if (damage != 0)
                     {
                         int damageFromEnemy = 0;
-                        if (skill_damageReductionDashActive)
-                            damageFromEnemy = (int)(damage * (1.0f - skill_damageReductionDashAmount));
+                        if (skill_damageReductionDashActive && Skill_Tree_Data.instance != null)
+                            damageFromEnemy = (int)(damage * (1.0f - Skill_Tree_Data.instance.GetMandoSkillTree().U4_damageReduction));
                         else
                             damageFromEnemy = (int)damage;
 
@@ -1298,12 +1302,6 @@ public class Core : DiamondComponent
             skill_extraDamageActive = true;
             skill_extraDamageHPStep = value1;
             skill_extraDamageAmount = value2;
-        }
-        else if (skillName == "UtilityDamageReductionSkill")
-        {
-            skill_damageReductionDashEnabled = true;
-            skill_damageReductionDashDuration = value1;
-            skill_damageReductionDashAmount = value2;
         }
     }
 
