@@ -77,7 +77,7 @@ public class BabyYoda : DiamondComponent
 
         if (currentForce < totalForce)
         {
-            if (Skill_Tree_Data.instance.IsEnabled(1,(int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION))
+            if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION))
                 currentForce += (GetForceRegenSpeedWithSkill() * Time.deltaTime);
             else currentForce += (forceRegenerationSpeed * Time.deltaTime);
 
@@ -204,7 +204,7 @@ public class BabyYoda : DiamondComponent
             case STATE.MOVE:
                 //Do animation / play sounds / whathever
                 break;
-            case STATE.SKILL_PUSH:                
+            case STATE.SKILL_PUSH:
                 break;
             case STATE.SKILL_WALL:
                 break;
@@ -366,7 +366,7 @@ public class BabyYoda : DiamondComponent
 
     public static float GetForceRegenerationSpeed()
     {
-        if (Skill_Tree_Data.instance.IsEnabled(1, (int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION))
+        if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION))
             return GetForceRegenSpeedWithSkill();
         else return forceRegenerationSpeed;
     }
@@ -429,7 +429,7 @@ public class BabyYoda : DiamondComponent
 
     public static void SetSkill(string skillName, float value1 = 0.0f, float value2 = 0.0f, int value3 = 0)
     {
-        if(skillName == "UtilityHealSkill")
+        if (skillName == "UtilityHealSkill")
         {
             skill_healActive = true;
             skill_healAmount = value3;
