@@ -35,13 +35,45 @@ public class Skill_Tree_Data : DiamondComponent
     //Primary Weapon Skill 6
     //Primary Weapon Skill 7
     //Primary Weapon Skill 8
-    #region Secondary Weapon Variables
-    #region Special Weapon Variables
     #endregion
+    #region Secondary Weapon Variables
+    //Secondary Weapon Skill 1
+    //Secondary Weapon Skill 2
+    //Secondary Weapon Skill 3
+    //Secondary Weapon Skill 4
+    public float SW4_DelayReducedAmount = 0.3f;
+    //Secondary Weapon Skill 5
+    //Secondary Weapon Skill 6
+    //Secondary Weapon Skill 7
+    #endregion
+    #region Special Weapon Variables
+
+
     #endregion
     #endregion
 
     #region Mando Variables
+    #region Utility Variables
+    //Primary Weapon Skill 1
+    //Primary Weapon Skill 2
+    //Primary Weapon Skill 3
+    //Primary Weapon Skill 4
+    //Primary Weapon Skill 5
+    //Primary Weapon Skill 6
+    //Primary Weapon Skill 7
+    //Primary Weapon Skill 8
+    #endregion
+    #region Aggression Variables
+    //Secondary Weapon Skill 1
+    //Secondary Weapon Skill 2
+    //Secondary Weapon Skill 3
+    //Secondary Weapon Skill 4
+    //Secondary Weapon Skill 5
+    //Secondary Weapon Skill 6
+    //Secondary Weapon Skill 7
+    #endregion
+    #region Defense Variables
+
 
     #endregion
     #endregion
@@ -75,6 +107,20 @@ public class Skill_Tree_Data : DiamondComponent
         PRIMARY6 = 6,
         PRIMARY7 = 7,
         PRIMARY8 = 8,
+        SECONDARY1 = 9,
+        SECONDARY2 = 10,
+        SECONDARY3 = 11,
+        SECONDARY_DELAY_BETWEEN_USES = 12,
+        SECONDARY5 = 13,
+        SECONDARY6 = 14,
+        SECONDARY7 = 15,
+        SPECIAL1 = 16,
+        SPECIAL2 = 17,
+        SPECIAL3 = 18,
+        SPECIAL4 = 19,
+        SPECIAL5 = 20,
+        SPECIAL6 = 21,
+        SPECIAL7 = 22,
     }
 
     #endregion
@@ -95,7 +141,7 @@ public class Skill_Tree_Data : DiamondComponent
     //Weapons
     private static Dictionary<int, bool> weaponsSkillEnabled = new Dictionary<int, bool>
     {
-        {1, false },
+        {1, false }, //Primary weapons
         {2, false },
         {3, false },
         {4, false },
@@ -103,6 +149,20 @@ public class Skill_Tree_Data : DiamondComponent
         {6, false },
         {7, false },
         {8, false },
+        {9, false }, //Secondary weapons
+        {10, false },
+        {11, false },
+        {12, false },
+        {13, false },
+        {14, false },
+        {15, false },
+        {16, false }, //Special weapons
+        {17, false },
+        {18, false },
+        {19, false },
+        {20, false },
+        {21, false },
+        {22, false },
     };
     #endregion
 
@@ -176,6 +236,15 @@ public class Skill_Tree_Data : DiamondComponent
         //Primary Weapon Skill 6
         //Primary Weapon Skill 7
         //Primary Weapon Skill 8
+
+        //Secondary Weapon Skill 1
+        //Secondary Weapon Skill 2
+        //Secondary Weapon Skill 3
+        //Secondary Weapon Skill 4
+        public float SW4_DelayReducedAmount = -1.0f;
+        //Secondary Weapon Skill 5
+        //Secondary Weapon Skill 6
+        //Secondary Weapon Skill 7
     }
 
     public void Awake()
@@ -195,5 +264,6 @@ public class Skill_Tree_Data : DiamondComponent
 
         weaponsSkillTree.PW4_SlowDownAmount = PW4_SlowDownAmount;
         weaponsSkillTree.PW4_SlowDownDuration = PW4_SlowDownDuration;
+        weaponsSkillTree.SW4_DelayReducedAmount = SW4_DelayReducedAmount;
     }
 }

@@ -469,11 +469,11 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            if(Skill_Tree_Data.instance != null)
+                Skill_Tree_Data.instance.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.WeaponsSkillNames.SECONDARY_DELAY_BETWEEN_USES);
+            
             if(Core.instance != null)
-            {
-                Core.instance.SetSkill("SecondaryDelaySkill", 0.3f);
-                //Debug.Log("Secondary gun: Delay between uses reduced by 30%."); //Uncommenting that crashes the game
-            }
+                Core.instance.SetSkill("SecondaryDelaySkill", Skill_Tree_Data.instance.GetWeaponsSkillTree().SW4_DelayReducedAmount);
         }
 
         public override void AssignCharacteristics()
