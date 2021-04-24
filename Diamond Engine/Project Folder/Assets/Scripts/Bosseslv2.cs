@@ -171,7 +171,7 @@ public class Bosseslv2 : DiamondComponent
 
     public void UpdateBounceRush()
     {
-
+        Debug.Log("Bounce Rush");
     }
 
     public void EndBounceRush()
@@ -190,6 +190,7 @@ public class Bosseslv2 : DiamondComponent
 
     public void UpdateJumpSlam()
     {
+        Debug.Log("Jump Slam");
 
     }
 
