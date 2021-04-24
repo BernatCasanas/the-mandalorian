@@ -40,17 +40,15 @@ public class Skytrooper : Enemy
     private List<INPUT> inputsList = new List<INPUT>();
 
     public GameObject shootPoint = null;
-    public GameObject hitParticles = null;
-    private GameObject visualFeedback = null;
-    private GameObject visualFeedbackAux = null;
+    //public GameObject hitParticles = null;
 
     //Action times
     public float idleTime = 5.0f;
-    public float dashTime = 0.0f;
+    public float wanderTime = 0.0f;
+    private float dashTime = 0.0f;
     private float dieTime = 3.0f;
     public float timeBewteenShots = 0.5f;
     public float timeBewteenShootingStates = 1.5f;
-    public float feedbackTime = 0.0f;
 
     //Speeds
     public float wanderSpeed = 3.5f;
@@ -64,14 +62,13 @@ public class Skytrooper : Enemy
 
     //Timers
     private float idleTimer = 0.0f;
+    private float wanderTimer = 0.0f;
     private float dashTimer = 0.0f;
     //private float shotTimer = 0.0f;
     private float dieTimer = 0.0f;
     private float shootTimer = 0.0f;
     private float pushTimer = 0.0f;
     private float skill_slowDownTimer = 0.0f;
-    private float feedbackTimer = 0.0f;
-    private float feedbackTimerAux = 0.0f;
 
     //Action variables
     private int shotsShooted = 0;
@@ -92,25 +89,26 @@ public class Skytrooper : Enemy
         Animator.Play(gameObject, "SK_Idle");
 
         idleTimer = idleTime;
+        dashTime = Animator.GetAnimationDuration(gameObject, "SK_Dash");
         //dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
 
-        ParticleSystem spawnparticles = null;
+        //ParticleSystem spawnparticles = null;
 
-        StormTrooperParticles myParticles = gameObject.GetComponent<StormTrooperParticles>();
-        if (myParticles != null)
-        {
-            spawnparticles = myParticles.spawn;
-        }
+        //StormTrooperParticles myParticles = gameObject.GetComponent<StormTrooperParticles>();
+        //if (myParticles != null)
+        //{
+        //    spawnparticles = myParticles.spawn;
+        //}
 
-        if (spawnparticles != null)
-        {
-            //Debug.Log("PLAY SPAWN!!!");
-            spawnparticles.Play();
-        }
-        else
-        {
-            //Debug.Log("CAN'T PLAY SPAWN!!!"); 
-        }
+        //if (spawnparticles != null)
+        //{
+        //    //Debug.Log("PLAY SPAWN!!!");
+        //    spawnparticles.Play();
+        //}
+        //else
+        //{
+        //    //Debug.Log("CAN'T PLAY SPAWN!!!"); 
+        //}
     }
 
     public void Start()
@@ -126,10 +124,10 @@ public class Skytrooper : Enemy
             player = Core.instance.gameObject;
         }
 
-        if (skill_slowDownActive)
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
         {
             skill_slowDownTimer += Time.deltaTime;
-            if (skill_slowDownTimer >= skill_slowDownDuration)
+            if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownDuration)
             {
                 skill_slowDownTimer = 0.0f;
                 skill_slowDownActive = false;
@@ -161,9 +159,10 @@ public class Skytrooper : Enemy
             }
         }
 
-        if (currentState == STATE.DASH || currentState == STATE.WANDER)
+        if (currentState == STATE.WANDER && wanderTimer > 0.0f)
         {
-            if (Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance)
+            wanderTimer -= Time.deltaTime;
+            if (wanderTimer < 0.0f)
             {
                 inputsList.Add(INPUT.IN_IDLE);
             }
@@ -172,28 +171,9 @@ public class Skytrooper : Enemy
         if (currentState == STATE.DASH && dashTimer > 0.0f)
         {
             dashTimer -= Time.deltaTime;
-            if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) <= agent.stoppingDistance || dashTimer < 0.0f)
+            if (dashTimer < 0.0f)
             {
                 inputsList.Add(INPUT.IN_DASH_END);
-            }
-        }
-
-        if (feedbackTimer > 0.0f)
-        {
-            feedbackTimer -= Time.deltaTime;
-
-            if (feedbackTimer <= 0.0f)
-            {
-                InternalCalls.Destroy(visualFeedback);
-            }
-        }
-        if (feedbackTimerAux > 0.0f)
-        {
-            feedbackTimerAux -= Time.deltaTime;
-
-            if (feedbackTimerAux <= 0.0f)
-            {
-                InternalCalls.Destroy(visualFeedbackAux);
             }
         }
     }
@@ -288,7 +268,7 @@ public class Skytrooper : Enemy
                 case STATE.DASH:
                     switch (input)
                     {
-                        case INPUT.IN_IDLE:
+                        case INPUT.IN_DASH_END:
                             currentState = STATE.IDLE;
                             DashEnd();
                             StartIdle();
@@ -401,17 +381,21 @@ public class Skytrooper : Enemy
     #region WANDER
     private void StartWander()
     {
+        wanderTimer = wanderTime;
         Debug.Log("SKYTROOPER WANDER");
-        agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
-        Animator.Play(gameObject, "SK_Dash");
+        Animator.Play(gameObject, "SK_Wander");
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
+
+        targetPosition = CalculateNewPosition(wanderRange);
     }
     private void UpdateWander()
     {
-        LookAt(agent.GetDestination());
-        if (skill_slowDownActive) agent.MoveToCalculatedPos(wanderSpeed * (1 - skill_slowDownAmount));
-        else agent.MoveToCalculatedPos(wanderSpeed);
+        LookAt(targetPosition);
+
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
+            MoveToPosition(targetPosition, wanderSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
+        else MoveToPosition(targetPosition, wanderSpeed);
     }
     private void WanderEnd()
     {
@@ -422,17 +406,23 @@ public class Skytrooper : Enemy
     #region DASH
     private void StartDash()
     {
+        dashTimer = dashTime;
         Debug.Log("SKYTROOPER DASH");
-        agent.CalculateRandomPath(gameObject.transform.globalPosition, dashRange);
 
         Animator.Play(gameObject, "SK_Dash");
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Dash");
+
+        //agent.CalculateRandomPath(gameObject.transform.globalPosition, dashRange);
+        targetPosition = CalculateNewPosition(dashRange);
+        //Debug.Log(targetPosition.ToString());
     }
     private void UpdateDash()
     {
-        LookAt(agent.GetDestination());
-        if (skill_slowDownActive) agent.MoveToCalculatedPos(dashSpeed * (1 - skill_slowDownAmount));
-        else agent.MoveToCalculatedPos(dashSpeed);
+        LookAt(targetPosition);
+        
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null) 
+            MoveToPosition(targetPosition, dashSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
+        else MoveToPosition(targetPosition, dashSpeed);
     }
     private void DashEnd()
     {
@@ -445,7 +435,7 @@ public class Skytrooper : Enemy
     {
         Debug.Log("SKYTROOPER SHOOT");
         shootTimer = timeBewteenShootingStates;
-        shotsShooted=0;
+        shotsShooted = 0;
         Animator.Play(gameObject, "SK_Idle");
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
     }
@@ -465,13 +455,11 @@ public class Skytrooper : Enemy
                 if ((shotsShooted + 1) % 2 != 0)
                 {
                     Shoot(false);
-                    feedbackTimer = feedbackTime;
                     Debug.Log("HEY");
                 }
                 else
                 {
                     Shoot(true);
-                    feedbackTimerAux = feedbackTime;
                 }
             }
         }
@@ -481,12 +469,12 @@ public class Skytrooper : Enemy
     {
         //GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         //bullet.GetComponent<BH_Bullet>().damage = damage;
-        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/88418274.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, new Vector3(0.5f, 0.5f, 0.5f));
+        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1662408971.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, new Vector3(0.5f, 0.5f, 0.5f));
         bullet.GetComponent<SkyTrooperShot>().SetTarget(player.transform.globalPosition, false);
         if (aux)
-            visualFeedbackAux = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, player.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
+            InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, player.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
         else
-            visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, player.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
+            InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, player.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
         Animator.Play(gameObject, "SK_Shoot");
         Audio.PlayAudio(gameObject, "PLay_Skytrooper_Grenade_Launch");
         shotsShooted++;
@@ -497,7 +485,7 @@ public class Skytrooper : Enemy
             shootTimer = timeBewteenShootingStates;
             Animator.Play(gameObject, "SK_Idle");
         }
-           
+
     }
     private void PlayerDetected()
     {
@@ -626,10 +614,13 @@ public class Skytrooper : Enemy
                 inputsList.Add(INPUT.IN_DIE);
             }
 
-            if (skill_slowDownEnabled)
+            if (Skill_Tree_Data.instance != null)
             {
-                skill_slowDownActive = true;
-                skill_slowDownTimer = 0.0f;
+                if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
+                {
+                    skill_slowDownActive = true;
+                    skill_slowDownTimer = 0.0f;
+                }
             }
         }
         else if (collidedGameObject.CompareTag("Grenade"))
@@ -647,10 +638,13 @@ public class Skytrooper : Enemy
                 inputsList.Add(INPUT.IN_DIE);
             }
 
-            if (skill_slowDownEnabled)
+            if (Skill_Tree_Data.instance != null)
             {
-                skill_slowDownActive = true;
-                skill_slowDownTimer = 0.0f;
+                if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
+                {
+                    skill_slowDownActive = true;
+                    skill_slowDownTimer = 0.0f;
+                }
             }
         }
         //else if (collidedGameObject.CompareTag("WorldLimit"))

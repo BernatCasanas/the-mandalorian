@@ -1,0 +1,99 @@
+{
+    "assets_path": "Assets\/Prefabs\/SkytrooperBullet.prefab",
+    "Game Objects": [
+        {
+            "name": "SkytrooperBullet",
+            "tag": "SK_Bullet",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1356486933,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 1662408971,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -20.648612976074219,
+                6.187410831451416,
+                0
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                0.5,
+                0.49999666213989258,
+                0.49999666213989258
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/965117995.mmh",
+                    "UID": 965117995,
+                    "alternColor": [
+                        1,
+                        0,
+                        0
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SkyTrooperShot",
+                    "speed": 30,
+                    "gravity": -30,
+                    "lifeTime": 6
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
+                    "Mass": 10,
+                    "Density": 1
+                }
+            ]
+        }
+    ]
+}

@@ -20,11 +20,6 @@ public class Enemy : DiamondComponent
 
 	protected NavMeshAgent agent;
 
-	//Skill: Bullet impacts slow enemy speed
-	public static bool skill_slowDownEnabled = false;
-	public static float skill_slowDownAmount = 0.0f;
-	public static float skill_slowDownDuration = 0.0f;
-
 	public virtual void TakeDamage(float damage)
 	{
 	}
@@ -34,9 +29,9 @@ public class Enemy : DiamondComponent
         Vector3 newPosition = new Vector3(0, 0, 0);
         Random random = new Random();
 
-        newPosition.x = random.Next((int)maxPos);
+        newPosition.x = random.Next(-(int)maxPos, (int)maxPos);
         newPosition.y = gameObject.transform.localPosition.y;
-        newPosition.z = random.Next((int)maxPos);
+        newPosition.z = random.Next(-(int)maxPos, (int)maxPos);
 
         return newPosition;
 
@@ -48,6 +43,10 @@ public class Enemy : DiamondComponent
 		Vector3 direction = positionToReach - gameObject.transform.localPosition;
 
 		gameObject.transform.localPosition += direction.normalized * speed * Time.deltaTime;
+	}
+	public void InterpolatePosition(Vector3 positionToReach, float speed)
+	{
+		gameObject.transform.localPosition = Vector3.Lerp(gameObject.transform.localPosition, positionToReach, speed * Time.deltaTime);
 	}
 
 	public void LookAt(Vector3 pointToLook)

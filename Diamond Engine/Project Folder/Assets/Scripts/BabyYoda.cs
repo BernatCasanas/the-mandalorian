@@ -77,7 +77,7 @@ public class BabyYoda : DiamondComponent
 
         if (currentForce < totalForce)
         {
-            if (Skill_Tree_Data.instance.IsActive(1,(int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION))
+            if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION))
                 currentForce += (GetForceRegenSpeedWithSkill() * Time.deltaTime);
             else currentForce += (forceRegenerationSpeed * Time.deltaTime);
 
@@ -204,7 +204,7 @@ public class BabyYoda : DiamondComponent
             case STATE.MOVE:
                 //Do animation / play sounds / whathever
                 break;
-            case STATE.SKILL_PUSH:                
+            case STATE.SKILL_PUSH:
                 break;
             case STATE.SKILL_WALL:
                 break;
@@ -331,7 +331,7 @@ public class BabyYoda : DiamondComponent
 
         Transform mandoTransform = Core.instance.gameObject.transform;
         InternalCalls.CreatePrefab("Library/Prefabs/541990364.prefab", new Vector3(mandoTransform.globalPosition.x, mandoTransform.globalPosition.y + 1, mandoTransform.globalPosition.z), mandoTransform.globalRotation, new Vector3(1, 1, 1));
-
+        Audio.PlayAudio(gameObject, "Play_Force_Push");
         if (skill_healActive) Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-skill_healAmount);
 
         return true;
@@ -358,7 +358,7 @@ public class BabyYoda : DiamondComponent
         spawnPos += mandoTransform.GetForward() * wallSkillOffset.z;
 
         InternalCalls.CreatePrefab("Library/Prefabs/1850725718.prefab", spawnPos, mandoTransform.globalRotation, new Vector3(1, 1, 1));
-
+        Audio.PlayAudio(gameObject, "Play_Grogu_Wall");
         if (skill_healActive) Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-skill_healAmount);
 
         return true;
@@ -366,7 +366,7 @@ public class BabyYoda : DiamondComponent
 
     public static float GetForceRegenerationSpeed()
     {
-        if (Skill_Tree_Data.instance.IsActive(1, (int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION))
+        if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION))
             return GetForceRegenSpeedWithSkill();
         else return forceRegenerationSpeed;
     }
@@ -429,7 +429,7 @@ public class BabyYoda : DiamondComponent
 
     public static void SetSkill(string skillName, float value1 = 0.0f, float value2 = 0.0f, int value3 = 0)
     {
-        if(skillName == "UtilityHealSkill")
+        if (skillName == "UtilityHealSkill")
         {
             skill_healActive = true;
             skill_healAmount = value3;
