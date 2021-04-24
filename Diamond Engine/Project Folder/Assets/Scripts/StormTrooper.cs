@@ -83,6 +83,8 @@ public class StormTrooper : Enemy
     public float pushVerticalForce = 10;
     public float PushStun = 2;
 
+    //Death point
+    public GameObject deathPoint = null;
     public void Awake()
     {
         Debug.Log("Stormtrooper Awake");
@@ -621,31 +623,6 @@ public class StormTrooper : Enemy
         Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
         Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
 
-        ParticleSystem dead = null;
-        ParticleSystem wave = null;
-        ParticleSystem souls = null;
-
-        StormTrooperParticles myParticles = gameObject.GetComponent<StormTrooperParticles>();
-        if (myParticles != null)
-        {
-            dead = myParticles.dead;
-            wave = myParticles.wave;
-            souls = myParticles.souls;
-        }
-
-        if (dead != null)
-        {
-            dead.Play();
-        }
-        if (wave != null)
-        {
-            wave.Play();
-        }
-        if (souls != null)
-        {
-            souls.Play();
-        }
-
         //Combo
         if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
         {
@@ -688,6 +665,7 @@ public class StormTrooper : Enemy
             InternalCalls.CreatePrefab(coinDropPath, pos, Quaternion.identity, new Vector3(0.07f, 0.07f, 0.07f));
         }
         player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+        InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", deathPoint.transform.globalPosition, Quaternion.identity, new Vector3(1, 1, 1));
         InternalCalls.Destroy(gameObject);
     }
 
