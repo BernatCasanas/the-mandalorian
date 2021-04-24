@@ -864,7 +864,7 @@ public class Core : DiamondComponent
         }
 
         Audio.StopAudio(gameObject);
-        Audio.PlayAudio(shootPoint, "Play_Blaster_Shoot_Mando");
+        Audio.PlayAudio(shootPoint, "Play_Sniper_Shoot_Mando");
         Input.PlayHaptic(.5f, 10);
 
         Vector3 scale = perfectShot == true ? shootPoint.transform.globalScale : shootPoint.transform.globalScale * 1.5f;
