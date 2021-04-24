@@ -15,6 +15,7 @@ public class Core : DiamondComponent
         SHOOTING,
         SHOOT,
         GADGET_SHOOT,
+        CHARGING_SEC_SHOOT,
         SECONDARY_SHOOT,
         DEAD
     }
@@ -31,6 +32,8 @@ public class Core : DiamondComponent
         IN_SHOOT_END,
         IN_GADGET_SHOOT,
         IN_GADGET_SHOOT_END,
+        IN_CHARGE_SEC_SHOOT,
+        IN_CHARGE_SEC_SHOOT_END,
         IN_SEC_SHOOT,
         IN_SEC_SHOOT_END,
         IN_DEAD
@@ -113,6 +116,13 @@ public class Core : DiamondComponent
     public static float grenadesFireRate;
     private float grenadesFireRateTimer = 0.0f;
     //private float grenadesTimer = 0.0f;
+
+    // Secondary Shoot (sniper)
+    public float timeToPerfectCharge = 0.424f;
+    public int framesForPerfectCharge = 4;
+    private float timeToPerfectChargeEnd = 0f;
+    public float timeToAutomaticallyShootCharge = 2.296f;
+    private float chargeTimer = 0.0f;
 
     //Animations
     private float shootAnimationTotalTime = 0.0f;
@@ -328,6 +338,18 @@ public class Core : DiamondComponent
                 skill_damageReductionDashActive = false;
         }
 
+        if (currentState == STATE.CHARGING_SEC_SHOOT)
+        {
+            chargeTimer += Time.deltaTime;
+
+            if (chargeTimer >= timeToAutomaticallyShootCharge)
+            {
+                inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
+            }
+
+        }
+
+
         timeSinceLastDash += Time.deltaTime;
     }
 
@@ -337,14 +359,32 @@ public class Core : DiamondComponent
     {
         if (!lockInputs)
         {
-            if (Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT)
-                inputsList.Add(INPUT.IN_SHOOTING);
+            bool isPrimaryOverHeat = false;
+            if (hud != null)
+            {
+                isPrimaryOverHeat = hud.GetComponent<HUD>().IsPrimaryOverheated();
+            }
 
-            else if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE) && hasShot == true && CanStopShooting() == true)
+            if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT) && isPrimaryOverHeat == false)
+            {
+                inputsList.Add(INPUT.IN_SHOOTING);
+            }
+            else if (((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE) && hasShot == true && CanStopShooting() == true) || isPrimaryOverHeat == true)
             {
                 inputsList.Add(INPUT.IN_SHOOTING_END);
                 hasShot = false;
             }
+
+
+            if (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_DOWN)
+            {
+                inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT);
+            }
+            else if (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_UP)
+            {
+                inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
+            }
+
 
             if (IsJoystickMoving() == true)
                 inputsList.Add(INPUT.IN_MOVE);
@@ -427,6 +467,11 @@ public class Core : DiamondComponent
                             StartGadgetShoot();
                             break;
 
+                        case INPUT.IN_CHARGE_SEC_SHOOT:
+                            currentState = STATE.CHARGING_SEC_SHOOT;
+                            StartSecCharge();
+                            break;
+
                         case INPUT.IN_DEAD:
                             break;
                     }
@@ -458,6 +503,13 @@ public class Core : DiamondComponent
                             currentState = STATE.GADGET_SHOOT;
                             MoveEnd();
                             StartGadgetShoot();
+                            break;
+
+
+                        case INPUT.IN_CHARGE_SEC_SHOOT:
+                            currentState = STATE.CHARGING_SEC_SHOOT;
+                            MoveEnd();
+                            StartSecCharge();
                             break;
 
                         case INPUT.IN_DEAD:
@@ -519,7 +571,38 @@ public class Core : DiamondComponent
                     }
                     break;
 
+                case STATE.CHARGING_SEC_SHOOT:
+                    switch (input)
+                    {
+                        case INPUT.IN_CHARGE_SEC_SHOOT_END:
+                            currentState = STATE.SECONDARY_SHOOT;
+                            EndShootCharge();
+                            StartSecondaryShoot();
+                            break;
+
+                        case INPUT.IN_DASH:
+                            currentState = STATE.DASH;
+                            EndShootCharge();
+                            StartDash();
+                            break;
+
+                        case INPUT.IN_DEAD:
+                            break;
+                    }
+                    break;
+
                 case STATE.SECONDARY_SHOOT:
+                    switch (input)
+                    {
+                        case INPUT.IN_SEC_SHOOT_END:
+                            currentState = STATE.IDLE;
+                            StartIdle();
+                            //EndSecondaryShoot();
+                            break;
+
+                        case INPUT.IN_DEAD:
+                            break;
+                    }
                     break;
 
                 case STATE.GADGET_SHOOT:
@@ -552,19 +635,26 @@ public class Core : DiamondComponent
             case STATE.NONE:
                 break;
             case STATE.IDLE:
+                ReducePrimaryWeaponHeat();
                 break;
             case STATE.MOVE:
                 UpdateMove();
+                ReducePrimaryWeaponHeat();
                 break;
             case STATE.DASH:
                 UpdateDash();
+                ReducePrimaryWeaponHeat(0.75f);
                 break;
             case STATE.SHOOTING:
                 UpdateShooting();
                 break;
             case STATE.SHOOT:
                 break;
+            case STATE.CHARGING_SEC_SHOOT:
+                UpdateSecondaryShootCharge();
+                break;
             case STATE.SECONDARY_SHOOT:
+                ReducePrimaryWeaponHeat();
                 break;
             case STATE.DEAD:
                 break;
@@ -626,6 +716,7 @@ public class Core : DiamondComponent
 
     private void StartShoot()
     {
+
         inputsList.Add(INPUT.IN_SHOOT_END);
         hasShot = true;
 
@@ -639,12 +730,18 @@ public class Core : DiamondComponent
         Audio.PlayAudio(shootPoint, "Play_Blaster_Shoot_Mando");
         Input.PlayHaptic(.3f, 10);
         if (hud != null)
+        {
             hud.GetComponent<HUD>().ShootSwapImage(true);
+        }
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1606118587.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         if (bullet != null)
         {
+            AddPrimaryHeat();
+            Debug.Log("Bullet Shot!");
+
             if (skill_extraDamageActive) bullet.GetComponent<BH_Bullet>().damage = GetExtraDamageWithSkill();
             else bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
+
         }
 
     }
@@ -704,50 +801,79 @@ public class Core : DiamondComponent
 
     #endregion
 
-    /* #region SPECIAL SHOOT
-     private void SecondaryShootInput()
-     {
+    #region SPECIAL SHOOT
+    private void StartSecCharge()
+    {
+        chargeTimer = 0f;
+        //Animation play :O
 
+    }
 
+    private void EndShootCharge()
+    {
 
-     }
+        chargeTimer = 0f;
+    }
 
-     private void HandleSecondaryShoot()
-     {
-         Audio.StopAudio(gameObject);
-         Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
-         Vector3 rot = new Vector3(0f, 1f, 0f);
-         Quaternion rotation = Quaternion.RotateAroundAxis(rot, 0.383972f);
+    private void UpdateSecondaryShootCharge()
+    {
+        if (IsJoystickMoving() == true)
+            RotatePlayer();
+    }
 
-         Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot_Mando");
-         InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation * rotation, scale);
-         rotation = Quaternion.RotateAroundAxis(rot, -0.383972f);
-         InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation * rotation, scale);
+    private void StartSecondaryShoot()
+    {
+        bool perfectShot = false;
 
-         grenadesTimer = 0.0f;
+        if (chargeTimer < timeToPerfectCharge)
+        {
+            //TODO: Change color beam (red)
+        }
+        else if (chargeTimer > timeToPerfectCharge && chargeTimer < timeToPerfectChargeEnd)
+        {
+            perfectShot = true;
+            Debug.Log("Frame Perfect Charge!");
+            //TODO: Change color beam (yellow)
+        }
+        else if (chargeTimer > timeToPerfectChargeEnd)
+        {
+            //TODO: Change color beam (beeping red-white)
 
-         Input.PlayHaptic(2f, 30);
+        }
 
-         if (fireButtonPressed == true)
-         {
-             ChangeState(State.Shoot);
-         }
-         else
-         {
-             if (IsJoystickMoving())
-             {
-                 ChangeState(State.Run);
-             }
-             else
-             {
-                 ChangeState(State.Idle);
+        ShootPerfectShot(perfectShot);
+    }
 
-             }
-         }
+    private void ShootPerfectShot(bool perfectShot)
+    {
 
-     }
+        inputsList.Add(INPUT.IN_SEC_SHOOT_END);
 
-     #endregion*/
+        if (shootPoint == null)
+        {
+            Debug.Log("Shootpoint reference is null!");
+            return;
+        }
+
+        Audio.StopAudio(gameObject);
+        Audio.PlayAudio(shootPoint, "Play_Blaster_Shoot_Mando");
+        Input.PlayHaptic(.5f, 10);
+
+        Vector3 scale = perfectShot == true ? shootPoint.transform.globalScale : shootPoint.transform.globalScale * 1.5f;
+
+        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1606118587.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, scale);
+        if (bullet != null)
+        {
+            AddPrimaryHeat();
+            Debug.Log("Charged Bullet Shot!");
+
+            if (skill_extraDamageActive) bullet.GetComponent<BH_Bullet>().damage = GetExtraDamageWithSkill();
+            else bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
+
+        }
+    }
+
+    #endregion
 
     #region DASH
     private void StartDash()
@@ -893,14 +1019,41 @@ public class Core : DiamondComponent
     {
         float ret = baseFireRate;
 
-        ret = (float)(Math.Log(timeSinceLastDash * fireRateAfterDashRecoverRatio) - Math.Log(0.01f)) / (3f / baseFireRate);
+        float currentHeat = hud.GetComponent<HUD>().GetPrimaryHeat();
 
-        ret = Math.Min(ret, baseFireRate * fireRateMultCap);
-        ret = Math.Max(ret, baseFireRate / fireRateMultCap);
+        if (currentHeat <= 0f)
+            currentHeat = 0.01f;
 
-        Debug.Log("FireRate: " + ret.ToString());
+        ret = (currentHeat * (baseFireRate * fireRateMultCap)) / hud.GetComponent<HUD>().GetPrimaryMaxHeat();
+
+
+        Debug.Log("Firerate: " + ret.ToString());
+
+        ret = Math.Min(ret, baseFireRate * fireRateMultCap * 0.45f);
+        ret = Math.Max(ret, baseFireRate * 0.75f);
 
         return ret;
+    }
+
+    private void AddPrimaryHeat()
+    {
+        if (hud != null)
+            hud.GetComponent<HUD>().AddPrimaryHeatShot();
+    }
+
+    private void ReducePrimaryWeaponHeat(float stateMult = 0f)
+    {
+        float newValue = 22.5f * Time.deltaTime;
+        float refreshMult = 1.0f + stateMult;
+
+        if (hud != null)
+            hud.GetComponent<HUD>().ReducePrimaryHeat(newValue * refreshMult);
+
+    }
+
+    public bool IsDashing()
+    {
+        return currentState == STATE.DASH;
     }
 
     #endregion
@@ -911,67 +1064,71 @@ public class Core : DiamondComponent
         //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + collidedGameObject.tag);
         //Debug.Log("Collided by tag: " + collidedGameObject.tag);
 
-        if (collidedGameObject.CompareTag("StormTrooperBullet"))
+        if(currentState != STATE.DASH)
         {
-            //InternalCalls.Destroy(gameObject);
-            PlayParticles(PARTICLES.IMPACT);
-            BH_Bullet bulletScript = collidedGameObject.GetComponent<BH_Bullet>();
-            Audio.PlayAudio(gameObject, "Play_Mando_Hit");
-
-            if (bulletScript != null)
+            if (collidedGameObject.CompareTag("StormTrooperBullet"))
             {
-                int damageFromBullet = 0;
+                //InternalCalls.Destroy(gameObject);
+                PlayParticles(PARTICLES.IMPACT);
+                BH_Bullet bulletScript = collidedGameObject.GetComponent<BH_Bullet>();
+                Audio.PlayAudio(gameObject, "Play_Mando_Hit");
 
-                if (skill_damageReductionDashActive) 
-                    damageFromBullet = (int)(bulletScript.damage * (1.0f - skill_damageReductionDashAmount));
-                else 
-                    damageFromBullet = (int)bulletScript.damage;
-
-                PlayerHealth healthScript = gameObject.GetComponent<PlayerHealth>();
-
-                if (healthScript != null)
-                    healthScript.TakeDamage(damageFromBullet);
-
-                damageTaken += damageFromBullet;
-            }
-        }
-        if (collidedGameObject.CompareTag("Bantha"))
-        {
-            //InternalCalls.Destroy(gameObject);
-            Audio.PlayAudio(gameObject, "Play_Mando_Hit");
-
-            Enemy enemy = collidedGameObject.GetComponent<Enemy>();
-
-            if (enemy != null)
-            {
-                float damage = enemy.damage;
-
-                if (damage != 0)
+                if (bulletScript != null)
                 {
-                    int damageFromEnemy = 0;
-                    if (skill_damageReductionDashActive) 
-                        damageFromEnemy = (int)(damage * (1.0f - skill_damageReductionDashAmount));
-                    else 
-                        damageFromEnemy = (int)damage;
+                    int damageFromBullet = 0;
 
-                    PlayerHealth playerHealth = gameObject.GetComponent<PlayerHealth>();
-                    if (playerHealth != null)
-                        playerHealth.TakeDamage(damageFromEnemy);
+                    if (skill_damageReductionDashActive)
+                        damageFromBullet = (int)(bulletScript.damage * (1.0f - skill_damageReductionDashAmount));
+                    else
+                        damageFromBullet = (int)bulletScript.damage;
 
-                    damageTaken += damageFromEnemy;
+                    PlayerHealth healthScript = gameObject.GetComponent<PlayerHealth>();
+
+                    if (healthScript != null)
+                        healthScript.TakeDamage(damageFromBullet);
+
+                    damageTaken += damageFromBullet;
+                }
+            }
+            if (collidedGameObject.CompareTag("Bantha"))
+            {
+                //InternalCalls.Destroy(gameObject);
+                Audio.PlayAudio(gameObject, "Play_Mando_Hit");
+
+                Enemy enemy = collidedGameObject.GetComponent<Enemy>();
+
+                if (enemy != null)
+                {
+                    float damage = enemy.damage;
+
+                    if (damage != 0)
+                    {
+                        int damageFromEnemy = 0;
+                        if (skill_damageReductionDashActive)
+                            damageFromEnemy = (int)(damage * (1.0f - skill_damageReductionDashAmount));
+                        else
+                            damageFromEnemy = (int)damage;
+
+                        PlayerHealth playerHealth = gameObject.GetComponent<PlayerHealth>();
+                        if (playerHealth != null)
+                            playerHealth.TakeDamage(damageFromEnemy);
+
+                        damageTaken += damageFromEnemy;
+                    }
+                }
+            }
+            else if (collidedGameObject.CompareTag("ExplosiveBarrel"))
+            {
+                SphereCollider sphereColl = collidedGameObject.GetComponent<SphereCollider>();
+
+                if (sphereColl != null)
+                {
+                    if (sphereColl.active)
+                        gameObject.GetComponent<PlayerHealth>().TakeDamage(collidedGameObject.GetComponent<BH_DestructBox>().explosion_damage / 2);
                 }
             }
         }
-        else if (collidedGameObject.CompareTag("ExplosiveBarrel"))
-        {
-            SphereCollider sphereColl = collidedGameObject.GetComponent<SphereCollider>();
 
-            if (sphereColl != null)
-            {
-                if (sphereColl.active)
-                    gameObject.GetComponent<PlayerHealth>().TakeDamage(collidedGameObject.GetComponent<BH_DestructBox>().explosion_damage/2);
-            }
-        }
     }
 
 

@@ -54,7 +54,7 @@ public class Rancor : DiamondComponent
 
     //State
     private RANCOR_STATE currentState = RANCOR_STATE.ROAR;   //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS
-                                                               //Setting states directlly will break the behaviour  -Jose
+                                                             //Setting states directlly will break the behaviour  -Jose
     private List<RANCOR_INPUT> inputsList = new List<RANCOR_INPUT>();
     Random randomNum = new Random();
 
@@ -103,7 +103,7 @@ public class Rancor : DiamondComponent
     public float meleeCH1ColliderDuration = 0.0f;
     public float meleeCH2ColliderDuration = 0.0f;
     public float meleeComboHit3CollisionTimeToActivate = 0.0f;
-    public float meleeComboHit3CollisionDuration= 0.0f;
+    public float meleeComboHit3CollisionDuration = 0.0f;
 
 
     private float meleeCH1ColliderTimer = 0.0f;
@@ -206,7 +206,7 @@ public class Rancor : DiamondComponent
         handSlamTime = Animator.GetAnimationDuration(gameObject, "RN_HandSlam") - 0.016f;
 
         rushTime = Animator.GetAnimationDuration(gameObject, "RN_Rush") - 0.016f;
-        Debug.Log("RUSH TiME: "+ rushTime.ToString());
+        Debug.Log("RUSH TiME: " + rushTime.ToString());
 
         //rushStunDuration = Animator.GetAnimationDuration(gameObject, "RN_RushRecover") - 0.016f;
 
@@ -214,7 +214,7 @@ public class Rancor : DiamondComponent
 
         Counter.SumToCounterType(Counter.CounterTypes.RANCOR);
         damaged = 0.0f;
-        runTime = (Animator.GetAnimationDuration(gameObject, "RN_Walk"))/2;
+        runTime = (Animator.GetAnimationDuration(gameObject, "RN_Walk")) / 2;
         dustTime = (Animator.GetAnimationDuration(gameObject, "RN_Walk")) / 4;
         rancorParticles = gameObject.GetComponent<RancorParticles>();
         toggleLegParticle = true;
@@ -638,8 +638,16 @@ public class Rancor : DiamondComponent
         limbo_health = Mathf.Lerp(limbo_health, healthPoints, 0.01f);
         if (boss_bar != null)
         {
-            boss_bar.GetComponent<Material>().SetFloatUniform("length_used", healthPoints / maxHealthPoints);
-            boss_bar.GetComponent<Material>().SetFloatUniform("limbo", limbo_health / maxHealthPoints);
+            Material bossBarMat = boss_bar.GetComponent<Material>();
+
+            if (bossBarMat != null)
+            {
+                bossBarMat.SetFloatUniform("length_used", healthPoints / maxHealthPoints);
+                bossBarMat.SetFloatUniform("limbo", limbo_health / maxHealthPoints);
+            }
+            else
+                Debug.Log("Boss Bar component was null!!");
+
         }
         if (damaged > 0.01f)
         {
@@ -651,7 +659,14 @@ public class Rancor : DiamondComponent
         }
         if (rancor_mesh != null)
         {
-            rancor_mesh.GetComponent<Material>().SetFloatUniform("damaged", damaged);
+            Material rancorMeshMat = rancor_mesh.GetComponent<Material>();
+
+            if (rancorMeshMat != null)
+            {
+                rancorMeshMat.SetFloatUniform("damaged", damaged);
+            }
+            else
+                Debug.Log("Rancor Mesh Material was null!!");
         }
     }
 
@@ -816,10 +831,10 @@ public class Rancor : DiamondComponent
                 InternalCalls.CreatePrefab("Library/Prefabs/376114835.prefab", pos, gameObject.transform.localRotation, gameObject.transform.localScale);
                 //gameObject.DisableCollider();
             }
-           
+
         }
 
-        if(meleeCH3Timer < 1.5f)
+        if (meleeCH3Timer < 1.5f)
         {
             if (meleeHit3Haptic)
             {
@@ -828,10 +843,10 @@ public class Rancor : DiamondComponent
                 Debug.Log("Hpatic Jump");
             }
         }
-        if (meleeCH3Timer < (meleeComboHit3Time / 2)+0.2f && impact) 
-        { 
-            PlayParticles(PARTICLES.IMPACT); 
-            impact = false; 
+        if (meleeCH3Timer < (meleeComboHit3Time / 2) + 0.2f && impact)
+        {
+            PlayParticles(PARTICLES.IMPACT);
+            impact = false;
         }
 
         if (jumpDelayTimer > 0.0f)
@@ -949,17 +964,38 @@ public class Rancor : DiamondComponent
 
             if (prepareShotTimer <= 0.0f)
             {
-                if (projectilePoint != null)
+                if (projectilePoint != null && Core.instance != null)
                 {
                     Vector3 pos = projectilePoint.transform.globalPosition;
                     Vector3 scale = new Vector3(1f, 1f, 1f);
 
                     GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1225675544.prefab", pos, Quaternion.identity, scale);
-                    projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition - new Vector3(-3f,-1f,0f);
-                    GameObject projectile1 = InternalCalls.CreatePrefab("Library/Prefabs/1225675544.prefab", pos, Quaternion.identity, scale);
-                    projectile1.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition - new Vector3(3f,-1f,0f);
-                    GameObject projectile2 = InternalCalls.CreatePrefab("Library/Prefabs/1225675544.prefab", pos, Quaternion.identity, scale);
-                    projectile2.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition - new Vector3(0f,-1f,0f);
+                    if (projectile != null)
+                    {
+                        RancorProjectile rancorParticles = projectile.GetComponent<RancorProjectile>();
+
+                        if (rancorParticles != null)
+                            rancorParticles.targetPos = Core.instance.gameObject.transform.globalPosition - new Vector3(-3f, -1f, 0f);
+                    }
+
+                    projectile = InternalCalls.CreatePrefab("Library/Prefabs/1225675544.prefab", pos, Quaternion.identity, scale);
+
+                    if (projectile != null)
+                    {
+                        RancorProjectile rancorParticles = projectile.GetComponent<RancorProjectile>();
+
+                        if (rancorParticles != null)
+                            rancorParticles.targetPos = Core.instance.gameObject.transform.globalPosition - new Vector3(3f, -1f, 0f);
+                    }
+                    projectile = InternalCalls.CreatePrefab("Library/Prefabs/1225675544.prefab", pos, Quaternion.identity, scale);
+
+                    if (projectile != null)
+                    {
+                        RancorProjectile rancorParticles = projectile.GetComponent<RancorProjectile>();
+
+                        if (rancorParticles != null)
+                            rancorParticles.targetPos = Core.instance.gameObject.transform.globalPosition - new Vector3(0f, -1f, 0f);
+                    }
                 }
             }
         }
@@ -983,21 +1019,30 @@ public class Rancor : DiamondComponent
         Audio.PlayAudio(gameObject, "Play_Rancor_Hand_Slam");
 
         handSlamTimerToActivate = 0.0f;
-        handSlamHitBox.GetComponent<RancorHandSlamHitCollider>().RestartCollider();
+
+
+        if (handSlamHitBox != null)
+        {
+
+            RancorHandSlamHitCollider handSlamColl = handSlamHitBox.GetComponent<RancorHandSlamHitCollider>();
+
+            if(handSlamColl != null)
+                handSlamColl.RestartCollider();
+        }
         activateWave = true;
-       
+
     }
 
 
     private void UpdateHandSlam()
     {
-      
+
         handSlamTimerToActivate += Time.deltaTime;
-        if(handSlamTimerToActivate < 0.5f)
+        if (handSlamTimerToActivate < 0.5f)
         {
             LookAt(Core.instance.gameObject.transform.globalPosition);
         }
-        if(handSlamTimerToActivate > handSlamTimeToActivate)
+        if (handSlamTimerToActivate > handSlamTimeToActivate)
         {
             if (handSlamHitBox == null)
                 return;
@@ -1129,7 +1174,7 @@ public class Rancor : DiamondComponent
     {
         Animator.Play(gameObject, "RN_Roar");
         Audio.PlayAudio(gameObject, "Play_Rancor_Breath");
-        Input.PlayHaptic(0.9f, (int)roarTime*1000);
+        Input.PlayHaptic(0.9f, (int)roarTime * 1000);
         roarTimer = roarTime;
     }
 
@@ -1161,7 +1206,13 @@ public class Rancor : DiamondComponent
         //Audio.PlayAudio(gameObject, "Play_Mando_Voice");
 
         if (hitParticles != null)
-            hitParticles.GetComponent<ParticleSystem>().Play();
+        {
+            ParticleSystem hitParticle = hitParticles.GetComponent<ParticleSystem>();
+
+            if (hitParticle != null)
+                hitParticle.Play();
+
+        }
 
         //RemoveFromEnemyList();
     }
@@ -1192,7 +1243,7 @@ public class Rancor : DiamondComponent
         Animator.Pause(gameObject);
         Audio.StopAudio(gameObject);
         Input.PlayHaptic(0.3f, 3);
-        //InternalCalls.Destroy(gameObject);
+        InternalCalls.Destroy(gameObject);
     }
     #endregion
 
@@ -1218,8 +1269,25 @@ public class Rancor : DiamondComponent
     {
         if (collidedGameObject.CompareTag("Bullet"))
         {
-            if(skill_increaseDamageToBossActive) TakeDamage(collidedGameObject.GetComponent<BH_Bullet>().damage * (1.0f + skill_increaseDamageToBossAmount));
-            else TakeDamage(collidedGameObject.GetComponent<BH_Bullet>().damage);
+            float damageToBoss = 0f;
+
+            BH_Bullet bulletScript = collidedGameObject.GetComponent<BH_Bullet>();
+
+            if (bulletScript != null)
+            {
+                damageToBoss += bulletScript.damage;
+            }
+            else
+            {
+                Debug.Log("The collider with tag Bullet didn't have a bullet Script!!");
+            }
+
+            if (skill_increaseDamageToBossActive)
+            {
+                damageToBoss *= (1.0f + skill_increaseDamageToBossAmount);
+            }
+
+            TakeDamage(damageToBoss);
             Debug.Log("Rancor HP: " + healthPoints.ToString());
             damaged = 1.0f;
             //CHANGE FOR APPROPIATE RANCOR HIT
@@ -1227,7 +1295,12 @@ public class Rancor : DiamondComponent
 
             if (Core.instance.hud != null)
             {
-                Core.instance.hud.GetComponent<HUD>().AddToCombo(25, 0.95f);
+                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                {
+                    hudComponent.AddToCombo(25, 0.95f);
+                }
             }
 
             if (currentState != RANCOR_STATE.DEAD && healthPoints <= 0.0f)
@@ -1279,18 +1352,12 @@ public class Rancor : DiamondComponent
             if (currentState == RANCOR_STATE.DEAD) return;
 
             if (currentState == RANCOR_STATE.RUSH)
-            {
                 inputsList.Add(RANCOR_INPUT.IN_RUSH_END);
-                PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
-                if (playerHealth != null)
-                    playerHealth.TakeDamage((int)rushDamage);
-            }
-            else
-            {
-                PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
-                if (playerHealth != null)
-                    playerHealth.TakeDamage((int)touchDamage);
-            }
+
+            PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+                playerHealth.TakeDamage((int)touchDamage);
+
         }
     }
 
@@ -1301,7 +1368,7 @@ public class Rancor : DiamondComponent
             skill_increaseDamageToBossActive = true;
             skill_increaseDamageToBossAmount = value1;
         }
-        
+
     }
     private void PlayParticles(PARTICLES particleType)
     {
@@ -1383,12 +1450,12 @@ public class Rancor : DiamondComponent
         {
             healthPoints -= damage;
 
-         if(healthPoints <= 0.0f)
-          {
-            inputsList.Add(RANCOR_INPUT.IN_DEAD);
-          }
+            if (healthPoints <= 0.0f)
+            {
+                inputsList.Add(RANCOR_INPUT.IN_DEAD);
+            }
         }
-       
+
     }
 
 }
