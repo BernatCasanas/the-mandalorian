@@ -1,0 +1,177 @@
+{
+    "assets_path": "Assets\/Prefabs\/Sniper Chargeup.prefab",
+    "Game Objects": [
+        {
+            "name": "Sniper Chargeup",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 618033379,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 1867760967,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                4.5572929382324219,
+                0,
+                -7.8002529144287109
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Particle System",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1232997273,
+            "ParentUID": 618033379,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": true,
+                    "looping": true,
+                    "maxDuration": 0.77799999713897705,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1182250129.dds",
+                            "texUID": 1182250129,
+                            "paEmitterName": "Empty",
+                            "paLifeTime": [
+                                1,
+                                1
+                            ],
+                            "paSize": [
+                                0.05000000074505806,
+                                0.05000000074505806
+                            ],
+                            "paColor": [
+                                0.95951414108276367,
+                                0.23308035731315613,
+                                0.23308035731315613,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        0,
+                                        0
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        -1,
+                                        1
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0.43181800842285156,
+                                                0,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.80392175912857056,
+                                                0.010767010040581226,
+                                                0.010767010040581226,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0.47384744882583618
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0.96476399898529053,
+                                                0.013392865657806396,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 0,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeSphereRadius": 0.0010000000474974513,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 1,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        }
+    ]
+}
