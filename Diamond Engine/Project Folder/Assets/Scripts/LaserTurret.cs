@@ -54,11 +54,16 @@ public class LaserTurret : Enemy
     private float feedbackTimer = 0.0f;
 
     private Vector3[] laserPoints;
-    public int lasersNumber = 3;
+    public int lasersNumber = 4;
 
     public void Awake()
     {
+
         laserPoints = new Vector3[lasersNumber];
+        for (int i = 0; i < lasersNumber; i++)
+        {
+            laserPoints[i] = gameObject.transform.globalPosition + gameObject.transform.GetForward();
+        }
 
         agent = gameObject.GetComponent<NavMeshAgent>();
         targetPosition = null;
@@ -309,8 +314,8 @@ public class LaserTurret : Enemy
 
         for (int i = 0; i < laserPoints.Length; i++)
         {
-            InternalCalls.DrawRay(this.gameObject.transform.globalPosition, laserPoints[i], Vector3.one);
-            Debug.Log("Shooting");
+            InternalCalls.DrawRay(this.gameObject.transform.globalPosition, laserPoints[i], new Vector3(1, 0, 0));
+            //Debug.Log(laserPoints[i].ToString());
         }
 
         //laser1.transform.localRotation = gameObject.transform.localRotation;
