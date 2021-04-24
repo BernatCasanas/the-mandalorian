@@ -396,11 +396,10 @@ public class Skytrooper : Enemy
     }
     private void UpdateWander()
     {
-
         LookAt(targetPosition);
 
         if (skill_slowDownActive && Skill_Tree_Data.instance != null)
-            if (skill_slowDownActive) MoveToPosition(targetPosition, wanderSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
+            MoveToPosition(targetPosition, wanderSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
         else MoveToPosition(targetPosition, wanderSpeed);
     }
     private void WanderEnd()
