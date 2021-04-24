@@ -340,7 +340,6 @@ public class Wampa : Bosseslv2
                 inputsList.Add(INPUT.IN_PROJECTILE);
             else
                 inputsList.Add(INPUT.IN_FAST_RUSH);
-            Debug.Log("Selecting Action");
         }
     }
 

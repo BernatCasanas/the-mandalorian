@@ -49,6 +49,16 @@ public class Bosseslv2 : DiamondComponent
     public float projectileRange = 6.0f;
     public float projectileDamage = 10.0f;
     public float rushDamage = 15.0f;
+    private JUMPSLAM jumpslam = JUMPSLAM.NONE;
+
+    enum JUMPSLAM : int
+    {
+        NONE = -1,
+        CHARGE,
+        UP,
+        FALLING,
+        RECOVERY
+    }
 
 
 
@@ -74,8 +84,8 @@ public class Bosseslv2 : DiamondComponent
                     Quaternion rot = projectilePoint.transform.globalRotation;
                     Vector3 scale = new Vector3(1, 1, 1);
 
-                    GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1052835205.prefab", pos, rot, scale);
-                    projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
+                    //GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1052835205.prefab", pos, rot, scale);
+                    //projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
                     Debug.Log("Throwing projectile");
 
                     if (firstShot)
@@ -185,6 +195,7 @@ public class Bosseslv2 : DiamondComponent
 
     public void StartJumpSlam()
     {
+        Debug.Log("Starting Jumping");
 
     }
 
