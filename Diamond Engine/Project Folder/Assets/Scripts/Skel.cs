@@ -147,12 +147,12 @@ public class Skel : Bosseslv2
                     {
                         case INPUT.IN_JUMPSLAM:
                             currentState = STATE.JUMP_SLAM;
-                            StartProjectile();
+                            StartJumpSlam();
                             break;
 
                         case INPUT.IN_BOUNCERUSH:
                             currentState = STATE.BOUNCE_RUSH;
-                            StartFastRush();
+                            StartBounceRush();
                             break;
 
                         case INPUT.IN_FOLLOW:
