@@ -46,7 +46,8 @@ public class Skytrooper : Enemy
 
     //Action times
     public float idleTime = 5.0f;
-    public float dashTime = 0.0f;
+    public float wanderTime = 0.0f;
+    private float dashTime = 0.0f;
     private float dieTime = 3.0f;
     public float timeBewteenShots = 0.5f;
     public float timeBewteenShootingStates = 1.5f;
@@ -64,6 +65,7 @@ public class Skytrooper : Enemy
 
     //Timers
     private float idleTimer = 0.0f;
+    private float wanderTimer = 0.0f;
     private float dashTimer = 0.0f;
     //private float shotTimer = 0.0f;
     private float dieTimer = 0.0f;
@@ -92,6 +94,7 @@ public class Skytrooper : Enemy
         Animator.Play(gameObject, "SK_Idle");
 
         idleTimer = idleTime;
+        dashTime = Animator.GetAnimationDuration(gameObject, "SK_Dash");
         //dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
 
         //ParticleSystem spawnparticles = null;
@@ -161,9 +164,10 @@ public class Skytrooper : Enemy
             }
         }
 
-        if (currentState == STATE.DASH || currentState == STATE.WANDER)
+        if (currentState == STATE.WANDER && wanderTimer > 0.0f)
         {
-            if (Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance)
+            wanderTimer -= Time.deltaTime;
+            if (wanderTimer < 0.0f)
             {
                 inputsList.Add(INPUT.IN_IDLE);
             }
@@ -172,28 +176,9 @@ public class Skytrooper : Enemy
         if (currentState == STATE.DASH && dashTimer > 0.0f)
         {
             dashTimer -= Time.deltaTime;
-            if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) <= agent.stoppingDistance || dashTimer < 0.0f)
+            if (dashTimer < 0.0f)
             {
                 inputsList.Add(INPUT.IN_DASH_END);
-            }
-        }
-
-        if (feedbackTimer > 0.0f)
-        {
-            feedbackTimer -= Time.deltaTime;
-
-            if (feedbackTimer <= 0.0f)
-            {
-                //InternalCalls.Destroy(visualFeedback);
-            }
-        }
-        if (feedbackTimerAux > 0.0f)
-        {
-            feedbackTimerAux -= Time.deltaTime;
-
-            if (feedbackTimerAux <= 0.0f)
-            {
-                //InternalCalls.Destroy(visualFeedbackAux);
             }
         }
     }
@@ -288,7 +273,7 @@ public class Skytrooper : Enemy
                 case STATE.DASH:
                     switch (input)
                     {
-                        case INPUT.IN_IDLE:
+                        case INPUT.IN_DASH_END:
                             currentState = STATE.IDLE;
                             DashEnd();
                             StartIdle();
@@ -401,19 +386,22 @@ public class Skytrooper : Enemy
     #region WANDER
     private void StartWander()
     {
+        wanderTimer = wanderTime;
         Debug.Log("SKYTROOPER WANDER");
-        agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
-        Animator.Play(gameObject, "SK_Dash");
+        Animator.Play(gameObject, "SK_Wander");
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
+
+        targetPosition = CalculateNewPosition(wanderRange);
     }
     private void UpdateWander()
     {
-        LookAt(agent.GetDestination());
+
+        LookAt(targetPosition);
 
         if (skill_slowDownActive && Skill_Tree_Data.instance != null)
-            if (skill_slowDownActive) agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
-        else agent.MoveToCalculatedPos(wanderSpeed);
+            if (skill_slowDownActive) MoveToPosition(targetPosition, wanderSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
+        else MoveToPosition(targetPosition, wanderSpeed);
     }
     private void WanderEnd()
     {
@@ -424,19 +412,23 @@ public class Skytrooper : Enemy
     #region DASH
     private void StartDash()
     {
+        dashTimer = dashTime;
         Debug.Log("SKYTROOPER DASH");
-        agent.CalculateRandomPath(gameObject.transform.globalPosition, dashRange);
 
         Animator.Play(gameObject, "SK_Dash");
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Dash");
+
+        //agent.CalculateRandomPath(gameObject.transform.globalPosition, dashRange);
+        targetPosition = CalculateNewPosition(dashRange);
+        //Debug.Log(targetPosition.ToString());
     }
     private void UpdateDash()
     {
-        LookAt(agent.GetDestination());
+        LookAt(targetPosition);
         
         if (skill_slowDownActive && Skill_Tree_Data.instance != null) 
-            agent.MoveToCalculatedPos(dashSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
-        else agent.MoveToCalculatedPos(dashSpeed);
+            MoveToPosition(targetPosition, dashSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
+        else MoveToPosition(targetPosition, dashSpeed);
     }
     private void DashEnd()
     {
@@ -488,9 +480,9 @@ public class Skytrooper : Enemy
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/88418274.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, new Vector3(0.5f, 0.5f, 0.5f));
         bullet.GetComponent<SkyTrooperShot>().SetTarget(player.transform.globalPosition, false);
         if (aux)
-            visualFeedbackAux = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, player.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
+            InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, player.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
         else
-            visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, player.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
+            InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, player.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
         Animator.Play(gameObject, "SK_Shoot");
         Audio.PlayAudio(gameObject, "PLay_Skytrooper_Grenade_Launch");
         shotsShooted++;
