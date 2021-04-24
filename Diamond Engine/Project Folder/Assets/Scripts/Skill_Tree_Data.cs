@@ -30,8 +30,8 @@ public class Skill_Tree_Data : DiamondComponent
     //Primary Weapon Skill 2
     //Primary Weapon Skill 3
     //Primary Weapon Skill 4
-    public float PW4_SlowDownAmount = 0.2f;
-    public float PW4_SlowDownDuration = 3.0f;
+    public float PrimaryWeapon4_SlowDownAmount = 0.2f;
+    public float PrimaryWeapon4_SlowDownDuration = 3.0f;
     //Primary Weapon Skill 5
     //Primary Weapon Skill 6
     //Primary Weapon Skill 7
@@ -42,7 +42,7 @@ public class Skill_Tree_Data : DiamondComponent
     //Secondary Weapon Skill 2
     //Secondary Weapon Skill 3
     //Secondary Weapon Skill 4
-    public float SW4_DelayReducedAmount = 0.3f;
+    public float SecondaryWeapon4_DelayReducedAmount = 0.3f;
     //Secondary Weapon Skill 5
     //Secondary Weapon Skill 6
     //Secondary Weapon Skill 7
@@ -59,8 +59,8 @@ public class Skill_Tree_Data : DiamondComponent
     //Utility Skill 2
     //Utility Skill 3
     //Utility Skill 4
-    public float U4_seconds = 2.0f;
-    public float U4_damageReduction = 0.2f;
+    public float Utility4_seconds = 2.0f;
+    public float Utility4_damageReduction = 0.2f;
     //Utility Skill 5
     //Utility Skill 6
     //Utility Skill 7
@@ -73,7 +73,10 @@ public class Skill_Tree_Data : DiamondComponent
     //Aggression Skill 4
     //Aggression Skill 5
     //Aggression Skill 6
+    public float Aggression6_increaseDamageToBossAmount = 0.2f;
     //Aggression Skill 7
+    public float Aggression7_extraDamageHPStep = 1.0f;
+    public float Aggression7_extraDamageAmount = 1.0f;
     //Aggression Skill 8
     #endregion
     #region Defense Variables
@@ -85,6 +88,7 @@ public class Skill_Tree_Data : DiamondComponent
     //Defense Skill 6
     //Defense Skill 7
     //Defense Skill 8
+    public float Defense8_chanceToAvoidDamage = 0.1f;
     #endregion
     #endregion
     #endregion
@@ -147,8 +151,8 @@ public class Skill_Tree_Data : DiamondComponent
         AGGRESION3 = 11,
         AGGRESION4 = 12,
         AGGRESION5 = 13,
-        AGGRESION6 = 14,
-        AGGRESION7 = 15,
+        AGGRESION_INCREASE_DAMAGE_TO_BOSS = 14,
+        AGGRESION_EXTRA_DAMAGE_LOW_HEALTH = 15,
         AGGRESION8 = 16,
         DEFENSE1 = 17,
         DEFENSE2 = 18,
@@ -157,7 +161,7 @@ public class Skill_Tree_Data : DiamondComponent
         DEFENSE5 = 21,
         DEFENSE6 = 22,
         DEFENSE7 = 23,
-        DEFENSE8 = 24,
+        DEFENSE_CHANCE_AVOID_DAMAGE = 24,
     }
     #endregion
 
@@ -295,8 +299,16 @@ public class Skill_Tree_Data : DiamondComponent
     }
     public class Mando_Skills_Data
     {
+        //Utility Skill 4
         public float U4_seconds = -1.0f;
         public float U4_damageReduction = -1.0f;
+        //Aggression Skill 6
+        public float A6_increaseDamageToBossAmount = -1.0f;
+        //Aggression Skill 7
+        public float A7_extraDamageHPStep = -1.0f;
+        public float A7_extraDamageAmount = -1.0f;
+        //Defense Skill 8
+        public float D8_changeToAvoidDamage = -1.0f;
     }
     public class Weapons_Skills_Data
     {
@@ -338,11 +350,15 @@ public class Skill_Tree_Data : DiamondComponent
         groguSkillTree.Grogu8_gainPassiveForceRegeneration = Grogu8_gainPassiveForceRegeneration;
         groguSkillTree.Grogu8_HPMissingPercentage = Grogu8_HPMissingPercentage;
 
-        weaponsSkillTree.PW4_SlowDownAmount = PW4_SlowDownAmount;
-        weaponsSkillTree.PW4_SlowDownDuration = PW4_SlowDownDuration;
-        weaponsSkillTree.SW4_DelayReducedAmount = SW4_DelayReducedAmount;
+        weaponsSkillTree.PW4_SlowDownAmount = PrimaryWeapon4_SlowDownAmount;
+        weaponsSkillTree.PW4_SlowDownDuration = PrimaryWeapon4_SlowDownDuration;
+        weaponsSkillTree.SW4_DelayReducedAmount = SecondaryWeapon4_DelayReducedAmount;
 
-        mandoSkillTree.U4_damageReduction = U4_damageReduction;
-        mandoSkillTree.U4_seconds = U4_seconds;
+        mandoSkillTree.U4_damageReduction = Utility4_damageReduction;
+        mandoSkillTree.U4_seconds = Utility4_seconds;
+        mandoSkillTree.A6_increaseDamageToBossAmount = Aggression6_increaseDamageToBossAmount;
+        mandoSkillTree.A7_extraDamageAmount = Aggression7_extraDamageAmount;
+        mandoSkillTree.A7_extraDamageHPStep = Aggression7_extraDamageHPStep;
+        mandoSkillTree.D8_changeToAvoidDamage = Defense8_chanceToAvoidDamage;
     }
 }

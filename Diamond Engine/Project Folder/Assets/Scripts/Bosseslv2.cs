@@ -15,6 +15,7 @@ public class Bosseslv2 : DiamondComponent
     public float probFollow = 60.0f;
     public float probWander = 40.0f;
     public GameObject projectilePoint = null;
+    public Vector3 targetPos = new Vector3(0, 0, 0);
     public float distanceProjectile = 15.0f;
     public float wanderRange = 7.5f;
 
@@ -43,12 +44,33 @@ public class Bosseslv2 : DiamondComponent
     public float dieTimer = 0.0f;
     public float restingTime = 3.0f;
     public float restingTimer = 0.0f;
+    public float bounceRushTime = 4.0f;
+    public float bounceRushTimer = 0.0f;
 
     //Atacks
     public float projectileAngle = 30.0f;
     public float projectileRange = 6.0f;
     public float projectileDamage = 10.0f;
     public float rushDamage = 15.0f;
+
+    //Jump Slam
+    private JUMPSLAM jumpslam = JUMPSLAM.NONE;
+    private float jumpslamTimer = 0.0f;
+    private float chargeTime = 1f;
+    private float upTime = 0.3f;
+    private float fallingTime = 1.0f;
+    private float recoveryTime = 0.73f;
+    public float totalJumpSlamTimer = 0.0f;
+    public float totalJumpSlamTime = 3.03f;
+
+    enum JUMPSLAM : int
+    {
+        NONE = -1,
+        CHARGE,
+        UP,
+        FALLING,
+        RECOVERY
+    }
 
 
 
@@ -74,8 +96,8 @@ public class Bosseslv2 : DiamondComponent
                     Quaternion rot = projectilePoint.transform.globalRotation;
                     Vector3 scale = new Vector3(1, 1, 1);
 
-                    GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1052835205.prefab", pos, rot, scale);
-                    projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
+                    //GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1052835205.prefab", pos, rot, scale);
+                    //projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
                     Debug.Log("Throwing projectile");
 
                     if (firstShot)
@@ -166,7 +188,21 @@ public class Bosseslv2 : DiamondComponent
 
     public void StartBounceRush()
     {
-
+        bounceRushTimer = bounceRushTime;
+        GameObject nearestColumn = Level2BossRoom.columns[0];
+        float nerestDistance = 10000f;
+        foreach (GameObject column in Level2BossRoom.columns)
+        {
+            float distance = Mathf.Distance(gameObject.transform.globalPosition, column.transform.globalPosition);
+            Debug.Log("Distance: " + distance.ToString());
+            if (nerestDistance > distance)
+            {
+                distance = nerestDistance;
+                nearestColumn = column;
+            }
+        }
+        Debug.Log("Nearest column: " + nearestColumn.Name);
+        Debug.Log("Started Bounce Rush");
     }
 
     public void UpdateBounceRush()
@@ -176,7 +212,9 @@ public class Bosseslv2 : DiamondComponent
 
     public void EndBounceRush()
     {
-
+        Debug.Log("End Bounce Rush");
+        resting = true;
+        restingTimer = restingTime;
     }
 
     #endregion
@@ -185,18 +223,88 @@ public class Bosseslv2 : DiamondComponent
 
     public void StartJumpSlam()
     {
-
+        Debug.Log("Starting Jumping");
+        jumpslam = JUMPSLAM.CHARGE;
+        jumpslamTimer = chargeTime;
+        totalJumpSlamTimer = totalJumpSlamTime;
+        targetPos = Core.instance.gameObject.transform.globalPosition;
+        float speed = Mathf.Distance(targetPos, gameObject.transform.globalPosition) / fallingTime;
     }
 
     public void UpdateJumpSlam()
     {
         Debug.Log("Jump Slam");
+        switch (jumpslam)
+        {
+            case JUMPSLAM.CHARGE:
+                Debug.Log("Jump Slam: Charge");
+                if (jumpslamTimer > 0)
+                {
+                    jumpslamTimer -= Time.deltaTime;
 
+                    if (jumpslamTimer <= 0)
+                    {
+                        jumpslamTimer = upTime;
+                        jumpslam = JUMPSLAM.UP;
+                    }
+                }
+                break;
+
+            case JUMPSLAM.UP:
+                Debug.Log("Jump Slam: Up");
+                if (jumpslamTimer > 0)
+                {
+                    gameObject.transform.localPosition += Vector3.up * 50f * Time.deltaTime;
+
+                    jumpslamTimer -= Time.deltaTime;
+
+                    if (jumpslamTimer <= 0)
+                    {
+                        jumpslamTimer = fallingTime;
+                        jumpslam = JUMPSLAM.FALLING;
+                    }
+                }
+                break;
+
+            case JUMPSLAM.FALLING:
+                Debug.Log("Jump Slam: Falling");
+                if (jumpslamTimer > 0)
+                {
+                    MoveToPosition(targetPos, speed * 10);
+                    jumpslamTimer -= Time.deltaTime;
+
+                    if (jumpslamTimer <= 0 || Mathf.Distance(targetPos, gameObject.transform.globalPosition) <= 0.1f)
+                    {
+                        jumpslamTimer = recoveryTime;
+                        jumpslam = JUMPSLAM.RECOVERY;
+                    }
+                }
+                break;
+
+            case JUMPSLAM.RECOVERY:
+                Debug.Log("Jump Slam: Recovery");
+                if (jumpslamTimer > 0)
+                {
+                    jumpslamTimer -= Time.deltaTime;
+
+                    if (jumpslamTimer <= 0)
+                    {
+                        jumpslam = JUMPSLAM.NONE;
+                    }
+                }
+                break;
+
+            case JUMPSLAM.NONE:
+            default:
+                Debug.Log("Something gone wrong with jump slam");
+                break;
+        }
     }
 
     public void EndJumpSlam()
     {
-
+        resting = true;
+        restingTimer = restingTime;
     }
 
     #endregion
@@ -292,5 +400,12 @@ public class Bosseslv2 : DiamondComponent
         Quaternion desiredRotation = Quaternion.Slerp(gameObject.transform.localRotation, dir, rotationSpeed);
 
         gameObject.transform.localRotation = desiredRotation;
+    }
+
+    public void MoveToPosition(Vector3 positionToReach, float speed)
+    {
+        Vector3 direction = positionToReach - gameObject.transform.localPosition;
+
+        gameObject.transform.localPosition += direction.normalized * speed * Time.deltaTime;
     }
 }
