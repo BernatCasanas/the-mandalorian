@@ -207,6 +207,21 @@ public class Wampa : Bosseslv2
                             break;
                     }
                     break;
+
+                case BOSS_STATE.SLOW_RUSH:
+                    switch (input)
+                    {
+                        case BOSS_INPUT.IN_SLOW_RUSH_END:
+                            currentState = BOSS_STATE.SEARCH_STATE;
+                            EndSlowRush();
+                            break;
+                        case BOSS_INPUT.IN_DEAD:
+                            currentState = BOSS_STATE.SEARCH_STATE;
+                            StartDie();
+                            break;
+                    }
+                    break;
+
                 case BOSS_STATE.RUSH_STUN:
                     switch (input)
                     {

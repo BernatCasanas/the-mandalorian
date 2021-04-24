@@ -602,7 +602,7 @@ public class Bantha : Enemy
 
                 if (Skill_Tree_Data.instance != null)
                 {
-                    if (Skill_Tree_Data.instance.IsEnabled(3, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
+                    if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
                     {
                         skill_slowDownActive = true;
                         skill_slowDownTimer = 0.0f;
@@ -634,7 +634,7 @@ public class Bantha : Enemy
 
             if (Skill_Tree_Data.instance != null)
             {
-                if (Skill_Tree_Data.instance.IsEnabled(3, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
+                if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
                 {
                     skill_slowDownActive = true;
                     skill_slowDownTimer = 0.0f;
