@@ -454,8 +454,11 @@ void C_MeshRenderer::DrawDebugVertices()
 void C_MeshRenderer::TryCalculateBones()
 {
 
+	if (rootBone == nullptr)
+		return;
+
 	//Mesh array with transform matrix of each bone
-	if (calculatedBonesThisFrame == false && rootBone != nullptr)
+	if (calculatedBonesThisFrame == false)
 	{
 		//float4x4 invertedMatrix = dynamic_cast<C_Transform*>(gameObject->GetComponent(Component::TYPE::TRANSFORM))->globalTransform.Inverted();
 		float4x4 invertedMatrix = gameObjectTransform->globalTransform.Inverted();
@@ -480,6 +483,9 @@ void C_MeshRenderer::TryCalculateBones()
 		}
 		calculatedBonesThisFrame = true;
 	}
+
+	if (_mesh->boneTransforms.size() != boneTransforms.size())
+		return;
 
 	for (int i = 0; i < _mesh->bonesMap.size(); ++i)
 	{
