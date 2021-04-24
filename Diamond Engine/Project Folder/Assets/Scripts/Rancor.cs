@@ -225,7 +225,7 @@ public class Rancor : DiamondComponent
         if (agent == null)
             Debug.Log("Null agent, add a NavMeshAgent Component");
 
-
+        Audio.SetState("Game_State", "Rancor_Room");
         Counter.roomEnemies++;  // If we had a manager...
         EnemyManager.AddEnemy(gameObject);
     }
