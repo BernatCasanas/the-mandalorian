@@ -665,6 +665,8 @@ public class Rancor : DiamondComponent
             else
                 Debug.Log("Rancor Mesh Material was null!!");
         }
+        if (rancorParticles.rush.playing && currentState != RANCOR_STATE.RUSH && currentState != RANCOR_STATE.RUSH_STUN)
+            PlayParticles(PARTICLES.RUSH);
     }
 
     private void SelectAction()
