@@ -46,8 +46,11 @@ namespace DiamondEngine
             }
         }
 
+
+        public Vector3() { this.x = 0; this.y = 0; this.z = 0; /*Debug.Log("Setting: " + x + ", " + y + ", " + z);*/ }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Vector3(float x, float y, float z) { this.x = x; this.y = y; this.z = z; /*Debug.Log("Setting: " + x + ", " + y + ", " + z);*/ }
+        public Vector3(Vector3 inp) { this.x = inp.x; this.y = inp.y; this.z = inp.z; /*Debug.Log("Setting: " + x + ", " + y + ", " + z);*/ }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Vector3(float x, float y) { this.x = x; this.y = y; z = 0F; }
         public Vector3(Vector2 a) { x = a.x; y = a.y; z = 0F; }
