@@ -1204,7 +1204,6 @@ public class Rancor : DiamondComponent
         Animator.Play(gameObject, "RN_Die", 1.0f);
 
         Audio.PlayAudio(gameObject, "Play_Rancor_Death");
-        //Audio.PlayAudio(gameObject, "Play_Mando_Voice");
 
         if (hitParticles != null)
         {

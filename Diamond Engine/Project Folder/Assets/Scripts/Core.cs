@@ -924,7 +924,9 @@ public class Core : DiamondComponent
     private void StartMove()
     {
         Animator.Play(gameObject, "Run");
-        Audio.PlayAudio(this.gameObject, "Play_Footsteps_Mando");
+
+        //NEED TO ADD SOME LOGIC ABOT IN WHICH ROOM MANDO IS TO APPLY DIFFERENT FOOTSTEPS
+        Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
     }
 
     private void UpdateMove()
