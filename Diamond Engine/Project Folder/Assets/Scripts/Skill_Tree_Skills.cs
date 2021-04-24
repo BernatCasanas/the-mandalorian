@@ -174,7 +174,6 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            //TODO: Priority
             Rancor.SetSkill("AggressionDamageBossesSkill", 0.2f);
         }
 
@@ -190,8 +189,8 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            //TODO: Priority
-            Core.instance.SetSkill("AggressionHPMissingDamageSkill", 1.0f, 1.0f);
+            if(Core.instance != null)
+                Core.instance.SetSkill("AggressionHPMissingDamageSkill", 1.0f, 1.0f);
         }
 
         public override void AssignCharacteristics()
@@ -220,7 +219,6 @@ namespace DiamondEngine
             if(Core.instance != null)
             {
                 int newHP = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementMaxHpPercent(0.1f, true);
-                Debug.Log("MAX HP: " + newHP);
             }
         }
 
@@ -626,5 +624,4 @@ namespace DiamondEngine
             {"SpMaxDmg", typeof(SpecialMaximumDamageSkill)},
         };
     }
-
 }
