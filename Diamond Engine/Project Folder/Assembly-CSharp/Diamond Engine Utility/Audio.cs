@@ -10,6 +10,9 @@ namespace DiamondEngine
         public static extern void PlayAudio(object go, object eventAudio);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public static extern void StopOneAudio(object go,object eventAudio);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern void StopAudio(object go);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]

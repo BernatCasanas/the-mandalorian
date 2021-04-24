@@ -89,6 +89,7 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreateBullet", CreateBullet);
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreatePrefab", CreatePrefab);
 	mono_add_internal_call("DiamondEngine.InternalCalls::RayCast", RayCast);
+	mono_add_internal_call("DiamondEngine.InternalCalls::DrawRay", CS_DrawRay);
 
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreateUIPrefab", CreateUIPrefab);
 
@@ -128,6 +129,7 @@ bool M_MonoManager::Init()
 #pragma region Material
 	mono_add_internal_call("DiamondEngine.Material::SetFloatUniform", SetFloatUniform);
 	mono_add_internal_call("DiamondEngine.Material::SetIntUniform", SetIntUniform);
+	mono_add_internal_call("DiamondEngine.Material::SetVectorUniform", SetVectorUniform);
 #pragma endregion
 
 #pragma region Image2D
@@ -205,6 +207,8 @@ bool M_MonoManager::Init()
 #pragma endregion
 
 	mono_add_internal_call("DiamondEngine.DiamondComponent::get_gameObject", CS_Component_Get_GO);
+	mono_add_internal_call("DiamondEngine.DiamondComponent::get_active", CS_Component_GetActive);
+	mono_add_internal_call("DiamondEngine.DiamondComponent::set_active", CS_Component_SetActive);
 	mono_add_internal_call("DiamondEngine.GameObject::TryGetComponent", CS_GetComponent);
 	mono_add_internal_call("DiamondEngine.GameObject::get_Name", CS_Get_GO_Name);
 	mono_add_internal_call("DiamondEngine.GameObject::get_parent", CS_Get_GO_Parent);
@@ -242,6 +246,7 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.SceneManager::LoadScene", CS_LoadScene);
 	mono_add_internal_call("DiamondEngine.Audio::PlayAudio", PlayAudio);
 	mono_add_internal_call("DiamondEngine.Audio::StopAudio", StopAudio);
+	mono_add_internal_call("DiamondEngine.Audio::StopOneAudio", StopOneAudio);
 	mono_add_internal_call("DiamondEngine.Audio::ResumeAudio", ResumeAudio);
 	mono_add_internal_call("DiamondEngine.Audio::PauseAudio", PauseAudio);
 	mono_add_internal_call("DiamondEngine.Audio::GetVolume", GetVolume);
@@ -288,7 +293,7 @@ void M_MonoManager::ReCompileCS()
 	if (DETime::state == GameState::PLAY)
 		return;
 
-	App->moduleScene->SaveScene("Library/Scenes/tmp.des");
+	App->moduleScene->SaveToJson("Library/Scenes/tmp.des");
 
 	App->moduleScene->CleanScene();
 	App->moduleRenderer3D->ClearAllRenderData();

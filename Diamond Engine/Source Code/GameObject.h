@@ -24,8 +24,11 @@ public:
 	Component* GetComponent(Component::TYPE _type, const char* scriptName = nullptr);
 	std::vector<Component*> GetComponentsOfType(Component::TYPE type);
 
+	void RecursivePrefabReferenceGeneration();
 	void RecursiveUIDRegeneration();
 	void RecursiveUIDRegenerationSavingReferences(std::map<uint, GameObject*>& gameObjects);
+	void UnlinkFromPrefab();
+	void OverrideGameObject(uint prefabID, bool prefabChild = false);
 
 	bool isActive() const;
 
@@ -36,11 +39,16 @@ public:
 	void DisableTopDown();
 
 	bool IsRoot();
-
 	void Destroy();
 
-	void SaveToJson(JSON_Array* _goArray, bool skip_prefab_check = true);
+	void SaveToJson(JSON_Array* _goArray, bool saveAllData = true);
+	void SavePrefab(JSON_Array* _goArray, bool saveAllData = true);
+	void SaveAsPrefabRoot(JSON_Object* goData, bool prefabInsidePrefab);
+	void SaveReducedData(JSON_Array* goArray, bool prefabInsidePrefab = false);
 	void LoadFromJson(JSON_Object*);
+	void LoadForPrefab(JSON_Object*);
+	void CopyObjectData(JSON_Object* jsonObject);
+	void GetChildrenUIDs(std::vector<uint>& UIDs);
 
 	void LoadComponents(JSON_Array* componentArray);
 	void RemoveComponent(Component* ptr);
@@ -50,10 +58,11 @@ public:
 
 	void RemoveChild(GameObject*);
 	void CollectChilds(std::vector<GameObject*>& vector);
+	void RemoveCSReference(SerializedField* fieldToRemove);
 
 	bool CompareTag(const char* _tag);
 
-	GameObject* GetChild(std::string childName);
+	GameObject* GetChild(std::string& childName);
 
 	template<typename A>
 	A* GetComponent()
@@ -81,6 +90,7 @@ public:
 
 	int UID;
 	uint prefabID;
+	uint prefabReference;
 
 	char tag[32];
 	char layer[32];
