@@ -49,7 +49,16 @@ public class Bosseslv2 : DiamondComponent
     public float projectileRange = 6.0f;
     public float projectileDamage = 10.0f;
     public float rushDamage = 15.0f;
+
+    //Jump Slam
     private JUMPSLAM jumpslam = JUMPSLAM.NONE;
+    private float jumpslamTimer = 0.0f;
+    private float chargeTime = 1f;
+    private float upTime = 0.3f;
+    private float fallingTime = 1.0f;
+    private float recoveryTime = 0.73f;
+    public float totalJumpSlamTimer = 0.0f;
+    public float totalJumpSlamTime = 3.03f;
 
     enum JUMPSLAM : int
     {
@@ -196,18 +205,82 @@ public class Bosseslv2 : DiamondComponent
     public void StartJumpSlam()
     {
         Debug.Log("Starting Jumping");
-
+        jumpslam = JUMPSLAM.CHARGE;
+        jumpslamTimer = chargeTime;
+        totalJumpSlamTimer = totalJumpSlamTime;
     }
 
     public void UpdateJumpSlam()
     {
         Debug.Log("Jump Slam");
+        switch (jumpslam)
+        {
+            case JUMPSLAM.CHARGE:
+                Debug.Log("Jump Slam: Charge");
+                if (jumpslamTimer > 0)
+                {
+                    jumpslamTimer -= Time.deltaTime;
 
+                    if (jumpslamTimer <= 0)
+                    {
+                        jumpslamTimer = upTime;
+                        jumpslam = JUMPSLAM.UP;
+                    }
+                }
+                break;
+
+            case JUMPSLAM.UP:
+                Debug.Log("Jump Slam: Up");
+                if (jumpslamTimer > 0)
+                {
+                    jumpslamTimer -= Time.deltaTime;
+
+                    if (jumpslamTimer <= 0)
+                    {
+                        jumpslamTimer = fallingTime;
+                        jumpslam = JUMPSLAM.FALLING;
+                    }
+                }
+                break;
+
+            case JUMPSLAM.FALLING:
+                Debug.Log("Jump Slam: Falling");
+                if (jumpslamTimer > 0)
+                {
+                    jumpslamTimer -= Time.deltaTime;
+
+                    if (jumpslamTimer <= 0)
+                    {
+                        jumpslamTimer = recoveryTime;
+                        jumpslam = JUMPSLAM.RECOVERY;
+                    }
+                }
+                break;
+
+            case JUMPSLAM.RECOVERY:
+                Debug.Log("Jump Slam: Recovery");
+                if (jumpslamTimer > 0)
+                {
+                    jumpslamTimer -= Time.deltaTime;
+
+                    if (jumpslamTimer <= 0)
+                    {
+                        jumpslam = JUMPSLAM.NONE;
+                    }
+                }
+                break;
+
+            case JUMPSLAM.NONE:
+            default:
+                Debug.Log("Something gone wrong with jump slam");
+                break;
+        }
     }
 
     public void EndJumpSlam()
     {
-
+        resting = true;
+        restingTimer = restingTime;
     }
 
     #endregion
