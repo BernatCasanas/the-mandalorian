@@ -281,7 +281,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 								modelLoc = glGetUniformLocation(directLightVector[i]->depthShader->shaderProgramID, "lightSpaceMatrix");
 								glUniformMatrix4fv(modelLoc, 1, GL_FALSE, directLightVector[i]->spaceMatrixOpenGL.ptr());
-								
+
 								d->second->TryCalculateBones();
 								d->second->GetRenderMesh()->PushDefaultMeshUniforms(directLightVector[i]->depthShader->shaderProgramID, 0, d->second->GetGO()->transform, float3::one);
 								d->second->GetRenderMesh()->OGL_GPU_Render();
@@ -321,7 +321,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 
 	DrawRays();
-	DrawParticleSystems();
+	//DrawParticleSystems();//THIS IS LOCATED INSIDE RENDER STENCIL FOR NOW (UNTIL WE HAVE A POST PROCESSING SYSTEM)
 
 	if (App->moduleCamera->editorCamera.drawSkybox)
 		skybox.DrawAsSkybox(&App->moduleCamera->editorCamera);
@@ -329,21 +329,20 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	DebugLine(pickingDebug);
 	DrawDebugLines();
 
-	if (!renderQueueStencil.empty() && !renderQueuePostStencil.empty())
-	{
-		for (size_t i = 0; i < renderQueueStencil.size(); i++)
-		{
-			float distance = App->moduleCamera->editorCamera.camFrustrum.pos.DistanceSq(renderQueueStencil[i]->globalOBB.pos);
-			renderQueueMapStencil.emplace(distance, renderQueueStencil[i]);
-		}
-		for (size_t i = 0; i < renderQueuePostStencil.size(); i++)
-		{
-			float distance = App->moduleCamera->editorCamera.camFrustrum.pos.DistanceSq(renderQueuePostStencil[i]->globalOBB.pos);
-			renderQueueMapPostStencil.emplace(distance, renderQueuePostStencil[i]);
-		}
 
-		RenderStencilWithOrdering(true);
+	for (size_t i = 0; i < renderQueueStencil.size(); i++)
+	{
+		float distance = App->moduleCamera->editorCamera.camFrustrum.pos.DistanceSq(renderQueueStencil[i]->globalOBB.pos);
+		renderQueueMapStencil.emplace(distance, renderQueueStencil[i]);
 	}
+	for (size_t i = 0; i < renderQueuePostStencil.size(); i++)
+	{
+		float distance = App->moduleCamera->editorCamera.camFrustrum.pos.DistanceSq(renderQueuePostStencil[i]->globalOBB.pos);
+		renderQueueMapPostStencil.emplace(distance, renderQueuePostStencil[i]);
+	}
+
+	RenderStencilWithOrdering(true);
+
 	App->moduleCamera->editorCamera.EndDraw();
 
 
@@ -366,26 +365,25 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 		}
 
 		DrawRays();
-		DrawParticleSystems();
+		//DrawParticleSystems();//THIS IS LOCATED INSIDE RENDER STENCIL FOR NOW (UNTIL WE HAVE A POST PROCESSING SYSTEM)
 
 		if (gameCamera->drawSkybox)
 			skybox.DrawAsSkybox(gameCamera);
 
-		if (!renderQueueStencil.empty() && !renderQueuePostStencil.empty())
-		{
-			for (size_t i = 0; i < renderQueueStencil.size(); i++)
-			{
-				float distance = gameCamera->camFrustrum.pos.DistanceSq(renderQueueStencil[i]->globalOBB.pos);
-				renderQueueMapStencil.emplace(distance, renderQueueStencil[i]);
-			}
-			for (size_t i = 0; i < renderQueuePostStencil.size(); i++)
-			{
-				float distance = gameCamera->camFrustrum.pos.DistanceSq(renderQueuePostStencil[i]->globalOBB.pos);
-				renderQueueMapPostStencil.emplace(distance, renderQueuePostStencil[i]);
-			}
 
-			RenderStencilWithOrdering(true);
+		for (size_t i = 0; i < renderQueueStencil.size(); ++i)
+		{
+			float distance = gameCamera->camFrustrum.pos.DistanceSq(renderQueueStencil[i]->globalOBB.pos);
+			renderQueueMapStencil.emplace(distance, renderQueueStencil[i]);
 		}
+		for (size_t i = 0; i < renderQueuePostStencil.size(); ++i)
+		{
+			float distance = gameCamera->camFrustrum.pos.DistanceSq(renderQueuePostStencil[i]->globalOBB.pos);
+			renderQueueMapPostStencil.emplace(distance, renderQueuePostStencil[i]);
+		}
+
+		RenderStencilWithOrdering(true);
+
 
 		glClear(GL_DEPTH_BUFFER_BIT);
 		App->moduleGui->RenderCanvas2D();
@@ -715,7 +713,10 @@ void ModuleRenderer3D::RenderWithOrdering(bool rTex)
 void ModuleRenderer3D::RenderStencilWithOrdering(bool rTex)
 {
 	if (renderQueueMapStencil.empty())
+	{
+		DrawParticleSystems();
 		return;
+	}
 
 
 	glEnable(GL_STENCIL_TEST);
@@ -756,6 +757,7 @@ void ModuleRenderer3D::RenderStencilWithOrdering(bool rTex)
 		for (auto d = range.first; d != range.second; ++d)
 			d->second->RenderMesh(rTex);
 	}
+	DrawParticleSystems();
 	//==================================================================
 	//2. We then draw the stencil objects in front of the mask
 
