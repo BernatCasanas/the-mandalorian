@@ -76,6 +76,10 @@ public class Bantha : Enemy
     private float directionDecisionTimer = 0.0f;
     private float skill_slowDownTimer = 0.0f;
 
+    //Particles
+    public GameObject stunParticle = null;
+    private ParticleSystem stun = null;
+
     public void Awake()
     {
         StartIdle();
@@ -86,6 +90,9 @@ public class Bantha : Enemy
 
         loadingTime = Animator.GetAnimationDuration(gameObject, "BT_Charge");
         dieTime = Animator.GetAnimationDuration(gameObject, "BT_Die");
+
+        if (stunParticle != null)
+            stun = stunParticle.GetComponent<ParticleSystem>();
     }
 
     public void Update()
@@ -401,7 +408,8 @@ public class Bantha : Enemy
         tiredTimer = tiredTime;
         Animator.Play(gameObject, "BT_Idle");
         Audio.PlayAudio(gameObject, "Play_Bantha_Breath");
-    }
+        stun.Play();
+}
     #endregion
 
     #region RUN
