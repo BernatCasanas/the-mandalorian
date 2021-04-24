@@ -1,19 +1,19 @@
 {
     "NavMesh": 141075303,
     "EditorCameraPosition": [
-        -2.4223153591156006,
-        14.813776969909668,
-        -9.0807027816772461
+        -16.611579895019531,
+        17.712148666381836,
+        -11.625283241271973
     ],
     "EditorCameraZ": [
-        0.81463217735290527,
-        -0.55224108695983887,
-        0.17721223831176758
+        0.70328521728515625,
+        -0.50785267353057861,
+        0.49746918678283691
     ],
     "EditorCameraY": [
-        0.53960466384887695,
-        0.83368444442749023,
-        0.11746078729629517
+        0.4145737886428833,
+        0.86144393682479858,
+        0.29333078861236572
     ],
     "tags": [
         "Enemy",
@@ -95,8 +95,8 @@
                     "fSize": 39,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 16.435897827148438,
-                    "hFOV": 30.794872283935547,
+                    "vFOV": 16.358974456787109,
+                    "hFOV": 29,
                     "culling": false,
                     "drawSkybox": true
                 },
@@ -110,7 +110,6 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "CameraController",
-                    "target": 1481001958,
                     "x": -10.300000190734863,
                     "y": 9.3000001907348633,
                     "z": -10,
@@ -223,270 +222,6 @@
             ]
         },
         {
-            "name": "Grogu",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 735933672,
-            "ParentUID": 1676501951,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                2.60487961769104,
-                6.1200571060180664,
-                -8.8472995758056641
-            ],
-            "Rotation": [
-                0,
-                0.19626031816005707,
-                0,
-                0.98055183887481689
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "BabyYoda",
-                    "verticalSpeed": 0.80000001192092896,
-                    "verticalTimeInterval": 1.2000000476837158,
-                    "followPoint": 1079552447,
-                    "horizontalSpeed": 4,
-                    "totalForce": 0,
-                    "forceRegenerationSpeed": 0,
-                    "skillPushForceCost": 0,
-                    "skillWallForceCost": 0,
-                    "skill_fasterForceRegenerationActive": true,
-                    "skill_fasterForceRegenerationHealthStep": 0,
-                    "skill_fasterForceRegenerationForceRegen": 0,
-                    "skill_healActive": true,
-                    "skill_healAmount": 0,
-                    "skillPushDuration": 1
-                }
-            ]
-        },
-        {
-            "name": "GroguMesh",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 2084330241,
-            "ParentUID": 735933672,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "GrogusBody",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1243229930,
-            "ParentUID": 2084330241,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2081829869.mmh",
-                    "UID": 2081829869,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "doNotDrawStencil": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
-                }
-            ]
-        },
-        {
-            "name": "CapsuleDoor",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 582564195,
-            "ParentUID": 2084330241,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/1111006325.mmh",
-                    "UID": 1111006325,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "doNotDrawStencil": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
-                }
-            ]
-        },
-        {
-            "name": "Capsule",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1568791594,
-            "ParentUID": 2084330241,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/772459766.mmh",
-                    "UID": 772459766,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "doNotDrawStencil": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
-                }
-            ]
-        },
-        {
             "name": "BoonSpawner",
             "tag": "Untagged",
             "layer": "Default",
@@ -517,2641 +252,6 @@
                 {
                     "Type": 1,
                     "Active": true
-                }
-            ]
-        },
-        {
-            "name": "SpawnPoints",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1052270480,
-            "ParentUID": 1676501951,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -4.7000781933093094e-07,
-                7.9281754493713379,
-                2.3451061248779297
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "Spawn",
-                    "spawnStormtrooper": true,
-                    "spawnBantha": true,
-                    "spawnPoint0": 865954322,
-                    "spawnPoint1": 149946084,
-                    "spawnPoint2": 478306097,
-                    "spawnPoint3": 1267348855,
-                    "spawnPoint4": 434029666,
-                    "spawnPoint5": 336979649,
-                    "maxSpawnPoints": 6,
-                    "maxEnemies": 0,
-                    "enemyIncreasePerWave": 0,
-                    "wave": 2,
-                    "maxWaves": 1,
-                    "timePassed": 1.229000449180603,
-                    "timeBetweenSpawns": 0.20000000298023224
-                }
-            ]
-        },
-        {
-            "name": "SpawnPoint0",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 865954322,
-            "ParentUID": 1052270480,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                6.4454240798950195,
-                -1.7079999446868896,
-                -4.5393295288085938
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "SpawnPoint1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 149946084,
-            "ParentUID": 1052270480,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -6.3114132881164551,
-                -1.7079999446868896,
-                -4.7920198440551758
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "SpawnPoint2",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 478306097,
-            "ParentUID": 1052270480,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                7.0727901458740234,
-                -1.7079999446868896,
-                4.0835075378417969
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "SpawnPoint3",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1267348855,
-            "ParentUID": 1052270480,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -7.7097911834716797,
-                -1.7079999446868896,
-                2.2287373542785645
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "SpawnPoint4",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 434029666,
-            "ParentUID": 1052270480,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -5.0800423622131348,
-                -1.7079999446868896,
-                -14.946985244750977
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "SpawnPoint5",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 336979649,
-            "ParentUID": 1052270480,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                11.622203826904297,
-                -1.7079999446868896,
-                -7.3401031494140625
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "DinDjarin",
-            "tag": "Player",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1481001958,
-            "ParentUID": 1676501951,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                3.9700000286102295,
-                6.880000114440918,
-                -7.619999885559082
-            ],
-            "Rotation": [
-                7.9172721711984195e-08,
-                -0.0048914384096860886,
-                -9.5676107036979374e-08,
-                0.99998801946640015
-            ],
-            "Scale": [
-                0.99994128942489624,
-                1,
-                0.99994128942489624
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "Core",
-                    "shootPoint": 1704974507,
-                    "hud": 118565339,
-                    "rotationSpeed": 2,
-                    "movementSpeed": 5.5,
-                    "mouseSens": 1,
-                    "skill_extraDamageActive": true,
-                    "skill_extraDamageHPStep": 0,
-                    "skill_extraDamageAmount": 0,
-                    "skill_damageReductionDashEnabled": true,
-                    "skill_damageReductionDashDuration": 0,
-                    "skill_damageReductionDashAmount": 0,
-                    "dashCD": 0.33000001311302185,
-                    "dashDuration": 0.20000000298023224,
-                    "dashDistance": 0,
-                    "maxDashNumber": 1,
-                    "betweeMultiplenDashesCD": 0,
-                    "baseFireRate": 0.10000000149011612,
-                    "gadgetFireRate": 0.20000000298023224,
-                    "fireRateAfterDashRecoverRatio": 1.75,
-                    "fireRateMultCap": 2,
-                    "grenadesFireRate": 0,
-                    "lockInputs": false,
-                    "background": 1022032849,
-                    "pause": 809125827,
-                    "bulletDamage": 0
-                },
-                {
-                    "Type": 13,
-                    "Active": true,
-                    "evName": "Play_Footsteps_Mando",
-                    "audBankReference": "Mando",
-                    "volume": 50,
-                    "pitch": 50,
-                    "playOnAwake": false,
-                    "isMuted": false
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": false,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": true,
-                    "LockAngularY": true,
-                    "LockAngularZ": true,
-                    "Mass": 10,
-                    "Density": 1
-                },
-                {
-                    "Type": 15,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0.85000002384185791,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1.7999999523162842,
-                        1
-                    ]
-                },
-                {
-                    "Type": 16,
-                    "Active": true,
-                    "RootBone UID": 2019047569,
-                    "MeshRendererUID": 826670707,
-                    "Animations": [
-                        814877702,
-                        2130902709,
-                        942859953,
-                        720149964
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "PlayerHealth",
-                    "<currMaxHealth>k__BackingField": 0,
-                    "<currHealth>k__BackingField": 0,
-                    "<healWhenKillingAnEnemy>k__BackingField": 0,
-                    "<skill_chanceToAvoidDamage>k__BackingField": 0,
-                    "character_mesh": 826670707,
-                    "damage_screen": 593514518
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "BoonSpawn"
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "AimBot",
-                    "startAimConeAngle": 120,
-                    "maxRange": 75,
-                    "angleWeight": 0.75,
-                    "distanceWeight": 0.25,
-                    "isShooting": false
-                }
-            ]
-        },
-        {
-            "name": "ShootPoint",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1704974507,
-            "ParentUID": 1481001958,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -0.25,
-                1.3999996185302734,
-                1.2999999523162842
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                0.05000000074505806,
-                0.05000000074505806,
-                0.60000002384185791
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 13,
-                    "Active": true,
-                    "evName": "Play_Blaster_Shoot_Mando",
-                    "audBankReference": "Mando",
-                    "volume": 10.324999809265137,
-                    "pitch": 50,
-                    "playOnAwake": false,
-                    "isMuted": false
-                }
-            ]
-        },
-        {
-            "name": "Armature",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 2019047569,
-            "ParentUID": 1481001958,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                8.1460335366045911e-08,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Hips",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 273719670,
-            "ParentUID": 2019047569,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -0.066878490149974823,
-                0.95678818225860596,
-                0.056709360331296921
-            ],
-            "Rotation": [
-                -0.0271739661693573,
-                0.19621393084526062,
-                -0.30611684918403625,
-                0.93115741014480591
-            ],
-            "Scale": [
-                0.99999988079071045,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "LeftLeg",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 2014745239,
-            "ParentUID": 273719670,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.11634470522403717,
-                -0.0031172237358987331,
-                -0.031259376555681229
-            ],
-            "Rotation": [
-                0.42302992939949036,
-                -0.27019345760345459,
-                -0.22700563073158264,
-                0.83457154035568237
-            ],
-            "Scale": [
-                1,
-                0.99999982118606567,
-                0.99999958276748657
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "LeftKnee",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1388913320,
-            "ParentUID": 2014745239,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.33052435517311096,
-                3.3527616238870905e-08,
-                -1.0720557952481613e-07
-            ],
-            "Rotation": [
-                0.0014300523325800896,
-                0.020422521978616714,
-                -0.25014695525169373,
-                0.96799147129058838
-            ],
-            "Scale": [
-                1.0000002384185791,
-                1.0000001192092896,
-                1.0000001192092896
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "LeftFeet",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 640594604,
-            "ParentUID": 1388913320,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.4983258843421936,
-                -5.5879354476928711e-08,
-                2.8353598580110884e-08
-            ],
-            "Rotation": [
-                -0.61053913831710815,
-                -0.087902218103408813,
-                0.083281472325325012,
-                0.78267449140548706
-            ],
-            "Scale": [
-                0.99999994039535522,
-                0.99999958276748657,
-                0.99999934434890747
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "LeftToe",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 2044027835,
-            "ParentUID": 640594604,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.048129811882972717,
-                0.00092385336756706238,
-                0.10972006618976593
-            ],
-            "Rotation": [
-                -3.0975931508692156e-07,
-                -1.8881918251167917e-08,
-                3.104407841902912e-09,
-                1
-            ],
-            "Scale": [
-                1.0000002384185791,
-                1.0000001192092896,
-                1.0000001192092896
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "LeftFingers",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 2110548433,
-            "ParentUID": 2044027835,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -0.002416194649413228,
-                0.0091347992420196533,
-                0.12188585847616196
-            ],
-            "Rotation": [
-                1.7516018857577365e-08,
-                2.9196744577575373e-08,
-                0.65520167350769043,
-                0.75545400381088257
-            ],
-            "Scale": [
-                0.99999988079071045,
-                0.9999997615814209,
-                0.99999988079071045
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Spine1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1218875212,
-            "ParentUID": 273719670,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -0.047563403844833374,
-                0.05104539543390274,
-                2.2765664908774852e-09
-            ],
-            "Rotation": [
-                0.0031491233967244625,
-                -0.0014639355940744281,
-                0.913554847240448,
-                0.40670096874237061
-            ],
-            "Scale": [
-                0.99999988079071045,
-                0.99999982118606567,
-                0.99999970197677612
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Spine2",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1494823447,
-            "ParentUID": 1218875212,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.075442343950271606,
-                -1.5935963659785557e-08,
-                -2.3593504039354229e-08
-            ],
-            "Rotation": [
-                1.5945261111482978e-08,
-                -0.0027633162681013346,
-                -0.0067633301950991154,
-                0.99997329711914063
-            ],
-            "Scale": [
-                1,
-                1.0000001192092896,
-                0.9999997615814209
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Spine3",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1898186320,
-            "ParentUID": 1494823447,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.08751300722360611,
-                -2.7939677238464355e-08,
-                1.2417631367611648e-09
-            ],
-            "Rotation": [
-                -0.99998879432678223,
-                0.0043797977268695831,
-                -0.0017894759075716138,
-                9.8204864116269164e-06
-            ],
-            "Scale": [
-                1.0000967979431152,
-                0.99999970197677612,
-                0.99999994039535522
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Spine4",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1781115634,
-            "ParentUID": 1898186320,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.18506290018558502,
-                -2.3045059549531288e-07,
-                1.2417640249395845e-09
-            ],
-            "Rotation": [
-                0.99646306037902832,
-                0.066438533365726471,
-                -0.013203280046582222,
-                0.049729876220226288
-            ],
-            "Scale": [
-                0.9999428391456604,
-                0.99999934434890747,
-                0.99999868869781494
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Neck",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 903325993,
-            "ParentUID": 1781115634,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.1378864198923111,
-                -2.6085310764756287e-06,
-                -2.0696111491247393e-10
-            ],
-            "Rotation": [
-                -0.0896272212266922,
-                -0.10229930281639099,
-                -0.65817141532897949,
-                0.74048113822937012
-            ],
-            "Scale": [
-                0.99999970197677612,
-                0.99999988079071045,
-                0.99999982118606567
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Head",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1400356258,
-            "ParentUID": 903325993,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -0.0055730035528540611,
-                0.14353007078170776,
-                -6.0956359959618567e-08
-            ],
-            "Rotation": [
-                -2.24583818209112e-08,
-                5.0728744977544924e-16,
-                -2.2597507864929867e-08,
-                1
-            ],
-            "Scale": [
-                0.99999994039535522,
-                0.99999982118606567,
-                0.99999988079071045
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "LeftShoulder",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 592948065,
-            "ParentUID": 1781115634,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.03353472426533699,
-                -0.070088356733322144,
-                -1.8678191437970781e-08
-            ],
-            "Rotation": [
-                1.5123005070449835e-09,
-                -1.0304745501343859e-08,
-                -0.67744147777557373,
-                0.73557668924331665
-            ],
-            "Scale": [
-                1.0000002384185791,
-                1,
-                0.99999988079071045
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "LeftArm",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 559087084,
-            "ParentUID": 592948065,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.11282750219106674,
-                0.0010125467088073492,
-                -0.056232880800962448
-            ],
-            "Rotation": [
-                0.25436496734619141,
-                -0.14598524570465088,
-                -0.51268649101257324,
-                0.80693203210830688
-            ],
-            "Scale": [
-                0.99999970197677612,
-                0.99999970197677612,
-                0.9999997615814209
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "LeftForearm",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1060773289,
-            "ParentUID": 559087084,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.26499998569488525,
-                -0.00099953950848430395,
-                -0.026000011712312698
-            ],
-            "Rotation": [
-                0.00066012213937938213,
-                -0.16287833452224731,
-                0.0094024129211902618,
-                0.98660111427307129
-            ],
-            "Scale": [
-                1.0000004768371582,
-                1.0000002384185791,
-                1.0000002384185791
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "LeftHand",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 134533139,
-            "ParentUID": 1060773289,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.28900033235549927,
-                1.4156103134155273e-07,
-                0.039999961853027344
-            ],
-            "Rotation": [
-                -0.36284130811691284,
-                -0.086426176130771637,
-                -0.032973248511552811,
-                0.92724841833114624
-            ],
-            "Scale": [
-                0.99999988079071045,
-                0.9999995231628418,
-                0.9999997615814209
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "L_RingFinger",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1155485752,
-            "ParentUID": 134533139,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.037698790431022644,
-                -0.002688469598069787,
-                0.0019253218779340386
-            ],
-            "Rotation": [
-                8.0453395057134003e-09,
-                -0.079738602042198181,
-                -1.1585294146243541e-07,
-                0.99681580066680908
-            ],
-            "Scale": [
-                0.9999997615814209,
-                0.99999988079071045,
-                0.99999994039535522
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "L_RingMid",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1336123372,
-            "ParentUID": 1155485752,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.052526500076055527,
-                -0.003333680797368288,
-                0.0056190555915236473
-            ],
-            "Rotation": [
-                -3.518353253184614e-08,
-                -0.0036042788997292519,
-                -1.8585184591302095e-07,
-                0.99999350309371948
-            ],
-            "Scale": [
-                0.99999982118606567,
-                1.0000001192092896,
-                0.99999988079071045
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "L_RingEnd",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1843628560,
-            "ParentUID": 1336123372,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.076177343726158142,
-                -0.020648889243602753,
-                0.0043807053007185459
-            ],
-            "Rotation": [
-                1.0144766804387473e-08,
-                0.083330847322940826,
-                -6.9807790659126567e-09,
-                0.99652194976806641
-            ],
-            "Scale": [
-                0.99999994039535522,
-                0.9999997615814209,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "L_IndexFinger",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 166394570,
-            "ParentUID": 134533139,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.04516417533159256,
-                -0.0080204177647829056,
-                0.039074663072824478
-            ],
-            "Rotation": [
-                -8.920949312596349e-08,
-                -0.31220510601997375,
-                -3.44965286558363e-07,
-                0.95001471042633057
-            ],
-            "Scale": [
-                0.99999982118606567,
-                0.9999997615814209,
-                0.99999994039535522
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "L_IndexMid",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1029566052,
-            "ParentUID": 166394570,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.070311971008777618,
-                -0.013977452181279659,
-                -0.011798849329352379
-            ],
-            "Rotation": [
-                1.0161367924865772e-07,
-                0.1795697957277298,
-                2.810680541642796e-07,
-                0.98374521732330322
-            ],
-            "Scale": [
-                0.99999988079071045,
-                0.99999988079071045,
-                0.99999994039535522
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "L_IndexEnd",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 708936726,
-            "ParentUID": 1029566052,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.059133231639862061,
-                -0.01006367988884449,
-                0.0011344703380018473
-            ],
-            "Rotation": [
-                4.4708283297723028e-08,
-                0.13653638958930969,
-                1.9220374625206205e-08,
-                0.99063515663146973
-            ],
-            "Scale": [
-                1.0000001192092896,
-                1.0000001192092896,
-                0.99999982118606567
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "L_ThumbFinger",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1267141845,
-            "ParentUID": 134533139,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.017293991521000862,
-                -0.019482824951410294,
-                0.037107720971107483
-            ],
-            "Rotation": [
-                -1.441532049284433e-08,
-                -0.4486193060874939,
-                -1.9394093442315352e-07,
-                0.89372295141220093
-            ],
-            "Scale": [
-                1,
-                0.99999988079071045,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "L_ThumbMid",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1054171985,
-            "ParentUID": 1267141845,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.037645570933818817,
-                -0.025719419121742249,
-                -0.0076227746903896332
-            ],
-            "Rotation": [
-                -4.6755946669918558e-08,
-                0.16018211841583252,
-                4.0570736103973104e-08,
-                0.98708748817443848
-            ],
-            "Scale": [
-                0.99999994039535522,
-                1,
-                0.99999988079071045
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "L_ThumbEnd",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 106647813,
-            "ParentUID": 1054171985,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.032635319977998734,
-                -0.03131064772605896,
-                0.0054355007596313953
-            ],
-            "Rotation": [
-                -5.4232174306889647e-11,
-                0.29966798424720764,
-                -4.5338367726799333e-08,
-                0.95404356718063354
-            ],
-            "Scale": [
-                0.99999982118606567,
-                1,
-                0.99999982118606567
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "RightShoulder",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1076421194,
-            "ParentUID": 1781115634,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.028336901217699051,
-                0.072345443069934845,
-                -2.11099777658319e-08
-            ],
-            "Rotation": [
-                0.69253617525100708,
-                0.6839326024055481,
-                -0.15514366328716278,
-                0.16899800300598145
-            ],
-            "Scale": [
-                0.99999988079071045,
-                0.99999970197677612,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "RightArm",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 783118115,
-            "ParentUID": 1076421194,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.12606796622276306,
-                -2.4640726223879028e-06,
-                4.1392089755731831e-10
-            ],
-            "Rotation": [
-                -0.14051395654678345,
-                0.085592925548553467,
-                -0.55576217174530029,
-                0.81489759683609009
-            ],
-            "Scale": [
-                0.9999997615814209,
-                0.99999988079071045,
-                1.0000001192092896
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "RightForearm",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1151454379,
-            "ParentUID": 783118115,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.26644235849380493,
-                -1.1409736089262879e-06,
-                -1.8899639826486236e-06
-            ],
-            "Rotation": [
-                0.0034605402033776045,
-                0.33084625005722046,
-                0.010260422714054585,
-                0.94362252950668335
-            ],
-            "Scale": [
-                1.0000001192092896,
-                0.99999982118606567,
-                0.99999988079071045
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "RightHand",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1988261496,
-            "ParentUID": 1151454379,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.29160246253013611,
-                -6.8491531237668823e-06,
-                2.6333664209232666e-06
-            ],
-            "Rotation": [
-                -0.19152741134166718,
-                -0.035012483596801758,
-                -0.16076338291168213,
-                0.96759837865829468
-            ],
-            "Scale": [
-                0.99999964237213135,
-                0.99999940395355225,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "R_RingFinger",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 105211043,
-            "ParentUID": 1988261496,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.041544102132320404,
-                9.4001489969741669e-07,
-                -2.0696022673405423e-10
-            ],
-            "Rotation": [
-                -0.0012508919462561607,
-                0.016178328543901443,
-                0.094916485249996185,
-                0.99535298347473145
-            ],
-            "Scale": [
-                1.0000001192092896,
-                1.0000004768371582,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "R_RingMid",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1978788433,
-            "ParentUID": 105211043,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.060923364013433456,
-                -8.5019405560160521e-07,
-                -2.4007427157357597e-08
-            ],
-            "Rotation": [
-                0.0011150970822200179,
-                -0.019077425822615623,
-                -0.076188117265701294,
-                0.99691039323806763
-            ],
-            "Scale": [
-                0.99999994039535522,
-                0.99999982118606567,
-                0.99999982118606567
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "R_RingEnd",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 2006055196,
-            "ParentUID": 1978788433,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.078345298767089844,
-                -0.010223357006907463,
-                -0.0024670707061886787
-            ],
-            "Rotation": [
-                -0.0097401421517133713,
-                0.034752767533063889,
-                -0.13807770609855652,
-                0.98976361751556396
-            ],
-            "Scale": [
-                0.99999982118606567,
-                0.9999995231628418,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "R_IndexFinger",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1969818071,
-            "ParentUID": 1988261496,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.071917489171028137,
-                0.0043714847415685654,
-                -0.039136305451393127
-            ],
-            "Rotation": [
-                -0.04409877210855484,
-                0.21238309144973755,
-                -0.031702034175395966,
-                0.97567600011825562
-            ],
-            "Scale": [
-                1.0000001192092896,
-                1.0000005960464478,
-                0.99999988079071045
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "R_IndexMid",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 250740024,
-            "ParentUID": 1969818071,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.062298573553562164,
-                0.00067940435837954283,
-                0.013732023537158966
-            ],
-            "Rotation": [
-                0.034288536757230759,
-                -0.16663746535778046,
-                0.033769771456718445,
-                0.98484307527542114
-            ],
-            "Scale": [
-                0.99999994039535522,
-                1,
-                0.99999970197677612
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "R_IndexEnd",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 2024128088,
-            "ParentUID": 250740024,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.059995599091053009,
-                1.3990534171171021e-06,
-                2.6490951654523087e-08
-            ],
-            "Rotation": [
-                3.9477725977121736e-08,
-                -1.9040378163026617e-08,
-                -7.4505820180092996e-08,
-                1
-            ],
-            "Scale": [
-                0.99999970197677612,
-                1.0000001192092896,
-                0.9999995231628418
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "R_ThumbFInger",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1797214861,
-            "ParentUID": 1988261496,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.038820110261440277,
-                -0.013027334585785866,
-                -0.036866553127765656
-            ],
-            "Rotation": [
-                -0.097956359386444092,
-                0.2444300502538681,
-                -0.20008617639541626,
-                0.94372886419296265
-            ],
-            "Scale": [
-                1.0000002384185791,
-                1.0000002384185791,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "R_ThumbMid",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 761145226,
-            "ParentUID": 1797214861,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.046224556863307953,
-                3.8892030715942383e-06,
-                6.1094760894775391e-07
-            ],
-            "Rotation": [
-                -0.013438520021736622,
-                0.016821287572383881,
-                -0.083782024681568146,
-                0.99625152349472046
-            ],
-            "Scale": [
-                0.99999946355819702,
-                0.99999958276748657,
-                0.99999964237213135
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "R_ThumbEnd",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 385305974,
-            "ParentUID": 761145226,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.045549564063549042,
-                4.2178562580375001e-06,
-                2.7236012556386413e-07
-            ],
-            "Rotation": [
-                1.2831554840886383e-07,
-                -7.9327980984089663e-07,
-                3.3672483823465882e-07,
-                1
-            ],
-            "Scale": [
-                1.0000001192092896,
-                0.99999994039535522,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "RightLeg",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1168981177,
-            "ParentUID": 273719670,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -0.016588553786277771,
-                -0.11519818007946014,
-                -0.031259395182132721
-            ],
-            "Rotation": [
-                0.61959946155548096,
-                -0.59770232439041138,
-                -0.11932578682899475,
-                0.49458044767379761
-            ],
-            "Scale": [
-                0.99999964237213135,
-                0.99999970197677612,
-                0.99999982118606567
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "RightKnee",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 303269911,
-            "ParentUID": 1168981177,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.33052447438240051,
-                -3.1302789693654631e-08,
-                4.3461721332960224e-08
-            ],
-            "Rotation": [
-                -0.0029842313379049301,
-                -0.02491411566734314,
-                -0.30847737193107605,
-                0.95090067386627197
-            ],
-            "Scale": [
-                0.99999994039535522,
-                1,
-                0.99999988079071045
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "RightFeet",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 2042740074,
-            "ParentUID": 303269911,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.49832546710968018,
-                2.5042233176009177e-08,
-                -4.0874713391758632e-08
-            ],
-            "Rotation": [
-                -0.050164312124252319,
-                0.65712231397628784,
-                -0.74956279993057251,
-                0.061883311718702316
-            ],
-            "Scale": [
-                0.99999994039535522,
-                0.99999964237213135,
-                0.99999964237213135
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "RightToe",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 502169379,
-            "ParentUID": 2042740074,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -0.049591563642024994,
-                -0.0013282939326018095,
-                -0.116887167096138
-            ],
-            "Rotation": [
-                3.1461233618301776e-08,
-                6.6098020390370493e-09,
-                6.3745466682973984e-09,
-                1
-            ],
-            "Scale": [
-                1.0000001192092896,
-                1.0000003576278687,
-                1.0000003576278687
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "RightFingers",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 500562199,
-            "ParentUID": 502169379,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.0038778986781835556,
-                -0.0087299058213829994,
-                -0.11471904814243317
-            ],
-            "Rotation": [
-                -0.0009471263037994504,
-                0.0010921470820903778,
-                0.65520107746124268,
-                0.75545316934585571
-            ],
-            "Scale": [
-                0.99999988079071045,
-                0.99999970197677612,
-                0.99999970197677612
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "BagBones",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 276233063,
-            "ParentUID": 273719670,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.086258724331855774,
-                0.11813855171203613,
-                -0.068335801362991333
-            ],
-            "Rotation": [
-                -0.6166536808013916,
-                0.34603267908096313,
-                -0.24342629313468933,
-                0.66388499736785889
-            ],
-            "Scale": [
-                0.99999970197677612,
-                1,
-                0.99999988079071045
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "BagInit",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 906020238,
-            "ParentUID": 276233063,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.13209520280361176,
-                -0.0028588664717972279,
-                0.048943568021059036
-            ],
-            "Rotation": [
-                0.0040797526016831398,
-                0.019375985488295555,
-                -0.042794127017259598,
-                0.99888771772384644
-            ],
-            "Scale": [
-                0.99999982118606567,
-                0.99999994039535522,
-                0.9999997615814209
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "BagMid",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 2145310114,
-            "ParentUID": 906020238,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.073978006839752197,
-                0.00082816928625106812,
-                0.012979581952095032
-            ],
-            "Rotation": [
-                -3.1691723023641316e-08,
-                -2.1881245704236107e-09,
-                0.03511420264840126,
-                0.99938333034515381
-            ],
-            "Scale": [
-                0.9999997615814209,
-                0.99999994039535522,
-                1.0000001192092896
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "BagEnd",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1147797944,
-            "ParentUID": 2145310114,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.063823431730270386,
-                0.0035232878290116787,
-                0.025654617697000504
-            ],
-            "Rotation": [
-                0.41681963205337524,
-                -0.57119274139404297,
-                0.41681960225105286,
-                0.5711931586265564
-            ],
-            "Scale": [
-                1,
-                1.0000001192092896,
-                1.0000002384185791
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Mesh",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 826670707,
-            "ParentUID": 1481001958,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/30374504.mmh",
-                    "UID": 30374504,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "doNotDrawStencil": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/637612837.mat",
-                    "MaterialUID": 637612837
-                }
-            ]
-        },
-        {
-            "name": "GroguFollowPoint",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1079552447,
-            "ParentUID": 1481001958,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.50180244445800781,
-                0.90269899368286133,
-                -0.44307708740234375
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "GroguFPManager",
-                    "point1": 1888234881,
-                    "point2": 441715349,
-                    "point3": 698487689,
-                    "point4": 1791693201,
-                    "point5": 737227179,
-                    "point6": 1634265859
-                }
-            ]
-        },
-        {
-            "name": "FP_Back",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1888234881,
-            "ParentUID": 1079552447,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -0.49853205680847168,
-                0.047300815582275391,
-                -1.2671375274658203
-            ],
-            "Rotation": [
-                3.0908562926972027e-13,
-                7.0314678168870159e-07,
-                -4.5771676379646742e-13,
-                1
-            ],
-            "Scale": [
-                1.0000019073486328,
-                1,
-                1.0000030994415283
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 0,
-                    "Density": 0
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "GroguFollowPoints",
-                    "priority": 2
-                }
-            ]
-        },
-        {
-            "name": "FP_BackLeft",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 441715349,
-            "ParentUID": 1079552447,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.77647113800048828,
-                0.047300815582275391,
-                -0.76955604553222656
-            ],
-            "Rotation": [
-                3.0908562926972027e-13,
-                7.0314678168870159e-07,
-                -4.5771676379646742e-13,
-                1
-            ],
-            "Scale": [
-                1.0000019073486328,
-                1,
-                1.0000030994415283
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 0,
-                    "Density": 0
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "GroguFollowPoints",
-                    "priority": 1
-                }
-            ]
-        },
-        {
-            "name": "FP_BackRight",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 698487689,
-            "ParentUID": 1079552447,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -1.8636553287506104,
-                0.047300338745117188,
-                -0.75372886657714844
-            ],
-            "Rotation": [
-                3.0908562926972027e-13,
-                7.0314678168870159e-07,
-                -4.5771676379646742e-13,
-                1
-            ],
-            "Scale": [
-                1.0000019073486328,
-                1,
-                1.0000030994415283
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 0,
-                    "Density": 0
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "GroguFollowPoints",
-                    "priority": 1
-                }
-            ]
-        },
-        {
-            "name": "FP_Right",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1791693201,
-            "ParentUID": 1079552447,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -1.8178057670593262,
-                0.047300815582275391,
-                0.86599493026733398
-            ],
-            "Rotation": [
-                3.0908562926972027e-13,
-                7.0314678168870159e-07,
-                -4.5771676379646742e-13,
-                1
-            ],
-            "Scale": [
-                1.0000019073486328,
-                1,
-                1.0000030994415283
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 0,
-                    "Density": 0
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "GroguFollowPoints",
-                    "priority": 3
-                }
-            ]
-        },
-        {
-            "name": "FP_Left",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 737227179,
-            "ParentUID": 1079552447,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.79251575469970703,
-                0.047301292419433594,
-                0.87046051025390625
-            ],
-            "Rotation": [
-                3.0908562926972027e-13,
-                7.0314678168870159e-07,
-                -4.5771676379646742e-13,
-                1
-            ],
-            "Scale": [
-                1.0000019073486328,
-                1,
-                1.0000030994415283
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 0,
-                    "Density": 0
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "GroguFollowPoints",
-                    "priority": 3
-                }
-            ]
-        },
-        {
-            "name": "FP_Front",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1634265859,
-            "ParentUID": 1079552447,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -0.49546480178833008,
-                0.047301292419433594,
-                2.1131925582885742
-            ],
-            "Rotation": [
-                3.0908562926972027e-13,
-                7.0314678168870159e-07,
-                -4.5771676379646742e-13,
-                1
-            ],
-            "Scale": [
-                1.0000019073486328,
-                1,
-                1.0000030994415283
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 0,
-                    "Density": 0
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "GroguFollowPoints",
-                    "priority": 4
                 }
             ]
         },
@@ -3796,10 +896,10 @@
                 -17.078739166259766
             ],
             "Rotation": [
-                -0.49484473466873169,
-                0.50511026382446289,
-                0.50510197877883911,
-                0.49483761191368103
+                -0.49484479427337646,
+                0.50511032342910767,
+                0.50510203838348389,
+                0.49483767151832581
             ],
             "Scale": [
                 2.6428577899932861,
@@ -10263,10 +7363,10 @@
                 -1.1299999952316284
             ],
             "Rotation": [
-                -1.8126291934095207e-07,
-                -0.99776542186737061,
-                -1.8126291934095207e-07,
-                0.066814035177230835
+                -1.812629477626615e-07,
+                -0.99776554107666016,
+                -1.812629477626615e-07,
+                0.066814042627811432
             ],
             "Scale": [
                 1.0000159740447998,
@@ -13025,6 +10125,1998 @@
             ]
         },
         {
+            "name": "DinDjarin",
+            "tag": "Player",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1487895998,
+            "ParentUID": 1676501951,
+            "PrefabReference": 47750865,
+            "PrefabID": 1239505839,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -2.2259764671325684,
+                7.9174470901489258,
+                -5.9180746078491211
+            ],
+            "Rotation": [
+                -2.120925657322914e-09,
+                1.4958196530010793e-18,
+                7.0526734452514006e-10,
+                1
+            ],
+            "Scale": [
+                0.99999821186065674,
+                1,
+                0.99999821186065674
+            ],
+            "PrefabObjects": [
+                {
+                    "name": "ShootPoint",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 638596419,
+                    "ParentUID": 1487895998,
+                    "PrefabID": 0,
+                    "PrefabReference": 158286609,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -0.25,
+                        1.3999996185302734,
+                        1.2999999523162842
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        0.05000000074505806,
+                        0.05000000074505806,
+                        0.60000002384185791
+                    ]
+                },
+                {
+                    "name": "Armature",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 367343358,
+                    "ParentUID": 1487895998,
+                    "PrefabID": 0,
+                    "PrefabReference": 1333412432,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Hips",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 429175195,
+                    "ParentUID": 367343358,
+                    "PrefabID": 0,
+                    "PrefabReference": 2083835756,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0.80000001192092896,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -0.34664732217788696,
+                        0.9379955530166626
+                    ],
+                    "Scale": [
+                        0.99999994039535522,
+                        0.99999994039535522,
+                        1
+                    ]
+                },
+                {
+                    "name": "LeftLeg",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1666270384,
+                    "ParentUID": 429175195,
+                    "PrefabID": 0,
+                    "PrefabReference": 1176428097,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.11634468287229538,
+                        -0.0031171953305602074,
+                        -0.031259384006261826
+                    ],
+                    "Rotation": [
+                        0.60810208320617676,
+                        -0.31655701994895935,
+                        -0.24281571805477142,
+                        0.68632656335830688
+                    ],
+                    "Scale": [
+                        1,
+                        0.99999994039535522,
+                        1
+                    ]
+                },
+                {
+                    "name": "LeftKnee",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 343793524,
+                    "ParentUID": 1666270384,
+                    "PrefabID": 0,
+                    "PrefabReference": 1221728304,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.33052429556846619,
+                        -1.3877787807814457e-17,
+                        2.300366287888941e-17
+                    ],
+                    "Rotation": [
+                        8.4459745266940445e-05,
+                        0.010696200653910637,
+                        -0.1295710951089859,
+                        0.99151241779327393
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "LeftFeet",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1543688589,
+                    "ParentUID": 343793524,
+                    "PrefabID": 0,
+                    "PrefabReference": 413962408,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.49832558631896973,
+                        -1.0408340855860843e-16,
+                        -3.4051680700410985e-17
+                    ],
+                    "Rotation": [
+                        -0.70699226856231689,
+                        -0.012725724838674068,
+                        0.06909044086933136,
+                        0.70372331142425537
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "LeftToe",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 176657007,
+                    "ParentUID": 1543688589,
+                    "PrefabID": 0,
+                    "PrefabReference": 1246264628,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.048129789531230927,
+                        0.00092376413522288203,
+                        0.10971994698047638
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "LeftFingers",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 398637978,
+                    "ParentUID": 176657007,
+                    "PrefabID": 0,
+                    "PrefabReference": 1407876247,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -0.0024161925539374352,
+                        0.0091348141431808472,
+                        0.12188585847616196
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0.65520179271697998,
+                        0.75545394420623779
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Spine1",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1643496157,
+                    "ParentUID": 429175195,
+                    "PrefabID": 0,
+                    "PrefabReference": 156092366,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -0.047563381493091583,
+                        0.051045466214418411,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0.91328257322311401,
+                        0.40732657909393311
+                    ],
+                    "Scale": [
+                        0.99999994039535522,
+                        0.99999994039535522,
+                        1
+                    ]
+                },
+                {
+                    "name": "Spine2",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1769750690,
+                    "ParentUID": 1643496157,
+                    "PrefabID": 0,
+                    "PrefabReference": 1039359466,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.07544226199388504,
+                        -8.7309451322370231e-18,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -0.0073059904389083385,
+                        0.99997329711914063
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Spine3",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 2086025512,
+                    "ParentUID": 1769750690,
+                    "PrefabID": 0,
+                    "PrefabReference": 1783896721,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.087513022124767303,
+                        -9.7158973771808624e-17,
+                        0
+                    ],
+                    "Rotation": [
+                        0.99998879432678223,
+                        -0.0047309142537415028,
+                        -6.8187300250599492e-10,
+                        -4.3706066321647086e-08
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Spine4",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1158091636,
+                    "ParentUID": 2086025512,
+                    "PrefabID": 0,
+                    "PrefabReference": 1251855790,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.18509595096111298,
+                        1.0213184464813452e-15,
+                        1.2508914988795097e-31
+                    ],
+                    "Rotation": [
+                        0.99971985816955566,
+                        0.023672441020607948,
+                        -1.0347551704370517e-09,
+                        -4.3699145635400782e-08
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Neck",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 224263341,
+                    "ParentUID": 1158091636,
+                    "PrefabID": 0,
+                    "PrefabReference": 1975625742,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.13789960741996765,
+                        2.6107588313450947e-16,
+                        -7.993282005574484e-19
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -0.69357866048812866,
+                        0.72038090229034424
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Head",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1231950071,
+                    "ParentUID": 224263341,
+                    "PrefabID": 0,
+                    "PrefabReference": 859677079,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -0.0055729993619024754,
+                        0.14354380965232849,
+                        1.8145757699999199e-18
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "LeftShoulder",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1246515558,
+                    "ParentUID": 1158091636,
+                    "PrefabID": 0,
+                    "PrefabReference": 1208675169,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.033537942916154861,
+                        -0.070087730884552002,
+                        -1.7351324340716533e-17
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -0.677437424659729,
+                        0.73558038473129272
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "LeftArm",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1698004601,
+                    "ParentUID": 1246515558,
+                    "PrefabID": 0,
+                    "PrefabReference": 27233254,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.11282739043235779,
+                        0.0010122709209099412,
+                        -0.056232895702123642
+                    ],
+                    "Rotation": [
+                        0.00452386774122715,
+                        0.0020032965112477541,
+                        0.0053277215920388699,
+                        0.99997365474700928
+                    ],
+                    "Scale": [
+                        0.99999994039535522,
+                        0.99999988079071045,
+                        1
+                    ]
+                },
+                {
+                    "name": "LeftForearm",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 2098526165,
+                    "ParentUID": 1698004601,
+                    "PrefabID": 0,
+                    "PrefabReference": 1925800080,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.26499998569488525,
+                        -0.0010000000474974513,
+                        -0.026000000536441803
+                    ],
+                    "Rotation": [
+                        -1.0431648661324289e-05,
+                        -0.0040979753248393536,
+                        0.0031355151440948248,
+                        0.99998670816421509
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "LeftHand",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1735177114,
+                    "ParentUID": 2098526165,
+                    "PrefabID": 0,
+                    "PrefabReference": 133352882,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.289000004529953,
+                        0,
+                        0.039999999105930328
+                    ],
+                    "Rotation": [
+                        -0.0045772758312523365,
+                        0.0020299949683248997,
+                        -0.025733744725584984,
+                        0.99965637922286987
+                    ],
+                    "Scale": [
+                        0.99999994039535522,
+                        0.99999994039535522,
+                        0.99999994039535522
+                    ]
+                },
+                {
+                    "name": "L_RingFinger",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 220775456,
+                    "ParentUID": 1735177114,
+                    "PrefabID": 0,
+                    "PrefabReference": 589191741,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.037698734551668167,
+                        -0.0026892705354839563,
+                        0.0019252991769462824
+                    ],
+                    "Rotation": [
+                        0,
+                        -0.079738594591617584,
+                        0,
+                        0.99681580066680908
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "L_RingMid",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1067560597,
+                    "ParentUID": 220775456,
+                    "PrefabID": 0,
+                    "PrefabReference": 1033058814,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.052526507526636124,
+                        -0.0033344610128551722,
+                        0.0056190709583461285
+                    ],
+                    "Rotation": [
+                        0,
+                        -0.0036042376887053251,
+                        0,
+                        0.99999350309371948
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "L_RingEnd",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 227301067,
+                    "ParentUID": 1067560597,
+                    "PrefabID": 0,
+                    "PrefabReference": 1212867817,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.076177336275577545,
+                        -0.02065165713429451,
+                        0.0043806945905089378
+                    ],
+                    "Rotation": [
+                        0,
+                        0.083330832421779633,
+                        0,
+                        0.99652194976806641
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "L_IndexFinger",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 120590864,
+                    "ParentUID": 1735177114,
+                    "PrefabID": 0,
+                    "PrefabReference": 2013287317,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.045164097100496292,
+                        -0.008021792396903038,
+                        0.039074655622243881
+                    ],
+                    "Rotation": [
+                        0,
+                        -0.31220519542694092,
+                        0,
+                        0.95001471042633057
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "L_IndexMid",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1142966421,
+                    "ParentUID": 120590864,
+                    "PrefabID": 0,
+                    "PrefabReference": 818657167,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.0703120157122612,
+                        -0.013979429379105568,
+                        -0.011798866093158722
+                    ],
+                    "Rotation": [
+                        0,
+                        0.17957000434398651,
+                        0,
+                        0.98374521732330322
+                    ],
+                    "Scale": [
+                        0.99999994039535522,
+                        1,
+                        0.99999994039535522
+                    ]
+                },
+                {
+                    "name": "L_IndexEnd",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1606140503,
+                    "ParentUID": 1142966421,
+                    "PrefabID": 0,
+                    "PrefabReference": 1514632327,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.059133138507604599,
+                        -0.010065189562737942,
+                        0.0011344943195581436
+                    ],
+                    "Rotation": [
+                        0,
+                        0.13653625547885895,
+                        0,
+                        0.99063509702682495
+                    ],
+                    "Scale": [
+                        0.99999994039535522,
+                        1,
+                        0.99999994039535522
+                    ]
+                },
+                {
+                    "name": "L_ThumbFinger",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1634460073,
+                    "ParentUID": 1735177114,
+                    "PrefabID": 0,
+                    "PrefabReference": 180235779,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.01729397289454937,
+                        -0.019484924152493477,
+                        0.037107720971107483
+                    ],
+                    "Rotation": [
+                        0,
+                        -0.44861933588981628,
+                        0,
+                        0.89372295141220093
+                    ],
+                    "Scale": [
+                        0,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "L_ThumbMid",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1881255097,
+                    "ParentUID": 1634460073,
+                    "PrefabID": 0,
+                    "PrefabReference": 448220338,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.037645567208528519,
+                        -0.025722149759531021,
+                        -0.0076227076351642609
+                    ],
+                    "Rotation": [
+                        0,
+                        0.16018226742744446,
+                        0,
+                        0.98708754777908325
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "L_ThumbEnd",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1980961354,
+                    "ParentUID": 1881255097,
+                    "PrefabID": 0,
+                    "PrefabReference": 463277341,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.032635308802127838,
+                        -0.031313922256231308,
+                        0.0054354676976799965
+                    ],
+                    "Rotation": [
+                        0,
+                        0.29966804385185242,
+                        0,
+                        0.95404362678527832
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "RightShoulder",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 815649200,
+                    "ParentUID": 1158091636,
+                    "PrefabID": 0,
+                    "PrefabReference": 774863468,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.028339693322777748,
+                        0.072346001863479614,
+                        1.7545461976121504e-17
+                    ],
+                    "Rotation": [
+                        0.69252943992614746,
+                        0.68393933773040771,
+                        -0.15514293313026428,
+                        0.16899901628494263
+                    ],
+                    "Scale": [
+                        1,
+                        0.99999994039535522,
+                        0.99999994039535522
+                    ]
+                },
+                {
+                    "name": "RightArm",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 402875579,
+                    "ParentUID": 815649200,
+                    "PrefabID": 0,
+                    "PrefabReference": 1980292988,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.12606798112392426,
+                        0,
+                        -4.163336342344337e-17
+                    ],
+                    "Rotation": [
+                        0.2649340033531189,
+                        0.1756579726934433,
+                        -0.092606797814369202,
+                        0.94359862804412842
+                    ],
+                    "Scale": [
+                        1,
+                        0.99999994039535522,
+                        0.99999994039535522
+                    ]
+                },
+                {
+                    "name": "RightForearm",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 316772092,
+                    "ParentUID": 402875579,
+                    "PrefabID": 0,
+                    "PrefabReference": 1527980148,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.2664419412612915,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0.0049518346786499023,
+                        0.111714206635952,
+                        0.0034441906027495861,
+                        0.99372208118438721
+                    ],
+                    "Scale": [
+                        1,
+                        0.99999994039535522,
+                        1
+                    ]
+                },
+                {
+                    "name": "RightHand",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1480246089,
+                    "ParentUID": 316772092,
+                    "PrefabID": 0,
+                    "PrefabReference": 1755946116,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.2916027307510376,
+                        -2.2204460492503131e-16,
+                        -2.7755575615628914e-17
+                    ],
+                    "Rotation": [
+                        -0.26984342932701111,
+                        0.0031993202865123749,
+                        -0.14042794704437256,
+                        0.95260399580001831
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "R_RingFinger",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 620226386,
+                    "ParentUID": 1480246089,
+                    "PrefabID": 0,
+                    "PrefabReference": 922969267,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.041544154286384583,
+                        2.2204460492503131e-16,
+                        0
+                    ],
+                    "Rotation": [
+                        -0.0012510481756180525,
+                        0.016178647056221962,
+                        0.094907671213150024,
+                        0.9953538179397583
+                    ],
+                    "Scale": [
+                        0.99999994039535522,
+                        1,
+                        0.99999994039535522
+                    ]
+                },
+                {
+                    "name": "R_RingMid",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1327529477,
+                    "ParentUID": 620226386,
+                    "PrefabID": 0,
+                    "PrefabReference": 1037652273,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.060923349112272263,
+                        4.4408920985006262e-16,
+                        8.3266726846886741e-17
+                    ],
+                    "Rotation": [
+                        0.0011149910278618336,
+                        -0.019077682867646217,
+                        -0.076180867850780487,
+                        0.99691087007522583
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "R_RingEnd",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 528518631,
+                    "ParentUID": 1327529477,
+                    "PrefabID": 0,
+                    "PrefabReference": 1039013453,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.078345231711864471,
+                        -0.010225599631667137,
+                        -0.0024671379942446947
+                    ],
+                    "Rotation": [
+                        -0.0097394660115242004,
+                        0.034752339124679565,
+                        -0.13806603848934174,
+                        0.9897652268409729
+                    ],
+                    "Scale": [
+                        0.99999994039535522,
+                        1,
+                        0.99999994039535522
+                    ]
+                },
+                {
+                    "name": "R_IndexFinger",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1010801153,
+                    "ParentUID": 1480246089,
+                    "PrefabID": 0,
+                    "PrefabReference": 1316445765,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.07191755622625351,
+                        0.0043701725080609322,
+                        -0.039136350154876709
+                    ],
+                    "Rotation": [
+                        -0.044094998389482498,
+                        0.21238303184509277,
+                        -0.031698960810899734,
+                        0.97567629814147949
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "R_IndexMid",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 2095444470,
+                    "ParentUID": 1010801153,
+                    "PrefabID": 0,
+                    "PrefabReference": 1963518399,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.062298718839883804,
+                        0.00067741720704361796,
+                        0.013731858693063259
+                    ],
+                    "Rotation": [
+                        0.034285344183444977,
+                        -0.16663706302642822,
+                        0.033766668289899826,
+                        0.98484337329864502
+                    ],
+                    "Scale": [
+                        0.99999994039535522,
+                        1,
+                        0.99999994039535522
+                    ]
+                },
+                {
+                    "name": "R_IndexEnd",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1932854219,
+                    "ParentUID": 2095444470,
+                    "PrefabID": 0,
+                    "PrefabReference": 1895423347,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.059995632618665695,
+                        0,
+                        -2.7755575615628914e-16
+                    ],
+                    "Rotation": [
+                        4.3711388286737929e-08,
+                        -4.3711388286737929e-08,
+                        -4.3711388286737929e-08,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "R_ThumbFInger",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1623292685,
+                    "ParentUID": 1480246089,
+                    "PrefabID": 0,
+                    "PrefabReference": 546216984,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.038820195943117142,
+                        -0.013029624707996845,
+                        -0.036866549402475357
+                    ],
+                    "Rotation": [
+                        -0.09795069694519043,
+                        0.24442668259143829,
+                        -0.20007158815860748,
+                        0.9437333345413208
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "R_ThumbMid",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1785615363,
+                    "ParentUID": 1623292685,
+                    "PrefabID": 0,
+                    "PrefabReference": 532221988,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.046225648373365402,
+                        6.6613381477509392e-16,
+                        2.2204460492503131e-16
+                    ],
+                    "Rotation": [
+                        -0.013438579626381397,
+                        0.016825651749968529,
+                        -0.083779476583003998,
+                        0.99625164270401001
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "R_ThumbEnd",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 646346240,
+                    "ParentUID": 1785615363,
+                    "PrefabID": 0,
+                    "PrefabReference": 1144181210,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.045551348477602005,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        4.3711388286737929e-08,
+                        -4.3711388286737929e-08,
+                        -4.3711388286737929e-08,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "RightLeg",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 899235802,
+                    "ParentUID": 429175195,
+                    "PrefabID": 0,
+                    "PrefabReference": 281619592,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -0.016588568687438965,
+                        -0.11519817262887955,
+                        -0.031259398907423019
+                    ],
+                    "Rotation": [
+                        0.63407707214355469,
+                        -0.35890555381774902,
+                        -0.26059746742248535,
+                        0.63342088460922241
+                    ],
+                    "Scale": [
+                        0.99999982118606567,
+                        0.99999994039535522,
+                        0.99999988079071045
+                    ]
+                },
+                {
+                    "name": "RightKnee",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 105010051,
+                    "ParentUID": 899235802,
+                    "PrefabID": 0,
+                    "PrefabReference": 111917522,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.3305245041847229,
+                        1.3877787807814457e-17,
+                        4.1730034367271218e-17
+                    ],
+                    "Rotation": [
+                        -8.5370927990879864e-05,
+                        -0.0096716191619634628,
+                        -0.117120161652565,
+                        0.99307066202163696
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "RightFeet",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 870426283,
+                    "ParentUID": 105010051,
+                    "PrefabID": 0,
+                    "PrefabReference": 739127846,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.49832534790039063,
+                        2.0816681711721685e-17,
+                        1.3898392876873153e-17
+                    ],
+                    "Rotation": [
+                        -0.012982429005205631,
+                        0.68484604358673096,
+                        -0.72511708736419678,
+                        0.070870332419872284
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        0.99999988079071045
+                    ]
+                },
+                {
+                    "name": "RightToe",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 107214050,
+                    "ParentUID": 870426283,
+                    "PrefabID": 0,
+                    "PrefabReference": 816616952,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -0.049591511487960815,
+                        -0.0013283168664202094,
+                        -0.1168871596455574
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "RightFingers",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1843701725,
+                    "ParentUID": 107214050,
+                    "PrefabID": 0,
+                    "PrefabReference": 1206744514,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.0038779217284172773,
+                        -0.008729902096092701,
+                        -0.11471904069185257
+                    ],
+                    "Rotation": [
+                        1.5920003093583546e-08,
+                        3.2560496521227833e-08,
+                        0.65520179271697998,
+                        0.75545394420623779
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "BagBones",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 965247741,
+                    "ParentUID": 429175195,
+                    "PrefabID": 0,
+                    "PrefabReference": 904571260,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.086258649826049805,
+                        0.11813866347074509,
+                        -0.06833580881357193
+                    ],
+                    "Rotation": [
+                        -0.6166534423828125,
+                        0.34603258967399597,
+                        -0.2434263676404953,
+                        0.66388523578643799
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "BagInit",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 307210590,
+                    "ParentUID": 965247741,
+                    "PrefabID": 0,
+                    "PrefabReference": 50260538,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.12640358507633209,
+                        -0.0034710955806076527,
+                        0.052317414432764053
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0.039904393255710602,
+                        0.99920356273651123
+                    ],
+                    "Scale": [
+                        0.99999994039535522,
+                        0.99999994039535522,
+                        1
+                    ]
+                },
+                {
+                    "name": "BagMid",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1518845917,
+                    "ParentUID": 307210590,
+                    "PrefabID": 0,
+                    "PrefabReference": 938055135,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.073978021740913391,
+                        0.00082819547969847918,
+                        0.012979564256966114
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0.035114418715238571,
+                        0.99938333034515381
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "BagEnd",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1476809177,
+                    "ParentUID": 1518845917,
+                    "PrefabID": 0,
+                    "PrefabReference": 1211364918,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.063823312520980835,
+                        0.0035232494119554758,
+                        0.025654597207903862
+                    ],
+                    "Rotation": [
+                        0.41681963205337524,
+                        -0.57119297981262207,
+                        0.41681966185569763,
+                        0.57119303941726685
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Mesh",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1857144498,
+                    "ParentUID": 1487895998,
+                    "PrefabID": 0,
+                    "PrefabReference": 459171094,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "GroguFollowPoint",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 561676682,
+                    "ParentUID": 1487895998,
+                    "PrefabID": 0,
+                    "PrefabReference": 509166132,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.50180244445800781,
+                        0.90269899368286133,
+                        -0.44307708740234375
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "FP_Back",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 962549299,
+                    "ParentUID": 561676682,
+                    "PrefabID": 0,
+                    "PrefabReference": 142714943,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -0.53475379943847656,
+                        0.046333789825439453,
+                        -1.2218532562255859
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "FP_BackLeft",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1417541044,
+                    "ParentUID": 561676682,
+                    "PrefabID": 0,
+                    "PrefabReference": 1697695581,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.75781059265136719,
+                        0.046333789825439453,
+                        -0.77125072479248047
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "FP_BackRight",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 866542792,
+                    "ParentUID": 561676682,
+                    "PrefabID": 0,
+                    "PrefabReference": 2059081215,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -1.8636245727539063,
+                        0.046333789825439453,
+                        -0.77125072479248047
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "FP_Right",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 317626661,
+                    "ParentUID": 561676682,
+                    "PrefabID": 0,
+                    "PrefabReference": 22414030,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -1.8636245727539063,
+                        0.046333789825439453,
+                        0.86050128936767578
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "FP_Left",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 846652322,
+                    "ParentUID": 561676682,
+                    "PrefabID": 0,
+                    "PrefabReference": 1414054908,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.76593399047851563,
+                        0.046333789825439453,
+                        0.86050128936767578
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "FP_Front",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 650167106,
+                    "ParentUID": 561676682,
+                    "PrefabID": 0,
+                    "PrefabReference": 823920447,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -0.53475379943847656,
+                        0.046333789825439453,
+                        2.1109142303466797
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Dust Trail",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 623775360,
+                    "ParentUID": 1487895998,
+                    "PrefabID": 0,
+                    "PrefabReference": 729745570,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -0.0040745735168457031,
+                        -0.0062532424926757813,
+                        -0.058134078979492188
+                    ],
+                    "Rotation": [
+                        -5.3290705182007514e-15,
+                        -1.4901161193847656e-07,
+                        1.3589129821411916e-13,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Dust",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1450028926,
+                    "ParentUID": 623775360,
+                    "PrefabID": 0,
+                    "PrefabReference": 448208244,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        -0.0081729888916015625
+                    ],
+                    "Rotation": [
+                        -0.71074628829956055,
+                        0,
+                        0,
+                        0.70344847440719604
+                    ],
+                    "Scale": [
+                        1,
+                        0.99999892711639404,
+                        0.99999892711639404
+                    ]
+                },
+                {
+                    "name": "Muzzle Fire",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1405095223,
+                    "ParentUID": 1487895998,
+                    "PrefabID": 0,
+                    "PrefabReference": 1768764614,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -0.25,
+                        1.3999999761581421,
+                        1.2999999523162842
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        0.5,
+                        0.5,
+                        0.5
+                    ]
+                },
+                {
+                    "name": "Muzzle Bién",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1959432339,
+                    "ParentUID": 1405095223,
+                    "PrefabID": 0,
+                    "PrefabReference": 6421373,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0.7071068286895752,
+                        0,
+                        0,
+                        0.70710670948028564
+                    ],
+                    "Scale": [
+                        1,
+                        0.99998700618743896,
+                        0.99998700618743896
+                    ]
+                },
+                {
+                    "name": "Jetpack Particles",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 887681491,
+                    "ParentUID": 1487895998,
+                    "PrefabID": 0,
+                    "PrefabReference": 385811057,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -0.0085477828979492188,
+                        0.85818099975585938,
+                        -0.19471836090087891
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Particles Fire",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 988691545,
+                    "ParentUID": 887681491,
+                    "PrefabID": 0,
+                    "PrefabReference": 1973626368,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -0.0030422210693359375,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        1,
+                        0,
+                        0,
+                        -4.3711388286737929e-08
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Impact",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 400717154,
+                    "ParentUID": 1487895998,
+                    "PrefabID": 0,
+                    "PrefabReference": 1247696880,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -0.0011692047119140625,
+                        1.1349606513977051,
+                        0.14531135559082031
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -0.7071068286895752,
+                        0.70710670948028564
+                    ],
+                    "Scale": [
+                        0.99992626905441284,
+                        0.99992626905441284,
+                        1
+                    ]
+                },
+                {
+                    "name": "Impact Beam",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 368920457,
+                    "ParentUID": 400717154,
+                    "PrefabID": 0,
+                    "PrefabReference": 190961330,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0.034369468688964844
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Grogu",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 706718677,
+            "ParentUID": 1676501951,
+            "PrefabReference": 1152800351,
+            "PrefabID": 2124140914,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -5.7361040115356445,
+                8.8576202392578125,
+                -8.0873985290527344
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "PrefabObjects": [
+                {
+                    "name": "GroguMesh",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1463175000,
+                    "ParentUID": 706718677,
+                    "PrefabID": 0,
+                    "PrefabReference": 1206897640,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "CapsuleDoor",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1819879555,
+                    "ParentUID": 1463175000,
+                    "PrefabID": 0,
+                    "PrefabReference": 1281796164,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Capsule",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 299325655,
+                    "ParentUID": 1463175000,
+                    "PrefabID": 0,
+                    "PrefabReference": 1247782759,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "GrogusBody",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 170116267,
+                    "ParentUID": 1463175000,
+                    "PrefabID": 0,
+                    "PrefabReference": 1657322527,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
             "name": "Canvas",
             "tag": "Untagged",
             "layer": "Default",
@@ -13529,24 +12621,12 @@
                 {
                     "Type": 7,
                     "Active": true,
-                    "Pressed_AssetsPath": "Assets\/UI\/HUD\/ability3.png",
-                    "Pressed_LibraryPath": "Library\/Textures\/784219460.dds",
-                    "Pressed_UID": 784219460,
-                    "Hovered_AssetsPath": "Assets\/UI\/HUD\/ability3.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/784219460.dds",
-                    "Hovered_UID": 784219460,
-                    "Unhovered_AssetsPath": "Assets\/UI\/HUD\/ability3.png",
-                    "Unhovered_LibraryPath": "Library\/Textures\/784219460.dds",
-                    "Unhovered_UID": 784219460,
                     "ButtonState": 2,
                     "Is Selected": false
                 },
                 {
                     "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Assets\/UI\/HUD\/ability3.png",
-                    "LibraryPath": "Library\/Textures\/784219460.dds",
-                    "UID": 784219460
+                    "Active": true
                 },
                 {
                     "Type": 17,
@@ -13876,10 +12956,7 @@
                 },
                 {
                     "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/3427837.dds",
-                    "UID": 3427837
+                    "Active": true
                 }
             ]
         },
@@ -16829,9 +15906,6 @@
                 {
                     "Type": 7,
                     "Active": true,
-                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/bar_pressed.png",
-                    "Pressed_LibraryPath": "Library\/Textures\/947828079.dds",
-                    "Pressed_UID": 947828079,
                     "Hovered_AssetsPath": "Assets\/UI\/MENU\/bar_empty_hover.png",
                     "Hovered_LibraryPath": "Library\/Textures\/619086891.dds",
                     "Hovered_UID": 619086891,
@@ -17084,9 +16158,6 @@
                     "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_right_pressed.png",
                     "Pressed_LibraryPath": "Library\/Textures\/70978250.dds",
                     "Pressed_UID": 70978250,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/1505315464.dds",
-                    "Hovered_UID": 1505315464,
                     "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
                     "Unhovered_LibraryPath": "Library\/Textures\/1346482548.dds",
                     "Unhovered_UID": 1346482548,
@@ -17169,9 +16240,6 @@
                     "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_left_pressed.png",
                     "Pressed_LibraryPath": "Library\/Textures\/1878130604.dds",
                     "Pressed_UID": 1878130604,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_left_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/708143523.dds",
-                    "Hovered_UID": 708143523,
                     "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_left.png",
                     "Unhovered_LibraryPath": "Library\/Textures\/1148197231.dds",
                     "Unhovered_UID": 1148197231,
@@ -17318,9 +16386,6 @@
                 {
                     "Type": 7,
                     "Active": true,
-                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/bar_pressed.png",
-                    "Pressed_LibraryPath": "Library\/Textures\/947828079.dds",
-                    "Pressed_UID": 947828079,
                     "Hovered_AssetsPath": "Assets\/UI\/MENU\/bar_empty_hover.png",
                     "Hovered_LibraryPath": "Library\/Textures\/619086891.dds",
                     "Hovered_UID": 619086891,
@@ -17573,9 +16638,6 @@
                     "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_right_pressed.png",
                     "Pressed_LibraryPath": "Library\/Textures\/70978250.dds",
                     "Pressed_UID": 70978250,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/1505315464.dds",
-                    "Hovered_UID": 1505315464,
                     "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
                     "Unhovered_LibraryPath": "Library\/Textures\/1346482548.dds",
                     "Unhovered_UID": 1346482548,
@@ -17666,9 +16728,6 @@
                     "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_left_pressed.png",
                     "Pressed_LibraryPath": "Library\/Textures\/1878130604.dds",
                     "Pressed_UID": 1878130604,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_left_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/708143523.dds",
-                    "Hovered_UID": 708143523,
                     "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_left.png",
                     "Unhovered_LibraryPath": "Library\/Textures\/1148197231.dds",
                     "Unhovered_UID": 1148197231,
@@ -18392,9 +17451,6 @@
                     "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_right_pressed.png",
                     "Pressed_LibraryPath": "Library\/Textures\/70978250.dds",
                     "Pressed_UID": 70978250,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/1505315464.dds",
-                    "Hovered_UID": 1505315464,
                     "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
                     "Unhovered_LibraryPath": "Library\/Textures\/1346482548.dds",
                     "Unhovered_UID": 1346482548,
@@ -18486,9 +17542,6 @@
                     "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_left_pressed.png",
                     "Pressed_LibraryPath": "Library\/Textures\/1878130604.dds",
                     "Pressed_UID": 1878130604,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_left_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/708143523.dds",
-                    "Hovered_UID": 708143523,
                     "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_left.png",
                     "Unhovered_LibraryPath": "Library\/Textures\/1148197231.dds",
                     "Unhovered_UID": 1148197231,
@@ -18891,9 +17944,6 @@
                     "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_right_pressed.png",
                     "Pressed_LibraryPath": "Library\/Textures\/70978250.dds",
                     "Pressed_UID": 70978250,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/1505315464.dds",
-                    "Hovered_UID": 1505315464,
                     "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
                     "Unhovered_LibraryPath": "Library\/Textures\/1346482548.dds",
                     "Unhovered_UID": 1346482548,
@@ -18985,9 +18035,6 @@
                     "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_left_pressed.png",
                     "Pressed_LibraryPath": "Library\/Textures\/1878130604.dds",
                     "Pressed_UID": 1878130604,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_left_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/708143523.dds",
-                    "Hovered_UID": 708143523,
                     "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_left.png",
                     "Unhovered_LibraryPath": "Library\/Textures\/1148197231.dds",
                     "Unhovered_UID": 1148197231,
@@ -19393,9 +18440,6 @@
                     "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_left_pressed.png",
                     "Pressed_LibraryPath": "Library\/Textures\/1878130604.dds",
                     "Pressed_UID": 1878130604,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_left_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/708143523.dds",
-                    "Hovered_UID": 708143523,
                     "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_left.png",
                     "Unhovered_LibraryPath": "Library\/Textures\/1148197231.dds",
                     "Unhovered_UID": 1148197231,
@@ -19895,9 +18939,6 @@
                     "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_right_pressed.png",
                     "Pressed_LibraryPath": "Library\/Textures\/70978250.dds",
                     "Pressed_UID": 70978250,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/1505315464.dds",
-                    "Hovered_UID": 1505315464,
                     "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_right.png",
                     "Unhovered_LibraryPath": "Library\/Textures\/1346482548.dds",
                     "Unhovered_UID": 1346482548,
@@ -19989,9 +19030,6 @@
                     "Pressed_AssetsPath": "Assets\/UI\/MENU\/arrow_left_pressed.png",
                     "Pressed_LibraryPath": "Library\/Textures\/1878130604.dds",
                     "Pressed_UID": 1878130604,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/arrow_left_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/708143523.dds",
-                    "Hovered_UID": 708143523,
                     "Unhovered_AssetsPath": "Assets\/UI\/MENU\/arrow_left.png",
                     "Unhovered_LibraryPath": "Library\/Textures\/1148197231.dds",
                     "Unhovered_UID": 1148197231,
