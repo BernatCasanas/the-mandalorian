@@ -115,7 +115,7 @@ public class StormTrooper : Enemy
             spawnparticles.Play();
         }
         else
-        { 
+        {
             //Debug.Log("CAN'T PLAY SPAWN!!!"); 
         }
     }
@@ -128,10 +128,10 @@ public class StormTrooper : Enemy
             player = Core.instance.gameObject;
         }
 
-        if (skill_slowDownActive)
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
         {
             skill_slowDownTimer += Time.deltaTime;
-            if (skill_slowDownTimer >= skill_slowDownDuration)
+            if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownDuration)
             {
                 skill_slowDownTimer = 0.0f;
                 skill_slowDownActive = false;
@@ -406,7 +406,8 @@ public class StormTrooper : Enemy
     private void UpdateWander()
     {
         LookAt(agent.GetDestination());
-        if (skill_slowDownActive) agent.MoveToCalculatedPos(wanderSpeed * (1 - skill_slowDownAmount));
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null) 
+            agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
         else agent.MoveToCalculatedPos(wanderSpeed);
 
     }
@@ -429,9 +430,9 @@ public class StormTrooper : Enemy
     {
         LookAt(agent.GetDestination());
 
-        if (skill_slowDownActive) 
-            agent.MoveToCalculatedPos(runningSpeed * (1 - skill_slowDownAmount));
-        else 
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
+            agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
+        else
             agent.MoveToCalculatedPos(runningSpeed);
 
     }
@@ -445,9 +446,9 @@ public class StormTrooper : Enemy
 
     private void StartFindAim()
     {
-        if(agent != null && player != null)
+        if (agent != null && player != null)
         {
-            if(!agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition))
+            if (!agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition))
             {
                 inputsList.Add(INPUT.IN_SHOOT);
                 return;
@@ -471,7 +472,7 @@ public class StormTrooper : Enemy
 
     private void UpdateFindAim()
     {
-        if(targetPosition != null)
+        if (targetPosition != null)
         {
             if (reAimTimer > 0.0f)
             {
@@ -588,7 +589,7 @@ public class StormTrooper : Enemy
                 shotTimer = timeBewteenShots;
             }
         }
-      
+
     }
 
     private void Shoot()
@@ -603,6 +604,9 @@ public class StormTrooper : Enemy
     private void PlayerDetected()
     {
         Audio.PlayAudio(gameObject, "Play_Enemy_Detection");
+        StormTrooperParticles part = gameObject.GetComponent<StormTrooperParticles>();
+        if (part != null && part.alert != null)
+            part.alert.Play();
     }
     #endregion
 
@@ -622,7 +626,7 @@ public class StormTrooper : Enemy
         ParticleSystem souls = null;
 
         StormTrooperParticles myParticles = gameObject.GetComponent<StormTrooperParticles>();
-        if(myParticles != null)
+        if (myParticles != null)
         {
             dead = myParticles.dead;
             wave = myParticles.wave;
@@ -672,10 +676,10 @@ public class StormTrooper : Enemy
         {
             Counter.allEnemiesDead = true;
         }
-        
+
         //Created dropped coins
         var rand = new Random();
-        int droppedCoins = rand.Next(1, 4);        
+        int droppedCoins = rand.Next(1, 4);
         for (int i = 0; i < droppedCoins; i++)
         {
             Vector3 pos = gameObject.transform.globalPosition;
@@ -701,9 +705,9 @@ public class StormTrooper : Enemy
     private void UpdatePush()
     {
         pushTimer += Time.deltaTime;
-        if(pushTimer >= PushStun)
+        if (pushTimer >= PushStun)
             inputsList.Add(INPUT.IN_IDLE);
-       
+
     }
     #endregion
 
@@ -743,16 +747,18 @@ public class StormTrooper : Enemy
             if (Core.instance.hud != null)
             {
                 HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
-                    
-                if (hudComponent!= null)
+
+                if (hudComponent != null)
                     hudComponent.AddToCombo(25, 0.95f);
             }
 
-
-            if (skill_slowDownEnabled)
+            if (Skill_Tree_Data.instance != null)
             {
-                skill_slowDownActive = true;
-                skill_slowDownTimer = 0.0f;
+                if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
+                {
+                    skill_slowDownActive = true;
+                    skill_slowDownTimer = 0.0f;
+                }
             }
         }
         else if (collidedGameObject.CompareTag("Grenade"))
@@ -765,12 +771,13 @@ public class StormTrooper : Enemy
                     hudComponent.AddToCombo(8, 1.5f);
             }
 
-        
-
-            if (skill_slowDownEnabled)
+            if (Skill_Tree_Data.instance != null)
             {
-                skill_slowDownActive = true;
-                skill_slowDownTimer = 0.0f;
+                if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
+                {
+                    skill_slowDownActive = true;
+                    skill_slowDownTimer = 0.0f;
+                }
             }
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))
@@ -790,7 +797,7 @@ public class StormTrooper : Enemy
                 if (currentState != STATE.DIE && healthPoints <= 0.0f)
                     inputsList.Add(INPUT.IN_DIE);
             }
-            
+
         }
 
 
@@ -821,6 +828,6 @@ public class StormTrooper : Enemy
             }
         }
 
-        
+
     }
 }

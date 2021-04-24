@@ -129,10 +129,10 @@ public class Skytrooper : Enemy
             player = Core.instance.gameObject;
         }
 
-        if (skill_slowDownActive)
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
         {
             skill_slowDownTimer += Time.deltaTime;
-            if (skill_slowDownTimer >= skill_slowDownDuration)
+            if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownDuration)
             {
                 skill_slowDownTimer = 0.0f;
                 skill_slowDownActive = false;
@@ -396,8 +396,11 @@ public class Skytrooper : Enemy
     }
     private void UpdateWander()
     {
+
         LookAt(targetPosition);
-        if (skill_slowDownActive) MoveToPosition(targetPosition, wanderSpeed * (1 - skill_slowDownAmount));
+
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
+            if (skill_slowDownActive) MoveToPosition(targetPosition, wanderSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
         else MoveToPosition(targetPosition, wanderSpeed);
     }
     private void WanderEnd()
@@ -421,12 +424,10 @@ public class Skytrooper : Enemy
     }
     private void UpdateDash()
     {
-        //LookAt(agent.GetDestination());
-        //if (skill_slowDownActive) agent.MoveToCalculatedPos(dashSpeed * (1 - skill_slowDownAmount));
-        //else agent.MoveToCalculatedPos(dashSpeed);
-
         LookAt(targetPosition);
-        if (skill_slowDownActive) MoveToPosition(targetPosition, dashSpeed * (1 - skill_slowDownAmount));
+        
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null) 
+            MoveToPosition(targetPosition, dashSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
         else MoveToPosition(targetPosition, dashSpeed);
     }
     private void DashEnd()
@@ -440,7 +441,7 @@ public class Skytrooper : Enemy
     {
         Debug.Log("SKYTROOPER SHOOT");
         shootTimer = timeBewteenShootingStates;
-        shotsShooted=0;
+        shotsShooted = 0;
         Animator.Play(gameObject, "SK_Idle");
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
     }
@@ -492,7 +493,7 @@ public class Skytrooper : Enemy
             shootTimer = timeBewteenShootingStates;
             Animator.Play(gameObject, "SK_Idle");
         }
-           
+
     }
     private void PlayerDetected()
     {
@@ -621,10 +622,13 @@ public class Skytrooper : Enemy
                 inputsList.Add(INPUT.IN_DIE);
             }
 
-            if (skill_slowDownEnabled)
+            if (Skill_Tree_Data.instance != null)
             {
-                skill_slowDownActive = true;
-                skill_slowDownTimer = 0.0f;
+                if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
+                {
+                    skill_slowDownActive = true;
+                    skill_slowDownTimer = 0.0f;
+                }
             }
         }
         else if (collidedGameObject.CompareTag("Grenade"))
@@ -642,10 +646,13 @@ public class Skytrooper : Enemy
                 inputsList.Add(INPUT.IN_DIE);
             }
 
-            if (skill_slowDownEnabled)
+            if (Skill_Tree_Data.instance != null)
             {
-                skill_slowDownActive = true;
-                skill_slowDownTimer = 0.0f;
+                if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
+                {
+                    skill_slowDownActive = true;
+                    skill_slowDownTimer = 0.0f;
+                }
             }
         }
         //else if (collidedGameObject.CompareTag("WorldLimit"))

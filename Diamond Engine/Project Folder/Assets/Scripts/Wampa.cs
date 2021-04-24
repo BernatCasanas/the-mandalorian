@@ -118,13 +118,18 @@ public class Wampa : Bosseslv2
                 resting = false;
             }
         }
+
     }
 
     private void ProcessExternalInput()
     {
-        if (currentState == BOSS_STATE.WANDER && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance)
+        if (currentState == BOSS_STATE.WANDER && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= 1.0f)
         {
             agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
+        }
+        if(currentState == BOSS_STATE.PROJECTILE && secondShot)
+        {
+            inputsList.Add(BOSS_INPUT.IN_PROJECTILE_END);
         }
     }
 
@@ -132,8 +137,6 @@ public class Wampa : Bosseslv2
     {
         while (inputsList.Count > 0)
         {
-            Debug.Log("is working");
-
             BOSS_INPUT input = inputsList[0];
             switch (currentState)
             {
@@ -147,6 +150,11 @@ public class Wampa : Bosseslv2
                         case BOSS_INPUT.IN_PROJECTILE:
                             currentState = BOSS_STATE.PROJECTILE;
                             StartProjectile();
+                            break;
+
+                        case BOSS_INPUT.IN_FAST_RUSH:
+                            currentState = BOSS_STATE.FAST_RUSH;
+                            StartFastRush();
                             break;
 
                         case BOSS_INPUT.IN_FOLLOW:
@@ -199,6 +207,21 @@ public class Wampa : Bosseslv2
                             break;
                     }
                     break;
+
+                case BOSS_STATE.SLOW_RUSH:
+                    switch (input)
+                    {
+                        case BOSS_INPUT.IN_SLOW_RUSH_END:
+                            currentState = BOSS_STATE.SEARCH_STATE;
+                            EndSlowRush();
+                            break;
+                        case BOSS_INPUT.IN_DEAD:
+                            currentState = BOSS_STATE.SEARCH_STATE;
+                            StartDie();
+                            break;
+                    }
+                    break;
+
                 case BOSS_STATE.RUSH_STUN:
                     switch (input)
                     {
@@ -280,6 +303,7 @@ public class Wampa : Bosseslv2
                 inputsList.Add(BOSS_INPUT.IN_PROJECTILE);
             else
                 inputsList.Add(BOSS_INPUT.IN_FAST_RUSH);
+        Debug.Log("Selecting Action");
         }
     }
 

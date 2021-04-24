@@ -55,9 +55,6 @@
                     "stoppingDistance": 1,
                     "coinDropPath": "Library\/Prefabs\/1907169014.prefab",
                     "slerpSpeed": 5,
-                    "skill_slowDownEnabled": false,
-                    "skill_slowDownAmount": 0,
-                    "skill_slowDownDuration": 0,
                     "shootPoint": 1110781799,
                     "idleTime": 2,
                     "dashTime": 0.5,
@@ -2576,10 +2573,10 @@
                     ],
                     "alternColorStencil": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ],
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": false
                 },
                 {
                     "Type": 3,
@@ -2588,6 +2585,14 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
                     "MaterialUID": 1948688504
+                },
+                {
+                    "Type": 26,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/animated_colored_mat.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/2086070049.mat",
+                    "MaterialUID": 2086070049
                 }
             ]
         },
