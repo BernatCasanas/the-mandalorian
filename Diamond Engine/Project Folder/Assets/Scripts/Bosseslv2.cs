@@ -49,6 +49,16 @@ public class Bosseslv2 : DiamondComponent
     public float projectileRange = 6.0f;
     public float projectileDamage = 10.0f;
     public float rushDamage = 15.0f;
+    private JUMPSLAM jumpslam = JUMPSLAM.NONE;
+
+    enum JUMPSLAM : int
+    {
+        NONE = -1,
+        CHARGE,
+        UP,
+        FALLING,
+        RECOVERY
+    }
 
 
 
@@ -74,7 +84,7 @@ public class Bosseslv2 : DiamondComponent
                     Quaternion rot = projectilePoint.transform.globalRotation;
                     Vector3 scale = new Vector3(1, 1, 1);
 
-                    //GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/tocreate.prefab", pos, rot, scale);
+                    //GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1052835205.prefab", pos, rot, scale);
                     //projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
                     Debug.Log("Throwing projectile");
 
@@ -91,7 +101,7 @@ public class Bosseslv2 : DiamondComponent
         }
         Debug.Log("Projectile");
         Debug.Log(shootingTimer.ToString());
-        if(projectilePoint==null) Debug.Log("Prohjectile null");
+        if (projectilePoint == null) Debug.Log("Prohjectile null");
 
     }
 
@@ -162,6 +172,46 @@ public class Bosseslv2 : DiamondComponent
     }
     #endregion
 
+    #region BOUNCE RUSH
+
+    public void StartBounceRush()
+    {
+
+    }
+
+    public void UpdateBounceRush()
+    {
+        Debug.Log("Bounce Rush");
+    }
+
+    public void EndBounceRush()
+    {
+
+    }
+
+    #endregion
+
+    #region JUMP SLAM
+
+    public void StartJumpSlam()
+    {
+        Debug.Log("Starting Jumping");
+
+    }
+
+    public void UpdateJumpSlam()
+    {
+        Debug.Log("Jump Slam");
+
+    }
+
+    public void EndJumpSlam()
+    {
+
+    }
+
+    #endregion
+
     #region FOLLOW
     public void StartFollowing()
     {
@@ -225,7 +275,7 @@ public class Bosseslv2 : DiamondComponent
 
     public void EndDie()
     {
-        Debug.Log("WAMPA DEAD");
+        Debug.Log("DEAD");
 
         Counter.roomEnemies--;
 

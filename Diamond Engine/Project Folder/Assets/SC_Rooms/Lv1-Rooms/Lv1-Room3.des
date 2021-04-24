@@ -1,9 +1,9 @@
 {
     "NavMesh": 1917905990,
     "EditorCameraPosition": [
-        -16.132516860961914,
-        21.586479187011719,
-        -3.227203369140625
+        -35.936260223388672,
+        25.351604461669922,
+        -4.9368047714233398
     ],
     "EditorCameraZ": [
         0.81203019618988037,
@@ -6269,8 +6269,8 @@
                     "fSize": 30,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 22.766666412353516,
-                    "hFOV": 39.333332061767578,
+                    "vFOV": 21.366666793823242,
+                    "hFOV": 40.433334350585938,
                     "culling": false,
                     "drawSkybox": true
                 },
@@ -8144,10 +8144,10 @@
                         -0.19471836090087891
                     ],
                     "Rotation": [
-                        0.19392229616641998,
-                        -2.7353405651631135e-10,
-                        1.3877789462175682e-17,
-                        0.98101699352264404
+                        0.1939222663640976,
+                        -2.7353402876073574e-10,
+                        1.3877787807814457e-17,
+                        0.98101687431335449
                     ],
                     "Scale": [
                         1,
@@ -8456,8 +8456,8 @@
             "Active": true,
             "UID": 925658757,
             "ParentUID": 272055130,
-            "PrefabReference": 132529529,
-            "PrefabID": 551315197,
+            "PrefabReference": 0,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
@@ -8476,650 +8476,1462 @@
                 1,
                 1
             ],
-            "PrefabObjects": [
+            "Components": [
                 {
-                    "name": "WeaponHolders",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
                     "Active": true,
-                    "UID": 1451558274,
-                    "ParentUID": 925658757,
-                    "PrefabID": 0,
-                    "PrefabReference": 1248590997,
-                    "DontDestroy": false,
-                    "Static": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
+                    "ScriptName": "HUD",
+                    "hp": 50,
+                    "max_hp": 50,
+                    "force": 50,
+                    "max_force": 50,
+                    "primaryWeaponHeat": 0,
+                    "primaryWeaponMaxHeat": 0,
+                    "bullets_secondary_weapon": 10,
+                    "max_bullets_secondary_weapon": 10,
+                    "main_weapon": true,
+                    "hp_bar": 1086277292,
+                    "hp_number_gameobject": 171369282,
+                    "force_bar": 1927233580,
+                    "skill_push": 1179939942,
+                    "weapon_bar": 505649981,
+                    "primary_weapon": 321479537,
+                    "currency_number_gameobject": 1449038641,
+                    "combo_bar": 1891816186,
+                    "combo_text": 667647702,
+                    "combo_gameobject": 906753291,
+                    "max_hp_number": 1629123037,
+                    "fpsText": 1248058592,
+                    "comboNumber": 0,
+                    "last_hp": 0,
+                    "shooting_blink": 157901930
+                }
+            ]
+        },
+        {
+            "name": "WeaponHolders",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1451558274,
+            "ParentUID": 925658757,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "PrimaryWeapon Bar",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 505649981,
+            "ParentUID": 1451558274,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
                 },
                 {
-                    "name": "PrimaryWeapon Bar",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 6,
                     "Active": true,
-                    "UID": 505649981,
-                    "ParentUID": 1451558274,
-                    "PrefabID": 0,
-                    "PrefabReference": 163255224,
-                    "DontDestroy": false,
-                    "Static": false,
                     "Position": [
-                        0,
-                        0,
-                        0
+                        -85.5,
+                        79.599998474121094
                     ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
+                    "Rotation": 0,
+                    "Size": [
+                        10.600000381469727,
+                        1.2000000476837158
                     ]
                 },
                 {
-                    "name": "Image",
-                    "tag": "Untagged",
-                    "layer": "Default",
-                    "Active": false,
-                    "UID": 157901930,
-                    "ParentUID": 1451558274,
-                    "PrefabID": 0,
-                    "PrefabReference": 1508490180,
-                    "DontDestroy": false,
-                    "Static": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "name": "PrimaryWeapon",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 3,
                     "Active": true,
-                    "UID": 321479537,
-                    "ParentUID": 1451558274,
-                    "PrefabID": 0,
-                    "PrefabReference": 2054548892,
-                    "DontDestroy": false,
-                    "Static": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/888916443.mat",
+                    "MaterialUID": 888916443
                 },
                 {
-                    "name": "Currency",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 11,
                     "Active": true,
-                    "UID": 652276443,
-                    "ParentUID": 925658757,
-                    "PrefabID": 0,
-                    "PrefabReference": 157650556,
-                    "DontDestroy": false,
-                    "Static": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1834381926.dds",
+                    "UID": 1834381926
+                }
+            ]
+        },
+        {
+            "name": "Image",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 157901930,
+            "ParentUID": 1451558274,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
                 },
                 {
-                    "name": "Currency Value",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 6,
                     "Active": true,
-                    "UID": 1449038641,
-                    "ParentUID": 652276443,
-                    "PrefabID": 0,
-                    "PrefabReference": 439459,
-                    "DontDestroy": false,
-                    "Static": false,
                     "Position": [
-                        0,
-                        0,
-                        0
+                        -85.5,
+                        85.5
                     ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
+                    "Rotation": 0,
+                    "Size": [
+                        12.5,
+                        10.5
                     ]
                 },
                 {
-                    "name": "Grogu Skill Push",
-                    "tag": "Untagged",
-                    "layer": "Default",
-                    "Active": false,
-                    "UID": 1179939942,
-                    "ParentUID": 925658757,
-                    "PrefabID": 0,
-                    "PrefabReference": 530803981,
-                    "DontDestroy": false,
-                    "Static": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "name": "Combo Holder",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 3,
                     "Active": true,
-                    "UID": 906753291,
-                    "ParentUID": 925658757,
-                    "PrefabID": 0,
-                    "PrefabReference": 1205363625,
-                    "DontDestroy": false,
-                    "Static": false,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/492389955.dds",
+                    "UID": 492389955
+                }
+            ]
+        },
+        {
+            "name": "PrimaryWeapon",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 321479537,
+            "ParentUID": 1451558274,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -85.5,
+                        85.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        12.5,
+                        10.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/518783332.dds",
+                    "UID": 518783332
+                }
+            ]
+        },
+        {
+            "name": "Currency",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 652276443,
+            "ParentUID": 925658757,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -92.900001525878906,
+                        55
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4,
+                        6
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/864701205.dds",
+                    "UID": 864701205
+                }
+            ]
+        },
+        {
+            "name": "Currency Value",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1449038641,
+            "ParentUID": 652276443,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        4.5,
+                        -2.2999999523162842
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        6,
+                        10
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "0",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Grogu Skill Push",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1179939942,
+            "ParentUID": 925658757,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -89.099998474121094,
+                        -54
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        6.4000000953674316,
+                        9.6000003814697266
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/38453201.mat",
+                    "MaterialUID": 38453201
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/HUD\/ability3.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/784219460.dds",
+                    "Pressed_UID": 784219460,
+                    "Hovered_AssetsPath": "Assets\/UI\/HUD\/ability3.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/784219460.dds",
+                    "Hovered_UID": 784219460,
+                    "Unhovered_AssetsPath": "Assets\/UI\/HUD\/ability3.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/784219460.dds",
+                    "Unhovered_UID": 784219460,
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/HUD\/ability3.png",
+                    "LibraryPath": "Library\/Textures\/784219460.dds",
+                    "UID": 784219460
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                }
+            ]
+        },
+        {
+            "name": "Combo Holder",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 906753291,
+            "ParentUID": 925658757,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Combo ",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1641585499,
+            "ParentUID": 906753291,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        90,
+                        88.599998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7.5999999046325684,
+                        3.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/573820456.dds",
+                    "UID": 573820456
+                }
+            ]
+        },
+        {
+            "name": "Combo Bar",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1891816186,
+            "ParentUID": 906753291,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        64.800003051757813,
+                        88.599998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        19,
+                        2.2000000476837158
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/1816860359.mat",
+                    "MaterialUID": 1816860359
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/315682035.dds",
+                    "UID": 315682035
+                }
+            ]
+        },
+        {
+            "name": "Combo Counter",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 667647702,
+            "ParentUID": 906753291,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        77.300003051757813,
+                        69.599998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        21.399999618530273,
+                        29.899999618530273
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "x0",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/teko-semibold.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "HP Gauge",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 17121627,
+            "ParentUID": 925658757,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
                     "Position": [
                         0,
-                        0,
-                        0
+                        -87.900001525878906
                     ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
+                    "Rotation": 0,
+                    "Size": [
+                        31.399999618530273,
+                        12.899999618530273
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/2060021866.dds",
+                    "UID": 2060021866
+                }
+            ]
+        },
+        {
+            "name": "HP Value",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 171369282,
+            "ParentUID": 17121627,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -7.3000001907348633,
+                        3.2999999523162842
                     ],
-                    "Scale": [
+                    "Rotation": 0,
+                    "Size": [
+                        5,
+                        9
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "500",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
                         1,
                         1,
                         1
                     ]
                 },
                 {
-                    "name": "Combo ",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 6,
                     "Active": true,
-                    "UID": 1641585499,
-                    "ParentUID": 906753291,
-                    "PrefabID": 0,
-                    "PrefabReference": 1402462306,
-                    "DontDestroy": false,
-                    "Static": false,
                     "Position": [
-                        0,
-                        0,
-                        0
+                        94.199996948242188,
+                        93.800003051757813
                     ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
+                    "Rotation": 0,
+                    "Size": [
+                        5,
+                        9
                     ]
                 },
                 {
-                    "name": "Combo Bar",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 3,
                     "Active": true,
-                    "UID": 1891816186,
-                    "ParentUID": 906753291,
-                    "PrefabID": 0,
-                    "PrefabReference": 1189227877,
-                    "DontDestroy": false,
-                    "Static": false,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "30",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "HP Max Value",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1629123037,
+            "ParentUID": 17121627,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
                     "Position": [
-                        0,
-                        0,
-                        0
+                        0.80000001192092896,
+                        3.2999999523162842
                     ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
+                    "Rotation": 0,
+                    "Size": [
+                        5,
+                        9
                     ]
                 },
                 {
-                    "name": "Combo Counter",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 3,
                     "Active": true,
-                    "UID": 667647702,
-                    "ParentUID": 906753291,
-                    "PrefabID": 0,
-                    "PrefabReference": 1149498179,
-                    "DontDestroy": false,
-                    "Static": false,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "500",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "HP Slash",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1826142672,
+            "ParentUID": 17121627,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
                     "Position": [
-                        0,
-                        0,
-                        0
+                        -1,
+                        4.0999999046325684
                     ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
+                    "Rotation": 0,
+                    "Size": [
+                        5,
+                        7.5
                     ]
                 },
                 {
-                    "name": "HP Gauge",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 3,
                     "Active": true,
-                    "UID": 17121627,
-                    "ParentUID": 925658757,
-                    "PrefabID": 0,
-                    "PrefabReference": 1087131057,
-                    "DontDestroy": false,
-                    "Static": false,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "\/",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "HP Glitch",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 404613971,
+            "ParentUID": 17121627,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
                     "Position": [
                         0,
-                        0,
-                        0
+                        2.2000000476837158
                     ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
+                    "Rotation": 0,
+                    "Size": [
+                        28.5,
+                        5.5999999046325684
                     ]
                 },
                 {
-                    "name": "HP Value",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 3,
                     "Active": true,
-                    "UID": 171369282,
-                    "ParentUID": 17121627,
-                    "PrefabID": 0,
-                    "PrefabReference": 1237664529,
-                    "DontDestroy": false,
-                    "Static": false,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/1424228158.mat",
+                    "MaterialUID": 1424228158
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/3427837.dds",
+                    "UID": 3427837
+                }
+            ]
+        },
+        {
+            "name": "HP Bar",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1086277292,
+            "ParentUID": 17121627,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
                     "Position": [
                         0,
-                        0,
-                        0
+                        -0.89999997615814209
                     ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
+                    "Rotation": 0,
+                    "Size": [
+                        29,
+                        2.7999999523162842
                     ]
                 },
                 {
-                    "name": "HP Max Value",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 3,
                     "Active": true,
-                    "UID": 1629123037,
-                    "ParentUID": 17121627,
-                    "PrefabID": 0,
-                    "PrefabReference": 1808321281,
-                    "DontDestroy": false,
-                    "Static": false,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/1128026973.mat",
+                    "MaterialUID": 1128026973
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1774413428.dds",
+                    "UID": 1774413428
+                }
+            ]
+        },
+        {
+            "name": "Force Bar",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1927233580,
+            "ParentUID": 17121627,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
                     "Position": [
                         0,
-                        0,
-                        0
+                        -6.1999998092651367
                     ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
+                    "Rotation": 0,
+                    "Size": [
+                        18.399999618530273,
+                        1.5
                     ]
                 },
                 {
-                    "name": "HP Slash",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 3,
                     "Active": true,
-                    "UID": 1826142672,
-                    "ParentUID": 17121627,
-                    "PrefabID": 0,
-                    "PrefabReference": 907099126,
-                    "DontDestroy": false,
-                    "Static": false,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/1555306866.mat",
+                    "MaterialUID": 1555306866
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/318010131.dds",
+                    "UID": 318010131
+                }
+            ]
+        },
+        {
+            "name": "Cooldown icons",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1150808620,
+            "ParentUID": 925658757,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Sniper 1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 2127030744,
+            "ParentUID": 1150808620,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
                     "Position": [
-                        0,
-                        0,
-                        0
+                        -89.300003051757813,
+                        71.099998474121094
                     ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
+                    "Rotation": 0,
+                    "Size": [
+                        8.6999998092651367,
+                        5.4000000953674316
                     ]
                 },
                 {
-                    "name": "HP Glitch",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 3,
                     "Active": true,
-                    "UID": 404613971,
-                    "ParentUID": 17121627,
-                    "PrefabID": 0,
-                    "PrefabReference": 2096643917,
-                    "DontDestroy": false,
-                    "Static": false,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/953516954.dds",
+                    "UID": 953516954
+                }
+            ]
+        },
+        {
+            "name": "Sniper 2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1977581845,
+            "ParentUID": 1150808620,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
                     "Position": [
-                        0,
-                        0,
-                        0
+                        -89.300003051757813,
+                        65.5
                     ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
+                    "Rotation": 0,
+                    "Size": [
+                        8.6999998092651367,
+                        5.4000000953674316
                     ]
                 },
                 {
-                    "name": "HP Bar",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 3,
                     "Active": true,
-                    "UID": 1086277292,
-                    "ParentUID": 17121627,
-                    "PrefabID": 0,
-                    "PrefabReference": 1687691573,
-                    "DontDestroy": false,
-                    "Static": false,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/953516954.dds",
+                    "UID": 953516954
+                }
+            ]
+        },
+        {
+            "name": "Grenade",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1754054281,
+            "ParentUID": 1150808620,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
                     "Position": [
-                        0,
-                        0,
-                        0
+                        -77.900001525878906,
+                        69.300003051757813
                     ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
+                    "Rotation": 0,
+                    "Size": [
+                        4,
+                        7
                     ]
                 },
                 {
-                    "name": "Force Bar",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 3,
                     "Active": true,
-                    "UID": 1927233580,
-                    "ParentUID": 17121627,
-                    "PrefabID": 0,
-                    "PrefabReference": 1354741875,
-                    "DontDestroy": false,
-                    "Static": false,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1204798453.dds",
+                    "UID": 1204798453
+                }
+            ]
+        },
+        {
+            "name": "DamageScreen",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 208027199,
+            "ParentUID": 925658757,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
                     "Position": [
-                        0,
                         0,
                         0
                     ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
+                    "Rotation": 0,
+                    "Size": [
+                        100,
+                        100
                     ]
                 },
                 {
-                    "name": "Cooldown icons",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 3,
                     "Active": true,
-                    "UID": 1150808620,
-                    "ParentUID": 925658757,
-                    "PrefabID": 0,
-                    "PrefabReference": 1002303135,
-                    "DontDestroy": false,
-                    "Static": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/303021662.mat",
+                    "MaterialUID": 303021662
                 },
                 {
-                    "name": "Sniper 1",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 11,
                     "Active": true,
-                    "UID": 2127030744,
-                    "ParentUID": 1150808620,
-                    "PrefabID": 0,
-                    "PrefabReference": 1012936217,
-                    "DontDestroy": false,
-                    "Static": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "name": "Sniper 2",
-                    "tag": "Untagged",
-                    "layer": "Default",
-                    "Active": true,
-                    "UID": 1977581845,
-                    "ParentUID": 1150808620,
-                    "PrefabID": 0,
-                    "PrefabReference": 416879924,
-                    "DontDestroy": false,
-                    "Static": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "name": "Grenade",
-                    "tag": "Untagged",
-                    "layer": "Default",
-                    "Active": true,
-                    "UID": 1754054281,
-                    "ParentUID": 1150808620,
-                    "PrefabID": 0,
-                    "PrefabReference": 355699599,
-                    "DontDestroy": false,
-                    "Static": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "name": "DamageScreen",
-                    "tag": "Untagged",
-                    "layer": "Default",
-                    "Active": true,
-                    "UID": 208027199,
-                    "ParentUID": 925658757,
-                    "PrefabID": 0,
-                    "PrefabReference": 1527848422,
-                    "DontDestroy": false,
-                    "Static": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/714069747.dds",
+                    "UID": 714069747
                 }
             ]
         },
@@ -16607,6 +17419,40 @@
                         1,
                         1
                     ]
+                }
+            ]
+        },
+        {
+            "name": "Empty",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1248058592,
+            "ParentUID": 1676501951,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
                 }
             ]
         }

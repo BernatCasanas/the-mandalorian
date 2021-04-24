@@ -172,7 +172,8 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            Rancor.SetSkill("AggressionDamageBossesSkill", 0.2f);
+            if (Skill_Tree_Data.instance != null)
+                Skill_Tree_Data.instance.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS);
         }
 
         public override void AssignCharacteristics()
@@ -187,8 +188,8 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            if(Core.instance != null)
-                Core.instance.SetSkill("AggressionHPMissingDamageSkill", 1.0f, 1.0f);
+            if (Skill_Tree_Data.instance != null)
+                Skill_Tree_Data.instance.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_EXTRA_DAMAGE_LOW_HEALTH);
         }
 
         public override void AssignCharacteristics()
