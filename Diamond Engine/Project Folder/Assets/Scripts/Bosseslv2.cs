@@ -91,7 +91,7 @@ public class Bosseslv2 : DiamondComponent
         }
         Debug.Log("Projectile");
         Debug.Log(shootingTimer.ToString());
-        if(projectilePoint==null) Debug.Log("Prohjectile null");
+        if (projectilePoint == null) Debug.Log("Prohjectile null");
 
     }
 
@@ -162,6 +162,44 @@ public class Bosseslv2 : DiamondComponent
     }
     #endregion
 
+    #region BOUNCE RUSH
+
+    public void StartBounceRush()
+    {
+
+    }
+
+    public void UpdateBounceRush()
+    {
+
+    }
+
+    public void EndBounceRush()
+    {
+
+    }
+
+    #endregion
+
+    #region JUMP SLAM
+
+    public void StartJumpSlam()
+    {
+
+    }
+
+    public void UpdateJumpSlam()
+    {
+
+    }
+
+    public void EndJumpSlam()
+    {
+
+    }
+
+    #endregion
+
     #region FOLLOW
     public void StartFollowing()
     {
@@ -225,7 +263,7 @@ public class Bosseslv2 : DiamondComponent
 
     public void EndDie()
     {
-        Debug.Log("WAMPA DEAD");
+        Debug.Log("DEAD");
 
         Counter.roomEnemies--;
 
