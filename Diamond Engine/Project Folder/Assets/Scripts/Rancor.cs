@@ -212,6 +212,7 @@ public class Rancor : DiamondComponent
 
         dieTime = Animator.GetAnimationDuration(gameObject, "RN_Die") - 0.016f;
 
+
         Counter.SumToCounterType(Counter.CounterTypes.RANCOR);
         damaged = 0.0f;
         runTime = (Animator.GetAnimationDuration(gameObject, "RN_Walk")) / 2;
@@ -1232,7 +1233,7 @@ public class Rancor : DiamondComponent
 
     public void Die()
     {
-        Debug.Log("RANCOR DEAD");
+        Debug.Log("RANCOR'S DEAD");
 
         Counter.roomEnemies--;
 
@@ -1287,7 +1288,7 @@ public class Rancor : DiamondComponent
                 damageToBoss *= (1.0f + skill_increaseDamageToBossAmount);
             }
 
-            TakeDamage(damageToBoss);
+            TakeDamage(damageToBoss * 100);
             Debug.Log("Rancor HP: " + healthPoints.ToString());
             damaged = 1.0f;
             //CHANGE FOR APPROPIATE RANCOR HIT

@@ -16,12 +16,15 @@ public class EnemyManager : DiamondComponent
 
     public static bool RemoveEnemy(GameObject enemy)
     {
-        if (currentEnemies == null)
+        if (currentEnemies == null || enemy == null)
+        {
+            Debug.Log("Current enemy list is null!!!");
             return false;
+        }
 
         foreach (GameObject enemyInList in currentEnemies)
         {
-            if (enemyInList == enemy)
+            if (enemyInList.GetUid() == enemy.GetUid())
             {
                 currentEnemies.Remove(enemy);
                 return true;
