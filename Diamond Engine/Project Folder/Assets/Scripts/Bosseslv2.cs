@@ -58,6 +58,7 @@ public class Bosseslv2 : DiamondComponent
         Debug.Log("Starting Throwing Projectile");
         shootingTimer = shootingTime;
         firstShot = true;
+        Animator.Play(gameObject, "WP_Projectile");
     }
     public void UpdateProjectile()
     {
@@ -81,6 +82,7 @@ public class Bosseslv2 : DiamondComponent
                     {
                         shootingTimer = shootingTime;
                         firstShot = false;
+                        Animator.Play(gameObject, "WP_Projectile");
                     }
                     else
                         secondShot = true;
@@ -107,6 +109,7 @@ public class Bosseslv2 : DiamondComponent
     {
         fastChasingTimer = fastChasingTime;
         Debug.Log("Fast Rush");
+        Animator.Play(gameObject, "WP_Rush");
     }
     public void UpdateFastRush()
     {
@@ -125,6 +128,7 @@ public class Bosseslv2 : DiamondComponent
     {
         slowChasingTimer = slowChasingTime;
         Debug.Log("Slow Rush");
+        Animator.Play(gameObject, "WP_Rush");
     }
     public void UpdateSlowRush()
     {
@@ -162,6 +166,7 @@ public class Bosseslv2 : DiamondComponent
     public void StartFollowing()
     {
         walkingTimer = walkingTime;
+        Animator.Play(gameObject, "WP_Walk");
     }
     public void UpdateFollowing()
     {
@@ -182,7 +187,7 @@ public class Bosseslv2 : DiamondComponent
     {
         walkingTimer = walkingTime;
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
-        Debug.Log("Wander");
+        Animator.Play(gameObject, "WP_Walk");
     }
     public void UpdateWander()
     {
@@ -201,6 +206,7 @@ public class Bosseslv2 : DiamondComponent
     public void StartDie()
     {
         dieTimer = dieTime;
+        Animator.Play(gameObject, "WP_Die");
         Debug.Log("Dying");
     }
     public void UpdateDie()
