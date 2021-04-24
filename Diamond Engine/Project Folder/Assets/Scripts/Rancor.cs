@@ -1288,7 +1288,7 @@ public class Rancor : DiamondComponent
                 damageToBoss *= (1.0f + skill_increaseDamageToBossAmount);
             }
 
-            TakeDamage(damageToBoss * 100);
+            TakeDamage(damageToBoss);
             Debug.Log("Rancor HP: " + healthPoints.ToString());
             damaged = 1.0f;
             //CHANGE FOR APPROPIATE RANCOR HIT
