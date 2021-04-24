@@ -18,6 +18,9 @@ namespace DiamondEngine
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern void SetIntUniform(String name_uniform, int value);
 
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern void SetVectorUniform(String name_uniform, object value);
+
     }
 
 

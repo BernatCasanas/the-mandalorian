@@ -20,16 +20,55 @@ out vec4 fragmentColor;
 
 uniform sampler2D ourTexture;
 uniform float length_used;
+uniform float colorLerpLength;
+
+
+uniform vec3 textureColorModStart;
+uniform vec3 textureColorModEnd;
+
+float Lerp(float a, float b, float t)
+{
+return (1.0 - t) * a + b * t;
+}
+
+float InvLerp(float from,float to,float value)
+{
+return (value - from) / (to - from);
+}
+
+float Remap (float iMin,float iMax,float oMin, float oMax,float v)
+{
+float t = InvLerp(iMin, iMax, v);
+return Lerp(oMin,oMax,t);
+}
 
 void main() {
-	if(textureCoords.x<1-length_used){
+
+	if(textureCoords.x>length_used )
+	{
 		fragmentColor=vec4(0,0,0,0);
-		}
-	else{
-		fragmentColor = texture(ourTexture,textureCoords);
 	}
+	else
+	{
+		vec3 color;
+		color.r = Remap(0, 1, textureColorModStart.r, textureColorModEnd.r, colorLerpLength);
+		color.g = Remap(0, 1, textureColorModStart.g, textureColorModEnd.g, colorLerpLength);
+		color.b = Remap(0, 1, textureColorModStart.b, textureColorModEnd.b, colorLerpLength);
+		
+		color.g = min(color.g, 0.85);
+
+		fragmentColor = vec4(color,1);
+	}
+	
 }
 
 #endif
+
+
+
+
+
+
+
 
 

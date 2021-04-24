@@ -202,6 +202,12 @@ public class PlayerHealth : DiamondComponent
         if (DebugOptionsHolder.godModeActive)
             return currHealth;
 
+        if(Core.instance != null && damage > 0)
+        {
+            if (Core.instance.IsDashing())
+                return currHealth;
+        }
+
         if (ChanceToAvoidDamage(skill_chanceToAvoidDamage))
         {
             Debug.Log("Damage missed!");

@@ -55,8 +55,11 @@ public class HUD : DiamondComponent
     public int force = 0;
     public int max_force = 0;
     //public int currency = 10000;
-    public int bullets_main_weapon = 0;
-    public int max_bullets_main_weapon = 0;
+    public float primaryWeaponHeat = 0f;
+    public float primaryWeaponMaxHeat = 100f;
+    public Vector3 primaryWeaponColorStart = new Vector3(0f, 1.2f, 0f);
+    public Vector3 primaryWeaponColorEnd = new Vector3(1f, 0f, 0f);
+    private bool primaryWeaponOverheat = false;
     public int bullets_secondary_weapon = 0;
     public int max_bullets_secondary_weapon = 0;
     public bool main_weapon = true;
@@ -126,6 +129,17 @@ public class HUD : DiamondComponent
             UpdateForce(BabyYoda.instance.GetCurrentForce(), BabyYoda.GetMaxForce());
             max_hp_number.GetComponent<Text>().text = PlayerHealth.currMaxHealth.ToString();
             last_hp = Mathf.Lerp(last_hp, PlayerHealth.currHealth - 0.5f, 2.5f * Time.deltaTime);
+
+            primaryWeaponHeat = 0f;
+            primaryWeaponMaxHeat = 100f;
+            primaryWeaponColorStart = new Vector3(1f, 1.2f, 0f);
+            primaryWeaponColorEnd = new Vector3(1f, 0f, 0f);
+
+            weapon_bar.GetComponent<Material>().SetVectorUniform("textureColorModStart", primaryWeaponColorStart);
+            weapon_bar.GetComponent<Material>().SetVectorUniform("textureColorModEnd", primaryWeaponColorEnd);
+
+            UpdateCombo();
+
             start = false;
         }
         /*if (Input.GetKey(DEKeyCode.C) == KeyState.KEY_DOWN)
@@ -177,10 +191,9 @@ public class HUD : DiamondComponent
         {
             if (main_weapon)
             {
-                if (bullets_main_weapon > 0)
+                if (primaryWeaponHeat < 100)
                 {
-                    bullets_main_weapon--;
-                    UpdateBullets(bullets_main_weapon, max_bullets_main_weapon);
+                    AddPrimaryHeatAmount(10);
                 }
             }
             else
@@ -199,11 +212,9 @@ public class HUD : DiamondComponent
         {
             if (main_weapon)
             {
-                if (bullets_main_weapon < 10)
+                if (primaryWeaponHeat < 100)
                 {
-                    bullets_main_weapon++;
-                    UpdateBullets(bullets_main_weapon, max_bullets_main_weapon);
-
+                    ReducePrimaryHeat(10);
                 }
             }
             else
@@ -215,10 +226,6 @@ public class HUD : DiamondComponent
                 }
             }
 
-        }
-        if (Input.GetKey(DEKeyCode.W) == KeyState.KEY_DOWN)
-        {
-            SwapWeapons();
         }
         if (Input.GetKey(DEKeyCode.B) == KeyState.KEY_DOWN) //test key
         {
@@ -339,7 +346,7 @@ public class HUD : DiamondComponent
         float toSubstract = currComboTime - Mathf.Lerp(currComboTime, -0.0f, Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier);
 
         toSubstract = Math.Max(toSubstract, Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier);
-        toSubstract = Math.Min(toSubstract, Time.deltaTime * 3f *  comboDecrementMultiplier * fullComboTime * 0.085f);
+        toSubstract = Math.Min(toSubstract, Time.deltaTime * 3f * comboDecrementMultiplier * fullComboTime * 0.085f);
         currComboTime -= toSubstract;
 
         if (currComboTime <= 0.0f)
@@ -512,27 +519,6 @@ public class HUD : DiamondComponent
         skill_push.GetComponent<Material>().SetFloatUniform("alpha", alpha);
     }
 
-    public void SwapWeapons()
-    {
-        if (primary_weapon != null && secondary_weapon != null)
-            primary_weapon.GetComponent<Image2D>().SwapTwoImages(secondary_weapon);
-        main_weapon = !main_weapon;
-        if (weapon_bar == null)
-            return;
-        if (main_weapon)
-        {
-            float bullets_float = bullets_main_weapon;
-            bullets_float /= max_bullets_main_weapon;
-            weapon_bar.GetComponent<Material>().SetFloatUniform("length_used", bullets_float);
-        }
-        else
-        {
-            float bullets_float = bullets_secondary_weapon;
-            bullets_float /= max_bullets_secondary_weapon;
-            weapon_bar.GetComponent<Material>().SetFloatUniform("length_used", bullets_float);
-        }
-    }
-
     public void ShootSwapImage(bool shoot)
     {
         if (shooting_blink != null)
@@ -555,6 +541,7 @@ public class HUD : DiamondComponent
     {
         if (weapon_bar == null)
             return;
+
         float bullets_float = num_bullets;
         bullets_float /= max_bullets;
         weapon_bar.GetComponent<Material>().SetFloatUniform("length_used", bullets_float);
@@ -566,5 +553,102 @@ public class HUD : DiamondComponent
             return;
         currency_number_gameobject.GetComponent<Text>().text = total_currency.ToString();
     }
+
+    #region PRIMARY_HEAT
+
+    public void AddPrimaryHeatShot()
+    {
+        float currentHeat = primaryWeaponHeat > 0 ? primaryWeaponHeat : 0.01f;
+
+        float newValue = (float)(Math.Log(currentHeat * 5) - Math.Log(0.01f)) / (3 / 2.6f);
+
+        Debug.Log("Added Heat: " + newValue);
+
+        AddPrimaryHeatAmount(newValue);
+    }
+
+    public void AddPrimaryHeatAmount(float amount)
+    {
+        primaryWeaponHeat += amount;
+
+        if (primaryWeaponHeat >= primaryWeaponMaxHeat)
+        {
+            SetPrimaryOVerheat(true);
+            primaryWeaponHeat = primaryWeaponMaxHeat;
+        }
+
+        UpdateHeat();
+    }
+
+    public void ReducePrimaryHeat(float amount)
+    {
+        if (amount < 0f)
+            amount = -amount;
+
+        primaryWeaponHeat -= amount;
+
+        if (primaryWeaponHeat <= 0f)
+        {
+            SetPrimaryOVerheat(false);
+            primaryWeaponHeat = 0f;
+        }
+
+        UpdateHeat();
+    }
+
+    public void SetMaxPrimaryHeat(float maxAmount)
+    {
+        primaryWeaponMaxHeat = maxAmount;
+        UpdateHeat();
+    }
+
+    public void UpdateHeat()
+    {
+        if (weapon_bar == null)
+        {
+            Debug.Log("Weapon heat bar is null!!");
+            return;
+        }
+
+        float newHeatValue = primaryWeaponHeat / primaryWeaponMaxHeat;
+
+        weapon_bar.GetComponent<Material>().SetFloatUniform("length_used", newHeatValue);
+
+        if (primaryWeaponOverheat == false)
+            weapon_bar.GetComponent<Material>().SetFloatUniform("colorLerpLength", newHeatValue);
+
+    }
+
+    private void SetPrimaryOVerheat(bool newState)
+    {
+        if (newState == true)
+        {
+            primaryWeaponOverheat = true;
+            weapon_bar.GetComponent<Material>().SetFloatUniform("colorLerpLength", 1f);
+        }
+        else
+        {
+            primaryWeaponOverheat = false;
+            weapon_bar.GetComponent<Material>().SetFloatUniform("colorLerpLength", 0f);
+        }
+
+    }
+
+    public float GetPrimaryHeat()
+    {
+        return primaryWeaponHeat;
+    }
+
+    public float GetPrimaryMaxHeat()
+    {
+        return primaryWeaponMaxHeat;
+    }
+
+    public bool IsPrimaryOverheated()
+    {
+        return primaryWeaponOverheat;
+    }
+
+    #endregion
 
 }
