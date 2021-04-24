@@ -1,0 +1,163 @@
+{
+    "assets_path": "Assets\/Prefabs\/LaserTurret.prefab",
+    "Game Objects": [
+        {
+            "name": "LaserTurret",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1078529231,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 1243866490,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0.21558773517608643,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "LaserTurret",
+                    "detectionRange": 12.5,
+                    "damage": 5,
+                    "healthPoints": 60,
+                    "stoppingDistance": 1,
+                    "coinDropPath": "Library\/Prefabs\/1907169014.prefab",
+                    "slerpSpeed": 5,
+                    "skill_slowDownEnabled": false,
+                    "skill_slowDownAmount": 0,
+                    "skill_slowDownDuration": 0,
+                    "idleTime": 4,
+                    "loadTime": 4,
+                    "shotTime": 4,
+                    "feedbackTime": 1,
+                    "rotationSpeed": 0.0010000000474974513,
+                    "laserRange": 30
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0.80000001192092896,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1.2999999523162842,
+                        1.8999999761581421,
+                        1.2999999523162842
+                    ]
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "Turret",
+                    "volume": 50,
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false
+                }
+            ]
+        },
+        {
+            "name": "Turret_Robot",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1517874096,
+            "ParentUID": 1078529231,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1107969945.mmh",
+                    "UID": 1107969945,
+                    "alternColor": [
+                        1,
+                        0.99998998641967773,
+                        0.99998998641967773
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/vertex_color.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        }
+    ]
+}
