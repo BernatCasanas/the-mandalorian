@@ -36,6 +36,5 @@ public class RancorProjectile : DiamondComponent
 	public void OnCollisionEnter(GameObject collidedGameObject)
 	{
 		InternalCalls.Destroy(gameObject);
-		Debug.Log("PUTA RATA");
     }
 }
