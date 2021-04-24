@@ -751,6 +751,8 @@ public class Core : DiamondComponent
     {
         Animator.Play(gameObject, "Shoot", gadgetShootSkill);
         gadgetShootTimer = gadgetFireRate;
+
+        ReducePrimaryWeaponHeat(5);
     }
 
 
@@ -864,8 +866,8 @@ public class Core : DiamondComponent
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1606118587.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, scale);
         if (bullet != null)
         {
-            AddPrimaryHeat();
             Debug.Log("Charged Bullet Shot!");
+            ReducePrimaryWeaponHeat(10);
 
             if (skill_extraDamageActive) bullet.GetComponent<BH_Bullet>().damage = GetExtraDamageWithSkill();
             else bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
@@ -1056,6 +1058,18 @@ public class Core : DiamondComponent
         return currentState == STATE.DASH;
     }
 
+    public void ReduceComboOnHit(int hitDamage, float comboSubstractionMult = 1f)
+    {
+        if (hud != null)
+        {
+            HUD myHud = hud.GetComponent<HUD>();
+
+            if (myHud != null)
+                myHud.SubstractToCombo(hitDamage * comboSubstractionMult);
+
+        }
+    }
+
     #endregion
 
 
@@ -1064,7 +1078,7 @@ public class Core : DiamondComponent
         //Debug.Log("CS: Collided object: " + gameObject.tag + ", Collider: " + collidedGameObject.tag);
         //Debug.Log("Collided by tag: " + collidedGameObject.tag);
 
-        if(currentState != STATE.DASH)
+        if (currentState != STATE.DASH)
         {
             if (collidedGameObject.CompareTag("StormTrooperBullet"))
             {

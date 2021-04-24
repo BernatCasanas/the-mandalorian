@@ -32,10 +32,6 @@ public class LaserTurret : Enemy
 
     public GameObject shootPoint = null;
     public GameObject hitParticles = null;
-    private GameObject laser1 = null;
-    private GameObject laser2 = null;
-    private GameObject laser3 = null;
-    private GameObject laser4 = null;
 
     //Action times
     public float idleTime = 0.0f;
@@ -58,23 +54,14 @@ public class LaserTurret : Enemy
     private float dieTimer = 0.0f;
     private float feedbackTimer = 0.0f;
 
-    //Action variables
-    //int shotTimes = 0;
-    //public int maxShots = 2;
-
-
     public void Awake()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
         targetPosition = null;
 
         currentState = STATE.IDLE;
-        //Animator.Play(gameObject, "SK_Idle");
-
-        //shotTimes = 0;
 
         idleTimer = idleTime;
-        //dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
 
         ParticleSystem spawnparticles = null;
 
@@ -95,11 +82,6 @@ public class LaserTurret : Enemy
         }
     }
 
-    public void Start()
-    {
-
-
-    }
     public void Update()
     {
         if (player == null)
@@ -107,16 +89,6 @@ public class LaserTurret : Enemy
             Debug.Log("Null player");
             player = Core.instance.gameObject;
         }
-
-        //if (skill_slowDownActive)
-        //{
-        //    skill_slowDownTimer += Time.deltaTime;
-        //    if (skill_slowDownTimer >= skill_slowDownDuration)
-        //    {
-        //        skill_slowDownTimer = 0.0f;
-        //        skill_slowDownActive = false;
-        //    }
-        //}
 
         #region STATE MACHINE
 
@@ -155,7 +127,7 @@ public class LaserTurret : Enemy
 
         //if (currentState == STATE.SHOOT)
         //{
-        //    if (Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance) //THIS IF SHOULD VE TO TAKE INTO ACCOUNT THE FINAL ANGLE LIKE STOPPPING DISTANCE
+        //    if (Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance) //USE THIS IF WE WANT TO TAKE INTO ACCOUNT THE FINAL ANGLE LIKE STOPPPING DISTANCE
         //    {
         //        inputsList.Add(INPUT.IN_IDLE);
         //    }
@@ -175,16 +147,7 @@ public class LaserTurret : Enemy
     //All events from outside the stormtrooper
     private void ProcessExternalInput()
     {
-        //if (currentState != STATE.DIE && currentState != STATE.DASH)
-        //{
-        //    if (InRange(player.transform.globalPosition, detectionRange))
-        //    {
-        //        inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
-
-        //        if (player != null)
-        //            LookAt(player.transform.globalPosition);
-        //    }
-        //}
+    
     }
 
     //Manages state changes throught inputs
@@ -295,16 +258,11 @@ public class LaserTurret : Enemy
     {
         Debug.Log("TURRET LOAD");
         loadTimer = loadTime;
-        //agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
-
-        //Animator.Play(gameObject, "SK_Dash");
-        //Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
+        Audio.PlayAudio(gameObject, "Play_Turret_Shot_Charge");
     }
     private void UpdateLoad()
     {
-        //LookAt(agent.GetDestination());
-        //if (skill_slowDownActive) agent.MoveToCalculatedPos(wanderSpeed * (1 - skill_slowDownAmount));
-        //else agent.MoveToCalculatedPos(wanderSpeed);
+
     }
     private void LoadEnd()
     {
@@ -317,10 +275,8 @@ public class LaserTurret : Enemy
     {
         Debug.Log("TURRET SHOOT");
         shotTimer = shotTime;
-        laser1 = InternalCalls.CreatePrefab("Library/Prefabs/1137197426.prefab", gameObject.transform.globalPosition, gameObject.transform.localRotation, new Vector3(1.0f, 1.0f, 1.0f));
-        laser2 = InternalCalls.CreatePrefab("Library/Prefabs/1137197426.prefab", gameObject.transform.globalPosition, gameObject.transform.localRotation + new Quaternion(0.0f, 90.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
-        laser3 = InternalCalls.CreatePrefab("Library/Prefabs/1137197426.prefab", gameObject.transform.globalPosition, gameObject.transform.localRotation + Quaternion.RotateAroundAxis(Vector3.up, 3.14f), new Vector3(1.0f, 1.0f, 1.0f));
-        laser4 = InternalCalls.CreatePrefab("Library/Prefabs/1137197426.prefab", gameObject.transform.globalPosition, gameObject.transform.localRotation + Quaternion.RotateAroundAxis(Vector3.up, 4.71f), new Vector3(1.0f, 1.0f, 1.0f));
+        Audio.PlayAudio(gameObject, "Play_Turret_Shot");
+        Audio.PlayAudio(gameObject, "Play_Turret_Charge"); 
     }
 
     private void UpdateShoot()
@@ -333,10 +289,6 @@ public class LaserTurret : Enemy
     }
     private void ShootEnd()
     {
-        InternalCalls.Destroy(laser1);
-        InternalCalls.Destroy(laser2);
-        InternalCalls.Destroy(laser3);
-        InternalCalls.Destroy(laser4);
         Audio.StopAudio(gameObject);
     }
     private void Shoot()
@@ -476,14 +428,6 @@ public class LaserTurret : Enemy
             }
 
         }
-        //else if (collidedGameObject.CompareTag("WorldLimit"))
-        //{
-        //    if (currentState != STATE.DIE)
-        //    {
-        //        inputsList.Add(INPUT.IN_DIE);
-        //    }
-        //}
-
     }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
