@@ -804,6 +804,12 @@ bool ModuleRenderer3D::IsWalkable(float3 pointToCheck)
 
 void ModuleRenderer3D::AddDirectionalLight(C_DirectionalLight* light)
 {
+	for (int i = 0; i < directLightVector.size(); ++i)
+	{
+		if (directLightVector[i] == light)
+			return;
+	}
+
 	directLightVector.push_back(light);
 
 	if (directLightVector.size() > MAX_DIRECTIONAL_LIGHTS)
@@ -826,6 +832,12 @@ void ModuleRenderer3D::RemoveDirectionalLight(C_DirectionalLight* light)
 
 void ModuleRenderer3D::AddAreaLight(C_AreaLight* light)
 {
+	for (int i = 0; i < areaLightVector.size(); ++i)
+	{
+		if (areaLightVector[i] == light)
+			return;
+	}
+
 	areaLightVector.push_back(light);
 
 	if (areaLightVector.size() > MAX_AREA_LIGHTS)

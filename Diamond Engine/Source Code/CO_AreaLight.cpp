@@ -22,6 +22,7 @@ C_AreaLight::C_AreaLight(GameObject* gameObject) : Component(gameObject),
 	name = "Area Light";
 
 	//Add light
+	EngineExternal->moduleRenderer3D->AddAreaLight(this);
 }
 
 

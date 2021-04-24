@@ -33,7 +33,7 @@ struct AreaLightInfo
 };
 
 
-uniform AreaLightInfo areaLightInfo[2];
+uniform AreaLightInfo areaLightInfo[5];
 
 uniform vec3 cameraPosition;
 
@@ -69,7 +69,7 @@ struct AreaLightInfo
 };
 
 
-uniform AreaLightInfo areaLightInfo[2];
+uniform AreaLightInfo areaLightInfo[5];
 
 uniform vec3 cameraPosition;
 
@@ -80,23 +80,30 @@ void main()
 {
     vec3 lighting = vec3(0.0, 0.0, 0.0);
     
-
-    vec3 lightDir = normalize(areaLightInfo[0].lightPosition - fs_in.FragPos);
+    for (int i = 0; i < 5; i++)
+    {
+		if (areaLightInfo[i].active == true)
+		{
+    		vec3 lightDir = normalize(areaLightInfo[i].lightPosition - fs_in.FragPos);
     
-   	 	// diffusesssaasw
-    float diff = max(dot(lightDir, fs_in.Normal), 0.0);
-    vec3 diffuse = diff * areaLightInfo[0].lightColor;
-   	 	// specular
-   	vec3 viewDir = normalize(cameraPosition - fs_in.FragPos);
-    float spec = 0.0;
-    vec3 halfwayDir = normalize(lightDir + viewDir);  
-    spec = pow(max(dot(fs_in.Normal, halfwayDir), 0.0), areaLightInfo[0].specularValue);
-    vec3 specular = spec * areaLightInfo[0].lightColor;
+   	 		// diffusesssaasw
+    		float diff = max(dot(lightDir, fs_in.Normal), 0.0);
+    		vec3 diffuse = diff * areaLightInfo[i].lightColor;
+   	 		// specular
+   			vec3 viewDir = normalize(cameraPosition - fs_in.FragPos);
+    		float spec = 0.0;
+    		vec3 halfwayDir = normalize(lightDir + viewDir);  
+    		spec = pow(max(dot(fs_in.Normal, halfwayDir), 0.0), areaLightInfo[i].specularValue);
+    		vec3 specular = spec * areaLightInfo[i].lightColor;
         	
     	 // calculate shadow
-    lighting += (areaLightInfo[0].ambientLightColor + (diffuse + specular)) * areaLightInfo[0].lightIntensity;
-    
+    		lighting += (areaLightInfo[i].ambientLightColor + (diffuse + specular)) * areaLightInfo[i].lightIntensity;
+    	}
+    }
     color = vec4(lighting * vec3(0.7, 0.3, 0.3), 1.0);
 }
 #endif
+
+
+
 
