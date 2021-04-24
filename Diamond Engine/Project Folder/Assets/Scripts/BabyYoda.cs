@@ -77,7 +77,7 @@ public class BabyYoda : DiamondComponent
 
         if (currentForce < totalForce)
         {
-            if (Skill_Tree_Data.instance.IsActive(1,(int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION))
+            if (Skill_Tree_Data.instance.IsEnabled(1,(int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION))
                 currentForce += (GetForceRegenSpeedWithSkill() * Time.deltaTime);
             else currentForce += (forceRegenerationSpeed * Time.deltaTime);
 
@@ -366,7 +366,7 @@ public class BabyYoda : DiamondComponent
 
     public static float GetForceRegenerationSpeed()
     {
-        if (Skill_Tree_Data.instance.IsActive(1, (int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION))
+        if (Skill_Tree_Data.instance.IsEnabled(1, (int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION))
             return GetForceRegenSpeedWithSkill();
         else return forceRegenerationSpeed;
     }

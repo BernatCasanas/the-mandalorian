@@ -17231,9 +17231,12 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Skill_Tree_Data",
-                    "groguSkillEnabled": 0,
                     "Grogu8_HPMissingPercentage": 10,
-                    "Grogu8_gainPassiveForceRegeneration": 1
+                    "Grogu8_gainPassiveForceRegeneration": 1,
+                    "PW4_Amount": 0.20000000298023224,
+                    "PW4_Duration": 3,
+                    "groguSkillEnabled": 0,
+                    "weaponsSkillEnabled": 0
                 }
             ]
         },
@@ -42445,14 +42448,14 @@
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        -0.25,
+                        -0.25000095367431641,
                         1.3999996185302734,
-                        1.2999999523162842
+                        1.3000001907348633
                     ],
                     "Rotation": [
                         0,
-                        0,
-                        0,
+                        1.2924697071141057e-25,
+                        -3.4694469519536142e-17,
                         1
                     ],
                     "Scale": [
@@ -44158,15 +44161,15 @@
                         -0.19471836090087891
                     ],
                     "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
+                        0.19392229616641998,
+                        -2.7353405651631135e-10,
+                        1.3877789462175682e-17,
+                        0.98101699352264404
                     ],
                     "Scale": [
                         1,
-                        1,
-                        1
+                        0.99999964237213135,
+                        0.99999922513961792
                     ]
                 },
                 {
@@ -44251,6 +44254,34 @@
                         1,
                         1,
                         1
+                    ]
+                },
+                {
+                    "name": "RaycastObj",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1500028372,
+                    "ParentUID": 728409309,
+                    "PrefabID": 0,
+                    "PrefabReference": 1500028372,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        -0.48318958282470703,
+                        0
+                    ],
+                    "Rotation": [
+                        0.7071068286895752,
+                        2.2168647939493219e-15,
+                        -9.7533726293964548e-15,
+                        0.70710670948028564
+                    ],
+                    "Scale": [
+                        0.99999600648880005,
+                        0.99998235702514648,
+                        0.99998664855957031
                     ]
                 }
             ]
