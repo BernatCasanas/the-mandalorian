@@ -9,7 +9,7 @@
             "UID": 132529529,
             "ParentUID": 0,
             "PrefabReference": 0,
-            "PrefabID": 0,
+            "PrefabID": 551315197,
             "DontDestroy": false,
             "Static": false,
             "Position": [
@@ -41,8 +41,8 @@
                     "max_hp": 50,
                     "force": 50,
                     "max_force": 50,
-                    "bullets_main_weapon": 10,
-                    "max_bullets_main_weapon": 10,
+                    "primaryWeaponHeat": 0,
+                    "primaryWeaponMaxHeat": 0,
                     "bullets_secondary_weapon": 10,
                     "max_bullets_secondary_weapon": 10,
                     "main_weapon": true,
@@ -57,6 +57,7 @@
                     "combo_text": 1149498179,
                     "combo_gameobject": 1205363625,
                     "max_hp_number": 1808321281,
+                    "fpsText": 1237664529,
                     "comboNumber": 0,
                     "last_hp": 0,
                     "shooting_blink": 1508490180
@@ -1450,6 +1451,73 @@
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/714069747.dds",
                     "UID": 714069747
+                }
+            ]
+        },
+        {
+            "name": "FPS",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1237664529,
+            "ParentUID": 132529529,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        94.199996948242188,
+                        93.800003051757813
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        5,
+                        9
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "30",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }

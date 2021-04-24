@@ -281,4 +281,19 @@ public class PlayerHealth : DiamondComponent
             skill_chanceToAvoidDamage = (int)value;
         }
     }
+
+
+    public void ToggleNoClip(bool val)
+    {
+        if (val)
+        {
+            Core.instance.gameObject.GetComponent<BoxCollider>().active = false;
+            //TODO: rigidbody gravity
+        }
+        else
+        {
+            Core.instance.gameObject.GetComponent<BoxCollider>().active = true;
+            //TODO: rigidbody gravity
+        }
+    }
 }
