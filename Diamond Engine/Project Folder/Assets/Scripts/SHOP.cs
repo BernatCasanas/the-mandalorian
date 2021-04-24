@@ -29,7 +29,6 @@ public enum ShopPrice
 
 public class SHOP : DiamondComponent
 {
-    public GameObject player;
     public GameObject shopUI;
     public GameObject hud;
     public GameObject textPopUp;
@@ -46,7 +45,11 @@ public class SHOP : DiamondComponent
 
     public void Awake()
     {
-        if(autoGenerateItems) RandomiseItems();
+        if(autoGenerateItems) 
+            RandomiseItems();
+
+        hud = InternalCalls.FindObjectWithName("HUD");
+
         //Audio.PlayAudio(gameObject, "Play_Post_Boss_Room_1_Ambience");
     }
 
@@ -63,7 +66,7 @@ public class SHOP : DiamondComponent
         }
         else 
         {
-            if (InRange(player.transform.globalPosition, interactionRange))
+            if (InRange(Core.instance.gameObject.transform.globalPosition, interactionRange))
             {
                 if (!textPopUp.IsEnabled()) textPopUp.Enable(true);
 
@@ -99,7 +102,7 @@ public class SHOP : DiamondComponent
                     if (currency >= (int)item.price_type)
                     {
                         Debug.Log("Bought Cad Bane’s rocket boots");
-                        player.GetComponent<Core>().movementSpeed += player.GetComponent<Core>().movementSpeed * 0.1f;
+                        Core.instance.gameObject.GetComponent<Core>().movementSpeed += Core.instance.gameObject.GetComponent<Core>().movementSpeed * 0.1f;
                         currency -= (int)item.price_type;
                         PlayerResources.AddBoon(BOONS.BOON_CADBANEROCKETBOOTS);
                         ret = true;
@@ -109,7 +112,7 @@ public class SHOP : DiamondComponent
                     if (currency >= (int)item.price_type)
                     {
                         Debug.Log("Bought Watto's Coolant");
-                        player.GetComponent<Core>().dashCD -= player.GetComponent<Core>().dashCD * 0.2f;
+                        Core.instance.gameObject.GetComponent<Core>().dashCD -= Core.instance.gameObject.GetComponent<Core>().dashCD * 0.2f;
                         currency -= (int)item.price_type;
                         PlayerResources.AddBoon(BOONS.BOON_WATTOSCOOLANT);
                         ret = true;
@@ -119,7 +122,7 @@ public class SHOP : DiamondComponent
                     if (currency >= (int)item.price_type)
                     {
                         Debug.Log("Bought Wrecker’s resilience");
-                        player.GetComponent<PlayerHealth>().IncrementMaxHpPercent(0.2f);
+                        Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementMaxHpPercent(0.2f);
                         currency -= (int)item.price_type;
                         PlayerResources.AddBoon(BOONS.BOON_WRECKERRESILIENCE);
                         ret = true;
@@ -129,8 +132,8 @@ public class SHOP : DiamondComponent
                     if (currency >= (int)item.price_type)
                     {
                         Debug.Log("Bought Imperial’s refined coolant");
-                        player.GetComponent<Core>().dashCD += player.GetComponent<Core>().dashCD * 0.5f;
-                        player.GetComponent<Core>().movementSpeed += player.GetComponent<Core>().movementSpeed * 0.4f;
+                        Core.instance.gameObject.GetComponent<Core>().dashCD += Core.instance.gameObject.GetComponent<Core>().dashCD * 0.5f;
+                        Core.instance.gameObject.GetComponent<Core>().movementSpeed += Core.instance.gameObject.GetComponent<Core>().movementSpeed * 0.4f;
                         currency -= (int)item.price_type;
                         PlayerResources.AddBoon(BOONS.BOON_IMPERIALREFINEDCOOLANT);
                         ret = true;
@@ -140,7 +143,7 @@ public class SHOP : DiamondComponent
                     if (currency >= (int)item.price_type)
                     {
                         Debug.Log("Bought Greedo’s quick shooting");
-                        player.GetComponent<Core>().baseFireRate -= player.GetComponent<Core>().baseFireRate * 0.3f;
+                        Core.instance.gameObject.GetComponent<Core>().baseFireRate -= Core.instance.gameObject.GetComponent<Core>().baseFireRate * 0.3f;
                         currency -= (int)item.price_type;
                         PlayerResources.AddBoon(BOONS.BOON_GREEDOQUICKSHOOTER);
                         ret = true;
@@ -195,7 +198,7 @@ public class SHOP : DiamondComponent
                     if (currency >= (int)item.price_type)
                     {
                         Debug.Log("Bought Health replenishment");
-                        player.GetComponent<PlayerHealth>().HealPercentMax(0.25f);
+                        Core.instance.gameObject.GetComponent<PlayerHealth>().HealPercentMax(0.25f);
                         currency -= (int)item.price_type;
                         ret = true;
                     }
@@ -408,15 +411,15 @@ public class SHOP : DiamondComponent
         shopOpen = true;
         opening = true;
         shopUI.Enable(true);
-        textPopUp.Enable(false); 
-        player.GetComponent<Core>().lockInputs = true;
+        textPopUp.Enable(false);
+        Core.instance.lockInputs = true;
     }
 
     public void CloseShop()
     {
         shopOpen = false;
         shopUI.Enable(false);
-        player.GetComponent<Core>().lockInputs = false;
+        Core.instance.lockInputs = false;
         textPopUp.Enable(true);
     }
 }
