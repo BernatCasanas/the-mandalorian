@@ -4,48 +4,10 @@ using DiamondEngine;
 
 public class Bosseslv2 : DiamondComponent
 {
-    public enum BOSS_STATE : int
-    {
-        NONE = -1,
-        SEARCH_STATE,
-        FOLLOW,
-        WANDER,
-        FAST_RUSH,
-        SLOW_RUSH,
-        RUSH_STUN,
-        PROJECTILE,
-        JUMP_SLAM,
-        BOUNCE_RUSH,
-        DEAD
-    }
-
-    public enum BOSS_INPUT : int
-    {
-        NONE = -1,
-        IN_FOLLOW,
-        IN_FOLLOW_END,
-        IN_WANDER,
-        IN_WANDER_END,
-        IN_FAST_RUSH,
-        IN_FAST_RUSH_END,
-        IN_SLOW_RUSH,
-        IN_SLOW_RUSH_END,
-        IN_RUSH_STUN,
-        IN_RUSH_STUN_END,
-        IN_PROJECTILE,
-        IN_PROJECTILE_END,
-        IN_JUMPSLAM,
-        IN_JUMPSLAM_END,
-        IN_BOUNCERUSH,
-        IN_BOUNCERUSH_END,
-        IN_DEAD
-    }
-
     public NavMeshAgent agent = null;
+
     public Random randomNum = new Random();
 
-    public BOSS_STATE currentState = BOSS_STATE.SEARCH_STATE;
-    public List<BOSS_INPUT> inputsList = new List<BOSS_INPUT>();
 
     public float slerpSpeed = 5.0f;
 
@@ -59,7 +21,7 @@ public class Bosseslv2 : DiamondComponent
 
     //Private Variables
     public bool resting = false;
-    public bool firstShot = false;
+    public bool firstShot = true;
 
     //Stats
     public float healthPoints = 1920.0f;
@@ -87,6 +49,8 @@ public class Bosseslv2 : DiamondComponent
     public float projectileDamage = 10.0f;
     public float rushDamage = 15.0f;
 
+
+
     #region PROJECTILE
     public void StartProjectile()
     {
@@ -107,8 +71,10 @@ public class Bosseslv2 : DiamondComponent
                     Quaternion rot = projectilePoint.transform.globalRotation;
                     Vector3 scale = new Vector3(1, 1, 1);
 
-                    GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/tocreate.prefab", pos, rot, scale);
-                    projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
+                    //GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/tocreate.prefab", pos, rot, scale);
+                    //projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
+                    Debug.Log("Throwing projectile");
+
                     if (firstShot)
                     {
                         shootingTimer = shootingTime;
@@ -119,7 +85,7 @@ public class Bosseslv2 : DiamondComponent
         }
         Debug.Log("Projectile");
         Debug.Log(shootingTimer.ToString());
-        Debug.Log("Prohjectile null");
+        if(projectilePoint==null) Debug.Log("Prohjectile null");
 
     }
 
