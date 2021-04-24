@@ -104,16 +104,6 @@ public class Bantha : Enemy
 
         UpdateState();
 
-        if (skill_slowDownActive)
-        {
-            skill_slowDownTimer += Time.deltaTime;
-            if (skill_slowDownTimer >= skill_slowDownDuration)
-            {
-                skill_slowDownTimer = 0.0f;
-                skill_slowDownActive = false;
-            }
-        }
-
         #endregion
     }
 
@@ -166,6 +156,19 @@ public class Bantha : Enemy
                 inputsList.Add(INPUT.IN_RUN);
             }
         }
+
+        if (skill_slowDownActive)
+        {
+            skill_slowDownTimer += Time.deltaTime;
+            if (Skill_Tree_Data.instance != null)
+            {
+                if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownDuration) //Get duration from Primary Weapon Skill 4
+                {
+                    skill_slowDownTimer = 0.0f;
+                    skill_slowDownActive = false;
+                }
+            }
+        }
     }
 
     //All events from outside the stormtrooper
@@ -189,7 +192,6 @@ public class Bantha : Enemy
                 inputsList.Add(INPUT.IN_WANDER);
             }
         }
-
     }
 
     private void ProcessState()
@@ -409,12 +411,14 @@ public class Bantha : Enemy
     }
     private void UpdateRun()
     {
-        if(player != null)
+        if (player != null)
             agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition);
 
         LookAt(agent.GetDestination());
-        if (skill_slowDownActive) agent.MoveToCalculatedPos(runningSpeed * (1 - skill_slowDownAmount));
-        else agent.MoveToCalculatedPos(runningSpeed);
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
+            agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
+        else
+            agent.MoveToCalculatedPos(runningSpeed);
     }
     private void RunEnd()
     {
@@ -433,7 +437,8 @@ public class Bantha : Enemy
     private void UpdateWander()
     {
         LookAt(agent.GetDestination());
-        if (skill_slowDownActive) agent.MoveToCalculatedPos(wanderSpeed * (1 - skill_slowDownAmount));
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
+            agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
         else agent.MoveToCalculatedPos(wanderSpeed);
     }
     private void WanderEnd()
@@ -476,7 +481,8 @@ public class Bantha : Enemy
     #region CHARGE
     private void StartCharge()
     {
-        if (skill_slowDownActive) chargeTimer = chargeLength / (chargeSpeed * (1 - skill_slowDownAmount));
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
+            chargeTimer = chargeLength / (chargeSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
         else chargeTimer = chargeLength / chargeSpeed;
 
         Animator.Play(gameObject, "BT_Run");
@@ -492,8 +498,8 @@ public class Bantha : Enemy
     {
         //LookAt(agent.GetDestination());
 
-        if (skill_slowDownActive) 
-            agent.MoveToCalculatedPos(chargeSpeed * (1 - skill_slowDownAmount));
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
+            agent.MoveToCalculatedPos(chargeSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
         else
             agent.MoveToCalculatedPos(chargeSpeed);
     }
@@ -586,10 +592,13 @@ public class Bantha : Enemy
                 if (currentState != STATE.DIE && healthPoints <= 0.0f)
                     inputsList.Add(INPUT.IN_DIE);
 
-                if (skill_slowDownEnabled)
+                if (Skill_Tree_Data.instance != null)
                 {
-                    skill_slowDownActive = true;
-                    skill_slowDownTimer = 0.0f;
+                    if (Skill_Tree_Data.instance.IsEnabled(3, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
+                    {
+                        skill_slowDownActive = true;
+                        skill_slowDownTimer = 0.0f;
+                    }
                 }
             }
         }
@@ -607,7 +616,7 @@ public class Bantha : Enemy
             if (Core.instance.hud != null)
             {
                 HUD hud = Core.instance.hud.GetComponent<HUD>();
-                
+
                 if (hud != null)
                     hud.AddToCombo(20, 0.5f);
             }
@@ -615,10 +624,13 @@ public class Bantha : Enemy
             if (currentState != STATE.DIE && healthPoints <= 0.0f)
                 inputsList.Add(INPUT.IN_DIE);
 
-            if (skill_slowDownEnabled)
+            if (Skill_Tree_Data.instance != null)
             {
-                skill_slowDownActive = true;
-                skill_slowDownTimer = 0.0f;
+                if (Skill_Tree_Data.instance.IsEnabled(3, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
+                {
+                    skill_slowDownActive = true;
+                    skill_slowDownTimer = 0.0f;
+                }
             }
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))
