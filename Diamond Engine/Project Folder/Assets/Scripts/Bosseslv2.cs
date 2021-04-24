@@ -43,6 +43,8 @@ public class Bosseslv2 : DiamondComponent
     public float dieTimer = 0.0f;
     public float restingTime = 3.0f;
     public float restingTimer = 0.0f;
+    public float bounceRushTime = 4.0f;
+    public float bounceRushTimer = 0.0f;
 
     //Atacks
     public float projectileAngle = 30.0f;
@@ -185,7 +187,21 @@ public class Bosseslv2 : DiamondComponent
 
     public void StartBounceRush()
     {
-
+        bounceRushTimer = bounceRushTime;
+        GameObject nearestColumn = Level2BossRoom.columns[0];
+        float nerestDistance = 10000f;
+        foreach (GameObject column in Level2BossRoom.columns)
+        {
+            float distance = Mathf.Distance(gameObject.transform.globalPosition, column.transform.globalPosition);
+            Debug.Log("Distance: " + distance.ToString());
+            if(nerestDistance > distance)
+            {
+                distance = nerestDistance;
+                nearestColumn = column;
+            }
+        }
+        Debug.Log("Nearest column: " + nearestColumn.Name);
+        Debug.Log("Started Bounce Rush");
     }
 
     public void UpdateBounceRush()
@@ -195,7 +211,9 @@ public class Bosseslv2 : DiamondComponent
 
     public void EndBounceRush()
     {
-
+        Debug.Log("End Bounce Rush");
+        resting = true;
+        restingTimer = restingTime;
     }
 
     #endregion

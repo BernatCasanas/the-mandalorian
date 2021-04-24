@@ -126,6 +126,16 @@ public class Skel : Bosseslv2
                 inputsList.Add(INPUT.IN_JUMPSLAM_END);
             }
         }
+        if(bounceRushTimer > 0)
+        {
+            bounceRushTimer -= Time.deltaTime;
+
+            if(bounceRushTimer <= 0)
+            {
+                inputsList.Add(INPUT.IN_BOUNCERUSH_END);
+            }
+        }
+
     }
 
     private void ProcessExternalInput()
@@ -324,7 +334,7 @@ public class Skel : Bosseslv2
         else
         {
             int decision = randomNum.Next(1, 100);
-            if (decision <= 75)
+            if (decision <= 0)
                 inputsList.Add(INPUT.IN_JUMPSLAM);
             else
                 inputsList.Add(INPUT.IN_BOUNCERUSH);
