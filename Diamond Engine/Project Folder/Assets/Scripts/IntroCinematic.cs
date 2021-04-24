@@ -13,6 +13,8 @@ public class IntroCinematic : DiamondComponent
     public GameObject point7 = null;
     public GameObject point8 = null;
 
+    public GameObject postCinematicDialogue = null;
+
     Vector3 toGoPosition = null;
     Vector3 cameraAuxPosition = null;
     Quaternion toRotateQuaternion = null;
@@ -25,7 +27,7 @@ public class IntroCinematic : DiamondComponent
 
     public void Awake()
     {
-/*        if (Counter.firstRun)
+        /*if (Counter.firstRun)
         {
             auxCameraRotation = cameraObject.transform.localRotation;
             pointArray = new GameObject[] { point1, point2, point3, point4, point5, point6, point7, point8 };
@@ -81,5 +83,10 @@ public class IntroCinematic : DiamondComponent
         cameraObject.transform.localRotation = auxCameraRotation;
         // Return camera to orthographic
         // Re-activate player's control
+        if (Counter.firstRun)
+        {
+            postCinematicDialogue.Enable(true);
+            postCinematicDialogue.GetChild("Button").GetComponent<Navigation>().Select();
+        }
     }
 }

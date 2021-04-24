@@ -307,17 +307,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            if (BabyYoda.instance != null)
-            {
-                BabyYoda.SetSkill("GroguForceRegenerationSkill", 10.0f, 1.0f);
-            }
-        }
-
-        public override void AssignCharacteristics()
-        {
-            description = "For each 10% of HP Mando is missing, gain 1 more passive Force Regeneration per second.";
-            price = 0;
-            type_of_price = RewardType.REWARD_MACARON;
+            
         }
     }
 
@@ -369,6 +359,15 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            if (Skill_Tree_Data.instance != null)
+                Skill_Tree_Data.instance.EnableSkill(1, (int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION);
+        }
+
+        public override void AssignCharacteristics()
+        {
+            description = "For each 10% of HP Mando is missing, gain 1 more passive Force Regeneration per second.";
+            price = 0;
+            type_of_price = RewardType.REWARD_MACARON;
         }
     }
 

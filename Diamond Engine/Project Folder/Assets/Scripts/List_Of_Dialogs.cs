@@ -57,7 +57,21 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 	};
 
-	private List<string> Initial_Cutscene = new List<string>()
+    private List<string> Post_Initial_Cutscene_Dialogue = new List<string>()
+    {
+        "Look who we got here. I honestly didn't know if you were going to make it.",
+        "Wow, thanks for the trust you put in me. Also, pretty bold to say that for the woman that was too scared to  do it herself. Anyways, I did it, so could you please tell me...",
+       
+    };
+
+    private List<bool> Post_Initial_Cutscene_Dialogue_bool = new List<bool>()
+    {
+		// Mando true, other false
+		false,
+        false,
+    };
+
+    private List<string> Initial_Cutscene = new List<string>()
 	{
 		"Well kid, we should get going if we want to kill that Rancor before nightfall. You know this desert can get  really dangerous at night, with all those Tusken Raiders creeping around.",
 		"(Looks at him, without any light of understandment shining in his eyes)",
@@ -2301,6 +2315,8 @@ public class List_Of_Dialogs : DiamondComponent
                 return Grogu_5_2;
             case 85:
                 return Final_Cutscene;
+            case 86:
+                return Post_Initial_Cutscene_Dialogue;
         }
 		return Initial_Cutscene;
 
@@ -2482,6 +2498,8 @@ public class List_Of_Dialogs : DiamondComponent
                 return Grogu_5_2_bool;
             case 85:
                 return Final_Cutscene_bool;
+            case 86:
+                return Post_Initial_Cutscene_Dialogue_bool;
         }
 		return Initial_Cutscene_bool;
 	}
