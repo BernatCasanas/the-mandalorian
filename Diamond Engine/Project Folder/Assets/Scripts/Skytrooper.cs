@@ -41,8 +41,6 @@ public class Skytrooper : Enemy
 
     public GameObject shootPoint = null;
     //public GameObject hitParticles = null;
-    private GameObject visualFeedback = null;
-    private GameObject visualFeedbackAux = null;
 
     //Action times
     public float idleTime = 5.0f;
@@ -51,7 +49,6 @@ public class Skytrooper : Enemy
     private float dieTime = 3.0f;
     public float timeBewteenShots = 0.5f;
     public float timeBewteenShootingStates = 1.5f;
-    public float feedbackTime = 0.0f;
 
     //Speeds
     public float wanderSpeed = 3.5f;
@@ -72,8 +69,6 @@ public class Skytrooper : Enemy
     private float shootTimer = 0.0f;
     private float pushTimer = 0.0f;
     private float skill_slowDownTimer = 0.0f;
-    private float feedbackTimer = 0.0f;
-    private float feedbackTimerAux = 0.0f;
 
     //Action variables
     private int shotsShooted = 0;
@@ -460,13 +455,11 @@ public class Skytrooper : Enemy
                 if ((shotsShooted + 1) % 2 != 0)
                 {
                     Shoot(false);
-                    feedbackTimer = feedbackTime;
                     Debug.Log("HEY");
                 }
                 else
                 {
                     Shoot(true);
-                    feedbackTimerAux = feedbackTime;
                 }
             }
         }
@@ -476,7 +469,7 @@ public class Skytrooper : Enemy
     {
         //GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         //bullet.GetComponent<BH_Bullet>().damage = damage;
-        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/88418274.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, new Vector3(0.5f, 0.5f, 0.5f));
+        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1662408971.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, new Vector3(0.5f, 0.5f, 0.5f));
         bullet.GetComponent<SkyTrooperShot>().SetTarget(player.transform.globalPosition, false);
         if (aux)
             InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, player.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));

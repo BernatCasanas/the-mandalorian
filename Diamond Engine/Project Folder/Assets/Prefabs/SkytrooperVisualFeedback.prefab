@@ -37,7 +37,9 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "SkytrooperHitCollider",
-                    "damageCollider": 650854480
+                    "damageCollider": 650854480,
+                    "destroyTimer": 0,
+                    "destroyTime": 5
                 },
                 {
                     "Type": 18,
@@ -59,6 +61,20 @@
                         1,
                         2.25
                     ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
                 }
             ]
         },
@@ -194,7 +210,7 @@
                 {
                     "Type": 14,
                     "Active": true,
-                    "kinematic": false,
+                    "kinematic": true,
                     "Gravity": false,
                     "LockLinearX": false,
                     "LockLinearY": false,

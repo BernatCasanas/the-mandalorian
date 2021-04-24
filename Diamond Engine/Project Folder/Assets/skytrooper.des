@@ -1,19 +1,19 @@
 {
     "NavMesh": 1781024148,
     "EditorCameraPosition": [
-        -29.085405349731445,
-        12.498260498046875,
-        -10.954426765441895
+        -41.385467529296875,
+        20.573614120483398,
+        3.8363800048828125
     ],
     "EditorCameraZ": [
-        0.64724308252334595,
-        -0.4170042872428894,
-        0.63810968399047852
+        0.80348789691925049,
+        -0.49463671445846558,
+        -0.33127290010452271
     ],
     "EditorCameraY": [
-        0.29697936773300171,
-        0.9089045524597168,
-        0.29273849725723267
+        0.45727884769439697,
+        0.86909985542297363,
+        -0.18857765197753906
     ],
     "tags": [
         "Bantha",
@@ -4619,8 +4619,8 @@
                     "Static": false,
                     "Position": [
                         0,
-                        0,
-                        0
+                        1.8500504493713379,
+                        1.7778222560882568
                     ],
                     "Rotation": [
                         0,
@@ -4637,90 +4637,33 @@
             ]
         },
         {
-            "name": "SkytrooperVisualFeedback",
-            "tag": "Untagged",
+            "name": "SkytrooperBullet",
+            "tag": "SK_Bullet",
             "layer": "Default",
             "Active": true,
-            "UID": 375634551,
+            "UID": 170941881,
             "ParentUID": 143570472,
-            "PrefabReference": 706016062,
-            "PrefabID": 203996773,
+            "PrefabReference": 1356486933,
+            "PrefabID": 1662408971,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -11.644423484802246,
-                0.36202207207679749,
+                -20.648612976074219,
+                6.187410831451416,
                 0
             ],
             "Rotation": [
+                -0.7071068286895752,
                 0,
                 0,
-                0,
-                1
+                0.70710670948028564
             ],
             "Scale": [
-                1,
-                1,
-                1
+                0.5,
+                0.49999666213989258,
+                0.49999666213989258
             ],
-            "PrefabObjects": [
-                {
-                    "name": "TargetObject",
-                    "tag": "Untagged",
-                    "layer": "Default",
-                    "Active": true,
-                    "UID": 2144705652,
-                    "ParentUID": 375634551,
-                    "PrefabID": 0,
-                    "PrefabReference": 1938539966,
-                    "DontDestroy": false,
-                    "Static": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        6,
-                        1,
-                        6
-                    ]
-                },
-                {
-                    "name": "DamageCollider",
-                    "tag": "Untagged",
-                    "layer": "Default",
-                    "Active": true,
-                    "UID": 1466459722,
-                    "ParentUID": 375634551,
-                    "PrefabID": 0,
-                    "PrefabReference": 650854480,
-                    "DontDestroy": false,
-                    "Static": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        2.5,
-                        1,
-                        2.5
-                    ]
-                }
-            ]
+            "PrefabObjects": []
         }
     ]
 }

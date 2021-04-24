@@ -3,6 +3,7 @@ using DiamondEngine;
 
 public class SkyTrooperShot : DiamondComponent
 {
+	public int damage = 14;
 	ParticleSystem particles = null;
 	public float speed= 0.0f;
 	public float gravity = 0.0f;
@@ -126,5 +127,16 @@ public class SkyTrooperShot : DiamondComponent
 			particles.Play();
 
 		deleteTimer = 5.0f;
+
+		if(collidedGameObject.CompareTag("Player"))
+        {
+			PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
+
+			if(playerHealth != null)
+            {
+				playerHealth.TakeDamage(damage);
+            }
+        }
+		InternalCalls.Destroy(gameObject);
 	}
 }
