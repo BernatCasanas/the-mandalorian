@@ -163,5 +163,9 @@ namespace DiamondEngine
         {
             return (float)(Math.Pow((point.x - this.x), 2) + Math.Pow((point.y - this.y), 2) + Math.Pow((point.z - this.z), 2));
         }
+        public Vector2 ToVector2()
+        {
+            return new Vector2(this.x, this.z);
+        }
     }
 }
