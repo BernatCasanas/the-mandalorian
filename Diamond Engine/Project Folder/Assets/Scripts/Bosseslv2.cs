@@ -15,6 +15,7 @@ public class Bosseslv2 : DiamondComponent
     public float probFollow = 60.0f;
     public float probWander = 40.0f;
     public GameObject projectilePoint = null;
+    public Vector3 targetPos = new Vector3(0, 0, 0);
     public float distanceProjectile = 15.0f;
     public float wanderRange = 7.5f;
 
@@ -194,7 +195,7 @@ public class Bosseslv2 : DiamondComponent
         {
             float distance = Mathf.Distance(gameObject.transform.globalPosition, column.transform.globalPosition);
             Debug.Log("Distance: " + distance.ToString());
-            if(nerestDistance > distance)
+            if (nerestDistance > distance)
             {
                 distance = nerestDistance;
                 nearestColumn = column;
@@ -226,6 +227,8 @@ public class Bosseslv2 : DiamondComponent
         jumpslam = JUMPSLAM.CHARGE;
         jumpslamTimer = chargeTime;
         totalJumpSlamTimer = totalJumpSlamTime;
+        targetPos = Core.instance.gameObject.transform.globalPosition;
+        float speed = Mathf.Distance(targetPos, gameObject.transform.globalPosition) / fallingTime;
     }
 
     public void UpdateJumpSlam()
@@ -251,6 +254,8 @@ public class Bosseslv2 : DiamondComponent
                 Debug.Log("Jump Slam: Up");
                 if (jumpslamTimer > 0)
                 {
+                    gameObject.transform.localPosition += Vector3.up * 50f * Time.deltaTime;
+
                     jumpslamTimer -= Time.deltaTime;
 
                     if (jumpslamTimer <= 0)
@@ -265,9 +270,10 @@ public class Bosseslv2 : DiamondComponent
                 Debug.Log("Jump Slam: Falling");
                 if (jumpslamTimer > 0)
                 {
+                    MoveToPosition(targetPos, speed * 10);
                     jumpslamTimer -= Time.deltaTime;
 
-                    if (jumpslamTimer <= 0)
+                    if (jumpslamTimer <= 0 || Mathf.Distance(targetPos, gameObject.transform.globalPosition) <= 0.1f)
                     {
                         jumpslamTimer = recoveryTime;
                         jumpslam = JUMPSLAM.RECOVERY;
@@ -394,5 +400,12 @@ public class Bosseslv2 : DiamondComponent
         Quaternion desiredRotation = Quaternion.Slerp(gameObject.transform.localRotation, dir, rotationSpeed);
 
         gameObject.transform.localRotation = desiredRotation;
+    }
+
+    public void MoveToPosition(Vector3 positionToReach, float speed)
+    {
+        Vector3 direction = positionToReach - gameObject.transform.localPosition;
+
+        gameObject.transform.localPosition += direction.normalized * speed * Time.deltaTime;
     }
 }

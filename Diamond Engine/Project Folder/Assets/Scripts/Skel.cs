@@ -334,7 +334,7 @@ public class Skel : Bosseslv2
         else
         {
             int decision = randomNum.Next(1, 100);
-            if (decision <= 0)
+            if (decision <= 75)
                 inputsList.Add(INPUT.IN_JUMPSLAM);
             else
                 inputsList.Add(INPUT.IN_BOUNCERUSH);
