@@ -285,8 +285,8 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            if(Core.instance != null)
-                Core.instance.gameObject.GetComponent<PlayerHealth>().SetSkill("DAvoidDmg", 10); //10%
+           // if(Core.instance != null)
+                //Core.instance.gameObject.GetComponent<PlayerHealth>().SetSkill("DAvoidDmg", 10); //10%
         }
 
         public override void AssignCharacteristics()
@@ -470,9 +470,6 @@ namespace DiamondEngine
         {
             if(Skill_Tree_Data.instance != null)
                 Skill_Tree_Data.instance.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.WeaponsSkillNames.SECONDARY_DELAY_BETWEEN_USES);
-            
-            if(Core.instance != null)
-                Core.instance.SetSkill("SecondaryDelaySkill", Skill_Tree_Data.instance.GetWeaponsSkillTree().SW4_DelayReducedAmount);
         }
 
         public override void AssignCharacteristics()

@@ -106,9 +106,8 @@ public class Core : DiamondComponent
     private float gadgetShootSkill = 0.0f;
 
     //Grenades
-    public static float grenadesFireRate;
+    private static float grenadesFireRate;
     private float grenadesFireRateTimer = 0.0f;
-    //private float grenadesTimer = 0.0f;
 
     // Secondary Shoot (sniper)
     public float timeToPerfectCharge = 0.424f;
@@ -815,12 +814,10 @@ public class Core : DiamondComponent
     {
         chargeTimer = 0f;
         //Animation play :O
-
     }
 
     private void EndShootCharge()
     {
-
         chargeTimer = 0f;
     }
 
@@ -1298,19 +1295,11 @@ public class Core : DiamondComponent
         }
     }
 
-    public void SetSkill(string skillName, float value1 = 0.0f, float value2 = 0.0f)
-    {
-        if (skillName == "SecondaryDelaySkill") //Secondary Delay Skill
-        {
-            grenadesFireRate -= grenadesFireRate * value1;
-        }
-    }
-
     private static float GetExtraDamageWithSkill()
     {
         float HPMissing = 1.0f - ((float)PlayerHealth.currHealth / (float)PlayerHealth.currMaxHealth);
 
-        if(Skill_Tree_Data.instance != null)
+        if (Skill_Tree_Data.instance != null)
         {
             float local_damageAmount = Skill_Tree_Data.instance.GetMandoSkillTree().A7_extraDamageAmount;
             float local_HPStep = Skill_Tree_Data.instance.GetMandoSkillTree().A7_extraDamageHPStep;
