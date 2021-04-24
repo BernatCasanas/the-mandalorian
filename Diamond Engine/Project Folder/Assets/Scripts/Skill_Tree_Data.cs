@@ -35,6 +35,7 @@ public class Skill_Tree_Data : DiamondComponent
     //Primary Weapon Skill 5
     //Primary Weapon Skill 6
     //Primary Weapon Skill 7
+    public float PrimaryWeapon7_IncreaseDamageAmount = 0.25f;
     //Primary Weapon Skill 8
     #endregion
     #region Secondary Weapon Variables
@@ -88,7 +89,7 @@ public class Skill_Tree_Data : DiamondComponent
     //Defense Skill 6
     //Defense Skill 7
     //Defense Skill 8
-    public float Defense8_chanceToAvoidDamage = 0.1f;
+    public int Defense8_chanceToAvoidDamage = 10;
     #endregion
     #endregion
     #endregion
@@ -119,7 +120,7 @@ public class Skill_Tree_Data : DiamondComponent
         PRIMARY_SLOW_SPEED = 4,
         PRIMARY5 = 5,
         PRIMARY6 = 6,
-        PRIMARY7 = 7,
+        PRIMARY_INCREASE_DAMAGE = 7,
         PRIMARY8 = 8,
         SECONDARY1 = 9,
         SECONDARY2 = 10,
@@ -269,6 +270,7 @@ public class Skill_Tree_Data : DiamondComponent
     }
     #endregion
 
+    #region Geters for SkillTrees
     public Grogu_Skills_Data GetGroguSkillTree()
     {
         return groguSkillTree;
@@ -282,6 +284,7 @@ public class Skill_Tree_Data : DiamondComponent
     {
         return mandoSkillTree;
     }
+    #endregion
 
     public class Grogu_Skills_Data
     {
@@ -308,7 +311,7 @@ public class Skill_Tree_Data : DiamondComponent
         public float A7_extraDamageHPStep = -1.0f;
         public float A7_extraDamageAmount = -1.0f;
         //Defense Skill 8
-        public float D8_changeToAvoidDamage = -1.0f;
+        public int D8_changeToAvoidDamage = -1;
     }
     public class Weapons_Skills_Data
     {
@@ -321,6 +324,7 @@ public class Skill_Tree_Data : DiamondComponent
         //Primary Weapon Skill 5
         //Primary Weapon Skill 6
         //Primary Weapon Skill 7
+        public float PW7_IncreaseDamageAmount = -1.0f;
         //Primary Weapon Skill 8
 
         //Secondary Weapon Skill 1
@@ -353,6 +357,7 @@ public class Skill_Tree_Data : DiamondComponent
         weaponsSkillTree.PW4_SlowDownAmount = PrimaryWeapon4_SlowDownAmount;
         weaponsSkillTree.PW4_SlowDownDuration = PrimaryWeapon4_SlowDownDuration;
         weaponsSkillTree.SW4_DelayReducedAmount = SecondaryWeapon4_DelayReducedAmount;
+        weaponsSkillTree.PW7_IncreaseDamageAmount = PrimaryWeapon7_IncreaseDamageAmount;
 
         mandoSkillTree.U4_damageReduction = Utility4_damageReduction;
         mandoSkillTree.U4_seconds = Utility4_seconds;

@@ -285,8 +285,8 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-           // if(Core.instance != null)
-                //Core.instance.gameObject.GetComponent<PlayerHealth>().SetSkill("DAvoidDmg", 10); //10%
+            if(Skill_Tree_Data.instance != null)
+                Skill_Tree_Data.instance.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE_CHANCE_AVOID_DAMAGE);
         }
 
         public override void AssignCharacteristics()
@@ -424,10 +424,11 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            if (Core.instance != null)
+            if (Core.instance != null && Skill_Tree_Data.instance != null)
             {
-                Core.instance.IncreaseNormalShootDamage(0.25f);
-            }
+                Skill_Tree_Data.instance.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_INCREASE_DAMAGE);
+                Core.instance.IncreaseNormalShootDamage(Skill_Tree_Data.instance.GetWeaponsSkillTree().PW7_IncreaseDamageAmount);
+            }                
         }
 
         public override void AssignCharacteristics()
@@ -477,11 +478,6 @@ namespace DiamondEngine
             description = "Delay between uses reduced by 30%";
             price = 0;
             type_of_price = RewardType.REWARD_BESKAR;
-        }
-
-        public float returnDelay(float originalDelay)
-        {
-            return 0.0f;
         }
     }
 
