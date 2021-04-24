@@ -10,12 +10,14 @@ public class Wampa : Bosseslv2
 {
     public void Awake()
     {
+        Debug.Log("Wampa Awake");
+
         agent = gameObject.GetComponent<NavMeshAgent>();
         if (agent == null)
             Debug.Log("Null agent, add a NavMeshAgent Component");
 
-        Animator.Play(gameObject, "");
-        Audio.PlayAudio(gameObject, "");
+        //Animator.Play(gameObject, "");
+        //Audio.PlayAudio(gameObject, "");
         Counter.roomEnemies++;  // Just in case
         EnemyManager.AddEnemy(gameObject);
     

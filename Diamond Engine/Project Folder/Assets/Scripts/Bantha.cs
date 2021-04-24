@@ -398,6 +398,7 @@ public class Bantha : Enemy
 
         tiredTimer = tiredTime;
         Animator.Play(gameObject, "BT_Idle");
+        Audio.PlayAudio(gameObject, "Play_Bantha_Breath");
     }
     #endregion
 
@@ -480,18 +481,16 @@ public class Bantha : Enemy
 
         Animator.Play(gameObject, "BT_Run");
         InternalCalls.Destroy(visualFeedback);
+        visualFeedback = null;
 
         Audio.PlayAudio(gameObject, "Play_Bantha_Attack");
         Audio.PlayAudio(gameObject, "Play_Bantha_Ramming");
         Audio.PlayAudio(gameObject, "Play_Footsteps_Bantha");
 
-        if (agent != null)
-            agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition);
-
     }
     private void UpdateCharge()
     {
-        LookAt(agent.GetDestination());
+        //LookAt(agent.GetDestination());
 
         if (skill_slowDownActive) 
             agent.MoveToCalculatedPos(chargeSpeed * (1 - skill_slowDownAmount));
@@ -505,12 +504,15 @@ public class Bantha : Enemy
     {
         //Audio.StopAudio(gameObject);
 
+        if (visualFeedback != null)
+            InternalCalls.Destroy(visualFeedback);
+
         dieTimer = dieTime;
 
         Animator.Play(gameObject, "BT_Die", 1.0f);
 
         Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Death");
-        //Audio.PlayAudio(gameObject, "Play_Mando_Voice");
+        Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
 
         if (hitParticles != null)
             hitParticles.GetComponent<ParticleSystem>().Play();

@@ -104,11 +104,13 @@ public class Skytrooper : Enemy
 
         if (spawnparticles != null)
         {
-            Debug.Log("PLAY SPAWN!!!");
+            //Debug.Log("PLAY SPAWN!!!");
             spawnparticles.Play();
         }
         else
-        { Debug.Log("CAN'T PLAY SPAWN!!!"); }
+        {
+            //Debug.Log("CAN'T PLAY SPAWN!!!"); 
+        }
     }
 
     public void Start()
@@ -229,22 +231,26 @@ public class Skytrooper : Enemy
                     {
                         case INPUT.IN_WANDER:
                             currentState = STATE.WANDER;
+                            IdleEnd();
                             StartWander();
                             break;
 
                         case INPUT.IN_PLAYER_IN_RANGE:
                             currentState = STATE.SHOOT;
+                            IdleEnd();
                             PlayerDetected();
                             StartShoot();
                             break;
 
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
+                            IdleEnd();
                             StartDie();
                             break;
 
                         case INPUT.IN_PUSHED:
                             currentState = STATE.PUSHED;
+                            IdleEnd();
                             StartPush();
                             break;
                     }
@@ -384,6 +390,11 @@ public class Skytrooper : Enemy
         Debug.Log("SKYTROOPER IDLE");
         idleTimer = idleTime;
         Animator.Play(gameObject, "SK_Idle");
+        Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
+    }
+    private void IdleEnd()
+    {
+        Audio.StopAudio(gameObject);
     }
     #endregion
 
@@ -394,7 +405,7 @@ public class Skytrooper : Enemy
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
         Animator.Play(gameObject, "SK_Dash");
-        Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
+        Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
     }
     private void UpdateWander()
     {
@@ -415,7 +426,7 @@ public class Skytrooper : Enemy
         agent.CalculateRandomPath(gameObject.transform.globalPosition, dashRange);
 
         Animator.Play(gameObject, "SK_Dash");
-        Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
+        Audio.PlayAudio(gameObject, "Play_Skytrooper_Dash");
     }
     private void UpdateDash()
     {
@@ -436,6 +447,7 @@ public class Skytrooper : Enemy
         shootTimer = timeBewteenShootingStates;
         shotsShooted=0;
         Animator.Play(gameObject, "SK_Idle");
+        Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
     }
 
     private void UpdateShoot()
@@ -476,7 +488,7 @@ public class Skytrooper : Enemy
         else
             visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, player.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
         Animator.Play(gameObject, "SK_Shoot");
-        Audio.PlayAudio(gameObject, "PLay_Blaster_Stormtrooper");
+        Audio.PlayAudio(gameObject, "PLay_Skytrooper_Grenade_Launch");
         shotsShooted++;
         if (shotsShooted < maxShots)
             shootTimer = timeBewteenShots;
@@ -504,7 +516,7 @@ public class Skytrooper : Enemy
         //Animator.Play(gameObject, "ST_Die", 1.0f);
 
         Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
-        Audio.PlayAudio(gameObject, "Play_Mando_Voice");
+        Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
 
         ParticleSystem dead = null;
         ParticleSystem wave = null;

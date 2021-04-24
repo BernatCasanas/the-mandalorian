@@ -202,6 +202,12 @@ public class PlayerHealth : DiamondComponent
         if (DebugOptionsHolder.godModeActive)
             return currHealth;
 
+        if(Core.instance != null && damage > 0)
+        {
+            if (Core.instance.IsDashing())
+                return currHealth;
+        }
+
         if (ChanceToAvoidDamage(skill_chanceToAvoidDamage))
         {
             Debug.Log("Damage missed!");
@@ -222,7 +228,10 @@ public class PlayerHealth : DiamondComponent
         if (currHealth > currMaxHealth) currHealth = currMaxHealth;
 
         if (Core.instance.hud != null)
+        {
             Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
+            Core.instance.ReduceComboOnHit(damage);
+        }
 
         if (currHealth < 75 && currHealth >= 50 && MusicSourceLocate.instance != null)
         {

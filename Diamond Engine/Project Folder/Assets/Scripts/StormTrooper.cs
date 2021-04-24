@@ -111,11 +111,13 @@ public class StormTrooper : Enemy
 
         if (spawnparticles != null)
         {
-            Debug.Log("PLAY SPAWN!!!");
+            //Debug.Log("PLAY SPAWN!!!");
             spawnparticles.Play();
         }
         else
-        { Debug.Log("CAN'T PLAY SPAWN!!!"); }
+        { 
+            //Debug.Log("CAN'T PLAY SPAWN!!!"); 
+        }
     }
 
     public void Update()
@@ -613,7 +615,7 @@ public class StormTrooper : Enemy
         Animator.Play(gameObject, "ST_Die", 1.0f);
 
         Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
-        Audio.PlayAudio(gameObject, "Play_Mando_Voice");
+        Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
 
         ParticleSystem dead = null;
         ParticleSystem wave = null;
