@@ -69,10 +69,6 @@ public class Core : DiamondComponent
     private float dustTime = 0.0f;
 
     //Skill
-    private static bool skill_extraDamageActive = false;
-    private static float skill_extraDamageHPStep = 0.0f;
-    private static float skill_extraDamageAmount = 0.0f;
-
     private float skill_damageReductionDashTimer = 0.0f;
     private bool skill_damageReductionDashActive = false;
 
@@ -180,9 +176,9 @@ public class Core : DiamondComponent
         if (lockInputsScene != null)
             lockInputs = true;
 
-            #endregion
+        #endregion
 
-            #region SHOOT
+        #region SHOOT
 
         baseFireRate = Math.Max(baseFireRate, 0.1f);
 
@@ -332,7 +328,7 @@ public class Core : DiamondComponent
                 inputsList.Add(INPUT.IN_GADGET_SHOOT_END);
         }
 
-        if(Skill_Tree_Data.instance != null)
+        if (Skill_Tree_Data.instance != null)
         {
             if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_DAMAGE_REDUCTION_DASH)
                 && skill_damageReductionDashTimer > 0)
@@ -342,7 +338,7 @@ public class Core : DiamondComponent
                 if (skill_damageReductionDashTimer <= 0)
                     skill_damageReductionDashActive = false;
             }
-        }        
+        }
 
         if (currentState == STATE.CHARGING_SEC_SHOOT)
         {
@@ -745,11 +741,16 @@ public class Core : DiamondComponent
             AddPrimaryHeat();
             Debug.Log("Bullet Shot!");
 
-            if (skill_extraDamageActive) bullet.GetComponent<BH_Bullet>().damage = GetExtraDamageWithSkill();
-            else bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
-
+            bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
+            if (Skill_Tree_Data.instance != null)
+            {
+                if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_EXTRA_DAMAGE_LOW_HEALTH))
+                {
+                    //If the skill is active, we override the damage amount
+                    bullet.GetComponent<BH_Bullet>().damage = GetExtraDamageWithSkill();
+                }
+            }
         }
-
     }
 
 
@@ -875,9 +876,15 @@ public class Core : DiamondComponent
             Debug.Log("Charged Bullet Shot!");
             ReducePrimaryWeaponHeat(10);
 
-            if (skill_extraDamageActive) bullet.GetComponent<BH_Bullet>().damage = GetExtraDamageWithSkill();
-            else bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
-
+            bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
+            if (Skill_Tree_Data.instance != null)
+            {
+                if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_EXTRA_DAMAGE_LOW_HEALTH))
+                {
+                    //If the skill is active, we override the damage amount
+                    bullet.GetComponent<BH_Bullet>().damage = GetExtraDamageWithSkill();
+                }
+            }
         }
     }
 
@@ -917,14 +924,14 @@ public class Core : DiamondComponent
         StopPlayer();
         gameObject.transform.localPosition.y = dashStartYPos;
 
-        if(Skill_Tree_Data.instance != null)
+        if (Skill_Tree_Data.instance != null)
         {
             if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_DAMAGE_REDUCTION_DASH))
             {
                 skill_damageReductionDashActive = true;
                 skill_damageReductionDashTimer = Skill_Tree_Data.instance.GetMandoSkillTree().U4_seconds;
             }
-        }        
+        }
     }
 
     #endregion
@@ -1297,18 +1304,23 @@ public class Core : DiamondComponent
         {
             grenadesFireRate -= grenadesFireRate * value1;
         }
-        else if (skillName == "AggressionHPMissingDamageSkill") //For each 1% of hp missing, gain 1% damage
-        {
-            skill_extraDamageActive = true;
-            skill_extraDamageHPStep = value1;
-            skill_extraDamageAmount = value2;
-        }
     }
 
     private static float GetExtraDamageWithSkill()
     {
         float HPMissing = 1.0f - ((float)PlayerHealth.currHealth / (float)PlayerHealth.currMaxHealth);
-        return bulletDamage + (bulletDamage * skill_extraDamageAmount * (HPMissing / skill_extraDamageHPStep));
+
+        if(Skill_Tree_Data.instance != null)
+        {
+            float local_damageAmount = Skill_Tree_Data.instance.GetMandoSkillTree().A7_extraDamageAmount;
+            float local_HPStep = Skill_Tree_Data.instance.GetMandoSkillTree().A7_extraDamageHPStep;
+            return bulletDamage + (bulletDamage * local_damageAmount * (HPMissing / local_HPStep));
+        }
+        else
+        {
+            Debug.Log("Error. Skill_Tree_Data.instance is NULL in Core.cs -> function GetExtraDamageWithSkill()");
+            return bulletDamage;
+        }
     }
 
     public void OnApplicationQuit()

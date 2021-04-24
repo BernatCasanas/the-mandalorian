@@ -62,10 +62,6 @@ public class Rancor : DiamondComponent
 
     public float slerpSpeed = 5.0f;
 
-    //Skills
-    private static bool skill_increaseDamageToBossActive = false;
-    private static float skill_increaseDamageToBossAmount = 0.0f;
-
     //Stats
     public float healthPoints = 1500.0f;          //IF INITAL HEALTH IS CHANGED, CHANGE MAX HEALTH AS WELL!
     public float maxHealthPoints = 1500.0f;
@@ -1283,9 +1279,12 @@ public class Rancor : DiamondComponent
                 Debug.Log("The collider with tag Bullet didn't have a bullet Script!!");
             }
 
-            if (skill_increaseDamageToBossActive)
+            if(Skill_Tree_Data.instance != null)
             {
-                damageToBoss *= (1.0f + skill_increaseDamageToBossAmount);
+                if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
+                {
+                    damageToBoss *= (1.0f + Skill_Tree_Data.instance.GetMandoSkillTree().A6_increaseDamageToBossAmount);
+                }
             }
 
             TakeDamage(damageToBoss);
@@ -1362,15 +1361,6 @@ public class Rancor : DiamondComponent
         }
     }
 
-    public static void SetSkill(string skillName, float value1 = 0.0f)
-    {
-        if (skillName == "AggressionDamageBossesSkill") //Increase damage to Bosses and greater enemies by 20%
-        {
-            skill_increaseDamageToBossActive = true;
-            skill_increaseDamageToBossAmount = value1;
-        }
-
-    }
     private void PlayParticles(PARTICLES particleType)
     {
         if (rancorParticles == null)
