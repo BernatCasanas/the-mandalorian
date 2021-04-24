@@ -171,7 +171,7 @@ public class Bantha : Enemy
         {
             skill_slowDownTimer += Time.deltaTime;
 
-            if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownDuration) //Get duration from Primary Weapon Skill 4
+            if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownDuration) //Get duration from Primary Weapon Skill 4
             {
                 skill_slowDownTimer = 0.0f;
                 skill_slowDownActive = false;
@@ -425,7 +425,7 @@ public class Bantha : Enemy
 
         LookAt(agent.GetDestination());
         if (skill_slowDownActive && Skill_Tree_Data.instance != null)
-            agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
+            agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownAmount));
         else
             agent.MoveToCalculatedPos(runningSpeed);
 
@@ -449,7 +449,7 @@ public class Bantha : Enemy
     {
         LookAt(agent.GetDestination());
         if (skill_slowDownActive && Skill_Tree_Data.instance != null)
-            agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
+            agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownAmount));
         else agent.MoveToCalculatedPos(wanderSpeed);
     }
     private void WanderEnd()
@@ -493,7 +493,7 @@ public class Bantha : Enemy
     private void StartCharge()
     {
         if (skill_slowDownActive && Skill_Tree_Data.instance != null)
-            chargeTimer = chargeLength / (chargeSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
+            chargeTimer = chargeLength / (chargeSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownAmount));
         else if (!straightPath)
             chargeTimer = chargeLength / (chargeSpeed * chargeSpeedReduction);
         else chargeTimer = chargeLength / chargeSpeed;
@@ -513,7 +513,7 @@ public class Bantha : Enemy
         //LookAt(agent.GetDestination());
 
         if (skill_slowDownActive && Skill_Tree_Data.instance != null)
-            agent.MoveToCalculatedPos(chargeSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW4_SlowDownAmount));
+            agent.MoveToCalculatedPos(chargeSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownAmount));
         else if (!straightPath)
             agent.MoveToCalculatedPos(chargeSpeed * chargeSpeedReduction);
         else
