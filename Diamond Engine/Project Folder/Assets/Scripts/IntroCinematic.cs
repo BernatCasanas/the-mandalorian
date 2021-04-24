@@ -25,15 +25,15 @@ public class IntroCinematic : DiamondComponent
 
     public void Awake()
     {
-        auxCameraRotation = cameraObject.transform.localRotation;
+        /*auxCameraRotation = cameraObject.transform.localRotation;
         pointArray = new GameObject[] { point1, point2, point3, point4, point5, point6, point7, point8 };
-        UpdateValues();
+        UpdateValues();*/
         // Take player's controls away
     }
 
     public void Update()
     {
-        if (toGoPosition != null)
+        /*if (toGoPosition != null)
         {
     //        Debug.Log("Camera position " + cameraAuxPosition);
    //         Debug.Log("Go vector position " + toGoPosition);
@@ -47,7 +47,7 @@ public class IntroCinematic : DiamondComponent
         if (Mathf.Distance(cameraAuxPosition, toGoPosition) < 0.5f)
         {
             UpdateValues();
-        }
+        }*/
     }
 
     public void UpdateValues()

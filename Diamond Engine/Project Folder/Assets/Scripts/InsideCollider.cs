@@ -3,10 +3,11 @@ using DiamondEngine;
 
 public class InsideCollider : DiamondComponent
 {
-	public GameObject colliderPosition;
-	public GameObject player;
+	public GameObject colliderPosition = null;
+	public GameObject player = null;
     public float maxDistance = 5;
-    public GameObject displayText;
+    public GameObject displayText = null;
+    public GameObject selectButton = null;
 
     public void Update()
 	{
@@ -16,9 +17,19 @@ public class InsideCollider : DiamondComponent
         if (displayText == null)
             return;
 
-        if (IsInside() && displayText.IsEnabled() == false) 
+        if (IsInside() && displayText.IsEnabled() == false)
+        {
             displayText.Enable(true);
-        else if(!IsInside() && displayText.IsEnabled()) 
+
+            if (selectButton != null)
+            {
+                Navigation navComponent = selectButton.GetComponent<Navigation>();
+
+                if (navComponent != null)
+                    navComponent.Select();
+            }
+        }
+        else if (!IsInside() && displayText.IsEnabled())
             displayText.Enable(false);
     }
 

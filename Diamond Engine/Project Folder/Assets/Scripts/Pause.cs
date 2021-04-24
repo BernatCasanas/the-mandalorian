@@ -61,8 +61,6 @@ public class Pause : DiamondComponent
 
 	public void Awake()
 	{
-		Core.instance.pause = this.gameObject;
-		Core.instance.background = background;
 	}
 
 	public void Update()
@@ -74,6 +72,16 @@ public class Pause : DiamondComponent
     {
 		if (gameObject.Name == "PauseMenu")
 		{
+			if (default_selected != null)
+            {
+				Navigation componentNavigation = default_selected.GetComponent<Navigation>();
+
+				Debug.Log("Get nav component");
+
+				if (componentNavigation != null)
+					componentNavigation.Select();
+            }
+
 			int bo, wr, boPlace, wrPlace;
 			leftImage.Enable(true);
 			leftText.Enable(true);
