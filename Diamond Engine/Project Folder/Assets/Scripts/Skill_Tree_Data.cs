@@ -73,7 +73,10 @@ public class Skill_Tree_Data : DiamondComponent
     //Aggression Skill 4
     //Aggression Skill 5
     //Aggression Skill 6
+    public float A6_increaseDamageToBossAmount = 0.2f;
     //Aggression Skill 7
+    public float A7_extraDamageHPStep = 1.0f;
+    public float A7_extraDamageAmount = 1.0f;
     //Aggression Skill 8
     #endregion
     #region Defense Variables
@@ -147,8 +150,8 @@ public class Skill_Tree_Data : DiamondComponent
         AGGRESION3 = 11,
         AGGRESION4 = 12,
         AGGRESION5 = 13,
-        AGGRESION6 = 14,
-        AGGRESION7 = 15,
+        AGGRESION_INCREASE_DAMAGE_TO_BOSS = 14,
+        AGGRESION_EXTRA_DAMAGE_LOW_HEALTH = 15,
         AGGRESION8 = 16,
         DEFENSE1 = 17,
         DEFENSE2 = 18,
@@ -295,8 +298,14 @@ public class Skill_Tree_Data : DiamondComponent
     }
     public class Mando_Skills_Data
     {
+        //Utility Skill 4
         public float U4_seconds = -1.0f;
         public float U4_damageReduction = -1.0f;
+        //Aggression Skill 6
+        public float A6_increaseDamageToBossAmount = -1.0f;
+        //Aggression Skill 7
+        public float A7_extraDamageHPStep = -1.0f;
+        public float A7_extraDamageAmount = -1.0f;
     }
     public class Weapons_Skills_Data
     {
@@ -344,5 +353,8 @@ public class Skill_Tree_Data : DiamondComponent
 
         mandoSkillTree.U4_damageReduction = U4_damageReduction;
         mandoSkillTree.U4_seconds = U4_seconds;
+        mandoSkillTree.A6_increaseDamageToBossAmount = A6_increaseDamageToBossAmount;
+        mandoSkillTree.A7_extraDamageAmount = A7_extraDamageAmount;
+        mandoSkillTree.A7_extraDamageHPStep = A7_extraDamageHPStep;
     }
 }
