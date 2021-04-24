@@ -9,7 +9,7 @@
             "UID": 1480009184,
             "ParentUID": 0,
             "PrefabReference": 0,
-            "PrefabID": 0,
+            "PrefabID": 355603284,
             "DontDestroy": false,
             "Static": false,
             "Position": [
@@ -49,30 +49,71 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Skytrooper",
-                    "detectionRange": 12.5,
+                    "detectionRange": 25,
                     "damage": 5,
                     "healthPoints": 60,
                     "stoppingDistance": 1,
                     "coinDropPath": "Library\/Prefabs\/1907169014.prefab",
                     "slerpSpeed": 5,
-                    "turretMode": false,
-                    "skill_slowDownEnabled": false,
-                    "skill_slowDownAmount": 0,
-                    "skill_slowDownDuration": 0,
                     "shootPoint": 1110781799,
-                    "idleTime": 0,
-                    "dashTime": 0,
-                    "timeBewteenShots": 0,
-                    "timeBewteenStates": 0,
-                    "feedbackTime": 0,
-                    "wanderSpeed": 0,
-                    "dashSpeed": 0,
-                    "wanderRange": 0,
-                    "dashRange": 0,
-                    "maxShots": 0,
+                    "idleTime": 2,
+                    "dashTime": 0.5,
+                    "timeBewteenShots": 1,
+                    "timeBewteenShootingStates": 2,
+                    "feedbackTime": 1,
+                    "wanderSpeed": 4,
+                    "dashSpeed": 40,
+                    "wanderRange": 5,
+                    "dashRange": 10,
+                    "maxShots": 2,
                     "pushHorizontalForce": 0,
                     "pushVerticalForce": 0,
                     "PushStun": 0
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "Skytrooper",
+                    "volume": 50,
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        1,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1.5,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
                 }
             ]
         },
@@ -2532,10 +2573,10 @@
                     ],
                     "alternColorStencil": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ],
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": false
                 },
                 {
                     "Type": 3,
@@ -2544,6 +2585,14 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
                     "MaterialUID": 1948688504
+                },
+                {
+                    "Type": 26,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/animated_colored_mat.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/2086070049.mat",
+                    "MaterialUID": 2086070049
                 }
             ]
         },

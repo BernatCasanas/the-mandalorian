@@ -26,10 +26,4 @@ public class DebugToggleFPS : DiamondComponent
             navigation.Select();
         }
     }
-
-
-    public void Update()
-    {
-
-    }
 }
