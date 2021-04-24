@@ -604,6 +604,9 @@ public class StormTrooper : Enemy
     private void PlayerDetected()
     {
         Audio.PlayAudio(gameObject, "Play_Enemy_Detection");
+        StormTrooperParticles part = gameObject.GetComponent<StormTrooperParticles>();
+        if (part != null && part.alert != null)
+            part.alert.Play();
     }
     #endregion
 
