@@ -486,13 +486,10 @@ public class Bantha : Enemy
         Audio.PlayAudio(gameObject, "Play_Bantha_Ramming");
         Audio.PlayAudio(gameObject, "Play_Footsteps_Bantha");
 
-        if (agent != null)
-            agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition);
-
     }
     private void UpdateCharge()
     {
-        LookAt(agent.GetDestination());
+        //LookAt(agent.GetDestination());
 
         if (skill_slowDownActive) 
             agent.MoveToCalculatedPos(chargeSpeed * (1 - skill_slowDownAmount));
