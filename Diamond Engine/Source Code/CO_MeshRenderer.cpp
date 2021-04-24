@@ -30,7 +30,7 @@
 
 C_MeshRenderer::C_MeshRenderer(GameObject* _gm) : Component(_gm), _mesh(nullptr), normalMap(nullptr),
 faceNormals(false), vertexNormals(false), showAABB(false), showOBB(false), drawDebugVertices(false), drawStencil(false),
-calculatedBonesThisFrame(false)
+calculatedBonesThisFrame(false), boneTransforms()
 {
 	name = "Mesh Renderer";
 	alternColor = float3::one;
@@ -42,6 +42,7 @@ C_MeshRenderer::~C_MeshRenderer()
 {
 	rootBone = nullptr;
 	bonesMap.clear();
+	boneTransforms.clear();
 
 	if (_mesh != nullptr)
 	{
@@ -64,6 +65,7 @@ void C_MeshRenderer::Update()
 		return;
 
 	calculatedBonesThisFrame = false;
+	boneTransforms.clear();
 
 	if (drawStencil)
 	{
@@ -250,7 +252,7 @@ bool C_MeshRenderer::OnEditor()
 
 		if (ImGui::BeginDragDropTarget())
 		{
-			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("_TEXTURE"))
+			if (const ImGuiPayload * payload = ImGui::AcceptDragDropPayload("_TEXTURE"))
 			{
 				//Drop asset from Asset window to scene window
 				std::string* metaFileDrop = (std::string*)payload->Data;
@@ -451,15 +453,15 @@ void C_MeshRenderer::DrawDebugVertices()
 
 void C_MeshRenderer::TryCalculateBones()
 {
-	if (calculatedBonesThisFrame == true)
-		return;
 
 	//Mesh array with transform matrix of each bone
-	if (rootBone != nullptr)
+	if (calculatedBonesThisFrame == false && rootBone != nullptr)
 	{
 		//float4x4 invertedMatrix = dynamic_cast<C_Transform*>(gameObject->GetComponent(Component::TYPE::TRANSFORM))->globalTransform.Inverted();
 		float4x4 invertedMatrix = gameObjectTransform->globalTransform.Inverted();
-
+		
+		boneTransforms.reserve(_mesh->bonesMap.size());
+		
 		//Get each bone
 		for (int i = 0; i < _mesh->bonesMap.size(); ++i)
 		{
@@ -472,9 +474,16 @@ void C_MeshRenderer::TryCalculateBones()
 				Delta = Delta * _mesh->bonesOffsets[i];
 
 				//Storage of Delta Matrix (Transformation applied to each bone)
-				_mesh->boneTransforms[i] = Delta.Transposed();
+				//_mesh->boneTransforms[i] = Delta.Transposed();
+				boneTransforms.push_back(Delta.Transposed());
 			}
 		}
+		calculatedBonesThisFrame = true;
 	}
-	calculatedBonesThisFrame = true;
+
+	for (int i = 0; i < _mesh->bonesMap.size(); ++i)
+	{
+		_mesh->boneTransforms[i] = boneTransforms[i];
+	}
+
 }
