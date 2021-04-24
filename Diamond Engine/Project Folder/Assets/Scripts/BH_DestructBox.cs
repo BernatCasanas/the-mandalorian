@@ -30,12 +30,14 @@ public class BH_DestructBox : DiamondComponent
 
 	public void OnTriggerEnter(GameObject triggeredGameObject)
 	{
-		if(triggeredGameObject.CompareTag("Bullet"))
+		if(triggeredGameObject.CompareTag("Bullet") && triggered==false)
         {
 			if (explosion != null && wave != null)
 			{
 				partExp = explosion.GetComponent<ParticleSystem>();
 				partWave = wave.GetComponent<ParticleSystem>();
+
+				Audio.PlayAudio(gameObject, "Play_Barrel_Explosion");
 			}
 
 			if (partExp != null && !triggered)
@@ -50,6 +52,5 @@ public class BH_DestructBox : DiamondComponent
 			gameObject.DisableCollider();
 			gameObject.EnableCollider();
 		}
-		
 	}
 }
