@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class Skill_Tree_Data : DiamondComponent
 {
-    public static Skill_Tree_Data instance = null;
     private static Grogu_Skills_Data groguSkillTree = null;
     private static Weapons_Skills_Data weaponsSkillTree = null;
     private static Mando_Skills_Data mandoSkillTree = null;
@@ -169,7 +168,7 @@ public class Skill_Tree_Data : DiamondComponent
 
     #region Skills are enabled or disabled
     //Grogu Skills   
-    private static Dictionary<int, bool> groguSkillEnabled = new Dictionary<int, bool>
+    public static Dictionary<int, bool> groguSkillEnabled = new Dictionary<int, bool>
     {
         {1, false },
         {2, false },
@@ -181,7 +180,7 @@ public class Skill_Tree_Data : DiamondComponent
         {8, false },
     };
     //Mando
-    private static Dictionary<int, bool> mandoSkillEnabled = new Dictionary<int, bool>
+    public static Dictionary<int, bool> mandoSkillEnabled = new Dictionary<int, bool>
     {
         {1, false }, //Utility
         {2, false },
@@ -209,7 +208,7 @@ public class Skill_Tree_Data : DiamondComponent
         {24, false },
     };
     //Weapons
-    private static Dictionary<int, bool> weaponsSkillEnabled = new Dictionary<int, bool>
+    public static Dictionary<int, bool> weaponsSkillEnabled = new Dictionary<int, bool>
     {
         {1, false }, //Primary weapons
         {2, false },
@@ -237,7 +236,7 @@ public class Skill_Tree_Data : DiamondComponent
     #endregion
 
     #region Enable and Disable Skills
-    public void EnableSkill(int skillTree, int skill_Number)
+    public static void EnableSkill(int skillTree, int skill_Number)
     {
         switch (skillTree)
         {
@@ -255,7 +254,7 @@ public class Skill_Tree_Data : DiamondComponent
         }
     }
 
-    public bool IsEnabled(int skillTree, int skill_Number)
+    public static bool IsEnabled(int skillTree, int skill_Number)
     {
         switch (skillTree)
         {
@@ -272,16 +271,16 @@ public class Skill_Tree_Data : DiamondComponent
     #endregion
 
     #region Geters for SkillTrees
-    public Grogu_Skills_Data GetGroguSkillTree()
+    public static Grogu_Skills_Data GetGroguSkillTree()
     {
         return groguSkillTree;
     }
-    public Weapons_Skills_Data GetWeaponsSkillTree()
+    public static Weapons_Skills_Data GetWeaponsSkillTree()
     {
         return weaponsSkillTree;
     }
 
-    public Mando_Skills_Data GetMandoSkillTree()
+    public static Mando_Skills_Data GetMandoSkillTree()
     {
         return mandoSkillTree;
     }
@@ -342,9 +341,6 @@ public class Skill_Tree_Data : DiamondComponent
 
     public void Awake()
     {
-        if (instance != null) InternalCalls.Destroy(gameObject);
-        else instance = this;
-
         //Generate the Skill Trees
         Grogu_Skills_Data groguSkillTreeInit = new Grogu_Skills_Data();
         groguSkillTree = groguSkillTreeInit;
