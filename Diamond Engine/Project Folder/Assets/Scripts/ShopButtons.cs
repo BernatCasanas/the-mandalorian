@@ -31,11 +31,11 @@ public class ShopButtons : DiamondComponent
 
     public void OnExecuteButton()
     {
-        if (shopScript.opening)
+        /*if (shopScript.opening)
         {
             shopScript.opening = false;
         }
-        else if(!bought)
+        else */if(!bought)
         {
             if (closeBtn)
             {

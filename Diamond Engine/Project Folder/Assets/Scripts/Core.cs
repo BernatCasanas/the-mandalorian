@@ -223,6 +223,8 @@ public class Core : DiamondComponent
 
         currentState = STATE.IDLE;
 
+        lockInputs = false;
+
         Debug.Log("Start!");
         mySpawnPos = new Vector3(gameObject.transform.globalPosition.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z);
         runTime = Animator.GetAnimationDuration(gameObject, "Run") / 2;
@@ -356,14 +358,15 @@ public class Core : DiamondComponent
     //Controler inputs go here
     private void ProcessExternalInput()
     {
+       
+        bool isPrimaryOverHeat = false;
+        if (hud != null)
+        {
+            isPrimaryOverHeat = hud.GetComponent<HUD>().IsPrimaryOverheated();
+        }
+
         if (!lockInputs)
         {
-            bool isPrimaryOverHeat = false;
-            if (hud != null)
-            {
-                isPrimaryOverHeat = hud.GetComponent<HUD>().IsPrimaryOverheated();
-            }
-
             if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT) && isPrimaryOverHeat == false)
             {
                 stopShootingTime = 0f;
@@ -421,14 +424,14 @@ public class Core : DiamondComponent
                 inputsList.Add(INPUT.IN_GADGET_SHOOT);
                 grenadesFireRateTimer = grenadesFireRate;
             }
+
+
+            if (IsJoystickMoving() == true)
+                inputsList.Add(INPUT.IN_MOVE);
+
+            else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
+                inputsList.Add(INPUT.IN_IDLE);
         }
-
-        if (IsJoystickMoving() == true)
-            inputsList.Add(INPUT.IN_MOVE);
-
-        else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
-            inputsList.Add(INPUT.IN_IDLE);
-
         grenadesFireRateTimer -= Time.deltaTime;
 
         timeOfRoom += Time.deltaTime;
