@@ -11,6 +11,8 @@ public class SlowGrenade : DiamondComponent
 	bool detonate = false;
 	public GameObject grenadeActiveObj = null;
 	private ParticleSystem grenadeActivePar = null;
+	public GameObject granadeAreaObj = null;
+	private ParticleSystem granadeArea = null;
 
 	public float lifeTime = 4.0f;
 	private float lifeTimer = 0.0f;
@@ -86,14 +88,19 @@ public class SlowGrenade : DiamondComponent
 			}
 		}
 
-		if (lifeTimer >= lifeTime)
+		if (lifeTimer >= lifeTime & !detonate)
 		{
 			if (grenadeActiveObj != null)
 			{
 				grenadeActivePar = grenadeActiveObj.GetComponent<ParticleSystem>();
-
 				if (grenadeActivePar != null)
 					grenadeActivePar.Play();
+			}
+			if (granadeAreaObj != null)
+			{
+				granadeArea = granadeAreaObj.GetComponent<ParticleSystem>();
+				if (granadeArea != null)
+					granadeArea.Play();
 			}
 			detonate = true;
 			lifeTimer = 0;

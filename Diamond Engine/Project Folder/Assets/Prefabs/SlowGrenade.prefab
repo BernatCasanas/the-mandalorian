@@ -13,9 +13,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                19.17320442199707,
-                7.4200010299682617,
-                -19.626569747924805
+                -8.0658407211303711,
+                -2.3540654182434082,
+                -6.512359619140625
             ],
             "Rotation": [
                 0,
@@ -104,7 +104,6 @@
                     "ScriptName": "SlowGrenade",
                     "forwardForce": 1000,
                     "upForce": 500,
-                    "grenadeActiveObj": 587798810,
                     "lifeTime": 2,
                     "explosionTime": 5,
                     "damage": 5
@@ -112,14 +111,14 @@
             ]
         },
         {
-            "name": "StormtrooperSpawn",
+            "name": "Grenade Area",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 197233568,
+            "UID": 2033734359,
             "ParentUID": 849144365,
             "PrefabReference": 0,
-            "PrefabID": 0,
+            "PrefabID": 842585515,
             "DontDestroy": false,
             "Static": false,
             "Position": [
@@ -129,147 +128,71 @@
             ],
             "Rotation": [
                 0,
+                0.020066991448402405,
                 0,
-                0,
-                1
+                0.99979865550994873
             ],
             "Scale": [
-                10,
-                10,
-                10
+                5,
+                5,
+                5
             ],
-            "Components": [
+            "PrefabObjects": [
                 {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Particle System",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 587798810,
-            "ParentUID": 197233568,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 3,
+                    "name": "Circles",
+                    "tag": "Untagged",
+                    "layer": "Default",
                     "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
-                    "MaterialUID": 355756108
-                },
-                {
-                    "Type": 20,
-                    "Active": true,
-                    "systemActive": false,
-                    "looping": true,
-                    "maxDuration": 0.10999999940395355,
-                    "ParticleEmitters": [
-                        {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/989165713.dds",
-                            "texUID": 989165713,
-                            "paEmitterName": "Symbol",
-                            "paLifeTime": [
-                                2,
-                                2
-                            ],
-                            "paSize": [
-                                10,
-                                10
-                            ],
-                            "paColor": [
-                                1,
-                                0,
-                                0,
-                                1
-                            ],
-                            "paPerSec": 1,
-                            "ParticleEffects": [
-                                {
-                                    "paEffectType": 1,
-                                    "paROLT_rotation": [
-                                        1,
-                                        1
-                                    ],
-                                    "paROLT_rotationSpeed": [
-                                        3,
-                                        3
-                                    ]
-                                },
-                                {
-                                    "paEffectType": 2,
-                                    "Gradients": [
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0,
-                                                0,
-                                                0
-                                            ],
-                                            "paColorOLTposition": 0.088825218379497528
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0,
-                                                0,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 0.48137557506561279
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0,
-                                                0,
-                                                0
-                                            ],
-                                            "paColorOLTposition": 0.90544456243515015
-                                        }
-                                    ]
-                                },
-                                {
-                                    "paEffectType": 3,
-                                    "paSizeOLTStartSize": 0.30000001192092896,
-                                    "paSizeOLTEndSize": 1
-                                }
-                            ]
-                        }
+                    "UID": 1490728536,
+                    "ParentUID": 2033734359,
+                    "PrefabID": 0,
+                    "PrefabReference": 700134448,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
                     ]
                 },
                 {
-                    "Type": 21,
+                    "name": "Particle System",
+                    "tag": "Untagged",
+                    "layer": "Default",
                     "Active": true,
-                    "billboardAlignment": 3,
-                    "horizantalAligned": true
+                    "UID": 274228993,
+                    "ParentUID": 2033734359,
+                    "PrefabID": 0,
+                    "PrefabReference": 476584602,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }
