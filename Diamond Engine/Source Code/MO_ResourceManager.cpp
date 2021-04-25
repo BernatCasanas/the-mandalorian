@@ -22,6 +22,8 @@
 #include"MO_Window.h"
 #include"MO_MonoManager.h"
 
+#include "DETime.h"
+
 M_ResourceManager::M_ResourceManager(Application* app, bool start_enabled) : Module(app, start_enabled), assetsRoot("Assets", "Assets", 0, true),
 fileCheckTime(0.f), fileUpdateDelay(2.f), meshesLibraryRoot("Meshes", "Library/Meshes", 0, true), animationsLibraryRoot("Animations", "Library/Animations", 0, true), recompileCS(false)
 {
@@ -50,6 +52,9 @@ bool M_ResourceManager::Start()
 
 update_status M_ResourceManager::PreUpdate(float dt)
 {
+	if(DETime::state == GameState::PLAY)
+		return update_status::UPDATE_CONTINUE;
+
 	fileCheckTime += dt;
 	if (fileCheckTime >= fileUpdateDelay && (SDL_GetWindowFlags(App->moduleWindow->window) & SDL_WindowFlags::SDL_WINDOW_MOUSE_FOCUS || SDL_GetWindowFlags(App->moduleWindow->window) & SDL_WindowFlags::SDL_WINDOW_INPUT_FOCUS))
 	{
