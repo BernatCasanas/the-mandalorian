@@ -26,6 +26,8 @@ public class Spawn : DiamondComponent
     public int maxSpawnPoints = 0;
     public int maxEnemies = 0;
 
+    private List<string> availablePrefabs = null;
+
     //public int enemyIncreasePerWave = 0;
     //public int wave = 0;
     //public int maxWaves = 1;
@@ -34,6 +36,23 @@ public class Spawn : DiamondComponent
     //public float timeBetweenSpawns = 8.0f;
 
     private bool fightEndMusicPlayed = false;
+
+    public void Awake()
+    {
+        int possiblePrefabs = 0;
+
+        if (spawnStormtrooper) possiblePrefabs++;
+        if (spawnBantha) possiblePrefabs++;
+        if (spawnSkytrooper) possiblePrefabs++;
+        if (spawnLaserTurret) possiblePrefabs++;
+
+        availablePrefabs = new List<string>();
+
+        if (spawnStormtrooper) availablePrefabs.Add(stormtrooperPath);
+        if (spawnBantha) availablePrefabs.Add(banthaPath);
+        if (spawnSkytrooper) availablePrefabs.Add(skytrooperPath);
+        if (spawnLaserTurret) availablePrefabs.Add(laserTurretPath);
+    }
 
     public void Update()
     {
@@ -72,16 +91,7 @@ public class Spawn : DiamondComponent
     {
         string libraryPath = "";
 
-        if (spawnStormtrooper && spawnBantha)
-            libraryPath = RandomizePrefabs();
-        else
-        {
-            if (spawnStormtrooper)
-                libraryPath = stormtrooperPath;
-            else if (spawnBantha)
-                libraryPath = banthaPath;
-            else return null;
-        }
+        libraryPath = RandomizePrefabs();
 
         GameObject enemy = InternalCalls.CreatePrefab(libraryPath, position, Quaternion.identity, new Vector3(1, 1, 1));
         Counter.roomEnemies++;
@@ -115,16 +125,9 @@ public class Spawn : DiamondComponent
     {
         Random random = new Random();
 
-        int index = random.Next(4);
+        int index = random.Next(availablePrefabs.Count);
 
-        switch(index)
-        {
-            case 0: return stormtrooperPath;
-            case 1: return banthaPath;
-            case 2: return skytrooperPath;
-            case 3: return laserTurretPath;
-            default: return stormtrooperPath;
-        }
+        return availablePrefabs[index];
     }
 
     private void SpawnAllEnemies()
@@ -160,13 +163,5 @@ public class Spawn : DiamondComponent
                 }
             }
         }
-    }
-
-    private string GenerateLibraryPath(int uid)
-    {
-        if (uid == 0)
-            return "Library/Prefabs/489054570.prefab";
-        else
-            return "Library/Prefabs/" + uid.ToString() + ".prefab";
     }
 }

@@ -128,15 +128,6 @@ public class SkyTrooperShot : DiamondComponent
 
 		deleteTimer = 5.0f;
 
-		if(collidedGameObject.CompareTag("Player"))
-        {
-			PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
-
-			if(playerHealth != null)
-            {
-				playerHealth.TakeDamage(damage);
-            }
-        }
 		InternalCalls.Destroy(gameObject);
 	}
 }
