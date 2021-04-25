@@ -255,8 +255,6 @@ public class Bosseslv2 : DiamondComponent
         jumpslam = JUMPSLAM.CHARGE;
         jumpslamTimer = chargeTime;
         totalJumpSlamTimer = totalJumpSlamTime;
-        targetPos = Core.instance.gameObject.transform.globalPosition;
-        float speed = Mathf.Distance(targetPos, gameObject.transform.globalPosition) / fallingTime;
     }
 
     public void UpdateJumpSlam()
@@ -290,6 +288,8 @@ public class Bosseslv2 : DiamondComponent
                     {
                         jumpslamTimer = fallingTime;
                         jumpslam = JUMPSLAM.FALLING;
+                        targetPos = Core.instance.gameObject.transform.globalPosition;
+                        float speed = Mathf.Distance(targetPos, gameObject.transform.globalPosition) / fallingTime;
                     }
                 }
                 break;
