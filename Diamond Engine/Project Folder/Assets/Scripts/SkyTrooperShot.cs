@@ -3,30 +3,32 @@ using DiamondEngine;
 
 public class SkyTrooperShot : DiamondComponent
 {
+	SkytrooperHitCollider hitCollider = null;
+
 	public int damage = 14;
-	ParticleSystem particles = null;
 	public float speed= 0.0f;
 	public float gravity = 0.0f;
 
+	public float damageRange = 3.5f;
+
 	Vector3 initialPos = null;
 	Vector3 velocity = new Vector3(0,0,0);
-
-	public float lifeTime = 6.0f;
-
 	Vector3 targetPosition = null;
+
 	float time = 0.0f;
 	float deleteTimer = 0.0f;
-	bool hasImpacted = false;
-
+	public float lifeTime = 6.0f;
 
 	public void Awake()
     {
+		deleteTimer = lifeTime;
+
 		if (gravity > 0)
 			gravity = -gravity;
     }
 	public void Update()
 	{
-        if (time < lifeTime && !hasImpacted)
+        if (time < lifeTime)
         {
 			time += Time.deltaTime;
 			Vector3 pos = new Vector3(initialPos.x,initialPos.y,initialPos.z);
@@ -35,10 +37,6 @@ public class SkyTrooperShot : DiamondComponent
 			pos.y += (velocity.y * time) + (0.5f * gravity * time * time);
 			gameObject.transform.localPosition = new Vector3(pos.x,pos.y,pos.z);
         }
-        else if(!hasImpacted)
-        {
-			InternalCalls.Destroy(gameObject);
-		}
 
 		if(deleteTimer > 0.0f)
         {
@@ -53,8 +51,8 @@ public class SkyTrooperShot : DiamondComponent
 
 	public void SetTarget(Vector3 target, bool low_angle)
     {
-		initialPos = gameObject.transform.localPosition;
-		targetPosition = target;
+		initialPos = gameObject.transform.globalPosition;
+		targetPosition = new Vector3(target.x, target.y, target.z);
 
 		float distanceX;
 		float distanceZ;
@@ -118,16 +116,39 @@ public class SkyTrooperShot : DiamondComponent
 		if ((distanceZ < 0 && velocity.z > 0) || (distanceZ > 0 && velocity.z < 0))
 			velocity.z = -velocity.z;
 
+		GameObject hitColliderObject = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", targetPosition, new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
+
+		if (hitColliderObject != null)
+			hitCollider = hitColliderObject.GetComponent<SkytrooperHitCollider>();
 	}
 
 	public void OnCollisionEnter(GameObject collidedGameObject)
 	{
-		hasImpacted = true;
-		if(particles != null)
-			particles.Play();
+		if(collidedGameObject.CompareTag("Player"))
+        {
+			PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
+			
+			if(playerHealth != null)
+				playerHealth.TakeDamage(damage);
+        }
+		else
+        {
+			if (Mathf.Distance(targetPosition, gameObject.transform.globalPosition) < 1.0f)
+            {
+				if (Mathf.Distance(Core.instance.gameObject.transform.globalPosition, targetPosition) < damageRange)
+				{
+					PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
 
-		deleteTimer = 5.0f;
+					if (playerHealth != null)
+						playerHealth.TakeDamage(damage);
+				}
+            }
+        }
 
+		if(hitCollider != null)
+			InternalCalls.Destroy(hitCollider.gameObject);
+
+		hitCollider = null;
 		InternalCalls.Destroy(gameObject);
 	}
 }
