@@ -9,7 +9,7 @@
             "UID": 232474747,
             "ParentUID": 0,
             "PrefabReference": 0,
-            "PrefabID": 0,
+            "PrefabID": 346087333,
             "DontDestroy": false,
             "Static": false,
             "Position": [
@@ -45,10 +45,10 @@
                     ],
                     "alternColorStencil": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ],
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": false
                 },
                 {
                     "Type": 5,
@@ -56,7 +56,6 @@
                     "ScriptName": "BH_Bullet",
                     "speed": 50,
                     "maxLifeTime": 10,
-                    "currentLifeTime": 0.74599999189376831,
                     "range_squared": 0,
                     "use_range_instead_of_time": false,
                     "yVel": 0,
@@ -101,7 +100,15 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
+                    "MaterialAssetPath": "Assets\/Materials\/laser.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/571028171.mat",
+                    "MaterialUID": 571028171
+                },
+                {
+                    "Type": 26,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/laser.mat",
                     "MaterialLibraryPath": "Library\/Materials\/571028171.mat",
                     "MaterialUID": 571028171
                 }

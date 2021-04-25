@@ -9,7 +9,7 @@
             "UID": 81651717,
             "ParentUID": 0,
             "PrefabReference": 0,
-            "PrefabID": 0,
+            "PrefabID": 1821505626,
             "DontDestroy": false,
             "Static": false,
             "Position": [
@@ -56,13 +56,10 @@
                     "ScriptName": "BH_Bullet",
                     "speed": 50,
                     "maxLifeTime": 10,
-                    "currentLifeTime": 0.74599999189376831,
                     "range_squared": 0,
                     "use_range_instead_of_time": false,
                     "yVel": 0,
-                    "damage": 9,
-                    "destroyOBJ": 1475681445,
-                    "mesh": 284975648
+                    "damage": 9
                 },
                 {
                     "Type": 14,
@@ -153,10 +150,18 @@
                     ],
                     "alternColorStencil": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ],
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": false
+                },
+                {
+                    "Type": 26,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/vertex_color_stencil.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/1540644281.mat",
+                    "MaterialUID": 1540644281
                 }
             ]
         },
