@@ -101,26 +101,15 @@ public class Skill_Tree_Node : DiamondComponent
     //Remember the skills that have already been bought before the run
     private void UnlockTreeAfterRun()
     {
-        Debug.Log("---------------------UnlockTreeAfterRun");
-        
-        Debug.Log("---------------------NOT NULL");
-        Debug.Log("---------------------Name:" + skillTreeName);
-        Debug.Log("---------------------Number:" + skillTreeNumber);
-        Debug.Log("---------------------------------------------------------------");
         if (Skill_Tree_Data.IsEnabled(skillTreeName, skillTreeNumber))
-        {
-            Debug.Log("---------------------IsEnabled");
-                
+        {                
             state = NODE_STATE.OWNED;
 
-            /*if (children_1 != null)
+            if (children_1 != null)
                 children_1.GetComponent<Skill_Tree_Node>().state = NODE_STATE.UNLOCKED;
 
             if (children_2 != null)
                 children_2.GetComponent<Skill_Tree_Node>().state = NODE_STATE.UNLOCKED;
-
-            if (oppositeNode != null)
-                oppositeNode.GetComponent<Skill_Tree_Node>().state = NODE_STATE.LOCKED;*/
         }        
     }
 
