@@ -430,7 +430,7 @@ PxTransform ModulePhysics::TRStoPxTransform(float3 pos, float3 rot) {
 	return PxTransform(Pxposition, PxRotation);
 }
 
-GameObject* ModulePhysics::ShootRay(float3 origin, float3 direction, float maxDistance)
+GameObject* ModulePhysics::ShootRay(float3 origin, float3 direction, float maxDistance, float* hitDistance)
 {
 	PxVec3 PxOrigin = { origin.x, origin.y, origin.z };                 // [in] Ray origin
 	PxVec3 PxUnitDir = { direction.x, direction.y, direction.z };                // [in] Normalized ray direction
@@ -440,6 +440,8 @@ GameObject* ModulePhysics::ShootRay(float3 origin, float3 direction, float maxDi
 	bool status = mScene->raycast(PxOrigin, PxUnitDir, maxDistance, hit);
 	if (hit.hasBlock)
 	{
+		*hitDistance = (float)hit.block.distance;
+
 		return static_cast<GameObject*>(hit.block.actor->userData);
 	}
 	else
