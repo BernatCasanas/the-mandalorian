@@ -205,6 +205,7 @@ MonoObject* CS_GetChild(MonoObject* obj, MonoString* name)
 
 	if (child != nullptr)
 		return EngineExternal->moduleMono->GoToCSGO(child);
+	
 
 	return nullptr;
 }
