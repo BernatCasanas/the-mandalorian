@@ -1,19 +1,19 @@
 {
     "NavMesh": 1867217823,
     "EditorCameraPosition": [
-        -5.6301698684692383,
-        16.858371734619141,
-        -15.40562629699707
+        -26.065107345581055,
+        31.594646453857422,
+        -24.885560989379883
     ],
     "EditorCameraZ": [
-        0.97144824266433716,
-        -0.16369599103927612,
-        0.17173278331756592
+        0.49502092599868774,
+        -0.59372144937515259,
+        0.63438904285430908
     ],
     "EditorCameraY": [
-        0.16124598681926727,
-        0.98651081323623657,
-        0.028216876089572906
+        0.36552351713180542,
+        0.80467057228088379,
+        0.46786516904830933
     ],
     "tags": [
         "Player",
@@ -317,7 +317,6 @@
                     "forceRegenerationSpeed": 0,
                     "skillPushForceCost": 0,
                     "skillWallForceCost": 0,
-                    "skill_healActive": true,
                     "skillPushDuration": 1
                 }
             ]
@@ -572,8 +571,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 13.640000343322754,
-                    "hFOV": 23.219999313354492,
+                    "vFOV": 13.239999771118164,
+                    "hFOV": 24.299999237060547,
                     "culling": false,
                     "drawSkybox": true
                 },
@@ -3667,6 +3666,8 @@
                     "ScriptName": "Spawn",
                     "spawnStormtrooper": true,
                     "spawnBantha": false,
+                    "spawnSkytrooper": false,
+                    "spawnLaserTurret": false,
                     "spawnPoint0": 859998800,
                     "spawnPoint1": 2132376440,
                     "spawnPoint2": 488128483,
@@ -3674,12 +3675,7 @@
                     "spawnPoint4": 1875346039,
                     "spawnPoint5": 755810913,
                     "maxSpawnPoints": 3,
-                    "maxEnemies": 3,
-                    "enemyIncreasePerWave": 0,
-                    "wave": 0,
-                    "maxWaves": 1,
-                    "timePassed": 0,
-                    "timeBetweenSpawns": 0.20000000298023224
+                    "maxEnemies": 3
                 }
             ]
         },
@@ -3925,6 +3921,8 @@
                     "ScriptName": "Spawn",
                     "spawnStormtrooper": false,
                     "spawnBantha": true,
+                    "spawnSkytrooper": true,
+                    "spawnLaserTurret": true,
                     "spawnPoint0": 1914377422,
                     "spawnPoint1": 1592913301,
                     "spawnPoint2": 2013914194,
@@ -3932,12 +3930,7 @@
                     "spawnPoint4": 614503656,
                     "spawnPoint5": 189818842,
                     "maxSpawnPoints": 6,
-                    "maxEnemies": 6,
-                    "enemyIncreasePerWave": 0,
-                    "wave": 0,
-                    "maxWaves": 1,
-                    "timePassed": 0,
-                    "timeBetweenSpawns": 0.20000000298023224
+                    "maxEnemies": 6
                 }
             ]
         },
@@ -4183,6 +4176,8 @@
                     "ScriptName": "Spawn",
                     "spawnStormtrooper": true,
                     "spawnBantha": true,
+                    "spawnSkytrooper": false,
+                    "spawnLaserTurret": false,
                     "spawnPoint0": 285396896,
                     "spawnPoint1": 1098594372,
                     "spawnPoint2": 461201460,
@@ -4190,12 +4185,7 @@
                     "spawnPoint4": 1200555710,
                     "spawnPoint5": 1678061023,
                     "maxSpawnPoints": 2,
-                    "maxEnemies": 2,
-                    "enemyIncreasePerWave": 0,
-                    "wave": 0,
-                    "maxWaves": 1,
-                    "timePassed": 0,
-                    "timeBetweenSpawns": 0.20000000298023224
+                    "maxEnemies": 2
                 }
             ]
         },
