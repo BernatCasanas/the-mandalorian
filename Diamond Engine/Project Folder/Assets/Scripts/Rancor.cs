@@ -109,6 +109,7 @@ public class Rancor : DiamondComponent
 
     private bool meleeHit3Haptic = false;
 
+    private bool meleeShaked = false;
 
     //Projectile
     private float projectileTime = 0.0f;
@@ -831,7 +832,17 @@ public class Rancor : DiamondComponent
             }
 
         }
+        if (meleeCH3Timer < 1.95f && !meleeShaked) 
+        {
+            meleeShaked = true;
+            Shake3D shake = camera.GetComponent<Shake3D>();
+            if (shake != null)
+            {
+                shake.StartShaking(0.8f, 0.1f);
 
+            }
+
+        }
         if (meleeCH3Timer < 1.5f)
         {
             if (meleeHit3Haptic)
@@ -839,6 +850,7 @@ public class Rancor : DiamondComponent
                 meleeHit3Haptic = false;
                 Input.PlayHaptic(0.8f, 500);
                 Debug.Log("Hpatic Jump");
+
             }
         }
         if (meleeCH3Timer < (meleeComboHit3Time / 2) + 0.2f && impact)
@@ -873,6 +885,7 @@ public class Rancor : DiamondComponent
     {
         startedJumping = false;
         impact = true;
+        meleeShaked = false;
     }
 
     #endregion
