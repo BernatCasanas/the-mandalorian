@@ -6,9 +6,13 @@ public class Spawn : DiamondComponent
 {
     private string stormtrooperPath = "Library/Prefabs/489054570.prefab";
     private string banthaPath       = "Library/Prefabs/978476012.prefab";
+    private string skytrooperPath   = "Library/Prefabs/355603284.prefab";
+    private string laserTurretPath  = "Library/Prefabs/1243866490.prefab";
 
-    public bool spawnStormtrooper = false;
-    public bool spawnBantha = false;
+    public bool spawnStormtrooper  = false;
+    public bool spawnBantha        = false;
+    public bool spawnSkytrooper    = false;
+    public bool spawnLaserTurret   = false;
 
     private bool doneSpawning = false;
 
@@ -21,42 +25,65 @@ public class Spawn : DiamondComponent
 
     public int maxSpawnPoints = 0;
     public int maxEnemies = 0;
-    public int enemyIncreasePerWave = 0;
 
-    public int wave = 0;
-    public int maxWaves = 1;
+    private List<string> availablePrefabs = null;
 
-    public float timePassed = 0.0f;
-    public float timeBetweenSpawns = 8.0f;
+    //public int enemyIncreasePerWave = 0;
+    //public int wave = 0;
+    //public int maxWaves = 1;
+
+    //public float timePassed = 0.0f;
+    //public float timeBetweenSpawns = 8.0f;
 
     private bool fightEndMusicPlayed = false;
 
+    public void Awake()
+    {
+        int possiblePrefabs = 0;
+
+        if (spawnStormtrooper) possiblePrefabs++;
+        if (spawnBantha) possiblePrefabs++;
+        if (spawnSkytrooper) possiblePrefabs++;
+        if (spawnLaserTurret) possiblePrefabs++;
+
+        availablePrefabs = new List<string>();
+
+        if (spawnStormtrooper) availablePrefabs.Add(stormtrooperPath);
+        if (spawnBantha) availablePrefabs.Add(banthaPath);
+        if (spawnSkytrooper) availablePrefabs.Add(skytrooperPath);
+        if (spawnLaserTurret) availablePrefabs.Add(laserTurretPath);
+    }
+
     public void Update()
     {
-        if (!spawnStormtrooper && !spawnBantha)
+        if (!spawnStormtrooper && !spawnBantha && !spawnSkytrooper && !spawnLaserTurret)
             return;
 
-        timePassed += Time.deltaTime;
-
-        if (!doneSpawning)
+        if(!doneSpawning)
         {
-            if (timePassed > timeBetweenSpawns)
-            {
-                SpawnWave();
-                wave++;
-                maxEnemies += enemyIncreasePerWave;
-                timePassed = 0.0f;
+            SpawnAllEnemies();
+            doneSpawning = true;
+        }
 
-                if (wave >= maxWaves)
-                    doneSpawning = true;
-            }
+        //timePassed += Time.deltaTime;
 
-            //Debug.Log("Spawn enemies: " + spawnEnemies.ToString());
+        //if (!doneSpawning)
+        //{
+        //    if (timePassed > timeBetweenSpawns)
+        //    {
+        //        SpawnWave();
+        //        wave++;
+        //        maxEnemies += enemyIncreasePerWave;
+        //        timePassed = 0.0f;
 
-            if (Counter.roomEnemies <= 0 && !fightEndMusicPlayed && MusicSourceLocate.instance != null)
-            {
-                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
-            }
+        //        if (wave >= maxWaves)
+        //            doneSpawning = true;
+        //    }
+        //}
+
+        if (Counter.roomEnemies <= 0 && !fightEndMusicPlayed && MusicSourceLocate.instance != null)
+        {
+            Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
         }
     }
 
@@ -64,16 +91,7 @@ public class Spawn : DiamondComponent
     {
         string libraryPath = "";
 
-        if (spawnStormtrooper && spawnBantha)
-            libraryPath = RandomizePrefabs();
-        else
-        {
-            if (spawnStormtrooper)
-                libraryPath = stormtrooperPath;
-            else if (spawnBantha)
-                libraryPath = banthaPath;
-            else return null;
-        }
+        libraryPath = RandomizePrefabs();
 
         GameObject enemy = InternalCalls.CreatePrefab(libraryPath, position, Quaternion.identity, new Vector3(1, 1, 1));
         Counter.roomEnemies++;
@@ -107,24 +125,13 @@ public class Spawn : DiamondComponent
     {
         Random random = new Random();
 
-        int index = random.Next(2);
+        int index = random.Next(availablePrefabs.Count);
 
-        if (index == 0)
-            return stormtrooperPath;
-        else
-            return banthaPath;
-
+        return availablePrefabs[index];
     }
 
-    private void SpawnWave()
+    private void SpawnAllEnemies()
     {
-        if (wave == 0 && MusicSourceLocate.instance != null)
-        {
-            Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Combat");
-            Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Healthy");
-        }
-
-
         int[] spawnPoints = new int[maxSpawnPoints];
         int spawnEnemies = 0;
 
@@ -152,14 +159,6 @@ public class Spawn : DiamondComponent
                     spawnPoints[randomIndex] = 1;
                     spawnEnemies++;
 
-                    //if (enemy != null)
-                    //{
-                    //    Enemy enemyScript = enemy.GetComponent<StormTrooper>();
-
-                    //    if (enemyScript != null)
-                    //        enemyScript.turretMode = TurretSpawnPoint(randomIndex);
-                    //}
-
                     break;
                 }
             }
@@ -172,22 +171,5 @@ public class Spawn : DiamondComponent
             return "Library/Prefabs/489054570.prefab";
         else
             return "Library/Prefabs/" + uid.ToString() + ".prefab";
-    }
-
-    private bool TurretSpawnPoint(int index)
-    {
-        bool turret = false;
-
-        //switch (index)
-        //{
-        //    case 0: turret = turretSpawnPoint0; break;
-        //    case 1: turret = turretSpawnPoint1; break;
-        //    case 2: turret = turretSpawnPoint2; break;
-        //    case 3: turret = turretSpawnPoint3; break;
-        //    case 4: turret = turretSpawnPoint4; break;
-        //    case 5: turret = turretSpawnPoint5; break;
-        //}
-
-        return turret;
     }
 }
