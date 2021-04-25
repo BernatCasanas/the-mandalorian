@@ -40,6 +40,8 @@ public:
 	bool faceNormals, vertexNormals, showAABB, showOBB;
 
 	GameObject* rootBone = nullptr;
+	void SetStencilEmissionAmmount(float ammount);
+	float GetStencilEmssionAmmount() const;
 
 private:
 	ResourceMesh* _mesh = nullptr;
@@ -53,4 +55,5 @@ private:
 	std::vector<float4x4> boneTransforms;
 	bool drawStencil;
 	bool calculatedBonesThisFrame;
+	float stencilEmissionAmmount;
 };
