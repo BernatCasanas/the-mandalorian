@@ -13,20 +13,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                9.7119369506835938,
-                3.3488113880157471,
-                -0.0018212716095149517
+                -2.4393055438995361,
+                3.3488121032714844,
+                2.4892380237579346
             ],
             "Rotation": [
-                1.8436322194776865e-15,
-                0.7071068286895752,
-                1.8436322194776865e-15,
-                0.7071068286895752
+                6.1817239327410789e-08,
+                -0.70722883939743042,
+                6.1817239327410789e-08,
+                -0.70698469877243042
             ],
             "Scale": [
+                1.0000001192092896,
                 1,
-                1,
-                1
+                1.0000001192092896
             ],
             "Components": [
                 {
@@ -58,14 +58,14 @@
                     ],
                     "Rotation": [
                         0,
-                        0.0040145087987184525,
+                        0.0040145115926861763,
                         0,
                         0.99999195337295532
                     ],
                     "Scale": [
                         0.79998946189880371,
                         1.2000000476837158,
-                        0.99989360570907593
+                        0.9998934268951416
                     ]
                 },
                 {
@@ -78,6 +78,7 @@
                     "projectilePoint": 840714428,
                     "distanceProjectile": 15,
                     "wanderRange": 7.5,
+                    "colliderJumpSlam": 1516232417,
                     "resting": false,
                     "firstShot": true,
                     "secondShot": false,
@@ -103,6 +104,7 @@
                     "projectileRange": 6,
                     "projectileDamage": 10,
                     "rushDamage": 15,
+                    "damageBounceRush": 0,
                     "totalJumpSlamTimer": 0,
                     "totalJumpSlamTime": 3.0299999713897705
                 },
@@ -438,10 +440,10 @@
                 -1.7598722479306161e-08
             ],
             "Rotation": [
-                -8.0803932434037051e-09,
-                6.3259277816030135e-09,
-                -0.61643773317337036,
-                0.7874036431312561
+                -8.0803941315821248e-09,
+                6.3259286697814332e-09,
+                -0.61643779277801514,
+                0.78740376234054565
             ],
             "Scale": [
                 1,
@@ -1760,6 +1762,132 @@
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Colliders",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1190528649,
+            "ParentUID": 1162921635,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "JumpSlam",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1516232417,
+            "ParentUID": 1190528649,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -4.0292739868164063e-05,
+                0.3157963752746582,
+                0
+            ],
+            "Rotation": [
+                4.1956543550512328e-16,
+                -2.0304999348574881e-10,
+                -7.8886154336252345e-13,
+                1
+            ],
+            "Scale": [
+                1.2899998426437378,
+                0.10000000149011612,
+                1.2899998426437378
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": true,
+                    "LockLinearY": true,
+                    "LockLinearZ": true,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": false,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SkelJumpSlam",
+                    "damageJumpSlam": 20
                 }
             ]
         }

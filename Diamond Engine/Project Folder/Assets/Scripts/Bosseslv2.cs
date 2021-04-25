@@ -18,6 +18,7 @@ public class Bosseslv2 : DiamondComponent
     public Vector3 targetPos = new Vector3(0, 0, 0);
     public float distanceProjectile = 15.0f;
     public float wanderRange = 7.5f;
+    public GameObject colliderJumpSlam = null;
 
 
     //Private Variables
@@ -52,6 +53,7 @@ public class Bosseslv2 : DiamondComponent
     public float projectileRange = 6.0f;
     public float projectileDamage = 10.0f;
     public float rushDamage = 15.0f;
+    public float damageBounceRush = 20f;
 
     //Jump Slam
     private JUMPSLAM jumpslam = JUMPSLAM.NONE;
@@ -99,11 +101,10 @@ public class Bosseslv2 : DiamondComponent
                 if (projectilePoint != null)
                 {
                     Vector3 pos = projectilePoint.transform.globalPosition;
-                    Quaternion rot = projectilePoint.transform.globalRotation;
-                    Vector3 scale = new Vector3(1, 1, 1);
+                    Quaternion rot = new Quaternion(0,0,90);
 
-                    //GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1052835205.prefab", pos, rot, scale);
-                    //projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
+                    GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, rot, null);
+                    projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
                     Debug.Log("Throwing projectile");
 
                     if (firstShot)
@@ -290,6 +291,10 @@ public class Bosseslv2 : DiamondComponent
                         jumpslam = JUMPSLAM.FALLING;
                         targetPos = Core.instance.gameObject.transform.globalPosition;
                         float speed = Mathf.Distance(targetPos, gameObject.transform.globalPosition) / fallingTime;
+                        if (colliderJumpSlam != null)
+                        {
+                            colliderJumpSlam.EnableCollider();
+                        }
                     }
                 }
                 break;
@@ -305,6 +310,7 @@ public class Bosseslv2 : DiamondComponent
                     {
                         jumpslamTimer = recoveryTime;
                         jumpslam = JUMPSLAM.RECOVERY;
+                        colliderJumpSlam.DisableCollider();
                     }
                 }
                 break;
@@ -436,4 +442,6 @@ public class Bosseslv2 : DiamondComponent
 
         gameObject.transform.localPosition += direction.normalized * speed * Time.deltaTime;
     }
+
+
 }
