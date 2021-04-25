@@ -3,7 +3,7 @@
     "Game Objects": [
         {
             "name": "LaserTurret",
-            "tag": "Untagged",
+            "tag": "Enemy",
             "layer": "Default",
             "Active": true,
             "UID": 1078529231,
@@ -46,6 +46,7 @@
                     "idleTime": 1,
                     "loadTime": 1,
                     "shotTime": 4,
+                    "dieTime": 1,
                     "feedbackTime": 1,
                     "rotationSpeed": 0.0010000000474974513,
                     "laserRange": 30,
@@ -168,7 +169,7 @@
                     "Type": 26,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/vertex_color_stencil.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1540644281.mat",
                     "MaterialUID": 1540644281
                 }

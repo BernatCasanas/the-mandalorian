@@ -36,7 +36,7 @@ public class LaserTurret : Enemy
     public float idleTime = 0.0f;
     public float loadTime = 0.0f;
     public float shotTime = 0.0f;
-    private float dieTime = 0.0f;
+    public float dieTime = 0.0f;
     public float feedbackTime = 0.0f;
 
     //Speeds
@@ -487,5 +487,18 @@ public class LaserTurret : Enemy
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        Debug.Log("Turret Takes damage");
+        healthPoints -= damage;
+
+        if (currentState != STATE.DIE)
+        {
+            if (healthPoints <= 0.0f)
+                inputsList.Add(INPUT.IN_DIE);
+        }
+
     }
 }

@@ -56,7 +56,14 @@ public class SlowGrenade : DiamondComponent
                 {
 					script = enemies[i].GetComponent<Bantha>();
 				}
-
+				if (script == null)
+				{
+					script = enemies[i].GetComponent<Skytrooper>();
+				}
+				if (script == null)
+				{
+					script = enemies[i].GetComponent<LaserTurret>();
+				}
 				if (script !=  null)
                 {
 					if (script.healthPoints <= 0)
@@ -65,7 +72,11 @@ public class SlowGrenade : DiamondComponent
 						i--;
 					}
 					else
+                    {
+						Core.instance.hud.GetComponent<HUD>().AddToCombo(20 * Time.deltaTime, 1.5f);
 						script.TakeDamage(damage * Time.deltaTime);
+
+					}
 
 				}
 				else
@@ -80,7 +91,10 @@ public class SlowGrenade : DiamondComponent
 							i--;
 						}
 						else
+                        {
+							Core.instance.hud.GetComponent<HUD>().AddToCombo(20 * Time.deltaTime, 1.5f);
 							rancorScript.TakeDamage(damage * Time.deltaTime);
+						}
 					}
 				}
 				

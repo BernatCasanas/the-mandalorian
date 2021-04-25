@@ -631,4 +631,16 @@ public class Skytrooper : Enemy
             }
         }
     }
+
+    public override void TakeDamage(float damage)
+    {
+        healthPoints -= damage;
+
+        if (currentState != STATE.DIE)
+        {
+            if (healthPoints <= 0.0f)
+                inputsList.Add(INPUT.IN_DIE);
+        }
+
+    }
 }
