@@ -1,6 +1,8 @@
 #ifdef vertex
 #version 330 core
 layout (location = 0) in vec3 position;
+layout (location = 1) in vec2 texCoords;
+
 out vec3 pos;
 
 uniform mat4 model_matrix;
@@ -8,6 +10,24 @@ uniform mat4 view;
 uniform mat4 projection;
 uniform float time;
 
+float speed = 0.01;
+float wave_length = 0.1;
+float steepness = 0.5;
+
+vec3 direction_1 = vec3(0.35, 0.315, -0.35);
+vec3 direction_2 = vec3(-0.25, 0.25, 0.25);
+vec3 direction_3 = vec3(0.15, -0.25, 0.15);
+
+out float relative_position;
+
+out VS_OUT {
+    vec4 clipSpace;
+    vec3 FragPos;
+    vec2 TexCoords;
+    vec3 TangentLightPos;
+    vec3 TangentViewPos;
+    vec3 TangentFragPos;
+} vs_out;
 
 float Random(vec2 coord)  //Canonical random function
 {
@@ -43,14 +63,47 @@ float Generate_Perlin_Noise(vec2 coord)
  return mix(top_mix, bot_mix, cubic.y);
 }
 
-
+vec3 generateWave(float amp, vec3 direction, float num_waves, float steepness,
+ float phase_constant, float w ) {
+ vec3 dir = normalize(direction);
+ float q = steepness / (w * amp * num_waves);
+ 
+ vec3 wave;
+ wave.x = q * amp * dir.x * cos(dot(w * dir, position) + phase_constant * time);
+ wave.z = q * amp * dir.z * cos(dot(w * dir, position) + phase_constant * time);
+ wave.y = amp * sin(dot(w * dir, position) + phase_constant * time);
+ 
+ return wave;
+}
 
 void main()
 {
-  pos = position;
-  pos.y += Generate_Perlin_Noise(vec2(pos.x, pos.z) + time * 0.5);
+ pos = position;
+ vec3 fPosition = position;
+ float pi = 3.1415f;
+ float phase_constant = speed * 2.0 * pi / wave_length;
+ float w = sqrt(9.81 * (2 * pi / wave_length));
+ float num_waves = 3.0;
  
-  gl_Position = projection * view * model_matrix * vec4(pos, 1.0f);
+ float amp1 = 0.25;
+ vec3 wave1 = generateWave(amp1, direction_1, num_waves, steepness, phase_constant, w);
+ 
+ float amp2 = 0.15;
+ vec3 wave2 = generateWave(amp2, direction_2, num_waves, steepness, phase_constant, w);
+ 
+ float amp3 = 0.25;
+ vec3 wave3 = generateWave(amp3, direction_3, num_waves, steepness, phase_constant, w);
+ 
+ fPosition += wave1 + wave2 + wave3;
+ relative_position = fPosition.y / ((amp1 * 2.0 + amp2 * 2.0 + amp3 * 2.0) / num_waves);
+ relative_position = (relative_position + 0.5) * 0.5;
+ relative_position = max(relative_position, 0.0);
+ 
+ vs_out.TexCoords = texCoords;
+ vs_out.FragPos = vec3(model_matrix * vec4(position, 1.0));
+ 
+ vs_out.clipSpace = projection * view * model_matrix * vec4(fPosition, 1.0);
+ gl_Position = projection * view * model_matrix * vec4(fPosition, 1.0);
 
 }
 
@@ -59,10 +112,19 @@ void main()
 #ifdef fragment
 #version 330 core
 in vec3 pos;
-
+in float relative_position;
 out vec4 color;
 
 uniform float time;
+
+in VS_OUT {
+	vec4 clipSpace;
+    vec3 FragPos;
+    vec2 TexCoords;
+    vec3 TangentLightPos;
+    vec3 TangentViewPos;
+    vec3 TangentFragPos;
+} fs_in;
 
 uniform vec2 water_direction;
 vec3 water_color = vec3(0.18, 0.36, 0.9);
@@ -165,14 +227,15 @@ return value;
 
 void main()
 {
- vec2 motion = vec2(Generate_Fractal_Perlin_Noise(vec2(pos.x, pos.z) + time + water_direction));
- float value = Generate_Fractal_Cellular_Noise(vec2(pos.x * 7, pos.z * 7) + motion * 0.5);
+ vec2 motion = vec2(Generate_Fractal_Perlin_Noise(vec2(fs_in.TexCoords) + time + water_direction));
+ float value = Generate_Fractal_Cellular_Noise(vec2(fs_in.TexCoords * 10.0) + motion * 0.5);
  ripple_color *= value;
  
- water_color =  water_color + ripple_color;
+ water_color =  water_color + ripple_color * relative_position * 8.0;
  color = vec4(water_color, 1.0);
 }
 
 #endif
+
 
 

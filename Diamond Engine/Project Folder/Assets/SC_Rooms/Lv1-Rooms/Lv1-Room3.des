@@ -1,19 +1,19 @@
 {
     "NavMesh": 1917905990,
     "EditorCameraPosition": [
-        -18.598566055297852,
-        21.821475982666016,
-        -20.160930633544922
+        -26.746854782104492,
+        27.912115097045898,
+        -25.391141891479492
     ],
     "EditorCameraZ": [
-        0.68087011575698853,
-        -0.42183727025985718,
-        0.59872293472290039
+        0.71304440498352051,
+        -0.53657329082489014,
+        0.45128357410430908
     ],
     "EditorCameraY": [
-        0.31698513031005859,
-        0.90667152404785156,
-        0.27832925319671631
+        0.45357495546340942,
+        0.84385371208190918,
+        0.28667181730270386
     ],
     "tags": [
         "Enemy",
@@ -3441,15 +3441,12 @@
                     "ScriptName": "Spawn",
                     "spawnStormtrooper": true,
                     "spawnBantha": false,
+                    "spawnSkytrooper": false,
+                    "spawnLaserTurret": false,
                     "spawnPoint0": 509952224,
                     "spawnPoint1": 1184134900,
                     "maxSpawnPoints": 2,
-                    "maxEnemies": 2,
-                    "enemyIncreasePerWave": 0,
-                    "wave": 0,
-                    "maxWaves": 1,
-                    "timePassed": 0,
-                    "timeBetweenSpawns": 0
+                    "maxEnemies": 2
                 }
             ]
         },
@@ -3933,17 +3930,14 @@
                     "ScriptName": "Spawn",
                     "spawnStormtrooper": true,
                     "spawnBantha": true,
+                    "spawnSkytrooper": false,
+                    "spawnLaserTurret": false,
                     "spawnPoint0": 900669244,
                     "spawnPoint1": 1118427771,
                     "spawnPoint2": 450288218,
                     "spawnPoint3": 549746472,
                     "maxSpawnPoints": 4,
-                    "maxEnemies": 4,
-                    "enemyIncreasePerWave": 0,
-                    "wave": 0,
-                    "maxWaves": 1,
-                    "timePassed": 0,
-                    "timeBetweenSpawns": 0
+                    "maxEnemies": 4
                 }
             ]
         },
@@ -6269,8 +6263,8 @@
                     "fSize": 30,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 22.733333587646484,
-                    "hFOV": 38.700000762939453,
+                    "vFOV": 22.066667556762695,
+                    "hFOV": 40.5,
                     "culling": false,
                     "drawSkybox": true
                 },
@@ -8505,7 +8499,6 @@
                     "combo_text": 667647702,
                     "combo_gameobject": 906753291,
                     "max_hp_number": 1629123037,
-                    "fpsText": 1248058592,
                     "comboNumber": 0,
                     "last_hp": 0,
                     "shooting_blink": 157901930
@@ -17404,74 +17397,6 @@
                         1,
                         1
                     ]
-                }
-            ]
-        },
-        {
-            "name": "Empty",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1248058592,
-            "ParentUID": 1676501951,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Empty",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1357482997,
-            "ParentUID": 1676501951,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
                 }
             ]
         }
