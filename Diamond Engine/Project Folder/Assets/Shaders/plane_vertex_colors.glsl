@@ -259,9 +259,16 @@ void main()
     vec3 directionalLight = CalculateDirectionalLight();
     vec3 pointLight = CalculatePointLight();
     
-    color = vec4(directionalLight * pointLight * fs_in.vertexColor, 1.0);
+    if (pointLight != vec3(0.0, 0.0, 0.0))
+    	color = vec4(directionalLight * pointLight * fs_in.vertexColor, 1.0);
+    
+    else
+    	color = vec4(directionalLight * fs_in.vertexColor, 1.0);
 }
 #endif
+
+
+
 
 
 
