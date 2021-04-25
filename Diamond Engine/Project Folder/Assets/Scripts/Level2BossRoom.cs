@@ -9,6 +9,7 @@ public class Level2BossRoom : DiamondComponent
     public static List<GameObject> columns = new List<GameObject>();
 	private void Awake()
     {
+        columns.Clear();
         columns.Add(column01);
         columns.Add(column02);
         columns.Add(column03);

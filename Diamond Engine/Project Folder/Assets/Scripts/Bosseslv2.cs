@@ -63,6 +63,12 @@ public class Bosseslv2 : DiamondComponent
     public float totalJumpSlamTimer = 0.0f;
     public float totalJumpSlamTime = 3.03f;
 
+    //Bounce Rush
+    private GameObject initTarget;
+    private GameObject finalTarget;
+    private GameObject currentTarget;
+    private bool returnToInitTarget = false;
+
     enum JUMPSLAM : int
     {
         NONE = -1,
@@ -194,19 +200,41 @@ public class Bosseslv2 : DiamondComponent
         foreach (GameObject column in Level2BossRoom.columns)
         {
             float distance = Mathf.Distance(gameObject.transform.globalPosition, column.transform.globalPosition);
-            Debug.Log("Distance: " + distance.ToString());
-            if (nerestDistance > distance)
+            if(nerestDistance > distance)
             {
-                distance = nerestDistance;
+                nerestDistance = distance;
                 nearestColumn = column;
             }
         }
+
+        initTarget = nearestColumn;
+        finalTarget = nearestColumn.GetComponent<TargetColumn>().GetTarget(gameObject.transform.globalPosition);
         Debug.Log("Nearest column: " + nearestColumn.Name);
+        Debug.Log("Final target: " + finalTarget.Name);
         Debug.Log("Started Bounce Rush");
+        currentTarget = initTarget;
+        returnToInitTarget = false;
     }
 
     public void UpdateBounceRush()
     {
+        float distance = Mathf.Distance(gameObject.transform.globalPosition, currentTarget.transform.globalPosition);
+        if (distance > 2f)
+        {
+            MoveToPosition(currentTarget.transform.globalPosition, 12f);
+            LookAt(currentTarget.transform.globalPosition);
+            if(currentTarget == finalTarget)
+            {
+                returnToInitTarget = true;
+            }
+        }
+        else if(currentTarget != finalTarget && !returnToInitTarget)
+        {
+            currentTarget = finalTarget;
+        }else if(currentTarget == finalTarget && returnToInitTarget)
+        {
+            currentTarget = initTarget;
+        }
         Debug.Log("Bounce Rush");
     }
 
