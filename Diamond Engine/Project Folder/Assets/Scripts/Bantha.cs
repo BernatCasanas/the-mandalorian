@@ -78,6 +78,10 @@ public class Bantha : Enemy
     private float chargeTimer = 0.0f;
     private float directionDecisionTimer = 0.0f;
     private float skill_slowDownTimer = 0.0f;
+    private float pushTimer = 0.0f;
+
+    //force
+    public float forcePushMod = 1;
 
     //Particles
     public GameObject stunParticle = null;
@@ -235,6 +239,10 @@ public class Bantha : Enemy
                             currentState = STATE.DIE;
                             StartDie();
                             break;
+                        case INPUT.IN_PUSHED:
+                            currentState = STATE.PUSHED;
+                            StartPush();
+                            break;
                     }
                     break;
 
@@ -257,6 +265,10 @@ public class Bantha : Enemy
                             currentState = STATE.DIE;
                             WanderEnd();
                             StartDie();
+                            break;
+                        case INPUT.IN_PUSHED:
+                            currentState = STATE.PUSHED;
+                            StartPush();
                             break;
                     }
                     break;
@@ -287,6 +299,10 @@ public class Bantha : Enemy
                             RunEnd();
                             StartDie();
                             break;
+                        case INPUT.IN_PUSHED:
+                            currentState = STATE.PUSHED;
+                            StartPush();
+                            break;
                     }
                     break;
 
@@ -301,6 +317,10 @@ public class Bantha : Enemy
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
                             StartDie();
+                            break;
+                        case INPUT.IN_PUSHED:
+                            currentState = STATE.PUSHED;
+                            StartPush();
                             break;
                     }
                     break;
@@ -327,6 +347,10 @@ public class Bantha : Enemy
                             currentState = STATE.DIE;
                             StartDie();
                             break;
+                        case INPUT.IN_PUSHED:
+                            currentState = STATE.PUSHED;
+                            StartPush();
+                            break;
                     }
                     break;
 
@@ -352,9 +376,26 @@ public class Bantha : Enemy
                             currentState = STATE.DIE;
                             StartDie();
                             break;
+                        case INPUT.IN_PUSHED:
+                            currentState = STATE.PUSHED;
+                            StartPush();
+                            break;
                     }
                     break;
+                case STATE.PUSHED:
+                    switch (input)
+                    {
+                        case INPUT.IN_DIE:
+                            currentState = STATE.DIE;
+                            StartDie();
+                            break;
 
+                        case INPUT.IN_IDLE:
+                            currentState = STATE.IDLE;
+                            StartIdle();
+                            break;
+                    }
+                    break;
                 default:
                     Debug.Log("NEED TO ADD STATE TO BANTHA SWITCH");
                     break;
@@ -386,6 +427,9 @@ public class Bantha : Enemy
                 break;
             case STATE.DIE:
                 UpdateDie();
+                break;
+            case STATE.PUSHED:
+                UpdatePush();
                 break;
             default:
                 Debug.Log("NEED TO ADD STATE TO BANTHA");
@@ -585,6 +629,34 @@ public class Bantha : Enemy
     }
     #endregion
 
+    #region PUSH
+    private void StartPush()
+    {
+        Vector3 force = gameObject.transform.globalPosition - player.transform.globalPosition;
+        if(BabyYoda.instance != null)
+        {
+            force.y = BabyYoda.instance.pushVerticalForce * forcePushMod;
+            gameObject.AddForce(force * BabyYoda.instance.pushHorizontalForce * forcePushMod);
+            pushTimer = 0.0f;
+        }
+      
+    }
+    private void UpdatePush()
+    {
+        pushTimer += Time.deltaTime;
+        if (BabyYoda.instance != null)
+        {
+            if (pushTimer >= BabyYoda.instance.PushStun)
+                inputsList.Add(INPUT.IN_IDLE);
+        }
+        else
+        {
+            inputsList.Add(INPUT.IN_IDLE);
+        }
+
+    }
+    #endregion
+
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
 
@@ -702,8 +774,8 @@ public class Bantha : Enemy
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-        if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
-            inputsList.Add(INPUT.IN_PUSHED);
+        //if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
+        //    inputsList.Add(INPUT.IN_PUSHED);
     }
 
     public override void TakeDamage(float damage)

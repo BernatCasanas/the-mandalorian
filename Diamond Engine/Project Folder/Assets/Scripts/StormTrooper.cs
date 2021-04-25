@@ -77,10 +77,8 @@ public class StormTrooper : Enemy
     private int shotSequences = 0;
     public int maxSequences = 2;
 
-    //push
-    public float pushHorizontalForce = 100;
-    public float pushVerticalForce = 10;
-    public float PushStun = 2;
+    //force
+    public float forcePushMod = 1;
 
     //Death point
     public GameObject deathPoint = null;
@@ -675,19 +673,29 @@ public class StormTrooper : Enemy
     #endregion
 
     #region PUSH
-
     private void StartPush()
     {
         Vector3 force = gameObject.transform.globalPosition - player.transform.globalPosition;
-        force.y = pushVerticalForce;
-        gameObject.AddForce(force * pushHorizontalForce);
-        pushTimer = 0.0f;
+        if (BabyYoda.instance != null)
+        {
+            force.y = BabyYoda.instance.pushVerticalForce * forcePushMod;
+            gameObject.AddForce(force * BabyYoda.instance.pushHorizontalForce * forcePushMod);
+            pushTimer = 0.0f;
+        }
+
     }
     private void UpdatePush()
     {
         pushTimer += Time.deltaTime;
-        if (pushTimer >= PushStun)
+        if (BabyYoda.instance != null)
+        {
+            if (pushTimer >= BabyYoda.instance.PushStun)
+                inputsList.Add(INPUT.IN_IDLE);
+        }
+        else
+        {
             inputsList.Add(INPUT.IN_IDLE);
+        }
 
     }
     #endregion
