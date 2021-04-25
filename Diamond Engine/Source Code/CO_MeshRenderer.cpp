@@ -30,7 +30,7 @@
 
 C_MeshRenderer::C_MeshRenderer(GameObject* _gm) : Component(_gm), _mesh(nullptr), normalMap(nullptr),
 faceNormals(false), vertexNormals(false), showAABB(false), showOBB(false), drawDebugVertices(false), drawStencil(false),
-calculatedBonesThisFrame(false), boneTransforms()
+calculatedBonesThisFrame(false), boneTransforms(), stencilEmissionAmmount(0.9f)
 {
 	name = "Mesh Renderer";
 	alternColor = float3::one;
@@ -116,7 +116,7 @@ void C_MeshRenderer::RenderMesh(bool rTex)
 	if (drawDebugVertices)
 		DrawDebugVertices();
 
-	_mesh->RenderMesh(id, alternColor, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform, normalMap);
+	_mesh->RenderMesh(id, alternColor, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform, normalMap,stencilEmissionAmmount);
 
 	if (vertexNormals || faceNormals)
 		_mesh->RenderMeshDebug(&vertexNormals, &faceNormals, transform->GetGlobalTransposed());
@@ -148,9 +148,9 @@ void C_MeshRenderer::RenderMeshStencil(bool rTex)
 	TryCalculateBones();
 
 	if (hasStencilMatActive)
-		_mesh->RenderMesh(id, alternColorStencil, rTex, (stencilMaterial && stencilMaterial->material != nullptr) ? stencilMaterial->material : EngineExternal->moduleScene->defaultMaterial, transform);
+		_mesh->RenderMesh(id, alternColorStencil, rTex, (stencilMaterial && stencilMaterial->material != nullptr) ? stencilMaterial->material : EngineExternal->moduleScene->defaultMaterial, transform,nullptr, stencilEmissionAmmount);
 	else
-		_mesh->RenderMesh(id, alternColorStencil, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform);
+		_mesh->RenderMesh(id, alternColorStencil, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform,nullptr, stencilEmissionAmmount);
 
 }
 
@@ -173,6 +173,7 @@ void C_MeshRenderer::SaveData(JSON_Object* nObj)
 
 	DEJson::WriteVector3(nObj, "alternColor", &alternColor.x);
 	DEJson::WriteVector3(nObj, "alternColorStencil", &alternColorStencil.x);
+	DEJson::WriteFloat(nObj, "stencilEmission", stencilEmissionAmmount);
 	bool doNotDrawStencil = !drawStencil; //We do that because Json defaults to true if doesn't find a certain property and we don't want every object to be drawn with stencil
 	DEJson::WriteBool(nObj, "doNotDrawStencil", doNotDrawStencil);
 }
@@ -185,6 +186,7 @@ void C_MeshRenderer::LoadData(DEConfig& nObj)
 
 	alternColor = nObj.ReadVector3("alternColor");
 	alternColorStencil = nObj.ReadVector3("alternColorStencil");
+	SetStencilEmissionAmmount(nObj.ReadFloat("stencilEmission"));
 	drawStencil = !nObj.ReadBool("doNotDrawStencil");
 	if (_mesh == nullptr)
 		return;
@@ -287,7 +289,7 @@ bool C_MeshRenderer::OnEditor()
 		ImGui::Checkbox("Show OBB", &showOBB);
 		ImGui::Checkbox("Draw Vertices", &drawDebugVertices);
 		ImGui::Checkbox("Draw Stencil", &drawStencil);
-
+		ImGui::DragFloat("Stencil Emission Ammount", &stencilEmissionAmmount, 0.01f, 0.0f, 1.0f);
 		ImGui::ColorPicker3("No texture color: ", &alternColor.x);
 
 		if (drawStencil)
@@ -492,4 +494,15 @@ void C_MeshRenderer::TryCalculateBones()
 		_mesh->boneTransforms[i] = boneTransforms[i];
 	}
 
+}
+
+void C_MeshRenderer::SetStencilEmissionAmmount(float ammount)
+{
+	stencilEmissionAmmount =  max(0.0f,ammount);
+	stencilEmissionAmmount = min(stencilEmissionAmmount, 1.0f);
+}
+
+float C_MeshRenderer::GetStencilEmssionAmmount() const
+{
+	return stencilEmissionAmmount;
 }

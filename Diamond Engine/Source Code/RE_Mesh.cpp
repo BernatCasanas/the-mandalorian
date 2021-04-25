@@ -107,7 +107,7 @@ bool ResourceMesh::UnloadFromMemory()
 	return true;
 }
 
-void ResourceMesh::RenderMesh(GLuint textureID, float3 color, bool renderTexture, ResourceMaterial* material, C_Transform* _transform, ResourceTexture* normalMap)
+void ResourceMesh::RenderMesh(GLuint textureID, float3 color, bool renderTexture, ResourceMaterial* material, C_Transform* _transform, ResourceTexture* normalMap, float emissionAmmount)
 {
 	//ASK: glDrawElementsInstanced()?
 	//if (textureID != 0 && (renderTexture || (generalWireframe != nullptr && *generalWireframe == false)))
@@ -118,8 +118,7 @@ void ResourceMesh::RenderMesh(GLuint textureID, float3 color, bool renderTexture
 		material->shader->Bind();
 		material->PushUniforms();
 
-		PushDefaultMeshUniforms(material->shader->shaderProgramID, textureID, _transform, color, normalMap);
-
+		PushDefaultMeshUniforms(material->shader->shaderProgramID, textureID, _transform, color, normalMap, emissionAmmount);
 
 		EngineExternal->moduleRenderer3D->PushLightUniforms(material);
 	}
@@ -395,7 +394,7 @@ void ResourceMesh::LoadBones(char** cursor)
 	}
 }
 
-void ResourceMesh::PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Transform* _transform, float3 color, ResourceTexture* normalMap) 
+void ResourceMesh::PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Transform* _transform, float3 color, ResourceTexture* normalMap,float emissionAmmount)
 {
 	if (textureID != 0)
 		glUniform1i(glGetUniformLocation(shaderID, "hasTexture"), 1);
@@ -460,4 +459,7 @@ void ResourceMesh::PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Tran
 		modelLoc = glGetUniformLocation(shaderID, "hasAnimations");
 		glUniform1i(modelLoc, 0);
 	}
+
+	modelLoc = glGetUniformLocation(shaderID, "emissiveAmmount");
+	glUniform1f(modelLoc, emissionAmmount);
 }
