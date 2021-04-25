@@ -215,7 +215,8 @@ GameObject* PrefabImporter::InstantiatePrefab(const char* libraryPath)
 		it->second->prefabReference = it->first;
 		for (size_t i = 0; i < it->second->components.size(); i++)
 		{
-			it->second->components[i]->OnRecursiveUIDChange(gameObjects);
+			if(it->second->components[i]->type != Component::TYPE::SCRIPT)
+				it->second->components[i]->OnRecursiveUIDChange(gameObjects);
 		}
 	}
 
