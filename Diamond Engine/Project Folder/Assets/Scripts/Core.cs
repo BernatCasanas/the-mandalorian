@@ -88,6 +88,7 @@ public class Core : DiamondComponent
     private float timeSinceLastDash = 0.0f;
     public GameObject RayCastObj = null;
     private Vector3 dashDirection = new Vector3(0, 0, 0);
+    private Quaternion preDashRotation = new Quaternion(0, 0, 0, 1);
 
     // Shooting
     public float baseFireRate = 0.2f;
@@ -105,6 +106,7 @@ public class Core : DiamondComponent
     private int deathZone = 15000;
     private float normalShootSpeed = 0.0f;
     private float gadgetShootSkill = 0.0f;
+    private float stopShootingTime = 0f;
 
     //Grenades
     private static float grenadesFireRate;
@@ -117,6 +119,8 @@ public class Core : DiamondComponent
     public float timeToAutomaticallyShootCharge = 2.296f;
     private float chargeTimer = 0.0f;
     public float chargedBulletDmg = 0f;
+    public Vector3 defaultSniperLaserColor = new Vector3(1, 0, 0);
+    private Vector3 currSniperLaserColor = new Vector3(1, 0, 0);
 
     //Animations
     private float shootAnimationTotalTime = 0.0f;
@@ -124,7 +128,7 @@ public class Core : DiamondComponent
     //Controller Variables
     int verticalInput = 0;
     int horizontalInput = 0;
-    Vector3 gamepadInput;
+    Vector3 gamepadInput = Vector3.zero;
     public bool lockInputs = false;
 
     //For Pause
@@ -191,6 +195,8 @@ public class Core : DiamondComponent
         currFireRate = baseFireRate;
 
         timeToPerfectChargeEnd = timeToPerfectCharge + (0.016f * framesForPerfectCharge);
+
+        currSniperLaserColor = defaultSniperLaserColor;
 
         grenadesFireRate = 4.0f;
         #endregion
@@ -317,7 +323,7 @@ public class Core : DiamondComponent
         {
             shootingTimer -= Time.deltaTime;
 
-            if (shootingTimer <= 0)
+            if (shootingTimer <= 0 && stopShootingTime == 0f)
             {
                 inputsList.Add(INPUT.IN_SHOOT);
                 Debug.Log("In shoot");
@@ -362,15 +368,21 @@ public class Core : DiamondComponent
             if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT) && isPrimaryOverHeat == false)
             {
                 inputsList.Add(INPUT.IN_SHOOTING);
+                stopShootingTime = 0f;
             }
-            else if (((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE) && hasShot == true && CanStopShooting() == true) || isPrimaryOverHeat == true)
+            else if (((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE) && hasShot == true) || isPrimaryOverHeat == true)
             {
-                inputsList.Add(INPUT.IN_SHOOTING_END);
-                hasShot = false;
+                stopShootingTime += Time.deltaTime;
+                Animator.Play(gameObject, "Shoot", 0.01f);
+                if (CanStopShooting() == true || isPrimaryOverHeat == true || (this.currentState != STATE.SHOOT && this.currentState != STATE.SHOOTING))
+                {
+                    inputsList.Add(INPUT.IN_SHOOTING_END);
+                    hasShot = false;
+                }
             }
 
 
-            if (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_DOWN)
+            if (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_REPEAT)
             {
                 inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT);
             }
@@ -547,6 +559,18 @@ public class Core : DiamondComponent
                             StartShoot();
                             break;
 
+                        case INPUT.IN_GADGET_SHOOT:
+                            currentState = STATE.GADGET_SHOOT;
+                            EndShooting();
+                            StartGadgetShoot();
+                            break;
+
+                        case INPUT.IN_CHARGE_SEC_SHOOT:
+                            currentState = STATE.CHARGING_SEC_SHOOT;
+                            EndShooting();
+                            StartSecCharge();
+                            break;
+
                         case INPUT.IN_DEAD:
                             break;
                     }
@@ -705,7 +729,7 @@ public class Core : DiamondComponent
 
     private bool CanStopShooting()
     {
-        return shootingTimer > currFireRate * 0.5 ? true : false;
+        return stopShootingTime > currFireRate * 3.5 ? true : false;
     }
 
     private void StartShoot()
@@ -819,32 +843,59 @@ public class Core : DiamondComponent
         if (IsJoystickMoving() == true)
             RotatePlayer(0.25f);
 
+        if (chargeTimer < timeToPerfectCharge)
+        {
+            //Change color beam (red)
+            currSniperLaserColor = defaultSniperLaserColor;
+
+        }
+        else if (chargeTimer > timeToPerfectCharge && chargeTimer < timeToPerfectChargeEnd)
+        {
+            //Change color beam (yellow)
+            currSniperLaserColor = new Vector3(1, 1, 0);
+        }
+        else if (chargeTimer > timeToPerfectChargeEnd)
+        {
+            //TODO: Change color beam (beeping red-white)
+            currSniperLaserColor = new Vector3(1, 1, 1);
+        }
+
+
+        if (shootPoint != null && myAimbot != null)
+        {
+            float hitDistance = myAimbot.maxRange;
+            GameObject hit = InternalCalls.RayCast(shootPoint.transform.globalPosition + (shootPoint.transform.GetForward() * 2), shootPoint.transform.GetForward(), myAimbot.maxRange, ref hitDistance);
+            if (hit != null)
+            {
+                Debug.Log(hitDistance.ToString());
+            }
+
+            hitDistance = Math.Min(hitDistance, Mathf.Lerp(0, myAimbot.maxRange, chargeTimer / timeToPerfectCharge));
+
+            InternalCalls.DrawRay(shootPoint.transform.globalPosition, shootPoint.transform.globalPosition + (shootPoint.transform.GetForward() * hitDistance), currSniperLaserColor);
+        }
+
         chargeTimer += Time.deltaTime;
+        Animator.Play(gameObject, "Shoot", 0.01f);
 
         if (chargeTimer >= timeToAutomaticallyShootCharge)
         {
             inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
         }
+
     }
 
     private void StartSecondaryShoot()
     {
         bool perfectShot = false;
 
-        if (chargeTimer < timeToPerfectCharge)
-        {
-            //TODO: Change color beam (red)
-        }
-        else if (chargeTimer > timeToPerfectCharge && chargeTimer < timeToPerfectChargeEnd)
+        Animator.Play(gameObject, "Shoot", normalShootSpeed);
+
+        if (chargeTimer > timeToPerfectCharge && chargeTimer < timeToPerfectChargeEnd)
         {
             perfectShot = true;
             Debug.Log("Frame Perfect Charge!");
             //TODO: Change color beam (yellow)
-        }
-        else if (chargeTimer > timeToPerfectChargeEnd)
-        {
-            //TODO: Change color beam (beeping red-white)
-
         }
 
         ShootChargeShot(perfectShot, chargeTimer);
@@ -915,7 +966,7 @@ public class Core : DiamondComponent
 
                 chrBulletComp.InitChargedBullet(bulletDamage);
 
-                if(aimHelpTarget != null)
+                if (aimHelpTarget != null)
                 {
                     chrBulletComp.SetTarget(aimHelpTarget.transform.globalPosition);
                 }
@@ -939,6 +990,8 @@ public class Core : DiamondComponent
         dashStartYPos = gameObject.transform.localPosition.y;
 
         dashDirection = worldDirFromGamepadInput();
+        preDashRotation = this.gameObject.transform.localRotation;
+        RotatePlayer();
 
         PlayParticles(PARTICLES.JETPACK);
     }
@@ -966,6 +1019,7 @@ public class Core : DiamondComponent
 
         StopPlayer();
         gameObject.transform.localPosition.y = dashStartYPos;
+        this.gameObject.transform.localRotation = preDashRotation;
 
         if (Skill_Tree_Data.instance != null)
         {
@@ -1072,7 +1126,7 @@ public class Core : DiamondComponent
 
         Quaternion rotation = Quaternion.RotateAroundAxis(Vector3.up, (float)-angle);
 
-        return (rotation*aY);
+        return (rotation * aY);
 
     }
     private void UpdateControllerInputs()
