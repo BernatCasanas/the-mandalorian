@@ -13,9 +13,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -8.0658407211303711,
-                -2.3540654182434082,
-                -6.512359619140625
+                -0.30585438013076782,
+                11.223415374755859,
+                1.7758936882019043
             ],
             "Rotation": [
                 0,
@@ -48,6 +48,7 @@
                         1,
                         1
                     ],
+                    "stencilEmission": 0,
                     "doNotDrawStencil": true
                 },
                 {
@@ -104,6 +105,8 @@
                     "ScriptName": "SlowGrenade",
                     "forwardForce": 1000,
                     "upForce": 500,
+                    "grenadeActiveObj": 700134448,
+                    "granadeAreaObj": 476584602,
                     "lifeTime": 2,
                     "explosionTime": 5,
                     "damage": 5
@@ -143,7 +146,7 @@
                     "tag": "Untagged",
                     "layer": "Default",
                     "Active": true,
-                    "UID": 1490728536,
+                    "UID": 700134448,
                     "ParentUID": 2033734359,
                     "PrefabID": 0,
                     "PrefabReference": 700134448,
@@ -171,8 +174,8 @@
                     "tag": "Untagged",
                     "layer": "Default",
                     "Active": true,
-                    "UID": 274228993,
-                    "ParentUID": 2033734359,
+                    "UID": 476584602,
+                    "ParentUID": 700134448,
                     "PrefabID": 0,
                     "PrefabReference": 476584602,
                     "DontDestroy": false,
