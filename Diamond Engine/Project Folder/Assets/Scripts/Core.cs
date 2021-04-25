@@ -64,6 +64,8 @@ public class Core : DiamondComponent
     public float rotationSpeed = 2.0f;
     public float movementSpeed = 35.0f;
     public float mouseSens = 1.0f;
+    public float afterShootDelay = 2.5f;
+    public float afterShootMult = 1.5f;
     private double angle = 0.0f;
     private float runTime = 0.0f;
     private float dustTime = 0.0f;
@@ -111,6 +113,8 @@ public class Core : DiamondComponent
     //Grenades
     private static float grenadesFireRate;
     private float grenadesFireRateTimer = 0.0f;
+
+    private Material grenadeCooldownIcon = null;
 
     // Secondary Shoot (sniper)
     public float timeToPerfectCharge = 0.424f;
@@ -176,6 +180,10 @@ public class Core : DiamondComponent
         if (pause == null)
             Debug.Log("Core: Background not found");
 
+        GameObject grenadeCooldown = InternalCalls.FindObjectWithName("GrenadeCooldownIcon");
+        if (grenadeCooldown != null)
+            grenadeCooldownIcon = grenadeCooldown.GetComponent<Material>();
+
         GameObject lockInputsScene = InternalCalls.FindObjectWithName("LockInputsBool");
 
         if (lockInputsScene != null)
@@ -220,6 +228,8 @@ public class Core : DiamondComponent
         deathZone = 15000;
 
         currentState = STATE.IDLE;
+
+        lockInputs = false;
 
         Debug.Log("Start!");
         mySpawnPos = new Vector3(gameObject.transform.globalPosition.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z);
@@ -319,11 +329,11 @@ public class Core : DiamondComponent
 
         }
 
-        if (shootingTimer > 0)
+        if (shootingTimer > 0 || stopShootingTime <= 0f)
         {
             shootingTimer -= Time.deltaTime;
 
-            if (shootingTimer <= 0 && stopShootingTime == 0f)
+            if (shootingTimer <= 0 && stopShootingTime <= 0f)
             {
                 inputsList.Add(INPUT.IN_SHOOT);
                 Debug.Log("In shoot");
@@ -354,27 +364,31 @@ public class Core : DiamondComponent
     //Controler inputs go here
     private void ProcessExternalInput()
     {
+       
+        bool isPrimaryOverHeat = false;
+        if (hud != null)
+        {
+            isPrimaryOverHeat = hud.GetComponent<HUD>().IsPrimaryOverheated();
+        }
+
         if (!lockInputs)
         {
-            bool isPrimaryOverHeat = false;
-            if (hud != null)
-            {
-                isPrimaryOverHeat = hud.GetComponent<HUD>().IsPrimaryOverheated();
-            }
-
             if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT) && isPrimaryOverHeat == false)
             {
-                inputsList.Add(INPUT.IN_SHOOTING);
                 stopShootingTime = 0f;
+                inputsList.Add(INPUT.IN_SHOOTING);
             }
-            else if (((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE) && hasShot == true) || isPrimaryOverHeat == true)
+            else if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE || isPrimaryOverHeat == true) && hasShot == true)
             {
-                stopShootingTime += Time.deltaTime;
-                Animator.Play(gameObject, "Shoot", 0.01f);
                 if (CanStopShooting() == true || isPrimaryOverHeat == true || (this.currentState != STATE.SHOOT && this.currentState != STATE.SHOOTING))
                 {
                     inputsList.Add(INPUT.IN_SHOOTING_END);
                     hasShot = false;
+                }
+                else if (CanStopShooting() == false)
+                {
+                    stopShootingTime += Time.deltaTime;
+                    Animator.Play(gameObject, "Shoot", 0.01f);
                 }
             }
 
@@ -416,15 +430,21 @@ public class Core : DiamondComponent
                 inputsList.Add(INPUT.IN_GADGET_SHOOT);
                 grenadesFireRateTimer = grenadesFireRate;
             }
+
+
+            if (IsJoystickMoving() == true)
+                inputsList.Add(INPUT.IN_MOVE);
+
+            else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
+                inputsList.Add(INPUT.IN_IDLE);
         }
-
-        if (IsJoystickMoving() == true)
-            inputsList.Add(INPUT.IN_MOVE);
-
-        else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
-            inputsList.Add(INPUT.IN_IDLE);
-
         grenadesFireRateTimer -= Time.deltaTime;
+
+        if (grenadesFireRateTimer > 0.0f && grenadeCooldownIcon != null)
+        {
+            grenadeCooldownIcon.SetFloatUniform("currentGrenadeCooldown", grenadesFireRate - grenadesFireRateTimer);
+            grenadeCooldownIcon.SetFloatUniform("maxGrenadeCooldown", grenadesFireRate);
+        }
 
         timeOfRoom += Time.deltaTime;
     }
@@ -677,6 +697,7 @@ public class Core : DiamondComponent
                 Debug.Log("NEED TO ADD STATE TO CORE");
                 break;
         }
+
     }
 
     #region IDLE
@@ -726,7 +747,18 @@ public class Core : DiamondComponent
 
     private bool CanStopShooting()
     {
-        return stopShootingTime > currFireRate * 3.5 ? true : false;
+        bool ret = false;
+
+        if (currFireRate <= baseFireRate * afterShootMult)
+        {
+            ret = stopShootingTime > afterShootDelay;
+        }
+        else
+        {
+            ret = stopShootingTime > afterShootDelay * (currFireRate / baseFireRate) * afterShootMult;
+        }
+
+        return ret;
     }
 
     private void StartShoot()
@@ -1283,32 +1315,7 @@ public class Core : DiamondComponent
                         gameObject.GetComponent<PlayerHealth>().TakeDamage(collidedGameObject.GetComponent<BH_DestructBox>().explosion_damage / 2);
                 }
             }
-            if (collidedGameObject.CompareTag("SkytrooperAttack"))
-            {
-                //InternalCalls.Destroy(gameObject);
-                PlayParticles(PARTICLES.IMPACT);
-                //BH_Bullet bulletScript = collidedGameObject.GetComponent<BH_Bullet>();
-                Audio.PlayAudio(gameObject, "Play_Mando_Hit");
-
-                //if (bulletScript != null)
-                //{
-                //    int damageFromBullet = 0;
-
-                //    if (skill_damageReductionDashActive)
-                //        damageFromBullet = (int)(bulletScript.damage * (1.0f - skill_damageReductionDashAmount));
-                //    else
-                //        damageFromBullet = (int)bulletScript.damage;
-
-                //    PlayerHealth healthScript = gameObject.GetComponent<PlayerHealth>();
-
-                //    if (healthScript != null)
-                //        healthScript.TakeDamage(damageFromBullet);
-
-                //    damageTaken += damageFromBullet;
-                //}
-            }
         }
-
     }
 
 

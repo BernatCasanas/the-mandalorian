@@ -6,27 +6,27 @@
             "tag": "Player",
             "layer": "Default",
             "Active": true,
-            "UID": 47750865,
+            "UID": 1487895998,
             "ParentUID": 0,
             "PrefabReference": 0,
             "PrefabID": 1239505839,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                0,
-                0
+                -2.2259764671325684,
+                7.9174470901489258,
+                -5.9180746078491211
             ],
             "Rotation": [
-                0,
-                0,
-                0,
+                -2.120925657322914e-09,
+                1.4958196530010793e-18,
+                7.0526734452514006e-10,
                 1
             ],
             "Scale": [
+                0.99999821186065674,
                 1,
-                1,
-                1
+                0.99999821186065674
             ],
             "Components": [
                 {
@@ -41,6 +41,8 @@
                     "rotationSpeed": 2,
                     "movementSpeed": 5.1500000953674316,
                     "mouseSens": 1,
+                    "afterShootDelay": 0.12399999797344208,
+                    "afterShootMult": 1.75,
                     "dashCD": 0.47499999403953552,
                     "dashDuration": 0.2199999988079071,
                     "dashDistance": 5.25,
@@ -154,7 +156,7 @@
             "layer": "Default",
             "Active": true,
             "UID": 158286609,
-            "ParentUID": 47750865,
+            "ParentUID": 1487895998,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -198,7 +200,7 @@
             "layer": "Default",
             "Active": true,
             "UID": 1333412432,
-            "ParentUID": 47750865,
+            "ParentUID": 1487895998,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -1830,7 +1832,7 @@
             "layer": "Default",
             "Active": true,
             "UID": 459171094,
-            "ParentUID": 47750865,
+            "ParentUID": 1487895998,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -1871,6 +1873,7 @@
                         0.92857140302658081,
                         0
                     ],
+                    "stencilEmission": 0.89999997615814209,
                     "doNotDrawStencil": false
                 },
                 {
@@ -1892,12 +1895,250 @@
             ]
         },
         {
+            "name": "GroguFollowPoint",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 509166132,
+            "ParentUID": 1487895998,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0.50180244445800781,
+                0.90269899368286133,
+                -0.44307708740234375
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "FP_Back",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 142714943,
+            "ParentUID": 509166132,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.53475379943847656,
+                0.046333789825439453,
+                -1.2218532562255859
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "FP_BackLeft",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1697695581,
+            "ParentUID": 509166132,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0.75781059265136719,
+                0.046333789825439453,
+                -0.77125072479248047
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "FP_BackRight",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 2059081215,
+            "ParentUID": 509166132,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -1.8636245727539063,
+                0.046333789825439453,
+                -0.77125072479248047
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "FP_Right",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 22414030,
+            "ParentUID": 509166132,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -1.8636245727539063,
+                0.046333789825439453,
+                0.86050128936767578
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "FP_Left",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1414054908,
+            "ParentUID": 509166132,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0.76593399047851563,
+                0.046333789825439453,
+                0.86050128936767578
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "FP_Front",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 823920447,
+            "ParentUID": 509166132,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.53475379943847656,
+                0.046333789825439453,
+                2.1109142303466797
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
             "name": "Dust Trail",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "UID": 729745570,
-            "ParentUID": 47750865,
+            "ParentUID": 1487895998,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -2090,7 +2331,7 @@
             "layer": "Default",
             "Active": true,
             "UID": 1768764614,
-            "ParentUID": 47750865,
+            "ParentUID": 1487895998,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -2301,7 +2542,7 @@
             "layer": "Default",
             "Active": true,
             "UID": 385811057,
-            "ParentUID": 47750865,
+            "ParentUID": 1487895998,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -2748,7 +2989,7 @@
             "layer": "Default",
             "Active": true,
             "UID": 1247696880,
-            "ParentUID": 47750865,
+            "ParentUID": 1487895998,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -2969,7 +3210,7 @@
             "layer": "Default",
             "Active": true,
             "UID": 1500028372,
-            "ParentUID": 47750865,
+            "ParentUID": 1487895998,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,

@@ -21,7 +21,7 @@ public class IntroCinematic : DiamondComponent
     float currentSpeed = 0;
     Quaternion auxCameraRotation = null;
 
-    GameObject[] pointArray;
+    //GameObject[] pointArray;
     float[] speedArray = new float[] { 4.0f, 1.0f, 1.0f, 1.0f };    // Adapt values
     int arrayCount = -1;
 
@@ -71,9 +71,9 @@ public class IntroCinematic : DiamondComponent
         }
 
         currentSpeed = speedArray[arrayCount];
-        cameraAuxPosition = cameraObject.transform.localPosition = pointArray[arrayCount * 2].transform.localPosition;
+        /*cameraAuxPosition = cameraObject.transform.localPosition = pointArray[arrayCount * 2].transform.localPosition;
         toGoPosition = pointArray[(arrayCount * 2) + 1].transform.localPosition;
-        toRotateQuaternion = pointArray[(arrayCount * 2) + 1].transform.localRotation;
+        toRotateQuaternion = pointArray[(arrayCount * 2) + 1].transform.localRotation;*/
         //Debug.Log("Camera position is " + cameraObject.transform.localPosition);
     }
 

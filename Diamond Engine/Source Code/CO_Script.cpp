@@ -39,9 +39,10 @@ C_Script::~C_Script()
 		if (fields[i].type == MonoTypeEnum::MONO_TYPE_CLASS && fields[i].fiValue.goValue != nullptr && fields[i].fiValue.goValue->csReferences.size() != 0)
 		{
 			//fields[i].fiValue.goValue->csReferences.erase(std::find(fields[i].fiValue.goValue->csReferences.begin(), fields[i].fiValue.goValue->csReferences.end(), &fields[i]));
-			auto ptr = std::find(fields[i].fiValue.goValue->csReferences.begin(), fields[i].fiValue.goValue->csReferences.end(), &fields[i]);
+			std::vector<SerializedField*>::iterator ptr = std::find(fields[i].fiValue.goValue->csReferences.begin(), fields[i].fiValue.goValue->csReferences.end(), &fields[i]);
 			if (ptr != fields[i].fiValue.goValue->csReferences.end())
 				fields[i].fiValue.goValue->csReferences.erase(ptr);
+			
 		}
 	}
 	EngineExternal->moduleScene->activeScriptsVector.erase(std::find(EngineExternal->moduleScene->activeScriptsVector.begin(), EngineExternal->moduleScene->activeScriptsVector.end(), this));
@@ -133,7 +134,9 @@ void C_Script::DropField(SerializedField& field, const char* dropType)
 				if (field.fiValue.goValue != nullptr)
 					field.fiValue.goValue->RemoveCSReference(&field);
 
-				field.fiValue.goValue = EngineExternal->moduleEditor->GetDraggingGO();
+				GameObject* draggedObject = EngineExternal->moduleEditor->GetDraggingGO();
+				field.fiValue.goValue = draggedObject;
+				field.goUID = draggedObject->UID;
 
 				SetField(field.field, field.fiValue.goValue);
 			}
@@ -255,7 +258,8 @@ void C_Script::LoadData(DEConfig& nObj)
 			{
 				int uid = nObj.ReadInt(mono_field_get_name(_field->field));
 				_field->goUID = uid;
-				EngineExternal->moduleScene->referenceMap.emplace(uid, _field);
+
+				EngineExternal->moduleScene->AddToReferenceMap(uid, _field);
 			}
 
 			break;
@@ -297,8 +301,12 @@ void C_Script::OnRecursiveUIDChange(std::map<uint, GameObject*> gameObjects)
 
 			if (gameObjectIt != gameObjects.end())
 			{
-				EngineExternal->moduleScene->referenceMap.erase(gameObjectIt->first);
-				EngineExternal->moduleScene->referenceMap.emplace((uint)gameObjectIt->second->UID, &fields[i]);
+				if(EngineExternal->moduleScene->referenceMap.size() > 0)
+					EngineExternal->moduleScene->referenceMap.erase(gameObjectIt->first);
+
+				EngineExternal->moduleScene->AddToReferenceMap((uint)gameObjectIt->second->UID, &fields[i]);
+
+				fields[i].fiValue.goValue = gameObjectIt->second;
 				fields[i].goUID = (uint)gameObjectIt->second->UID;
 			}
 		}

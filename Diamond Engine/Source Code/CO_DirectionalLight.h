@@ -11,7 +11,7 @@ class C_DirectionalLight : public Component
 {
 public:
 	C_DirectionalLight(GameObject* _gm);
-	virtual ~C_DirectionalLight();
+	~C_DirectionalLight() override;
 
 	void Update() override;
 
