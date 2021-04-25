@@ -161,6 +161,12 @@ namespace DiamondEngine
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern float GetOrthSize(object go);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public static extern void SetCameraOrthographic(object go);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public static extern void SetCameraPerspective(object go);
     }
 
     public partial class Debug
