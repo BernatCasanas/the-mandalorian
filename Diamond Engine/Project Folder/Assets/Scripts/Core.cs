@@ -64,6 +64,8 @@ public class Core : DiamondComponent
     public float rotationSpeed = 2.0f;
     public float movementSpeed = 35.0f;
     public float mouseSens = 1.0f;
+    public float afterShootDelay = 2.5f;
+    public float afterShootMult = 1.5f;
     private double angle = 0.0f;
     private float runTime = 0.0f;
     private float dustTime = 0.0f;
@@ -323,7 +325,7 @@ public class Core : DiamondComponent
         {
             shootingTimer -= Time.deltaTime;
 
-            if (shootingTimer <= 0 && stopShootingTime == 0f)
+            if (shootingTimer <= 0 && stopShootingTime <= 0f)
             {
                 inputsList.Add(INPUT.IN_SHOOT);
                 Debug.Log("In shoot");
@@ -364,10 +366,10 @@ public class Core : DiamondComponent
 
             if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT) && isPrimaryOverHeat == false)
             {
-                inputsList.Add(INPUT.IN_SHOOTING);
                 stopShootingTime = 0f;
+                inputsList.Add(INPUT.IN_SHOOTING);
             }
-            else if (((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE) && hasShot == true) || isPrimaryOverHeat == true)
+            else if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE || isPrimaryOverHeat == true) && hasShot == true)
             {
                 stopShootingTime += Time.deltaTime;
                 Animator.Play(gameObject, "Shoot", 0.01f);
@@ -726,7 +728,18 @@ public class Core : DiamondComponent
 
     private bool CanStopShooting()
     {
-        return stopShootingTime > currFireRate * 3.5 ? true : false;
+        bool ret = false;
+
+        if (currFireRate <= baseFireRate * afterShootMult)
+        {
+            ret = stopShootingTime > afterShootDelay;
+        }
+        else
+        {
+            ret = stopShootingTime > afterShootDelay * (currFireRate / baseFireRate) * afterShootMult;
+        }
+
+        return ret;
     }
 
     private void StartShoot()

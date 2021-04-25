@@ -40,7 +40,7 @@ namespace DiamondEngine
         public static extern GameObject RayCast(Vector3 position, Vector3 direction, float distance, ref float hitDistance);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public static extern void DrawRay(Vector3 from, Vector3 to, Vector3 color);
+        public static extern void DrawRay(Vector3 from, Vector3 to, Vector3 color, float width = 10f);
     }
     public class Config
     {

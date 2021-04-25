@@ -130,6 +130,7 @@ public class Bosseslv2 : DiamondComponent
         secondShot = false;
         resting = true;
         restingTimer = restingTime;
+        Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Ice_Impact");
     }
     #endregion
 
@@ -139,6 +140,7 @@ public class Bosseslv2 : DiamondComponent
         fastChasingTimer = fastChasingTime;
         Debug.Log("Fast Rush");
         Animator.Play(gameObject, "WP_Rush");
+        Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Previous_Rush_Roar");
     }
     public void UpdateFastRush()
     {
@@ -275,6 +277,8 @@ public class Bosseslv2 : DiamondComponent
                         jumpslam = JUMPSLAM.UP;
                     }
                 }
+
+                Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Jump_Snow");
                 break;
 
             case JUMPSLAM.UP:
@@ -313,6 +317,7 @@ public class Bosseslv2 : DiamondComponent
                         colliderJumpSlam.DisableCollider();
                     }
                 }
+                Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Jump_Impact");
                 break;
 
             case JUMPSLAM.RECOVERY:
@@ -348,6 +353,7 @@ public class Bosseslv2 : DiamondComponent
     {
         walkingTimer = walkingTime;
         Animator.Play(gameObject, "WP_Walk");
+        Audio.PlayAudio(gameObject, "PLay_Rancor_Footsteps");
     }
     public void UpdateFollowing()
     {
@@ -359,7 +365,7 @@ public class Bosseslv2 : DiamondComponent
 
     public void EndFollowing()
     {
-
+        Audio.StopAudio(gameObject);
     }
     #endregion
 
@@ -369,6 +375,7 @@ public class Bosseslv2 : DiamondComponent
         walkingTimer = walkingTime;
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
         Animator.Play(gameObject, "WP_Walk");
+        Audio.PlayAudio(gameObject, "PLay_Rancor_Footsteps");
     }
     public void UpdateWander()
     {
@@ -379,7 +386,7 @@ public class Bosseslv2 : DiamondComponent
 
     public void EndWander()
     {
-
+        Audio.StopAudio(gameObject);
     }
     #endregion
 
@@ -388,6 +395,7 @@ public class Bosseslv2 : DiamondComponent
     {
         dieTimer = dieTime;
         Animator.Play(gameObject, "WP_Die");
+        Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Death_Roar");
         Debug.Log("Dying");
     }
     public void UpdateDie()
