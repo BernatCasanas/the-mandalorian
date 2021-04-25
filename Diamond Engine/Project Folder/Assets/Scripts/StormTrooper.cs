@@ -697,7 +697,8 @@ public class StormTrooper : Enemy
         if (player != null)
         {
             float distance = 0.0f;
-            GameObject raycastHit = InternalCalls.RayCast(gameObject.transform.globalPosition, player.transform.globalPosition, distance);
+            float hitDistance = 0.0f;
+            GameObject raycastHit = InternalCalls.RayCast(gameObject.transform.globalPosition, player.transform.globalPosition, distance, ref hitDistance);
 
             if (raycastHit != null && raycastHit == player)
             {

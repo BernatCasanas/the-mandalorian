@@ -323,14 +323,15 @@ public class LaserTurret : Enemy
 
         for (int i = 0; i < laserDirections.Length; i++)
         {
-            GameObject hit = InternalCalls.RayCast(gameObject.transform.globalPosition + Vector3.up + (laserDirections[i] * laserOffser), laserDirections[i], laserRange);
+            float hitDistance = 0;
+            GameObject hit = InternalCalls.RayCast(gameObject.transform.globalPosition + Vector3.up + (laserDirections[i] * laserOffser), laserDirections[i], laserRange, ref hitDistance);
             if (hit != null)
             {
                 //Debug.Log("Hit");
                 if (hit.CompareTag("Player"))
                     Debug.Log("Player");
 
-                Debug.Log(hit.tag);
+                Debug.Log(hitDistance.ToString());
 
                 PlayerHealth health = hit.GetComponent<PlayerHealth>();
                 if (health != null)
@@ -340,7 +341,7 @@ public class LaserTurret : Enemy
                 }
             }
 
-            InternalCalls.DrawRay(gameObject.transform.globalPosition + Vector3.up /*+ (laserDirections[i] * laserOffser)*/, gameObject.transform.globalPosition + Vector3.up + (laserDirections[i] * laserRange), new Vector3(1, 0, 0));
+            InternalCalls.DrawRay(gameObject.transform.globalPosition + Vector3.up /*+ (laserDirections[i] * laserOffser)*/, gameObject.transform.globalPosition + Vector3.up + (laserDirections[i] * (hitDistance != 0 ? (hitDistance + laserOffser) : laserRange)), new Vector3(1, 0, 0));
             //Debug.Log(laserPoints[i].ToString());
         }
     }
