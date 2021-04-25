@@ -121,22 +121,22 @@
                 {
                     "Type": 20,
                     "Active": true,
-                    "systemActive": false,
-                    "looping": false,
+                    "systemActive": true,
+                    "looping": true,
                     "maxDuration": 0.41999998688697815,
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/39569920.dds",
-                            "texUID": 39569920,
+                            "LibraryPath": "Library\/Textures\/568017479.dds",
+                            "texUID": 568017479,
                             "paEmitterName": "Force Wall",
                             "paLifeTime": [
-                                0.20000000298023224,
-                                0.20000000298023224
+                                0.05000000074505806,
+                                0.05000000074505806
                             ],
                             "paSize": [
-                                0.019999999552965164,
-                                0.05000000074505806
+                                0.20000000298023224,
+                                0.69999998807907104
                             ],
                             "paColor": [
                                 1,
@@ -147,26 +147,14 @@
                             "paPerSec": 1000,
                             "ParticleEffects": [
                                 {
-                                    "paEffectType": 0,
-                                    "paFOLT_direction": [
-                                        0,
-                                        5,
-                                        0
-                                    ],
-                                    "paFOLT_magnitude": 20,
-                                    "paFOLT_gravityMod": 0,
-                                    "paFOLT_gravity": -0,
-                                    "paFOLT_forceType": 0
-                                },
-                                {
                                     "paEffectType": 2,
                                     "Gradients": [
                                         {
                                             "paColorOLTcolor": [
                                                 0,
-                                                1,
-                                                0.96590876579284668,
-                                                0.77470356225967407
+                                                0.77470356225967407,
+                                                0.74829298257827759,
+                                                0.61660075187683105
                                             ],
                                             "paColorOLTposition": 0
                                         },
@@ -184,7 +172,7 @@
                                                 0,
                                                 0.93435400724411011,
                                                 0.99278068542480469,
-                                                0.79051381349563599
+                                                0.59288537502288818
                                             ],
                                             "paColorOLTposition": 0.79189187288284302
                                         },
@@ -222,12 +210,12 @@
                         },
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/170375526.dds",
-                            "texUID": 170375526,
+                            "LibraryPath": "Library\/Textures\/1162313265.dds",
+                            "texUID": 1162313265,
                             "paEmitterName": "Suelo",
                             "paLifeTime": [
                                 0.5,
-                                1
+                                0.80000001192092896
                             ],
                             "paSize": [
                                 0.30000001192092896,
@@ -239,7 +227,7 @@
                                 1,
                                 1
                             ],
-                            "paPerSec": 100,
+                            "paPerSec": 50,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 0,
@@ -315,8 +303,8 @@
                         },
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1162313265.dds",
-                            "texUID": 1162313265,
+                            "LibraryPath": "Library\/Textures\/170375526.dds",
+                            "texUID": 170375526,
                             "paEmitterName": "Empty",
                             "paLifeTime": [
                                 0.5,
@@ -332,7 +320,7 @@
                                 1,
                                 1
                             ],
-                            "paPerSec": 50,
+                            "paPerSec": 25,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 0,
