@@ -937,6 +937,8 @@ public class Core : DiamondComponent
         dashTimer = dashDuration;
         dashStartYPos = gameObject.transform.localPosition.y;
 
+        dashDirection = worldDirFromGamepadInput();
+
         PlayParticles(PARTICLES.JETPACK);
     }
 
