@@ -1030,7 +1030,33 @@ public class Core : DiamondComponent
     #endregion
 
     #region UTILITIES
+    //returns vector direction in world space from the gamepad input, or Vector3.zero if gamepad joystick is idle
+    public Vector3 worldDirFromGamepadInput()
+    {
+        //Calculate player rotation
+        Vector3 aX = new Vector3(gamepadInput.x, 0, (gamepadInput.y + 1) * -1);
+        Vector3 aY = new Vector3(0, 0, 1);
+        aX = Vector3.Normalize(aX);
+        if (aX == Vector3.zero)
+            return Vector3.zero;
 
+        if (aX.x >= 0)
+        {
+            angle = Math.Acos(Vector3.Dot(aX, aY));
+        }
+        else if (aX.x < 0)
+        {
+            angle = -Math.Acos(Vector3.Dot(aX, aY));
+        }
+
+        //Convert angle from world view to orthogonal view
+        angle += 0.785398f; //Rotate 45 degrees to the right
+
+        Quaternion rotation = Quaternion.RotateAroundAxis(Vector3.up, (float)-angle);
+
+        return (rotation*aY);
+
+    }
     private void UpdateControllerInputs()
     {
         //Check if user is moving joystick
