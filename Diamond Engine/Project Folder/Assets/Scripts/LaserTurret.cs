@@ -37,6 +37,9 @@ public class LaserTurret : Enemy
     public float loadTime = 0.0f;
     public float shotTime = 0.0f;
     public float dieTime = 0.0f;
+
+    public float damageMaxTimer = 0.0f;
+
     public float feedbackTime = 0.0f;
 
     //Speeds
@@ -51,6 +54,7 @@ public class LaserTurret : Enemy
     private float loadTimer = 0.0f;
     private float shotTimer = 0.0f;
     private float dieTimer = 0.0f;
+    private float damageCurrentTimer = 0.0f;
     private float feedbackTimer = 0.0f;
 
     private Vector3[] laserDirections;
@@ -138,6 +142,9 @@ public class LaserTurret : Enemy
         //        inputsList.Add(INPUT.IN_IDLE);
         //    }
         //}
+
+        if (damageCurrentTimer < damageMaxTimer)
+            damageCurrentTimer += Time.deltaTime;
 
         if (shotTimer > 0.0f)
         {
@@ -327,17 +334,12 @@ public class LaserTurret : Enemy
             GameObject hit = InternalCalls.RayCast(gameObject.transform.globalPosition + Vector3.up + (laserDirections[i] * laserOffser), laserDirections[i], laserRange, ref hitDistance);
             if (hit != null)
             {
-                //Debug.Log("Hit");
-                if (hit.CompareTag("Player"))
-                    Debug.Log("Player");
-
-                Debug.Log(hitDistance.ToString());
-
                 PlayerHealth health = hit.GetComponent<PlayerHealth>();
-                if (health != null)
+                if (health != null && hit.CompareTag("Player") && damageCurrentTimer >= damageMaxTimer)
                 {
                     Debug.Log("Hit player");
                     health.TakeDamage((int)this.damage);
+                    damageCurrentTimer = 0.0f;
                 }
             }
 
