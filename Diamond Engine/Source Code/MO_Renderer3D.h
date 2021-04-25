@@ -31,8 +31,9 @@ class C_AreaLight;
 
 struct LineRender
 {
-	LineRender(float3& _a, float3& _b, float3& _color) : a(_a), b(_b), color(_color) {}
+	LineRender(float3& _a, float3& _b, float3& _color, float _width = 10.f) : a(_a), b(_b), color(_color), width(_width){}
 	float3 a, b, color;
+	float width;
 };
 
 struct DebugTriangle
@@ -71,7 +72,7 @@ public:
 #endif // !STANDALONE
 
 	
-	void AddRay(float3& a, float3& b, float3& color);
+	void AddRay(float3& a, float3& b, float3& color, float& rayWidth);
 	void DrawRays();
 	void RayToMeshQueueIntersection(LineSegment& ray);
 
