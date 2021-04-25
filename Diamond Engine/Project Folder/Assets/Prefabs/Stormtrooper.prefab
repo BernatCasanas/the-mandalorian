@@ -95,7 +95,8 @@
                     "Active": true,
                     "ScriptName": "StormTrooperParticles",
                     "spawnObj": 1832726845,
-                    "alertObj": 1463935074
+                    "alertObj": 1463935074,
+                    "hitExplosion": 1246731835
                 },
                 {
                     "Type": 24,
@@ -1476,7 +1477,7 @@
                 2.6077032089233398e-06
             ],
             "Rotation": [
-                0.39665603637695312,
+                0.39665603637695313,
                 -0.15679711103439331,
                 -0.26382708549499512,
                 0.86514389514923096
@@ -1609,7 +1610,7 @@
             "Position": [
                 3.7252902984619141e-09,
                 0.079039148986339569,
-                2.9802322387695312e-08
+                2.9802322387695313e-08
             ],
             "Rotation": [
                 2.2351743567128324e-08,
@@ -2892,7 +2893,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -0.086336135864257812,
+                -0.086336135864257813,
                 1.6674346923828125,
                 0.017107963562011719
             ],
@@ -3030,6 +3031,262 @@
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Enemy hit Sparks",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1403453620,
+            "ParentUID": 1908694898,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                1.9073486328125e-06,
+                1.2805080413818359,
+                0
+            ],
+            "Rotation": [
+                3.6711181650161961e-08,
+                -0.98883938789367676,
+                3.6711181650161961e-08,
+                0.14898547530174255
+            ],
+            "Scale": [
+                1,
+                1,
+                0.99999982118606567
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "EnemyHit",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1246731835,
+            "ParentUID": 1403453620,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                -1.7763568394002505e-15,
+                -6.2243496150977094e-16,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 0.1379999965429306,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1755453139.dds",
+                            "texUID": 1755453139,
+                            "paEmitterName": "Empty",
+                            "paLifeTime": [
+                                0.05000000074505806,
+                                0.20000000298023224
+                            ],
+                            "paSize": [
+                                0.05000000074505806,
+                                0.20000000298023224
+                            ],
+                            "paColor": [
+                                0.9686274528503418,
+                                0.074509806931018829,
+                                0.074509806931018829,
+                                1
+                            ],
+                            "paPerSec": 101,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        0,
+                                        0
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        -26,
+                                        29
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0.41739130020141602,
+                                                0,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.66926074028015137,
+                                                0.10017256438732147,
+                                                0.039061911404132843,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 1,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeSphereRadius": 0.05000000074505806,
+                                    "PaShapeSphereDirection": true,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 1,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/2134419253.dds",
+                            "texUID": 2134419253,
+                            "paEmitterName": "Empty",
+                            "paLifeTime": [
+                                0.05000000074505806,
+                                0.20000000298023224
+                            ],
+                            "paSize": [
+                                0.05000000074505806,
+                                0.20000000298023224
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 200,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    "paFOLT_magnitude": 0,
+                                    "paFOLT_gravityMod": 0.05000000074505806,
+                                    "paFOLT_gravity": -0.49000000953674316,
+                                    "paFOLT_forceType": 0
+                                },
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        0,
+                                        0
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        -9,
+                                        8
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.96470588445663452,
+                                                0.070588238537311554,
+                                                0.070588238537311554,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.63035023212432861,
+                                                0.026979973539710045,
+                                                0.026979973539710045,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.61089491844177246,
+                                                0.16639162600040436,
+                                                0.16639162600040436,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 0.10000000149011612,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeSphereRadius": 0.0099999997764825821,
+                                    "PaShapeSphereDirection": false,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 1,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
                 }
             ]
         }

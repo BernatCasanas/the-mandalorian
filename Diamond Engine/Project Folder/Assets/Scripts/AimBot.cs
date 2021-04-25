@@ -79,7 +79,7 @@ public class AimBot : DiamondComponent
         Debug.Log("Enemies searching num: " + EnemyManager.currentEnemies.Count.ToString());
         for (int i = 0; i < EnemyManager.currentEnemies.Count; ++i)
         {
-            float targetWeight = GetTargetWeight(EnemyManager.currentEnemies[i]);
+            float targetWeight = GetTargetWeight(EnemyManager.currentEnemies[i],maxRange,dotMin);
 
 
             if (targetWeight > weightedObj.Key)
@@ -102,8 +102,46 @@ public class AimBot : DiamondComponent
         }
     }
 
+    //Search for objective raw. Returns a game object given max search dist and an angle in degrees for the aim cone
+    public GameObject SearchForNewObjRaw(float coneAngleDeg,float maxSearchDist)
+    {
+        if (EnemyManager.currentEnemies == null)
+        {
+            return null;
+        }
 
-    float GetTargetWeight(GameObject target)
+        float newAngleRad = coneAngleDeg * (1 / Mathf.Rad2Deg);
+        float newDotMin = (float)Math.Cos(newAngleRad * 0.5f);
+
+        //Debug.Log("Searching for a new objective!");
+        KeyValuePair<float, GameObject> weightedObj = new KeyValuePair<float, GameObject>(float.NegativeInfinity, null);
+
+        Debug.Log("Enemies searching num: " + EnemyManager.currentEnemies.Count.ToString());
+        for (int i = 0; i < EnemyManager.currentEnemies.Count; ++i)
+        {
+            float targetWeight = GetTargetWeight(EnemyManager.currentEnemies[i],maxRange, newDotMin);
+
+
+            if (targetWeight > weightedObj.Key)
+            {
+                weightedObj = new KeyValuePair<float, GameObject>(targetWeight, EnemyManager.currentEnemies[i]);
+            }
+        }
+
+        if (weightedObj.Key != float.NegativeInfinity)
+        {
+            return weightedObj.Value;
+        }
+        else
+        {
+            Debug.Log("No Objective found!!");
+            return null;
+        }
+
+
+    }
+
+    float GetTargetWeight(GameObject target,float myMaxRange,float minDotProduct)
     {
         float newDistanceWeight = 0.0f;
         float newAngleWeight = 0.0f;
@@ -117,15 +155,15 @@ public class AimBot : DiamondComponent
         float targetDot = Vector3.Dot(myForward, targetDirection);
 
 
-        if (distance <= maxRange)
+        if (distance <= myMaxRange)
         {
-            newDistanceWeight = ((maxRange - distance) / maxRange) * distanceWeight;//number between 0 & 1 being 1 when the distance is the smallest *distance weight
+            newDistanceWeight = ((myMaxRange - distance) / myMaxRange) * distanceWeight;//number between 0 & 1 being 1 when the distance is the smallest *distance weight
             //newDistanceWeight = (1 / distance) * distanceWeight;//TODO simplification
         }
 
-        if (targetDot >= dotMin)
+        if (targetDot >= minDotProduct)
         {
-            newAngleWeight = Mathf.InvLerp(dotMin, 1.0f, targetDot) * angleWeight;
+            newAngleWeight = Mathf.InvLerp(minDotProduct, 1.0f, targetDot) * angleWeight;
             //newAngleWeight = targetDot * angleWeight;//TODO simplification
         }
 
@@ -156,4 +194,6 @@ public class AimBot : DiamondComponent
         //Debug.Log("ROTATE ANGLE: " + angle.ToString());
 
     }
+
+
 }
