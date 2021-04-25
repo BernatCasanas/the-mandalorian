@@ -273,7 +273,8 @@ public class Core : DiamondComponent
                 GameObject hit = null;
                 if (RayCastObj != null)
                 {
-                    hit = InternalCalls.RayCast(RayCastObj.transform.globalPosition, RayCastObj.transform.GetForward(), 100);
+                    float hitDistance = 0;
+                    hit = InternalCalls.RayCast(RayCastObj.transform.globalPosition, RayCastObj.transform.GetForward(), 100, ref hitDistance);
 
                 }
                 else
