@@ -29,6 +29,10 @@ public class BabyYoda : DiamondComponent
     private static int skillPushForceCost = 40;
     private static int skillWallForceCost = 60;
 
+    //Push
+    public float pushHorizontalForce = 100;
+    public float pushVerticalForce = 10;
+    public float PushStun = 2;
 
     //State (INPUT AND STATE LOGIC)
     #region STATE
