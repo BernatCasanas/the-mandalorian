@@ -13,9 +13,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                -2.8215928077697754,
-                -6.4206609725952148
+                -14.378262519836426,
+                6.881080150604248,
+                -10.026456832885742
             ],
             "Rotation": [
                 0,
@@ -36,7 +36,7 @@
             ]
         },
         {
-            "name": "Particle System",
+            "name": "Circles",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -71,7 +71,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -256,6 +256,142 @@
                     "Type": 21,
                     "Active": true,
                     "billboardAlignment": 3,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "Particle System",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1564790699,
+            "ParentUID": 2033734359,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": true,
+                    "looping": true,
+                    "maxDuration": 5.1050000190734863,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/39569920.dds",
+                            "texUID": 39569920,
+                            "paEmitterName": "Damage",
+                            "paLifeTime": [
+                                0.80000001192092896,
+                                0.80000001192092896
+                            ],
+                            "paSize": [
+                                1,
+                                1
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 1000,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        -14.378000259399414,
+                                        8,
+                                        -10.026000022888184
+                                    ],
+                                    "paFOLT_magnitude": 10,
+                                    "paFOLT_gravityMod": 0,
+                                    "paFOLT_gravity": -0,
+                                    "paFOLT_forceType": 1
+                                },
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0,
+                                                0,
+                                                0.46640318632125854
+                                            ],
+                                            "paColorOLTposition": 0.14864785969257355
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0.35573124885559082,
+                                                0,
+                                                0.52964425086975098
+                                            ],
+                                            "paColorOLTposition": 0.95675694942474365
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0.039999999105930328,
+                                    "paSizeOLTEndSize": 0.019999999552965164
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 2,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeCircumferenceinnerRadius": 2.4000000953674316,
+                                    "PaShapeCircumferenceoutterRadius": 2.5,
+                                    "PaShapeCircumferenceDirection": false,
+                                    "PaShapeCircumferenceAngle": 0,
+                                    "paShapeType": 3,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
                     "horizantalAligned": true
                 }
             ]
