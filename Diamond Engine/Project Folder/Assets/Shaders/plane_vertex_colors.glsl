@@ -37,7 +37,7 @@ struct LightInfo
 	float specularValue;
 	
 	bool calculateShadows;
-	bool active;
+	bool activeLight;
 
 };
 
@@ -101,7 +101,7 @@ struct LightInfo
 	float specularValue;
 	
 	bool calculateShadows;
-	bool active;
+	bool activeLight;
 };
 
 struct AreaLightInfo 
@@ -114,7 +114,7 @@ struct AreaLightInfo
 	float lightIntensity;
 	float specularValue;
 	
-	bool active;
+	bool activeLight;
 
 };
 
@@ -201,7 +201,7 @@ vec3 CalculateDirectionalLight()
     
     for (int i = 0; i < 2; i++)
     {
-    	if (lightInfo[i].active == true)
+    	if (lightInfo[i].activeLight == true)
     	{
     		vec3 lightDir = normalize(fs_in.TangentLightPos[i] - vec3(0, 0, 0));
     
@@ -231,7 +231,7 @@ vec3 CalculatePointLight()
     
     for (int i = 0; i < 5; i++)
     {
-		if (areaLightInfo[i].active == true)
+		if (areaLightInfo[i].activeLight == true)
 		{
     		vec3 lightDir = normalize(areaLightInfo[i].lightPosition - fs_in.FragPos);
     
@@ -266,6 +266,7 @@ void main()
     	color = vec4(directionalLight * fs_in.vertexColor, 1.0);
 }
 #endif
+
 
 
 
