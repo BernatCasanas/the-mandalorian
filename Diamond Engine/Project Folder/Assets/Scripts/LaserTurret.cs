@@ -55,6 +55,7 @@ public class LaserTurret : Enemy
 
     private Vector3[] laserDirections;
     public int lasersNumber = 4;
+    public float laserOffser;
 
     public void Awake()
     {
@@ -322,13 +323,14 @@ public class LaserTurret : Enemy
 
         for (int i = 0; i < laserDirections.Length; i++)
         {
-            GameObject hit = InternalCalls.RayCast(gameObject.transform.globalPosition + Vector3.up, laserDirections[i], laserRange);
+            GameObject hit = InternalCalls.RayCast(gameObject.transform.globalPosition + Vector3.up + (laserDirections[i] * laserOffser), laserDirections[i], laserRange);
             if (hit != null)
             {
                 //Debug.Log("Hit");
                 if (hit.CompareTag("Player"))
                     Debug.Log("Player");
 
+                Debug.Log(hit.tag);
 
                 PlayerHealth health = hit.GetComponent<PlayerHealth>();
                 if (health != null)
@@ -338,7 +340,7 @@ public class LaserTurret : Enemy
                 }
             }
 
-            InternalCalls.DrawRay(gameObject.transform.globalPosition + Vector3.up, gameObject.transform.globalPosition + Vector3.up + (laserDirections[i] * laserRange), new Vector3(1, 0, 0));
+            InternalCalls.DrawRay(gameObject.transform.globalPosition + Vector3.up /*+ (laserDirections[i] * laserOffser)*/, gameObject.transform.globalPosition + Vector3.up + (laserDirections[i] * laserRange), new Vector3(1, 0, 0));
             //Debug.Log(laserPoints[i].ToString());
         }
     }
