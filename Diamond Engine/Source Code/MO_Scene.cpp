@@ -241,9 +241,14 @@ void M_Scene::ReplaceScriptsReferences(uint oldUID, uint newUID)
 
 	if (referenceIt != referenceMap.end())
 	{
-		referenceMap.emplace(newUID, referenceIt->second);
+		AddToReferenceMap(newUID, referenceIt->second);
 		referenceMap.erase(oldUID);
 	}
+}
+
+void M_Scene::AddToReferenceMap(uint UID, SerializedField* fieldToAdd)
+{
+	referenceMap.emplace(UID, fieldToAdd);
 }
 
 void M_Scene::LoadScriptsData(GameObject* rootObject)
@@ -257,6 +262,9 @@ void M_Scene::LoadScriptsData(GameObject* rootObject)
 		// Now render out that whole range
 		for (auto d = range.first; d != range.second; ++d)
 		{
+			//if (d->second->fiValue.goValue != nullptr)
+				//continue;
+
 			if (rootObject != nullptr)
 			{
 				GameObject* gameObject = GetGOFromUID(rootObject, d->first);
@@ -271,7 +279,7 @@ void M_Scene::LoadScriptsData(GameObject* rootObject)
 				d->second->fiValue.goValue = GetGOFromUID(EngineExternal->moduleScene->root, d->first);
 			}
 
-			if (d->second->fiValue.goValue)
+			if (d->second->fiValue.goValue != nullptr)
 			{
 				//d->second->goUID = d->first;
 
