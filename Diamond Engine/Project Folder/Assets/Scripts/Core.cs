@@ -87,6 +87,7 @@ public class Core : DiamondComponent
     private bool dashAvailable = true;
     private float timeSinceLastDash = 0.0f;
     public GameObject RayCastObj = null;
+    private Vector3 dashDirection = new Vector3(0, 0, 0);
 
     // Shooting
     public float baseFireRate = 0.2f;
@@ -188,6 +189,8 @@ public class Core : DiamondComponent
         myAimbot = gameObject.GetComponent<AimBot>();
 
         currFireRate = baseFireRate;
+
+        timeToPerfectChargeEnd = timeToPerfectCharge + (0.016f * framesForPerfectCharge);
 
         grenadesFireRate = 4.0f;
         #endregion
@@ -339,18 +342,6 @@ public class Core : DiamondComponent
                     skill_damageReductionDashActive = false;
             }
         }
-
-        if (currentState == STATE.CHARGING_SEC_SHOOT)
-        {
-            chargeTimer += Time.deltaTime;
-
-            if (chargeTimer >= timeToAutomaticallyShootCharge)
-            {
-                inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
-            }
-
-        }
-
 
         timeSinceLastDash += Time.deltaTime;
     }
@@ -578,8 +569,8 @@ public class Core : DiamondComponent
                     {
                         case INPUT.IN_CHARGE_SEC_SHOOT_END:
                             currentState = STATE.SECONDARY_SHOOT;
-                            EndShootCharge();
                             StartSecondaryShoot();
+                            EndShootCharge();
                             break;
 
                         case INPUT.IN_DASH:
@@ -825,7 +816,14 @@ public class Core : DiamondComponent
     private void UpdateSecondaryShootCharge()
     {
         if (IsJoystickMoving() == true)
-            RotatePlayer();
+            RotatePlayer(0.25f);
+
+        chargeTimer += Time.deltaTime;
+
+        if (chargeTimer >= timeToAutomaticallyShootCharge)
+        {
+            inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
+        }
     }
 
     private void StartSecondaryShoot()
@@ -867,12 +865,15 @@ public class Core : DiamondComponent
         Input.PlayHaptic(.5f, 10);
 
 
+
+        GameObject aimHelpTarget = myAimbot.SearchForNewObjRaw(15, myAimbot.maxRange);
+
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/739906161.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, null);
         if (bullet != null)
         {
             Debug.Log("Charged Bullet Shot!");
             ReducePrimaryWeaponHeat(10);
-            
+
             ChargedBullet chrBulletComp = bullet.GetComponent<ChargedBullet>();
 
             if (chrBulletComp != null)
@@ -892,10 +893,14 @@ public class Core : DiamondComponent
                 {
                     float dmgMult = Mathf.InvLerp(0.0f, timeToPerfectCharge, chargeTimer);
 
-                    dmgMult = Math.Max(dmgMult, 0.1f);
+                    dmgMult = Math.Max(dmgMult, 0.15f);
+
 
                     bulletDamage = (chargedBulletDmg * dmgMult);
+
+                    bulletDamage = Math.Max(bulletDamage, 1f);
                 }
+                Debug.Log("Charge Bullet dmg: " + bulletDamage.ToString());
 
                 //if (Skill_Tree_Data.instance != null)
                 //{
@@ -908,6 +913,12 @@ public class Core : DiamondComponent
 
 
                 chrBulletComp.InitChargedBullet(bulletDamage);
+
+                if(aimHelpTarget != null)
+                {
+                    chrBulletComp.SetTarget(aimHelpTarget.transform.globalPosition);
+                }
+
             }
 
 
@@ -933,7 +944,10 @@ public class Core : DiamondComponent
     {
         StopPlayer();
         //gameObject.AddForce(gameObject.transform.GetForward().normalized * dashSpeed);
-        gameObject.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.GetForward().normalized * dashSpeed * Time.deltaTime;
+
+        Vector3 dashDir = dashDirection.magnitude != 0 ? dashDirection.normalized : gameObject.transform.GetForward().normalized;
+
+        gameObject.transform.localPosition = gameObject.transform.localPosition + dashDir * dashSpeed * Time.deltaTime;
         distanceMoved += dashSpeed * Time.deltaTime;
     }
 
@@ -1004,7 +1018,7 @@ public class Core : DiamondComponent
         gameObject.SetVelocity(new Vector3(0, 0, 0));
     }
 
-    private void RotatePlayer()
+    private void RotatePlayer(float slerpValue = 1f)
     {
         //Calculate player rotation
         Vector3 aX = new Vector3(gamepadInput.x, 0, (gamepadInput.y + 1) * -1);
@@ -1025,7 +1039,8 @@ public class Core : DiamondComponent
         //Convert angle from world view to orthogonal view
         angle += 0.785398f; //Rotate 45 degrees to the right
 
-        gameObject.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, (float)-angle);
+        gameObject.transform.localRotation = Quaternion.Slerp(gameObject.transform.localRotation, Quaternion.RotateAroundAxis(Vector3.up, (float)-angle), slerpValue);
+
     }
     #endregion
 

@@ -108,4 +108,9 @@ public class ChargedBullet : DiamondComponent
         }
     }
 
+    public void SetTarget(Vector3 targetPosition)
+    {
+        Mathf.LookAt(ref this.gameObject.transform, targetPosition);
+    }
+
 }
