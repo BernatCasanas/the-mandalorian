@@ -952,7 +952,7 @@ void ModuleRenderer3D::PushLightUniforms(ResourceMaterial* material)
 
 	for (int i = 0; i < directLightVector.size(); ++i)
 	{
-		sprintf(buffer, "lightInfo[%i].active", i);
+		sprintf(buffer, "lightInfo[%i].activeLight", i);
 		GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
 		glUniform1i(modelLoc, true);
 
@@ -961,14 +961,14 @@ void ModuleRenderer3D::PushLightUniforms(ResourceMaterial* material)
 
 	for (int i = directLightVector.size(); i < MAX_DIRECTIONAL_LIGHTS; ++i)
 	{
-		sprintf(buffer, "lightInfo[%i].active", i);
+		sprintf(buffer, "lightInfo[%i].activeLight", i);
 		GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
 		glUniform1i(modelLoc, false);
 	}
 
 	for (int i = 0; i < areaLightVector.size(); ++i)
 	{
-		sprintf(buffer, "areaLightInfo[%i].active", i);
+		sprintf(buffer, "areaLightInfo[%i].activeLight", i);
 		GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
 		glUniform1i(modelLoc, true);
 
@@ -977,7 +977,7 @@ void ModuleRenderer3D::PushLightUniforms(ResourceMaterial* material)
 
 	for (int i = areaLightVector.size(); i < MAX_AREA_LIGHTS; ++i)
 	{
-		sprintf(buffer, "areaLightInfo[%i].active", i);
+		sprintf(buffer, "areaLightInfo[%i].activeLight", i);
 		GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
 		glUniform1i(modelLoc, false);
 	}
