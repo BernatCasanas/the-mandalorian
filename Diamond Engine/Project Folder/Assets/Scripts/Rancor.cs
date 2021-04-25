@@ -1308,6 +1308,47 @@ public class Rancor : DiamondComponent
                 inputsList.Add(RANCOR_INPUT.IN_DEAD);
             }
         }
+        else if (collidedGameObject.CompareTag("ChargeBullet"))
+        {
+            float damageToBoss = 0f;
+
+            ChargedBullet bulletScript = collidedGameObject.GetComponent<ChargedBullet>();
+
+            if (bulletScript != null)
+            {
+                damageToBoss += bulletScript.damage;
+            }
+            else
+            {
+                Debug.Log("The collider with tag Bullet didn't have a bullet Script!!");
+            }
+
+            if (skill_increaseDamageToBossActive)
+            {
+                damageToBoss *= (1.0f + skill_increaseDamageToBossAmount);
+            }
+
+            TakeDamage(damageToBoss);
+            Debug.Log("Rancor HP: " + healthPoints.ToString());
+            damaged = 1.0f;
+            //CHANGE FOR APPROPIATE RANCOR HIT
+            Audio.PlayAudio(gameObject, "Play_Rancor_Hit");
+
+            if (Core.instance.hud != null)
+            {
+                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                {
+                    hudComponent.AddToCombo(55, 0.25f);
+                }
+            }
+
+            if (currentState != RANCOR_STATE.DEAD && healthPoints <= 0.0f)
+            {
+                inputsList.Add(RANCOR_INPUT.IN_DEAD);
+            }
+        }
         else if (collidedGameObject.CompareTag("Grenade"))
         {
             //bigGrenade bGrenade = collidedGameObject.GetComponent<bigGrenade>();

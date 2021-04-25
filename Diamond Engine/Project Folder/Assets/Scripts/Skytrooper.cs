@@ -632,6 +632,28 @@ public class Skytrooper : Enemy
                 skill_slowDownTimer = 0.0f;
             }
         }
+        else if (collidedGameObject.CompareTag("ChargeBullet"))
+        {
+            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+
+            Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
+
+            if (Core.instance.hud != null)
+            {
+                Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
+            }
+
+            if (currentState != STATE.DIE && healthPoints <= 0.0f)
+            {
+                inputsList.Add(INPUT.IN_DIE);
+            }
+
+            if (skill_slowDownEnabled)
+            {
+                skill_slowDownActive = true;
+                skill_slowDownTimer = 0.0f;
+            }
+        }
         else if (collidedGameObject.CompareTag("Grenade"))
         {
             //healthPoints -= collidedGameObject.GetComponent<smallGrenade>().damage;

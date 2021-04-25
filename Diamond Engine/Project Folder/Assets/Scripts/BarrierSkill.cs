@@ -114,5 +114,20 @@ public class BarrierSkill : DiamondComponent
             }
 
         }
+        else if (collidedGameObject.CompareTag("ChargeBullet"))
+        {
+            ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
+
+            if (bullet != null)
+            {
+                currHP -= bullet.damage;
+
+                if (currHP < 0.0f)
+                {
+                    Die();
+                }
+            }
+
+        }
     }
 }

@@ -593,6 +593,33 @@ public class Bantha : Enemy
                 }
             }
         }
+        else if (collidedGameObject.CompareTag("ChargeBullet"))
+        {
+            ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
+            if (bullet != null)
+            {
+                healthPoints -= bullet.damage;
+
+                Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
+
+                if (Core.instance.hud != null)
+                {
+                    HUD hud = Core.instance.hud.GetComponent<HUD>();
+
+                    if (hud != null)
+                        hud.AddToCombo(55, 0.2f);
+                }
+
+                if (currentState != STATE.DIE && healthPoints <= 0.0f)
+                    inputsList.Add(INPUT.IN_DIE);
+
+                if (skill_slowDownEnabled)
+                {
+                    skill_slowDownActive = true;
+                    skill_slowDownTimer = 0.0f;
+                }
+            }
+        }
         else if (collidedGameObject.CompareTag("Grenade"))
         {
             smallGrenade smallGrenade = collidedGameObject.GetComponent<smallGrenade>();

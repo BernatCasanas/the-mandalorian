@@ -30,7 +30,7 @@ public class BH_DestructBox : DiamondComponent
 
 	public void OnTriggerEnter(GameObject triggeredGameObject)
 	{
-		if(triggeredGameObject.CompareTag("Bullet"))
+		if(triggeredGameObject.CompareTag("Bullet") || triggeredGameObject.CompareTag("ChargeBullet"))
         {
 			if (explosion != null && wave != null)
 			{

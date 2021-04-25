@@ -755,6 +755,31 @@ public class StormTrooper : Enemy
                 skill_slowDownTimer = 0.0f;
             }
         }
+        else if (collidedGameObject.CompareTag("ChargeBullet"))
+        {
+
+            ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
+
+            if (bullet != null)
+                TakeDamage(bullet.damage);
+
+            Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
+
+            if (Core.instance.hud != null)
+            {
+                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                    hudComponent.AddToCombo(55, 0.25f);
+            }
+
+
+            if (skill_slowDownEnabled)
+            {
+                skill_slowDownActive = true;
+                skill_slowDownTimer = 0.0f;
+            }
+        }
         else if (collidedGameObject.CompareTag("Grenade"))
         {
             if (Core.instance.hud != null)

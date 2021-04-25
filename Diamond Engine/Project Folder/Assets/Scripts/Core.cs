@@ -123,6 +123,7 @@ public class Core : DiamondComponent
     private float timeToPerfectChargeEnd = 0f;
     public float timeToAutomaticallyShootCharge = 2.296f;
     private float chargeTimer = 0.0f;
+    public float chargedBulletDmg = 0f;
 
     //Animations
     private float shootAnimationTotalTime = 0.0f;
@@ -843,10 +844,10 @@ public class Core : DiamondComponent
 
         }
 
-        ShootPerfectShot(perfectShot);
+        ShootChargeShot(perfectShot, chargeTimer);
     }
 
-    private void ShootPerfectShot(bool perfectShot)
+    private void ShootChargeShot(bool perfectShot, float chargeTimer)
     {
 
         inputsList.Add(INPUT.IN_SEC_SHOOT_END);
@@ -861,16 +862,44 @@ public class Core : DiamondComponent
         Audio.PlayAudio(shootPoint, "Play_Blaster_Shoot_Mando");
         Input.PlayHaptic(.5f, 10);
 
-        Vector3 scale = perfectShot == true ? shootPoint.transform.globalScale : shootPoint.transform.globalScale * 1.5f;
 
-        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1606118587.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, scale);
+        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/739906161.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, null);
         if (bullet != null)
         {
             Debug.Log("Charged Bullet Shot!");
             ReducePrimaryWeaponHeat(10);
+            
+            ChargedBullet chrBulletComp = bullet.GetComponent<ChargedBullet>();
 
-            if (skill_extraDamageActive) bullet.GetComponent<BH_Bullet>().damage = GetExtraDamageWithSkill();
-            else bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
+            if (chrBulletComp != null)
+            {
+                float bulletDamage = chargedBulletDmg;
+
+                if (perfectShot == true)
+                {
+                    bulletDamage *= 1.3f;
+                    bullet.transform.localScale *= 1.2f;
+                }
+                else if (chargeTimer > timeToPerfectChargeEnd)
+                {
+                    bulletDamage = (chargedBulletDmg * 0.8f);
+                }
+                else
+                {
+                    float dmgMult = Mathf.InvLerp(0.0f, timeToPerfectCharge, chargeTimer);
+
+                    dmgMult = Math.Max(dmgMult, 0.1f);
+
+                    bulletDamage = (chargedBulletDmg * dmgMult);
+                }
+
+                chrBulletComp.InitChargedBullet(bulletDamage);
+            }
+
+
+
+            //if (skill_extraDamageActive) bullet.GetComponent<BH_Bullet>().damage = GetExtraDamageWithSkill();
+            //else bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
 
         }
     }

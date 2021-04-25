@@ -302,6 +302,22 @@ public class Wampa : Bosseslv2
                 inputsList.Add(BOSS_INPUT.IN_DEAD);
             }
         }
+        else if (collidedGameObject.CompareTag("ChargeBullet"))
+        {
+            healthPoints -= collidedGameObject.GetComponent<ChargedBullet>().damage;
+            Debug.Log("Wampa HP: " + healthPoints.ToString());
+            //damaged = 1.0f; this is HUD things
+
+            if (Core.instance.hud != null)
+            {
+                Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
+            }
+
+            if (currentState != BOSS_STATE.DEAD && healthPoints <= 0.0f)
+            {
+                inputsList.Add(BOSS_INPUT.IN_DEAD);
+            }
+        }
         else if (collidedGameObject.CompareTag("Grenade"))
         {
             bigGrenade bGrenade = collidedGameObject.GetComponent<bigGrenade>();
