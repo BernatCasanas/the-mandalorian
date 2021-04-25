@@ -5,7 +5,7 @@ using DiamondEngine;
 public class BabyYoda : DiamondComponent
 {
     public static BabyYoda instance;
-
+    private Core Mando = null;
     //Vertical Movement
     public float verticalSpeed = 0.8f;
 
@@ -102,16 +102,19 @@ public class BabyYoda : DiamondComponent
         currentForce = totalForce;
         flipVertical = false;
 
-        if (Core.instance != null)
-        {
-            Transform playerTransform = Core.instance.gameObject.transform;
-            pointToFollow = playerTransform.globalPosition + (Vector3.up * 1.5f) - playerTransform.GetForward() + (playerTransform.GetRight() * 0.5f);
-            gameObject.transform.localPosition = pointToFollow;
-        }
+     
     }
 
     public void Update()
     {
+        if (Mando == null && Core.instance != null)
+        {
+            Mando = Core.instance;
+            Transform playerTransform = Mando.gameObject.transform;
+            pointToFollow = playerTransform.globalPosition + (Vector3.up * 1.5f) - playerTransform.GetForward() + (playerTransform.GetRight() * 0.5f);
+            gameObject.transform.localPosition = pointToFollow;
+        }
+
         UpdateState();
         Move();
         UpdateHUD();

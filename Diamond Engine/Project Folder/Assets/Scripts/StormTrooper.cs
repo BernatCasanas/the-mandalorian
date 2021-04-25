@@ -88,7 +88,6 @@ public class StormTrooper : Enemy
     {
         Debug.Log("Stormtrooper Awake");
 
-        player = Core.instance.gameObject;
 
         agent = gameObject.GetComponent<NavMeshAgent>();
         targetPosition = null;
@@ -125,7 +124,6 @@ public class StormTrooper : Enemy
     {
         if (player == null)
         {
-            Debug.Log("Null player");
             player = Core.instance.gameObject;
         }
 
