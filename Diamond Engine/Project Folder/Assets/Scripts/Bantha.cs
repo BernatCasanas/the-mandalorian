@@ -179,7 +179,7 @@ public class Bantha : Enemy
             {
                 skill_slowDownTimer = 0.0f;
                 skill_slowDownActive = false;
-            }            
+            }
         }
     }
 
@@ -188,7 +188,7 @@ public class Bantha : Enemy
     {
         if (currentState != STATE.DIE)
         {
-            if (InRange(player.transform.globalPosition, detectionRange))
+            if (InRange(player.transform.globalPosition, detectionRange) && agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition))
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
             }
@@ -199,6 +199,12 @@ public class Bantha : Enemy
         }
         if (currentState == STATE.RUN)
         {
+            if (agent == null)
+            {
+                inputsList.Add(INPUT.IN_IDLE);
+                Debug.Log("My agent is null :)");
+            }
+
             if (!InRange(player.transform.globalPosition, detectionRange))
             {
                 inputsList.Add(INPUT.IN_WANDER);
@@ -454,7 +460,7 @@ public class Bantha : Enemy
         Animator.Play(gameObject, "BT_Idle");
         Audio.PlayAudio(gameObject, "Play_Bantha_Breath");
         stun.Play();
-}
+    }
     #endregion
 
     #region RUN
@@ -465,7 +471,13 @@ public class Bantha : Enemy
     private void UpdateRun()
     {
         if (player != null)
-            agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition);
+        {
+            if (agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition) == false)
+            {
+                inputsList.Add(INPUT.IN_IDLE);
+                return;
+            }
+        }
 
         LookAt(agent.GetDestination());
         if (skill_slowDownActive)
@@ -633,13 +645,13 @@ public class Bantha : Enemy
     private void StartPush()
     {
         Vector3 force = gameObject.transform.globalPosition - player.transform.globalPosition;
-        if(BabyYoda.instance != null)
+        if (BabyYoda.instance != null)
         {
             force.y = BabyYoda.instance.pushVerticalForce * forcePushMod;
             gameObject.AddForce(force * BabyYoda.instance.pushHorizontalForce * forcePushMod);
             pushTimer = 0.0f;
         }
-      
+
     }
     private void UpdatePush()
     {
@@ -684,7 +696,7 @@ public class Bantha : Enemy
                 {
                     skill_slowDownActive = true;
                     skill_slowDownTimer = 0.0f;
-                }                
+                }
             }
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))
@@ -735,7 +747,7 @@ public class Bantha : Enemy
             {
                 skill_slowDownActive = true;
                 skill_slowDownTimer = 0.0f;
-            }            
+            }
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))
         {
@@ -789,8 +801,6 @@ public class Bantha : Enemy
         }
 
     }
-
-   
 
     public void StraightPath()
     {
