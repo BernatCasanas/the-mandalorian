@@ -134,6 +134,7 @@ public class Core : DiamondComponent
     int horizontalInput = 0;
     Vector3 gamepadInput = Vector3.zero;
     public bool lockInputs = false;
+    private bool lockAttacks = false;
 
     //For Pause
     public GameObject background = null;
@@ -165,29 +166,6 @@ public class Core : DiamondComponent
         //Dash - if scene doesnt have its values
         //dashDuration = 0.2f;
         //dashDistance = 4.5f;
-        hud = InternalCalls.FindObjectWithName("HUD");
-
-        if (hud == null)
-            Debug.Log("Core: HUD not found");
-
-        pause = InternalCalls.FindObjectWithName("PauseMenu");
-
-        if (pause == null)
-            Debug.Log("Core: Pause menu not found");
-
-        background = InternalCalls.FindObjectWithName("Background");
-
-        if (pause == null)
-            Debug.Log("Core: Background not found");
-
-        GameObject grenadeCooldown = InternalCalls.FindObjectWithName("GrenadeCooldownIcon");
-        if (grenadeCooldown != null)
-            grenadeCooldownIcon = grenadeCooldown.GetComponent<Material>();
-
-        GameObject lockInputsScene = InternalCalls.FindObjectWithName("LockInputsBool");
-
-        if (lockInputsScene != null)
-            lockInputs = true;
 
         #endregion
 
@@ -242,6 +220,30 @@ public class Core : DiamondComponent
         // Placeholder for Start() function
         if (scriptStart == true)
         {
+            hud = InternalCalls.FindObjectWithName("HUD");
+
+            if (hud == null)
+                Debug.Log("Core: HUD not found");
+
+            pause = InternalCalls.FindObjectWithName("PauseMenu");
+
+            if (pause == null)
+                Debug.Log("Core: Pause menu not found");
+
+            background = InternalCalls.FindObjectWithName("Background");
+
+            if (pause == null)
+                Debug.Log("Core: Background not found");
+
+            GameObject grenadeCooldown = InternalCalls.FindObjectWithName("GrenadeCooldownIcon");
+            if (grenadeCooldown != null)
+                grenadeCooldownIcon = grenadeCooldown.GetComponent<Material>();
+
+            GameObject lockInputsScene = InternalCalls.FindObjectWithName("LockInputsBool");
+
+            if (lockInputsScene != null)
+                lockAttacks = true;
+
             //Start();
             scriptStart = false;
         }
@@ -373,12 +375,12 @@ public class Core : DiamondComponent
 
         if (!lockInputs)
         {
-            if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT) && isPrimaryOverHeat == false)
+            if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT) && isPrimaryOverHeat == false && lockAttacks == false)
             {
                 stopShootingTime = 0f;
                 inputsList.Add(INPUT.IN_SHOOTING);
             }
-            else if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE || isPrimaryOverHeat == true) && hasShot == true)
+            else if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE || isPrimaryOverHeat == true) && hasShot == true && lockAttacks == false)
             {
                 if (CanStopShooting() == true || isPrimaryOverHeat == true || (this.currentState != STATE.SHOOT && this.currentState != STATE.SHOOTING))
                 {
@@ -393,21 +395,22 @@ public class Core : DiamondComponent
             }
 
 
-            if (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_REPEAT)
+            if ((Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_REPEAT) && lockAttacks == false)
+
             {
                 inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT);
             }
-            else if (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_UP)
+            else if (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_UP && lockAttacks == false)
             {
                 inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
             }
 
-            if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false && dashAvailable == true)
+            if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false && dashAvailable == true && lockAttacks == false)
             {
                 inputsList.Add(INPUT.IN_DASH);
                 rightTriggerPressed = true;
             }
-            else if (Input.GetRightTrigger() == 0 && rightTriggerPressed == true)
+            else if (Input.GetRightTrigger() == 0 && rightTriggerPressed == true && lockAttacks == false)
                 rightTriggerPressed = false;
 
 
@@ -425,7 +428,7 @@ public class Core : DiamondComponent
                 Debug.Log("Total distance moved: " + distanceMoved.ToString() + " mandos");
             }
 
-            if (Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_DOWN && grenadesFireRateTimer <= 0.0f)
+            if (Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_DOWN && grenadesFireRateTimer <= 0.0f && lockAttacks == false)
             {
                 inputsList.Add(INPUT.IN_GADGET_SHOOT);
                 grenadesFireRateTimer = grenadesFireRate;
