@@ -76,8 +76,6 @@ public class Pause : DiamondComponent
             {
 				Navigation componentNavigation = default_selected.GetComponent<Navigation>();
 
-				Debug.Log("Get nav component");
-
 				if (componentNavigation != null)
 					componentNavigation.Select();
             }

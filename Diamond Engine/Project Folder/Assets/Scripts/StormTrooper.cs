@@ -83,6 +83,8 @@ public class StormTrooper : Enemy
     public float pushVerticalForce = 10;
     public float PushStun = 2;
 
+    //Death point
+    public GameObject deathPoint = null;
     public void Awake()
     {
         Debug.Log("Stormtrooper Awake");
@@ -115,7 +117,7 @@ public class StormTrooper : Enemy
             spawnparticles.Play();
         }
         else
-        { 
+        {
             //Debug.Log("CAN'T PLAY SPAWN!!!"); 
         }
     }
@@ -126,16 +128,6 @@ public class StormTrooper : Enemy
         {
             Debug.Log("Null player");
             player = Core.instance.gameObject;
-        }
-
-        if (skill_slowDownActive)
-        {
-            skill_slowDownTimer += Time.deltaTime;
-            if (skill_slowDownTimer >= skill_slowDownDuration)
-            {
-                skill_slowDownTimer = 0.0f;
-                skill_slowDownActive = false;
-            }
         }
 
         #region STATE MACHINE
@@ -168,6 +160,16 @@ public class StormTrooper : Enemy
             if (Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance)
             {
                 inputsList.Add(INPUT.IN_IDLE);
+            }
+        }
+
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
+        {
+            skill_slowDownTimer += Time.deltaTime;
+            if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownDuration)
+            {
+                skill_slowDownTimer = 0.0f;
+                skill_slowDownActive = false;
             }
         }
     }
@@ -406,7 +408,8 @@ public class StormTrooper : Enemy
     private void UpdateWander()
     {
         LookAt(agent.GetDestination());
-        if (skill_slowDownActive) agent.MoveToCalculatedPos(wanderSpeed * (1 - skill_slowDownAmount));
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null) 
+            agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownAmount));
         else agent.MoveToCalculatedPos(wanderSpeed);
 
     }
@@ -429,9 +432,9 @@ public class StormTrooper : Enemy
     {
         LookAt(agent.GetDestination());
 
-        if (skill_slowDownActive) 
-            agent.MoveToCalculatedPos(runningSpeed * (1 - skill_slowDownAmount));
-        else 
+        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
+            agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownAmount));
+        else
             agent.MoveToCalculatedPos(runningSpeed);
 
     }
@@ -445,9 +448,9 @@ public class StormTrooper : Enemy
 
     private void StartFindAim()
     {
-        if(agent != null && player != null)
+        if (agent != null && player != null)
         {
-            if(!agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition))
+            if (!agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition))
             {
                 inputsList.Add(INPUT.IN_SHOOT);
                 return;
@@ -471,7 +474,7 @@ public class StormTrooper : Enemy
 
     private void UpdateFindAim()
     {
-        if(targetPosition != null)
+        if (targetPosition != null)
         {
             if (reAimTimer > 0.0f)
             {
@@ -588,7 +591,7 @@ public class StormTrooper : Enemy
                 shotTimer = timeBewteenShots;
             }
         }
-      
+
     }
 
     private void Shoot()
@@ -603,6 +606,9 @@ public class StormTrooper : Enemy
     private void PlayerDetected()
     {
         Audio.PlayAudio(gameObject, "Play_Enemy_Detection");
+        StormTrooperParticles part = gameObject.GetComponent<StormTrooperParticles>();
+        if (part != null && part.alert != null)
+            part.alert.Play();
     }
     #endregion
 
@@ -616,31 +622,6 @@ public class StormTrooper : Enemy
 
         Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
         Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
-
-        ParticleSystem dead = null;
-        ParticleSystem wave = null;
-        ParticleSystem souls = null;
-
-        StormTrooperParticles myParticles = gameObject.GetComponent<StormTrooperParticles>();
-        if(myParticles != null)
-        {
-            dead = myParticles.dead;
-            wave = myParticles.wave;
-            souls = myParticles.souls;
-        }
-
-        if (dead != null)
-        {
-            dead.Play();
-        }
-        if (wave != null)
-        {
-            wave.Play();
-        }
-        if (souls != null)
-        {
-            souls.Play();
-        }
 
         //Combo
         if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
@@ -665,6 +646,9 @@ public class StormTrooper : Enemy
 
     private void Die()
     {
+        float dist = (deathPoint.transform.globalPosition - gameObject.transform.globalPosition).magnitude;
+        Vector3 forward = gameObject.transform.GetForward();
+        forward = forward.normalized * (-dist);
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
         Counter.roomEnemies--;
         Debug.Log("Enemies: " + Counter.roomEnemies.ToString());
@@ -672,10 +656,10 @@ public class StormTrooper : Enemy
         {
             Counter.allEnemiesDead = true;
         }
-        
+
         //Created dropped coins
         var rand = new Random();
-        int droppedCoins = rand.Next(1, 4);        
+        int droppedCoins = rand.Next(1, 4);
         for (int i = 0; i < droppedCoins; i++)
         {
             Vector3 pos = gameObject.transform.globalPosition;
@@ -684,6 +668,7 @@ public class StormTrooper : Enemy
             InternalCalls.CreatePrefab(coinDropPath, pos, Quaternion.identity, new Vector3(0.07f, 0.07f, 0.07f));
         }
         player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+        InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
         InternalCalls.Destroy(gameObject);
     }
 
@@ -701,9 +686,9 @@ public class StormTrooper : Enemy
     private void UpdatePush()
     {
         pushTimer += Time.deltaTime;
-        if(pushTimer >= PushStun)
+        if (pushTimer >= PushStun)
             inputsList.Add(INPUT.IN_IDLE);
-       
+
     }
     #endregion
 
@@ -743,16 +728,18 @@ public class StormTrooper : Enemy
             if (Core.instance.hud != null)
             {
                 HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
-                    
-                if (hudComponent!= null)
+
+                if (hudComponent != null)
                     hudComponent.AddToCombo(25, 0.95f);
             }
 
-
-            if (skill_slowDownEnabled)
+            if (Skill_Tree_Data.instance != null)
             {
-                skill_slowDownActive = true;
-                skill_slowDownTimer = 0.0f;
+                if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
+                {
+                    skill_slowDownActive = true;
+                    skill_slowDownTimer = 0.0f;
+                }
             }
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))
@@ -790,12 +777,13 @@ public class StormTrooper : Enemy
                     hudComponent.AddToCombo(8, 1.5f);
             }
 
-        
-
-            if (skill_slowDownEnabled)
+            if (Skill_Tree_Data.instance != null)
             {
-                skill_slowDownActive = true;
-                skill_slowDownTimer = 0.0f;
+                if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
+                {
+                    skill_slowDownActive = true;
+                    skill_slowDownTimer = 0.0f;
+                }
             }
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))
@@ -815,7 +803,7 @@ public class StormTrooper : Enemy
                 if (currentState != STATE.DIE && healthPoints <= 0.0f)
                     inputsList.Add(INPUT.IN_DIE);
             }
-            
+
         }
 
 
@@ -846,6 +834,6 @@ public class StormTrooper : Enemy
             }
         }
 
-        
+
     }
 }

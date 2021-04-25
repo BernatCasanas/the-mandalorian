@@ -31,9 +31,6 @@ public class SlowGrenade : DiamondComponent
 		if(start == true)
         {
 			start = false;
-
-			Quaternion rotation = Quaternion.RotateAroundAxis(Vector3.up, 0.383972f);
-
 			Vector3 myForce = gameObject.transform.GetForward() * forwardForce;
 
 			myForce.y = upForce;
@@ -66,24 +63,22 @@ public class SlowGrenade : DiamondComponent
 						i--;
 					}
 					else
-                    {
 						script.TakeDamage(damage * Time.deltaTime);
-
-					}
 
 				}
 				else
                 {
-					Rancor RancorScript = enemies[i].GetComponent<Rancor>();
-					if (RancorScript.healthPoints <= 0)
-					{
-						enemies.Remove(enemies[i]);
-						i--;
-					}
-					else
-					{
-						RancorScript.TakeDamage(damage * Time.deltaTime);
+					Rancor rancorScript = enemies[i].GetComponent<Rancor>();
 
+					if (rancorScript != null)
+					{
+						if (rancorScript.healthPoints <= 0)
+						{
+							enemies.Remove(enemies[i]);
+							i--;
+						}
+						else
+							rancorScript.TakeDamage(damage * Time.deltaTime);
 					}
 				}
 				
@@ -106,10 +101,7 @@ public class SlowGrenade : DiamondComponent
 		}
 
 		if (explosionTimer >= explosionTime)
-        {
 			InternalCalls.Destroy(gameObject);
-			
-		}
 	}
 	public void OnTriggerEnter(GameObject triggeredGameObject)
     {

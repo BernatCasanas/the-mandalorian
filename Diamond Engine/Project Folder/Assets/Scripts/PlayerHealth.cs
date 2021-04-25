@@ -9,7 +9,6 @@ public class PlayerHealth : DiamondComponent
     //Bo Katan’s resilience: each time you kill an enemy heal +1 HP.
     //0 means this boon is not working else heal the amount stored here
     public static int healWhenKillingAnEnemy { get; private set; }
-    public static int skill_chanceToAvoidDamage { get; set; }
     public GameObject character_mesh = null;
     public GameObject damage_screen = null;
 
@@ -28,8 +27,6 @@ public class PlayerHealth : DiamondComponent
         else
         { 
             Debug.Log("Damage Screen not found");
-
-            skill_chanceToAvoidDamage = 0;
         }
     }
 
@@ -208,10 +205,16 @@ public class PlayerHealth : DiamondComponent
                 return currHealth;
         }
 
-        if (ChanceToAvoidDamage(skill_chanceToAvoidDamage))
+        if(Skill_Tree_Data.instance != null)
         {
-            Debug.Log("Damage missed!");
-            return currHealth; //We have avoided damage with a skill
+            if(Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE_CHANCE_AVOID_DAMAGE))
+            {
+                if (ChanceToAvoidDamage(Skill_Tree_Data.instance.GetMandoSkillTree().D8_changeToAvoidDamage))
+                {
+                    Debug.Log("Damage missed!");
+                    return currHealth; //We have avoided damage with a skill
+                }
+            }
         }
 
         if (PlayerResources.CheckBoon(BOONS.BOON_BOSSKSTRENGTH))
@@ -272,14 +275,6 @@ public class PlayerHealth : DiamondComponent
         Random rnd = new Random();
         int randomNum = rnd.Next(1, 101);
         return chanceToAvoid >= randomNum;
-    }
-
-    public void SetSkill(string skillName, float value = 0.0f)
-    {
-        if (skillName == "DAvoidDmg")
-        {
-            skill_chanceToAvoidDamage = (int)value;
-        }
     }
 
 

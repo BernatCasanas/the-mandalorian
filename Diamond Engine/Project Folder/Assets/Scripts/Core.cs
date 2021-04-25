@@ -69,13 +69,6 @@ public class Core : DiamondComponent
     private float dustTime = 0.0f;
 
     //Skill
-    private static bool skill_extraDamageActive = false;
-    private static float skill_extraDamageHPStep = 0.0f;
-    private static float skill_extraDamageAmount = 0.0f;
-
-    private static bool skill_damageReductionDashEnabled = false;
-    private static float skill_damageReductionDashDuration = 0.0f;
-    private static float skill_damageReductionDashAmount = 0.0f;
     private float skill_damageReductionDashTimer = 0.0f;
     private bool skill_damageReductionDashActive = false;
 
@@ -113,9 +106,8 @@ public class Core : DiamondComponent
     private float gadgetShootSkill = 0.0f;
 
     //Grenades
-    public static float grenadesFireRate;
+    private static float grenadesFireRate;
     private float grenadesFireRateTimer = 0.0f;
-    //private float grenadesTimer = 0.0f;
 
     // Secondary Shoot (sniper)
     public float timeToPerfectCharge = 0.424f;
@@ -160,7 +152,7 @@ public class Core : DiamondComponent
         // INIT VARIABLES WITH DEPENDENCIES //
         //Animation
         shootAnimationTotalTime = 0.288f;
-        lockInputs = false;
+
         //Dash - if scene doesnt have its values
         //dashDuration = 0.2f;
         //dashDistance = 4.5f;
@@ -178,6 +170,11 @@ public class Core : DiamondComponent
 
         if (pause == null)
             Debug.Log("Core: Background not found");
+
+        GameObject lockInputsScene = InternalCalls.FindObjectWithName("LockInputsBool");
+
+        if (lockInputsScene != null)
+            lockInputs = true;
 
         #endregion
 
@@ -331,12 +328,16 @@ public class Core : DiamondComponent
                 inputsList.Add(INPUT.IN_GADGET_SHOOT_END);
         }
 
-        if (skill_damageReductionDashEnabled && skill_damageReductionDashTimer > 0)
+        if (Skill_Tree_Data.instance != null)
         {
-            skill_damageReductionDashTimer -= Time.deltaTime;
+            if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_DAMAGE_REDUCTION_DASH)
+                && skill_damageReductionDashTimer > 0)
+            {
+                skill_damageReductionDashTimer -= Time.deltaTime;
 
-            if (skill_damageReductionDashTimer <= 0)
-                skill_damageReductionDashActive = false;
+                if (skill_damageReductionDashTimer <= 0)
+                    skill_damageReductionDashActive = false;
+            }
         }
 
         if (currentState == STATE.CHARGING_SEC_SHOOT)
@@ -386,13 +387,6 @@ public class Core : DiamondComponent
                 inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
             }
 
-
-            if (IsJoystickMoving() == true)
-                inputsList.Add(INPUT.IN_MOVE);
-
-            else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
-                inputsList.Add(INPUT.IN_IDLE);
-
             if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false && dashAvailable == true)
             {
                 inputsList.Add(INPUT.IN_DASH);
@@ -422,6 +416,13 @@ public class Core : DiamondComponent
                 grenadesFireRateTimer = grenadesFireRate;
             }
         }
+
+        if (IsJoystickMoving() == true)
+            inputsList.Add(INPUT.IN_MOVE);
+
+        else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
+            inputsList.Add(INPUT.IN_IDLE);
+
         grenadesFireRateTimer -= Time.deltaTime;
 
         timeOfRoom += Time.deltaTime;
@@ -740,11 +741,16 @@ public class Core : DiamondComponent
             AddPrimaryHeat();
             Debug.Log("Bullet Shot!");
 
-            if (skill_extraDamageActive) bullet.GetComponent<BH_Bullet>().damage = GetExtraDamageWithSkill();
-            else bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
-
+            bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
+            if (Skill_Tree_Data.instance != null)
+            {
+                if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_EXTRA_DAMAGE_LOW_HEALTH))
+                {
+                    //If the skill is active, we override the damage amount
+                    bullet.GetComponent<BH_Bullet>().damage = GetExtraDamageWithSkill();
+                }
+            }
         }
-
     }
 
 
@@ -809,12 +815,10 @@ public class Core : DiamondComponent
     {
         chargeTimer = 0f;
         //Animation play :O
-
     }
 
     private void EndShootCharge()
     {
-
         chargeTimer = 0f;
     }
 
@@ -859,7 +863,7 @@ public class Core : DiamondComponent
         }
 
         Audio.StopAudio(gameObject);
-        Audio.PlayAudio(shootPoint, "Play_Blaster_Shoot_Mando");
+        Audio.PlayAudio(shootPoint, "Play_Sniper_Shoot_Mando");
         Input.PlayHaptic(.5f, 10);
 
 
@@ -893,13 +897,19 @@ public class Core : DiamondComponent
                     bulletDamage = (chargedBulletDmg * dmgMult);
                 }
 
+                //if (Skill_Tree_Data.instance != null)
+                //{
+                //    if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_EXTRA_DAMAGE_LOW_HEALTH))
+                //    {
+                //        //If the skill is active, we override the damage amount
+                //        bullet.GetComponent<ChargedBullet>().damage = GetExtraDamageWithSkill();
+                //    }
+                //}
+
+
                 chrBulletComp.InitChargedBullet(bulletDamage);
             }
 
-
-
-            //if (skill_extraDamageActive) bullet.GetComponent<BH_Bullet>().damage = GetExtraDamageWithSkill();
-            //else bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
 
         }
     }
@@ -940,10 +950,13 @@ public class Core : DiamondComponent
         StopPlayer();
         gameObject.transform.localPosition.y = dashStartYPos;
 
-        if (skill_damageReductionDashEnabled)
+        if (Skill_Tree_Data.instance != null)
         {
-            skill_damageReductionDashActive = true;
-            skill_damageReductionDashTimer = skill_damageReductionDashDuration;
+            if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_DAMAGE_REDUCTION_DASH))
+            {
+                skill_damageReductionDashActive = true;
+                skill_damageReductionDashTimer = Skill_Tree_Data.instance.GetMandoSkillTree().U4_seconds;
+            }
         }
     }
 
@@ -1128,8 +1141,8 @@ public class Core : DiamondComponent
                 {
                     int damageFromBullet = 0;
 
-                    if (skill_damageReductionDashActive)
-                        damageFromBullet = (int)(bulletScript.damage * (1.0f - skill_damageReductionDashAmount));
+                    if (skill_damageReductionDashActive && Skill_Tree_Data.instance != null)
+                        damageFromBullet = (int)(bulletScript.damage * (1.0f - Skill_Tree_Data.instance.GetMandoSkillTree().U4_damageReduction));
                     else
                         damageFromBullet = (int)bulletScript.damage;
 
@@ -1155,8 +1168,8 @@ public class Core : DiamondComponent
                     if (damage != 0)
                     {
                         int damageFromEnemy = 0;
-                        if (skill_damageReductionDashActive)
-                            damageFromEnemy = (int)(damage * (1.0f - skill_damageReductionDashAmount));
+                        if (skill_damageReductionDashActive && Skill_Tree_Data.instance != null)
+                            damageFromEnemy = (int)(damage * (1.0f - Skill_Tree_Data.instance.GetMandoSkillTree().U4_damageReduction));
                         else
                             damageFromEnemy = (int)damage;
 
@@ -1177,6 +1190,30 @@ public class Core : DiamondComponent
                     if (sphereColl.active)
                         gameObject.GetComponent<PlayerHealth>().TakeDamage(collidedGameObject.GetComponent<BH_DestructBox>().explosion_damage / 2);
                 }
+            }
+            if (collidedGameObject.CompareTag("SkytrooperAttack"))
+            {
+                //InternalCalls.Destroy(gameObject);
+                PlayParticles(PARTICLES.IMPACT);
+                //BH_Bullet bulletScript = collidedGameObject.GetComponent<BH_Bullet>();
+                Audio.PlayAudio(gameObject, "Play_Mando_Hit");
+
+                //if (bulletScript != null)
+                //{
+                //    int damageFromBullet = 0;
+
+                //    if (skill_damageReductionDashActive)
+                //        damageFromBullet = (int)(bulletScript.damage * (1.0f - skill_damageReductionDashAmount));
+                //    else
+                //        damageFromBullet = (int)bulletScript.damage;
+
+                //    PlayerHealth healthScript = gameObject.GetComponent<PlayerHealth>();
+
+                //    if (healthScript != null)
+                //        healthScript.TakeDamage(damageFromBullet);
+
+                //    damageTaken += damageFromBullet;
+                //}
             }
         }
 
@@ -1287,30 +1324,21 @@ public class Core : DiamondComponent
         }
     }
 
-    public void SetSkill(string skillName, float value1 = 0.0f, float value2 = 0.0f)
-    {
-        if (skillName == "SecondaryDelaySkill") //Secondary Delay Skill
-        {
-            grenadesFireRate -= grenadesFireRate * value1;
-        }
-        else if (skillName == "AggressionHPMissingDamageSkill") //For each 1% of hp missing, gain 1% damage
-        {
-            skill_extraDamageActive = true;
-            skill_extraDamageHPStep = value1;
-            skill_extraDamageAmount = value2;
-        }
-        else if (skillName == "UtilityDamageReductionSkill")
-        {
-            skill_damageReductionDashEnabled = true;
-            skill_damageReductionDashDuration = value1;
-            skill_damageReductionDashAmount = value2;
-        }
-    }
-
     private static float GetExtraDamageWithSkill()
     {
         float HPMissing = 1.0f - ((float)PlayerHealth.currHealth / (float)PlayerHealth.currMaxHealth);
-        return bulletDamage + (bulletDamage * skill_extraDamageAmount * (HPMissing / skill_extraDamageHPStep));
+
+        if (Skill_Tree_Data.instance != null)
+        {
+            float local_damageAmount = Skill_Tree_Data.instance.GetMandoSkillTree().A7_extraDamageAmount;
+            float local_HPStep = Skill_Tree_Data.instance.GetMandoSkillTree().A7_extraDamageHPStep;
+            return bulletDamage + (bulletDamage * local_damageAmount * (HPMissing / local_HPStep));
+        }
+        else
+        {
+            Debug.Log("Error. Skill_Tree_Data.instance is NULL in Core.cs -> function GetExtraDamageWithSkill()");
+            return bulletDamage;
+        }
     }
 
     public void OnApplicationQuit()

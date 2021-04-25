@@ -15,6 +15,7 @@ public class Bosseslv2 : DiamondComponent
     public float probFollow = 60.0f;
     public float probWander = 40.0f;
     public GameObject projectilePoint = null;
+    public Vector3 targetPos = new Vector3(0, 0, 0);
     public float distanceProjectile = 15.0f;
     public float wanderRange = 7.5f;
 
@@ -22,6 +23,7 @@ public class Bosseslv2 : DiamondComponent
     //Private Variables
     public bool resting = false;
     public bool firstShot = true;
+    public bool secondShot = false;
 
     //Stats
     public float healthPoints = 1920.0f;
@@ -40,14 +42,41 @@ public class Bosseslv2 : DiamondComponent
     public float shootingTimer = 0.0f;
     public float dieTime = 2.0f;
     public float dieTimer = 0.0f;
-    public float restingTime = 4.0f;
+    public float restingTime = 3.0f;
     public float restingTimer = 0.0f;
+    public float bounceRushTime = 4.0f;
+    public float bounceRushTimer = 0.0f;
 
     //Atacks
     public float projectileAngle = 30.0f;
     public float projectileRange = 6.0f;
     public float projectileDamage = 10.0f;
     public float rushDamage = 15.0f;
+
+    //Jump Slam
+    private JUMPSLAM jumpslam = JUMPSLAM.NONE;
+    private float jumpslamTimer = 0.0f;
+    private float chargeTime = 1f;
+    private float upTime = 0.3f;
+    private float fallingTime = 1.0f;
+    private float recoveryTime = 0.73f;
+    public float totalJumpSlamTimer = 0.0f;
+    public float totalJumpSlamTime = 3.03f;
+
+    //Bounce Rush
+    private GameObject initTarget;
+    private GameObject finalTarget;
+    private GameObject currentTarget;
+    private bool returnToInitTarget = false;
+
+    enum JUMPSLAM : int
+    {
+        NONE = -1,
+        CHARGE,
+        UP,
+        FALLING,
+        RECOVERY
+    }
 
 
 
@@ -57,9 +86,11 @@ public class Bosseslv2 : DiamondComponent
         Debug.Log("Starting Throwing Projectile");
         shootingTimer = shootingTime;
         firstShot = true;
+        Animator.Play(gameObject, "WP_Projectile");
     }
     public void UpdateProjectile()
     {
+        LookAt(Core.instance.gameObject.transform.globalPosition);
         if (shootingTimer > 0.0f)
         {
             shootingTimer -= Time.deltaTime;
@@ -71,7 +102,7 @@ public class Bosseslv2 : DiamondComponent
                     Quaternion rot = projectilePoint.transform.globalRotation;
                     Vector3 scale = new Vector3(1, 1, 1);
 
-                    //GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/tocreate.prefab", pos, rot, scale);
+                    //GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1052835205.prefab", pos, rot, scale);
                     //projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
                     Debug.Log("Throwing projectile");
 
@@ -79,19 +110,25 @@ public class Bosseslv2 : DiamondComponent
                     {
                         shootingTimer = shootingTime;
                         firstShot = false;
+                        Animator.Play(gameObject, "WP_Projectile");
                     }
+                    else
+                        secondShot = true;
                 }
             }
         }
         Debug.Log("Projectile");
         Debug.Log(shootingTimer.ToString());
-        if(projectilePoint==null) Debug.Log("Prohjectile null");
+        if (projectilePoint == null) Debug.Log("Prohjectile null");
 
     }
 
     public void EndProjectile()
     {
-
+        firstShot = true;
+        secondShot = false;
+        resting = true;
+        restingTimer = restingTime;
     }
     #endregion
 
@@ -100,6 +137,7 @@ public class Bosseslv2 : DiamondComponent
     {
         fastChasingTimer = fastChasingTime;
         Debug.Log("Fast Rush");
+        Animator.Play(gameObject, "WP_Rush");
     }
     public void UpdateFastRush()
     {
@@ -118,9 +156,11 @@ public class Bosseslv2 : DiamondComponent
     {
         slowChasingTimer = slowChasingTime;
         Debug.Log("Slow Rush");
+        Animator.Play(gameObject, "WP_Rush");
     }
     public void UpdateSlowRush()
     {
+        Debug.Log("Slow Rush");
         agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(slowRushSpeed);
@@ -128,7 +168,8 @@ public class Bosseslv2 : DiamondComponent
 
     public void EndSlowRush()
     {
-
+        resting = true;
+        restingTimer = restingTime;
     }
     #endregion
 
@@ -144,14 +185,163 @@ public class Bosseslv2 : DiamondComponent
 
     public void EndRushStun()
     {
-
+        resting = true;
+        restingTimer = restingTime;
     }
+    #endregion
+
+    #region BOUNCE RUSH
+
+    public void StartBounceRush()
+    {
+        bounceRushTimer = bounceRushTime;
+        GameObject nearestColumn = Level2BossRoom.columns[0];
+        float nerestDistance = 10000f;
+        foreach (GameObject column in Level2BossRoom.columns)
+        {
+            float distance = Mathf.Distance(gameObject.transform.globalPosition, column.transform.globalPosition);
+            if(nerestDistance > distance)
+            {
+                nerestDistance = distance;
+                nearestColumn = column;
+            }
+        }
+
+        initTarget = nearestColumn;
+        finalTarget = nearestColumn.GetComponent<TargetColumn>().GetTarget(gameObject.transform.globalPosition);
+        Debug.Log("Nearest column: " + nearestColumn.Name);
+        Debug.Log("Final target: " + finalTarget.Name);
+        Debug.Log("Started Bounce Rush");
+        currentTarget = initTarget;
+        returnToInitTarget = false;
+    }
+
+    public void UpdateBounceRush()
+    {
+        float distance = Mathf.Distance(gameObject.transform.globalPosition, currentTarget.transform.globalPosition);
+        if (distance > 2f)
+        {
+            MoveToPosition(currentTarget.transform.globalPosition, 12f);
+            LookAt(currentTarget.transform.globalPosition);
+            if(currentTarget == finalTarget)
+            {
+                returnToInitTarget = true;
+            }
+        }
+        else if(currentTarget != finalTarget && !returnToInitTarget)
+        {
+            currentTarget = finalTarget;
+        }else if(currentTarget == finalTarget && returnToInitTarget)
+        {
+            currentTarget = initTarget;
+        }
+        Debug.Log("Bounce Rush");
+    }
+
+    public void EndBounceRush()
+    {
+        Debug.Log("End Bounce Rush");
+        resting = true;
+        restingTimer = restingTime;
+    }
+
+    #endregion
+
+    #region JUMP SLAM
+
+    public void StartJumpSlam()
+    {
+        Debug.Log("Starting Jumping");
+        jumpslam = JUMPSLAM.CHARGE;
+        jumpslamTimer = chargeTime;
+        totalJumpSlamTimer = totalJumpSlamTime;
+        targetPos = Core.instance.gameObject.transform.globalPosition;
+        float speed = Mathf.Distance(targetPos, gameObject.transform.globalPosition) / fallingTime;
+    }
+
+    public void UpdateJumpSlam()
+    {
+        Debug.Log("Jump Slam");
+        switch (jumpslam)
+        {
+            case JUMPSLAM.CHARGE:
+                Debug.Log("Jump Slam: Charge");
+                if (jumpslamTimer > 0)
+                {
+                    jumpslamTimer -= Time.deltaTime;
+
+                    if (jumpslamTimer <= 0)
+                    {
+                        jumpslamTimer = upTime;
+                        jumpslam = JUMPSLAM.UP;
+                    }
+                }
+                break;
+
+            case JUMPSLAM.UP:
+                Debug.Log("Jump Slam: Up");
+                if (jumpslamTimer > 0)
+                {
+                    gameObject.transform.localPosition += Vector3.up * 50f * Time.deltaTime;
+
+                    jumpslamTimer -= Time.deltaTime;
+
+                    if (jumpslamTimer <= 0)
+                    {
+                        jumpslamTimer = fallingTime;
+                        jumpslam = JUMPSLAM.FALLING;
+                    }
+                }
+                break;
+
+            case JUMPSLAM.FALLING:
+                Debug.Log("Jump Slam: Falling");
+                if (jumpslamTimer > 0)
+                {
+                    MoveToPosition(targetPos, speed * 10);
+                    jumpslamTimer -= Time.deltaTime;
+
+                    if (jumpslamTimer <= 0 || Mathf.Distance(targetPos, gameObject.transform.globalPosition) <= 0.1f)
+                    {
+                        jumpslamTimer = recoveryTime;
+                        jumpslam = JUMPSLAM.RECOVERY;
+                    }
+                }
+                break;
+
+            case JUMPSLAM.RECOVERY:
+                Debug.Log("Jump Slam: Recovery");
+                if (jumpslamTimer > 0)
+                {
+                    jumpslamTimer -= Time.deltaTime;
+
+                    if (jumpslamTimer <= 0)
+                    {
+                        jumpslam = JUMPSLAM.NONE;
+                    }
+                }
+                break;
+
+            case JUMPSLAM.NONE:
+            default:
+                Debug.Log("Something gone wrong with jump slam");
+                break;
+        }
+    }
+
+    public void EndJumpSlam()
+    {
+        resting = true;
+        restingTimer = restingTime;
+    }
+
     #endregion
 
     #region FOLLOW
     public void StartFollowing()
     {
         walkingTimer = walkingTime;
+        Animator.Play(gameObject, "WP_Walk");
     }
     public void UpdateFollowing()
     {
@@ -172,7 +362,7 @@ public class Bosseslv2 : DiamondComponent
     {
         walkingTimer = walkingTime;
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
-        Debug.Log("Wander");
+        Animator.Play(gameObject, "WP_Walk");
     }
     public void UpdateWander()
     {
@@ -191,6 +381,7 @@ public class Bosseslv2 : DiamondComponent
     public void StartDie()
     {
         dieTimer = dieTime;
+        Animator.Play(gameObject, "WP_Die");
         Debug.Log("Dying");
     }
     public void UpdateDie()
@@ -204,11 +395,12 @@ public class Bosseslv2 : DiamondComponent
                 EndDie();
             }
         }
+        Debug.Log("Dying");
     }
 
     public void EndDie()
     {
-        Debug.Log("WAMPA DEAD");
+        Debug.Log("DEAD");
 
         Counter.roomEnemies--;
 
@@ -236,5 +428,12 @@ public class Bosseslv2 : DiamondComponent
         Quaternion desiredRotation = Quaternion.Slerp(gameObject.transform.localRotation, dir, rotationSpeed);
 
         gameObject.transform.localRotation = desiredRotation;
+    }
+
+    public void MoveToPosition(Vector3 positionToReach, float speed)
+    {
+        Vector3 direction = positionToReach - gameObject.transform.localPosition;
+
+        gameObject.transform.localPosition += direction.normalized * speed * Time.deltaTime;
     }
 }

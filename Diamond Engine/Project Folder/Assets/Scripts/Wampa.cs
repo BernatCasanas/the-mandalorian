@@ -8,7 +8,7 @@ using DiamondEngine;
 
 public class Wampa : Bosseslv2
 {
-    enum BOSS_STATE : int
+    enum STATE : int
     {
         NONE = -1,
         SEARCH_STATE,
@@ -23,7 +23,7 @@ public class Wampa : Bosseslv2
         DEAD
     }
 
-    enum BOSS_INPUT : int
+    enum INPUT : int
     {
         NONE = -1,
         IN_FOLLOW,
@@ -45,8 +45,8 @@ public class Wampa : Bosseslv2
         IN_DEAD
     }
 
-    private BOSS_STATE currentState = BOSS_STATE.SEARCH_STATE;
-    private List<BOSS_INPUT> inputsList = new List<BOSS_INPUT>();
+    private STATE currentState = STATE.SEARCH_STATE;
+    private List<INPUT> inputsList = new List<INPUT>();
 
     public void Awake()
     {
@@ -82,10 +82,10 @@ public class Wampa : Bosseslv2
 
             if (walkingTimer <= 0)
             {
-                if (currentState == BOSS_STATE.FOLLOW)
-                    inputsList.Add(BOSS_INPUT.IN_FOLLOW_END);
-                else if (currentState == BOSS_STATE.WANDER)
-                    inputsList.Add(BOSS_INPUT.IN_WANDER_END);
+                if (currentState == STATE.FOLLOW)
+                    inputsList.Add(INPUT.IN_FOLLOW_END);
+                else if (currentState == STATE.WANDER)
+                    inputsList.Add(INPUT.IN_WANDER_END);
             }
         }
 
@@ -95,7 +95,7 @@ public class Wampa : Bosseslv2
 
             if (fastChasingTimer <= 0)
             {
-                inputsList.Add(BOSS_INPUT.IN_FAST_RUSH_END);
+                inputsList.Add(INPUT.IN_FAST_RUSH_END);
             }
         }
 
@@ -105,7 +105,7 @@ public class Wampa : Bosseslv2
 
             if (slowChasingTimer <= 0)
             {
-                inputsList.Add(BOSS_INPUT.IN_SLOW_RUSH_END);
+                inputsList.Add(INPUT.IN_SLOW_RUSH_END);
             }
         }
 
@@ -118,13 +118,18 @@ public class Wampa : Bosseslv2
                 resting = false;
             }
         }
+
     }
 
     private void ProcessExternalInput()
     {
-        if (currentState == BOSS_STATE.WANDER && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance)
+        if (currentState == STATE.WANDER && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= 1.0f)
         {
             agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
+        }
+        if (currentState == STATE.PROJECTILE && secondShot)
+        {
+            inputsList.Add(INPUT.IN_PROJECTILE_END);
         }
     }
 
@@ -132,95 +137,141 @@ public class Wampa : Bosseslv2
     {
         while (inputsList.Count > 0)
         {
-            Debug.Log("is working");
-
-            BOSS_INPUT input = inputsList[0];
+            INPUT input = inputsList[0];
             switch (currentState)
             {
-                case BOSS_STATE.NONE:
+                case STATE.NONE:
                     Debug.Log("WAMPA ERROR STATE");
                     break;
 
-                case BOSS_STATE.SEARCH_STATE:
+                case STATE.SEARCH_STATE:
                     switch (input)
                     {
-                        case BOSS_INPUT.IN_PROJECTILE:
-                            currentState = BOSS_STATE.PROJECTILE;
+                        case INPUT.IN_PROJECTILE:
+                            currentState = STATE.PROJECTILE;
                             StartProjectile();
                             break;
 
-                        case BOSS_INPUT.IN_FOLLOW:
-                            currentState = BOSS_STATE.FOLLOW;
+                        case INPUT.IN_FAST_RUSH:
+                            currentState = STATE.FAST_RUSH;
+                            StartFastRush();
+                            break;
+
+                        case INPUT.IN_FOLLOW:
+                            currentState = STATE.FOLLOW;
                             StartFollowing();
                             break;
-                        case BOSS_INPUT.IN_WANDER:
-                            currentState = BOSS_STATE.WANDER;
+                        case INPUT.IN_WANDER:
+                            currentState = STATE.WANDER;
                             StartWander();
                             break;
                     }
                     break;
 
-                case BOSS_STATE.FOLLOW:
+                case STATE.FOLLOW:
                     switch (input)
                     {
-                        case BOSS_INPUT.IN_FOLLOW_END:
-                            currentState = BOSS_STATE.SEARCH_STATE;
+                        case INPUT.IN_FOLLOW_END:
+                            currentState = STATE.SEARCH_STATE;
                             EndFollowing();
                             break;
-                        case BOSS_INPUT.IN_DEAD:
-                            currentState = BOSS_STATE.SEARCH_STATE;
+                        case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
                             StartDie();
                             break;
                     }
                     break;
-                case BOSS_STATE.PROJECTILE:
+
+                case STATE.BOUNCE_RUSH:
                     switch (input)
                     {
-                        case BOSS_INPUT.IN_PROJECTILE_END:
-                            currentState = BOSS_STATE.SEARCH_STATE;
+                        case INPUT.IN_BOUNCERUSH_END:
+                            currentState = STATE.SEARCH_STATE;
+                            EndBounceRush();
+                            break;
+                        case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDie();
+                            break;
+                    }
+                    break;
+                case STATE.JUMP_SLAM:
+                    switch (input)
+                    {
+                        case INPUT.IN_JUMPSLAM_END:
+                            currentState = STATE.SEARCH_STATE;
+                            EndJumpSlam();
+                            break;
+                        case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDie();
+                            break;
+                    }
+                    break;
+
+                case STATE.PROJECTILE:
+                    switch (input)
+                    {
+                        case INPUT.IN_PROJECTILE_END:
+                            currentState = STATE.SEARCH_STATE;
                             EndProjectile();
                             break;
-                        case BOSS_INPUT.IN_DEAD:
-                            currentState = BOSS_STATE.SEARCH_STATE;
+                        case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
                             StartDie();
                             break;
                     }
                     break;
-                case BOSS_STATE.FAST_RUSH:
+                case STATE.FAST_RUSH:
                     switch (input)
                     {
-                        case BOSS_INPUT.IN_FAST_RUSH_END:
-                            currentState = BOSS_STATE.SLOW_RUSH;
+                        case INPUT.IN_FAST_RUSH_END:
+                            currentState = STATE.SLOW_RUSH;
                             StartSlowRush();
                             break;
-                        case BOSS_INPUT.IN_DEAD:
-                            currentState = BOSS_STATE.SEARCH_STATE;
+                        case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
                             StartDie();
                             break;
                     }
                     break;
-                case BOSS_STATE.RUSH_STUN:
+
+                case STATE.SLOW_RUSH:
                     switch (input)
                     {
-                        case BOSS_INPUT.IN_RUSH_STUN_END:
-                            currentState = BOSS_STATE.SEARCH_STATE;
+                        case INPUT.IN_SLOW_RUSH_END:
+                            currentState = STATE.SEARCH_STATE;
+                            EndSlowRush();
+                            break;
+                        case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDie();
+                            break;
+                    }
+                    break;
+
+                case STATE.RUSH_STUN:
+                    switch (input)
+                    {
+                        case INPUT.IN_RUSH_STUN_END:
+                            currentState = STATE.SEARCH_STATE;
                             EndRushStun();
                             break;
-                        case BOSS_INPUT.IN_DEAD:
-                            currentState = BOSS_STATE.SEARCH_STATE;
+                        case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
                             StartDie();
                             break;
                     }
                     break;
-                case BOSS_STATE.WANDER:
+                case STATE.WANDER:
                     switch (input)
                     {
-                        case BOSS_INPUT.IN_WANDER_END:
-                            currentState = BOSS_STATE.SEARCH_STATE;
+                        case INPUT.IN_WANDER_END:
+                            currentState = STATE.SEARCH_STATE;
                             EndWander();
                             break;
-                        case BOSS_INPUT.IN_DEAD:
-                            currentState = BOSS_STATE.SEARCH_STATE;
+                        case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
                             StartDie();
                             break;
                     }
@@ -237,28 +288,37 @@ public class Wampa : Bosseslv2
     {
         switch (currentState)
         {
-            case BOSS_STATE.NONE:
+            case STATE.NONE:
                 Debug.Log("Error Wampa State");
                 break;
-            case BOSS_STATE.DEAD:
+            case STATE.DEAD:
                 UpdateDie();
                 break;
-            case BOSS_STATE.FOLLOW:
+            case STATE.FOLLOW:
                 UpdateFollowing();
                 break;
-            case BOSS_STATE.PROJECTILE:
+            case STATE.PROJECTILE:
                 UpdateProjectile();
                 break;
-            case BOSS_STATE.FAST_RUSH:
+            case STATE.FAST_RUSH:
                 UpdateFastRush();
                 break;
-            case BOSS_STATE.RUSH_STUN:
+            case STATE.SLOW_RUSH:
+                UpdateSlowRush();
+                break;
+            case STATE.RUSH_STUN:
                 UpdateRushStun();
                 break;
-            case BOSS_STATE.WANDER:
+            case STATE.JUMP_SLAM:
+                UpdateJumpSlam();
+                break;
+            case STATE.BOUNCE_RUSH:
+                UpdateBounceRush();
+                break;
+            case STATE.WANDER:
                 UpdateWander();
                 break;
-            case BOSS_STATE.SEARCH_STATE:
+            case STATE.SEARCH_STATE:
                 SelectAction();
                 break;
         }
@@ -270,16 +330,16 @@ public class Wampa : Bosseslv2
         {
             int decision = randomNum.Next(1, 100);
             if (decision <= 60)
-                inputsList.Add(BOSS_INPUT.IN_FOLLOW);
+                inputsList.Add(INPUT.IN_FOLLOW);
             else
-                inputsList.Add(BOSS_INPUT.IN_WANDER);
+                inputsList.Add(INPUT.IN_WANDER);
         }
         else
         {
             if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) >= distanceProjectile)
-                inputsList.Add(BOSS_INPUT.IN_PROJECTILE);
+                inputsList.Add(INPUT.IN_PROJECTILE);
             else
-                inputsList.Add(BOSS_INPUT.IN_FAST_RUSH);
+                inputsList.Add(INPUT.IN_FAST_RUSH);
         }
     }
 
@@ -297,9 +357,9 @@ public class Wampa : Bosseslv2
                 Core.instance.hud.GetComponent<HUD>().AddToCombo(25, 0.95f);
             }
 
-            if (currentState != BOSS_STATE.DEAD && healthPoints <= 0.0f)
+            if (currentState != STATE.DEAD && healthPoints <= 0.0f)
             {
-                inputsList.Add(BOSS_INPUT.IN_DEAD);
+                inputsList.Add(INPUT.IN_DEAD);
             }
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))
@@ -334,28 +394,28 @@ public class Wampa : Bosseslv2
                 Core.instance.hud.GetComponent<HUD>().AddToCombo(8, 1.5f);
             }
 
-            if (currentState != BOSS_STATE.DEAD && healthPoints <= 0.0f)
+            if (currentState != STATE.DEAD && healthPoints <= 0.0f)
             {
-                inputsList.Add(BOSS_INPUT.IN_DEAD);
+                inputsList.Add(INPUT.IN_DEAD);
             }
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))
         {
-            if (currentState != BOSS_STATE.DEAD)
+            if (currentState != STATE.DEAD)
             {
-                inputsList.Add(BOSS_INPUT.IN_DEAD);
+                inputsList.Add(INPUT.IN_DEAD);
             }
         }
         else if (collidedGameObject.CompareTag("Wall"))
         {
-            if (currentState == BOSS_STATE.FAST_RUSH || currentState == BOSS_STATE.SLOW_RUSH)
-                inputsList.Add(BOSS_INPUT.IN_RUSH_STUN);
+            if (currentState == STATE.FAST_RUSH || currentState == STATE.SLOW_RUSH)
+                inputsList.Add(INPUT.IN_RUSH_STUN);
         }
         else if (collidedGameObject.CompareTag("Player"))
         {
-            if (currentState == BOSS_STATE.FAST_RUSH || currentState == BOSS_STATE.SLOW_RUSH)
+            if (currentState == STATE.FAST_RUSH || currentState == STATE.SLOW_RUSH)
             {
-                inputsList.Add(BOSS_INPUT.IN_SLOW_RUSH_END);
+                inputsList.Add(INPUT.IN_SLOW_RUSH_END);
                 PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
                 {

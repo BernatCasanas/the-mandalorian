@@ -64,12 +64,8 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            //TODO: Priority
-            float seconds = 2.0f;
-            float damageReduction = 0.2f;
-
-            if (Core.instance != null)
-                Core.instance.SetSkill("UtilityDamageReductionSkill", seconds, damageReduction);
+            if(Skill_Tree_Data.instance != null)            
+                Skill_Tree_Data.instance.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_DAMAGE_REDUCTION_DASH);            
         }
 
         public override void AssignCharacteristics()
@@ -99,7 +95,8 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            BabyYoda.SetSkill("UtilityHealSkill", 0.0f, 0.0f, 10);
+            if (Skill_Tree_Data.instance != null)
+                Skill_Tree_Data.instance.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_HEAL_WHEN_GROGU_SKILL);
         }
 
         public override void AssignCharacteristics()
@@ -174,7 +171,8 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            Rancor.SetSkill("AggressionDamageBossesSkill", 0.2f);
+            if (Skill_Tree_Data.instance != null)
+                Skill_Tree_Data.instance.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS);
         }
 
         public override void AssignCharacteristics()
@@ -189,8 +187,8 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            if(Core.instance != null)
-                Core.instance.SetSkill("AggressionHPMissingDamageSkill", 1.0f, 1.0f);
+            if (Skill_Tree_Data.instance != null)
+                Skill_Tree_Data.instance.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_EXTRA_DAMAGE_LOW_HEALTH);
         }
 
         public override void AssignCharacteristics()
@@ -286,8 +284,8 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            if(Core.instance != null)
-                Core.instance.gameObject.GetComponent<PlayerHealth>().SetSkill("DAvoidDmg", 10); //10%
+            if(Skill_Tree_Data.instance != null)
+                Skill_Tree_Data.instance.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE_CHANCE_AVOID_DAMAGE);
         }
 
         public override void AssignCharacteristics()
@@ -360,7 +358,7 @@ namespace DiamondEngine
         public override void Use()
         {
             if (Skill_Tree_Data.instance != null)
-                Skill_Tree_Data.instance.EnableSkill(1, (int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION);
+                Skill_Tree_Data.instance.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION);
         }
 
         public override void AssignCharacteristics()
@@ -395,9 +393,8 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            Enemy.skill_slowDownEnabled = true;
-            Enemy.skill_slowDownAmount = 0.2f;
-            Enemy.skill_slowDownDuration = 3.0f;
+            if(Skill_Tree_Data.instance != null)
+                Skill_Tree_Data.instance.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED);
         }
         public override void AssignCharacteristics()
         {
@@ -426,16 +423,17 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            if (Core.instance != null)
+            if (Core.instance != null && Skill_Tree_Data.instance != null)
             {
-                Core.instance.IncreaseNormalShootDamage(0.25f);
-            }
+                Skill_Tree_Data.instance.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_INCREASE_DAMAGE);
+                Core.instance.IncreaseNormalShootDamage(Skill_Tree_Data.instance.GetWeaponsSkillTree().PW6_IncreaseDamageAmount);
+            }                
         }
 
         public override void AssignCharacteristics()
         {
             description = "Increase Mando's Primary Weapon damage by 25%. Press 'A' to buy it. Price: 1 Imperial Scrap";
-            price = 1;
+            price = 0;
             type_of_price = RewardType.REWARD_SCRAP;
         }
     }
@@ -470,23 +468,15 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            if(Core.instance != null)
-            {
-                Core.instance.SetSkill("SecondaryDelaySkill", 0.3f);
-                //Debug.Log("Secondary gun: Delay between uses reduced by 30%."); //Uncommenting that crashes the game
-            }
+            if(Skill_Tree_Data.instance != null)
+                Skill_Tree_Data.instance.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.WeaponsSkillNames.SECONDARY_DELAY_BETWEEN_USES);
         }
 
         public override void AssignCharacteristics()
         {
-            description = "Delay between uses reduced by 30%";
+            description = "[NOT IMPLEMENTED] Delay between uses reduced by 30%";
             price = 0;
             type_of_price = RewardType.REWARD_BESKAR;
-        }
-
-        public float returnDelay(float originalDelay)
-        {
-            return 0.0f;
         }
     }
 

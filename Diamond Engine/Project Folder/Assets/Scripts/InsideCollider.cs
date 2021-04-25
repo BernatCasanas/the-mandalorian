@@ -4,7 +4,7 @@ using DiamondEngine;
 public class InsideCollider : DiamondComponent
 {
 	public GameObject colliderPosition = null;
-	public GameObject player = null;
+	private GameObject player = null;
     public float maxDistance = 5;
     public GameObject displayText = null;
     public GameObject selectButton = null;

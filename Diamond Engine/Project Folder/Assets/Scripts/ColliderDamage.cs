@@ -2,7 +2,7 @@
 
 class ColliderDamage : DiamondComponent
 {
-    public int damage;
+    public int damage = 0;
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
         if (triggeredGameObject.CompareTag("Player"))

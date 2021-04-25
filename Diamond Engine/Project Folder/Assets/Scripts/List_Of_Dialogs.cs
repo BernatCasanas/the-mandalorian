@@ -59,9 +59,8 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<string> Post_Initial_Cutscene_Dialogue = new List<string>()
     {
-        "Look who we got here. I honestly didn't know if you were going to make it.",
-        "Wow, thanks for the trust you put in me. Also, pretty bold to say that for the woman that was too scared to  do it herself. Anyways, I did it, so could you please tell me...",
-       
+        "Mando, my friend! Come, I've grabbed you something to drink! It's been too long!",
+        "I've heard some impressive rumours lately about you... Mind to confirm some juicy details?",
     };
 
     private List<bool> Post_Initial_Cutscene_Dialogue_bool = new List<bool>()
