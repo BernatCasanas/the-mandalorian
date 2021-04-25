@@ -58,14 +58,14 @@
                     ],
                     "Rotation": [
                         0,
-                        0.0040145115926861763,
+                        0.0040145125240087509,
                         0,
                         0.99999195337295532
                     ],
                     "Scale": [
                         0.79998946189880371,
                         1.2000000476837158,
-                        0.9998934268951416
+                        0.99989336729049683
                     ]
                 },
                 {
@@ -440,10 +440,10 @@
                 -1.7598722479306161e-08
             ],
             "Rotation": [
-                -8.0803941315821248e-09,
-                6.3259286697814332e-09,
-                -0.61643779277801514,
-                0.78740376234054565
+                -8.0803932434037051e-09,
+                6.3259277816030135e-09,
+                -0.61643773317337036,
+                0.7874036431312561
             ],
             "Scale": [
                 1,
@@ -1652,15 +1652,16 @@
                     "UID": 1953966087,
                     "alternColor": [
                         1,
-                        1,
-                        1
+                        0.99998998641967773,
+                        0.99998998641967773
                     ],
                     "alternColorStencil": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ],
-                    "doNotDrawStencil": true
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": false
                 },
                 {
                     "Type": 3,
@@ -1669,6 +1670,14 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                },
+                {
+                    "Type": 26,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/vertex_color_stencil.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/1540644281.mat",
+                    "MaterialUID": 1540644281
                 }
             ]
         },
@@ -1711,15 +1720,16 @@
                     "UID": 426356518,
                     "alternColor": [
                         1,
-                        1,
-                        1
+                        0.99998998641967773,
+                        0.99998998641967773
                     ],
                     "alternColorStencil": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ],
-                    "doNotDrawStencil": true
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": false
                 },
                 {
                     "Type": 3,
@@ -1728,6 +1738,14 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                },
+                {
+                    "Type": 26,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/vertex_color_stencil.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/1540644281.mat",
+                    "MaterialUID": 1540644281
                 }
             ]
         },
@@ -1846,6 +1864,7 @@
                         1,
                         1
                     ],
+                    "stencilEmission": 0,
                     "doNotDrawStencil": true
                 },
                 {
