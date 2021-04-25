@@ -7,7 +7,7 @@ public class SkytrooperHitCollider : DiamondComponent
 	private bool colliderMoved = false;
 
 	public float destroyTimer = 0.0f;
-	public float destroyTime = 5.0f;
+	public float destroyTime = 6.0f;
 
 	public void Awake()
     {
@@ -29,21 +29,5 @@ public class SkytrooperHitCollider : DiamondComponent
         {
 			InternalCalls.Destroy(gameObject);
         }
-	}
-
-	public void OnTriggerEnter(GameObject triggeredGameObject)
-	{
-		Debug.Log("Collision with: " + triggeredGameObject.tag);
-
-		if (triggeredGameObject.CompareTag("SK_Bullet"))
-		{
-			Debug.Log("Bullet Collision");
-			if(damageCollider != null)
-            {
-				Debug.Log("Damage Collider");
-				damageCollider.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-				colliderMoved = true;
-            }
-		}
 	}
 }

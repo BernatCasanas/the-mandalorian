@@ -90,40 +90,10 @@ public class Skytrooper : Enemy
 
         idleTimer = idleTime;
         dashTime = Animator.GetAnimationDuration(gameObject, "SK_Dash");
-        //dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
-
-        //ParticleSystem spawnparticles = null;
-
-        //StormTrooperParticles myParticles = gameObject.GetComponent<StormTrooperParticles>();
-        //if (myParticles != null)
-        //{
-        //    spawnparticles = myParticles.spawn;
-        //}
-
-        //if (spawnparticles != null)
-        //{
-        //    //Debug.Log("PLAY SPAWN!!!");
-        //    spawnparticles.Play();
-        //}
-        //else
-        //{
-        //    //Debug.Log("CAN'T PLAY SPAWN!!!"); 
-        //}
     }
 
-    public void Start()
-    {
-
-
-    }
     public void Update()
     {
-        if (player == null)
-        {
-            Debug.Log("Null player");
-            player = Core.instance.gameObject;
-        }        
-
         #region STATE MACHINE
 
         ProcessInternalInput();
@@ -183,12 +153,13 @@ public class Skytrooper : Enemy
     {
         if (currentState != STATE.DIE && currentState != STATE.DASH)
         {
-            if (InRange(player.transform.globalPosition, detectionRange))
+            if (Core.instance.gameObject == null)
+                return;
+
+            if (InRange(Core.instance.gameObject.transform.globalPosition, detectionRange))
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
-
-                if (player != null)
-                    LookAt(player.transform.globalPosition);
+                LookAt(Core.instance.gameObject.transform.globalPosition);
             }
         }
     }
@@ -419,8 +390,8 @@ public class Skytrooper : Enemy
     private void UpdateDash()
     {
         LookAt(targetPosition);
-        
-        if (skill_slowDownActive) 
+
+        if (skill_slowDownActive)
             MoveToPosition(targetPosition, dashSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
         else MoveToPosition(targetPosition, dashSpeed);
     }
@@ -452,31 +423,20 @@ public class Skytrooper : Enemy
             }
             else
             {
-                if ((shotsShooted + 1) % 2 != 0)
-                {
-                    Shoot(false);
-                    Debug.Log("HEY");
-                }
-                else
-                {
-                    Shoot(true);
-                }
+                Shoot();
             }
         }
     }
 
-    private void Shoot(bool aux)
+    private void Shoot()
     {
         //GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         //bullet.GetComponent<BH_Bullet>().damage = damage;
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1662408971.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, new Vector3(0.5f, 0.5f, 0.5f));
-        bullet.GetComponent<SkyTrooperShot>().SetTarget(player.transform.globalPosition, false);
-        if (aux)
-            InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, player.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
-        else
-            InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, player.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
+        bullet.GetComponent<SkyTrooperShot>().SetTarget(Core.instance.gameObject.transform.globalPosition, false);
         Animator.Play(gameObject, "SK_Shoot");
         Audio.PlayAudio(gameObject, "PLay_Skytrooper_Grenade_Launch");
+
         shotsShooted++;
         if (shotsShooted < maxShots)
             shootTimer = timeBewteenShots;
@@ -572,7 +532,7 @@ public class Skytrooper : Enemy
             pos.z += rand.Next(-200, 201) / 100;
             InternalCalls.CreatePrefab(coinDropPath, pos, Quaternion.identity, new Vector3(0.07f, 0.07f, 0.07f));
         }
-        player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+        Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
         InternalCalls.Destroy(gameObject);
     }
 
@@ -582,7 +542,7 @@ public class Skytrooper : Enemy
 
     private void StartPush()
     {
-        Vector3 force = gameObject.transform.globalPosition - player.transform.globalPosition;
+        Vector3 force = gameObject.transform.globalPosition - Core.instance.gameObject.transform.globalPosition;
         force.y = pushVerticalForce;
         gameObject.AddForce(force * pushHorizontalForce);
         pushTimer = 0.0f;
@@ -613,12 +573,12 @@ public class Skytrooper : Enemy
             {
                 inputsList.Add(INPUT.IN_DIE);
             }
-            
+
             if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
             {
                 skill_slowDownActive = true;
                 skill_slowDownTimer = 0.0f;
-            }            
+            }
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))
         {
@@ -651,28 +611,20 @@ public class Skytrooper : Enemy
             {
                 inputsList.Add(INPUT.IN_DIE);
             }
-            
+
             if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
             {
                 skill_slowDownActive = true;
                 skill_slowDownTimer = 0.0f;
-            }            
+            }
         }
-        //else if (collidedGameObject.CompareTag("WorldLimit"))
-        //{
-        //    if (currentState != STATE.DIE)
-        //    {
-        //        inputsList.Add(INPUT.IN_DIE);
-        //    }
-        //}
-
     }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         {
-            if (player != null)
+            if (Core.instance.gameObject != null)
             {
                 inputsList.Add(INPUT.IN_PUSHED);
 

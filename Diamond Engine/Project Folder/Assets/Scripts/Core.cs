@@ -229,6 +229,8 @@ public class Core : DiamondComponent
 
         currentState = STATE.IDLE;
 
+        lockInputs = false;
+
         Debug.Log("Start!");
         mySpawnPos = new Vector3(gameObject.transform.globalPosition.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z);
         runTime = Animator.GetAnimationDuration(gameObject, "Run") / 2;
@@ -327,7 +329,7 @@ public class Core : DiamondComponent
 
         }
 
-        if (shootingTimer > 0)
+        if (shootingTimer > 0 || stopShootingTime <= 0f)
         {
             shootingTimer -= Time.deltaTime;
 
@@ -362,14 +364,15 @@ public class Core : DiamondComponent
     //Controler inputs go here
     private void ProcessExternalInput()
     {
+       
+        bool isPrimaryOverHeat = false;
+        if (hud != null)
+        {
+            isPrimaryOverHeat = hud.GetComponent<HUD>().IsPrimaryOverheated();
+        }
+
         if (!lockInputs)
         {
-            bool isPrimaryOverHeat = false;
-            if (hud != null)
-            {
-                isPrimaryOverHeat = hud.GetComponent<HUD>().IsPrimaryOverheated();
-            }
-
             if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT) && isPrimaryOverHeat == false)
             {
                 stopShootingTime = 0f;
@@ -377,12 +380,15 @@ public class Core : DiamondComponent
             }
             else if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE || isPrimaryOverHeat == true) && hasShot == true)
             {
-                stopShootingTime += Time.deltaTime;
-                Animator.Play(gameObject, "Shoot", 0.01f);
                 if (CanStopShooting() == true || isPrimaryOverHeat == true || (this.currentState != STATE.SHOOT && this.currentState != STATE.SHOOTING))
                 {
                     inputsList.Add(INPUT.IN_SHOOTING_END);
                     hasShot = false;
+                }
+                else if (CanStopShooting() == false)
+                {
+                    stopShootingTime += Time.deltaTime;
+                    Animator.Play(gameObject, "Shoot", 0.01f);
                 }
             }
 
@@ -424,14 +430,14 @@ public class Core : DiamondComponent
                 inputsList.Add(INPUT.IN_GADGET_SHOOT);
                 grenadesFireRateTimer = grenadesFireRate;
             }
+
+
+            if (IsJoystickMoving() == true)
+                inputsList.Add(INPUT.IN_MOVE);
+
+            else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
+                inputsList.Add(INPUT.IN_IDLE);
         }
-
-        if (IsJoystickMoving() == true)
-            inputsList.Add(INPUT.IN_MOVE);
-
-        else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
-            inputsList.Add(INPUT.IN_IDLE);
-
         grenadesFireRateTimer -= Time.deltaTime;
 
         if (grenadesFireRateTimer > 0.0f && grenadeCooldownIcon != null)
@@ -691,6 +697,7 @@ public class Core : DiamondComponent
                 Debug.Log("NEED TO ADD STATE TO CORE");
                 break;
         }
+
     }
 
     #region IDLE
@@ -1308,32 +1315,7 @@ public class Core : DiamondComponent
                         gameObject.GetComponent<PlayerHealth>().TakeDamage(collidedGameObject.GetComponent<BH_DestructBox>().explosion_damage / 2);
                 }
             }
-            if (collidedGameObject.CompareTag("SkytrooperAttack"))
-            {
-                //InternalCalls.Destroy(gameObject);
-                PlayParticles(PARTICLES.IMPACT);
-                //BH_Bullet bulletScript = collidedGameObject.GetComponent<BH_Bullet>();
-                Audio.PlayAudio(gameObject, "Play_Mando_Hit");
-
-                //if (bulletScript != null)
-                //{
-                //    int damageFromBullet = 0;
-
-                //    if (skill_damageReductionDashActive)
-                //        damageFromBullet = (int)(bulletScript.damage * (1.0f - skill_damageReductionDashAmount));
-                //    else
-                //        damageFromBullet = (int)bulletScript.damage;
-
-                //    PlayerHealth healthScript = gameObject.GetComponent<PlayerHealth>();
-
-                //    if (healthScript != null)
-                //        healthScript.TakeDamage(damageFromBullet);
-
-                //    damageTaken += damageFromBullet;
-                //}
-            }
         }
-
     }
 
 

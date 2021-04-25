@@ -45,11 +45,10 @@ public class SHOP : DiamondComponent
 
     public void Awake()
     {
-        if(autoGenerateItems) 
+        shopOpen = false;
+        opening = false;
+        if (autoGenerateItems) 
             RandomiseItems();
-
-        hud = InternalCalls.FindObjectWithName("HUD");
-
         //Audio.PlayAudio(gameObject, "Play_Post_Boss_Room_1_Ambience");
     }
 
