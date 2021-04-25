@@ -26,6 +26,7 @@
 #include "CO_Transform.h"
 #include "CO_ParticleSystem.h"
 #include "CO_DirectionalLight.h"
+#include "CO_AreaLight.h"
 
 #include"Primitive.h"
 #include"MathGeoLib/include/Geometry/Triangle.h"
@@ -408,6 +409,9 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 // Called before quitting
 bool ModuleRenderer3D::CleanUp()
 {
+	directLightVector.clear();
+	areaLightVector.clear();
+
 	LOG(LogType::L_NORMAL, "Destroying 3D Renderer");
 	skybox.ClearMemory();
 
@@ -433,10 +437,8 @@ void ModuleRenderer3D::OnResize(int width, int height)
 	App->moduleCamera->editorCamera.ReGenerateBuffer(width, height);
 #endif // !STANDALONE
 
-
 	if (gameCamera != nullptr)
 		gameCamera->ReGenerateBuffer(width, height);
-
 }
 
 #ifndef STANDALONE
@@ -444,7 +446,6 @@ void ModuleRenderer3D::OnGUI()
 {
 	if (ImGui::CollapsingHeader("Rendering", ImGuiTreeNodeFlags_DefaultOpen))
 	{
-
 		//TODO: Store all this info as const char* and dont call the functions every frame
 		SDL_version ver;
 		SDL_GetVersion(&ver);
@@ -889,8 +890,14 @@ bool ModuleRenderer3D::IsWalkable(float3 pointToCheck)
 }
 
 
-void ModuleRenderer3D::AddLight(C_DirectionalLight* light)
+void ModuleRenderer3D::AddDirectionalLight(C_DirectionalLight* light)
 {
+	for (int i = 0; i < directLightVector.size(); ++i)
+	{
+		if (directLightVector[i] == light)
+			return;
+	}
+
 	directLightVector.push_back(light);
 
 	if (directLightVector.size() > MAX_DIRECTIONAL_LIGHTS)
@@ -898,14 +905,41 @@ void ModuleRenderer3D::AddLight(C_DirectionalLight* light)
 }
 
 
-void ModuleRenderer3D::RemoveLight(C_DirectionalLight* light)
+void ModuleRenderer3D::RemoveDirectionalLight(C_DirectionalLight* light)
 {
-
 	for (int i = 0; i < directLightVector.size(); ++i)
 	{
 		if (directLightVector[i] == light)
 		{
 			directLightVector.erase(directLightVector.begin() + i);
+			return;
+		}
+	}
+}
+
+
+void ModuleRenderer3D::AddAreaLight(C_AreaLight* light)
+{
+	for (int i = 0; i < areaLightVector.size(); ++i)
+	{
+		if (areaLightVector[i] == light)
+			return;
+	}
+
+	areaLightVector.push_back(light);
+
+	if (areaLightVector.size() > MAX_AREA_LIGHTS)
+		areaLightVector.erase(areaLightVector.begin());
+}
+
+
+void ModuleRenderer3D::RemoveAreaLight(C_AreaLight* light)
+{
+	for (int i = 0; i < areaLightVector.size(); ++i)
+	{
+		if (areaLightVector[i] == light)
+		{
+			areaLightVector.erase(areaLightVector.begin() + i);
 			return;
 		}
 	}
@@ -928,6 +962,22 @@ void ModuleRenderer3D::PushLightUniforms(ResourceMaterial* material)
 	for (int i = directLightVector.size(); i < MAX_DIRECTIONAL_LIGHTS; ++i)
 	{
 		sprintf(buffer, "lightInfo[%i].active", i);
+		GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
+		glUniform1i(modelLoc, false);
+	}
+
+	for (int i = 0; i < areaLightVector.size(); ++i)
+	{
+		sprintf(buffer, "areaLightInfo[%i].active", i);
+		GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
+		glUniform1i(modelLoc, true);
+
+		areaLightVector[i]->PushLightUniforms(material, i);
+	}
+
+	for (int i = areaLightVector.size(); i < MAX_AREA_LIGHTS; ++i)
+	{
+		sprintf(buffer, "areaLightInfo[%i].active", i);
 		GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
 		glUniform1i(modelLoc, false);
 	}

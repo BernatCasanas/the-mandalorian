@@ -1,28 +1,28 @@
 {
     "Game Objects": [
         {
-            "name": "Game Camera",
+            "name": "Empty",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "Position": [
-                -31.825237274169922,
-                18.808588027954102,
-                -23.017267227172852
+                5.6435928344726563,
+                1.5856003761291504,
+                8.4331951141357422
             ],
             "Rotation": [
-                0.24263942241668701,
-                0.39558225870132446,
-                -0.10866371542215347,
-                0.87910920381546021
+                0,
+                0,
+                0,
+                1
             ],
             "Scale": [
                 1,
-                0.9999997615814209,
-                0.9999997615814209
+                1,
+                1
             ],
-            "UID": 1991298347,
-            "PrefabID": 1599948487,
+            "UID": 478916316,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "ParentUID": 1676501951,
@@ -32,38 +32,20 @@
                     "Active": true
                 },
                 {
-                    "Type": 4,
+                    "Type": 27,
                     "Active": true,
-                    "fType": 1,
-                    "fSize": 50,
-                    "nearPlaneDist": 1,
-                    "farPlaneDist": 100,
-                    "vFOV": 11.739999771118164,
-                    "hFOV": 13.760000228881836,
-                    "culling": false,
-                    "drawSkybox": true
-                },
-                {
-                    "Type": 12,
-                    "Active": true,
-                    "isDefaultListener": true,
-                    "masterVolume": 50
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "CameraController",
-                    "x": -10.300000190734863,
-                    "y": 9.3000001907348633,
-                    "z": -10,
-                    "smoothSpeed": 0.10000000149011612,
-                    "zoomDesired": 0.10000000149011612,
-                    "timer_easing_sec": 0,
-                    "timer": 0,
-                    "cornerTopLeftX": -100,
-                    "cornerTopLeftY": -100,
-                    "cornerBotRightX": 100,
-                    "cornerBotRightY": 100
+                    "lightColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "ambientLightColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "lightIntensity": 0.80000001192092896,
+                    "specularValue": 64
                 }
             ]
         }
