@@ -122,10 +122,11 @@
                     ],
                     "alternColorStencil": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ],
-                    "doNotDrawStencil": true
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": false
                 },
                 {
                     "Type": 3,
@@ -134,6 +135,14 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                },
+                {
+                    "Type": 26,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/vertex_color_stencil.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/1540644281.mat",
+                    "MaterialUID": 1540644281
                 }
             ]
         }
