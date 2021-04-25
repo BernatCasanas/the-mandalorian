@@ -53,17 +53,13 @@ public class LaserTurret : Enemy
     private float dieTimer = 0.0f;
     private float feedbackTimer = 0.0f;
 
-    private Vector3[] laserPoints;
+    private Vector3[] laserDirections;
     public int lasersNumber = 4;
 
     public void Awake()
     {
 
-        laserPoints = new Vector3[lasersNumber];
-        for (int i = 0; i < lasersNumber; i++)
-        {
-            laserPoints[i] = gameObject.transform.globalPosition + gameObject.transform.GetForward();
-        }
+        laserDirections = new Vector3[lasersNumber];
 
         agent = gameObject.GetComponent<NavMeshAgent>();
         targetPosition = null;
@@ -312,16 +308,39 @@ public class LaserTurret : Enemy
     private void CalculateLaserRotation()
     {
 
-        for (int i = 0; i < laserPoints.Length; i++)
+        float angleIncrement = 360 / lasersNumber;
+        for (int i = 0; i < lasersNumber; i++)
         {
-            InternalCalls.DrawRay(this.gameObject.transform.globalPosition, laserPoints[i], new Vector3(1, 0, 0));
-            //Debug.Log(laserPoints[i].ToString());
+            ////Quaternion rotation = 
+            Quaternion q = Quaternion.RotateAroundAxis(new Vector3(0, 1, 0), (angleIncrement * i) * 0.0174532925f);
+            Vector3 v = gameObject.transform.GetForward() /** laserRange*/;
+
+            // Do the math
+            laserDirections[i] = Vector3.RotateAroundQuaternion(q, v);
         }
 
-        //laser1.transform.localRotation = gameObject.transform.localRotation;
-        //laser3.transform.localRotation = gameObject.transform.localRotation + Quaternion.RotateAroundAxis(Vector3.up, 1.57f);
-        //laser3.transform.localRotation = gameObject.transform.localRotation + Quaternion.RotateAroundAxis(Vector3.up, 3.14f);
-        //laser3.transform.localRotation = gameObject.transform.localRotation + Quaternion.RotateAroundAxis(Vector3.up, 4.71f);
+
+        for (int i = 0; i < laserDirections.Length; i++)
+        {
+            GameObject hit = InternalCalls.RayCast(gameObject.transform.globalPosition + Vector3.up, laserDirections[i], laserRange);
+            if (hit != null)
+            {
+                //Debug.Log("Hit");
+                if (hit.CompareTag("Player"))
+                    Debug.Log("Player");
+
+
+                PlayerHealth health = hit.GetComponent<PlayerHealth>();
+                if (health != null)
+                {
+                    Debug.Log("Hit player");
+                    health.TakeDamage((int)this.damage);
+                }
+            }
+
+            InternalCalls.DrawRay(gameObject.transform.globalPosition + Vector3.up, gameObject.transform.globalPosition + Vector3.up + (laserDirections[i] * laserRange), new Vector3(1, 0, 0));
+            //Debug.Log(laserPoints[i].ToString());
+        }
     }
     #endregion
 

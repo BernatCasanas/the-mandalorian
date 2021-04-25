@@ -46,6 +46,15 @@ namespace DiamondEngine
             }
         }
 
+        public static Vector3 RotateAroundQuaternion(Quaternion q, Vector3 v)
+        {
+            // Extract the vector part of the quaternion
+            Vector3 u = new Vector3(q.x, q.y, q.z);
+
+            // Extract the scalar part of the quaternion
+            float s = q.w;
+            return 2.0f * Vector3.Dot(u, v) * u + (s * s - Vector3.Dot(u, u)) * v + 2.0f * s * Vector3.Cross(u, v);
+        }
 
         public Vector3() { this.x = 0; this.y = 0; this.z = 0; /*Debug.Log("Setting: " + x + ", " + y + ", " + z);*/ }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
