@@ -440,8 +440,11 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_INCREASE_DAMAGE);
-            Core.instance.IncreaseNormalShootDamage(Skill_Tree_Data.GetWeaponsSkillTree().PW6_IncreaseDamageAmount);
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY7);
+            if(Core.instance != null && Skill_Tree_Data.GetWeaponsSkillTree() != null)
+            {
+                Core.instance.IncreaseNormalShootDamage(Skill_Tree_Data.GetWeaponsSkillTree().PW6_IncreaseDamageAmount);
+            }
         }
 
         public override void AssignCharacteristics()
