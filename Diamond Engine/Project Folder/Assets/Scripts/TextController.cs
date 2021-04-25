@@ -26,7 +26,7 @@ public class TextController : DiamondComponent
 
 	public void Awake()
     {
-		gui = Core.instance.hud;
+		
     }
 
 	public void OnExecuteButton()
@@ -80,6 +80,9 @@ public class TextController : DiamondComponent
     }
     public void Update()
 	{
+		if (gui == null)
+			gui = Core.instance.hud;
+
 		if (startMenu == true && dialog != null && list_of_dialogs != null && dialog_index >= 0)
 		{
 			Debug.Log(dialog_index.ToString());

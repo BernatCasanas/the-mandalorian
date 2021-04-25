@@ -116,7 +116,6 @@ public class HUD : DiamondComponent
     };
     public void Awake()
     {
-        Core.instance.hud = this.gameObject;
     }
 
     public void Update()
