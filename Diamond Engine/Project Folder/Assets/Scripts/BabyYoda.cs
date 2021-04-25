@@ -8,12 +8,15 @@ public class BabyYoda : DiamondComponent
 
     //Vertical Movement
     public float verticalSpeed = 0.8f;
-    public float verticalTimeInterval = 1.2f;
-    private float verticalTimer = 0.0f;
-    private bool moveDown = true;
+
+    public float verticalAmplitude;
+    private bool flipVertical = false;
+    private float verticalOffset = 0.0f;
+    public bool followPlayer = false;
+
+    public float avoidHitDistance = 0.0f;
 
     //Horizontal Movement
-    public GameObject followPoint = null;
     public float horizontalSpeed = 4f;
 
     //Force (HUD) variables
@@ -42,6 +45,7 @@ public class BabyYoda : DiamondComponent
     private float wallSkillDuration = 1.0f; //TODO provisional we have to use the force bar with a cost instead
     private float skillWallTimer = 0.0f;
     private bool leftButtonPressed = false;
+    private Vector3 pointToFollow;
 
 
     #region STATE_ENUMS
@@ -92,10 +96,14 @@ public class BabyYoda : DiamondComponent
         wallSkillOffset = new Vector3(0.0f, 1.5f, 3.0f);
 
         currentForce = totalForce;
-        followPoint = InternalCalls.FindObjectWithName("GroguFollowPoint");
+        flipVertical = false;
 
-        if (followPoint == null)
-            Debug.Log("Grogu's follow point not found");
+        if (Core.instance != null)
+        {
+            Transform playerTransform = Core.instance.gameObject.transform;
+            pointToFollow = playerTransform.globalPosition + (Vector3.up * 1.5f) - playerTransform.GetForward() + (playerTransform.GetRight() * 0.5f);
+            gameObject.transform.localPosition = pointToFollow;
+        }
     }
 
     public void Update()
@@ -116,55 +124,109 @@ public class BabyYoda : DiamondComponent
 
     private void FollowPoint()
     {
-        if (followPoint != null)
+        if (!followPlayer)
+            return;
+
+        Vector3 frameIncrement = Vector3.zero;
+        if (Core.instance != null)
         {
-            GroguFPManager fpManager = followPoint.GetComponent<GroguFPManager>();
-            if (fpManager == null)
+            Transform playerTransform = Core.instance.gameObject.transform;
+            pointToFollow = playerTransform.globalPosition + (Vector3.up * 1.5f) - playerTransform.GetForward() + (playerTransform.GetRight() * 0.5f);
+            frameIncrement = pointToFollow;
+
+            //(flipVertical)
+            verticalOffset += (flipVertical == true ? verticalSpeed : -verticalSpeed) * Time.deltaTime;
+
+            if(flipVertical == true && gameObject.transform.globalPosition.y - pointToFollow.y >= verticalAmplitude)
             {
-                Debug.Log("Need to add Follow points manager to Grogu!");
-                return;
+                flipVertical = false;
+                //Debug.Log("Flip to down");
             }
-
-            Vector3 point = fpManager.GetPointToFollow(gameObject.transform.globalPosition);
-
-            if (point != Vector3.zero)
+            else if(flipVertical == false && pointToFollow.y - gameObject.transform.globalPosition.y >= verticalAmplitude)
             {
-                float x = Mathf.Lerp(gameObject.transform.localPosition.x, point.x, horizontalSpeed * Time.deltaTime);
-                float z = Mathf.Lerp(gameObject.transform.localPosition.z, point.z, horizontalSpeed * Time.deltaTime);
-                gameObject.transform.localPosition = new Vector3(x, gameObject.transform.localPosition.y, z);
+                flipVertical = true;
+                //Debug.Log("Flip to up");
             }
 
         }
+
+        float angleIncrement = 360 / 8;
+        for (int i = 0; i < 8; i++)
+        {
+            ////Quaternion rotation = 
+            Quaternion q = Quaternion.RotateAroundAxis(new Vector3(0, 1, 0), (angleIncrement * i) * 0.0174532925f);
+            Vector3 v = gameObject.transform.GetForward() /** laserRange*/;
+
+            // Do the math
+            Vector3 rayDirection = Vector3.RotateAroundQuaternion(q, v);
+
+            float hitDistance = 0.0f;
+            GameObject _hit = InternalCalls.RayCast(gameObject.transform.globalPosition, rayDirection, avoidHitDistance, ref hitDistance);
+
+            if (_hit != null && !_hit.CompareTag("Player"))
+            {
+                Debug.Log("Should avoid");
+
+                Vector3 avoidVector = (rayDirection.normalized * hitDistance) * -1;
+                avoidVector.y = 0.0f;
+                frameIncrement += avoidVector;
+            }
+
+        }
+        frameIncrement.x = Mathf.Lerp(gameObject.transform.localPosition.x, frameIncrement.x, horizontalSpeed * Time.deltaTime);
+        frameIncrement.y = pointToFollow.y + verticalOffset;
+        frameIncrement.z = Mathf.Lerp(gameObject.transform.localPosition.z, frameIncrement.z, horizontalSpeed * Time.deltaTime);
+
+        gameObject.transform.localPosition = frameIncrement;
+        //if (followPoint != null)
+        //{
+        //    GroguFPManager fpManager = followPoint.GetComponent<GroguFPManager>();
+        //    if (fpManager == null)
+        //    {
+        //        Debug.Log("Need to add Follow points manager to Grogu!");
+        //        return;
+        //    }
+
+        //    Vector3 point = fpManager.GetPointToFollow(gameObject.transform.globalPosition);
+
+        //    if (point != Vector3.zero)
+        //    {
+        //        float x = Mathf.Lerp(gameObject.transform.localPosition.x, point.x, horizontalSpeed * Time.deltaTime);
+        //        float z = Mathf.Lerp(gameObject.transform.localPosition.z, point.z, horizontalSpeed * Time.deltaTime);
+        //        gameObject.transform.localPosition = new Vector3(x, gameObject.transform.localPosition.y, z);
+        //    }
+
+        //}
     }
 
 
     private void MoveVertically()
     {
-        if (followPoint != null)
-        {
+        //if (followPoint != null)
+        //{
 
-            Vector3 movement = gameObject.transform.localPosition;
-            if (moveDown == true)
-            {
-                movement -= new Vector3(0.0f, 1.0f, 0.0f) * verticalSpeed * Time.deltaTime;
-                if (movement.y >= followPoint.transform.globalPosition.y - 2)
-                    gameObject.transform.localPosition = movement;
-            }
-            else
-            {
-                movement += new Vector3(0.0f, 1.0f, 0.0f) * verticalSpeed * Time.deltaTime;
-                if (movement.y <= followPoint.transform.globalPosition.y + 2)
-                    gameObject.transform.localPosition = movement;
-            }
-        }
+        //    Vector3 movement = gameObject.transform.localPosition;
+        //    if (moveDown == true)
+        //    {
+        //        movement -= new Vector3(0.0f, 1.0f, 0.0f) * verticalSpeed * Time.deltaTime;
+        //        if (movement.y >= followPoint.transform.globalPosition.y - 2)
+        //            gameObject.transform.localPosition = movement;
+        //    }
+        //    else
+        //    {
+        //        movement += new Vector3(0.0f, 1.0f, 0.0f) * verticalSpeed * Time.deltaTime;
+        //        if (movement.y <= followPoint.transform.globalPosition.y + 2)
+        //            gameObject.transform.localPosition = movement;
+        //    }
+        //}
 
-        verticalTimer += Time.deltaTime;
+        //verticalTimer += Time.deltaTime;
 
-        if (verticalTimer >= verticalTimeInterval)
-        {
-            moveDown = !moveDown;
-            verticalTimer = 0.0f;
-        }
+        //if (verticalTimer >= verticalTimeInterval)
+        //{
+        //    moveDown = !moveDown;
+        //    verticalTimer = 0.0f;
+        //}
     }
 
 
