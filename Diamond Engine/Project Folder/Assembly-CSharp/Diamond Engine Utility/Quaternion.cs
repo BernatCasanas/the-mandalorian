@@ -188,6 +188,27 @@ namespace DiamondEngine
                 q1.w * q2.z + q1.z * q2.w + q1.x * q2.y - q1.y * q2.x,
                 q1.w * q2.w - q1.x * q2.x - q1.y * q2.y - q1.z * q2.z);
         }
+        public static Vector3 operator *(Quaternion rotation, Vector3 point)
+        {
+            float x = rotation.x * 2F;
+            float y = rotation.y * 2F;
+            float z = rotation.z * 2F;
+            float xx = rotation.x * x;
+            float yy = rotation.y * y;
+            float zz = rotation.z * z;
+            float xy = rotation.x * y;
+            float xz = rotation.x * z;
+            float yz = rotation.y * z;
+            float wx = rotation.w * x;
+            float wy = rotation.w * y;
+            float wz = rotation.w * z;
+
+            Vector3 res = Vector3.zero;
+            res.x = (1F - (yy + zz)) * point.x + (xy - wz) * point.y + (xz + wy) * point.z;
+            res.y = (xy + wz) * point.x + (1F - (xx + zz)) * point.y + (yz - wx) * point.z;
+            res.z = (xz - wy) * point.x + (yz + wx) * point.y + (1F - (xx + yy)) * point.z;
+            return res;
+        }
 
 
         public override string ToString()
