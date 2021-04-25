@@ -42,7 +42,6 @@ public class StormTrooper : Enemy
     private List<INPUT> inputsList = new List<INPUT>();
 
     public GameObject shootPoint = null;
-    public GameObject hitParticles = null;
 
     //Action times
     public float idleTime = 5.0f;
@@ -85,6 +84,8 @@ public class StormTrooper : Enemy
 
     //Death point
     public GameObject deathPoint = null;
+
+    private StormTrooperParticles myParticles = null;
     public void Awake()
     {
         Debug.Log("Stormtrooper Awake");
@@ -105,7 +106,7 @@ public class StormTrooper : Enemy
 
         ParticleSystem spawnparticles = null;
 
-        StormTrooperParticles myParticles = gameObject.GetComponent<StormTrooperParticles>();
+        myParticles = gameObject.GetComponent<StormTrooperParticles>();
         if (myParticles != null)
         {
             spawnparticles = myParticles.spawn;
@@ -606,9 +607,8 @@ public class StormTrooper : Enemy
     private void PlayerDetected()
     {
         Audio.PlayAudio(gameObject, "Play_Enemy_Detection");
-        StormTrooperParticles part = gameObject.GetComponent<StormTrooperParticles>();
-        if (part != null && part.alert != null)
-            part.alert.Play();
+        if (myParticles != null && myParticles.alert != null)
+            myParticles.alert.Play();
     }
     #endregion
 
@@ -710,6 +710,8 @@ public class StormTrooper : Enemy
 
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
+        if (myParticles != null && myParticles.hit != null)
+            myParticles.hit.Play();
         if (collidedGameObject.CompareTag("Bullet"))
         {
 
