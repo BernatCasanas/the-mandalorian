@@ -18,7 +18,6 @@ public class BH_Bullet : DiamondComponent
     public float yVel = 0.0f;
     public float damage = 9.0f;
 
-    private bool destroyed = false;
     private bool started = false;
     private bool triggered = false;
     private float timer = 0;

@@ -638,11 +638,6 @@ public class Bantha : Enemy
                 if (currentState != STATE.DIE && healthPoints <= 0.0f)
                     inputsList.Add(INPUT.IN_DIE);
 
-                if (skill_slowDownEnabled)
-                {
-                    skill_slowDownActive = true;
-                    skill_slowDownTimer = 0.0f;
-                }
             }
         }
         else if (collidedGameObject.CompareTag("Grenade"))

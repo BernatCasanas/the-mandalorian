@@ -639,11 +639,6 @@ public class Skytrooper : Enemy
                 inputsList.Add(INPUT.IN_DIE);
             }
 
-            if (skill_slowDownEnabled)
-            {
-                skill_slowDownActive = true;
-                skill_slowDownTimer = 0.0f;
-            }
         }
         else if (collidedGameObject.CompareTag("Grenade"))
         {

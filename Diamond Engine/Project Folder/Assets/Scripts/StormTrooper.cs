@@ -761,11 +761,6 @@ public class StormTrooper : Enemy
             }
 
 
-            if (skill_slowDownEnabled)
-            {
-                skill_slowDownActive = true;
-                skill_slowDownTimer = 0.0f;
-            }
         }
         else if (collidedGameObject.CompareTag("Grenade"))
         {

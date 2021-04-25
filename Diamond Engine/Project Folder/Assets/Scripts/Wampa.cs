@@ -373,9 +373,9 @@ public class Wampa : Bosseslv2
                 Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
             }
 
-            if (currentState != BOSS_STATE.DEAD && healthPoints <= 0.0f)
+            if (currentState != STATE.DEAD && healthPoints <= 0.0f)
             {
-                inputsList.Add(BOSS_INPUT.IN_DEAD);
+                inputsList.Add(INPUT.IN_DEAD);
             }
         }
         else if (collidedGameObject.CompareTag("Grenade"))

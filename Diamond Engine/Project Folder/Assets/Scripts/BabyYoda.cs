@@ -26,8 +26,6 @@ public class BabyYoda : DiamondComponent
     private static int skillPushForceCost = 40;
     private static int skillWallForceCost = 60;
 
-    //Skills
-    private static bool skill_healActive = false; //Mando heals 10 HP when Grogu uses a Skill
 
     //State (INPUT AND STATE LOGIC)
     #region STATE

@@ -1323,9 +1323,12 @@ public class Rancor : DiamondComponent
                 Debug.Log("The collider with tag Bullet didn't have a bullet Script!!");
             }
 
-            if (skill_increaseDamageToBossActive)
+            if (Skill_Tree_Data.instance != null)
             {
-                damageToBoss *= (1.0f + skill_increaseDamageToBossAmount);
+                if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
+                {
+                    damageToBoss *= (1.0f + Skill_Tree_Data.instance.GetMandoSkillTree().A6_increaseDamageToBossAmount);
+                }
             }
 
             TakeDamage(damageToBoss);
