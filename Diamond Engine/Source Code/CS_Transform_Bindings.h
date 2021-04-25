@@ -410,7 +410,7 @@ MonoObject* RayCast(MonoObject* cs_Position, MonoObject* cs_Direction, float Max
 	return EngineExternal->moduleMono->GoToCSGO(ret);
 }
 
-void CS_DrawRay(MonoObject* cs_startPosition, MonoObject* cs_endPosition, MonoObject* cs_color)
+void CS_DrawRay(MonoObject* cs_startPosition, MonoObject* cs_endPosition, MonoObject* cs_color, MonoObject* rayWidth)
 {
 	if (cs_startPosition == nullptr || cs_endPosition == nullptr || cs_color == nullptr)
 		return;
