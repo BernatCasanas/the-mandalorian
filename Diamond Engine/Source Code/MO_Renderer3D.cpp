@@ -609,17 +609,17 @@ void ModuleRenderer3D::AddRay(float3& a, float3& b, float3& color, float& rayWid
 
 void ModuleRenderer3D::DrawRays()
 {
-	glBegin(GL_LINES);
 	for (size_t i = 0; i < rays.size(); i++)
 	{
 		glLineWidth(rays[i].width);
+		glBegin(GL_LINES);
 		glColor3fv(rays[i].color.ptr());
 		glVertex3fv(rays[i].a.ptr());
 		glVertex3fv(rays[i].b.ptr());
 
 		glColor3f(255.f, 255.f, 255.f);
+		glEnd();
 	}
-	glEnd();
 	//rays.clear();
 	glLineWidth(1.0f);
 }

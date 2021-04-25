@@ -31,7 +31,7 @@ class C_AreaLight;
 
 struct LineRender
 {
-	LineRender(float3& _a, float3& _b, float3& _color, float& _width = 10) : a(_a), b(_b), color(_color), width(_width){}
+	LineRender(float3& _a, float3& _b, float3& _color, float _width = 10.f) : a(_a), b(_b), color(_color), width(_width){}
 	float3 a, b, color;
 	float width;
 };
