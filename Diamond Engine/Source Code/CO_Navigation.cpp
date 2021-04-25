@@ -392,7 +392,7 @@ void C_Navigation::Select()
 	if (EngineExternal->moduleGui->uid_gameobject_of_ui_selected.size() != 0) {
 		C_Navigation* aux;
 		GameObject* gameobject;
-		for (int i = 0; i < EngineExternal->moduleGui->uid_gameobject_of_ui_selected.size(); ++i) {
+		for (int i = EngineExternal->moduleGui->uid_gameobject_of_ui_selected.size() - 1; i >= 0; --i) {
 			gameobject = EngineExternal->moduleScene->GetGOFromUID(EngineExternal->moduleScene->root, EngineExternal->moduleGui->uid_gameobject_of_ui_selected[i]);
 			if (gameobject != nullptr) {
 				aux = static_cast<C_Navigation*>(gameobject->GetComponent(Component::TYPE::NAVIGATION));

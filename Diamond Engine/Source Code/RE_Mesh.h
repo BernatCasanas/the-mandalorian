@@ -34,7 +34,7 @@ public:
 	bool LoadToMemory() override;
 	bool UnloadFromMemory() override;
 
-	void RenderMesh(GLuint textureID, float3 color, bool renderTexture = false, ResourceMaterial* shader = nullptr, C_Transform* _transform = nullptr, ResourceTexture* normalMap = nullptr);
+	void RenderMesh(GLuint textureID, float3 color, bool renderTexture = false, ResourceMaterial* shader = nullptr, C_Transform* _transform = nullptr, ResourceTexture* normalMap = nullptr, float emissionAmmount = 0.0f);
 	void RenderMeshDebug(bool* vertexNormals, bool* faceNormals, const float*);
 
 	vec3 GetVectorFromIndex(float* startValue);
@@ -42,7 +42,7 @@ public:
 	int* GetTriangles() const;
 
 	void OGL_GPU_Render();
-	void PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Transform* _transform, float3 color, ResourceTexture* normalMap = nullptr);
+	void PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Transform* _transform, float3 color, ResourceTexture* normalMap = nullptr,float emissionAmmount=0.0f);
 
 public:
 

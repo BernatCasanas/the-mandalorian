@@ -40,17 +40,20 @@ public:
 	bool faceNormals, vertexNormals, showAABB, showOBB;
 
 	GameObject* rootBone = nullptr;
-
+	void SetStencilEmissionAmmount(float ammount);
+	float GetStencilEmssionAmmount() const;
+public:
+	bool drawStencil;
+	float3 alternColor;
+	float3 alternColorStencil;
 private:
 	ResourceMesh* _mesh = nullptr;
 	ResourceTexture* normalMap = nullptr;
 
-	float3 alternColor;
-	float3 alternColorStencil;
 	bool drawDebugVertices;
 	C_Transform* gameObjectTransform = nullptr;
 	std::vector<C_Transform*> bonesMap;
 	std::vector<float4x4> boneTransforms;
-	bool drawStencil;
 	bool calculatedBonesThisFrame;
+	float stencilEmissionAmmount;
 };

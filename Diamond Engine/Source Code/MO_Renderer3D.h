@@ -21,16 +21,19 @@ class GameObject;
 class C_MeshRenderer;
 class C_Camera;
 class C_DirectionalLight;
+class C_AreaLight;
 
 #define MAX_DIRECTIONAL_LIGHTS 2	//IF YOU MODIFY THIS VALUE, YOU MUST MODIFY THE SIZE OF THE ARRAY IN THE SHADER
+#define MAX_AREA_LIGHTS 5
 
 #define SQUARE_TEXTURE_W 256
 #define SQUARE_TEXTURE_H 256
 
 struct LineRender
 {
-	LineRender(float3& _a, float3& _b, float3& _color) : a(_a), b(_b), color(_color) {}
+	LineRender(float3& _a, float3& _b, float3& _color, float _width = 10.f) : a(_a), b(_b), color(_color), width(_width){}
 	float3 a, b, color;
+	float width;
 };
 
 struct DebugTriangle
@@ -69,7 +72,7 @@ public:
 #endif // !STANDALONE
 
 	
-	void AddRay(float3& a, float3& b, float3& color);
+	void AddRay(float3& a, float3& b, float3& color, float& rayWidth);
 	void DrawRays();
 	void RayToMeshQueueIntersection(LineSegment& ray);
 
@@ -80,8 +83,11 @@ public:
 
 	bool IsWalkable(float3 pointToCheck);
 
-	void AddLight(C_DirectionalLight* light);
-	void RemoveLight(C_DirectionalLight* light);
+	void AddDirectionalLight(C_DirectionalLight* light);
+	void RemoveDirectionalLight(C_DirectionalLight* light);
+
+	void AddAreaLight(C_AreaLight* light);
+	void RemoveAreaLight(C_AreaLight* light);
 
 	void PushLightUniforms(ResourceMaterial* material);
 
@@ -125,6 +131,7 @@ public:
 	DE_Cubemap skybox;
 
 	std::vector<C_DirectionalLight*> directLightVector;
+	std::vector<C_AreaLight*> areaLightVector;
 
 	unsigned int resolution;
 
