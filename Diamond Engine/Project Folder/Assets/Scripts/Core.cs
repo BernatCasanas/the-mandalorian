@@ -321,7 +321,7 @@ public class Core : DiamondComponent
 
         }
 
-        if (shootingTimer > 0)
+        if (shootingTimer > 0 || stopShootingTime <= 0f)
         {
             shootingTimer -= Time.deltaTime;
 
@@ -371,12 +371,15 @@ public class Core : DiamondComponent
             }
             else if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE || isPrimaryOverHeat == true) && hasShot == true)
             {
-                stopShootingTime += Time.deltaTime;
-                Animator.Play(gameObject, "Shoot", 0.01f);
                 if (CanStopShooting() == true || isPrimaryOverHeat == true || (this.currentState != STATE.SHOOT && this.currentState != STATE.SHOOTING))
                 {
                     inputsList.Add(INPUT.IN_SHOOTING_END);
                     hasShot = false;
+                }
+                else if (CanStopShooting() == false)
+                {
+                    stopShootingTime += Time.deltaTime;
+                    Animator.Play(gameObject, "Shoot", 0.01f);
                 }
             }
 
@@ -679,6 +682,7 @@ public class Core : DiamondComponent
                 Debug.Log("NEED TO ADD STATE TO CORE");
                 break;
         }
+
     }
 
     #region IDLE
