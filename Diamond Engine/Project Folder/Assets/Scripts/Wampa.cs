@@ -59,7 +59,7 @@ public class Wampa : Bosseslv2
             Debug.Log("Agent is located");
 
         //Animator.Play(gameObject, "");
-        //Audio.PlayAudio(gameObject, "");
+        Audio.SetState("Game_State", "Wampa_Skel_Room");
         Counter.roomEnemies++;  // Just in case
         EnemyManager.AddEnemy(gameObject);
 
