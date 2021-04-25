@@ -21,18 +21,18 @@ public class IntroCinematic : DiamondComponent
     float currentSpeed = 0;
     Quaternion auxCameraRotation = null;
 
-    //GameObject[] pointArray;
-    float[] speedArray = new float[] { 4.0f, 1.0f, 1.0f, 1.0f };    // Adapt values
+    GameObject[] pointArray = null;
+    float[] speedArray = new float[] { 0.5f, 2.0f, 1.0f, 1.0f };    // Adapt values
     int arrayCount = -1;
 
     public void Awake()
     {
-        /*if (Counter.firstRun)
+     /*   if (Counter.firstRun)
         {
             auxCameraRotation = cameraObject.transform.localRotation;
             pointArray = new GameObject[] { point1, point2, point3, point4, point5, point6, point7, point8 };
             UpdateValues();
-            // Put camera to perspective
+            CameraManager.SetCameraPerspective(cameraObject);
             // Take player's controls away
         }
         else
@@ -43,7 +43,7 @@ public class IntroCinematic : DiamondComponent
 
     public void Update()
     {
-        /*if (toGoPosition != null)
+     /*   if (toGoPosition != null)
         {
             //        Debug.Log("Camera position " + cameraAuxPosition);
             //         Debug.Log("Go vector position " + toGoPosition);
@@ -71,22 +71,23 @@ public class IntroCinematic : DiamondComponent
         }
 
         currentSpeed = speedArray[arrayCount];
-        /*cameraAuxPosition = cameraObject.transform.localPosition = pointArray[arrayCount * 2].transform.localPosition;
+        cameraAuxPosition = cameraObject.transform.localPosition = pointArray[arrayCount * 2].transform.localPosition;
+        cameraObject.transform.localRotation = pointArray[arrayCount * 2].transform.localRotation;
         toGoPosition = pointArray[(arrayCount * 2) + 1].transform.localPosition;
-        toRotateQuaternion = pointArray[(arrayCount * 2) + 1].transform.localRotation;*/
+        toRotateQuaternion = pointArray[(arrayCount * 2) + 1].transform.localRotation;
         //Debug.Log("Camera position is " + cameraObject.transform.localPosition);
     }
 
     public void EndCinematic()
     {
         gameObject.Enable(false);
-        cameraObject.transform.localRotation = auxCameraRotation;
-        // Return camera to orthographic
         // Re-activate player's control
         if (Counter.firstRun)
         {
+            cameraObject.transform.localRotation = auxCameraRotation;
             postCinematicDialogue.Enable(true);
             postCinematicDialogue.GetChild("Button").GetComponent<Navigation>().Select();
+            CameraManager.SetCameraOrthographic(cameraObject);
         }
     }
 }
