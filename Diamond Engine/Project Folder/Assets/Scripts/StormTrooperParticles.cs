@@ -9,12 +9,14 @@ public class StormTrooperParticles : DiamondComponent
     public GameObject waveObj = null;
     public GameObject soulsObj = null;
     public GameObject alertObj = null;
+    public GameObject hitExplosion = null;
 
     public ParticleSystem spawn = null;
     public ParticleSystem dead = null;
     public ParticleSystem wave = null;
     public ParticleSystem souls = null;
     public ParticleSystem alert = null;
+    public ParticleSystem hit = null;
 
     public void Awake()
     {
@@ -39,6 +41,10 @@ public class StormTrooperParticles : DiamondComponent
         if (alertObj != null)
         {
             alert = alertObj.GetComponent<ParticleSystem>();
+        }
+        if (hitExplosion != null)
+        {
+            hit = hitExplosion.GetComponent<ParticleSystem>();
         }
     }
     public void Update()
