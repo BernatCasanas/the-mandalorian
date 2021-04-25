@@ -204,18 +204,15 @@ public class PlayerHealth : DiamondComponent
             if (Core.instance.IsDashing())
                 return currHealth;
         }
-
-        if(Skill_Tree_Data.instance != null)
+        
+        if(Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE_CHANCE_AVOID_DAMAGE))
         {
-            if(Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE_CHANCE_AVOID_DAMAGE))
+            if (ChanceToAvoidDamage(Skill_Tree_Data.GetMandoSkillTree().D8_changeToAvoidDamage))
             {
-                if (ChanceToAvoidDamage(Skill_Tree_Data.instance.GetMandoSkillTree().D8_changeToAvoidDamage))
-                {
-                    Debug.Log("Damage missed!");
-                    return currHealth; //We have avoided damage with a skill
-                }
+                Debug.Log("Damage missed!");
+                return currHealth; //We have avoided damage with a skill
             }
-        }
+        }        
 
         if (PlayerResources.CheckBoon(BOONS.BOON_BOSSKSTRENGTH))
         {

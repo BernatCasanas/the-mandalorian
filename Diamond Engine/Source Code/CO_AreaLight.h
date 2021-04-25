@@ -1,17 +1,18 @@
-#pragma once
+#ifndef __CO_AREA_LIGHT_H__
+#define __CO_AREA_LIGHT_H__	
 
 #include "Component.h"
-#include"MathGeoLib/include/Geometry/Frustum.h"
+
 #include"MathGeoLib/include/Math/float4x4.h"
 
 class ResourceShader;
 class ResourceMaterial;
 
-class C_DirectionalLight : public Component
+class C_AreaLight : public Component
 {
 public:
-	C_DirectionalLight(GameObject* _gm);
-	~C_DirectionalLight() override;
+	C_AreaLight(GameObject* gameObject);
+	~C_AreaLight() override;
 
 	void Update() override;
 
@@ -19,7 +20,7 @@ public:
 	bool OnEditor() override;
 #endif // !STANDALONE
 
-	static inline TYPE GetType() { return TYPE::DIRECTIONAL_LIGHT; }; //This will allow us to get the type from a template
+	static inline TYPE GetType() { return TYPE::AREA_LIGHT; }; //This will allow us to get the type from a template
 
 	void SaveData(JSON_Object* nObj) override;
 	void LoadData(DEConfig& nObj) override;
@@ -31,20 +32,13 @@ public:
 	float3 GetPosition() const;
 
 public:
-	Frustum orthoFrustum;
-	ResourceShader* depthShader;
 	float4x4 spaceMatrixOpenGL;
 
-	float2 orthoSize;
-
-	bool calculateShadows = true;
-
 private:
-	unsigned int depthMapFBO;	//Framebuffer
-	unsigned int depthMap;		//Depth texture
-
 	float3 lightColor;
 	float3 ambientLightColor;
 	float lightIntensity;
 	float specularValue;
 };
+
+#endif // !__CO_AREA_LIGHT_H__

@@ -164,10 +164,10 @@ public class StormTrooper : Enemy
             }
         }
 
-        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
+        if (skill_slowDownActive)
         {
             skill_slowDownTimer += Time.deltaTime;
-            if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownDuration)
+            if (skill_slowDownTimer >= Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownDuration)
             {
                 skill_slowDownTimer = 0.0f;
                 skill_slowDownActive = false;
@@ -409,8 +409,8 @@ public class StormTrooper : Enemy
     private void UpdateWander()
     {
         LookAt(agent.GetDestination());
-        if (skill_slowDownActive && Skill_Tree_Data.instance != null) 
-            agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownAmount));
+        if (skill_slowDownActive) 
+            agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
         else agent.MoveToCalculatedPos(wanderSpeed);
 
     }
@@ -433,8 +433,8 @@ public class StormTrooper : Enemy
     {
         LookAt(agent.GetDestination());
 
-        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
-            agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownAmount));
+        if (skill_slowDownActive)
+            agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
         else
             agent.MoveToCalculatedPos(runningSpeed);
 
@@ -735,15 +735,12 @@ public class StormTrooper : Enemy
                 if (hudComponent != null)
                     hudComponent.AddToCombo(25, 0.95f);
             }
-
-            if (Skill_Tree_Data.instance != null)
+            
+            if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
             {
-                if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
-                {
-                    skill_slowDownActive = true;
-                    skill_slowDownTimer = 0.0f;
-                }
-            }
+                skill_slowDownActive = true;
+                skill_slowDownTimer = 0.0f;
+            }            
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))
         {
@@ -774,15 +771,12 @@ public class StormTrooper : Enemy
                 if (hudComponent != null)
                     hudComponent.AddToCombo(8, 1.5f);
             }
-
-            if (Skill_Tree_Data.instance != null)
+            
+            if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
             {
-                if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
-                {
-                    skill_slowDownActive = true;
-                    skill_slowDownTimer = 0.0f;
-                }
-            }
+                skill_slowDownActive = true;
+                skill_slowDownTimer = 0.0f;
+            }            
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))
         {

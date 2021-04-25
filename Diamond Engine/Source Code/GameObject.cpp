@@ -27,6 +27,7 @@
 #include "CO_DirectionalLight.h"
 #include "CO_NavMeshAgent.h"
 #include "CO_StencilMaterial.h"
+#include "CO_AreaLight.h"
 
 #include"MO_Scene.h"
 
@@ -64,7 +65,6 @@ GameObject::~GameObject()
 	if (EngineExternal->moduleEditor->GetSelectedGO() == this)
 		EngineExternal->moduleEditor->SetSelectedGO(nullptr);
 #endif // !STANDALONE
-
 
 	for (size_t i = 0; i < components.size(); i++)
 	{
@@ -216,6 +216,10 @@ Component* GameObject::AddComponent(Component::TYPE _type, const char* params)
 		break;
 	case Component::TYPE::STENCIL_MATERIAL:
 		ret = new C_StencilMaterial(this);
+		break;
+
+	case Component::TYPE::AREA_LIGHT:
+		ret = new C_AreaLight(this);
 		break;
 	}
 
@@ -742,9 +746,9 @@ void GameObject::CollectChilds(std::vector<GameObject*>& vector)
 
 void GameObject::RemoveCSReference(SerializedField* fieldToRemove)
 {
-	for (size_t i = 0; i < csReferences.size(); i++)
+	for (size_t i = 0; i < csReferences.size(); ++i)
 	{
-		if (csReferences[i]->goUID == fieldToRemove->goUID)
+		if (csReferences[i]->fiValue.goValue == fieldToRemove->fiValue.goValue)
 		{
 			mono_field_set_value(mono_gchandle_get_target(csReferences[i]->parentSC->noGCobject), csReferences[i]->field, NULL);
 			csReferences.erase(csReferences.begin() + i);

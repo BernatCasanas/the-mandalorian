@@ -167,11 +167,11 @@ public class Bantha : Enemy
             }
         }
 
-        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
+        if (skill_slowDownActive)
         {
             skill_slowDownTimer += Time.deltaTime;
 
-            if (skill_slowDownTimer >= Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownDuration) //Get duration from Primary Weapon Skill 4
+            if (skill_slowDownTimer >= Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownDuration) //Get duration from Primary Weapon Skill 4
             {
                 skill_slowDownTimer = 0.0f;
                 skill_slowDownActive = false;
@@ -424,8 +424,8 @@ public class Bantha : Enemy
             agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition);
 
         LookAt(agent.GetDestination());
-        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
-            agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownAmount));
+        if (skill_slowDownActive)
+            agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
         else
             agent.MoveToCalculatedPos(runningSpeed);
 
@@ -448,8 +448,8 @@ public class Bantha : Enemy
     private void UpdateWander()
     {
         LookAt(agent.GetDestination());
-        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
-            agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownAmount));
+        if (skill_slowDownActive)
+            agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
         else agent.MoveToCalculatedPos(wanderSpeed);
     }
     private void WanderEnd()
@@ -492,8 +492,8 @@ public class Bantha : Enemy
     #region CHARGE
     private void StartCharge()
     {
-        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
-            chargeTimer = chargeLength / (chargeSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownAmount));
+        if (skill_slowDownActive)
+            chargeTimer = chargeLength / (chargeSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
         else if (!straightPath)
             chargeTimer = chargeLength / (chargeSpeed * chargeSpeedReduction);
         else chargeTimer = chargeLength / chargeSpeed;
@@ -512,8 +512,8 @@ public class Bantha : Enemy
     {
         //LookAt(agent.GetDestination());
 
-        if (skill_slowDownActive && Skill_Tree_Data.instance != null)
-            agent.MoveToCalculatedPos(chargeSpeed * (1 - Skill_Tree_Data.instance.GetWeaponsSkillTree().PW3_SlowDownAmount));
+        if (skill_slowDownActive)
+            agent.MoveToCalculatedPos(chargeSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
         else if (!straightPath)
             agent.MoveToCalculatedPos(chargeSpeed * chargeSpeedReduction);
         else
@@ -608,14 +608,11 @@ public class Bantha : Enemy
                 if (currentState != STATE.DIE && healthPoints <= 0.0f)
                     inputsList.Add(INPUT.IN_DIE);
 
-                if (Skill_Tree_Data.instance != null)
+                if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
                 {
-                    if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
-                    {
-                        skill_slowDownActive = true;
-                        skill_slowDownTimer = 0.0f;
-                    }
-                }
+                    skill_slowDownActive = true;
+                    skill_slowDownTimer = 0.0f;
+                }                
             }
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))
@@ -662,14 +659,11 @@ public class Bantha : Enemy
             if (currentState != STATE.DIE && healthPoints <= 0.0f)
                 inputsList.Add(INPUT.IN_DIE);
 
-            if (Skill_Tree_Data.instance != null)
+            if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
             {
-                if (Skill_Tree_Data.instance.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
-                {
-                    skill_slowDownActive = true;
-                    skill_slowDownTimer = 0.0f;
-                }
-            }
+                skill_slowDownActive = true;
+                skill_slowDownTimer = 0.0f;
+            }            
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))
         {

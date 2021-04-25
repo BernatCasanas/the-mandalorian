@@ -27,6 +27,7 @@
 #include "CS_Transform2D_Bindings.h"
 #include "CS_Pathfinder_Bindings.h"
 #include "CS_Button_Bindings.h"
+#include "CS_MeshRenderer_Bindings.h"
 
 #include <iostream>
 #include <fstream> 
@@ -232,6 +233,16 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.Animator::Resume", Resume);
 	mono_add_internal_call("DiamondEngine.Animator::GetCurrentAnimation", GetCurrentAnimation);
 	mono_add_internal_call("DiamondEngine.Animator::GetAnimationDuration", GetAnimationDuration);
+#pragma endregion
+
+#pragma region MeshRenderer
+	mono_add_internal_call("DiamondEngine.MeshRenderer::get_drawStencil",GetDrawStencil);
+	mono_add_internal_call("DiamondEngine.MeshRenderer::set_drawStencil", SetDrawStencil);
+	mono_add_internal_call("DiamondEngine.MeshRenderer::get_color", GetMeshColor);
+	mono_add_internal_call("DiamondEngine.MeshRenderer::set_color", SetMeshColor);
+	mono_add_internal_call("DiamondEngine.MeshRenderer::get_stencilColor", GetMeshStencilColor);
+	mono_add_internal_call("DiamondEngine.MeshRenderer::set_stencilColor", SetMeshStencilColor);
+
 #pragma endregion
 
 	mono_add_internal_call("DiamondEngine.Time::get_deltaTime", GetDT);

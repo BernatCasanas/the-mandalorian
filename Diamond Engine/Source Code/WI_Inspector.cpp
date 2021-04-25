@@ -270,6 +270,11 @@ void W_Inspector::Draw()
 						if (selectedGO->GetComponent(Component::TYPE::DIRECTIONAL_LIGHT) == nullptr)
 							selectedGO->AddComponent(Component::TYPE::DIRECTIONAL_LIGHT);
 					}
+					if (ImGui::Selectable("Area Light"))
+					{
+						if (selectedGO->GetComponent(Component::TYPE::AREA_LIGHT) == nullptr)
+							selectedGO->AddComponent(Component::TYPE::AREA_LIGHT);
+					}
 					if (ImGui::Selectable("Nav Mesh Agent"))
 					{
 						if (selectedGO->GetComponent(Component::TYPE::NAVMESHAGENT) == nullptr)

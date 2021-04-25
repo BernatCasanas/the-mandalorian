@@ -43,6 +43,8 @@ public class Skill_Tree_Node : DiamondComponent
 
     public int node_type = 0;
 
+    public int skillTreeName;
+    public int skillTreeNumber;
 
     public NODE_STATE state 
     {
@@ -92,7 +94,25 @@ public class Skill_Tree_Node : DiamondComponent
             skill.type_of_price = RewardType.REWARD_MACARON;
         else
             skill.type_of_price = RewardType.REWARD_SCRAP;
+
+        UnlockTreeAfterRun(); 
     }
+
+    //Remember the skills that have already been bought before the run
+    private void UnlockTreeAfterRun()
+    {
+        if (Skill_Tree_Data.IsEnabled(skillTreeName, skillTreeNumber))
+        {                
+            state = NODE_STATE.OWNED;
+
+            if (children_1 != null)
+                children_1.GetComponent<Skill_Tree_Node>().state = NODE_STATE.UNLOCKED;
+
+            if (children_2 != null)
+                children_2.GetComponent<Skill_Tree_Node>().state = NODE_STATE.UNLOCKED;
+        }        
+    }
+
     public void Update()
 	{
         if (skill == null)
