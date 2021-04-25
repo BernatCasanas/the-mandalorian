@@ -114,6 +114,8 @@ public class Core : DiamondComponent
     private static float grenadesFireRate;
     private float grenadesFireRateTimer = 0.0f;
 
+    private Material grenadeCooldownIcon = null;
+
     // Secondary Shoot (sniper)
     public float timeToPerfectCharge = 0.424f;
     public int framesForPerfectCharge = 4;
@@ -177,6 +179,10 @@ public class Core : DiamondComponent
 
         if (pause == null)
             Debug.Log("Core: Background not found");
+
+        GameObject grenadeCooldown = InternalCalls.FindObjectWithName("GrenadeCooldownIcon");
+        if (grenadeCooldown != null)
+            grenadeCooldownIcon = grenadeCooldown.GetComponent<Material>();
 
         GameObject lockInputsScene = InternalCalls.FindObjectWithName("LockInputsBool");
 
@@ -427,6 +433,12 @@ public class Core : DiamondComponent
             inputsList.Add(INPUT.IN_IDLE);
 
         grenadesFireRateTimer -= Time.deltaTime;
+
+        if (grenadesFireRateTimer > 0.0f && grenadeCooldownIcon != null)
+        {
+            grenadeCooldownIcon.SetFloatUniform("currentGrenadeCooldown", grenadesFireRate - grenadesFireRateTimer);
+            grenadeCooldownIcon.SetFloatUniform("maxGrenadeCooldown", grenadesFireRate);
+        }
 
         timeOfRoom += Time.deltaTime;
     }
