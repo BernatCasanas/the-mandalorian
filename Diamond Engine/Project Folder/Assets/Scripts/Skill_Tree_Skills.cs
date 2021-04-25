@@ -26,7 +26,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            Debug.Log("Knockback");
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY1);
         }
 
         //public override void AssignCharacteristics()
@@ -39,7 +39,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            Debug.Log("Speed");
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY2);
         }
 
     }
@@ -48,8 +48,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            //TODO: Priority
-            Debug.Log("Increase");
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY3);
         }
 
         public override void AssignCharacteristics()
@@ -63,8 +62,8 @@ namespace DiamondEngine
     public class UtilityDamageReductionSkill : Skills
     {
         public override void Use()
-        {         
-                Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_DAMAGE_REDUCTION_DASH);            
+        {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_DAMAGE_REDUCTION_DASH);
         }
 
         public override void AssignCharacteristics()
@@ -79,6 +78,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY5);
         }
     }
 
@@ -87,6 +87,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY6);
         }
     }
 
@@ -94,7 +95,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-                Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_HEAL_WHEN_GROGU_SKILL);
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_HEAL_WHEN_GROGU_SKILL);
         }
 
         public override void AssignCharacteristics()
@@ -111,6 +112,7 @@ namespace DiamondEngine
         public override void Use()
         {
             //TODO: Priority
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY8);
         }
 
         public override void AssignCharacteristics()
@@ -128,6 +130,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION1);
         }
 
         //public override void AssignCharacteristics()
@@ -140,6 +143,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION2);
         }
     }
 
@@ -147,6 +151,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION3);
         }
     }
 
@@ -154,6 +159,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION4);
         }
     }
 
@@ -161,6 +167,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION5);
         }
     }
 
@@ -169,7 +176,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-                Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS);
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS);
         }
 
         public override void AssignCharacteristics()
@@ -184,7 +191,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-                Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_EXTRA_DAMAGE_LOW_HEALTH);
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_EXTRA_DAMAGE_LOW_HEALTH);
         }
 
         public override void AssignCharacteristics()
@@ -200,6 +207,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION8);
         }
     }
 
@@ -210,7 +218,8 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            if(Core.instance != null)
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE1);
+            if (Core.instance != null)
             {
                 int newHP = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementMaxHpPercent(0.1f, true);
             }
@@ -228,7 +237,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE2);
         }
 
         public override void AssignCharacteristics()
@@ -243,6 +252,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE3);
         }
     }
 
@@ -250,6 +260,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE4);
         }
     }
 
@@ -257,6 +268,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE5);
         }
     }
 
@@ -265,6 +277,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE6);
         }
     }
 
@@ -272,6 +285,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE7);
         }
     }
 
@@ -280,7 +294,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-                Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE_CHANCE_AVOID_DAMAGE);
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE_CHANCE_AVOID_DAMAGE);
         }
 
         public override void AssignCharacteristics()
@@ -300,7 +314,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.Skill1);
         }
     }
 
@@ -308,6 +322,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.Skill2);
         }
     }
 
@@ -315,6 +330,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.Skill3);
         }
     }
 
@@ -322,6 +338,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.Skill4);
         }
     }
 
@@ -329,6 +346,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.Skill5);
         }
     }
 
@@ -337,6 +355,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.Skill6);
         }
     }
 
@@ -344,6 +363,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.Skill7);
         }
     }
 
@@ -352,7 +372,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-                Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION);
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION);
         }
 
         public override void AssignCharacteristics()
@@ -373,6 +393,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY1);
         }
     }
 
@@ -380,6 +401,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY2);
         }
     }
 
@@ -401,6 +423,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY4);
         }
     }
 
@@ -408,6 +431,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY5);
         }
     }
 
@@ -417,7 +441,7 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_INCREASE_DAMAGE);
-            Core.instance.IncreaseNormalShootDamage(Skill_Tree_Data.GetWeaponsSkillTree().PW6_IncreaseDamageAmount);                           
+            Core.instance.IncreaseNormalShootDamage(Skill_Tree_Data.GetWeaponsSkillTree().PW6_IncreaseDamageAmount);
         }
 
         public override void AssignCharacteristics()
@@ -432,6 +456,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY7);
         }
     }
 
@@ -444,6 +469,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SECONDARY1);
         }
     }
 
@@ -451,6 +477,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SECONDARY2);
         }
     }
 
@@ -458,7 +485,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-                Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.WeaponsSkillNames.SECONDARY_DELAY_BETWEEN_USES);
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SECONDARY_DELAY_BETWEEN_USES);
         }
 
         public override void AssignCharacteristics()
@@ -473,6 +500,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SECONDARY4);
         }
     }
 
@@ -480,6 +508,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SECONDARY5);
         }
     }
 
@@ -488,6 +517,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SECONDARY6);
         }
     }
 
@@ -500,6 +530,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SPECIAL1);
         }
     }
 
@@ -507,6 +538,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SPECIAL2);
         }
     }
 
@@ -514,6 +546,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SPECIAL3);
         }
     }
 
@@ -521,6 +554,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SPECIAL4);
         }
     }
 
@@ -528,6 +562,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SPECIAL5);
         }
     }
 
@@ -536,6 +571,7 @@ namespace DiamondEngine
     {
         public override void Use()
         {
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SPECIAL6);
         }
     }
 
