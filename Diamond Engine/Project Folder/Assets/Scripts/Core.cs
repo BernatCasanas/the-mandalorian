@@ -989,9 +989,17 @@ public class Core : DiamondComponent
         dashTimer = dashDuration;
         dashStartYPos = gameObject.transform.localPosition.y;
 
-        dashDirection = worldDirFromGamepadInput();
         preDashRotation = this.gameObject.transform.localRotation;
-        RotatePlayer();
+
+        if (IsJoystickMoving() == true)
+        {
+            dashDirection = WorldDirFromGamepadInput().normalized;
+            RotatePlayer();
+        }
+        else
+        {
+            dashDirection = this.gameObject.transform.GetForward();
+        }
 
         PlayParticles(PARTICLES.JETPACK);
     }
@@ -1001,9 +1009,7 @@ public class Core : DiamondComponent
         StopPlayer();
         //gameObject.AddForce(gameObject.transform.GetForward().normalized * dashSpeed);
 
-        Vector3 dashDir = dashDirection.magnitude != 0 ? dashDirection.normalized : gameObject.transform.GetForward().normalized;
-
-        gameObject.transform.localPosition = gameObject.transform.localPosition + dashDir * dashSpeed * Time.deltaTime;
+        gameObject.transform.localPosition = gameObject.transform.localPosition + dashDirection * dashSpeed * Time.deltaTime;
         distanceMoved += dashSpeed * Time.deltaTime;
     }
 
@@ -1103,7 +1109,7 @@ public class Core : DiamondComponent
 
     #region UTILITIES
     //returns vector direction in world space from the gamepad input, or Vector3.zero if gamepad joystick is idle
-    public Vector3 worldDirFromGamepadInput()
+    public Vector3 WorldDirFromGamepadInput()
     {
         //Calculate player rotation
         Vector3 aX = new Vector3(gamepadInput.x, 0, (gamepadInput.y + 1) * -1);
