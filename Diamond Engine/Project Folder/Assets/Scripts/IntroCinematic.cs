@@ -12,6 +12,7 @@ public class IntroCinematic : DiamondComponent
     public GameObject point6 = null;
     public GameObject point7 = null;
     public GameObject point8 = null;
+    public GameObject greefRig = null;
 
     public GameObject postCinematicDialogue = null;
 
@@ -23,7 +24,8 @@ public class IntroCinematic : DiamondComponent
 
     GameObject[] pointArray = null;
     float[] speedArray = new float[] { 0.5f, 2.0f, 1.0f, 1.0f };    // Adapt values
-    int arrayCount = 0; // To have the helmet part, this should be at -1
+    int arrayCount = -1;
+    bool provisionalBool = false; // To have the helmet part, this should be at -1
 
     public void Awake()
     {
@@ -43,6 +45,12 @@ public class IntroCinematic : DiamondComponent
 
     public void Update()
     {
+        if (provisionalBool == false)   // We are skipping the helmet part of the cinematic. When we have it, delete this
+        {
+            provisionalBool = true;
+            UpdateValues();
+        }
+
         // We should have a way to skip this :/
         if (toGoPosition != null)
         {
@@ -72,6 +80,11 @@ public class IntroCinematic : DiamondComponent
         cameraObject.transform.localRotation = pointArray[arrayCount * 2].transform.localRotation;
         toGoPosition = pointArray[(arrayCount * 2) + 1].transform.localPosition;
         toRotateQuaternion = pointArray[(arrayCount * 2) + 1].transform.localRotation;
+
+/*        if (arrayCount == 1)
+        {
+            Animator.Play(greefRig, "Greef_Head");
+        }*/
     }
 
     public void EndCinematic()
