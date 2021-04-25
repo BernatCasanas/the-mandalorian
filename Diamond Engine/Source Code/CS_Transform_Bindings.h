@@ -399,12 +399,12 @@ bool CompareTag(MonoObject* cs_gameObject, MonoString* cs_tag)
 	return false;
 }
 
-MonoObject* RayCast(MonoObject* cs_Position, MonoObject* cs_Direction, float MaxDistance)
+MonoObject* RayCast(MonoObject* cs_Position, MonoObject* cs_Direction, float MaxDistance, float& hitDistance)
 {
 	float3 pos = M_MonoManager::UnboxVector(cs_Position);
 	float3 dir = M_MonoManager::UnboxVector(cs_Direction);
 
-	GameObject* ret = EngineExternal->modulePhysics->ShootRay(pos, dir, MaxDistance);
+	GameObject* ret = EngineExternal->modulePhysics->ShootRay(pos, dir, MaxDistance, &hitDistance);
 	if (ret == nullptr)
 		return nullptr;
 	return EngineExternal->moduleMono->GoToCSGO(ret);
