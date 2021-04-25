@@ -31,6 +31,7 @@ void PE_ForceOverLifetime::Update(Particle& particle, float dt)
 		particle.accel = (dirVec - particle.pos).Normalized() * forceMagitude;
 		break;
 	case FORCE_TYPE::MAX:
+		break;
 	default:
 		LOG(LogType::L_ERROR, "You should be here. Theres no force type assigned");
 		break;

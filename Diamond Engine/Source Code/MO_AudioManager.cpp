@@ -6,6 +6,9 @@
 #include "MathGeoLib/include/MathGeoLib.h"
 #include "DEJsonSupport.h"
 
+#include "Wwise/AK/Plugin/AkVorbisDecoderFactory.h"
+#pragma comment(lib, "Wwise/Release(StaticCRT)/lib/AkVorbisDecoder.lib")
+
 #include <assert.h>
 
 CAkFilePackageLowLevelIOBlocking g_lowLevelIO;
@@ -264,8 +267,16 @@ void ModuleAudioManager::PlayEvent(unsigned int id, std::string& eventName)
 
 void ModuleAudioManager::StopEvent(unsigned int id, std::string& eventName) const
 {
-	AK::SoundEngine::ExecuteActionOnEvent(eventName.c_str(), AK::SoundEngine::AkActionOnEventType::AkActionOnEventType_Stop, id);
+		AK::SoundEngine::ExecuteActionOnEvent(eventName.c_str(), AK::SoundEngine::AkActionOnEventType::AkActionOnEventType_Stop, id);
 }
+
+void ModuleAudioManager::StopEvent(unsigned int id) const
+{
+
+		AK::SoundEngine::StopAll(id);
+	
+}
+
 
 void ModuleAudioManager::PauseEvent(unsigned int id, std::string& eventName) const
 {

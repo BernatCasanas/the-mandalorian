@@ -129,6 +129,7 @@ bool M_MonoManager::Init()
 #pragma region Material
 	mono_add_internal_call("DiamondEngine.Material::SetFloatUniform", SetFloatUniform);
 	mono_add_internal_call("DiamondEngine.Material::SetIntUniform", SetIntUniform);
+	mono_add_internal_call("DiamondEngine.Material::SetVectorUniform", SetVectorUniform);
 #pragma endregion
 
 #pragma region Image2D
@@ -245,6 +246,7 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.SceneManager::LoadScene", CS_LoadScene);
 	mono_add_internal_call("DiamondEngine.Audio::PlayAudio", PlayAudio);
 	mono_add_internal_call("DiamondEngine.Audio::StopAudio", StopAudio);
+	mono_add_internal_call("DiamondEngine.Audio::StopOneAudio", StopOneAudio);
 	mono_add_internal_call("DiamondEngine.Audio::ResumeAudio", ResumeAudio);
 	mono_add_internal_call("DiamondEngine.Audio::PauseAudio", PauseAudio);
 	mono_add_internal_call("DiamondEngine.Audio::GetVolume", GetVolume);

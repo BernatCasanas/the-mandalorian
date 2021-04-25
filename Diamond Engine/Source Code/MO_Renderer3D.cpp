@@ -43,7 +43,7 @@
 
 
 ModuleRenderer3D::ModuleRenderer3D(Application* app, bool start_enabled) : Module(app, start_enabled), str_CAPS(""),
-vsync(false), wireframe(false), gameCamera(nullptr),resolution(2)
+vsync(false), wireframe(false), gameCamera(nullptr), resolution(2)
 {
 	GetCAPS(str_CAPS);
 	/*depth =*/ cull = lightng = color_material = texture_2d = true;
@@ -260,6 +260,11 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 						renderQueueMap.emplace(distance, renderQueue[j]);
 					}
 
+					for (size_t j = 0; j < renderQueuePostStencil.size(); ++j)
+					{
+						float distance = directLightVector[i]->orthoFrustum.pos.DistanceSq(renderQueuePostStencil[j]->globalOBB.pos);
+						renderQueueMap.emplace(distance, renderQueuePostStencil[j]);
+					}
 
 					if (!renderQueueMap.empty())
 					{
@@ -277,6 +282,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 								modelLoc = glGetUniformLocation(directLightVector[i]->depthShader->shaderProgramID, "lightSpaceMatrix");
 								glUniformMatrix4fv(modelLoc, 1, GL_FALSE, directLightVector[i]->spaceMatrixOpenGL.ptr());
 
+								d->second->TryCalculateBones();
 								d->second->GetRenderMesh()->PushDefaultMeshUniforms(directLightVector[i]->depthShader->shaderProgramID, 0, d->second->GetGO()->transform, float3::one);
 								d->second->GetRenderMesh()->OGL_GPU_Render();
 							}
@@ -307,21 +313,35 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 			float distance = App->moduleCamera->editorCamera.camFrustrum.pos.DistanceSq(renderQueue[i]->globalOBB.pos);
 			renderQueueMap.emplace(distance, renderQueue[i]);
 		}
-
 		//TODO: Make wireframe only affect scene window
 		(wireframe) ? glPolygonMode(GL_FRONT_AND_BACK, GL_LINE) : glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		RenderWithOrdering();
 		(wireframe) ? glPolygonMode(GL_FRONT_AND_BACK, GL_FILL) : glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
 
+
 	DrawRays();
-	DrawParticleSystems();
+	//DrawParticleSystems();//THIS IS LOCATED INSIDE RENDER STENCIL FOR NOW (UNTIL WE HAVE A POST PROCESSING SYSTEM)
 
 	if (App->moduleCamera->editorCamera.drawSkybox)
 		skybox.DrawAsSkybox(&App->moduleCamera->editorCamera);
 
 	DebugLine(pickingDebug);
 	DrawDebugLines();
+
+
+	for (size_t i = 0; i < renderQueueStencil.size(); i++)
+	{
+		float distance = App->moduleCamera->editorCamera.camFrustrum.pos.DistanceSq(renderQueueStencil[i]->globalOBB.pos);
+		renderQueueMapStencil.emplace(distance, renderQueueStencil[i]);
+	}
+	for (size_t i = 0; i < renderQueuePostStencil.size(); i++)
+	{
+		float distance = App->moduleCamera->editorCamera.camFrustrum.pos.DistanceSq(renderQueuePostStencil[i]->globalOBB.pos);
+		renderQueueMapPostStencil.emplace(distance, renderQueuePostStencil[i]);
+	}
+
+	RenderStencilWithOrdering(true);
 
 	App->moduleCamera->editorCamera.EndDraw();
 
@@ -344,28 +364,26 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 			RenderWithOrdering(true);
 		}
 
-		if (!renderQueueStencil.empty() && !renderQueuePostStencil.empty())
-		{
-			for (size_t i = 0; i < renderQueueStencil.size(); i++)
-			{
-				float distance = gameCamera->camFrustrum.pos.DistanceSq(renderQueueStencil[i]->globalOBB.pos);
-				renderQueueMapStencil.emplace(distance, renderQueueStencil[i]);
-			}
-			for (size_t i = 0; i < renderQueuePostStencil.size(); i++)
-			{
-				float distance = gameCamera->camFrustrum.pos.DistanceSq(renderQueuePostStencil[i]->globalOBB.pos);
-				renderQueueMapPostStencil.emplace(distance, renderQueuePostStencil[i]);
-			}
-
-			//TODO render stencil here
-			RenderStencilWithOrdering(true);
-		}
-
 		DrawRays();
-		DrawParticleSystems();
+		//DrawParticleSystems();//THIS IS LOCATED INSIDE RENDER STENCIL FOR NOW (UNTIL WE HAVE A POST PROCESSING SYSTEM)
 
 		if (gameCamera->drawSkybox)
 			skybox.DrawAsSkybox(gameCamera);
+
+
+		for (size_t i = 0; i < renderQueueStencil.size(); ++i)
+		{
+			float distance = gameCamera->camFrustrum.pos.DistanceSq(renderQueueStencil[i]->globalOBB.pos);
+			renderQueueMapStencil.emplace(distance, renderQueueStencil[i]);
+		}
+		for (size_t i = 0; i < renderQueuePostStencil.size(); ++i)
+		{
+			float distance = gameCamera->camFrustrum.pos.DistanceSq(renderQueuePostStencil[i]->globalOBB.pos);
+			renderQueueMapPostStencil.emplace(distance, renderQueuePostStencil[i]);
+		}
+
+		RenderStencilWithOrdering(true);
+
 
 		glClear(GL_DEPTH_BUFFER_BIT);
 		App->moduleGui->RenderCanvas2D();
@@ -619,7 +637,11 @@ void ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray)
 		if (ray.Intersects((*i)->globalAABB, nHit, fHit))
 			canSelect[nHit] = (*i);
 	}
-
+	for (std::vector<C_MeshRenderer*>::iterator i = renderQueuePostStencil.begin(); i != renderQueuePostStencil.end(); ++i)
+	{
+		if (ray.Intersects((*i)->globalAABB, nHit, fHit))
+			canSelect[nHit] = (*i);
+	}
 
 	//Add all meshes with a triangle hit and store the distance from the ray to the triangle, then pick the closest one
 	std::map<float, C_MeshRenderer*> distMap;
@@ -660,7 +682,7 @@ void ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray)
 		App->moduleEditor->SetSelectedGO((*distMap.begin()).second->GetGO());
 		selected = true;
 	}
-	
+
 	//If nothing is selected, set selected GO to null
 	if (!selected)
 		App->moduleEditor->SetSelectedGO(nullptr);
@@ -675,9 +697,6 @@ void ModuleRenderer3D::RenderWithOrdering(bool rTex)
 {
 	if (renderQueueMap.empty())
 		return;
-	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
-	glDisable(GL_STENCIL_TEST);
-	glStencilMask(0xFF);
 
 	for (auto i = renderQueueMap.rbegin(); i != renderQueueMap.rend(); ++i)
 	{
@@ -694,27 +713,24 @@ void ModuleRenderer3D::RenderWithOrdering(bool rTex)
 void ModuleRenderer3D::RenderStencilWithOrdering(bool rTex)
 {
 	if (renderQueueMapStencil.empty())
-		return;
-	glEnable(GL_STENCIL_TEST);
-	glStencilFunc(GL_ALWAYS, 1, 0xFF);
-	glStencilMask(0xFF);
-
-
-
-	for (auto i = renderQueueMapPostStencil.rbegin(); i != renderQueueMapPostStencil.rend(); ++i)
 	{
-		// Get the range of the current key
-		auto range = renderQueueMapPostStencil.equal_range(i->first);
-
-		// Now render out that whole range
-		for (auto d = range.first; d != range.second; ++d)
-			d->second->RenderMesh(rTex);
+		DrawParticleSystems();
+		return;
 	}
-	renderQueueMapPostStencil.clear();
 
-	glDisable(GL_DEPTH_TEST);
-	glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
-	glStencilMask(0x00);
+
+	glEnable(GL_STENCIL_TEST);
+	glClear(GL_STENCIL_BUFFER_BIT);
+	//1. First we mask the silouhettes of the objects that will be drawn as stencil
+
+	glStencilFunc(GL_ALWAYS, 1, 0xFF);
+	glStencilOp(GL_KEEP, GL_REPLACE, GL_KEEP); //only write into the stencil mask as 1 the fragments that do not pass the depth test
+	glDepthFunc(GL_LESS);
+	//Only enable writting to the stencil buffer, no depth or color
+	glStencilMask(0xFF);//enable writting to the stencil buffer
+	glDepthMask(GL_FALSE);
+	glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
+
 
 	for (auto i = renderQueueMapStencil.rbegin(); i != renderQueueMapStencil.rend(); ++i)
 	{
@@ -725,13 +741,50 @@ void ModuleRenderer3D::RenderStencilWithOrdering(bool rTex)
 		for (auto d = range.first; d != range.second; ++d)
 			d->second->RenderMeshStencil(rTex);
 	}
+
+	glStencilFunc(GL_EQUAL, 0, 0xFF);
+	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);//TODO original is keep keep replace //only write into the color & depth masks fragments that do pass the depth test and pass the stencil
+	glDepthMask(GL_TRUE);
+	glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+	glStencilMask(0x00);//disable writting to the stencil buffer
+	//Draw meshes that haven't been rendered
+	for (auto i = renderQueueMapPostStencil.rbegin(); i != renderQueueMapPostStencil.rend(); ++i)
+	{
+		// Get the range of the current key
+		auto range = renderQueueMapPostStencil.equal_range(i->first);
+
+		// Now render out that whole range
+		for (auto d = range.first; d != range.second; ++d)
+			d->second->RenderMesh(rTex);
+	}
+	DrawParticleSystems();
+	//==================================================================
+	//2. We then draw the stencil objects in front of the mask
+
+	glStencilFunc(GL_NOTEQUAL, 0, 0xFF);
+	//We now want to draw on the color & depth buffers takin into account the stencil (without changing it)
+	glClear(GL_DEPTH_BUFFER_BIT);
+
+	for (auto i = renderQueueMapStencil.rbegin(); i != renderQueueMapStencil.rend(); ++i)
+	{
+		// Get the range of the current key
+		auto range = renderQueueMapStencil.equal_range(i->first);
+
+		// Now render out that whole range
+		for (auto d = range.first; d != range.second; ++d)
+			d->second->RenderMeshStencil(rTex);
+	}
+
+	//==================================================================
+	//Clear(only the needed ones) & reset buffers to their normal state
 	renderQueueMapStencil.clear();
-
+	glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
 	glEnable(GL_DEPTH_TEST);
-	glStencilFunc(GL_ALWAYS, 0, 0xFF);
-	glStencilMask(0xFF);
+	glDepthMask(GL_TRUE);
+	glDepthFunc(GL_LESS);
+	glStencilMask(0xFF);//enable writting to the stencil buffer
 	glDisable(GL_STENCIL_TEST);
-
+	glClear(GL_STENCIL_BUFFER_BIT);
 }
 
 
@@ -792,6 +845,15 @@ bool ModuleRenderer3D::IsWalkable(float3 pointToCheck)
 	float fHit = 0;
 
 	for (std::vector<C_MeshRenderer*>::iterator i = renderQueue.begin(); i != renderQueue.end(); ++i)
+	{
+		if (walkablePoint.Intersects((*i)->globalAABB, nHit, fHit))
+		{
+			//walkablePoints.push_back(walkablePoint);
+			return true;
+		}
+	}
+
+	for (std::vector<C_MeshRenderer*>::iterator i = renderQueuePostStencil.begin(); i != renderQueuePostStencil.end(); ++i)
 	{
 		if (walkablePoint.Intersects((*i)->globalAABB, nHit, fHit))
 		{
