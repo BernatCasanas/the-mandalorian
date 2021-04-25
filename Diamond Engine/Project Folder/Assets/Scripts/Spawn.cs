@@ -164,12 +164,4 @@ public class Spawn : DiamondComponent
             }
         }
     }
-
-    private string GenerateLibraryPath(int uid)
-    {
-        if (uid == 0)
-            return "Library/Prefabs/489054570.prefab";
-        else
-            return "Library/Prefabs/" + uid.ToString() + ".prefab";
-    }
 }

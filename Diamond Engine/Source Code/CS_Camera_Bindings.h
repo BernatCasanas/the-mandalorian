@@ -38,3 +38,32 @@ float GetOrthSize(MonoObject* go) {
 		return NULL;
 	}
 }
+
+void CS_SetCameraOrthographic(MonoObject* go)
+{
+	if (go == nullptr)
+		return;
+
+	GameObject* GO = EngineExternal->moduleMono->GameObject_From_CSGO(go);
+
+	C_Camera* cam = dynamic_cast<C_Camera*>(GO->GetComponent(Component::TYPE::CAMERA));
+
+	if (cam != nullptr)
+	{
+		cam->camFrustrum.type = FrustumType::OrthographicFrustum;
+		cam->SetOrthSize(50.0f);
+	}
+}
+
+void CS_SetCameraPerspective(MonoObject* go)
+{
+	if (go == nullptr)
+		return;
+
+	GameObject* GO = EngineExternal->moduleMono->GameObject_From_CSGO(go);
+
+	C_Camera* cam = dynamic_cast<C_Camera*>(GO->GetComponent(Component::TYPE::CAMERA));
+
+	if (cam != nullptr)
+		cam->camFrustrum.type = FrustumType::PerspectiveFrustum;
+}

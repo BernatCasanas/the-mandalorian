@@ -404,6 +404,15 @@ public class Skel : Bosseslv2
                     playerHealth.TakeDamage((int)rushDamage);
                 }
             }
+            else if (currentState == STATE.BOUNCE_RUSH)
+            {
+                inputsList.Add(INPUT.IN_BOUNCERUSH_END);
+                PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage((int)damageBounceRush);
+                }
+            }
         }
     }
 

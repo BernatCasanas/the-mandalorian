@@ -1,0 +1,141 @@
+{
+    "assets_path": "Assets\/Prefabs\/WampaSpike.prefab",
+    "Game Objects": [
+        {
+            "name": "WampaSpike",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 588324564,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 788871013,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                3.9097094535827637,
+                1.0436754109832691e-06
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                0.10000000149011612,
+                0.099999018013477325,
+                0.099999018013477325
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": true,
+                    "LockLinearY": true,
+                    "LockLinearZ": true,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "RancorProjectile",
+                    "speed": 30,
+                    "lifeTime": 20,
+                    "damage": 10
+                }
+            ]
+        },
+        {
+            "name": "Wampa_Spike",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1730313842,
+            "ParentUID": 588324564,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/944489387.mmh",
+                    "UID": 944489387,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        }
+    ]
+}
