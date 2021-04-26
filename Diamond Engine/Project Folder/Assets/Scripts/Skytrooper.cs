@@ -560,40 +560,50 @@ public class Skytrooper : Enemy
     {
         if (collidedGameObject.CompareTag("Bullet"))
         {
-            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+            BH_Bullet bullet = collidedGameObject.GetComponent<BH_Bullet>();
 
-            Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
-
-            if (Core.instance.hud != null)
+            if (bullet != null)
             {
-                Core.instance.hud.GetComponent<HUD>().AddToCombo(25, 0.95f);
-            }
+                healthPoints -= bullet.damage;
 
-            if (currentState != STATE.DIE && healthPoints <= 0.0f)
-            {
-                inputsList.Add(INPUT.IN_DIE);
-            }
+                Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
-            if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
-            {
-                skill_slowDownActive = true;
-                skill_slowDownTimer = 0.0f;
+                if (Core.instance.hud != null)
+                {
+                    Core.instance.hud.GetComponent<HUD>().AddToCombo(25, 0.95f);
+                }
+
+                if (currentState != STATE.DIE && healthPoints <= 0.0f)
+                {
+                    inputsList.Add(INPUT.IN_DIE);
+                }
+
+                if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
+                {
+                    skill_slowDownActive = true;
+                    skill_slowDownTimer = 0.0f;
+                }
             }
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))
         {
-            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+            BH_Bullet bullet = collidedGameObject.GetComponent<BH_Bullet>();
 
-            Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
-
-            if (Core.instance.hud != null)
+            if (bullet != null)
             {
-                Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
-            }
+                healthPoints -= bullet.damage;
 
-            if (currentState != STATE.DIE && healthPoints <= 0.0f)
-            {
-                inputsList.Add(INPUT.IN_DIE);
+                Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
+
+                if (Core.instance.hud != null)
+                {
+                    Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
+                }
+
+                if (currentState != STATE.DIE && healthPoints <= 0.0f)
+                {
+                    inputsList.Add(INPUT.IN_DIE);
+                }
             }
 
         }
@@ -627,7 +637,6 @@ public class Skytrooper : Enemy
             if (Core.instance.gameObject != null)
             {
                 inputsList.Add(INPUT.IN_PUSHED);
-
             }
         }
     }
