@@ -99,7 +99,8 @@ public static class RoomSwitch
 
 	public static void SwitchRooms()
 	{
-		int index = (int)currentLevelIndicator;
+        EnemyManager.ClearList();
+        int index = (int)currentLevelIndicator;
 
 		if (index > 0 && currentLevelIndicator == LEVELS.TWO && levelLists[index-1].finalScene == currentroom  /*&& currentLevelIndicator == LEVELS.TWO*/)
         {
