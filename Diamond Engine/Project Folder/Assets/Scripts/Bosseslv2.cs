@@ -25,6 +25,7 @@ public class Bosseslv2 : DiamondComponent
     public float distanceProjectile = 15.0f;
     public float wanderRange = 7.5f;
     public GameObject colliderJumpSlam = null;
+    public GameObject colliderBounceRush = null;
 
 
     //Private Variables

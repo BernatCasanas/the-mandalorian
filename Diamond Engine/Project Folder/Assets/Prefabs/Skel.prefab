@@ -58,7 +58,7 @@
                     ],
                     "Rotation": [
                         0,
-                        0.0040150047279894352,
+                        0.0040150051936507225,
                         0,
                         0.99999195337295532
                     ],
@@ -145,14 +145,14 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                1.0429725705307646e-07,
-                1.0813052654266357,
+                1.0707913133956026e-07,
+                0.53266716003417969,
                 -0.87490630149841309
             ],
             "Rotation": [
+                1.2663481374630692e-16,
                 0,
-                0,
-                0,
+                -3.5527136788005009e-13,
                 1
             ],
             "Scale": [
@@ -289,8 +289,101 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "SkelJumpSlam",
-                    "damageJumpSlam": 20
+                    "ScriptName": "AtackBosslv2",
+                    "damage": 20
+                }
+            ]
+        },
+        {
+            "name": "Bounce",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1516232417,
+            "ParentUID": 1190528649,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -4.0292739868164063e-05,
+                0.3157963752746582,
+                -3.4694469519536142e-16
+            ],
+            "Rotation": [
+                4.5953305569823187e-16,
+                -2.8610569469122993e-10,
+                -9.057875977047658e-13,
+                1
+            ],
+            "Scale": [
+                0.89999997615814209,
+                0.89999997615814209,
+                0.89999997615814209
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": true,
+                    "LockLinearY": true,
+                    "LockLinearZ": true,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": false,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "AtackBosslv2",
+                    "damage": 15
                 }
             ]
         },
@@ -1467,10 +1560,10 @@
                 -0.46277880668640137
             ],
             "Rotation": [
-                -4.0590606431578635e-08,
-                -0.9976159930229187,
-                -4.0590606431578635e-08,
-                0.069011136889457703
+                -4.0590602878864956e-08,
+                -0.99761587381362915,
+                -4.0590602878864956e-08,
+                0.069011129438877106
             ],
             "Scale": [
                 0.99999862909317017,

@@ -1,9 +1,9 @@
 using System;
 using DiamondEngine;
 
-public class SkelJumpSlam : DiamondComponent
+public class AtackBosslv2 : DiamondComponent
 {
-	public float damageJumpSlam = 20f;
+	public float damage = 20f;
 
 	public void Update()
 	{
@@ -16,7 +16,7 @@ public class SkelJumpSlam : DiamondComponent
 		{
 			PlayerHealth health = triggeredGameObject.GetComponent<PlayerHealth>();
 			if (health != null)
-				health.TakeDamage((int)damageJumpSlam);
+				health.TakeDamage((int)damage);
 		}
 	}
 }
