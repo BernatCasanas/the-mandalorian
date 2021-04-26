@@ -45,6 +45,9 @@ namespace DiamondEngine
         {
             [MethodImplAttribute(MethodImplOptions.InternalCall)]
             get;
+
+            [MethodImplAttribute(MethodImplOptions.InternalCall)]
+            set;
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
