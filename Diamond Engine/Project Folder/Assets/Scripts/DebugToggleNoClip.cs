@@ -9,13 +9,13 @@ public class DebugToggleNoClip : DiamondComponent
         {
             DebugOptionsHolder.noClip = true;
             Debug.Log("NO CLIP MODE ACTIVE");
-            Core.instance.gameObject.GetComponent<PlayerHealth>().ToggleNoClip(true);
+            //Core.instance.gameObject.GetComponent<PlayerHealth>().ToggleNoClip(true);
         }
         else
         {
             DebugOptionsHolder.noClip = false;
             Debug.Log("NO CLIP DEACTIVATED");
-            Core.instance.gameObject.GetComponent<PlayerHealth>().ToggleNoClip(false);
+            //Core.instance.gameObject.GetComponent<PlayerHealth>().ToggleNoClip(false);
         }
     }
 
