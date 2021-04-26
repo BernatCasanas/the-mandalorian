@@ -16,6 +16,31 @@ MonoString* GetTag(MonoObject* cs_Object)
 	return mono_string_new(EngineExternal->moduleMono->domain, cpp_gameObject->tag);
 }
 
+void SetTag(MonoObject* cs_Object, MonoString* string)
+{
+	GameObject* cpp_gameObject = EngineExternal->moduleMono->GameObject_From_CSGO(cs_Object);
+
+	std::string newTag = mono_string_to_utf8(string);
+	std::vector<std::string> tags = EngineExternal->moduleScene->tags;
+
+	bool tagAlreadyExists = false;
+	for (int t = 0; t < tags.size(); t++)
+	{
+		if (strcmp(newTag.c_str(), tags[t].c_str()) == 0)
+		{
+			tagAlreadyExists = true;
+			break;
+		}
+	}
+	if (tagAlreadyExists == false)
+	{
+		EngineExternal->moduleScene->tags.push_back(newTag);
+	}
+
+	strcpy(cpp_gameObject->tag, newTag.c_str());
+
+}
+
 void SetVelocity(MonoObject* cs_GameObject, MonoObject* cs_Velocity)
 {
 	float3 velocity;
