@@ -10,8 +10,8 @@ uniform mat4 view;
 uniform mat4 projection;
 uniform float time;
 
-float speed = 0.01;
-float wave_length = 0.1;
+float speed = 0.005;
+float wave_length = 0.075;
 float steepness = 0.5;
 
 vec3 direction_1 = vec3(0.35, 0.315, -0.35);
@@ -97,7 +97,7 @@ void main()
  fPosition += wave1 + wave2 + wave3;
  relative_position = fPosition.y / ((amp1 * 2.0 + amp2 * 2.0 + amp3 * 2.0) / num_waves);
  relative_position = (relative_position + 0.5) * 0.5;
- relative_position = max(relative_position, 0.0);
+ relative_position = max(relative_position, -0.2);
  
  vs_out.TexCoords = texCoords;
  vs_out.FragPos = vec3(model_matrix * vec4(position, 1.0));
@@ -227,15 +227,17 @@ return value;
 
 void main()
 {
- vec2 motion = vec2(Generate_Fractal_Perlin_Noise(vec2(fs_in.TexCoords) + time + water_direction));
- float value = Generate_Fractal_Cellular_Noise(vec2(fs_in.TexCoords * 10.0) + motion * 0.5);
- ripple_color *= value;
+ vec2 motion = vec2(Generate_Fractal_Perlin_Noise(vec2(pos.xz) + water_direction));
+ float value = Generate_Fractal_Cellular_Noise(vec2(pos.xz) * 30.0 + motion * 0.5);
+ ripple_color *= value * relative_position;
  
- water_color =  water_color + ripple_color * relative_position * 8.0;
+ water_color =  water_color + ripple_color * (relative_position * 6.0);
  color = vec4(water_color, 1.0);
 }
 
 #endif
+
+
 
 
 
