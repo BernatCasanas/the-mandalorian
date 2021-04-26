@@ -1,19 +1,19 @@
 {
     "NavMesh": 188878564,
     "EditorCameraPosition": [
-        -30.18757438659668,
-        29.975982666015625,
-        24.643024444580078
+        -18.175901412963867,
+        13.578904151916504,
+        -19.116498947143555
     ],
     "EditorCameraZ": [
-        0.22442731261253357,
-        -0.5054246187210083,
-        -0.83317369222640991
+        0.64990115165710449,
+        -0.5278436541557312,
+        0.54681777954101563
     ],
     "EditorCameraY": [
-        0.13143104314804077,
-        0.86287081241607666,
-        -0.48803678154945374
+        0.40392076969146729,
+        0.84934157133102417,
+        0.33980423212051392
     ],
     "tags": [
         "Bantha"
@@ -100,6 +100,7 @@
                         1,
                         1
                     ],
+                    "stencilEmission": 0,
                     "doNotDrawStencil": true
                 },
                 {
@@ -251,6 +252,92 @@
                         1,
                         1,
                         1
+                    ]
+                },
+                {
+                    "name": "Explosion",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1771110578,
+                    "ParentUID": 1078529231,
+                    "PrefabReference": 957246446,
+                    "PrefabID": 436147261,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        6.2615537643432617,
+                        -0.21558773517608643,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "PrefabObjects": [
+                        {
+                            "name": "Barrel Explosion",
+                            "tag": "Untagged",
+                            "layer": "Default",
+                            "Active": true,
+                            "UID": 126023845,
+                            "ParentUID": 1771110578,
+                            "PrefabID": 0,
+                            "PrefabReference": 1594799615,
+                            "DontDestroy": false,
+                            "Static": false,
+                            "Position": [
+                                0,
+                                0.066840648651123047,
+                                0
+                            ],
+                            "Rotation": [
+                                0,
+                                0,
+                                0,
+                                1
+                            ],
+                            "Scale": [
+                                1,
+                                1,
+                                1
+                            ]
+                        },
+                        {
+                            "name": "Wave",
+                            "tag": "Untagged",
+                            "layer": "Default",
+                            "Active": true,
+                            "UID": 1435414750,
+                            "ParentUID": 1771110578,
+                            "PrefabID": 0,
+                            "PrefabReference": 196995074,
+                            "DontDestroy": false,
+                            "Static": false,
+                            "Position": [
+                                0,
+                                -0.25276088714599609,
+                                0
+                            ],
+                            "Rotation": [
+                                0,
+                                0,
+                                0,
+                                1
+                            ],
+                            "Scale": [
+                                1,
+                                1,
+                                1
+                            ]
+                        }
                     ]
                 }
             ]
