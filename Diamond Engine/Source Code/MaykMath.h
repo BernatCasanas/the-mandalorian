@@ -7,9 +7,21 @@
 #include<time.h>
 #include<vector>
 #include<string>
+#include <map>
+
 
 namespace MaykMath 
 {
+	/*class LookUpTables
+	{
+	public:
+		LookUpTables();
+		~LookUpTables();
+
+	private:
+		int sineLUTResolution;
+		std::map<float, float> sineLUT;
+	};*/
 
 	void Init();
 	int Random(int minV, int maxV);
@@ -19,6 +31,8 @@ namespace MaykMath
 	void FindCentroid(float* A, float* B, float* C, float* r);
 
 	void GeneralDataSet(float* dest, float* src, size_t vecSize);
+
+	//static const LookUpTables lookUpTables;
 
 	template <class T>
 	void FixedVectorPushBack(std::vector<T>& vec, T& value) {
@@ -44,8 +58,6 @@ namespace MaykMath
 			vec.push_back(value);
 		}
 	}
-
-
 }
 
 

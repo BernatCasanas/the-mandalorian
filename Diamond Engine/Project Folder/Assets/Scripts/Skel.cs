@@ -421,6 +421,17 @@ public class Skel : Bosseslv2
                 }
             }
         }
+        else if (collidedGameObject.CompareTag("PushSkill"))
+        {
+            if (currentState == STATE.FAST_RUSH || currentState == STATE.SLOW_RUSH)
+            {
+                inputsList.Add(INPUT.IN_SLOW_RUSH_END);
+            }
+            else if (currentState == STATE.BOUNCE_RUSH)
+            {
+                inputsList.Add(INPUT.IN_BOUNCERUSH_END);
+            }
+        }
     }
 
     public void TakeDamage(float damage)

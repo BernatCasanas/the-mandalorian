@@ -122,7 +122,7 @@ public class Bosseslv2 : DiamondComponent
 
                     GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, rot, null);
                     projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
-                    Debug.Log("Throwing projectile");
+                    //Debug.Log("Throwing projectile");
 
                     if (firstShot)
                     {
@@ -135,8 +135,8 @@ public class Bosseslv2 : DiamondComponent
                 }
             }
         }
-        Debug.Log("Projectile");
-        Debug.Log(shootingTimer.ToString());
+        //Debug.Log("Projectile");
+        //Debug.Log(shootingTimer.ToString());
         if (projectilePoint == null) Debug.Log("Prohjectile null");
 
     }
@@ -164,7 +164,7 @@ public class Bosseslv2 : DiamondComponent
         agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(fastRushSpeed);
-        Debug.Log("Rush");
+        //Debug.Log("Rush");
     }
 
     public void EndFastRush()
@@ -180,7 +180,7 @@ public class Bosseslv2 : DiamondComponent
     }
     public void UpdateSlowRush()
     {
-        Debug.Log("Slow Rush");
+        //Debug.Log("Slow Rush");
         agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(slowRushSpeed);
@@ -200,7 +200,7 @@ public class Bosseslv2 : DiamondComponent
     }
     public void UpdateRushStun()
     {
-        Debug.Log("Rush Stun");
+        //Debug.Log("Rush Stun");
     }
 
     public void EndRushStun()
@@ -214,6 +214,7 @@ public class Bosseslv2 : DiamondComponent
 
     public void StartBounceRush()
     {
+        Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Previous_Rush_Roar");
         if (gameObject.CompareTag("Skel"))
         {
             Animator.Play(gameObject, "Skel_Rush");
@@ -233,9 +234,9 @@ public class Bosseslv2 : DiamondComponent
 
         initTarget = nearestColumn;
         finalTarget = nearestColumn.GetComponent<TargetColumn>().GetTarget(gameObject.transform.globalPosition);
-        Debug.Log("Nearest column: " + nearestColumn.Name);
-        Debug.Log("Final target: " + finalTarget.Name);
-        Debug.Log("Started Bounce Rush");
+        //Debug.Log("Nearest column: " + nearestColumn.Name);
+        //Debug.Log("Final target: " + finalTarget.Name);
+        //Debug.Log("Started Bounce Rush");
         currentTarget = initTarget;
         returnToInitTarget = false;
         colliderBounceRush.EnableCollider();
@@ -262,7 +263,7 @@ public class Bosseslv2 : DiamondComponent
         {
             currentTarget = initTarget;
         }
-        Debug.Log("Bounce Rush");
+        //Debug.Log("Bounce Rush");
     }
 
     public void EndBounceRush()
@@ -282,6 +283,7 @@ public class Bosseslv2 : DiamondComponent
 
     public void StartJumpSlam()
     {
+        Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Jump_Snow");
         Debug.Log("Starting Jumping");
         jumpslam = JUMPSLAM.CHARGE;
         jumpslamTimer = chargeTime;
@@ -295,11 +297,11 @@ public class Bosseslv2 : DiamondComponent
     public void UpdateJumpSlam()
     {
         LookAt(Core.instance.gameObject.transform.globalPosition);
-        Debug.Log("Jump Slam");
+        //Debug.Log("Jump Slam");
         switch (jumpslam)
         {
             case JUMPSLAM.CHARGE:
-                Debug.Log("Jump Slam: Charge");
+                //Debug.Log("Jump Slam: Charge");
                 if (jumpslamTimer > 0)
                 {
                     jumpslamTimer -= Time.deltaTime;
@@ -320,11 +322,11 @@ public class Bosseslv2 : DiamondComponent
                     }
                 }
 
-                Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Jump_Snow");
+                //Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Jump_Snow");
                 break;
 
             case JUMPSLAM.UP:
-                Debug.Log("Jump Slam: Up");
+                //Debug.Log("Jump Slam: Up");
                 if (jumpslamTimer > 0)
                 {
                     gameObject.transform.localPosition += Vector3.up * 50f * Time.deltaTime;
@@ -346,7 +348,7 @@ public class Bosseslv2 : DiamondComponent
                 break;
 
             case JUMPSLAM.FALLING:
-                Debug.Log("Jump Slam: Falling");
+                //Debug.Log("Jump Slam: Falling");
                 if (jumpslamTimer > 0)
                 {
                     MoveToPosition(targetPos, speed * 10);
@@ -365,13 +367,15 @@ public class Bosseslv2 : DiamondComponent
                         {
 
                         }
+
+                        Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Jump_Impact");
                     }
                 }
-                Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Jump_Impact");
+                //Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Jump_Impact");
                 break;
 
             case JUMPSLAM.RECOVERY:
-                Debug.Log("Jump Slam: Recovery");
+                //Debug.Log("Jump Slam: Recovery");
                 if (jumpslamTimer > 0)
                 {
                     jumpslamTimer -= Time.deltaTime;
@@ -419,7 +423,7 @@ public class Bosseslv2 : DiamondComponent
         agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(speed);
-        Debug.Log("Following player");
+        //Debug.Log("Following player");
     }
 
     public void EndFollowing()
@@ -448,7 +452,7 @@ public class Bosseslv2 : DiamondComponent
     {
         LookAt(agent.GetDestination());
         agent.MoveToCalculatedPos(speed);
-        Debug.Log("Following player");
+        //Debug.Log("Following player");
     }
 
     public void EndWander()
@@ -461,7 +465,14 @@ public class Bosseslv2 : DiamondComponent
     public void StartDie()
     {
         dieTimer = dieTime;
-        Animator.Play(gameObject, "WP_Die");
+        if (gameObject.CompareTag("Skel"))
+        {
+            Animator.Play(gameObject, "Skel_Die");
+        }
+        else if (gameObject.CompareTag("Wampa"))
+        {
+            Animator.Play(gameObject, "WP_Die");
+        }
         Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Death_Roar");
         Debug.Log("Dying");
     }
@@ -476,7 +487,7 @@ public class Bosseslv2 : DiamondComponent
                 EndDie();
             }
         }
-        Debug.Log("Dying");
+        //Debug.Log("Dying");
     }
 
     public void EndDie()

@@ -29,7 +29,7 @@ public class Skill_Tree_Data : DiamondComponent
     public enum WeaponsSkillNames
     {
         PRIMARY1 = 1,
-        PRIMARY2 = 2,        
+        PRIMARY2 = 2,
         PRIMARY_SLOW_SPEED = 3,
         PRIMARY4 = 4,
         PRIMARY5 = 5,
@@ -57,7 +57,7 @@ public class Skill_Tree_Data : DiamondComponent
         UTILITY5 = 5,
         UTILITY6 = 6,
         UTILITY_HEAL_WHEN_GROGU_SKILL = 7,
-        UTILITY8 = 8,
+        UTILITY_CONSECUTIVE_DASH = 8,
         AGGRESION1 = 9,
         AGGRESION2 = 10,
         AGGRESION3 = 11,
@@ -199,6 +199,16 @@ public class Skill_Tree_Data : DiamondComponent
 
     public class Grogu_Skills_Data
     {
+        //Prices
+        public int G1_price = -1;
+        public int G2_price = -1;
+        public int G3_price = -1;
+        public int G4_price = -1;
+        public int G5_price = -1;
+        public int G6_price = -1;
+        public int G7_price = -1;
+        public int G8_price = -1;
+
         //Grogu Skills
         //Grogu Skill 1
         //Grogu Skill 2
@@ -213,7 +223,11 @@ public class Skill_Tree_Data : DiamondComponent
     }
     public class Mando_Skills_Data
     {
+        //Prices
+        public int U1_price = -1;
+
         //Utility Skill 3
+        public int U3_price = -1;
         public float U3_duration = -1.0f;
         public float U3_increasedDamagePercentage = -1.0f;
         //Utility Skill 4
@@ -221,6 +235,8 @@ public class Skill_Tree_Data : DiamondComponent
         public float U4_damageReduction = -1.0f;
         //Utility Skill 7
         public int U7_healAmount = -1;
+        //Utility Skill 8
+        public int U8_consecutiveDashAmount = -1;
         //Aggression Skill 6
         public float A6_increaseDamageToBossAmount = -1.0f;
         //Aggression Skill 7

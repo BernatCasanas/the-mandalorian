@@ -53,18 +53,18 @@
                     "isTrigger": false,
                     "Position": [
                         0,
-                        0.25999999046325684,
+                        1.2000000476837158,
                         0
                     ],
                     "Rotation": [
                         0,
-                        0.0040150061249732971,
+                        0.0040161493234336376,
                         0,
                         0.99999195337295532
                     ],
                     "Scale": [
                         0.79998946189880371,
-                        1.2000000476837158,
+                        2,
                         0.99985957145690918
                     ]
                 },
@@ -131,6 +131,16 @@
                         329821077,
                         848170844
                     ]
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "Wampa_Skell",
+                    "volume": 50,
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false
                 }
             ]
         },
@@ -1368,19 +1378,27 @@
                     ],
                     "alternColorStencil": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": false
                 },
                 {
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
+                    "MaterialAssetPath": "Assets\/Materials\/animated_material.mat",
                     "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
                     "MaterialUID": 1948688504
+                },
+                {
+                    "Type": 26,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/animated_colored_mat.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/2086070049.mat",
+                    "MaterialUID": 2086070049
                 }
             ]
         },

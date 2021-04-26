@@ -479,6 +479,14 @@ public class Skytrooper : Enemy
         if (dieTimer > 0.0f)
         {
             dieTimer -= Time.deltaTime;
+            Quaternion dieRotation = gameObject.transform.localRotation;
+            Quaternion rotation = new Quaternion(0,45,0);
+            dieRotation = rotation * dieRotation;
+            Vector3 dieTransform = gameObject.transform.localPosition;
+            dieTransform.y += 0.15f;
+            gameObject.transform.localPosition = dieTransform;
+            gameObject.transform.localRotation = dieRotation;
+
 
             if (dieTimer <= 0.0f)
             {
@@ -489,6 +497,9 @@ public class Skytrooper : Enemy
 
     private void Die()
     {
+        //float dist = (deathPoint.transform.globalPosition - gameObject.transform.globalPosition).magnitude;
+        Vector3 forward = gameObject.transform.GetForward();
+        //forward = forward.normalized * (-dist);
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
         Counter.roomEnemies--;
         Debug.Log("Enemies: " + Counter.roomEnemies.ToString());
@@ -508,6 +519,7 @@ public class Skytrooper : Enemy
             InternalCalls.CreatePrefab(coinDropPath, pos, Quaternion.identity, new Vector3(0.07f, 0.07f, 0.07f));
         }
         Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+        InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
         InternalCalls.Destroy(gameObject);
     }
 

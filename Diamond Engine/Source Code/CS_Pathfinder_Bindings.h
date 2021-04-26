@@ -129,7 +129,7 @@ MonoObject* CS_GetLastVector(MonoObject* go)
 	if (comp == nullptr)
 		return nullptr;
 
-	if (comp->path.size() <= 0)
+	if (comp->path.size() <= 1)
 		return EngineExternal->moduleMono->Float3ToCS(trans->position);
 
 	

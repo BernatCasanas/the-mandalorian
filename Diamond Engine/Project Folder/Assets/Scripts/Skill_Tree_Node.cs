@@ -45,6 +45,7 @@ public class Skill_Tree_Node : DiamondComponent
 
     public int skillTreeName;
     public int skillTreeNumber;
+    public bool alreadySetup = false;
 
     public NODE_STATE state 
     {
@@ -72,10 +73,7 @@ public class Skill_Tree_Node : DiamondComponent
 
     public void Awake()
     {
-        if (isRootNode)
-            state = NODE_STATE.UNLOCKED;
-        else
-            state = NODE_STATE.LOCKED;
+        UnlockTreeAfterRun();
 
         if (SkillDictionary.skill_type.ContainsKey(skill_name))
         {
@@ -94,23 +92,38 @@ public class Skill_Tree_Node : DiamondComponent
             skill.type_of_price = RewardType.REWARD_MACARON;
         else
             skill.type_of_price = RewardType.REWARD_SCRAP;
-
-        UnlockTreeAfterRun(); 
     }
 
     //Remember the skills that have already been bought before the run
     private void UnlockTreeAfterRun()
     {
         if (Skill_Tree_Data.IsEnabled(skillTreeName, skillTreeNumber))
-        {                
+        {
             state = NODE_STATE.OWNED;
 
             if (children_1 != null)
+            {
                 children_1.GetComponent<Skill_Tree_Node>().state = NODE_STATE.UNLOCKED;
+            }
 
             if (children_2 != null)
+            {
                 children_2.GetComponent<Skill_Tree_Node>().state = NODE_STATE.UNLOCKED;
-        }        
+            }
+
+            if (oppositeNode != null)
+            {
+                oppositeNode.GetComponent<Skill_Tree_Node>().state = NODE_STATE.LOCKED;
+                oppositeNode.GetComponent<Skill_Tree_Node>().alreadySetup = true;
+            }
+                
+
+        }
+        else if (!alreadySetup && isRootNode)
+            state = NODE_STATE.UNLOCKED;
+        else if(!alreadySetup)
+            state = NODE_STATE.LOCKED;
+
     }
 
     public void Update()
