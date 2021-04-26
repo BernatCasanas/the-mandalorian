@@ -1359,33 +1359,6 @@ public class Rancor : DiamondComponent
                 inputsList.Add(RANCOR_INPUT.IN_DEAD);
             }
         }
-        else if (collidedGameObject.CompareTag("Grenade"))
-        {
-            //bigGrenade bGrenade = collidedGameObject.GetComponent<bigGrenade>();
-            //smallGrenade sGrenade = collidedGameObject.GetComponent<smallGrenade>();
-
-            //if (bGrenade != null)
-            //    healthPoints -= bGrenade.GetDamage() ;
-
-            //if (sGrenade != null)
-            //    healthPoints -= sGrenade.damage;
-
-            //CHANGE FOR APPROPIATE RANCOR HIT
-            Audio.PlayAudio(gameObject, "Play_Rancor_Hit");
-
-            if (Core.instance.hud != null)
-            {
-                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
-
-                if (hudComponent != null)
-                    hudComponent.AddToCombo(20, 0.5f);
-            }
-
-            if (currentState != RANCOR_STATE.DEAD && healthPoints <= 0.0f)
-            {
-                inputsList.Add(RANCOR_INPUT.IN_DEAD);
-            }
-        }
         else if (collidedGameObject.CompareTag("WorldLimit"))
         {
             if (currentState != RANCOR_STATE.DEAD)

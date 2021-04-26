@@ -89,11 +89,11 @@ public class SlowGrenade : DiamondComponent
                 }
                 else
                 {
-                    Rancor rancorScript = enemies[i].GetComponent<Rancor>();
+                    Rancor bossScript = enemies[i].GetComponent<Rancor>();
 
-                    if (rancorScript != null)
+                    if (bossScript != null)
                     {
-                        if (rancorScript.healthPoints <= 0)
+                        if (bossScript.healthPoints <= 0)
                         {
                             enemies.Remove(enemies[i]);
                             i--;
@@ -101,9 +101,43 @@ public class SlowGrenade : DiamondComponent
                         else if (procActivation == true)
                         {
                             Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.45f);
-                            rancorScript.TakeDamage(damage);
+                            bossScript.TakeDamage(damage);
                         }
                     }
+                    else if (bossScript == null)
+                    {
+                        Skel skelScript = enemies[i].GetComponent<Skel>();
+                        Wampa wampaScript = enemies[i].GetComponent<Wampa>();
+
+                        if (skelScript != null)
+                        {
+                            if (skelScript.healthPoints <= 0)
+                            {
+                                enemies.Remove(enemies[i]);
+                                i--;
+                            }
+                            else if (procActivation == true)
+                            {
+                                Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.45f);
+                                skelScript.TakeDamage(damage);
+                            }
+                        }
+                        else if (wampaScript != null)
+                        {
+                            if (wampaScript.healthPoints <= 0)
+                            {
+                                enemies.Remove(enemies[i]);
+                                i--;
+                            }
+                            else if (procActivation == true)
+                            {
+                                Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.45f);
+                                wampaScript.TakeDamage(damage);
+                            }
+                        }
+
+                    }
+
                 }
 
 
@@ -134,6 +168,8 @@ public class SlowGrenade : DiamondComponent
         if (explosionTimer >= explosionTime)
             InternalCalls.Destroy(gameObject);
     }
+
+
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
         if (triggeredGameObject != null)

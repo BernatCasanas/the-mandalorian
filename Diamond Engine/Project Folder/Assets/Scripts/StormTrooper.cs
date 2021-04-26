@@ -768,22 +768,6 @@ public class StormTrooper : Enemy
 
 
         }
-        else if (collidedGameObject.CompareTag("Grenade"))
-        {
-            if (Core.instance.hud != null)
-            {
-                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
-
-                if (hudComponent != null)
-                    hudComponent.AddToCombo(8, 1.5f);
-            }
-            
-            if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
-            {
-                skill_slowDownActive = true;
-                skill_slowDownTimer = 0.0f;
-            }            
-        }
         else if (collidedGameObject.CompareTag("WorldLimit"))
         {
             if (currentState != STATE.DIE)

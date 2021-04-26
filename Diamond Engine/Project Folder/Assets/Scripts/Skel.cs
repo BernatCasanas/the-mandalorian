@@ -46,7 +46,7 @@ public class Skel : Bosseslv2
     private STATE currentState = STATE.SEARCH_STATE;
     private List<INPUT> inputsList = new List<INPUT>();
 
-    public override void Awake() 
+    public override void Awake()
     {
         base.Awake();
         Debug.Log("Skel Awake");
@@ -127,11 +127,11 @@ public class Skel : Bosseslv2
                 inputsList.Add(INPUT.IN_JUMPSLAM_END);
             }
         }
-        if(bounceRushTimer > 0)
+        if (bounceRushTimer > 0)
         {
             bounceRushTimer -= Time.deltaTime;
 
-            if(bounceRushTimer <= 0)
+            if (bounceRushTimer <= 0)
             {
                 inputsList.Add(INPUT.IN_BOUNCERUSH_END);
             }
@@ -347,8 +347,21 @@ public class Skel : Bosseslv2
     {
         if (collidedGameObject.CompareTag("Bullet"))
         {
-            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
-            Debug.Log("Rancor HP: " + healthPoints.ToString());
+            BH_Bullet bulletComp = collidedGameObject.GetComponent<BH_Bullet>();
+
+
+            if (bulletComp != null)
+            {
+                float damageToBoss = bulletComp.damage;
+
+                if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
+                {
+                    damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
+                }
+
+                TakeDamage(damageToBoss);
+            }
+
             //damaged = 1.0f; this is HUD things
 
             if (Core.instance.hud != null)
@@ -356,30 +369,23 @@ public class Skel : Bosseslv2
                 Core.instance.hud.GetComponent<HUD>().AddToCombo(25, 0.95f);
             }
 
-            if (currentState != STATE.DEAD && healthPoints <= 0.0f)
-            {
-                inputsList.Add(INPUT.IN_DEAD);
-            }
         }
-        else if (collidedGameObject.CompareTag("Grenade"))
+        else if (collidedGameObject.CompareTag("ChargeBullet"))
         {
-            bigGrenade bGrenade = collidedGameObject.GetComponent<bigGrenade>();
-            smallGrenade sGrenade = collidedGameObject.GetComponent<smallGrenade>();
 
-            if (bGrenade != null)
-                healthPoints -= bGrenade.GetDamage();
+            ChargedBullet bulletComp = collidedGameObject.GetComponent<ChargedBullet>();
 
-            if (sGrenade != null)
-                healthPoints -= sGrenade.damage;
+            if (bulletComp != null)
+            {
+                float damageToBoss = bulletComp.damage;
+                TakeDamage(damageToBoss);
+            }
+
+            //damaged = 1.0f; this is HUD things
 
             if (Core.instance.hud != null)
             {
-                Core.instance.hud.GetComponent<HUD>().AddToCombo(8, 1.5f);
-            }
-
-            if (currentState != STATE.DEAD && healthPoints <= 0.0f)
-            {
-                inputsList.Add(INPUT.IN_DEAD);
+                Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
             }
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))
@@ -415,6 +421,21 @@ public class Skel : Bosseslv2
                 }
             }
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if (currentState != STATE.DEAD)
+        {
+            healthPoints -= damage;
+            Debug.Log("Skel HP: " + healthPoints.ToString());
+
+            if (healthPoints <= 0.0f)
+            {
+                inputsList.Add(INPUT.IN_DEAD);
+            }
+        }
+
     }
 
 }

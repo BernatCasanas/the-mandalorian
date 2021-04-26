@@ -348,55 +348,42 @@ public class Wampa : Bosseslv2
     {
         if (collidedGameObject.CompareTag("Bullet"))
         {
-            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
-            Debug.Log("Rancor HP: " + healthPoints.ToString());
+            BH_Bullet bulletComp = collidedGameObject.GetComponent<BH_Bullet>();
+
+            if (bulletComp != null)
+            {
+                float damageToBoss = bulletComp.damage;
+
+                if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
+                {
+                    damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
+                }
+
+                TakeDamage(damageToBoss);
+            }
             //damaged = 1.0f; this is HUD things
 
             if (Core.instance.hud != null)
             {
                 Core.instance.hud.GetComponent<HUD>().AddToCombo(25, 0.95f);
             }
-
-            if (currentState != STATE.DEAD && healthPoints <= 0.0f)
-            {
-                inputsList.Add(INPUT.IN_DEAD);
-            }
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))
         {
-            healthPoints -= collidedGameObject.GetComponent<ChargedBullet>().damage;
-            Debug.Log("Wampa HP: " + healthPoints.ToString());
+
+            ChargedBullet bulletComp = collidedGameObject.GetComponent<ChargedBullet>();
+
+            if (bulletComp != null)
+            {
+                float damageToBoss = bulletComp.damage;
+                TakeDamage(damageToBoss);
+            }
+
             //damaged = 1.0f; this is HUD things
 
             if (Core.instance.hud != null)
             {
                 Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
-            }
-
-            if (currentState != STATE.DEAD && healthPoints <= 0.0f)
-            {
-                inputsList.Add(INPUT.IN_DEAD);
-            }
-        }
-        else if (collidedGameObject.CompareTag("Grenade"))
-        {
-            bigGrenade bGrenade = collidedGameObject.GetComponent<bigGrenade>();
-            smallGrenade sGrenade = collidedGameObject.GetComponent<smallGrenade>();
-
-            if (bGrenade != null)
-                healthPoints -= bGrenade.GetDamage();
-
-            if (sGrenade != null)
-                healthPoints -= sGrenade.damage;
-
-            if (Core.instance.hud != null)
-            {
-                Core.instance.hud.GetComponent<HUD>().AddToCombo(8, 1.5f);
-            }
-
-            if (currentState != STATE.DEAD && healthPoints <= 0.0f)
-            {
-                inputsList.Add(INPUT.IN_DEAD);
             }
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))
@@ -423,5 +410,20 @@ public class Wampa : Bosseslv2
                 }
             }
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if (currentState != STATE.DEAD)
+        {
+            healthPoints -= damage;
+            Debug.Log("Wampa HP: " + healthPoints.ToString());
+
+            if (healthPoints <= 0.0f)
+            {
+                inputsList.Add(INPUT.IN_DEAD);
+            }
+        }
+
     }
 }

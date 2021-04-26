@@ -607,27 +607,6 @@ public class Skytrooper : Enemy
             }
 
         }
-        else if (collidedGameObject.CompareTag("Grenade"))
-        {
-            //healthPoints -= collidedGameObject.GetComponent<smallGrenade>().damage;
-            healthPoints -= 5; //TODO: Hardcoded value, talk with adria
-
-            if (Core.instance.hud != null)
-            {
-                Core.instance.hud.GetComponent<HUD>().AddToCombo(8, 1.5f);
-            }
-
-            if (currentState != STATE.DIE && healthPoints <= 0.0f)
-            {
-                inputsList.Add(INPUT.IN_DIE);
-            }
-
-            if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
-            {
-                skill_slowDownActive = true;
-                skill_slowDownTimer = 0.0f;
-            }
-        }
     }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)

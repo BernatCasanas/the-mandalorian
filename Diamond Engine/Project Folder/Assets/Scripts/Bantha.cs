@@ -721,34 +721,6 @@ public class Bantha : Enemy
 
             }
         }
-        else if (collidedGameObject.CompareTag("Grenade"))
-        {
-            smallGrenade smallGrenade = collidedGameObject.GetComponent<smallGrenade>();
-            //  bigGrenade bigGrenade = collidedGameObject.GetComponent<bigGrenade>();
-
-            //if (smallGrenade != null)
-            //    healthPoints -= smallGrenade.damage;
-
-            //if (bigGrenade != null)
-            //    healthPoints -= bigGrenade.damage;
-
-            if (Core.instance.hud != null)
-            {
-                HUD hud = Core.instance.hud.GetComponent<HUD>();
-
-                if (hud != null)
-                    hud.AddToCombo(20, 0.5f);
-            }
-
-            if (currentState != STATE.DIE && healthPoints <= 0.0f)
-                inputsList.Add(INPUT.IN_DIE);
-
-            if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
-            {
-                skill_slowDownActive = true;
-                skill_slowDownTimer = 0.0f;
-            }
-        }
         else if (collidedGameObject.CompareTag("WorldLimit"))
         {
             if (currentState != STATE.DIE)
