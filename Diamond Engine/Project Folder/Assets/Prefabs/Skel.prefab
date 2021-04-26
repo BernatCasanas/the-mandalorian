@@ -58,7 +58,7 @@
                     ],
                     "Rotation": [
                         0,
-                        0.0040150042623281479,
+                        0.0040150061249732971,
                         0,
                         0.99999195337295532
                     ],
@@ -78,7 +78,8 @@
                     "projectilePoint": 840714428,
                     "distanceProjectile": 15,
                     "wanderRange": 7.5,
-                    "colliderJumpSlam": 1516232417,
+                    "colliderJumpSlam": 524252192,
+                    "colliderBounceRush": 766079951,
                     "resting": false,
                     "firstShot": true,
                     "secondShot": false,
@@ -145,14 +146,14 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                1.0429725705307646e-07,
-                1.0813052654266357,
+                1.0707913133956026e-07,
+                0.53266716003417969,
                 -0.87490630149841309
             ],
             "Rotation": [
+                1.2663481374630692e-16,
                 0,
-                0,
-                0,
+                -3.5527136788005009e-13,
                 1
             ],
             "Scale": [
@@ -164,133 +165,6 @@
                 {
                     "Type": 1,
                     "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Colliders",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1190528649,
-            "ParentUID": 1162921635,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "JumpSlam",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1516232417,
-            "ParentUID": 1190528649,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -4.0292739868164063e-05,
-                0.3157963752746582,
-                0
-            ],
-            "Rotation": [
-                4.1956543550512328e-16,
-                -2.0304999348574881e-10,
-                -7.8886154336252345e-13,
-                1
-            ],
-            "Scale": [
-                1.2899998426437378,
-                0.10000000149011612,
-                1.2899998426437378
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": false,
-                    "Path": "Library\/Meshes\/1313575480.mmh",
-                    "UID": 1313575480,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "stencilEmission": 0,
-                    "doNotDrawStencil": true
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": false,
-                    "Gravity": false,
-                    "LockLinearX": true,
-                    "LockLinearY": true,
-                    "LockLinearZ": true,
-                    "LockAngularX": true,
-                    "LockAngularY": true,
-                    "LockAngularZ": true,
-                    "Mass": 10,
-                    "Density": 1
-                },
-                {
-                    "Type": 18,
-                    "Active": false,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "SkelJumpSlam",
-                    "damageJumpSlam": 20
                 }
             ]
         },
@@ -617,10 +491,10 @@
                 2.56847494661816e-16
             ],
             "Rotation": [
-                0.49999174475669861,
-                0.50000834465026855,
-                0.50000834465026855,
-                0.49999174475669861
+                0.49999168515205383,
+                0.50000828504562378,
+                0.50000828504562378,
+                0.49999168515205383
             ],
             "Scale": [
                 1,
@@ -923,10 +797,10 @@
                 -0.028598707169294357
             ],
             "Rotation": [
-                0.01664484478533268,
-                -0.056602273136377335,
-                0.059395376592874527,
-                0.99648958444595337
+                0.016644842922687531,
+                -0.056602265685796738,
+                0.05939536914229393,
+                0.99648946523666382
             ],
             "Scale": [
                 0.99999994039535522,
@@ -1507,6 +1381,226 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
                     "MaterialUID": 1948688504
+                }
+            ]
+        },
+        {
+            "name": "Colliders",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1190528649,
+            "ParentUID": 1162921635,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Bounce Rush",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 766079951,
+            "ParentUID": 1190528649,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -5.6843418860808015e-14,
+                0.20732975006103516,
+                -4.5796699765787707e-16
+            ],
+            "Rotation": [
+                5.9269722291844856e-16,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                0.89999997615814209,
+                0.89999997615814209,
+                0.89999997615814209
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": true,
+                    "LockLinearY": true,
+                    "LockLinearZ": true,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "AtackBosslv2",
+                    "damage": 15
+                }
+            ]
+        },
+        {
+            "name": "Jump Slam",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 524252192,
+            "ParentUID": 1190528649,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                1.1937117960769683e-12,
+                -0.88114261627197266,
+                -3.8996583739958623e-15
+            ],
+            "Rotation": [
+                8.6105081313576698e-16,
+                -2.6097590755114197e-09,
+                -2.3271736100671792e-12,
+                1
+            ],
+            "Scale": [
+                0.91847801208496094,
+                0.22837036848068237,
+                0.849403977394104
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": true,
+                    "LockLinearY": true,
+                    "LockLinearZ": true,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "AtackBosslv2",
+                    "damage": 20
                 }
             ]
         }

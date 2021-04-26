@@ -5,7 +5,7 @@
             "name": "WampaBoss",
             "tag": "Wampa",
             "layer": "Default",
-            "Active": false,
+            "Active": true,
             "UID": 1731619441,
             "ParentUID": 0,
             "PrefabReference": 0,
@@ -85,7 +85,8 @@
                     "projectilePoint": 222592259,
                     "distanceProjectile": 15,
                     "wanderRange": 7.5,
-                    "colliderJumpSlam": 1516232417,
+                    "colliderJumpSlam": 524252192,
+                    "colliderBounceRush": 766079951,
                     "resting": false,
                     "firstShot": false,
                     "secondShot": true,
@@ -462,10 +463,10 @@
                 -0.01217986736446619
             ],
             "Rotation": [
-                -0.023844076320528984,
-                0.013343618251383305,
-                0.87417614459991455,
-                0.48483982682228088
+                -0.023844072595238686,
+                0.013343616388738155,
+                0.874176025390625,
+                0.48483976721763611
             ],
             "Scale": [
                 1,
@@ -836,10 +837,10 @@
                 -1.1102230246251565e-15
             ],
             "Rotation": [
-                -0.00094224727945402265,
-                0.0038661262951791286,
-                0.028922664001584053,
-                0.99957382678985596
+                -0.00094224716303870082,
+                0.0038661258295178413,
+                0.028922660276293755,
+                0.99957370758056641
             ],
             "Scale": [
                 1,
@@ -1477,20 +1478,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -0.42517280578613281,
-                -0.52139759063720703,
-                10.251765251159668
+                0,
+                0,
+                0
             ],
             "Rotation": [
-                7.1054273576010019e-15,
-                1,
-                1.5095698996381302e-11,
-                -0.00017267467046622187
+                0,
+                0,
+                0,
+                1
             ],
             "Scale": [
-                0.99999994039535522,
                 1,
-                0.99999994039535522
+                1,
+                1
             ],
             "Components": [
                 {
@@ -1500,31 +1501,31 @@
             ]
         },
         {
-            "name": "JumpSlam",
+            "name": "Bounce Rush",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1516232417,
+            "UID": 766079951,
             "ParentUID": 1190528649,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -4.0292739868164063e-05,
-                0.3157963752746582,
+                0,
+                2.0998947620391846,
                 0
             ],
             "Rotation": [
-                4.1956543550512328e-16,
-                -2.0304999348574881e-10,
-                -7.8886154336252345e-13,
+                0,
+                0,
+                0,
                 1
             ],
             "Scale": [
-                1.2899998426437378,
-                0.10000000149011612,
-                1.2899998426437378
+                0.89999997615814209,
+                0.89999997615814209,
+                0.89999997615814209
             ],
             "Components": [
                 {
@@ -1546,7 +1547,7 @@
                         1,
                         1
                     ],
-                    "stencilEmission": 0,
+                    "stencilEmission": 0.89999997615814209,
                     "doNotDrawStencil": true
                 },
                 {
@@ -1565,7 +1566,7 @@
                 },
                 {
                     "Type": 18,
-                    "Active": false,
+                    "Active": true,
                     "isTrigger": true,
                     "Position": [
                         0,
@@ -1587,8 +1588,101 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "SkelJumpSlam",
-                    "damageJumpSlam": 20
+                    "ScriptName": "AtackBosslv2",
+                    "damage": 15
+                }
+            ]
+        },
+        {
+            "name": "Jump Slam",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 524252192,
+            "ParentUID": 1190528649,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0.48108792304992676,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                0.22837036848068237,
+                1.3414874076843262
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": true,
+                    "LockLinearY": true,
+                    "LockLinearZ": true,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "AtackBosslv2",
+                    "damage": 20
                 }
             ]
         }

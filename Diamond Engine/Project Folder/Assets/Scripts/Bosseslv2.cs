@@ -25,6 +25,7 @@ public class Bosseslv2 : DiamondComponent
     public float distanceProjectile = 15.0f;
     public float wanderRange = 7.5f;
     public GameObject colliderJumpSlam = null;
+    public GameObject colliderBounceRush = null;
 
 
     //Private Variables
@@ -236,6 +237,7 @@ public class Bosseslv2 : DiamondComponent
         Debug.Log("Started Bounce Rush");
         currentTarget = initTarget;
         returnToInitTarget = false;
+        colliderBounceRush.EnableCollider();
     }
 
     public void UpdateBounceRush()
@@ -268,6 +270,7 @@ public class Bosseslv2 : DiamondComponent
         if (gameObject.CompareTag("Skel")) {
             Animator.Play(gameObject,"Skel_Rush_Recover");
         }
+        colliderBounceRush.DisableCollider();
     }
 
     #endregion

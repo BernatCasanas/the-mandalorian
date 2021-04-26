@@ -80,11 +80,6 @@ public class IntroCinematic : DiamondComponent
         cameraObject.transform.localRotation = pointArray[arrayCount * 2].transform.localRotation;
         toGoPosition = pointArray[(arrayCount * 2) + 1].transform.localPosition;
         toRotateQuaternion = pointArray[(arrayCount * 2) + 1].transform.localRotation;
-
-/*        if (arrayCount == 1)
-        {
-            Animator.Play(greefRig, "Greef_Head");
-        }*/
     }
 
     public void EndCinematic()

@@ -48,12 +48,12 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY3);
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_INCREASE_DAMAGE_WHEN_GROGU);
         }
 
         public override void AssignCharacteristics()
         {
-            description = "[NOT IMPLEMENTED] Mando has 15% increased damage for 10 seconds after Grogu uses his Push skill";
+            description = "Mando has 15% increased damage for 10 seconds after Grogu uses his Push skill";
             price = 0;
             type_of_price = RewardType.REWARD_BESKAR;
         }
