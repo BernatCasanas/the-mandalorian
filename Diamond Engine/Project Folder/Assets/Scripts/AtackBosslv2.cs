@@ -18,5 +18,6 @@ public class AtackBosslv2 : DiamondComponent
 			if (health != null)
 				health.TakeDamage((int)damage);
 		}
+		gameObject.DisableCollider();
 	}
 }
