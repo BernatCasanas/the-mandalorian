@@ -109,8 +109,8 @@ YouTube:	https://www.youtube.com/channel/UCzwLxtTAxGMVG1belis7tkw
 	- Improved Companion skills & follow system.
 	- Overhauled Combat with parameters, dynamics, mechanics,...
 	- New Heat system for the Primary Weapon.
-	- HUD overhauled with full functionallity.
-	* For more information about Mando & Grogu's moveset, see Controls above. 
+	- HUD overhauled with full functionallity. <br>
+    	> For more information about Mando & Grogu's moveset, see Controls above. 
 	
 * Enemies
 	- Added 4 types of enemies:
@@ -122,7 +122,7 @@ YouTube:	https://www.youtube.com/channel/UCzwLxtTAxGMVG1belis7tkw
 	- Added 2 bosses encounters:
 		- Rancor: 1st level noss,finished & polsihed.
 		- Wampa & Skel: 2nd level boss first iteration.
-	- General AI polished & improved.
+	- General AI extremely polished & improved.
 
 * Enviroment
 	- 4 room setup that is changed in a random order, with a starting (just in the 1st level) & ending scene for each level.
