@@ -53,8 +53,10 @@ public class Skill_Trees_Data_Entry : DiamondComponent
     //Utility Skill 1
     //Utility Skill 2
     //Utility Skill 3
+    public float Utility3_duration = 10.0f;
+    public float Utility3_increasedDamagePercentage = 0.15f;
     //Utility Skill 4
-    public float Utility4_seconds = 2.0f;
+    public float Utility4_duration = 2.0f;
     public float Utility4_damageReduction = 0.2f;
     //Utility Skill 5
     //Utility Skill 6
@@ -104,8 +106,10 @@ public class Skill_Trees_Data_Entry : DiamondComponent
         Skill_Tree_Data.weaponsSkillTree.SW4_DelayReducedAmount = SecondaryWeapon4_DelayReducedAmount;
         Skill_Tree_Data.weaponsSkillTree.PW6_IncreaseDamageAmount = PrimaryWeapon6_IncreaseDamageAmount;
 
+        Skill_Tree_Data.mandoSkillTree.U3_duration = Utility3_duration;
+        Skill_Tree_Data.mandoSkillTree.U3_increasedDamagePercentage = Utility3_increasedDamagePercentage;
         Skill_Tree_Data.mandoSkillTree.U4_damageReduction = Utility4_damageReduction;
-        Skill_Tree_Data.mandoSkillTree.U4_seconds = Utility4_seconds;
+        Skill_Tree_Data.mandoSkillTree.U4_seconds = Utility4_duration;
         Skill_Tree_Data.mandoSkillTree.U7_healAmount = Utility7_healAmount;
         Skill_Tree_Data.mandoSkillTree.A6_increaseDamageToBossAmount = Aggression6_increaseDamageToBossAmount;
         Skill_Tree_Data.mandoSkillTree.A7_extraDamageAmount = Aggression7_extraDamageAmount;

@@ -52,7 +52,7 @@ public class Skill_Tree_Data : DiamondComponent
     {
         UTILITY1 = 1,
         UTILITY2 = 2,
-        UTILITY3 = 3,
+        UTILITY_INCREASE_DAMAGE_WHEN_GROGU = 3,
         UTILITY_DAMAGE_REDUCTION_DASH = 4, //Damage reduction after dash
         UTILITY5 = 5,
         UTILITY6 = 6,
@@ -213,6 +213,9 @@ public class Skill_Tree_Data : DiamondComponent
     }
     public class Mando_Skills_Data
     {
+        //Utility Skill 3
+        public float U3_duration = -1.0f;
+        public float U3_increasedDamagePercentage = -1.0f;
         //Utility Skill 4
         public float U4_seconds = -1.0f;
         public float U4_damageReduction = -1.0f;
