@@ -30,8 +30,6 @@ public class LaserTurret : Enemy
 
     private List<INPUT> inputsList = new List<INPUT>();
 
-    public GameObject hitParticles = null;
-
     //Action times
     public float idleTime = 0.0f;
     public float loadTime = 0.0f;
@@ -60,6 +58,14 @@ public class LaserTurret : Enemy
     private Vector3[] laserDirections;
     public int lasersNumber = 4;
     public float laserOffser;
+
+    //Explosion effect
+    public GameObject explosion = null;
+    public GameObject wave = null;
+    public GameObject mesh = null;
+
+    private ParticleSystem partExp = null;
+    private ParticleSystem partWave = null;
 
     public void Awake()
     {
@@ -354,37 +360,24 @@ public class LaserTurret : Enemy
     {
         Debug.Log("TURRET DIE");
         dieTimer = dieTime;
-        //Audio.StopAudio(gameObject);
 
-        //Animator.Play(gameObject, "ST_Die", 1.0f);
+        if (explosion != null && wave != null)
+        {
+            Debug.Log("Want to play particles");
+            partExp = explosion.GetComponent<ParticleSystem>();
+            partWave = wave.GetComponent<ParticleSystem>();
+        }
 
-        Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
+        if (partExp != null)
+            partExp.Play();
+
+        if (partWave != null)
+            partWave.Play();
+
+        if (mesh != null)
+            InternalCalls.Destroy(mesh);
+
         Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
-
-        ParticleSystem dead = null;
-        ParticleSystem wave = null;
-        ParticleSystem souls = null;
-
-        StormTrooperParticles myParticles = gameObject.GetComponent<StormTrooperParticles>();
-        if (myParticles != null)
-        {
-            dead = myParticles.dead;
-            wave = myParticles.wave;
-            souls = myParticles.souls;
-        }
-
-        if (dead != null)
-        {
-            dead.Play();
-        }
-        if (wave != null)
-        {
-            wave.Play();
-        }
-        if (souls != null)
-        {
-            souls.Play();
-        }
 
         //Combo
         if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))

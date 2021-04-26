@@ -721,12 +721,6 @@ public class StormTrooper : Enemy
             myParticles.hit.Play();
         if (collidedGameObject.CompareTag("Bullet"))
         {
-
-            //healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
-            //if (currentState != STATE.DIE && healthPoints <= 0.0f)
-            //{
-            //    inputsList.Add(INPUT.IN_DIE);
-            //}
             BH_Bullet bullet = collidedGameObject.GetComponent<BH_Bullet>();
 
             if (bullet != null)
