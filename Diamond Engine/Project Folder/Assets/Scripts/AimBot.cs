@@ -9,21 +9,21 @@ public class AimBot : DiamondComponent
     public float angleWeight = 0.5f;
     public float distanceWeight = 0.5f;
     float dotMin = 0;
-    bool start = true;
-
     int lastFrameEnemyCount = 0;
     GameObject myCurrentObjective = null;
     public bool isShooting = false;
 
+    public void Awake()
+    {
+        dotMin = 0;
+        lastFrameEnemyCount = 0;
+        myCurrentObjective = null;
+        isShooting = false;
+        ChangeConeAngle(startAimConeAngle);
+    }
+
     public void Update()
     {
-
-        if (start)
-        {
-
-            ChangeConeAngle(startAimConeAngle);
-            start = false;
-        }
 
         if (!isShooting && myCurrentObjective != null)
             myCurrentObjective = null;
