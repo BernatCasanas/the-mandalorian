@@ -140,7 +140,6 @@ MonoObject* FindObjectWithName(MonoString* name) {
 	}
 
 	char* _name = mono_string_to_utf8(name);
-	mono_free(_name);
 
 	for (int i = 0; i < gameObjectVec.size(); i++) {
 
@@ -151,6 +150,7 @@ MonoObject* FindObjectWithName(MonoString* name) {
 		}
 
 	}
+	mono_free(_name);
 
 	assert("The object you searched for doesn't exist. :/");
 	return nullptr;
