@@ -237,6 +237,7 @@ public class Bosseslv2 : DiamondComponent
         Debug.Log("Started Bounce Rush");
         currentTarget = initTarget;
         returnToInitTarget = false;
+        colliderBounceRush.EnableCollider();
     }
 
     public void UpdateBounceRush()
@@ -269,6 +270,7 @@ public class Bosseslv2 : DiamondComponent
         if (gameObject.CompareTag("Skel")) {
             Animator.Play(gameObject,"Skel_Rush_Recover");
         }
+        colliderBounceRush.DisableCollider();
     }
 
     #endregion
