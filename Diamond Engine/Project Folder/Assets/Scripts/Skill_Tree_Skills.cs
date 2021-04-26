@@ -316,6 +316,15 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.Skill1);
         }
+
+        public override void AssignCharacteristics()
+        {
+            if (Skill_Tree_Data.GetGroguSkillTree() != null)
+                Debug.Log("---------------------NO ES NULL");
+            else
+                Debug.Log("---------------------ES NULL");
+            //price = Skill_Tree_Data.GetGroguSkillTree().G1_price;
+        }
     }
 
     public class GroguPushRangeSkill : Skills
