@@ -57,7 +57,7 @@ public class Skill_Tree_Data : DiamondComponent
         UTILITY5 = 5,
         UTILITY6 = 6,
         UTILITY_HEAL_WHEN_GROGU_SKILL = 7,
-        UTILITY8 = 8,
+        UTILITY_CONSECUTIVE_DASH = 8,
         AGGRESION1 = 9,
         AGGRESION2 = 10,
         AGGRESION3 = 11,
@@ -221,6 +221,8 @@ public class Skill_Tree_Data : DiamondComponent
         public float U4_damageReduction = -1.0f;
         //Utility Skill 7
         public int U7_healAmount = -1;
+        //Utility Skill 8
+        public int U8_consecutiveDashAmount = -1;
         //Aggression Skill 6
         public float A6_increaseDamageToBossAmount = -1.0f;
         //Aggression Skill 7
