@@ -1,4 +1,5 @@
 #include"MaykMath.h"
+#include "Globals.h"
 #include<assert.h>
 
 void MaykMath::Init()
@@ -40,7 +41,6 @@ void MaykMath::GeneralDataSet(float* dest, float* src, size_t vecSize)
 	{
 		dest[i] = src[i];
 	}
-
 }
 
 //template <class T>
@@ -67,4 +67,23 @@ void MaykMath::GeneralDataSet(float* dest, float* src, size_t vecSize)
 //	//	//Vector is not full
 //	//	vec.push_back(value);
 //	//}
+//}
+
+//MaykMath::LookUpTables::LookUpTables() : sineLUTResolution(8.0f)
+//{
+//	float radians = (float)(2 *  PI/ sineLUTResolution);
+//	float currentRadians = 0.0f;
+//
+//	for (int i = 0; i < sineLUTResolution; ++i)
+//	{
+//		float sine = (float)sin(currentRadians);
+//		sineLUT.emplace(currentRadians, sine);
+//		currentRadians += radians;
+//		LOG(LogType::L_NORMAL, "Sine of %.2f radians are %.2f", currentRadians, sine);
+//	}
+//}
+//
+//MaykMath::LookUpTables::~LookUpTables()
+//{
+//	sineLUT.clear();
 //}
