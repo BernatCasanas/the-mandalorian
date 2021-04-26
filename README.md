@@ -62,12 +62,12 @@ Twitter:	https://twitter.com/RagnarokVirtual
 
 YouTube:	https://www.youtube.com/channel/UCzwLxtTAxGMVG1belis7tkw
 
-## Game Keys:
+## Game Keys
 
-### Controller:
+### Controller
 
 * Left Joystick
-	- Move the character arround / Move arround when shooting / Navigate through the menus.
+	- Move Mando arround / Move arround when shooting / Navigate through the menus.
 
 * R2
 	- Dash, incresing your speed momentarily in the direction of your movement. This makes moving & Shooting unavaliable for the duration of the action; also makes the fire rate of the shooting faster.
@@ -76,13 +76,19 @@ YouTube:	https://www.youtube.com/channel/UCzwLxtTAxGMVG1belis7tkw
 	- Select items in the menus & pass dialogues.
 	
 * X
-	- Shoot, becoming still in the process, & using the Left Joystick to aim.
+	- Shoot, becoming still in the process, & using the Left Joystick to aim. This weapon has a "Heat mechanic", the more you use it, the less fire rate it will have; if you over do it the weapon will enter in a "overheat" state where you will be not able to shot until it has completly cooled down. You can cool it down by not shooting or by using the other weapons.
 	
 * Y
-	- Grenade Launcher, becoming still in the process, & using the Left Joystick to aim. Shoots grenades that explode on contact or in a few seconds; once it explodes 12 mini grenades appear with the same behaviour. You can't thoew another set of grenade until every single one has exploded.
+	- Grenade Launcher, becoming still in the process, & using the Left Joystick to aim. Shoots grenades that explode on contact with the ground or in a few seconds; once it explodes it deploys an area that hits consecutively in an area. You can't thoew another set of grenade until every single one has disapeared.
+
+* B
+	- Sniper Shot, becoming still in the process, & using the Left Joystick to aim. Holding down this button makes the Mandalorian charge his sniper rifle, once you release it you shot the bullet with less or more damage depending on the charge. If the sniper laser is red, it is undercharged; if it is yellow is optimally charged and if it neeps between white & red is overchared & won't do as much damage. You have 2 sniper charges that regenerate with time.
 
 * L2
-	- Push Companion Skill, use the force through Grogu to channel a Force Wall in front of you, that propels forward and moves enemies.
+	- Push Companion Skill, use the force through Grogu to channel a Force Wall in front of you, that propels forward and moves enemies and will fade with time.
+
+* L1
+	- Wall Companion Skill, use the force through Grogu to channel a Force Wall in front of you, that is static and will act as a cover as long as it as HP.
 
 * Start
 	- In-Game, open / close the pause menu.
@@ -91,46 +97,64 @@ YouTube:	https://www.youtube.com/channel/UCzwLxtTAxGMVG1belis7tkw
 - Close the game through the "Exit" button on the Main Menu, Pause Menu or In-Between Runs Menu.
  
 ## Features
-* Main Character Features
-	- Character moves & Collides through the level.
-	- Character has to option to perform a Dash:incresing your speed momentarily in the direction of your movement. This makes moving & Shooting unavaliable for the duration of the action; also makes the fire rate of the shooting faster.
-	- Character has to option to perform basic Shooting w/ Muzzle Flash Particles.
+* Mando & Grogu
+	- Mando movement & collision with the level improved!.
+	- Mando has to option to perform a Dash:incresing your speed momentarily in the direction of your movement.
+	- Mando has to option to perform basic Shooting, Gadged Weapon Shooting & Sniper Charge Shooting.
 	- Shooting and Dash being part of a greater Movement & Combat Design, with their values adjusted to Game Feel.
-	- Character has to option to perform a Secondary shoot added: Cluster Grenades.
-	- All the previous actions have a sound to go with them.
-	- Character has a finished & improved model, textures & animations.
-	- First Companion iterations model, textures & a Push Skill.
+	- Mando has to option to perform a Gadget shoot added: Cluster Grenades.
+	- Visual & Audio feedback improved.
+	- Overhauled Mando's animations, model & textures.
+	- Companion now has 2 Force Skills: Push & Wall Force.
+	- Improved Companion skills & follow system.
+	- Overhauled Combat with parameters, dynamics, mechanics,...
+	- New Heat system for the Primary Weapon.
+	- HUD overhauled with full functionallity.
+	* For more information about Mando & Grogu's moveset, see Controls above. 
 	
 * Enemies
-	- Basic Behavior, Spawn points, shooting, etc.
-	- Stromtrooper model, animations & sounds.
-	- Enemies die and deal damage to the player.
-
-
+	- Added 4 types of enemies:
+		- Bantha: bug, slow, melee & tanky.
+		- Stromtrooper: balanced range based enemy.
+		- Skytrooper flying ranged based enemy.
+		- Turret: static melee based enemy.
+	* All with finished models, animations & attacks.
+	- Added 2 bosses encounters:
+		- Rancor: 1st level noss,finished & polsihed.
+		- Wampa & Skel: 2nd level boss first iteration.
+	- General AI polished & improved.
 
 * Enviroment
-	- 4 room setup that is changed in a random order, with a starting & ending scene.
-	- All 4 rooms are in a blockout stage, with Level Design applied.
+	- 4 room setup that is changed in a random order, with a starting (just in the 1st level) & ending scene for each level.
+	- 1st Level with final & polsihed Art Assets.
+	- New rooms of the 2nd Level with Final Art & blockouts finished.
 	- Featuring a fully finished Barrel, Column, Spike Traps & X-Wing props.
-	- 1st Boss Level final art.
 	- Enemies: Bantha & Stromtrooper fully modeled, rigged & animated (not Bantha).
+	- 3rd Level Rooms Blockout implemented.
+	- Added directional & point lights with improved shadows!
+	- Now there is a Stencil Buffer to be able to see entities behind meshes.
 
 * General Gameplay
 	- Perspective Camera.
-	- Fully functional UI (main menu, pause menu, win/lose menu,...) & HUD with Art.
+	- Overhauled UI & HUD's design, functionallity & art.
 	- Added combo system with UI (everytime an enemy takes damage you get a combo counter that fades with time).
-	- Added Particle System to enemies & Shoot.
-	- Added Audio & Music with Wwise.
+	- Improved Particle & Audio systems with new Assets!
 	- Full Loop: you can die, go through the levels and finish the 1st level.
 	- Boons & Items: each time you finish a level a random boon appears, you obtain its benefits & advance to the next level.
 	- Dialogue System: added dialogues that can be skipped pressing A, at the start & the end of the run.
+	- Money & shop system are now working as intended
+	- First iteration of intro & outro cinematics.
+	- Talent trees: skills & upgrades for the Out-Run progression 1st iteration.
 	
-
 * Design Prototype Features 
-	- Lvl2 Blockout fully functional is done. Full game loop simulated: events, progression, traps, events, IA....
-	- Narrative first iteration done. All dialogues done and rewards explicit
-    - Boss design done. We provided both a document that explains it and a Unity blockout that showcases what does that boss feel like
 	- Enemy document expended to 4 enemies.
+	- Full design document of level 3, all its enemies and the boss.
+	- Unity prototype of 2 new enemies & final boss!
+
+* Debug Tools & Engine Features
+	- First iteration of telemetry implemented on engine.
+	- Debug menu implemented & first debug options added (Press Select)
+	- Fully functional Prefab System
 
 
 
