@@ -94,6 +94,7 @@ public class Bosseslv2 : DiamondComponent
         if (gameObject.CompareTag("Skel"))
         {
             startBounceRushTime = Animator.GetAnimationDuration(gameObject, "Skel_RushStart") - 0.016f;
+            chargeTime = Animator.GetAnimationDuration(gameObject, "Skel_Jump_P1") - 0.05f;
             Debug.Log("Rush Start: " + startBounceRushTime.ToString());
         }
     }
@@ -242,6 +243,8 @@ public class Bosseslv2 : DiamondComponent
 
     public void UpdateBounceRush()
     {
+
+
         float distance = Mathf.Distance(gameObject.transform.globalPosition, currentTarget.transform.globalPosition);
         if (distance > 2f)
         {
@@ -283,10 +286,15 @@ public class Bosseslv2 : DiamondComponent
         jumpslam = JUMPSLAM.CHARGE;
         jumpslamTimer = chargeTime;
         totalJumpSlamTimer = totalJumpSlamTime;
+        if (gameObject.CompareTag("Skel"))
+        {
+            Animator.Play(gameObject, "Skel_Jump_P1");
+        }
     }
 
     public void UpdateJumpSlam()
     {
+        LookAt(Core.instance.gameObject.transform.globalPosition);
         Debug.Log("Jump Slam");
         switch (jumpslam)
         {
@@ -300,6 +308,15 @@ public class Bosseslv2 : DiamondComponent
                     {
                         jumpslamTimer = upTime;
                         jumpslam = JUMPSLAM.UP;
+                        if (gameObject.CompareTag("Skel"))
+                        {
+                            Animator.Play(gameObject, "Skel_Jump_P2");
+                        }
+                        else if (gameObject.CompareTag("Wampa"))
+                        {
+
+                        }
+
                     }
                 }
 
@@ -340,6 +357,14 @@ public class Bosseslv2 : DiamondComponent
                         jumpslamTimer = recoveryTime;
                         jumpslam = JUMPSLAM.RECOVERY;
                         colliderJumpSlam.DisableCollider();
+                        if (gameObject.CompareTag("Skel"))
+                        {
+                            Animator.Play(gameObject, "Skel_Jump_P3");
+                        }
+                        else if (gameObject.CompareTag("Wampa"))
+                        {
+
+                        }
                     }
                 }
                 Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Jump_Impact");
@@ -369,6 +394,7 @@ public class Bosseslv2 : DiamondComponent
     {
         resting = true;
         restingTimer = restingTime;
+
     }
 
     #endregion
@@ -407,7 +433,15 @@ public class Bosseslv2 : DiamondComponent
     {
         walkingTimer = walkingTime;
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
-        Animator.Play(gameObject, "WP_Walk");
+        if (gameObject.CompareTag("Skel"))
+        {
+            Animator.Play(gameObject, "Skel_Walk");
+        }
+        else if (gameObject.CompareTag("Wampa"))
+        {
+
+            Animator.Play(gameObject, "WP_Walk");
+        }
         Audio.PlayAudio(gameObject, "PLay_Rancor_Footsteps");
     }
     public void UpdateWander()
