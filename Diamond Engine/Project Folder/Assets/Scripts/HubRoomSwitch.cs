@@ -13,17 +13,15 @@ public class HubRoomSwitch : DiamondComponent
 			RoomSwitch.ClearStaticData();
 
 		//PlayerResources.ResetRunBoons(); //TODO: This has a bug when starting the run at the HUB
-		SceneManager.LoadScene(nextRoomUID);
-		Audio.SetState("Player_State", "Alive");
-		Audio.SetState("Game_State", "Run");
+		if(nextRoomUID != -1)
+			SceneManager.LoadScene(nextRoomUID);
 	
-		Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
-		Debug.Log("Exploring");
+		if(MusicSourceLocate.instance != null)
+        {
+			Audio.SetState("Player_State", "Alive");
+			Audio.SetState("Game_State", "Run");
+			Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+			Debug.Log("Exploring");
+        }
 	}
-	public void Update()
-	{
-
-
-	}
-
 }
