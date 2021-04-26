@@ -96,6 +96,10 @@ public class Core : DiamondComponent
     public float baseFireRate = 0.2f;
     private float currFireRate = 0f;
     public float gadgetFireRate = 0.2f;
+    public float heatReductionSpeed = 22.5f;
+    public float dashHeatReductionMult = 0.75f;
+    public float onGrenadeHeatReduction = 5f;
+    public float onSniperHeatReduction = 10f;
     private float shootingTimer = 0.0f;
     private float gadgetShootTimer = 0.0f;
 
@@ -130,6 +134,8 @@ public class Core : DiamondComponent
     private float sniperRechargeTimer = 0f;
     private float chargeTimer = 0.0f;
     public float chargedBulletDmg = 0f;
+    public float perfectShotDmgMult = 1.4f;
+    public float overShotDmgMult = 1.05f;
     public Vector3 defaultSniperLaserColor = new Vector3(1, 0, 0);
     private Vector3 currSniperLaserColor = new Vector3(1, 0, 0);
 
@@ -704,7 +710,7 @@ public class Core : DiamondComponent
                 break;
             case STATE.DASH:
                 UpdateDash();
-                ReducePrimaryWeaponHeat(0.75f);
+                ReducePrimaryWeaponHeat(dashHeatReductionMult);
                 UpdateSecondaryShotAmmo();
                 break;
             case STATE.SHOOTING:
@@ -834,7 +840,7 @@ public class Core : DiamondComponent
         Animator.Play(gameObject, "Shoot", gadgetShootSkill);
         gadgetShootTimer = gadgetFireRate;
 
-        ReducePrimaryWeaponHeat(5);
+        ReducePrimaryWeaponHeat(onGrenadeHeatReduction);
     }
 
 
@@ -923,7 +929,7 @@ public class Core : DiamondComponent
         if (shootPoint != null && myAimbot != null)
         {
             float hitDistance = myAimbot.maxRange;
-            GameObject hit = InternalCalls.RayCast(shootPoint.transform.globalPosition + (shootPoint.transform.GetForward() * 2), shootPoint.transform.GetForward(), myAimbot.maxRange, ref hitDistance);
+            GameObject hit = InternalCalls.RayCast(shootPoint.transform.globalPosition + (shootPoint.transform.GetForward() * 1.5f), shootPoint.transform.GetForward(), myAimbot.maxRange, ref hitDistance);
             if (hit != null)
             {
                 Debug.Log(hitDistance.ToString());
@@ -983,7 +989,7 @@ public class Core : DiamondComponent
         if (bullet != null)
         {
             Debug.Log("Charged Bullet Shot!");
-            ReducePrimaryWeaponHeat(10);
+            ReducePrimaryWeaponHeat(onSniperHeatReduction);
 
             ChargedBullet chrBulletComp = bullet.GetComponent<ChargedBullet>();
 
@@ -993,12 +999,12 @@ public class Core : DiamondComponent
 
                 if (perfectShot == true)
                 {
-                    bulletDamage *= 1.4f;
-                    bullet.transform.localScale *= 1.2f;
+                    bulletDamage *= perfectShotDmgMult;
+                    bullet.transform.localScale *= perfectShotDmgMult;
                 }
                 else if (chargeTimer > timeToPerfectChargeEnd)
                 {
-                    bulletDamage = (chargedBulletDmg * 1.05f);
+                    bulletDamage = (chargedBulletDmg * overShotDmgMult);
                 }
                 else
                 {
@@ -1249,7 +1255,7 @@ public class Core : DiamondComponent
 
     private void ReducePrimaryWeaponHeat(float stateMult = 0f)
     {
-        float newValue = 22.5f * Time.deltaTime;
+        float newValue = heatReductionSpeed * Time.deltaTime;
         float refreshMult = 1.0f + stateMult;
 
         if (hud != null)
@@ -1273,8 +1279,6 @@ public class Core : DiamondComponent
             }
             if (sniperBullet1 != null)
             {
-                // 2.5 - 2.5
-
 
                 float numberToUpdate = sniperRechargeTimer <= 0 ? bulletRechargeTime : bulletRechargeTime - sniperRechargeTimer;
 
@@ -1378,7 +1382,7 @@ public class Core : DiamondComponent
                 if (sphereColl != null)
                 {
                     if (sphereColl.active)
-                        gameObject.GetComponent<PlayerHealth>().TakeDamage(collidedGameObject.GetComponent<BH_DestructBox>().explosion_damage / 2);
+                        gameObject.GetComponent<PlayerHealth>().TakeDamage((int)(collidedGameObject.GetComponent<BH_DestructBox>().explosion_damage * 0.5f));
                 }
             }
         }
