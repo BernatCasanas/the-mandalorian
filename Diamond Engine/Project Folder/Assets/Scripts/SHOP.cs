@@ -40,6 +40,7 @@ public class SHOP : DiamondComponent
     public float interactionRange = 2.0f;
     public bool autoGenerateItems = true;
     public bool opening;
+    public GameObject defaultButton = null;
 
     bool shopOpen = false;
 
@@ -412,6 +413,8 @@ public class SHOP : DiamondComponent
         shopUI.Enable(true);
         textPopUp.Enable(false);
         Core.instance.lockInputs = true;
+        if (defaultButton != null)
+            defaultButton.GetComponent<Navigation>().Select();
     }
 
     public void CloseShop()
