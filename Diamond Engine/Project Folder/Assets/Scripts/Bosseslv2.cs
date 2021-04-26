@@ -4,6 +4,12 @@ using DiamondEngine;
 
 public class Bosseslv2 : DiamondComponent
 {
+    enum BOSS
+    {
+        WAMPA,
+        SKEL
+    }
+
     public NavMeshAgent agent = null;
 
     public Random randomNum = new Random();
@@ -70,6 +76,8 @@ public class Bosseslv2 : DiamondComponent
     private GameObject finalTarget;
     private GameObject currentTarget;
     private bool returnToInitTarget = false;
+    private float startBounceRushTime = 0.0f;
+    private float startBounceRushTimer = 0.0f;
 
     enum JUMPSLAM : int
     {
@@ -80,7 +88,14 @@ public class Bosseslv2 : DiamondComponent
         RECOVERY
     }
 
-
+    public virtual void Awake()
+    {
+        if (gameObject.CompareTag("Skel"))
+        {
+            startBounceRushTime = Animator.GetAnimationDuration(gameObject, "Skel_RushStart") - 0.016f;
+            Debug.Log("Rush Start: " + startBounceRushTime.ToString());
+        }
+    }
 
     #region PROJECTILE
     public void StartProjectile()
@@ -197,6 +212,10 @@ public class Bosseslv2 : DiamondComponent
 
     public void StartBounceRush()
     {
+        if (gameObject.CompareTag("Skel"))
+        {
+            Animator.Play(gameObject, "Skel_Rush");
+        }
         bounceRushTimer = bounceRushTime;
         GameObject nearestColumn = Level2BossRoom.columns[0];
         float nerestDistance = 10000f;
@@ -243,9 +262,12 @@ public class Bosseslv2 : DiamondComponent
 
     public void EndBounceRush()
     {
-        Debug.Log("End Bounce Rush");
+        Debug.Log("END BOUNCE RUSH");
         resting = true;
         restingTimer = restingTime;
+        if (gameObject.CompareTag("Skel")) {
+            Animator.Play(gameObject,"Skel_Rush_Recover");
+        }
     }
 
     #endregion
@@ -352,7 +374,15 @@ public class Bosseslv2 : DiamondComponent
     public void StartFollowing()
     {
         walkingTimer = walkingTime;
-        Animator.Play(gameObject, "WP_Walk");
+        if (gameObject.CompareTag("Skel"))
+        {
+            Animator.Play(gameObject, "Skel_Walk");
+        }
+        else if (gameObject.CompareTag("Wampa"))
+        {
+
+            Animator.Play(gameObject, "WP_Walk");
+        }
         Audio.PlayAudio(gameObject, "PLay_Rancor_Footsteps");
     }
     public void UpdateFollowing()
@@ -451,5 +481,15 @@ public class Bosseslv2 : DiamondComponent
         gameObject.transform.localPosition += direction.normalized * speed * Time.deltaTime;
     }
 
-
+    private void PlayAnimation(string animName)
+    {
+        if (gameObject.CompareTag("Skel"))
+        {
+            Animator.Play(gameObject, animName);
+        }
+        else if (gameObject.CompareTag("Wampa"))
+        {
+            Animator.Play(gameObject, animName);
+        }
+    }
 }
