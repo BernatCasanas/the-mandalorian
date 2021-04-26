@@ -9,11 +9,24 @@ public class GameSceneManager : DiamondComponent
     GameResources rewardData = null;
     Vector3 rewardInitialPos = new Vector3(0.0f, 0.0f, 0.0f);
 
+    public static GameSceneManager instance = null;
+
     // THIS IS A VERY INCOMPLETE MODULE THAT IS CURRENTLY NOT MANAGING SCENE. HOWEVER, WE HAVE TO DO THAT IN A CLOSED PLACED. AND SOMEONE HAS TO START IT. YEET TIME :3
     // THIS SCRIPT SHOULD NOT BE DELETED AND RELOADED CONSTANTLY, CODE IS THOUGHT TO BE IN AN OBJECT THAT TAKES CARE OF ALL SCENE MANAGING DURING ALL GAME DURATION
 
     public void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            InternalCalls.Destroy(this.gameObject);
+            return;
+        }
+
+        if (instance == null)
+            instance = this;
+
+        Debug.Log("I'm cunt number: " + gameObject.pointer.ToString());
+
         if (rewardMenu == null)
             rewardMenu = new EndLevelRewards();
 
@@ -97,5 +110,10 @@ public class GameSceneManager : DiamondComponent
             Counter.gameResult = Counter.GameResult.VICTORY;
             SceneManager.LoadScene(821370213);
         }
+    }
+
+    public void OnApplicationQuit()
+    {
+        instance = null;
     }
 }
