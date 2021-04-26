@@ -111,13 +111,13 @@ namespace DiamondEngine
     {
         public override void Use()
         {
-            //TODO: Priority
-            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY8);
+            Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_CONSECUTIVE_DASH);
+            Core.instance.maxDashNumber = Skill_Tree_Data.GetMandoSkillTree().U8_consecutiveDashAmount;
         }
 
         public override void AssignCharacteristics()
         {
-            description = "[NOT IMPLEMENTED] Dash can be used consecutively twice in a row (Normal CD upon double dashing)";
+            description = "Dash can be used consecutively twice in a row (Normal CD upon double dashing)";
             price = 0;
             type_of_price = RewardType.REWARD_BESKAR;
         }
