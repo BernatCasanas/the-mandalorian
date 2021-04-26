@@ -140,6 +140,8 @@ public class Core : DiamondComponent
     public float overShotDmgMult = 1.05f;
     public Vector3 defaultSniperLaserColor = new Vector3(1, 0, 0);
     private Vector3 currSniperLaserColor = new Vector3(1, 0, 0);
+    public float overheatTimeBeeping = 0.08f;
+    private float changeColorSniperTimer = 0f;
 
     //Animations
     private float shootAnimationTotalTime = 0.0f;
@@ -432,7 +434,7 @@ public class Core : DiamondComponent
             }
 
 
-            if ((Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_REPEAT) && currentBullets > 0 && lockAttacks == false)
+            if ((Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_DOWN) && currentBullets > 0 && lockAttacks == false)
             {
                 inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT);
             }
@@ -897,12 +899,14 @@ public class Core : DiamondComponent
     private void StartSecCharge()
     {
         chargeTimer = 0f;
+        changeColorSniperTimer = 0f;
         //Animation play :O
     }
 
     private void EndShootCharge()
     {
         chargeTimer = 0f;
+        changeColorSniperTimer = 0f;
     }
 
     private void UpdateSecondaryShootCharge()
@@ -912,21 +916,30 @@ public class Core : DiamondComponent
 
         if (chargeTimer < timeToPerfectCharge)
         {
-            //Change color beam (red)
             currSniperLaserColor = defaultSniperLaserColor;
 
         }
         else if (chargeTimer > timeToPerfectCharge && chargeTimer < timeToPerfectChargeEnd)
         {
-            //Change color beam (yellow)
             currSniperLaserColor = new Vector3(1, 1, 0);
         }
         else if (chargeTimer > timeToPerfectChargeEnd)
         {
-            //TODO: Change color beam (beeping red-white)
-            currSniperLaserColor = new Vector3(1, 1, 1);
-        }
+            changeColorSniperTimer += Time.deltaTime;
 
+            if (changeColorSniperTimer > 0f && changeColorSniperTimer < overheatTimeBeeping)
+            {
+                currSniperLaserColor = defaultSniperLaserColor;
+            }
+            else
+            {
+                currSniperLaserColor = new Vector3(1, 1, 1);
+
+                if (changeColorSniperTimer > overheatTimeBeeping * 2)
+                    changeColorSniperTimer = 0f;
+            }
+
+        }
 
         if (shootPoint != null && myAimbot != null)
         {
@@ -1017,7 +1030,7 @@ public class Core : DiamondComponent
 
                     bulletDamage = Math.Max(bulletDamage, 1f);
                 }
-                Debug.Log("Charge Bullet dmg: " + bulletDamage.ToString());
+                //Debug.Log("Charge Bullet dmg: " + bulletDamage.ToString());
 
                 //    if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_EXTRA_DAMAGE_LOW_HEALTH))
                 //    {
