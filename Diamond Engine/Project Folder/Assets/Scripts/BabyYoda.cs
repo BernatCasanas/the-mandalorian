@@ -399,10 +399,12 @@ public class BabyYoda : DiamondComponent
         InternalCalls.CreatePrefab("Library/Prefabs/541990364.prefab", new Vector3(mandoTransform.globalPosition.x, mandoTransform.globalPosition.y + 1, mandoTransform.globalPosition.z), mandoTransform.globalRotation, new Vector3(1, 1, 1));
         Audio.PlayAudio(gameObject, "Play_Force_Push");
         
-        if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_HEAL_WHEN_GROGU_SKILL))
-        {
+        //Talent Trees
+        if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_HEAL_WHEN_GROGU_SKILL))        
             Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-Skill_Tree_Data.GetMandoSkillTree().U7_healAmount);
-        }        
+
+        if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_INCREASE_DAMAGE_WHEN_GROGU))
+            Core.instance.SetSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_INCREASE_DAMAGE_WHEN_GROGU);
 
         return true;
     }
@@ -429,10 +431,8 @@ public class BabyYoda : DiamondComponent
         InternalCalls.CreatePrefab("Library/Prefabs/1850725718.prefab", spawnPos, mandoTransform.globalRotation, new Vector3(1, 1, 1));
         Audio.PlayAudio(gameObject, "Play_Grogu_Wall");
         
-        if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_HEAL_WHEN_GROGU_SKILL))
-        {
-            Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-Skill_Tree_Data.GetMandoSkillTree().U7_healAmount);
-        }        
+        if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_HEAL_WHEN_GROGU_SKILL))        
+            Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-Skill_Tree_Data.GetMandoSkillTree().U7_healAmount);                
 
         return true;
     }

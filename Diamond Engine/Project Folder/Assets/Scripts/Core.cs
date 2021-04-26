@@ -71,8 +71,10 @@ public class Core : DiamondComponent
     private float dustTime = 0.0f;
 
     //Skill
-    private float skill_damageReductionDashTimer = 0.0f;
     private bool skill_damageReductionDashActive = false;
+    private float skill_damageReductionDashTimer = 0.0f;    
+    private bool skill_groguIncreaseDamageActive = false;
+    private float skill_groguIncreaseDamageTimer = 0.0f;
 
     // Dash
     public float dashCD = 0.33f;
@@ -376,8 +378,7 @@ public class Core : DiamondComponent
                 inputsList.Add(INPUT.IN_GADGET_SHOOT_END);
         }
 
-        if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_DAMAGE_REDUCTION_DASH)
-            && skill_damageReductionDashTimer > 0)
+        if (skill_damageReductionDashActive && skill_damageReductionDashTimer > 0)
         {
             skill_damageReductionDashTimer -= Time.deltaTime;
 
@@ -385,6 +386,13 @@ public class Core : DiamondComponent
                 skill_damageReductionDashActive = false;
         }
 
+        if (skill_groguIncreaseDamageActive && skill_groguIncreaseDamageTimer > 0)
+        {
+            skill_groguIncreaseDamageTimer -= Time.deltaTime;
+
+            if (skill_groguIncreaseDamageTimer <= 0)
+                skill_groguIncreaseDamageActive = false;
+        }
 
         grenadesFireRateTimer -= Time.deltaTime;
         timeOfRoom += Time.deltaTime;
@@ -824,13 +832,7 @@ public class Core : DiamondComponent
             AddPrimaryHeat();
             Debug.Log("Bullet Shot!");
 
-            bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
-
-            if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_EXTRA_DAMAGE_LOW_HEALTH))
-            {
-                //If the skill is active, we override the damage amount
-                bullet.GetComponent<BH_Bullet>().damage = GetExtraDamageWithSkill();
-            }
+            bullet.GetComponent<BH_Bullet>().damage = GetDamage();
         }
     }
 
@@ -1493,13 +1495,37 @@ public class Core : DiamondComponent
         }
     }
 
-    private static float GetExtraDamageWithSkill()
+    public void SetSkill(int skillTree, int SkillNumber)
     {
-        float HPMissing = 1.0f - ((float)PlayerHealth.currHealth / (float)PlayerHealth.currMaxHealth);
+        if(skillTree == (int)Skill_Tree_Data.SkillTreesNames.MANDO)
+        {
+            if(SkillNumber == (int)Skill_Tree_Data.MandoSkillNames.UTILITY_INCREASE_DAMAGE_WHEN_GROGU)
+            {
+                skill_groguIncreaseDamageActive = true;
+                skill_groguIncreaseDamageTimer = Skill_Tree_Data.GetMandoSkillTree().U3_duration;
+            }
+        }
+    }
 
-        float local_damageAmount = Skill_Tree_Data.GetMandoSkillTree().A7_extraDamageAmount;
-        float local_HPStep = Skill_Tree_Data.GetMandoSkillTree().A7_extraDamageHPStep;
-        return bulletDamage + (bulletDamage * local_damageAmount * (HPMissing / local_HPStep));
+    private float GetDamage()
+    {
+        //We apply modifications to the damage based on the skill actives in the talent tree
+        float damageWithSkills = bulletDamage;
+
+        if (skill_groguIncreaseDamageActive)
+        {
+            damageWithSkills *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().U3_increasedDamagePercentage);
+        }
+
+        if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_EXTRA_DAMAGE_LOW_HEALTH))
+        {
+            float HPMissing = 1.0f - ((float)PlayerHealth.currHealth / (float)PlayerHealth.currMaxHealth);
+
+            float local_damageAmount = Skill_Tree_Data.GetMandoSkillTree().A7_extraDamageAmount;
+            float local_HPStep = Skill_Tree_Data.GetMandoSkillTree().A7_extraDamageHPStep;
+            damageWithSkills += (damageWithSkills * local_damageAmount * (HPMissing / local_HPStep));
+        }
+        return damageWithSkills;
     }
 
     public void OnApplicationQuit()
