@@ -48,7 +48,7 @@ public class Wampa : Bosseslv2
     private STATE currentState = STATE.SEARCH_STATE;
     private List<INPUT> inputsList = new List<INPUT>();
 
-    public void Awake()
+    public override void Awake()
     {
         Debug.Log("Wampa Awake");
 
