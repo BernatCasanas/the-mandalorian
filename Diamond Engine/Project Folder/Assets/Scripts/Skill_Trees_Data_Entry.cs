@@ -6,13 +6,21 @@ public class Skill_Trees_Data_Entry : DiamondComponent
     #region Variables showing in the inspector
     #region Grogu variables
     //Grogu Skill 1
+    public int Grogu1_price = 1;
     //Grogu Skill 2
+    public int Grogu2_price = 1;
     //Grogu Skill 3
+    public int Grogu3_price = 1;
     //Grogu Skill 4
+    public int Grogu4_price = 1;
     //Grogu Skill 5
+    public int Grogu5_price = 1;
     //Grogu Skill 6
+    public int Grogu6_price = 1;
     //Grogu Skill 7
+    public int Grogu7_price = 1;
     //Grogu Skill 8: For each 10% of HP Mando is missing, gain 1 more passive Force Regeneration per second.
+    public int Grogu8_price = 1;
     public float Grogu8_HPMissingPercentage = 10.0f;
     public float Grogu8_gainPassiveForceRegeneration = 1.0f;
     #endregion
@@ -99,6 +107,16 @@ public class Skill_Trees_Data_Entry : DiamondComponent
         Skill_Tree_Data.weaponsSkillTree = new Skill_Tree_Data.Weapons_Skills_Data();
         Skill_Tree_Data.mandoSkillTree = new Skill_Tree_Data.Mando_Skills_Data();
 
+        //Assign prices
+        Skill_Tree_Data.GetGroguSkillTree().G1_price = Grogu1_price;
+        Skill_Tree_Data.GetGroguSkillTree().G2_price = Grogu2_price;
+        Skill_Tree_Data.GetGroguSkillTree().G3_price = Grogu3_price;
+        Skill_Tree_Data.GetGroguSkillTree().G4_price = Grogu4_price;
+        Skill_Tree_Data.GetGroguSkillTree().G5_price = Grogu5_price;
+        Skill_Tree_Data.GetGroguSkillTree().G6_price = Grogu6_price;
+        Skill_Tree_Data.GetGroguSkillTree().G7_price = Grogu7_price;
+        Skill_Tree_Data.GetGroguSkillTree().G8_price = Grogu8_price;
+
         //Assign the values from the inspector
         //Grogu Skills
         Skill_Tree_Data.groguSkillTree.Grogu8_gainPassiveForceRegeneration = Grogu8_gainPassiveForceRegeneration;
@@ -110,7 +128,7 @@ public class Skill_Trees_Data_Entry : DiamondComponent
         Skill_Tree_Data.weaponsSkillTree.PW6_IncreaseDamageAmount = PrimaryWeapon6_IncreaseDamageAmount;
 
         //Secondary Weapon Skills
-        Skill_Tree_Data.weaponsSkillTree.SW4_DelayReducedAmount = SecondaryWeapon4_DelayReducedAmount;        
+        Skill_Tree_Data.weaponsSkillTree.SW4_DelayReducedAmount = SecondaryWeapon4_DelayReducedAmount;
 
         //Mando: Utility Skills
         Skill_Tree_Data.mandoSkillTree.U3_duration = Utility3_duration;
@@ -126,6 +144,6 @@ public class Skill_Trees_Data_Entry : DiamondComponent
         Skill_Tree_Data.mandoSkillTree.A7_extraDamageHPStep = Aggression7_extraDamageHPStep;
 
         //Mando: Defense Skills
-        Skill_Tree_Data.mandoSkillTree.D8_changeToAvoidDamage = Defense8_chanceToAvoidDamage;        
+        Skill_Tree_Data.mandoSkillTree.D8_changeToAvoidDamage = Defense8_chanceToAvoidDamage;
     }
 }
