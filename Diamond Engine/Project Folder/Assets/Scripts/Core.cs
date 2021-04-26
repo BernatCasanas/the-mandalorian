@@ -115,6 +115,8 @@ public class Core : DiamondComponent
     private float grenadesFireRateTimer = 0.0f;
 
     private Material grenadeCooldownIcon = null;
+    private Material sniperBullet1 = null;
+    private Material sniperBullet2 = null;
 
     // Secondary Shoot (sniper)
     public float timeToPerfectCharge = 0.424f;
@@ -247,6 +249,16 @@ public class Core : DiamondComponent
             if (grenadeCooldown != null)
                 grenadeCooldownIcon = grenadeCooldown.GetComponent<Material>();
 
+
+            GameObject sniper1Cooldown = InternalCalls.FindObjectWithName("SniperCooldown1");
+            if (sniper1Cooldown != null)
+                sniperBullet1 = sniper1Cooldown.GetComponent<Material>();
+
+            GameObject sniper2Cooldown = InternalCalls.FindObjectWithName("SniperCooldown2");
+            if (sniper2Cooldown != null)
+                sniperBullet2 = sniper2Cooldown.GetComponent<Material>();
+
+
             GameObject lockInputsScene = InternalCalls.FindObjectWithName("LockInputsBool");
 
             if (lockInputsScene != null)
@@ -358,19 +370,6 @@ public class Core : DiamondComponent
                 inputsList.Add(INPUT.IN_GADGET_SHOOT_END);
         }
 
-        if (sniperRechargeTimer > 0f)
-        {
-            sniperRechargeTimer -= Time.deltaTime;
-
-            if (sniperRechargeTimer <= ((numberOfBullets - currentBullets - 1) * bulletRechargeTime))
-            {
-                //Debug.Log("Bullet Recharged!!!!");
-                currentBullets++;
-            }
-
-        }
-
-
         if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_DAMAGE_REDUCTION_DASH)
             && skill_damageReductionDashTimer > 0)
         {
@@ -380,6 +379,9 @@ public class Core : DiamondComponent
                 skill_damageReductionDashActive = false;
         }
 
+
+        grenadesFireRateTimer -= Time.deltaTime;
+        timeOfRoom += Time.deltaTime;
         timeSinceLastDash += Time.deltaTime;
     }
 
@@ -387,7 +389,7 @@ public class Core : DiamondComponent
     //Controler inputs go here
     private void ProcessExternalInput()
     {
-       
+
         bool isPrimaryOverHeat = false;
         if (hud != null)
         {
@@ -416,7 +418,7 @@ public class Core : DiamondComponent
             }
 
 
-            if ((Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_REPEAT) && currentBullets > 0&& lockAttacks == false)
+            if ((Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_REPEAT) && currentBullets > 0 && lockAttacks == false)
             {
                 inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT);
             }
@@ -461,7 +463,7 @@ public class Core : DiamondComponent
             else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
                 inputsList.Add(INPUT.IN_IDLE);
         }
-        grenadesFireRateTimer -= Time.deltaTime;
+
 
         if (grenadesFireRateTimer > 0.0f && grenadeCooldownIcon != null)
         {
@@ -469,7 +471,6 @@ public class Core : DiamondComponent
             grenadeCooldownIcon.SetFloatUniform("maxGrenadeCooldown", grenadesFireRate);
         }
 
-        timeOfRoom += Time.deltaTime;
     }
 
 
@@ -694,25 +695,34 @@ public class Core : DiamondComponent
                 break;
             case STATE.IDLE:
                 ReducePrimaryWeaponHeat();
+                UpdateSecondaryShotAmmo();
                 break;
             case STATE.MOVE:
                 UpdateMove();
                 ReducePrimaryWeaponHeat();
+                UpdateSecondaryShotAmmo();
                 break;
             case STATE.DASH:
                 UpdateDash();
                 ReducePrimaryWeaponHeat(0.75f);
+                UpdateSecondaryShotAmmo();
                 break;
             case STATE.SHOOTING:
                 UpdateShooting();
+                UpdateSecondaryShotAmmo();
                 break;
             case STATE.SHOOT:
+                UpdateSecondaryShotAmmo();
                 break;
             case STATE.CHARGING_SEC_SHOOT:
                 UpdateSecondaryShootCharge();
                 break;
             case STATE.SECONDARY_SHOOT:
                 ReducePrimaryWeaponHeat();
+                break;
+            case STATE.GADGET_SHOOT:
+                ReducePrimaryWeaponHeat();
+                UpdateSecondaryShotAmmo();
                 break;
             case STATE.DEAD:
                 break;
@@ -1244,6 +1254,42 @@ public class Core : DiamondComponent
 
         if (hud != null)
             hud.GetComponent<HUD>().ReducePrimaryHeat(newValue * refreshMult);
+
+    }
+
+    private void UpdateSecondaryShotAmmo()
+    {
+        if (sniperRechargeTimer > 0f)
+        {
+            sniperRechargeTimer -= Time.deltaTime;
+
+            //TODO: This works with just 2 bullets
+            if (sniperBullet2 != null)
+            {
+                float numberToUpdate = sniperRechargeTimer < bulletRechargeTime ? bulletRechargeTime : 1 / Math.Abs(bulletRechargeTime - sniperRechargeTimer);
+
+                sniperBullet2.SetFloatUniform("currentBulletCooldown", numberToUpdate);
+                sniperBullet2.SetFloatUniform("maxBulletCooldown", bulletRechargeTime);
+            }
+            if (sniperBullet1 != null)
+            {
+                // 2.5 - 2.5
+
+
+                float numberToUpdate = sniperRechargeTimer <= 0 ? bulletRechargeTime : bulletRechargeTime - sniperRechargeTimer;
+
+                if (sniperRechargeTimer > bulletRechargeTime)
+                    numberToUpdate = 0f;
+
+                sniperBullet1.SetFloatUniform("currentBulletCooldown", numberToUpdate);
+                sniperBullet1.SetFloatUniform("maxBulletCooldown", bulletRechargeTime);
+            }
+
+            if (sniperRechargeTimer <= ((numberOfBullets - currentBullets - 1) * bulletRechargeTime))
+            {
+                currentBullets++;
+            }
+        }
 
     }
 
