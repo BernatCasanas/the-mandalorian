@@ -338,7 +338,7 @@ public class Skytrooper : Enemy
     #region IDLE
     private void StartIdle()
     {
-        Debug.Log("SKYTROOPER IDLE");
+        //Debug.Log("SKYTROOPER IDLE");
         idleTimer = idleTime;
         Animator.Play(gameObject, "SK_Idle");
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
@@ -353,7 +353,7 @@ public class Skytrooper : Enemy
     private void StartWander()
     {
         wanderTimer = wanderTime;
-        Debug.Log("SKYTROOPER WANDER");
+        //Debug.Log("SKYTROOPER WANDER");
 
         Animator.Play(gameObject, "SK_Wander");
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
@@ -378,7 +378,7 @@ public class Skytrooper : Enemy
     private void StartDash()
     {
         dashTimer = dashTime;
-        Debug.Log("SKYTROOPER DASH");
+        //Debug.Log("SKYTROOPER DASH");
 
         Animator.Play(gameObject, "SK_Dash");
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Dash");
@@ -404,7 +404,7 @@ public class Skytrooper : Enemy
     #region SHOOT
     private void StartShoot()
     {
-        Debug.Log("SKYTROOPER SHOOT");
+        //Debug.Log("SKYTROOPER SHOOT");
         shootTimer = timeBewteenShootingStates;
         shotsShooted = 0;
         Animator.Play(gameObject, "SK_Idle");
@@ -449,7 +449,7 @@ public class Skytrooper : Enemy
     }
     private void PlayerDetected()
     {
-        Debug.Log("SKYTROOPER PLAYER DETECTED");
+        //Debug.Log("SKYTROOPER PLAYER DETECTED");
         Audio.PlayAudio(gameObject, "Play_Enemy_Detection");
     }
     #endregion
@@ -457,7 +457,7 @@ public class Skytrooper : Enemy
     #region DIE
     private void StartDie()
     {
-        Debug.Log("SKYTROOPER DIE");
+        //Debug.Log("SKYTROOPER DIE");
         dieTimer = dieTime;
         //Audio.StopAudio(gameObject);
 
@@ -465,31 +465,6 @@ public class Skytrooper : Enemy
 
         Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
         Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
-
-        ParticleSystem dead = null;
-        ParticleSystem wave = null;
-        ParticleSystem souls = null;
-
-        StormTrooperParticles myParticles = gameObject.GetComponent<StormTrooperParticles>();
-        if (myParticles != null)
-        {
-            dead = myParticles.dead;
-            wave = myParticles.wave;
-            souls = myParticles.souls;
-        }
-
-        if (dead != null)
-        {
-            dead.Play();
-        }
-        if (wave != null)
-        {
-            wave.Play();
-        }
-        if (souls != null)
-        {
-            souls.Play();
-        }
 
         //Combo
         if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
@@ -564,18 +539,16 @@ public class Skytrooper : Enemy
 
             if (bullet != null)
             {
-                healthPoints -= bullet.damage;
+                TakeDamage(bullet.damage);
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
                 if (Core.instance.hud != null)
                 {
-                    Core.instance.hud.GetComponent<HUD>().AddToCombo(25, 0.95f);
-                }
+                    HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
-                if (currentState != STATE.DIE && healthPoints <= 0.0f)
-                {
-                    inputsList.Add(INPUT.IN_DIE);
+                    if (hudComponent != null)
+                        hudComponent.AddToCombo(25, 0.95f);
                 }
 
                 if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
@@ -587,11 +560,13 @@ public class Skytrooper : Enemy
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))
         {
-            BH_Bullet bullet = collidedGameObject.GetComponent<BH_Bullet>();
+            ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
 
             if (bullet != null)
             {
                 healthPoints -= bullet.damage;
+
+                TakeDamage(bullet.damage);
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
