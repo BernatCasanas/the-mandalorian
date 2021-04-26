@@ -121,6 +121,11 @@ public class Core : DiamondComponent
     public int framesForPerfectCharge = 4;
     private float timeToPerfectChargeEnd = 0f;
     public float timeToAutomaticallyShootCharge = 2.296f;
+    public float bulletRechargeTime = 0f;
+    public int numberOfBullets = 0;
+    private int currentBullets = 0;
+    private float totalRechargeTime = 0f;
+    private float sniperRechargeTimer = 0f;
     private float chargeTimer = 0.0f;
     public float chargedBulletDmg = 0f;
     public Vector3 defaultSniperLaserColor = new Vector3(1, 0, 0);
@@ -183,6 +188,9 @@ public class Core : DiamondComponent
         timeToPerfectChargeEnd = timeToPerfectCharge + (0.016f * framesForPerfectCharge);
 
         currSniperLaserColor = defaultSniperLaserColor;
+
+        totalRechargeTime = numberOfBullets * bulletRechargeTime;
+        currentBullets = numberOfBullets;
 
         grenadesFireRate = 4.0f;
         #endregion
@@ -350,6 +358,19 @@ public class Core : DiamondComponent
                 inputsList.Add(INPUT.IN_GADGET_SHOOT_END);
         }
 
+        if (sniperRechargeTimer > 0f)
+        {
+            sniperRechargeTimer -= Time.deltaTime;
+
+            if (sniperRechargeTimer <= ((numberOfBullets - currentBullets - 1) * bulletRechargeTime))
+            {
+                //Debug.Log("Bullet Recharged!!!!");
+                currentBullets++;
+            }
+
+        }
+
+
         if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_DAMAGE_REDUCTION_DASH)
             && skill_damageReductionDashTimer > 0)
         {
@@ -357,7 +378,7 @@ public class Core : DiamondComponent
 
             if (skill_damageReductionDashTimer <= 0)
                 skill_damageReductionDashActive = false;
-        }        
+        }
 
         timeSinceLastDash += Time.deltaTime;
     }
@@ -395,8 +416,7 @@ public class Core : DiamondComponent
             }
 
 
-            if ((Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_REPEAT) && lockAttacks == false)
-
+            if ((Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_REPEAT) && currentBullets > 0&& lockAttacks == false)
             {
                 inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT);
             }
@@ -750,18 +770,17 @@ public class Core : DiamondComponent
 
     private bool CanStopShooting()
     {
-        bool ret = false;
+        //bool ret = false;
+        //if (currFireRate <= baseFireRate * afterShootMult)
+        //{
+        //    ret = stopShootingTime > afterShootDelay;
+        //}
+        //else
+        //{
+        //    ret = stopShootingTime > afterShootDelay * (currFireRate / baseFireRate) * afterShootMult;
+        //}
 
-        if (currFireRate <= baseFireRate * afterShootMult)
-        {
-            ret = stopShootingTime > afterShootDelay;
-        }
-        else
-        {
-            ret = stopShootingTime > afterShootDelay * (currFireRate / baseFireRate) * afterShootMult;
-        }
-
-        return ret;
+        return stopShootingTime > afterShootDelay;
     }
 
     private void StartShoot()
@@ -790,12 +809,12 @@ public class Core : DiamondComponent
             Debug.Log("Bullet Shot!");
 
             bullet.GetComponent<BH_Bullet>().damage = bulletDamage;
-            
+
             if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_EXTRA_DAMAGE_LOW_HEALTH))
             {
                 //If the skill is active, we override the damage amount
                 bullet.GetComponent<BH_Bullet>().damage = GetExtraDamageWithSkill();
-            }            
+            }
         }
     }
 
@@ -935,6 +954,8 @@ public class Core : DiamondComponent
     {
 
         inputsList.Add(INPUT.IN_SEC_SHOOT_END);
+        --currentBullets;
+        sniperRechargeTimer += bulletRechargeTime;
 
         if (shootPoint == null)
         {
@@ -945,8 +966,6 @@ public class Core : DiamondComponent
         Audio.StopAudio(gameObject);
         Audio.PlayAudio(shootPoint, "Play_Sniper_Shoot_Mando");
         Input.PlayHaptic(.5f, 10);
-
-
 
         GameObject aimHelpTarget = myAimbot.SearchForNewObjRaw(15, myAimbot.maxRange);
 
@@ -964,20 +983,18 @@ public class Core : DiamondComponent
 
                 if (perfectShot == true)
                 {
-                    bulletDamage *= 1.3f;
+                    bulletDamage *= 1.4f;
                     bullet.transform.localScale *= 1.2f;
                 }
                 else if (chargeTimer > timeToPerfectChargeEnd)
                 {
-                    bulletDamage = (chargedBulletDmg * 0.8f);
+                    bulletDamage = (chargedBulletDmg * 1.05f);
                 }
                 else
                 {
                     float dmgMult = Mathf.InvLerp(0.0f, timeToPerfectCharge, chargeTimer);
 
                     dmgMult = Math.Max(dmgMult, 0.15f);
-
-
                     bulletDamage = (chargedBulletDmg * dmgMult);
 
                     bulletDamage = Math.Max(bulletDamage, 1f);
@@ -1057,7 +1074,7 @@ public class Core : DiamondComponent
         {
             skill_damageReductionDashActive = true;
             skill_damageReductionDashTimer = Skill_Tree_Data.GetMandoSkillTree().U4_seconds;
-        }        
+        }
     }
 
     #endregion
@@ -1429,10 +1446,10 @@ public class Core : DiamondComponent
     private static float GetExtraDamageWithSkill()
     {
         float HPMissing = 1.0f - ((float)PlayerHealth.currHealth / (float)PlayerHealth.currMaxHealth);
-        
+
         float local_damageAmount = Skill_Tree_Data.GetMandoSkillTree().A7_extraDamageAmount;
         float local_HPStep = Skill_Tree_Data.GetMandoSkillTree().A7_extraDamageHPStep;
-        return bulletDamage + (bulletDamage * local_damageAmount * (HPMissing / local_HPStep));        
+        return bulletDamage + (bulletDamage * local_damageAmount * (HPMissing / local_HPStep));
     }
 
     public void OnApplicationQuit()
