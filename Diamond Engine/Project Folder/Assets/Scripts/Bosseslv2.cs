@@ -78,7 +78,7 @@ public class Bosseslv2 : DiamondComponent
     private GameObject currentTarget;
     private bool returnToInitTarget = false;
     private float startBounceRushTime = 0.0f;
-    private float startBounceRushTimer = 0.0f;
+    //private float startBounceRushTimer = 0.0f;
 
     enum JUMPSLAM : int
     {
@@ -193,22 +193,6 @@ public class Bosseslv2 : DiamondComponent
     }
     #endregion
 
-    #region RUSH STUN
-    public void StartRushStun()
-    {
-
-    }
-    public void UpdateRushStun()
-    {
-        //Debug.Log("Rush Stun");
-    }
-
-    public void EndRushStun()
-    {
-        resting = true;
-        restingTimer = restingTime;
-    }
-    #endregion
 
     #region BOUNCE RUSH
 

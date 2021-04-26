@@ -70,7 +70,9 @@ public class Skel : Bosseslv2
         ProcessExternalInput();
         ProcessState();
 
+
         UpdateState();
+        Debug.Log(healthPoints.ToString());
     }
 
     private void ProcessInternalInput()
@@ -226,6 +228,24 @@ public class Skel : Bosseslv2
                     }
                     break;
 
+                case STATE.FAST_RUSH:
+                    switch (input)
+                    {
+                        case INPUT.IN_FAST_RUSH_END:
+                            currentState = STATE.SLOW_RUSH;
+                            StartSlowRush();
+                            break;
+                        case INPUT.IN_SLOW_RUSH_END:
+                            currentState = STATE.SEARCH_STATE;
+                            EndSlowRush();
+                            break;
+                        case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDie();
+                            break;
+                    }
+                    break;
+
                 case STATE.SLOW_RUSH:
                     switch (input)
                     {
@@ -240,19 +260,6 @@ public class Skel : Bosseslv2
                     }
                     break;
 
-                case STATE.RUSH_STUN:
-                    switch (input)
-                    {
-                        case INPUT.IN_RUSH_STUN_END:
-                            currentState = STATE.SEARCH_STATE;
-                            EndRushStun();
-                            break;
-                        case INPUT.IN_DEAD:
-                            currentState = STATE.DEAD;
-                            StartDie();
-                            break;
-                    }
-                    break;
                 case STATE.WANDER:
                     switch (input)
                     {
@@ -295,9 +302,6 @@ public class Skel : Bosseslv2
                 break;
             case STATE.SLOW_RUSH:
                 UpdateSlowRush();
-                break;
-            case STATE.RUSH_STUN:
-                UpdateRushStun();
                 break;
             case STATE.JUMP_SLAM:
                 UpdateJumpSlam();
@@ -398,7 +402,7 @@ public class Skel : Bosseslv2
         else if (collidedGameObject.CompareTag("Wall"))
         {
             if (currentState == STATE.FAST_RUSH || currentState == STATE.SLOW_RUSH)
-                inputsList.Add(INPUT.IN_RUSH_STUN);
+                inputsList.Add(INPUT.IN_SLOW_RUSH_END);
         }
         else if (collidedGameObject.CompareTag("Player"))
         {

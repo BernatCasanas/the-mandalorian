@@ -16,7 +16,6 @@ public class Wampa : Bosseslv2
         WANDER,
         FAST_RUSH,
         SLOW_RUSH,
-        RUSH_STUN,
         PROJECTILE,
         JUMP_SLAM,
         BOUNCE_RUSH,
@@ -34,8 +33,6 @@ public class Wampa : Bosseslv2
         IN_FAST_RUSH_END,
         IN_SLOW_RUSH,
         IN_SLOW_RUSH_END,
-        IN_RUSH_STUN,
-        IN_RUSH_STUN_END,
         IN_PROJECTILE,
         IN_PROJECTILE_END,
         IN_JUMPSLAM,
@@ -71,7 +68,9 @@ public class Wampa : Bosseslv2
         ProcessExternalInput();
         ProcessState();
 
+
         UpdateState();
+        Debug.Log(healthPoints.ToString());
     }
 
     private void ProcessInternalInput()
@@ -229,6 +228,10 @@ public class Wampa : Bosseslv2
                             currentState = STATE.SLOW_RUSH;
                             StartSlowRush();
                             break;
+                        case INPUT.IN_SLOW_RUSH_END:
+                            currentState = STATE.SEARCH_STATE;
+                            EndSlowRush();
+                            break;
                         case INPUT.IN_DEAD:
                             currentState = STATE.DEAD;
                             StartDie();
@@ -250,19 +253,6 @@ public class Wampa : Bosseslv2
                     }
                     break;
 
-                case STATE.RUSH_STUN:
-                    switch (input)
-                    {
-                        case INPUT.IN_RUSH_STUN_END:
-                            currentState = STATE.SEARCH_STATE;
-                            EndRushStun();
-                            break;
-                        case INPUT.IN_DEAD:
-                            currentState = STATE.DEAD;
-                            StartDie();
-                            break;
-                    }
-                    break;
                 case STATE.WANDER:
                     switch (input)
                     {
@@ -306,9 +296,6 @@ public class Wampa : Bosseslv2
             case STATE.SLOW_RUSH:
                 UpdateSlowRush();
                 break;
-            case STATE.RUSH_STUN:
-                UpdateRushStun();
-                break;
             case STATE.JUMP_SLAM:
                 UpdateJumpSlam();
                 break;
@@ -341,6 +328,7 @@ public class Wampa : Bosseslv2
             else
                 inputsList.Add(INPUT.IN_FAST_RUSH);
         }
+        Debug.Log(resting.ToString());
     }
 
 
@@ -396,7 +384,7 @@ public class Wampa : Bosseslv2
         else if (collidedGameObject.CompareTag("Wall"))
         {
             if (currentState == STATE.FAST_RUSH || currentState == STATE.SLOW_RUSH)
-                inputsList.Add(INPUT.IN_RUSH_STUN);
+                inputsList.Add(INPUT.IN_SLOW_RUSH_END);
         }
         else if (collidedGameObject.CompareTag("Player"))
         {
