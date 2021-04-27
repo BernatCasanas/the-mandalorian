@@ -12,17 +12,9 @@
 
 namespace MaykMath 
 {
-	/*class LookUpTables
-	{
-	public:
-		LookUpTables();
-		~LookUpTables();
+	
 
-	private:
-		int sineLUTResolution;
-		std::map<float, float> sineLUT;
-	};*/
-
+	
 	void Init();
 	int Random(int minV, int maxV);
 	float Random(float minV, float maxV);
