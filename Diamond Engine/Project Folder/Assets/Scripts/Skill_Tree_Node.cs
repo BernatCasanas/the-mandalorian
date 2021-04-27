@@ -45,7 +45,6 @@ public class Skill_Tree_Node : DiamondComponent
 
     public int skillTreeName;
     public int skillTreeNumber;
-    public bool alreadySetup = false;
 
     public NODE_STATE state 
     {
@@ -114,16 +113,12 @@ public class Skill_Tree_Node : DiamondComponent
             if (oppositeNode != null)
             {
                 oppositeNode.GetComponent<Skill_Tree_Node>().state = NODE_STATE.LOCKED;
-                oppositeNode.GetComponent<Skill_Tree_Node>().alreadySetup = true;
             }
-                
-
         }
-        else if (!alreadySetup && isRootNode)
+        else if (isRootNode)
             state = NODE_STATE.UNLOCKED;
-        else if(!alreadySetup)
+        else
             state = NODE_STATE.LOCKED;
-
     }
 
     public void Update()
