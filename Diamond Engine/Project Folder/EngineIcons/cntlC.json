@@ -1,13 +1,13 @@
 {
     "Game Objects": [
         {
-            "name": "Colliders",
+            "name": "FPS",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 2013709767,
-            "ParentUID": 274104517,
-            "PrefabReference": 1190528649,
+            "UID": 2038703479,
+            "ParentUID": 875453008,
+            "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
@@ -31,192 +31,39 @@
                 {
                     "Type": 1,
                     "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Bounce Rush",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 766079951,
-            "ParentUID": 2013709767,
-            "PrefabReference": 766079951,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                2.0998947620391846,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                0.89999997615814209,
-                0.89999997615814209,
-                0.89999997615814209
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
                 },
                 {
-                    "Type": 2,
-                    "Active": false,
-                    "Path": "Library\/Meshes\/1313575480.mmh",
-                    "UID": 1313575480,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
-                },
-                {
-                    "Type": 14,
+                    "Type": 6,
                     "Active": true,
-                    "kinematic": false,
-                    "Gravity": false,
-                    "LockLinearX": true,
-                    "LockLinearY": true,
-                    "LockLinearZ": true,
-                    "LockAngularX": true,
-                    "LockAngularY": true,
-                    "LockAngularZ": true,
-                    "Mass": 10,
-                    "Density": 1
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": true,
                     "Position": [
-                        0,
-                        0,
-                        0
+                        90,
+                        94
                     ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
+                    "Rotation": 0,
+                    "Size": [
+                        10,
+                        10
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "30",
+                    "maxTextLenght": 109,
+                    "fontName": "Library\/Fonts\/teko-semibold.ttf",
+                    "textColor": [
                         1,
                         1,
                         1
                     ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "AtackBosslv2",
-                    "damage": 15
-                }
-            ]
-        },
-        {
-            "name": "Jump Slam",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 524252192,
-            "ParentUID": 2013709767,
-            "PrefabReference": 524252192,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0.48108792304992676,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                0.22837036848068237,
-                1.3414874076843262
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": false,
-                    "Path": "Library\/Meshes\/1313575480.mmh",
-                    "UID": 1313575480,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": false,
-                    "Gravity": false,
-                    "LockLinearX": true,
-                    "LockLinearY": true,
-                    "LockLinearZ": true,
-                    "LockAngularX": true,
-                    "LockAngularY": true,
-                    "LockAngularZ": true,
-                    "Mass": 10,
-                    "Density": 1
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "AtackBosslv2",
-                    "damage": 20
                 }
             ]
         }

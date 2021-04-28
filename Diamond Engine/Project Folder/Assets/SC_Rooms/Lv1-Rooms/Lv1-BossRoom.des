@@ -95,8 +95,8 @@
                     "fSize": 39,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 15.923076629638672,
-                    "hFOV": 30.128204345703125,
+                    "vFOV": 16,
+                    "hFOV": 33.307693481445313,
                     "culling": false,
                     "drawSkybox": true
                 },
@@ -10095,6 +10095,64 @@
                         1.0000001192092896,
                         1.0000002384185791
                     ]
+                },
+                {
+                    "name": "Rancor Attack",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 239245430,
+                    "ParentUID": 62803088,
+                    "PrefabReference": 239245430,
+                    "PrefabID": 146014294,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.22298908233642578,
+                        0.00051832199096679688,
+                        1.7189533710479736
+                    ],
+                    "Rotation": [
+                        -2.2415885325699492e-07,
+                        -0.087515443563461304,
+                        1.5642076789390558e-07,
+                        0.99616318941116333
+                    ],
+                    "Scale": [
+                        0.99998950958251953,
+                        1,
+                        0.99998950958251953
+                    ],
+                    "PrefabObjects": [
+                        {
+                            "name": "HittingRight",
+                            "tag": "Untagged",
+                            "layer": "Default",
+                            "Active": true,
+                            "UID": 622915898,
+                            "ParentUID": 239245430,
+                            "PrefabID": 0,
+                            "PrefabReference": 622915898,
+                            "DontDestroy": false,
+                            "Static": false,
+                            "Position": [
+                                0,
+                                0,
+                                0
+                            ],
+                            "Rotation": [
+                                -0.46604377031326294,
+                                -0.60464155673980713,
+                                -0.36661896109580994,
+                                0.53179174661636353
+                            ],
+                            "Scale": [
+                                1.0000001192092896,
+                                1.0000001192092896,
+                                1.0000002384185791
+                            ]
+                        }
+                    ]
                 }
             ]
         },
@@ -12212,6 +12270,7 @@
                     "combo_text": 1448786049,
                     "combo_gameobject": 1780866372,
                     "max_hp_number": 1593525929,
+                    "fpsText": 804365529,
                     "comboNumber": 0,
                     "last_hp": -0.005317371804267168,
                     "shooting_blink": 1677069345
@@ -13714,6 +13773,73 @@
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/714069747.dds",
                     "UID": 714069747
+                }
+            ]
+        },
+        {
+            "name": "FPS",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 804365529,
+            "ParentUID": 118565339,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        90,
+                        94
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        10,
+                        10
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "30",
+                    "maxTextLenght": 109,
+                    "fontName": "Library\/Fonts\/teko-semibold.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
