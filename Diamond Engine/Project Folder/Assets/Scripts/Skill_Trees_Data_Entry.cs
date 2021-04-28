@@ -6,20 +6,15 @@ public class Skill_Trees_Data_Entry : DiamondComponent
     #region Variables showing in the inspector
     #region Grogu variables
     //Grogu Skill 1
-    public int Grogu1_price = 1;
     //Grogu Skill 2
-    public int Grogu2_price = 1;
     //Grogu Skill 3
-    public int Grogu3_price = 1;
     //Grogu Skill 4
-    public int Grogu4_price = 1;
     //Grogu Skill 5
-    public int Grogu5_price = 1;
     //Grogu Skill 6
-    public int Grogu6_price = 1;
     //Grogu Skill 7
-    public int Grogu7_price = 1;
     //Grogu Skill 8: For each 10% of HP Mando is missing, gain 1 more passive Force Regeneration per second.
+    public string Grogu8_description_Part1 = "For each 10% of HP Mando is missing, gain 1 more";
+    public string Grogu8_description_Part2 = " passive Force Regeneration per second";
     public float Grogu8_HPMissingPercentage = 10.0f;
     public float Grogu8_gainPassiveForceRegeneration = 1.0f;
     #endregion
@@ -30,11 +25,13 @@ public class Skill_Trees_Data_Entry : DiamondComponent
     //Primary Weapon Skill 1
     //Primary Weapon Skill 2
     //Primary Weapon Skill 3    
+    public string PrimaryWeapon3_description = "Bullet impacts slow enemy speed by 20%";
     public float PrimaryWeapon3_SlowDownAmount = 0.2f;
     public float PrimaryWeapon3_SlowDownDuration = 3.0f;
     //Primary Weapon Skill 4
     //Primary Weapon Skill 5
     //Primary Weapon Skill 6
+    public string PrimaryWeapon6_description = "Increase damage amount by 25%";
     public float PrimaryWeapon6_IncreaseDamageAmount = 0.25f;
     //Primary Weapon Skill 7
 
@@ -44,6 +41,7 @@ public class Skill_Trees_Data_Entry : DiamondComponent
     //Secondary Weapon Skill 2
     //Secondary Weapon Skill 3
     //Secondary Weapon Skill 4
+    public string SecondaryWeapon4_description = "Delay between uses reduced by 30%";
     public float SecondaryWeapon4_DelayReducedAmount = 0.3f;
     //Secondary Weapon Skill 5
     //Secondary Weapon Skill 6
@@ -60,16 +58,21 @@ public class Skill_Trees_Data_Entry : DiamondComponent
     //Utility Skill 1
     //Utility Skill 2
     //Utility Skill 3
+    public string Utility3_description_Part1 = "Mando has 15% increased damage for 10 seconds";
+    public string Utility3_description_Part2 = " after Grogu uses his Push skill";
     public float Utility3_duration = 10.0f;
     public float Utility3_increasedDamagePercentage = 0.15f;
     //Utility Skill 4
+    public string Utility4_description = "20% Damage reduction 2 seconds after dash";
     public float Utility4_duration = 2.0f;
     public float Utility4_damageReduction = 0.2f;
     //Utility Skill 5
     //Utility Skill 6
     //Utility Skill 7
+    public string Utility7_description = "Mando heals 10 HP when Grogu uses a Skill";
     public int Utility7_healAmount = 10;
     //Utility Skill 8
+    public string Utility8_description = "Dash can be used consecutively twice in a row";
     public int Utility8_consecutiveDashAmount = 2;
     #endregion
     #region Aggression Variables
@@ -79,8 +82,11 @@ public class Skill_Trees_Data_Entry : DiamondComponent
     //Aggression Skill 4
     //Aggression Skill 5
     //Aggression Skill 6
+    public string Aggression6_description_Part1 = "Increase damage to Bosses and greater enemies";
+    public string Aggression6_description_Part2 = " by 20%";
     public float Aggression6_increaseDamageToBossAmount = 0.2f;
     //Aggression Skill 7
+    public string Aggression7_description = "For each 1% of hp missing, gain 1% damage";
     public float Aggression7_extraDamageHPStep = 1.0f;
     public float Aggression7_extraDamageAmount = 1.0f;
     //Aggression Skill 8
@@ -94,6 +100,7 @@ public class Skill_Trees_Data_Entry : DiamondComponent
     //Defense Skill 6
     //Defense Skill 7
     //Defense Skill 8
+    public string Defense8_description = "10% chance to avoid damage";
     public int Defense8_chanceToAvoidDamage = 10;
     #endregion
     #endregion
@@ -106,15 +113,20 @@ public class Skill_Trees_Data_Entry : DiamondComponent
         Skill_Tree_Data.weaponsSkillTree = new Skill_Tree_Data.Weapons_Skills_Data();
         Skill_Tree_Data.mandoSkillTree = new Skill_Tree_Data.Mando_Skills_Data();
 
-        //Assign prices
-        Skill_Tree_Data.GetGroguSkillTree().G1_price = Grogu1_price;
-        Skill_Tree_Data.GetGroguSkillTree().G2_price = Grogu2_price;
-        Skill_Tree_Data.GetGroguSkillTree().G3_price = Grogu3_price;
-        Skill_Tree_Data.GetGroguSkillTree().G4_price = Grogu4_price;
-        Skill_Tree_Data.GetGroguSkillTree().G5_price = Grogu5_price;
-        Skill_Tree_Data.GetGroguSkillTree().G6_price = Grogu6_price;
-        Skill_Tree_Data.GetGroguSkillTree().G7_price = Grogu7_price;
-        Skill_Tree_Data.GetGroguSkillTree().G8_price = Grogu8_price;
+        //Assign descriptions
+        Skill_Tree_Data.GetGroguSkillTree().G8_description = Grogu8_description_Part1 + Grogu8_description_Part2;
+
+        Skill_Tree_Data.GetWeaponsSkillTree().PrimaryW3_description = PrimaryWeapon3_description;
+        Skill_Tree_Data.GetWeaponsSkillTree().PrimaryW6_description = PrimaryWeapon6_description;
+        Skill_Tree_Data.GetWeaponsSkillTree().SecondaryW4_description = SecondaryWeapon4_description;
+
+        Skill_Tree_Data.GetMandoSkillTree().U3_description = Utility3_description_Part1 + Utility3_description_Part2;
+        Skill_Tree_Data.GetMandoSkillTree().U4_description = Utility4_description;
+        Skill_Tree_Data.GetMandoSkillTree().U7_description = Utility7_description;
+        Skill_Tree_Data.GetMandoSkillTree().U8_description = Utility8_description;
+        Skill_Tree_Data.GetMandoSkillTree().A6_description = Aggression6_description_Part1 + Aggression6_description_Part2;
+        Skill_Tree_Data.GetMandoSkillTree().A7_description = Aggression7_description;
+        Skill_Tree_Data.GetMandoSkillTree().D8_description = Defense8_description;
 
         //Assign the values from the inspector
         //Grogu Skills

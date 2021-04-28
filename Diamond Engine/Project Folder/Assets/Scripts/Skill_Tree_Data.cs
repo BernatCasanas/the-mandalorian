@@ -201,15 +201,15 @@ public class Skill_Tree_Data : DiamondComponent
 
     public class Grogu_Skills_Data
     {
-        //Prices
-        public int G1_price = -1;
-        public int G2_price = -1;
-        public int G3_price = -1;
-        public int G4_price = -1;
-        public int G5_price = -1;
-        public int G6_price = -1;
-        public int G7_price = -1;
-        public int G8_price = -1;
+        //Descriptions
+        public string G1_description = "";
+        public string G2_description = "";
+        public string G3_description = "";
+        public string G4_description = "";
+        public string G5_description = "";
+        public string G6_description = "";
+        public string G7_description = "";
+        public string G8_description = "";
 
         //Grogu Skills
         //Grogu Skill 1
@@ -225,8 +225,35 @@ public class Skill_Tree_Data : DiamondComponent
     }
     public class Mando_Skills_Data
     {
-        //Prices
-        public int U1_price = -1;
+        //Descriptions - Utility
+        public string U1_description = "";
+        public string U2_description = "";
+        public string U3_description = "";
+        public string U4_description = "";
+        public string U5_description = "";
+        public string U6_description = "";
+        public string U7_description = "";
+        public string U8_description = "";
+
+        //Descriptions - Aggression
+        public string A1_description = "";
+        public string A2_description = "";
+        public string A3_description = "";
+        public string A4_description = "";
+        public string A5_description = "";
+        public string A6_description = "";
+        public string A7_description = "";
+        public string A8_description = "";
+
+        //Descriptions - Defense
+        public string D1_description = "";
+        public string D2_description = "";
+        public string D3_description = "";
+        public string D4_description = "";
+        public string D5_description = "";
+        public string D6_description = "";
+        public string D7_description = "";
+        public string D8_description = "";
 
         //Utility Skill 3
         public float U3_duration = -1.0f;
@@ -248,6 +275,36 @@ public class Skill_Tree_Data : DiamondComponent
     }
     public class Weapons_Skills_Data
     {
+        //Descriptions - Primary Weapon
+        public string PrimaryW1_description = "";
+        public string PrimaryW2_description = "";
+        public string PrimaryW3_description = "";
+        public string PrimaryW4_description = "";
+        public string PrimaryW5_description = "";
+        public string PrimaryW6_description = "";
+        public string PrimaryW7_description = "";
+        public string PrimaryW8_description = "";
+
+        //Descriptions - Secondary Weapon
+        public string SecondaryW1_description = "";
+        public string SecondaryW2_description = "";
+        public string SecondaryW3_description = "";
+        public string SecondaryW4_description = "";
+        public string SecondaryW5_description = "";
+        public string SecondaryW6_description = "";
+        public string SecondaryW7_description = "";
+        public string SecondaryW8_description = "";
+
+        //Descriptions - Special Weapon
+        public string SpecialW1_description = "";
+        public string SpecialW2_description = "";
+        public string SpecialW3_description = "";
+        public string SpecialW4_description = "";
+        public string SpecialW5_description = "";
+        public string SpecialW6_description = "";
+        public string SpecialW7_description = "";
+        public string SpecialW8_description = "";
+
         //Primary Weapon Skill 1
         //Primary Weapon Skill 2
         //Primary Weapon Skill 3

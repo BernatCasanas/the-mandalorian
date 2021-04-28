@@ -8,7 +8,7 @@ namespace DiamondEngine
     {
         public String description = " ";
         public RewardType type_of_price = RewardType.REWARD_BESKAR;
-        public int price = 1;
+        public int price = 0;
         public virtual void Use()
         {
         }
@@ -53,7 +53,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "Mando has 15% increased damage for 10 seconds after Grogu uses his Push skill";
+            description = Skill_Tree_Data.GetMandoSkillTree().U3_description;
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -67,7 +67,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "20% Damage reduction 2 seconds after dash (doesn't attack)";
+            description = Skill_Tree_Data.GetMandoSkillTree().U4_description;
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -98,7 +98,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "Mando heals 10 HP when Grogu uses a Skill";            
+            description = Skill_Tree_Data.GetMandoSkillTree().U7_description;
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -114,7 +114,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "Dash can be used consecutively twice in a row (Normal CD upon double dashing)";            
+            description = Skill_Tree_Data.GetMandoSkillTree().U8_description;
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -177,7 +177,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "Increase damage to Bosses and greater enemies by 20%";            
+            description = Skill_Tree_Data.GetMandoSkillTree().A6_description;
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -191,7 +191,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "For each 1% of hp missing, gain 1% damage";            
+            description = Skill_Tree_Data.GetMandoSkillTree().A7_description;
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -221,6 +221,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
+            //description = Skill_Tree_Data.GetMandoSkillTree().D1_description;
             description = "Increase Mando's Max HP by 10%. Press 'A' to buy it. Price: 1 Beskar Ingot";            
             type_of_price = RewardType.REWARD_BESKAR;
         }
@@ -291,7 +292,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "10% chance to avoid damage";            
+            description = Skill_Tree_Data.GetMandoSkillTree().D8_description;
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -368,7 +369,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "For each 10% of HP Mando is missing, gain 1 more passive Force Regeneration per second. Price: ";            
+            description = Skill_Tree_Data.GetGroguSkillTree().G8_description;         
             type_of_price = RewardType.REWARD_MACARON;
         }
     }
@@ -403,6 +404,7 @@ namespace DiamondEngine
         }
         public override void AssignCharacteristics()
         {
+            description = Skill_Tree_Data.GetWeaponsSkillTree().PrimaryW3_description;
             description = "Bullet impacts slow enemy speed by 20% for 3 seconds";            
             type_of_price = RewardType.REWARD_BESKAR;
         }
@@ -438,7 +440,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "Increase Mando's Primary Weapon damage by 25%. Press 'A' to buy it. Price: 1 Imperial Scrap";            
+            description = Skill_Tree_Data.GetWeaponsSkillTree().PrimaryW6_description;
             type_of_price = RewardType.REWARD_SCRAP;
         }
     }
@@ -481,7 +483,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "[NOT IMPLEMENTED] Delay between uses reduced by 30%";            
+            description = Skill_Tree_Data.GetWeaponsSkillTree().SecondaryW4_description;
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
