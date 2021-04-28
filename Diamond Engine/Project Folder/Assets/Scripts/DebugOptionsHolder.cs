@@ -11,6 +11,7 @@ namespace DiamondEngine
         public static bool showTris = false;
         public static bool goToNextRoom = false;
         public static bool bossDmg = false;
+        public static bool goToNextLevel = false;
 
         public static void ResetDebugOptions()
         {
@@ -20,6 +21,7 @@ namespace DiamondEngine
             showTris = false;
             goToNextRoom = false;
             bossDmg = false;
+            goToNextLevel = false;
         }
 
     }

@@ -84,6 +84,13 @@ public class GameSceneManager : DiamondComponent
             DebugOptionsHolder.goToNextRoom = false;
         }
 
+        if (DebugOptionsHolder.goToNextLevel == true)
+        {
+            Debug.Log("Change scene");
+            ChangeScene();
+            //DebugOptionsHolder.goToNextLevel = false;
+        }
+
         // We should clean boons when ending a run :3
         //PlayerResources.ResetRunBoons();
     }

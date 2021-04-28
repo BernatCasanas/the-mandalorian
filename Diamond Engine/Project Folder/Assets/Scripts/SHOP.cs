@@ -46,6 +46,7 @@ public class SHOP : DiamondComponent
 
     public void Awake()
     {
+        DebugOptionsHolder.goToNextLevel = false;
         shopOpen = false;
         opening = false;
         if (autoGenerateItems) 
