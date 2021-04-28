@@ -23,6 +23,11 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 337345724,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0,
                 0,
@@ -39,10 +44,6 @@
                 1,
                 1
             ],
-            "UID": 337345724,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
             "Components": [
                 {
                     "Type": 1,
@@ -55,6 +56,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1465487012,
+            "ParentUID": 337345724,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0,
                 0,
@@ -71,11 +78,6 @@
                 80,
                 0.99999982118606567
             ],
-            "UID": 1465487012,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 337345724,
             "Components": [
                 {
                     "Type": 1,
@@ -96,6 +98,7 @@
                         1,
                         1
                     ],
+                    "stencilEmission": 0,
                     "doNotDrawStencil": true
                 },
                 {
@@ -140,6 +143,12 @@
             "tag": "Player",
             "layer": "Default",
             "Active": true,
+            "UID": 405629647,
+            "ParentUID": 337345724,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0,
                 7.3314008712768555,
@@ -156,11 +165,6 @@
                 1,
                 1
             ],
-            "UID": 405629647,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 337345724,
             "Components": [
                 {
                     "Type": 1,
@@ -174,20 +178,31 @@
                     "rotationSpeed": 2,
                     "movementSpeed": 5.5,
                     "mouseSens": 1,
-                    "skill_extraDamageActive": true,
-                    "skill_extraDamageHPStep": 0,
-                    "skill_extraDamageAmount": 0,
-                    "skill_damageReductionDashEnabled": true,
-                    "skill_damageReductionDashDuration": 0,
-                    "skill_damageReductionDashAmount": 0,
+                    "afterShootDelay": 0,
+                    "afterShootMult": 0,
                     "dashCD": 0.33000001311302185,
                     "dashDuration": 0.20000000298023224,
-                    "dashSpeed": 30,
-                    "fireRate": 0.15000000596046448,
+                    "dashDistance": 0,
+                    "maxDashNumber": 0,
+                    "betweeMultiplenDashesCD": 0,
+                    "baseFireRate": 0,
                     "gadgetFireRate": 0.20000000298023224,
+                    "heatReductionSpeed": 0,
+                    "dashHeatReductionMult": 0,
+                    "onGrenadeHeatReduction": 0,
+                    "onSniperHeatReduction": 0,
                     "fireRateAfterDashRecoverRatio": 1.75,
                     "fireRateMultCap": 2,
                     "grenadesFireRate": 0,
+                    "timeToPerfectCharge": 0,
+                    "framesForPerfectCharge": 0,
+                    "timeToAutomaticallyShootCharge": 0,
+                    "bulletRechargeTime": 0,
+                    "numberOfBullets": 0,
+                    "chargedBulletDmg": 0,
+                    "perfectShotDmgMult": 0,
+                    "overShotDmgMult": 0,
+                    "overheatTimeBeeping": 0,
                     "lockInputs": true,
                     "bulletDamage": 0
                 },
@@ -255,7 +270,6 @@
                     "<currMaxHealth>k__BackingField": 0,
                     "<currHealth>k__BackingField": 0,
                     "<healWhenKillingAnEnemy>k__BackingField": 0,
-                    "<skill_chanceToAvoidDamage>k__BackingField": 0,
                     "character_mesh": 545417152
                 },
                 {
@@ -280,6 +294,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 931695737,
+            "ParentUID": 405629647,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 -0.25,
                 1.3999996185302734,
@@ -296,11 +316,6 @@
                 0.05000000074505806,
                 0.60000002384185791
             ],
-            "UID": 931695737,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 405629647,
             "Components": [
                 {
                     "Type": 1,
@@ -323,6 +338,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 845348042,
+            "ParentUID": 405629647,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0,
                 0,
@@ -339,11 +360,6 @@
                 1,
                 1
             ],
-            "UID": 845348042,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 405629647,
             "Components": [
                 {
                     "Type": 1,
@@ -356,6 +372,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 39202400,
+            "ParentUID": 845348042,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0,
                 0.80000001192092896,
@@ -372,11 +394,6 @@
                 0.99999994039535522,
                 1
             ],
-            "UID": 39202400,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 845348042,
             "Components": [
                 {
                     "Type": 1,
@@ -389,6 +406,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 2006058710,
+            "ParentUID": 39202400,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.11634468287229538,
                 -0.0031171953305602074,
@@ -405,11 +428,6 @@
                 0.99999994039535522,
                 1
             ],
-            "UID": 2006058710,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 39202400,
             "Components": [
                 {
                     "Type": 1,
@@ -422,6 +440,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 66982618,
+            "ParentUID": 2006058710,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.33052429556846619,
                 -1.3877787807814457e-17,
@@ -438,11 +462,6 @@
                 1,
                 1
             ],
-            "UID": 66982618,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 2006058710,
             "Components": [
                 {
                     "Type": 1,
@@ -455,6 +474,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1209850141,
+            "ParentUID": 66982618,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.49832558631896973,
                 -1.0408340855860843e-16,
@@ -471,11 +496,6 @@
                 1,
                 1
             ],
-            "UID": 1209850141,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 66982618,
             "Components": [
                 {
                     "Type": 1,
@@ -488,6 +508,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 225580280,
+            "ParentUID": 1209850141,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.048129789531230927,
                 0.00092376413522288203,
@@ -504,11 +530,6 @@
                 1,
                 1
             ],
-            "UID": 225580280,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1209850141,
             "Components": [
                 {
                     "Type": 1,
@@ -521,6 +542,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 576763369,
+            "ParentUID": 225580280,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 -0.0024161925539374352,
                 0.0091348141431808472,
@@ -537,11 +564,6 @@
                 1,
                 1
             ],
-            "UID": 576763369,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 225580280,
             "Components": [
                 {
                     "Type": 1,
@@ -554,6 +576,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1193281543,
+            "ParentUID": 39202400,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 -0.047563381493091583,
                 0.051045466214418411,
@@ -570,11 +598,6 @@
                 0.99999994039535522,
                 1
             ],
-            "UID": 1193281543,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 39202400,
             "Components": [
                 {
                     "Type": 1,
@@ -587,6 +610,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 2049421008,
+            "ParentUID": 1193281543,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.07544226199388504,
                 -8.7309451322370231e-18,
@@ -603,11 +632,6 @@
                 1,
                 1
             ],
-            "UID": 2049421008,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1193281543,
             "Components": [
                 {
                     "Type": 1,
@@ -620,6 +644,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1779007641,
+            "ParentUID": 2049421008,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.087513022124767303,
                 -9.7158973771808624e-17,
@@ -636,11 +666,6 @@
                 1,
                 1
             ],
-            "UID": 1779007641,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 2049421008,
             "Components": [
                 {
                     "Type": 1,
@@ -653,6 +678,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 171633336,
+            "ParentUID": 1779007641,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.18509595096111298,
                 1.0213184464813452e-15,
@@ -669,11 +700,6 @@
                 1,
                 1
             ],
-            "UID": 171633336,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1779007641,
             "Components": [
                 {
                     "Type": 1,
@@ -686,6 +712,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 685473748,
+            "ParentUID": 171633336,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.13789960741996765,
                 2.6107588313450947e-16,
@@ -702,11 +734,6 @@
                 1,
                 1
             ],
-            "UID": 685473748,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 171633336,
             "Components": [
                 {
                     "Type": 1,
@@ -719,6 +746,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1986205874,
+            "ParentUID": 685473748,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 -0.0055729993619024754,
                 0.14354380965232849,
@@ -735,11 +768,6 @@
                 1,
                 1
             ],
-            "UID": 1986205874,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 685473748,
             "Components": [
                 {
                     "Type": 1,
@@ -752,6 +780,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 872156130,
+            "ParentUID": 171633336,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.033537942916154861,
                 -0.070087730884552002,
@@ -768,11 +802,6 @@
                 1,
                 1
             ],
-            "UID": 872156130,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 171633336,
             "Components": [
                 {
                     "Type": 1,
@@ -785,6 +814,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 281807805,
+            "ParentUID": 872156130,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.11282739043235779,
                 0.0010122709209099412,
@@ -801,11 +836,6 @@
                 0.99999988079071045,
                 1
             ],
-            "UID": 281807805,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 872156130,
             "Components": [
                 {
                     "Type": 1,
@@ -818,6 +848,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 330592913,
+            "ParentUID": 281807805,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.26499998569488525,
                 -0.0010000000474974513,
@@ -834,11 +870,6 @@
                 1,
                 1
             ],
-            "UID": 330592913,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 281807805,
             "Components": [
                 {
                     "Type": 1,
@@ -851,6 +882,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1626951074,
+            "ParentUID": 330592913,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.289000004529953,
                 0,
@@ -867,11 +904,6 @@
                 0.99999994039535522,
                 0.99999994039535522
             ],
-            "UID": 1626951074,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 330592913,
             "Components": [
                 {
                     "Type": 1,
@@ -884,6 +916,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 935761939,
+            "ParentUID": 1626951074,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.037698734551668167,
                 -0.0026892705354839563,
@@ -900,11 +938,6 @@
                 1,
                 1
             ],
-            "UID": 935761939,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1626951074,
             "Components": [
                 {
                     "Type": 1,
@@ -917,6 +950,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 470556080,
+            "ParentUID": 935761939,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.052526507526636124,
                 -0.0033344610128551722,
@@ -933,11 +972,6 @@
                 1,
                 1
             ],
-            "UID": 470556080,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 935761939,
             "Components": [
                 {
                     "Type": 1,
@@ -950,6 +984,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 721810695,
+            "ParentUID": 470556080,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.076177336275577545,
                 -0.02065165713429451,
@@ -966,11 +1006,6 @@
                 1,
                 1
             ],
-            "UID": 721810695,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 470556080,
             "Components": [
                 {
                     "Type": 1,
@@ -983,6 +1018,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 2065056795,
+            "ParentUID": 1626951074,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.045164097100496292,
                 -0.008021792396903038,
@@ -999,11 +1040,6 @@
                 1,
                 1
             ],
-            "UID": 2065056795,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1626951074,
             "Components": [
                 {
                     "Type": 1,
@@ -1016,6 +1052,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1583925339,
+            "ParentUID": 2065056795,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.0703120157122612,
                 -0.013979429379105568,
@@ -1032,11 +1074,6 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 1583925339,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 2065056795,
             "Components": [
                 {
                     "Type": 1,
@@ -1049,6 +1086,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1180753069,
+            "ParentUID": 1583925339,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.059133138507604599,
                 -0.010065189562737942,
@@ -1065,11 +1108,6 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 1180753069,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1583925339,
             "Components": [
                 {
                     "Type": 1,
@@ -1082,6 +1120,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1682893336,
+            "ParentUID": 1626951074,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.01729397289454937,
                 -0.019484924152493477,
@@ -1098,11 +1142,6 @@
                 1,
                 1
             ],
-            "UID": 1682893336,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1626951074,
             "Components": [
                 {
                     "Type": 1,
@@ -1115,6 +1154,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 156648983,
+            "ParentUID": 1682893336,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.037645567208528519,
                 -0.025722149759531021,
@@ -1131,11 +1176,6 @@
                 1,
                 1
             ],
-            "UID": 156648983,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1682893336,
             "Components": [
                 {
                     "Type": 1,
@@ -1148,6 +1188,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1136885977,
+            "ParentUID": 156648983,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.032635308802127838,
                 -0.031313922256231308,
@@ -1164,11 +1210,6 @@
                 1,
                 1
             ],
-            "UID": 1136885977,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 156648983,
             "Components": [
                 {
                     "Type": 1,
@@ -1181,6 +1222,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1333827238,
+            "ParentUID": 171633336,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.028339693322777748,
                 0.072346001863479614,
@@ -1197,11 +1244,6 @@
                 0.99999994039535522,
                 0.99999994039535522
             ],
-            "UID": 1333827238,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 171633336,
             "Components": [
                 {
                     "Type": 1,
@@ -1214,6 +1256,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 898273224,
+            "ParentUID": 1333827238,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.12606798112392426,
                 0,
@@ -1230,11 +1278,6 @@
                 0.99999994039535522,
                 0.99999994039535522
             ],
-            "UID": 898273224,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1333827238,
             "Components": [
                 {
                     "Type": 1,
@@ -1247,6 +1290,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1808843817,
+            "ParentUID": 898273224,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.2664419412612915,
                 0,
@@ -1263,11 +1312,6 @@
                 0.99999994039535522,
                 1
             ],
-            "UID": 1808843817,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 898273224,
             "Components": [
                 {
                     "Type": 1,
@@ -1280,6 +1324,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 779355983,
+            "ParentUID": 1808843817,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.2916027307510376,
                 -2.2204460492503131e-16,
@@ -1296,11 +1346,6 @@
                 1,
                 1
             ],
-            "UID": 779355983,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1808843817,
             "Components": [
                 {
                     "Type": 1,
@@ -1313,6 +1358,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1221067341,
+            "ParentUID": 779355983,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.041544154286384583,
                 2.2204460492503131e-16,
@@ -1329,11 +1380,6 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 1221067341,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 779355983,
             "Components": [
                 {
                     "Type": 1,
@@ -1346,6 +1392,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1641697619,
+            "ParentUID": 1221067341,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.060923349112272263,
                 4.4408920985006262e-16,
@@ -1362,11 +1414,6 @@
                 1,
                 1
             ],
-            "UID": 1641697619,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1221067341,
             "Components": [
                 {
                     "Type": 1,
@@ -1379,6 +1426,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1107788118,
+            "ParentUID": 1641697619,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.078345231711864471,
                 -0.010225599631667137,
@@ -1395,11 +1448,6 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 1107788118,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1641697619,
             "Components": [
                 {
                     "Type": 1,
@@ -1412,6 +1460,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 588864920,
+            "ParentUID": 779355983,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.07191755622625351,
                 0.0043701725080609322,
@@ -1428,11 +1482,6 @@
                 1,
                 1
             ],
-            "UID": 588864920,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 779355983,
             "Components": [
                 {
                     "Type": 1,
@@ -1445,6 +1494,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1901774090,
+            "ParentUID": 588864920,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.062298718839883804,
                 0.00067741720704361796,
@@ -1461,11 +1516,6 @@
                 1,
                 0.99999994039535522
             ],
-            "UID": 1901774090,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 588864920,
             "Components": [
                 {
                     "Type": 1,
@@ -1478,6 +1528,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 309664105,
+            "ParentUID": 1901774090,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.059995632618665695,
                 0,
@@ -1494,11 +1550,6 @@
                 1,
                 1
             ],
-            "UID": 309664105,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1901774090,
             "Components": [
                 {
                     "Type": 1,
@@ -1511,6 +1562,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 536321972,
+            "ParentUID": 779355983,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.038820195943117142,
                 -0.013029624707996845,
@@ -1527,11 +1584,6 @@
                 1,
                 1
             ],
-            "UID": 536321972,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 779355983,
             "Components": [
                 {
                     "Type": 1,
@@ -1544,6 +1596,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 973842223,
+            "ParentUID": 536321972,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.046225648373365402,
                 6.6613381477509392e-16,
@@ -1560,11 +1618,6 @@
                 1,
                 1
             ],
-            "UID": 973842223,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 536321972,
             "Components": [
                 {
                     "Type": 1,
@@ -1577,6 +1630,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1663188046,
+            "ParentUID": 973842223,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.045551348477602005,
                 0,
@@ -1593,11 +1652,6 @@
                 1,
                 1
             ],
-            "UID": 1663188046,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 973842223,
             "Components": [
                 {
                     "Type": 1,
@@ -1610,6 +1664,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 496704326,
+            "ParentUID": 39202400,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 -0.016588568687438965,
                 -0.11519817262887955,
@@ -1626,11 +1686,6 @@
                 0.99999994039535522,
                 0.99999988079071045
             ],
-            "UID": 496704326,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 39202400,
             "Components": [
                 {
                     "Type": 1,
@@ -1643,6 +1698,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 122712805,
+            "ParentUID": 496704326,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.3305245041847229,
                 1.3877787807814457e-17,
@@ -1659,11 +1720,6 @@
                 1,
                 1
             ],
-            "UID": 122712805,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 496704326,
             "Components": [
                 {
                     "Type": 1,
@@ -1676,6 +1732,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 698249139,
+            "ParentUID": 122712805,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.49832534790039063,
                 2.0816681711721685e-17,
@@ -1692,11 +1754,6 @@
                 1,
                 0.99999988079071045
             ],
-            "UID": 698249139,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 122712805,
             "Components": [
                 {
                     "Type": 1,
@@ -1709,6 +1766,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 215989180,
+            "ParentUID": 698249139,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 -0.049591511487960815,
                 -0.0013283168664202094,
@@ -1725,11 +1788,6 @@
                 1,
                 1
             ],
-            "UID": 215989180,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 698249139,
             "Components": [
                 {
                     "Type": 1,
@@ -1742,6 +1800,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 702204486,
+            "ParentUID": 215989180,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.0038779217284172773,
                 -0.008729902096092701,
@@ -1758,11 +1822,6 @@
                 1,
                 1
             ],
-            "UID": 702204486,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 215989180,
             "Components": [
                 {
                     "Type": 1,
@@ -1775,6 +1834,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 713295851,
+            "ParentUID": 39202400,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.086258649826049805,
                 0.11813866347074509,
@@ -1791,11 +1856,6 @@
                 1,
                 1
             ],
-            "UID": 713295851,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 39202400,
             "Components": [
                 {
                     "Type": 1,
@@ -1808,6 +1868,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1958589243,
+            "ParentUID": 713295851,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.12640358507633209,
                 -0.0034710955806076527,
@@ -1824,11 +1890,6 @@
                 0.99999994039535522,
                 1
             ],
-            "UID": 1958589243,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 713295851,
             "Components": [
                 {
                     "Type": 1,
@@ -1841,6 +1902,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 172553344,
+            "ParentUID": 1958589243,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.073978021740913391,
                 0.00082819547969847918,
@@ -1857,11 +1924,6 @@
                 1,
                 1
             ],
-            "UID": 172553344,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1958589243,
             "Components": [
                 {
                     "Type": 1,
@@ -1874,6 +1936,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 312841306,
+            "ParentUID": 172553344,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.063823312520980835,
                 0.0035232494119554758,
@@ -1890,11 +1958,6 @@
                 1,
                 1
             ],
-            "UID": 312841306,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 172553344,
             "Components": [
                 {
                     "Type": 1,
@@ -1907,6 +1970,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 545417152,
+            "ParentUID": 405629647,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0,
                 0,
@@ -1923,11 +1992,6 @@
                 1,
                 1
             ],
-            "UID": 545417152,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 405629647,
             "Components": [
                 {
                     "Type": 1,
@@ -1948,6 +2012,7 @@
                         1,
                         1
                     ],
+                    "stencilEmission": 0,
                     "doNotDrawStencil": true
                 },
                 {
@@ -1965,6 +2030,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 681693138,
+            "ParentUID": 405629647,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.50180244445800781,
                 0.90269899368286133,
@@ -1981,11 +2052,6 @@
                 1,
                 1
             ],
-            "UID": 681693138,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 405629647,
             "Components": [
                 {
                     "Type": 1,
@@ -2009,6 +2075,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 769361998,
+            "ParentUID": 681693138,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 -0.53475379943847656,
                 0.046333789825439453,
@@ -2025,11 +2097,6 @@
                 1,
                 1
             ],
-            "UID": 769361998,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 681693138,
             "Components": [
                 {
                     "Type": 1,
@@ -2083,6 +2150,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1214539284,
+            "ParentUID": 681693138,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.75781059265136719,
                 0.046333789825439453,
@@ -2099,11 +2172,6 @@
                 1,
                 1
             ],
-            "UID": 1214539284,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 681693138,
             "Components": [
                 {
                     "Type": 1,
@@ -2157,6 +2225,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 270890739,
+            "ParentUID": 681693138,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 -1.8636245727539063,
                 0.046333789825439453,
@@ -2173,11 +2247,6 @@
                 1,
                 1
             ],
-            "UID": 270890739,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 681693138,
             "Components": [
                 {
                     "Type": 1,
@@ -2231,6 +2300,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 482751965,
+            "ParentUID": 681693138,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 -1.8636245727539063,
                 0.046333789825439453,
@@ -2247,11 +2322,6 @@
                 1,
                 1
             ],
-            "UID": 482751965,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 681693138,
             "Components": [
                 {
                     "Type": 1,
@@ -2305,6 +2375,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1555479715,
+            "ParentUID": 681693138,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.76593399047851563,
                 0.046333789825439453,
@@ -2321,11 +2397,6 @@
                 1,
                 1
             ],
-            "UID": 1555479715,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 681693138,
             "Components": [
                 {
                     "Type": 1,
@@ -2379,6 +2450,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 747887099,
+            "ParentUID": 681693138,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 -0.53475379943847656,
                 0.046333789825439453,
@@ -2395,11 +2472,6 @@
                 1,
                 1
             ],
-            "UID": 747887099,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 681693138,
             "Components": [
                 {
                     "Type": 1,
@@ -2453,6 +2525,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 2090693143,
+            "ParentUID": 337345724,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 -12.169795989990234,
                 18.889739990234375,
@@ -2469,11 +2547,6 @@
                 0.9999997615814209,
                 0.9999997615814209
             ],
-            "UID": 2090693143,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 337345724,
             "Components": [
                 {
                     "Type": 1,
@@ -2486,8 +2559,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 1.0471975803375244,
-                    "hFOV": 1.5521194934844971,
+                    "vFOV": 12.479999542236328,
+                    "hFOV": 25.979999542236328,
                     "culling": false,
                     "drawSkybox": true
                 },
@@ -2521,6 +2594,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 985770018,
+            "ParentUID": 337345724,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0,
                 0,
@@ -2537,11 +2616,6 @@
                 1,
                 1
             ],
-            "UID": 985770018,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 337345724,
             "Components": [
                 {
                     "Type": 1,
@@ -2558,41 +2632,14 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1168122692,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
+            "UID": 785413384,
             "ParentUID": 985770018,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Image",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
+            "PrefabReference": 2075660243,
+            "PrefabID": 1871660106,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
-                0,
+                6.1854672431945801,
                 0,
                 0
             ],
@@ -2607,1576 +2654,702 @@
                 1,
                 1
             ],
-            "UID": 664227842,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1168122692,
-            "Components": [
+            "PrefabObjects": [
                 {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
+                    "name": "Image",
+                    "tag": "Untagged",
+                    "layer": "Default",
                     "Active": true,
+                    "UID": 2036587550,
+                    "ParentUID": 785413384,
+                    "PrefabID": 0,
+                    "PrefabReference": 1072203979,
+                    "DontDestroy": false,
+                    "Static": false,
                     "Position": [
                         0,
-                        7.0999999046325684
+                        0,
+                        0
                     ],
-                    "Rotation": 0,
-                    "Size": [
-                        93.900001525878906,
-                        92
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/2126775415.dds",
-                    "UID": 2126775415
-                }
-            ]
-        },
-        {
-            "name": "GodmodeCheckbox",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 293733384,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 664227842,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -34.400001525878906,
-                        44.700000762939453
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
                     ],
-                    "Rotation": 0,
-                    "Size": [
-                        5.6999998092651367,
-                        8.5
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 8,
-                    "Active": true,
-                    "Active_Pressed_AssetsPath": "Assets\/UI\/MENU\/checkbox_full_hover.png",
-                    "Active_Pressed_LibraryPath": "Library\/Textures\/949337790.dds",
-                    "Active_Pressed_UID": 949337790,
-                    "Active_Hovered_AssetsPath": "Assets\/UI\/MENU\/checkbox_full_hover.png",
-                    "Active_Hovered_LibraryPath": "Library\/Textures\/949337790.dds",
-                    "Active_Hovered_UID": 949337790,
-                    "Active_AssetsPath": "Assets\/UI\/MENU\/checkbox_full.png",
-                    "Active_LibraryPath": "Library\/Textures\/1573403753.dds",
-                    "Active_UID": 1573403753,
-                    "Unactive_Pressed_AssetsPath": "Assets\/UI\/MENU\/checkbox_empty_pressed.png",
-                    "Unactive_Pressed_LibraryPath": "Library\/Textures\/834635899.dds",
-                    "Unactive_Pressed_UID": 834635899,
-                    "Unactive_Hovered_AssetsPath": "Assets\/UI\/MENU\/checkbox_empty_hover.png",
-                    "Unactive_Hovered_LibraryPath": "Library\/Textures\/1711990233.dds",
-                    "Unactive_Hovered_UID": 1711990233,
-                    "Unactive_AssetsPath": "Assets\/UI\/MENU\/checkbox_empty.png",
-                    "Unactive_LibraryPath": "Library\/Textures\/1244819265.dds",
-                    "Unactive_UID": 1244819265,
-                    "Script_Name": "DebugGodmode",
-                    "ButtonState": 4,
-                    "Checkbox Active": false,
-                    "Is Selected": true
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/checkbox_empty_hover.png",
-                    "LibraryPath": "Library\/Textures\/1711990233.dds",
-                    "UID": 1711990233
-                },
-                {
-                    "Type": 17,
-                    "Active": true,
-                    "Map": [
-                        {
-                            "Index": 0,
-                            "UID": 293733384,
-                            "Action": 2,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 11,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 12,
-                            "UID": 1093022562,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 13,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 14,
-                            "UID": 1755317209,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 19,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 20,
-                            "UID": 1093022562,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 21,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 22,
-                            "UID": 1755317209,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        }
-                    ],
-                    "Button Being Used": -1,
-                    "Type Of UI": 8,
-                    "Is Selected": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "DebugGodmode"
-                }
-            ]
-        },
-        {
-            "name": "Text",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1672640730,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 293733384,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -47.299999237060547,
-                        -5
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        11,
-                        20
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
-                },
-                {
-                    "Type": 9,
-                    "Active": true,
-                    "text": "GODMODE",
-                    "maxTextLenght": 0,
-                    "fontName": "Library\/Fonts\/renner-medium.ttf",
-                    "textColor": [
+                    "Scale": [
                         1,
                         1,
                         1
                     ]
-                }
-            ]
-        },
-        {
-            "name": "Return",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1472021108,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 664227842,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
                 },
                 {
-                    "Type": 6,
+                    "name": "GodmodeCheckbox",
+                    "tag": "Untagged",
+                    "layer": "Default",
                     "Active": true,
+                    "UID": 1654025375,
+                    "ParentUID": 2036587550,
+                    "PrefabID": 0,
+                    "PrefabReference": 1381652239,
+                    "DontDestroy": false,
+                    "Static": false,
                     "Position": [
-                        74.900001525878906,
-                        -79.800003051757813
+                        0,
+                        0,
+                        0
                     ],
-                    "Rotation": 0,
-                    "Size": [
-                        5.0999999046325684,
-                        9
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 7,
-                    "Active": true,
-                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/button_return_pressed.png",
-                    "Pressed_LibraryPath": "Library\/Textures\/1081671534.dds",
-                    "Pressed_UID": 1081671534,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/button_return_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/1490678443.dds",
-                    "Hovered_UID": 1490678443,
-                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/button_return.png",
-                    "Unhovered_LibraryPath": "Library\/Textures\/834295412.dds",
-                    "Unhovered_UID": 834295412,
-                    "Script_Name": "DebugReturn",
-                    "ButtonState": 2,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/button_return.png",
-                    "LibraryPath": "Library\/Textures\/834295412.dds",
-                    "UID": 834295412
-                },
-                {
-                    "Type": 17,
-                    "Active": true,
-                    "Map": [
-                        {
-                            "Index": 0,
-                            "UID": 1472021108,
-                            "Action": 2,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 11,
-                            "UID": 1337558679,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 12,
-                            "UID": 293733384,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 13,
-                            "UID": 1337558679,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 19,
-                            "UID": 1337558679,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 20,
-                            "UID": 293733384,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 21,
-                            "UID": 1337558679,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        }
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
                     ],
-                    "Button Being Used": -1,
-                    "Type Of UI": 7,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "DebugReturn",
-                    "window": 1168122692
-                }
-            ]
-        },
-        {
-            "name": "Text",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1366957934,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 664227842,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -35,
-                        72.099998474121094
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        11,
-                        20
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
-                },
-                {
-                    "Type": 9,
-                    "Active": true,
-                    "text": "DEBUG OPTIONS",
-                    "maxTextLenght": 0,
-                    "fontName": "Library\/Fonts\/renner-medium.ttf",
-                    "textColor": [
+                    "Scale": [
                         1,
                         1,
                         1
                     ]
-                }
-            ]
-        },
-        {
-            "name": "NextRoomButton",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1093022562,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 664227842,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
                 },
                 {
-                    "Type": 6,
+                    "name": "Text",
+                    "tag": "Untagged",
+                    "layer": "Default",
                     "Active": true,
+                    "UID": 385029794,
+                    "ParentUID": 1654025375,
+                    "PrefabID": 0,
+                    "PrefabReference": 1923014995,
+                    "DontDestroy": false,
+                    "Static": false,
                     "Position": [
-                        -56.599998474121094,
-                        10.800000190734863
+                        0,
+                        0,
+                        0
                     ],
-                    "Rotation": 0,
-                    "Size": [
-                        20,
-                        13.5
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 7,
-                    "Active": true,
-                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/second_button_pressed.png",
-                    "Pressed_LibraryPath": "Library\/Textures\/1546682848.dds",
-                    "Pressed_UID": 1546682848,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/second_button_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/1345927926.dds",
-                    "Hovered_UID": 1345927926,
-                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/second_button.png",
-                    "Unhovered_LibraryPath": "Library\/Textures\/1618474496.dds",
-                    "Unhovered_UID": 1618474496,
-                    "Script_Name": "DebugNextRoom",
-                    "ButtonState": 2,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/second_button.png",
-                    "LibraryPath": "Library\/Textures\/1618474496.dds",
-                    "UID": 1618474496
-                },
-                {
-                    "Type": 17,
-                    "Active": true,
-                    "Map": [
-                        {
-                            "Index": 0,
-                            "UID": 1093022562,
-                            "Action": 2,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 11,
-                            "UID": 293733384,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 12,
-                            "UID": 252175322,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 13,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 14,
-                            "UID": 2128060268,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 19,
-                            "UID": 293733384,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 20,
-                            "UID": 252175322,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 21,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 22,
-                            "UID": 2128060268,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        }
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
                     ],
-                    "Button Being Used": -1,
-                    "Type Of UI": 7,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "DebugNextRoom"
-                }
-            ]
-        },
-        {
-            "name": "Text",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1240757557,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1093022562,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -18.5,
-                        -5.9000000953674316
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        11,
-                        20
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
-                },
-                {
-                    "Type": 9,
-                    "Active": true,
-                    "text": "Next room",
-                    "maxTextLenght": 0,
-                    "fontName": "Library\/Fonts\/renner-medium.ttf",
-                    "textColor": [
+                    "Scale": [
                         1,
                         1,
                         1
                     ]
-                }
-            ]
-        },
-        {
-            "name": "AddLifeButton",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 252175322,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 664227842,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
                 },
                 {
-                    "Type": 6,
+                    "name": "Return",
+                    "tag": "Untagged",
+                    "layer": "Default",
                     "Active": true,
+                    "UID": 1268406220,
+                    "ParentUID": 2036587550,
+                    "PrefabID": 0,
+                    "PrefabReference": 1653961974,
+                    "DontDestroy": false,
+                    "Static": false,
                     "Position": [
-                        -56.599998474121094,
-                        -28.299999237060547
+                        0,
+                        0,
+                        0
                     ],
-                    "Rotation": 0,
-                    "Size": [
-                        20,
-                        13.5
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 7,
-                    "Active": true,
-                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/second_button_pressed.png",
-                    "Pressed_LibraryPath": "Library\/Textures\/1546682848.dds",
-                    "Pressed_UID": 1546682848,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/second_button_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/1345927926.dds",
-                    "Hovered_UID": 1345927926,
-                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/second_button.png",
-                    "Unhovered_LibraryPath": "Library\/Textures\/1618474496.dds",
-                    "Unhovered_UID": 1618474496,
-                    "Script_Name": "DebugAddHP",
-                    "ButtonState": 0,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/second_button.png",
-                    "LibraryPath": "Library\/Textures\/1618474496.dds",
-                    "UID": 1618474496
-                },
-                {
-                    "Type": 17,
-                    "Active": true,
-                    "Map": [
-                        {
-                            "Index": 0,
-                            "UID": 252175322,
-                            "Action": 2,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 11,
-                            "UID": 1093022562,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 12,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 13,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 14,
-                            "UID": 1337558679,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 19,
-                            "UID": 1093022562,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 20,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 21,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 22,
-                            "UID": 1337558679,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        }
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
                     ],
-                    "Button Being Used": -1,
-                    "Type Of UI": 7,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "DebugAddHP"
-                }
-            ]
-        },
-        {
-            "name": "Text",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1019278737,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 252175322,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -14.800000190734863,
-                        -5.9000000953674316
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        11,
-                        20
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
-                },
-                {
-                    "Type": 9,
-                    "Active": true,
-                    "text": "+20 life",
-                    "maxTextLenght": 0,
-                    "fontName": "Library\/Fonts\/renner-medium.ttf",
-                    "textColor": [
+                    "Scale": [
                         1,
                         1,
                         1
                     ]
-                }
-            ]
-        },
-        {
-            "name": "StormTrpButton",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1755317209,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 664227842,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
                 },
                 {
-                    "Type": 6,
+                    "name": "Text",
+                    "tag": "Untagged",
+                    "layer": "Default",
                     "Active": true,
+                    "UID": 1034394333,
+                    "ParentUID": 2036587550,
+                    "PrefabID": 0,
+                    "PrefabReference": 265956067,
+                    "DontDestroy": false,
+                    "Static": false,
                     "Position": [
-                        16.5,
-                        48.799999237060547
+                        0,
+                        0,
+                        0
                     ],
-                    "Rotation": 0,
-                    "Size": [
-                        36.099998474121094,
-                        13.5
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 7,
-                    "Active": true,
-                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/second_button_pressed.png",
-                    "Pressed_LibraryPath": "Library\/Textures\/1546682848.dds",
-                    "Pressed_UID": 1546682848,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/second_button_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/1345927926.dds",
-                    "Hovered_UID": 1345927926,
-                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/second_button.png",
-                    "Unhovered_LibraryPath": "Library\/Textures\/1618474496.dds",
-                    "Unhovered_UID": 1618474496,
-                    "Script_Name": "DebugSpawnStormTrooper",
-                    "ButtonState": 0,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/second_button.png",
-                    "LibraryPath": "Library\/Textures\/1618474496.dds",
-                    "UID": 1618474496
-                },
-                {
-                    "Type": 17,
-                    "Active": true,
-                    "Map": [
-                        {
-                            "Index": 0,
-                            "UID": 1755317209,
-                            "Action": 2,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 11,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 12,
-                            "UID": 2128060268,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 13,
-                            "UID": 293733384,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 14,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 19,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 20,
-                            "UID": 2128060268,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 21,
-                            "UID": 293733384,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 22,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        }
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
                     ],
-                    "Button Being Used": -1,
-                    "Type Of UI": 7,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "DebugSpawnStormTrooper"
-                }
-            ]
-        },
-        {
-            "name": "Text",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 87507960,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1755317209,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -25.200000762939453,
-                        -5.9000000953674316
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        11,
-                        20
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
-                },
-                {
-                    "Type": 9,
-                    "Active": true,
-                    "text": "Spawn trooper",
-                    "maxTextLenght": 0,
-                    "fontName": "Library\/Fonts\/renner-medium.ttf",
-                    "textColor": [
+                    "Scale": [
                         1,
                         1,
                         1
                     ]
-                }
-            ]
-        },
-        {
-            "name": "BanthaButton",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 2128060268,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 664227842,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
                 },
                 {
-                    "Type": 6,
+                    "name": "NextRoomButton",
+                    "tag": "Untagged",
+                    "layer": "Default",
                     "Active": true,
+                    "UID": 1851239295,
+                    "ParentUID": 2036587550,
+                    "PrefabID": 0,
+                    "PrefabReference": 523336173,
+                    "DontDestroy": false,
+                    "Static": false,
                     "Position": [
-                        16.5,
-                        10.800000190734863
+                        0,
+                        0,
+                        0
                     ],
-                    "Rotation": 0,
-                    "Size": [
-                        36.099998474121094,
-                        13.5
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 7,
-                    "Active": true,
-                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/second_button_pressed.png",
-                    "Pressed_LibraryPath": "Library\/Textures\/1546682848.dds",
-                    "Pressed_UID": 1546682848,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/second_button_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/1345927926.dds",
-                    "Hovered_UID": 1345927926,
-                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/second_button.png",
-                    "Unhovered_LibraryPath": "Library\/Textures\/1618474496.dds",
-                    "Unhovered_UID": 1618474496,
-                    "Script_Name": "DebugSpawnBantha",
-                    "ButtonState": 0,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/second_button.png",
-                    "LibraryPath": "Library\/Textures\/1618474496.dds",
-                    "UID": 1618474496
-                },
-                {
-                    "Type": 17,
-                    "Active": true,
-                    "Map": [
-                        {
-                            "Index": 0,
-                            "UID": 2128060268,
-                            "Action": 2,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 11,
-                            "UID": 1755317209,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 12,
-                            "UID": 1337558679,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 13,
-                            "UID": 1093022562,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 14,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 19,
-                            "UID": 1755317209,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 20,
-                            "UID": 1337558679,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 21,
-                            "UID": 1093022562,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 22,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        }
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
                     ],
-                    "Button Being Used": -1,
-                    "Type Of UI": 7,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "DebugSpawnBantha"
-                }
-            ]
-        },
-        {
-            "name": "Text",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 639628251,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 2128060268,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -25.200000762939453,
-                        -5.9000000953674316
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        11,
-                        20
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
-                },
-                {
-                    "Type": 9,
-                    "Active": true,
-                    "text": "Spawn bantha",
-                    "maxTextLenght": 0,
-                    "fontName": "Library\/Fonts\/renner-medium.ttf",
-                    "textColor": [
+                    "Scale": [
                         1,
                         1,
                         1
                     ]
-                }
-            ]
-        },
-        {
-            "name": "RancorButton",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1337558679,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 664227842,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
                 },
                 {
-                    "Type": 6,
+                    "name": "Text",
+                    "tag": "Untagged",
+                    "layer": "Default",
                     "Active": true,
+                    "UID": 1752398843,
+                    "ParentUID": 1851239295,
+                    "PrefabID": 0,
+                    "PrefabReference": 980145431,
+                    "DontDestroy": false,
+                    "Static": false,
                     "Position": [
-                        16.5,
-                        -28.299999237060547
+                        0,
+                        0,
+                        0
                     ],
-                    "Rotation": 0,
-                    "Size": [
-                        36.099998474121094,
-                        13.5
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
                     ]
                 },
                 {
-                    "Type": 3,
+                    "name": "AddLifeButton",
+                    "tag": "Untagged",
+                    "layer": "Default",
                     "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 7,
-                    "Active": true,
-                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/second_button_pressed.png",
-                    "Pressed_LibraryPath": "Library\/Textures\/1546682848.dds",
-                    "Pressed_UID": 1546682848,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/second_button_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/1345927926.dds",
-                    "Hovered_UID": 1345927926,
-                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/second_button.png",
-                    "Unhovered_LibraryPath": "Library\/Textures\/1618474496.dds",
-                    "Unhovered_UID": 1618474496,
-                    "Script_Name": "DebugSpawnRancor",
-                    "ButtonState": 0,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/second_button.png",
-                    "LibraryPath": "Library\/Textures\/1618474496.dds",
-                    "UID": 1618474496
-                },
-                {
-                    "Type": 17,
-                    "Active": true,
-                    "Map": [
-                        {
-                            "Index": 0,
-                            "UID": 1337558679,
-                            "Action": 2,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 11,
-                            "UID": 2128060268,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 12,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 13,
-                            "UID": 252175322,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 14,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 19,
-                            "UID": 2128060268,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 20,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 21,
-                            "UID": 252175322,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 22,
-                            "UID": 1472021108,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        }
-                    ],
-                    "Button Being Used": -1,
-                    "Type Of UI": 7,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "DebugSpawnRancor"
-                }
-            ]
-        },
-        {
-            "name": "Text",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 839405798,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1337558679,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
+                    "UID": 918895139,
+                    "ParentUID": 2036587550,
+                    "PrefabID": 0,
+                    "PrefabReference": 264684579,
+                    "DontDestroy": false,
+                    "Static": false,
                     "Position": [
-                        -25.200000762939453,
-                        -5.9000000953674316
+                        0,
+                        0,
+                        0
                     ],
-                    "Rotation": 0,
-                    "Size": [
-                        11,
-                        20
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
                     ]
                 },
                 {
-                    "Type": 3,
+                    "name": "Text",
+                    "tag": "Untagged",
+                    "layer": "Default",
                     "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
+                    "UID": 860628189,
+                    "ParentUID": 918895139,
+                    "PrefabID": 0,
+                    "PrefabReference": 47899652,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 },
                 {
-                    "Type": 9,
+                    "name": "StormTrpButton",
+                    "tag": "Untagged",
+                    "layer": "Default",
                     "Active": true,
-                    "text": "Spawn rancor",
-                    "maxTextLenght": 0,
-                    "fontName": "Library\/Fonts\/renner-medium.ttf",
-                    "textColor": [
+                    "UID": 853911422,
+                    "ParentUID": 2036587550,
+                    "PrefabID": 0,
+                    "PrefabReference": 1927051748,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Text",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1377311161,
+                    "ParentUID": 853911422,
+                    "PrefabID": 0,
+                    "PrefabReference": 1376384830,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "BanthaButton",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 340534137,
+                    "ParentUID": 2036587550,
+                    "PrefabID": 0,
+                    "PrefabReference": 272952996,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Text",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 107689197,
+                    "ParentUID": 340534137,
+                    "PrefabID": 0,
+                    "PrefabReference": 177742213,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "RancorButton",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 564172660,
+                    "ParentUID": 2036587550,
+                    "PrefabID": 0,
+                    "PrefabReference": 789837259,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Text",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 788858230,
+                    "ParentUID": 564172660,
+                    "PrefabID": 0,
+                    "PrefabReference": 793543757,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "AddResourcesButton",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1352042452,
+                    "ParentUID": 2036587550,
+                    "PrefabID": 0,
+                    "PrefabReference": 1145603375,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Text",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 2044335388,
+                    "ParentUID": 1352042452,
+                    "PrefabID": 0,
+                    "PrefabReference": 509921295,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "SkipLevelButton",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 2047859376,
+                    "ParentUID": 2036587550,
+                    "PrefabID": 0,
+                    "PrefabReference": 1178310638,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Text",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 430808519,
+                    "ParentUID": 2047859376,
+                    "PrefabID": 0,
+                    "PrefabReference": 1289612798,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "FPSCheckbox",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1563287297,
+                    "ParentUID": 2036587550,
+                    "PrefabID": 0,
+                    "PrefabReference": 2136295782,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Text",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1006190830,
+                    "ParentUID": 1563287297,
+                    "PrefabID": 0,
+                    "PrefabReference": 626214696,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "NoClipCheckbox",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1095210290,
+                    "ParentUID": 2036587550,
+                    "PrefabID": 0,
+                    "PrefabReference": 1627832469,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Text",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1081229708,
+                    "ParentUID": 1095210290,
+                    "PrefabID": 0,
+                    "PrefabReference": 22337471,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "NoBossDMGCheckbox",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 914790534,
+                    "ParentUID": 2036587550,
+                    "PrefabID": 0,
+                    "PrefabReference": 1627832469,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Text",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 709248535,
+                    "ParentUID": 914790534,
+                    "PrefabID": 0,
+                    "PrefabReference": 22337471,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
                         1,
                         1,
                         1

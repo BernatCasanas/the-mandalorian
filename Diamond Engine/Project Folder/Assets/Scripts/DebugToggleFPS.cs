@@ -16,14 +16,4 @@ public class DebugToggleFPS : DiamondComponent
             Debug.Log("FPS SHOW DEACTIVATED");
         }
     }
-
-    public void Awake()
-    {
-        Navigation navigation = gameObject.GetComponent<Navigation>();
-        if (navigation != null)
-        {
-            navigation.SetUIElementAsActive(DebugOptionsHolder.showFPS);
-            navigation.Select();
-        }
-    }
 }

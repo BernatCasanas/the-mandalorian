@@ -1460,17 +1460,19 @@ public class Rancor : DiamondComponent
 
     public void TakeDamage(float damage)
     {
-        Debug.Log("Rancor damage" + damage.ToString());
-        if (currentState != RANCOR_STATE.DEAD)
+        if (!DebugOptionsHolder.bossDmg)
         {
-            healthPoints -= damage;
-
-            if (healthPoints <= 0.0f)
+            Debug.Log("Rancor damage" + damage.ToString());
+            if (currentState != RANCOR_STATE.DEAD)
             {
-                inputsList.Add(RANCOR_INPUT.IN_DEAD);
+                healthPoints -= damage;
+
+                if (healthPoints <= 0.0f)
+                {
+                    inputsList.Add(RANCOR_INPUT.IN_DEAD);
+                }
             }
         }
-
     }
 
 }

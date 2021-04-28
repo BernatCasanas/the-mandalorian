@@ -279,12 +279,12 @@ public class PlayerHealth : DiamondComponent
     {
         if (val)
         {
-            Core.instance.gameObject.GetComponent<BoxCollider>().active = false;
+            //Core.instance.gameObject.GetComponent<CapsuleCollider>.active = false;
             //TODO: rigidbody gravity
         }
         else
         {
-            Core.instance.gameObject.GetComponent<BoxCollider>().active = true;
+            //Core.instance.gameObject.GetComponent<CapsuleCollider>().active = true;
             //TODO: rigidbody gravity
         }
     }

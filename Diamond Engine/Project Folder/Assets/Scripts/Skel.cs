@@ -440,17 +440,19 @@ public class Skel : Bosseslv2
 
     public void TakeDamage(float damage)
     {
-        if (currentState != STATE.DEAD)
+        if (!DebugOptionsHolder.bossDmg)
         {
-            healthPoints -= damage;
-            Debug.Log("Skel HP: " + healthPoints.ToString());
-
-            if (healthPoints <= 0.0f)
+            if (currentState != STATE.DEAD)
             {
-                inputsList.Add(INPUT.IN_DEAD);
+                healthPoints -= damage;
+                Debug.Log("Skel HP: " + healthPoints.ToString());
+
+                if (healthPoints <= 0.0f)
+                {
+                    inputsList.Add(INPUT.IN_DEAD);
+                }
             }
         }
-
     }
 
 }

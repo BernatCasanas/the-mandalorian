@@ -274,13 +274,15 @@ public class HUD : DiamondComponent
             UpdateComboHUD();
         }
 
-
-        if (DebugOptionsHolder.showFPS && fpsText != null)
+        if (fpsText != null)
         {
-            if(!fpsText.IsEnabled()) fpsText.Enable(true);
-            fpsText.GetComponent<Text>().text = ((int)(1000 * Time.deltaTime)).ToString();
+            if (DebugOptionsHolder.showFPS)
+            {
+                if (!fpsText.IsEnabled()) fpsText.Enable(true);
+                fpsText.GetComponent<Text>().text = ((int)(1000 * Time.deltaTime)).ToString();
+            }
+            else if (fpsText.IsEnabled()) fpsText.Enable(false);
         }
-        else if (fpsText != null && fpsText.IsEnabled()) fpsText.Enable(false);
     }
 
     public void AddToCombo(float comboUnitsToAdd, float weaponDecreaseTimeMultiplier)
