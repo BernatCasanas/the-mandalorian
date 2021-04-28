@@ -1,13 +1,13 @@
 {
     "Game Objects": [
         {
-            "name": "FPS",
+            "name": "NoClipCheckbox",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 2038703479,
-            "ParentUID": 875453008,
-            "PrefabReference": 0,
+            "UID": 1095210290,
+            "ParentUID": 2036587550,
+            "PrefabReference": 1627832469,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
@@ -36,13 +36,308 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        90,
-                        94
+                        75.800003051757813,
+                        9.3999996185302734
                     ],
                     "Rotation": 0,
                     "Size": [
-                        10,
-                        10
+                        5.6999998092651367,
+                        8.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 8,
+                    "Active": true,
+                    "Active_Pressed_AssetsPath": "Assets\/UI\/MENU\/checkbox_full_hover.png",
+                    "Active_Pressed_LibraryPath": "Library\/Textures\/949337790.dds",
+                    "Active_Pressed_UID": 949337790,
+                    "Active_Hovered_AssetsPath": "Assets\/UI\/MENU\/checkbox_full_hover.png",
+                    "Active_Hovered_LibraryPath": "Library\/Textures\/949337790.dds",
+                    "Active_Hovered_UID": 949337790,
+                    "Active_AssetsPath": "Assets\/UI\/MENU\/checkbox_full.png",
+                    "Active_LibraryPath": "Library\/Textures\/1573403753.dds",
+                    "Active_UID": 1573403753,
+                    "Unactive_Pressed_AssetsPath": "Assets\/UI\/MENU\/checkbox_empty_pressed.png",
+                    "Unactive_Pressed_LibraryPath": "Library\/Textures\/834635899.dds",
+                    "Unactive_Pressed_UID": 834635899,
+                    "Unactive_Hovered_AssetsPath": "Assets\/UI\/MENU\/checkbox_empty_hover.png",
+                    "Unactive_Hovered_LibraryPath": "Library\/Textures\/1711990233.dds",
+                    "Unactive_Hovered_UID": 1711990233,
+                    "Unactive_AssetsPath": "Assets\/UI\/MENU\/checkbox_empty.png",
+                    "Unactive_LibraryPath": "Library\/Textures\/1244819265.dds",
+                    "Unactive_UID": 1244819265,
+                    "Script_Name": "DebugToggleNoClip",
+                    "ButtonState": 3,
+                    "Checkbox Active": false,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/checkbox_empty.png",
+                    "LibraryPath": "Library\/Textures\/1244819265.dds",
+                    "UID": 1244819265
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 0,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 0,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 0,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 13,
+                            "UID": 0,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 14,
+                            "UID": 0,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 19,
+                            "UID": 0,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 20,
+                            "UID": 0,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 21,
+                            "UID": 0,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 22,
+                            "UID": 0,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 8,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "DebugToggleNoClip"
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        75.800003051757813,
+                        -29.700000762939453
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        5.6999998092651367,
+                        8.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 8,
+                    "Active": true,
+                    "Active_Pressed_AssetsPath": "Assets\/UI\/MENU\/checkbox_full_hover.png",
+                    "Active_Pressed_LibraryPath": "Library\/Textures\/949337790.dds",
+                    "Active_Pressed_UID": 949337790,
+                    "Active_Hovered_AssetsPath": "Assets\/UI\/MENU\/checkbox_full_hover.png",
+                    "Active_Hovered_LibraryPath": "Library\/Textures\/949337790.dds",
+                    "Active_Hovered_UID": 949337790,
+                    "Active_AssetsPath": "Assets\/UI\/MENU\/checkbox_full.png",
+                    "Active_LibraryPath": "Library\/Textures\/1573403753.dds",
+                    "Active_UID": 1573403753,
+                    "Unactive_Pressed_AssetsPath": "Assets\/UI\/MENU\/checkbox_empty_pressed.png",
+                    "Unactive_Pressed_LibraryPath": "Library\/Textures\/834635899.dds",
+                    "Unactive_Pressed_UID": 834635899,
+                    "Unactive_Hovered_AssetsPath": "Assets\/UI\/MENU\/checkbox_empty_hover.png",
+                    "Unactive_Hovered_LibraryPath": "Library\/Textures\/1711990233.dds",
+                    "Unactive_Hovered_UID": 1711990233,
+                    "Unactive_AssetsPath": "Assets\/UI\/MENU\/checkbox_empty.png",
+                    "Unactive_LibraryPath": "Library\/Textures\/1244819265.dds",
+                    "Unactive_UID": 1244819265,
+                    "ButtonState": 3,
+                    "Checkbox Active": false,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/checkbox_empty.png",
+                    "LibraryPath": "Library\/Textures\/1244819265.dds",
+                    "UID": 1244819265
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 0,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 0,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 0,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 13,
+                            "UID": 0,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 14,
+                            "UID": 0,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 19,
+                            "UID": 0,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 20,
+                            "UID": 0,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 21,
+                            "UID": 0,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 22,
+                            "UID": 0,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 8,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Missing script reference"
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1081229708,
+            "ParentUID": 1095210290,
+            "PrefabReference": 22337471,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -32.299999237060547,
+                        -5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        11,
+                        20
                     ]
                 },
                 {
@@ -56,9 +351,42 @@
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "30",
-                    "maxTextLenght": 109,
-                    "fontName": "Library\/Fonts\/teko-semibold.ttf",
+                    "text": "No clip",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -32.299999237060547,
+                        -5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        11,
+                        20
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "No clip",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
                         1,
                         1,
