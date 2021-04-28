@@ -30,7 +30,8 @@ public class Skill_Tree_Node : DiamondComponent
 
     public GameObject children_1 = null;
     public GameObject children_2 = null;
-
+    public GameObject parent_1 = null;
+    public GameObject parent_2 = null;
     public GameObject oppositeNode = null;
 
     public GameObject text_description = null;
@@ -96,29 +97,62 @@ public class Skill_Tree_Node : DiamondComponent
     //Remember the skills that have already been bought before the run
     private void UnlockTreeAfterRun()
     {
-        if (Skill_Tree_Data.IsEnabled(skillTreeName, skillTreeNumber))
+        if (Skill_Tree_Data.IsEnabled(skillTreeName, skillTreeNumber)) //Edge case: The node is already OWNED
         {
             state = NODE_STATE.OWNED;
-
-            if (children_1 != null)
+        }
+        else if (oppositeNode != null) //Edge case: Nodes with opposite
+        {
+            if (oppositeNode.GetComponent<Skill_Tree_Node>().skillTreeNumber > skillTreeNumber) //oppositeNode = right node
             {
-                children_1.GetComponent<Skill_Tree_Node>().state = NODE_STATE.UNLOCKED;
+                if (Skill_Tree_Data.IsEnabled(skillTreeName, skillTreeNumber + 1))
+                    state = NODE_STATE.LOCKED;
+                else if (isRootNode)
+                    state = NODE_STATE.UNLOCKED;
+                else if (Skill_Tree_Data.IsEnabled(skillTreeName, skillTreeNumber - 1)) //Check if parent is enabled
+                    state = NODE_STATE.UNLOCKED;
+                else
+                    state = NODE_STATE.LOCKED;
             }
-
-            if (children_2 != null)
+            else if (oppositeNode.GetComponent<Skill_Tree_Node>().skillTreeNumber < skillTreeNumber) //oppositeNode = left node
             {
-                children_2.GetComponent<Skill_Tree_Node>().state = NODE_STATE.UNLOCKED;
+                if (Skill_Tree_Data.IsEnabled(skillTreeName, skillTreeNumber + -1))
+                    state = NODE_STATE.LOCKED;
+                else if (isRootNode) 
+                    state = NODE_STATE.UNLOCKED;
+                else if (Skill_Tree_Data.IsEnabled(skillTreeName, skillTreeNumber - 2)) //Check if parent is enabled
+                    state = NODE_STATE.UNLOCKED;
+                else
+                    state = NODE_STATE.LOCKED;
             }
-
-            if (oppositeNode != null)
+            else
             {
-                oppositeNode.GetComponent<Skill_Tree_Node>().state = NODE_STATE.LOCKED;
+                state = NODE_STATE.LOCKED;
             }
         }
-        else if (isRootNode)
-            state = NODE_STATE.UNLOCKED;
-        else
-            state = NODE_STATE.LOCKED;
+        else //Edge case: Nodes without opposite
+        {
+            if (isRootNode && Skill_Tree_Data.IsEnabled(skillTreeName, skillTreeNumber) == false)
+                state = NODE_STATE.UNLOCKED;
+            else if(parent_2 == null) //Only has one parent
+            {
+                if (Skill_Tree_Data.IsEnabled(skillTreeName, skillTreeNumber - 1)) //Parent is already OWNED
+                    state = NODE_STATE.UNLOCKED;
+                else
+                    state = NODE_STATE.LOCKED;
+            }
+            else if(parent_1 != null && parent_2 != null) //It has two parents
+            {
+                if (Skill_Tree_Data.IsEnabled(skillTreeName, skillTreeNumber - 1) || Skill_Tree_Data.IsEnabled(skillTreeName, skillTreeNumber - 2))
+                    state = NODE_STATE.UNLOCKED;
+                else
+                    state = NODE_STATE.LOCKED;
+            }
+            else //Both parents are NULL
+            {
+                state = NODE_STATE.LOCKED; 
+            }
+        }
     }
 
     public void Update()
@@ -146,6 +180,14 @@ public class Skill_Tree_Node : DiamondComponent
             PlayerResources.AddResourceBy1(RewardType.REWARD_BESKAR);
             Debug.Log("Beskar: " + PlayerResources.GetResourceCount(RewardType.REWARD_BESKAR));
         }
+    }
+
+    private bool parentHasOpposite(GameObject go)
+    {
+        if (go.GetComponent<Skill_Tree_Node>().oppositeNode != null)
+            return true;
+        else
+            return false;
     }
 
     public void OnExecuteButton()

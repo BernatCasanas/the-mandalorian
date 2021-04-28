@@ -978,135 +978,6 @@
             ]
         },
         {
-            "name": "TextPanel",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 623019423,
-            "ParentUID": 408436917,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        65.199996948242188,
-                        -26.399999618530273
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        18.5,
-                        36.700000762939453
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/1324929464.dds",
-                    "UID": 1324929464
-                }
-            ]
-        },
-        {
-            "name": "Text",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 97862587,
-            "ParentUID": 623019423,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -15.5,
-                        24.399999618530273
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        6.5,
-                        11.5
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
-                },
-                {
-                    "Type": 9,
-                    "Active": true,
-                    "text": "Empty",
-                    "maxTextLenght": 435,
-                    "fontName": "Library\/Fonts\/renner-medium.ttf",
-                    "textColor": [
-                        1,
-                        1,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
             "name": "Utility",
             "tag": "Untagged",
             "layer": "Default",
@@ -1413,6 +1284,7 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "UMovSpd",
                     "children_1": 1123596302,
+                    "parent_1": 1824371181,
                     "oppositeNode": 58943894,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
@@ -1558,6 +1430,7 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "UIncDmg",
                     "children_1": 1123596302,
+                    "parent_1": 1824371181,
                     "oppositeNode": 720948924,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
@@ -1697,6 +1570,8 @@
                     "skill_name": "UDmgRed",
                     "children_1": 1021185009,
                     "children_2": 1829051689,
+                    "parent_1": 720948924,
+                    "parent_2": 58943894,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -1841,6 +1716,7 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "UOverheat",
                     "children_1": 137657997,
+                    "parent_1": 1123596302,
                     "oppositeNode": 1829051689,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
@@ -1986,6 +1862,7 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "URedGroguCost",
                     "children_1": 137657997,
+                    "parent_1": 1123596302,
                     "oppositeNode": 1021185009,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
@@ -2131,6 +2008,8 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "UHeal",
                     "children_1": 305460945,
+                    "parent_1": 1021185009,
+                    "parent_2": 1829051689,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -2260,6 +2139,7 @@
                     "ownedButtonHovered": 1363024423,
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "UDash",
+                    "parent_1": 137657997,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -2721,6 +2601,8 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "DComboDmgRed",
                     "children_1": 732806743,
+                    "parent_1": 460162084,
+                    "parent_2": 1354776957,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -2872,6 +2754,7 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "DComboHeal",
                     "children_1": 950483057,
+                    "parent_1": 1607170750,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -3023,6 +2906,7 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "DComboFnshHeal",
                     "children_1": 1435809152,
+                    "parent_1": 732806743,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -3161,6 +3045,7 @@
                     "skill_name": "DHeal",
                     "children_1": 1596525268,
                     "children_2": 1045396363,
+                    "parent_1": 950483057,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -3297,6 +3182,7 @@
                     "ownedButtonHovered": 1363024423,
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "DHealEfct",
+                    "parent_1": 1435809152,
                     "oppositeNode": 1045396363,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
@@ -3434,6 +3320,7 @@
                     "ownedButtonHovered": 1363024423,
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "DAvoidDmg",
+                    "parent_1": 1435809152,
                     "oppositeNode": 1596525268,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
@@ -3786,6 +3673,7 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "AFireRate",
                     "children_1": 1473497215,
+                    "parent_1": 1572989137,
                     "oppositeNode": 1244328558,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
@@ -3931,6 +3819,7 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "AComboDmg",
                     "children_1": 1473497215,
+                    "parent_1": 1572989137,
                     "oppositeNode": 2118389588,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
@@ -4069,6 +3958,8 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "ACritChance",
                     "children_1": 303232640,
+                    "parent_1": 2118389588,
+                    "parent_2": 1244328558,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -4206,6 +4097,7 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "ACritDmg",
                     "children_1": 1193292965,
+                    "parent_1": 1473497215,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -4351,6 +4243,7 @@
                     "skill_name": "ADmgBos",
                     "children_1": 592914278,
                     "children_2": 343923757,
+                    "parent_1": 303232640,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -4487,6 +4380,7 @@
                     "ownedButtonHovered": 1363024423,
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "AHPMissDmg",
+                    "parent_1": 1193292965,
                     "oppositeNode": 343923757,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
@@ -4624,6 +4518,7 @@
                     "ownedButtonHovered": 1363024423,
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "AHPMissCritChance",
+                    "parent_1": 1193292965,
                     "oppositeNode": 592914278,
                     "text_description": 97862587,
                     "hub_skill_controller": 1070040184,
@@ -4631,6 +4526,135 @@
                     "node_type": 0,
                     "skillTreeName": 2,
                     "skillTreeNumber": 16
+                }
+            ]
+        },
+        {
+            "name": "TextPanel",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 623019423,
+            "ParentUID": 408436917,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        65.199996948242188,
+                        -26.399999618530273
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        18.5,
+                        36.700000762939453
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1324929464.dds",
+                    "UID": 1324929464
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 97862587,
+            "ParentUID": 623019423,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -15.5,
+                        24.399999618530273
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        6.5,
+                        11.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Empty",
+                    "maxTextLenght": 435,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
@@ -5355,6 +5379,7 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "GPushRange",
                     "children_1": 525220436,
+                    "parent_1": 2129789327,
                     "oppositeNode": 1407390158,
                     "text_description": 2027349240,
                     "hub_skill_controller": 1070040184,
@@ -5500,6 +5525,7 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "GForceDur",
                     "children_1": 525220436,
+                    "parent_1": 2129789327,
                     "oppositeNode": 695948772,
                     "text_description": 2027349240,
                     "hub_skill_controller": 1070040184,
@@ -5638,6 +5664,8 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "GThrshComboForce",
                     "children_1": 1446875919,
+                    "parent_1": 695948772,
+                    "parent_2": 1407390158,
                     "text_description": 2027349240,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -5776,6 +5804,7 @@
                     "skill_name": "GMaxForce",
                     "children_1": 772807125,
                     "children_2": 1356414027,
+                    "parent_1": 525220436,
                     "text_description": 2027349240,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -5920,6 +5949,7 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "GSingComboForce",
                     "children_1": 727434170,
+                    "parent_1": 1446875919,
                     "oppositeNode": 1356414027,
                     "text_description": 2027349240,
                     "hub_skill_controller": 1070040184,
@@ -6065,6 +6095,7 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "GComboTimer",
                     "children_1": 727434170,
+                    "parent_1": 1446875919,
                     "oppositeNode": 772807125,
                     "text_description": 2027349240,
                     "hub_skill_controller": 1070040184,
@@ -6202,6 +6233,8 @@
                     "ownedButtonHovered": 1363024423,
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "GHPForceReg",
+                    "parent_1": 772807125,
+                    "parent_2": 1356414027,
                     "text_description": 2027349240,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -7118,6 +7151,8 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "PSlowEnem",
                     "children_1": 1417839050,
+                    "parent_1": 1795127826,
+                    "parent_2": 1488569487,
                     "text_description": 571255318,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -7255,6 +7290,7 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "PCritChance",
                     "children_1": 139182048,
+                    "parent_1": 282933854,
                     "text_description": 571255318,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -7400,6 +7436,7 @@
                     "skill_name": "PCritDmg",
                     "children_1": 547148544,
                     "children_2": 963851338,
+                    "parent_1": 1417839050,
                     "text_description": 571255318,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -7536,6 +7573,7 @@
                     "ownedButtonHovered": 1363024423,
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "PIncDmg",
+                    "parent_1": 139182048,
                     "oppositeNode": 963851338,
                     "text_description": 571255318,
                     "hub_skill_controller": 1070040184,
@@ -7673,6 +7711,7 @@
                     "ownedButtonHovered": 1363024423,
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "PRateFire",
+                    "parent_1": 139182048,
                     "oppositeNode": 547148544,
                     "text_description": 571255318,
                     "hub_skill_controller": 1070040184,
@@ -7990,6 +8029,7 @@
                     "skill_name": "SeCritChance",
                     "children_1": 1194390551,
                     "children_2": 1949910542,
+                    "parent_1": 1677675272,
                     "text_description": 571255318,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -8134,6 +8174,7 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "SeDelay",
                     "children_1": 2111763395,
+                    "parent_1": 864263089,
                     "oppositeNode": 1949910542,
                     "text_description": 571255318,
                     "hub_skill_controller": 1070040184,
@@ -8279,6 +8320,7 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "SeUseRange",
                     "children_1": 2111763395,
+                    "parent_1": 864263089,
                     "oppositeNode": 1194390551,
                     "text_description": 571255318,
                     "hub_skill_controller": 1070040184,
@@ -8424,6 +8466,8 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "SeCritDmg",
                     "children_1": 999128459,
+                    "parent_1": 1194390551,
+                    "parent_2": 1949910542,
                     "text_description": 571255318,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -8553,6 +8597,7 @@
                     "ownedButtonHovered": 1363024423,
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "SeDmgInc",
+                    "parent_1": 2111763395,
                     "text_description": 571255318,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -8862,6 +8907,7 @@
                     "skill_name": "SpChargeTime",
                     "children_1": 965003527,
                     "children_2": 484656872,
+                    "parent_1": 2040118087,
                     "text_description": 571255318,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -8999,6 +9045,7 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "SpBullet",
                     "children_1": 1033023848,
+                    "parent_1": 492922447,
                     "oppositeNode": 484656872,
                     "text_description": 571255318,
                     "hub_skill_controller": 1070040184,
@@ -9137,6 +9184,7 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "SpRegForce",
                     "children_1": 1033023848,
+                    "parent_1": 492922447,
                     "oppositeNode": 965003527,
                     "text_description": 571255318,
                     "hub_skill_controller": 1070040184,
@@ -9282,6 +9330,8 @@
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "SpCritDmg",
                     "children_1": 925983578,
+                    "parent_1": 965003527,
+                    "parent_2": 484656872,
                     "text_description": 571255318,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -9411,6 +9461,7 @@
                     "ownedButtonHovered": 1363024423,
                     "ownedButtonUnhovered": 397245909,
                     "skill_name": "SpMaxDmg",
+                    "parent_1": 1033023848,
                     "text_description": 2027349240,
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
@@ -18412,6 +18463,14 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Skill_Trees_Data_Entry",
+                    "Grogu1_price": 0,
+                    "Grogu2_price": 0,
+                    "Grogu3_price": 0,
+                    "Grogu4_price": 0,
+                    "Grogu5_price": 0,
+                    "Grogu6_price": 0,
+                    "Grogu7_price": 0,
+                    "Grogu8_price": 0,
                     "Grogu8_HPMissingPercentage": 10,
                     "Grogu8_gainPassiveForceRegeneration": 1,
                     "PrimaryWeapon3_SlowDownAmount": 0.20000000298023224,
@@ -24971,10 +25030,10 @@
                 -37.556304931640625
             ],
             "Rotation": [
-                3.6974409312051648e-08,
-                0.42293760180473328,
-                3.6974338257778072e-08,
-                0.9061589241027832
+                3.6974405759337969e-08,
+                0.4229375422000885,
+                3.6974334705064393e-08,
+                0.90615880489349365
             ],
             "Scale": [
                 0.99999934434890747,
@@ -27402,10 +27461,10 @@
                 7.9888238246894616e-09
             ],
             "Rotation": [
-                0.04504496231675148,
-                0.0032072518952190876,
-                -0.012809193693101406,
-                0.99889767169952393
+                0.045044966042041779,
+                0.0032072523608803749,
+                -0.012809195555746555,
+                0.99889779090881348
             ],
             "Scale": [
                 0.99999982118606567,
@@ -27436,10 +27495,10 @@
                 2.3940856408444233e-08
             ],
             "Rotation": [
-                0.044985927641391754,
-                0.0031942867208272219,
-                -0.012903057038784027,
-                0.99889916181564331
+                0.044985931366682053,
+                0.0031942871864885092,
+                -0.012903058901429176,
+                0.99889928102493286
             ],
             "Scale": [
                 1,
@@ -27878,10 +27937,10 @@
                 2.1506608050003706e-08
             ],
             "Rotation": [
-                -0.80621880292892456,
-                0.041009202599525452,
-                -0.047588322311639786,
-                0.58827269077301025
+                -0.80621892213821411,
+                0.04100920632481575,
+                -0.047588329762220383,
+                0.58827275037765503
             ],
             "Scale": [
                 0.9999995231628418,
@@ -27946,10 +28005,10 @@
                 2.0240104703361794e-08
             ],
             "Rotation": [
-                0.33847442269325256,
-                0.0081740841269493103,
-                0.00042836950160562992,
-                0.94093996286392212
+                0.33847445249557495,
+                0.0081740850582718849,
+                0.00042836955981329083,
+                0.94094008207321167
             ],
             "Scale": [
                 1.0000002384185791,
@@ -28116,10 +28175,10 @@
                 5.1593831429386228e-09
             ],
             "Rotation": [
-                0.36184769868850708,
-                -0.011958763934671879,
-                -0.00081397243775427341,
-                0.9321601390838623
+                0.36184772849082947,
+                -0.011958765797317028,
+                -0.00081397255416959524,
+                0.93216025829315186
             ],
             "Scale": [
                 1,
@@ -30106,10 +30165,10 @@
                 -13.053000450134277
             ],
             "Rotation": [
-                3.9899635595475047e-08,
-                3.5527141023169746e-15,
-                0.33470273017883301,
-                0.94232386350631714
+                3.9899632042761368e-08,
+                3.5527136788005009e-15,
+                0.33470270037651062,
+                0.94232374429702759
             ],
             "Scale": [
                 0.99999934434890747,
@@ -34878,10 +34937,10 @@
                 -2.963040828704834
             ],
             "Rotation": [
-                -5.1258151501087923e-08,
-                0.63818168640136719,
-                4.2489435969628175e-08,
-                0.76988577842712402
+                -5.1258158606515281e-08,
+                0.63818174600601196,
+                4.2489439522341854e-08,
+                0.76988589763641357
             ],
             "Scale": [
                 1,
@@ -35970,10 +36029,10 @@
                 -5.1091971397399902
             ],
             "Rotation": [
-                1.6781863010351117e-08,
-                -0.80945885181427002,
-                -1.6781866563064796e-08,
-                0.58717656135559082
+                1.6781864786707956e-08,
+                -0.80945897102355957,
+                -1.6781868339421635e-08,
+                0.5871766209602356
             ],
             "Scale": [
                 0.85849708318710327,
@@ -36022,10 +36081,10 @@
                 -2.8935427665710449
             ],
             "Rotation": [
-                1.6781863010351117e-08,
-                -0.80945885181427002,
-                -1.6781866563064796e-08,
-                0.58717656135559082
+                1.6781864786707956e-08,
+                -0.80945897102355957,
+                -1.6781868339421635e-08,
+                0.5871766209602356
             ],
             "Scale": [
                 0.85849708318710327,
@@ -36074,10 +36133,10 @@
                 -2.8935427665710449
             ],
             "Rotation": [
-                1.6781863010351117e-08,
-                -0.80945885181427002,
-                -1.6781866563064796e-08,
-                0.58717656135559082
+                1.6781864786707956e-08,
+                -0.80945897102355957,
+                -1.6781868339421635e-08,
+                0.5871766209602356
             ],
             "Scale": [
                 0.85849708318710327,
@@ -36126,10 +36185,10 @@
                 -2.8935427665710449
             ],
             "Rotation": [
-                1.6781863010351117e-08,
-                -0.80945885181427002,
-                -1.6781866563064796e-08,
-                0.58717656135559082
+                1.6781864786707956e-08,
+                -0.80945897102355957,
+                -1.6781868339421635e-08,
+                0.5871766209602356
             ],
             "Scale": [
                 0.85849708318710327,
@@ -36178,10 +36237,10 @@
                 -2.8935427665710449
             ],
             "Rotation": [
-                1.6781863010351117e-08,
-                -0.80945885181427002,
-                -1.6781866563064796e-08,
-                0.58717656135559082
+                1.6781864786707956e-08,
+                -0.80945897102355957,
+                -1.6781868339421635e-08,
+                0.5871766209602356
             ],
             "Scale": [
                 0.85849708318710327,
@@ -36230,10 +36289,10 @@
                 -2.8935427665710449
             ],
             "Rotation": [
-                1.6781863010351117e-08,
-                -0.80945885181427002,
-                -1.6781866563064796e-08,
-                0.58717656135559082
+                1.6781864786707956e-08,
+                -0.80945897102355957,
+                -1.6781868339421635e-08,
+                0.5871766209602356
             ],
             "Scale": [
                 0.85849708318710327,
@@ -36282,10 +36341,10 @@
                 -2.8935427665710449
             ],
             "Rotation": [
-                1.6781863010351117e-08,
-                -0.80945885181427002,
-                -1.6781866563064796e-08,
-                0.58717656135559082
+                1.6781864786707956e-08,
+                -0.80945897102355957,
+                -1.6781868339421635e-08,
+                0.5871766209602356
             ],
             "Scale": [
                 0.85849708318710327,
@@ -37270,10 +37329,10 @@
                 -5.0969610214233398
             ],
             "Rotation": [
-                1.6781863010351117e-08,
-                -0.80945885181427002,
-                -1.6781866563064796e-08,
-                0.58717656135559082
+                1.6781864786707956e-08,
+                -0.80945897102355957,
+                -1.6781868339421635e-08,
+                0.5871766209602356
             ],
             "Scale": [
                 0.85849708318710327,
@@ -37374,10 +37433,10 @@
                 -4.7717084884643555
             ],
             "Rotation": [
-                -2.9281924440738294e-08,
-                0.8739202618598938,
-                2.9281926217095133e-08,
-                -0.48606929183006287
+                -2.9281927993451973e-08,
+                0.87392038106918335,
+                2.9281929769808812e-08,
+                -0.48606935143470764
             ],
             "Scale": [
                 0.85849720239639282,
@@ -37426,10 +37485,10 @@
                 -4.8051753044128418
             ],
             "Rotation": [
-                -2.9281924440738294e-08,
-                0.8739202618598938,
-                2.9281926217095133e-08,
-                -0.48606929183006287
+                -2.9281927993451973e-08,
+                0.87392038106918335,
+                2.9281929769808812e-08,
+                -0.48606935143470764
             ],
             "Scale": [
                 0.85849720239639282,
@@ -37478,10 +37537,10 @@
                 -5.4992046356201172
             ],
             "Rotation": [
-                1.6781863010351117e-08,
-                -0.80945885181427002,
-                -1.6781866563064796e-08,
-                0.58717656135559082
+                1.6781864786707956e-08,
+                -0.80945897102355957,
+                -1.6781868339421635e-08,
+                0.5871766209602356
             ],
             "Scale": [
                 0.85849708318710327,
@@ -37530,10 +37589,10 @@
                 -5.2785744667053223
             ],
             "Rotation": [
-                1.6781863010351117e-08,
-                -0.80945885181427002,
-                -1.6781866563064796e-08,
-                0.58717656135559082
+                1.6781864786707956e-08,
+                -0.80945897102355957,
+                -1.6781868339421635e-08,
+                0.5871766209602356
             ],
             "Scale": [
                 0.85849708318710327,
@@ -38300,10 +38359,10 @@
                 8.2144489288330078
             ],
             "Rotation": [
-                -4.6128950666273512e-23,
-                -0.16231429576873779,
-                2.7677377972828797e-22,
-                0.98673909902572632
+                -4.6128956977160754e-23,
+                -0.16231431066989899,
+                2.7677380497183694e-22,
+                0.98673921823501587
             ],
             "Scale": [
                 1.1630657911300659,
@@ -38706,10 +38765,10 @@
                 0
             ],
             "Rotation": [
-                2.6528176988449559e-08,
-                -7.9066095892699195e-09,
-                0.33470293879508972,
-                0.94232380390167236
+                2.652817343573588e-08,
+                -7.9066087010914998e-09,
+                0.33470290899276733,
+                0.94232368469238281
             ],
             "Scale": [
                 0.9999992847442627,
@@ -44141,10 +44200,10 @@
                 21.886999130249023
             ],
             "Rotation": [
-                -6.158200704931005e-08,
-                -0.76604455709457397,
-                -6.158200704931005e-08,
-                -0.6427876353263855
+                -6.1581999943882693e-08,
+                -0.76604443788528442,
+                -6.1581999943882693e-08,
+                -0.64278757572174072
             ],
             "Scale": [
                 1,
@@ -44175,10 +44234,10 @@
                 21.766000747680664
             ],
             "Rotation": [
-                -6.158200704931005e-08,
-                -0.76604455709457397,
-                -6.158200704931005e-08,
-                -0.6427876353263855
+                -6.1581999943882693e-08,
+                -0.76604443788528442,
+                -6.1581999943882693e-08,
+                -0.64278757572174072
             ],
             "Scale": [
                 1,
