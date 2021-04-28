@@ -218,35 +218,25 @@ public class SHOP : DiamondComponent
 
     public void RandomiseItems()
     {
-        bool[] available = new bool[(int)ShopItems.ShIt_MAX];
-        for (int i = 0; i < available.Length; i++) available[i] = true;
+        List<int> available = new List<int>();
+        for (int i = 0; i < (int)ShopItems.ShIt_MAX;i++)
+        {
+            if (!CheckGotBoon((ShopItems)i)) available.Add(i);
+        }
+
         var rand = new Random();
         int item;
-        bool exit;
-        int counter;
+
 
         if (item1 != null)
         {
-            counter = 0;
-            exit = false;
-            do
+            if (available.Count > 0)
             {
-                item = rand.Next(0, (int)ShopItems.ShIt_MAX);
-                //Check if item is not already in shop
-                if (available[item])
-                {
-                    //Check if is a boon is not already obtained
-                    if (!CheckGotBoon((ShopItems)item))
-                    {
-                        available[item] = false;
-                        SetShopItem(item1.GetComponent<ShopButtons>(), (ShopItems)item);
-                        exit = true;
-                    }
-                }
-                counter++;
-            } while (exit == false && counter < (int)ShopItems.ShIt_MAX);
-            //We run out of possible boons, fill with another unending item
-            if (counter >= (int)ShopItems.ShIt_MAX)
+                item = rand.Next(0, available.Count);
+                SetShopItem(item1.GetComponent<ShopButtons>(), (ShopItems)item);
+                available.RemoveAt(item);
+            }
+            else
             {
                 SetShopItem(item1.GetComponent<ShopButtons>(), ShopItems.ShIt_HEALTHREPLENISHMENT);
             }
@@ -254,24 +244,13 @@ public class SHOP : DiamondComponent
 
         if (item2 != null)
         {
-            counter = 0;
-            exit = false;
-            do
+            if (available.Count > 0)
             {
-                item = rand.Next(0, (int)ShopItems.ShIt_MAX);
-                if (available[item])
-                {
-                    if (!CheckGotBoon((ShopItems)item))
-                    {
-                        available[item] = false;
-                        SetShopItem(item2.GetComponent<ShopButtons>(), (ShopItems)item);
-                        exit = true;
-                    }
-                }
-                counter++;
-            } while (exit == false && counter < (int)ShopItems.ShIt_MAX);
-
-            if (counter >= (int)ShopItems.ShIt_MAX)
+                item = rand.Next(0, available.Count);
+                SetShopItem(item2.GetComponent<ShopButtons>(), (ShopItems)item);
+                available.RemoveAt(item);
+            }
+            else
             {
                 SetShopItem(item2.GetComponent<ShopButtons>(), ShopItems.ShIt_HEALTHREPLENISHMENT);
             }
@@ -279,24 +258,13 @@ public class SHOP : DiamondComponent
 
         if (item3 != null)
         {
-            counter = 0;
-            exit = false;
-            do
+            if (available.Count > 0)
             {
-                item = rand.Next(0, (int)ShopItems.ShIt_MAX);
-                if (available[item])
-                {
-                    if (!CheckGotBoon((ShopItems)item))
-                    {
-                        available[item] = false;
-                        SetShopItem(item3.GetComponent<ShopButtons>(), (ShopItems)item);
-                        exit = true;
-                    }
-                }
-                counter++;
-            } while (exit == false && counter < (int)ShopItems.ShIt_MAX);
-
-            if (counter >= (int)ShopItems.ShIt_MAX)
+                item = rand.Next(0, available.Count);
+                SetShopItem(item3.GetComponent<ShopButtons>(), (ShopItems)item);
+                available.RemoveAt(item);
+            }
+            else
             {
                 SetShopItem(item3.GetComponent<ShopButtons>(), ShopItems.ShIt_HEALTHREPLENISHMENT);
             }
@@ -304,24 +272,13 @@ public class SHOP : DiamondComponent
 
         if (item4 != null)
         {
-            counter = 0;
-            exit = false;
-            do
+            if (available.Count > 0)
             {
-                item = rand.Next(0, (int)ShopItems.ShIt_MAX);
-                if (available[item])
-                {
-                    if (!CheckGotBoon((ShopItems)item))
-                    {
-                        available[item] = false;
-                        SetShopItem(item4.GetComponent<ShopButtons>(), (ShopItems)item);
-                        exit = true;
-                    }
-                }
-                counter++;
-            } while (exit == false && counter < (int)ShopItems.ShIt_MAX);
-            
-            if (counter >= (int)ShopItems.ShIt_MAX)
+                item = rand.Next(0, available.Count);
+                SetShopItem(item4.GetComponent<ShopButtons>(), (ShopItems)item);
+                available.RemoveAt(item);
+            }
+            else
             {
                 SetShopItem(item4.GetComponent<ShopButtons>(), ShopItems.ShIt_HEALTHREPLENISHMENT);
             }
