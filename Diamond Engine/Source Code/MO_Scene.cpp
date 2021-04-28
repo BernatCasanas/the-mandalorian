@@ -148,6 +148,8 @@ update_status M_Scene::Update(float dt)
 				LoadNavigationData();
 				LoadScriptsData();
 
+				EngineExternal->moduleEditor->SetSelectedGO(gameObjectRoot);
+
 				//Free memory
 				json_value_free(scene);
 			}
@@ -186,7 +188,7 @@ update_status M_Scene::Update(float dt)
 		if (EngineExternal->moduleEditor->IsWindowSelected(EditorWindow::SCENE) || EngineExternal->moduleEditor->IsWindowSelected(EditorWindow::HIERARCHY))
 		{
 			App->moduleEditor->shortcutManager.PushCommand(new COMM_DeleteGO(App->moduleEditor->GetSelectedGO()));
-			App->moduleEditor->GetSelectedGO()->Destroy();
+			App->moduleEditor->DeleteSelectedGameObjects();
 		}
 	}
 #endif // !STANDALONE
@@ -355,6 +357,16 @@ void M_Scene::FindGameObjectsWithTag(const char* tag, std::vector<GameObject*>& 
 	}
 
 	gameObjects.clear();
+}
+
+void M_Scene::SetCurrentScene(std::string& scenePath)
+{
+	strcpy(current_scene, scenePath.c_str());
+
+	std::string sceneName;
+	FileSystem::GetFileName(scenePath.c_str(), sceneName, false);
+
+	strcpy(current_scene_name, sceneName.c_str());
 }
 
 void M_Scene::SetGameCamera(C_Camera* cam)
@@ -604,15 +616,6 @@ void M_Scene::LoadScene(const char* name)
 
 	//Free memory
 	json_value_free(scene);
-
-	if (strcmp(name, "Library/Scenes/tmp.des") != 0)
-		strcpy(current_scene, name);
-
-	std::string scene_name;
-	FileSystem::GetFileName(name, scene_name, false);
-
-	if (strcmp(name, "Library/Scenes/tmp.des") != 0)
-		strcpy(current_scene_name, scene_name.c_str());
 
 	App->moduleResources->ZeroReferenceCleanUp();
 

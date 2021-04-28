@@ -10,8 +10,9 @@
 #include "MO_Scene.h"
 #include"MO_ResourceManager.h"
 #include"MO_MonoManager.h"
-#include "CO_NavMeshAgent.h"
+#include "MO_Editor.h"
 
+#include "CO_NavMeshAgent.h"
 #include "CO_Material.h"
 #include"CO_Script.h"
 #include"RE_Material.h"
@@ -21,7 +22,7 @@
 #include "MO_Physics.h"
 #include "IM_PrefabImporter.h"
 
-W_Inspector::W_Inspector() : Window(), selectedGO(nullptr), editingRes(nullptr)
+W_Inspector::W_Inspector() : Window(), /*selectedGO(nullptr)*/ editingRes(nullptr)
 {
 	name = "Inspector";
 }
@@ -30,7 +31,6 @@ W_Inspector::~W_Inspector()
 {
 	if (editingRes)
 		EngineExternal->moduleResources->UnloadResource(editingRes->GetUID());
-
 }
 
 void W_Inspector::Draw()

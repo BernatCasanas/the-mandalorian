@@ -4,6 +4,7 @@
 #define __W_INSPECTOR_H__
 
 #include "Window.h"
+#include <vector>
 
 class GameObject;
 class W_Assets;
@@ -23,6 +24,7 @@ public:
 	void ComponentDragAndDrop();
 
 	GameObject* selectedGO;
+
 	Resource* editingRes;
 
 	char inputName[MAX_NAME_SIZE];
