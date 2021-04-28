@@ -8,6 +8,8 @@ public class Skill_Tree_Data : DiamondComponent
     public static Weapons_Skills_Data weaponsSkillTree = null;
     public static Mando_Skills_Data mandoSkillTree = null;
 
+    public static bool data_entry_assigned = false;
+
     #region skillNames
     public enum SkillTreesNames
     {
@@ -227,7 +229,6 @@ public class Skill_Tree_Data : DiamondComponent
         public int U1_price = -1;
 
         //Utility Skill 3
-        public int U3_price = -1;
         public float U3_duration = -1.0f;
         public float U3_increasedDamagePercentage = -1.0f;
         //Utility Skill 4

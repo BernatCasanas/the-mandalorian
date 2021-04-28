@@ -8,7 +8,7 @@ namespace DiamondEngine
     {
         public String description = " ";
         public RewardType type_of_price = RewardType.REWARD_BESKAR;
-        public int price = 0;
+        public int price = 1;
         public virtual void Use()
         {
         }
@@ -54,7 +54,6 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = "Mando has 15% increased damage for 10 seconds after Grogu uses his Push skill";
-            price = 0;
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -69,7 +68,6 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = "20% Damage reduction 2 seconds after dash (doesn't attack)";
-            price = 0;
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -100,8 +98,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "Mando heals 10 HP when Grogu uses a Skill";
-            price = 0;
+            description = "Mando heals 10 HP when Grogu uses a Skill";            
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -117,8 +114,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "Dash can be used consecutively twice in a row (Normal CD upon double dashing)";
-            price = 0;
+            description = "Dash can be used consecutively twice in a row (Normal CD upon double dashing)";            
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -181,8 +177,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "Increase damage to Bosses and greater enemies by 20%";
-            price = 0;
+            description = "Increase damage to Bosses and greater enemies by 20%";            
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -196,8 +191,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "For each 1% of hp missing, gain 1% damage";
-            price = 0;
+            description = "For each 1% of hp missing, gain 1% damage";            
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -227,8 +221,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "Increase Mando's Max HP by 10%. Press 'A' to buy it. Price: 1 Beskar Ingot";
-            price = 0;
+            description = "Increase Mando's Max HP by 10%. Press 'A' to buy it. Price: 1 Beskar Ingot";            
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -242,8 +235,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "Decrease the Damage Reduction Skill. Press 'A' to buy it. Price: it's free!";
-            price = 0;
+            description = "Decrease the Damage Reduction Skill. Press 'A' to buy it. Price: it's free!";            
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -299,8 +291,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "10% chance to avoid damage";
-            price = 0;
+            description = "10% chance to avoid damage";            
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -315,15 +306,6 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.Skill1);
-        }
-
-        public override void AssignCharacteristics()
-        {
-            if (Skill_Tree_Data.GetGroguSkillTree() != null)
-                Debug.Log("---------------------NO ES NULL");
-            else
-                Debug.Log("---------------------ES NULL");
-            //price = Skill_Tree_Data.GetGroguSkillTree().G1_price;
         }
     }
 
@@ -386,8 +368,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "For each 10% of HP Mando is missing, gain 1 more passive Force Regeneration per second.";
-            price = 0;
+            description = "For each 10% of HP Mando is missing, gain 1 more passive Force Regeneration per second. Price: ";            
             type_of_price = RewardType.REWARD_MACARON;
         }
     }
@@ -422,8 +403,7 @@ namespace DiamondEngine
         }
         public override void AssignCharacteristics()
         {
-            description = "Bullet impacts slow enemy speed by 20% for 3 seconds";
-            price = 0;
+            description = "Bullet impacts slow enemy speed by 20% for 3 seconds";            
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -458,8 +438,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "Increase Mando's Primary Weapon damage by 25%. Press 'A' to buy it. Price: 1 Imperial Scrap";
-            price = 0;
+            description = "Increase Mando's Primary Weapon damage by 25%. Press 'A' to buy it. Price: 1 Imperial Scrap";            
             type_of_price = RewardType.REWARD_SCRAP;
         }
     }
@@ -502,8 +481,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "[NOT IMPLEMENTED] Delay between uses reduced by 30%";
-            price = 0;
+            description = "[NOT IMPLEMENTED] Delay between uses reduced by 30%";            
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }

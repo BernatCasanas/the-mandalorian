@@ -20,7 +20,6 @@ public class Skill_Trees_Data_Entry : DiamondComponent
     //Grogu Skill 7
     public int Grogu7_price = 1;
     //Grogu Skill 8: For each 10% of HP Mando is missing, gain 1 more passive Force Regeneration per second.
-    public int Grogu8_price = 1;
     public float Grogu8_HPMissingPercentage = 10.0f;
     public float Grogu8_gainPassiveForceRegeneration = 1.0f;
     #endregion
@@ -145,5 +144,7 @@ public class Skill_Trees_Data_Entry : DiamondComponent
 
         //Mando: Defense Skills
         Skill_Tree_Data.mandoSkillTree.D8_changeToAvoidDamage = Defense8_chanceToAvoidDamage;
+
+        Skill_Tree_Data.data_entry_assigned = true;
     }
 }

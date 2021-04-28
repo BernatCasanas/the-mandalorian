@@ -47,6 +47,8 @@ public class Skill_Tree_Node : DiamondComponent
     public int skillTreeName;
     public int skillTreeNumber;
 
+    private bool started = false;
+
     public NODE_STATE state 
     {
         get { return _state; }
@@ -74,24 +76,6 @@ public class Skill_Tree_Node : DiamondComponent
     public void Awake()
     {
         UnlockTreeAfterRun();
-
-        if (SkillDictionary.skill_type.ContainsKey(skill_name))
-        {
-            Type t = SkillDictionary.skill_type[skill_name];
-            skill = (Skills)Activator.CreateInstance(t);
-            skill.AssignCharacteristics();
-        }
-        else
-        {
-            Debug.Log("ERROR: Skill doesn't exist");
-        }
-
-        if (node_type == 0)
-            skill.type_of_price=RewardType.REWARD_BESKAR;
-        else if (node_type == 1)
-            skill.type_of_price = RewardType.REWARD_MACARON;
-        else
-            skill.type_of_price = RewardType.REWARD_SCRAP;
     }
 
     //Remember the skills that have already been bought before the run
@@ -157,6 +141,12 @@ public class Skill_Tree_Node : DiamondComponent
 
     public void Update()
 	{
+        if (started == false && Skill_Tree_Data.data_entry_assigned)
+        {
+            AssignCharacteristics();
+            started = true;
+        }
+
         if (skill == null)
             return;
 
@@ -182,12 +172,25 @@ public class Skill_Tree_Node : DiamondComponent
         }
     }
 
-    private bool parentHasOpposite(GameObject go)
+    private void AssignCharacteristics()
     {
-        if (go.GetComponent<Skill_Tree_Node>().oppositeNode != null)
-            return true;
+        if (SkillDictionary.skill_type.ContainsKey(skill_name))
+        {
+            Type t = SkillDictionary.skill_type[skill_name];
+            skill = (Skills)Activator.CreateInstance(t);
+            skill.AssignCharacteristics();
+        }
         else
-            return false;
+        {
+            Debug.Log("ERROR: Skill doesn't exist");
+        }
+
+        if (node_type == 0)
+            skill.type_of_price = RewardType.REWARD_BESKAR;
+        else if (node_type == 1)
+            skill.type_of_price = RewardType.REWARD_MACARON;
+        else
+            skill.type_of_price = RewardType.REWARD_SCRAP;        
     }
 
     public void OnExecuteButton()
