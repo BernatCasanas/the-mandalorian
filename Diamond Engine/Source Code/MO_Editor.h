@@ -65,9 +65,9 @@ public:
 	GameObject* GetSelectedGO();
 	GameObject* GetDraggingGO();
 	void SetSelectedGO(GameObject* _obj);
-	void AddSelectedGameObject(GameObject* gameObject);
+	/*void AddSelectedGameObject(GameObject* gameObject);
 	bool IsGOSelected(GameObject* gameObject);
-	void DeleteSelectedGameObjects();
+	void DeleteSelectedGameObjects();*/
 
 	AssetDir* GetSelectedAsset();
 	void SetSelectedAsset(AssetDir* _file);
@@ -94,7 +94,7 @@ private:
 
 	ImVec4 playingTint;
 
-	std::vector<GameObject*> selectedGameObjects;
+	//std::vector<GameObject*> selectedGameObjects;
 };
 
 #endif

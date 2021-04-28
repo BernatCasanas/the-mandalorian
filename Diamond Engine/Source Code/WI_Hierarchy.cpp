@@ -111,7 +111,8 @@ void W_Hierarchy::DrawGameObjectsTree(GameObject* node, bool drawAsDisabled)
 	if (node->children.size() == 0)
 		flags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen;
 
-	if (EngineExternal->moduleEditor->IsGOSelected(node))
+	//if (EngineExternal->moduleEditor->IsGOSelected(node))
+	if (node == EngineExternal->moduleEditor->GetSelectedGO())
 		flags |= ImGuiTreeNodeFlags_::ImGuiTreeNodeFlags_Selected;
 
 	if(node->prefabReference != 0u)
@@ -141,10 +142,11 @@ void W_Hierarchy::DrawGameObjectsTree(GameObject* node, bool drawAsDisabled)
 
 		if (ImGui::IsItemHovered() && ImGui::IsMouseReleased(ImGuiMouseButton_::ImGuiMouseButton_Left))
 		{
-			if (EngineExternal->moduleInput->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
+			EngineExternal->moduleEditor->SetSelectedGO(node);
+			/*if (EngineExternal->moduleInput->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
 				EngineExternal->moduleEditor->AddSelectedGameObject(node);
 			else
-				EngineExternal->moduleEditor->SetSelectedGO(node);
+				EngineExternal->moduleEditor->SetSelectedGO(node);*/
 			
 			if (EngineExternal->moduleEditor->GetSelectedAsset() != nullptr)
 				EngineExternal->moduleEditor->SetSelectedAsset(nullptr);

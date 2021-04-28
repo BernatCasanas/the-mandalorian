@@ -188,7 +188,8 @@ update_status M_Scene::Update(float dt)
 		if (EngineExternal->moduleEditor->IsWindowSelected(EditorWindow::SCENE) || EngineExternal->moduleEditor->IsWindowSelected(EditorWindow::HIERARCHY))
 		{
 			App->moduleEditor->shortcutManager.PushCommand(new COMM_DeleteGO(App->moduleEditor->GetSelectedGO()));
-			App->moduleEditor->DeleteSelectedGameObjects();
+			//App->moduleEditor->DeleteSelectedGameObjects();
+			App->moduleEditor->GetSelectedGO()->Destroy();
 		}
 	}
 #endif // !STANDALONE

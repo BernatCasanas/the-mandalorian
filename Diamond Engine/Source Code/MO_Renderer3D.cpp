@@ -684,12 +684,13 @@ void ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray)
 	GameObject* gameobject_to_return = nullptr;
 	if (distMap.begin() != distMap.end())
 	{
+		App->moduleEditor->SetSelectedGO((*distMap.begin()).second->GetGO());
 		selected = true;
 
-		if (EngineExternal->moduleInput->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
+		/*if (EngineExternal->moduleInput->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
 			EngineExternal->moduleEditor->AddSelectedGameObject((*distMap.begin()).second->GetGO());
 		else
-			App->moduleEditor->SetSelectedGO((*distMap.begin()).second->GetGO());
+			App->moduleEditor->SetSelectedGO((*distMap.begin()).second->GetGO());*/
 
 	}
 

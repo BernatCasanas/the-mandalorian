@@ -206,7 +206,7 @@ bool M_Editor::CleanUp()
 	editorIcons.CleanUp(); 
 #endif // !STANDALONE
 
-	selectedGameObjects.clear();
+	//selectedGameObjects.clear();
 
 	LOG(LogType::L_NORMAL, "ImGui Shutdown");
 	return true;
@@ -684,10 +684,13 @@ GameObject* M_Editor::GetSelectedGO()
 	if (windows.size() == 0)
 		return nullptr;
 
-	if(selectedGameObjects.size() > 0)
-		return selectedGameObjects[0];
-	
-	return nullptr;
+	//if(selectedGameObjects.size() > 0)
+	//	return selectedGameObjects[0];
+	//
+	//return nullptr;
+
+	W_Inspector* inspector = dynamic_cast<W_Inspector*>(GetEditorWindow(EditorWindow::INSPECTOR));
+	return inspector->selectedGO;
 }
 
 GameObject* M_Editor::GetDraggingGO()
@@ -700,35 +703,35 @@ void M_Editor::SetSelectedGO(GameObject* _obj)
 {
 	W_Inspector* inspector = dynamic_cast<W_Inspector*>(GetEditorWindow(EditorWindow::INSPECTOR));
 
-	selectedGameObjects.clear();
+	//selectedGameObjects.clear();
 
-	if(_obj != nullptr)
-		selectedGameObjects.push_back(_obj);
+	//if(_obj != nullptr)
+	//	selectedGameObjects.push_back(_obj);
 
 	inspector->selectedGO = _obj;
 	inspector->SetEditingResource(nullptr);
 	//SetSelectedAsset(nullptr);
 }
 
-void M_Editor::AddSelectedGameObject(GameObject* gameObject)
-{
-	selectedGameObjects.push_back(gameObject);
-}
-
-bool M_Editor::IsGOSelected(GameObject* gameObject)
-{
-	return std::find(selectedGameObjects.begin(), selectedGameObjects.end(), gameObject) != selectedGameObjects.end();
-}
-
-void M_Editor::DeleteSelectedGameObjects()
-{
-	for (size_t i = 0; i < selectedGameObjects.size(); i++)
-	{
-		selectedGameObjects[i]->Destroy();
-	}
-
-	SetSelectedGO(nullptr);
-}
+//void M_Editor::AddSelectedGameObject(GameObject* gameObject)
+//{
+//	selectedGameObjects.push_back(gameObject);
+//}
+//
+//bool M_Editor::IsGOSelected(GameObject* gameObject)
+//{
+//	return std::find(selectedGameObjects.begin(), selectedGameObjects.end(), gameObject) != selectedGameObjects.end();
+//}
+//
+//void M_Editor::DeleteSelectedGameObjects()
+//{
+//	for (size_t i = 0; i < selectedGameObjects.size(); i++)
+//	{
+//		selectedGameObjects[i]->Destroy();
+//	}
+//
+//	SetSelectedGO(nullptr);
+//}
 
 AssetDir* M_Editor::GetSelectedAsset()
 {
