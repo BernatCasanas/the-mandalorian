@@ -717,10 +717,10 @@ public class StormTrooper : Enemy
 
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
-        if (myParticles != null && myParticles.hit != null)
-            myParticles.hit.Play();
         if (collidedGameObject.CompareTag("Bullet"))
         {
+            if (myParticles != null && myParticles.hit != null)
+                myParticles.hit.Play();
             BH_Bullet bullet = collidedGameObject.GetComponent<BH_Bullet>();
 
             if (bullet != null)
@@ -744,7 +744,8 @@ public class StormTrooper : Enemy
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))
         {
-
+            if (myParticles != null && myParticles.hit != null)
+                myParticles.hit.Play();
             ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
 
             if (bullet != null)
@@ -771,6 +772,8 @@ public class StormTrooper : Enemy
         }
         else if (collidedGameObject.CompareTag("ExplosiveBarrel") && collidedGameObject.GetComponent<SphereCollider>().active)
         {
+            if (myParticles != null && myParticles.hit != null)
+                myParticles.hit.Play();
             BH_DestructBox explosion = collidedGameObject.GetComponent<BH_DestructBox>();
 
             if (explosion != null)

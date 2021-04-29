@@ -69,7 +69,8 @@ public class HUD : DiamondComponent
     public GameObject skill_push = null;
     public GameObject weapon_bar = null;
     public GameObject primary_weapon = null;
-    public GameObject secondary_weapon = null;
+    public GameObject weapon_gauge = null;
+    public GameObject life_gauge = null;
     public GameObject currency_number_gameobject = null;
     public GameObject combo_bar = null;
     public GameObject combo_text = null;
@@ -91,6 +92,7 @@ public class HUD : DiamondComponent
     private bool anakinBoonApplied = false;
     public GameObject shooting_blink = null;
     private float shoot_time = 0.0f;
+    private bool heat_descending = false;
 
     bool comboHUDneedsUpdate = false;
     Vector3 comboColor = Vector3.one;
@@ -137,6 +139,10 @@ public class HUD : DiamondComponent
 
             weapon_bar.GetComponent<Material>().SetVectorUniform("textureColorModStart", primaryWeaponColorStart);
             weapon_bar.GetComponent<Material>().SetVectorUniform("textureColorModEnd", primaryWeaponColorEnd);
+            if (weapon_gauge != null)
+                weapon_gauge.GetComponent<Material>().SetFloatUniform("heat", 1f);
+            if (life_gauge != null)
+                life_gauge.GetComponent<Material>().SetFloatUniform("heat", 1f);
 
             UpdateCombo();
 
@@ -604,6 +610,7 @@ public class HUD : DiamondComponent
 
         if (primaryWeaponHeat >= primaryWeaponMaxHeat)
         {
+            heat_descending = true;
             SetPrimaryOVerheat(true);
             primaryWeaponHeat = primaryWeaponMaxHeat;
         }
@@ -622,6 +629,7 @@ public class HUD : DiamondComponent
         {
             SetPrimaryOVerheat(false);
             primaryWeaponHeat = 0f;
+            heat_descending = false;
         }
 
         UpdateHeat();
@@ -647,6 +655,21 @@ public class HUD : DiamondComponent
 
         if (primaryWeaponOverheat == false)
             weapon_bar.GetComponent<Material>().SetFloatUniform("colorLerpLength", newHeatValue);
+        
+        if (newHeatValue>=0.5f || heat_descending)
+        {
+            if (weapon_gauge != null)
+                weapon_gauge.GetComponent<Material>().SetFloatUniform("heat", newHeatValue);
+            if (life_gauge != null)
+                life_gauge.GetComponent<Material>().SetFloatUniform("heat", newHeatValue);
+        }
+        else
+        {
+            if (weapon_gauge != null)
+                weapon_gauge.GetComponent<Material>().SetFloatUniform("heat", 0);
+            if (life_gauge != null)
+                life_gauge.GetComponent<Material>().SetFloatUniform("heat", 0);
+        }
 
     }
 
