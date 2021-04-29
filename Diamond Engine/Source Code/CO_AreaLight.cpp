@@ -65,6 +65,26 @@ bool C_AreaLight::OnEditor()
 
 	return false;
 }
+
+
+void C_AreaLight::DebugDraw()
+{
+	glBegin(GL_TRIANGLES);
+	for (size_t i = 0; i < 12; i += 2)
+	{
+		float4 position;
+		position.x = arrayAreaLightVAO[i];
+		position.y = arrayAreaLightVAO[i + 1];
+		position.z = 0.0f;
+		position.w = 1.0f;
+
+		position += gameObject->transform->GetCurrentGlobalMatrix() * position;
+
+		glColor3fv(color);
+		glVertex3fv(position.ptr());
+	}
+	glEnd();
+}
 #endif // !STANDALONE
 
 void C_AreaLight::SaveData(JSON_Object* nObj)
