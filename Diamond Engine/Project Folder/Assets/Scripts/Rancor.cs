@@ -1383,6 +1383,11 @@ public class Rancor : DiamondComponent
                 playerHealth.TakeDamage((int)touchDamage);
 
         }
+        else if (collidedGameObject.CompareTag("WallSkill"))
+        {
+            if (currentState == RANCOR_STATE.RUSH)
+                inputsList.Add(RANCOR_INPUT.IN_RUSH_STUN);
+        }
     }
 
     private void PlayParticles(PARTICLES particleType)
