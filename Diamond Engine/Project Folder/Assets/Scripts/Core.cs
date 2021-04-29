@@ -368,7 +368,7 @@ public class Core : DiamondComponent
             if (shootingTimer <= 0 && stopShootingTime <= 0f)
             {
                 inputsList.Add(INPUT.IN_SHOOT);
-                Debug.Log("In shoot");
+                //Debug.Log("In shoot");
             }
         }
 

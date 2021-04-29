@@ -384,7 +384,10 @@ public class Skytrooper : Enemy
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Dash");
 
         //agent.CalculateRandomPath(gameObject.transform.globalPosition, dashRange);
-        targetPosition = CalculateNewPosition(dashRange);
+        targetPosition = CalculateRandomInRangePosition();
+
+        if (targetPosition == null)
+            inputsList.Add(INPUT.IN_WANDER);
         //Debug.Log(targetPosition.ToString());
     }
     private void UpdateDash()
@@ -430,10 +433,22 @@ public class Skytrooper : Enemy
 
     private void Shoot()
     {
-        //GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
-        //bullet.GetComponent<BH_Bullet>().damage = damage;
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1662408971.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, new Vector3(0.5f, 0.5f, 0.5f));
-        bullet.GetComponent<SkyTrooperShot>().SetTarget(Core.instance.gameObject.transform.globalPosition, false);
+
+        Vector2 player2DPosition = new Vector2(Core.instance.gameObject.transform.globalPosition.x, Core.instance.gameObject.transform.globalPosition.z);
+        Vector2 randomPosition = Mathf.RandomPointAround(player2DPosition, 1);
+
+        Random randomizer = new Random();
+        int sign = randomizer.Next(3);
+        sign--;
+
+        //Debug.Log("Sign: " + sign.ToString());
+
+        Vector3 projectileEndPosition = new Vector3(randomPosition.x,
+                                                    Core.instance.gameObject.transform.globalPosition.y,
+                                                    randomPosition.y);
+
+        bullet.GetComponent<SkyTrooperShot>().SetTarget(projectileEndPosition, false);
         Animator.Play(gameObject, "SK_Shoot");
         Audio.PlayAudio(gameObject, "PLay_Skytrooper_Grenade_Launch");
 
@@ -478,15 +493,15 @@ public class Skytrooper : Enemy
     {
         if (dieTimer > 0.0f)
         {
-            dieTimer -= Time.deltaTime;
-            Quaternion dieRotation = gameObject.transform.localRotation;
-            Quaternion rotation = new Quaternion(0,45,0);
-            dieRotation = rotation * dieRotation;
-            Vector3 dieTransform = gameObject.transform.localPosition;
-            dieTransform.y += 0.15f;
-            gameObject.transform.localPosition = dieTransform;
-            gameObject.transform.localRotation = dieRotation;
+            //Quaternion dieRotation = gameObject.transform.localRotation;
+            //Quaternion rotation = new Quaternion(0,45,0);
+            //dieRotation = rotation * dieRotation;
+            //Vector3 dieTransform = gameObject.transform.localPosition;
+            //dieTransform.y += 0.15f;
+            //gameObject.transform.localPosition = dieTransform;
+            //gameObject.transform.localRotation = dieRotation;
 
+            dieTimer -= Time.deltaTime;
 
             if (dieTimer <= 0.0f)
             {
@@ -592,7 +607,6 @@ public class Skytrooper : Enemy
                     inputsList.Add(INPUT.IN_DIE);
                 }
             }
-
         }
     }
 
@@ -617,5 +631,44 @@ public class Skytrooper : Enemy
                 inputsList.Add(INPUT.IN_DIE);
         }
 
+    }
+
+    private Vector3 CalculateRandomInRangePosition()
+    {
+        Random randomAngle = new Random();
+
+        if (Core.instance == null)
+            return null;
+
+        if (Mathf.Distance(Core.instance.gameObject.transform.globalPosition, gameObject.transform.globalPosition) < detectionRange * 0.5f)
+        {
+            float angle = randomAngle.Next(-60, 60);
+
+            //Debug.Log("Un pasito patrás: " + angle.ToString());
+
+            Vector3 direction = gameObject.transform.globalPosition - Core.instance.gameObject.transform.globalPosition;
+
+            Vector3 randomPosition = new Vector3((float)(Math.Cos(angle * Mathf.Deg2RRad) * direction.normalized.x - Math.Sin(angle * Mathf.Deg2RRad) * direction.normalized.z),
+                                                 gameObject.transform.globalPosition.y,
+                                                 (float)(Math.Sin(angle * Mathf.Deg2RRad) * direction.normalized.x + Math.Cos(angle * Mathf.Deg2RRad) * direction.normalized.z));
+
+            return gameObject.transform.localPosition + randomPosition * dashRange;
+        }
+        else if (Mathf.Distance(Core.instance.gameObject.transform.globalPosition, gameObject.transform.globalPosition) < detectionRange)
+        {
+            float angle = randomAngle.Next(-90, 90);
+
+            //Debug.Log("Un pasito palante, María: " + angle.ToString());
+
+            Vector3 direction = Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition;
+
+            Vector3 randomPosition = new Vector3((float)(Math.Cos(angle * Mathf.Deg2RRad) * direction.normalized.x - Math.Sin(angle * Mathf.Deg2RRad) * direction.normalized.z),
+                                                 gameObject.transform.globalPosition.y,
+                                                 (float)(Math.Sin(angle * Mathf.Deg2RRad) * direction.normalized.x + Math.Cos(angle * Mathf.Deg2RRad) * direction.normalized.z));
+
+            return gameObject.transform.localPosition + randomPosition * dashRange;
+        }
+
+        return null;
     }
 }

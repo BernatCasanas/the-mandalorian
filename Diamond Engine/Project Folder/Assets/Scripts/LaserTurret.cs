@@ -53,7 +53,6 @@ public class LaserTurret : Enemy
     private float shotTimer = 0.0f;
     private float dieTimer = 0.0f;
     private float damageCurrentTimer = 0.0f;
-    private float feedbackTimer = 0.0f;
 
     private Vector3[] laserDirections;
     public int lasersNumber = 4;

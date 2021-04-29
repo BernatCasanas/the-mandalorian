@@ -71,6 +71,7 @@ namespace DiamondEngine
 
         public const float Rad2Deg = 57.29578f;
 
+        public const float Deg2RRad = 0.01745f;
 
         public static void LookAt(ref Transform goTransform, Vector3 pointToLook, float slerpDegree = 1.0f)
         {
@@ -92,7 +93,14 @@ namespace DiamondEngine
 
         }
 
+        public static Vector2 RandomPointAround(Vector2 centerPoint, int range)
+        {
+            Random randomizer = new Random();
 
+            int randomInt = randomizer.Next(-range, range);
+
+            return new Vector2(centerPoint.x + randomInt, centerPoint.y + randomInt);
+        }
     }
 
 
