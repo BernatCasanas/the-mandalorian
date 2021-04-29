@@ -115,6 +115,7 @@ public class GameSceneManager : DiamondComponent
         else
         {
             Counter.gameResult = Counter.GameResult.VICTORY;
+            DebugOptionsHolder.goToNextLevel = false;
             SceneManager.LoadScene(821370213);
         }
     }
