@@ -1,0 +1,124 @@
+{
+    "assets_path": "Assets\/Prefabs\/Sniper not.prefab",
+    "Game Objects": [
+        {
+            "name": "Sniper not",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 755396057,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 208257876,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -5.2291960716247559,
+                -1.9122240543365479,
+                -10.236600875854492
+            ],
+            "Rotation": [
+                6.1532709594303014e-08,
+                -0.77161753177642822,
+                6.1532709594303014e-08,
+                -0.63608676195144653
+            ],
+            "Scale": [
+                1.0000015497207642,
+                1,
+                1.0000009536743164
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Sniper",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1701853014,
+            "ParentUID": 755396057,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.16187667846679688,
+                0,
+                -0.082670211791992188
+            ],
+            "Rotation": [
+                0,
+                0,
+                -1.0164395367051604e-20,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 0.44800001382827759,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1547449892.dds",
+                            "texUID": 1547449892,
+                            "paEmitterName": "Sniper",
+                            "paLifeTime": [
+                                0.5,
+                                0.5
+                            ],
+                            "paSize": [
+                                0.10000000149011612,
+                                0.10000000149011612
+                            ],
+                            "paColor": [
+                                0.9961240291595459,
+                                0.99612325429916382,
+                                0.99611407518386841,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0.5,
+                                    "paSizeOLTEndSize": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        }
+    ]
+}
