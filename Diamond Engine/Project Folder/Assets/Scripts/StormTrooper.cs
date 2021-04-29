@@ -76,6 +76,7 @@ public class StormTrooper : Enemy
     public int maxShots = 2;
     private int shotSequences = 0;
     public int maxSequences = 2;
+    private bool shooting = false;
 
     //force
     public float forcePushMod = 1;
@@ -180,7 +181,7 @@ public class StormTrooper : Enemy
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
 
-                if (player != null)
+                if (player != null && currentState != STATE.SHOOT)
                     LookAt(player.transform.globalPosition);
             }
         }
@@ -567,6 +568,7 @@ public class StormTrooper : Enemy
                     {
                         sequenceTimer = timeBewteenSequences;
                         shotTimes = 0;
+                        shooting = false;
                         //Start of pause between sequences
                     }
                     //End of second shot of the second sequence
@@ -586,8 +588,12 @@ public class StormTrooper : Enemy
             {
                 Shoot();
                 shotTimer = timeBewteenShots;
+                shooting = true;
             }
         }
+
+        if (!shooting)
+            LookAt(Core.instance.gameObject.transform.globalPosition);
 
     }
 
