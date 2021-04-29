@@ -186,7 +186,7 @@ public class Bantha : Enemy
     //All events from outside the stormtrooper
     private void ProcessExternalInput()
     {
-        if (currentState != STATE.DIE)
+        if (currentState != STATE.DIE && currentState != STATE.CHARGE)
         {
             if (InRange(player.transform.globalPosition, detectionRange) && agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition))
             {
@@ -563,11 +563,11 @@ public class Bantha : Enemy
         Audio.PlayAudio(gameObject, "Play_Footsteps_Bantha");
 
         StraightPath();
+
+        LookAt(agent.GetDestination());
     }
     private void UpdateCharge()
     {
-        //LookAt(agent.GetDestination());
-
         if (skill_slowDownActive)
             agent.MoveToCalculatedPos(chargeSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
         else if (!straightPath)
