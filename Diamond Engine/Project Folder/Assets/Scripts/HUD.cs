@@ -78,7 +78,7 @@ public class HUD : DiamondComponent
     public GameObject max_hp_number = null;
     public GameObject fpsText = null;
     private bool start = true;
-    private float pulsation_rate = 0.0f;
+    private float pulsation_rate = 1.0f;
     private bool pulsation_forward = true;
 
     private float lastFrameTime = 0.0f;
@@ -143,6 +143,8 @@ public class HUD : DiamondComponent
                 weapon_gauge.GetComponent<Material>().SetFloatUniform("heat", 1f);
             if (life_gauge != null)
                 life_gauge.GetComponent<Material>().SetFloatUniform("heat", 1f);
+            if (shooting_blink != null)
+                shooting_blink.GetComponent<Material>().SetFloatUniform("heat", 1f);
 
             UpdateCombo();
 
@@ -254,12 +256,14 @@ public class HUD : DiamondComponent
         }
         if (pulsation_forward)
         {
-            pulsation_rate += (Time.deltaTime / 3);
+            float health_diff = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
+            pulsation_rate += Time.deltaTime * Math.Max(health_diff/PlayerHealth.currMaxHealth,0.3f);
             if (pulsation_rate > 1.0f) pulsation_forward = false;
         }
         else if (!pulsation_forward)
         {
-            pulsation_rate -= (Time.deltaTime / 3);
+            float health_diff = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
+            pulsation_rate -= Time.deltaTime * Math.Max(health_diff / PlayerHealth.currMaxHealth, 0.3f);
             if (pulsation_rate < 0.6f) pulsation_forward = true;
         }
         if (hp_bar != null)
@@ -662,13 +666,17 @@ public class HUD : DiamondComponent
                 weapon_gauge.GetComponent<Material>().SetFloatUniform("heat", newHeatValue);
             if (life_gauge != null)
                 life_gauge.GetComponent<Material>().SetFloatUniform("heat", newHeatValue);
+            if (shooting_blink != null)
+                shooting_blink.GetComponent<Material>().SetFloatUniform("heat", newHeatValue);
         }
         else
         {
             if (weapon_gauge != null)
-                weapon_gauge.GetComponent<Material>().SetFloatUniform("heat", 0);
+                weapon_gauge.GetComponent<Material>().SetFloatUniform("heat", 0f);
             if (life_gauge != null)
-                life_gauge.GetComponent<Material>().SetFloatUniform("heat", 0);
+                life_gauge.GetComponent<Material>().SetFloatUniform("heat", 0f);
+            if (shooting_blink != null)
+                shooting_blink.GetComponent<Material>().SetFloatUniform("heat", 0f);
         }
 
     }
