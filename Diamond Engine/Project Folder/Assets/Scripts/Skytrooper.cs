@@ -40,6 +40,7 @@ public class Skytrooper : Enemy
     private List<INPUT> inputsList = new List<INPUT>();
 
     public GameObject shootPoint = null;
+    public GameObject blaster = null;
     //public GameObject hitParticles = null;
 
     //Action times
@@ -73,7 +74,7 @@ public class Skytrooper : Enemy
     //Action variables
     private int shotsShooted = 0;
     public int maxShots = 2;
-
+    public float explosionDistance = 2.0f;
 
     //push
     public float pushHorizontalForce = 100;
@@ -87,6 +88,7 @@ public class Skytrooper : Enemy
 
         currentState = STATE.IDLE;
         Animator.Play(gameObject, "SK_Idle");
+        Animator.Play(blaster, "SK_Idle");
 
         idleTimer = idleTime;
         dashTime = Animator.GetAnimationDuration(gameObject, "SK_Dash");
@@ -94,6 +96,9 @@ public class Skytrooper : Enemy
 
     public void Update()
     {
+        if (Input.GetKey(DEKeyCode.T) == KeyState.KEY_DOWN)
+            inputsList.Add(INPUT.IN_DIE);
+
         #region STATE MACHINE
 
         ProcessInternalInput();
@@ -341,6 +346,7 @@ public class Skytrooper : Enemy
         //Debug.Log("SKYTROOPER IDLE");
         idleTimer = idleTime;
         Animator.Play(gameObject, "SK_Idle");
+        Animator.Play(blaster, "SK_Idle");
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
     }
     private void IdleEnd()
@@ -356,6 +362,7 @@ public class Skytrooper : Enemy
         //Debug.Log("SKYTROOPER WANDER");
 
         Animator.Play(gameObject, "SK_Wander");
+        Animator.Play(blaster, "SK_Wander");
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
 
         targetPosition = CalculateNewPosition(wanderRange);
@@ -381,6 +388,7 @@ public class Skytrooper : Enemy
         //Debug.Log("SKYTROOPER DASH");
 
         Animator.Play(gameObject, "SK_Dash");
+        Animator.Play(blaster, "SK_Dash");
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Dash");
 
         //agent.CalculateRandomPath(gameObject.transform.globalPosition, dashRange);
@@ -411,6 +419,7 @@ public class Skytrooper : Enemy
         shootTimer = timeBewteenShootingStates;
         shotsShooted = 0;
         Animator.Play(gameObject, "SK_Idle");
+        Animator.Play(blaster, "SK_Idle");
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
     }
 
@@ -450,6 +459,7 @@ public class Skytrooper : Enemy
 
         bullet.GetComponent<SkyTrooperShot>().SetTarget(projectileEndPosition, false);
         Animator.Play(gameObject, "SK_Shoot");
+        Animator.Play(blaster, "SK_Shoot");
         Audio.PlayAudio(gameObject, "PLay_Skytrooper_Grenade_Launch");
 
         shotsShooted++;
@@ -459,6 +469,7 @@ public class Skytrooper : Enemy
         {
             shootTimer = timeBewteenShootingStates;
             Animator.Play(gameObject, "SK_Idle");
+            Animator.Play(blaster, "SK_Idle");
         }
 
     }
@@ -482,12 +493,18 @@ public class Skytrooper : Enemy
         Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
 
         //Combo
-        if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
-        {
-            Core.instance.hud.GetComponent<HUD>().AddToCombo(300, 1.0f);
-        }
+        //UNCOMMENT
+        //if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
+        //{
+        //    Debug.Log("Start die ended");
+        //    HUD hud = Core.instance.hud.GetComponent<HUD>();
 
-        RemoveFromEnemyList();
+        //    if(hud != null)
+        //        hud.AddToCombo(300, 1.0f);
+        //}
+
+        //RemoveFromEnemyList();
+        //UNCOMMENT
     }
     private void UpdateDie()
     {
@@ -513,7 +530,6 @@ public class Skytrooper : Enemy
     private void Die()
     {
         //float dist = (deathPoint.transform.globalPosition - gameObject.transform.globalPosition).magnitude;
-        Vector3 forward = gameObject.transform.GetForward();
         //forward = forward.normalized * (-dist);
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
         Counter.roomEnemies--;
@@ -534,8 +550,27 @@ public class Skytrooper : Enemy
             InternalCalls.CreatePrefab(coinDropPath, pos, Quaternion.identity, new Vector3(0.07f, 0.07f, 0.07f));
         }
         Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
-        InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
+
+        //Explosion
+        Explode();
         InternalCalls.Destroy(gameObject);
+    }
+
+    private void Explode()
+    {
+        Vector3 forward = gameObject.transform.GetForward();
+        InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
+
+        if (Mathf.Distance(Core.instance.gameObject.transform.globalPosition, gameObject.transform.globalPosition) <= explosionDistance)
+        {
+            PlayerHealth playerHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+
+            if(playerHealth != null)
+            {
+                //Debug.Log("Player hurt by skytrooper explosion");
+                playerHealth.TakeDamage((int)damage);
+            }
+        }
     }
 
     #endregion
