@@ -71,11 +71,13 @@ public class Deathtrooper : Enemy
     private float skill_slowDownTimer = 0.0f;
     private float recoilTimer = 0.0f;
     private float betweenStatesTimer = 0.0f;
-    public float shotCDTimer = 0.0f;
+    private float shotCDTimer = 0.0f;
 
     //Action variables
     private int shotsShooted = 0;
     public int maxShots = 2;
+    public float dispersionAngleDeg = 0.0f;
+    public int numShots;
     private bool canShoot = true;
 
 
@@ -413,7 +415,7 @@ public class Deathtrooper : Enemy
             LookAt(Core.instance.gameObject.transform.globalPosition);
             if(betweenStatesTimer <= 0.0f)
             {
-                Shoot();
+                ShotgunShoot(numShots);
             }
             
         }
@@ -431,10 +433,20 @@ public class Deathtrooper : Enemy
 
     }
 
-    private void Shoot()
+    private void ShotgunShoot(int numShots)
     {
-        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
-        bullet.GetComponent<BH_Bullet>().damage = damage;
+        float angleIncrement = dispersionAngleDeg / (numShots - 1);
+        float currentAngle = -(dispersionAngleDeg / 2);
+        for(int i = 0; i < numShots; i++)
+        {
+            GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+            bullet.GetComponent<BH_Bullet>().damage = damage;
+            bullet.transform.localRotation *= Quaternion.RotateAroundAxis(Vector3.up, currentAngle * Mathf.Deg2RRad);
+            currentAngle += angleIncrement;
+        }
+
+        //GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+        //bullet.GetComponent<BH_Bullet>().damage = damage;
 
         Animator.Play(gameObject, "ST_Shoot");
         Audio.PlayAudio(gameObject, "Play_Blaster_Stormtrooper");
