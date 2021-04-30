@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 using DiamondEngine;
 
-public class Skytrooper : Enemy
+public class Deathtrooper : Enemy
 {
     enum STATE : int
     {
         NONE = -1,
         IDLE,
         WANDER,
-        DASH,
+        RUN,
         PUSHED,
         SHOOT,
         HIT,
@@ -23,15 +23,16 @@ public class Skytrooper : Enemy
     {
         IN_IDLE,
         IN_IDLE_END,
-        IN_DASH,
-        IN_DASH_END,
+        IN_RUN,
+        IN_RUN_END,
         IN_WANDER,
         IN_PUSHED,
         IN_SHOOT,
+        IN_SHOOT_END,
         IN_HIT,
         IN_DIE,
         IN_PLAYER_IN_RANGE,
-
+        IN_SHOT_RANGE
     }
 
     //State
@@ -40,41 +41,45 @@ public class Skytrooper : Enemy
     private List<INPUT> inputsList = new List<INPUT>();
 
     public GameObject shootPoint = null;
-    public GameObject blaster = null;
     //public GameObject hitParticles = null;
 
     //Action times
     public float idleTime = 5.0f;
-    public float wanderTime = 0.0f;
-    private float dashTime = 0.0f;
     private float dieTime = 3.0f;
     public float timeBewteenShots = 0.5f;
-    public float timeBewteenShootingStates = 1.5f;
+    public float betweenStatesTime = 1.5f;
+    public float recoilTime = 0.0f;
+    public float shotCDTime = 0.0f;
 
     //Speeds
     public float wanderSpeed = 3.5f;
-    public float dashSpeed = 7.5f;
+    public float runningSpeed = 7.5f;
     //public float bulletSpeed = 10.0f;
     private bool skill_slowDownActive = false;
+    public float recoilSpeed = 0.0f;
 
     //Ranges
     public float wanderRange = 7.5f;
-    public float dashRange = 12.5f;
+    public float shotRange = 12.5f;
 
     //Timers
     private float idleTimer = 0.0f;
-    private float wanderTimer = 0.0f;
-    private float dashTimer = 0.0f;
     //private float shotTimer = 0.0f;
     private float dieTimer = 0.0f;
     private float shootTimer = 0.0f;
     private float pushTimer = 0.0f;
     private float skill_slowDownTimer = 0.0f;
+    private float recoilTimer = 0.0f;
+    private float betweenStatesTimer = 0.0f;
+    private float shotCDTimer = 0.0f;
 
     //Action variables
     private int shotsShooted = 0;
     public int maxShots = 2;
-    public float explosionDistance = 2.0f;
+    public float dispersionAngleDeg = 0.0f;
+    public int numShots;
+    private bool canShoot = true;
+
 
     //push
     public float pushHorizontalForce = 100;
@@ -87,18 +92,13 @@ public class Skytrooper : Enemy
         targetPosition = null;
 
         currentState = STATE.IDLE;
-        Animator.Play(gameObject, "SK_Idle");
-        Animator.Play(blaster, "SK_Idle");
+        Animator.Play(gameObject, "ST_Idle");
 
         idleTimer = idleTime;
-        dashTime = Animator.GetAnimationDuration(gameObject, "SK_Dash");
     }
 
     public void Update()
     {
-        if (Input.GetKey(DEKeyCode.T) == KeyState.KEY_DOWN)
-            inputsList.Add(INPUT.IN_DIE);
-
         #region STATE MACHINE
 
         ProcessInternalInput();
@@ -124,21 +124,20 @@ public class Skytrooper : Enemy
             }
         }
 
-        if (currentState == STATE.WANDER && wanderTimer > 0.0f)
+        if (currentState == STATE.RUN || currentState == STATE.WANDER)
         {
-            wanderTimer -= Time.deltaTime;
-            if (wanderTimer < 0.0f)
+            if (Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance)
             {
                 inputsList.Add(INPUT.IN_IDLE);
             }
         }
 
-        if (currentState == STATE.DASH && dashTimer > 0.0f)
+        if(shotCDTimer > 0.0f)
         {
-            dashTimer -= Time.deltaTime;
-            if (dashTimer < 0.0f)
+            shotCDTimer -= Time.deltaTime;
+            if(shotCDTimer <= 0.0f)
             {
-                inputsList.Add(INPUT.IN_DASH_END);
+                canShoot = true;
             }
         }
 
@@ -156,7 +155,7 @@ public class Skytrooper : Enemy
     //All events from outside the stormtrooper
     private void ProcessExternalInput()
     {
-        if (currentState != STATE.DIE && currentState != STATE.DASH)
+        if (currentState != STATE.DIE)
         {
             if (Core.instance.gameObject == null)
                 return;
@@ -164,7 +163,12 @@ public class Skytrooper : Enemy
             if (InRange(Core.instance.gameObject.transform.globalPosition, detectionRange))
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
-                LookAt(Core.instance.gameObject.transform.globalPosition);
+                //LookAt(Core.instance.gameObject.transform.globalPosition);
+            }
+            if (InRange(Core.instance.gameObject.transform.globalPosition, shotRange) && canShoot)
+            {
+                inputsList.Add(INPUT.IN_SHOT_RANGE);
+                //LookAt(Core.instance.gameObject.transform.globalPosition);
             }
         }
     }
@@ -187,27 +191,23 @@ public class Skytrooper : Enemy
                     {
                         case INPUT.IN_WANDER:
                             currentState = STATE.WANDER;
-                            IdleEnd();
                             StartWander();
                             break;
 
                         case INPUT.IN_PLAYER_IN_RANGE:
-                            currentState = STATE.SHOOT;
-                            IdleEnd();
+                            currentState = STATE.RUN;
                             PlayerDetected();
-                            StartShoot();
-                            break;
-
-                        case INPUT.IN_DIE:
-                            currentState = STATE.DIE;
-                            IdleEnd();
-                            StartDie();
+                            StartRun();
                             break;
 
                         case INPUT.IN_PUSHED:
                             currentState = STATE.PUSHED;
-                            IdleEnd();
                             StartPush();
+                            break;
+
+                        case INPUT.IN_DIE:
+                            currentState = STATE.DIE;
+                            StartDie();
                             break;
                     }
                     break;
@@ -222,83 +222,90 @@ public class Skytrooper : Enemy
                             break;
 
                         case INPUT.IN_PLAYER_IN_RANGE:
-                            currentState = STATE.SHOOT;
+                            currentState = STATE.RUN;
                             WanderEnd();
                             PlayerDetected();
-                            StartShoot();
+                            StartRun();
+                            break;
+
+                        case INPUT.IN_PUSHED:
+                            currentState = STATE.PUSHED;
+                            StartPush();
                             break;
 
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
                             WanderEnd();
                             StartDie();
-                            break;
-
-                        case INPUT.IN_PUSHED:
-                            currentState = STATE.PUSHED;
-                            StartPush();
                             break;
                     }
                     break;
 
-                case STATE.DASH:
+                case STATE.RUN:
                     switch (input)
                     {
-                        case INPUT.IN_DASH_END:
+                        case INPUT.IN_RUN_END:
                             currentState = STATE.IDLE;
-                            DashEnd();
+                            RunEnd();
                             StartIdle();
                             break;
 
-                        case INPUT.IN_WANDER:
-                            currentState = STATE.WANDER;
-                            DashEnd();
-                            StartWander();
-                            break;
-
-                        case INPUT.IN_DIE:
-                            currentState = STATE.DIE;
-                            DashEnd();
-                            StartDie();
+                        case INPUT.IN_SHOT_RANGE:
+                            currentState = STATE.SHOOT;
+                            RunEnd();
+                            StartShoot();
                             break;
 
                         case INPUT.IN_PUSHED:
                             currentState = STATE.PUSHED;
-                            DashEnd();
+                            RunEnd();
                             StartPush();
                             break;
+
+                        case INPUT.IN_DIE:
+                            currentState = STATE.DIE;
+                            RunEnd();
+                            StartDie();
+                            break;
+     
                     }
                     break;
 
                 case STATE.SHOOT:
                     switch (input)
                     {
-                        case INPUT.IN_DASH:
-                            currentState = STATE.DASH;
-                            StartDash();
+                        case INPUT.IN_SHOOT_END:
+                            currentState = STATE.RUN;
+                            StartRun();
+                            break;
+
+                        //case INPUT.IN_RUN:
+                        //    currentState = STATE.RUN;
+                        //    StartRun();
+                        //    break;
+
+                        case INPUT.IN_PUSHED:
+                            currentState = STATE.PUSHED;
+                            StartPush();
                             break;
 
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
                             StartDie();
                             break;
-                        case INPUT.IN_PUSHED:
-                            currentState = STATE.PUSHED;
-                            StartPush();
-                            break;
                     }
                     break;
                 case STATE.PUSHED:
                     switch (input)
                     {
+                        case INPUT.IN_IDLE:
+                            currentState = STATE.IDLE;
+                            StartIdle();
+                            break;
+
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
                             StartDie();
-                            break;
-                        case INPUT.IN_IDLE:
-                            currentState = STATE.IDLE;
-                            DashEnd();
-                            StartIdle();
                             break;
                     }
                     break;
@@ -319,8 +326,8 @@ public class Skytrooper : Enemy
                 break;
             case STATE.IDLE:
                 break;
-            case STATE.DASH:
-                UpdateDash();
+            case STATE.RUN:
+                UpdateRun();
                 break;
             case STATE.WANDER:
                 UpdateWander();
@@ -328,11 +335,11 @@ public class Skytrooper : Enemy
             case STATE.SHOOT:
                 UpdateShoot();
                 break;
-            case STATE.DIE:
-                UpdateDie();
-                break;
             case STATE.PUSHED:
                 UpdatePush();
+                break;
+            case STATE.DIE:
+                UpdateDie();
                 break;
             default:
                 Debug.Log("NEED TO ADD STATE TO CORE");
@@ -343,37 +350,27 @@ public class Skytrooper : Enemy
     #region IDLE
     private void StartIdle()
     {
-        //Debug.Log("SKYTROOPER IDLE");
+        Debug.Log("DEATHTROOPER IDLE");
         idleTimer = idleTime;
-        Animator.Play(gameObject, "SK_Idle");
-        Animator.Play(blaster, "SK_Idle");
-        Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
-    }
-    private void IdleEnd()
-    {
-        Audio.StopAudio(gameObject);
+        Animator.Play(gameObject, "ST_Idle");
     }
     #endregion
 
     #region WANDER
     private void StartWander()
     {
-        wanderTimer = wanderTime;
-        //Debug.Log("SKYTROOPER WANDER");
+        Debug.Log("DEATHTROOPER WANDER");
+        agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
-        Animator.Play(gameObject, "SK_Wander");
-        Animator.Play(blaster, "SK_Wander");
-        Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
-
-        targetPosition = CalculateNewPosition(wanderRange);
+        Animator.Play(gameObject, "ST_Run");
+        Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
     }
     private void UpdateWander()
     {
-        LookAt(targetPosition);
-
+        LookAt(agent.GetDestination());
         if (skill_slowDownActive)
-            MoveToPosition(targetPosition, wanderSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-        else MoveToPosition(targetPosition, wanderSpeed);
+            agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
+        else agent.MoveToCalculatedPos(wanderSpeed);
     }
     private void WanderEnd()
     {
@@ -381,32 +378,22 @@ public class Skytrooper : Enemy
     }
     #endregion
 
-    #region DASH
-    private void StartDash()
+    #region RUN
+    private void StartRun()
     {
-        dashTimer = dashTime;
-        //Debug.Log("SKYTROOPER DASH");
-
-        Animator.Play(gameObject, "SK_Dash");
-        Animator.Play(blaster, "SK_Dash");
-        Audio.PlayAudio(gameObject, "Play_Skytrooper_Dash");
-
-        //agent.CalculateRandomPath(gameObject.transform.globalPosition, dashRange);
-        targetPosition = CalculateRandomInRangePosition();
-
-        if (targetPosition == null)
-            inputsList.Add(INPUT.IN_WANDER);
-        //Debug.Log(targetPosition.ToString());
+        Debug.Log("DEATHTROOPER RUN");
+        Animator.Play(gameObject, "ST_Run");
     }
-    private void UpdateDash()
+    private void UpdateRun()
     {
-        LookAt(targetPosition);
-
+        agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
+        LookAt(agent.GetDestination());
         if (skill_slowDownActive)
-            MoveToPosition(targetPosition, dashSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-        else MoveToPosition(targetPosition, dashSpeed);
+            agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
+        else
+            agent.MoveToCalculatedPos(runningSpeed);
     }
-    private void DashEnd()
+    private void RunEnd()
     {
         Audio.StopAudio(gameObject);
     }
@@ -415,63 +402,57 @@ public class Skytrooper : Enemy
     #region SHOOT
     private void StartShoot()
     {
-        //Debug.Log("SKYTROOPER SHOOT");
-        shootTimer = timeBewteenShootingStates;
-        shotsShooted = 0;
-        Animator.Play(gameObject, "SK_Idle");
-        Animator.Play(blaster, "SK_Idle");
-        Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
+        Debug.Log("DEATHTROOPER SHOOT");
+        Animator.Play(gameObject, "ST_Shoot");
+        betweenStatesTimer = betweenStatesTime;
     }
 
     private void UpdateShoot()
     {
-        shootTimer -= Time.deltaTime;
-
-        if (shootTimer <= 0.0f)
+        if(betweenStatesTimer > 0.0f)
         {
-            if (shotsShooted == maxShots)
+            betweenStatesTimer -= Time.deltaTime;
+            LookAt(Core.instance.gameObject.transform.globalPosition);
+            if(betweenStatesTimer <= 0.0f)
             {
-                inputsList.Add(INPUT.IN_DASH);
+                ShotgunShoot(numShots);
             }
-            else
+            
+        }
+
+        if (recoilTimer > 0.0f)
+        {
+            recoilTimer -= Time.deltaTime;
+            gameObject.transform.localPosition -= gameObject.transform.GetForward().normalized * recoilSpeed * Time.deltaTime;
+            if(recoilTimer <= 0.0f)
             {
-                Shoot();
+                shotCDTimer = shotCDTime;
+                inputsList.Add(INPUT.IN_SHOOT_END);
             }
         }
+
     }
 
-    private void Shoot()
+    private void ShotgunShoot(int numShots)
     {
-        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1662408971.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, new Vector3(0.5f, 0.5f, 0.5f));
-
-        Vector2 player2DPosition = new Vector2(Core.instance.gameObject.transform.globalPosition.x, Core.instance.gameObject.transform.globalPosition.z);
-        Vector2 randomPosition = Mathf.RandomPointAround(player2DPosition, 1);
-
-        Random randomizer = new Random();
-        int sign = randomizer.Next(3);
-        sign--;
-
-        //Debug.Log("Sign: " + sign.ToString());
-
-        Vector3 projectileEndPosition = new Vector3(randomPosition.x,
-                                                    Core.instance.gameObject.transform.globalPosition.y,
-                                                    randomPosition.y);
-
-        bullet.GetComponent<SkyTrooperShot>().SetTarget(projectileEndPosition, false);
-        Animator.Play(gameObject, "SK_Shoot");
-        Animator.Play(blaster, "SK_Shoot");
-        Audio.PlayAudio(gameObject, "PLay_Skytrooper_Grenade_Launch");
-
-        shotsShooted++;
-        if (shotsShooted < maxShots)
-            shootTimer = timeBewteenShots;
-        else
+        float angleIncrement = dispersionAngleDeg / (numShots - 1);
+        float currentAngle = -(dispersionAngleDeg / 2);
+        for(int i = 0; i < numShots; i++)
         {
-            shootTimer = timeBewteenShootingStates;
-            Animator.Play(gameObject, "SK_Idle");
-            Animator.Play(blaster, "SK_Idle");
+            GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+            bullet.GetComponent<BH_Bullet>().damage = damage;
+            bullet.transform.localRotation *= Quaternion.RotateAroundAxis(Vector3.up, currentAngle * Mathf.Deg2RRad);
+            currentAngle += angleIncrement;
         }
 
+        //GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+        //bullet.GetComponent<BH_Bullet>().damage = damage;
+
+        Animator.Play(gameObject, "ST_Shoot");
+        Audio.PlayAudio(gameObject, "Play_Blaster_Stormtrooper");
+        //shotTimes++;
+        recoilTimer = recoilTime;
+        canShoot = false;
     }
     private void PlayerDetected()
     {
@@ -493,31 +474,17 @@ public class Skytrooper : Enemy
         Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
 
         //Combo
-        //UNCOMMENT
-        //if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
-        //{
-        //    Debug.Log("Start die ended");
-        //    HUD hud = Core.instance.hud.GetComponent<HUD>();
+        if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
+        {
+            Core.instance.hud.GetComponent<HUD>().AddToCombo(300, 1.0f);
+        }
 
-        //    if(hud != null)
-        //        hud.AddToCombo(300, 1.0f);
-        //}
-
-        //RemoveFromEnemyList();
-        //UNCOMMENT
+        RemoveFromEnemyList();
     }
     private void UpdateDie()
     {
         if (dieTimer > 0.0f)
         {
-            //Quaternion dieRotation = gameObject.transform.localRotation;
-            //Quaternion rotation = new Quaternion(0,45,0);
-            //dieRotation = rotation * dieRotation;
-            //Vector3 dieTransform = gameObject.transform.localPosition;
-            //dieTransform.y += 0.15f;
-            //gameObject.transform.localPosition = dieTransform;
-            //gameObject.transform.localRotation = dieRotation;
-
             dieTimer -= Time.deltaTime;
 
             if (dieTimer <= 0.0f)
@@ -530,6 +497,7 @@ public class Skytrooper : Enemy
     private void Die()
     {
         //float dist = (deathPoint.transform.globalPosition - gameObject.transform.globalPosition).magnitude;
+        Vector3 forward = gameObject.transform.GetForward();
         //forward = forward.normalized * (-dist);
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
         Counter.roomEnemies--;
@@ -550,27 +518,8 @@ public class Skytrooper : Enemy
             InternalCalls.CreatePrefab(coinDropPath, pos, Quaternion.identity, new Vector3(0.07f, 0.07f, 0.07f));
         }
         Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
-
-        //Explosion
-        Explode();
-        InternalCalls.Destroy(gameObject);
-    }
-
-    private void Explode()
-    {
-        Vector3 forward = gameObject.transform.GetForward();
         InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
-
-        if (Mathf.Distance(Core.instance.gameObject.transform.globalPosition, gameObject.transform.globalPosition) <= explosionDistance)
-        {
-            PlayerHealth playerHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
-
-            if(playerHealth != null)
-            {
-                //Debug.Log("Player hurt by skytrooper explosion");
-                playerHealth.TakeDamage((int)damage);
-            }
-        }
+        InternalCalls.Destroy(gameObject);
     }
 
     #endregion
@@ -643,6 +592,20 @@ public class Skytrooper : Enemy
                 }
             }
         }
+        else if (collidedGameObject.CompareTag("ExplosiveBarrel") && collidedGameObject.GetComponent<SphereCollider>().active)
+        {
+            //if (myParticles != null && myParticles.hit != null)
+            //    myParticles.hit.Play();
+            BH_DestructBox explosion = collidedGameObject.GetComponent<BH_DestructBox>();
+
+            if (explosion != null)
+            {
+                healthPoints -= explosion.explosion_damage * 2;
+                if (currentState != STATE.DIE && healthPoints <= 0.0f)
+                    inputsList.Add(INPUT.IN_DIE);
+            }
+
+        }
     }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
@@ -666,44 +629,5 @@ public class Skytrooper : Enemy
                 inputsList.Add(INPUT.IN_DIE);
         }
 
-    }
-
-    private Vector3 CalculateRandomInRangePosition()
-    {
-        Random randomAngle = new Random();
-
-        if (Core.instance == null)
-            return null;
-
-        if (Mathf.Distance(Core.instance.gameObject.transform.globalPosition, gameObject.transform.globalPosition) < detectionRange * 0.5f)
-        {
-            float angle = randomAngle.Next(-60, 60);
-
-            //Debug.Log("Un pasito patrás: " + angle.ToString());
-
-            Vector3 direction = gameObject.transform.globalPosition - Core.instance.gameObject.transform.globalPosition;
-
-            Vector3 randomPosition = new Vector3((float)(Math.Cos(angle * Mathf.Deg2RRad) * direction.normalized.x - Math.Sin(angle * Mathf.Deg2RRad) * direction.normalized.z),
-                                                 gameObject.transform.globalPosition.y,
-                                                 (float)(Math.Sin(angle * Mathf.Deg2RRad) * direction.normalized.x + Math.Cos(angle * Mathf.Deg2RRad) * direction.normalized.z));
-
-            return gameObject.transform.localPosition + randomPosition * dashRange;
-        }
-        else if (Mathf.Distance(Core.instance.gameObject.transform.globalPosition, gameObject.transform.globalPosition) < detectionRange)
-        {
-            float angle = randomAngle.Next(-90, 90);
-
-            //Debug.Log("Un pasito palante, María: " + angle.ToString());
-
-            Vector3 direction = Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition;
-
-            Vector3 randomPosition = new Vector3((float)(Math.Cos(angle * Mathf.Deg2RRad) * direction.normalized.x - Math.Sin(angle * Mathf.Deg2RRad) * direction.normalized.z),
-                                                 gameObject.transform.globalPosition.y,
-                                                 (float)(Math.Sin(angle * Mathf.Deg2RRad) * direction.normalized.x + Math.Cos(angle * Mathf.Deg2RRad) * direction.normalized.z));
-
-            return gameObject.transform.localPosition + randomPosition * dashRange;
-        }
-
-        return null;
     }
 }

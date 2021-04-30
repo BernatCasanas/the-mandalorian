@@ -16,7 +16,6 @@ public class Skill_Tree_Node : DiamondComponent
     public int unlockedButtonHovered = 0;
     public int unlockedButtonUnhovered = 0;
 
-    public int lockedButtonPressed = 0;
     public int lockedButtonHovered = 0;
     public int lockedButtonUnhovered = 0;
 
