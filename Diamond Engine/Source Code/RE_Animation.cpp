@@ -30,11 +30,12 @@ bool ResourceAnimation::UnloadFromMemory()
 
 uint ResourceAnimation::SaveCustomFormat(ResourceAnimation* animation, char** buffer)
 {
-	uint size = 
+	uint size =
 		32 //name size 
-		+ sizeof(float) //duration
-		+ sizeof(float) //ticks per second
-		+ sizeof(uint); //channels size
+		+ sizeof(float)  //duration
+		+ sizeof(float)  //ticks per second
+		+ sizeof(bool)   //loop
+		+ sizeof(uint);  //channels size
 
 	//Channels size 
 	std::map<std::string, Channel>::const_iterator it;
@@ -56,6 +57,10 @@ uint ResourceAnimation::SaveCustomFormat(ResourceAnimation* animation, char** bu
 	//Ticks per second
 	memcpy(cursor, &animation->ticksPerSecond, sizeof(float));
 	cursor += sizeof(float);
+
+	//loop
+	memcpy(cursor, &animation->loop, sizeof(bool)); 
+	cursor += sizeof(bool);
 
 	//Channels number
 	uint channelsSize = animation->channels.size();
@@ -89,6 +94,10 @@ void ResourceAnimation::LoadCustomFormat(const char* path)
 	//Fills Ticks per second
 	memcpy(&ticksPerSecond, cursor, sizeof(float));
 	cursor += sizeof(float);
+	
+	//loop
+	memcpy(&loop, cursor, sizeof(bool)); //Comment this to load animations the old way
+	cursor += sizeof(bool);
 
 	//Fills Channels number
 	uint channelsSize = 0;

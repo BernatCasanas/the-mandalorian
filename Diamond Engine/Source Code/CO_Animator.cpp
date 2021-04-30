@@ -64,11 +64,7 @@ void C_Animator::Start()
 
 	if (animations.size() > 0)
 	{
-		if (animations.find("Idle") != animations.end())
-		{
-			Play("Idle");
-		}
-		else if (currentAnimation == nullptr)
+		if (currentAnimation == nullptr)
 		{
 			Play(animations.begin()->first, defaultBlend);
 		}
@@ -131,12 +127,6 @@ void C_Animator::Update()
 			if (currentAnimation && currentTimeAnimation >= currentAnimation->duration) {
 				if (currentAnimation->loop == true) {
 					time = 0.0f;
-				}
-				else {
-					if (animations.size() > 0) {
-						Play(animations.begin()->first, defaultBlend);
-					}
-					return;
 				}
 			}
 			UpdateChannelsTransform(currentAnimation, blendRatio > 0.0f ? previousAnimation : nullptr, blendRatio);
@@ -362,8 +352,11 @@ bool C_Animator::OnEditor()
 
 			ImGui::SameLine();
 			ImGui::PushID(it->second->GetUID());
-			if (ImGui::Button("Remove Animation")) {
+			if (ImGui::Button("Remove Animation")) 
+			{
 				animation_to_remove = it->first;
+				if (it->second == currentAnimation)
+					currentAnimation = nullptr;
 			}
 			ImGui::PopID();
 		}
@@ -601,7 +594,6 @@ std::string C_Animator::GetCurrentAnimation()
 		return currentAnimation->animationName;
 	}
 	return "";
-
 }
 
 void C_Animator::AddAnimation(ResourceAnimation* anim)
