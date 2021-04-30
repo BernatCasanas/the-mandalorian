@@ -325,6 +325,20 @@ void C_RigidBody::LoadData(DEConfig& nObj)
 
 }
 
+void C_RigidBody::Enable()
+{
+	Component::Enable();
+	rigid_dynamic->setActorFlag(physx::PxActorFlag::eDISABLE_SIMULATION, false);
+
+}
+
+void C_RigidBody::Disable()
+{
+	Component::Disable();
+	rigid_dynamic->setActorFlag(physx::PxActorFlag::eDISABLE_SIMULATION, true);
+
+}
+
 #ifndef STANDALONE
 bool C_RigidBody::OnEditor()
 {
