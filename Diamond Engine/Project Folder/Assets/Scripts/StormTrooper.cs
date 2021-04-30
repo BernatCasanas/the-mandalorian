@@ -77,6 +77,7 @@ public class StormTrooper : Enemy
     private int shotSequences = 0;
     public int maxSequences = 2;
     private bool shooting = false;
+    private bool unableToShoot = false;
 
     //force
     public float forcePushMod = 1;
@@ -508,25 +509,39 @@ public class StormTrooper : Enemy
 
     private void UpdateShoot()
     {
+        if (unableToShoot)
+        {
+            agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
+            agent.MoveToCalculatedPos(runningSpeed);
+            LookAt(agent.GetDestination());
+            if (PlayerIsShootable())
+            {
+                unableToShoot = false;
+                statesTimer = timeBewteenStates;
+            }
+            else return;
+        }
+        else
+        {
+            Animator.Play(gameObject, "ST_Idle");
+        }
+
+
         if (statesTimer > 0.0f)
         {
             statesTimer -= Time.deltaTime;
 
             if (statesTimer <= 0.0f)
             {
-                //if(!PlayerIsShootable())
-                //{
-                //    inputsList.Add(INPUT.IN_FIND_AIM);
-                //    statesTimer = 0.0f;
-                //    return;
-                //}
+
 
                 //First Timer
                 if (shotSequences == 0)
                 {
                     //First Shot
-                    Shoot();
+                    if (!Shoot()) return;
                     shotTimer = timeBewteenShots;
+                    shooting = true;
                 }
                 //Second Timer
                 else
@@ -534,6 +549,7 @@ public class StormTrooper : Enemy
                     //Reboot times
                     shotTimes = 0;
                     shotSequences = 0;
+                    shooting = false;
                     inputsList.Add(INPUT.IN_RUN);
                 }
             }
@@ -541,21 +557,14 @@ public class StormTrooper : Enemy
 
         if (shotTimer > 0.0f)
         {
-            //if (!PlayerIsShootable())
-            //{
-            //    inputsList.Add(INPUT.IN_FIND_AIM);
-            //    shotTimes = 0;
-            //    shotTimer = 0.0f;
-            //    shotSequences = 0;
-            //    sequenceTimer = 0.0f;
-            //    return;
-            //}
 
             shotTimer -= Time.deltaTime;
 
             if (shotTimer <= 0.0f)
             {
-                Shoot();
+                shooting = true;
+
+                if (!Shoot()) return;
 
                 if (shotTimes >= maxShots)
                 {
@@ -586,7 +595,7 @@ public class StormTrooper : Enemy
 
             if (sequenceTimer <= 0.0f)
             {
-                Shoot();
+                if (!Shoot()) return;
                 shotTimer = timeBewteenShots;
                 shooting = true;
             }
@@ -597,14 +606,26 @@ public class StormTrooper : Enemy
 
     }
 
-    private void Shoot()
+    private bool Shoot()
     {
+        if (!PlayerIsShootable())
+        {
+            unableToShoot = true;
+            shotTimes = 0;
+            shotTimer = 0.0f;
+            shotSequences = 0;
+            sequenceTimer = 0.0f;
+            Animator.Play(gameObject, "ST_Run");
+            return false;
+        }
+
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         bullet.GetComponent<BH_Bullet>().damage = damage;
 
         Animator.Play(gameObject, "ST_Shoot");
         Audio.PlayAudio(gameObject, "PLay_Blaster_Stormtrooper");
         shotTimes++;
+        return true;
     }
     private void PlayerDetected()
     {
@@ -706,18 +727,21 @@ public class StormTrooper : Enemy
 
     private bool PlayerIsShootable()
     {
-        if (player != null)
-        {
-            float distance = 0.0f;
-            float hitDistance = 0.0f;
-            GameObject raycastHit = InternalCalls.RayCast(gameObject.transform.globalPosition, player.transform.globalPosition, distance, ref hitDistance);
+        float distance = detectionRange;
+        float hitDistance = detectionRange;
+        GameObject raycastHit = InternalCalls.RayCast(shootPoint.transform.globalPosition, (Core.instance.gameObject.transform.globalPosition-shootPoint.transform.globalPosition).normalized, distance, ref hitDistance);
 
-            if (raycastHit != null && raycastHit == player)
+        if (raycastHit != null)
+        {
+            if (raycastHit.CompareTag("Player"))
             {
+                Debug.Log("RayCast Player True with tag");
                 return true;
             }
-        }
 
+        }
+        
+        Debug.Log("RayCast Player False");
         return false;
     }
 
