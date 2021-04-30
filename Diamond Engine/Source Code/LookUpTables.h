@@ -8,13 +8,31 @@ namespace LookUpTables
 		LookUpTable(int resolution);
 		~LookUpTable();
 
-		float GetSinOf(float radAngle)const;
-
-	private:
-		int sineLUTResolution;
-		float resolutionValue;
-		std::pair<float, float>* sineLUT;
+	protected:
 	};
 
-	static const LookUpTable myLookUpTable = LookUpTable(360);
+	class GeometricLUT : LookUpTable
+	{
+		public:
+			GeometricLUT(int resolution);
+			~GeometricLUT();
+
+			float GetSinOf(float radAngle)const;
+			float GetCosOf(float radAngle)const;
+
+		private:
+			float resolutionValue;
+			int LUTResolution;
+			std::pair<float, float>* sineLUT;
+			std::pair<float, float>* cosLUT;
+	};
+
+	static const GeometricLUT myLookUpTable = GeometricLUT(360);
+
+	class PowerLUT
+	{
+	public: 
+		PowerLUT();
+		~PowerLUT();
+	};
 }
