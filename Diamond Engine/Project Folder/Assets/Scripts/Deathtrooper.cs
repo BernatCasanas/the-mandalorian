@@ -507,16 +507,8 @@ public class Deathtrooper : Enemy
             Counter.allEnemiesDead = true;
         }
 
-        //Created dropped coins
-        var rand = new Random();
-        int droppedCoins = rand.Next(1, 4);
-        for (int i = 0; i < droppedCoins; i++)
-        {
-            Vector3 pos = gameObject.transform.globalPosition;
-            pos.x += rand.Next(-200, 201) / 100;
-            pos.z += rand.Next(-200, 201) / 100;
-            InternalCalls.CreatePrefab(coinDropPath, pos, Quaternion.identity, new Vector3(0.07f, 0.07f, 0.07f));
-        }
+        DropCoins();
+
         Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
         InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
         InternalCalls.Destroy(gameObject);
