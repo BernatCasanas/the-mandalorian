@@ -93,7 +93,7 @@ private:
 	Timer delay;
 	std::string emitterName;
 	char emitterNameChars[50];
-	bool relative;
+	bool not_relative;
 	float3 position;
 };
 
