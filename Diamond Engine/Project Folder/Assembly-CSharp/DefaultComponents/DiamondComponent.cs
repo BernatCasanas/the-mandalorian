@@ -54,7 +54,7 @@ namespace DiamondEngine
             { typeof(BoxCollider), ComponentType.BOXCOLLIDER},
             { typeof(MeshCollider), ComponentType.MESHCOLLIDER},
             { typeof(SphereCollider), ComponentType.SPHERECOLLIDER},
-             { typeof(Rigidbody), ComponentType.RIGIDBODY},
+            { typeof(Rigidbody), ComponentType.RIGIDBODY},
         };
 
         public DiamondComponent()
