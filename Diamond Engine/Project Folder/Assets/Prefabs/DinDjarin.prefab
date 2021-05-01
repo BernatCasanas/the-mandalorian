@@ -137,7 +137,9 @@
                     "dustObj": 448208244,
                     "muzzleObj": 6421373,
                     "jetpackObj": 1973626368,
-                    "impactObj": 190961330
+                    "impactObj": 190961330,
+                    "grenade_not": 1143011820,
+                    "sniper_not": 1735369742
                 },
                 {
                     "Type": 25,
@@ -495,7 +497,7 @@
                 0,
                 0,
                 -0.0073059904389083385,
-                0.99997329711914062
+                0.99997329711914063
             ],
             "Scale": [
                 1,
@@ -1609,7 +1611,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0.49832534790039062,
+                0.49832534790039063,
                 2.0816681711721685e-17,
                 1.3898392876873153e-17
             ],
@@ -2017,7 +2019,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -1.8636245727539062,
+                -1.8636245727539063,
                 0.046333789825439453,
                 -0.77125072479248047
             ],
@@ -2051,7 +2053,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -1.8636245727539062,
+                -1.8636245727539063,
                 0.046333789825439453,
                 0.86050128936767578
             ],
@@ -2085,7 +2087,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0.76593399047851562,
+                0.76593399047851563,
                 0.046333789825439453,
                 0.86050128936767578
             ],
@@ -2154,7 +2156,7 @@
             "Static": false,
             "Position": [
                 -0.0040745735168457031,
-                -0.0062532424926757812,
+                -0.0062532424926757813,
                 -0.058134078979492188
             ],
             "Rotation": [
@@ -2211,7 +2213,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -2404,7 +2406,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -2562,10 +2564,10 @@
                 -0.19471836090087891
             ],
             "Rotation": [
-                0.19392229616641998,
-                -2.7353405651631135e-10,
-                1.3877789462175682e-17,
-                0.98101699352264404
+                0.1939222663640976,
+                -2.7353402876073574e-10,
+                1.3877787807814457e-17,
+                0.98101687431335449
             ],
             "Scale": [
                 1,
@@ -2615,7 +2617,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -3062,7 +3064,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -3259,7 +3261,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -0.0065126419067382812,
+                -0.0065126419067382813,
                 0.71350276470184326,
                 -0.054382085800170898
             ],
@@ -3275,6 +3277,244 @@
                 1.0000017881393433
             ],
             "PrefabObjects": []
+        },
+        {
+            "name": "Grenade not",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1845832607,
+            "ParentUID": 47750865,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                2.43743896484375,
+                0
+            ],
+            "Rotation": [
+                -6.1532709594303014e-08,
+                -0.77161753177642822,
+                -6.1532709594303014e-08,
+                -0.63608676195144653
+            ],
+            "Scale": [
+                1.0000015497207642,
+                1,
+                1.0000015497207642
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Grenade",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1143011820,
+            "ParentUID": 1845832607,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                1.7763568394002505e-15,
+                3.7252902984619141e-09,
+                -3.5527136788005009e-15,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 0.29899999499320984,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/732013069.dds",
+                            "texUID": 732013069,
+                            "paEmitterName": "Grenade",
+                            "paLifeTime": [
+                                0.40000000596046448,
+                                0.40000000596046448
+                            ],
+                            "paSize": [
+                                0.10000000149011612,
+                                0.10000000149011612
+                            ],
+                            "paColor": [
+                                0.9961240291595459,
+                                0.99612325429916382,
+                                0.99611407518386841,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0.20000000298023224,
+                                    "paSizeOLTEndSize": 0.5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "Sniper not",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 471896988,
+            "ParentUID": 47750865,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                -6.1532709594303014e-08,
+                -0.77161753177642822,
+                -6.1532709594303014e-08,
+                -0.63608676195144653
+            ],
+            "Scale": [
+                1.0000015497207642,
+                1,
+                1.0000015497207642
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Sniper",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1735369742,
+            "ParentUID": 471896988,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                -2.384185791015625e-07,
+                -4.76837158203125e-07
+            ],
+            "Rotation": [
+                2.6645352591003757e-15,
+                3.7252902984619141e-09,
+                -7.1054273576010019e-15,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 0.44800001382827759,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1547449892.dds",
+                            "texUID": 1547449892,
+                            "paEmitterName": "Sniper",
+                            "paLifeTime": [
+                                0.5,
+                                0.5
+                            ],
+                            "paSize": [
+                                0.10000000149011612,
+                                0.10000000149011612
+                            ],
+                            "paColor": [
+                                0.9961240291595459,
+                                0.99612325429916382,
+                                0.99611407518386841,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0.20000000298023224,
+                                    "paSizeOLTEndSize": 0.5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
         }
     ]
 }

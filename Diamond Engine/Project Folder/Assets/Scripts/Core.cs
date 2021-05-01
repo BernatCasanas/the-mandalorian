@@ -45,7 +45,9 @@ public class Core : DiamondComponent
         DUST,
         MUZZLE,
         JETPACK,
-        IMPACT
+        IMPACT,
+        SNIPER,
+        GRENADE
     }
 
     public GameObject shootPoint = null;
@@ -119,6 +121,7 @@ public class Core : DiamondComponent
     //Grenades
     private static float grenadesFireRate;
     private float grenadesFireRateTimer = 0.0f;
+    private bool grenade_reloading = false;
 
     private Material grenadeCooldownIcon = null;
     private Material sniperBullet1 = null;
@@ -486,6 +489,11 @@ public class Core : DiamondComponent
             grenadeCooldownIcon.SetFloatUniform("currentGrenadeCooldown", grenadesFireRate - grenadesFireRateTimer);
             grenadeCooldownIcon.SetFloatUniform("maxGrenadeCooldown", grenadesFireRate);
         }
+        else if (grenade_reloading && grenadesFireRateTimer < 0.0f)
+        {
+            PlayParticles(PARTICLES.GRENADE);
+            grenade_reloading = false;
+        }
 
     }
 
@@ -843,6 +851,7 @@ public class Core : DiamondComponent
     {
         Animator.Play(gameObject, "Shoot", gadgetShootSkill);
         gadgetShootTimer = gadgetFireRate;
+        grenade_reloading = true;
 
         ReducePrimaryWeaponHeat(onGrenadeHeatReduction);
     }
@@ -1307,6 +1316,7 @@ public class Core : DiamondComponent
             if (sniperRechargeTimer <= ((numberOfBullets - currentBullets - 1) * bulletRechargeTime))
             {
                 currentBullets++;
+                PlayParticles(PARTICLES.SNIPER);
             }
         }
 
@@ -1504,7 +1514,30 @@ public class Core : DiamondComponent
                 else
                     Debug.Log("Component Particles not found");
                 break;
-
+            case PARTICLES.GRENADE:
+                if (myParticles != null)
+                {
+                    particle = myParticles.grenade;
+                    if (particle != null)
+                        particle.Play();
+                    else
+                        Debug.Log("Grenade particle not found");
+                }
+                else
+                    Debug.Log("Component Particles not found");
+                break;
+            case PARTICLES.SNIPER:
+                if (myParticles != null)
+                {
+                    particle = myParticles.sniper;
+                    if (particle != null)
+                        particle.Play();
+                    else
+                        Debug.Log("Sniper particle not found");
+                }
+                else
+                    Debug.Log("Component Particles not found");
+                break;
         }
     }
 
