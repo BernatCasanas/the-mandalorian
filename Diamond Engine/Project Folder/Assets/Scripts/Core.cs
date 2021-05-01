@@ -229,6 +229,7 @@ public class Core : DiamondComponent
         deathZone = 15000;
 
         currentState = STATE.IDLE;
+        Animator.Play(gameObject, "Idle");
 
         lockInputs = false;
 

@@ -523,7 +523,7 @@ public class StormTrooper : Enemy
         }
         else
         {
-            Animator.Play(gameObject, "ST_Idle");
+            //Animator.Play(gameObject, "ST_Idle");
         }
 
 
