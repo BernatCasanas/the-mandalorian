@@ -64,11 +64,7 @@ void C_Animator::Start()
 
 	if (animations.size() > 0)
 	{
-		if (animations.find("Idle") != animations.end())
-		{
-			Play("Idle");
-		}
-		else if (currentAnimation == nullptr)
+		if (currentAnimation == nullptr)
 		{
 			Play(animations.begin()->first, defaultBlend);
 		}
@@ -132,12 +128,6 @@ void C_Animator::Update()
 				if (currentAnimation->loop == true) {
 					time = 0.0f;
 				}
-				else {
-					if (animations.size() > 0) {
-						Play(animations.begin()->first, defaultBlend);
-					}
-					return;
-				}
 			}
 			UpdateChannelsTransform(currentAnimation, blendRatio > 0.0f ? previousAnimation : nullptr, blendRatio);
 		}
@@ -157,7 +147,7 @@ void C_Animator::SaveData(JSON_Object* nObj)
 	{
 		if (meshRendererObject->prefabReference != 0u)
 			DEJson::WriteInt(nObj, "MeshRendererUID", meshRendererObject->prefabReference);
-		else 
+		else
 			DEJson::WriteInt(nObj, "MeshRendererUID", meshRendererObject->UID);
 	}
 
@@ -197,7 +187,7 @@ void C_Animator::OnRecursiveUIDChange(std::map<uint, GameObject*> gameObjects)
 	{
 		GameObject* _rootBone = nullptr;
 		std::map<uint, GameObject*>::iterator boneIt = gameObjects.begin();
-		for (boneIt; boneIt !=  gameObjects.end(); ++boneIt)
+		for (boneIt; boneIt != gameObjects.end(); ++boneIt)
 		{
 			if (boneIt->second->UID == rootBoneUID)
 				rootBone = _rootBone;
@@ -209,7 +199,7 @@ void C_Animator::OnRecursiveUIDChange(std::map<uint, GameObject*> gameObjects)
 
 			if (boneIt != gameObjects.end())
 				rootBone = boneIt->second;
-		
+
 		}
 
 		//std::map<uint, GameObject*>::iterator boneIt = gameObjects.find(rootBoneUID);
@@ -227,7 +217,7 @@ void C_Animator::OnRecursiveUIDChange(std::map<uint, GameObject*> gameObjects)
 
 				if (meshRendererIt == gameObjects.end())
 				{
-					for(meshRendererIt = gameObjects.begin();  meshRendererIt != gameObjects.end(); ++meshRendererIt)
+					for (meshRendererIt = gameObjects.begin(); meshRendererIt != gameObjects.end(); ++meshRendererIt)
 					{
 						if (meshRendererIt->second->UID == meshRendererUID)
 						{
@@ -362,8 +352,11 @@ bool C_Animator::OnEditor()
 
 			ImGui::SameLine();
 			ImGui::PushID(it->second->GetUID());
-			if (ImGui::Button("Remove Animation")) {
+			if (ImGui::Button("Remove Animation"))
+			{
 				animation_to_remove = it->first;
+				if (it->second == currentAnimation)
+					currentAnimation = nullptr;
 			}
 			ImGui::PopID();
 		}
@@ -401,6 +394,40 @@ bool C_Animator::OnEditor()
 					AddAnimation(droppedAnimation);
 				}
 
+			}
+
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("_MODEL"))
+			{
+				std::string* path = (std::string*)payload->Data;
+				std::string metaPath = (*path) + ".meta";
+
+
+				JSON_Value* metaFile = json_parse_file(metaPath.c_str());
+
+				if (metaFile != NULL)
+				{
+					JSON_Object* metaObj = json_value_get_object(metaFile);
+					JSON_Array* animations = json_object_get_array(metaObj, "Animations Inside");
+
+					if (animations != nullptr && json_array_get_count(animations) > 0)
+					{
+						int animationID = json_array_get_number(animations, 0);
+
+						if (animationID != 0)
+						{
+							ResourceAnimation* droppedAnimation = dynamic_cast<ResourceAnimation*>(EngineExternal->moduleResources->RequestResource(animationID, Resource::Type::ANIMATION));
+
+							if (droppedAnimation != nullptr)
+								AddAnimation(droppedAnimation);
+						}
+						else
+							LOG(LogType::L_ERROR, "Model has no animations");
+					}
+					else
+						LOG(LogType::L_ERROR, "Couldn't add model animation");
+
+					json_value_free(metaFile);
+				}
 			}
 			ImGui::EndDragDropTarget();
 		}
@@ -601,7 +628,6 @@ std::string C_Animator::GetCurrentAnimation()
 		return currentAnimation->animationName;
 	}
 	return "";
-
 }
 
 void C_Animator::AddAnimation(ResourceAnimation* anim)

@@ -11,7 +11,7 @@
 #include "MO_Input.h"
 #include"AssetDir.h"
 
-W_Hierarchy::W_Hierarchy(M_Scene* _scene) : Window(), cSceneReference(_scene), dropTarget(nullptr)
+W_Hierarchy::W_Hierarchy(M_Scene* _scene) : Window(), cSceneReference(_scene), dropTarget(nullptr), openAll(false)
 {
 	name = "Hierarchy";
 }
@@ -108,9 +108,15 @@ void W_Hierarchy::DrawGameObjectsTree(GameObject* node, bool drawAsDisabled)
 
 	ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow;// | ImGuiTreeNodeFlags_DefaultOpen;
 
+	if (openAll == true)
+	{
+		flags |= ImGuiTreeNodeFlags_::ImGuiTreeNodeFlags_DefaultOpen;
+	}
+
 	if (node->children.size() == 0)
 		flags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen;
 
+	//if (EngineExternal->moduleEditor->IsGOSelected(node))
 	if (node == EngineExternal->moduleEditor->GetSelectedGO())
 		flags |= ImGuiTreeNodeFlags_::ImGuiTreeNodeFlags_Selected;
 
@@ -141,7 +147,15 @@ void W_Hierarchy::DrawGameObjectsTree(GameObject* node, bool drawAsDisabled)
 
 		if (ImGui::IsItemHovered() && ImGui::IsMouseReleased(ImGuiMouseButton_::ImGuiMouseButton_Left))
 		{
+			if (EngineExternal->moduleInput->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT)
+				openAll = !openAll;
+
 			EngineExternal->moduleEditor->SetSelectedGO(node);
+			/*if (EngineExternal->moduleInput->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
+				EngineExternal->moduleEditor->AddSelectedGameObject(node);
+			else
+				EngineExternal->moduleEditor->SetSelectedGO(node);*/
+			
 			if (EngineExternal->moduleEditor->GetSelectedAsset() != nullptr)
 				EngineExternal->moduleEditor->SetSelectedAsset(nullptr);
 		}
@@ -166,7 +180,6 @@ void W_Hierarchy::DrawGameObjectsTree(GameObject* node, bool drawAsDisabled)
 
 	if (node->showChildren == true)
 	{
-
 		for (unsigned int i = 0; i < node->children.size(); i++)
 		{
 			DrawGameObjectsTree(node->children[i], drawAsDisabled);

@@ -25,6 +25,7 @@ private:
 	void DrawGameObjectsTree(GameObject* node, bool drawAsDisabled);
 
 	M_Scene* cSceneReference;
+	bool openAll;
 };
 
 #endif //__W_HIERARCHY_H__

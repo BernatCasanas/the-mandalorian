@@ -47,6 +47,7 @@ public:
 #endif // !STANDALONE
 	void LoadScene(const char* name);
 
+	void SetCurrentScene(std::string& scenePath);
 	void SetGameCamera(C_Camera* cam);
 	
 	void CreateGameCamera(const char* name);
