@@ -622,6 +622,11 @@ void C_Animator::Resume()
 	active = true;
 }
 
+void C_Animator::SetSpeed(float speed)
+{
+	animSpeed = speed;
+}
+
 std::string C_Animator::GetCurrentAnimation()
 {
 	if (currentAnimation != nullptr) {

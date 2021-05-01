@@ -231,6 +231,7 @@ bool M_MonoManager::Init()
 #pragma region Animator
 	mono_add_internal_call("DiamondEngine.Animator::Play", Play);
 	mono_add_internal_call("DiamondEngine.Animator::Pause", Pause);
+	mono_add_internal_call("DiamondEngine.Animator::SetSpeed", SetSpeed);
 	mono_add_internal_call("DiamondEngine.Animator::Resume", Resume);
 	mono_add_internal_call("DiamondEngine.Animator::GetCurrentAnimation", GetCurrentAnimation);
 	mono_add_internal_call("DiamondEngine.Animator::GetAnimationDuration", GetAnimationDuration);
