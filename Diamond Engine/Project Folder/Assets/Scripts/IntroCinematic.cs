@@ -33,13 +33,13 @@ public class IntroCinematic : DiamondComponent
     Quaternion auxCameraRotation = null;
 
     GameObject[] pointArray = null;
-    float[] speedArray = new float[] { 0.5f, 2.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };    // Adapt values; wouldn't it be easier to just calculate the speed based on how long we need that scene to be?
+    float[] speedArray = new float[] { 1.5f, 2.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };    // Adapt values; wouldn't it be easier to just calculate the speed based on how long we need that scene to be?
     float[] timerArray = null;    // Why am I using timer approach? Basically, the triggers of each camera switch are animation ends, positions reached and timers. Everything is convertable to time, but the other two can't be converted universally
     int arrayCount = -1;
 
     public void Awake()
     {
-/*        if (Counter.firstRun)
+        if (Counter.firstRun)
         {
             auxCameraRotation = cameraObject.transform.localRotation;
             CameraManager.SetCameraPerspective(cameraObject);
@@ -55,13 +55,13 @@ public class IntroCinematic : DiamondComponent
         else
         {
             EndCinematic();
-        }*/
+        }
     }
 
     public void Update()
     {
         // We should have a way to skip the cinematic :/
-/*        if (toGoPosition != null)
+        if (toGoPosition != null)
         {
             cameraAuxPosition += (toGoPosition - cameraAuxPosition).normalized * Time.deltaTime * currentSpeed;
             cameraObject.transform.localRotation = Quaternion.Slerp(cameraObject.transform.localRotation, toRotateQuaternion, 0.25f * Time.deltaTime);
@@ -73,7 +73,7 @@ public class IntroCinematic : DiamondComponent
         {
             ManageCamera();
             UpdateValues();
-        }*/
+        }
     }
 
     public void UpdateValues()
