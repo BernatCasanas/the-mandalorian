@@ -43,7 +43,9 @@ Emitter::Emitter() :
 	delaying(false),
 	maxDelay(0.0f),
 	emitterName(""),
-	lastTimeSinceParticle(0.0f)
+	lastTimeSinceParticle(0.0f),
+	relative(false),
+	position(float3(0.0f))
 {
 	memset(particlesLifeTime, 0.1f, sizeof(particlesLifeTime));
 	memset(particlesSize, 1.0f, sizeof(particlesSize));
@@ -132,6 +134,8 @@ void Emitter::Update(float dt, bool systemActive)
 
 	if (delaying == false)
 	{
+		position = objTransform->globalTransform.TranslatePart();
+		float3 pos;
 		for (int i = 0; i < myEffects.size(); ++i)
 		{
 			myEffects[i]->PrepareEffect();
@@ -151,8 +155,23 @@ void Emitter::Update(float dt, bool systemActive)
 					myEffects[j]->Update(myParticles[i], dt);
 				}
 
-				myParticles[i].speed += myParticles[i].accel * dt;
-				myParticles[i].pos += myParticles[i].speed * dt;
+				if (relative)
+				{
+					//Calculate relative position
+					pos = position + myParticles[i].relativePos;
+					//Assign velocity and acceleration
+					myParticles[i].speed += myParticles[i].accel * dt;
+					pos += myParticles[i].speed * dt;
+					//Save position and new relative position
+					myParticles[i].pos = pos;
+					myParticles[i].relativePos = myParticles[i].pos - position;
+				}
+				else
+				{
+					myParticles[i].speed += myParticles[i].accel * dt;
+					myParticles[i].pos += myParticles[i].speed * dt;
+					myParticles[i].relativePos = myParticles[i].pos - position;
+				}
 			}
 		}
 	}
@@ -265,6 +284,7 @@ void Emitter::OnEditor(int emitterIndex)
 		{
 			toDelete = true;
 		}
+		if (ImGui::Checkbox("Particles relative", &relative)) 
 
 		ImGui::Spacing();
 		ImGui::Spacing();
@@ -550,6 +570,7 @@ void Emitter::CreateParticles(unsigned int particlesToAdd)
 		{
 			myEffects[j]->Spawn(myParticles[i]);
 		}
+		myParticles[i].relativePos = myParticles[i].pos - startingPos;
 	}
 }
 
@@ -590,6 +611,7 @@ void Emitter::ThrowParticles(float dt)
 			{
 				myEffects[j]->Spawn(myParticles[unusedIndex]);
 			}
+			myParticles[i].relativePos = myParticles[i].pos - startingPos;
 		}
 	}
 }

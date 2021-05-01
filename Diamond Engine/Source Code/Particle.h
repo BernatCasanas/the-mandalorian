@@ -12,6 +12,7 @@ struct Particle
 	float3 speed;
 	float3 accel;
 	float4 color;//RGBA
+	float3 relativePos;
 
 	float rotation;//DEGREES OR RAD? TODO CHECK
 	float rotationSpeed;
