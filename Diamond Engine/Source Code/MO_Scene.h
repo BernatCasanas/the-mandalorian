@@ -29,6 +29,7 @@ public:
 	bool CleanUp() override;
 
 	GameObject* GetGOFromUID(GameObject* n, uint sUID);
+	GameObject* GetGOFromPrefabReference(GameObject* n, uint prefabReference);
 	GameObject* CreateGameObject(const char* name, GameObject* parent, int _uid = -1);
 	void GetAllGameObjects(std::vector<GameObject*>& gameObjects);
 	void ReplaceScriptsReferences(uint oldUID, uint newUID);

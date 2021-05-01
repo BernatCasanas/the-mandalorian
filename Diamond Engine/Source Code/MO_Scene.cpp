@@ -227,6 +227,22 @@ GameObject* M_Scene::GetGOFromUID(GameObject* n, uint sUID)
 	return nullptr;
 }
 
+GameObject* M_Scene::GetGOFromPrefabReference(GameObject* n, uint prefabReference)
+{
+	if (n->prefabReference == prefabReference)
+		return n;
+
+	GameObject* ret = nullptr;
+	for (size_t i = 0; i < n->children.size(); i++)
+	{
+		ret = GetGOFromPrefabReference(n->children[i], prefabReference);
+		if (ret != nullptr)
+			return ret;
+	}
+
+	return nullptr;
+}
+
 GameObject* M_Scene::CreateGameObject(const char* name, GameObject* parent, int _uid)
 {
 	GameObject* gm = new GameObject(name, parent, _uid);
@@ -318,10 +334,15 @@ void M_Scene::LoadNavigationData()
 		auto range = navigationReferenceMap.equal_range(i->first);
 
 		GameObject* ref = GetGOFromUID(EngineExternal->moduleScene->root, i->first);
+		GameObject* prefabRef = GetGOFromPrefabReference(EngineExternal->moduleScene->root, i->first);
+
 		// Now render out that whole range
 		for (auto d = range.first; d != range.second; ++d)
 		{
-			d->second->referenceGO = ref;
+			if(prefabRef != nullptr)
+				d->second->referenceGO = prefabRef;
+			else
+				d->second->referenceGO = ref;
 		}
 	}
 
