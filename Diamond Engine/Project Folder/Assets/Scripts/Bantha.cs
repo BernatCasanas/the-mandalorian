@@ -89,6 +89,8 @@ public class Bantha : Enemy
 
     public void Awake()
     {
+        InitEntity(ENTITY_TYPE.BANTHA);
+
         StartIdle();
         agent = gameObject.GetComponent<NavMeshAgent>();
         targetPosition = null;
@@ -109,6 +111,9 @@ public class Bantha : Enemy
             Debug.Log("Null player");
             player = Core.instance.gameObject;
         }
+
+        myDeltaTime = Time.deltaTime * speedMult;
+        UpdateStatuses();
 
         #region STATE MACHINE
 

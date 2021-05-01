@@ -2,7 +2,7 @@ using DiamondEngine;
 using System;
 using System.Collections.Generic;
 
-public class Core : DiamondComponent
+public class Core : Entity
 {
     public static Core instance;
 
@@ -71,6 +71,7 @@ public class Core : DiamondComponent
     private double angle = 0.0f;
     private float runTime = 0.0f;
     private float dustTime = 0.0f;
+    private float startRunningMultSpd = 0f;
 
     //Skill
     private bool skill_damageReductionDashActive = false;
@@ -237,6 +238,13 @@ public class Core : DiamondComponent
         mySpawnPos = new Vector3(gameObject.transform.globalPosition.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z);
         runTime = Animator.GetAnimationDuration(gameObject, "Run") / 2;
         #endregion
+
+        #region STATUS_SYSTEM
+
+        InitEntity(ENTITY_TYPE.PLAYER);
+
+        #endregion
+
     }
 
     public void Update()
@@ -278,11 +286,15 @@ public class Core : DiamondComponent
             if (lockInputsScene != null)
                 lockAttacks = true;
 
+            //SkillDataTree -> LoadStaticBuffs();
+
             //Start();
             scriptStart = false;
         }
 
         #region UPDATE STUFF
+
+        myDeltaTime = Time.deltaTime * speedMult;
 
         if (Input.GetKey(DEKeyCode.C) == KeyState.KEY_DOWN)
         {
@@ -294,7 +306,24 @@ public class Core : DiamondComponent
             }
         }
 
+        //if (Input.GetKey(DEKeyCode.Z) == KeyState.KEY_DOWN)
+        //{
+        //    this.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.25f, 60f);
+        //}
+
+        //if (Input.GetKey(DEKeyCode.X) == KeyState.KEY_DOWN)
+        //{
+        //    this.AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.75f, 60f);
+        //}
+
+        //if (Input.GetKey(DEKeyCode.D) == KeyState.KEY_DOWN)
+        //{
+        //    this.ClearStatuses();
+        //}
+
         UpdateControllerInputs();
+
+        UpdateStatuses();
 
         #endregion
 
@@ -316,7 +345,7 @@ public class Core : DiamondComponent
     {
         if (dashTimer > 0)
         {
-            dashTimer -= Time.deltaTime;
+            dashTimer -= myDeltaTime;
 
             if (dashTimer <= 0)
             {
@@ -354,8 +383,8 @@ public class Core : DiamondComponent
 
         if (dashCDTimer > 0)
         {
-            dashCDTimer -= Time.deltaTime;
-            betweenDashesCDTimer -= Time.deltaTime;
+            dashCDTimer -= myDeltaTime;
+            betweenDashesCDTimer -= myDeltaTime;
 
             if (dashCDTimer <= 0f)
                 currentDashes = maxDashNumber;
@@ -367,7 +396,7 @@ public class Core : DiamondComponent
 
         if (shootingTimer > 0 || stopShootingTime <= 0f)
         {
-            shootingTimer -= Time.deltaTime;
+            shootingTimer -= myDeltaTime;
 
             if (shootingTimer <= 0 && stopShootingTime <= 0f)
             {
@@ -378,7 +407,7 @@ public class Core : DiamondComponent
 
         if (gadgetShootTimer > 0)
         {
-            gadgetShootTimer -= Time.deltaTime;
+            gadgetShootTimer -= myDeltaTime;
 
             if (gadgetShootTimer <= 0)
                 inputsList.Add(INPUT.IN_GADGET_SHOOT_END);
@@ -386,7 +415,7 @@ public class Core : DiamondComponent
 
         if (skill_damageReductionDashActive && skill_damageReductionDashTimer > 0)
         {
-            skill_damageReductionDashTimer -= Time.deltaTime;
+            skill_damageReductionDashTimer -= myDeltaTime;
 
             if (skill_damageReductionDashTimer <= 0)
                 skill_damageReductionDashActive = false;
@@ -394,15 +423,15 @@ public class Core : DiamondComponent
 
         if (skill_groguIncreaseDamageActive && skill_groguIncreaseDamageTimer > 0)
         {
-            skill_groguIncreaseDamageTimer -= Time.deltaTime;
+            skill_groguIncreaseDamageTimer -= myDeltaTime;
 
             if (skill_groguIncreaseDamageTimer <= 0)
                 skill_groguIncreaseDamageActive = false;
         }
 
-        grenadesFireRateTimer -= Time.deltaTime;
-        timeOfRoom += Time.deltaTime;
-        timeSinceLastDash += Time.deltaTime;
+        grenadesFireRateTimer -= myDeltaTime;
+        timeOfRoom += myDeltaTime;
+        timeSinceLastDash += myDeltaTime;
     }
 
 
@@ -432,7 +461,7 @@ public class Core : DiamondComponent
                 }
                 else if (CanStopShooting() == false)
                 {
-                    stopShootingTime += Time.deltaTime;
+                    stopShootingTime += myDeltaTime;
                     Animator.Play(gameObject, "Shoot", 0.01f);
                 }
             }
@@ -457,7 +486,7 @@ public class Core : DiamondComponent
 
 
             if ((Input.GetKey(DEKeyCode.LSHIFT) == KeyState.KEY_REPEAT && Input.GetKey(DEKeyCode.LALT) == KeyState.KEY_REPEAT &&
-                Input.GetKey(DEKeyCode.D) == KeyState.KEY_DOWN && Time.deltaTime != 0.0f) || Input.GetGamepadButton(DEControllerButton.BACK) == KeyState.KEY_DOWN)
+                Input.GetKey(DEKeyCode.D) == KeyState.KEY_DOWN && myDeltaTime != 0.0f) || Input.GetGamepadButton(DEControllerButton.BACK) == KeyState.KEY_DOWN)
             {
                 InternalCalls.CreateUIPrefab("Library/Prefabs/1871660106.prefab", new Vector3(0, 0, 0), new Quaternion(0, 0, 0), new Vector3(1, 1, 1));
             }
@@ -761,7 +790,7 @@ public class Core : DiamondComponent
     #region IDLE
     private void StartIdle()
     {
-        Animator.Play(gameObject, "Idle");
+        Animator.Play(gameObject, "Idle", speedMult);
     }
     #endregion
 
@@ -777,7 +806,7 @@ public class Core : DiamondComponent
             currFireRate = shootingTimer;
             numberOfShots += 1;
         }
-        Animator.Play(gameObject, "Shoot", normalShootSpeed);
+        Animator.Play(gameObject, "Shoot", normalShootSpeed * speedMult);
 
 
         PlayParticles(PARTICLES.MUZZLE);
@@ -850,7 +879,7 @@ public class Core : DiamondComponent
 
     private void StartGadgetShoot()
     {
-        Animator.Play(gameObject, "Shoot", gadgetShootSkill);
+        Animator.Play(gameObject, "Shoot", gadgetShootSkill * speedMult);
         gadgetShootTimer = gadgetFireRate;
         grenade_reloading = true;
 
@@ -935,7 +964,7 @@ public class Core : DiamondComponent
         }
         else if (chargeTimer > timeToPerfectChargeEnd)
         {
-            changeColorSniperTimer += Time.deltaTime;
+            changeColorSniperTimer += myDeltaTime;
 
             if (changeColorSniperTimer > 0f && changeColorSniperTimer < overheatTimeBeeping)
             {
@@ -965,7 +994,7 @@ public class Core : DiamondComponent
             InternalCalls.DrawRay(shootPoint.transform.globalPosition, shootPoint.transform.globalPosition + (shootPoint.transform.GetForward() * hitDistance), currSniperLaserColor);
         }
 
-        chargeTimer += Time.deltaTime;
+        chargeTimer += myDeltaTime;
         Animator.Play(gameObject, "Shoot", 0.01f);
 
         if (chargeTimer >= timeToAutomaticallyShootCharge)
@@ -979,7 +1008,7 @@ public class Core : DiamondComponent
     {
         bool perfectShot = false;
 
-        Animator.Play(gameObject, "Shoot", normalShootSpeed);
+        Animator.Play(gameObject, "Shoot", normalShootSpeed * speedMult);
 
         if (chargeTimer > timeToPerfectCharge && chargeTimer < timeToPerfectChargeEnd)
         {
@@ -1068,7 +1097,7 @@ public class Core : DiamondComponent
     {
         Audio.StopAudio(gameObject);
         Audio.PlayAudio(gameObject, "Play_Dash");
-        Animator.Play(gameObject, "Dash");
+        Animator.Play(gameObject, "Dash", speedMult);
 
         dashTimer = dashDuration;
         dashStartYPos = gameObject.transform.localPosition.y;
@@ -1092,9 +1121,10 @@ public class Core : DiamondComponent
     {
         StopPlayer();
         //gameObject.AddForce(gameObject.transform.GetForward().normalized * dashSpeed);
+        PlayParticles(PARTICLES.JETPACK);
 
-        gameObject.transform.localPosition = gameObject.transform.localPosition + dashDirection * dashSpeed * Time.deltaTime;
-        distanceMoved += dashSpeed * Time.deltaTime;
+        gameObject.transform.localPosition = gameObject.transform.localPosition + dashDirection * dashSpeed * myDeltaTime;
+        distanceMoved += dashSpeed * myDeltaTime;
     }
 
     private void EndDash()
@@ -1116,6 +1146,8 @@ public class Core : DiamondComponent
             skill_damageReductionDashActive = true;
             skill_damageReductionDashTimer = Skill_Tree_Data.GetMandoSkillTree().U4_seconds;
         }
+
+        PlayParticles(PARTICLES.JETPACK, true);
     }
 
     #endregion
@@ -1123,7 +1155,8 @@ public class Core : DiamondComponent
     #region MOVE AND ROTATE PLAYER
     private void StartMove()
     {
-        Animator.Play(gameObject, "Run");
+        Animator.Play(gameObject, "Run",  speedMult);
+        startRunningMultSpd = speedMult;
 
         if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
         {
@@ -1137,8 +1170,15 @@ public class Core : DiamondComponent
 
     private void UpdateMove()
     {
+        if(startRunningMultSpd != speedMult)
+        {
+            Animator.Play(gameObject, "Run", speedMult);
+            startRunningMultSpd = speedMult;
+        }
+
+
         RotatePlayer();
-        dustTime += Time.deltaTime;
+        dustTime += myDeltaTime;
         if (dustTime >= runTime)
         {
 
@@ -1146,10 +1186,9 @@ public class Core : DiamondComponent
             dustTime = 0;
         }
 
-
         //gameObject.SetVelocity(gameObject.transform.GetForward() * movementSpeed);
-        gameObject.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.GetForward().normalized * movementSpeed * Time.deltaTime;
-        distanceMoved += movementSpeed * Time.deltaTime;
+        gameObject.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.GetForward().normalized * movementSpeed * myDeltaTime;
+        distanceMoved += movementSpeed * myDeltaTime;
     }
     private void MoveEnd()
     {
@@ -1280,7 +1319,7 @@ public class Core : DiamondComponent
 
     private void ReducePrimaryWeaponHeat(float stateMult = 0f)
     {
-        float newValue = heatReductionSpeed * Time.deltaTime;
+        float newValue = heatReductionSpeed * myDeltaTime;
         float refreshMult = 1.0f + stateMult;
 
         if (hud != null)
@@ -1292,7 +1331,7 @@ public class Core : DiamondComponent
     {
         if (sniperRechargeTimer > 0f)
         {
-            sniperRechargeTimer -= Time.deltaTime;
+            sniperRechargeTimer -= myDeltaTime;
 
             //TODO: This works with just 2 bullets
             if (sniperBullet2 != null)
@@ -1455,7 +1494,7 @@ public class Core : DiamondComponent
         }
     }
 
-    private void PlayParticles(PARTICLES particletype)
+    private void PlayParticles(PARTICLES particletype, bool stopParticle = false)
     {
         PlayerParticles myParticles = gameObject.GetComponent<PlayerParticles>();
         ParticleSystem particle = null;
@@ -1470,6 +1509,8 @@ public class Core : DiamondComponent
                     particle = myParticles.dust;
                     if (particle != null)
                         particle.Play();
+                    else if (particle != null && stopParticle == true)
+                        particle.Stop();
                     else
                         Debug.Log("Jetpack particle not found");
                 }
@@ -1483,6 +1524,8 @@ public class Core : DiamondComponent
                     particle = myParticles.impact;
                     if (particle != null)
                         particle.Play();
+                    else if (particle != null && stopParticle == true)
+                        particle.Stop();
                     else
                         Debug.Log("Jetpack particle not found");
                 }
@@ -1494,10 +1537,13 @@ public class Core : DiamondComponent
                 if (myParticles != null)
                 {
                     particle = myParticles.jetpack;
-                    if (particle != null)
+                    if (particle != null && !particle.playing)
                         particle.Play();
+                    else if (particle != null && stopParticle == true)
+                        particle.Stop();
                     else
-                        Debug.Log("Jetpack particle not found");
+                        Debug.Log("Jetpack Rush particle not found!");
+
                 }
                 else
                     Debug.Log("Component Particles not found");
@@ -1509,6 +1555,8 @@ public class Core : DiamondComponent
                     particle = myParticles.muzzle;
                     if (particle != null)
                         particle.Play();
+                    else if (particle != null && stopParticle == true)
+                        particle.Stop();
                     else
                         Debug.Log("Jetpack particle not found");
                 }
@@ -1521,6 +1569,8 @@ public class Core : DiamondComponent
                     particle = myParticles.grenade;
                     if (particle != null)
                         particle.Play();
+                    else if (particle != null && stopParticle == true)
+                        particle.Stop();
                     else
                         Debug.Log("Grenade particle not found");
                 }
@@ -1533,6 +1583,8 @@ public class Core : DiamondComponent
                     particle = myParticles.sniper;
                     if (particle != null)
                         particle.Play();
+                    else if (particle != null && stopParticle == true)
+                        particle.Stop();
                     else
                         Debug.Log("Sniper particle not found");
                 }

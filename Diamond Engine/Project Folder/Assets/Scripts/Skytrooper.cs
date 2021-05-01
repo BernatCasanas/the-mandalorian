@@ -83,6 +83,7 @@ public class Skytrooper : Enemy
 
     public void Awake()
     {
+        InitEntity(ENTITY_TYPE.SKYTROOPER);
         agent = gameObject.GetComponent<NavMeshAgent>();
         targetPosition = null;
 
@@ -92,10 +93,14 @@ public class Skytrooper : Enemy
 
         idleTimer = idleTime;
         dashTime = Animator.GetAnimationDuration(gameObject, "SK_Dash");
+
     }
 
     public void Update()
     {
+        myDeltaTime = Time.deltaTime * speedMult;
+        UpdateStatuses();
+
         if (Input.GetKey(DEKeyCode.T) == KeyState.KEY_DOWN)
             inputsList.Add(INPUT.IN_DIE);
 
@@ -116,7 +121,7 @@ public class Skytrooper : Enemy
     {
         if (idleTimer > 0.0f)
         {
-            idleTimer -= Time.deltaTime;
+            idleTimer -= myDeltaTime;
 
             if (idleTimer <= 0.0f)
             {
@@ -126,7 +131,7 @@ public class Skytrooper : Enemy
 
         if (currentState == STATE.WANDER && wanderTimer > 0.0f)
         {
-            wanderTimer -= Time.deltaTime;
+            wanderTimer -= myDeltaTime;
             if (wanderTimer < 0.0f)
             {
                 inputsList.Add(INPUT.IN_IDLE);
@@ -135,7 +140,7 @@ public class Skytrooper : Enemy
 
         if (currentState == STATE.DASH && dashTimer > 0.0f)
         {
-            dashTimer -= Time.deltaTime;
+            dashTimer -= myDeltaTime;
             if (dashTimer < 0.0f)
             {
                 inputsList.Add(INPUT.IN_DASH_END);
@@ -144,7 +149,7 @@ public class Skytrooper : Enemy
 
         if (skill_slowDownActive)
         {
-            skill_slowDownTimer += Time.deltaTime;
+            skill_slowDownTimer += myDeltaTime;
             if (skill_slowDownTimer >= Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownDuration)
             {
                 skill_slowDownTimer = 0.0f;
@@ -373,7 +378,7 @@ public class Skytrooper : Enemy
 
         if (skill_slowDownActive)
             MoveToPosition(targetPosition, wanderSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-        else MoveToPosition(targetPosition, wanderSpeed);
+        else MoveToPosition(targetPosition, wanderSpeed * speedMult);
     }
     private void WanderEnd()
     {
@@ -404,7 +409,7 @@ public class Skytrooper : Enemy
 
         if (skill_slowDownActive)
             MoveToPosition(targetPosition, dashSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-        else MoveToPosition(targetPosition, dashSpeed);
+        else MoveToPosition(targetPosition, dashSpeed * speedMult);
     }
     private void DashEnd()
     {
@@ -425,7 +430,7 @@ public class Skytrooper : Enemy
 
     private void UpdateShoot()
     {
-        shootTimer -= Time.deltaTime;
+        shootTimer -= myDeltaTime;
 
         if (shootTimer <= 0.0f)
         {
@@ -518,7 +523,7 @@ public class Skytrooper : Enemy
             //gameObject.transform.localPosition = dieTransform;
             //gameObject.transform.localRotation = dieRotation;
 
-            dieTimer -= Time.deltaTime;
+            dieTimer -= myDeltaTime;
 
             if (dieTimer <= 0.0f)
             {
@@ -580,7 +585,7 @@ public class Skytrooper : Enemy
     }
     private void UpdatePush()
     {
-        pushTimer += Time.deltaTime;
+        pushTimer += myDeltaTime;
         if (pushTimer >= PushStun)
             inputsList.Add(INPUT.IN_IDLE);
 

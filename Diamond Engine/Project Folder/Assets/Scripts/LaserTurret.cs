@@ -68,6 +68,7 @@ public class LaserTurret : Enemy
 
     public void Awake()
     {
+        InitEntity(ENTITY_TYPE.TURRET);
 
         laserDirections = new Vector3[lasersNumber];
 
@@ -104,6 +105,9 @@ public class LaserTurret : Enemy
             Debug.Log("Null player");
             player = Core.instance.gameObject;
         }
+
+        myDeltaTime = Time.deltaTime * speedMult;
+        UpdateStatuses();
 
         #region STATE MACHINE
 

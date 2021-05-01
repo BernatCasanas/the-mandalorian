@@ -88,17 +88,22 @@ public class Deathtrooper : Enemy
 
     public void Awake()
     {
+        InitEntity(ENTITY_TYPE.DEATHTROOPER);
+
         agent = gameObject.GetComponent<NavMeshAgent>();
         targetPosition = null;
 
         currentState = STATE.IDLE;
-        Animator.Play(gameObject, "ST_Idle");
+        Animator.Play(gameObject, "ST_Idle", speedMult);
 
         idleTimer = idleTime;
     }
 
     public void Update()
     {
+        myDeltaTime = Time.deltaTime * speedMult;
+        UpdateStatuses();
+
         #region STATE MACHINE
 
         ProcessInternalInput();
@@ -116,7 +121,7 @@ public class Deathtrooper : Enemy
     {
         if (idleTimer > 0.0f)
         {
-            idleTimer -= Time.deltaTime;
+            idleTimer -= myDeltaTime;
 
             if (idleTimer <= 0.0f)
             {
@@ -134,7 +139,7 @@ public class Deathtrooper : Enemy
 
         if(shotCDTimer > 0.0f)
         {
-            shotCDTimer -= Time.deltaTime;
+            shotCDTimer -= myDeltaTime;
             if(shotCDTimer <= 0.0f)
             {
                 canShoot = true;
@@ -143,7 +148,7 @@ public class Deathtrooper : Enemy
 
         if (skill_slowDownActive)
         {
-            skill_slowDownTimer += Time.deltaTime;
+            skill_slowDownTimer += myDeltaTime;
             if (skill_slowDownTimer >= Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownDuration)
             {
                 skill_slowDownTimer = 0.0f;
@@ -352,7 +357,7 @@ public class Deathtrooper : Enemy
     {
         Debug.Log("DEATHTROOPER IDLE");
         idleTimer = idleTime;
-        Animator.Play(gameObject, "ST_Idle");
+        Animator.Play(gameObject, "ST_Idle", speedMult);
     }
     #endregion
 
@@ -362,7 +367,7 @@ public class Deathtrooper : Enemy
         Debug.Log("DEATHTROOPER WANDER");
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
-        Animator.Play(gameObject, "ST_Run");
+        Animator.Play(gameObject, "ST_Run", speedMult);
         Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
     }
     private void UpdateWander()
@@ -382,7 +387,7 @@ public class Deathtrooper : Enemy
     private void StartRun()
     {
         Debug.Log("DEATHTROOPER RUN");
-        Animator.Play(gameObject, "ST_Run");
+        Animator.Play(gameObject, "ST_Run", speedMult);
     }
     private void UpdateRun()
     {
@@ -403,7 +408,7 @@ public class Deathtrooper : Enemy
     private void StartShoot()
     {
         Debug.Log("DEATHTROOPER SHOOT");
-        Animator.Play(gameObject, "ST_Shoot");
+        Animator.Play(gameObject, "ST_Shoot", speedMult);
         betweenStatesTimer = betweenStatesTime;
     }
 
@@ -411,7 +416,7 @@ public class Deathtrooper : Enemy
     {
         if(betweenStatesTimer > 0.0f)
         {
-            betweenStatesTimer -= Time.deltaTime;
+            betweenStatesTimer -= myDeltaTime;
             LookAt(Core.instance.gameObject.transform.globalPosition);
             if(betweenStatesTimer <= 0.0f)
             {
@@ -448,7 +453,7 @@ public class Deathtrooper : Enemy
         //GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         //bullet.GetComponent<BH_Bullet>().damage = damage;
 
-        Animator.Play(gameObject, "ST_Shoot");
+        Animator.Play(gameObject, "ST_Shoot", speedMult);
         Audio.PlayAudio(gameObject, "Play_Blaster_Stormtrooper");
         //shotTimes++;
         recoilTimer = recoilTime;
@@ -485,7 +490,7 @@ public class Deathtrooper : Enemy
     {
         if (dieTimer > 0.0f)
         {
-            dieTimer -= Time.deltaTime;
+            dieTimer -= myDeltaTime;
 
             if (dieTimer <= 0.0f)
             {
@@ -527,7 +532,7 @@ public class Deathtrooper : Enemy
     }
     private void UpdatePush()
     {
-        pushTimer += Time.deltaTime;
+        pushTimer += myDeltaTime;
         if (pushTimer >= PushStun)
             inputsList.Add(INPUT.IN_IDLE);
 

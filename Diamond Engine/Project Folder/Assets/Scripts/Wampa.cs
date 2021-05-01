@@ -49,6 +49,8 @@ public class Wampa : Bosseslv2
     {
         Debug.Log("Wampa Awake");
 
+        InitEntity(ENTITY_TYPE.WAMPA);
+
         agent = gameObject.GetComponent<NavMeshAgent>();
         if (agent == null)
             Debug.Log("Null agent, add a NavMeshAgent Component");
@@ -64,6 +66,9 @@ public class Wampa : Bosseslv2
 
     public void Update()
     {
+        myDeltaTime = Time.deltaTime * speedMult;
+        UpdateStatuses();
+
         ProcessInternalInput();
         ProcessExternalInput();
         ProcessState();
