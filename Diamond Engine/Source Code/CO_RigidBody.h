@@ -99,4 +99,5 @@ public:
 	
 	float4x4 global_to_pivot;
 	float3 offset, rotatedOffset;
+	bool omitStep = false;
 };

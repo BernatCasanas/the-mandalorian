@@ -220,7 +220,8 @@ void ModulePhysics::SceneSimulation(double gameTimestep, bool fetchResults) {
 		{
 			GameObject* contact = static_cast<GameObject*>(actors[i]->userData);
 			C_RigidBody* body = dynamic_cast<C_RigidBody*>(contact->GetComponent(Component::TYPE::RIGIDBODY));
-			body->Step();
+			if(body->IsActive() && !body->omitStep)
+				body->Step();
 		}
 	}
 	
