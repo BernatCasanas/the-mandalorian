@@ -47,7 +47,7 @@ public class Skytrooper : Enemy
     public float idleTime = 5.0f;
     public float wanderTime = 0.0f;
     private float dashTime = 0.0f;
-    private float dieTime = 3.0f;
+    private float dieTime = 0.75f;
     public float timeBewteenShots = 0.5f;
     public float timeBewteenShootingStates = 1.5f;
 
@@ -559,7 +559,7 @@ public class Skytrooper : Enemy
     private void Explode()
     {
         Vector3 forward = gameObject.transform.GetForward();
-        InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
+        InternalCalls.CreatePrefab("Library/Prefabs/828188331.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
 
         if (Mathf.Distance(Core.instance.gameObject.transform.globalPosition, gameObject.transform.globalPosition) <= explosionDistance)
         {
