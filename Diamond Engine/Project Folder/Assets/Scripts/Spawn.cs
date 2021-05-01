@@ -41,17 +41,17 @@ public class Spawn : DiamondComponent
     {
         int possiblePrefabs = 0;
 
-        if (spawnStormtrooper) possiblePrefabs++;
-        if (spawnBantha) possiblePrefabs++;
-        if (spawnSkytrooper) possiblePrefabs++;
-        if (spawnLaserTurret) possiblePrefabs++;
+        if (spawnStormtrooper)  possiblePrefabs++;
+        if (spawnBantha)        possiblePrefabs++;
+        if (spawnSkytrooper)    possiblePrefabs++;
+        if (spawnLaserTurret)   possiblePrefabs++;
 
         availablePrefabs = new List<string>();
 
-        if (spawnStormtrooper) availablePrefabs.Add(stormtrooperPath);
-        if (spawnBantha) availablePrefabs.Add(banthaPath);
-        if (spawnSkytrooper) availablePrefabs.Add(skytrooperPath);
-        if (spawnLaserTurret) availablePrefabs.Add(laserTurretPath);
+        if (spawnStormtrooper)  availablePrefabs.Add(stormtrooperPath);
+        if (spawnBantha)        availablePrefabs.Add(banthaPath);
+        if (spawnSkytrooper)    availablePrefabs.Add(skytrooperPath);
+        if (spawnLaserTurret)   availablePrefabs.Add(laserTurretPath);
     }
 
     public void Update()
