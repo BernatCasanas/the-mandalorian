@@ -4,6 +4,9 @@ using DiamondEngine;
 public class IntroCinematic : DiamondComponent
 {
     public GameObject cameraObject = null;
+    public GameObject helmet = null;
+    public GameObject helmetFinal = null;
+
     public GameObject point1 = null;
     public GameObject point2 = null;
     public GameObject point3 = null;
@@ -39,7 +42,7 @@ public class IntroCinematic : DiamondComponent
 
     public void Awake()
     {
-/*        if (Counter.firstRun)
+        /*if (Counter.firstRun)
         {
             auxCameraRotation = cameraObject.transform.localRotation;
             CameraManager.SetCameraPerspective(cameraObject);
@@ -61,11 +64,17 @@ public class IntroCinematic : DiamondComponent
     public void Update()
     {
         // We should have a way to skip the cinematic :/
-/*        if (toGoPosition != null)
+        /*if (toGoPosition != null)
         {
             cameraAuxPosition += (toGoPosition - cameraAuxPosition).normalized * Time.deltaTime * currentSpeed;
             cameraObject.transform.localRotation = Quaternion.Slerp(cameraObject.transform.localRotation, toRotateQuaternion, 0.25f * Time.deltaTime);
             cameraObject.transform.localPosition = cameraAuxPosition;
+        }
+
+        if (arrayCount == 0 && helmet != null)
+        {
+                helmet.transform.localPosition += (helmetFinal.transform.localPosition - helmet.transform.localPosition).normalized * Time.deltaTime * currentSpeed;
+                helmet.transform.localRotation = Quaternion.Slerp(helmet.transform.localRotation, helmetFinal.transform.localRotation, 0.25f * Time.deltaTime);
         }
 
         currentTimer += Time.deltaTime;
