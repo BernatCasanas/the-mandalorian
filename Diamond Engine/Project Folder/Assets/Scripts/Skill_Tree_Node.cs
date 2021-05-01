@@ -239,7 +239,7 @@ public class Skill_Tree_Node : DiamondComponent
             }
         }
         skill.Use();
-
+        adSkill(skill_name);
         state = NODE_STATE.OWNED;
 
         if (children_1 != null)
@@ -252,4 +252,13 @@ public class Skill_Tree_Node : DiamondComponent
             oppositeNode.GetComponent<Skill_Tree_Node>().state = NODE_STATE.LOCKED;
     }
 
+    private void adSkill(string name)
+    {
+        switch(name)
+        {
+            case "UKnockback":
+                Debug.Log(name);
+                break;
+        }
+    }
 }
