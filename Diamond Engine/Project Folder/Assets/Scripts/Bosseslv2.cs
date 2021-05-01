@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using DiamondEngine;
 
-public class Bosseslv2 : DiamondComponent
+public class Bosseslv2 : Entity
 {
     enum BOSS
     {

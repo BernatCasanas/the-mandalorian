@@ -51,6 +51,8 @@ public class Skel : Bosseslv2
         base.Awake();
         Debug.Log("Skel Awake");
 
+        InitEntity(ENTITY_TYPE.SKEL);
+
         agent = gameObject.GetComponent<NavMeshAgent>();
         if (agent == null)
             Debug.Log("Null agent, add a NavMeshAgent Component");
@@ -66,6 +68,9 @@ public class Skel : Bosseslv2
 
     public void Update()
     {
+        myDeltaTime = Time.deltaTime * speedMult;
+        UpdateStatuses();
+
         ProcessInternalInput();
         ProcessExternalInput();
         ProcessState();

@@ -2,7 +2,7 @@ using System;
 using DiamondEngine;
 
 
-public class Enemy : DiamondComponent
+public class Enemy : Entity
 {
 	public GameObject player = null;
 

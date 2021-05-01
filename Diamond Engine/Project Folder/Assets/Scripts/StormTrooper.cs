@@ -90,6 +90,7 @@ public class StormTrooper : Enemy
     {
         Debug.Log("Stormtrooper Awake");
 
+        InitEntity(ENTITY_TYPE.STROMTROOPER);
 
         agent = gameObject.GetComponent<NavMeshAgent>();
         targetPosition = null;
@@ -128,6 +129,9 @@ public class StormTrooper : Enemy
         {
             player = Core.instance.gameObject;
         }
+
+        myDeltaTime = Time.deltaTime * speedMult;
+        UpdateStatuses();
 
         #region STATE MACHINE
 

@@ -3,7 +3,7 @@ using DiamondEngine;
 
 using System.Collections.Generic;
 
-public class Rancor : DiamondComponent
+public class Rancor : Entity
 {
     enum RANCOR_STATE : int
     {
@@ -223,6 +223,8 @@ public class Rancor : DiamondComponent
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
 
+        InitEntity(ENTITY_TYPE.RANCOR);
+
         if (agent == null)
             Debug.Log("Null agent, add a NavMeshAgent Component");
 
@@ -233,6 +235,9 @@ public class Rancor : DiamondComponent
 
     public void Update()
     {
+        myDeltaTime = Time.deltaTime * speedMult;
+        UpdateStatuses();
+
         if (start == false)
         {
             Start();
