@@ -122,7 +122,7 @@ void C_AreaLight::PushLightUniforms(ResourceMaterial* material, int lightNumber)
 	sprintf(buffer, "areaLightInfo[%i].lightSpaceMatrix", lightNumber);
 
 	GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
-	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, this->spaceMatrixOpenGL.ptr());
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, gameObject->transform->GetGlobalTransposed());
 
 	sprintf(buffer, "areaLightInfo[%i].lightPos", lightNumber);
 	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
@@ -131,6 +131,11 @@ void C_AreaLight::PushLightUniforms(ResourceMaterial* material, int lightNumber)
 	sprintf(buffer, "areaLightInfo[%i].lightPosition", lightNumber);
 	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
 	glUniform3fv(modelLoc, 1, &gameObject->transform->position.x);
+
+	sprintf(buffer, "areaLightInfo[%i].lightForward", lightNumber);
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
+	float3 forward = gameObject->transform->GetForward();
+	glUniform3fv(modelLoc, 1, &forward.x);
 
 	sprintf(buffer, "areaLightInfo[%i].lightColor", lightNumber);
 	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);

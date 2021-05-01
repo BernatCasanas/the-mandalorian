@@ -28,7 +28,7 @@ struct AreaLightInfo
 	float lightIntensity;
 	float specularValue;
 	
-	bool active;
+	bool activeLight;
 
 };
 
@@ -58,6 +58,7 @@ in VS_OUT {
 struct AreaLightInfo 
 {
 	vec3 lightPosition;
+	vec3 lightForward;
 	mat4 lightSpaceMatrix;
 	
 	vec3 lightColor;
@@ -65,7 +66,7 @@ struct AreaLightInfo
 	float lightIntensity;
 	float specularValue;
 	
-	bool active;
+	bool activeLight;
 };
 
 
@@ -75,6 +76,130 @@ uniform vec3 cameraPosition;
 
 out vec4 color;
 
+vec4 upRight = vec4(1.0, 1.0, 0.0, 1.0);
+vec4 downRight = vec4(1.0, -1.0, 0.0, 1.0);
+vec4 upLeft = vec4(-1.0, 1.0, 0.0, 1.0);
+vec4 downLeft = vec4(-1.0, -1.0, 0.0, 1.0);
+
+vec3 rectVertex[4];
+
+
+float SignedDistancePlanePoint(vec3 planePoint)
+{
+	return dot(areaLightInfo[0].lightForward, (fs_in.FragPos - planePoint));
+}
+
+
+vec3 SetVectorLenght(vec3 vector, float distance)
+{
+	vec3 normVector = normalize(vector);
+	
+	return normVector * distance;
+}
+
+
+vec3 ProjectPointOnPlane(vec3 planePoint)
+{
+	float distance = SignedDistancePlanePoint(planePoint);
+	
+	//Reverse the sign
+	distance *= -1;
+	
+	
+	vec3 translationVector = SetVectorLenght(areaLightInfo[0].lightForward, distance);
+
+	
+	return fs_in.FragPos + translationVector;
+}
+
+
+bool IsBetween(vec3 value, vec3 b, vec3 c)
+{
+	float dst = distance(b, c);
+	
+	if (distance(value, b) <= dst && distance(value, c) <= dst)
+		return true;
+		
+	return false;
+}
+
+
+vec3 NearestPointOnLine(vec3 point, vec3 lineP1, vec3 lineP2)
+{
+	vec3 lineDir = normalize(lineP2 - lineP1);
+	
+	vec3 v = point - lineP1;
+	float d = dot(v, lineDir);
+	
+	return vec3(lineP1 + lineDir * d);
+}
+
+
+vec3 CalculateClosestPoint(vec3 projectedPoint)
+{
+	float closestDistance = 1000000000.0;
+	int closestPointIndex;
+	
+	for (int i = 0; i < 4; ++i)
+	{
+		float dst = distance(projectedPoint, rectVertex[i]);
+		
+		if (dst < closestDistance)
+		{
+			closestDistance = dst;
+			closestPointIndex = i;
+		}
+	
+	}
+	
+	vec3 closestVertex = rectVertex[closestPointIndex];
+	
+	vec3 nextVertex;
+	vec3 prevVertex;
+	
+	if (closestPointIndex == 0)
+	{
+		nextVertex = rectVertex[1];
+		prevVertex = rectVertex[3];
+	}
+	
+	else if (closestPointIndex == 3)
+	{
+		nextVertex = rectVertex[0];
+		prevVertex = rectVertex[2];
+	}
+	
+	else
+	{
+		nextVertex = rectVertex[closestPointIndex + 1];
+		prevVertex = rectVertex[closestPointIndex - 1];
+	}
+	
+	vec3 projectedPoint1 = NearestPointOnLine(projectedPoint, nextVertex, closestVertex);
+	vec3 projectedPoint2 = NearestPointOnLine(projectedPoint, prevVertex, closestVertex);
+	
+	if (IsBetween(projectedPoint1, closestVertex, nextVertex) && IsBetween(projectedPoint2, closestVertex, prevVertex))
+		return projectedPoint;
+	
+	return vec3(0, 0.0, 0.0);
+
+}
+
+
+vec3 CalculateLightDirection()
+{
+	rectVertex[0] = vec4(areaLightInfo[0].lightSpaceMatrix * upRight).xyz;
+	rectVertex[1] = vec4(areaLightInfo[0].lightSpaceMatrix * downRight).xyz;
+	rectVertex[2] = vec4(areaLightInfo[0].lightSpaceMatrix * downLeft).xyz;
+	rectVertex[3] = vec4(areaLightInfo[0].lightSpaceMatrix * upLeft).xyz;
+	
+	vec3 projectedPoint = ProjectPointOnPlane(vec3(upRight.xyz));
+	
+	vec3 lightPos = CalculateClosestPoint(projectedPoint);
+
+	return normalize(lightPos - fs_in.FragPos);
+}
+
 
 void main()
 {
@@ -82,9 +207,9 @@ void main()
     
     for (int i = 0; i < 5; i++)
     {
-		if (areaLightInfo[i].active == true)
+		if (areaLightInfo[i].activeLight == true)
 		{
-    		vec3 lightDir = normalize(areaLightInfo[i].lightPosition - fs_in.FragPos);
+    		vec3 lightDir = CalculateLightDirection();
     
    	 		// diffusesssaasw
     		float diff = max(dot(lightDir, fs_in.Normal), 0.0);
@@ -103,6 +228,15 @@ void main()
     color = vec4(lighting * vec3(0.7, 0.3, 0.3), 1.0);
 }
 #endif
+
+
+
+
+
+
+
+
+
 
 
 

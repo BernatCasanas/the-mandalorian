@@ -26,6 +26,11 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1676501951,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0,
                 0,
@@ -42,10 +47,6 @@
                 1,
                 1
             ],
-            "UID": 1676501951,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
             "Components": [
                 {
                     "Type": 1,
@@ -58,6 +59,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1991298347,
+            "ParentUID": 1676501951,
+            "PrefabReference": 0,
+            "PrefabID": 1599948487,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 -31.825237274169922,
                 18.808588027954102,
@@ -74,57 +81,19 @@
                 0.9999997615814209,
                 0.9999997615814209
             ],
-            "UID": 1991298347,
-            "PrefabID": 1599948487,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1676501951,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 4,
-                    "Active": true,
-                    "fType": 1,
-                    "fSize": 50,
-                    "nearPlaneDist": 1,
-                    "farPlaneDist": 100,
-                    "vFOV": 1.0471975803375244,
-                    "hFOV": 1.5521194934844971,
-                    "culling": false,
-                    "drawSkybox": true
-                },
-                {
-                    "Type": 12,
-                    "Active": true,
-                    "isDefaultListener": false,
-                    "masterVolume": 50
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "CameraController",
-                    "x": -10.300000190734863,
-                    "y": 9.3000001907348633,
-                    "z": -10,
-                    "smoothSpeed": 0.10000000149011612,
-                    "zoomDesired": 0.10000000149011612,
-                    "timer_easing_sec": 0,
-                    "timer": 0,
-                    "cornerTopLeftX": -100,
-                    "cornerTopLeftY": -100,
-                    "cornerBotRightX": 100,
-                    "cornerBotRightY": 100
-                }
-            ]
+            "PrefabObjects": []
         },
         {
             "name": "BossRoom",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 417356794,
+            "ParentUID": 1676501951,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0,
                 0,
@@ -141,11 +110,6 @@
                 1,
                 1
             ],
-            "UID": 417356794,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1676501951,
             "Components": [
                 {
                     "Type": 1,
@@ -158,6 +122,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1343611164,
+            "ParentUID": 417356794,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0,
                 0,
@@ -174,11 +144,6 @@
                 1,
                 1
             ],
-            "UID": 1343611164,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 417356794,
             "Components": [
                 {
                     "Type": 1,
@@ -199,6 +164,7 @@
                         1,
                         1
                     ],
+                    "stencilEmission": 0,
                     "doNotDrawStencil": true
                 },
                 {
@@ -216,6 +182,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 656205489,
+            "ParentUID": 1676501951,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0,
                 0,
@@ -232,11 +204,6 @@
                 1,
                 1
             ],
-            "UID": 656205489,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1676501951,
             "Components": [
                 {
                     "Type": 1,
@@ -257,6 +224,7 @@
                         1,
                         1
                     ],
+                    "stencilEmission": 0,
                     "doNotDrawStencil": true
                 },
                 {
@@ -274,6 +242,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1294708416,
+            "ParentUID": 1676501951,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0.32701766490936279,
                 1.4092673063278198,
@@ -290,109 +264,6 @@
                 1,
                 1
             ],
-            "UID": 1294708416,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1676501951,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 27,
-                    "Active": true,
-                    "lightColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "ambientLightColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "lightIntensity": 0.80000001192092896,
-                    "specularValue": 64
-                }
-            ]
-        },
-        {
-            "name": "Empty",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                -9.5935001373291016,
-                1.2341439723968506,
-                3.2593538761138916
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1767722659,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1676501951,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 27,
-                    "Active": true,
-                    "lightColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "ambientLightColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "lightIntensity": 0.80000001192092896,
-                    "specularValue": 64
-                }
-            ]
-        },
-        {
-            "name": "Empty",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                10.529803276062012,
-                1.5856003761291504,
-                6.8846397399902344
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 478916316,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1676501951,
             "Components": [
                 {
                     "Type": 1,

@@ -1,14 +1,20 @@
 {
     "Game Objects": [
         {
-            "name": "Empty",
+            "name": "Ground",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 656205489,
+            "ParentUID": 1676501951,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
-                5.6435928344726563,
-                1.5856003761291504,
-                8.4331951141357422
+                0,
+                0,
+                0
             ],
             "Rotation": [
                 0,
@@ -21,31 +27,36 @@
                 1,
                 1
             ],
-            "UID": 478916316,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1676501951,
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
                 },
                 {
-                    "Type": 27,
+                    "Type": 2,
                     "Active": true,
-                    "lightColor": [
+                    "Path": "Library\/Meshes\/327484566.mmh",
+                    "UID": 327484566,
+                    "alternColor": [
                         1,
                         1,
                         1
                     ],
-                    "ambientLightColor": [
+                    "alternColorStencil": [
                         1,
                         1,
                         1
                     ],
-                    "lightIntensity": 0.80000001192092896,
-                    "specularValue": 64
+                    "stencilEmission": 0,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/191464233.mat",
+                    "MaterialUID": 191464233
                 }
             ]
         }
