@@ -284,7 +284,8 @@ void Emitter::OnEditor(int emitterIndex)
 		{
 			toDelete = true;
 		}
-		if (ImGui::Checkbox("Non relative to emitter", &not_relative))
+		guiName = "Non relative to emitter" + suffixLabel;
+		if (ImGui::Checkbox(guiName.c_str(), &not_relative))
 
 		ImGui::Spacing();
 		ImGui::Spacing();
