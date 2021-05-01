@@ -44,7 +44,7 @@
 
 
 ModuleRenderer3D::ModuleRenderer3D(Application* app, bool start_enabled) : Module(app, start_enabled), str_CAPS(""),
-vsync(false), wireframe(false), gameCamera(nullptr), resolution(2)
+vsync(false), wireframe(false), gameCamera(nullptr), resolution(2), debugDraw(true)
 {
 	GetCAPS(str_CAPS);
 	/*depth =*/ cull = lightng = color_material = texture_2d = true;
@@ -301,11 +301,6 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 	App->moduleCamera->editorCamera.StartDraw();
 
-	Grid p(0, 0, 0, 0);
-	p.axis = true;
-
-	p.Render();
-
 	//TODO: This should not be here
 	if (!renderQueue.empty())
 	{
@@ -320,16 +315,23 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 		(wireframe) ? glPolygonMode(GL_FRONT_AND_BACK, GL_FILL) : glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
 
-
 	DrawRays();
+
 	//DrawParticleSystems();//THIS IS LOCATED INSIDE RENDER STENCIL FOR NOW (UNTIL WE HAVE A POST PROCESSING SYSTEM)
 
 	if (App->moduleCamera->editorCamera.drawSkybox)
 		skybox.DrawAsSkybox(&App->moduleCamera->editorCamera);
 
-	DebugLine(pickingDebug);
-	DrawDebugLines();
+	if (debugDraw)
+	{
+		Grid p(0, 0, 0, 0);
+		p.axis = true;
 
+		p.Render();
+
+		DebugLine(pickingDebug);
+		DrawDebugLines();
+	}
 
 	for (size_t i = 0; i < renderQueueStencil.size(); i++)
 	{
@@ -345,7 +347,6 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	RenderStencilWithOrdering(true);
 
 	App->moduleCamera->editorCamera.EndDraw();
-
 
 #endif // !STANDALONE
 
@@ -497,9 +498,12 @@ void ModuleRenderer3D::OnGUI()
 		ImGui::SameLine();
 		if (ImGui::Checkbox("Color material", &color_material))
 			(color_material) ? glEnable(GL_COLOR_MATERIAL) : glDisable(GL_COLOR_MATERIAL);
-
+		
+		ImGui::SameLine();
 		if (ImGui::Checkbox("Texture 2D", &texture_2d))
 			(texture_2d) ? glEnable(GL_TEXTURE_2D) : glDisable(GL_TEXTURE_2D);
+
+		ImGui::Checkbox("DebugDraw", &debugDraw);
 
 		ImGui::Separator();
 
@@ -682,6 +686,12 @@ void ModuleRenderer3D::RayToMeshQueueIntersection(LineSegment& ray)
 	{
 		App->moduleEditor->SetSelectedGO((*distMap.begin()).second->GetGO());
 		selected = true;
+
+		/*if (EngineExternal->moduleInput->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
+			EngineExternal->moduleEditor->AddSelectedGameObject((*distMap.begin()).second->GetGO());
+		else
+			App->moduleEditor->SetSelectedGO((*distMap.begin()).second->GetGO());*/
+
 	}
 
 	//If nothing is selected, set selected GO to null

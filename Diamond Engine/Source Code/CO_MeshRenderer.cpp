@@ -108,8 +108,18 @@ void C_MeshRenderer::RenderMesh(bool rTex)
 	C_Material* material = dynamic_cast<C_Material*>(gameObject->GetComponent(Component::TYPE::MATERIAL));
 	GLuint id = 0;
 
-	if (material != nullptr && material->IsActive())
-		id = material->GetTextureID();
+	if (material != nullptr)
+	{
+		if (material->IsActive())
+			id = material->GetTextureID();
+	}
+	/*else
+	{
+		material = dynamic_cast<C_Material*>(gameObject->AddComponent(Component::TYPE::MATERIAL));
+
+		if (_mesh->HasVertexColors())
+			material->SetMaterial(dynamic_cast<ResourceMaterial*>(EngineExternal->moduleResources->RequestResource(82053990, Resource::Type::MATERIAL)));
+	}*/
 
 	TryCalculateBones();
 

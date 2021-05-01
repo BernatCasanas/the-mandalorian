@@ -108,8 +108,7 @@ update_status M_Pathfinding::Update(float dt)
 int M_Pathfinding::Save(const char* scene_path)
 {
 	std::string navMeshPath;
-	FileSystem::GetFileName(scene_path, navMeshPath, false);
-
+	navMeshPath = EngineExternal->moduleScene->current_scene_name;
 	navMeshPath = "Assets/NavMeshes/" + navMeshPath + ".nav";
 
 	BuildSettings settings;

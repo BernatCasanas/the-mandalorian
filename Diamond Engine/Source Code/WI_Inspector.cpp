@@ -10,8 +10,9 @@
 #include "MO_Scene.h"
 #include"MO_ResourceManager.h"
 #include"MO_MonoManager.h"
-#include "CO_NavMeshAgent.h"
+#include "MO_Editor.h"
 
+#include "CO_NavMeshAgent.h"
 #include "CO_Material.h"
 #include"CO_Script.h"
 #include"RE_Material.h"
@@ -20,6 +21,8 @@
 #include "Application.h"
 #include "MO_Physics.h"
 #include "IM_PrefabImporter.h"
+
+#include <algorithm>
 
 W_Inspector::W_Inspector() : Window(), selectedGO(nullptr), editingRes(nullptr)
 {
@@ -30,7 +33,6 @@ W_Inspector::~W_Inspector()
 {
 	if (editingRes)
 		EngineExternal->moduleResources->UnloadResource(editingRes->GetUID());
-
 }
 
 void W_Inspector::Draw()
@@ -281,14 +283,28 @@ void W_Inspector::Draw()
 							selectedGO->AddComponent(Component::TYPE::NAVMESHAGENT);
 					}
 
-					for (int i = 0; i < EngineExternal->moduleMono->userScripts.size(); i++)
+					if (ImGui::BeginMenu("Scripts"))
 					{
-						if (ImGui::Selectable(mono_class_get_name(EngineExternal->moduleMono->userScripts[i])))
+						std::vector<std::string> scripts;
+						for (int i = 0; i < EngineExternal->moduleMono->userScripts.size(); i++)
 						{
-							const char* name = mono_class_get_name(EngineExternal->moduleMono->userScripts[i]);
-							C_Script* cs = dynamic_cast<C_Script*>(selectedGO->AddComponent(Component::TYPE::SCRIPT, name));
+							scripts.push_back(std::string(mono_class_get_name(EngineExternal->moduleMono->userScripts[i])));
 						}
+
+						std::sort(scripts.begin(), scripts.end());
+							
+						for (size_t i = 0; i < scripts.size(); i++)
+						{
+							if (ImGui::MenuItem(scripts[i].c_str()))
+							{
+								selectedGO->AddComponent(Component::TYPE::SCRIPT, scripts[i].c_str());
+							}
+						}
+
+						ImGui::EndMenu();
 					}
+
+					
 
 
 					ImGui::EndCombo();

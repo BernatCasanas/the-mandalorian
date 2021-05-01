@@ -40,6 +40,7 @@ public:
 	vec3 GetVectorFromIndex(float* startValue);
 	void GetVertices(float* verticesArray);
 	int* GetTriangles() const;
+	bool HasVertexColors();
 
 	void OGL_GPU_Render();
 	void PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Transform* _transform, float3 color, ResourceTexture* normalMap = nullptr,float emissionAmmount=0.0f);
