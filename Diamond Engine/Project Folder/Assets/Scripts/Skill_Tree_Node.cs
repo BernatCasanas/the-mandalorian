@@ -12,14 +12,13 @@ public class Skill_Tree_Node : DiamondComponent
     };
 
     #region Style
-    public int unlockedButtonPressed = 0;
+    public int buttonPressed = 0;
     public int unlockedButtonHovered = 0;
     public int unlockedButtonUnhovered = 0;
 
     public int lockedButtonHovered = 0;
     public int lockedButtonUnhovered = 0;
 
-    public int ownedButtonPressed = 0;
     public int ownedButtonHovered = 0;
     public int ownedButtonUnhovered = 0;
     #endregion
@@ -56,14 +55,14 @@ public class Skill_Tree_Node : DiamondComponent
             _state = value;
             switch (value)
             {
-                case NODE_STATE.UNLOCKED:
-                    gameObject.GetComponent<Button>().ChangeSprites(unlockedButtonPressed, unlockedButtonHovered, unlockedButtonUnhovered);
+                case NODE_STATE.UNLOCKED:                    
+                    gameObject.GetComponent<Button>().ChangeSprites(buttonPressed, unlockedButtonHovered, unlockedButtonUnhovered);
                     break;
                 case NODE_STATE.LOCKED:
                     gameObject.GetComponent<Button>().ChangeSprites(lockedButtonHovered, lockedButtonHovered, lockedButtonUnhovered);
                     break;
                 case NODE_STATE.OWNED:
-                    gameObject.GetComponent<Button>().ChangeSprites(ownedButtonPressed, ownedButtonHovered, ownedButtonUnhovered);
+                    gameObject.GetComponent<Button>().ChangeSprites(buttonPressed, ownedButtonHovered, ownedButtonUnhovered);
                     break;
                 default:
                     break;
