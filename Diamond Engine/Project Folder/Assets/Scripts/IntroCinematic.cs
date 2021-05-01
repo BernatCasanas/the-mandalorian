@@ -33,7 +33,7 @@ public class IntroCinematic : DiamondComponent
     Quaternion auxCameraRotation = null;
 
     GameObject[] pointArray = null;
-    float[] speedArray = new float[] { 0.5f, 2.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };    // Adapt values
+    float[] speedArray = new float[] { 0.5f, 2.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };    // Adapt values; wouldn't it be easier to just calculate the speed based on how long we need that scene to be?
     float[] timerArray = null;    // Why am I using timer approach? Basically, the triggers of each camera switch are animation ends, positions reached and timers. Everything is convertable to time, but the other two can't be converted universally
     int arrayCount = -1;
 
