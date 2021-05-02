@@ -13,8 +13,11 @@ namespace DiamondEngine
             BOKATAN_RES,
             WRECKER_RES,
             ENEMY_BANTHA,
-            ENEMY_STORMTROOP,
+            ENEMY_STORMTROOPER,
             RANCOR,
+            ENEMY_SKYTROOPER,
+            ENEMY_LASER_TURRET,
+            ENEMY_DEATHTROOPER,
             MAX,
         }
 

@@ -60,8 +60,8 @@ public class EndScreen : DiamondComponent
 
 		if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_BANTHA))
 			banthaKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_BANTHA].amount.ToString();
-		if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_STORMTROOP))
-			stormsKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_STORMTROOP].amount.ToString();
+		if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_STORMTROOPER))
+			stormsKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_STORMTROOPER].amount.ToString();
 
 		/*
 		This system will have to be eventually changed, because it's NOT feasible to have this for 40 boons. I (Ferran-Roger Basart i Bosch) have touched and made code that solves this in a very simple way.

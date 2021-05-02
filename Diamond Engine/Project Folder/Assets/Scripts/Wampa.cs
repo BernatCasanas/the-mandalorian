@@ -50,6 +50,7 @@ public class Wampa : Bosseslv2
         Debug.Log("Wampa Awake");
 
         InitEntity(ENTITY_TYPE.WAMPA);
+        EnemyManager.AddEnemy(gameObject);
 
         agent = gameObject.GetComponent<NavMeshAgent>();
         if (agent == null)
@@ -59,8 +60,6 @@ public class Wampa : Bosseslv2
 
         //Animator.Play(gameObject, "");
         Audio.SetState("Game_State", "Wampa_Skel_Room");
-        Counter.roomEnemies++;  // Just in case
-        EnemyManager.AddEnemy(gameObject);
 
     }
 

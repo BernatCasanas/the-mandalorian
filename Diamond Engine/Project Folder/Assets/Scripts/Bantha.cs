@@ -90,6 +90,7 @@ public class Bantha : Enemy
     public void Awake()
     {
         InitEntity(ENTITY_TYPE.BANTHA);
+        EnemyManager.AddEnemy(gameObject);
 
         StartIdle();
         agent = gameObject.GetComponent<NavMeshAgent>();
@@ -623,12 +624,8 @@ public class Bantha : Enemy
     private void Die()
     {
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_BANTHA);
-        Counter.roomEnemies--;
-        Debug.Log("Enemies: " + Counter.roomEnemies.ToString());
-        if (Counter.roomEnemies <= 0)
-        {
-            Counter.allEnemiesDead = true;
-        }
+     
+        EnemyManager.RemoveEnemy(gameObject);
 
         DropCoins();
 

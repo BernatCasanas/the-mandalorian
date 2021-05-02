@@ -88,6 +88,7 @@ public class Deathtrooper : Enemy
     public void Awake()
     {
         InitEntity(ENTITY_TYPE.DEATHTROOPER);
+        EnemyManager.AddEnemy(gameObject);
 
         agent = gameObject.GetComponent<NavMeshAgent>();
         targetPosition = null;
@@ -497,7 +498,7 @@ public class Deathtrooper : Enemy
             Core.instance.hud.GetComponent<HUD>().AddToCombo(300, 1.0f);
         }
 
-        RemoveFromEnemyList();
+        EnemyManager.RemoveEnemy(gameObject);
     }
     private void UpdateDie()
     {
@@ -514,21 +515,15 @@ public class Deathtrooper : Enemy
 
     private void Die()
     {
-        //float dist = (deathPoint.transform.globalPosition - gameObject.transform.globalPosition).magnitude;
+        Counter.SumToCounterType(Counter.CounterTypes.ENEMY_DEATHTROOPER);
+        EnemyManager.RemoveEnemy(gameObject);
+
         Vector3 forward = gameObject.transform.GetForward();
-        //forward = forward.normalized * (-dist);
-        Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
-        Counter.roomEnemies--;
-        Debug.Log("Enemies: " + Counter.roomEnemies.ToString());
-        if (Counter.roomEnemies <= 0)
-        {
-            Counter.allEnemiesDead = true;
-        }
-
-        DropCoins();
-
         Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
         InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
+        
+        DropCoins();
+
         InternalCalls.Destroy(gameObject);
     }
 

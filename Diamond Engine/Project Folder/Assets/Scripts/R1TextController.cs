@@ -9,11 +9,10 @@ public class R1TextController : DiamondComponent
 	public void Update()
 	{
 		counter += Time.deltaTime;
-		if (Counter.roomEnemies <= 0 && counter > 5 && showtext)
+		if (EnemyManager.EnemiesLeft() <= 0 && counter > 5 && showtext)
 		{
 			showtext = false;
 			dialog.Enable(true);
-	
 		}
 	}
 

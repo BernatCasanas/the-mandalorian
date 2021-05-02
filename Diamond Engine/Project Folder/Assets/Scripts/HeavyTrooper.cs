@@ -88,6 +88,7 @@ public class HeavyTrooper : Enemy
     public void Awake()
     {
         InitEntity(ENTITY_TYPE.HEAVYTROOPER);
+        EnemyManager.AddEnemy(gameObject);
 
         StartIdle();
         agent = gameObject.GetComponent<NavMeshAgent>();
@@ -492,7 +493,7 @@ public class HeavyTrooper : Enemy
     }
     private void Die()
     {
-        
+        EnemyManager.RemoveEnemy(gameObject);
     }
     #endregion
 

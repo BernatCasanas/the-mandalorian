@@ -16,7 +16,10 @@ public class EnemyManager : DiamondComponent
 
     public static bool RemoveEnemy(GameObject enemy)
     {
-        if (currentEnemies == null || enemy == null)
+        if (enemy == null)
+            return false;
+
+        if (currentEnemies == null)
         {
             Debug.Log("Current enemy list is null!!!");
             return false;
@@ -31,6 +34,8 @@ public class EnemyManager : DiamondComponent
             }
         }
 
+        Debug.Log("Enemies left: " + currentEnemies.Count.ToString());
+
         return false;
     }
 
@@ -41,5 +46,13 @@ public class EnemyManager : DiamondComponent
             currentEnemies.Clear();
             currentEnemies = null;
         }
+    }
+
+    public static int EnemiesLeft()
+    {
+        if (currentEnemies != null)
+            return currentEnemies.Count;
+        else
+            return 0;
     }
 }

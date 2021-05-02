@@ -69,6 +69,7 @@ public class LaserTurret : Enemy
     public void Awake()
     {
         InitEntity(ENTITY_TYPE.TURRET);
+        EnemyManager.AddEnemy(gameObject);
 
         laserDirections = new Vector3[lasersNumber];
 
@@ -405,13 +406,7 @@ public class LaserTurret : Enemy
 
     private void Die()
     {
-        Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
-        Counter.roomEnemies--;
-        Debug.Log("Enemies: " + Counter.roomEnemies.ToString());
-        if (Counter.roomEnemies <= 0)
-        {
-            Counter.allEnemiesDead = true;
-        }
+        Counter.SumToCounterType(Counter.CounterTypes.ENEMY_LASER_TURRET);
 
         EnemyManager.RemoveEnemy(gameObject);
 

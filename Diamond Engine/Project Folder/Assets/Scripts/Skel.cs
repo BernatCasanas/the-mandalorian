@@ -52,6 +52,7 @@ public class Skel : Bosseslv2
         Debug.Log("Skel Awake");
 
         InitEntity(ENTITY_TYPE.SKEL);
+        EnemyManager.AddEnemy(gameObject);
 
         agent = gameObject.GetComponent<NavMeshAgent>();
         if (agent == null)
@@ -61,9 +62,6 @@ public class Skel : Bosseslv2
 
         //Animator.Play(gameObject, "");
         //Audio.PlayAudio(gameObject, "");
-        Counter.roomEnemies++;  // Just in case
-        EnemyManager.AddEnemy(gameObject);
-
     }
 
     public void Update()

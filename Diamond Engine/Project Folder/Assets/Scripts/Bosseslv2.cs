@@ -477,12 +477,7 @@ public class Bosseslv2 : Entity
     public void EndDie()
     {
         Debug.Log("DEAD");
-
-        Counter.roomEnemies--;
-
-        if (Counter.roomEnemies <= 0)
-            Counter.allEnemiesDead = true;
-
+        
         EnemyManager.RemoveEnemy(gameObject);
         InternalCalls.Destroy(gameObject);
     }

@@ -84,6 +84,8 @@ public class Skytrooper : Enemy
     public void Awake()
     {
         InitEntity(ENTITY_TYPE.SKYTROOPER);
+        EnemyManager.AddEnemy(gameObject);
+
         agent = gameObject.GetComponent<NavMeshAgent>();
         targetPosition = null;
 
@@ -507,9 +509,9 @@ public class Skytrooper : Enemy
         //    if(hud != null)
         //        hud.AddToCombo(300, 1.0f);
         //}
-
-        //RemoveFromEnemyList();
         //UNCOMMENT
+
+        EnemyManager.RemoveEnemy(gameObject);
     }
     private void UpdateDie()
     {
@@ -536,14 +538,7 @@ public class Skytrooper : Enemy
     {
         //float dist = (deathPoint.transform.globalPosition - gameObject.transform.globalPosition).magnitude;
         //forward = forward.normalized * (-dist);
-        Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
-        Counter.roomEnemies--;
-        Debug.Log("Enemies: " + Counter.roomEnemies.ToString());
-        if (Counter.roomEnemies <= 0)
-        {
-            Counter.allEnemiesDead = true;
-        }
-
+        Counter.SumToCounterType(Counter.CounterTypes.ENEMY_SKYTROOPER);
         EnemyManager.RemoveEnemy(gameObject);
 
         DropCoins();

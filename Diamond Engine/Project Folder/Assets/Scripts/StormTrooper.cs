@@ -91,6 +91,7 @@ public class StormTrooper : Enemy
         Debug.Log("Stormtrooper Awake");
 
         InitEntity(ENTITY_TYPE.STROMTROOPER);
+        EnemyManager.AddEnemy(gameObject);
 
         agent = gameObject.GetComponent<NavMeshAgent>();
         targetPosition = null;
@@ -673,22 +674,18 @@ public class StormTrooper : Enemy
 
     private void Die()
     {
+        Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOPER);
+ 
+        EnemyManager.RemoveEnemy(gameObject);
+
         float dist = (deathPoint.transform.globalPosition - gameObject.transform.globalPosition).magnitude;
         Vector3 forward = gameObject.transform.GetForward();
         forward = forward.normalized * (-dist);
-        Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOP);
-        Counter.roomEnemies--;
-        Debug.Log("Enemies: " + Counter.roomEnemies.ToString());
-        if (Counter.roomEnemies <= 0)
-        {
-            Counter.allEnemiesDead = true;
-        }
-
-        DropCoins();
 
         player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
         InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
-        InternalCalls.Destroy(gameObject);
+        InternalCalls.Destroy(gameObject);        
+        DropCoins();
     }
 
     #endregion

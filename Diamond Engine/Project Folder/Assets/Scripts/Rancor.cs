@@ -224,13 +224,12 @@ public class Rancor : Entity
         agent = gameObject.GetComponent<NavMeshAgent>();
 
         InitEntity(ENTITY_TYPE.RANCOR);
+        EnemyManager.AddEnemy(gameObject);
 
         if (agent == null)
             Debug.Log("Null agent, add a NavMeshAgent Component");
 
         Audio.SetState("Game_State", "Rancor_Room");
-        Counter.roomEnemies++;  // If we had a manager...
-        EnemyManager.AddEnemy(gameObject);
     }
 
     public void Update()
@@ -1248,17 +1247,12 @@ public class Rancor : Entity
     {
         Debug.Log("RANCOR'S DEAD");
 
-        Counter.roomEnemies--;
-
-        if (Counter.roomEnemies <= 0)
-            Counter.allEnemiesDead = true;
-
         EnemyManager.RemoveEnemy(gameObject);
+
         Animator.Pause(gameObject);
         Audio.StopAudio(gameObject);
         Input.PlayHaptic(0.3f, 3);
         InternalCalls.Destroy(gameObject);
-        Counter.allEnemiesDead = true;
     }
     #endregion
 

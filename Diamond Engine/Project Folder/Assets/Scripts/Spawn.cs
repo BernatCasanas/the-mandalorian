@@ -81,7 +81,7 @@ public class Spawn : DiamondComponent
         //    }
         //}
 
-        if (Counter.roomEnemies <= 0 && !fightEndMusicPlayed && MusicSourceLocate.instance != null)
+        if (EnemyManager.EnemiesLeft() <= 0 && !fightEndMusicPlayed && MusicSourceLocate.instance != null)
         {
             Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
         }
@@ -94,11 +94,11 @@ public class Spawn : DiamondComponent
         libraryPath = RandomizePrefabs();
 
         GameObject enemy = InternalCalls.CreatePrefab(libraryPath, position, Quaternion.identity, new Vector3(1, 1, 1));
-        Counter.roomEnemies++;
+        //Counter.roomEnemies++;
 
         //add enemy script
-        if (enemy != null)
-            EnemyManager.AddEnemy(enemy);
+        //if (enemy != null)
+        //    EnemyManager.AddEnemy(enemy);
 
         return enemy;
     }
