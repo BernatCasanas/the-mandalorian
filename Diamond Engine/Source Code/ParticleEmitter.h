@@ -93,6 +93,8 @@ private:
 	Timer delay;
 	std::string emitterName;
 	char emitterNameChars[50];
+	bool not_relative;
+	float3 position;
 };
 
 const float particleVertices[] = {
