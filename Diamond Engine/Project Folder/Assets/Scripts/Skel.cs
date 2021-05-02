@@ -82,7 +82,7 @@ public class Skel : Bosseslv2
     {
         if (walkingTimer > 0)
         {
-            walkingTimer -= Time.deltaTime;
+            walkingTimer -= myDeltaTime;
 
             if (walkingTimer <= 0)
             {
@@ -95,7 +95,7 @@ public class Skel : Bosseslv2
 
         //if (fastChasingTimer > 0)
         //{
-        //    fastChasingTimer -= Time.deltaTime;
+        //    fastChasingTimer -= myDeltaTime;
 
         //    if (fastChasingTimer <= 0)
         //    {
@@ -105,7 +105,7 @@ public class Skel : Bosseslv2
 
         //if (slowChasingTimer > 0)
         //{
-        //    slowChasingTimer -= Time.deltaTime;
+        //    slowChasingTimer -= myDeltaTime;
 
         //    if (slowChasingTimer <= 0)
         //    {
@@ -115,7 +115,7 @@ public class Skel : Bosseslv2
 
         if (restingTimer > 0)
         {
-            restingTimer -= Time.deltaTime;
+            restingTimer -= myDeltaTime;
 
             if (restingTimer <= 0)
             {
@@ -125,7 +125,7 @@ public class Skel : Bosseslv2
 
         if (totalJumpSlamTimer > 0)
         {
-            totalJumpSlamTimer -= Time.deltaTime;
+            totalJumpSlamTimer -= myDeltaTime;
 
             if (totalJumpSlamTimer <= 0)
             {
@@ -134,7 +134,7 @@ public class Skel : Bosseslv2
         }
         if (bounceRushTimer > 0)
         {
-            bounceRushTimer -= Time.deltaTime;
+            bounceRushTimer -= myDeltaTime;
 
             if (bounceRushTimer <= 0)
             {

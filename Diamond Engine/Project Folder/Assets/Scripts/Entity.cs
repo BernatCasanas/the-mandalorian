@@ -42,11 +42,11 @@ public enum STATUS_APPLY_TYPE
     BIGGER_PERCENTAGE,
     BIGGER_TIME,
     SUBSTITUTE,
-    ADDITIVE,
+    ADDITIVE
 }
 
 #region StatusData
-class StatusData
+public class StatusData
 {
     //Constructors
     public StatusData()
@@ -168,6 +168,30 @@ public class Entity : DiamondComponent
     public bool HasAnyStatus()
     {
         return statuses.Count > 0;
+    }
+
+    public float GetStatusRemainingTime(STATUS_TYPE stat)
+    {
+        float ret = 0f;
+
+        if(statuses.ContainsKey(stat) == true)
+        {
+            ret = statuses[stat].remainingTime;
+        }
+
+        return ret;
+    }
+
+    public StatusData GetStatusData(STATUS_TYPE stat)
+    {
+        StatusData ret = new StatusData();
+
+        if (statuses.ContainsKey(stat) == true)
+        {
+            ret = statuses[stat];
+        }
+
+        return ret;
     }
 
     #endregion
@@ -330,7 +354,7 @@ public class Entity : DiamondComponent
 
             statuses[statusType].remainingTime -= Time.deltaTime;
 
-            if (statuses[statusType].remainingTime > 0f)
+            if (statuses[statusType].remainingTime > 0f || statuses[statusType].isPermanent)
             {
                 OnUpdateStatus(statuses[statusType]);
             }

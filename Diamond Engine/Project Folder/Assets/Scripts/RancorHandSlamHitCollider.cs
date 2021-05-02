@@ -8,6 +8,7 @@ class RancorHandSlamHitCollider : DiamondComponent
     private Vector3 finalPos = new Vector3(0f, 0.4f, 2.0f);
     private float speed = 1.5f;
     private float timer = 0.0f;
+    public float myDeltaTimeMult = 1f;
 
     private bool start = true;
 
@@ -26,7 +27,7 @@ class RancorHandSlamHitCollider : DiamondComponent
         if (timer < 1)
         {
 
-            timer += Time.deltaTime * speed;
+            timer += Time.deltaTime * speed * myDeltaTimeMult;
         }
         else
         {
@@ -51,6 +52,7 @@ class RancorHandSlamHitCollider : DiamondComponent
     public void RestartCollider()
     {
         start = true;
+        myDeltaTimeMult = 1f;
     }
 
 

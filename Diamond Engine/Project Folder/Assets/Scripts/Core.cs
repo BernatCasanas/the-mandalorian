@@ -71,11 +71,11 @@ public class Core : Entity
     private double angle = 0.0f;
     private float runTime = 0.0f;
     private float dustTime = 0.0f;
-    private float startRunningMultSpd = 0f;
+    private float currAnimationPlaySpd = 0f;
 
     //Skill
     private bool skill_damageReductionDashActive = false;
-    private float skill_damageReductionDashTimer = 0.0f;    
+    private float skill_damageReductionDashTimer = 0.0f;
     private bool skill_groguIncreaseDamageActive = false;
     private float skill_groguIncreaseDamageTimer = 0.0f;
 
@@ -231,6 +231,7 @@ public class Core : Entity
 
         currentState = STATE.IDLE;
         Animator.Play(gameObject, "Idle");
+        UpdateAnimationSpd(1f);
 
         lockInputs = false;
 
@@ -306,20 +307,20 @@ public class Core : Entity
             }
         }
 
-        //if (Input.GetKey(DEKeyCode.Z) == KeyState.KEY_DOWN)
-        //{
-        //    this.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.25f, 60f);
-        //}
+        if (Input.GetKey(DEKeyCode.Z) == KeyState.KEY_DOWN)
+        {
+            this.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.25f, 60f);
+        }
 
-        //if (Input.GetKey(DEKeyCode.X) == KeyState.KEY_DOWN)
-        //{
-        //    this.AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.75f, 60f);
-        //}
+        if (Input.GetKey(DEKeyCode.X) == KeyState.KEY_DOWN)
+        {
+            this.AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.75f, 60f);
+        }
 
-        //if (Input.GetKey(DEKeyCode.D) == KeyState.KEY_DOWN)
-        //{
-        //    this.ClearStatuses();
-        //}
+        if (Input.GetKey(DEKeyCode.D) == KeyState.KEY_DOWN)
+        {
+            this.ClearStatuses();
+        }
 
         UpdateControllerInputs();
 
@@ -463,6 +464,7 @@ public class Core : Entity
                 {
                     stopShootingTime += myDeltaTime;
                     Animator.Play(gameObject, "Shoot", 0.01f);
+                    UpdateAnimationSpd(0.01f);
                 }
             }
 
@@ -750,6 +752,7 @@ public class Core : Entity
             case STATE.IDLE:
                 ReducePrimaryWeaponHeat();
                 UpdateSecondaryShotAmmo();
+                UpdateIdle();
                 break;
             case STATE.MOVE:
                 UpdateMove();
@@ -777,6 +780,7 @@ public class Core : Entity
             case STATE.GADGET_SHOOT:
                 ReducePrimaryWeaponHeat();
                 UpdateSecondaryShotAmmo();
+                UpdateGadgetShoot();
                 break;
             case STATE.DEAD:
                 break;
@@ -791,6 +795,12 @@ public class Core : Entity
     private void StartIdle()
     {
         Animator.Play(gameObject, "Idle", speedMult);
+        UpdateAnimationSpd(speedMult);
+    }
+
+    private void UpdateIdle()
+    {
+        UpdateAnimationSpd(speedMult);
     }
     #endregion
 
@@ -807,7 +817,7 @@ public class Core : Entity
             numberOfShots += 1;
         }
         Animator.Play(gameObject, "Shoot", normalShootSpeed * speedMult);
-
+        UpdateAnimationSpd(normalShootSpeed * speedMult);
 
         PlayParticles(PARTICLES.MUZZLE);
         if (myAimbot != null)
@@ -824,6 +834,8 @@ public class Core : Entity
             myAimbot.RotateToObjective();
         else if (IsJoystickMoving() == true)
             RotatePlayer();
+
+        UpdateAnimationSpd(normalShootSpeed * speedMult);
     }
 
     private void EndShooting()
@@ -849,7 +861,6 @@ public class Core : Entity
 
     private void StartShoot()
     {
-
         inputsList.Add(INPUT.IN_SHOOT_END);
         hasShot = true;
 
@@ -880,12 +891,17 @@ public class Core : Entity
     private void StartGadgetShoot()
     {
         Animator.Play(gameObject, "Shoot", gadgetShootSkill * speedMult);
+        UpdateAnimationSpd(gadgetShootSkill * speedMult);
         gadgetShootTimer = gadgetFireRate;
         grenade_reloading = true;
 
         ReducePrimaryWeaponHeat(onGrenadeHeatReduction);
     }
 
+    private void UpdateGadgetShoot()
+    {
+        UpdateAnimationSpd(gadgetShootSkill * speedMult);
+    }
 
     private void EndGadgetShoot()
     {
@@ -995,7 +1011,9 @@ public class Core : Entity
         }
 
         chargeTimer += myDeltaTime;
+        //TODO: This needs to go away once the sniper animations are done
         Animator.Play(gameObject, "Shoot", 0.01f);
+        UpdateAnimationSpd(0.01f);
 
         if (chargeTimer >= timeToAutomaticallyShootCharge)
         {
@@ -1009,6 +1027,7 @@ public class Core : Entity
         bool perfectShot = false;
 
         Animator.Play(gameObject, "Shoot", normalShootSpeed * speedMult);
+        UpdateAnimationSpd(normalShootSpeed * speedMult);
 
         if (chargeTimer > timeToPerfectCharge && chargeTimer < timeToPerfectChargeEnd)
         {
@@ -1098,6 +1117,7 @@ public class Core : Entity
         Audio.StopAudio(gameObject);
         Audio.PlayAudio(gameObject, "Play_Dash");
         Animator.Play(gameObject, "Dash", speedMult);
+        UpdateAnimationSpd(speedMult);
 
         dashTimer = dashDuration;
         dashStartYPos = gameObject.transform.localPosition.y;
@@ -1122,6 +1142,7 @@ public class Core : Entity
         StopPlayer();
         //gameObject.AddForce(gameObject.transform.GetForward().normalized * dashSpeed);
         PlayParticles(PARTICLES.JETPACK);
+        UpdateAnimationSpd(speedMult);
 
         gameObject.transform.localPosition = gameObject.transform.localPosition + dashDirection * dashSpeed * myDeltaTime;
         distanceMoved += dashSpeed * myDeltaTime;
@@ -1155,8 +1176,8 @@ public class Core : Entity
     #region MOVE AND ROTATE PLAYER
     private void StartMove()
     {
-        Animator.Play(gameObject, "Run",  speedMult);
-        startRunningMultSpd = speedMult;
+        Animator.Play(gameObject, "Run", speedMult);
+        UpdateAnimationSpd(speedMult);
 
         if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
         {
@@ -1170,18 +1191,12 @@ public class Core : Entity
 
     private void UpdateMove()
     {
-        if(startRunningMultSpd != speedMult)
-        {
-            Animator.Play(gameObject, "Run", speedMult);
-            startRunningMultSpd = speedMult;
-        }
-
+        UpdateAnimationSpd(speedMult);
 
         RotatePlayer();
         dustTime += myDeltaTime;
         if (dustTime >= runTime)
         {
-
             PlayParticles(PARTICLES.DUST);
             dustTime = 0;
         }
@@ -1254,6 +1269,12 @@ public class Core : Entity
 
         return (rotation * aY);
 
+    }
+
+    private void UpdateAnimationSpd(float newSpd)
+    {
+        if (currAnimationPlaySpd != newSpd)
+            Animator.SetSpeed(gameObject, newSpd);
     }
     private void UpdateControllerInputs()
     {
@@ -1596,9 +1617,9 @@ public class Core : Entity
 
     public void SetSkill(int skillTree, int SkillNumber)
     {
-        if(skillTree == (int)Skill_Tree_Data.SkillTreesNames.MANDO)
+        if (skillTree == (int)Skill_Tree_Data.SkillTreesNames.MANDO)
         {
-            if(SkillNumber == (int)Skill_Tree_Data.MandoSkillNames.UTILITY_INCREASE_DAMAGE_WHEN_GROGU)
+            if (SkillNumber == (int)Skill_Tree_Data.MandoSkillNames.UTILITY_INCREASE_DAMAGE_WHEN_GROGU)
             {
                 skill_groguIncreaseDamageActive = true;
                 skill_groguIncreaseDamageTimer = Skill_Tree_Data.GetMandoSkillTree().U3_duration;

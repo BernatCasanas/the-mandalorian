@@ -70,6 +70,7 @@ public class Skytrooper : Enemy
     private float shootTimer = 0.0f;
     private float pushTimer = 0.0f;
     private float skill_slowDownTimer = 0.0f;
+    private float currAnimationPlaySpd = 1f;
 
     //Action variables
     private int shotsShooted = 0;
@@ -90,8 +91,9 @@ public class Skytrooper : Enemy
         targetPosition = null;
 
         currentState = STATE.IDLE;
-        Animator.Play(gameObject, "SK_Idle");
-        Animator.Play(blaster, "SK_Idle");
+        Animator.Play(gameObject, "SK_Idle", speedMult);
+        Animator.Play(blaster, "SK_Idle", speedMult);
+        UpdateAnimationSpd(speedMult);
 
         idleTimer = idleTime;
         dashTime = Animator.GetAnimationDuration(gameObject, "SK_Dash");
@@ -325,6 +327,7 @@ public class Skytrooper : Enemy
             case STATE.NONE:
                 break;
             case STATE.IDLE:
+                UpdateIdle();
                 break;
             case STATE.DASH:
                 UpdateDash();
@@ -352,10 +355,20 @@ public class Skytrooper : Enemy
     {
         //Debug.Log("SKYTROOPER IDLE");
         idleTimer = idleTime;
-        Animator.Play(gameObject, "SK_Idle");
-        Animator.Play(blaster, "SK_Idle");
+        Animator.Play(gameObject, "SK_Idle", speedMult);
+        Animator.Play(blaster, "SK_Idle", speedMult);
+        UpdateAnimationSpd(speedMult);
+
+
+
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
     }
+
+    private void UpdateIdle()
+    {
+        UpdateAnimationSpd(speedMult);
+    }
+
     private void IdleEnd()
     {
         Audio.StopAudio(gameObject);
@@ -368,19 +381,24 @@ public class Skytrooper : Enemy
         wanderTimer = wanderTime;
         //Debug.Log("SKYTROOPER WANDER");
 
-        Animator.Play(gameObject, "SK_Wander");
-        Animator.Play(blaster, "SK_Wander");
+        Animator.Play(gameObject, "SK_Wander", speedMult);
+        Animator.Play(blaster, "SK_Wander", speedMult);
+        UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
 
         targetPosition = CalculateNewPosition(wanderRange);
+
     }
     private void UpdateWander()
     {
         LookAt(targetPosition);
 
-        if (skill_slowDownActive)
-            MoveToPosition(targetPosition, wanderSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-        else MoveToPosition(targetPosition, wanderSpeed * speedMult);
+        //if (skill_slowDownActive)
+        //    MoveToPosition(targetPosition, wanderSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
+        //else 
+            MoveToPosition(targetPosition, wanderSpeed * speedMult);
+
+        UpdateAnimationSpd(speedMult);
     }
     private void WanderEnd()
     {
@@ -394,8 +412,8 @@ public class Skytrooper : Enemy
         dashTimer = dashTime;
         //Debug.Log("SKYTROOPER DASH");
 
-        Animator.Play(gameObject, "SK_Dash");
-        Animator.Play(blaster, "SK_Dash");
+        Animator.Play(gameObject, "SK_Dash", speedMult);
+        Animator.Play(blaster, "SK_Dash", speedMult);
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Dash");
 
         //agent.CalculateRandomPath(gameObject.transform.globalPosition, dashRange);
@@ -404,14 +422,19 @@ public class Skytrooper : Enemy
         if (targetPosition == null)
             inputsList.Add(INPUT.IN_WANDER);
         //Debug.Log(targetPosition.ToString());
+
+        UpdateAnimationSpd(speedMult);
     }
     private void UpdateDash()
     {
         LookAt(targetPosition);
 
-        if (skill_slowDownActive)
-            MoveToPosition(targetPosition, dashSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-        else MoveToPosition(targetPosition, dashSpeed * speedMult);
+        //if (skill_slowDownActive)
+        //    MoveToPosition(targetPosition, dashSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
+        //else 
+            MoveToPosition(targetPosition, dashSpeed * speedMult);
+
+        UpdateAnimationSpd(speedMult);
     }
     private void DashEnd()
     {
@@ -425,8 +448,9 @@ public class Skytrooper : Enemy
         //Debug.Log("SKYTROOPER SHOOT");
         shootTimer = timeBewteenShootingStates;
         shotsShooted = 0;
-        Animator.Play(gameObject, "SK_Idle");
-        Animator.Play(blaster, "SK_Idle");
+        Animator.Play(gameObject, "SK_Idle",speedMult);
+        Animator.Play(blaster, "SK_Idle",speedMult);
+        UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
     }
 
@@ -445,6 +469,7 @@ public class Skytrooper : Enemy
                 Shoot();
             }
         }
+        UpdateAnimationSpd(speedMult);
     }
 
     private void Shoot()
@@ -465,8 +490,9 @@ public class Skytrooper : Enemy
                                                     randomPosition.y);
 
         bullet.GetComponent<SkyTrooperShot>().SetTarget(projectileEndPosition, false);
-        Animator.Play(gameObject, "SK_Shoot");
-        Animator.Play(blaster, "SK_Shoot");
+        Animator.Play(gameObject, "SK_Shoot",speedMult);
+        Animator.Play(blaster, "SK_Shoot",speedMult);
+        UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "PLay_Skytrooper_Grenade_Launch");
 
         shotsShooted++;
@@ -475,8 +501,9 @@ public class Skytrooper : Enemy
         else
         {
             shootTimer = timeBewteenShootingStates;
-            Animator.Play(gameObject, "SK_Idle");
-            Animator.Play(blaster, "SK_Idle");
+            Animator.Play(gameObject, "SK_Idle", speedMult);
+            Animator.Play(blaster, "SK_Idle", speedMult);
+            UpdateAnimationSpd(speedMult);
         }
 
     }
@@ -700,4 +727,14 @@ public class Skytrooper : Enemy
 
         return null;
     }
+
+    private void UpdateAnimationSpd(float newSpd)
+    {
+        if (currAnimationPlaySpd != newSpd)
+        {
+            Animator.SetSpeed(gameObject, newSpd);
+            currAnimationPlaySpd = newSpd;
+        }
+    }
+
 }

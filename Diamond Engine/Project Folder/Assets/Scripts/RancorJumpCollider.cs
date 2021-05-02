@@ -10,12 +10,14 @@ public class RancorJumpCollider : DiamondComponent
 
     public int damage = 10;
 
+    public float deltaTimeMult = 1f;
+
 
     public void Update()
     {
         if (lifeTime > 0.0f)
         {
-            lifeTime -= Time.deltaTime;
+            lifeTime -= Time.deltaTime * deltaTimeMult;
 
             if (lifeTime <= 0.0f)
                 InternalCalls.Destroy(gameObject);

@@ -64,6 +64,7 @@ public class Bantha : Enemy
     public float chargeSpeed = 60.0f;
     public float chargeSpeedReduction = 0.3f;
     private bool skill_slowDownActive = false;
+    private float currAnimationPlaySpd = 1f;
 
     //Ranges
     public float wanderRange = 7.5f;
@@ -132,7 +133,7 @@ public class Bantha : Enemy
     {
         if (idleTimer > 0.0f)
         {
-            idleTimer -= Time.deltaTime;
+            idleTimer -= myDeltaTime;
 
             if (idleTimer < 0.0f)
             {
@@ -150,7 +151,7 @@ public class Bantha : Enemy
 
         if (loadingTimer > 0.0f)
         {
-            loadingTimer -= Time.deltaTime;
+            loadingTimer -= myDeltaTime;
 
             if (loadingTimer < 0.0f)
             {
@@ -160,7 +161,7 @@ public class Bantha : Enemy
 
         if (currentState == STATE.CHARGE && chargeTimer > 0.0f)
         {
-            chargeTimer -= Time.deltaTime;
+            chargeTimer -= myDeltaTime;
             if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) <= agent.stoppingDistance || chargeTimer < 0.0f)
             {
                 inputsList.Add(INPUT.IN_CHARGE_END);
@@ -169,7 +170,7 @@ public class Bantha : Enemy
 
         if (tiredTimer > 0.0f)
         {
-            tiredTimer -= Time.deltaTime;
+            tiredTimer -= myDeltaTime;
 
             if (tiredTimer < 0.0f)
             {
@@ -179,7 +180,7 @@ public class Bantha : Enemy
 
         if (skill_slowDownActive)
         {
-            skill_slowDownTimer += Time.deltaTime;
+            skill_slowDownTimer += myDeltaTime;
 
             if (skill_slowDownTimer >= Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownDuration) //Get duration from Primary Weapon Skill 4
             {
@@ -422,6 +423,7 @@ public class Bantha : Enemy
             case STATE.NONE:
                 break;
             case STATE.IDLE:
+                UpdateIdle();
                 break;
             case STATE.RUN:
                 UpdateRun();
@@ -436,6 +438,7 @@ public class Bantha : Enemy
                 UpdateCharge();
                 break;
             case STATE.TIRED:
+                UpdateTired();
                 break;
             case STATE.DIE:
                 UpdateDie();
@@ -453,8 +456,15 @@ public class Bantha : Enemy
     private void StartIdle()
     {
         idleTimer = idleTime;
-        Animator.Play(gameObject, "BT_Idle");
+        Animator.Play(gameObject, "BT_Idle", speedMult);
+        UpdateAnimationSpd(speedMult);
     }
+
+    private void UpdateIdle()
+    {
+        UpdateAnimationSpd(speedMult);
+    }
+
     #endregion
 
     #region TIRED
@@ -463,16 +473,25 @@ public class Bantha : Enemy
         Audio.StopAudio(gameObject);
 
         tiredTimer = tiredTime;
-        Animator.Play(gameObject, "BT_Idle");
+        Animator.Play(gameObject, "BT_Idle", speedMult);
         Audio.PlayAudio(gameObject, "Play_Bantha_Breath");
         stun.Play();
     }
+    private void UpdateTired()
+    {
+        UpdateAnimationSpd(speedMult);
+
+        if (stun.playing == false)
+            stun.Play();
+    }
+
     #endregion
 
     #region RUN
     private void StartRun()
     {
-        Animator.Play(gameObject, "BT_Walk");
+        Animator.Play(gameObject, "BT_Walk", speedMult);
+        UpdateAnimationSpd(speedMult);
     }
     private void UpdateRun()
     {
@@ -486,12 +505,14 @@ public class Bantha : Enemy
         }
 
         LookAt(agent.GetDestination());
-        if (skill_slowDownActive)
-            agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-        else
-            agent.MoveToCalculatedPos(runningSpeed);
+        //if (skill_slowDownActive)
+        //    agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
+        
+        agent.MoveToCalculatedPos(runningSpeed * speedMult);
 
         StraightPath();
+
+        UpdateAnimationSpd(speedMult);
     }
     private void RunEnd()
     {
@@ -503,16 +524,21 @@ public class Bantha : Enemy
     private void StartWander()
     {
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
-        Animator.Play(gameObject, "BT_Walk", 1.4f);
+        Animator.Play(gameObject, "BT_Walk", 1.4f * speedMult);
+        UpdateAnimationSpd(1.4f * speedMult);
 
         Audio.PlayAudio(gameObject, "Play_Footsteps_Bantha");
     }
     private void UpdateWander()
     {
         LookAt(agent.GetDestination());
-        if (skill_slowDownActive)
-            agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-        else agent.MoveToCalculatedPos(wanderSpeed);
+        //if (skill_slowDownActive)
+        //    agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
+
+        agent.MoveToCalculatedPos(wanderSpeed * speedMult);
+
+        UpdateAnimationSpd(1.4f * speedMult);
+
     }
     private void WanderEnd()
     {
@@ -527,13 +553,14 @@ public class Bantha : Enemy
         directionDecisionTimer = directionDecisionTime;
 
         visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/1137197426.prefab", chargePoint.transform.globalPosition, chargePoint.transform.globalRotation, new Vector3(1.0f, 1.0f, 0.01f));
-        Animator.Play(gameObject, "BT_Charge");
+        Animator.Play(gameObject, "BT_Charge", speedMult);
+        UpdateAnimationSpd(speedMult);
     }
     private void UpdateLoading()
     {
         if (directionDecisionTimer > 0.0f)
         {
-            directionDecisionTimer -= Time.deltaTime;
+            directionDecisionTimer -= myDeltaTime;
             LookAt(player.transform.globalPosition);
 
             if (directionDecisionTimer < 0.1f)
@@ -545,22 +572,25 @@ public class Bantha : Enemy
         }
         if (visualFeedback.transform.globalScale.z < 1.0)
         {
-            visualFeedback.transform.localScale = new Vector3(1.0f, 1.0f, Mathf.Lerp(visualFeedback.transform.localScale.z, 1.0f, Time.deltaTime * (loadingTime / loadingTimer)));
+            visualFeedback.transform.localScale = new Vector3(1.0f, 1.0f, Mathf.Lerp(visualFeedback.transform.localScale.z, 1.0f, myDeltaTime * (loadingTime / loadingTimer)));
             visualFeedback.transform.localRotation = gameObject.transform.globalRotation;
         }
+
+        UpdateAnimationSpd(speedMult);
     }
     #endregion
 
     #region CHARGE
     private void StartCharge()
     {
-        if (skill_slowDownActive)
-            chargeTimer = chargeLength / (chargeSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-        else if (!straightPath)
-            chargeTimer = chargeLength / (chargeSpeed * chargeSpeedReduction);
-        else chargeTimer = chargeLength / chargeSpeed;
+        //if (skill_slowDownActive)
+        //    chargeTimer = chargeLength / (chargeSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
+        if (!straightPath)
+            chargeTimer = (chargeLength / (chargeSpeed * chargeSpeedReduction)) * speedMult;
+        else chargeTimer = (chargeLength / chargeSpeed) * speedMult;
 
-        Animator.Play(gameObject, "BT_Run");
+        Animator.Play(gameObject, "BT_Run", speedMult);
+        UpdateAnimationSpd(speedMult);
         InternalCalls.Destroy(visualFeedback);
         visualFeedback = null;
 
@@ -574,12 +604,15 @@ public class Bantha : Enemy
     }
     private void UpdateCharge()
     {
-        if (skill_slowDownActive)
-            agent.MoveToCalculatedPos(chargeSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-        else if (!straightPath)
-            agent.MoveToCalculatedPos(chargeSpeed * chargeSpeedReduction);
+        //if (skill_slowDownActive)
+        //    agent.MoveToCalculatedPos(chargeSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
+       
+        if (!straightPath)
+            agent.MoveToCalculatedPos(chargeSpeed * chargeSpeedReduction * speedMult);
         else
-            agent.MoveToCalculatedPos(chargeSpeed);
+            agent.MoveToCalculatedPos(chargeSpeed * speedMult);
+
+        UpdateAnimationSpd(speedMult);
     }
     #endregion
 
@@ -593,7 +626,8 @@ public class Bantha : Enemy
 
         dieTimer = dieTime;
 
-        Animator.Play(gameObject, "BT_Die", 1.0f);
+        Animator.Play(gameObject, "BT_Die", speedMult);
+        UpdateAnimationSpd(speedMult);
 
         Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Death");
         Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
@@ -613,13 +647,15 @@ public class Bantha : Enemy
     {
         if (dieTimer > 0.0f)
         {
-            dieTimer -= Time.deltaTime;
+            dieTimer -= myDeltaTime;
 
             if (dieTimer <= 0.0f)
             {
                 Die();
             }
         }
+
+        UpdateAnimationSpd(speedMult);
     }
     private void Die()
     {
@@ -648,7 +684,7 @@ public class Bantha : Enemy
     }
     private void UpdatePush()
     {
-        pushTimer += Time.deltaTime;
+        pushTimer += myDeltaTime;
         if (BabyYoda.instance != null)
         {
             if (pushTimer >= BabyYoda.instance.PushStun)
@@ -779,4 +815,14 @@ public class Bantha : Enemy
         }
         Debug.Log("StraightPath: " + straightPath);
     }
+
+    private void UpdateAnimationSpd(float newSpd)
+    {
+        if (currAnimationPlaySpd != newSpd)
+        {
+            Animator.SetSpeed(gameObject, newSpd);
+            currAnimationPlaySpd = newSpd;
+        }
+    }
+
 }

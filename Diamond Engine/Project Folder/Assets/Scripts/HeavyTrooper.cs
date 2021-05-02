@@ -77,6 +77,7 @@ public class HeavyTrooper : Enemy
     private float directionDecisionTimer = 0.0f;
     private float skill_slowDownTimer = 0.0f;
     private float pushTimer = 0.0f;
+    private float currAnimationPlaySpd = 1f;
 
     //force
     public float forcePushMod = 1;
@@ -130,7 +131,7 @@ public class HeavyTrooper : Enemy
     {
         if (idleTimer > 0.0f)
         {
-            idleTimer -= Time.deltaTime;
+            idleTimer -= myDeltaTime;
 
             if (idleTimer < 0.0f)
             {
@@ -150,7 +151,7 @@ public class HeavyTrooper : Enemy
 
         if (skill_slowDownActive)
         {
-            skill_slowDownTimer += Time.deltaTime;
+            skill_slowDownTimer += myDeltaTime;
 
             if (skill_slowDownTimer >= Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownDuration) //Get duration from Primary Weapon Skill 4
             {
@@ -383,6 +384,7 @@ public class HeavyTrooper : Enemy
             case STATE.NONE:
                 break;
             case STATE.IDLE:
+                UpdateIdle();
                 break;
             case STATE.RUN:
                 UpdateRun();
@@ -414,8 +416,15 @@ public class HeavyTrooper : Enemy
     private void StartIdle()
     {
         idleTimer = idleTime;
-        Animator.Play(gameObject, "BT_Idle");
+        Animator.Play(gameObject, "BT_Idle", speedMult);
+        UpdateAnimationSpd(speedMult);
     }
+
+    private void UpdateIdle()
+    {
+        UpdateAnimationSpd(speedMult);
+    }
+
     #endregion
 
     #region RUN
@@ -476,7 +485,8 @@ public class HeavyTrooper : Enemy
         Audio.StopAudio(gameObject);
 
         tiredTimer = tiredTime;
-        Animator.Play(gameObject, "BT_Idle");
+        Animator.Play(gameObject, "BT_Idle",speedMult);
+        UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Bantha_Breath");
         stun.Play();
     }
@@ -503,7 +513,7 @@ public class HeavyTrooper : Enemy
         Vector3 force = gameObject.transform.globalPosition - player.transform.globalPosition;
         if (BabyYoda.instance != null)
         {
-            force.y = BabyYoda.instance.pushVerticalForce * forcePushMod;
+            force.y = BabyYoda.instance.pushVerticalForce * Time.deltaTime;
             gameObject.AddForce(force * BabyYoda.instance.pushHorizontalForce * forcePushMod);
             pushTimer = 0.0f;
         }
@@ -559,5 +569,14 @@ public class HeavyTrooper : Enemy
             straightPath = false;
         }
         Debug.Log("StraightPath: " + straightPath);
+    }
+
+    private void UpdateAnimationSpd(float newSpd)
+    {
+        if (currAnimationPlaySpd != newSpd)
+        {
+            Animator.SetSpeed(gameObject, newSpd);
+            currAnimationPlaySpd = newSpd;
+        }
     }
 }

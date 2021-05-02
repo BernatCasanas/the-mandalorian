@@ -41,11 +41,11 @@ public class Enemy : Entity
 	{
 		Vector3 direction = positionToReach - gameObject.transform.localPosition;
 
-		gameObject.transform.localPosition += direction.normalized * speed * Time.deltaTime;
+		gameObject.transform.localPosition += direction.normalized * speed * myDeltaTime;
 	}
 	public void InterpolatePosition(Vector3 positionToReach, float speed)
 	{
-		gameObject.transform.localPosition = Vector3.Lerp(gameObject.transform.localPosition, positionToReach, speed * Time.deltaTime);
+		gameObject.transform.localPosition = Vector3.Lerp(gameObject.transform.localPosition, positionToReach, speed * myDeltaTime);
 	}
 
 	public void LookAt(Vector3 pointToLook)
@@ -61,7 +61,7 @@ public class Enemy : Entity
 
 		Quaternion dir = Quaternion.RotateAroundAxis(Vector3.up, angle);
 
-		float rotationSpeed = Time.deltaTime * slerpSpeed;
+		float rotationSpeed = myDeltaTime * slerpSpeed;
 
 		Quaternion desiredRotation = Quaternion.Slerp(gameObject.transform.localRotation, dir, rotationSpeed);
 

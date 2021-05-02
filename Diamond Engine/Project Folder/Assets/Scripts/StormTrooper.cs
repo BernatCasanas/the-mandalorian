@@ -56,6 +56,7 @@ public class StormTrooper : Enemy
     public float runningSpeed = 7.5f;
     public float bulletSpeed = 10.0f;
     private bool skill_slowDownActive = false;
+    private float currAnimationPlaySpd = 1f;
 
     //Ranges
     public float wanderRange = 7.5f;
@@ -97,7 +98,8 @@ public class StormTrooper : Enemy
         targetPosition = null;
 
         currentState = STATE.IDLE;
-        Animator.Play(gameObject, "ST_Idle");
+        Animator.Play(gameObject, "ST_Idle", 1f);
+        UpdateAnimationSpd(1f);
 
         shotTimes = 0;
         shotSequences = 0;
@@ -151,7 +153,7 @@ public class StormTrooper : Enemy
     {
         if (idleTimer > 0.0f)
         {
-            idleTimer -= Time.deltaTime;
+            idleTimer -= myDeltaTime;
 
             if (idleTimer <= 0.0f)
             {
@@ -169,7 +171,7 @@ public class StormTrooper : Enemy
 
         if (skill_slowDownActive)
         {
-            skill_slowDownTimer += Time.deltaTime;
+            skill_slowDownTimer += myDeltaTime;
             if (skill_slowDownTimer >= Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownDuration)
             {
                 skill_slowDownTimer = 0.0f;
@@ -367,6 +369,7 @@ public class StormTrooper : Enemy
             case STATE.NONE:
                 break;
             case STATE.IDLE:
+                UpdateIdle();
                 break;
             case STATE.RUN:
                 UpdateRun();
@@ -396,9 +399,16 @@ public class StormTrooper : Enemy
     private void StartIdle()
     {
         idleTimer = idleTime;
-        Animator.Play(gameObject, "ST_Idle");
+        Animator.Play(gameObject, "ST_Idle", speedMult);
+        UpdateAnimationSpd(speedMult);
 
     }
+
+    private void UpdateIdle()
+    {
+        UpdateAnimationSpd(speedMult);
+    }
+
     #endregion
 
     #region WANDER
@@ -406,15 +416,19 @@ public class StormTrooper : Enemy
     {
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
-        Animator.Play(gameObject, "ST_Run");
+        Animator.Play(gameObject, "ST_Run", speedMult);
+        UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
     }
     private void UpdateWander()
     {
         LookAt(agent.GetDestination());
-        if (skill_slowDownActive) 
-            agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-        else agent.MoveToCalculatedPos(wanderSpeed);
+        //if (skill_slowDownActive) 
+        //    agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
+
+        agent.MoveToCalculatedPos(wanderSpeed * speedMult);
+
+        UpdateAnimationSpd(speedMult);
 
     }
     private void WanderEnd()
@@ -428,7 +442,8 @@ public class StormTrooper : Enemy
     {
         agent.CalculateRandomPath(gameObject.transform.globalPosition, runningRange);
 
-        Animator.Play(gameObject, "ST_Run");
+        Animator.Play(gameObject, "ST_Run", speedMult);
+        UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
     }
 
@@ -436,11 +451,12 @@ public class StormTrooper : Enemy
     {
         LookAt(agent.GetDestination());
 
-        if (skill_slowDownActive)
-            agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-        else
-            agent.MoveToCalculatedPos(runningSpeed);
+        //if (skill_slowDownActive)
+        //    agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
 
+        agent.MoveToCalculatedPos(runningSpeed * speedMult);
+
+        UpdateAnimationSpd(speedMult);
     }
     private void RunEnd()
     {
@@ -470,7 +486,8 @@ public class StormTrooper : Enemy
 
             targetPosition = (targetPosition - gameObject.transform.globalPosition).normalized * wanderRange;
 
-            Animator.Play(gameObject, "ST_Run");
+            Animator.Play(gameObject, "ST_Run", speedMult);
+            UpdateAnimationSpd(speedMult);
             reAimTimer = reAimTime;
         }
 
@@ -482,7 +499,7 @@ public class StormTrooper : Enemy
         {
             if (reAimTimer > 0.0f)
             {
-                reAimTimer -= Time.deltaTime;
+                reAimTimer -= myDeltaTime;
 
                 LookAt(targetPosition);
                 MoveToPosition(targetPosition, wanderSpeed);
@@ -509,7 +526,8 @@ public class StormTrooper : Enemy
     private void StartShoot()
     {
         statesTimer = timeBewteenStates;
-        Animator.Play(gameObject, "ST_Idle");
+        Animator.Play(gameObject, "ST_Idle", speedMult);
+        UpdateAnimationSpd(speedMult);
     }
 
     private void UpdateShoot()
@@ -517,7 +535,7 @@ public class StormTrooper : Enemy
         if (unableToShoot)
         {
             agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
-            agent.MoveToCalculatedPos(runningSpeed);
+            agent.MoveToCalculatedPos(runningSpeed * speedMult);
             LookAt(agent.GetDestination());
             if (PlayerIsShootable())
             {
@@ -534,7 +552,7 @@ public class StormTrooper : Enemy
 
         if (statesTimer > 0.0f)
         {
-            statesTimer -= Time.deltaTime;
+            statesTimer -= myDeltaTime;
 
             if (statesTimer <= 0.0f)
             {
@@ -563,7 +581,7 @@ public class StormTrooper : Enemy
         if (shotTimer > 0.0f)
         {
 
-            shotTimer -= Time.deltaTime;
+            shotTimer -= myDeltaTime;
 
             if (shotTimer <= 0.0f)
             {
@@ -575,7 +593,8 @@ public class StormTrooper : Enemy
                 {
                     shotSequences++;
 
-                    Animator.Play(gameObject, "ST_Idle");
+                    Animator.Play(gameObject, "ST_Idle", speedMult);
+                    UpdateAnimationSpd(speedMult);
 
                     //End of second shot of the first sequence
                     if (shotSequences < maxSequences)
@@ -596,7 +615,7 @@ public class StormTrooper : Enemy
 
         if (sequenceTimer > 0.0f)
         {
-            sequenceTimer -= Time.deltaTime;
+            sequenceTimer -= myDeltaTime;
 
             if (sequenceTimer <= 0.0f)
             {
@@ -609,6 +628,7 @@ public class StormTrooper : Enemy
         if (!shooting)
             LookAt(Core.instance.gameObject.transform.globalPosition);
 
+        UpdateAnimationSpd(speedMult);
     }
 
     private bool Shoot()
@@ -620,14 +640,16 @@ public class StormTrooper : Enemy
             shotTimer = 0.0f;
             shotSequences = 0;
             sequenceTimer = 0.0f;
-            Animator.Play(gameObject, "ST_Run");
+            Animator.Play(gameObject, "ST_Run", speedMult);
+            UpdateAnimationSpd(speedMult);
             return false;
         }
 
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         bullet.GetComponent<BH_Bullet>().damage = damage;
 
-        Animator.Play(gameObject, "ST_Shoot");
+        Animator.Play(gameObject, "ST_Shoot", speedMult);
+        UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "PLay_Blaster_Stormtrooper");
         shotTimes++;
         return true;
@@ -646,7 +668,8 @@ public class StormTrooper : Enemy
         dieTimer = dieTime;
         //Audio.StopAudio(gameObject);
 
-        Animator.Play(gameObject, "ST_Die", 1.0f);
+        Animator.Play(gameObject, "ST_Die", speedMult);
+        UpdateAnimationSpd(speedMult);
 
         Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
         Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
@@ -670,12 +693,14 @@ public class StormTrooper : Enemy
                 Die();
             }
         }
+
+        UpdateAnimationSpd(speedMult);
     }
 
     private void Die()
     {
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOPER);
- 
+
         EnemyManager.RemoveEnemy(gameObject);
 
         float dist = (deathPoint.transform.globalPosition - gameObject.transform.globalPosition).magnitude;
@@ -684,7 +709,7 @@ public class StormTrooper : Enemy
 
         player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
         InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
-        InternalCalls.Destroy(gameObject);        
+        InternalCalls.Destroy(gameObject);
         DropCoins();
     }
 
@@ -722,7 +747,7 @@ public class StormTrooper : Enemy
     {
         float distance = detectionRange;
         float hitDistance = detectionRange;
-        GameObject raycastHit = InternalCalls.RayCast(shootPoint.transform.globalPosition, (Core.instance.gameObject.transform.globalPosition-shootPoint.transform.globalPosition).normalized, distance, ref hitDistance);
+        GameObject raycastHit = InternalCalls.RayCast(shootPoint.transform.globalPosition, (Core.instance.gameObject.transform.globalPosition - shootPoint.transform.globalPosition).normalized, distance, ref hitDistance);
 
         if (raycastHit != null)
         {
@@ -733,7 +758,7 @@ public class StormTrooper : Enemy
             }
 
         }
-        
+
         Debug.Log("RayCast Player False");
         return false;
     }
@@ -758,12 +783,12 @@ public class StormTrooper : Enemy
                 if (hudComponent != null)
                     hudComponent.AddToCombo(25, 0.95f);
             }
-            
+
             if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
             {
                 skill_slowDownActive = true;
                 skill_slowDownTimer = 0.0f;
-            }            
+            }
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))
         {
@@ -837,5 +862,13 @@ public class StormTrooper : Enemy
         }
 
 
+    }
+    private void UpdateAnimationSpd(float newSpd)
+    {
+        if (currAnimationPlaySpd != newSpd)
+        {
+            Animator.SetSpeed(gameObject, newSpd);
+            currAnimationPlaySpd = newSpd;
+        }
     }
 }

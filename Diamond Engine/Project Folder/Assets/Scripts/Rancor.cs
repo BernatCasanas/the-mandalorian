@@ -111,6 +111,8 @@ public class Rancor : Entity
 
     private bool meleeShaked = false;
 
+    private float currAnimationPlaySpd = 1f;
+
     //Projectile
     private float projectileTime = 0.0f;
     private float projectileTimer = 0.0f;
@@ -234,14 +236,14 @@ public class Rancor : Entity
 
     public void Update()
     {
-        myDeltaTime = Time.deltaTime * speedMult;
-        UpdateStatuses();
-
         if (start == false)
         {
             Start();
             start = true;
         }
+
+        myDeltaTime = Time.deltaTime * speedMult;
+        UpdateStatuses();
 
         ProcessInternalInput();
         ProcessExternalInput();
@@ -255,7 +257,7 @@ public class Rancor : Entity
     {
         if (followTimer > 0)
         {
-            followTimer -= Time.deltaTime;
+            followTimer -= myDeltaTime;
 
             if (followTimer <= 0)
             {
@@ -265,7 +267,7 @@ public class Rancor : Entity
 
         if (meleeCH1Timer > 0)
         {
-            meleeCH1Timer -= Time.deltaTime;
+            meleeCH1Timer -= myDeltaTime;
 
             if (meleeCH1Timer <= 0)
                 inputsList.Add(RANCOR_INPUT.IN_MELEE_COMBO_2HIT);
@@ -273,7 +275,7 @@ public class Rancor : Entity
 
         if (meleeCH2Timer > 0)
         {
-            meleeCH2Timer -= Time.deltaTime;
+            meleeCH2Timer -= myDeltaTime;
 
             if (meleeCH2Timer <= 0)
                 inputsList.Add(RANCOR_INPUT.IN_MELEE_COMBO_3HIT);
@@ -281,7 +283,7 @@ public class Rancor : Entity
 
         if (meleeCH3Timer > 0)
         {
-            meleeCH3Timer -= Time.deltaTime;
+            meleeCH3Timer -= myDeltaTime;
 
             if (meleeCH3Timer <= 0)
                 inputsList.Add(RANCOR_INPUT.IN_MELEE_COMBO_END);
@@ -289,7 +291,7 @@ public class Rancor : Entity
 
         if (projectileTimer > 0)
         {
-            projectileTimer -= Time.deltaTime;
+            projectileTimer -= myDeltaTime;
 
             if (projectileTimer <= 0)
                 inputsList.Add(RANCOR_INPUT.IN_PROJECTILE_END);
@@ -298,7 +300,7 @@ public class Rancor : Entity
 
         if (handSlamTimer > 0)
         {
-            handSlamTimer -= Time.deltaTime;
+            handSlamTimer -= myDeltaTime;
 
             if (handSlamTimer <= 0)
                 inputsList.Add(RANCOR_INPUT.IN_HAND_SLAM_END);
@@ -306,7 +308,7 @@ public class Rancor : Entity
 
         if (loadRushTimer > 0)
         {
-            loadRushTimer -= Time.deltaTime;
+            loadRushTimer -= myDeltaTime;
 
             if (loadRushTimer <= 0)
                 inputsList.Add(RANCOR_INPUT.IN_RUSH);
@@ -314,7 +316,7 @@ public class Rancor : Entity
 
         if (rushTimer > 0)
         {
-            rushTimer -= Time.deltaTime;
+            rushTimer -= myDeltaTime;
 
             if (rushTimer <= 0)
                 inputsList.Add(RANCOR_INPUT.IN_RUSH_END);
@@ -323,7 +325,7 @@ public class Rancor : Entity
 
         if (rushStunTimer > 0)
         {
-            rushStunTimer -= Time.deltaTime;
+            rushStunTimer -= myDeltaTime;
 
             if (rushStunTimer <= 0)
                 inputsList.Add(RANCOR_INPUT.IN_RUSH_STUN_END);
@@ -331,7 +333,7 @@ public class Rancor : Entity
 
         if (roarTimer > 0)
         {
-            roarTimer -= Time.deltaTime;
+            roarTimer -= myDeltaTime;
             healthPoints = (1 - (roarTimer / roarTime)) * maxHealthPoints;
             Debug.Log("Rancor health: " + healthPoints.ToString());
             if (roarTimer <= 0)
@@ -345,7 +347,7 @@ public class Rancor : Entity
 
         if (rushRecoveryTimer > 0)
         {
-            rushRecoveryTimer -= Time.deltaTime;
+            rushRecoveryTimer -= myDeltaTime;
 
             if (rushRecoveryTimer <= 0)
             {
@@ -725,7 +727,8 @@ public class Rancor : Entity
         meleeCH1Timer = meleeComboHit1Time;
         meleeCH1ColliderTimer = meleeCH1ColliderDuration;
 
-        Animator.Play(gameObject, "RN_MeleeComboP1");
+        Animator.Play(gameObject, "RN_MeleeComboP1", speedMult);
+        UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Rancor_Melee_1rst_Punch");
         LookAt(Core.instance.gameObject.transform.globalPosition);
     }
@@ -736,7 +739,7 @@ public class Rancor : Entity
 
         if (meleeCH1ColliderTimer > 0.0f)
         {
-            meleeCH1ColliderTimer -= Time.deltaTime;
+            meleeCH1ColliderTimer -= myDeltaTime;
 
             if (meleeCH1ColliderTimer <= 0.0f)
             {
@@ -751,7 +754,9 @@ public class Rancor : Entity
         }
 
         LookAt(Core.instance.gameObject.transform.globalPosition);
-        gameObject.transform.localPosition += gameObject.transform.GetForward().normalized * meleeComboMovSpeed * Time.deltaTime;
+        gameObject.transform.localPosition += gameObject.transform.GetForward().normalized * meleeComboMovSpeed * myDeltaTime;
+
+        UpdateAnimationSpd(speedMult);
     }
 
     private void EndMCHit1()
@@ -765,7 +770,8 @@ public class Rancor : Entity
         meleeCH2Timer = meleeComboHit2Time;
         meleeCH2ColliderTimer = meleeCH2ColliderDuration;
 
-        Animator.Play(gameObject, "RN_MeleeComboP2");
+        Animator.Play(gameObject, "RN_MeleeComboP2", speedMult);
+        UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Rancor_Melee_2nd_Punch");
 
         LookAt(Core.instance.gameObject.transform.globalPosition);
@@ -776,7 +782,7 @@ public class Rancor : Entity
         Debug.Log("Combo hit 2");
         if (meleeCH2ColliderTimer > 0.0f)
         {
-            meleeCH2ColliderTimer -= Time.deltaTime;
+            meleeCH2ColliderTimer -= myDeltaTime;
 
             if (meleeCH2ColliderTimer <= 0.0f)
             {
@@ -791,7 +797,9 @@ public class Rancor : Entity
         }
 
         LookAt(Core.instance.gameObject.transform.globalPosition);
-        gameObject.transform.localPosition += gameObject.transform.GetForward().normalized * meleeComboMovSpeed * Time.deltaTime;
+        gameObject.transform.localPosition += gameObject.transform.GetForward().normalized * meleeComboMovSpeed * myDeltaTime;
+
+        UpdateAnimationSpd(speedMult);
     }
 
     private void EndMCHit2()
@@ -806,7 +814,8 @@ public class Rancor : Entity
         meleeCH3ColliderTimer = meleeComboHit3CollisionTimeToActivate;
         meleeCH3ColliderActiveTimer = meleeComboHit3CollisionDuration;
 
-        Animator.Play(gameObject, "RN_MeleeComboP3");
+        Animator.Play(gameObject, "RN_MeleeComboP3", speedMult);
+        UpdateAnimationSpd(speedMult);
 
         jumpAttackTarget = Core.instance.gameObject.transform.globalPosition;
         LookAt(jumpAttackTarget);
@@ -822,7 +831,7 @@ public class Rancor : Entity
 
         if (meleeCH3ColliderTimer > 0.0f)
         {
-            meleeCH3ColliderTimer -= Time.deltaTime;
+            meleeCH3ColliderTimer -= myDeltaTime;
 
             if (meleeCH3ColliderTimer <= 0.0f)
             {
@@ -831,12 +840,18 @@ public class Rancor : Entity
                 Vector3 pos = gameObject.transform.localPosition;
                 pos.y += 3;
 
-                InternalCalls.CreatePrefab("Library/Prefabs/376114835.prefab", pos, gameObject.transform.localRotation, gameObject.transform.localScale);
+                RancorJumpCollider jumpColl = InternalCalls.CreatePrefab("Library/Prefabs/376114835.prefab", pos, gameObject.transform.localRotation, gameObject.transform.localScale).GetComponent<RancorJumpCollider>();
+                
+                if(jumpColl != null)
+                {
+                    jumpColl.deltaTimeMult = speedMult;
+                }
+
                 //gameObject.DisableCollider();
             }
 
         }
-        if (meleeCH3Timer < 1.95f && !meleeShaked) 
+        if (meleeCH3Timer < 1.95f && !meleeShaked)
         {
             meleeShaked = true;
             Shake3D shake = camera.GetComponent<Shake3D>();
@@ -865,7 +880,7 @@ public class Rancor : Entity
 
         if (jumpDelayTimer > 0.0f)
         {
-            jumpDelayTimer -= Time.deltaTime;
+            jumpDelayTimer -= myDeltaTime;
 
             if (jumpDelayTimer <= 0.0f)
             {
@@ -878,11 +893,13 @@ public class Rancor : Entity
 
         if (startedJumping)
         {
-            float x = Mathf.Lerp(gameObject.transform.localPosition.x, jumpAttackTarget.x, jumpAttackSpeed * Time.deltaTime);
-            float z = Mathf.Lerp(gameObject.transform.localPosition.z, jumpAttackTarget.z, jumpAttackSpeed * Time.deltaTime);
+            float x = Mathf.Lerp(gameObject.transform.localPosition.x, jumpAttackTarget.x, jumpAttackSpeed * myDeltaTime);
+            float z = Mathf.Lerp(gameObject.transform.localPosition.z, jumpAttackTarget.z, jumpAttackSpeed * myDeltaTime);
             gameObject.transform.localPosition = new Vector3(x, gameObject.transform.localPosition.y, z);
         }
         LookAt(jumpAttackTarget);
+
+        UpdateAnimationSpd(speedMult);
     }
 
     private void EndMCHit3()
@@ -899,7 +916,8 @@ public class Rancor : Entity
     private void StartShortFollow()
     {
         //Start walk animation
-        Animator.Play(gameObject, "RN_Walk");
+        Animator.Play(gameObject, "RN_Walk", speedMult);
+        UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "PLay_Rancor_Footsteps");
         //Search point
         followTimer = shortFollowTime;
@@ -913,7 +931,8 @@ public class Rancor : Entity
         //Start walk animation
         //Search point
 
-        Animator.Play(gameObject, "RN_Walk");
+        Animator.Play(gameObject, "RN_Walk", speedMult);
+        UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "PLay_Rancor_Footsteps");
         followTimer = longFollowTime;
         toggleLegParticle = true;
@@ -929,10 +948,10 @@ public class Rancor : Entity
         if (agent != null && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance)
         {
             LookAt(agent.GetDestination());
-            agent.MoveToCalculatedPos(followSpeed);
+            agent.MoveToCalculatedPos(followSpeed * speedMult);
         }
 
-        dustTime += Time.deltaTime;
+        dustTime += myDeltaTime;
         if (dustTime >= runTime)
         {
             if (toggleLegParticle)
@@ -944,13 +963,15 @@ public class Rancor : Entity
         }
 
         Debug.Log("Following");
+        UpdateAnimationSpd(speedMult);
     }
 
 
     private void EndFollow()
     {
         Audio.StopAudio(gameObject);
-        Animator.Play(gameObject, "RN_Idle");
+        Animator.Play(gameObject, "RN_Idle", speedMult);
+        UpdateAnimationSpd(speedMult);
         Debug.Log("End Following");
     }
 
@@ -962,7 +983,8 @@ public class Rancor : Entity
     {
         projectileTimer = projectileTime;
 
-        Animator.Play(gameObject, "RN_ProjectileThrow");
+        Animator.Play(gameObject, "RN_ProjectileThrow", speedMult);
+        UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Rancor_Throw");
         //add timer to spawn projectiles
 
@@ -973,7 +995,7 @@ public class Rancor : Entity
     {
         if (prepareShotTimer > 0.0f)
         {
-            prepareShotTimer -= Time.deltaTime;
+            prepareShotTimer -= myDeltaTime;
 
             LookAt(Core.instance.gameObject.transform.globalPosition);
 
@@ -1016,6 +1038,7 @@ public class Rancor : Entity
         }
 
         Debug.Log("Projectile");
+        UpdateAnimationSpd(speedMult);
     }
 
     private void EndProjectile()
@@ -1030,19 +1053,21 @@ public class Rancor : Entity
     private void StartHandSlam()
     {
         handSlamTimer = handSlamTime;
-        Animator.Play(gameObject, "RN_HandSlam");
+        Animator.Play(gameObject, "RN_HandSlam", speedMult);
+        UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Rancor_Hand_Slam");
 
         handSlamTimerToActivate = 0.0f;
 
-
         if (handSlamHitBox != null)
         {
-
             RancorHandSlamHitCollider handSlamColl = handSlamHitBox.GetComponent<RancorHandSlamHitCollider>();
 
-            if(handSlamColl != null)
+            if (handSlamColl != null)
+            {
                 handSlamColl.RestartCollider();
+                handSlamColl.myDeltaTimeMult = speedMult;
+            }
         }
         activateWave = true;
 
@@ -1052,7 +1077,7 @@ public class Rancor : Entity
     private void UpdateHandSlam()
     {
 
-        handSlamTimerToActivate += Time.deltaTime;
+        handSlamTimerToActivate += myDeltaTime;
         if (handSlamTimerToActivate < 0.5f)
         {
             LookAt(Core.instance.gameObject.transform.globalPosition);
@@ -1090,6 +1115,19 @@ public class Rancor : Entity
             }
         }
 
+        float prevAnimationSpd = currAnimationPlaySpd;
+        UpdateAnimationSpd(speedMult);
+
+        if(currAnimationPlaySpd != prevAnimationSpd && handSlamHitBox != null)
+        {
+            RancorHandSlamHitCollider handSlamColl = handSlamHitBox.GetComponent<RancorHandSlamHitCollider>();
+
+            if (handSlamColl != null)
+            {
+                handSlamColl.myDeltaTimeMult = speedMult;
+            }
+        }
+
         Debug.Log("Hand slam");
     }
 
@@ -1123,7 +1161,8 @@ public class Rancor : Entity
     private void StartRush()
     {
         rushTimer = rushTime;
-        Animator.Play(gameObject, "RN_Rush");
+        Animator.Play(gameObject, "RN_Rush", speedMult);
+        UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Rancor_Hand_Slam");
         targetDirection = Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition; //RANCOR CALCULATES RUSH DIRECTION
         startRush = true;
@@ -1142,8 +1181,13 @@ public class Rancor : Entity
                 Audio.PlayAudio(gameObject, "Play_Rancor_Rush_Steps");
                 startRush = false;
             }
-            gameObject.transform.localPosition += targetDirection.normalized * rushSpeed * Time.deltaTime; //ADD SPEED IN RUSH DIRECTION
+
+            //TODO: Maybe this should go with Time.deltaTime?
+
+            gameObject.transform.localPosition += targetDirection.normalized * rushSpeed * myDeltaTime; //ADD SPEED IN RUSH DIRECTION
         }
+
+        UpdateAnimationSpd(speedMult);
     }
 
 
@@ -1157,7 +1201,8 @@ public class Rancor : Entity
     {
         rushRecoveryTimer = rushRecoveryTime;
         rushStunTimer = rushStunDuration;
-        Animator.Play(gameObject, "RN_RushRecover");
+        Animator.Play(gameObject, "RN_RushRecover", speedMult);
+        UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Rancor_Recovery");
 
         Shake3D shake = camera.GetComponent<Shake3D>();
@@ -1172,6 +1217,8 @@ public class Rancor : Entity
     {
         Debug.Log("Rush Stun");
         Debug.Log(rushStunTimer.ToString());
+
+        UpdateAnimationSpd(speedMult);
     }
 
 
@@ -1186,7 +1233,8 @@ public class Rancor : Entity
     #region ROAR
     private void StartRoar()
     {
-        Animator.Play(gameObject, "RN_Roar");
+        Animator.Play(gameObject, "RN_Roar", speedMult);
+        UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Rancor_Breath");
         Input.PlayHaptic(0.9f, (int)roarTime * 1000);
         roarTimer = roarTime;
@@ -1201,6 +1249,8 @@ public class Rancor : Entity
             roarShaked = true;
             PlayParticles(PARTICLES.ROAR);
         }
+
+        UpdateAnimationSpd(speedMult);
     }
 
     private void EndRoar()
@@ -1215,6 +1265,7 @@ public class Rancor : Entity
         dieTimer = dieTime;
 
         Animator.Play(gameObject, "RN_Die", 1.0f);
+        UpdateAnimationSpd(1f);
 
         Audio.PlayAudio(gameObject, "Play_Rancor_Death");
 
@@ -1234,7 +1285,7 @@ public class Rancor : Entity
     {
         if (dieTimer > 0.0f)
         {
-            dieTimer -= Time.deltaTime;
+            dieTimer -= myDeltaTime;
 
             if (dieTimer <= 0.0f)
             {
@@ -1267,7 +1318,7 @@ public class Rancor : Entity
 
         Quaternion dir = Quaternion.RotateAroundAxis(Vector3.up, angle);
 
-        float rotationSpeed = Time.deltaTime * slerpSpeed;
+        float rotationSpeed = myDeltaTime * slerpSpeed;
 
         Quaternion desiredRotation = Quaternion.Slerp(gameObject.transform.localRotation, dir, rotationSpeed);
 
@@ -1290,11 +1341,11 @@ public class Rancor : Entity
             {
                 Debug.Log("The collider with tag Bullet didn't have a bullet Script!!");
             }
-            
+
             if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
             {
                 damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
-            }            
+            }
 
             TakeDamage(damageToBoss);
             Debug.Log("Rancor HP: " + healthPoints.ToString());
@@ -1331,11 +1382,11 @@ public class Rancor : Entity
             {
                 Debug.Log("The collider with tag Bullet didn't have a bullet Script!!");
             }
-            
+
             if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
             {
                 damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
-            }            
+            }
 
             TakeDamage(damageToBoss);
             Debug.Log("Rancor HP: " + healthPoints.ToString());
@@ -1476,6 +1527,15 @@ public class Rancor : Entity
                     inputsList.Add(RANCOR_INPUT.IN_DEAD);
                 }
             }
+        }
+    }
+
+    private void UpdateAnimationSpd(float newSpd)
+    {
+        if (currAnimationPlaySpd != newSpd)
+        {
+            Animator.SetSpeed(gameObject, newSpd);
+            currAnimationPlaySpd = newSpd;
         }
     }
 

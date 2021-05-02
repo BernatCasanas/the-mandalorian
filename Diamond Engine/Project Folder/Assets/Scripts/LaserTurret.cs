@@ -127,7 +127,7 @@ public class LaserTurret : Enemy
     {
         if (idleTimer > 0.0f)
         {
-            idleTimer -= Time.deltaTime;
+            idleTimer -= myDeltaTime;
 
             if (idleTimer <= 0.0f)
             {
@@ -137,7 +137,7 @@ public class LaserTurret : Enemy
 
         if (loadTimer > 0.0f)
         {
-            loadTimer -= Time.deltaTime;
+            loadTimer -= myDeltaTime;
 
             if (loadTimer <= 0.0f)
             {
@@ -154,11 +154,11 @@ public class LaserTurret : Enemy
         //}
 
         if (damageCurrentTimer < damageMaxTimer)
-            damageCurrentTimer += Time.deltaTime;
+            damageCurrentTimer += myDeltaTime;
 
         if (shotTimer > 0.0f)
         {
-            shotTimer -= Time.deltaTime;
+            shotTimer -= myDeltaTime;
 
             if (shotTimer <= 0.0f)
             {
@@ -272,7 +272,7 @@ public class LaserTurret : Enemy
     {
         Debug.Log("TURRET IDLE");
         idleTimer = idleTime;
-        Animator.Play(gameObject, "SK_Idle");
+        Animator.Play(gameObject, "SK_Idle",speedMult);
     }
     #endregion
 
@@ -304,7 +304,7 @@ public class LaserTurret : Enemy
 
     private void UpdateShoot()
     {
-        angle += rotationSpeed;
+        angle += rotationSpeed * myDeltaTime;
         gameObject.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, angle);
 
         //LASER ROTATION
@@ -395,7 +395,7 @@ public class LaserTurret : Enemy
     {
         if (dieTimer > 0.0f)
         {
-            dieTimer -= Time.deltaTime;
+            dieTimer -= myDeltaTime;
 
             if (dieTimer <= 0.0f)
             {

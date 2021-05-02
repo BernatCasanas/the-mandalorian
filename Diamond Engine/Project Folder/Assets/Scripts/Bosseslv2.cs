@@ -4,12 +4,6 @@ using DiamondEngine;
 
 public class Bosseslv2 : Entity
 {
-    enum BOSS
-    {
-        WAMPA,
-        SKEL
-    }
-
     public NavMeshAgent agent = null;
 
     public Random randomNum = new Random();
@@ -54,6 +48,7 @@ public class Bosseslv2 : Entity
     public float restingTimer = 0.0f;
     public float bounceRushTime = 4.0f;
     public float bounceRushTimer = 0.0f;
+    private float currAnimationPlaySpd = 1f;
 
     //Atacks
     public float projectileAngle = 30.0f;
@@ -105,14 +100,15 @@ public class Bosseslv2 : Entity
         Debug.Log("Starting Throwing Projectile");
         shootingTimer = shootingTime;
         firstShot = true;
-        Animator.Play(gameObject, "WP_Projectile");
+        Animator.Play(gameObject, "WP_Projectile", speedMult);
+        UpdateAnimationSpd(speedMult);
     }
     public void UpdateProjectile()
     {
         LookAt(Core.instance.gameObject.transform.globalPosition);
         if (shootingTimer > 0.0f)
         {
-            shootingTimer -= Time.deltaTime;
+            shootingTimer -= myDeltaTime;
             if (shootingTimer < 0.0f)
             {
                 if (projectilePoint != null)
@@ -128,7 +124,8 @@ public class Bosseslv2 : Entity
                     {
                         shootingTimer = shootingTime;
                         firstShot = false;
-                        Animator.Play(gameObject, "WP_Projectile");
+                        Animator.Play(gameObject, "WP_Projectile", speedMult);
+                        UpdateAnimationSpd(speedMult);
                     }
                     else
                         secondShot = true;
@@ -139,6 +136,7 @@ public class Bosseslv2 : Entity
         //Debug.Log(shootingTimer.ToString());
         if (projectilePoint == null) Debug.Log("Prohjectile null");
 
+        UpdateAnimationSpd(speedMult);
     }
 
     public void EndProjectile()
@@ -156,15 +154,18 @@ public class Bosseslv2 : Entity
     {
         fastChasingTimer = fastChasingTime;
         Debug.Log("Fast Rush");
-        Animator.Play(gameObject, "WP_Rush");
+        Animator.Play(gameObject, "WP_Rush", speedMult);
+        UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Previous_Rush_Roar");
     }
     public void UpdateFastRush()
     {
         agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
         LookAt(agent.GetDestination());
-        agent.MoveToCalculatedPos(fastRushSpeed);
+        agent.MoveToCalculatedPos(fastRushSpeed * speedMult);
         //Debug.Log("Rush");
+
+        UpdateAnimationSpd(speedMult);
     }
 
     public void EndFastRush()
@@ -176,14 +177,17 @@ public class Bosseslv2 : Entity
     {
         slowChasingTimer = slowChasingTime;
         Debug.Log("Slow Rush");
-        Animator.Play(gameObject, "WP_Rush");
+        Animator.Play(gameObject, "WP_Rush", speedMult);
+        UpdateAnimationSpd(speedMult);
     }
     public void UpdateSlowRush()
     {
         //Debug.Log("Slow Rush");
         agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
         LookAt(agent.GetDestination());
-        agent.MoveToCalculatedPos(slowRushSpeed);
+        agent.MoveToCalculatedPos(slowRushSpeed * speedMult);
+
+        UpdateAnimationSpd(speedMult);
     }
 
     public void EndSlowRush()
@@ -201,7 +205,8 @@ public class Bosseslv2 : Entity
         Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Previous_Rush_Roar");
         if (gameObject.CompareTag("Skel"))
         {
-            Animator.Play(gameObject, "Skel_Rush");
+            Animator.Play(gameObject, "Skel_Rush", speedMult);
+            UpdateAnimationSpd(speedMult);
         }
         bounceRushTimer = bounceRushTime;
         GameObject nearestColumn = Level2BossRoom.columns[0];
@@ -248,6 +253,8 @@ public class Bosseslv2 : Entity
             currentTarget = initTarget;
         }
         //Debug.Log("Bounce Rush");
+
+        UpdateAnimationSpd(speedMult);
     }
 
     public void EndBounceRush()
@@ -255,8 +262,10 @@ public class Bosseslv2 : Entity
         Debug.Log("END BOUNCE RUSH");
         resting = true;
         restingTimer = restingTime;
-        if (gameObject.CompareTag("Skel")) {
-            Animator.Play(gameObject,"Skel_Rush_Recover");
+        if (gameObject.CompareTag("Skel")) 
+        {
+            Animator.Play(gameObject,"Skel_Rush_Recover", speedMult);
+            UpdateAnimationSpd(speedMult);
         }
         colliderBounceRush.DisableCollider();
     }
@@ -274,7 +283,8 @@ public class Bosseslv2 : Entity
         totalJumpSlamTimer = totalJumpSlamTime;
         if (gameObject.CompareTag("Skel"))
         {
-            Animator.Play(gameObject, "Skel_Jump_P1");
+            Animator.Play(gameObject, "Skel_Jump_P1", speedMult);
+            UpdateAnimationSpd(speedMult);
         }
     }
 
@@ -288,7 +298,7 @@ public class Bosseslv2 : Entity
                 //Debug.Log("Jump Slam: Charge");
                 if (jumpslamTimer > 0)
                 {
-                    jumpslamTimer -= Time.deltaTime;
+                    jumpslamTimer -= myDeltaTime;
 
                     if (jumpslamTimer <= 0)
                     {
@@ -296,7 +306,8 @@ public class Bosseslv2 : Entity
                         jumpslam = JUMPSLAM.UP;
                         if (gameObject.CompareTag("Skel"))
                         {
-                            Animator.Play(gameObject, "Skel_Jump_P2");
+                            Animator.Play(gameObject, "Skel_Jump_P2", speedMult);
+                            UpdateAnimationSpd(speedMult);
                         }
                         else if (gameObject.CompareTag("Wampa"))
                         {
@@ -313,9 +324,9 @@ public class Bosseslv2 : Entity
                 //Debug.Log("Jump Slam: Up");
                 if (jumpslamTimer > 0)
                 {
-                    gameObject.transform.localPosition += Vector3.up * 50f * Time.deltaTime;
+                    gameObject.transform.localPosition += Vector3.up * 50f * myDeltaTime;
 
-                    jumpslamTimer -= Time.deltaTime;
+                    jumpslamTimer -= myDeltaTime;
 
                     if (jumpslamTimer <= 0)
                     {
@@ -336,7 +347,7 @@ public class Bosseslv2 : Entity
                 if (jumpslamTimer > 0)
                 {
                     MoveToPosition(targetPos, speed * 10);
-                    jumpslamTimer -= Time.deltaTime;
+                    jumpslamTimer -= myDeltaTime;
 
                     if (jumpslamTimer <= 0 || Mathf.Distance(targetPos, gameObject.transform.globalPosition) <= 0.1f)
                     {
@@ -345,7 +356,8 @@ public class Bosseslv2 : Entity
                         colliderJumpSlam.DisableCollider();
                         if (gameObject.CompareTag("Skel"))
                         {
-                            Animator.Play(gameObject, "Skel_Jump_P3");
+                            Animator.Play(gameObject, "Skel_Jump_P3", speedMult);
+                            UpdateAnimationSpd(speedMult);
                         }
                         else if (gameObject.CompareTag("Wampa"))
                         {
@@ -362,7 +374,7 @@ public class Bosseslv2 : Entity
                 //Debug.Log("Jump Slam: Recovery");
                 if (jumpslamTimer > 0)
                 {
-                    jumpslamTimer -= Time.deltaTime;
+                    jumpslamTimer -= myDeltaTime;
 
                     if (jumpslamTimer <= 0)
                     {
@@ -376,6 +388,8 @@ public class Bosseslv2 : Entity
                 Debug.Log("Something gone wrong with jump slam");
                 break;
         }
+
+        UpdateAnimationSpd(speedMult);
     }
 
     public void EndJumpSlam()
@@ -393,12 +407,13 @@ public class Bosseslv2 : Entity
         walkingTimer = walkingTime;
         if (gameObject.CompareTag("Skel"))
         {
-            Animator.Play(gameObject, "Skel_Walk");
+            Animator.Play(gameObject, "Skel_Walk", speedMult);
+            UpdateAnimationSpd(speedMult);
         }
         else if (gameObject.CompareTag("Wampa"))
         {
-
-            Animator.Play(gameObject, "WP_Walk");
+            Animator.Play(gameObject, "WP_Walk", speedMult);
+            UpdateAnimationSpd(speedMult);
         }
         Audio.PlayAudio(gameObject, "PLay_Rancor_Footsteps");
     }
@@ -406,8 +421,10 @@ public class Bosseslv2 : Entity
     {
         agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
         LookAt(agent.GetDestination());
-        agent.MoveToCalculatedPos(speed);
+        agent.MoveToCalculatedPos(speed * speedMult);
         //Debug.Log("Following player");
+
+        UpdateAnimationSpd(speedMult);
     }
 
     public void EndFollowing()
@@ -423,20 +440,24 @@ public class Bosseslv2 : Entity
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
         if (gameObject.CompareTag("Skel"))
         {
-            Animator.Play(gameObject, "Skel_Walk");
+            Animator.Play(gameObject, "Skel_Walk", speedMult);
+            UpdateAnimationSpd(speedMult);
         }
         else if (gameObject.CompareTag("Wampa"))
         {
 
-            Animator.Play(gameObject, "WP_Walk");
+            Animator.Play(gameObject, "WP_Walk", speedMult);
+            UpdateAnimationSpd(speedMult);
         }
         Audio.PlayAudio(gameObject, "PLay_Rancor_Footsteps");
     }
     public void UpdateWander()
     {
         LookAt(agent.GetDestination());
-        agent.MoveToCalculatedPos(speed);
+        agent.MoveToCalculatedPos(speed * speedMult);
         //Debug.Log("Following player");
+
+        UpdateAnimationSpd(speedMult);
     }
 
     public void EndWander()
@@ -451,11 +472,13 @@ public class Bosseslv2 : Entity
         dieTimer = dieTime;
         if (gameObject.CompareTag("Skel"))
         {
-            Animator.Play(gameObject, "Skel_Die");
+            Animator.Play(gameObject, "Skel_Die", speedMult);
+            UpdateAnimationSpd(speedMult);
         }
         else if (gameObject.CompareTag("Wampa"))
         {
-            Animator.Play(gameObject, "WP_Die");
+            Animator.Play(gameObject, "WP_Die", speedMult);
+            UpdateAnimationSpd(speedMult);
         }
         Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Death_Roar");
         Debug.Log("Dying");
@@ -464,7 +487,7 @@ public class Bosseslv2 : Entity
     {
         if (dieTimer > 0.0f)
         {
-            dieTimer -= Time.deltaTime;
+            dieTimer -= myDeltaTime;
 
             if (dieTimer <= 0.0f)
             {
@@ -472,6 +495,8 @@ public class Bosseslv2 : Entity
             }
         }
         //Debug.Log("Dying");
+
+        UpdateAnimationSpd(speedMult);
     }
 
     public void EndDie()
@@ -494,7 +519,7 @@ public class Bosseslv2 : Entity
 
         Quaternion dir = Quaternion.RotateAroundAxis(Vector3.up, angle);
 
-        float rotationSpeed = Time.deltaTime * slerpSpeed;
+        float rotationSpeed = myDeltaTime * slerpSpeed;
 
         Quaternion desiredRotation = Quaternion.Slerp(gameObject.transform.localRotation, dir, rotationSpeed);
 
@@ -505,18 +530,29 @@ public class Bosseslv2 : Entity
     {
         Vector3 direction = positionToReach - gameObject.transform.localPosition;
 
-        gameObject.transform.localPosition += direction.normalized * speed * Time.deltaTime;
+        gameObject.transform.localPosition += direction.normalized * speed * myDeltaTime;
     }
 
     private void PlayAnimation(string animName)
     {
         if (gameObject.CompareTag("Skel"))
         {
-            Animator.Play(gameObject, animName);
+            Animator.Play(gameObject, animName, speedMult);
+            UpdateAnimationSpd(speedMult);
         }
         else if (gameObject.CompareTag("Wampa"))
         {
-            Animator.Play(gameObject, animName);
+            Animator.Play(gameObject, animName, speedMult);
+            UpdateAnimationSpd(speedMult);
+        }
+    }
+
+    private void UpdateAnimationSpd(float newSpd)
+    {
+        if (currAnimationPlaySpd != newSpd)
+        {
+            Animator.SetSpeed(gameObject, newSpd);
+            currAnimationPlaySpd = newSpd;
         }
     }
 }
