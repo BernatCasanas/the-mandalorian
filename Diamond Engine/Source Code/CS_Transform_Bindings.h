@@ -60,10 +60,13 @@ MonoObject* CS_Get_GO_Parent(MonoObject* go)
 
 void CS_Component_SetActive(MonoObject* go, bool active)
 {
+	Component* component = DECS_CompToComp<Component*>(go);
+	if (component == nullptr)
+		return;
 	if (active)
-		DECS_CompToComp<Component*>(go)->Enable();
+		component->Enable();
 	else
-		DECS_CompToComp<Component*>(go)->Disable();
+		component->Disable();
 }
 
 bool CS_Component_GetActive(MonoObject* go)
