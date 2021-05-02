@@ -72,6 +72,7 @@ public:
 	void Play(std::string animName, float blendDuration = 0.2f, float speed = 1.0f);
 	void Pause();
 	void Resume();
+	void SetSpeed(float speed);
 	std::string GetCurrentAnimation();
 
 public:

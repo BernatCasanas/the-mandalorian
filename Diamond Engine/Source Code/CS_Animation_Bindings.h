@@ -31,6 +31,17 @@ void Pause(MonoObject* goObj)
 	}
 }
 
+void SetSpeed(MonoObject* goObj, float speed)
+{
+	GameObject* gameObject = EngineExternal->moduleMono->GameObject_From_CSGO(goObj);
+	C_Animator* animator = dynamic_cast<C_Animator*>(gameObject->GetComponent(Component::TYPE::ANIMATOR));
+
+	if (animator != nullptr)
+	{
+		animator->SetSpeed(speed);
+	}
+}
+
 void Resume(MonoObject* goObj)
 {
 	GameObject* gameObject = EngineExternal->moduleMono->GameObject_From_CSGO(goObj);
