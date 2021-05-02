@@ -137,9 +137,13 @@ public class EndLevelRewards
 
     void CreatePopUpGameObject()
     {
-        rewardMenu = InternalCalls.CreatePrefab("Library/Prefabs/18131542.prefab", new Vector3(0.0f, 0.0f, 0.0f), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
         GameObject canvas = InternalCalls.FindObjectWithName("Canvas");
+        
+        rewardMenu = InternalCalls.CreatePrefab("Library/Prefabs/18131542.prefab", new Vector3(0.0f, 0.0f, 0.0f), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
 
+        if (rewardMenu == null)
+            return;
+       
         GameObject firstText = rewardMenu.GetChild("FirstRewardText");
         GameObject secondText = rewardMenu.GetChild("SecondRewardText");
         GameObject thirdText = rewardMenu.GetChild("ThirdRewardText");
@@ -149,10 +153,8 @@ public class EndLevelRewards
         GameObject thirdImage = rewardMenu.GetChild("ThirdRewardImage");
 
         if (canvas == null)
-        {
             canvas = InternalCalls.CreatePrefab("Library/Prefabs/1965121116.prefab", new Vector3(0.0f, 0.0f, 0.0f), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
-        }
-
+        
         rewardMenu.SetParent(canvas);
 
         firstImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardTexture(firstReward));

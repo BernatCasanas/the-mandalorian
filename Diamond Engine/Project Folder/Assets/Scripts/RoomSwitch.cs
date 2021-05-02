@@ -25,10 +25,11 @@ public class RoomDataHolder
 
 public static class RoomSwitch
 {
-
     public enum LEVELS
     {
+		HUB,
 		ONE,
+		SHOP,
 		TWO,
 		MAX,
     }
@@ -67,8 +68,7 @@ public static class RoomSwitch
 	//public static int index = 0;
 	static Random randomGenerator = new Random();
 
-
-	public static LEVELS currentLevelIndicator = LEVELS.ONE;
+	public static LEVELS currentLevelIndicator = LEVELS.HUB;
 
 	public static LEVELS GetLevelIndicator()
     {
@@ -137,7 +137,7 @@ public static class RoomSwitch
 
 	public static void ClearStaticData()
     {
-		currentLevelIndicator = LEVELS.ONE;
+		currentLevelIndicator = LEVELS.HUB;
 		currentroom = 0;
 
         for (int i = 0; i < 2; i++)

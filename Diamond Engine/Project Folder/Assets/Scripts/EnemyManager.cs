@@ -36,6 +36,9 @@ public class EnemyManager : DiamondComponent
 
         Debug.Log("Enemies left: " + currentEnemies.Count.ToString());
 
+        if (currentEnemies.Count == 0 && GameSceneManager.instance != null)
+            GameSceneManager.instance.LevelEnd();
+
         return false;
     }
 

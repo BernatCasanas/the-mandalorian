@@ -5,11 +5,11 @@ public class R1TextController : DiamondComponent
 {
 	public GameObject dialog = null;
 	private float counter = 0;
-	private bool showtext = true;
+	private bool showtext = false;
 	public void Update()
 	{
 		counter += Time.deltaTime;
-		if (EnemyManager.EnemiesLeft() <= 0 && counter > 5 && showtext)
+		if (showtext)
 		{
 			showtext = false;
 			dialog.Enable(true);

@@ -34,8 +34,8 @@ public class GameSceneManager : DiamondComponent
             rewardInitialPos = new Vector3(0.0f, 0.0f, 0.0f);
 
         rewardObject = InternalCalls.CreatePrefab("Library/Prefabs/1394471616.prefab", new Vector3(rewardInitialPos.x, rewardInitialPos.y, rewardInitialPos.z), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
-      
-        if(rewardObject != null)
+
+        if (rewardObject != null)
         {
             rewardObject.SetParent(gameObject);
             rewardObject.Enable(false);
@@ -45,28 +45,55 @@ public class GameSceneManager : DiamondComponent
 
     public void Update()
     {
-        if (EnemyManager.EnemiesLeft() == 0 && rewardData == null)    // We need a scene manager :')
+
+    }
+
+
+    private void ChangeScene()
+    {
+        if (rewardData != null)
         {
-            if (PlayerResources.CheckBoon(BOONS.BOON_BOUNTYHUNTERSKILLS))
-            {
-                PlayerResources.AddRunCoins(2);
-            }
+            rewardData.Use();
+            rewardMenu.selectedReward = null;
+            if (rewardObject != null)
+                rewardObject.Enable(false);
 
-            if(rewardMenu != null)
-                rewardData = rewardMenu.GenerateRewardPipeline();
+            if (rewardSpawnComponent != null)
+                rewardSpawnComponent.trigger = false;
+            rewardData = null;
+        }
 
-            //Debug.Log("Hi");
-            if(rewardData != null)
-                Debug.Log("Reward data texture id is " + rewardData.libraryTextureID + " and reward type is " + rewardData.resourceType);
+        if (!Counter.isFinalScene)
+            RoomSwitch.SwitchRooms();
+        else
+        {
+            Counter.gameResult = Counter.GameResult.VICTORY;
+            DebugOptionsHolder.goToNextLevel = false;
+            SceneManager.LoadScene(821370213);
+        }
+    }
 
-            if (rewardData != null && rewardObject != null)
-            {
-                EnemyManager.ClearList();   // Safety check that could be done in a more understandable place if we had a scene manager...
-                rewardInitialPos = Core.instance.gameObject.transform.globalPosition + new Vector3(1.5f, 0.0f, 0.0f);    // Not this position, but for now it's fine;
-                rewardObject.transform.localPosition = rewardInitialPos;
-                rewardObject.AssignLibraryTextureToMaterial(rewardData.libraryTextureID, "diffuseTexture");
-                rewardObject.Enable(true);
-            }
+    public void LevelEnd()
+    {
+        if (PlayerResources.CheckBoon(BOONS.BOON_BOUNTYHUNTERSKILLS))
+        {
+            PlayerResources.AddRunCoins(2);
+        }
+
+        if (rewardMenu != null)
+            rewardData = rewardMenu.GenerateRewardPipeline();
+
+        //Debug.Log("Hi");
+        if (rewardData != null)
+            Debug.Log("Reward data texture id is " + rewardData.libraryTextureID + " and reward type is " + rewardData.resourceType);
+
+        if (rewardData != null && rewardObject != null)
+        {
+            EnemyManager.ClearList();   // Safety check that could be done in a more understandable place if we had a scene manager...
+            rewardInitialPos = Core.instance.gameObject.transform.globalPosition + new Vector3(1.5f, 0.0f, 0.0f);    // Not this position, but for now it's fine;
+            rewardObject.transform.localPosition = rewardInitialPos;
+            rewardObject.AssignLibraryTextureToMaterial(rewardData.libraryTextureID, "diffuseTexture");
+            rewardObject.Enable(true);
         }
         else if (rewardData != null && rewardObject != null && rewardSpawnComponent != null)
         {
@@ -92,31 +119,6 @@ public class GameSceneManager : DiamondComponent
 
         // We should clean boons when ending a run :3
         //PlayerResources.ResetRunBoons();
-    }
-
-
-    private void ChangeScene()
-    {
-        if (rewardData != null)
-        {
-            rewardData.Use();
-            rewardMenu.selectedReward = null;
-            if(rewardObject != null)
-                rewardObject.Enable(false);
-
-            if(rewardSpawnComponent != null)
-                rewardSpawnComponent.trigger = false;
-            rewardData = null;
-        }
-
-        if (!Counter.isFinalScene)
-            RoomSwitch.SwitchRooms();
-        else
-        {
-            Counter.gameResult = Counter.GameResult.VICTORY;
-            DebugOptionsHolder.goToNextLevel = false;
-            SceneManager.LoadScene(821370213);
-        }
     }
 
     public void OnApplicationQuit()
