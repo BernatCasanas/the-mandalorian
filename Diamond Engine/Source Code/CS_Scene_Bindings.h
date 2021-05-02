@@ -16,6 +16,10 @@ MonoObject* FindObjectWithTag(MonoString* cs_tag)
 	return EngineExternal->moduleMono->GoToCSGO(taggedObject);
 }
 
+int GetTotalTris() {
+	return EngineExternal->moduleScene->totalTris;
+}
+
 void CS_LoadScene(int libraryPath)
 {
 	EngineExternal->moduleScene->holdUID = libraryPath;
