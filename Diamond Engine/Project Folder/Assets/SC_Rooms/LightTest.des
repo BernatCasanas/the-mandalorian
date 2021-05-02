@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        6.1002588272094727,
-        10.952276229858398,
-        -11.501533508300781
+        -1.4961088895797729,
+        33.878639221191406,
+        44.016990661621094
     ],
     "EditorCameraZ": [
-        -0.23097644746303558,
-        -0.64418798685073853,
-        0.72915828227996826
+        0.068337962031364441,
+        -0.62468701601028442,
+        -0.77787923812866211
     ],
     "EditorCameraY": [
-        -0.19468870759010315,
-        0.76486718654632568,
-        0.61406391859054565
+        0.055327583104372025,
+        0.78087508678436279,
+        -0.62223225831985474
     ],
     "tags": [
         "Player",
@@ -84,11 +84,11 @@
             "PrefabObjects": []
         },
         {
-            "name": "BossRoom",
+            "name": "Plane",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 417356794,
+            "UID": 1758555483,
             "ParentUID": 1676501951,
             "PrefabReference": 0,
             "PrefabID": 0,
@@ -96,8 +96,8 @@
             "Static": false,
             "Position": [
                 0,
-                0,
-                0
+                -1.6047773361206055,
+                4.7060585021972656
             ],
             "Rotation": [
                 0,
@@ -106,43 +106,9 @@
                 1
             ],
             "Scale": [
+                34.921409606933594,
                 1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Ground",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1343611164,
-            "ParentUID": 417356794,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
+                40.569774627685547
             ],
             "Components": [
                 {
@@ -152,8 +118,8 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/327484566.mmh",
-                    "UID": 327484566,
+                    "Path": "Library\/Meshes\/1342727876.mmh",
+                    "UID": 1342727876,
                     "alternColor": [
                         1,
                         1,
@@ -164,74 +130,14 @@
                         1,
                         1
                     ],
-                    "stencilEmission": 0,
+                    "stencilEmission": 0.89999997615814209,
                     "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/191464233.mat",
-                    "MaterialUID": 191464233
-                }
-            ]
-        },
-        {
-            "name": "Ground",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 656205489,
-            "ParentUID": 1676501951,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/327484566.mmh",
-                    "UID": 327484566,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "stencilEmission": 0,
-                    "doNotDrawStencil": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
+                    "MaterialAssetPath": "Assets\/Materials\/AreaLightTest.mat",
                     "MaterialLibraryPath": "Library\/Materials\/191464233.mat",
                     "MaterialUID": 191464233
                 }
@@ -242,27 +148,27 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1294708416,
+            "UID": 53599179,
             "ParentUID": 1676501951,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0.32701766490936279,
-                1.4092673063278198,
-                0.079390645027160645
+                0,
+                3.4233293533325195,
+                9.8995513916015625
             ],
             "Rotation": [
+                0.7071068286895752,
                 0,
                 0,
-                0,
-                1
+                0.70710670948028564
             ],
             "Scale": [
-                1,
-                1,
-                1
+                33.531234741210938,
+                0.99995476007461548,
+                0.99995476007461548
             ],
             "Components": [
                 {
@@ -282,8 +188,8 @@
                         1,
                         1
                     ],
-                    "lightIntensity": 0.80000001192092896,
-                    "specularValue": 64
+                    "lightIntensity": 1,
+                    "specularValue": 1
                 }
             ]
         }

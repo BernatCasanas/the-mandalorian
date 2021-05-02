@@ -33,7 +33,7 @@ struct AreaLightInfo
 };
 
 
-uniform AreaLightInfo areaLightInfo[5];
+uniform AreaLightInfo areaLightInfo[30];
 
 uniform vec3 cameraPosition;
 
@@ -70,7 +70,7 @@ struct AreaLightInfo
 };
 
 
-uniform AreaLightInfo areaLightInfo[5];
+uniform AreaLightInfo areaLightInfo[30];
 
 uniform vec3 cameraPosition;
 
@@ -109,7 +109,7 @@ vec3 ProjectPointOnPlane(vec3 planePoint)
 	vec3 translationVector = SetVectorLenght(areaLightInfo[0].lightForward, distance);
 
 	
-	return fs_in.FragPos + translationVector;
+	return vec3(fs_in.FragPos + translationVector);
 }
 
 
@@ -132,6 +132,20 @@ vec3 NearestPointOnLine(vec3 point, vec3 lineP1, vec3 lineP2)
 	float d = dot(v, lineDir);
 	
 	return vec3(lineP1 + lineDir * d);
+}
+
+
+vec3 NearestPointOnFiniteLine(vec3 point, vec3 lineP1, vec3 lineP2)
+{
+	vec3 line = lineP1 - lineP2;
+	float len = length(line);
+	line = normalize(line);
+	
+	vec3 v = point - lineP1;
+	float d = dot(v, line);
+	d = clamp(d, 0.0, len);
+	
+	return vec3(lineP1 + line * d);
 }
 
 
@@ -180,8 +194,36 @@ vec3 CalculateClosestPoint(vec3 projectedPoint)
 	
 	if (IsBetween(projectedPoint1, closestVertex, nextVertex) && IsBetween(projectedPoint2, closestVertex, prevVertex))
 		return projectedPoint;
-	
-	return vec3(0, 0.0, 0.0);
+		
+	else
+	{
+		float closestNearestDistance = 100000000.0;
+		vec3 closestPoint = vec3(0.0, 0.0, 0.0);
+		
+		for (int i = 0; i < 4; ++i)
+		{
+			vec3 currPoint = rectVertex[i];
+			
+			vec3 prevNearestPoint = NearestPointOnFiniteLine(projectedPoint, currPoint, prevVertex);
+			vec3 nextNearestPoint = NearestPointOnFiniteLine(projectedPoint, currPoint, nextVertex);
+			
+			float distanceToNextNearPoint = length(prevNearestPoint - projectedPoint);
+			if (distanceToNextNearPoint < closestNearestDistance)
+			{
+				closestPoint = prevNearestPoint;
+				closestNearestDistance = distanceToNextNearPoint;
+			}
+			
+			distanceToNextNearPoint = length(nextNearestPoint - projectedPoint);
+			if (distanceToNextNearPoint < closestNearestDistance)
+			{
+				closestPoint = nextNearestPoint;
+				closestNearestDistance = distanceToNextNearPoint;
+			}
+		}
+		
+		return closestPoint;
+	}
 
 }
 
@@ -205,12 +247,14 @@ void main()
 {
     vec3 lighting = vec3(0.0, 0.0, 0.0);
     
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 30; i++)
     {
 		if (areaLightInfo[i].activeLight == true)
 		{
     		vec3 lightDir = CalculateLightDirection();
-    
+    		
+    		//if (lightDir != vec3(0.0, 0.0, 0.0))
+    		{
    	 		// diffusesssaasw
     		float diff = max(dot(lightDir, fs_in.Normal), 0.0);
     		vec3 diffuse = diff * areaLightInfo[i].lightColor;
@@ -223,11 +267,14 @@ void main()
         	
     	 // calculate shadow
     		lighting += (areaLightInfo[i].ambientLightColor + (diffuse + specular)) * areaLightInfo[i].lightIntensity;
+    		}
     	}
     }
     color = vec4(lighting * vec3(0.7, 0.3, 0.3), 1.0);
 }
 #endif
+
+
 
 
 

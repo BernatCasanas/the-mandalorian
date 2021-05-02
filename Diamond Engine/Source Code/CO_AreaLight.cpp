@@ -69,6 +69,9 @@ bool C_AreaLight::OnEditor()
 
 void C_AreaLight::DebugDraw()
 {
+	glPushMatrix();
+	glMultMatrixf(gameObject->transform->GetGlobalTransposed());
+
 	glBegin(GL_TRIANGLES);
 	for (size_t i = 0; i < 12; i += 2)
 	{
@@ -76,14 +79,15 @@ void C_AreaLight::DebugDraw()
 		position.x = arrayAreaLightVAO[i];
 		position.y = arrayAreaLightVAO[i + 1];
 		position.z = 0.0f;
-		position.w = 1.0f;
 
-		position += gameObject->transform->GetCurrentGlobalMatrix() * position;
+		//position += gameObject->transform->GetCurrentGlobalMatrix() * position;
 
 		glColor3fv(color);
 		glVertex3fv(position.ptr());
 	}
 	glEnd();
+
+	glPopMatrix();
 }
 #endif // !STANDALONE
 

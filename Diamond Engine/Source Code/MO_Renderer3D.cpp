@@ -322,7 +322,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 	for (int i = 0; i < areaLightVector.size(); ++i)
 	{
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 		areaLightVector[i]->DebugDraw();
 	}
