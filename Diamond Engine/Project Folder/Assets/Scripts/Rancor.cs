@@ -213,8 +213,8 @@ public class Rancor : Entity
 
         Counter.SumToCounterType(Counter.CounterTypes.RANCOR);
         damaged = 0.0f;
-        runTime = (Animator.GetAnimationDuration(gameObject, "RN_Walk")) / 2;
-        dustTime = (Animator.GetAnimationDuration(gameObject, "RN_Walk")) / 4;
+        runTime = (Animator.GetAnimationDuration(gameObject, "RN_Walk")) / 2.0f;
+        dustTime = (Animator.GetAnimationDuration(gameObject, "RN_Walk")) / 4.0f;
         rancorParticles = gameObject.GetComponent<RancorParticles>();
         toggleLegParticle = true;
         StartRoar();
@@ -743,7 +743,7 @@ public class Rancor : Entity
 
             if (meleeCH1ColliderTimer <= 0.0f)
             {
-                InternalCalls.CreatePrefab("Library/Prefabs/1846472793.prefab", gameObject.transform.localPosition, gameObject.transform.localRotation, gameObject.transform.localScale);
+                //InternalCalls.CreatePrefab("Library/Prefabs/1846472793.prefab", gameObject.transform.localPosition, gameObject.transform.localRotation, gameObject.transform.localScale);
             }
         }
 
@@ -786,7 +786,7 @@ public class Rancor : Entity
 
             if (meleeCH2ColliderTimer <= 0.0f)
             {
-                InternalCalls.CreatePrefab("Library/Prefabs/1846472793.prefab", gameObject.transform.localPosition, gameObject.transform.localRotation, gameObject.transform.localScale);
+                //InternalCalls.CreatePrefab("Library/Prefabs/1846472793.prefab", gameObject.transform.localPosition, gameObject.transform.localRotation, gameObject.transform.localScale);
             }
         }
 
