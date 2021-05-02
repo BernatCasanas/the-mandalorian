@@ -143,6 +143,8 @@ C_RigidBody::C_RigidBody(GameObject* _gm): Component(_gm), rotatedOffset(float3:
 	LockAngularY(lock_angularY);
 	LockAngularY(lock_angularZ);
 
+	omitStep = !IsActive();
+
 }
 
 C_RigidBody::~C_RigidBody()
@@ -193,8 +195,8 @@ void C_RigidBody::PostUpdate()
 		rigid_dynamic->setGlobalPose(physx::PxTransform({ pos.x, pos.y, pos.z }, rotation));
 			
 
-		
-		
+		if (omitStep)
+			omitStep = false;
 
 		
 	
@@ -250,12 +252,6 @@ void C_RigidBody::Step()
 			worldtrans = float4x4::FromTRS(pos - rotatedOffset, rot, scale);
 			goTransform->SetTransformWithGlobal(worldtrans);
 		}
-				
-		
-
-		
-
-
 
 	}
 }
@@ -322,6 +318,21 @@ void C_RigidBody::LoadData(DEConfig& nObj)
 	SetMass(mass);
 	density = nObj.ReadFloat("Density");
 	SetDensity(density);
+
+}
+
+void C_RigidBody::Enable()
+{
+	Component::Enable();
+	rigid_dynamic->setActorFlag(physx::PxActorFlag::eDISABLE_SIMULATION, false);
+	omitStep = true;
+
+}
+
+void C_RigidBody::Disable()
+{
+	Component::Disable();
+	rigid_dynamic->setActorFlag(physx::PxActorFlag::eDISABLE_SIMULATION, true);
 
 }
 
