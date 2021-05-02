@@ -4,6 +4,7 @@ using DiamondEngine;
 public class StaticVariablesInit : DiamondComponent
 {
     bool start = true;
+
 	public void Update()
 	{
         if(start)
