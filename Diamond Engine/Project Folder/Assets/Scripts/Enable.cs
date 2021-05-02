@@ -10,7 +10,7 @@ public class Enable : DiamondComponent
 
 	public void OnExecuteButton()
     {
-		Debug.Log("-----------------------Executing!");
+		Debug.Log("Executing!");
 
 		if (disable != null)
 		{

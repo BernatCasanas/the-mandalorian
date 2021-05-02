@@ -91,7 +91,7 @@
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
                     "vFOV": 12.920000076293945,
-                    "hFOV": 20.840000152587891,
+                    "hFOV": 19.739999771118164,
                     "culling": false,
                     "drawSkybox": true
                 },
@@ -5021,6 +5021,7 @@
                     "hub_skill_controller": 1070040184,
                     "isRootNode": true,
                     "node_type": 1,
+                    "panelImage": 1773988077,
                     "skillTreeName": 1,
                     "skillTreeNumber": 1
                 }
@@ -5158,6 +5159,7 @@
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
                     "node_type": 1,
+                    "panelImage": 1773988077,
                     "skillTreeName": 1,
                     "skillTreeNumber": 2
                 }
@@ -5295,6 +5297,7 @@
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
                     "node_type": 1,
+                    "panelImage": 1773988077,
                     "skillTreeName": 1,
                     "skillTreeNumber": 3
                 }
@@ -5425,6 +5428,7 @@
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
                     "node_type": 1,
+                    "panelImage": 1773988077,
                     "skillTreeName": 1,
                     "skillTreeNumber": 4
                 }
@@ -5555,6 +5559,7 @@
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
                     "node_type": 1,
+                    "panelImage": 1773988077,
                     "skillTreeName": 1,
                     "skillTreeNumber": 5
                 }
@@ -5692,6 +5697,7 @@
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
                     "node_type": 1,
+                    "panelImage": 1773988077,
                     "skillTreeName": 1,
                     "skillTreeNumber": 6
                 }
@@ -5829,6 +5835,7 @@
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
                     "node_type": 1,
+                    "panelImage": 1773988077,
                     "skillTreeName": 1,
                     "skillTreeNumber": 7
                 }
@@ -5958,8 +5965,102 @@
                     "hub_skill_controller": 1070040184,
                     "isRootNode": false,
                     "node_type": 1,
+                    "panelImage": 1773988077,
                     "skillTreeName": 1,
                     "skillTreeNumber": 8
+                }
+            ]
+        },
+        {
+            "name": "PanelImage",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1773988077,
+            "ParentUID": 1603578304,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        40.299999237060547,
+                        34.700000762939453
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        20,
+                        20
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SKILLTREE\/SkilltreeIcons\/Grogu\/grogu1.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/201150191.dds",
+                    "Pressed_UID": 201150191,
+                    "Hovered_AssetsPath": "Assets\/UI\/SKILLTREE\/SkilltreeIcons\/Grogu\/grogu1.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/201150191.dds",
+                    "Hovered_UID": 201150191,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SKILLTREE\/SkilltreeIcons\/Grogu\/grogu1.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/201150191.dds",
+                    "Unhovered_UID": 201150191,
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SKILLTREE\/SkilltreeIcons\/Grogu\/grogu1.png",
+                    "LibraryPath": "Library\/Textures\/201150191.dds",
+                    "UID": 201150191
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Hub_PanelImage",
+                    "groguIcons": 197644176,
+                    "mandoIcons": 0,
+                    "weaponIcons": 0
                 }
             ]
         },
