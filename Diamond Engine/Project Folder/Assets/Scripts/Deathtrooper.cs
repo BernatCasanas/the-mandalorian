@@ -43,10 +43,20 @@ public class Deathtrooper : Enemy
     public GameObject shootPoint = null;
     //public GameObject hitParticles = null;
 
+    //Timers
+    private float idleTimer = 0.0f;
+    private float dieTimer = 0.0f;
+    private float pushTimer = 0.0f;
+    private float skill_slowDownTimer = 0.0f;
+    private float recoilTimer = 0.0f;
+    private float betweenStatesTimer = 0.0f;
+    private float betweenBurstsTimer = 0.0f;
+    private float shotCDTimer = 0.0f;
+
     //Action times
     public float idleTime = 5.0f;
     private float dieTime = 3.0f;
-    public float timeBewteenShots = 0.5f;
+    public float timeBewteenBursts = 0.8f;
     public float betweenStatesTime = 1.5f;
     public float recoilTime = 0.0f;
     public float shotCDTime = 0.0f;
@@ -62,22 +72,11 @@ public class Deathtrooper : Enemy
     public float wanderRange = 7.5f;
     public float shotRange = 12.5f;
 
-    //Timers
-    private float idleTimer = 0.0f;
-    //private float shotTimer = 0.0f;
-    private float dieTimer = 0.0f;
-    private float shootTimer = 0.0f;
-    private float pushTimer = 0.0f;
-    private float skill_slowDownTimer = 0.0f;
-    private float recoilTimer = 0.0f;
-    private float betweenStatesTimer = 0.0f;
-    private float shotCDTimer = 0.0f;
-
     //Action variables
+    public int numShots;
     private int shotsShooted = 0;
     public int maxShots = 2;
     public float dispersionAngleDeg = 0.0f;
-    public int numShots;
     private bool canShoot = true;
 
 
@@ -137,14 +136,14 @@ public class Deathtrooper : Enemy
             }
         }
 
-        if(shotCDTimer > 0.0f)
-        {
-            shotCDTimer -= myDeltaTime;
-            if(shotCDTimer <= 0.0f)
-            {
-                canShoot = true;
-            }
-        }
+        //if(shotCDTimer > 0.0f)
+        //{
+        //    shotCDTimer -= myDeltaTime;
+        //    if(shotCDTimer <= 0.0f)
+        //    {
+        //        canShoot = true;
+        //    }
+        //}
 
         if (skill_slowDownActive)
         {
@@ -414,25 +413,38 @@ public class Deathtrooper : Enemy
 
     private void UpdateShoot()
     {
+        LookAt(Core.instance.gameObject.transform.globalPosition);
+
         if(betweenStatesTimer > 0.0f)
         {
             betweenStatesTimer -= myDeltaTime;
-            LookAt(Core.instance.gameObject.transform.globalPosition);
             if(betweenStatesTimer <= 0.0f)
             {
                 ShotgunShoot(numShots);
+                betweenBurstsTimer = timeBewteenBursts;
             }
             
         }
 
         if (recoilTimer > 0.0f)
         {
-            recoilTimer -= Time.deltaTime;
+            recoilTimer -= myDeltaTime;
             gameObject.transform.localPosition -= gameObject.transform.GetForward().normalized * recoilSpeed * Time.deltaTime;
-            if(recoilTimer <= 0.0f)
-            {
-                shotCDTimer = shotCDTime;
+
+            if(recoilTimer <= 0.0f && shotsShooted >= 2)
+            {            
                 inputsList.Add(INPUT.IN_SHOOT_END);
+                shotsShooted = 0;   
+            }
+        }
+
+        if (betweenBurstsTimer > 0.0f)
+        {
+            betweenBurstsTimer -= myDeltaTime;
+
+            if(betweenBurstsTimer <= 0.0f)
+            {
+                ShotgunShoot(numShots - 1);
             }
         }
 
@@ -455,9 +467,10 @@ public class Deathtrooper : Enemy
 
         Animator.Play(gameObject, "ST_Shoot", speedMult);
         Audio.PlayAudio(gameObject, "Play_Blaster_Stormtrooper");
-        //shotTimes++;
-        recoilTimer = recoilTime;
-        canShoot = false;
+        
+        recoilTimer = recoilTime * ((float)numShots / (float)maxShots);
+        //canShoot = false;
+        shotsShooted++;
     }
     private void PlayerDetected()
     {

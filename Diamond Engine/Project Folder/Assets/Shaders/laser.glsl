@@ -16,11 +16,11 @@ out float vertexIntensity;
 
 void main()
 {
-	FragPos = vec3(model_matrix * vec4(position, 1.0));
+	vec3 FragPos = vec3(projection * view * model_matrix *vec4(position, 1.0)).xyz;
 	Normal = normalMatrix * normals;
 	
 	vertexIntensity = dot(cameraPosition - FragPos, normals);
-	gl_Position = projection * view * vec4(FragPos, 1.0);
+	gl_Position = projection * view * model_matrix * vec4(position, 1.0);
 }
 #endif
 
@@ -39,13 +39,16 @@ in float vertexIntensity;
 
 void main()
 {
+	float lightSpeed = 2.5;
 	//vec3 color = 
 	float intensity = dot(normalize(cameraPosition - FragPos), Normal);
-	intensity += (sin(time * 1.25) + 1.0) * 0.4;
-    FragColor = vec4(altColor + intensity * 0.25, 1.0);
-    FragColor = vec4(altColor, 1.0);
+    FragColor = vec4(altColor + intensity * (0.075 * ((sin(time * lightSpeed)) + 1.0) * 0.5 + 0.025), 1.0);
+    //FragColor = vec4(altColor, 1.0);
 }
 #endif
+
+
+
 
 
 
