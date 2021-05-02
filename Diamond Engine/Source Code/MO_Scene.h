@@ -50,7 +50,7 @@ public:
 
 	void SetCurrentScene(std::string& scenePath);
 	void SetGameCamera(C_Camera* cam);
-	
+
 	void CreateGameCamera(const char* name);
 	void LoadModelTree(const char* modelPath);
 
@@ -72,6 +72,8 @@ public:
 	std::vector<std::string> layers;
 
 	std::vector<C_Script*> activeScriptsVector;
+
+	int totalTris;
 
 	void LoadHoldScene();
 private:
