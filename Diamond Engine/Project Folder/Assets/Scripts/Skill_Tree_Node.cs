@@ -42,6 +42,7 @@ public class Skill_Tree_Node : DiamondComponent
 
     public int node_type = 0;
 
+    public GameObject panelImage;
     public int skillTreeName;
     public int skillTreeNumber;
 
@@ -162,6 +163,9 @@ public class Skill_Tree_Node : DiamondComponent
         if (text_description != null)
             text_description.GetComponent<Text>().text = skill.description;
 
+        if(panelImage != null)
+            panelImage.GetComponent<Hub_PanelImage>().UpdateIcon(skillTreeName, skillTreeNumber - 1);                  
+
         if (Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_DOWN)
         {
             Debug.Log("Beskar: ");
@@ -238,7 +242,7 @@ public class Skill_Tree_Node : DiamondComponent
             }
         }
         skill.Use();
-        adSkill(skill_name);
+        addSkill(skill_name);
         state = NODE_STATE.OWNED;
 
         if (children_1 != null)
@@ -251,7 +255,7 @@ public class Skill_Tree_Node : DiamondComponent
             oppositeNode.GetComponent<Skill_Tree_Node>().state = NODE_STATE.LOCKED;
     }
 
-    private void adSkill(string name)
+    private void addSkill(string name)
     {
         switch(name)
         {

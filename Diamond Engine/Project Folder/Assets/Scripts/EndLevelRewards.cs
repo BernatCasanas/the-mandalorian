@@ -37,27 +37,25 @@ public class EndLevelRewards
     GameObject rewardMenu = null;
 
     public GameResources selectedReward = null;
-    bool rewardsGenerated = false;
 
-    public GameResources GenerateRewardPipeline()
+    public void GenerateRewardPipeline()
     {
-        if (rewardsGenerated == false)
-        {
-            rewardsGenerated = true;
-            firstReward = SelectRewards();
-            secondReward = SelectRewards();
-            thirdReward = SelectRewards();
+        firstReward = SelectRewards();
+        secondReward = SelectRewards();
+        thirdReward = SelectRewards();
 
-            CreatePopUpGameObject();
+        CreatePopUpGameObject();
 
-            firstButton = rewardMenu.GetChild("FirstRewardButton").GetComponent<EndLevelRewardsButtons>();
-            secondButton = rewardMenu.GetChild("SecondRewardButton").GetComponent<EndLevelRewardsButtons>();
-            thirdButton = rewardMenu.GetChild("ThirdRewardButton").GetComponent<EndLevelRewardsButtons>();
+        firstButton = rewardMenu.GetChild("FirstRewardButton").GetComponent<EndLevelRewardsButtons>();
+        secondButton = rewardMenu.GetChild("SecondRewardButton").GetComponent<EndLevelRewardsButtons>();
+        thirdButton = rewardMenu.GetChild("ThirdRewardButton").GetComponent<EndLevelRewardsButtons>();
 
-            if(firstButton != null)
-                firstButton.gameObject.GetComponent<Navigation>().Select(); // Line added because buttons crashed. For... some reason
-        }
+        if (firstButton != null)
+            firstButton.gameObject.GetComponent<Navigation>().Select(); // Line added because buttons crashed. For... some reason
+    }
 
+    public GameResources GetSelectedReward()
+    {
         if (CheckRewardSelected())
         {
             CleanAllElements();
@@ -138,12 +136,12 @@ public class EndLevelRewards
     void CreatePopUpGameObject()
     {
         GameObject canvas = InternalCalls.FindObjectWithName("Canvas");
-        
+
         rewardMenu = InternalCalls.CreatePrefab("Library/Prefabs/18131542.prefab", new Vector3(0.0f, 0.0f, 0.0f), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
 
         if (rewardMenu == null)
             return;
-       
+
         GameObject firstText = rewardMenu.GetChild("FirstRewardText");
         GameObject secondText = rewardMenu.GetChild("SecondRewardText");
         GameObject thirdText = rewardMenu.GetChild("ThirdRewardText");
@@ -154,7 +152,7 @@ public class EndLevelRewards
 
         if (canvas == null)
             canvas = InternalCalls.CreatePrefab("Library/Prefabs/1965121116.prefab", new Vector3(0.0f, 0.0f, 0.0f), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
-        
+
         rewardMenu.SetParent(canvas);
 
         firstImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardTexture(firstReward));
@@ -239,13 +237,11 @@ public class EndLevelRewards
             selectedReward = ConvertRewardtoRewardResource(firstReward);
             return true;
         }
-
         else if (secondButton != null && secondButton.pressed)
         {
             selectedReward = ConvertRewardtoRewardResource(secondReward);
             return true;
         }
-
         else if (thirdButton != null && thirdButton.pressed)
         {
             selectedReward = ConvertRewardtoRewardResource(thirdReward);
@@ -288,7 +284,6 @@ public class EndLevelRewards
 
     public void CleanAllElements()
     {
-        rewardsGenerated = false;
         firstButton = null;
         secondButton = null;
         thirdButton = null;

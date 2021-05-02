@@ -27,9 +27,7 @@ public static class RoomSwitch
 {
     public enum LEVELS
     {
-		HUB,
 		ONE,
-		SHOP,
 		TWO,
 		MAX,
     }
@@ -68,7 +66,7 @@ public static class RoomSwitch
 	//public static int index = 0;
 	static Random randomGenerator = new Random();
 
-	public static LEVELS currentLevelIndicator = LEVELS.HUB;
+	public static LEVELS currentLevelIndicator = LEVELS.ONE;
 
 	public static LEVELS GetLevelIndicator()
     {
@@ -117,10 +115,10 @@ public static class RoomSwitch
 			currentroom = roomID;
 			levelLists[index].visited.Remove(currentroom);
 			SceneManager.LoadScene(roomID);
-
 		}
 		else
 		{
+			//Debug.Log("Room Switch 3");
 			//levelLists[index].visited.Clear();
 			levelLists[index].visited = new List<int>(originalLevelPools[index]);
 
@@ -137,7 +135,7 @@ public static class RoomSwitch
 
 	public static void ClearStaticData()
     {
-		currentLevelIndicator = LEVELS.HUB;
+		currentLevelIndicator = LEVELS.ONE;
 		currentroom = 0;
 
         for (int i = 0; i < 2; i++)

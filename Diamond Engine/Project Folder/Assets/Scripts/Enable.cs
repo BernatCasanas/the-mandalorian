@@ -17,20 +17,29 @@ public class Enable : DiamondComponent
 			disable.EnableNav(false);
 			Debug.Log("Disable " + disable.Name);
 		}
+
 		if (disable2 != null)
 		{
 			disable2.EnableNav(false);
 			Debug.Log("Disable " + disable2.Name);
 		}
+
 		if (enable != null)
+		{
 			enable.EnableNav(true);
+			Debug.Log("Enable " + enable.Name);
+		}
 
 		if (select != null)
-        {
+		{
 			Navigation navComponent = select.GetComponent<Navigation>();
 
 			if (navComponent != null)
+			{
 				navComponent.Select();
-        }
+				Debug.Log("Select successful for: " + select.Name);
+			}
+			else Debug.Log("Select FAILED for: " + select.Name);
+		}
     }
 }
