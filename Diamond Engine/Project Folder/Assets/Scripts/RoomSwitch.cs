@@ -115,10 +115,10 @@ public static class RoomSwitch
 			currentroom = roomID;
 			levelLists[index].visited.Remove(currentroom);
 			SceneManager.LoadScene(roomID);
-
 		}
 		else
 		{
+			//Debug.Log("Room Switch 3");
 			//levelLists[index].visited.Clear();
 			levelLists[index].visited = new List<int>(originalLevelPools[index]);
 
