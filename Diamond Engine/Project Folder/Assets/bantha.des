@@ -1,19 +1,19 @@
 {
-    "NavMesh": -1,
+    "NavMesh": 1012432444,
     "EditorCameraPosition": [
-        0,
-        0,
-        -3
+        33.162792205810547,
+        27.944164276123047,
+        21.549463272094727
     ],
     "EditorCameraZ": [
-        0,
-        0,
-        1
+        -0.59095048904418945,
+        -0.64945369958877563,
+        -0.47852623462677002
     ],
     "EditorCameraY": [
-        0,
-        1,
-        0
+        -0.50472140312194824,
+        0.76040112972259521,
+        -0.40871316194534302
     ],
     "tags": [],
     "layers": [],
@@ -52,12 +52,145 @@
             ]
         },
         {
-            "name": "Empty",
+            "name": "Cube",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 522879612,
+            "UID": 1711620316,
             "ParentUID": 1565439529,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": true,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                100,
+                100,
+                0.5
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                }
+            ]
+        },
+        {
+            "name": "SpawnManager",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 782918489,
+            "ParentUID": 1565439529,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                6.3226838111877441,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnManager",
+                    "availableSpawnPoints": 0,
+                    "maxEnemies": 1,
+                    "enemyIncreasePerWave": 0,
+                    "wave": 0,
+                    "maxWaves": 1,
+                    "waveTimer": 0,
+                    "timeBetweenSpawns": 0
+                }
+            ]
+        },
+        {
+            "name": "SpawnPoint",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 138194515,
+            "ParentUID": 782918489,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -82,6 +215,16 @@
                 {
                     "Type": 1,
                     "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": true,
+                    "spawnBantha": true,
+                    "spawnSkytrooper": true,
+                    "spawnLaserTurret": true,
+                    "spawnDeathrooper": true
                 }
             ]
         }
