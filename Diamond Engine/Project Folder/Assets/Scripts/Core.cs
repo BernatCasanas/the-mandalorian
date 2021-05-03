@@ -1691,6 +1691,19 @@ public class Core : Entity
         return damageWithSkills;
     }
 
+    public void LockInputs(bool locked)
+    {
+        if (locked)
+        {
+            lockInputs = true;
+            inputsList.Add(INPUT.IN_IDLE);
+        }
+        else
+        {
+            lockInputs = false;
+        }
+    }
+
     public void OnApplicationQuit()
     {
         bulletDamage = bulletDamageDefault;

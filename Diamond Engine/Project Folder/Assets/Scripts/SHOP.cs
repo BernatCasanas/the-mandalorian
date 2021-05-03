@@ -377,7 +377,7 @@ public class SHOP : DiamondComponent
         opening = true;
         shopUI.EnableNav(true);
         textPopUp.Enable(false);
-        Core.instance.lockInputs = true;
+        Core.instance.LockInputs(true); ;
         if (defaultButton != null)
             defaultButton.GetComponent<Navigation>().Select();
     }
@@ -386,7 +386,7 @@ public class SHOP : DiamondComponent
     {
         shopOpen = false;
         shopUI.EnableNav(false);
-        Core.instance.lockInputs = false;
+        Core.instance.LockInputs(false); ;
         textPopUp.Enable(true);
     }
 }
