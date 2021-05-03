@@ -640,8 +640,6 @@ public class Bantha : Enemy
         {
             Core.instance.hud.GetComponent<HUD>().AddToCombo(300, 1.0f);
         }
-
-        RemoveFromEnemyList();
     }
     private void UpdateDie()
     {
@@ -660,12 +658,12 @@ public class Bantha : Enemy
     private void Die()
     {
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_BANTHA);
-     
         EnemyManager.RemoveEnemy(gameObject);
 
         DropCoins();
 
         player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+
         InternalCalls.Destroy(gameObject);
     }
     #endregion
@@ -813,7 +811,7 @@ public class Bantha : Enemy
         {
             straightPath = false;
         }
-        Debug.Log("StraightPath: " + straightPath);
+        //Debug.Log("StraightPath: " + straightPath);
     }
 
     private void UpdateAnimationSpd(float newSpd)

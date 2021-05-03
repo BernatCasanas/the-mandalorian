@@ -226,6 +226,10 @@ public class Rancor : Entity
         agent = gameObject.GetComponent<NavMeshAgent>();
 
         InitEntity(ENTITY_TYPE.RANCOR);
+
+        if (EnemyManager.EnemiesLeft() > 0)
+            EnemyManager.ClearList();
+
         EnemyManager.AddEnemy(gameObject);
 
         if (agent == null)

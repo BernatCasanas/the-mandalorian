@@ -679,8 +679,6 @@ public class StormTrooper : Enemy
         {
             Core.instance.hud.GetComponent<HUD>().AddToCombo(300, 1.0f);
         }
-
-        RemoveFromEnemyList();
     }
     private void UpdateDie()
     {
@@ -700,7 +698,6 @@ public class StormTrooper : Enemy
     private void Die()
     {
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOPER);
-
         EnemyManager.RemoveEnemy(gameObject);
 
         float dist = (deathPoint.transform.globalPosition - gameObject.transform.globalPosition).magnitude;
@@ -709,8 +706,9 @@ public class StormTrooper : Enemy
 
         player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
         InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
-        InternalCalls.Destroy(gameObject);
         DropCoins();
+
+        InternalCalls.Destroy(gameObject);
     }
 
     #endregion

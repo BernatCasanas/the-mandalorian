@@ -537,8 +537,6 @@ public class Skytrooper : Enemy
         //        hud.AddToCombo(300, 1.0f);
         //}
         //UNCOMMENT
-
-        EnemyManager.RemoveEnemy(gameObject);
     }
     private void UpdateDie()
     {

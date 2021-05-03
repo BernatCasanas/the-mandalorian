@@ -72,18 +72,6 @@ public class Enemy : Entity
     {
 		return Mathf.Distance(gameObject.transform.globalPosition, point) < givenRange;
 	}
-    public void RemoveFromEnemyList()
-    {
-		foreach (GameObject item in EnemyManager.currentEnemies)
-		{
-			if (item.GetUid() == gameObject.GetUid())
-			{
-				EnemyManager.currentEnemies.Remove(item);
-				//Debug.Log("Enemy Killed!");
-				break;
-			}
-		}		
-    }
 
 	public void DropCoins()
     {

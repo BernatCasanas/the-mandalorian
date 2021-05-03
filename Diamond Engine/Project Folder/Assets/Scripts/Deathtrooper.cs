@@ -517,8 +517,6 @@ public class Deathtrooper : Enemy
         {
             Core.instance.hud.GetComponent<HUD>().AddToCombo(300, 1.0f);
         }
-
-        EnemyManager.RemoveEnemy(gameObject);
     }
     private void UpdateDie()
     {

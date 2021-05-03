@@ -388,8 +388,6 @@ public class LaserTurret : Enemy
         {
             Core.instance.hud.GetComponent<HUD>().AddToCombo(300, 1.0f);
         }
-
-        RemoveFromEnemyList();
     }
     private void UpdateDie()
     {
@@ -407,7 +405,6 @@ public class LaserTurret : Enemy
     private void Die()
     {
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_LASER_TURRET);
-
         EnemyManager.RemoveEnemy(gameObject);
 
         DropCoins();

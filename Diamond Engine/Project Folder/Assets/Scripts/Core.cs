@@ -881,7 +881,7 @@ public class Core : Entity
         if (bullet != null)
         {
             AddPrimaryHeat();
-            Debug.Log("Bullet Shot!");
+            //Debug.Log("Bullet Shot!");
 
             bullet.GetComponent<BH_Bullet>().damage = GetDamage();
         }
@@ -1061,7 +1061,7 @@ public class Core : Entity
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/739906161.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, null);
         if (bullet != null)
         {
-            Debug.Log("Charged Bullet Shot!");
+            //Debug.Log("Charged Bullet Shot!");
             ReducePrimaryWeaponHeat(onSniperHeatReduction);
 
             ChargedBullet chrBulletComp = bullet.GetComponent<ChargedBullet>();
@@ -1324,7 +1324,7 @@ public class Core : Entity
         ret = (currentHeat * (baseFireRate * fireRateMultCap)) / hud.GetComponent<HUD>().GetPrimaryMaxHeat();
 
 
-        Debug.Log("Firerate: " + ret.ToString());
+        //Debug.Log("Firerate: " + ret.ToString());
 
         ret = Math.Min(ret, baseFireRate * fireRateMultCap * 0.45f);
         ret = Math.Max(ret, baseFireRate * 0.75f);

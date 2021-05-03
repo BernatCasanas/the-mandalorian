@@ -118,7 +118,6 @@ public static class RoomSwitch
 		}
 		else
 		{
-			//Debug.Log("Room Switch 3");
 			//levelLists[index].visited.Clear();
 			levelLists[index].visited = new List<int>(originalLevelPools[index]);
 

@@ -18,6 +18,8 @@ public class EnemyManager : DiamondComponent
 
     public static bool RemoveEnemy(GameObject enemy)
     {
+        bool ret = false;
+
         if (enemy == null)
             return false;
 
@@ -27,21 +29,26 @@ public class EnemyManager : DiamondComponent
             return false;
         }
 
-        foreach (GameObject enemyInList in currentEnemies)
+        Debug.Log("Removing enemy. Enemies left: " + currentEnemies.Count.ToString());
+
+        for(int i = 0; i < currentEnemies.Count; ++i)
         {
-            if (enemyInList.GetUid() == enemy.GetUid())
+            if(currentEnemies[i].GetUid() == enemy.GetUid())
             {
-                currentEnemies.Remove(enemy);
-                return true;
+                currentEnemies.RemoveAt(i);
+                ret = true;
             }
         }
+
+        if (ret == false)
+            Debug.Log("Enemy not found");
 
         Debug.Log("Enemies left: " + currentEnemies.Count.ToString());
 
         if (currentEnemies.Count == 0 && GameSceneManager.instance != null)
             GameSceneManager.instance.LevelEnd();
 
-        return false;
+        return ret;
     }
 
     public static void ClearList()
@@ -70,7 +77,7 @@ public class EnemyManager : DiamondComponent
     {
         for (int i = 0; i < availableSpawnPoints.Count; i++)
         {
-            if(spawnPoint.GetUid() == availableSpawnPoints[i].GetUid())
+            if (spawnPoint.GetUid() == availableSpawnPoints[i].GetUid())
             {
                 availableSpawnPoints.Remove(spawnPoint);
                 return;
