@@ -411,7 +411,7 @@ public class Wampa : Bosseslv2
         {
             if (currentState != STATE.DEAD)
             {
-                healthPoints -= damage;
+                healthPoints -= damage * Core.instance.DamageToBosses;
                 Debug.Log("Wampa HP: " + healthPoints.ToString());
 
                 if (healthPoints <= 0.0f)

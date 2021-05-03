@@ -1563,7 +1563,7 @@ public class Rancor : Entity
             Debug.Log("Rancor damage" + damage.ToString());
             if (currentState != RANCOR_STATE.DEAD)
             {
-                healthPoints -= damage;
+                healthPoints -= damage * Core.instance.DamageToBosses;
 
                 if (healthPoints <= 0.0f)
                 {

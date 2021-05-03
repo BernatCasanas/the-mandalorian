@@ -37,7 +37,8 @@ public enum STATUS_TYPE
     DAMAGE_DOWN,
     MOV_SPEED,
     OVERHEAT,
-    RAW_DAMAGE
+    RAW_DAMAGE,
+    DMG_TO_BOSSES,
 }
 
 public enum STATUS_APPLY_TYPE
@@ -94,6 +95,7 @@ public class Entity : DiamondComponent
     protected float MovspeedMult = 1f;
     public float OverheatMult = 1f;
     public float DamageMult = 1f;
+    public float DamageToBosses = 1f;
 
     protected virtual void InitEntity(ENTITY_TYPE myType)
     {
@@ -102,6 +104,7 @@ public class Entity : DiamondComponent
         MovspeedMult = 1f;
         OverheatMult = 1f;
         DamageMult = 1f;
+        DamageToBosses = 1f;
         myDeltaTime = Time.deltaTime;
     }
 
@@ -331,7 +334,14 @@ public class Entity : DiamondComponent
                 {
                     statusToInit.statChange = this.DamageMult * (statusToInit.severity) / 100;
                     this.DamageMult += statusToInit.statChange;
-                    Debug.Log(this.DamageMult.ToString());
+                   // Debug.Log(this.DamageMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.DMG_TO_BOSSES:
+                {
+                    statusToInit.statChange = this.DamageToBosses * (statusToInit.severity) / 100;
+                    this.DamageToBosses += statusToInit.statChange;
+                  //  Debug.Log(this.DamageToBosses.ToString());
                 }
                 break;
             default:
@@ -405,6 +415,12 @@ public class Entity : DiamondComponent
             case STATUS_TYPE.RAW_DAMAGE:
                 {
                     this.DamageMult -= statusToDelete.statChange;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.DMG_TO_BOSSES:
+                {
+                    this.DamageToBosses -= statusToDelete.statChange;
                     //    Debug.Log(this.MovspeedMult.ToString());
                 }
                 break;
