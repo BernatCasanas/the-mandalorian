@@ -42,14 +42,14 @@ public class IntroCinematic : DiamondComponent
 
     public void Awake()
     {
-       /* if (Counter.firstRun)
+        /*if (Counter.firstRun)
         {
             auxCameraRotation = cameraObject.transform.localRotation;
             CameraManager.SetCameraPerspective(cameraObject);
 
             if (InitializeTimers())
             {
-                pointArray = new GameObject[] { point1, point2, point3, point4, point5, point6, point7, point8 };
+                pointArray = new GameObject[] { point1, point2, point3, point4, point5, point6, point7, point8, point9, point10, point11, point12, point13, point14, point15, point16 };
                 UpdateValues();
                 Animator.Play(greefRig, "Greef_Sit"); // This probably isn't needed with fixed animations
                 // Take player's controls away
@@ -82,7 +82,8 @@ public class IntroCinematic : DiamondComponent
         {
             ManageCamera();
             UpdateValues();
-        }*/
+        }
+        Debug.Log(arrayCount.ToString());*/
     }
 
     public void UpdateValues()
