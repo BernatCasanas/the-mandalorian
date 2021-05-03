@@ -128,7 +128,7 @@ public class Enemy : Entity
 
 					this.damage -= damageSubstracted;
 
-					statusToInit.statTaken = damageSubstracted;
+					statusToInit.statChange = damageSubstracted;
 
 				}
 				break;
@@ -157,7 +157,7 @@ public class Enemy : Entity
 				break;
 			case STATUS_TYPE.DAMAGE_DOWN:
 				{
-					this.damage += statusToDelete.statTaken;
+					this.damage += statusToDelete.statChange;
 				}
 				break;
 			default:

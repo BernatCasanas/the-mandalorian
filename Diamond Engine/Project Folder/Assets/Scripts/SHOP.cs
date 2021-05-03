@@ -64,6 +64,12 @@ public class SHOP : DiamondComponent
                 if (currency != null)
                     currency.SetParent(hud);
             }           
+
+            if(Input.GetKey(DEKeyCode.M) == KeyState.KEY_DOWN)
+            {
+                PlayerResources.AddRunCoins(100);
+                hud.GetComponent<HUD>().UpdateCurrency(PlayerResources.GetRunCoins());
+            }
         }
         else 
         {
@@ -82,7 +88,8 @@ public class SHOP : DiamondComponent
             {
                 textPopUp.Enable(false);
             }
-        }        
+        }
+
     }
 
     public bool InRange(Vector3 point, float givenRange)
@@ -368,9 +375,9 @@ public class SHOP : DiamondComponent
     {
         shopOpen = true;
         opening = true;
-        shopUI.Enable(true);
+        shopUI.EnableNav(true);
         textPopUp.Enable(false);
-        Core.instance.lockInputs = true;
+        Core.instance.LockInputs(true); ;
         if (defaultButton != null)
             defaultButton.GetComponent<Navigation>().Select();
     }
@@ -378,8 +385,8 @@ public class SHOP : DiamondComponent
     public void CloseShop()
     {
         shopOpen = false;
-        shopUI.Enable(false);
-        Core.instance.lockInputs = false;
+        shopUI.EnableNav(false);
+        Core.instance.LockInputs(false); ;
         textPopUp.Enable(true);
     }
 }

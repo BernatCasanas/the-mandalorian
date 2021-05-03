@@ -34,7 +34,14 @@ public enum STATUS_TYPE
 
     SLOWED,
     ACCELERATED,
-    DAMAGE_DOWN
+    DAMAGE_DOWN,
+    MOV_SPEED,
+    OVERHEAT,
+    RAW_DAMAGE,
+    DMG_TO_BOSSES,
+    DMG_PER_HP,
+    MAX_HP,
+    DMG_RED,
 }
 
 public enum STATUS_APPLY_TYPE
@@ -55,7 +62,7 @@ public class StatusData
         statusType = STATUS_TYPE.NONE;
         applyType = STATUS_APPLY_TYPE.NONE;
         severity = 0f;
-        statTaken = 0f;
+        statChange = 0f;
         remainingTime = 0f;
         isPermanent = false;
     }
@@ -66,11 +73,11 @@ public class StatusData
         severity = statusSeverirt;
         remainingTime = statusTime;
         isPermanent = isstatusPermanent;
-        statTaken = statusStatTaken;
+        statChange = statusStatTaken;
     }
 
     public float severity;
-    public float statTaken;
+    public float statChange;
     public float remainingTime;
     public bool isPermanent;
     public STATUS_APPLY_TYPE applyType;
@@ -88,11 +95,23 @@ public class Entity : DiamondComponent
 
     protected float speedMult = 1f;
     protected float myDeltaTime = 1f;
+    protected float MovspeedMult = 1f;
+    public float OverheatMult = 1f;
+    public float DamageMult = 1f;
+    public float DamageToBosses = 1f;
+    public float DamagePerHpMult = 1f;
+    public float DamageRed = 1f;
 
     protected virtual void InitEntity(ENTITY_TYPE myType)
     {
         eType = myType;
         speedMult = 1f;
+        MovspeedMult = 1f;
+        OverheatMult = 1f;
+        DamageMult = 1f;
+        DamageToBosses = 1f;
+        DamagePerHpMult = 1f;
+        DamageRed = 1f;
         myDeltaTime = Time.deltaTime;
     }
 
@@ -304,6 +323,60 @@ public class Entity : DiamondComponent
 
                 }
                 break;
+            case STATUS_TYPE.MOV_SPEED:
+                {
+                    statusToInit.statChange = this.MovspeedMult * statusToInit.severity / 100;
+                    this.MovspeedMult += statusToInit.statChange;
+                //  Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.OVERHEAT:
+                {
+                    statusToInit.statChange = this.OverheatMult * (statusToInit.severity) / 100;
+                    this.OverheatMult += statusToInit.statChange;
+                   // Debug.Log(this.OverheatMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.RAW_DAMAGE:
+                {
+                    statusToInit.statChange = this.DamageMult * (statusToInit.severity) / 100;
+                    this.DamageMult += statusToInit.statChange;
+                   // Debug.Log(this.DamageMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.DMG_TO_BOSSES:
+                {
+                    statusToInit.statChange = this.DamageToBosses * (statusToInit.severity) / 100;
+                    this.DamageToBosses += statusToInit.statChange;
+                  //  Debug.Log(this.DamageToBosses.ToString());
+                }
+                break;
+            case STATUS_TYPE.MAX_HP:
+                {
+                    if (Core.instance != null)
+                    {
+                        PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                        if (myHealth != null)
+                        {
+                            Debug.Log("Need testing");
+                            Debug.Log("Old Max Health = " + PlayerHealth.currMaxHealth.ToString());
+                            statusToInit.statChange = statusToInit.severity * PlayerHealth.currMaxHealth / 100;
+                            myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth + statusToInit.statChange));
+                            Debug.Log("New Max Health = " + PlayerHealth.currMaxHealth.ToString());
+
+                        }
+                    }
+                   
+                }
+                break;
+            case STATUS_TYPE.DMG_RED:
+                {
+                    statusToInit.statChange = this.DamageRed * (statusToInit.severity) / 100;
+                    this.DamageRed += statusToInit.statChange;
+                    Debug.Log("Damage red = " + this.DamageRed.ToString());
+
+                }
+                break;
             default:
                 break;
         }
@@ -313,21 +386,23 @@ public class Entity : DiamondComponent
     {
         switch (statusToUpdate.statusType)
         {
-            case STATUS_TYPE.SLOWED:
+            case STATUS_TYPE.DMG_PER_HP:
                 {
-
+                    if(Core.instance != null)
+                    {
+                        //PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                        //if (myHealth != null)
+                        //{
+                            float missingHealth = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
+                            float missingHealtPercentage = 1 + missingHealth * 100 / PlayerHealth.currMaxHealth;
+                            DamagePerHpMult = missingHealtPercentage / 100;
+                        Debug.Log("Need to test / dmg per missing hp = " + DamagePerHpMult.ToString());
+                        // }
+                    }
+            
                 }
                 break;
-            case STATUS_TYPE.ACCELERATED:
-                {
-
-                }
-                break;
-            case STATUS_TYPE.DAMAGE_DOWN:
-                {
-
-                }
-                break;
+         
             default:
                 break;
         }
@@ -353,6 +428,57 @@ public class Entity : DiamondComponent
                 break;
             case STATUS_TYPE.DAMAGE_DOWN:
                 {
+                }
+                break;
+            case STATUS_TYPE.MOV_SPEED:
+                {
+                    this.MovspeedMult -= statusToDelete.statChange;
+                  //  Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.OVERHEAT:
+                {
+                    this.OverheatMult -= statusToDelete.statChange;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.RAW_DAMAGE:
+                {
+                    this.DamageMult -= statusToDelete.statChange;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.DMG_TO_BOSSES:
+                {
+                    this.DamageToBosses -= statusToDelete.statChange;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.DMG_PER_HP:
+                {
+                    this.DamagePerHpMult = 1; ;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.MAX_HP:
+                {
+                    if (Core.instance != null)
+                    {
+                        PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                        if (myHealth != null)
+                        {
+
+                            myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth - statusToDelete.statChange));
+
+                        }
+                    }
+                }
+                break;
+            case STATUS_TYPE.DMG_RED:
+                {
+                    this.DamageRed -= statusToDelete.statChange;
+                    Debug.Log("Damage red = " + this.DamageRed.ToString());
+                    //    Debug.Log(this.MovspeedMult.ToString());
                 }
                 break;
             default:

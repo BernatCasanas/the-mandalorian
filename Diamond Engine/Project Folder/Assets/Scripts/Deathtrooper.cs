@@ -51,7 +51,7 @@ public class Deathtrooper : Enemy
     private float recoilTimer = 0.0f;
     private float betweenStatesTimer = 0.0f;
     private float betweenBurstsTimer = 0.0f;
-    private float shotCDTimer = 0.0f;
+    //private float shotCDTimer = 0.0f;
     private float currAnimationPlaySpd = 1f;
 
     //Action times

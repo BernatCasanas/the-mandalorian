@@ -42,17 +42,16 @@ public class IntroCinematic : DiamondComponent
 
     public void Awake()
     {
-       /* if (Counter.firstRun)
+        /*if (Counter.firstRun)
         {
             auxCameraRotation = cameraObject.transform.localRotation;
             CameraManager.SetCameraPerspective(cameraObject);
 
             if (InitializeTimers())
             {
-                pointArray = new GameObject[] { point1, point2, point3, point4, point5, point6, point7, point8 };
+                pointArray = new GameObject[] { point1, point2, point3, point4, point5, point6, point7, point8, point9, point10, point11, point12, point13, point14, point15, point16 };
                 UpdateValues();
                 Animator.Play(greefRig, "Greef_Sit"); // This probably isn't needed with fixed animations
-                // Take player's controls away
             }
         }
         else
@@ -64,17 +63,19 @@ public class IntroCinematic : DiamondComponent
     public void Update()
     {
         // We should have a way to skip the cinematic :/
-        /*if (toGoPosition != null)
+        /*Core.instance.LockInputs(true); // Yeah. Not pretty. But calling Core in Awake is not happening, and a boolean checked every frame seems redundant for what the function does
+
+        if (toGoPosition != null && WeHaveToMove())
         {
             cameraAuxPosition += (toGoPosition - cameraAuxPosition).normalized * Time.deltaTime * currentSpeed;
             cameraObject.transform.localRotation = Quaternion.Slerp(cameraObject.transform.localRotation, toRotateQuaternion, 0.25f * Time.deltaTime);
-            cameraObject.transform.localPosition = cameraAuxPosition;
         }
+        cameraObject.transform.localPosition = cameraAuxPosition;
 
         if (arrayCount == 0 && helmet != null)
         {
-                helmet.transform.localPosition += (helmetFinal.transform.localPosition - helmet.transform.localPosition).normalized * Time.deltaTime * 0.60f;
-                helmet.transform.localRotation = Quaternion.Slerp(helmet.transform.localRotation, helmetFinal.transform.localRotation, 0.25f * Time.deltaTime);
+            helmet.transform.localPosition += (helmetFinal.transform.localPosition - helmet.transform.localPosition).normalized * Time.deltaTime * 0.60f;
+            helmet.transform.localRotation = Quaternion.Slerp(helmet.transform.localRotation, helmetFinal.transform.localRotation, 0.25f * Time.deltaTime);
         }
 
         currentTimer += Time.deltaTime;
@@ -83,6 +84,25 @@ public class IntroCinematic : DiamondComponent
             ManageCamera();
             UpdateValues();
         }*/
+    }
+
+    public bool WeHaveToMove() // So... I didn't want to write this function, but otherwise weird behavior unfolds because of float's decimals. So yeah :)
+    {
+        bool moveBool = true;
+
+        switch (arrayCount)
+        {
+            case 2:
+            case 4:
+            case 6:
+                moveBool = false;
+                break;
+
+            default:
+                break;
+        }
+
+        return moveBool;
     }
 
     public void UpdateValues()
@@ -134,7 +154,7 @@ public class IntroCinematic : DiamondComponent
         {
             cameraObject.transform.localRotation = auxCameraRotation;
             CameraManager.SetCameraOrthographic(cameraObject);
-            // Re-activate player's control
+            Core.instance.LockInputs(false);
             postCinematicDialogue.Enable(true);
             postCinematicDialogue.GetChild("Button").GetComponent<Navigation>().Select();
         }
@@ -145,7 +165,7 @@ public class IntroCinematic : DiamondComponent
         if (greefRig != null)
         {
             float spaceScene = Mathf.Distance(point1.transform.globalPosition, point2.transform.globalPosition) / speedArray[0];
-            float revolverZoomOut = Mathf.Distance(point1.transform.globalPosition, point2.transform.globalPosition) / speedArray[1];
+            float revolverZoomOut = Mathf.Distance(point3.transform.globalPosition, point4.transform.globalPosition) / speedArray[1];
             float revolverStatic = 0.36f;
             float greefTurningZoom = Animator.GetAnimationDuration(greefRig, "Greef_Head");
             float greefGreeting = Animator.GetAnimationDuration(greefRig, "Greef_Head");

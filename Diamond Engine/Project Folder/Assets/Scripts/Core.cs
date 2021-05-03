@@ -108,6 +108,7 @@ public class Core : Entity
     public float onSniperHeatReduction = 10f;
     private float shootingTimer = 0.0f;
     private float gadgetShootTimer = 0.0f;
+    private bool primaryWeaponOverHeat = false;
 
     private bool hasShot = false;
 
@@ -168,6 +169,9 @@ public class Core : Entity
 
     private static float bulletDamage = 9f;
     private float bulletDamageDefault = 9f;
+
+    //Audio
+    public GameObject secSound = null;
 
     //Telemetry
     int numberOfShots = 0;
@@ -283,6 +287,15 @@ public class Core : Entity
             GameObject sniper2Cooldown = InternalCalls.FindObjectWithName("SniperCooldown2");
             if (sniper2Cooldown != null)
                 sniperBullet2 = sniper2Cooldown.GetComponent<Material>();
+
+            if(secSound == null)
+            {
+                secSound = InternalCalls.FindObjectWithName("SecSound");
+
+                if (secSound == null)
+                    Debug.Log("Core: Sec Sound GO not found");
+            }
+
 
 
             GameObject lockInputsScene = InternalCalls.FindObjectWithName("LockInputsBool");
@@ -447,6 +460,11 @@ public class Core : Entity
         if (hud != null)
         {
             isPrimaryOverHeat = hud.GetComponent<HUD>().IsPrimaryOverheated();
+
+            if (isPrimaryOverHeat == true && primaryWeaponOverHeat == false)
+                Audio.PlayAudio(secSound, "Play_Mando_Blaster_Overcharged");
+
+            primaryWeaponOverHeat = isPrimaryOverHeat;
         }
 
         if (!lockInputs)
@@ -528,6 +546,7 @@ public class Core : Entity
         {
             PlayParticles(PARTICLES.GRENADE);
             grenade_reloading = false;
+            Audio.PlayAudio(secSound, "Play_Grenade_Cooldown_Finish");
         }
 
     }
@@ -1165,11 +1184,11 @@ public class Core : Entity
         gameObject.transform.localPosition.y = dashStartYPos;
         this.gameObject.transform.localRotation = preDashRotation;
 
-        if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_DAMAGE_REDUCTION_DASH))
-        {
-            skill_damageReductionDashActive = true;
-            skill_damageReductionDashTimer = Skill_Tree_Data.GetMandoSkillTree().U4_seconds;
-        }
+        //if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_DAMAGE_REDUCTION_DASH))
+        //{
+        //    skill_damageReductionDashActive = true;
+        //    skill_damageReductionDashTimer = Skill_Tree_Data.GetMandoSkillTree().U4_seconds;
+        //}
 
         PlayParticles(PARTICLES.JETPACK, true);
     }
@@ -1224,7 +1243,7 @@ public class Core : Entity
         }
 
         //gameObject.SetVelocity(gameObject.transform.GetForward() * movementSpeed);
-        gameObject.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.GetForward().normalized * movementSpeed * myDeltaTime;
+        gameObject.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.GetForward().normalized * movementSpeed * MovspeedMult * myDeltaTime;
         distanceMoved += movementSpeed * myDeltaTime;
     }
     private void MoveEnd()
@@ -1400,6 +1419,8 @@ public class Core : Entity
             {
                 currentBullets++;
                 PlayParticles(PARTICLES.SNIPER);
+
+                Audio.PlayAudio(secSound, "Play_Sniper_Cooldown_Finish");
             }
         }
 
@@ -1444,7 +1465,7 @@ public class Core : Entity
                     int damageFromBullet = 0;
 
                     if (skill_damageReductionDashActive)
-                        damageFromBullet = (int)(bulletScript.damage * (1.0f - Skill_Tree_Data.GetMandoSkillTree().U4_damageReduction));
+                        damageFromBullet = (int)(bulletScript.damage * (1.0f/* - Skill_Tree_Data.GetMandoSkillTree().U4_damageReduction*/));
                     else
                         damageFromBullet = (int)bulletScript.damage;
 
@@ -1471,7 +1492,7 @@ public class Core : Entity
                     {
                         int damageFromEnemy = 0;
                         if (skill_damageReductionDashActive)
-                            damageFromEnemy = (int)(damage * (1.0f - Skill_Tree_Data.GetMandoSkillTree().U4_damageReduction));
+                            damageFromEnemy = (int)(damage * (1.0f /*- Skill_Tree_Data.GetMandoSkillTree().U4_damageReduction*/));
                         else
                             damageFromEnemy = (int)damage;
 
@@ -1652,22 +1673,35 @@ public class Core : Entity
     private float GetDamage()
     {
         //We apply modifications to the damage based on the skill actives in the talent tree
-        float damageWithSkills = bulletDamage;
+        float damageWithSkills = bulletDamage * DamageMult * DamagePerHpMult;
 
-        if (skill_groguIncreaseDamageActive)
-        {
-            damageWithSkills *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().U3_increasedDamagePercentage);
-        }
+        //if (skill_groguIncreaseDamageActive)
+        //{
+        //    damageWithSkills *= (1.0f /*+ Skill_Tree_Data.GetMandoSkillTree().U3_increasedDamagePercentage*/);
+        //}
 
-        if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_EXTRA_DAMAGE_LOW_HEALTH))
-        {
-            float HPMissing = 1.0f - ((float)PlayerHealth.currHealth / (float)PlayerHealth.currMaxHealth);
+        //if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_EXTRA_DAMAGE_LOW_HEALTH))
+        //{
+        //    float HPMissing = 1.0f - ((float)PlayerHealth.currHealth / (float)PlayerHealth.currMaxHealth);
 
-            float local_damageAmount = Skill_Tree_Data.GetMandoSkillTree().A7_extraDamageAmount;
-            float local_HPStep = Skill_Tree_Data.GetMandoSkillTree().A7_extraDamageHPStep;
-            damageWithSkills += (damageWithSkills * local_damageAmount * (HPMissing / local_HPStep));
-        }
+        //    float local_damageAmount = Skill_Tree_Data.GetMandoSkillTree().A7_extraDamageAmount;
+        //    float local_HPStep = Skill_Tree_Data.GetMandoSkillTree().A7_extraDamageHPStep;
+        //    damageWithSkills += (damageWithSkills * local_damageAmount * (HPMissing / local_HPStep));
+        //}
         return damageWithSkills;
+    }
+
+    public void LockInputs(bool locked)
+    {
+        if (locked)
+        {
+            lockInputs = true;
+            inputsList.Add(INPUT.IN_IDLE);
+        }
+        else
+        {
+            lockInputs = false;
+        }
     }
 
     public void OnApplicationQuit()

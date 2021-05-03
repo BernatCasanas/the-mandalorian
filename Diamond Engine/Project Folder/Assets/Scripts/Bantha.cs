@@ -48,7 +48,6 @@ public class Bantha : Enemy
     private GameObject visualFeedback = null;
 
     private bool straightPath = false;
-    private bool semiCharge = false;
 
     //Action times
     public float idleTime = 5.0f;

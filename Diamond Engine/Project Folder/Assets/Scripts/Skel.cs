@@ -449,7 +449,7 @@ public class Skel : Bosseslv2
         {
             if (currentState != STATE.DEAD)
             {
-                healthPoints -= damage;
+                healthPoints -= damage * Core.instance.DamageToBosses;
                 Debug.Log("Skel HP: " + healthPoints.ToString());
 
                 if (healthPoints <= 0.0f)

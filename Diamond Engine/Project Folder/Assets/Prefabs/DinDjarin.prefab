@@ -13,9 +13,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                6.6148462295532227,
-                0.65782105922698975,
-                3.0381231307983398
+                -11.015664100646973,
+                8.8377418518066406,
+                -11.111222267150879
             ],
             "Rotation": [
                 -2.120925657322914e-09,
@@ -71,7 +71,8 @@
                     "overShotDmgMult": 1.0499999523162842,
                     "overheatTimeBeeping": 0.079999998211860657,
                     "lockInputs": false,
-                    "bulletDamage": 0
+                    "bulletDamage": 0,
+                    "secSound": 970959798
                 },
                 {
                     "Type": 13,
@@ -3263,35 +3264,6 @@
             ]
         },
         {
-            "name": "Healing Particles",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1143403820,
-            "ParentUID": 47750865,
-            "PrefabReference": 0,
-            "PrefabID": 400685997,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -0.0065126419067382813,
-                0.71350276470184326,
-                -0.054382085800170898
-            ],
-            "Rotation": [
-                2.120925657322914e-09,
-                -1.4958198597962324e-18,
-                -7.0526734452514006e-10,
-                1
-            ],
-            "Scale": [
-                1.0000017881393433,
-                1,
-                1.0000017881393433
-            ],
-            "PrefabObjects": []
-        },
-        {
             "name": "Grenade not",
             "tag": "Untagged",
             "layer": "Default",
@@ -3417,7 +3389,7 @@
             "layer": "Default",
             "Active": true,
             "UID": 471896988,
-            "ParentUID": 47750865,
+            "ParentUID": 1143011820,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -3530,6 +3502,79 @@
                     "horizantalAligned": true
                 }
             ]
+        },
+        {
+            "name": "SecSounds",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 970959798,
+            "ParentUID": 47750865,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                11.015684127807617,
+                -8.8377418518066406,
+                11.111242294311523
+            ],
+            "Rotation": [
+                2.120925657322914e-09,
+                -1.4958198597962324e-18,
+                -7.0526734452514006e-10,
+                1
+            ],
+            "Scale": [
+                1.0000017881393433,
+                1,
+                1.0000017881393433
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "UI",
+                    "volume": 50,
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false
+                }
+            ]
+        },
+        {
+            "name": "Healing Particles",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1143403820,
+            "ParentUID": 47750865,
+            "PrefabReference": 0,
+            "PrefabID": 400685997,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.0065126419067382813,
+                0.71350276470184326,
+                -0.054382085800170898
+            ],
+            "Rotation": [
+                2.120925657322914e-09,
+                -1.4958198597962324e-18,
+                -7.0526734452514006e-10,
+                1
+            ],
+            "Scale": [
+                1.0000017881393433,
+                1,
+                1.0000017881393433
+            ],
+            "PrefabObjects": []
         }
     ]
 }
