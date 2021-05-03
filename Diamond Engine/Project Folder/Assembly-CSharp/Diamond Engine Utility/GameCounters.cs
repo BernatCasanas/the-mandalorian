@@ -18,6 +18,7 @@ namespace DiamondEngine
             ENEMY_SKYTROOPER,
             ENEMY_LASER_TURRET,
             ENEMY_DEATHTROOPER,
+            ENEMY_HEAVYTROOPER,
             MAX,
         }
 
