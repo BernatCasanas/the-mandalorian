@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include"DE_FrameBuffer.h"
+#include "DE_Advanced_FrameBuffer.h"
 
 #include"MathGeoLib/include/Geometry/Frustum.h"
 
@@ -32,8 +33,11 @@ public:
 
 	void PushCameraMatrix();
 
-	DE_FrameBuffer resolvedFBO;
-	DE_FrameBuffer msaaFBO;
+	//DE_FrameBuffer resolvedFBO;
+	//DE_FrameBuffer msaaFBO;
+
+	DE_Advanced_FrameBuffer resolvedFBO;
+	DE_Advanced_FrameBuffer msaaFBO;
 
 	Frustum camFrustrum;
 	float fov;

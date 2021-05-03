@@ -23,9 +23,9 @@ public:
 	void ClearBuffer();
 
 	void InitializeFrameBuffer(DEPTH_BUFFER_TYPE depthType);
-	void ReGenerateBuffer(int w, int h);
+	void ReGenerateBuffer(int w, int h,int msaaSamples=1);
 
-	void BindFrameBuffer(int width, int height);
+	void BindFrameBuffer();
 	void UnbindFrameBuffer();
 	void BindToRead();
 
@@ -59,6 +59,7 @@ private:
 	unsigned int colorBufferAttachment; //index of the Color buffer
 	unsigned int depthBufferAttachment; //index of the Depth buffer
 
+	bool alreadyInitialized;
 	bool isMultisample;
 	int msaaSamples;
 	DEPTH_BUFFER_TYPE myDepthType;

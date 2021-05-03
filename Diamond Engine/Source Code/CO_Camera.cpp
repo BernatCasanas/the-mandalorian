@@ -21,7 +21,9 @@ C_Camera::C_Camera() : Component(nullptr),
 	orthoSize(0.0f),
 	windowWidth(0),
 	windowHeight(0),
-	drawSkybox(true)
+	drawSkybox(true),
+	msaaFBO(1920,1080,4),
+	resolvedFBO(1920,1080,DEPTH_BUFFER_TYPE::DEPTH_RENDER_BUFER)
 {
 	name = "Camera";
 	camFrustrum.type = FrustumType::PerspectiveFrustum;
@@ -38,7 +40,9 @@ C_Camera::C_Camera() : Component(nullptr),
 }
 
 C_Camera::C_Camera(GameObject* _gm) : Component(_gm), fov(60.0f), cullingState(true),
-msaaSamples(4), orthoSize(0.0f), drawSkybox(true)
+msaaSamples(4), orthoSize(0.0f), drawSkybox(true),
+msaaFBO(1920, 1080, 4),
+resolvedFBO(1920, 1080, DEPTH_BUFFER_TYPE::DEPTH_RENDER_BUFER)
 {
 
 	name = "Camera";
@@ -120,10 +124,10 @@ bool C_Camera::OnEditor()
 		ImGui::Checkbox("##drawSkybox", &drawSkybox);
 
 		ImGui::Text("MSAA Samples: "); ImGui::SameLine(); 
-		if (ImGui::SliderInt("##msaasamp", &msaaSamples, 1, 4)) 
+		if (ImGui::SliderInt("##msaasamp", &msaaSamples, 1, 8)) 
 		{
-			msaaFBO.ReGenerateBuffer(msaaFBO.texBufferSize.x, msaaFBO.texBufferSize.y, true, msaaSamples);
-			resolvedFBO.ReGenerateBuffer(resolvedFBO.texBufferSize.x, resolvedFBO.texBufferSize.y, false, 0);
+			msaaFBO.ReGenerateBuffer(msaaFBO.texBufferSize.x, msaaFBO.texBufferSize.y,msaaSamples);
+			resolvedFBO.ReGenerateBuffer(resolvedFBO.texBufferSize.x, resolvedFBO.texBufferSize.y);
 		}
 
 		if(ImGui::Button("Set as Game Camera")) 
@@ -216,8 +220,8 @@ void C_Camera::StartDraw()
 
 	PushCameraMatrix();
 
-	glBindFramebuffer(GL_FRAMEBUFFER, msaaFBO.GetFrameBuffer());
-
+	//glBindFramebuffer(GL_FRAMEBUFFER, msaaFBO.GetFrameBuffer());
+	msaaFBO.BindFrameBuffer();
 	glClearColor(0.08f, 0.08f, 0.08f, 1.f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
@@ -233,7 +237,7 @@ void C_Camera::EndDraw()
 {
 	//Is this important?
 
-	glBindTexture(GL_TEXTURE_2D, msaaFBO.GetTextureBuffer());
+	glBindTexture(GL_TEXTURE_2D, msaaFBO.GetColorBuffer());
 	glGenerateMipmap(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -271,8 +275,8 @@ void C_Camera::ReGenerateBuffer(int w, int h)
 
 	SetAspectRatio((float)w / (float)h);
 	
-	msaaFBO.ReGenerateBuffer(w, h, true, 4);
-	resolvedFBO.ReGenerateBuffer(w, h, false, 0);
+	msaaFBO.ReGenerateBuffer(w, h,msaaSamples);
+	resolvedFBO.ReGenerateBuffer(w, h);
 }
 
 void C_Camera::PushCameraMatrix()
