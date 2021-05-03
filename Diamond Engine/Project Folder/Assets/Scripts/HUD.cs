@@ -602,8 +602,10 @@ public class HUD : DiamondComponent
         float currentHeat = primaryWeaponHeat > 0 ? primaryWeaponHeat : 0.01f;
 
         float newValue = (float)(Math.Log(currentHeat * 5) - Math.Log(0.01f)) / (3 / 2.6f);
+        if (Core.instance != null)
+            newValue *= Core.instance.OverheatMult;
 
-        Debug.Log("Added Heat: " + newValue);
+   //     Debug.Log("Added Heat: " + newValue);
 
         AddPrimaryHeatAmount(newValue);
     }

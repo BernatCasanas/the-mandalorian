@@ -257,11 +257,101 @@ public class Skill_Tree_Node : DiamondComponent
 
     private void addSkill(string name)
     {
-        switch(name)
+        Debug.Log(skillTreeName.ToString() + " / " + skillTreeNumber.ToString());
+        switch(skillTreeName)
         {
-            case "UKnockback":
-                Debug.Log(name);
+            case 1:
+                break;
+            case 2:
+                switch (name)
+                {
+                    #region utility
+                    case "UKnockback":
+                        Debug.Log("Knock Back not implemented yet");
+                        break;
+                    case "UMovSpd":
+                        //Debug.Log("MovementSpeed not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.MOV_SPEED, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
+                        break;
+                    case "UIncDmg":
+                        Debug.Log("Damage after grogu push  not implemented yet");
+                        break;
+                    case "UDmgRed":
+                        Debug.Log("Damage reduction after dash not implemented yet");
+                        break;
+                    case "UOverheat":
+                        //Debug.Log("More Shots before overheat not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.OVERHEAT, STATUS_APPLY_TYPE.SUBSTITUTE, -20, 0, true);
+                        break;
+                    case "URedGroguCost":
+                        Debug.Log("Grogu reduction cost not implemented yet");
+                        break;
+                    case "UHeal":
+                        Debug.Log("Gogu heal not implemented yet");
+                        break;
+                    case "UDash":
+                        Debug.Log("Double dash not implemented yet");
+                        break;
+                    #endregion
+                    #region Aggression
+                    case "ADmg":
+                        Debug.Log("Damage not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.RAW_DAMAGE, STATUS_APPLY_TYPE.SUBSTITUTE, 15, 0, true);
+
+                        break;
+                    case "AFireRate":
+                        Debug.Log("Combo * speed not implemented yet");
+                        break;
+                    case "AComboDmg":
+                        Debug.Log("Combo * damage not implemented yet");
+                        break;
+                    case "ACritChance":
+                        Debug.Log("Critical chance not implemented yet");
+                        break;
+                    case "ACritDmg":
+                        Debug.Log("Critical damage not implemented yet");
+                        break;
+                    case "ADmgBos":
+                        Debug.Log("Bonus damage to bosses not implemented yet");
+                        break;
+                    case "AHPMissDmg":
+                        Debug.Log("Damage * missing hp not implemented yet");
+                        break;
+                    case "AHPMissCritChance":
+                        Debug.Log("Crit * missing hp not implemented yet");
+                        break;
+                    #endregion
+                    #region Defense
+                    case "DMaxHPS":
+                        Debug.Log("Max Hp not implemented yet");
+                        break;
+                    case "DDmgRed":
+                        Debug.Log("Dmg reduction not implemented yet");
+                        break;
+                    case "DComboDmgRed":
+                        Debug.Log("Combo * damage red not implemented yet");
+                        break;
+                    case "DComboHeal":
+                        Debug.Log("Combo * heal not implemented yet");
+                        break;
+                    case "DComboFnshHeal":
+                        Debug.Log("Heal on combo finish not implemented yet");
+                        break;
+                    case "DHeal":
+                        Debug.Log("Lifesteal not implemented yet");
+                        break;
+                    case "DHealEfct":
+                        Debug.Log("Healing effects increased not implemented yet");
+                        break;
+                    case "DAvoidDmg":
+                        Debug.Log("chance to avoid damage not implemented yet");
+                        break;
+                        #endregion
+                }
+                break;
+            case 3:
                 break;
         }
+        
     }
 }
