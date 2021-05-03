@@ -39,6 +39,7 @@ public enum STATUS_TYPE
     OVERHEAT,
     RAW_DAMAGE,
     DMG_TO_BOSSES,
+    DMG_PER_HP
 }
 
 public enum STATUS_APPLY_TYPE
@@ -96,6 +97,8 @@ public class Entity : DiamondComponent
     public float OverheatMult = 1f;
     public float DamageMult = 1f;
     public float DamageToBosses = 1f;
+    public float DamagePerHpMult = 1f;
+
 
     protected virtual void InitEntity(ENTITY_TYPE myType)
     {
@@ -105,6 +108,7 @@ public class Entity : DiamondComponent
         OverheatMult = 1f;
         DamageMult = 1f;
         DamageToBosses = 1f;
+        DamagePerHpMult = 1f;
         myDeltaTime = Time.deltaTime;
     }
 
@@ -353,26 +357,23 @@ public class Entity : DiamondComponent
     {
         switch (statusToUpdate.statusType)
         {
-            case STATUS_TYPE.SLOWED:
+            case STATUS_TYPE.DMG_PER_HP:
                 {
-
+                    if(Core.instance != null)
+                    {
+                        //PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                        //if (myHealth != null)
+                        //{
+                            float missingHealth = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
+                            float missingHealtPercentage = 1 + missingHealth * 100 / PlayerHealth.currMaxHealth;
+                            DamagePerHpMult = missingHealtPercentage / 100;
+                        Debug.Log("Need to test / dmg per missing hp = " + DamagePerHpMult.ToString());
+                        // }
+                    }
+            
                 }
                 break;
-            case STATUS_TYPE.ACCELERATED:
-                {
-
-                }
-                break;
-            case STATUS_TYPE.DAMAGE_DOWN:
-                {
-
-                }
-                break;
-            case STATUS_TYPE.MOV_SPEED:
-                {
-
-                }
-                break;
+         
             default:
                 break;
         }
@@ -421,6 +422,12 @@ public class Entity : DiamondComponent
             case STATUS_TYPE.DMG_TO_BOSSES:
                 {
                     this.DamageToBosses -= statusToDelete.statChange;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.DMG_PER_HP:
+                {
+                    this.DamagePerHpMult = 1; ;
                     //    Debug.Log(this.MovspeedMult.ToString());
                 }
                 break;

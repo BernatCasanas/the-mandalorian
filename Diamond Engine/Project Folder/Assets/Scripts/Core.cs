@@ -1673,7 +1673,7 @@ public class Core : Entity
     private float GetDamage()
     {
         //We apply modifications to the damage based on the skill actives in the talent tree
-        float damageWithSkills = bulletDamage * DamageMult;
+        float damageWithSkills = bulletDamage * DamageMult * DamagePerHpMult;
 
         //if (skill_groguIncreaseDamageActive)
         //{
