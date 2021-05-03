@@ -15,7 +15,6 @@ void main() {
 #ifdef fragment
 #version 330 core
 in vec2 textureCoords;
-uniform float t;
 
 out vec4 fragmentColor;
 
@@ -27,6 +26,7 @@ void main() {
 	}
 
 #endif
+
 
 
 

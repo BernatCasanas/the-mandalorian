@@ -31,7 +31,7 @@ public class IntroCinematic : DiamondComponent
     Vector3 cameraAuxPosition = null;
     Quaternion toRotateQuaternion = null;
     float currentSpeed = 0;
-    float currentTimer = 0.0f;
+    //float currentTimer = 0.0f;
     float currentTimeLimit = 0.0f;
     Quaternion auxCameraRotation = null;
 
@@ -115,7 +115,7 @@ public class IntroCinematic : DiamondComponent
             return;
         }
 
-        currentTimer = 0;
+        //currentTimer = 0;
         currentTimeLimit = timerArray[arrayCount];
         currentSpeed = speedArray[arrayCount];
         cameraAuxPosition = cameraObject.transform.localPosition = pointArray[arrayCount * 2].transform.localPosition;

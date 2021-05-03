@@ -77,18 +77,19 @@ public class HUD : DiamondComponent
     public GameObject combo_gameobject = null;
     public GameObject max_hp_number = null;
     public GameObject fpsText = null;
+    public GameObject damageScreen1 = null;
+    public GameObject damageScreen2 = null;
+    public GameObject damageScreen3 = null;
     private bool start = true;
     private float pulsation_rate = 1.0f;
     private bool pulsation_forward = true;
 
-    private float lastFrameTime = 0.0f;
     private float fullComboTime = 0.0f;
     private float currComboTime = 0.0f;
     public int comboNumber = 0;
     float comboDecrementMultiplier = 1.0f;
     float lastWeaponDecrementMultiplier = 1.0f;
     public float last_hp = 0;
-    private bool hp_descending;
     private bool anakinBoonApplied = false;
     public GameObject shooting_blink = null;
     private float shoot_time = 0.0f;
@@ -118,11 +119,40 @@ public class HUD : DiamondComponent
     };
     public void Awake()
     {
+        damageScreen1 = InternalCalls.FindObjectWithName("DamageScreen1");
+        if (damageScreen1 != null)
+        {
+            damageScreen1.GetComponent<Material>().SetFloatUniform("alpha", 1.0f);
+            damageScreen1.Enable(false);
+        }
+        else
+        {
+            Debug.Log("Damage Screen 1 not found");
+        }
+        damageScreen2 = InternalCalls.FindObjectWithName("DamageScreen2");
+        if (damageScreen2 != null)
+        {
+            damageScreen2.GetComponent<Material>().SetFloatUniform("alpha", 1.0f);
+            damageScreen2.Enable(false);
+        }
+        else
+        {
+            Debug.Log("Damage Screen 2 not found");
+        }
+        damageScreen3 = InternalCalls.FindObjectWithName("DamageScreen3");
+        if (damageScreen3 != null)
+        {
+            damageScreen3.GetComponent<Material>().SetFloatUniform("alpha", 1.0f);
+            damageScreen3.Enable(false);
+        }
+        else
+        {
+            Debug.Log("Damage Screen 3 not found");
+        }
     }
 
     public void Update()
     {
-        hp_descending = false;
         if (start)
         {
             comboColor = Vector3.one;
@@ -252,7 +282,6 @@ public class HUD : DiamondComponent
         {
             if (hp_bar != null)
                 hp_bar.GetComponent<Material>().SetFloatUniform("last_hp", last_hp / PlayerHealth.currMaxHealth);
-            hp_descending = true;
         }
         if (pulsation_forward)
         {
@@ -532,7 +561,29 @@ public class HUD : DiamondComponent
         hp_bar.GetComponent<Material>().SetFloatUniform("length_used", hp_float);
         hp_bar.GetComponent<Material>().SetFloatUniform("last_hp", last_hp / max_hp);
         max_hp_number.GetComponent<Text>().text = PlayerHealth.currMaxHealth.ToString();
+        if (damageScreen1 != null && damageScreen2 != null && damageScreen3 != null)
+        {
+            damageScreen1.Enable(false);
+            damageScreen2.Enable(false);
+            damageScreen3.Enable(false);
+            if (hp_float <= 0.1f)
+            {
+                damageScreen3.Enable(true);
+                damageScreen3.GetComponent<Material>().SetFloatUniform("alpha", PlayerHealth.currHealth / (PlayerHealth.currMaxHealth / 3));
+            }
+            else if (hp_float > 0.1f && hp_float <= 0.2f)
+            {
+                damageScreen2.Enable(true);
+                damageScreen2.GetComponent<Material>().SetFloatUniform("alpha", PlayerHealth.currHealth / (PlayerHealth.currMaxHealth / 3));
+            }
+            else if (hp_float < 0.3f)
+            {
+                damageScreen1.Enable(true);
+                damageScreen1.GetComponent<Material>().SetFloatUniform("alpha", PlayerHealth.currHealth / (PlayerHealth.currMaxHealth / 3));
+            }
+        }
     }
+
 
     public void UpdateForce(int new_force, int max_force)
     {
