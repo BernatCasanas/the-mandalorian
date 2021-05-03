@@ -64,7 +64,7 @@ public class IntroCinematic : DiamondComponent
     public void Update()
     {
         // We should have a way to skip the cinematic :/
-        /*if (toGoPosition != null)
+/*        if (toGoPosition != null)
         {
             cameraAuxPosition += (toGoPosition - cameraAuxPosition).normalized * Time.deltaTime * currentSpeed;
             cameraObject.transform.localRotation = Quaternion.Slerp(cameraObject.transform.localRotation, toRotateQuaternion, 0.25f * Time.deltaTime);
@@ -146,7 +146,7 @@ public class IntroCinematic : DiamondComponent
         if (greefRig != null)
         {
             float spaceScene = Mathf.Distance(point1.transform.globalPosition, point2.transform.globalPosition) / speedArray[0];
-            float revolverZoomOut = Mathf.Distance(point1.transform.globalPosition, point2.transform.globalPosition) / speedArray[1];
+            float revolverZoomOut = Mathf.Distance(point3.transform.globalPosition, point4.transform.globalPosition) / speedArray[1];
             float revolverStatic = 0.36f;
             float greefTurningZoom = Animator.GetAnimationDuration(greefRig, "Greef_Head");
             float greefGreeting = Animator.GetAnimationDuration(greefRig, "Greef_Head");
