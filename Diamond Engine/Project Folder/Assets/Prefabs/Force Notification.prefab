@@ -1,0 +1,155 @@
+{
+    "assets_path": "Assets\/Prefabs\/Force Notification.prefab",
+    "Game Objects": [
+        {
+            "name": "Force Notification",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1871892114,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                -9.8412103652954102
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Particle System",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1287064452,
+            "ParentUID": 1871892114,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 0.66699999570846558,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1635986629.dds",
+                            "texUID": 1635986629,
+                            "paEmitterName": "Empty",
+                            "paLifeTime": [
+                                0.69999998807907104,
+                                0.60000002384185791
+                            ],
+                            "paSize": [
+                                0.30000001192092896,
+                                0.30000001192092896
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 10,
+                            "paRelative": true,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        0,
+                                        3,
+                                        0
+                                    ],
+                                    "paFOLT_magnitude": 2,
+                                    "paFOLT_gravityMod": 0,
+                                    "paFOLT_gravity": -0,
+                                    "paFOLT_forceType": 0
+                                },
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.20080780982971191,
+                                                0.31257748603820801,
+                                                0.95679014921188354,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.34807956218719482,
+                                                0.89506173133850098,
+                                                0.83320051431655884,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 3,
+                    "horizantalAligned": true
+                }
+            ]
+        }
+    ]
+}

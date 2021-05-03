@@ -1,0 +1,161 @@
+{
+    "assets_path": "Assets\/Prefabs\/Ship Lights Red to white.prefab",
+    "Game Objects": [
+        {
+            "name": "Ship Lights Red to white",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 176615766,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 2017105928,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                -11.275478363037109
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Particle System",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 262423431,
+            "ParentUID": 176615766,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": true,
+                    "looping": true,
+                    "maxDuration": 1.128000020980835,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/272750352.dds",
+                            "texUID": 272750352,
+                            "paEmitterName": "Empty",
+                            "paLifeTime": [
+                                1,
+                                1
+                            ],
+                            "paSize": [
+                                0.10000000149011612,
+                                0.10000000149011612
+                            ],
+                            "paColor": [
+                                0.97297298908233643,
+                                0.031555883586406708,
+                                0.031555883586406708,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "paRelative": true,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.97530865669250488,
+                                                0,
+                                                0,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0,
+                                                0,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0.49565216898918152
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0.99998998641967773,
+                                                0.99998998641967773,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0.54347825050354004
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                1,
+                                                1,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 3,
+                    "horizantalAligned": true
+                }
+            ]
+        }
+    ]
+}
