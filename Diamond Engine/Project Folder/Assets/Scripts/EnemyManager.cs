@@ -6,8 +6,6 @@ public class EnemyManager : DiamondComponent
 {
     public static List<GameObject> currentEnemies = null;
 
-    public static List<GameObject> availableSpawnPoints = null;
-
     public static void AddEnemy(GameObject enemy)
     {
         if (currentEnemies == null)
@@ -69,27 +67,5 @@ public class EnemyManager : DiamondComponent
             return currentEnemies.Count;
         else
             return 0;
-    }
-
-    public static void AddSpawnPoint(GameObject spawnPoint)
-    {
-        availableSpawnPoints.Add(spawnPoint);
-    }
-
-    public static void RemoveSpawnPoint(GameObject spawnPoint)
-    {
-        for (int i = 0; i < availableSpawnPoints.Count; i++)
-        {
-            if (spawnPoint.GetUid() == availableSpawnPoints[i].GetUid())
-            {
-                availableSpawnPoints.Remove(spawnPoint);
-                return;
-            }
-        }
-    }
-
-    public static void ClearSpawnPointsList()
-    {
-        availableSpawnPoints.Clear();
     }
 }
