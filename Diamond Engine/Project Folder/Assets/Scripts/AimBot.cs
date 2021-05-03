@@ -81,7 +81,6 @@ public class AimBot : DiamondComponent
         {
             float targetWeight = GetTargetWeight(EnemyManager.currentEnemies[i],maxRange,dotMin);
 
-
             if (targetWeight > weightedObj.Key)
             {
                 weightedObj = new KeyValuePair<float, GameObject>(targetWeight, EnemyManager.currentEnemies[i]);

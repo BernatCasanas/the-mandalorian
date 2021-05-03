@@ -41,7 +41,7 @@ public class Skytrooper : Enemy
 
     public GameObject shootPoint = null;
     public GameObject blaster = null;
-    //public GameObject hitParticles = null;
+    private float initialHeight = 0.0f;
 
     //Action times
     public float idleTime = 5.0f;
@@ -97,6 +97,8 @@ public class Skytrooper : Enemy
 
         idleTimer = idleTime;
         dashTime = Animator.GetAnimationDuration(gameObject, "SK_Dash");
+
+        initialHeight = gameObject.transform.globalPosition.y;
 
     }
 
@@ -367,6 +369,9 @@ public class Skytrooper : Enemy
     private void UpdateIdle()
     {
         UpdateAnimationSpd(speedMult);
+
+        if (gameObject.transform.globalPosition.y > initialHeight)
+            gameObject.transform.localPosition.y--;
     }
 
     private void IdleEnd()
@@ -432,7 +437,7 @@ public class Skytrooper : Enemy
         //if (skill_slowDownActive)
         //    MoveToPosition(targetPosition, dashSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
         //else 
-            MoveToPosition(targetPosition, dashSpeed * speedMult);
+        MoveToPosition(targetPosition, dashSpeed * speedMult);
 
         UpdateAnimationSpd(speedMult);
     }
@@ -703,7 +708,7 @@ public class Skytrooper : Enemy
             Vector3 direction = gameObject.transform.globalPosition - Core.instance.gameObject.transform.globalPosition;
 
             Vector3 randomPosition = new Vector3((float)(Math.Cos(angle * Mathf.Deg2RRad) * direction.normalized.x - Math.Sin(angle * Mathf.Deg2RRad) * direction.normalized.z),
-                                                 gameObject.transform.globalPosition.y,
+                                                 0.0f,
                                                  (float)(Math.Sin(angle * Mathf.Deg2RRad) * direction.normalized.x + Math.Cos(angle * Mathf.Deg2RRad) * direction.normalized.z));
 
             return gameObject.transform.localPosition + randomPosition * dashRange;
@@ -717,7 +722,7 @@ public class Skytrooper : Enemy
             Vector3 direction = Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition;
 
             Vector3 randomPosition = new Vector3((float)(Math.Cos(angle * Mathf.Deg2RRad) * direction.normalized.x - Math.Sin(angle * Mathf.Deg2RRad) * direction.normalized.z),
-                                                 gameObject.transform.globalPosition.y,
+                                                 0.0f,
                                                  (float)(Math.Sin(angle * Mathf.Deg2RRad) * direction.normalized.x + Math.Cos(angle * Mathf.Deg2RRad) * direction.normalized.z));
 
             return gameObject.transform.localPosition + randomPosition * dashRange;

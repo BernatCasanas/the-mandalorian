@@ -270,16 +270,15 @@ public class LaserTurret : Enemy
     #region IDLE
     private void StartIdle()
     {
-        Debug.Log("TURRET IDLE");
+        //Debug.Log("TURRET IDLE");
         idleTimer = idleTime;
-        Animator.Play(gameObject, "SK_Idle",speedMult);
     }
     #endregion
 
     #region LOAD
     private void StartLoad()
     {
-        Debug.Log("TURRET LOAD");
+        //Debug.Log("TURRET LOAD");
         loadTimer = loadTime;
         Audio.PlayAudio(gameObject, "Play_Turret_Shot_Charge");
     }
@@ -296,7 +295,7 @@ public class LaserTurret : Enemy
     #region SHOOT
     private void StartShoot()
     {
-        Debug.Log("TURRET SHOOT");
+        //Debug.Log("TURRET SHOOT");
         shotTimer = shotTime;
         Audio.PlayAudio(gameObject, "Play_Turret_Shot");
         Audio.PlayAudio(gameObject, "Play_Turret_Charge"); 
@@ -314,15 +313,7 @@ public class LaserTurret : Enemy
     {
         Audio.StopAudio(gameObject);
     }
-    private void Shoot()
-    {
-        //GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
-        //bullet.GetComponent<BH_Bullet>().damage = damage;
-        //visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", player.transform.globalPosition, gameObject.transform.globalRotation, new Vector3(1.0f, 1.0f, 1.0f));
-        //Animator.Play(gameObject, "SK_Shoot");
-        Audio.PlayAudio(gameObject, "PLay_Blaster_Stormtrooper");
-        //shotTimes++;
-    }
+
     private void CalculateLaserRotation()
     {
 
@@ -347,7 +338,7 @@ public class LaserTurret : Enemy
                 PlayerHealth health = hit.GetComponent<PlayerHealth>();
                 if (health != null && hit.CompareTag("Player") && damageCurrentTimer >= damageMaxTimer)
                 {
-                    Debug.Log("Hit player");
+                    //Debug.Log("Hit player");
                     health.TakeDamage((int)this.damage);
                     damageCurrentTimer = 0.0f;
                 }
@@ -362,12 +353,12 @@ public class LaserTurret : Enemy
     #region DIE
     private void StartDie()
     {
-        Debug.Log("TURRET DIE");
+        //Debug.Log("TURRET DIE");
         dieTimer = dieTime;
 
         if (explosion != null && wave != null)
         {
-            Debug.Log("Want to play particles");
+            //Debug.Log("Want to play particles");
             partExp = explosion.GetComponent<ParticleSystem>();
             partWave = wave.GetComponent<ParticleSystem>();
         }
@@ -452,10 +443,6 @@ public class LaserTurret : Enemy
 
         }
        
-    }
-
-    public void OnTriggerEnter(GameObject triggeredGameObject)
-    {
     }
 
     public override void TakeDamage(float damage)

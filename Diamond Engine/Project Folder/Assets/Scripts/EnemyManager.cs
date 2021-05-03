@@ -29,7 +29,7 @@ public class EnemyManager : DiamondComponent
             return false;
         }
 
-        Debug.Log("Removing enemy. Enemies left: " + currentEnemies.Count.ToString());
+        //Debug.Log("Removing enemy. Enemies left: " + currentEnemies.Count.ToString());
 
         for(int i = 0; i < currentEnemies.Count; ++i)
         {
@@ -41,12 +41,15 @@ public class EnemyManager : DiamondComponent
         }
 
         if (ret == false)
-            Debug.Log("Enemy not found");
+            Debug.Log("Enemy to remove not found in enmies list");
 
-        Debug.Log("Enemies left: " + currentEnemies.Count.ToString());
+        //Debug.Log("Enemies left: " + currentEnemies.Count.ToString());
 
         if (currentEnemies.Count == 0 && GameSceneManager.instance != null)
+        {
+            Debug.Log("Enemy Manager calling to Level End");
             GameSceneManager.instance.LevelEnd();
+        }
 
         return ret;
     }

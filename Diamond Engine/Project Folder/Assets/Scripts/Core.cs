@@ -180,6 +180,8 @@ public class Core : Entity
     {
         #region VARIABLES WITH DEPENDENCIES
 
+        //bulletDamage = 1000.0f;  //Please do not delete this, it's for quick debugging purposes
+
         // INIT VARIABLES WITH DEPENDENCIES //
         //Animation
         shootAnimationTotalTime = 0.288f;
