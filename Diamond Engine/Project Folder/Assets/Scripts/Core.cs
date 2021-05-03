@@ -108,6 +108,7 @@ public class Core : Entity
     public float onSniperHeatReduction = 10f;
     private float shootingTimer = 0.0f;
     private float gadgetShootTimer = 0.0f;
+    private bool primaryWeaponOverHeat = false;
 
     private bool hasShot = false;
 
@@ -168,6 +169,9 @@ public class Core : Entity
 
     private static float bulletDamage = 9f;
     private float bulletDamageDefault = 9f;
+
+    //Audio
+    public GameObject secSound = null;
 
     //Telemetry
     int numberOfShots = 0;
@@ -283,6 +287,15 @@ public class Core : Entity
             GameObject sniper2Cooldown = InternalCalls.FindObjectWithName("SniperCooldown2");
             if (sniper2Cooldown != null)
                 sniperBullet2 = sniper2Cooldown.GetComponent<Material>();
+
+            if(secSound == null)
+            {
+                secSound = InternalCalls.FindObjectWithName("SecSound");
+
+                if (secSound == null)
+                    Debug.Log("Core: Sec Sound GO not found");
+            }
+
 
 
             GameObject lockInputsScene = InternalCalls.FindObjectWithName("LockInputsBool");
@@ -447,6 +460,11 @@ public class Core : Entity
         if (hud != null)
         {
             isPrimaryOverHeat = hud.GetComponent<HUD>().IsPrimaryOverheated();
+
+            if (isPrimaryOverHeat == true && primaryWeaponOverHeat == false)
+                Audio.PlayAudio(secSound, "Play_Mando_Blaster_Overcharged");
+
+            primaryWeaponOverHeat = isPrimaryOverHeat;
         }
 
         if (!lockInputs)
@@ -528,6 +546,7 @@ public class Core : Entity
         {
             PlayParticles(PARTICLES.GRENADE);
             grenade_reloading = false;
+            Audio.PlayAudio(secSound, "Play_Grenade_Cooldown_Finish");
         }
 
     }
@@ -1400,6 +1419,8 @@ public class Core : Entity
             {
                 currentBullets++;
                 PlayParticles(PARTICLES.SNIPER);
+
+                Audio.PlayAudio(secSound, "Play_Sniper_Cooldown_Finish");
             }
         }
 
