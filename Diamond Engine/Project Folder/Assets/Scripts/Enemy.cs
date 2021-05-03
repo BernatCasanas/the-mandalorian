@@ -8,6 +8,7 @@ public class Enemy : Entity
 
 	public float detectionRange = 12.5f;
 	public float damage = 5.0f;
+	private float baseDamage = 1f;
     public float healthPoints = 60.0f;
 
 	protected Vector3 targetPosition = null;
@@ -19,6 +20,14 @@ public class Enemy : Entity
 	//protected STATES currentState = STATES.WANDER;
 
 	protected NavMeshAgent agent;
+
+	protected override void InitEntity(ENTITY_TYPE myType)
+	{
+		eType = myType;
+		speedMult = 1f;
+		myDeltaTime = Time.deltaTime;
+		baseDamage = damage;
+	}
 
 	public virtual void TakeDamage(float damage)
 	{}
@@ -86,4 +95,74 @@ public class Enemy : Entity
 			InternalCalls.CreatePrefab(coinDropPath, pos, Quaternion.identity, new Vector3(0.07f, 0.07f, 0.07f));
 		}
 	}
+
+	protected override void OnInitStatus(ref StatusData statusToInit)
+	{
+		switch (statusToInit.statusType)
+		{
+			case STATUS_TYPE.SLOWED:
+				{
+					this.speedMult -= statusToInit.severity;
+
+					if (speedMult < 0.1f)
+					{
+						statusToInit.severity = statusToInit.severity - (Math.Abs(this.speedMult) + 0.1f);
+
+						speedMult = 0.1f;
+					}
+
+					this.myDeltaTime = Time.deltaTime * speedMult;
+
+				}
+				break;
+			case STATUS_TYPE.ACCELERATED:
+				{
+					this.speedMult += statusToInit.severity;
+
+					this.myDeltaTime = Time.deltaTime * speedMult;
+				}
+				break;
+			case STATUS_TYPE.DAMAGE_DOWN:
+				{
+					float damageSubstracted = baseDamage * statusToInit.severity;
+
+					this.damage -= damageSubstracted;
+
+					statusToInit.statTaken = damageSubstracted;
+
+				}
+				break;
+			default:
+				break;
+		}
+	}
+
+	protected override void OnDeleteStatus(StatusData statusToDelete)
+	{
+		switch (statusToDelete.statusType)
+		{
+			case STATUS_TYPE.SLOWED:
+				{
+					this.speedMult += statusToDelete.severity;
+
+					this.myDeltaTime = Time.deltaTime * speedMult;
+				}
+				break;
+			case STATUS_TYPE.ACCELERATED:
+				{
+					this.speedMult -= statusToDelete.severity;
+
+					this.myDeltaTime = Time.deltaTime * speedMult;
+				}
+				break;
+			case STATUS_TYPE.DAMAGE_DOWN:
+				{
+					this.damage += statusToDelete.statTaken;
+				}
+				break;
+			default:
+				break;
+		}
+	}
+
 }

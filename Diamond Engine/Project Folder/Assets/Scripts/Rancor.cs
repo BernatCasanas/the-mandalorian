@@ -72,6 +72,8 @@ public class Rancor : Entity
     public float meleeRange = 10.0f;
     public float longRange = 22.0f;
 
+    private float damageMult = 1f;
+
     //Follow
     public float shortFollowTime = 2.0f;
     public float longFollowTime = 4.0f;
@@ -226,6 +228,8 @@ public class Rancor : Entity
         agent = gameObject.GetComponent<NavMeshAgent>();
 
         InitEntity(ENTITY_TYPE.RANCOR);
+
+        damageMult = 1f;
 
         if (EnemyManager.EnemiesLeft() > 0)
             EnemyManager.ClearList();
@@ -845,10 +849,11 @@ public class Rancor : Entity
                 pos.y += 3;
 
                 RancorJumpCollider jumpColl = InternalCalls.CreatePrefab("Library/Prefabs/376114835.prefab", pos, gameObject.transform.localRotation, gameObject.transform.localScale).GetComponent<RancorJumpCollider>();
-                
-                if(jumpColl != null)
+
+                if (jumpColl != null)
                 {
                     jumpColl.deltaTimeMult = speedMult;
+                    jumpColl.damage = (int)(jumpColl.damage  * damageMult);
                 }
 
                 //gameObject.DisableCollider();
@@ -1011,8 +1016,16 @@ public class Rancor : Entity
                     Vector3 scale = new Vector3(1f, 1f, 1f);
 
                     GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/1225675544.prefab", pos, Quaternion.identity, scale);
+                    RancorProjectile projectileScript = null;
                     if (projectile != null)
                     {
+                        projectileScript = projectile.GetComponent<RancorProjectile>();
+
+                        if(projectileScript != null)
+                        {
+                            projectileScript.damage = (int)(projectileScript.damage * damageMult);
+                        }
+
                         RancorProjectile rancorParticles = projectile.GetComponent<RancorProjectile>();
 
                         if (rancorParticles != null)
@@ -1023,6 +1036,13 @@ public class Rancor : Entity
 
                     if (projectile != null)
                     {
+                        projectileScript = projectile.GetComponent<RancorProjectile>();
+
+                        if (projectileScript != null)
+                        {
+                            projectileScript.damage = (int)(projectileScript.damage * damageMult);
+                        }
+
                         RancorProjectile rancorParticles = projectile.GetComponent<RancorProjectile>();
 
                         if (rancorParticles != null)
@@ -1032,6 +1052,13 @@ public class Rancor : Entity
 
                     if (projectile != null)
                     {
+                        projectileScript = projectile.GetComponent<RancorProjectile>();
+
+                        if (projectileScript != null)
+                        {
+                            projectileScript.damage = (int)(projectileScript.damage * damageMult);
+                        }
+
                         RancorProjectile rancorParticles = projectile.GetComponent<RancorProjectile>();
 
                         if (rancorParticles != null)
@@ -1112,7 +1139,13 @@ public class Rancor : Entity
         {
             if (activateWave)
             {
-                InternalCalls.CreatePrefab("Library/Prefabs/1923485827.prefab", gameObject.transform.localPosition, gameObject.transform.localRotation, new Vector3(0.767f, 0.225f, 1.152f));
+                RancorHandSlamWave handSlamWave = InternalCalls.CreatePrefab("Library/Prefabs/1923485827.prefab", gameObject.transform.localPosition, gameObject.transform.localRotation, new Vector3(0.767f, 0.225f, 1.152f)).GetComponent<RancorHandSlamWave>();
+                
+                if(handSlamWave != null)
+                {
+                    handSlamWave.damage = (int)(handSlamWave.damage * damageMult);
+                }
+                
                 Input.PlayHaptic(.8f, 350);
                 PlayParticles(PARTICLES.HANDSLAM);
                 activateWave = false;
@@ -1122,7 +1155,7 @@ public class Rancor : Entity
         float prevAnimationSpd = currAnimationPlaySpd;
         UpdateAnimationSpd(speedMult);
 
-        if(currAnimationPlaySpd != prevAnimationSpd && handSlamHitBox != null)
+        if (currAnimationPlaySpd != prevAnimationSpd && handSlamHitBox != null)
         {
             RancorHandSlamHitCollider handSlamColl = handSlamHitBox.GetComponent<RancorHandSlamHitCollider>();
 
@@ -1380,6 +1413,7 @@ public class Rancor : Entity
 
             if (bulletScript != null)
             {
+                this.AddStatus(STATUS_TYPE.DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
                 damageToBoss += bulletScript.damage;
             }
             else
@@ -1429,12 +1463,17 @@ public class Rancor : Entity
         {
             if (currentState == RANCOR_STATE.DEAD) return;
 
+            float damageToPlayer = touchDamage;
+
             if (currentState == RANCOR_STATE.RUSH)
+            {
+                damageToPlayer = rushDamage;
                 inputsList.Add(RANCOR_INPUT.IN_RUSH_END);
+            }
 
             PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
             if (playerHealth != null)
-                playerHealth.TakeDamage((int)touchDamage);
+                playerHealth.TakeDamage((int)(damageToPlayer * damageMult));
 
         }
         else if (collidedGameObject.CompareTag("WallSkill"))
@@ -1542,5 +1581,75 @@ public class Rancor : Entity
             currAnimationPlaySpd = newSpd;
         }
     }
+
+    #region STATUS_SYSTEM
+
+    protected override void OnInitStatus(ref StatusData statusToInit)
+    {
+        switch (statusToInit.statusType)
+        {
+            case STATUS_TYPE.SLOWED:
+                {
+                    this.speedMult -= statusToInit.severity;
+
+                    if (speedMult < 0.1f)
+                    {
+                        statusToInit.severity = statusToInit.severity - (Math.Abs(this.speedMult) + 0.1f);
+
+                        speedMult = 0.1f;
+                    }
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+
+                }
+                break;
+            case STATUS_TYPE.ACCELERATED:
+                {
+                    this.speedMult += statusToInit.severity;
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
+            case STATUS_TYPE.DAMAGE_DOWN:
+                {
+                    this.damageMult -= statusToInit.severity;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    protected override void OnDeleteStatus(StatusData statusToDelete)
+    {
+        switch (statusToDelete.statusType)
+        {
+            case STATUS_TYPE.SLOWED:
+                {
+                    this.speedMult += statusToDelete.severity;
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
+            case STATUS_TYPE.ACCELERATED:
+                {
+                    this.speedMult -= statusToDelete.severity;
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
+            case STATUS_TYPE.DAMAGE_DOWN:
+                {
+                    this.damageMult += statusToDelete.severity;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    #endregion
+
+
 
 }

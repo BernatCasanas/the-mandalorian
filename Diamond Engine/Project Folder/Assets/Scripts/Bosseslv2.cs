@@ -32,6 +32,7 @@ public class Bosseslv2 : Entity
     public float speed = 3.5f;
     public float fastRushSpeed = 14.0f;
     public float slowRushSpeed = 7.0f;
+    protected float damageMult = 1f;
 
     //Timers
     public float walkingTime = 4.0f;
@@ -84,6 +85,14 @@ public class Bosseslv2 : Entity
         RECOVERY
     }
 
+    protected override void InitEntity(ENTITY_TYPE myType)
+    {
+        eType = myType;
+        speedMult = 1f;
+        myDeltaTime = Time.deltaTime;
+        damageMult = 1f;
+    }
+
     public virtual void Awake()
     {
         if (gameObject.CompareTag("Skel"))
@@ -92,6 +101,7 @@ public class Bosseslv2 : Entity
             chargeTime = Animator.GetAnimationDuration(gameObject, "Skel_Jump_P1") - 0.05f;
             Debug.Log("Rush Start: " + startBounceRushTime.ToString());
         }
+
     }
 
     #region PROJECTILE
@@ -114,10 +124,16 @@ public class Bosseslv2 : Entity
                 if (projectilePoint != null)
                 {
                     Vector3 pos = projectilePoint.transform.globalPosition;
-                    Quaternion rot = new Quaternion(0,0,90);
+                    Quaternion rot = new Quaternion(0, 0, 90);
 
-                    GameObject projectile = InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, rot, null);
-                    projectile.GetComponent<RancorProjectile>().targetPos = Core.instance.gameObject.transform.globalPosition;
+                    RancorProjectile projectile = InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, rot, null).GetComponent<RancorProjectile>();
+
+                    if (projectile != null)
+                    {
+                        projectile.targetPos = Core.instance.gameObject.transform.globalPosition;
+                        projectile.damage = (int)(projectile.damage * damageMult);
+                    }
+
                     //Debug.Log("Throwing projectile");
 
                     if (firstShot)
@@ -214,7 +230,7 @@ public class Bosseslv2 : Entity
         foreach (GameObject column in Level2BossRoom.columns)
         {
             float distance = Mathf.Distance(gameObject.transform.globalPosition, column.transform.globalPosition);
-            if(nerestDistance > distance)
+            if (nerestDistance > distance)
             {
                 nerestDistance = distance;
                 nearestColumn = column;
@@ -240,15 +256,16 @@ public class Bosseslv2 : Entity
         {
             MoveToPosition(currentTarget.transform.globalPosition, 12f);
             LookAt(currentTarget.transform.globalPosition);
-            if(currentTarget == finalTarget)
+            if (currentTarget == finalTarget)
             {
                 returnToInitTarget = true;
             }
         }
-        else if(currentTarget != finalTarget && !returnToInitTarget)
+        else if (currentTarget != finalTarget && !returnToInitTarget)
         {
             currentTarget = finalTarget;
-        }else if(currentTarget == finalTarget && returnToInitTarget)
+        }
+        else if (currentTarget == finalTarget && returnToInitTarget)
         {
             currentTarget = initTarget;
         }
@@ -262,9 +279,9 @@ public class Bosseslv2 : Entity
         Debug.Log("END BOUNCE RUSH");
         resting = true;
         restingTimer = restingTime;
-        if (gameObject.CompareTag("Skel")) 
+        if (gameObject.CompareTag("Skel"))
         {
-            Animator.Play(gameObject,"Skel_Rush_Recover", speedMult);
+            Animator.Play(gameObject, "Skel_Rush_Recover", speedMult);
             UpdateAnimationSpd(speedMult);
         }
         colliderBounceRush.DisableCollider();
@@ -502,7 +519,7 @@ public class Bosseslv2 : Entity
     public void EndDie()
     {
         Debug.Log("DEAD");
-        
+
         EnemyManager.RemoveEnemy(gameObject);
         InternalCalls.Destroy(gameObject);
     }
@@ -555,4 +572,69 @@ public class Bosseslv2 : Entity
             currAnimationPlaySpd = newSpd;
         }
     }
+
+    protected override void OnInitStatus(ref StatusData statusToInit)
+    {
+        switch (statusToInit.statusType)
+        {
+            case STATUS_TYPE.SLOWED:
+                {
+                    this.speedMult -= statusToInit.severity;
+
+                    if (speedMult < 0.1f)
+                    {
+                        statusToInit.severity = statusToInit.severity - (Math.Abs(this.speedMult) + 0.1f);
+
+                        speedMult = 0.1f;
+                    }
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+
+                }
+                break;
+            case STATUS_TYPE.ACCELERATED:
+                {
+                    this.speedMult += statusToInit.severity;
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
+            case STATUS_TYPE.DAMAGE_DOWN:
+                {
+                    this.damageMult -= statusToInit.severity;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    protected override void OnDeleteStatus(StatusData statusToDelete)
+    {
+        switch (statusToDelete.statusType)
+        {
+            case STATUS_TYPE.SLOWED:
+                {
+                    this.speedMult += statusToDelete.severity;
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
+            case STATUS_TYPE.ACCELERATED:
+                {
+                    this.speedMult -= statusToDelete.severity;
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
+            case STATUS_TYPE.DAMAGE_DOWN:
+                {
+                    this.damageMult += statusToDelete.severity;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
 }

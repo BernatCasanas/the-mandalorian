@@ -33,7 +33,8 @@ public enum STATUS_TYPE
     NONE = -1,
 
     SLOWED,
-    ACCELERATED
+    ACCELERATED,
+    DAMAGE_DOWN
 }
 
 public enum STATUS_APPLY_TYPE
@@ -88,7 +89,7 @@ public class Entity : DiamondComponent
     protected float speedMult = 1f;
     protected float myDeltaTime = 1f;
 
-    protected void InitEntity(ENTITY_TYPE myType)
+    protected virtual void InitEntity(ENTITY_TYPE myType)
     {
         eType = myType;
         speedMult = 1f;
@@ -272,7 +273,7 @@ public class Entity : DiamondComponent
         return statuserstatusData;
     }
 
-    private void OnInitStatus(ref StatusData statusToInit)
+    protected virtual void OnInitStatus(ref StatusData statusToInit)
     {
         switch (statusToInit.statusType)
         {
@@ -298,12 +299,17 @@ public class Entity : DiamondComponent
                     this.myDeltaTime = Time.deltaTime * speedMult;
                 }
                 break;
+            case STATUS_TYPE.DAMAGE_DOWN:
+                {
+
+                }
+                break;
             default:
                 break;
         }
     }
 
-    private void OnUpdateStatus(StatusData statusToUpdate)
+    protected virtual void OnUpdateStatus(StatusData statusToUpdate)
     {
         switch (statusToUpdate.statusType)
         {
@@ -317,11 +323,17 @@ public class Entity : DiamondComponent
 
                 }
                 break;
+            case STATUS_TYPE.DAMAGE_DOWN:
+                {
+
+                }
+                break;
             default:
                 break;
         }
     }
-    private void OnDeleteStatus(StatusData statusToDelete)
+
+    protected virtual void OnDeleteStatus(StatusData statusToDelete)
     {
         switch (statusToDelete.statusType)
         {
@@ -337,6 +349,10 @@ public class Entity : DiamondComponent
                     this.speedMult -= statusToDelete.severity;
 
                     this.myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
+            case STATUS_TYPE.DAMAGE_DOWN:
+                {
                 }
                 break;
             default:
@@ -384,8 +400,5 @@ public class Entity : DiamondComponent
         }
 
     }
-
-
-
 
 }

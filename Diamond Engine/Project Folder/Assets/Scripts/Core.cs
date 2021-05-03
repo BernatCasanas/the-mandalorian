@@ -72,6 +72,7 @@ public class Core : Entity
     private float runTime = 0.0f;
     private float dustTime = 0.0f;
     private float currAnimationPlaySpd = 0f;
+    private float footStepTimer = 0f;
 
     //Skill
     private bool skill_damageReductionDashActive = false;
@@ -1194,6 +1195,25 @@ public class Core : Entity
     private void UpdateMove()
     {
         UpdateAnimationSpd(speedMult);
+
+        footStepTimer += myDeltaTime;
+
+        if (footStepTimer > 0.33f)
+        {
+            Audio.StopAudio(gameObject);
+
+            if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
+            {
+                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
+            }
+            else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
+            {
+                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
+            }
+
+            footStepTimer = 0f;
+        }
+
 
         RotatePlayer();
         dustTime += myDeltaTime;

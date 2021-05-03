@@ -366,6 +366,8 @@ public class Wampa : Bosseslv2
 
             if (bulletComp != null)
             {
+                this.AddStatus(STATUS_TYPE.DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
+
                 float damageToBoss = bulletComp.damage;
                 TakeDamage(damageToBoss);
             }
@@ -397,7 +399,7 @@ public class Wampa : Bosseslv2
                 PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
                 {
-                    playerHealth.TakeDamage((int)rushDamage);
+                    playerHealth.TakeDamage((int)(rushDamage * damageMult));
                 }
             }
         }
@@ -419,4 +421,5 @@ public class Wampa : Bosseslv2
             }
         }
     }
+
 }

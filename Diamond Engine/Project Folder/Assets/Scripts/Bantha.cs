@@ -732,6 +732,7 @@ public class Bantha : Enemy
             if (bullet != null)
             {
                 healthPoints -= bullet.damage;
+                this.AddStatus(STATUS_TYPE.DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
 
                 Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
 

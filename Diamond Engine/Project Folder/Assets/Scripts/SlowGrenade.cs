@@ -84,6 +84,7 @@ public class SlowGrenade : DiamondComponent
                     {
                         Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.45f);
                         script.TakeDamage(damage);
+                        script.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, 0.33f, 0.175f);
                     }
 
                 }
@@ -102,6 +103,7 @@ public class SlowGrenade : DiamondComponent
                         {
                             Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.45f);
                             bossScript.TakeDamage(damage);
+                            bossScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, 0.33f, 0.175f);
                         }
                     }
                     else if (bossScript == null)
@@ -120,6 +122,7 @@ public class SlowGrenade : DiamondComponent
                             {
                                 Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.45f);
                                 skelScript.TakeDamage(damage);
+                                skelScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, 0.33f, 0.175f);
                             }
                         }
                         else if (wampaScript != null)
@@ -133,6 +136,7 @@ public class SlowGrenade : DiamondComponent
                             {
                                 Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.45f);
                                 wampaScript.TakeDamage(damage);
+                                wampaScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, 0.33f, 0.175f);
                             }
                         }
 

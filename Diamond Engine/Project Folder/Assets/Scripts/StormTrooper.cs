@@ -795,7 +795,11 @@ public class StormTrooper : Enemy
             ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
 
             if (bullet != null)
+            {
+                this.AddStatus(STATUS_TYPE.DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
                 TakeDamage(bullet.damage);
+
+            }
 
             Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
