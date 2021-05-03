@@ -1,25 +1,25 @@
 {
     "Game Objects": [
         {
-            "name": "Dust Trail",
+            "name": "NoClipCheckbox",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1774690752,
-            "ParentUID": 88002790,
-            "PrefabReference": 729745570,
+            "UID": 1095210290,
+            "ParentUID": 2036587550,
+            "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -0.0040745735168457031,
-                -0.0062532424926757812,
-                -0.058134078979492188
+                0,
+                0,
+                0
             ],
             "Rotation": [
-                -5.3290705182007514e-15,
-                -1.4901161193847656e-07,
-                1.3589129821411916e-13,
+                0,
+                0,
+                0,
                 1
             ],
             "Scale": [
@@ -31,165 +31,204 @@
                 {
                     "Type": 1,
                     "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Dust",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 273214847,
-            "ParentUID": 1774690752,
-            "PrefabReference": 448208244,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                -0.0081729888916015625
-            ],
-            "Rotation": [
-                -0.71074628829956055,
-                0,
-                0,
-                0.70344847440719604
-            ],
-            "Scale": [
-                1,
-                0.99999892711639404,
-                0.99999892711639404
-            ],
-            "Components": [
+                },
                 {
-                    "Type": 1,
-                    "Active": true
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        75.800003051757813,
+                        9.3999996185302734
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        5.6999998092651367,
+                        8.5
+                    ]
                 },
                 {
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
                     "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
-                    "MaterialUID": 355756108
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
                 },
                 {
-                    "Type": 20,
+                    "Type": 8,
                     "Active": true,
-                    "systemActive": false,
-                    "looping": false,
-                    "maxDuration": 0.096000000834465027,
-                    "ParticleEmitters": [
+                    "Active_Pressed_AssetsPath": "Assets\/UI\/MENU\/checkbox_full_hover.png",
+                    "Active_Pressed_LibraryPath": "Library\/Textures\/949337790.dds",
+                    "Active_Pressed_UID": 949337790,
+                    "Active_Hovered_AssetsPath": "Assets\/UI\/MENU\/checkbox_full_hover.png",
+                    "Active_Hovered_LibraryPath": "Library\/Textures\/949337790.dds",
+                    "Active_Hovered_UID": 949337790,
+                    "Active_AssetsPath": "Assets\/UI\/MENU\/checkbox_full.png",
+                    "Active_LibraryPath": "Library\/Textures\/1573403753.dds",
+                    "Active_UID": 1573403753,
+                    "Unactive_Pressed_AssetsPath": "Assets\/UI\/MENU\/checkbox_empty_pressed.png",
+                    "Unactive_Pressed_LibraryPath": "Library\/Textures\/834635899.dds",
+                    "Unactive_Pressed_UID": 834635899,
+                    "Unactive_Hovered_AssetsPath": "Assets\/UI\/MENU\/checkbox_empty_hover.png",
+                    "Unactive_Hovered_LibraryPath": "Library\/Textures\/1711990233.dds",
+                    "Unactive_Hovered_UID": 1711990233,
+                    "Unactive_AssetsPath": "Assets\/UI\/MENU\/checkbox_empty.png",
+                    "Unactive_LibraryPath": "Library\/Textures\/1244819265.dds",
+                    "Unactive_UID": 1244819265,
+                    "Script_Name": "DebugToggleNoClip",
+                    "ButtonState": 4,
+                    "Checkbox Active": false,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/checkbox_empty_hover.png",
+                    "LibraryPath": "Library\/Textures\/1711990233.dds",
+                    "UID": 1711990233
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
                         {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/39569920.dds",
-                            "texUID": 39569920,
-                            "paEmitterName": "Dust 1",
-                            "paLifeTime": [
-                                0.30000001192092896,
-                                2
-                            ],
-                            "paSize": [
-                                0.0099999997764825821,
-                                0.10000000149011612
-                            ],
-                            "paColor": [
-                                0.45364236831665039,
-                                0.228880375623703,
-                                0.024034028872847557,
-                                1
-                            ],
-                            "paPerSec": 15,
-                            "ParticleEffects": [
-                                {
-                                    "paEffectType": 0,
-                                    "paFOLT_direction": [
-                                        0,
-                                        0,
-                                        0
-                                    ],
-                                    "paFOLT_magnitude": 0,
-                                    "paFOLT_gravityMod": 0.019999999552965164,
-                                    "paFOLT_gravity": -0.19599999487400055,
-                                    "paFOLT_forceType": 0
-                                },
-                                {
-                                    "paEffectType": 5,
-                                    "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 0.5,
-                                    "paShapeRandSpeed": 0,
-                                    "PaShapeConeRadius": 0.10000000149011612,
-                                    "PaShapeConeHeight": 0.10000000149011612,
-                                    "PaShapeSphereDirection": false,
-                                    "PaShapeSphereAngle": 0,
-                                    "paShapeType": 2,
-                                    "PaShapeOffset": [
-                                        0,
-                                        0,
-                                        0
-                                    ]
-                                }
-                            ]
+                            "Index": 0,
+                            "UID": 1095210290,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
                         },
                         {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/39569920.dds",
-                            "texUID": 39569920,
-                            "paEmitterName": "Dust 2",
-                            "paLifeTime": [
-                                0.30000001192092896,
-                                2
-                            ],
-                            "paSize": [
-                                0.0099999997764825821,
-                                0.10000000149011612
-                            ],
-                            "paColor": [
-                                0.34322035312652588,
-                                0.19540895521640778,
-                                0.082896433770656586,
-                                1
-                            ],
-                            "paPerSec": 30,
-                            "ParticleEffects": [
-                                {
-                                    "paEffectType": 0,
-                                    "paFOLT_direction": [
-                                        0,
-                                        0,
-                                        0
-                                    ],
-                                    "paFOLT_magnitude": 0,
-                                    "paFOLT_gravityMod": 0.019999999552965164,
-                                    "paFOLT_gravity": -0.19599999487400055,
-                                    "paFOLT_forceType": 0
-                                },
-                                {
-                                    "paEffectType": 5,
-                                    "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 0.5,
-                                    "paShapeRandSpeed": 0,
-                                    "PaShapeConeRadius": 0.30000001192092896,
-                                    "PaShapeConeHeight": 0.20000000298023224,
-                                    "PaShapeSphereDirection": false,
-                                    "PaShapeSphereAngle": 0,
-                                    "paShapeType": 2,
-                                    "PaShapeOffset": [
-                                        0,
-                                        0,
-                                        0
-                                    ]
-                                }
-                            ]
+                            "Index": 11,
+                            "UID": 1563287297,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 1268406220,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 13,
+                            "UID": 340534137,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 14,
+                            "UID": 1851239295,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 19,
+                            "UID": 1563287297,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 20,
+                            "UID": 1268406220,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 21,
+                            "UID": 340534137,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 22,
+                            "UID": 1851239295,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
                         }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 8,
+                    "Is Selected": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "DebugToggleNoClip"
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1081229708,
+            "ParentUID": 1095210290,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -32.299999237060547,
+                        -5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        11,
+                        20
                     ]
                 },
                 {
-                    "Type": 21,
+                    "Type": 3,
                     "Active": true,
-                    "billboardAlignment": 0,
-                    "horizantalAligned": true
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "No clip",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }

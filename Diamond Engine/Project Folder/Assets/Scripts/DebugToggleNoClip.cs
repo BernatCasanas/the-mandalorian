@@ -3,6 +3,11 @@ using DiamondEngine;
 
 public class DebugToggleNoClip : DiamondComponent
 {
+    /*public void Awake()
+    {
+        
+    }*/
+
     public void OnExecuteCheckbox(bool active)
     {
         if (active)
