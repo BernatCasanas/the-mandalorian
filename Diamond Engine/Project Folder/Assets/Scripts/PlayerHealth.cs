@@ -213,12 +213,15 @@ public class PlayerHealth : DiamondComponent
                 return currHealth; //We have avoided damage with a skill
             }
         }        
-
-        if (PlayerResources.CheckBoon(BOONS.BOON_BOSSKSTRENGTH))
+        
+        if(Core.instance != null)
         {
-            currHealth -= damage - (int)(damage * 0.1f);
+            if (PlayerResources.CheckBoon(BOONS.BOON_BOSSKSTRENGTH))
+            {
+                currHealth -= (int)(damage * Core.instance.DamageRed) - (int)(damage * 0.1f);
+            }
+            else currHealth -= (int)(damage * Core.instance.DamageRed);
         }
-        else currHealth -= damage;
 
 
         if (currHealth <= 0)
