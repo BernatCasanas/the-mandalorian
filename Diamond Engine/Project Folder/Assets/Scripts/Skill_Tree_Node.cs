@@ -312,10 +312,12 @@ public class Skill_Tree_Node : DiamondComponent
                         Debug.Log("Critical damage not implemented yet");
                         break;
                     case "ADmgBos":
-                        Debug.Log("Bonus damage to bosses not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.DMG_TO_BOSSES, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
+                       // Debug.Log("Bonus damage to bosses not implemented yet");
                         break;
                     case "AHPMissDmg":
-                        Debug.Log("Damage * missing hp not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.DMG_PER_HP, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
+                        //Debug.Log("Damage * missing hp not implemented yet");
                         break;
                     case "AHPMissCritChance":
                         Debug.Log("Crit * missing hp not implemented yet");
