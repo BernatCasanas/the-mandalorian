@@ -1165,11 +1165,11 @@ public class Core : Entity
         gameObject.transform.localPosition.y = dashStartYPos;
         this.gameObject.transform.localRotation = preDashRotation;
 
-        if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_DAMAGE_REDUCTION_DASH))
-        {
-            skill_damageReductionDashActive = true;
-            skill_damageReductionDashTimer = Skill_Tree_Data.GetMandoSkillTree().U4_seconds;
-        }
+        //if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_DAMAGE_REDUCTION_DASH))
+        //{
+        //    skill_damageReductionDashActive = true;
+        //    skill_damageReductionDashTimer = Skill_Tree_Data.GetMandoSkillTree().U4_seconds;
+        //}
 
         PlayParticles(PARTICLES.JETPACK, true);
     }
@@ -1224,7 +1224,7 @@ public class Core : Entity
         }
 
         //gameObject.SetVelocity(gameObject.transform.GetForward() * movementSpeed);
-        gameObject.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.GetForward().normalized * movementSpeed * myDeltaTime;
+        gameObject.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.GetForward().normalized * movementSpeed * MovspeedMult * myDeltaTime;
         distanceMoved += movementSpeed * myDeltaTime;
     }
     private void MoveEnd()
@@ -1444,7 +1444,7 @@ public class Core : Entity
                     int damageFromBullet = 0;
 
                     if (skill_damageReductionDashActive)
-                        damageFromBullet = (int)(bulletScript.damage * (1.0f - Skill_Tree_Data.GetMandoSkillTree().U4_damageReduction));
+                        damageFromBullet = (int)(bulletScript.damage * (1.0f/* - Skill_Tree_Data.GetMandoSkillTree().U4_damageReduction*/));
                     else
                         damageFromBullet = (int)bulletScript.damage;
 
@@ -1471,7 +1471,7 @@ public class Core : Entity
                     {
                         int damageFromEnemy = 0;
                         if (skill_damageReductionDashActive)
-                            damageFromEnemy = (int)(damage * (1.0f - Skill_Tree_Data.GetMandoSkillTree().U4_damageReduction));
+                            damageFromEnemy = (int)(damage * (1.0f /*- Skill_Tree_Data.GetMandoSkillTree().U4_damageReduction*/));
                         else
                             damageFromEnemy = (int)damage;
 
@@ -1652,21 +1652,21 @@ public class Core : Entity
     private float GetDamage()
     {
         //We apply modifications to the damage based on the skill actives in the talent tree
-        float damageWithSkills = bulletDamage;
+        float damageWithSkills = bulletDamage * DamageMult;
 
-        if (skill_groguIncreaseDamageActive)
-        {
-            damageWithSkills *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().U3_increasedDamagePercentage);
-        }
+        //if (skill_groguIncreaseDamageActive)
+        //{
+        //    damageWithSkills *= (1.0f /*+ Skill_Tree_Data.GetMandoSkillTree().U3_increasedDamagePercentage*/);
+        //}
 
-        if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_EXTRA_DAMAGE_LOW_HEALTH))
-        {
-            float HPMissing = 1.0f - ((float)PlayerHealth.currHealth / (float)PlayerHealth.currMaxHealth);
+        //if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_EXTRA_DAMAGE_LOW_HEALTH))
+        //{
+        //    float HPMissing = 1.0f - ((float)PlayerHealth.currHealth / (float)PlayerHealth.currMaxHealth);
 
-            float local_damageAmount = Skill_Tree_Data.GetMandoSkillTree().A7_extraDamageAmount;
-            float local_HPStep = Skill_Tree_Data.GetMandoSkillTree().A7_extraDamageHPStep;
-            damageWithSkills += (damageWithSkills * local_damageAmount * (HPMissing / local_HPStep));
-        }
+        //    float local_damageAmount = Skill_Tree_Data.GetMandoSkillTree().A7_extraDamageAmount;
+        //    float local_HPStep = Skill_Tree_Data.GetMandoSkillTree().A7_extraDamageHPStep;
+        //    damageWithSkills += (damageWithSkills * local_damageAmount * (HPMissing / local_HPStep));
+        //}
         return damageWithSkills;
     }
 

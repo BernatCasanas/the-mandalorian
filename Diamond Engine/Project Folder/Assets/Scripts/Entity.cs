@@ -34,7 +34,10 @@ public enum STATUS_TYPE
 
     SLOWED,
     ACCELERATED,
-    DAMAGE_DOWN
+    DAMAGE_DOWN,
+    MOV_SPEED,
+    OVERHEAT,
+    RAW_DAMAGE
 }
 
 public enum STATUS_APPLY_TYPE
@@ -55,7 +58,7 @@ public class StatusData
         statusType = STATUS_TYPE.NONE;
         applyType = STATUS_APPLY_TYPE.NONE;
         severity = 0f;
-        statTaken = 0f;
+        statChange = 0f;
         remainingTime = 0f;
         isPermanent = false;
     }
@@ -66,11 +69,11 @@ public class StatusData
         severity = statusSeverirt;
         remainingTime = statusTime;
         isPermanent = isstatusPermanent;
-        statTaken = statusStatTaken;
+        statChange = statusStatTaken;
     }
 
     public float severity;
-    public float statTaken;
+    public float statChange;
     public float remainingTime;
     public bool isPermanent;
     public STATUS_APPLY_TYPE applyType;
@@ -88,11 +91,17 @@ public class Entity : DiamondComponent
 
     protected float speedMult = 1f;
     protected float myDeltaTime = 1f;
+    protected float MovspeedMult = 1f;
+    public float OverheatMult = 1f;
+    public float DamageMult = 1f;
 
     protected virtual void InitEntity(ENTITY_TYPE myType)
     {
         eType = myType;
         speedMult = 1f;
+        MovspeedMult = 1f;
+        OverheatMult = 1f;
+        DamageMult = 1f;
         myDeltaTime = Time.deltaTime;
     }
 
@@ -304,6 +313,27 @@ public class Entity : DiamondComponent
 
                 }
                 break;
+            case STATUS_TYPE.MOV_SPEED:
+                {
+                    statusToInit.statChange = this.MovspeedMult * statusToInit.severity / 100;
+                    this.MovspeedMult += statusToInit.statChange;
+                //  Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.OVERHEAT:
+                {
+                    statusToInit.statChange = this.OverheatMult * (statusToInit.severity) / 100;
+                    this.OverheatMult += statusToInit.statChange;
+                   // Debug.Log(this.OverheatMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.RAW_DAMAGE:
+                {
+                    statusToInit.statChange = this.DamageMult * (statusToInit.severity) / 100;
+                    this.DamageMult += statusToInit.statChange;
+                    Debug.Log(this.DamageMult.ToString());
+                }
+                break;
             default:
                 break;
         }
@@ -324,6 +354,11 @@ public class Entity : DiamondComponent
                 }
                 break;
             case STATUS_TYPE.DAMAGE_DOWN:
+                {
+
+                }
+                break;
+            case STATUS_TYPE.MOV_SPEED:
                 {
 
                 }
@@ -353,6 +388,24 @@ public class Entity : DiamondComponent
                 break;
             case STATUS_TYPE.DAMAGE_DOWN:
                 {
+                }
+                break;
+            case STATUS_TYPE.MOV_SPEED:
+                {
+                    this.MovspeedMult -= statusToDelete.statChange;
+                  //  Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.OVERHEAT:
+                {
+                    this.OverheatMult -= statusToDelete.statChange;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.RAW_DAMAGE:
+                {
+                    this.DamageMult -= statusToDelete.statChange;
+                    //    Debug.Log(this.MovspeedMult.ToString());
                 }
                 break;
             default:
