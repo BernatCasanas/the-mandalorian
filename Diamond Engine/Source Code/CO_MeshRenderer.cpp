@@ -46,6 +46,7 @@ C_MeshRenderer::~C_MeshRenderer()
 
 	if (_mesh != nullptr)
 	{
+		EngineExternal->moduleScene->totalTris -= _mesh->indices_count / 3;
 		EngineExternal->moduleResources->UnloadResource(_mesh->GetUID());
 		_mesh = nullptr;
 	}
@@ -126,7 +127,7 @@ void C_MeshRenderer::RenderMesh(bool rTex)
 	if (drawDebugVertices)
 		DrawDebugVertices();
 
-	_mesh->RenderMesh(id, alternColor, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform, normalMap,stencilEmissionAmmount);
+	_mesh->RenderMesh(id, alternColor, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform, normalMap, stencilEmissionAmmount);
 
 	if (vertexNormals || faceNormals)
 		_mesh->RenderMeshDebug(&vertexNormals, &faceNormals, transform->GetGlobalTransposed());
@@ -158,9 +159,9 @@ void C_MeshRenderer::RenderMeshStencil(bool rTex)
 	TryCalculateBones();
 
 	if (hasStencilMatActive)
-		_mesh->RenderMesh(id, alternColorStencil, rTex, (stencilMaterial && stencilMaterial->material != nullptr) ? stencilMaterial->material : EngineExternal->moduleScene->defaultMaterial, transform,nullptr, stencilEmissionAmmount);
+		_mesh->RenderMesh(id, alternColorStencil, rTex, (stencilMaterial && stencilMaterial->material != nullptr) ? stencilMaterial->material : EngineExternal->moduleScene->defaultMaterial, transform, nullptr, stencilEmissionAmmount);
 	else
-		_mesh->RenderMesh(id, alternColorStencil, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform,nullptr, stencilEmissionAmmount);
+		_mesh->RenderMesh(id, alternColorStencil, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform, nullptr, stencilEmissionAmmount);
 
 }
 
@@ -233,11 +234,12 @@ bool C_MeshRenderer::OnEditor()
 		//TODO: Maybe move this into a function?
 		if (ImGui::BeginDragDropTarget())
 		{
-			if (const ImGuiPayload * payload = ImGui::AcceptDragDropPayload("_MESH"))
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("_MESH"))
 			{
 				std::string* libraryDrop = (std::string*)payload->Data;
 
 				if (_mesh != nullptr) {
+					EngineExternal->moduleScene->totalTris -= _mesh->indices_count / 3;
 					EngineExternal->moduleResources->UnloadResource(_mesh->GetUID());
 					_mesh = nullptr;
 				}
@@ -264,7 +266,7 @@ bool C_MeshRenderer::OnEditor()
 
 		if (ImGui::BeginDragDropTarget())
 		{
-			if (const ImGuiPayload * payload = ImGui::AcceptDragDropPayload("_TEXTURE"))
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("_TEXTURE"))
 			{
 				//Drop asset from Asset window to scene window
 				std::string* metaFileDrop = (std::string*)payload->Data;
@@ -378,6 +380,8 @@ void C_MeshRenderer::SetRenderMesh(ResourceMesh* mesh)
 	if (mesh == nullptr)
 		return;
 
+	EngineExternal->moduleScene->totalTris += _mesh->indices_count / 3;
+
 	globalOBB = _mesh->localAABB;
 	globalOBB.Transform(gameObject->transform->globalTransform);
 
@@ -474,9 +478,9 @@ void C_MeshRenderer::TryCalculateBones()
 	{
 		//float4x4 invertedMatrix = dynamic_cast<C_Transform*>(gameObject->GetComponent(Component::TYPE::TRANSFORM))->globalTransform.Inverted();
 		float4x4 invertedMatrix = gameObjectTransform->globalTransform.Inverted();
-		
+
 		boneTransforms.reserve(_mesh->bonesMap.size());
-		
+
 		//Get each bone
 		for (int i = 0; i < _mesh->bonesMap.size(); ++i)
 		{
@@ -508,7 +512,7 @@ void C_MeshRenderer::TryCalculateBones()
 
 void C_MeshRenderer::SetStencilEmissionAmmount(float ammount)
 {
-	stencilEmissionAmmount =  max(0.0f,ammount);
+	stencilEmissionAmmount = max(0.0f, ammount);
 	stencilEmissionAmmount = min(stencilEmissionAmmount, 1.0f);
 }
 

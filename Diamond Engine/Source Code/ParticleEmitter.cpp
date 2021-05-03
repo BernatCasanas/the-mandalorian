@@ -43,7 +43,9 @@ Emitter::Emitter() :
 	delaying(false),
 	maxDelay(0.0f),
 	emitterName(""),
-	lastTimeSinceParticle(0.0f)
+	lastTimeSinceParticle(0.0f),
+	not_relative(true),
+	position(float3(0.0f))
 {
 	memset(particlesLifeTime, 0.1f, sizeof(particlesLifeTime));
 	memset(particlesSize, 1.0f, sizeof(particlesSize));
@@ -132,6 +134,8 @@ void Emitter::Update(float dt, bool systemActive)
 
 	if (delaying == false)
 	{
+		position = objTransform->globalTransform.TranslatePart();
+		float3 pos;
 		for (int i = 0; i < myEffects.size(); ++i)
 		{
 			myEffects[i]->PrepareEffect();
@@ -151,8 +155,23 @@ void Emitter::Update(float dt, bool systemActive)
 					myEffects[j]->Update(myParticles[i], dt);
 				}
 
-				myParticles[i].speed += myParticles[i].accel * dt;
-				myParticles[i].pos += myParticles[i].speed * dt;
+				if (!not_relative)
+				{
+					//Calculate relative position
+					pos = position + myParticles[i].relativePos;
+					//Assign velocity and acceleration
+					myParticles[i].speed += myParticles[i].accel * dt;
+					pos += myParticles[i].speed * dt;
+					//Save position and new relative position
+					myParticles[i].pos = pos;
+					myParticles[i].relativePos = myParticles[i].pos - position;
+				}
+				else
+				{
+					myParticles[i].speed += myParticles[i].accel * dt;
+					myParticles[i].pos += myParticles[i].speed * dt;
+					myParticles[i].relativePos = myParticles[i].pos - position;
+				}
 			}
 		}
 	}
@@ -265,6 +284,8 @@ void Emitter::OnEditor(int emitterIndex)
 		{
 			toDelete = true;
 		}
+		guiName = "Non relative to emitter" + suffixLabel;
+		if (ImGui::Checkbox(guiName.c_str(), &not_relative))
 
 		ImGui::Spacing();
 		ImGui::Spacing();
@@ -429,6 +450,7 @@ void Emitter::TryDeleteUnusedEffects()
 void Emitter::AssignTransform(C_Transform* objTransform)
 {
 	this->objTransform = objTransform;
+	this->position = objTransform->globalTransform.TranslatePart();
 }
 
 
@@ -447,6 +469,7 @@ void Emitter::SaveData(JSON_Object* nObj)
 	DEJson::WriteVector2(nObj, "paSize", particlesSize);
 	DEJson::WriteVector4(nObj, "paColor", &particlesColor[0]);
 	DEJson::WriteFloat(nObj, "paPerSec", particlesPerSec);
+	DEJson::WriteBool(nObj, "paRelative", not_relative);
 	JSON_Value* effectsArray = json_value_init_array();
 	JSON_Array* jsArray = json_value_get_array(effectsArray);
 
@@ -490,6 +513,8 @@ void Emitter::LoadData(DEConfig& nObj)
 	particlesColor[3] = paCol.w;
 
 	SetParticlesPerSec(nObj.ReadFloat("paPerSec"));
+
+	not_relative = nObj.ReadBool("paRelative");
 
 	DEConfig conf(nullptr);
 	JSON_Array* effArray = json_object_get_array(nObj.nObj, "ParticleEffects");
@@ -550,6 +575,7 @@ void Emitter::CreateParticles(unsigned int particlesToAdd)
 		{
 			myEffects[j]->Spawn(myParticles[i]);
 		}
+		myParticles[i].relativePos = myParticles[i].pos - startingPos;
 	}
 }
 
@@ -590,6 +616,7 @@ void Emitter::ThrowParticles(float dt)
 			{
 				myEffects[j]->Spawn(myParticles[unusedIndex]);
 			}
+			myParticles[unusedIndex].relativePos = myParticles[unusedIndex].pos - startingPos;
 		}
 	}
 }

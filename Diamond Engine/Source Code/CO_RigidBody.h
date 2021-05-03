@@ -25,6 +25,9 @@ public:
 	void SaveData(JSON_Object* nObj) override;
 	void LoadData(DEConfig& nObj) override;
 
+	void Enable() override;
+	void Disable() override;
+
 #ifndef STANDALONE
 	bool OnEditor() override;
 #endif // !STANDALONE
@@ -96,4 +99,5 @@ public:
 	
 	float4x4 global_to_pivot;
 	float3 offset, rotatedOffset;
+	bool omitStep = false;
 };

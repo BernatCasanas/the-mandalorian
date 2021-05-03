@@ -486,7 +486,10 @@ void C_Navigation::LoadData(DEConfig& nObj)
 void C_Navigation::SaveMapData(JSON_Object* nObj, const ActionToRealize& action, BUTTONSANDJOYSTICKS map_index)
 {
 	DEJson::WriteInt(nObj, "Index", static_cast<int>(map_index));
-	DEJson::WriteInt(nObj, "UID", (action.referenceGO != nullptr) ? action.referenceGO->UID : 0);
+	if(action.referenceGO != nullptr)
+		DEJson::WriteInt(nObj, "UID", action.referenceGO->prefabReference != 0u ? action.referenceGO->prefabReference : action.referenceGO->UID);
+	else
+		DEJson::WriteInt(nObj, "UID", 0);
 	DEJson::WriteInt(nObj, "Action", static_cast<int>(action.action));
 	DEJson::WriteBool(nObj, "Is Key Down", action.is_key_down);
 	DEJson::WriteBool(nObj, "Is Key Up", action.is_key_up);
@@ -497,7 +500,6 @@ void C_Navigation::LoadMapaData(DEConfig& nObj)
 {
 	ActionToRealize new_action;
 	new_action.action = static_cast<ACTIONSNAVIGATION>(nObj.ReadInt("Action"));
-
 
 	new_action.is_key_down = nObj.ReadBool("Is Key Down");
 	new_action.is_key_up = nObj.ReadBool("Is Key Up");

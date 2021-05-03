@@ -149,6 +149,12 @@ namespace DiamondEngine
     {
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern GameObject FindObjectWithTag(string tag);
+
+        public static extern int totalTris
+        {
+            [MethodImplAttribute(MethodImplOptions.InternalCall)]
+            get;
+        }
     }
 
     public class SceneManager

@@ -3,8 +3,22 @@ using DiamondEngine;
 
 public class ColliderTest : DiamondComponent
 {
+	private bool start = true;
 	public void Update()
 	{
+		if(start)
+        {
+			start = false;
+			Rigidbody body = gameObject.GetComponent<Rigidbody>();
+			if (body != null)
+			{
+				body.active = true;
+				Debug.Log("succes, kinda");
+			}
+			else
+				Debug.Log("Nah fam, keep trying");
+
+		}
 
 	}
 
