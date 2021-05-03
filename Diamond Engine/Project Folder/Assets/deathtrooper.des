@@ -1,19 +1,19 @@
 {
     "NavMesh": 247112550,
     "EditorCameraPosition": [
-        0.59953123331069946,
-        36.599845886230469,
-        -26.907733917236328
+        -57.570064544677734,
+        72.119224548339844,
+        -49.503524780273438
     ],
     "EditorCameraZ": [
-        -0.00099322746973484755,
-        -0.8127252459526062,
-        0.58264636993408203
+        0.48137608170509338,
+        -0.50547903776168823,
+        0.71607840061187744
     ],
     "EditorCameraY": [
-        -0.0010756929405033588,
-        0.58264708518981934,
-        0.8127245306968689
+        0.28217983245849609,
+        0.86283886432647705,
+        0.41938480734825134
     ],
     "tags": [
         "Bantha"
@@ -92,6 +92,12 @@
                     "eType": 0,
                     "speedMult": 0,
                     "myDeltaTime": 0,
+                    "MovspeedMult": 0,
+                    "OverheatMult": 0,
+                    "DamageMult": 0,
+                    "DamageToBosses": 0,
+                    "DamagePerHpMult": 0,
+                    "DamageRed": 0,
                     "shootPoint": 1231297917,
                     "rotationSpeed": 2,
                     "movementSpeed": 5.5,
@@ -4733,14 +4739,14 @@
             "Active": true,
             "UID": 1153092175,
             "ParentUID": 143570472,
-            "PrefabReference": 189915864,
-            "PrefabID": 1330294312,
+            "PrefabReference": 0,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -8.2989997863769531,
-                10.465000152587891,
-                -12.131999969482422
+                -22.263750076293945,
+                14.053393363952637,
+                -24.509008407592773
             ],
             "Rotation": [
                 0.24263942241668701,
@@ -4753,7 +4759,46 @@
                 0.9999997615814209,
                 0.9999997615814209
             ],
-            "PrefabObjects": []
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 4,
+                    "Active": true,
+                    "fType": 1,
+                    "fSize": 30,
+                    "nearPlaneDist": 1,
+                    "farPlaneDist": 100,
+                    "vFOV": 22.066667556762695,
+                    "hFOV": 41.266666412353516,
+                    "culling": false,
+                    "drawSkybox": true
+                },
+                {
+                    "Type": 12,
+                    "Active": true,
+                    "isDefaultListener": true,
+                    "masterVolume": 50
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "CameraController",
+                    "x": -10.300000190734863,
+                    "y": 9.3000001907348633,
+                    "z": -10,
+                    "smoothSpeed": 0.10000000149011612,
+                    "zoomDesired": 0.10000000149011612,
+                    "timer_easing_sec": 0,
+                    "timer": 0,
+                    "cornerTopLeftX": -100,
+                    "cornerTopLeftY": -100,
+                    "cornerBotRightX": 100,
+                    "cornerBotRightY": 100
+                }
+            ]
         }
     ]
 }

@@ -1,19 +1,19 @@
 {
     "NavMesh": 1012432444,
     "EditorCameraPosition": [
-        62.503917694091797,
-        72.358169555664063,
-        51.329216003417969
+        21.703666687011719,
+        14.959203720092773,
+        26.633720397949219
     ],
     "EditorCameraZ": [
-        -0.29989570379257202,
-        -0.76041406393051147,
-        -0.57604944705963135
+        -0.4494134783744812,
+        -0.52993285655975342,
+        -0.71916532516479492
     ],
     "EditorCameraY": [
-        -0.35112655162811279,
-        0.64943856000900269,
-        -0.67449218034744263
+        -0.28082168102264404,
+        0.84803962707519531,
+        -0.44940847158432007
     ],
     "tags": [],
     "layers": [],
@@ -175,10 +175,10 @@
                     "Active": true,
                     "ScriptName": "SpawnManager",
                     "availableSpawnPoints": 0,
-                    "maxEnemiesPerWave": 10,
-                    "enemyIncreasePerWave": 0,
+                    "maxEnemiesPerWave": 3,
+                    "enemyIncreasePerWave": 1,
                     "wave": 0,
-                    "maxWaves": 1,
+                    "maxWaves": 3,
                     "waveTimer": 0,
                     "timeBetweenWaves": 10
                 }
@@ -313,94 +313,6 @@
                     "spawnSkytrooper": true,
                     "spawnLaserTurret": true,
                     "spawnDeathrooper": true
-                }
-            ]
-        },
-        {
-            "name": "SpawnPoint",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 153110234,
-            "ParentUID": 782918489,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                29.899290084838867,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "SpawnPoint",
-                    "spawnStormtrooper": false,
-                    "spawnBantha": false,
-                    "spawnSkytrooper": false,
-                    "spawnLaserTurret": false,
-                    "spawnDeathrooper": true
-                }
-            ]
-        },
-        {
-            "name": "SpawnPoint",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1726261253,
-            "ParentUID": 782918489,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                45.833938598632813,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "SpawnPoint",
-                    "spawnStormtrooper": false,
-                    "spawnBantha": false,
-                    "spawnSkytrooper": true,
-                    "spawnLaserTurret": true,
-                    "spawnDeathrooper": false
                 }
             ]
         }

@@ -42,10 +42,13 @@ public class SpawnManager : DiamondComponent
                 else
                 {
                     wave++;
-                    enemiesToSpawn = maxEnemiesPerWave;
 
                     if (wave < maxWaves)
+                    {
                         waveTimer = timeBetweenWaves;
+                        maxEnemiesPerWave += enemyIncreasePerWave;
+                        enemiesToSpawn = maxEnemiesPerWave;
+                    }
                 }
             }
         }
