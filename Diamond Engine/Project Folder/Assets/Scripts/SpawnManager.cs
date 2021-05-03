@@ -7,28 +7,47 @@ public class SpawnManager : DiamondComponent
     public static SpawnManager instance = null;
     public List<GameObject> availableSpawnPoints = null;
 
-    public int maxEnemies = 0;
+    private int enemiesToSpawn = 0;
+    public int maxEnemiesPerWave = 0;
     public int enemyIncreasePerWave = 0;
     public int wave = 0;
     public int maxWaves = 1;
 
     public float waveTimer = 0.0f;
-    public float timeBetweenSpawns = 1.0f;
-
-    bool spawn = false;
+    public float timeBetweenWaves = 1.0f;
 
     public void Awake()
     {
         instance = this;
         availableSpawnPoints = new List<GameObject>();
+
+        enemiesToSpawn = maxEnemiesPerWave;
+
+        if (waveTimer <= 0.0f)
+            waveTimer = 0.01f;
     }
 
     public void Update()
     {
-        if(!spawn)
+        if (waveTimer > 0.0f)
         {
-            spawn = true;
-            SpawnWave();
+            waveTimer -= Time.deltaTime;
+
+            if(waveTimer <= 0.0f)
+            {
+                SpawnWave();
+
+                if (enemiesToSpawn > 0)
+                    waveTimer = timeBetweenWaves * 0.25f;
+                else
+                {
+                    wave++;
+                    enemiesToSpawn = maxEnemiesPerWave;
+
+                    if (wave < maxWaves)
+                        waveTimer = timeBetweenWaves;
+                }
+            }
         }
     }
 
@@ -62,19 +81,22 @@ public class SpawnManager : DiamondComponent
         //Debug.Log("Count: " + availableSpawnPoints.Count.ToString());
         List<GameObject> spawnPoints = new List<GameObject>();
 
-        for(int i = 0; i < availableSpawnPoints.Count; ++i)
+        for (int i = 0; i < availableSpawnPoints.Count; ++i)
         {
             spawnPoints.Add(availableSpawnPoints[i]);
         }
 
-        //Debug.Log("Count: " + spawnPoints.Count.ToString());
-
         Random randomizer = new Random();
 
-        if (maxEnemies > availableSpawnPoints.Count) //we should not maximize the amount of enemies to the maximum spawn points, it will be solved
-            maxEnemies = availableSpawnPoints.Count;
+        int pendingEnemies = 0;
+        if (enemiesToSpawn > availableSpawnPoints.Count)
+        {
+            //we should not maximize the amount of enemies to the maximum spawn points, it will be solved
+            pendingEnemies = enemiesToSpawn - availableSpawnPoints.Count;
+            enemiesToSpawn = availableSpawnPoints.Count;
+        }
 
-        for (int i = 0; i < maxEnemies; ++i)
+        for (int i = 0; i < enemiesToSpawn; ++i)
         {
             int index = randomizer.Next(0, spawnPoints.Count);
 
@@ -85,14 +107,16 @@ public class SpawnManager : DiamondComponent
             if (spawnScript != null)
                 spawnScript.SpawnEnemy();
 
-            for(int j = 0; j < spawnPoints.Count; ++j)
+            for (int j = 0; j < spawnPoints.Count; ++j)
             {
-                if (spawnPoint.GetUid() == spawnPoints[j].GetUid()) 
+                if (spawnPoint.GetUid() == spawnPoints[j].GetUid())
                 {
                     spawnPoints.RemoveAt(j);
                     break;
                 }
             }
         }
+
+        enemiesToSpawn = pendingEnemies;
     }
 }
