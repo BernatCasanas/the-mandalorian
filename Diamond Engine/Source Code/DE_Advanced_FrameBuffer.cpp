@@ -151,7 +151,7 @@ void DE_Advanced_FrameBuffer::ResolveToScreen()
 
 	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 	glBindFramebuffer(GL_READ_FRAMEBUFFER, framebuffer);
-	glDrawBuffer(GL_BACK); //TODO is this needed here??
+	//glDrawBuffer(GL_BACK); //TODO is this needed here??
 	glBlitFramebuffer(0, 0, texBufferSize.x, texBufferSize.y, 0, 0, EngineExternal->moduleWindow->s_width, EngineExternal->moduleWindow->s_height,
 		GL_COLOR_BUFFER_BIT, GL_NEAREST);
 	UnbindFrameBuffer();
