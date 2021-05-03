@@ -79,6 +79,8 @@ public class StormTrooper : Enemy
     public int maxSequences = 2;
     private bool shooting = false;
     private bool unableToShoot = false;
+    private Vector3 destinationAvoidObject = null;
+    private bool endedAvoidingObjects = true;
 
     //force
     public float forcePushMod = 1;
@@ -534,19 +536,19 @@ public class StormTrooper : Enemy
     {
         if (unableToShoot)
         {
-            agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
             agent.MoveToCalculatedPos(runningSpeed * speedMult);
             LookAt(agent.GetDestination());
-            if (PlayerIsShootable())
+            if (PlayerIsShootable() || Mathf.Distance(gameObject.transform.globalPosition, destinationAvoidObject) <= 1f)
             {
                 unableToShoot = false;
                 statesTimer = timeBewteenStates;
+                endedAvoidingObjects = false;
             }
             else return;
         }
         else
         {
-            //Animator.Play(gameObject, "ST_Idle");
+            Animator.Play(gameObject, "ST_Idle");
         }
 
 
@@ -608,6 +610,8 @@ public class StormTrooper : Enemy
                     else
                     {
                         statesTimer = timeBewteenStates;
+                        endedAvoidingObjects = true;
+                        Debug.Log("Ending 2 time shot");
                     }
                 }
             }
@@ -633,15 +637,22 @@ public class StormTrooper : Enemy
 
     private bool Shoot()
     {
-        if (!PlayerIsShootable())
+        if (!PlayerIsShootable() && endedAvoidingObjects)
         {
             unableToShoot = true;
+            endedAvoidingObjects = false;
             shotTimes = 0;
             shotTimer = 0.0f;
             shotSequences = 0;
             sequenceTimer = 0.0f;
             Animator.Play(gameObject, "ST_Run", speedMult);
             UpdateAnimationSpd(speedMult);
+            agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
+            destinationAvoidObject = agent.GetDestination().normalized * detectionRange;
+            destinationAvoidObject.y = gameObject.transform.globalPosition.y;
+            agent.CalculatePath(gameObject.transform.globalPosition, destinationAvoidObject);
+
+
             return false;
         }
 
