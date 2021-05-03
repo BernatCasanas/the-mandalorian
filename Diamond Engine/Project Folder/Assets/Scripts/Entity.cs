@@ -39,7 +39,9 @@ public enum STATUS_TYPE
     OVERHEAT,
     RAW_DAMAGE,
     DMG_TO_BOSSES,
-    DMG_PER_HP
+    DMG_PER_HP,
+    MAX_HP,
+    DMG_RED,
 }
 
 public enum STATUS_APPLY_TYPE
@@ -98,7 +100,7 @@ public class Entity : DiamondComponent
     public float DamageMult = 1f;
     public float DamageToBosses = 1f;
     public float DamagePerHpMult = 1f;
-
+    public float DamageRed = 1f;
 
     protected virtual void InitEntity(ENTITY_TYPE myType)
     {
@@ -109,6 +111,7 @@ public class Entity : DiamondComponent
         DamageMult = 1f;
         DamageToBosses = 1f;
         DamagePerHpMult = 1f;
+        DamageRed = 1f;
         myDeltaTime = Time.deltaTime;
     }
 
@@ -348,6 +351,32 @@ public class Entity : DiamondComponent
                   //  Debug.Log(this.DamageToBosses.ToString());
                 }
                 break;
+            case STATUS_TYPE.MAX_HP:
+                {
+                    if (Core.instance != null)
+                    {
+                        PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                        if (myHealth != null)
+                        {
+                            Debug.Log("Need testing");
+                            Debug.Log("Old Max Health = " + PlayerHealth.currMaxHealth.ToString());
+                            statusToInit.statChange = statusToInit.severity * PlayerHealth.currMaxHealth / 100;
+                            myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth + statusToInit.statChange));
+                            Debug.Log("New Max Health = " + PlayerHealth.currMaxHealth.ToString());
+
+                        }
+                    }
+                   
+                }
+                break;
+            case STATUS_TYPE.DMG_RED:
+                {
+                    statusToInit.statChange = this.DamageRed * (statusToInit.severity) / 100;
+                    this.DamageRed += statusToInit.statChange;
+                    Debug.Log("Damage red = " + this.DamageRed.ToString());
+
+                }
+                break;
             default:
                 break;
         }
@@ -428,6 +457,27 @@ public class Entity : DiamondComponent
             case STATUS_TYPE.DMG_PER_HP:
                 {
                     this.DamagePerHpMult = 1; ;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.MAX_HP:
+                {
+                    if (Core.instance != null)
+                    {
+                        PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                        if (myHealth != null)
+                        {
+
+                            myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth - statusToDelete.statChange));
+
+                        }
+                    }
+                }
+                break;
+            case STATUS_TYPE.DMG_RED:
+                {
+                    this.DamageRed -= statusToDelete.statChange;
+                    Debug.Log("Damage red = " + this.DamageRed.ToString());
                     //    Debug.Log(this.MovspeedMult.ToString());
                 }
                 break;

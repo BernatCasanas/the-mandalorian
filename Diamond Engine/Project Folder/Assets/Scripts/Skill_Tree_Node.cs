@@ -325,10 +325,13 @@ public class Skill_Tree_Node : DiamondComponent
                     #endregion
                     #region Defense
                     case "DMaxHPS":
-                        Debug.Log("Max Hp not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.MAX_HP, STATUS_APPLY_TYPE.SUBSTITUTE, 10, 0, true);
+                        // Debug.Log("Max Hp not implemented yet");
                         break;
                     case "DDmgRed":
-                        Debug.Log("Dmg reduction not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.DMG_RED, STATUS_APPLY_TYPE.SUBSTITUTE, -15, 0, true);
+
+                        //   Debug.Log("Dmg reduction not implemented yet");
                         break;
                     case "DComboDmgRed":
                         Debug.Log("Combo * damage red not implemented yet");
