@@ -556,4 +556,8 @@ public class Entity : DiamondComponent
 
     }
 
+    protected void copyBuffs(ref Dictionary<STATUS_TYPE, StatusData> newstatuses)
+    {
+        newstatuses = statuses;
+    }
 }

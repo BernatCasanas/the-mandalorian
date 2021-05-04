@@ -37,7 +37,7 @@ public class IntroCinematic : DiamondComponent
     Quaternion nonCinematicCameraRotation = null;
 
     GameObject[] pointArray = null;
-    float[] speedArray = new float[] { 1.0f, 2.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };    // Adapt values; wouldn't it be easier to just calculate the speed based on how long we need that scene to be?
+    float[] speedArray = new float[] { 1.0f, 2.0f, 1.0f, 5.0f, 1.0f, 1.0f, 1.0f, 1.0f };    // Adapt values; wouldn't it be easier to just calculate the speed based on how long we need that scene to be?
     float[] timerArray = null;    // Why am I using timer approach? Basically, the triggers of each camera switch are animation ends, positions reached and timers. Everything is convertable to time, but the other two can't be converted universally
     int arrayCount = -1;
 
@@ -174,7 +174,7 @@ public class IntroCinematic : DiamondComponent
             float revolverZoomOut = Mathf.Distance(point3.transform.globalPosition, point4.transform.globalPosition) / speedArray[1];
             float revolverStatic = 0.36f;
             float greefTurningZoom = Animator.GetAnimationDuration(greefRig, "Greef_Head");
-            float greefGreeting = Animator.GetAnimationDuration(greefRig, "Greef_Head");
+            float greefGreeting = Animator.GetAnimationDuration(greefRig, "Greef_Greet");
             float tableZoomOut = Mathf.Distance(point11.transform.globalPosition, point12.transform.globalPosition) / speedArray[5];
             float tableStatic = 0.50f;
             float mandoZoomOut = Mathf.Distance(point15.transform.globalPosition, point16.transform.globalPosition) / speedArray[7];

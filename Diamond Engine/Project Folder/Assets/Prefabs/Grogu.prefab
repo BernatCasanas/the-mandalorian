@@ -13,9 +13,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -5.7361040115356445,
-                8.8576202392578125,
-                -8.0873985290527344
+                -9.1201086044311523,
+                10,
+                -13.006889343261719
             ],
             "Rotation": [
                 0,
@@ -49,6 +49,7 @@
                     "pushHorizontalForce": 100,
                     "pushVerticalForce": 10,
                     "PushStun": 2,
+                    "forceFBTime": 0.25,
                     "skillPushDuration": 1
                 },
                 {
@@ -298,6 +299,64 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1540644281.mat",
                     "MaterialUID": 1540644281
+                }
+            ]
+        },
+        {
+            "name": "Force Notification",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1871892114,
+            "ParentUID": 1152800351,
+            "PrefabReference": 0,
+            "PrefabID": 2881544,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "PrefabObjects": [
+                {
+                    "name": "ForceParticle",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 610870844,
+                    "ParentUID": 1871892114,
+                    "PrefabID": 0,
+                    "PrefabReference": 1287064452,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }
