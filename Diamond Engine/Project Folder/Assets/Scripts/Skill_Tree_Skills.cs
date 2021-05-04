@@ -44,7 +44,7 @@ namespace DiamondEngine
 
     }
 
-    public class UtilityIncreaseDamageSkill : Skills
+    public class UtilitySlowDamageSkill : Skills
     {
         public override void Use()
         {
@@ -58,7 +58,7 @@ namespace DiamondEngine
         }
     }
 
-    public class UtilityDamageReductionSkill : Skills
+    public class UtilityFallDamageReductionSkill : Skills
     {
         public override void Use()
         {
@@ -579,8 +579,8 @@ namespace DiamondEngine
         {
             {"UDamageHeat", typeof(UtilityDamagePerHeat)},
             {"UMovSpd", typeof(UtilityMovementSpeedSkill)},
-            {"UIncDmg", typeof(UtilityIncreaseDamageSkill)},
-            {"UDmgRed", typeof(UtilityDamageReductionSkill)},
+            {"USlowDamage", typeof(UtilitySlowDamageSkill)},
+            {"UFallDmgRed", typeof(UtilityFallDamageReductionSkill)},
             {"UOverheat", typeof(UtilityOverheatSkill)},
             {"URedGroguCost", typeof(UtilityReductionGroguCostSkill)},
             {"UHeal", typeof(UtilityHealSkill)},
