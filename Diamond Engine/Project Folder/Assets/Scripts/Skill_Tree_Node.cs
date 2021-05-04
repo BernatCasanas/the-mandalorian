@@ -291,7 +291,8 @@ public class Skill_Tree_Node : DiamondComponent
                       //  Debug.Log("Grogu reduction cost not implemented yet");
                         break;
                     case "UHeal":
-                        Debug.Log("Gogu heal not implemented yet");
+                        // Debug.Log("Gogu heal not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.SKILL_HEAL, STATUS_APPLY_TYPE.SUBSTITUTE, 10, 1, true);
                         break;
                     case "UDash":
                         Debug.Log("Double dash not implemented yet");

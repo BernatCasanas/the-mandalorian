@@ -434,10 +434,26 @@ public class BabyYoda : DiamondComponent
 
     private bool ExecutePushSkill()
     {
-        if (Core.instance != null)
-            Debug.Log(Core.instance.GroguCost.ToString());
+       
+
         if (Core.instance.gameObject == null || currentForce < skillPushForceCost * Core.instance.GroguCost)
             return false;
+
+        if (Core.instance != null)
+        {
+            if (Core.instance.HasStatus(STATUS_TYPE.SKILL_HEAL))
+            {
+                Debug.Log("Has SKILL_HEAL");
+                PlayerHealth playerHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    Debug.Log("Heal");
+                    playerHealth.SetCurrentHP((int)(PlayerHealth.currHealth + Core.instance.GetStatusData(STATUS_TYPE.SKILL_HEAL).severity));
+
+                }
+            }
+
+        }
 
         if (Core.instance.hud != null)
         {
@@ -470,6 +486,17 @@ public class BabyYoda : DiamondComponent
             SetCurrentForce((int)(currentForce - skillWallForceCost * Core.instance.GroguCost));
         }
 
+        if (Core.instance != null)
+        {
+            if (Core.instance.HasStatus(STATUS_TYPE.SKILL_HEAL))
+            {
+                PlayerHealth playerHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                    playerHealth.SetCurrentHP((int)(PlayerHealth.currHealth + Core.instance.GetStatusData(STATUS_TYPE.SKILL_HEAL).severity));
+            }
+
+
+        }
         skillWallTimer += INIT_TIMER;
         Transform mandoTransform = Core.instance.gameObject.transform;
         Vector3 spawnPos = new Vector3(mandoTransform.globalPosition.x, mandoTransform.globalPosition.y, mandoTransform.globalPosition.z);
@@ -480,8 +507,8 @@ public class BabyYoda : DiamondComponent
         InternalCalls.CreatePrefab("Library/Prefabs/1850725718.prefab", spawnPos, mandoTransform.globalRotation, new Vector3(1, 1, 1));
         Audio.PlayAudio(gameObject, "Play_Grogu_Wall");
         
-        if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_HEAL_WHEN_GROGU_SKILL))        
-            Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-Skill_Tree_Data.GetMandoSkillTree().U7_healAmount);                
+        //if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_HEAL_WHEN_GROGU_SKILL))        
+        //    Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-Skill_Tree_Data.GetMandoSkillTree().U7_healAmount);                
 
         return true;
     }

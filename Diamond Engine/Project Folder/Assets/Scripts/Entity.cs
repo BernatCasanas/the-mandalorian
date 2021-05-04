@@ -45,6 +45,7 @@ public enum STATUS_TYPE
     DMG_PER_HEAT,
     FALL,
     GROGU_COST,
+    SKILL_HEAL,
 }
 
 public enum STATUS_APPLY_TYPE
