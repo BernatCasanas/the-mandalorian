@@ -44,7 +44,7 @@ public:
 
 	//create screen quad here
 	void Init();
-	void DoPostProcessing(int width, int height,DE_Advanced_FrameBuffer& outputFBO, unsigned int colorTexture, unsigned int depthTexture, ResourcePostProcess* settings);
+	void DoPostProcessing(int width, int height, DE_Advanced_FrameBuffer& outputFBO, unsigned int colorTexture, unsigned int depthTexture, ResourcePostProcess* settings);
 	void CleanUp();
 
 private:
@@ -54,13 +54,14 @@ private:
 	PostProcessEffectContrastTest* contrastTest;
 
 	unsigned int quadVAO;
+	unsigned int quadVBO;
 };
 
 const float vertices[] = {
-	-1, -1,
-	1, -1,
-	-1, 1,
-	1, -1,
-	1, 1,
-	-1, 1,
+		-1.0f, -1.0f,  0.0f,
+		 1.0f, -1.0f,  0.0f,
+		-1.0f,  1.0f,  0.0f,
+		 1.0f, -1.0f,  0.0f,
+		 1.0f,  1.0f,  0.0f,
+		-1.0f,  1.0f,  0.0f,
 };
