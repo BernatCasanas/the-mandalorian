@@ -104,7 +104,7 @@ void DE_Advanced_FrameBuffer::BindFrameBuffer()
 	if (!alreadyInitialized)
 		InitializeFrameBuffer(myDepthType);
 
-	glBindTexture(GL_TEXTURE_2D, 0); //TODO needed? (here just to make sure the texture isn't bound)
+	//glBindTexture(GL_TEXTURE_2D, 0); //TODO needed? (here just to make sure the texture isn't bound)
 	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
 	glViewport(0, 0, texBufferSize.x, texBufferSize.y);
 }
@@ -139,7 +139,7 @@ void DE_Advanced_FrameBuffer::ResolveToFBO(DE_Advanced_FrameBuffer& outputFbo)
 	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, outputFbo.framebuffer);
 	glBindFramebuffer(GL_READ_FRAMEBUFFER, framebuffer);
 	glBlitFramebuffer(0, 0, texBufferSize.x, texBufferSize.y, 0, 0, outputFbo.texBufferSize.x, outputFbo.texBufferSize.y,
-		GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT, GL_NEAREST); //TODO is stencil needed here?
+		GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT, GL_NEAREST); //TODO is stencil needed here?
 	UnbindFrameBuffer();
 }
 
@@ -217,12 +217,12 @@ void DE_Advanced_FrameBuffer::CreateDepthBufferAttachment()
 	glBindRenderbuffer(GL_RENDERBUFFER, depthBufferAttachment);
 	if (isMultisample)
 	{
-		glRenderbufferStorageMultisample(GL_RENDERBUFFER, msaaSamples, GL_DEPTH24_STENCIL8, texBufferSize.x, texBufferSize.y);
+		glRenderbufferStorageMultisample(GL_RENDERBUFFER, msaaSamples, GL_DEPTH_COMPONENT24, texBufferSize.x, texBufferSize.y);
 	}
 	else
 	{
-		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, texBufferSize.x, texBufferSize.y);
+		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, texBufferSize.x, texBufferSize.y);
 	}
-	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, depthBufferAttachment);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthBufferAttachment);
 }
 

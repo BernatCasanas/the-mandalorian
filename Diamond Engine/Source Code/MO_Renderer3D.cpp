@@ -232,7 +232,7 @@ bool ModuleRenderer3D::Init()
 	skybox.CreateGLData();
 	glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
 
-
+	postProcessing.Init();
 	return ret;
 }
 
@@ -387,9 +387,15 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 		RenderStencilWithOrdering(true);
 
 
-		glClear(GL_DEPTH_BUFFER_BIT);
 		App->moduleGui->RenderCanvas2D();
 		gameCamera->EndDraw();
+		postProcessing.DoPostProcessing(gameCamera->resolvedFBO.texBufferSize.x, gameCamera->resolvedFBO.texBufferSize.y, gameCamera->resolvedFBO, gameCamera->resolvedFBO.GetColorTexture(), gameCamera->resolvedFBO.GetDepthTexture(), nullptr);
+		glClear(GL_DEPTH_BUFFER_BIT);
+
+#ifdef STANDALONE
+		gameCamera->resolvedFBO.ResolveToScreen();
+#endif
+
 	}
 
 
@@ -419,6 +425,8 @@ bool ModuleRenderer3D::CleanUp()
 	glDeleteTextures(1, &checkersTexture);
 	glDeleteTextures(1, &defaultNormalMap);
 
+	postProcessing.CleanUp();
+
 	SDL_GL_DeleteContext(context);
 	ClearAllRenderData();
 
@@ -439,7 +447,9 @@ void ModuleRenderer3D::OnResize(int width, int height)
 #endif // !STANDALONE
 
 	if (gameCamera != nullptr)
+	{
 		gameCamera->ReGenerateBuffer(width, height);
+	}
 }
 
 #ifndef STANDALONE
@@ -498,7 +508,7 @@ void ModuleRenderer3D::OnGUI()
 		ImGui::SameLine();
 		if (ImGui::Checkbox("Color material", &color_material))
 			(color_material) ? glEnable(GL_COLOR_MATERIAL) : glDisable(GL_COLOR_MATERIAL);
-		
+
 		ImGui::SameLine();
 		if (ImGui::Checkbox("Texture 2D", &texture_2d))
 			(texture_2d) ? glEnable(GL_TEXTURE_2D) : glDisable(GL_TEXTURE_2D);
