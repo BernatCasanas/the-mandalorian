@@ -64,22 +64,28 @@ public class IntroCinematic : DiamondComponent
 
     public void Update()
     {
+        float newDeltaTime = Time.deltaTime;
+        
+        if (newDeltaTime > 0.016f) {
+            newDeltaTime = 0.016f;
+        }
+
         Core.instance.LockInputs(true); // Yeah. Not pretty. But calling Core in Awake is not happening, and a boolean checked every frame seems redundant for what the function does
 
         if (toGoPosition != null && WeHaveToMove())
         {
-            cameraAuxPosition += (toGoPosition - cameraAuxPosition).normalized * Time.deltaTime * currentSpeed;
-            cameraObject.transform.localRotation = Quaternion.Slerp(cameraObject.transform.localRotation, toRotateQuaternion, 0.25f * Time.deltaTime);
+            cameraAuxPosition += (toGoPosition - cameraAuxPosition).normalized * newDeltaTime * currentSpeed;
+            cameraObject.transform.localRotation = Quaternion.Slerp(cameraObject.transform.localRotation, toRotateQuaternion, 0.25f * newDeltaTime);
         }
         cameraObject.transform.localPosition = cameraAuxPosition;
 
         if (arrayCount == 0 && helmet != null)
         {
-            helmet.transform.localPosition += (helmetFinal.transform.localPosition - helmet.transform.localPosition).normalized * Time.deltaTime * 0.60f;
-            helmet.transform.localRotation = Quaternion.Slerp(helmet.transform.localRotation, helmetFinal.transform.localRotation, 0.25f * Time.deltaTime);
+            helmet.transform.localPosition += (helmetFinal.transform.localPosition - helmet.transform.localPosition).normalized * newDeltaTime * 0.60f;
+            helmet.transform.localRotation = Quaternion.Slerp(helmet.transform.localRotation, helmetFinal.transform.localRotation, 0.25f * newDeltaTime);
         }
 
-        currentTimer += Time.deltaTime;
+        currentTimer += newDeltaTime;
         if (currentTimer > currentTimeLimit)
         {
             ManageCamera();
