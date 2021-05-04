@@ -100,9 +100,11 @@ public class BabyYoda : DiamondComponent
                 if (canPlayParticles)
                 {
                     Debug.Log("PARTICLES PLAY!!");
-                    forcePartSys.Play();
+                    if (forcePartSys != null)
+                        forcePartSys.Play();
                     canPlayParticles = false;
-                    forceGaugeFeedback.Enable(true);
+                    if (forceGaugeFeedback != null)
+                        forceGaugeFeedback.Enable(true);
                     forceFBTimer = forceFBTime;
                 }
             }
@@ -154,13 +156,15 @@ public class BabyYoda : DiamondComponent
         UpdateState();
         Move();
         UpdateHUD();
-
-        if (forceFBTimer >= 0.0f)
-            forceFBTimer -= Time.deltaTime;
-        if (forceFBTimer < 0.0f)
+        if (forceGaugeFeedback != null)
         {
-            forceGaugeFeedback.Enable(false);
-            forceFBTimer = -1.0f;
+            if (forceFBTimer >= 0.0f)
+                forceFBTimer -= Time.deltaTime;
+            if (forceFBTimer < 0.0f)
+            {
+                forceGaugeFeedback.Enable(false);
+                forceFBTimer = -1.0f;
+            }
         }
     }
 
