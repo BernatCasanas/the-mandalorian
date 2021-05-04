@@ -122,7 +122,7 @@ namespace DiamondEngine
     #endregion
 
     #region Aggression Skills
-    public class AggressionDamageSkill : Skills
+    public class AggressionBlasterDamageSkill : Skills
     {
         public override void Use()
         {
@@ -151,7 +151,7 @@ namespace DiamondEngine
         }
     }
 
-    public class AggressionCriticalChanceSkill : Skills
+    public class AggressionGrenadeDamageSkill : Skills
     {
         public override void Use()
         {
@@ -159,7 +159,7 @@ namespace DiamondEngine
         }
     }
 
-    public class AggressionCriticalDamageSkill : Skills
+    public class AggressionSniperDamageSkill : Skills
     {
         public override void Use()
         {
@@ -182,7 +182,7 @@ namespace DiamondEngine
         }
     }
 
-    public class AggressionHPMissingDamageSkill : Skills
+    public class AggressionHPMissDamageBlasterSkill : Skills
     {
         public override void Use()
         {
@@ -197,7 +197,7 @@ namespace DiamondEngine
     }
 
 
-    public class AggressionHPMissingCriticalChanceSkill : Skills
+    public class AggressionHPMissDamageSniperSkill : Skills
     {
         public override void Use()
         {
@@ -585,14 +585,14 @@ namespace DiamondEngine
             {"URedGroguCost", typeof(UtilityReductionGroguCostSkill)},
             {"UHeal", typeof(UtilityHealSkill)},
             {"UDash", typeof(UtilityDashSkill)},
-            {"ADmg", typeof(AggressionDamageSkill)},
-            {"AFireRate", typeof(AggressionFireRateSkill)},
+            {"ABlasterDmg", typeof(AggressionBlasterDamageSkill)},
+            {"AComboFireRate", typeof(AggressionFireRateSkill)},
             {"AComboDmg", typeof(AggressionComboDamageSkill)},
-            {"ACritChance", typeof(AggressionCriticalChanceSkill)},
-            {"ACritDmg", typeof(AggressionCriticalDamageSkill)},
+            {"AGrenadeDmg", typeof(AggressionGrenadeDamageSkill)},
+            {"ASniperDmg", typeof(AggressionSniperDamageSkill)},
             {"ADmgBos", typeof(AggressionDamageBossesSkill)},
-            {"AHPMissDmg", typeof(AggressionHPMissingDamageSkill)},
-            {"AHPMissCritChance", typeof(AggressionHPMissingCriticalChanceSkill)},
+            {"AHPMissDmgBlaster", typeof(AggressionHPMissDamageBlasterSkill)},
+            {"AHPMissCritChance", typeof(AggressionHPMissDamageSniperSkill)},
             {"DMaxHPS", typeof(DefenseMaxHPSkill)},
             {"DDmgRed", typeof(DefenseDamageReductionSkill)},
             {"DComboDmgRed", typeof(DefenseComboDamageReductionSkill)},
