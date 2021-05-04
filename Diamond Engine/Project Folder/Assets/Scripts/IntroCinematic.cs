@@ -53,7 +53,7 @@ public class IntroCinematic : DiamondComponent
             {
                 pointArray = new GameObject[] { point1, point2, point3, point4, point5, point6, point7, point8, point9, point10, point11, point12, point13, point14, point15, point16 };
                 UpdateValues();
-                Animator.Play(greefRig, "Greef_Sit"); // This probably isn't needed with fixed animations
+                Animator.Play(greefRig, "Greef_Sit");
             }
         }
         else
