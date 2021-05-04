@@ -777,13 +777,80 @@ public class HeavyTrooper : Enemy
 
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
+        if (collidedGameObject.CompareTag("Bullet"))
+        {
+            BH_Bullet bullet = collidedGameObject.GetComponent<BH_Bullet>();
 
+            if (bullet != null)
+            {
+                TakeDamage(bullet.damage);
 
+                Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
+
+                if (Core.instance.hud != null)
+                {
+                    HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                    if (hudComponent != null)
+                        hudComponent.AddToCombo(25, 0.95f);
+                }
+
+                if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
+                {
+                    skill_slowDownActive = true;
+                    skill_slowDownTimer = 0.0f;
+                }
+            }
+        }
+        else if (collidedGameObject.CompareTag("ChargeBullet"))
+        {
+            ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
+
+            if (bullet != null)
+            {
+                healthPoints -= bullet.damage;
+                this.AddStatus(STATUS_TYPE.DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
+
+                TakeDamage(bullet.damage);
+
+                Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
+
+                if (Core.instance.hud != null)
+                {
+                    Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
+                }
+
+                if (currentState != STATE.DIE && healthPoints <= 0.0f)
+                {
+                    inputsList.Add(INPUT.IN_DIE);
+                }
+            }
+        }
+        else if (collidedGameObject.CompareTag("ExplosiveBarrel") && collidedGameObject.GetComponent<SphereCollider>().active)
+        {
+            //if (myParticles != null && myParticles.hit != null)
+            //    myParticles.hit.Play();
+            BH_DestructBox explosion = collidedGameObject.GetComponent<BH_DestructBox>();
+
+            if (explosion != null)
+            {
+                healthPoints -= explosion.explosion_damage * 2;
+                if (currentState != STATE.DIE && healthPoints <= 0.0f)
+                    inputsList.Add(INPUT.IN_DIE);
+            }
+
+        }
     }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-
+        if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
+        {
+            if (Core.instance.gameObject != null)
+            {
+                inputsList.Add(INPUT.IN_PUSHED);
+            }
+        }
     }
 
     public override void TakeDamage(float damage)
