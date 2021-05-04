@@ -7,7 +7,7 @@ public class Core : Entity
     public static Core instance;
     private static Dictionary<STATUS_TYPE, StatusData> PlayerStatuses = new Dictionary<STATUS_TYPE, StatusData>();
 
-    enum STATE : int
+    public enum STATE : int
     {
         NONE = -1,
         IDLE,
@@ -382,7 +382,7 @@ public class Core : Entity
 
                 if (hit != null)
                 {
-                    Debug.Log(hit.tag);
+                    //Debug.Log(hit.tag);
 
                     if (hit.CompareTag("Gap"))
                     {
@@ -1709,6 +1709,11 @@ public class Core : Entity
     public void OnApplicationQuit()
     {
         bulletDamage = bulletDamageDefault;
+    }
+
+    public STATE GetSate()
+    {
+        return currentState;
     }
 
     public void SaveBuffs()

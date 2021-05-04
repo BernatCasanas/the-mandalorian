@@ -46,6 +46,7 @@ public class HeavyTrooper : Enemy
     private List<INPUT> inputsList = new List<INPUT>();
 
     public GameObject chargePoint = null;
+    public GameObject spear = null;
     public GameObject hitParticles = null;
     private GameObject visualFeedback = null;
 
@@ -105,9 +106,17 @@ public class HeavyTrooper : Enemy
 
         currentState = STATE.IDLE;
 
+        if(spear != null)
+        {
+            HeavyTrooperSpear heavyTrooperSpear = spear.GetComponent<HeavyTrooperSpear>();
+
+            heavyTrooperSpear.damage = (int)damage;
+
+        }
+
         //loadingTime = Animator.GetAnimationDuration(gameObject, "BT_Charge");
         //sweepTime = Animator.GetAnimationDuration(gameObject, "SWEEP");
-        dieTime = Animator.GetAnimationDuration(gameObject, "BT_Die");
+        dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
 
         if (stunParticle != null)
             stun = stunParticle.GetComponent<ParticleSystem>();
@@ -506,7 +515,7 @@ public class HeavyTrooper : Enemy
     #region IDLE
     private void StartIdle()
     {
-        Debug.Log("HEAVYTROOPER IDLE");
+        //Debug.Log("HEAVYTROOPER IDLE");
         idleTimer = idleTime;
         //Animator.Play(gameObject, "BT_Idle", speedMult);
         UpdateAnimationSpd(speedMult);
@@ -522,7 +531,7 @@ public class HeavyTrooper : Enemy
     #region RUN
     private void StartRun()
     {
-        Debug.Log("HEAVYTROOPER RUN");
+        //Debug.Log("HEAVYTROOPER RUN");
         //Animator.Play(gameObject, "BT_Walk", speedMult);
         UpdateAnimationSpd(speedMult);
     }
@@ -556,7 +565,7 @@ public class HeavyTrooper : Enemy
     #region WANDER
     private void StartWander()
     {
-        Debug.Log("HEAVYTROOPER WANDER");
+        //Debug.Log("HEAVYTROOPER WANDER");
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
         //Animator.Play(gameObject, "ST_Run", speedMult);
@@ -582,7 +591,7 @@ public class HeavyTrooper : Enemy
     #region LOADING_ATTACK
     private void StartLoading()
     {
-        Debug.Log("HEAVYTROOPER LOADING");
+        //Debug.Log("HEAVYTROOPER LOADING");
         loadingTimer = loadingTime;
         directionDecisionTimer = directionDecisionTime;
 
@@ -594,13 +603,13 @@ public class HeavyTrooper : Enemy
     {
         if (directionDecisionTimer > 0.0f)
         {
-            Debug.Log("HEAVYTROOPER LOADING ENTRY 1");
+            //Debug.Log("HEAVYTROOPER LOADING ENTRY 1");
             directionDecisionTimer -= myDeltaTime;
             LookAt(player.transform.globalPosition);
 
             if (directionDecisionTimer < 0.1f)
             {
-                Debug.Log("HEAVYTROOPER LOADING ENTRY 2");
+                //Debug.Log("HEAVYTROOPER LOADING ENTRY 2");
                 Vector3 direction = player.transform.globalPosition - gameObject.transform.globalPosition;
                 targetPosition = direction.normalized * dashLength + gameObject.transform.globalPosition;
                 agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
@@ -653,7 +662,7 @@ public class HeavyTrooper : Enemy
     #region SWEEP
     private void StartSweep()
     {
-        Debug.Log("HEAVYTROOPER SWEEP");
+        //Debug.Log("HEAVYTROOPER SWEEP");
         sweepTimer = sweepTime;
 
         //Animator.Play(gameObject, "BT_Walk", speedMult);
@@ -665,16 +674,6 @@ public class HeavyTrooper : Enemy
         {
             directionSweepDecisionTimer -= myDeltaTime;
             LookAt(player.transform.globalPosition);
-
-            //if (directionSweepDecisionTimer < 0.1f)
-            //{
-                
-            //}
-        }
-        else
-        {
-            //DO SWEEP ATTACK
-            Debug.Log("SWEEP DAMAGE");
         }
 
         UpdateAnimationSpd(speedMult);
@@ -779,12 +778,12 @@ public class HeavyTrooper : Enemy
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
 
-        
+
     }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-        
+
     }
 
     public override void TakeDamage(float damage)
@@ -809,7 +808,7 @@ public class HeavyTrooper : Enemy
         {
             straightPath = false;
         }
-        Debug.Log("StraightPath: " + straightPath);
+        //Debug.Log("StraightPath: " + straightPath);
     }
 
     private void UpdateAnimationSpd(float newSpd)
