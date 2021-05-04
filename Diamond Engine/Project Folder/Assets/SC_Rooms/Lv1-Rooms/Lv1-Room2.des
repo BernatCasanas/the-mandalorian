@@ -6896,6 +6896,64 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "name": "Force Notification",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1871892114,
+                    "ParentUID": 2102812545,
+                    "PrefabReference": 1871892114,
+                    "PrefabID": 2881544,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "PrefabObjects": [
+                        {
+                            "name": "ForceParticle",
+                            "tag": "Untagged",
+                            "layer": "Default",
+                            "Active": true,
+                            "UID": 610870844,
+                            "ParentUID": 1871892114,
+                            "PrefabID": 0,
+                            "PrefabReference": 1287064452,
+                            "DontDestroy": false,
+                            "Static": false,
+                            "Position": [
+                                0,
+                                0,
+                                0
+                            ],
+                            "Rotation": [
+                                0,
+                                0,
+                                0,
+                                1
+                            ],
+                            "Scale": [
+                                1,
+                                1,
+                                1
+                            ]
+                        }
+                    ]
                 }
             ]
         },
@@ -7145,9 +7203,9 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
+                    "MaterialAssetPath": "Assets\/Materials\/hud_heat_feedback.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/305324667.mat",
+                    "MaterialUID": 305324667
                 },
                 {
                     "Type": 11,
@@ -7207,9 +7265,9 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
+                    "MaterialAssetPath": "Assets\/Materials\/hud_heat_feedback.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/305324667.mat",
+                    "MaterialUID": 305324667
                 },
                 {
                     "Type": 11,
@@ -7696,9 +7754,9 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
+                    "MaterialAssetPath": "Assets\/Materials\/hud_heat_feedback.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/305324667.mat",
+                    "MaterialUID": 305324667
                 },
                 {
                     "Type": 11,
@@ -8381,11 +8439,11 @@
             ]
         },
         {
-            "name": "LowHealthScreens",
+            "name": "Feedbacks",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1410508260,
+            "UID": 1703425651,
             "ParentUID": 1090904020,
             "PrefabReference": 0,
             "PrefabID": 0,
@@ -8415,12 +8473,74 @@
             ]
         },
         {
+            "name": "ForceFeedback",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1560326343,
+            "ParentUID": 1703425651,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        -87.900001525878906
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        31.100000381469727,
+                        16.100000381469727
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/16251640.mat",
+                    "MaterialUID": 16251640
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/2025551332.dds",
+                    "UID": 2025551332
+                }
+            ]
+        },
+        {
             "name": "DamageScreen1",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 863359444,
-            "ParentUID": 1410508260,
+            "UID": 1020042508,
+            "ParentUID": 1703425651,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -8481,8 +8601,8 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 2028054841,
-            "ParentUID": 1410508260,
+            "UID": 1242726825,
+            "ParentUID": 1703425651,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -8543,8 +8663,8 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 303778658,
-            "ParentUID": 1410508260,
+            "UID": 2063112989,
+            "ParentUID": 1703425651,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
