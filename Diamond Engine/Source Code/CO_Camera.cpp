@@ -23,7 +23,7 @@ C_Camera::C_Camera() : Component(nullptr),
 	windowHeight(0),
 	drawSkybox(true),
 	msaaFBO(1920,1080,4),
-	resolvedFBO(1920,1080,DEPTH_BUFFER_TYPE::DEPTH_RENDER_BUFER)
+	resolvedFBO(1920,1080,DEPTH_BUFFER_TYPE::DEPTH_TEXTURE)
 {
 	name = "Camera";
 	camFrustrum.type = FrustumType::PerspectiveFrustum;
@@ -42,7 +42,7 @@ C_Camera::C_Camera() : Component(nullptr),
 C_Camera::C_Camera(GameObject* _gm) : Component(_gm), fov(60.0f), cullingState(true),
 msaaSamples(4), orthoSize(0.0f), drawSkybox(true),
 msaaFBO(1920, 1080, 4),
-resolvedFBO(1920, 1080, DEPTH_BUFFER_TYPE::DEPTH_RENDER_BUFER)
+resolvedFBO(1920, 1080, DEPTH_BUFFER_TYPE::DEPTH_TEXTURE)
 {
 
 	name = "Camera";

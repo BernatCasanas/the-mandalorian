@@ -17,25 +17,15 @@ void main()
 in vec2 textureCoords;
 out vec4 out_Colour;
 uniform sampler2D colourTexture;
-uniform sampler2D depthTexture;
 
 void main()
 {
 	vec4 colorMultiplier= vec4(1,1,1,1);
 	vec4 myColor = texture(colourTexture,textureCoords);
-	vec4 myDepth = texture(depthTexture,textureCoords);
-	//out_Colour = myColor * vec4(1-myColor.x,1-myColor.y,1-myColor.z,1);
-	out_Colour=myColor*vec4(myDepth.z);
+	out_Colour = vec4(1-myColor.x,1-myColor.y,1-myColor.z,1);
 	//out_Colour=myColor;
 }
 #endif
-
-
-
-
-
-
-
 
 
 

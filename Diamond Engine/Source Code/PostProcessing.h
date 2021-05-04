@@ -35,6 +35,20 @@ private:
 	ImageRenderer* quadRenderer;
 };
 
+class PostProcessEffectDepthTest
+{
+public:
+	PostProcessEffectDepthTest();
+	~PostProcessEffectDepthTest();
+	void CleanUp();
+	void Render(int width, int height, unsigned int colorTexture, unsigned int depthTexture);
+	int GetOutputTexture()const;
+	DE_Advanced_FrameBuffer* GetOutputFBO();
+private:
+	ResourceShader* depthShader;
+	ImageRenderer* quadRenderer;
+};
+
 
 class PostProcessing
 {
@@ -52,6 +66,7 @@ private:
 	void End();
 
 	PostProcessEffectContrastTest* contrastTest;
+	PostProcessEffectDepthTest* depthTest;
 
 	unsigned int quadVAO;
 	unsigned int quadVBO;
