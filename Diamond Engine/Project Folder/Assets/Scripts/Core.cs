@@ -1546,7 +1546,13 @@ public class Core : Entity
         PlayerHealth myHealth = gameObject.GetComponent<PlayerHealth>();
         if (myHealth != null)
         {
-            int finalHealthSubstract = (int)(PlayerHealth.currMaxHealth * 0.25f);
+            int finalHealthSubstract = 0;
+            if (HasStatus(STATUS_TYPE.FALL))
+            {
+                finalHealthSubstract = (int)(PlayerHealth.currMaxHealth * 0.25f / 2);
+            }
+            else
+                finalHealthSubstract = (int)(PlayerHealth.currMaxHealth * 0.25f);
 
             if (PlayerHealth.currHealth - finalHealthSubstract <= 0)
             {

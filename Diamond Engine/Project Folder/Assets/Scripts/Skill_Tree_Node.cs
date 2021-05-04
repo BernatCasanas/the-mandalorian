@@ -184,7 +184,7 @@ public class Skill_Tree_Node : DiamondComponent
         }
         else
         {
-            Debug.Log("ERROR: Skill doesn't exist");
+            Debug.Log("ERROR: Skill doesn't exist: " + skill_name);
         }
 
         if (node_type == 0)
@@ -267,7 +267,7 @@ public class Skill_Tree_Node : DiamondComponent
                 {
                     #region utility
                     case "UDamageHeat":
-                        // Debug.Log("Damage * heat not implemented yet");
+                        //Debug.Log("Damage * heat not implemented yet");
                         Core.instance.AddStatus(STATUS_TYPE.DMG_PER_HEAT, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
                         break;
                     case "UMovSpd":
@@ -278,14 +278,17 @@ public class Skill_Tree_Node : DiamondComponent
                         Debug.Log("Slow when damage not implemented yet");
                         break;
                     case "UFallDmgRed":
-                        Debug.Log("Damage reduction after dash not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.FALL, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
+                      //  Debug.Log("Damage reduction after dash not implemented yet");
                         break;
                     case "UOverheat":
                         //Debug.Log("More Shots before overheat not implemented yet");
-                        Core.instance.AddStatus(STATUS_TYPE.DMG_PER_HEAT, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.OVERHEAT, STATUS_APPLY_TYPE.SUBSTITUTE, -20, 0, true);
                         break;
                     case "URedGroguCost":
-                        Debug.Log("Grogu reduction cost not implemented yet");
+                        Debug.Log("Grogu Cost reduced");
+                        Core.instance.AddStatus(STATUS_TYPE.GROGU_COST, STATUS_APPLY_TYPE.SUBSTITUTE, -20, 0, true);
+                      //  Debug.Log("Grogu reduction cost not implemented yet");
                         break;
                     case "UHeal":
                         Debug.Log("Gogu heal not implemented yet");
