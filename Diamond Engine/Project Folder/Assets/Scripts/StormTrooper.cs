@@ -61,6 +61,7 @@ public class StormTrooper : Enemy
     //Ranges
     public float wanderRange = 7.5f;
     public float runningRange = 12.5f;
+    public float avoidRange = 15f;
 
     //Timers
     private float idleTimer = 0.0f;
@@ -543,13 +544,11 @@ public class StormTrooper : Enemy
                 unableToShoot = false;
                 statesTimer = timeBewteenStates;
                 endedAvoidingObjects = false;
+                Animator.Play(gameObject, "ST_Idle");
             }
             else return;
         }
-        else
-        {
-            Animator.Play(gameObject, "ST_Idle");
-        }
+
 
 
         if (statesTimer > 0.0f)
@@ -648,7 +647,7 @@ public class StormTrooper : Enemy
             Animator.Play(gameObject, "ST_Run", speedMult);
             UpdateAnimationSpd(speedMult);
             agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
-            destinationAvoidObject = agent.GetDestination().normalized * detectionRange;
+            destinationAvoidObject = agent.GetDestination().normalized * avoidRange;
             destinationAvoidObject.y = gameObject.transform.globalPosition.y;
             agent.CalculatePath(gameObject.transform.globalPosition, destinationAvoidObject);
 
