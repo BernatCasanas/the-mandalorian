@@ -592,7 +592,7 @@ namespace DiamondEngine
             {"ASniperDmg", typeof(AggressionSniperDamageSkill)},
             {"ADmgBos", typeof(AggressionDamageBossesSkill)},
             {"AHPMissDmgBlaster", typeof(AggressionHPMissDamageBlasterSkill)},
-            {"AHPMissCritChance", typeof(AggressionHPMissDamageSniperSkill)},
+            {"AHPMissDmgSniper", typeof(AggressionHPMissDamageSniperSkill)},
             {"DMaxHPS", typeof(DefenseMaxHPSkill)},
             {"DDmgRed", typeof(DefenseDamageReductionSkill)},
             {"DComboDmgRed", typeof(DefenseComboDamageReductionSkill)},
