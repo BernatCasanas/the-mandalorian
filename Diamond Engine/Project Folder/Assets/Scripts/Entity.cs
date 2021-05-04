@@ -43,6 +43,8 @@ public enum STATUS_TYPE
     MAX_HP,
     DMG_RED,
     DMG_PER_HEAT,
+    FALL,
+    GROGU_COST,
 }
 
 public enum STATUS_APPLY_TYPE
@@ -103,7 +105,7 @@ public class Entity : DiamondComponent
     public float DamagePerHpMult = 1f;
     public float DamagePerHeatMult = 1f;
     public float DamageRed = 1f;
-
+    public float GroguCost = 1f;
     protected virtual void InitEntity(ENTITY_TYPE myType)
     {
         eType = myType;
@@ -115,6 +117,7 @@ public class Entity : DiamondComponent
         DamagePerHpMult = 1f;
         DamagePerHeatMult = 1f;
         DamageRed = 1f;
+        GroguCost = 1f;
         myDeltaTime = Time.deltaTime;
     }
 
@@ -380,6 +383,12 @@ public class Entity : DiamondComponent
 
                 }
                 break;
+            case STATUS_TYPE.GROGU_COST:
+                {
+                    statusToInit.statChange = statusToInit.severity / 100;
+                    this.GroguCost += statusToInit.statChange;
+                }
+                break;
             default:
                 break;
         }
@@ -399,7 +408,7 @@ public class Entity : DiamondComponent
                             float missingHealth = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
                             float missingHealtPercentage =  missingHealth / PlayerHealth.currMaxHealth;
                             DamagePerHpMult = 1 + missingHealtPercentage;
-                        Debug.Log("TESTING / dmg per missing hp = " + DamagePerHpMult.ToString());
+                      //  Debug.Log("TESTING / dmg per missing hp = " + DamagePerHpMult.ToString());
                         // }
                     }
             
@@ -417,7 +426,7 @@ public class Entity : DiamondComponent
                             float currentheat = Core.instance.hud.GetComponent<HUD>().primaryWeaponHeat;
                             float HeatPercentage = currentheat / Core.instance.hud.GetComponent<HUD>().primaryWeaponMaxHeat;
                             DamagePerHeatMult = 1 + HeatPercentage;
-                            Debug.Log("TESTING / dmg per heat = " + DamagePerHeatMult.ToString());
+                        //    Debug.Log("TESTING / dmg per heat = " + DamagePerHeatMult.ToString());
                         }
                            
                       
@@ -507,6 +516,12 @@ public class Entity : DiamondComponent
             case STATUS_TYPE.DMG_PER_HEAT:
                 {
                     this.DamagePerHeatMult = 1;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.GROGU_COST:
+                {
+                   this.GroguCost -= statusToDelete.statChange;
                     //    Debug.Log(this.MovspeedMult.ToString());
                 }
                 break;

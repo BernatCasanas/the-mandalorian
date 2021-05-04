@@ -434,12 +434,14 @@ public class BabyYoda : DiamondComponent
 
     private bool ExecutePushSkill()
     {
-        if (Core.instance.gameObject == null || currentForce < skillPushForceCost)
+        if (Core.instance != null)
+            Debug.Log(Core.instance.GroguCost.ToString());
+        if (Core.instance.gameObject == null || currentForce < skillPushForceCost * Core.instance.GroguCost)
             return false;
 
         if (Core.instance.hud != null)
         {
-            SetCurrentForce((int)currentForce - skillPushForceCost);
+            SetCurrentForce((int)(currentForce - skillPushForceCost * Core.instance.GroguCost));
         }
         skillPushTimer += INIT_TIMER;
 
@@ -460,13 +462,12 @@ public class BabyYoda : DiamondComponent
     //Execute order 66
     private bool ExecuteWallSkill()
     {
-        if (Core.instance.gameObject == null || currentForce < skillWallForceCost)
+        if (Core.instance.gameObject == null || currentForce < skillWallForceCost * Core.instance.GroguCost)
             return false;
 
         if (Core.instance.hud != null)
         {
-            currentForce -= skillWallForceCost;
-            Core.instance.hud.GetComponent<HUD>().UpdateForce((int)currentForce, totalForce);
+            SetCurrentForce((int)(currentForce - skillWallForceCost * Core.instance.GroguCost));
         }
 
         skillWallTimer += INIT_TIMER;
