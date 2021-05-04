@@ -20,7 +20,10 @@ public class QuitConfirmation : DiamondComponent
 			Time.ResumeGame();
 			Audio.SetState("Game_State", "HUB");
 			Counter.gameResult = Counter.GameResult.NONE;
+			if (Core.instance != null)
+				Core.instance.SaveBuffs();
 			SceneManager.LoadScene(821370213);
+
 		}
 	}
 	public void Update()

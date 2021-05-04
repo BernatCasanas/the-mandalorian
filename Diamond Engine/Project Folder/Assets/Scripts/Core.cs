@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Core : Entity
 {
     public static Core instance;
+    private static Dictionary<STATUS_TYPE, StatusData> PlayerStatuses = new Dictionary<STATUS_TYPE, StatusData>();
 
     enum STATE : int
     {
@@ -260,6 +261,7 @@ public class Core : Entity
         // Placeholder for Start() function
         if (scriptStart == true)
         {
+            LoadBuffs();
             hud = InternalCalls.FindObjectWithName("HUD");
 
             if (hud == null)
@@ -1707,5 +1709,31 @@ public class Core : Entity
     public void OnApplicationQuit()
     {
         bulletDamage = bulletDamageDefault;
+    }
+
+    public void SaveBuffs()
+    {
+        Debug.Log("SAVE STATUSES");
+        copyBuffs(ref PlayerStatuses);
+    }
+
+    public void LoadBuffs()
+    {
+        Debug.Log("LOAD STATUSES");
+        Debug.Log(PlayerStatuses.Count.ToString());
+        var mapKeys = PlayerStatuses.Keys;
+        foreach (STATUS_TYPE statusType in mapKeys)
+        {
+            if (PlayerStatuses.ContainsKey(statusType) == false)
+                continue;
+            Debug.Log(PlayerStatuses[statusType].statusType.ToString());
+            Debug.Log(PlayerStatuses[statusType].applyType.ToString());
+            Debug.Log(PlayerStatuses[statusType].severity.ToString());
+            Debug.Log(PlayerStatuses[statusType].remainingTime.ToString());
+            Debug.Log(PlayerStatuses[statusType].isPermanent.ToString());
+
+            AddStatus(PlayerStatuses[statusType].statusType, PlayerStatuses[statusType].applyType, PlayerStatuses[statusType].severity, 1, PlayerStatuses[statusType].isPermanent);
+
+        }
     }
 }

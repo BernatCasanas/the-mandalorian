@@ -14,8 +14,11 @@ public class StartMenu : DiamondComponent
 	{
 		if (gameObject.Name == "Play")
 		{
+			if (Core.instance != null)
+				Core.instance.SaveBuffs();
 			SceneManager.LoadScene(1564453141);
-			
+
+
 			if (MusicSourceLocate.instance != null)
 			{
 				Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
