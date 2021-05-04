@@ -34,6 +34,14 @@ public class BabyYoda : DiamondComponent
     public float pushVerticalForce = 10;
     public float PushStun = 2;
 
+    //Force flow feedback
+    public GameObject forceParticle = null;
+    private ParticleSystem forcePartSys = null;
+    private bool canPlayParticles = false;
+    public GameObject forceGaugeFeedback = null;
+    private float forceFBTimer = 0.0f;
+    public float forceFBTime = 0.25f;
+
     //State (INPUT AND STATE LOGIC)
     #region STATE
     private STATE state = STATE.MOVE;
@@ -87,7 +95,17 @@ public class BabyYoda : DiamondComponent
             else currentForce += (forceRegenerationSpeed * Time.deltaTime);
 
             if (currentForce > totalForce)
+            {
                 currentForce = totalForce;
+                if (canPlayParticles)
+                {
+                    Debug.Log("PARTICLES PLAY!!");
+                    forcePartSys.Play();
+                    canPlayParticles = false;
+                    forceGaugeFeedback.Enable(true);
+                    forceFBTimer = forceFBTime;
+                }
+            }
 
             Core.instance.hud.GetComponent<HUD>().UpdateForce((int)currentForce, totalForce);
         }
@@ -102,7 +120,25 @@ public class BabyYoda : DiamondComponent
         currentForce = totalForce;
         flipVertical = false;
 
-     
+        if (forceParticle == null)
+        {
+            forceParticle = InternalCalls.FindObjectWithName("ForceParticle");
+            if (forceParticle == null)
+                Debug.Log("Force particle game object not found");
+        }
+
+        if (forceParticle != null)
+            forcePartSys = forceParticle.GetComponent<ParticleSystem>();
+
+        if (forceGaugeFeedback == null)
+        {
+            forceGaugeFeedback = InternalCalls.FindObjectWithName("ForceFeedback");
+            if (forceGaugeFeedback == null)
+                Debug.Log("Force feedback game object not found");
+        }
+
+        if (forceGaugeFeedback != null)
+            forceGaugeFeedback.Enable(false);
     }
 
     public void Update()
@@ -118,6 +154,14 @@ public class BabyYoda : DiamondComponent
         UpdateState();
         Move();
         UpdateHUD();
+
+        if (forceFBTimer >= 0.0f)
+            forceFBTimer -= Time.deltaTime;
+        if (forceFBTimer < 0.0f)
+        {
+            forceGaugeFeedback.Enable(false);
+            forceFBTimer = -1.0f;
+        }
     }
 
     #region MOVEMENT
@@ -462,7 +506,7 @@ public class BabyYoda : DiamondComponent
     public void SetCurrentForce(int newForceValue)
     {
         currentForce = newForceValue;
-
+        canPlayParticles = true;
         Core.instance.hud.GetComponent<HUD>().UpdateForce((int)currentForce, totalForce);
     }
 

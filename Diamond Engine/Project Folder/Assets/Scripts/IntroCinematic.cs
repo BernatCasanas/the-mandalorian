@@ -31,20 +31,22 @@ public class IntroCinematic : DiamondComponent
     Vector3 cameraAuxPosition = null;
     Quaternion toRotateQuaternion = null;
     float currentSpeed = 0;
-    //float currentTimer = 0.0f;
+    float currentTimer = 0.0f;
     float currentTimeLimit = 0.0f;
-    Quaternion auxCameraRotation = null;
+    Vector3 nonCinematicCameraPos = null;
+    Quaternion nonCinematicCameraRotation = null;
 
     GameObject[] pointArray = null;
-    float[] speedArray = new float[] { 1.0f, 2.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };    // Adapt values; wouldn't it be easier to just calculate the speed based on how long we need that scene to be?
+    float[] speedArray = new float[] { 1.0f, 2.0f, 1.0f, 5.0f, 1.0f, 1.0f, 1.0f, 1.0f };    // Adapt values; wouldn't it be easier to just calculate the speed based on how long we need that scene to be?
     float[] timerArray = null;    // Why am I using timer approach? Basically, the triggers of each camera switch are animation ends, positions reached and timers. Everything is convertable to time, but the other two can't be converted universally
     int arrayCount = -1;
 
     public void Awake()
     {
-        /*if (Counter.firstRun)
+        if (Counter.firstRun)
         {
-            auxCameraRotation = cameraObject.transform.localRotation;
+            nonCinematicCameraPos = cameraObject.transform.localPosition;
+            nonCinematicCameraRotation = cameraObject.transform.localRotation;
             CameraManager.SetCameraPerspective(cameraObject);
 
             if (InitializeTimers())
@@ -57,13 +59,12 @@ public class IntroCinematic : DiamondComponent
         else
         {
             EndCinematic();
-        }*/
+        }
     }
 
     public void Update()
     {
-        // We should have a way to skip the cinematic :/
-        /*Core.instance.LockInputs(true); // Yeah. Not pretty. But calling Core in Awake is not happening, and a boolean checked every frame seems redundant for what the function does
+        Core.instance.LockInputs(true); // Yeah. Not pretty. But calling Core in Awake is not happening, and a boolean checked every frame seems redundant for what the function does
 
         if (toGoPosition != null && WeHaveToMove())
         {
@@ -79,11 +80,16 @@ public class IntroCinematic : DiamondComponent
         }
 
         currentTimer += Time.deltaTime;
-        if (currentTimer > timerArray[arrayCount])
+        if (currentTimer > currentTimeLimit)
         {
             ManageCamera();
             UpdateValues();
-        }*/
+        }
+
+        if (Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_REPEAT)
+        {
+            EndCinematic();
+        }
     }
 
     public bool WeHaveToMove() // So... I didn't want to write this function, but otherwise weird behavior unfolds because of float's decimals. So yeah :)
@@ -115,7 +121,7 @@ public class IntroCinematic : DiamondComponent
             return;
         }
 
-        //currentTimer = 0;
+        currentTimer = 0;
         currentTimeLimit = timerArray[arrayCount];
         currentSpeed = speedArray[arrayCount];
         cameraAuxPosition = cameraObject.transform.localPosition = pointArray[arrayCount * 2].transform.localPosition;
@@ -134,7 +140,6 @@ public class IntroCinematic : DiamondComponent
 
             case 3:
                 Animator.Play(greefRig, "Greef_Greet");
-                // Mando goes back to his usual model
                 break;
 
             case 4:
@@ -152,7 +157,8 @@ public class IntroCinematic : DiamondComponent
 
         if (Counter.firstRun)
         {
-            cameraObject.transform.localRotation = auxCameraRotation;
+            cameraObject.transform.localPosition = nonCinematicCameraPos;
+            cameraObject.transform.localRotation = nonCinematicCameraRotation;
             CameraManager.SetCameraOrthographic(cameraObject);
             Core.instance.LockInputs(false);
             postCinematicDialogue.Enable(true);
@@ -168,7 +174,7 @@ public class IntroCinematic : DiamondComponent
             float revolverZoomOut = Mathf.Distance(point3.transform.globalPosition, point4.transform.globalPosition) / speedArray[1];
             float revolverStatic = 0.36f;
             float greefTurningZoom = Animator.GetAnimationDuration(greefRig, "Greef_Head");
-            float greefGreeting = Animator.GetAnimationDuration(greefRig, "Greef_Head");
+            float greefGreeting = Animator.GetAnimationDuration(greefRig, "Greef_Greet");
             float tableZoomOut = Mathf.Distance(point11.transform.globalPosition, point12.transform.globalPosition) / speedArray[5];
             float tableStatic = 0.50f;
             float mandoZoomOut = Mathf.Distance(point15.transform.globalPosition, point16.transform.globalPosition) / speedArray[7];
