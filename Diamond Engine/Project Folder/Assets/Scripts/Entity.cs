@@ -42,6 +42,7 @@ public enum STATUS_TYPE
     DMG_PER_HP,
     MAX_HP,
     DMG_RED,
+    DMG_PER_HEAT,
 }
 
 public enum STATUS_APPLY_TYPE
@@ -100,6 +101,7 @@ public class Entity : DiamondComponent
     public float DamageMult = 1f;
     public float DamageToBosses = 1f;
     public float DamagePerHpMult = 1f;
+    public float DamagePerHeatMult = 1f;
     public float DamageRed = 1f;
 
     protected virtual void InitEntity(ENTITY_TYPE myType)
@@ -111,6 +113,7 @@ public class Entity : DiamondComponent
         DamageMult = 1f;
         DamageToBosses = 1f;
         DamagePerHpMult = 1f;
+        DamagePerHeatMult = 1f;
         DamageRed = 1f;
         myDeltaTime = Time.deltaTime;
     }
@@ -358,7 +361,7 @@ public class Entity : DiamondComponent
                         PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
                         if (myHealth != null)
                         {
-                            Debug.Log("Need testing");
+                            Debug.Log("TESTING / max hp");
                             Debug.Log("Old Max Health = " + PlayerHealth.currMaxHealth.ToString());
                             statusToInit.statChange = statusToInit.severity * PlayerHealth.currMaxHealth / 100;
                             myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth + statusToInit.statChange));
@@ -394,15 +397,35 @@ public class Entity : DiamondComponent
                         //if (myHealth != null)
                         //{
                             float missingHealth = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
-                            float missingHealtPercentage = 1 + missingHealth * 100 / PlayerHealth.currMaxHealth;
-                            DamagePerHpMult = missingHealtPercentage / 100;
-                        Debug.Log("Need to test / dmg per missing hp = " + DamagePerHpMult.ToString());
+                            float missingHealtPercentage =  missingHealth / PlayerHealth.currMaxHealth;
+                            DamagePerHpMult = 1 + missingHealtPercentage;
+                        Debug.Log("TESTING / dmg per missing hp = " + DamagePerHpMult.ToString());
                         // }
                     }
             
                 }
                 break;
-         
+            case STATUS_TYPE.DMG_PER_HEAT:
+                {
+                    if (Core.instance != null)
+                    {
+                        //PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                        //if (myHealth != null)
+                        //{
+                        if (Core.instance.hud != null)
+                        {
+                            float currentheat = Core.instance.hud.GetComponent<HUD>().primaryWeaponHeat;
+                            float HeatPercentage = currentheat / Core.instance.hud.GetComponent<HUD>().primaryWeaponMaxHeat;
+                            DamagePerHeatMult = 1 + HeatPercentage;
+                            Debug.Log("TESTING / dmg per heat = " + DamagePerHeatMult.ToString());
+                        }
+                           
+                      
+                        // }
+                    }
+
+                }
+                break;
             default:
                 break;
         }
@@ -456,7 +479,7 @@ public class Entity : DiamondComponent
                 break;
             case STATUS_TYPE.DMG_PER_HP:
                 {
-                    this.DamagePerHpMult = 1; ;
+                    this.DamagePerHpMult = 1;
                     //    Debug.Log(this.MovspeedMult.ToString());
                 }
                 break;
@@ -478,6 +501,12 @@ public class Entity : DiamondComponent
                 {
                     this.DamageRed -= statusToDelete.statChange;
                     Debug.Log("Damage red = " + this.DamageRed.ToString());
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.DMG_PER_HEAT:
+                {
+                    this.DamagePerHeatMult = 1;
                     //    Debug.Log(this.MovspeedMult.ToString());
                 }
                 break;
