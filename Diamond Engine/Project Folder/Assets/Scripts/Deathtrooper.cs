@@ -51,7 +51,6 @@ public class Deathtrooper : Enemy
     private float recoilTimer = 0.0f;
     private float betweenStatesTimer = 0.0f;
     private float betweenBurstsTimer = 0.0f;
-    //private float shotCDTimer = 0.0f;
     private float currAnimationPlaySpd = 1f;
 
     //Action times
@@ -59,8 +58,7 @@ public class Deathtrooper : Enemy
     private float dieTime = 3.0f;
     public float timeBewteenBursts = 0.8f;
     public float betweenStatesTime = 1.5f;
-    public float recoilTime = 0.0f;
-    public float shotCDTime = 0.0f;
+    private float recoilTime = 0.0f;
 
     //Speeds
     public float wanderSpeed = 3.5f;
@@ -72,6 +70,7 @@ public class Deathtrooper : Enemy
     //Ranges
     public float wanderRange = 7.5f;
     public float shotRange = 12.5f;
+    public float recoilDistance = 0.0f;
 
     //Action variables
     public int numShots;
@@ -99,6 +98,8 @@ public class Deathtrooper : Enemy
         UpdateAnimationSpd(speedMult);
 
         idleTimer = idleTime;
+
+        recoilTime = recoilDistance / recoilSpeed;
     }
 
     public void Update()
