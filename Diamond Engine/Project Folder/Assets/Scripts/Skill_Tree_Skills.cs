@@ -22,7 +22,7 @@ namespace DiamondEngine
     #region Mando Skills
 
     #region Utility Skills
-    public class UtilityKnockbackSkill : Skills
+    public class UtilityDamagePerHeat : Skills
     {
         public override void Use()
         {
@@ -44,7 +44,7 @@ namespace DiamondEngine
 
     }
 
-    public class UtilityIncreaseDamageSkill : Skills
+    public class UtilitySlowDamageSkill : Skills
     {
         public override void Use()
         {
@@ -58,7 +58,7 @@ namespace DiamondEngine
         }
     }
 
-    public class UtilityDamageReductionSkill : Skills
+    public class UtilityFallDamageReductionSkill : Skills
     {
         public override void Use()
         {
@@ -577,10 +577,10 @@ namespace DiamondEngine
     {
         public static Dictionary<string, Type> skill_type = new Dictionary<string, Type>
         {
-            {"UKnockback", typeof(UtilityKnockbackSkill)},
+            {"UDamageHeat", typeof(UtilityDamagePerHeat)},
             {"UMovSpd", typeof(UtilityMovementSpeedSkill)},
-            {"UIncDmg", typeof(UtilityIncreaseDamageSkill)},
-            {"UDmgRed", typeof(UtilityDamageReductionSkill)},
+            {"USlowDamage", typeof(UtilitySlowDamageSkill)},
+            {"UFallDmgRed", typeof(UtilityFallDamageReductionSkill)},
             {"UOverheat", typeof(UtilityOverheatSkill)},
             {"URedGroguCost", typeof(UtilityReductionGroguCostSkill)},
             {"UHeal", typeof(UtilityHealSkill)},

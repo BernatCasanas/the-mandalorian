@@ -266,22 +266,23 @@ public class Skill_Tree_Node : DiamondComponent
                 switch (name)
                 {
                     #region utility
-                    case "UKnockback":
-                        Debug.Log("Knock Back not implemented yet");
+                    case "UDamageHeat":
+                        // Debug.Log("Damage * heat not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.DMG_PER_HEAT, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
                         break;
                     case "UMovSpd":
                         //Debug.Log("MovementSpeed not implemented yet");
-                        Core.instance.AddStatus(STATUS_TYPE.MOV_SPEED, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.MOV_SPEED, STATUS_APPLY_TYPE.SUBSTITUTE, 100, 0, true);
                         break;
-                    case "UIncDmg":
-                        Debug.Log("Damage after grogu push  not implemented yet");
+                    case "USlowDamage":
+                        Debug.Log("Slow when damage not implemented yet");
                         break;
-                    case "UDmgRed":
+                    case "UFallDmgRed":
                         Debug.Log("Damage reduction after dash not implemented yet");
                         break;
                     case "UOverheat":
                         //Debug.Log("More Shots before overheat not implemented yet");
-                        Core.instance.AddStatus(STATUS_TYPE.OVERHEAT, STATUS_APPLY_TYPE.SUBSTITUTE, -20, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.DMG_PER_HEAT, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
                         break;
                     case "URedGroguCost":
                         Debug.Log("Grogu reduction cost not implemented yet");
