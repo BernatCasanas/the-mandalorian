@@ -7,98 +7,92 @@
 #include "MO_ResourceManager.h"
 
 
-PostProcessEffectContrastTest::PostProcessEffectContrastTest() :contrastShader(nullptr)
+
+PostProcessFilter::PostProcessFilter(int shaderUID):myShader(nullptr),quadRenderer(nullptr)
 {
-	quadRenderer = new ImageRenderer(1920, 1080);//TODO change this for the constructor with params once we have more than 1 effect
-		//TODO post process shader uid here once we have it into lib
-	contrastShader = dynamic_cast<ResourceShader*>(EngineExternal->moduleResources->RequestResource(1381112348, Resource::Type::SHADER));
+	quadRenderer = new ImageRenderer(1920, 1080);
+	myShader = dynamic_cast<ResourceShader*>(EngineExternal->moduleResources->RequestResource(shaderUID, Resource::Type::SHADER));
 }
 
-PostProcessEffectContrastTest::~PostProcessEffectContrastTest()
+PostProcessFilter::~PostProcessFilter()
 {
 	CleanUp();
 }
 
-void PostProcessEffectContrastTest::CleanUp()
+void PostProcessFilter::CleanUp()
 {
 	if (quadRenderer != nullptr)
-		delete(quadRenderer);
-
-	if (contrastShader != nullptr)
 	{
-		EngineExternal->moduleResources->UnloadResource(1381112348);	//TODO post process shader uid here once we have it into lib
-		contrastShader = nullptr;
+		delete(quadRenderer);
+		quadRenderer = nullptr;
 	}
 
+	if (myShader != nullptr)
+	{
+		EngineExternal->moduleResources->UnloadResource(myShader->GetUID());	//TODO post process shader uid here once we have it into lib
+		myShader = nullptr;
+	}
 }
 
-void PostProcessEffectContrastTest::Render(int width, int height, unsigned int colorTexture)
+int PostProcessFilter::GetOutputTexture() const
 {
-	quadRenderer->RegenerateFBO(width, height);
-	contrastShader->Bind();
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, colorTexture);
-	quadRenderer->RenderQuad();
-	contrastShader->Unbind();
-}
+	if (quadRenderer == nullptr)
+		return 0;
 
-int PostProcessEffectContrastTest::GetOutputTexture() const
-{
 	return quadRenderer->GetOutputTexture();
 }
 
-DE_Advanced_FrameBuffer* PostProcessEffectContrastTest::GetOutputFBO()
+DE_Advanced_FrameBuffer* PostProcessFilter::GetOutputFBO()
 {
+	if (quadRenderer == nullptr)
+		return nullptr;
+
 	return quadRenderer->GetOutputFBO();
 }
 
-PostProcessEffectDepthTest::PostProcessEffectDepthTest()
+PostProcessFilterContrastTest::PostProcessFilterContrastTest() : PostProcessFilter(1381112348)
 {
-	quadRenderer = new ImageRenderer(1920, 1080);
-	//TODO post process shader uid here once we have it into lib
-	depthShader = dynamic_cast<ResourceShader*>(EngineExternal->moduleResources->RequestResource(454495126, Resource::Type::SHADER));
 
 }
 
-PostProcessEffectDepthTest::~PostProcessEffectDepthTest()
+PostProcessFilterContrastTest::~PostProcessFilterContrastTest()
 {
-	CleanUp();
+
 }
 
-void PostProcessEffectDepthTest::CleanUp()
-{
-	if (quadRenderer != nullptr)
-		delete(quadRenderer);
-
-	if (depthShader != nullptr)
-	{
-		EngineExternal->moduleResources->UnloadResource(454495126);	//TODO post process shader uid here once we have it into lib
-		depthShader = nullptr;
-	}
-}
-
-void PostProcessEffectDepthTest::Render(int width, int height, unsigned int colorTexture, unsigned int depthTexture)
+void PostProcessFilterContrastTest::Render(int width, int height, unsigned int colorTexture)
 {
 	quadRenderer->RegenerateFBO(width, height);
-	depthShader->Bind();
+	myShader->Bind();
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, colorTexture);
-	glUniform1i(glGetUniformLocation(depthShader->shaderProgramID, "colourTexture"), 0);
+	quadRenderer->RenderQuad();
+	myShader->Unbind();
+}
+
+PostProcessFilterDepthTest::PostProcessFilterDepthTest(): PostProcessFilter(454495126)
+{
+
+}
+
+PostProcessFilterDepthTest::~PostProcessFilterDepthTest()
+{
+
+}
+
+
+void PostProcessFilterDepthTest::Render(int width, int height, unsigned int colorTexture, unsigned int depthTexture)
+{
+	quadRenderer->RegenerateFBO(width, height);
+	myShader->Bind();
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, colorTexture);
+	glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "colourTexture"), 0);
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, depthTexture);
-	glUniform1i(glGetUniformLocation(depthShader->shaderProgramID, "depthTexture"), 1);
+	glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "depthTexture"), 1);
 
 	//glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
 	quadRenderer->RenderQuad();
-	depthShader->Unbind();
-}
-
-int PostProcessEffectDepthTest::GetOutputTexture() const
-{
-	return quadRenderer->GetOutputTexture();
-}
-
-DE_Advanced_FrameBuffer* PostProcessEffectDepthTest::GetOutputFBO()
-{
-	return quadRenderer->GetOutputFBO();
+	myShader->Unbind();
 }

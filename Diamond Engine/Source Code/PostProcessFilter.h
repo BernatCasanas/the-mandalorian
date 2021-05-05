@@ -4,30 +4,35 @@ class DE_Advanced_FrameBuffer;
 class ResourceShader;
 class ImageRenderer;
 
-class PostProcessEffectContrastTest
+
+class PostProcessFilter
 {
 public:
-	PostProcessEffectContrastTest();
-	~PostProcessEffectContrastTest();
+	PostProcessFilter(int shaderUID);
+	~PostProcessFilter();
+
 	void CleanUp();
-	void Render(int width, int height, unsigned int colorTexture);
 	int GetOutputTexture()const;
 	DE_Advanced_FrameBuffer* GetOutputFBO();
-private:
-	ResourceShader* contrastShader;
+
+protected:
+	ResourceShader* myShader;
 	ImageRenderer* quadRenderer;
 };
 
-class PostProcessEffectDepthTest
+class PostProcessFilterContrastTest : public PostProcessFilter
 {
 public:
-	PostProcessEffectDepthTest();
-	~PostProcessEffectDepthTest();
-	void CleanUp();
+	PostProcessFilterContrastTest();
+	~PostProcessFilterContrastTest();
+	void Render(int width, int height, unsigned int colorTexture);
+};
+
+class PostProcessFilterDepthTest : public PostProcessFilter
+{
+public:
+	PostProcessFilterDepthTest();
+	~PostProcessFilterDepthTest();
 	void Render(int width, int height, unsigned int colorTexture, unsigned int depthTexture);
-	int GetOutputTexture()const;
-	DE_Advanced_FrameBuffer* GetOutputFBO();
-private:
-	ResourceShader* depthShader;
-	ImageRenderer* quadRenderer;
+
 };

@@ -38,8 +38,8 @@ void PostProcessing::Init()
 	glBindVertexArray(0);
 
 	//init effects
-	contrastTest = new PostProcessEffectContrastTest();
-	depthTest = new PostProcessEffectDepthTest();
+	contrastTest = new PostProcessFilterContrastTest();
+	depthTest = new PostProcessFilterDepthTest();
 }
 
 void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBuffer& outputFBO, unsigned int colorTexture, unsigned int depthTexture, ResourcePostProcess* settings)
