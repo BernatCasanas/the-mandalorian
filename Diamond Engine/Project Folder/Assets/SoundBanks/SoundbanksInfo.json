@@ -18,7 +18,7 @@
    {
     "Id": "225682233",
     "Language": "SFX",
-    "Hash": "1202205050",
+    "Hash": "2071329838",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Skytrooper",
     "ShortName": "Skytrooper",
     "Path": "Skytrooper.bnk",
@@ -110,7 +110,7 @@
    {
     "Id": "833070093",
     "Language": "SFX",
-    "Hash": "1258957422",
+    "Hash": "139654930",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Stormtrooper",
     "ShortName": "Stormtrooper",
     "Path": "Stormtrooper.bnk",
@@ -299,7 +299,7 @@
    {
     "Id": "913881297",
     "Language": "SFX",
-    "Hash": "2009263422",
+    "Hash": "3629725556",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Wampa_Skell",
     "ShortName": "Wampa_Skell",
     "Path": "Wampa_Skell.bnk",
@@ -439,6 +439,85 @@
       "Id": "2704707011",
       "Name": "BusVolume",
       "ObjectPath": "\\Game Parameters\\Default Work Unit\\BusVolume"
+     }
+    ]
+   },
+   {
+    "Id": "1019160887",
+    "Language": "SFX",
+    "Hash": "2968997519",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Heavytrooper",
+    "ShortName": "Heavytrooper",
+    "Path": "Heavytrooper.bnk",
+    "IncludedEvents": [
+     {
+      "Id": "192623117",
+      "Name": "Pause_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Pause_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "291143311",
+      "Name": "Play_Heavytrooper_Attack",
+      "ObjectPath": "\\Events\\Default Work Unit\\Heavytrooper\\Play_Heavytrooper_Attack",
+      "DurationType": "OneShot",
+      "DurationMin": "0.476190",
+      "DurationMax": "0.476190",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "564071722",
+        "Language": "SFX",
+        "ShortName": "heavytrooper spear whoosh 2.wav",
+        "Path": "SFX\\heavytrooper spear whoosh 2_FC2D3A10.wem"
+       },
+       {
+        "Id": "866191427",
+        "Language": "SFX",
+        "ShortName": "heavytrooper spear whoosh 1.wav",
+        "Path": "SFX\\heavytrooper spear whoosh 1_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "2687183543",
+      "Name": "Play_Heavytrooper_Dash",
+      "ObjectPath": "\\Events\\Default Work Unit\\Heavytrooper\\Play_Heavytrooper_Dash",
+      "DurationType": "OneShot",
+      "DurationMin": "0.379887",
+      "DurationMax": "0.379887",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "997659044",
+        "Language": "SFX",
+        "ShortName": "heavytrooper dash.wav",
+        "Path": "SFX\\heavytrooper dash_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1931338186",
+      "Name": "Resume_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Resume_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "3318621861",
+      "Name": "Stop_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     }
+    ],
+    "GameParameters": [
+     {
+      "Id": "467158820",
+      "Name": "SourceVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
      }
     ]
    },
@@ -1027,7 +1106,7 @@
    {
     "Id": "1229948536",
     "Language": "SFX",
-    "Hash": "1472986959",
+    "Hash": "1254184586",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Environment",
     "ShortName": "Environment",
     "Path": "Environment.bnk",
@@ -1325,7 +1404,7 @@
    {
     "Id": "2674766611",
     "Language": "SFX",
-    "Hash": "1145452227",
+    "Hash": "2069884685",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Turret",
     "ShortName": "Turret",
     "Path": "Turret.bnk",
@@ -1415,7 +1494,7 @@
    {
     "Id": "3049191116",
     "Language": "SFX",
-    "Hash": "378495727",
+    "Hash": "1702500579",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Rancor",
     "ShortName": "Rancor",
     "Path": "Rancor.bnk",
@@ -1795,9 +1874,110 @@
     ]
    },
    {
+    "Id": "3721236575",
+    "Language": "SFX",
+    "Hash": "3466135868",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Moff_Guideon",
+    "ShortName": "Moff_Guideon",
+    "Path": "Moff_Guideon.bnk",
+    "IncludedEvents": [
+     {
+      "Id": "192623117",
+      "Name": "Pause_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Pause_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "3075869675",
+      "Name": "Play_Moff_Guideon_Dash",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Dash",
+      "DurationType": "OneShot",
+      "DurationMin": "0.423923",
+      "DurationMax": "0.423923",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "388356698",
+        "Language": "SFX",
+        "ShortName": "moff gideon dash.wav",
+        "Path": "SFX\\moff gideon dash_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "4276044410",
+      "Name": "Play_Moff_Guideon_Hit",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Hit",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.512086",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "638780808",
+        "Language": "SFX",
+        "ShortName": "moff gideon hit 3.wav",
+        "Path": "SFX\\moff gideon hit 3_FC2D3A10.wem"
+       },
+       {
+        "Id": "733186374",
+        "Language": "SFX",
+        "ShortName": "moff gideon hit 1.wav",
+        "Path": "SFX\\moff gideon hit 1_FC2D3A10.wem"
+       },
+       {
+        "Id": "1027955681",
+        "Language": "SFX",
+        "ShortName": "moff gideon hit 2.wav",
+        "Path": "SFX\\moff gideon hit 2_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "2615772781",
+      "Name": "Play_Moff_Guideon_Spawn_Enemies",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Spawn_Enemies",
+      "DurationType": "OneShot",
+      "DurationMin": "0.556100",
+      "DurationMax": "0.556100",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "972146429",
+        "Language": "SFX",
+        "ShortName": "moff gideon snap fingers.wav",
+        "Path": "SFX\\moff gideon snap fingers_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1931338186",
+      "Name": "Resume_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Resume_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "3318621861",
+      "Name": "Stop_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     }
+    ],
+    "GameParameters": [
+     {
+      "Id": "467158820",
+      "Name": "SourceVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
+     }
+    ]
+   },
+   {
     "Id": "3795682265",
     "Language": "SFX",
-    "Hash": "1007894544",
+    "Hash": "385920988",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Bantha",
     "ShortName": "Bantha",
     "Path": "Bantha.bnk",

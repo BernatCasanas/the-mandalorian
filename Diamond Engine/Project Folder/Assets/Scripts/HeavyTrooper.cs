@@ -654,6 +654,8 @@ public class HeavyTrooper : Enemy
 
         UpdateAnimationSpd(speedMult);
 
+        Audio.PlayAudio(gameObject, "Play_Heavytrooper_Dash");
+
         Debug.Log("Done dashes: " + doneDashes.ToString());
     }
     private void UpdateDash()
@@ -677,6 +679,7 @@ public class HeavyTrooper : Enemy
         //doneDashes = 0;
 
         Animator.Play(gameObject, "ST_Shoot", speedMult);
+        Audio.PlayAudio(gameObject, "Play_Heavytrooper_Attack");
         //UpdateAnimationSpd(speedMult);
     }
     private void UpdateSweep()
