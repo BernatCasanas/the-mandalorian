@@ -35,6 +35,8 @@ public class DummyStormtrooper : Enemy
 
     public GameObject shootPoint = null;
 
+    public bool canShoot = true;
+
     //Action times
     public float idleTime = 5.0f;
     private float dieTime = 3.0f;
@@ -45,10 +47,10 @@ public class DummyStormtrooper : Enemy
     //Speeds
     public float bulletSpeed = 10.0f;
     private bool skill_slowDownActive = false;
-    private float currAnimationPlaySpd = 1f;
+    private float currAnimationPlaySpd = 1.0f;
 
     //Timers
-    private float idleTimer = 0.0f;
+    public float idleTimer = 0.0f;
     private float shotTimer = 0.0f;
     private float sequenceTimer = 0.0f;
     private float dieTimer = 0.0f;
@@ -100,10 +102,8 @@ public class DummyStormtrooper : Enemy
 
     public void Update()
     {
-        if (player == null)
-        {
-            player = Core.instance.gameObject;
-        }
+        //Debug.Log("Current State: " + currentState.ToString());
+
 
         myDeltaTime = Time.deltaTime * speedMult;
         UpdateStatuses();
@@ -137,16 +137,16 @@ public class DummyStormtrooper : Enemy
     //All events from outside the stormtrooper
     private void ProcessExternalInput()
     {
-        if (currentState != STATE.DIE)
+        if (currentState != STATE.DIE && canShoot)
         {
-            if (InRange(player.transform.globalPosition, detectionRange) && idleTimer <= 0.0f)
+            if (InRange(Core.instance.gameObject.transform.globalPosition, detectionRange) && idleTimer <= 0.0f)
             {
-                inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
-
-                Debug.Log("Player in range");
-
-                if (player != null && currentState != STATE.SHOOT)
-                    LookAt(player.transform.globalPosition);
+                if (Core.instance != null && currentState != STATE.SHOOT)
+                {
+                    inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
+                    Debug.Log("Player in range");
+                    LookAt(Core.instance.gameObject.transform.globalPosition);
+                }
             }
         }
     }
@@ -257,13 +257,12 @@ public class DummyStormtrooper : Enemy
     {
         Animator.Play(gameObject, "ST_Idle", speedMult);
         UpdateAnimationSpd(speedMult);
-
     }
 
     private void UpdateIdle()
     {
         if (idleTimer > 0.0f)
-            dieTimer -= myDeltaTime;
+            idleTimer -= Time.deltaTime;
 
         UpdateAnimationSpd(speedMult);
     }
@@ -272,6 +271,7 @@ public class DummyStormtrooper : Enemy
     #region SHOOT
     private void StartShoot()
     {
+        //Debug.Log("Start Shoot");
         statesTimer = timeBewteenStates;
         Animator.Play(gameObject, "ST_Idle", speedMult);
         UpdateAnimationSpd(speedMult);
@@ -305,7 +305,6 @@ public class DummyStormtrooper : Enemy
 
         if (shotTimer > 0.0f)
         {
-
             shotTimer -= myDeltaTime;
 
             if (shotTimer <= 0.0f)
@@ -330,7 +329,7 @@ public class DummyStormtrooper : Enemy
                     else
                     {
                         statesTimer = timeBewteenStates;
-                        Debug.Log("Ending 2 time shot");
+                        //Debug.Log("Ending 2 time shot");
                         inputsList.Add(INPUT.IN_IDLE);
                         idleTimer = idleTime;
                     }
@@ -411,7 +410,7 @@ public class DummyStormtrooper : Enemy
         Vector3 forward = gameObject.transform.GetForward();
         forward = forward.normalized * (-dist);
 
-        player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+        Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
         InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
         DropCoins();
 
@@ -423,7 +422,7 @@ public class DummyStormtrooper : Enemy
     #region PUSH
     private void StartPush()
     {
-        Vector3 force = gameObject.transform.globalPosition - player.transform.globalPosition;
+        Vector3 force = gameObject.transform.globalPosition - Core.instance.gameObject.transform.globalPosition;
         if (BabyYoda.instance != null)
         {
             force.y = BabyYoda.instance.pushVerticalForce * forcePushMod;
@@ -444,7 +443,6 @@ public class DummyStormtrooper : Enemy
         {
             inputsList.Add(INPUT.IN_IDLE);
         }
-
     }
     #endregion
 
