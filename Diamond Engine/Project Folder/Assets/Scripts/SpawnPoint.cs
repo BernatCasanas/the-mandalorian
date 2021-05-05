@@ -73,6 +73,8 @@ public class SpawnPoint : DiamondComponent
                 if (spawnParticle != null)
                     spawnParticle.Play();
 
+                Audio.PlayAudio(gameObject, "Play_Enemy_Respawn");
+
                 spawningEnemies.Add(spawnEnemyAt);
 
                 enemiesToSpawn.RemoveAt(i);
