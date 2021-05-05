@@ -13,6 +13,8 @@ public class SpawnManager : DiamondComponent
     public int wave = 0;
     public int maxWaves = 1;
 
+    public int enemiesLeftToNextWave = 2;
+
     public float waveTimer = 0.0f;
     public float timeBetweenWaves = 1.0f;
 
@@ -25,6 +27,11 @@ public class SpawnManager : DiamondComponent
 
         if (waveTimer <= 0.0f)
             waveTimer = 0.01f;
+
+        EnemyManager.ClearList();
+
+        //Random randomizer = new Random();
+        //enemiesLeftToNextWave = randomizer.Next(0, enemiesLeftToNextWave);
     }
 
     public void Update()
@@ -33,15 +40,20 @@ public class SpawnManager : DiamondComponent
         {
             waveTimer -= Time.deltaTime;
 
-            if(waveTimer <= 0.0f)
+            if((waveTimer <= 0.0f && EnemyManager.EnemiesLeft() <= enemiesLeftToNextWave) || EnemyManager.EnemiesLeft() == 0)
             {
+
                 SpawnWave();
+                waveTimer = 0f;
+
+                //Random randomizer = new Random();
+                //enemiesLeftToNextWave = randomizer.Next(0, enemiesLeftToNextWave);
 
                 if (enemiesToSpawn > 0)
                     waveTimer = timeBetweenWaves * 0.25f;
                 else
                 {
-                    wave++;
+                    ++wave;
 
                     if (wave < maxWaves)
                     {

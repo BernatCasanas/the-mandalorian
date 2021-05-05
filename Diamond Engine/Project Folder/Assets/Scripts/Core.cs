@@ -1203,14 +1203,7 @@ public class Core : Entity
         Animator.Play(gameObject, "Run", speedMult);
         UpdateAnimationSpd(speedMult);
 
-        if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
-        {
-            Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
-        }
-        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
-        {
-            Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
-        }
+        PlayFootstepsAudio();
     }
 
     private void UpdateMove()
@@ -1223,14 +1216,7 @@ public class Core : Entity
         {
             Audio.StopAudio(gameObject);
 
-            if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
-            {
-                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
-            }
-            else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
-            {
-                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
-            }
+            PlayFootstepsAudio();
 
             footStepTimer = 0f;
         }
@@ -1319,6 +1305,21 @@ public class Core : Entity
         if (currAnimationPlaySpd != newSpd)
             Animator.SetSpeed(gameObject, newSpd);
     }
+
+    private void PlayFootstepsAudio()
+    {
+
+        if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
+        {
+            Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
+        }
+        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
+        {
+            Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
+        }
+
+    }
+
     private void UpdateControllerInputs()
     {
         //Check if user is moving joystick
