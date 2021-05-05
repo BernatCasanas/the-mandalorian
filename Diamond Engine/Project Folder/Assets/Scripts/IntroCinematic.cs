@@ -23,6 +23,8 @@ public class IntroCinematic : DiamondComponent
     public GameObject point14 = null;
     public GameObject point15 = null;
     public GameObject point16 = null;
+    public GameObject point17 = null;
+    public GameObject point18 = null;
     public GameObject greefRig = null;
 
     public GameObject postCinematicDialogue = null;
@@ -37,7 +39,7 @@ public class IntroCinematic : DiamondComponent
     Quaternion nonCinematicCameraRotation = null;
 
     GameObject[] pointArray = null;
-    float[] speedArray = new float[] { 1.0f, 2.0f, 1.0f, 6.0f, 1.0f, 0.8f, 1.0f, 0.8f };    // Adapt values; wouldn't it be easier to just calculate the speed based on how long we need that scene to be?
+    float[] speedArray = new float[] { 1.0f, 2.0f, 1.0f, 6.0f, 1.0f, 0.8f, 1.0f, 1.0f, 4.0f };    // Adapt values; wouldn't it be easier to just calculate the speed based on how long we need that scene to be?
     float[] timerArray = null;    // Why am I using timer approach? Basically, the triggers of each camera switch are animation ends, positions reached and timers. Everything is convertable to time, but the other two can't be converted universally
     int arrayCount = -1;
 
@@ -51,7 +53,7 @@ public class IntroCinematic : DiamondComponent
 
             if (InitializeTimers())
             {
-                pointArray = new GameObject[] { point1, point2, point3, point4, point5, point6, point7, point8, point9, point10, point11, point12, point13, point14, point15, point16 };
+                pointArray = new GameObject[] { point1, point2, point3, point4, point5, point6, point7, point8, point9, point10, point11, point12, point13, point14, point15, point16, point17, point18 };
                 UpdateValues();
                 Animator.Play(greefRig, "Greef_Sit");
             }
@@ -65,7 +67,7 @@ public class IntroCinematic : DiamondComponent
     public void Update()
     {
         float newDeltaTime = Time.deltaTime;
-        
+
         if (newDeltaTime > 0.016f) {
             newDeltaTime = 0.016f;
         }
@@ -121,7 +123,7 @@ public class IntroCinematic : DiamondComponent
     {
         arrayCount++;
 
-        if (arrayCount >= 8)
+        if (arrayCount >= 9)
         {
             EndCinematic();
             return;
@@ -150,6 +152,10 @@ public class IntroCinematic : DiamondComponent
 
             case 4:
                 Animator.Play(greefRig, "Greef_Sit");
+                break;
+
+            case 7:
+                pointArray[16] = cameraObject;
                 break;
 
             default:
@@ -183,9 +189,10 @@ public class IntroCinematic : DiamondComponent
             float greefGreeting = Animator.GetAnimationDuration(greefRig, "Greef_Greet");
             float tableZoomOut = Mathf.Distance(point11.transform.globalPosition, point12.transform.globalPosition) / speedArray[5];
             float tableStatic = 0.50f;
-            float mandoZoomOut = Mathf.Distance(point15.transform.globalPosition, point16.transform.globalPosition) / speedArray[7];
+            float cameraTurn = Mathf.Distance(point15.transform.globalPosition, point16.transform.globalPosition) / speedArray[7];
+            float finalPanOut = Mathf.Distance(point17.transform.globalPosition, point18.transform.globalPosition) / speedArray[8];
 
-            timerArray = new float[] { spaceScene, revolverZoomOut, revolverStatic, greefTurningZoom, greefGreeting, tableZoomOut, tableStatic, mandoZoomOut };
+            timerArray = new float[] { spaceScene, revolverZoomOut, revolverStatic, greefTurningZoom, greefGreeting, tableZoomOut, tableStatic, cameraTurn, finalPanOut };
         }
         else
         {
