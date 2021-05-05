@@ -8,7 +8,7 @@ namespace DiamondEngine
     {
         public String description = " ";
         public RewardType type_of_price = RewardType.REWARD_BESKAR;
-        public int price = 0;
+        public int price = 1;
         public virtual void Use()
         {
         }
