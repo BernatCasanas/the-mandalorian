@@ -163,6 +163,9 @@
     <Filter Include="Externals\RecastNavigation\DetourTileCache">
       <UniqueIdentifier>{d66569a2-3ffb-4054-9a11-057343c0d173}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Helpers\PostProcessing">
+      <UniqueIdentifier>{e337fadb-d6f6-479e-8655-c771380004dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source Code\Globals.h">
@@ -1047,7 +1050,13 @@
       <Filter>Sources\Tools\Importers</Filter>
     </ClInclude>
     <ClInclude Include="Source Code\PostProcessing.h">
-      <Filter>Sources\Helpers</Filter>
+      <Filter>Sources\Helpers\PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\ImageRenderer.h">
+      <Filter>Sources\Helpers\PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\PostProcessFilter.h">
+      <Filter>Sources\Helpers\PostProcessing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1632,7 +1641,13 @@
       <Filter>Sources\Tools\Importers</Filter>
     </ClCompile>
     <ClCompile Include="Source Code\PostProcessing.cpp">
-      <Filter>Sources\Helpers</Filter>
+      <Filter>Sources\Helpers\PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\ImageRenderer.cpp">
+      <Filter>Sources\Helpers\PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\PostProcessFilter.cpp">
+      <Filter>Sources\Helpers\PostProcessing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
