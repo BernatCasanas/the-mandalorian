@@ -83,68 +83,68 @@ public class Skill_Tree_Data : DiamondComponent
     //Grogu Skills   
     public static Dictionary<int, bool> groguSkillEnabled = new Dictionary<int, bool>
     {
-        {1, false },
-        {2, false },
-        {3, false },
-        {4, false },
-        {5, false },
-        {6, false },
-        {7, false },
-        {8, false },
+        {1, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("groguSkill" + 1.ToString()) : false },
+        {2, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("groguSkill" + 2.ToString()) : false },
+        {3, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("groguSkill" + 3.ToString()) : false },
+        {4, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("groguSkill" + 4.ToString()) : false },
+        {5, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("groguSkill" + 5.ToString()) : false },
+        {6, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("groguSkill" + 6.ToString()) : false },
+        {7, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("groguSkill" + 7.ToString()) : false },
+        {8, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("groguSkill" + 8.ToString()) : false },
     };
     //Mando
     public static Dictionary<int, bool> mandoSkillEnabled = new Dictionary<int, bool>
     {
-        {1, false }, //Utility
-        {2, false },
-        {3, false },
-        {4, false },
-        {5, false },
-        {6, false },
-        {7, false },
-        {8, false },
-        {9, false }, //Aggression
-        {10, false },
-        {11, false },
-        {12, false },
-        {13, false },
-        {14, false },
-        {15, false },
-        {16, false },
-        {17, false }, //Defense
-        {18, false },
-        {19, false },
-        {20, false },
-        {21, false },
-        {22, false },
-        {23, false },
-        {24, false },
+        {1, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 1.ToString()) : false }, //Utility
+        {2, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 2.ToString()) : false },
+        {3, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 3.ToString()) : false },
+        {4, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 4.ToString()) : false },
+        {5, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 5.ToString()) : false },
+        {6, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 6.ToString()) : false },
+        {7, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 7.ToString()) : false },
+        {8, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 8.ToString()) : false },
+        {9, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 9.ToString()) : false }, //Aggression
+        {10, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 10.ToString()) : false },
+        {11, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 11.ToString()) : false },
+        {12, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 12.ToString()) : false },
+        {13, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 13.ToString()) : false },
+        {14, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 14.ToString()) : false },
+        {15, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 15.ToString()) : false },
+        {16, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 16.ToString()) : false },
+        {17, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 17.ToString()) : false }, //Defense
+        {18, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 18.ToString()) : false },
+        {19, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 19.ToString()) : false },
+        {20, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 20.ToString()) : false },
+        {21, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 21.ToString()) : false },
+        {22, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 22.ToString()) : false },
+        {23, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 23.ToString()) : false },
+        {24, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + 24.ToString()) : false },
     };
     //Weapons
     public static Dictionary<int, bool> weaponsSkillEnabled = new Dictionary<int, bool>
     {
-        {1, false }, //Primary weapons
-        {2, false },
-        {3, false },
-        {4, false },
-        {5, false },
-        {6, false },
-        {7, false },
-        {8, false },
-        {9, false }, //Secondary weapons
-        {10, false },
-        {11, false },
-        {12, false },
-        {13, false },
-        {14, false },
-        {15, false },
-        {16, false }, //Special weapons
-        {17, false },
-        {18, false },
-        {19, false },
-        {20, false },
-        {21, false },
-        {22, false },
+        {1, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 1.ToString()) : false }, //Primary weapons
+        {2, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 2.ToString()) : false },
+        {3, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 3.ToString()) : false },
+        {4, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 4.ToString()) : false },
+        {5, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 5.ToString()) : false },
+        {6, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 6.ToString()) : false },
+        {7, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 7.ToString()) : false },
+        {8, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 8.ToString()) : false },
+        {9, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 9.ToString()) : false }, //Secondary weapons
+        {10, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 10.ToString()) : false },
+        {11, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 11.ToString()) : false },
+        {12, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 12.ToString()) : false },
+        {13, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 13.ToString()) : false },
+        {14, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 14.ToString()) : false },
+        {15, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 15.ToString()) : false },
+        {16, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 16.ToString()) : false }, //Special weapons
+        {17, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 17.ToString()) : false },
+        {18, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 18.ToString()) : false },
+        {19, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 19.ToString()) : false },
+        {20, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 20.ToString()) : false },
+        {21, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 21.ToString()) : false },
+        {22, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 22.ToString()) : false },
     };
     #endregion
 
@@ -155,12 +155,16 @@ public class Skill_Tree_Data : DiamondComponent
         {
             case 1: //Grogu Skill Tree
                 groguSkillEnabled[skill_Number] = true;
+                DiamondPrefs.Write("loadData", true);
+                DiamondPrefs.Write("groguSkill" + skill_Number.ToString(), groguSkillEnabled[skill_Number]);
                 break;
             case 2: //Mando Skill Tree
                 mandoSkillEnabled[skill_Number] = true;
+                DiamondPrefs.Write("mandoSkill" + skill_Number.ToString(), mandoSkillEnabled[skill_Number]);
                 break;
             case 3: //Weapons Skill Tree
                 weaponsSkillEnabled[skill_Number] = true;
+                DiamondPrefs.Write("weaponSkill" + skill_Number.ToString(), weaponsSkillEnabled[skill_Number]);
                 break;
             default:
                 break;
