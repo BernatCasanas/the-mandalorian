@@ -135,17 +135,22 @@ vec3 NearestPointOnLine(vec3 point, vec3 lineP1, vec3 lineP2)
 }
 
 
+float LengthScuared(vec3 line)
+{
+	return (line.x * line.x + line.y * line.y + line.z * line.z);
+}
+
+
 vec3 NearestPointOnFiniteLine(vec3 point, vec3 lineP1, vec3 lineP2)
 {
-	vec3 line = lineP1 - lineP2;
-	float dst = length(line);
-	line = normalize(line);
+	float dst = LengthScuared(lineP2 - lineP1);
 	
-	vec3 v = point - lineP1;
-	float d = dot(v, line);
-	d = clamp(d, 0.0, dst);
+	if (dst == 0.0)
+		return lineP1;
+		
+	float t = max(0, min(1, dot(point - lineP1, lineP2 - lineP1) / dst));
 	
-	return vec3(lineP1 + line * d);
+	return (lineP1 + t * (lineP2 - lineP1));
 }
 
 
@@ -201,7 +206,7 @@ vec3 CalculateClosestPoint(vec3 projectedPoint)
 		vec3 posiblePoint2 = NearestPointOnFiniteLine(projectedPoint, prevVertex, closestVertex);
 			
 			
-		if (distance(projectedPoint, posiblePoint1) <= distance (projectedPoint, posiblePoint2))
+		if (distance(projectedPoint, posiblePoint1) < distance (projectedPoint, posiblePoint2))
 			return posiblePoint1;
 			
 				
@@ -257,6 +262,7 @@ void main()
     color = vec4(lighting * vec3(0.7, 0.3, 0.3), 1.0);
 }
 #endif
+
 
 
 
