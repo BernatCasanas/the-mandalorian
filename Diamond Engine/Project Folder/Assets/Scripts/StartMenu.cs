@@ -38,6 +38,8 @@ public class StartMenu : DiamondComponent
 		{
 			options.EnableNav(true);
 			menuButtons.EnableNav(false);
+			if (default_selected != null)
+				default_selected.GetComponent<Navigation>().Select();
 		}
 	}
 	public void Update()
