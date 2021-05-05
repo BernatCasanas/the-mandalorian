@@ -352,10 +352,17 @@ public class HUD : DiamondComponent
 
             OnLvlUpComboChange();
             if (Core.instance != null)
-                if (Core.instance.HasStatus(STATUS_TYPE.COMBO_FIRE_RATE))
+            {
+                if (Core.instance.HasStatus(STATUS_TYPE.COMBO_FIRE_RATE) && Core.instance.FireRateMult > 0.40f)
                 {
-                    Core.instance.AddStatus(STATUS_TYPE.FIRE_RATE, STATUS_APPLY_TYPE.ADDITIVE, 20f, 3f, false);
+                    Core.instance.AddStatus(STATUS_TYPE.FIRE_RATE, STATUS_APPLY_TYPE.ADDITIVE, 20f, 5f, false);
                 }
+                if (Core.instance.HasStatus(STATUS_TYPE.COMBO_DAMAGE) && Core.instance.FireRateMult > 0.40f)
+                {
+                    Core.instance.AddStatus(STATUS_TYPE.RAW_DAMAGE, STATUS_APPLY_TYPE.ADDITIVE, 20f, 5f, false);
+                }
+            }
+                
         }
 
         if (comboNumber > 0 && combo_gameobject != null && !combo_gameobject.IsEnabled())

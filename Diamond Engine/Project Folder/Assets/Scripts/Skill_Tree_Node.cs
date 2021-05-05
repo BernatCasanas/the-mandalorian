@@ -308,7 +308,8 @@ public class Skill_Tree_Node : DiamondComponent
                         Core.instance.AddStatus(STATUS_TYPE.COMBO_FIRE_RATE, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
                         break;
                     case "AComboDmg":
-                        Debug.Log("Combo * damage not implemented yet");
+                       // Debug.Log("Combo * damage not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.COMBO_DAMAGE, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
                         break;
                     case "AGrenadeDmg":
                         Debug.Log("Critical chance not implemented yet");

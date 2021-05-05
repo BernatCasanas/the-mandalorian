@@ -1373,7 +1373,15 @@ public class Core : Entity
         ret = Math.Min(ret, baseFireRate * fireRateMultCap * 0.45f);
         ret = Math.Max(ret, baseFireRate * 0.75f);
 
-        Debug.Log(FireRateMult.ToString());
+        if (Core.instance.HasStatus(STATUS_TYPE.COMBO_FIRE_RATE))
+        {
+            Debug.Log("FireRate: " + FireRateMult.ToString());
+        }
+        if (Core.instance.HasStatus(STATUS_TYPE.COMBO_DAMAGE))
+        {
+            Debug.Log("Damage: " + RawDamageMult.ToString());
+        }
+
         return ret * FireRateMult;
     }
 
@@ -1683,7 +1691,7 @@ public class Core : Entity
     private float GetDamage()
     {
         //We apply modifications to the damage based on the skill actives in the talent tree
-        float damageWithSkills = bulletDamage * DamageMult * DamagePerHpMult * DamagePerHeatMult;
+        float damageWithSkills = bulletDamage * BlasterDamageMult * DamagePerHpMult * DamagePerHeatMult * RawDamageMult;
 
         //if (skill_groguIncreaseDamageActive)
         //{

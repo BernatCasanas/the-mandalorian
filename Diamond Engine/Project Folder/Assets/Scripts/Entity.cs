@@ -48,6 +48,8 @@ public enum STATUS_TYPE
     SKILL_HEAL,
     COMBO_FIRE_RATE,
     FIRE_RATE,
+    COMBO_DAMAGE,
+    RAW_DAMAGE
 }
 
 public enum STATUS_APPLY_TYPE
@@ -103,13 +105,14 @@ public class Entity : DiamondComponent
     protected float myDeltaTime = 1f;
     protected float MovspeedMult = 1f;
     public float OverheatMult = 1f;
-    public float DamageMult = 1f;
+    public float RawDamageMult = 1f;
+    public float BlasterDamageMult = 1f;
     public float DamageToBosses = 1f;
     public float DamagePerHpMult = 1f;
     public float DamagePerHeatMult = 1f;
     public float DamageRed = 1f;
     public float GroguCost = 1f;
-    protected float FireRateMult = 1f;
+    public float FireRateMult = 1f;
 
     protected virtual void InitEntity(ENTITY_TYPE myType)
     {
@@ -117,7 +120,7 @@ public class Entity : DiamondComponent
         speedMult = 1f;
         MovspeedMult = 1f;
         OverheatMult = 1f;
-        DamageMult = 1f;
+        BlasterDamageMult = 1f;
         DamageToBosses = 1f;
         DamagePerHpMult = 1f;
         DamagePerHeatMult = 1f;
@@ -125,6 +128,7 @@ public class Entity : DiamondComponent
         GroguCost = 1f;
         myDeltaTime = Time.deltaTime;
         FireRateMult = 1f;
+        RawDamageMult = 1f;
     }
 
     #region ENTITY TYPES
@@ -351,8 +355,8 @@ public class Entity : DiamondComponent
                 break;
             case STATUS_TYPE.BLASTER_DAMAGE:
                 {
-                    statusToInit.statChange = this.DamageMult * (statusToInit.severity) / 100;
-                    this.DamageMult += statusToInit.statChange;
+                    statusToInit.statChange = this.BlasterDamageMult * (statusToInit.severity) / 100;
+                    this.BlasterDamageMult += statusToInit.statChange;
                    // Debug.Log(this.DamageMult.ToString());
                 }
                 break;
@@ -397,12 +401,19 @@ public class Entity : DiamondComponent
                 break;
             case STATUS_TYPE.FIRE_RATE:
                 {
-                    if(this.FireRateMult >= 0.20f)
-                    {
-                        statusToInit.statChange = -statusToInit.severity / 100;
-                        this.FireRateMult += statusToInit.statChange;
-                    }
                   
+                        statusToInit.statChange = - statusToInit.severity / 100;
+                        this.FireRateMult += statusToInit.statChange;
+                   
+                  
+                }
+                break;
+            case STATUS_TYPE.RAW_DAMAGE:
+                {
+                   
+                    statusToInit.statChange = (statusToInit.severity) / 100;
+                    this.RawDamageMult += statusToInit.statChange;
+                    // Debug.Log(this.DamageMult.ToString());
                 }
                 break;
             default:
@@ -492,7 +503,7 @@ public class Entity : DiamondComponent
                 break;
             case STATUS_TYPE.BLASTER_DAMAGE:
                 {
-                    this.DamageMult -= statusToDelete.statChange;
+                    this.BlasterDamageMult -= statusToDelete.statChange;
                     //    Debug.Log(this.MovspeedMult.ToString());
                 }
                 break;
@@ -545,6 +556,17 @@ public class Entity : DiamondComponent
                 {
                         Debug.Log("delete fire rate buff");
                     this.FireRateMult -= statusToDelete.statChange;
+                    if (this.FireRateMult <= 0)
+                        this.FireRateMult = 1;
+                }
+                break;
+            case STATUS_TYPE.RAW_DAMAGE:
+                {
+                    Debug.Log("delete raw damage buff");
+
+                    this.RawDamageMult -= statusToDelete.statChange;
+                    if(this.RawDamageMult > 2)
+                        this.RawDamageMult = 1;
                 }
                 break;
             default:
