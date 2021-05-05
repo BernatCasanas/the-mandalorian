@@ -340,6 +340,11 @@ public class HUD : DiamondComponent
             AddToCombo(extraCombo, weaponDecreaseTimeMultiplier);
 
             OnLvlUpComboChange();
+            if (Core.instance != null)
+                if (Core.instance.HasStatus(STATUS_TYPE.COMBO_FIRE_RATE))
+                {
+                    Core.instance.AddStatus(STATUS_TYPE.FIRE_RATE, STATUS_APPLY_TYPE.ADDITIVE, 20f, 3f, false);
+                }
         }
 
         if (comboNumber > 0 && combo_gameobject != null && !combo_gameobject.IsEnabled())

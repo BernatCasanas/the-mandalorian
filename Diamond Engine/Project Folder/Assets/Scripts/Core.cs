@@ -1372,7 +1372,8 @@ public class Core : Entity
         ret = Math.Min(ret, baseFireRate * fireRateMultCap * 0.45f);
         ret = Math.Max(ret, baseFireRate * 0.75f);
 
-        return ret;
+        Debug.Log(FireRateMult.ToString());
+        return ret * FireRateMult;
     }
 
     private void AddPrimaryHeat()
@@ -1598,8 +1599,8 @@ public class Core : Entity
                         particle.Play();
                     else if (particle != null && stopParticle == true)
                         particle.Stop();
-                    else
-                        Debug.Log("Jetpack particle not found");
+                    //else
+                    //    Debug.Log("Jetpack particle not found");
                 }
                 else
                     Debug.Log("Component Particles not found");
