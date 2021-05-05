@@ -12,7 +12,10 @@ public class FinalSwitch : DiamondComponent
 	{
 		if (Input.GetKey(DEKeyCode.I) == KeyState.KEY_DOWN)
 		{
+			if (Core.instance != null)
+				Core.instance.SaveBuffs();
 			SceneManager.LoadScene(821370213);
+
 		}
 	}
 }

@@ -46,6 +46,7 @@ public class HeavyTrooper : Enemy
     private List<INPUT> inputsList = new List<INPUT>();
 
     public GameObject chargePoint = null;
+    public GameObject spear = null;
     public GameObject hitParticles = null;
     private GameObject visualFeedback = null;
 
@@ -57,7 +58,7 @@ public class HeavyTrooper : Enemy
     public float sweepTime = 0.0f;
     public float tiredTime = 2.0f;
     public float loadingTime = 2.0f;
-    public float timeBewteenStates = 1.5f;
+    //public float timeBewteenStates = 1.5f;
     public float directionDecisionTime = 0.8f;
     public float directionSweepDecisionTime = 0.8f;
 
@@ -87,6 +88,8 @@ public class HeavyTrooper : Enemy
     private float pushTimer = 0.0f;
     private float currAnimationPlaySpd = 1f;
 
+    int doneDashes = 0;
+
     //force
     public float forcePushMod = 1;
 
@@ -105,9 +108,17 @@ public class HeavyTrooper : Enemy
 
         currentState = STATE.IDLE;
 
+        if(spear != null)
+        {
+            HeavyTrooperSpear heavyTrooperSpear = spear.GetComponent<HeavyTrooperSpear>();
+
+            heavyTrooperSpear.damage = (int)damage;
+
+        }
+
         //loadingTime = Animator.GetAnimationDuration(gameObject, "BT_Charge");
         //sweepTime = Animator.GetAnimationDuration(gameObject, "SWEEP");
-        dieTime = Animator.GetAnimationDuration(gameObject, "BT_Die");
+        dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
 
         if (stunParticle != null)
             stun = stunParticle.GetComponent<ParticleSystem>();
@@ -161,7 +172,18 @@ public class HeavyTrooper : Enemy
             dashTimer -= myDeltaTime;
             if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) <= agent.stoppingDistance || dashTimer < 0.0f)
             {
-                inputsList.Add(INPUT.IN_DASH_END);
+                doneDashes++;
+                //Debug.Log("Dashes++");
+
+                if(Mathf.Distance(Core.instance.gameObject.transform.globalPosition, gameObject.transform.globalPosition) > dashRange 
+                   || Mathf.Distance(Core.instance.gameObject.transform.globalPosition, gameObject.transform.globalPosition) > sweepRange && doneDashes < 2)
+                {
+                    inputsList.Add(INPUT.IN_LOADING_DASH);
+                }
+                else
+                {
+                    inputsList.Add(INPUT.IN_DASH_END);
+                }
             }
         }
 
@@ -220,6 +242,7 @@ public class HeavyTrooper : Enemy
                 inputsList.Add(INPUT.IN_DASH_RANGE);
             }
         }
+
         if (currentState == STATE.RUN)
         {
             if (agent == null)
@@ -506,9 +529,9 @@ public class HeavyTrooper : Enemy
     #region IDLE
     private void StartIdle()
     {
-        Debug.Log("HEAVYTROOPER IDLE");
+        //Debug.Log("HEAVYTROOPER IDLE");
         idleTimer = idleTime;
-        //Animator.Play(gameObject, "BT_Idle", speedMult);
+        Animator.Play(gameObject, "ST_Idle", speedMult);
         UpdateAnimationSpd(speedMult);
     }
 
@@ -522,8 +545,8 @@ public class HeavyTrooper : Enemy
     #region RUN
     private void StartRun()
     {
-        Debug.Log("HEAVYTROOPER RUN");
-        //Animator.Play(gameObject, "BT_Walk", speedMult);
+        //Debug.Log("HEAVYTROOPER RUN");
+        Animator.Play(gameObject, "ST_Run", speedMult);
         UpdateAnimationSpd(speedMult);
     }
     private void UpdateRun()
@@ -556,7 +579,7 @@ public class HeavyTrooper : Enemy
     #region WANDER
     private void StartWander()
     {
-        Debug.Log("HEAVYTROOPER WANDER");
+        //Debug.Log("HEAVYTROOPER WANDER");
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
         //Animator.Play(gameObject, "ST_Run", speedMult);
@@ -583,7 +606,8 @@ public class HeavyTrooper : Enemy
     private void StartLoading()
     {
         Debug.Log("HEAVYTROOPER LOADING");
-        loadingTimer = loadingTime;
+        loadingTimer = loadingTime * (doneDashes > 0 ? 0.1f : 1.0f);
+        Debug.Log("Loading timer: " + loadingTimer.ToString());
         directionDecisionTimer = directionDecisionTime;
 
         //visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/1137197426.prefab", chargePoint.transform.globalPosition, chargePoint.transform.globalRotation, new Vector3(1.0f, 1.0f, 0.01f));
@@ -594,13 +618,13 @@ public class HeavyTrooper : Enemy
     {
         if (directionDecisionTimer > 0.0f)
         {
-            Debug.Log("HEAVYTROOPER LOADING ENTRY 1");
+            //Debug.Log("HEAVYTROOPER LOADING ENTRY 1");
             directionDecisionTimer -= myDeltaTime;
             LookAt(player.transform.globalPosition);
 
             if (directionDecisionTimer < 0.1f)
             {
-                Debug.Log("HEAVYTROOPER LOADING ENTRY 2");
+                //Debug.Log("HEAVYTROOPER LOADING ENTRY 2");
                 Vector3 direction = player.transform.globalPosition - gameObject.transform.globalPosition;
                 targetPosition = direction.normalized * dashLength + gameObject.transform.globalPosition;
                 agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
@@ -622,22 +646,17 @@ public class HeavyTrooper : Enemy
         Debug.Log("HEAVYTROOPER DASH");
         //Animator.Play(gameObject, "BT_Walk", speedMult);
         if (!straightPath)
-            dashTimer = (dashLength / (dashSpeed * dashSpeedReduction)) * speedMult;
-        else dashTimer = (dashLength / dashSpeed) * speedMult;
-
-        //Animator.Play(gameObject, "BT_Run", speedMult);
-        //UpdateAnimationSpd(speedMult);
-        //InternalCalls.Destroy(visualFeedback);
-        //visualFeedback = null;
-
-        //Audio.PlayAudio(gameObject, "Play_Bantha_Attack");
-        //Audio.PlayAudio(gameObject, "Play_Bantha_Ramming");
-        //Audio.PlayAudio(gameObject, "Play_Footsteps_Bantha");
+            dashTimer = (dashLength * 0.5f / (dashSpeed * dashSpeedReduction)) * speedMult;
+        else 
+            dashTimer = (dashLength * 0.5f / dashSpeed) * speedMult;
 
         StraightPath();
-        //LookAt(agent.GetDestination());
 
         UpdateAnimationSpd(speedMult);
+
+        Audio.PlayAudio(gameObject, "Play_Heavytrooper_Dash");
+
+        Debug.Log("Done dashes: " + doneDashes.ToString());
     }
     private void UpdateDash()
     {
@@ -645,6 +664,8 @@ public class HeavyTrooper : Enemy
             agent.MoveToCalculatedPos(dashSpeed * dashSpeedReduction * speedMult);
         else
             agent.MoveToCalculatedPos(dashSpeed * speedMult);
+
+
 
         UpdateAnimationSpd(speedMult);
     }
@@ -655,8 +676,10 @@ public class HeavyTrooper : Enemy
     {
         Debug.Log("HEAVYTROOPER SWEEP");
         sweepTimer = sweepTime;
+        //doneDashes = 0;
 
-        //Animator.Play(gameObject, "BT_Walk", speedMult);
+        Animator.Play(gameObject, "ST_Shoot", speedMult);
+        Audio.PlayAudio(gameObject, "Play_Heavytrooper_Attack");
         //UpdateAnimationSpd(speedMult);
     }
     private void UpdateSweep()
@@ -665,16 +688,6 @@ public class HeavyTrooper : Enemy
         {
             directionSweepDecisionTimer -= myDeltaTime;
             LookAt(player.transform.globalPosition);
-
-            //if (directionSweepDecisionTimer < 0.1f)
-            //{
-                
-            //}
-        }
-        else
-        {
-            //DO SWEEP ATTACK
-            Debug.Log("SWEEP DAMAGE");
         }
 
         UpdateAnimationSpd(speedMult);
@@ -689,8 +702,8 @@ public class HeavyTrooper : Enemy
 
         //Audio.StopAudio(gameObject);
 
-        //Animator.Play(gameObject, "BT_Idle",speedMult);
         UpdateAnimationSpd(speedMult);
+        Animator.Play(gameObject, "ST_Idle",speedMult);
         //Audio.PlayAudio(gameObject, "Play_Bantha_Breath");
         //stun.Play();
     }
@@ -778,13 +791,80 @@ public class HeavyTrooper : Enemy
 
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
+        if (collidedGameObject.CompareTag("Bullet"))
+        {
+            BH_Bullet bullet = collidedGameObject.GetComponent<BH_Bullet>();
 
-        
+            if (bullet != null)
+            {
+                TakeDamage(bullet.damage);
+
+                Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
+
+                if (Core.instance.hud != null)
+                {
+                    HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                    if (hudComponent != null)
+                        hudComponent.AddToCombo(25, 0.95f);
+                }
+
+                if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
+                {
+                    skill_slowDownActive = true;
+                    skill_slowDownTimer = 0.0f;
+                }
+            }
+        }
+        else if (collidedGameObject.CompareTag("ChargeBullet"))
+        {
+            ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
+
+            if (bullet != null)
+            {
+                healthPoints -= bullet.damage;
+                this.AddStatus(STATUS_TYPE.DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
+
+                TakeDamage(bullet.damage);
+
+                Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
+
+                if (Core.instance.hud != null)
+                {
+                    Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
+                }
+
+                if (currentState != STATE.DIE && healthPoints <= 0.0f)
+                {
+                    inputsList.Add(INPUT.IN_DIE);
+                }
+            }
+        }
+        else if (collidedGameObject.CompareTag("ExplosiveBarrel") && collidedGameObject.GetComponent<SphereCollider>().active)
+        {
+            //if (myParticles != null && myParticles.hit != null)
+            //    myParticles.hit.Play();
+            BH_DestructBox explosion = collidedGameObject.GetComponent<BH_DestructBox>();
+
+            if (explosion != null)
+            {
+                healthPoints -= explosion.explosion_damage * 2;
+                if (currentState != STATE.DIE && healthPoints <= 0.0f)
+                    inputsList.Add(INPUT.IN_DIE);
+            }
+
+        }
     }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-        
+        if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
+        {
+            if (Core.instance.gameObject != null)
+            {
+                inputsList.Add(INPUT.IN_PUSHED);
+            }
+        }
     }
 
     public override void TakeDamage(float damage)
@@ -809,7 +889,7 @@ public class HeavyTrooper : Enemy
         {
             straightPath = false;
         }
-        Debug.Log("StraightPath: " + straightPath);
+        //Debug.Log("StraightPath: " + straightPath);
     }
 
     private void UpdateAnimationSpd(float newSpd)

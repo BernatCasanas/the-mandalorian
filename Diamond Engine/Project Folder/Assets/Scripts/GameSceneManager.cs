@@ -97,6 +97,10 @@ public class GameSceneManager : DiamondComponent
 
     private void ChangeScene()
     {
+        Debug.Log("LEAVING SCENE");
+        if (Core.instance != null)
+            Core.instance.SaveBuffs();
+
         if (!Counter.isFinalScene)
             RoomSwitch.SwitchRooms();
         else
@@ -105,6 +109,9 @@ public class GameSceneManager : DiamondComponent
             DebugOptionsHolder.goToNextLevel = false;
             SceneManager.LoadScene(821370213);
         }
+
+        Debug.Log("SAVING SCENE");
+
     }
 
     public void LevelEnd()

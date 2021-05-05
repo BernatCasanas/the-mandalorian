@@ -97,9 +97,11 @@ public static class RoomSwitch
 
 	public static void SwitchRooms()
 	{
+		
         EnemyManager.ClearList();
         int index = (int)currentLevelIndicator;
-
+		if (Core.instance != null)
+			Core.instance.SaveBuffs();
 		if (index > 0 && currentLevelIndicator == LEVELS.TWO && levelLists[index-1].finalScene == currentroom  /*&& currentLevelIndicator == LEVELS.TWO*/)
         {
 			Debug.Log("PostBoss loaded");
@@ -130,6 +132,7 @@ public static class RoomSwitch
 			currentroom = levelLists[index].finalScene;
 			SceneManager.LoadScene(levelLists[index].finalScene);
 		}
+
 	}
 
 	public static void ClearStaticData()

@@ -61,8 +61,7 @@ public class SHOP : DiamondComponent
             if (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_DOWN)
             {
                 CloseShop();
-                if (currency != null)
-                    currency.SetParent(hud);
+
             }           
 
             if(Input.GetKey(DEKeyCode.M) == KeyState.KEY_DOWN)
@@ -388,5 +387,7 @@ public class SHOP : DiamondComponent
         shopUI.EnableNav(false);
         Core.instance.LockInputs(false); ;
         textPopUp.Enable(true);
+        if (currency != null)
+            currency.SetParent(hud);
     }
 }

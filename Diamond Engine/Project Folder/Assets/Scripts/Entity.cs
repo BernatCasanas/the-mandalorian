@@ -37,12 +37,19 @@ public enum STATUS_TYPE
     DAMAGE_DOWN,
     MOV_SPEED,
     OVERHEAT,
-    RAW_DAMAGE,
+    BLASTER_DAMAGE,
     DMG_TO_BOSSES,
     DMG_PER_HP,
     MAX_HP,
     DMG_RED,
     DMG_PER_HEAT,
+    FALL,
+    GROGU_COST,
+    SKILL_HEAL,
+    COMBO_FIRE_RATE,
+    FIRE_RATE,
+    COMBO_DAMAGE,
+    RAW_DAMAGE
 }
 
 public enum STATUS_APPLY_TYPE
@@ -98,11 +105,14 @@ public class Entity : DiamondComponent
     protected float myDeltaTime = 1f;
     protected float MovspeedMult = 1f;
     public float OverheatMult = 1f;
-    public float DamageMult = 1f;
+    public float RawDamageMult = 1f;
+    public float BlasterDamageMult = 1f;
     public float DamageToBosses = 1f;
     public float DamagePerHpMult = 1f;
     public float DamagePerHeatMult = 1f;
     public float DamageRed = 1f;
+    public float GroguCost = 1f;
+    public float FireRateMult = 1f;
 
     protected virtual void InitEntity(ENTITY_TYPE myType)
     {
@@ -110,12 +120,15 @@ public class Entity : DiamondComponent
         speedMult = 1f;
         MovspeedMult = 1f;
         OverheatMult = 1f;
-        DamageMult = 1f;
+        BlasterDamageMult = 1f;
         DamageToBosses = 1f;
         DamagePerHpMult = 1f;
         DamagePerHeatMult = 1f;
         DamageRed = 1f;
+        GroguCost = 1f;
         myDeltaTime = Time.deltaTime;
+        FireRateMult = 1f;
+        RawDamageMult = 1f;
     }
 
     #region ENTITY TYPES
@@ -340,10 +353,10 @@ public class Entity : DiamondComponent
                    // Debug.Log(this.OverheatMult.ToString());
                 }
                 break;
-            case STATUS_TYPE.RAW_DAMAGE:
+            case STATUS_TYPE.BLASTER_DAMAGE:
                 {
-                    statusToInit.statChange = this.DamageMult * (statusToInit.severity) / 100;
-                    this.DamageMult += statusToInit.statChange;
+                    statusToInit.statChange = this.BlasterDamageMult * (statusToInit.severity) / 100;
+                    this.BlasterDamageMult += statusToInit.statChange;
                    // Debug.Log(this.DamageMult.ToString());
                 }
                 break;
@@ -380,6 +393,29 @@ public class Entity : DiamondComponent
 
                 }
                 break;
+            case STATUS_TYPE.GROGU_COST:
+                {
+                    statusToInit.statChange = statusToInit.severity / 100;
+                    this.GroguCost += statusToInit.statChange;
+                }
+                break;
+            case STATUS_TYPE.FIRE_RATE:
+                {
+                  
+                        statusToInit.statChange = - statusToInit.severity / 100;
+                        this.FireRateMult += statusToInit.statChange;
+                   
+                  
+                }
+                break;
+            case STATUS_TYPE.RAW_DAMAGE:
+                {
+                   
+                    statusToInit.statChange = (statusToInit.severity) / 100;
+                    this.RawDamageMult += statusToInit.statChange;
+                    // Debug.Log(this.DamageMult.ToString());
+                }
+                break;
             default:
                 break;
         }
@@ -399,7 +435,7 @@ public class Entity : DiamondComponent
                             float missingHealth = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
                             float missingHealtPercentage =  missingHealth / PlayerHealth.currMaxHealth;
                             DamagePerHpMult = 1 + missingHealtPercentage;
-                        Debug.Log("TESTING / dmg per missing hp = " + DamagePerHpMult.ToString());
+                      //  Debug.Log("TESTING / dmg per missing hp = " + DamagePerHpMult.ToString());
                         // }
                     }
             
@@ -417,7 +453,7 @@ public class Entity : DiamondComponent
                             float currentheat = Core.instance.hud.GetComponent<HUD>().primaryWeaponHeat;
                             float HeatPercentage = currentheat / Core.instance.hud.GetComponent<HUD>().primaryWeaponMaxHeat;
                             DamagePerHeatMult = 1 + HeatPercentage;
-                            Debug.Log("TESTING / dmg per heat = " + DamagePerHeatMult.ToString());
+                        //    Debug.Log("TESTING / dmg per heat = " + DamagePerHeatMult.ToString());
                         }
                            
                       
@@ -465,9 +501,9 @@ public class Entity : DiamondComponent
                     //    Debug.Log(this.MovspeedMult.ToString());
                 }
                 break;
-            case STATUS_TYPE.RAW_DAMAGE:
+            case STATUS_TYPE.BLASTER_DAMAGE:
                 {
-                    this.DamageMult -= statusToDelete.statChange;
+                    this.BlasterDamageMult -= statusToDelete.statChange;
                     //    Debug.Log(this.MovspeedMult.ToString());
                 }
                 break;
@@ -508,6 +544,29 @@ public class Entity : DiamondComponent
                 {
                     this.DamagePerHeatMult = 1;
                     //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.GROGU_COST:
+                {
+                   this.GroguCost -= statusToDelete.statChange;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.FIRE_RATE:
+                {
+                        Debug.Log("delete fire rate buff");
+                    this.FireRateMult -= statusToDelete.statChange;
+                    if (this.FireRateMult <= 0)
+                        this.FireRateMult = 1;
+                }
+                break;
+            case STATUS_TYPE.RAW_DAMAGE:
+                {
+                    Debug.Log("delete raw damage buff");
+
+                    this.RawDamageMult -= statusToDelete.statChange;
+                    if(this.RawDamageMult > 2)
+                        this.RawDamageMult = 1;
                 }
                 break;
             default:
@@ -556,4 +615,8 @@ public class Entity : DiamondComponent
 
     }
 
+    protected void copyBuffs(ref Dictionary<STATUS_TYPE, StatusData> newstatuses)
+    {
+        newstatuses = statuses;
+    }
 }

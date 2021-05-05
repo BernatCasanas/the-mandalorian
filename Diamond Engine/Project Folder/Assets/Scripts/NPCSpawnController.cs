@@ -106,9 +106,9 @@ public class NPCSpawnController : DiamondComponent
 
                 break;
             case BoKatanUID:
-                if (animation == 0) Animator.Play(unit, "BoKatan_Idle");
-                else if (animation == 1) Animator.Play(unit, "BoKatan_Sit");
-                else if (animation == 2) Animator.Play(unit, "BoKatan_Lean");
+                if (animation == 0) Animator.Play(unit, "Bo-Katan_Idle");
+                else if (animation == 1) Animator.Play(unit, "Bo-Katan_Sit");
+                else if (animation == 2) Animator.Play(unit, "Bo-Katan_Lean");
 
                 if (HubTextController != null) { 
                     HubTextController.GetComponent<HubTextController>().bo_katan = unit;

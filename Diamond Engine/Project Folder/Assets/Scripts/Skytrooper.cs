@@ -401,7 +401,7 @@ public class Skytrooper : Enemy
         //if (skill_slowDownActive)
         //    MoveToPosition(targetPosition, wanderSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
         //else 
-            MoveToPosition(targetPosition, wanderSpeed * speedMult);
+        MoveToPosition(targetPosition, wanderSpeed * speedMult);
 
         UpdateAnimationSpd(speedMult);
     }
@@ -453,8 +453,8 @@ public class Skytrooper : Enemy
         //Debug.Log("SKYTROOPER SHOOT");
         shootTimer = timeBewteenShootingStates;
         shotsShooted = 0;
-        Animator.Play(gameObject, "SK_Idle",speedMult);
-        Animator.Play(blaster, "SK_Idle",speedMult);
+        Animator.Play(gameObject, "SK_Idle", speedMult);
+        Animator.Play(blaster, "SK_Idle", speedMult);
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Jetpack_Loop");
     }
@@ -490,13 +490,20 @@ public class Skytrooper : Enemy
 
         //Debug.Log("Sign: " + sign.ToString());
 
-        Vector3 projectileEndPosition = new Vector3(randomPosition.x,
-                                                    Core.instance.gameObject.transform.globalPosition.y,
-                                                    randomPosition.y);
+        Vector3 projectileEndPosition = null;
+
+        projectileEndPosition = new Vector3(randomPosition.x, Core.instance.gameObject.transform.globalPosition.y, randomPosition.y);
+        
+        if (Core.instance.GetSate() == Core.STATE.DASH)
+        {
+           // Debug.Log("Skytrooper shot while dashing");
+            projectileEndPosition += Core.instance.gameObject.transform.GetForward().normalized * Core.instance.dashDistance;
+        }
+
 
         bullet.GetComponent<SkyTrooperShot>().SetTarget(projectileEndPosition, false);
-        Animator.Play(gameObject, "SK_Shoot",speedMult);
-        Animator.Play(blaster, "SK_Shoot",speedMult);
+        Animator.Play(gameObject, "SK_Shoot", speedMult);
+        Animator.Play(blaster, "SK_Shoot", speedMult);
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "PLay_Skytrooper_Grenade_Launch");
 
@@ -589,7 +596,7 @@ public class Skytrooper : Enemy
         {
             PlayerHealth playerHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
 
-            if(playerHealth != null)
+            if (playerHealth != null)
             {
                 //Debug.Log("Player hurt by skytrooper explosion");
                 playerHealth.TakeDamage((int)damage);

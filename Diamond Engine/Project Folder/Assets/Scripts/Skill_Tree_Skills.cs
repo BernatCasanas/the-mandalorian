@@ -8,7 +8,7 @@ namespace DiamondEngine
     {
         public String description = " ";
         public RewardType type_of_price = RewardType.REWARD_BESKAR;
-        public int price = 0;
+        public int price = 1;
         public virtual void Use()
         {
         }
@@ -44,7 +44,7 @@ namespace DiamondEngine
 
     }
 
-    public class UtilityIncreaseDamageSkill : Skills
+    public class UtilitySlowDamageSkill : Skills
     {
         public override void Use()
         {
@@ -58,7 +58,7 @@ namespace DiamondEngine
         }
     }
 
-    public class UtilityDamageReductionSkill : Skills
+    public class UtilityFallDamageReductionSkill : Skills
     {
         public override void Use()
         {
@@ -122,7 +122,7 @@ namespace DiamondEngine
     #endregion
 
     #region Aggression Skills
-    public class AggressionDamageSkill : Skills
+    public class AggressionBlasterDamageSkill : Skills
     {
         public override void Use()
         {
@@ -151,7 +151,7 @@ namespace DiamondEngine
         }
     }
 
-    public class AggressionCriticalChanceSkill : Skills
+    public class AggressionGrenadeDamageSkill : Skills
     {
         public override void Use()
         {
@@ -159,7 +159,7 @@ namespace DiamondEngine
         }
     }
 
-    public class AggressionCriticalDamageSkill : Skills
+    public class AggressionSniperDamageSkill : Skills
     {
         public override void Use()
         {
@@ -182,7 +182,7 @@ namespace DiamondEngine
         }
     }
 
-    public class AggressionHPMissingDamageSkill : Skills
+    public class AggressionHPMissDamageBlasterSkill : Skills
     {
         public override void Use()
         {
@@ -197,7 +197,7 @@ namespace DiamondEngine
     }
 
 
-    public class AggressionHPMissingCriticalChanceSkill : Skills
+    public class AggressionHPMissDamageSniperSkill : Skills
     {
         public override void Use()
         {
@@ -579,20 +579,20 @@ namespace DiamondEngine
         {
             {"UDamageHeat", typeof(UtilityDamagePerHeat)},
             {"UMovSpd", typeof(UtilityMovementSpeedSkill)},
-            {"UIncDmg", typeof(UtilityIncreaseDamageSkill)},
-            {"UDmgRed", typeof(UtilityDamageReductionSkill)},
+            {"USlowDamage", typeof(UtilitySlowDamageSkill)},
+            {"UFallDmgRed", typeof(UtilityFallDamageReductionSkill)},
             {"UOverheat", typeof(UtilityOverheatSkill)},
             {"URedGroguCost", typeof(UtilityReductionGroguCostSkill)},
             {"UHeal", typeof(UtilityHealSkill)},
             {"UDash", typeof(UtilityDashSkill)},
-            {"ADmg", typeof(AggressionDamageSkill)},
-            {"AFireRate", typeof(AggressionFireRateSkill)},
+            {"ABlasterDmg", typeof(AggressionBlasterDamageSkill)},
+            {"AComboFireRate", typeof(AggressionFireRateSkill)},
             {"AComboDmg", typeof(AggressionComboDamageSkill)},
-            {"ACritChance", typeof(AggressionCriticalChanceSkill)},
-            {"ACritDmg", typeof(AggressionCriticalDamageSkill)},
+            {"AGrenadeDmg", typeof(AggressionGrenadeDamageSkill)},
+            {"ASniperDmg", typeof(AggressionSniperDamageSkill)},
             {"ADmgBos", typeof(AggressionDamageBossesSkill)},
-            {"AHPMissDmg", typeof(AggressionHPMissingDamageSkill)},
-            {"AHPMissCritChance", typeof(AggressionHPMissingCriticalChanceSkill)},
+            {"AHPMissDmgBlaster", typeof(AggressionHPMissDamageBlasterSkill)},
+            {"AHPMissDmgSniper", typeof(AggressionHPMissDamageSniperSkill)},
             {"DMaxHPS", typeof(DefenseMaxHPSkill)},
             {"DDmgRed", typeof(DefenseDamageReductionSkill)},
             {"DComboDmgRed", typeof(DefenseComboDamageReductionSkill)},

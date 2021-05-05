@@ -1,19 +1,19 @@
 {
-    "NavMesh": 247112550,
+    "NavMesh": 1915681073,
     "EditorCameraPosition": [
-        2.9155538082122803,
-        33.348518371582031,
-        -24.573776245117188
+        -9.382929801940918,
+        21.141731262207031,
+        -34.465373992919922
     ],
     "EditorCameraZ": [
-        -0.00099322746973484755,
-        -0.8127252459526062,
-        0.58264636993408203
+        -0.0014090822078287601,
+        -0.65433073043823242,
+        0.75620710849761963
     ],
     "EditorCameraY": [
-        -0.0010756929405033588,
-        0.58264708518981934,
-        0.8127245306968689
+        -0.00085664202924817801,
+        0.75620841979980469,
+        0.65433025360107422
     ],
     "tags": [
         "Bantha"
@@ -239,9 +239,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                10.38917350769043,
-                9.890472412109375,
-                -5.9499998092651367
+                2.9192757606506348,
+                1.2252311706542969,
+                -14.979118347167969
             ],
             "Rotation": [
                 0,
@@ -335,11 +335,11 @@
                     "coinDropPath": "Library\/Prefabs\/1907169014.prefab",
                     "slerpSpeed": 5,
                     "chargePoint": 1770085314,
+                    "spear": 1199307117,
                     "idleTime": 5,
                     "sweepTime": 1,
                     "tiredTime": 2,
                     "loadingTime": 1,
-                    "timeBewteenStates": 1.5,
                     "directionDecisionTime": 0.80000001192092896,
                     "directionSweepDecisionTime": 0.5,
                     "wanderSpeed": 2,
@@ -347,9 +347,9 @@
                     "dashSpeed": 30,
                     "dashSpeedReduction": 0.30000001192092896,
                     "wanderRange": 7.5,
-                    "sweepRange": 5,
+                    "sweepRange": 3,
                     "dashRange": 7,
-                    "dashLength": 5,
+                    "dashLength": 10,
                     "forcePushMod": 1
                 }
             ]
@@ -2459,6 +2459,107 @@
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "SkytrooperSpearCollider",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1199307117,
+            "ParentUID": 446953643,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.31142139434814453,
+                0.89382076263427734,
+                0.53237628936767578
+            ],
+            "Rotation": [
+                -8.1460292733481765e-08,
+                1.9515425719873747e-07,
+                -1.8939136283563363e-13,
+                1
+            ],
+            "Scale": [
+                0.20970506966114044,
+                0.22151410579681396,
+                0.6007964015007019
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": false
+                },
+                {
+                    "Type": 26,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/715565838.mat",
+                    "MaterialUID": 715565838
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "HeavyTrooperSpear",
+                    "damage": 0
                 }
             ]
         },
@@ -5559,6 +5660,34 @@
                         1,
                         1,
                         1
+                    ]
+                },
+                {
+                    "name": "SecSounds",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 970959798,
+                    "ParentUID": 2008599538,
+                    "PrefabID": 0,
+                    "PrefabReference": 970959798,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        11.015684127807617,
+                        -8.8377418518066406,
+                        11.111242294311523
+                    ],
+                    "Rotation": [
+                        2.120925657322914e-09,
+                        -1.4958198597962324e-18,
+                        -7.0526734452514006e-10,
+                        1
+                    ],
+                    "Scale": [
+                        1.0000017881393433,
+                        1,
+                        1.0000017881393433
                     ]
                 }
             ]

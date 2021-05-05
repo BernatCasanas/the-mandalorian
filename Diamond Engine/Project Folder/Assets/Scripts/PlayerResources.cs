@@ -19,13 +19,14 @@ public enum BOONS
 
 public static class PlayerResources
 {
-    static int beskarCounter = 0;
-    static int macaronCounter = 0;
-    static int milkCounter = 0;
-    static int scrapCounter = 0;
-    static int runCoins = 0;
+    static int beskarCounter = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("beskarCounter") : 0;
+    static int macaronCounter = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("macaronCounter") : 0;
+    static int milkCounter = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("milkCounter") : 0;
+    static int scrapCounter = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("scrapCounter") : 0;
+    static int runCoins = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("runCoins") : 0;
     static bool[] accquiredBoons = new bool[(int)BOONS.BOON_MAX];
     static Dictionary<Type, int> boonCounter = new Dictionary<Type, int>();
+
 
     public static int GetResourceCount(RewardType type, Type boonType = null)
     {
@@ -34,7 +35,8 @@ public static class PlayerResources
         switch (type)
         {
             case RewardType.REWARD_BOON:
-                if (boonCounter.ContainsKey(boonType)) {
+                if (boonCounter.ContainsKey(boonType))
+                {
                     auxCounter = boonCounter[boonType];
                 }
                 break;
@@ -61,15 +63,15 @@ public static class PlayerResources
 
     public static void ResetHoldingBoons()
     {
-        for (int i=0;i < accquiredBoons.Length; i++)
+        for (int i = 0; i < accquiredBoons.Length; i++)
         {
             accquiredBoons[i] = false;
         }
     }
 
     public static void AddBoon(BOONS newBoon)
-    {      
-        accquiredBoons[(int)newBoon] = true;       
+    {
+        accquiredBoons[(int)newBoon] = true;
     }
 
     public static bool CheckBoon(BOONS newBoon)
@@ -90,18 +92,22 @@ public static class PlayerResources
 
             case RewardType.REWARD_BESKAR:
                 resourceLeft = ++beskarCounter;
+                DiamondPrefs.Write("beskarCounter", beskarCounter);
                 break;
 
             case RewardType.REWARD_MACARON:
                 resourceLeft = ++macaronCounter;
+                DiamondPrefs.Write("macaronCounter", macaronCounter);
                 break;
 
             case RewardType.REWARD_SCRAP:
                 resourceLeft = ++scrapCounter;
+                DiamondPrefs.Write("scrapCounter", scrapCounter);
                 break;
 
             case RewardType.REWARD_MILK:
                 resourceLeft = ++milkCounter;
+                DiamondPrefs.Write("milkCounter", milkCounter);
                 break;
         }
 
@@ -117,21 +123,25 @@ public static class PlayerResources
             case RewardType.REWARD_BESKAR:
                 beskarCounter += num;
                 resourceLeft = beskarCounter;
+                DiamondPrefs.Write("beskarCounter", beskarCounter);
                 break;
 
             case RewardType.REWARD_MACARON:
                 macaronCounter += num;
                 resourceLeft = macaronCounter;
+                DiamondPrefs.Write("macaronCounter", macaronCounter);
                 break;
 
             case RewardType.REWARD_SCRAP:
                 scrapCounter += num;
                 resourceLeft = scrapCounter;
+                DiamondPrefs.Write("scrapCounter", scrapCounter);
                 break;
 
             case RewardType.REWARD_MILK:
                 milkCounter += num;
                 resourceLeft = milkCounter;
+                DiamondPrefs.Write("milkCounter", milkCounter);
                 break;
         }
 
@@ -153,28 +163,36 @@ public static class PlayerResources
             case RewardType.REWARD_BESKAR:
                 if (beskarCounter > 0)
                 {
-                    resourceLeft = beskarCounter - total_to_substract ;
+                    beskarCounter = beskarCounter - total_to_substract;
+                    resourceLeft = beskarCounter;
+                    DiamondPrefs.Write("beskarCounter", beskarCounter);
                 }
                 break;
 
             case RewardType.REWARD_MACARON:
                 if (macaronCounter > 0)
                 {
-                    resourceLeft = macaronCounter - (total_to_substract);
+                    macaronCounter = macaronCounter - (total_to_substract);
+                    resourceLeft = macaronCounter;
+                    DiamondPrefs.Write("macaronCounter", macaronCounter);
                 }
                 break;
 
             case RewardType.REWARD_SCRAP:
                 if (scrapCounter > 0)
                 {
-                    resourceLeft = scrapCounter - total_to_substract;
+                    scrapCounter = scrapCounter - total_to_substract;
+                    resourceLeft = scrapCounter;
+                    DiamondPrefs.Write("scrapCounter", scrapCounter);
                 }
                 break;
 
             case RewardType.REWARD_MILK:
                 if (milkCounter > 0)
                 {
-                    resourceLeft = milkCounter - total_to_substract;
+                    milkCounter = milkCounter - total_to_substract;
+                    resourceLeft = milkCounter;
+                    DiamondPrefs.Write("milkCounter", milkCounter);
                 }
                 break;
         }
@@ -209,11 +227,13 @@ public static class PlayerResources
     public static void AddRunCoins(int val)
     {
         runCoins += val;
+        DiamondPrefs.Write("runCoins", runCoins);
     }
 
     public static void SetRunCoins(int val)
     {
         runCoins = val;
+        DiamondPrefs.Write("runCoins", runCoins);
     }
 
     public static void ResetRunBoons()

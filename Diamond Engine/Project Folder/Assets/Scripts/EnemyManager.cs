@@ -6,6 +6,8 @@ public class EnemyManager : DiamondComponent
 {
     public static List<GameObject> currentEnemies = null;
 
+    public static int awaitingForEnemiesToSpawn = 0;
+
     public static void AddEnemy(GameObject enemy)
     {
         if (currentEnemies == null)
@@ -29,9 +31,9 @@ public class EnemyManager : DiamondComponent
 
         //Debug.Log("Removing enemy. Enemies left: " + currentEnemies.Count.ToString());
 
-        for(int i = 0; i < currentEnemies.Count; ++i)
+        for (int i = 0; i < currentEnemies.Count; ++i)
         {
-            if(currentEnemies[i].GetUid() == enemy.GetUid())
+            if (currentEnemies[i].GetUid() == enemy.GetUid())
             {
                 currentEnemies.RemoveAt(i);
                 ret = true;
@@ -59,6 +61,7 @@ public class EnemyManager : DiamondComponent
             currentEnemies.Clear();
             currentEnemies = null;
         }
+        awaitingForEnemiesToSpawn = 0;
     }
 
     public static int EnemiesLeft()

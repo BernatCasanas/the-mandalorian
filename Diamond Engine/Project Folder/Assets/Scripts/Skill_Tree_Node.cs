@@ -184,7 +184,7 @@ public class Skill_Tree_Node : DiamondComponent
         }
         else
         {
-            Debug.Log("ERROR: Skill doesn't exist");
+            Debug.Log("ERROR: Skill doesn't exist: " + skill_name);
         }
 
         if (node_type == 0)
@@ -267,60 +267,65 @@ public class Skill_Tree_Node : DiamondComponent
                 {
                     #region utility
                     case "UDamageHeat":
-                        // Debug.Log("Damage * heat not implemented yet");
+                        //Debug.Log("Damage * heat not implemented yet");
                         Core.instance.AddStatus(STATUS_TYPE.DMG_PER_HEAT, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
                         break;
                     case "UMovSpd":
                         //Debug.Log("MovementSpeed not implemented yet");
-                        Core.instance.AddStatus(STATUS_TYPE.MOV_SPEED, STATUS_APPLY_TYPE.SUBSTITUTE, 100, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.MOV_SPEED, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
                         break;
-                    case "UIncDmg":
-                        Debug.Log("Damage after grogu push  not implemented yet");
+                    case "USlowDamage":
+                        Debug.Log("Slow when damage not implemented yet");
                         break;
-                    case "UDmgRed":
-                        Debug.Log("Damage reduction after dash not implemented yet");
+                    case "UFallDmgRed":
+                        Core.instance.AddStatus(STATUS_TYPE.FALL, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
+                      //  Debug.Log("Damage reduction after dash not implemented yet");
                         break;
                     case "UOverheat":
                         //Debug.Log("More Shots before overheat not implemented yet");
-                        Core.instance.AddStatus(STATUS_TYPE.DMG_PER_HEAT, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.OVERHEAT, STATUS_APPLY_TYPE.SUBSTITUTE, -20, 0, true);
                         break;
                     case "URedGroguCost":
-                        Debug.Log("Grogu reduction cost not implemented yet");
+                        Debug.Log("Grogu Cost reduced");
+                        Core.instance.AddStatus(STATUS_TYPE.GROGU_COST, STATUS_APPLY_TYPE.SUBSTITUTE, -20, 0, true);
+                      //  Debug.Log("Grogu reduction cost not implemented yet");
                         break;
                     case "UHeal":
-                        Debug.Log("Gogu heal not implemented yet");
+                        // Debug.Log("Gogu heal not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.SKILL_HEAL, STATUS_APPLY_TYPE.SUBSTITUTE, 10, 1, true);
                         break;
                     case "UDash":
                         Debug.Log("Double dash not implemented yet");
                         break;
                     #endregion
                     #region Aggression
-                    case "ADmg":
-                        Debug.Log("Damage not implemented yet");
-                        Core.instance.AddStatus(STATUS_TYPE.RAW_DAMAGE, STATUS_APPLY_TYPE.SUBSTITUTE, 15, 0, true);
-
+                    case "ABlasterDmg":
+                       // Debug.Log("Damage not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.BLASTER_DAMAGE, STATUS_APPLY_TYPE.SUBSTITUTE, 15, 0, true);
                         break;
-                    case "AFireRate":
-                        Debug.Log("Combo * speed not implemented yet");
+                    case "AComboFireRate":
+                        // Debug.Log("Combo * speed not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.COMBO_FIRE_RATE, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
                         break;
                     case "AComboDmg":
-                        Debug.Log("Combo * damage not implemented yet");
+                       // Debug.Log("Combo * damage not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.COMBO_DAMAGE, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
                         break;
-                    case "ACritChance":
+                    case "AGrenadeDmg":
                         Debug.Log("Critical chance not implemented yet");
                         break;
-                    case "ACritDmg":
+                    case "ASniperDmg":
                         Debug.Log("Critical damage not implemented yet");
                         break;
                     case "ADmgBos":
                         Core.instance.AddStatus(STATUS_TYPE.DMG_TO_BOSSES, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
                        // Debug.Log("Bonus damage to bosses not implemented yet");
                         break;
-                    case "AHPMissDmg":
+                    case "AHPMissDmgBlaster":
                         Core.instance.AddStatus(STATUS_TYPE.DMG_PER_HP, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
                         //Debug.Log("Damage * missing hp not implemented yet");
                         break;
-                    case "AHPMissCritChance":
+                    case "AHPMissDmgSniper":
                         Debug.Log("Crit * missing hp not implemented yet");
                         break;
                     #endregion

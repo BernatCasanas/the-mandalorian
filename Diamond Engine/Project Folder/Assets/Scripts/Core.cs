@@ -5,8 +5,9 @@ using System.Collections.Generic;
 public class Core : Entity
 {
     public static Core instance;
+    private static Dictionary<STATUS_TYPE, StatusData> PlayerStatuses = new Dictionary<STATUS_TYPE, StatusData>();
 
-    enum STATE : int
+    public enum STATE : int
     {
         NONE = -1,
         IDLE,
@@ -260,6 +261,7 @@ public class Core : Entity
         // Placeholder for Start() function
         if (scriptStart == true)
         {
+            LoadBuffs();
             hud = InternalCalls.FindObjectWithName("HUD");
 
             if (hud == null)
@@ -380,7 +382,7 @@ public class Core : Entity
 
                 if (hit != null)
                 {
-                    Debug.Log(hit.tag);
+                    //Debug.Log(hit.tag);
 
                     if (hit.CompareTag("Gap"))
                     {
@@ -1201,14 +1203,7 @@ public class Core : Entity
         Animator.Play(gameObject, "Run", speedMult);
         UpdateAnimationSpd(speedMult);
 
-        if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
-        {
-            Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
-        }
-        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
-        {
-            Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
-        }
+        PlayFootstepsAudio();
     }
 
     private void UpdateMove()
@@ -1221,14 +1216,7 @@ public class Core : Entity
         {
             Audio.StopAudio(gameObject);
 
-            if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
-            {
-                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
-            }
-            else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
-            {
-                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
-            }
+            PlayFootstepsAudio();
 
             footStepTimer = 0f;
         }
@@ -1317,6 +1305,21 @@ public class Core : Entity
         if (currAnimationPlaySpd != newSpd)
             Animator.SetSpeed(gameObject, newSpd);
     }
+
+    private void PlayFootstepsAudio()
+    {
+
+        if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
+        {
+            Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
+        }
+        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
+        {
+            Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
+        }
+
+    }
+
     private void UpdateControllerInputs()
     {
         //Check if user is moving joystick
@@ -1339,6 +1342,7 @@ public class Core : Entity
             {
                 pause.EnableNav(true);
                 pause.GetComponent<Pause>().DisplayBoons();
+                pause.GetComponent<Pause>().HideShop();
                 background.Enable(true);
                 Time.PauseGame();
             }
@@ -1370,7 +1374,16 @@ public class Core : Entity
         ret = Math.Min(ret, baseFireRate * fireRateMultCap * 0.45f);
         ret = Math.Max(ret, baseFireRate * 0.75f);
 
-        return ret;
+        if (Core.instance.HasStatus(STATUS_TYPE.COMBO_FIRE_RATE))
+        {
+            Debug.Log("FireRate: " + FireRateMult.ToString());
+        }
+        if (Core.instance.HasStatus(STATUS_TYPE.COMBO_DAMAGE))
+        {
+            Debug.Log("Damage: " + RawDamageMult.ToString());
+        }
+
+        return ret * FireRateMult;
     }
 
     private void AddPrimaryHeat()
@@ -1544,7 +1557,13 @@ public class Core : Entity
         PlayerHealth myHealth = gameObject.GetComponent<PlayerHealth>();
         if (myHealth != null)
         {
-            int finalHealthSubstract = (int)(PlayerHealth.currMaxHealth * 0.25f);
+            int finalHealthSubstract = 0;
+            if (HasStatus(STATUS_TYPE.FALL))
+            {
+                finalHealthSubstract = (int)(PlayerHealth.currMaxHealth * 0.25f / 2);
+            }
+            else
+                finalHealthSubstract = (int)(PlayerHealth.currMaxHealth * 0.25f);
 
             if (PlayerHealth.currHealth - finalHealthSubstract <= 0)
             {
@@ -1590,8 +1609,8 @@ public class Core : Entity
                         particle.Play();
                     else if (particle != null && stopParticle == true)
                         particle.Stop();
-                    else
-                        Debug.Log("Jetpack particle not found");
+                    //else
+                    //    Debug.Log("Jetpack particle not found");
                 }
                 else
                     Debug.Log("Component Particles not found");
@@ -1673,7 +1692,7 @@ public class Core : Entity
     private float GetDamage()
     {
         //We apply modifications to the damage based on the skill actives in the talent tree
-        float damageWithSkills = bulletDamage * DamageMult * DamagePerHpMult * DamagePerHeatMult;
+        float damageWithSkills = bulletDamage * BlasterDamageMult * DamagePerHpMult * DamagePerHeatMult * RawDamageMult;
 
         //if (skill_groguIncreaseDamageActive)
         //{
@@ -1707,5 +1726,36 @@ public class Core : Entity
     public void OnApplicationQuit()
     {
         bulletDamage = bulletDamageDefault;
+    }
+
+    public STATE GetSate()
+    {
+        return currentState;
+    }
+
+    public void SaveBuffs()
+    {
+        Debug.Log("SAVE STATUSES");
+        copyBuffs(ref PlayerStatuses);
+    }
+
+    public void LoadBuffs()
+    {
+        Debug.Log("LOAD STATUSES");
+        Debug.Log(PlayerStatuses.Count.ToString());
+        var mapKeys = PlayerStatuses.Keys;
+        foreach (STATUS_TYPE statusType in mapKeys)
+        {
+            if (PlayerStatuses.ContainsKey(statusType) == false)
+                continue;
+            Debug.Log(PlayerStatuses[statusType].statusType.ToString());
+            Debug.Log(PlayerStatuses[statusType].applyType.ToString());
+            Debug.Log(PlayerStatuses[statusType].severity.ToString());
+            Debug.Log(PlayerStatuses[statusType].remainingTime.ToString());
+            Debug.Log(PlayerStatuses[statusType].isPermanent.ToString());
+
+            AddStatus(PlayerStatuses[statusType].statusType, PlayerStatuses[statusType].applyType, PlayerStatuses[statusType].severity, 1, PlayerStatuses[statusType].isPermanent);
+
+        }
     }
 }

@@ -8,13 +8,20 @@ public class SpawnManager : DiamondComponent
     public List<GameObject> availableSpawnPoints = null;
 
     private int enemiesToSpawn = 0;
+    private int enemiesLeftInWave = 0;
     public int maxEnemiesPerWave = 0;
     public int enemyIncreasePerWave = 0;
     public int wave = 0;
     public int maxWaves = 1;
 
+    public float delayInWaveSpawn = 0.0f;
+
+    public int enemiesLeftToNextWave = 2;
+
     public float waveTimer = 0.0f;
     public float timeBetweenWaves = 1.0f;
+
+    public float timeDelayMult = 1.0f;
 
     public void Awake()
     {
@@ -25,33 +32,38 @@ public class SpawnManager : DiamondComponent
 
         if (waveTimer <= 0.0f)
             waveTimer = 0.01f;
+
+        EnemyManager.ClearList();
+
     }
 
     public void Update()
     {
-        if (waveTimer > 0.0f)
+        waveTimer -= Time.deltaTime;
+
+        if (((waveTimer <= 0.0f && (EnemyManager.EnemiesLeft() <= enemiesLeftToNextWave || enemiesLeftInWave > 0)) || EnemyManager.EnemiesLeft() == 0)
+            && EnemyManager.awaitingForEnemiesToSpawn == 0)
         {
-            waveTimer -= Time.deltaTime;
+            SpawnWave();
+            waveTimer = 0f;
 
-            if(waveTimer <= 0.0f)
+            if (enemiesToSpawn > 0)
             {
-                SpawnWave();
+                waveTimer = delayInWaveSpawn;
+            }
+            else
+            {
+                ++wave;
 
-                if (enemiesToSpawn > 0)
-                    waveTimer = timeBetweenWaves * 0.25f;
-                else
+                if (wave < maxWaves)
                 {
-                    wave++;
-
-                    if (wave < maxWaves)
-                    {
-                        waveTimer = timeBetweenWaves;
-                        maxEnemiesPerWave += enemyIncreasePerWave;
-                        enemiesToSpawn = maxEnemiesPerWave;
-                    }
+                    waveTimer = timeBetweenWaves;
+                    maxEnemiesPerWave += enemyIncreasePerWave;
+                    enemiesToSpawn = maxEnemiesPerWave;
                 }
             }
         }
+
     }
 
     public void AddSpawnPoint(GameObject spawnPoint)
@@ -108,7 +120,13 @@ public class SpawnManager : DiamondComponent
             SpawnPoint spawnScript = spawnPoint.GetComponent<SpawnPoint>();
 
             if (spawnScript != null)
-                spawnScript.SpawnEnemy();
+            {
+                float delay = (float)(randomizer.NextDouble() * timeDelayMult);
+                delay = Math.Min(delay, 0.22f);
+
+                spawnScript.QueueSpawnEnemy(delay);
+
+            }
 
             for (int j = 0; j < spawnPoints.Count; ++j)
             {
@@ -120,6 +138,6 @@ public class SpawnManager : DiamondComponent
             }
         }
 
-        enemiesToSpawn = pendingEnemies;
+        enemiesToSpawn = enemiesLeftInWave = pendingEnemies;
     }
 }

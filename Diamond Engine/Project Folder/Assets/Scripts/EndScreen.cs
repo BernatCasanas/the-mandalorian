@@ -29,12 +29,18 @@ public class EndScreen : DiamondComponent
 			{
 				Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
 			}
+			if (Core.instance != null)
+				Core.instance.SaveBuffs();
 			SceneManager.LoadScene(518261031);
+
 		}
 		else if (gameObject.Name == "Quit")
 		{
 			Time.ResumeGame();
+			if (Core.instance != null)
+				Core.instance.SaveBuffs();
 			SceneManager.LoadScene(1726826608);
+
 		}
 	}
 	public void Update()

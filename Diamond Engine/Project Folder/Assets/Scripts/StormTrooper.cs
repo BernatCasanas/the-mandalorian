@@ -109,24 +109,6 @@ public class StormTrooper : Enemy
 
         idleTimer = idleTime;
         dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
-
-        ParticleSystem spawnparticles = null;
-
-        myParticles = gameObject.GetComponent<StormTrooperParticles>();
-        if (myParticles != null)
-        {
-            spawnparticles = myParticles.spawn;
-        }
-
-        if (spawnparticles != null)
-        {
-            //Debug.Log("PLAY SPAWN!!!");
-            spawnparticles.Play();
-        }
-        else
-        {
-            //Debug.Log("CAN'T PLAY SPAWN!!!"); 
-        }
     }
 
     public void Update()

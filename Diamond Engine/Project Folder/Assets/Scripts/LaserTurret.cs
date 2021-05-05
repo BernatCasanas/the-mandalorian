@@ -42,10 +42,11 @@ public class LaserTurret : Enemy
 
     //Speeds
     private float angle = 0.0f;
-    public float rotationSpeed = 0.0f;
+    private float rotationSpeed = 0.0f;
 
     //Ranges
     public float laserRange = 0.0f;
+    public float shotTotalAngle = 0.0f;
 
     //Timers
     private float idleTimer = 0.0f;
@@ -97,6 +98,8 @@ public class LaserTurret : Enemy
         {
             //Debug.Log("CAN'T PLAY SPAWN!!!"); 
         }
+
+        rotationSpeed = shotTotalAngle * Mathf.Deg2RRad / shotTime;
     }
 
     public void Update()

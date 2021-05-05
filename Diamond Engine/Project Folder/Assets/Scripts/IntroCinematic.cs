@@ -23,6 +23,8 @@ public class IntroCinematic : DiamondComponent
     public GameObject point14 = null;
     public GameObject point15 = null;
     public GameObject point16 = null;
+    public GameObject point17 = null;
+    public GameObject point18 = null;
     public GameObject greefRig = null;
 
     public GameObject postCinematicDialogue = null;
@@ -31,59 +33,71 @@ public class IntroCinematic : DiamondComponent
     Vector3 cameraAuxPosition = null;
     Quaternion toRotateQuaternion = null;
     float currentSpeed = 0;
-    //float currentTimer = 0.0f;
+    float currentTimer = 0.0f;
     float currentTimeLimit = 0.0f;
-    Quaternion auxCameraRotation = null;
+    Vector3 nonCinematicCameraPos = null;
+    Quaternion nonCinematicCameraRotation = null;
 
     GameObject[] pointArray = null;
-    float[] speedArray = new float[] { 1.0f, 2.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };    // Adapt values; wouldn't it be easier to just calculate the speed based on how long we need that scene to be?
+    float[] speedArray = new float[] { 1.0f, 2.0f, 1.0f, 6.0f, 1.0f, 0.8f, 1.0f, 1.0f, 4.0f };    // Adapt values; wouldn't it be easier to just calculate the speed based on how long we need that scene to be?
     float[] timerArray = null;    // Why am I using timer approach? Basically, the triggers of each camera switch are animation ends, positions reached and timers. Everything is convertable to time, but the other two can't be converted universally
     int arrayCount = -1;
 
     public void Awake()
     {
-        /*if (Counter.firstRun)
+        if (Counter.firstRun)
         {
-            auxCameraRotation = cameraObject.transform.localRotation;
+            nonCinematicCameraPos = cameraObject.transform.localPosition;
+            nonCinematicCameraRotation = cameraObject.transform.localRotation;
             CameraManager.SetCameraPerspective(cameraObject);
 
             if (InitializeTimers())
             {
-                pointArray = new GameObject[] { point1, point2, point3, point4, point5, point6, point7, point8, point9, point10, point11, point12, point13, point14, point15, point16 };
+                pointArray = new GameObject[] { point1, point2, point3, point4, point5, point6, point7, point8, point9, point10, point11, point12, point13, point14, point15, point16, point17, point18 };
                 UpdateValues();
-                Animator.Play(greefRig, "Greef_Sit"); // This probably isn't needed with fixed animations
+                Animator.Play(greefRig, "Greef_Sit");
             }
         }
         else
         {
             EndCinematic();
-        }*/
+        }
     }
 
     public void Update()
     {
-        // We should have a way to skip the cinematic :/
-        /*Core.instance.LockInputs(true); // Yeah. Not pretty. But calling Core in Awake is not happening, and a boolean checked every frame seems redundant for what the function does
+        float newDeltaTime = Time.deltaTime;
+
+        if (newDeltaTime > 0.016f) {
+            newDeltaTime = 0.016f;
+        }
+
+        Core.instance.LockInputs(true); // Yeah. Not pretty. But calling Core in Awake is not happening, and a boolean checked every frame seems redundant for what the function does
 
         if (toGoPosition != null && WeHaveToMove())
         {
-            cameraAuxPosition += (toGoPosition - cameraAuxPosition).normalized * Time.deltaTime * currentSpeed;
-            cameraObject.transform.localRotation = Quaternion.Slerp(cameraObject.transform.localRotation, toRotateQuaternion, 0.25f * Time.deltaTime);
+            cameraAuxPosition += (toGoPosition - cameraAuxPosition).normalized * newDeltaTime * currentSpeed;
+            cameraObject.transform.localRotation = Quaternion.Slerp(cameraObject.transform.localRotation, toRotateQuaternion, 0.25f * newDeltaTime);
         }
         cameraObject.transform.localPosition = cameraAuxPosition;
 
         if (arrayCount == 0 && helmet != null)
         {
-            helmet.transform.localPosition += (helmetFinal.transform.localPosition - helmet.transform.localPosition).normalized * Time.deltaTime * 0.60f;
-            helmet.transform.localRotation = Quaternion.Slerp(helmet.transform.localRotation, helmetFinal.transform.localRotation, 0.25f * Time.deltaTime);
+            helmet.transform.localPosition += (helmetFinal.transform.localPosition - helmet.transform.localPosition).normalized * newDeltaTime * 0.60f;
+            helmet.transform.localRotation = Quaternion.Slerp(helmet.transform.localRotation, helmetFinal.transform.localRotation, 0.25f * newDeltaTime);
         }
 
-        currentTimer += Time.deltaTime;
-        if (currentTimer > timerArray[arrayCount])
+        currentTimer += newDeltaTime;
+        if (currentTimer > currentTimeLimit)
         {
             ManageCamera();
             UpdateValues();
-        }*/
+        }
+
+        if (Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_REPEAT)
+        {
+            EndCinematic();
+        }
     }
 
     public bool WeHaveToMove() // So... I didn't want to write this function, but otherwise weird behavior unfolds because of float's decimals. So yeah :)
@@ -109,13 +123,13 @@ public class IntroCinematic : DiamondComponent
     {
         arrayCount++;
 
-        if (arrayCount >= 8)
+        if (arrayCount >= 9)
         {
             EndCinematic();
             return;
         }
 
-        //currentTimer = 0;
+        currentTimer = 0;
         currentTimeLimit = timerArray[arrayCount];
         currentSpeed = speedArray[arrayCount];
         cameraAuxPosition = cameraObject.transform.localPosition = pointArray[arrayCount * 2].transform.localPosition;
@@ -134,11 +148,14 @@ public class IntroCinematic : DiamondComponent
 
             case 3:
                 Animator.Play(greefRig, "Greef_Greet");
-                // Mando goes back to his usual model
                 break;
 
             case 4:
                 Animator.Play(greefRig, "Greef_Sit");
+                break;
+
+            case 7:
+                pointArray[16] = cameraObject;
                 break;
 
             default:
@@ -152,7 +169,8 @@ public class IntroCinematic : DiamondComponent
 
         if (Counter.firstRun)
         {
-            cameraObject.transform.localRotation = auxCameraRotation;
+            cameraObject.transform.localPosition = nonCinematicCameraPos;
+            cameraObject.transform.localRotation = nonCinematicCameraRotation;
             CameraManager.SetCameraOrthographic(cameraObject);
             Core.instance.LockInputs(false);
             postCinematicDialogue.Enable(true);
@@ -168,12 +186,13 @@ public class IntroCinematic : DiamondComponent
             float revolverZoomOut = Mathf.Distance(point3.transform.globalPosition, point4.transform.globalPosition) / speedArray[1];
             float revolverStatic = 0.36f;
             float greefTurningZoom = Animator.GetAnimationDuration(greefRig, "Greef_Head");
-            float greefGreeting = Animator.GetAnimationDuration(greefRig, "Greef_Head");
+            float greefGreeting = Animator.GetAnimationDuration(greefRig, "Greef_Greet");
             float tableZoomOut = Mathf.Distance(point11.transform.globalPosition, point12.transform.globalPosition) / speedArray[5];
             float tableStatic = 0.50f;
-            float mandoZoomOut = Mathf.Distance(point15.transform.globalPosition, point16.transform.globalPosition) / speedArray[7];
+            float cameraTurn = Mathf.Distance(point15.transform.globalPosition, point16.transform.globalPosition) / speedArray[7];
+            float finalPanOut = Mathf.Distance(point17.transform.globalPosition, point18.transform.globalPosition) / speedArray[8];
 
-            timerArray = new float[] { spaceScene, revolverZoomOut, revolverStatic, greefTurningZoom, greefGreeting, tableZoomOut, tableStatic, mandoZoomOut };
+            timerArray = new float[] { spaceScene, revolverZoomOut, revolverStatic, greefTurningZoom, greefGreeting, tableZoomOut, tableStatic, cameraTurn, finalPanOut };
         }
         else
         {

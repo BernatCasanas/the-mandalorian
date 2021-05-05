@@ -34,6 +34,14 @@ public class BabyYoda : DiamondComponent
     public float pushVerticalForce = 10;
     public float PushStun = 2;
 
+    //Force flow feedback
+    public GameObject forceParticle = null;
+    private ParticleSystem forcePartSys = null;
+    private bool canPlayParticles = false;
+    public GameObject forceGaugeFeedback = null;
+    private float forceFBTimer = 0.0f;
+    public float forceFBTime = 0.25f;
+
     //State (INPUT AND STATE LOGIC)
     #region STATE
     private STATE state = STATE.MOVE;
@@ -87,7 +95,19 @@ public class BabyYoda : DiamondComponent
             else currentForce += (forceRegenerationSpeed * Time.deltaTime);
 
             if (currentForce > totalForce)
+            {
                 currentForce = totalForce;
+                if (canPlayParticles)
+                {
+                    Debug.Log("PARTICLES PLAY!!");
+                    if (forcePartSys != null)
+                        forcePartSys.Play();
+                    canPlayParticles = false;
+                    if (forceGaugeFeedback != null)
+                        forceGaugeFeedback.Enable(true);
+                    forceFBTimer = forceFBTime;
+                }
+            }
 
             Core.instance.hud.GetComponent<HUD>().UpdateForce((int)currentForce, totalForce);
         }
@@ -102,7 +122,25 @@ public class BabyYoda : DiamondComponent
         currentForce = totalForce;
         flipVertical = false;
 
-     
+        if (forceParticle == null)
+        {
+            forceParticle = InternalCalls.FindObjectWithName("ForceParticle");
+            if (forceParticle == null)
+                Debug.Log("Force particle game object not found");
+        }
+
+        if (forceParticle != null)
+            forcePartSys = forceParticle.GetComponent<ParticleSystem>();
+
+        if (forceGaugeFeedback == null)
+        {
+            forceGaugeFeedback = InternalCalls.FindObjectWithName("ForceFeedback");
+            if (forceGaugeFeedback == null)
+                Debug.Log("Force feedback game object not found");
+        }
+
+        if (forceGaugeFeedback != null)
+            forceGaugeFeedback.Enable(false);
     }
 
     public void Update()
@@ -118,6 +156,16 @@ public class BabyYoda : DiamondComponent
         UpdateState();
         Move();
         UpdateHUD();
+        if (forceGaugeFeedback != null)
+        {
+            if (forceFBTimer >= 0.0f)
+                forceFBTimer -= Time.deltaTime;
+            if (forceFBTimer < 0.0f)
+            {
+                forceGaugeFeedback.Enable(false);
+                forceFBTimer = -1.0f;
+            }
+        }
     }
 
     #region MOVEMENT
@@ -386,12 +434,30 @@ public class BabyYoda : DiamondComponent
 
     private bool ExecutePushSkill()
     {
-        if (Core.instance.gameObject == null || currentForce < skillPushForceCost)
+       
+
+        if (Core.instance.gameObject == null || currentForce < skillPushForceCost * Core.instance.GroguCost)
             return false;
+
+        if (Core.instance != null)
+        {
+            if (Core.instance.HasStatus(STATUS_TYPE.SKILL_HEAL))
+            {
+                Debug.Log("Has SKILL_HEAL");
+                PlayerHealth playerHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    Debug.Log("Heal");
+                    playerHealth.SetCurrentHP((int)(PlayerHealth.currHealth + Core.instance.GetStatusData(STATUS_TYPE.SKILL_HEAL).severity));
+
+                }
+            }
+
+        }
 
         if (Core.instance.hud != null)
         {
-            SetCurrentForce((int)currentForce - skillPushForceCost);
+            SetCurrentForce((int)(currentForce - skillPushForceCost * Core.instance.GroguCost));
         }
         skillPushTimer += INIT_TIMER;
 
@@ -412,15 +478,25 @@ public class BabyYoda : DiamondComponent
     //Execute order 66
     private bool ExecuteWallSkill()
     {
-        if (Core.instance.gameObject == null || currentForce < skillWallForceCost)
+        if (Core.instance.gameObject == null || currentForce < skillWallForceCost * Core.instance.GroguCost)
             return false;
 
         if (Core.instance.hud != null)
         {
-            currentForce -= skillWallForceCost;
-            Core.instance.hud.GetComponent<HUD>().UpdateForce((int)currentForce, totalForce);
+            SetCurrentForce((int)(currentForce - skillWallForceCost * Core.instance.GroguCost));
         }
 
+        if (Core.instance != null)
+        {
+            if (Core.instance.HasStatus(STATUS_TYPE.SKILL_HEAL))
+            {
+                PlayerHealth playerHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                    playerHealth.SetCurrentHP((int)(PlayerHealth.currHealth + Core.instance.GetStatusData(STATUS_TYPE.SKILL_HEAL).severity));
+            }
+
+
+        }
         skillWallTimer += INIT_TIMER;
         Transform mandoTransform = Core.instance.gameObject.transform;
         Vector3 spawnPos = new Vector3(mandoTransform.globalPosition.x, mandoTransform.globalPosition.y, mandoTransform.globalPosition.z);
@@ -431,8 +507,8 @@ public class BabyYoda : DiamondComponent
         InternalCalls.CreatePrefab("Library/Prefabs/1850725718.prefab", spawnPos, mandoTransform.globalRotation, new Vector3(1, 1, 1));
         Audio.PlayAudio(gameObject, "Play_Grogu_Wall");
         
-        if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_HEAL_WHEN_GROGU_SKILL))        
-            Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-Skill_Tree_Data.GetMandoSkillTree().U7_healAmount);                
+        //if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_HEAL_WHEN_GROGU_SKILL))        
+        //    Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-Skill_Tree_Data.GetMandoSkillTree().U7_healAmount);                
 
         return true;
     }
@@ -462,7 +538,7 @@ public class BabyYoda : DiamondComponent
     public void SetCurrentForce(int newForceValue)
     {
         currentForce = newForceValue;
-
+        canPlayParticles = true;
         Core.instance.hud.GetComponent<HUD>().UpdateForce((int)currentForce, totalForce);
     }
 
