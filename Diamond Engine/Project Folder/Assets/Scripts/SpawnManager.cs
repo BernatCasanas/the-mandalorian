@@ -8,10 +8,13 @@ public class SpawnManager : DiamondComponent
     public List<GameObject> availableSpawnPoints = null;
 
     private int enemiesToSpawn = 0;
+    private int enemiesLeftInWave = 0;
     public int maxEnemiesPerWave = 0;
     public int enemyIncreasePerWave = 0;
     public int wave = 0;
     public int maxWaves = 1;
+
+    public float delayInWaveSpawn = 0.0f;
 
     public int enemiesLeftToNextWave = 2;
 
@@ -19,8 +22,6 @@ public class SpawnManager : DiamondComponent
     public float timeBetweenWaves = 1.0f;
 
     public float timeDelayMult = 1.0f;
-
-    private bool awaitingForEnemyCount = false;
 
     public void Awake()
     {
@@ -34,25 +35,22 @@ public class SpawnManager : DiamondComponent
 
         EnemyManager.ClearList();
 
-        //Random randomizer = new Random();
-        //enemiesLeftToNextWave = randomizer.Next(0, enemiesLeftToNextWave);
     }
 
     public void Update()
     {
         waveTimer -= Time.deltaTime;
 
-        if (((waveTimer <= 0.0f && EnemyManager.EnemiesLeft() <= enemiesLeftToNextWave) || EnemyManager.EnemiesLeft() == 0) && EnemyManager.awaitingForEnemiesToSpawn == 0)
+        if (((waveTimer <= 0.0f && (EnemyManager.EnemiesLeft() <= enemiesLeftToNextWave || enemiesLeftInWave > 0)) || EnemyManager.EnemiesLeft() == 0)
+            && EnemyManager.awaitingForEnemiesToSpawn == 0)
         {
             SpawnWave();
             waveTimer = 0f;
-            awaitingForEnemyCount = true;
-
-            //Random randomizer = new Random();
-            //enemiesLeftToNextWave = randomizer.Next(0, enemiesLeftToNextWave);
 
             if (enemiesToSpawn > 0)
-                waveTimer = timeBetweenWaves * 0.25f;
+            {
+                waveTimer = delayInWaveSpawn;
+            }
             else
             {
                 ++wave;
@@ -125,7 +123,7 @@ public class SpawnManager : DiamondComponent
             {
                 float delay = (float)(randomizer.NextDouble() * timeDelayMult);
                 spawnScript.QueueSpawnEnemy(delay);
-   
+
             }
 
             for (int j = 0; j < spawnPoints.Count; ++j)
@@ -138,6 +136,6 @@ public class SpawnManager : DiamondComponent
             }
         }
 
-        enemiesToSpawn = pendingEnemies;
+        enemiesToSpawn = enemiesLeftInWave = pendingEnemies;
     }
 }

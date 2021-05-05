@@ -1,0 +1,137 @@
+{
+    "assets_path": "Assets\/Prefabs\/DefaultSpawnPoint.prefab",
+    "Game Objects": [
+        {
+            "name": "DefaultSpawnPoint",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 775786026,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 1691896459,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -1.6253372430801392,
+                9.4268121719360352,
+                10.461594581604004
+            ],
+            "Rotation": [
+                -2.6043768616040072e-15,
+                0.00017255546117667109,
+                1.7349381293457646e-18,
+                1
+            ],
+            "Scale": [
+                0.99999994039535522,
+                1,
+                0.99999994039535522
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": true,
+                    "spawnBantha": true,
+                    "spawnSkytrooper": true,
+                    "spawnLaserTurret": true,
+                    "spawnDeathrooper": true,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 188068923
+                }
+            ]
+        },
+        {
+            "name": "StormtrooperSpawn",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 700407912,
+            "ParentUID": 775786026,
+            "PrefabReference": 0,
+            "PrefabID": 186688337,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "PrefabObjects": [
+                {
+                    "name": "Particle System",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1738241830,
+                    "ParentUID": 700407912,
+                    "PrefabID": 0,
+                    "PrefabReference": 940051811,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Particle System",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 188068923,
+                    "ParentUID": 700407912,
+                    "PrefabID": 0,
+                    "PrefabReference": 188068923,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        }
+    ]
+}
