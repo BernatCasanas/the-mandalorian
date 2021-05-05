@@ -357,7 +357,7 @@ public class HUD : DiamondComponent
                 {
                     Core.instance.AddStatus(STATUS_TYPE.FIRE_RATE, STATUS_APPLY_TYPE.ADDITIVE, 20f, 5f, false);
                 }
-                if (Core.instance.HasStatus(STATUS_TYPE.COMBO_DAMAGE) && Core.instance.FireRateMult > 0.40f)
+                if (Core.instance.HasStatus(STATUS_TYPE.COMBO_DAMAGE) && Core.instance.RawDamageMult < 2f)
                 {
                     Core.instance.AddStatus(STATUS_TYPE.RAW_DAMAGE, STATUS_APPLY_TYPE.ADDITIVE, 20f, 5f, false);
                 }
