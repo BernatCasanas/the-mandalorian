@@ -3,9 +3,10 @@
 #include "RE_Shader.h"
 
 class DE_Advanced_FrameBuffer;
-class PostProcessFilterContrastTest;
-class PostProcessFilterDepthTest;
-class PostProcessFilterRender;
+
+class PostProcessEffectInvertTest;
+class PostProcessEffectDepthTest;
+class PostProcessEffectRender;
 
 class PostProcessing
 {
@@ -22,9 +23,9 @@ private:
 	void Start();
 	void End();
 
-	PostProcessFilterContrastTest* contrastTest;
-	PostProcessFilterDepthTest* depthTest;
-	PostProcessFilterRender* renderFilter;
+	PostProcessEffectInvertTest* contrastTest;
+	PostProcessEffectDepthTest* depthTest;
+	PostProcessEffectRender* renderFilter;
 	unsigned int quadVAO;
 	unsigned int quadVBO;
 };

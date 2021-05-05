@@ -4,7 +4,7 @@
 #include "MO_ResourceManager.h"
 #include"RE_Shader.h"
 
-#include "PostProcessFilter.h"
+#include "PostProcessEffect.h"
 #include "DE_Advanced_FrameBuffer.h"
 
 
@@ -38,9 +38,9 @@ void PostProcessing::Init()
 	glBindVertexArray(0);
 
 	//init effects
-	contrastTest = new PostProcessFilterContrastTest();
-	depthTest = new PostProcessFilterDepthTest();
-	renderFilter = new PostProcessFilterRender();
+	contrastTest = new PostProcessEffectInvertTest();
+	depthTest = new PostProcessEffectDepthTest();
+	renderFilter = new PostProcessEffectRender();
 }
 
 void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBuffer& outputFBO, unsigned int colorTexture, unsigned int depthTexture, ResourcePostProcess* settings)
@@ -53,15 +53,13 @@ void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBu
 
 	//do post processing here
 
-	if (false)//preview of when a postpro effect is active
+	if (contrastTest->GetActive()==true)
 	{
-		contrastTest->Render(width, height, currentColTexIndex);
-		currentColTexIndex = contrastTest->GetOutputTexture();
+		currentColTexIndex = contrastTest->Render(width, height, currentColTexIndex);
 	}
-	if (false)//preview of when a postpro effect is active
+	if (depthTest->GetActive() == true)
 	{
-		depthTest->Render(width, height, currentColTexIndex, depthTexture);
-		currentColTexIndex = depthTest->GetOutputTexture();
+		currentColTexIndex = depthTest->Render(width, height, currentColTexIndex, depthTexture);
 	}
 
 
@@ -70,8 +68,7 @@ void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBu
 	if (currentColTexIndex != colorTexture) //only if any effect has been applied
 	{
 		//Post process filter to resolve to fbo MUST BE AT THE END
-		renderFilter->Render(width, height, currentColTexIndex);
-		renderFilter->GetOutputFBO()->ResolveToFBO(outputFBO);
+		renderFilter->Render(width, height, currentColTexIndex, outputFBO);
 	}
 	End();
 }
