@@ -122,6 +122,8 @@ public class SpawnManager : DiamondComponent
             if (spawnScript != null)
             {
                 float delay = (float)(randomizer.NextDouble() * timeDelayMult);
+                delay = Math.Min(delay, 0.22f);
+
                 spawnScript.QueueSpawnEnemy(delay);
 
             }
