@@ -77,6 +77,7 @@ public class HUD : DiamondComponent
     public GameObject combo_gameobject = null;
     public GameObject max_hp_number = null;
     public GameObject fpsText = null;
+    public GameObject trisText = null;
     public GameObject damageScreen1 = null;
     public GameObject damageScreen2 = null;
     public GameObject damageScreen3 = null;
@@ -318,9 +319,19 @@ public class HUD : DiamondComponent
             if (DebugOptionsHolder.showFPS)
             {
                 if (!fpsText.IsEnabled()) fpsText.Enable(true);
-                fpsText.GetComponent<Text>().text = ((int)(1000 * Time.deltaTime)).ToString();
+                fpsText.GetComponent<Text>().text = "FPS: " + ((int)(1000 * Time.deltaTime)).ToString();
             }
             else if (fpsText.IsEnabled()) fpsText.Enable(false);
+        }
+
+        if (trisText != null)
+        {
+            if (DebugOptionsHolder.showFPS)
+            {
+                if (!trisText.IsEnabled()) trisText.Enable(true);
+                trisText.GetComponent<Text>().text = "Tris: " + Scene.totalTris.ToString();
+            }
+            else if (trisText.IsEnabled()) trisText.Enable(false);
         }
     }
 
@@ -340,6 +351,18 @@ public class HUD : DiamondComponent
             AddToCombo(extraCombo, weaponDecreaseTimeMultiplier);
 
             OnLvlUpComboChange();
+            if (Core.instance != null)
+            {
+                if (Core.instance.HasStatus(STATUS_TYPE.COMBO_FIRE_RATE) && Core.instance.FireRateMult > 0.40f)
+                {
+                    Core.instance.AddStatus(STATUS_TYPE.FIRE_RATE, STATUS_APPLY_TYPE.ADDITIVE, 20f, 5f, false);
+                }
+                if (Core.instance.HasStatus(STATUS_TYPE.COMBO_DAMAGE) && Core.instance.RawDamageMult < 2f)
+                {
+                    Core.instance.AddStatus(STATUS_TYPE.RAW_DAMAGE, STATUS_APPLY_TYPE.ADDITIVE, 20f, 5f, false);
+                }
+            }
+                
         }
 
         if (comboNumber > 0 && combo_gameobject != null && !combo_gameobject.IsEnabled())

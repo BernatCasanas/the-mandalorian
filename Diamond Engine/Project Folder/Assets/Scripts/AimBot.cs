@@ -95,7 +95,7 @@ public class AimBot : DiamondComponent
         }
         else
         {
-            Debug.Log("No Objective found!!");
+          //  Debug.Log("No Objective found!!");
             myCurrentObjective = null;
             //Debug.Log("No suitable objective found!");
         }
@@ -115,7 +115,7 @@ public class AimBot : DiamondComponent
         //Debug.Log("Searching for a new objective!");
         KeyValuePair<float, GameObject> weightedObj = new KeyValuePair<float, GameObject>(float.NegativeInfinity, null);
 
-        Debug.Log("Enemies searching num: " + EnemyManager.currentEnemies.Count.ToString());
+      //  Debug.Log("Enemies searching num: " + EnemyManager.currentEnemies.Count.ToString());
         for (int i = 0; i < EnemyManager.currentEnemies.Count; ++i)
         {
             float targetWeight = GetTargetWeight(EnemyManager.currentEnemies[i],maxRange, newDotMin);
@@ -133,7 +133,7 @@ public class AimBot : DiamondComponent
         }
         else
         {
-            Debug.Log("No Objective found!!");
+         //   Debug.Log("No Objective found!!");
             return null;
         }
 

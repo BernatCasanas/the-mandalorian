@@ -272,7 +272,7 @@ public class Skill_Tree_Node : DiamondComponent
                         break;
                     case "UMovSpd":
                         //Debug.Log("MovementSpeed not implemented yet");
-                        Core.instance.AddStatus(STATUS_TYPE.MOV_SPEED, STATUS_APPLY_TYPE.SUBSTITUTE, 100, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.MOV_SPEED, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
                         break;
                     case "USlowDamage":
                         Debug.Log("Slow when damage not implemented yet");
@@ -301,13 +301,15 @@ public class Skill_Tree_Node : DiamondComponent
                     #region Aggression
                     case "ABlasterDmg":
                        // Debug.Log("Damage not implemented yet");
-                        Core.instance.AddStatus(STATUS_TYPE.RAW_DAMAGE, STATUS_APPLY_TYPE.SUBSTITUTE, 15, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.BLASTER_DAMAGE, STATUS_APPLY_TYPE.SUBSTITUTE, 15, 0, true);
                         break;
                     case "AComboFireRate":
-                        Debug.Log("Combo * speed not implemented yet");
+                        // Debug.Log("Combo * speed not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.COMBO_FIRE_RATE, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
                         break;
                     case "AComboDmg":
-                        Debug.Log("Combo * damage not implemented yet");
+                       // Debug.Log("Combo * damage not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.COMBO_DAMAGE, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
                         break;
                     case "AGrenadeDmg":
                         Debug.Log("Critical chance not implemented yet");

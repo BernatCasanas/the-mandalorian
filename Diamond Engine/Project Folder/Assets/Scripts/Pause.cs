@@ -18,6 +18,8 @@ public class Pause : DiamondComponent
 	public GameObject leftX = null;
 	public GameObject rightX = null;
 
+	public GameObject shop = null;
+
 	public void OnExecuteButton()
 	{
 		if (gameObject.Name == "Continue")
@@ -61,6 +63,7 @@ public class Pause : DiamondComponent
 
 	public void Awake()
 	{
+
 	}
 
 	public void Update()
@@ -162,4 +165,12 @@ public class Pause : DiamondComponent
 			}
 		}
 	}
+
+	public void HideShop()
+    {
+		if (shop != null && shop.IsEnabled())
+		{
+			shop.parent.GetComponent<SHOP>().CloseShop();
+		}
+    }
 }

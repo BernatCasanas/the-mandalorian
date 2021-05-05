@@ -1342,6 +1342,7 @@ public class Core : Entity
             {
                 pause.EnableNav(true);
                 pause.GetComponent<Pause>().DisplayBoons();
+                pause.GetComponent<Pause>().HideShop();
                 background.Enable(true);
                 Time.PauseGame();
             }
@@ -1373,7 +1374,16 @@ public class Core : Entity
         ret = Math.Min(ret, baseFireRate * fireRateMultCap * 0.45f);
         ret = Math.Max(ret, baseFireRate * 0.75f);
 
-        return ret;
+        if (Core.instance.HasStatus(STATUS_TYPE.COMBO_FIRE_RATE))
+        {
+            Debug.Log("FireRate: " + FireRateMult.ToString());
+        }
+        if (Core.instance.HasStatus(STATUS_TYPE.COMBO_DAMAGE))
+        {
+            Debug.Log("Damage: " + RawDamageMult.ToString());
+        }
+
+        return ret * FireRateMult;
     }
 
     private void AddPrimaryHeat()
@@ -1599,8 +1609,8 @@ public class Core : Entity
                         particle.Play();
                     else if (particle != null && stopParticle == true)
                         particle.Stop();
-                    else
-                        Debug.Log("Jetpack particle not found");
+                    //else
+                    //    Debug.Log("Jetpack particle not found");
                 }
                 else
                     Debug.Log("Component Particles not found");
@@ -1682,7 +1692,7 @@ public class Core : Entity
     private float GetDamage()
     {
         //We apply modifications to the damage based on the skill actives in the talent tree
-        float damageWithSkills = bulletDamage * DamageMult * DamagePerHpMult * DamagePerHeatMult;
+        float damageWithSkills = bulletDamage * BlasterDamageMult * DamagePerHpMult * DamagePerHeatMult * RawDamageMult;
 
         //if (skill_groguIncreaseDamageActive)
         //{
