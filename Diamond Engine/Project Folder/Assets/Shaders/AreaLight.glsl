@@ -84,9 +84,9 @@ vec4 downLeft = vec4(-1.0, -1.0, 0.0, 1.0);
 vec3 rectVertex[4];
 float NAN = 0.0000012345;
 
-float SignedDistancePlanePoint(vec3 planePoint)
+float SignedDistancePlanePoint(vec3 planePoint, vec3 lForward)
 {
-	return dot(areaLightInfo[0].lightForward, (fs_in.FragPos - planePoint));
+	return dot(lForward, (fs_in.FragPos - planePoint));
 }
 
 
@@ -98,15 +98,15 @@ vec3 SetVectorLenght(vec3 vector, float dst)
 }
 
 
-vec3 ProjectPointOnPlane(vec3 planePoint)
+vec3 ProjectPointOnPlane(vec3 planePoint, vec3 lForward)
 {
-	float dst = SignedDistancePlanePoint(planePoint);
+	float dst = SignedDistancePlanePoint(planePoint, lForward);
 	
 	//Reverse the sign
 	dst *= -1;
 	
 	
-	vec3 translationVector = SetVectorLenght(areaLightInfo[0].lightForward, dst);
+	vec3 translationVector = SetVectorLenght(lForward, dst);
 
 	
 	return vec3(fs_in.FragPos + translationVector);
@@ -217,14 +217,14 @@ vec3 CalculateClosestPoint(vec3 projectedPoint)
 }
 
 
-vec3 CalculateLightDirection()
+vec3 CalculateLightDirection(int iterator)
 {
-	rectVertex[0] = vec4(areaLightInfo[0].lightSpaceMatrix * upRight).xyz;
-	rectVertex[1] = vec4(areaLightInfo[0].lightSpaceMatrix * downRight).xyz;
-	rectVertex[2] = vec4(areaLightInfo[0].lightSpaceMatrix * downLeft).xyz;
-	rectVertex[3] = vec4(areaLightInfo[0].lightSpaceMatrix * upLeft).xyz;
+	rectVertex[0] = vec4(areaLightInfo[iterator].lightSpaceMatrix * upRight).xyz;
+	rectVertex[1] = vec4(areaLightInfo[iterator].lightSpaceMatrix * downRight).xyz;
+	rectVertex[2] = vec4(areaLightInfo[iterator].lightSpaceMatrix * downLeft).xyz;
+	rectVertex[3] = vec4(areaLightInfo[iterator].lightSpaceMatrix * upLeft).xyz;
 	
-	vec3 projectedPoint = ProjectPointOnPlane(vec3(rectVertex[0]));
+	vec3 projectedPoint = ProjectPointOnPlane(rectVertex[0], areaLightInfo[iterator].lightForward);
 	
 	vec3 lightPos = CalculateClosestPoint(projectedPoint);
 
@@ -240,9 +240,9 @@ void main()
     {
 		if (areaLightInfo[i].activeLight == true)
 		{
-    		vec3 lightDir = CalculateLightDirection();
+    		vec3 lightDir = CalculateLightDirection(i);
     		
-    	//If (lightDir != vec3(0.0, 0.0, 0.0))
+    	if (dot(lightDir, areaLightInfo[i].lightForward) <= 0.0)
     		{
    	 		// diffusesssaasw
     		float diff = max(dot(lightDir, fs_in.Normal), 0.0);
@@ -262,6 +262,8 @@ void main()
     color = vec4(lighting * vec3(0.7, 0.3, 0.3), 1.0);
 }
 #endif
+
+
 
 
 
