@@ -4,13 +4,13 @@
 #include "MO_ResourceManager.h"
 #include"RE_Shader.h"
 
-#include "DE_Advanced_FrameBuffer.h"
 #include "PostProcessFilter.h"
+#include "DE_Advanced_FrameBuffer.h"
 
 
 PostProcessing::PostProcessing() :
-	quadVAO(0),quadVBO(0),
-	contrastTest(nullptr), 
+	quadVAO(0), quadVBO(0),
+	contrastTest(nullptr),
 	depthTest(nullptr)
 {
 }
@@ -40,16 +40,39 @@ void PostProcessing::Init()
 	//init effects
 	contrastTest = new PostProcessFilterContrastTest();
 	depthTest = new PostProcessFilterDepthTest();
+	renderFilter = new PostProcessFilterRender();
 }
 
 void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBuffer& outputFBO, unsigned int colorTexture, unsigned int depthTexture, ResourcePostProcess* settings)
 {
+
 	Start();
 
+	int currentColTexIndex = colorTexture;
+
+
 	//do post processing here
-	contrastTest->Render(width, height, colorTexture);
-	depthTest->Render(width, height, contrastTest->GetOutputTexture(), depthTexture);
-	depthTest->GetOutputFBO()->ResolveToFBO(outputFBO);
+
+	if (false)//preview of when a postpro effect is active
+	{
+		contrastTest->Render(width, height, currentColTexIndex);
+		currentColTexIndex = contrastTest->GetOutputTexture();
+	}
+	if (false)//preview of when a postpro effect is active
+	{
+		depthTest->Render(width, height, currentColTexIndex, depthTexture);
+		currentColTexIndex = depthTest->GetOutputTexture();
+	}
+
+
+	//end of postprocessing
+
+	if (currentColTexIndex != colorTexture) //only if any effect has been applied
+	{
+		//Post process filter to resolve to fbo MUST BE AT THE END
+		renderFilter->Render(width, height, currentColTexIndex);
+		renderFilter->GetOutputFBO()->ResolveToFBO(outputFBO);
+	}
 	End();
 }
 
@@ -79,6 +102,11 @@ void PostProcessing::CleanUp()
 		depthTest = nullptr;
 	}
 
+	if (renderFilter != nullptr)
+	{
+		delete(renderFilter);
+		renderFilter = nullptr;
+	}
 }
 
 void PostProcessing::Start()

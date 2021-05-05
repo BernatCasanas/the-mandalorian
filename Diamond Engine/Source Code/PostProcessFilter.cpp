@@ -5,12 +5,16 @@
 #include "Glew/include/glew.h"
 #include "Application.h"
 #include "MO_ResourceManager.h"
+#include "DE_Advanced_FrameBuffer.h"
 
 
-
-PostProcessFilter::PostProcessFilter(int shaderUID):myShader(nullptr),quadRenderer(nullptr)
+PostProcessFilter::PostProcessFilter(int shaderUID, bool ownFBO) :myShader(nullptr), quadRenderer(nullptr)
 {
-	quadRenderer = new ImageRenderer(1920, 1080);
+	if (ownFBO)
+		quadRenderer = new ImageRenderer(1920, 1080);
+	else
+		quadRenderer = new ImageRenderer();
+
 	myShader = dynamic_cast<ResourceShader*>(EngineExternal->moduleResources->RequestResource(shaderUID, Resource::Type::SHADER));
 }
 
@@ -36,7 +40,7 @@ void PostProcessFilter::CleanUp()
 
 int PostProcessFilter::GetOutputTexture() const
 {
-	if (quadRenderer == nullptr)
+	if (!HasOwnFBO())
 		return 0;
 
 	return quadRenderer->GetOutputTexture();
@@ -44,13 +48,21 @@ int PostProcessFilter::GetOutputTexture() const
 
 DE_Advanced_FrameBuffer* PostProcessFilter::GetOutputFBO()
 {
-	if (quadRenderer == nullptr)
+	if (!HasOwnFBO())
 		return nullptr;
 
 	return quadRenderer->GetOutputFBO();
 }
 
-PostProcessFilterContrastTest::PostProcessFilterContrastTest() : PostProcessFilter(1381112348)
+bool PostProcessFilter::HasOwnFBO() const
+{
+	if (quadRenderer == nullptr)
+		return false;
+	else
+		return true;
+}
+
+PostProcessFilterContrastTest::PostProcessFilterContrastTest() : PostProcessFilter(1381112348,true)//this bool tells the filter whether it needs to create an fbo (but we have to pass that fbo to the render) //TODO only for testing, after testing only 1 approach will be chosen
 {
 
 }
@@ -70,7 +82,20 @@ void PostProcessFilterContrastTest::Render(int width, int height, unsigned int c
 	myShader->Unbind();
 }
 
-PostProcessFilterDepthTest::PostProcessFilterDepthTest(): PostProcessFilter(454495126)
+void PostProcessFilterContrastTest::Render(DE_Advanced_FrameBuffer* outputFBO, unsigned int colorTexture)
+{
+	myShader->Bind();
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, colorTexture);
+
+	outputFBO->BindFrameBuffer();
+	quadRenderer->RenderQuad();
+	outputFBO->UnbindFrameBuffer();
+
+	myShader->Unbind();
+}
+
+PostProcessFilterDepthTest::PostProcessFilterDepthTest() : PostProcessFilter(454495126,true) //this bool tells the filter whether it needs to create an fbo (but we have to pass that fbo to the render) //TODO only for testing, after testing only 1 approach will be chosen
 {
 
 }
@@ -92,7 +117,45 @@ void PostProcessFilterDepthTest::Render(int width, int height, unsigned int colo
 	glBindTexture(GL_TEXTURE_2D, depthTexture);
 	glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "depthTexture"), 1);
 
-	//glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
+	quadRenderer->RenderQuad();
+	myShader->Unbind();
+}
+
+void PostProcessFilterDepthTest::Render(DE_Advanced_FrameBuffer* outputFBO, unsigned int colorTexture, unsigned int depthTexture)
+{
+
+	myShader->Bind();
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, colorTexture);
+	glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "colourTexture"), 0);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, depthTexture);
+	glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "depthTexture"), 1);
+
+	outputFBO->BindFrameBuffer();
+	quadRenderer->RenderQuad();
+	outputFBO->UnbindFrameBuffer();
+
+	myShader->Unbind();
+}
+
+PostProcessFilterRender::PostProcessFilterRender(): PostProcessFilter(2143344219, true) //this bool tells the filter whether it needs to create an fbo (but we have to pass that fbo to the render) //TODO only for testing, after testing only 1 approach will be chosen
+{
+
+}
+
+PostProcessFilterRender::~PostProcessFilterRender()
+{
+
+}
+
+void PostProcessFilterRender::Render(int width, int height, unsigned int colorTexture)
+{
+	quadRenderer->RegenerateFBO(width, height);
+	myShader->Bind();
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, colorTexture);
+	glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "colourTexture"), 0);
 	quadRenderer->RenderQuad();
 	myShader->Unbind();
 }

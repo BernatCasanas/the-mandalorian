@@ -5,6 +5,7 @@
 class DE_Advanced_FrameBuffer;
 class PostProcessFilterContrastTest;
 class PostProcessFilterDepthTest;
+class PostProcessFilterRender;
 
 class PostProcessing
 {
@@ -23,7 +24,7 @@ private:
 
 	PostProcessFilterContrastTest* contrastTest;
 	PostProcessFilterDepthTest* depthTest;
-
+	PostProcessFilterRender* renderFilter;
 	unsigned int quadVAO;
 	unsigned int quadVBO;
 };
