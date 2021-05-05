@@ -6,6 +6,8 @@ public class EnemyManager : DiamondComponent
 {
     public static List<GameObject> currentEnemies = null;
 
+    public static int awaitingForEnemiesToSpawn = 0;
+
     public static void AddEnemy(GameObject enemy)
     {
         if (currentEnemies == null)
@@ -58,6 +60,7 @@ public class EnemyManager : DiamondComponent
         {
             currentEnemies.Clear();
             currentEnemies = null;
+            awaitingForEnemiesToSpawn = 0;
         }
     }
 
