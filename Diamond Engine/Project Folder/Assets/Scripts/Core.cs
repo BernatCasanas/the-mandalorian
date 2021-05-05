@@ -1341,6 +1341,7 @@ public class Core : Entity
             {
                 pause.EnableNav(true);
                 pause.GetComponent<Pause>().DisplayBoons();
+                pause.GetComponent<Pause>().HideShop();
                 background.Enable(true);
                 Time.PauseGame();
             }
