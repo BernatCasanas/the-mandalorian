@@ -59,7 +59,12 @@ public:
 	void SetOrthSize(float size);
 	float GetOrthSize();
 
+	bool IsInsideFrustum(AABB& globalAABB);
+
 private:
+	bool OrthoCulling(AABB& globalAABB);
+	bool PrespectiveCulling(AABB& globalAABB);
+
 	int msaaSamples;
 	float verticalFOV;
 };
