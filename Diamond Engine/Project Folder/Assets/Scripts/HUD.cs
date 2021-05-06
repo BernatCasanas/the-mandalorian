@@ -369,7 +369,7 @@ public class HUD : DiamondComponent
                 {
                     if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
                     {
-                        Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + 5);
+                       Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(Core.instance.GetStatusData(STATUS_TYPE.COMBO_HEAL).severity));
                     }
                 }
             }
@@ -533,6 +533,13 @@ public class HUD : DiamondComponent
                 if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
                 {
                     Core.instance.gameObject.GetComponent<PlayerHealth>().HealPercentMax(hpPercentageToIncrease);
+                }
+                if (Core.instance.HasStatus(STATUS_TYPE.HEAL_COMBO_FINNISH))
+                {
+                    if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
+                    {
+                        Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(Core.instance.GetStatusData(STATUS_TYPE.HEAL_COMBO_FINNISH).severity));
+                    }
                 }
             }
 

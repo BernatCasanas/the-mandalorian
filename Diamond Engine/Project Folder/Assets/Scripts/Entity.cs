@@ -55,6 +55,7 @@ public enum STATUS_TYPE
     COMBO_DAMAGE,
     COMBO_RED,
     COMBO_HEAL,
+    HEAL_COMBO_FINNISH,
     RAW_DAMAGE
 }
 

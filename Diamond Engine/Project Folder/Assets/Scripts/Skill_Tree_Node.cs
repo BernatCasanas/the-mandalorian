@@ -349,11 +349,12 @@ public class Skill_Tree_Node : DiamondComponent
                       //  Debug.Log("Combo * damage red not implemented yet");
                         break;
                     case "DComboHeal":
-                        Core.instance.AddStatus(STATUS_TYPE.COMBO_HEAL, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.COMBO_HEAL, STATUS_APPLY_TYPE.SUBSTITUTE, 5, 0, true);
                      //   Debug.Log("Combo * heal not implemented yet");
                         break;
                     case "DComboFnshHeal":
-                        Debug.Log("Heal on combo finish not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.HEAL_COMBO_FINNISH, STATUS_APPLY_TYPE.SUBSTITUTE, 10, 0, true);
+                        //Debug.Log("Heal on combo finish not implemented yet");
                         break;
                     case "DHeal":
                         Debug.Log("Lifesteal not implemented yet");
