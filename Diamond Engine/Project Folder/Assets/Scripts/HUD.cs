@@ -361,6 +361,10 @@ public class HUD : DiamondComponent
                 {
                     Core.instance.AddStatus(STATUS_TYPE.RAW_DAMAGE, STATUS_APPLY_TYPE.ADDITIVE, 20f, 5f, false);
                 }
+                if (Core.instance.HasStatus(STATUS_TYPE.COMBO_RED) && Core.instance.RawDamageMult < 2f)
+                {
+                    Core.instance.AddStatus(STATUS_TYPE.COMBO_DMG_RED, STATUS_APPLY_TYPE.ADDITIVE, -15f, 5f, true);
+                }
             }
                 
         }
@@ -516,11 +520,15 @@ public class HUD : DiamondComponent
                 hpPercentageToIncrease = endOfComboData.hpToRestore;
             }
 
-
-            if (Core.instance != null && Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
+            if (Core.instance != null)
             {
-                Core.instance.gameObject.GetComponent<PlayerHealth>().HealPercentMax(hpPercentageToIncrease);
+                Core.instance.RemoveStatus(STATUS_TYPE.COMBO_DMG_RED, true);
+                if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
+                {
+                    Core.instance.gameObject.GetComponent<PlayerHealth>().HealPercentMax(hpPercentageToIncrease);
+                }
             }
+
 
         }
 

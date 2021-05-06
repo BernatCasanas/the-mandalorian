@@ -345,6 +345,7 @@ public class Skill_Tree_Node : DiamondComponent
                         //   Debug.Log("Dmg reduction not implemented yet");
                         break;
                     case "DComboDmgRed":
+                        Core.instance.AddStatus(STATUS_TYPE.COMBO_RED, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
                         Debug.Log("Combo * damage red not implemented yet");
                         break;
                     case "DComboHeal":

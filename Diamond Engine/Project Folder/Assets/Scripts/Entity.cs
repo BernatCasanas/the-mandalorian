@@ -45,6 +45,7 @@ public enum STATUS_TYPE
     SNIPER_DMG_PER_HP,
     MAX_HP,
     DMG_RED,
+    COMBO_DMG_RED,
     DMG_PER_HEAT,
     FALL,
     GROGU_COST,
@@ -52,6 +53,7 @@ public enum STATUS_TYPE
     COMBO_FIRE_RATE,
     FIRE_RATE,
     COMBO_DAMAGE,
+    COMBO_RED,
     RAW_DAMAGE
 }
 
@@ -411,7 +413,15 @@ public class Entity : DiamondComponent
                 break;
             case STATUS_TYPE.DMG_RED:
                 {
-                    statusToInit.statChange = this.DamageRed * (statusToInit.severity) / 100;
+                    statusToInit.statChange = 1 * (statusToInit.severity) / 100;
+                    this.DamageRed += statusToInit.statChange;
+                    Debug.Log("Damage red = " + this.DamageRed.ToString());
+
+                }
+                break;
+            case STATUS_TYPE.COMBO_DMG_RED:
+                {
+                    statusToInit.statChange = 1 * (statusToInit.severity) / 100;
                     this.DamageRed += statusToInit.statChange;
                     Debug.Log("Damage red = " + this.DamageRed.ToString());
 
@@ -596,6 +606,13 @@ public class Entity : DiamondComponent
                     this.DamageRed -= statusToDelete.statChange;
                     Debug.Log("Damage red = " + this.DamageRed.ToString());
                     //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.COMBO_DMG_RED:
+                {
+                    this.DamageRed -= statusToDelete.statChange;
+                    Debug.Log("Damage red = " + this.DamageRed.ToString());
+                    
                 }
                 break;
             case STATUS_TYPE.DMG_PER_HEAT:
