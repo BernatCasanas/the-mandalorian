@@ -1,19 +1,19 @@
 {
     "NavMesh": 1012432444,
     "EditorCameraPosition": [
-        29.377298355102539,
-        30.189966201782227,
-        -6.625725269317627
+        -3.352867603302002,
+        12.215136528015137,
+        17.986988067626953
     ],
     "EditorCameraZ": [
-        -0.62772411108016968,
-        -0.77719569206237793,
-        0.043926000595092773
+        0.35633400082588196,
+        -0.23352982103824615,
+        -0.90470433235168457
     ],
     "EditorCameraY": [
-        -0.77530193328857422,
-        0.62925904989242554,
-        0.054222404956817627
+        0.085602819919586182,
+        0.97234964370727539,
+        -0.21727479994297028
     ],
     "tags": [],
     "layers": [],
@@ -177,13 +177,11 @@
                     "availableSpawnPoints": 0,
                     "maxEnemiesPerWave": 3,
                     "enemyIncreasePerWave": 1,
-                    "wave": 0,
                     "maxWaves": 3,
                     "delayInWaveSpawn": 0,
                     "enemiesLeftToNextWave": 0,
-                    "waveTimer": 0,
                     "timeBetweenWaves": 10,
-                    "timeDelayMult": 0
+                    "maxDelayTime": 0
                 }
             ]
         },
@@ -4496,6 +4494,118 @@
                         1.0000017881393433
                     ],
                     "PrefabObjects": []
+                },
+                {
+                    "name": "Rifle",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": false,
+                    "UID": 613886019,
+                    "ParentUID": 1111490508,
+                    "PrefabID": 0,
+                    "PrefabReference": 613886019,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Rifle_Mesh",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 914177485,
+                    "ParentUID": 613886019,
+                    "PrefabID": 0,
+                    "PrefabReference": 914177485,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        4.3711381181310571e-08,
+                        1,
+                        1.9470718370939721e-07,
+                        -4.3711423813874717e-08
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "RifleJoint",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 2097824215,
+                    "ParentUID": 613886019,
+                    "PrefabID": 0,
+                    "PrefabReference": 2097824215,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.23088471591472626,
+                        1.0673612356185913,
+                        -0.40240004658699036
+                    ],
+                    "Rotation": [
+                        4.6839474521220836e-09,
+                        -0.67976999282836914,
+                        0.73342537879943848,
+                        -6.3940241545878962e-08
+                    ],
+                    "Scale": [
+                        0.0099999997764825821,
+                        0.010000002570450306,
+                        0.010000002570450306
+                    ]
+                },
+                {
+                    "name": "RifleJoint_end",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 109356398,
+                    "ParentUID": 2097824215,
+                    "PrefabID": 0,
+                    "PrefabReference": 109356398,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        1,
+                        0
+                    ],
+                    "Rotation": [
+                        2.2204460492503131e-16,
+                        -2.2204463139481091e-16,
+                        1.7763568394002505e-15,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        0.99999994039535522
+                    ]
                 }
             ]
         },
@@ -6633,7 +6743,7 @@
             "name": "Bantha",
             "tag": "Enemy",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 734192368,
             "ParentUID": 1565439529,
             "PrefabReference": 1855636635,
@@ -8167,6 +8277,122 @@
                         1,
                         1,
                         1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "DefaultSpawnPoint",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 237687184,
+            "ParentUID": 1565439529,
+            "PrefabReference": 775786026,
+            "PrefabID": 1691896459,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -1.6253372430801392,
+                9.4268121719360352,
+                10.461594581604004
+            ],
+            "Rotation": [
+                -2.6043768616040072e-15,
+                0.00017255546117667109,
+                1.7349381293457646e-18,
+                1
+            ],
+            "Scale": [
+                0.99999994039535522,
+                1,
+                0.99999994039535522
+            ],
+            "PrefabObjects": [
+                {
+                    "name": "StormtrooperSpawn",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1657937129,
+                    "ParentUID": 237687184,
+                    "PrefabReference": 700407912,
+                    "PrefabID": 186688337,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "PrefabObjects": [
+                        {
+                            "name": "Particle System",
+                            "tag": "Untagged",
+                            "layer": "Default",
+                            "Active": true,
+                            "UID": 651950724,
+                            "ParentUID": 1657937129,
+                            "PrefabID": 0,
+                            "PrefabReference": 651950724,
+                            "DontDestroy": false,
+                            "Static": false,
+                            "Position": [
+                                1.1920928955078125e-07,
+                                0,
+                                0
+                            ],
+                            "Rotation": [
+                                1.0587911840678754e-22,
+                                0,
+                                0,
+                                1
+                            ],
+                            "Scale": [
+                                1,
+                                1,
+                                1
+                            ]
+                        },
+                        {
+                            "name": "Cube",
+                            "tag": "Untagged",
+                            "layer": "Default",
+                            "Active": true,
+                            "UID": 971078523,
+                            "ParentUID": 1657937129,
+                            "PrefabID": 0,
+                            "PrefabReference": 971078523,
+                            "DontDestroy": false,
+                            "Static": false,
+                            "Position": [
+                                2.384185791015625e-07,
+                                0,
+                                0
+                            ],
+                            "Rotation": [
+                                1.0587911840678754e-22,
+                                0,
+                                7.7548182426846345e-26,
+                                1
+                            ],
+                            "Scale": [
+                                0.5,
+                                0.10000000149011612,
+                                0.5
+                            ]
+                        }
                     ]
                 }
             ]

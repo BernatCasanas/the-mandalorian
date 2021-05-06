@@ -582,8 +582,8 @@ public class HeavyTrooper : Enemy
         //Debug.Log("HEAVYTROOPER WANDER");
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
-        Animator.Play(gameObject, "HVY_Run", speedMult);
-        Animator.Play(spear, "HVY_Run", speedMult);
+        Animator.Play(gameObject, "HVY_Wander", speedMult);
+        Animator.Play(spear, "HVY_Wander", speedMult);
 
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Heavytrooper_Wander");
