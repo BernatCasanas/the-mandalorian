@@ -361,9 +361,16 @@ public class HUD : DiamondComponent
                 {
                     Core.instance.AddStatus(STATUS_TYPE.RAW_DAMAGE, STATUS_APPLY_TYPE.ADDITIVE, 20f, 5f, false);
                 }
-                if (Core.instance.HasStatus(STATUS_TYPE.COMBO_RED) && Core.instance.RawDamageMult < 2f)
+                if (Core.instance.HasStatus(STATUS_TYPE.COMBO_RED))
                 {
                     Core.instance.AddStatus(STATUS_TYPE.COMBO_DMG_RED, STATUS_APPLY_TYPE.ADDITIVE, -15f, 5f, true);
+                }
+                if (Core.instance.HasStatus(STATUS_TYPE.COMBO_HEAL))
+                {
+                    if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
+                    {
+                        Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + 5);
+                    }
                 }
             }
                 

@@ -54,6 +54,7 @@ public enum STATUS_TYPE
     FIRE_RATE,
     COMBO_DAMAGE,
     COMBO_RED,
+    COMBO_HEAL,
     RAW_DAMAGE
 }
 
