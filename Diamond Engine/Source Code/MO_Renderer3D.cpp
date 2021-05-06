@@ -315,6 +315,17 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 		(wireframe) ? glPolygonMode(GL_FRONT_AND_BACK, GL_FILL) : glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
 
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+	for (int i = 0; i < areaLightVector.size(); ++i)
+	{
+		//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+		areaLightVector[i]->DebugDraw();
+	}
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
 	DrawRays();
 
 	//DrawParticleSystems();//THIS IS LOCATED INSIDE RENDER STENCIL FOR NOW (UNTIL WE HAVE A POST PROCESSING SYSTEM)
@@ -514,6 +525,8 @@ void ModuleRenderer3D::OnGUI()
 
 	}
 }
+
+
 void ModuleRenderer3D::DrawDebugLines()
 {
 	glBegin(GL_LINES);

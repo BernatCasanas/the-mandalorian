@@ -18,6 +18,7 @@ public:
 
 #ifndef STANDALONE
 	bool OnEditor() override;
+	void DebugDraw();
 #endif // !STANDALONE
 
 	static inline TYPE GetType() { return TYPE::AREA_LIGHT; }; //This will allow us to get the type from a template
@@ -39,6 +40,20 @@ private:
 	float3 ambientLightColor;
 	float lightIntensity;
 	float specularValue;
+
+	float maxDistance;
+	float fadeDistance;
+};
+
+const float color[] = { 0.95, 0.95, 0.95 };
+
+const float arrayAreaLightVAO[] = {
+-1, -1,
+1, -1,
+-1, 1,
+1, -1,
+1, 1,
+-1, 1,
 };
 
 #endif // !__CO_AREA_LIGHT_H__

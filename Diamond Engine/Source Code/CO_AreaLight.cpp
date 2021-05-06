@@ -17,7 +17,9 @@ C_AreaLight::C_AreaLight(GameObject* gameObject) : Component(gameObject),
 	lightColor(float3::one),
 	ambientLightColor(float3::one),
 	lightIntensity(1.0f),
-	specularValue(1.0f)
+	specularValue(1.0f),
+	maxDistance(600.f),
+	fadeDistance(50.f)
 {
 	name = "Area Light";
 
@@ -55,6 +57,9 @@ bool C_AreaLight::OnEditor()
 		ImGui::DragFloat("Light intensity", &lightIntensity, 0.05, 0.0f);
 		ImGui::DragFloat("Specular value", &specularValue, 0.1, 0.0f);
 
+		ImGui::DragFloat("Light fade distance", &fadeDistance, 0.1, 0.0f);
+		ImGui::DragFloat("Light max distance", &maxDistance, 0.1, 0.0f);
+
 		ImGui::NewLine();
 
 		if (ImGui::Button("Set light source", ImVec2(0, 50)))
@@ -64,6 +69,50 @@ bool C_AreaLight::OnEditor()
 	}
 
 	return false;
+}
+
+
+void C_AreaLight::DebugDraw()
+{
+	glPushMatrix();
+	glMultMatrixf(gameObject->transform->GetGlobalTransposed());
+
+	glLineWidth(5.f);
+
+	glBegin(GL_LINE_STRIP);
+	for (size_t i = 0; i < 12; i += 2)
+	{
+		float4 position;
+		position.x = arrayAreaLightVAO[i];
+		position.y = arrayAreaLightVAO[i + 1];
+		position.z = 0.0f;
+
+		glColor3fv(color);
+		glVertex3fv(position.ptr());
+	}
+
+	for (size_t i = 0; i < 12; i += 4)
+	{
+		float4 position;
+		position.x = arrayAreaLightVAO[i];
+		position.y = arrayAreaLightVAO[i + 1];
+		position.z = 0.0f;
+
+		glColor3fv(color);
+		glVertex3fv(position.ptr());
+	}
+
+	float4 position;
+	position.x = arrayAreaLightVAO[1];
+	position.y = arrayAreaLightVAO[1];
+	position.z = 0.0f;
+
+	glColor3fv(color);
+	glVertex3fv(position.ptr());
+
+	glEnd();
+
+	glPopMatrix();
 }
 #endif // !STANDALONE
 
@@ -76,6 +125,8 @@ void C_AreaLight::SaveData(JSON_Object* nObj)
 	data.WriteVector3("ambientLightColor", ambientLightColor.ptr());
 	data.WriteFloat("lightIntensity", lightIntensity);
 	data.WriteFloat("specularValue", specularValue);
+	data.WriteFloat("fadeDistance", fadeDistance);
+	data.WriteFloat("maxDistance", maxDistance);
 }
 
 
@@ -87,6 +138,8 @@ void C_AreaLight::LoadData(DEConfig& nObj)
 	ambientLightColor = nObj.ReadVector3("ambientLightColor");
 	lightIntensity = nObj.ReadFloat("lightIntensity");
 	specularValue = nObj.ReadFloat("specularValue");
+	fadeDistance = nObj.ReadFloat("fadeDistance");
+	maxDistance = nObj.ReadFloat("maxDistance");
 }
 
 
@@ -102,7 +155,7 @@ void C_AreaLight::PushLightUniforms(ResourceMaterial* material, int lightNumber)
 	sprintf(buffer, "areaLightInfo[%i].lightSpaceMatrix", lightNumber);
 
 	GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
-	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, this->spaceMatrixOpenGL.ptr());
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, gameObject->transform->GetGlobalTransposed());
 
 	sprintf(buffer, "areaLightInfo[%i].lightPos", lightNumber);
 	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
@@ -111,6 +164,11 @@ void C_AreaLight::PushLightUniforms(ResourceMaterial* material, int lightNumber)
 	sprintf(buffer, "areaLightInfo[%i].lightPosition", lightNumber);
 	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
 	glUniform3fv(modelLoc, 1, &gameObject->transform->position.x);
+
+	sprintf(buffer, "areaLightInfo[%i].lightForward", lightNumber);
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
+	float3 forward = gameObject->transform->GetForward();
+	glUniform3fv(modelLoc, 1, &forward.x);
 
 	sprintf(buffer, "areaLightInfo[%i].lightColor", lightNumber);
 	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
@@ -127,6 +185,14 @@ void C_AreaLight::PushLightUniforms(ResourceMaterial* material, int lightNumber)
 	sprintf(buffer, "areaLightInfo[%i].specularValue", lightNumber);
 	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
 	glUniform1f(modelLoc, specularValue);
+
+	sprintf(buffer, "areaLightInfo[%i].lFadeDistance", lightNumber);
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
+	glUniform1f(modelLoc, fadeDistance);
+
+	sprintf(buffer, "areaLightInfo[%i].lMaxDistance", lightNumber);
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
+	glUniform1f(modelLoc, maxDistance);
 
 	//glUniform1i(glGetUniformLocation(material->shader->shaderProgramID, shadowMap), used_textures);
 	sprintf(buffer, "areaLightInfo[%i].calculateShadows", lightNumber);
