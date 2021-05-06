@@ -49,6 +49,9 @@ namespace DiamondEngine
 
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern bool IsPathPossible(object startPos, object endPos);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern Vector3 GetDestination();
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]

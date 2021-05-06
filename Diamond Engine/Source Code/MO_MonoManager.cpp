@@ -201,6 +201,7 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::set_angularSpeed", CS_SetAngularSpeed);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::get_stoppingDistance", CS_GetStoppingDistance);
 	mono_add_internal_call("DiamondEngine.NavMeshAgent::set_stoppingDistance", CS_SetStoppingDistance);
+	mono_add_internal_call("DiamondEngine.NavMeshAgent::IsPathPossible", CS_PathIsPossible);
 #pragma endregion
 
 #pragma region Button
