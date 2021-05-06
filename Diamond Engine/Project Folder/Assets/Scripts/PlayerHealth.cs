@@ -177,8 +177,18 @@ public class PlayerHealth : DiamondComponent
     {
         if (DebugOptionsHolder.godModeActive)
             return currHealth;
-
-        if(Core.instance != null && damage > 0)
+        
+        if (Core.instance != null)
+        {
+            if (Core.instance.HasStatus(STATUS_TYPE.BLOCK))
+            {
+                Random rand = new Random();
+                float result = rand.Next(1, 101);
+                if (result <= Core.instance.GetStatusData(STATUS_TYPE.BLOCK).severity)
+                    return currHealth;
+            }
+        }
+        if (Core.instance != null && damage > 0)
         {
             if (Core.instance.IsDashing())
                 return currHealth;

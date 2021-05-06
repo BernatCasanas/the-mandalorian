@@ -56,7 +56,9 @@ public enum STATUS_TYPE
     COMBO_RED,
     COMBO_HEAL,
     HEAL_COMBO_FINNISH,
-    RAW_DAMAGE
+    RAW_DAMAGE,
+    LIFESTEAL,
+    BLOCK,
 }
 
 public enum STATUS_APPLY_TYPE
