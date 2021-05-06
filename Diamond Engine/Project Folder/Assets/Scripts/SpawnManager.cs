@@ -11,14 +11,14 @@ public class SpawnManager : DiamondComponent
     private int enemiesLeftInWave = 0;
     public int maxEnemiesPerWave = 0;
     public int enemyIncreasePerWave = 0;
-    public int wave = 0;
+    private int wave = 0;
     public int maxWaves = 1;
 
     public float delayInWaveSpawn = 0.0f;
 
     public int enemiesLeftToNextWave = 2;
 
-    public float waveTimer = 0.0f;
+    private float waveTimer = 0.0f;
     public float timeBetweenWaves = 1.0f;
 
     public float maxDelayTime = 1.0f;

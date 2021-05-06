@@ -445,7 +445,7 @@
    {
     "Id": "1019160887",
     "Language": "SFX",
-    "Hash": "2968997519",
+    "Hash": "3378290595",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Heavytrooper",
     "ShortName": "Heavytrooper",
     "Path": "Heavytrooper.bnk",
@@ -497,6 +497,114 @@
       ]
      },
      {
+      "Id": "2136671359",
+      "Name": "Play_Heavytrooper_Death",
+      "ObjectPath": "\\Events\\Default Work Unit\\Heavytrooper\\Play_Heavytrooper_Death",
+      "DurationType": "OneShot",
+      "DurationMin": "0.528458",
+      "DurationMax": "0.920295",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "600365897",
+        "Language": "SFX",
+        "ShortName": "heavytrooper death.wav",
+        "Path": "SFX\\heavytrooper death_FC2D3A10.wem"
+       },
+       {
+        "Id": "714211610",
+        "Language": "SFX",
+        "ShortName": "heavytrooper death 2.wav",
+        "Path": "SFX\\heavytrooper death 2_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "45482717",
+      "Name": "Play_Heavytrooper_Enemy_Detection",
+      "ObjectPath": "\\Events\\Default Work Unit\\Heavytrooper\\Play_Heavytrooper_Enemy_Detection",
+      "DurationType": "OneShot",
+      "DurationMin": "1.205533",
+      "DurationMax": "1.396961",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "76206835",
+        "Language": "SFX",
+        "ShortName": "heavytrooper enemy detection 1.wav",
+        "Path": "SFX\\heavytrooper enemy detection 1_FC2D3A10.wem"
+       },
+       {
+        "Id": "312255773",
+        "Language": "SFX",
+        "ShortName": "heavytrooper enemy detection 2.wav",
+        "Path": "SFX\\heavytrooper enemy detection 2_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "2896179758",
+      "Name": "Play_Heavytrooper_Run",
+      "ObjectPath": "\\Events\\Default Work Unit\\Heavytrooper\\Play_Heavytrooper_Run",
+      "DurationType": "Infinite",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "351242191",
+        "Language": "SFX",
+        "ShortName": "heavytrooper footstep run 1.wav",
+        "Path": "SFX\\heavytrooper footstep run 1_FC2D3A10.wem"
+       },
+       {
+        "Id": "387898307",
+        "Language": "SFX",
+        "ShortName": "heavytrooper footstep run 2.wav",
+        "Path": "SFX\\heavytrooper footstep run 2_FC2D3A10.wem"
+       },
+       {
+        "Id": "765061511",
+        "Language": "SFX",
+        "ShortName": "heavytrooper footstep run 4.wav",
+        "Path": "SFX\\heavytrooper footstep run 4_FC2D3A10.wem"
+       },
+       {
+        "Id": "1023494932",
+        "Language": "SFX",
+        "ShortName": "heavytrooper footstep run 3.wav",
+        "Path": "SFX\\heavytrooper footstep run 3_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1984950140",
+      "Name": "Play_Heavytrooper_Wander",
+      "ObjectPath": "\\Events\\Default Work Unit\\Heavytrooper\\Play_Heavytrooper_Wander",
+      "DurationType": "Infinite",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "225865834",
+        "Language": "SFX",
+        "ShortName": "heavytrooper footstep 2.wav",
+        "Path": "SFX\\heavytrooper footstep 2_FC2D3A10.wem"
+       },
+       {
+        "Id": "507314420",
+        "Language": "SFX",
+        "ShortName": "heavytrooper footstep 1.wav",
+        "Path": "SFX\\heavytrooper footstep 1_FC2D3A10.wem"
+       },
+       {
+        "Id": "622395172",
+        "Language": "SFX",
+        "ShortName": "heavytrooper footstep 4.wav",
+        "Path": "SFX\\heavytrooper footstep 4_FC2D3A10.wem"
+       },
+       {
+        "Id": "1059915617",
+        "Language": "SFX",
+        "ShortName": "heavytrooper footstep 3.wav",
+        "Path": "SFX\\heavytrooper footstep 3_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
       "Id": "1931338186",
       "Name": "Resume_Object",
       "ObjectPath": "\\Events\\Default Work Unit\\Resume_Object",
@@ -518,6 +626,11 @@
       "Id": "467158820",
       "Name": "SourceVolume",
       "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
+     },
+     {
+      "Id": "2704707011",
+      "Name": "BusVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\BusVolume"
      }
     ]
    },
@@ -1494,7 +1607,7 @@
    {
     "Id": "3049191116",
     "Language": "SFX",
-    "Hash": "1702500579",
+    "Hash": "2559848762",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Rancor",
     "ShortName": "Rancor",
     "Path": "Rancor.bnk",
@@ -1686,6 +1799,22 @@
       ]
      },
      {
+      "Id": "1080480617",
+      "Name": "Play_Rancor_Roar_Presentation",
+      "ObjectPath": "\\Events\\Default Work Unit\\Rancor\\Play_Rancor_Roar_Presentation",
+      "DurationType": "OneShot",
+      "DurationMin": "1.905714",
+      "DurationMax": "1.905714",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "792758880",
+        "Language": "SFX",
+        "ShortName": "Rancor roar presentation.wav",
+        "Path": "SFX\\Rancor roar presentation_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
       "Id": "3430546032",
       "Name": "Play_Rancor_Rush_Fall",
       "ObjectPath": "\\Events\\Default Work Unit\\Rancor\\Play_Rancor_Rush_Fall",
@@ -1756,6 +1885,106 @@
         "Language": "SFX",
         "ShortName": "Rock impact.wav",
         "Path": "SFX\\Rock impact_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1931338186",
+      "Name": "Resume_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Resume_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "3318621861",
+      "Name": "Stop_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     }
+    ],
+    "GameParameters": [
+     {
+      "Id": "467158820",
+      "Name": "SourceVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
+     },
+     {
+      "Id": "2704707011",
+      "Name": "BusVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\BusVolume"
+     }
+    ]
+   },
+   {
+    "Id": "3363384534",
+    "Language": "SFX",
+    "Hash": "927657805",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Deathtrooper",
+    "ShortName": "Deathtrooper",
+    "Path": "Deathtrooper.bnk",
+    "IncludedEvents": [
+     {
+      "Id": "192623117",
+      "Name": "Pause_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Pause_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "2950577012",
+      "Name": "Play_Deathtrooper_Enemy_Detection",
+      "ObjectPath": "\\Events\\Default Work Unit\\Deathtrooper\\Play_Deathtrooper_Enemy_Detection",
+      "DurationType": "OneShot",
+      "DurationMin": "0.816236",
+      "DurationMax": "0.901043",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "855871336",
+        "Language": "SFX",
+        "ShortName": "deathtrooper enemy detection 2.wav",
+        "Path": "SFX\\deathtrooper enemy detection 2_FC2D3A10.wem"
+       },
+       {
+        "Id": "896087691",
+        "Language": "SFX",
+        "ShortName": "deathtrooper enemy detection 1.wav",
+        "Path": "SFX\\deathtrooper enemy detection 1_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1043508822",
+      "Name": "Play_Deathtrooper_Recoil",
+      "ObjectPath": "\\Events\\Default Work Unit\\Deathtrooper\\Play_Deathtrooper_Recoil",
+      "DurationType": "OneShot",
+      "DurationMin": "0.446100",
+      "DurationMax": "0.446100",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "586533874",
+        "Language": "SFX",
+        "ShortName": "deathtrooper recoil.wav",
+        "Path": "SFX\\deathtrooper recoil_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "319217948",
+      "Name": "Play_Deathtrooper_Shot",
+      "ObjectPath": "\\Events\\Default Work Unit\\Deathtrooper\\Play_Deathtrooper_Shot",
+      "DurationType": "OneShot",
+      "DurationMin": "0.742940",
+      "DurationMax": "0.811119",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "28788806",
+        "Language": "SFX",
+        "ShortName": "deathtrooper shotgun.wav",
+        "Path": "SFX\\deathtrooper shotgun_FC2D3A10.wem"
        }
       ]
      },
@@ -1876,7 +2105,7 @@
    {
     "Id": "3721236575",
     "Language": "SFX",
-    "Hash": "3466135868",
+    "Hash": "2694546016",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Moff_Guideon",
     "ShortName": "Moff_Guideon",
     "Path": "Moff_Guideon.bnk",
@@ -1971,6 +2200,11 @@
       "Id": "467158820",
       "Name": "SourceVolume",
       "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
+     },
+     {
+      "Id": "2704707011",
+      "Name": "BusVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\BusVolume"
      }
     ]
    },
