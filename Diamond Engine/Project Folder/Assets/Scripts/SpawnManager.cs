@@ -21,7 +21,9 @@ public class SpawnManager : DiamondComponent
     public float waveTimer = 0.0f;
     public float timeBetweenWaves = 1.0f;
 
-    public float timeDelayMult = 1.0f;
+    public float maxDelayTime = 1.0f;
+    private int maxDelayTimeSec = 0;
+    private float maxDelayTimePoint = 0f;
 
     public void Awake()
     {
@@ -35,6 +37,8 @@ public class SpawnManager : DiamondComponent
 
         EnemyManager.ClearList();
 
+        maxDelayTimeSec = (int)maxDelayTime;
+        maxDelayTimePoint = maxDelayTime - (float)maxDelayTimeSec;
     }
 
     public void Update()
@@ -121,8 +125,20 @@ public class SpawnManager : DiamondComponent
 
             if (spawnScript != null)
             {
-                float delay = (float)(randomizer.NextDouble() * timeDelayMult);
-                delay = Math.Min(delay, 0.22f);
+                float delay = (float)randomizer.NextDouble();
+                int retryNum = 0;
+
+                while (delay <= maxDelayTimePoint)
+                {
+                    delay = (float)randomizer.NextDouble();
+                    ++retryNum;
+
+                    if (retryNum > 5)
+                        delay = maxDelayTimePoint;
+                }
+
+                delay = (float)(randomizer.Next(0, maxDelayTimeSec) + delay);
+                delay = Math.Max(delay, 0.22f);
 
                 spawnScript.QueueSpawnEnemy(delay);
 
