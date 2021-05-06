@@ -14,14 +14,14 @@
 #include"OpenGL.h"
 #include"MO_Window.h"
 
-C_Camera::C_Camera() : Component(nullptr), 
-	fov(60.0f), 
-	cullingState(true),
-	msaaSamples(4), 
-	orthoSize(0.0f),
-	windowWidth(0),
-	windowHeight(0),
-	drawSkybox(true)
+C_Camera::C_Camera() : Component(nullptr),
+fov(60.0f),
+cullingState(true),
+msaaSamples(4),
+orthoSize(0.0f),
+windowWidth(0),
+windowHeight(0),
+drawSkybox(true)
 {
 	name = "Camera";
 	camFrustrum.type = FrustumType::PerspectiveFrustum;
@@ -34,13 +34,11 @@ C_Camera::C_Camera() : Component(nullptr),
 	camFrustrum.horizontalFov = 2.0f * atanf(tanf(camFrustrum.verticalFov / 2.0f) * 1.7f);
 
 	camFrustrum.pos = float3::zero;
-	orthoSize = 0.0f;
 }
 
 C_Camera::C_Camera(GameObject* _gm) : Component(_gm), fov(60.0f), cullingState(true),
 msaaSamples(4), orthoSize(0.0f), drawSkybox(true)
 {
-
 	name = "Camera";
 	camFrustrum.type = FrustumType::PerspectiveFrustum;
 	camFrustrum.nearPlaneDistance = 1;
@@ -50,7 +48,7 @@ msaaSamples(4), orthoSize(0.0f), drawSkybox(true)
 
 	camFrustrum.verticalFov = 60.0f * DEGTORAD;
 	camFrustrum.horizontalFov = 2.0f * atanf(tanf(camFrustrum.verticalFov / 2.0f) * 1.7f);
-	
+
 	camFrustrum.pos = gameObject->transform->position;
 }
 
@@ -79,36 +77,42 @@ bool C_Camera::OnEditor()
 		ImGui::DragFloat("Far Distance: ", &camFrustrum.farPlaneDistance, 0.1f, camFrustrum.nearPlaneDistance, 10000.f);
 
 		ImGui::Separator();
-		
-		if (camFrustrum.type == FrustumType::PerspectiveFrustum) 
+
+		if (camFrustrum.type == FrustumType::PerspectiveFrustum)
 		{
 			ImGui::Text("Vertical FOV: %f", camFrustrum.verticalFov);
 			ImGui::Text("Horizontal FOV: %f", camFrustrum.horizontalFov);
 			ImGui::Separator();
 			if (ImGui::DragFloat("FOV: ", &fov, 0.1f, 1.0f, 180.f))
 			{
-				camFrustrum.verticalFov = fov * DEGTORAD;
-				//camFrustrum.horizontalFov = 2.0f * atanf(tanf(camFrustrum.verticalFov / 2.0f) * App->window->GetWindowWidth() / App->window->GetWindowHeight());
+				SetVerticalFOV(fov);
 			}
 		}
 		else
 		{
-			if (ImGui::DragFloat("Size: ", &orthoSize, 0.01f, 0.01f, 100.0f)) 
+			if (ImGui::DragFloat("Size: ", &orthoSize, 0.01f, 0.01f, 100.0f))
 			{
-				//camFrustrum.orthographicWidth = 1920 / orthoSize;
-				//camFrustrum.orthographicHeight = 1080 / orthoSize;
+				camFrustrum.orthographicWidth = 1920 / orthoSize;
+				camFrustrum.orthographicHeight = 1080 / orthoSize;
 			}
 		}
-		
 
-		
-		if (ImGui::BeginCombo("Frustrum Type", (camFrustrum.type == FrustumType::PerspectiveFrustum) ? "Prespective" : "Orthographic")) 
+
+
+		if (ImGui::BeginCombo("Frustrum Type", (camFrustrum.type == FrustumType::PerspectiveFrustum) ? "Prespective" : "Orthographic"))
 		{
-			if (ImGui::Selectable("Perspective")) 
+			if (ImGui::Selectable("Perspective"))
+			{
 				camFrustrum.type = FrustumType::PerspectiveFrustum;
+				camFrustrum.verticalFov = 60.0f * DEGTORAD;
+				camFrustrum.horizontalFov = 2.0f * atanf(tanf(camFrustrum.verticalFov / 2.0f) * 1.7f);
+			}
 
 			if (ImGui::Selectable("Orthographic"))
+			{
 				camFrustrum.type = FrustumType::OrthographicFrustum;
+				SetOrthSize(orthoSize);
+			}
 
 			ImGui::EndCombo();
 		}
@@ -119,14 +123,14 @@ bool C_Camera::OnEditor()
 		ImGui::Text("Draw Skybox: "); ImGui::SameLine();
 		ImGui::Checkbox("##drawSkybox", &drawSkybox);
 
-		ImGui::Text("MSAA Samples: "); ImGui::SameLine(); 
-		if (ImGui::SliderInt("##msaasamp", &msaaSamples, 1, 4)) 
+		ImGui::Text("MSAA Samples: "); ImGui::SameLine();
+		if (ImGui::SliderInt("##msaasamp", &msaaSamples, 1, 4))
 		{
 			msaaFBO.ReGenerateBuffer(msaaFBO.texBufferSize.x, msaaFBO.texBufferSize.y, true, msaaSamples);
 			resolvedFBO.ReGenerateBuffer(resolvedFBO.texBufferSize.x, resolvedFBO.texBufferSize.y, false, 0);
 		}
 
-		if(ImGui::Button("Set as Game Camera")) 
+		if (ImGui::Button("Set as Game Camera"))
 		{
 			EngineExternal->moduleRenderer3D->SetGameRenderTarget(this);
 		}
@@ -270,7 +274,7 @@ void C_Camera::ReGenerateBuffer(int w, int h)
 	windowHeight = h;
 
 	SetAspectRatio((float)w / (float)h);
-	
+
 	msaaFBO.ReGenerateBuffer(w, h, true, 4);
 	resolvedFBO.ReGenerateBuffer(w, h, false, 0);
 }
@@ -283,6 +287,38 @@ void C_Camera::PushCameraMatrix()
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf((GLfloat*)ViewMatrixOpenGL().v);
+}
+
+void C_Camera::SetCameraToPerspective()
+{
+	if (camFrustrum.type == FrustumType::PerspectiveFrustum)
+		return;
+
+	camFrustrum.type = FrustumType::PerspectiveFrustum;
+
+	SetVerticalFOV(fov);
+}
+
+void C_Camera::SetCameraToOrthographic()
+{
+	if (camFrustrum.type == FrustumType::OrthographicFrustum)
+		return;
+
+	camFrustrum.type = FrustumType::OrthographicFrustum;
+}
+
+void C_Camera::SetVerticalFOV(float _verticalFOV)
+{
+	fov = _verticalFOV;
+	camFrustrum.verticalFov = _verticalFOV * DEGTORAD;
+	camFrustrum.horizontalFov = 2.0f * atanf(tanf(camFrustrum.verticalFov / 2.0f) * 1.7f);
+}
+
+void C_Camera::SetHorizontalFOV(float horizontalFOV)
+{
+	camFrustrum.horizontalFov = horizontalFOV * DEGTORAD;
+	camFrustrum.verticalFov = 2.0f * atanf(tanf(camFrustrum.horizontalFov / 2.0f) * 1.7f);
+	fov = camFrustrum.verticalFov;
 }
 
 void C_Camera::LookAt(const float3& Spot)

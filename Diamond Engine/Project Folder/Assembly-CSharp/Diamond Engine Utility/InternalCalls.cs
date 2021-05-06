@@ -173,6 +173,9 @@ namespace DiamondEngine
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern void SetCameraPerspective(object go);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public static extern void SetVerticalFOV(object go, float verticalFOV);
     }
 
     public partial class Debug
