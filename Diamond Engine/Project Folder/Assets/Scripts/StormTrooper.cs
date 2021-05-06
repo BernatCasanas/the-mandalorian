@@ -849,6 +849,19 @@ public class StormTrooper : Enemy
         {
             healthPoints -= damage;
 
+            if (Core.instance != null)
+            {
+                if (Core.instance.HasStatus(STATUS_TYPE.LIFESTEAL))
+                {
+                    if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
+                    {
+                        float healing = Core.instance.GetStatusData(STATUS_TYPE.LIFESTEAL).severity * damage / 100;
+                        if (healing < 1) healing = 1;
+                        Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
+                    }
+                }
+            }
+
             if (healthPoints <= 0.0f)
             {
                 inputsList.Add(INPUT.IN_DIE);
