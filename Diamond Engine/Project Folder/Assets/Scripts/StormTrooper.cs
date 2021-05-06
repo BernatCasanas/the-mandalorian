@@ -46,9 +46,9 @@ public class StormTrooper : Enemy
     //Action times
     public float idleTime = 5.0f;
     private float dieTime = 3.0f;
-    public float timeBewteenShots = 0.5f;
-    public float timeBewteenSequences = 0.5f;
-    public float timeBewteenStates = 1.5f;
+    public float timeBetweenShots = 0.5f;
+    public float timeBetweenSequences = 0.5f;
+    public float timeBetweenStates = 1.5f;
     private float reAimTime = 0.5f;
 
     //Speeds
@@ -510,7 +510,7 @@ public class StormTrooper : Enemy
     #region SHOOT
     private void StartShoot()
     {
-        statesTimer = timeBewteenStates;
+        statesTimer = timeBetweenStates;
         Animator.Play(gameObject, "ST_Idle", speedMult);
         UpdateAnimationSpd(speedMult);
     }
@@ -524,7 +524,7 @@ public class StormTrooper : Enemy
             if (PlayerIsShootable() || Mathf.Distance(gameObject.transform.globalPosition, destinationAvoidObject) <= 1f)
             {
                 unableToShoot = false;
-                statesTimer = timeBewteenStates;
+                statesTimer = timeBetweenStates;
                 endedAvoidingObjects = false;
                 Animator.Play(gameObject, "ST_Idle");
             }
@@ -546,7 +546,7 @@ public class StormTrooper : Enemy
                 {
                     //First Shot
                     if (!Shoot()) return;
-                    shotTimer = timeBewteenShots;
+                    shotTimer = timeBetweenShots;
                     shooting = true;
                 }
                 //Second Timer
@@ -582,7 +582,7 @@ public class StormTrooper : Enemy
                     //End of second shot of the first sequence
                     if (shotSequences < maxSequences)
                     {
-                        sequenceTimer = timeBewteenSequences;
+                        sequenceTimer = timeBetweenSequences;
                         shotTimes = 0;
                         shooting = false;
                         //Start of pause between sequences
@@ -590,7 +590,7 @@ public class StormTrooper : Enemy
                     //End of second shot of the second sequence
                     else
                     {
-                        statesTimer = timeBewteenStates;
+                        statesTimer = timeBetweenStates;
                         endedAvoidingObjects = true;
                         Debug.Log("Ending 2 time shot");
                     }
@@ -605,7 +605,7 @@ public class StormTrooper : Enemy
             if (sequenceTimer <= 0.0f)
             {
                 if (!Shoot()) return;
-                shotTimer = timeBewteenShots;
+                shotTimer = timeBetweenShots;
                 shooting = true;
             }
         }
