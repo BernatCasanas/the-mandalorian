@@ -38,8 +38,11 @@ public enum STATUS_TYPE
     MOV_SPEED,
     OVERHEAT,
     BLASTER_DAMAGE,
+    GRENADE_DAMAGE,
+    SNIPER_DAMAGE,
     DMG_TO_BOSSES,
-    DMG_PER_HP,
+    BLAST_DMG_PER_HP,
+    SNIPER_DMG_PER_HP,
     MAX_HP,
     DMG_RED,
     DMG_PER_HEAT,
@@ -107,8 +110,12 @@ public class Entity : DiamondComponent
     public float OverheatMult = 1f;
     public float RawDamageMult = 1f;
     public float BlasterDamageMult = 1f;
+    public float GrenadeDamageMult = 1f;
+    public float SniperDamageMult = 1f;
     public float DamageToBosses = 1f;
-    public float DamagePerHpMult = 1f;
+    public float BlasterDamagePerHpMult = 1f;
+    public float SniperDamagePerHpMult = 1f;
+
     public float DamagePerHeatMult = 1f;
     public float DamageRed = 1f;
     public float GroguCost = 1f;
@@ -121,8 +128,11 @@ public class Entity : DiamondComponent
         MovspeedMult = 1f;
         OverheatMult = 1f;
         BlasterDamageMult = 1f;
+        GrenadeDamageMult = 1f;
+        SniperDamageMult = 1f;
         DamageToBosses = 1f;
-        DamagePerHpMult = 1f;
+        BlasterDamagePerHpMult = 1f;
+        SniperDamagePerHpMult = 1f;
         DamagePerHeatMult = 1f;
         DamageRed = 1f;
         GroguCost = 1f;
@@ -360,6 +370,20 @@ public class Entity : DiamondComponent
                    // Debug.Log(this.DamageMult.ToString());
                 }
                 break;
+            case STATUS_TYPE.GRENADE_DAMAGE:
+                {
+                    statusToInit.statChange = this.GrenadeDamageMult * (statusToInit.severity) / 100;
+                    this.GrenadeDamageMult += statusToInit.statChange;
+                    // Debug.Log(this.DamageMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.SNIPER_DAMAGE:
+                {
+                    statusToInit.statChange = this.SniperDamageMult * (statusToInit.severity) / 100;
+                    this.SniperDamageMult += statusToInit.statChange;
+                    // Debug.Log(this.DamageMult.ToString());
+                }
+                break;
             case STATUS_TYPE.DMG_TO_BOSSES:
                 {
                     statusToInit.statChange = this.DamageToBosses * (statusToInit.severity) / 100;
@@ -425,7 +449,7 @@ public class Entity : DiamondComponent
     {
         switch (statusToUpdate.statusType)
         {
-            case STATUS_TYPE.DMG_PER_HP:
+            case STATUS_TYPE.BLAST_DMG_PER_HP:
                 {
                     if(Core.instance != null)
                     {
@@ -434,11 +458,27 @@ public class Entity : DiamondComponent
                         //{
                             float missingHealth = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
                             float missingHealtPercentage =  missingHealth / PlayerHealth.currMaxHealth;
-                            DamagePerHpMult = 1 + missingHealtPercentage;
+                            BlasterDamagePerHpMult = 1 + missingHealtPercentage;
                       //  Debug.Log("TESTING / dmg per missing hp = " + DamagePerHpMult.ToString());
                         // }
                     }
             
+                }
+                break;
+            case STATUS_TYPE.SNIPER_DMG_PER_HP:
+                {
+                    if (Core.instance != null)
+                    {
+                        //PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                        //if (myHealth != null)
+                        //{
+                        float missingHealth = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
+                        float missingHealtPercentage = missingHealth / PlayerHealth.currMaxHealth;
+                        SniperDamagePerHpMult = 1 + missingHealtPercentage;
+                        //  Debug.Log("TESTING / dmg per missing hp = " + DamagePerHpMult.ToString());
+                        // }
+                    }
+
                 }
                 break;
             case STATUS_TYPE.DMG_PER_HEAT:
@@ -507,15 +547,33 @@ public class Entity : DiamondComponent
                     //    Debug.Log(this.MovspeedMult.ToString());
                 }
                 break;
+            case STATUS_TYPE.GRENADE_DAMAGE:
+                {
+                    this.GrenadeDamageMult -= statusToDelete.statChange;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.SNIPER_DAMAGE:
+                {
+                    this.SniperDamageMult -= statusToDelete.statChange;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
             case STATUS_TYPE.DMG_TO_BOSSES:
                 {
                     this.DamageToBosses -= statusToDelete.statChange;
                     //    Debug.Log(this.MovspeedMult.ToString());
                 }
                 break;
-            case STATUS_TYPE.DMG_PER_HP:
+            case STATUS_TYPE.BLAST_DMG_PER_HP:
                 {
-                    this.DamagePerHpMult = 1;
+                    this.BlasterDamagePerHpMult = 1;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.SNIPER_DMG_PER_HP:
+                {
+                    this.SniperDamagePerHpMult = 1;
                     //    Debug.Log(this.MovspeedMult.ToString());
                 }
                 break;

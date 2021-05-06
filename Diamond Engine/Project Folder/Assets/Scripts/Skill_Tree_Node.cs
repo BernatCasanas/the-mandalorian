@@ -312,21 +312,26 @@ public class Skill_Tree_Node : DiamondComponent
                         Core.instance.AddStatus(STATUS_TYPE.COMBO_DAMAGE, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
                         break;
                     case "AGrenadeDmg":
-                        Debug.Log("Critical chance not implemented yet");
+                        //Debug.Log("Critical chance not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.GRENADE_DAMAGE, STATUS_APPLY_TYPE.SUBSTITUTE, 15, 0, true);
+
                         break;
                     case "ASniperDmg":
-                        Debug.Log("Critical damage not implemented yet");
+                        //Debug.Log("Critical damage not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.SNIPER_DAMAGE, STATUS_APPLY_TYPE.SUBSTITUTE, 15, 0, true);
+
                         break;
                     case "ADmgBos":
                         Core.instance.AddStatus(STATUS_TYPE.DMG_TO_BOSSES, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
                        // Debug.Log("Bonus damage to bosses not implemented yet");
                         break;
                     case "AHPMissDmgBlaster":
-                        Core.instance.AddStatus(STATUS_TYPE.DMG_PER_HP, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.BLAST_DMG_PER_HP, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
                         //Debug.Log("Damage * missing hp not implemented yet");
                         break;
                     case "AHPMissDmgSniper":
-                        Debug.Log("Crit * missing hp not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.SNIPER_DMG_PER_HP, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
+                        //  Debug.Log("Crit * missing hp not implemented yet");
                         break;
                     #endregion
                     #region Defense
