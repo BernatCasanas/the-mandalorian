@@ -105,14 +105,6 @@ private:
 	void DrawParticleSystems();
 
 public:
-	bool vsync, wireframe, cull, lightng, color_material, texture_2d;
-
-	GLuint checkersTexture;
-	GLubyte checkerImage[SQUARE_TEXTURE_W][SQUARE_TEXTURE_H][4];
-
-	GLuint defaultNormalMap;
-	GLubyte defaultNormalMapImage[SQUARE_TEXTURE_W][SQUARE_TEXTURE_H][4];
-
 	std::vector<C_MeshRenderer*> renderQueue;
 	std::vector<C_MeshRenderer*> renderQueueStencil;
 	std::vector<C_MeshRenderer*> renderQueuePostStencil;
@@ -133,7 +125,18 @@ public:
 	std::vector<C_DirectionalLight*> directLightVector;
 	std::vector<C_AreaLight*> areaLightVector;
 
+public:
+	bool vsync, wireframe, cull, lightng, color_material, texture_2d;
+
+	GLuint checkersTexture;
+	GLubyte checkerImage[SQUARE_TEXTURE_W][SQUARE_TEXTURE_H][4];
+
+	GLuint defaultNormalMap;
+	GLubyte defaultNormalMapImage[SQUARE_TEXTURE_W][SQUARE_TEXTURE_H][4];
+
+
 	unsigned int resolution;
+	bool debugDraw;
 
 private:
 	std::vector<LineRender> lines;

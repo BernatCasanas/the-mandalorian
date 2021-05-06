@@ -72,7 +72,7 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.InternalCalls::CloseGame", CSCloseGame);
 	mono_add_internal_call("DiamondEngine.Input::GetMouseX", MouseX);
 	mono_add_internal_call("DiamondEngine.Input::GetMouseY", MouseY);
-	
+
 	// --- Controller gamepad start --- //
 	mono_add_internal_call("DiamondEngine.Input::GetGamepadButton", GetGamepadButton);
 	//mono_add_internal_call("DiamondEngine.Input::GamepadAxis", GetGamepadAxis);
@@ -231,13 +231,14 @@ bool M_MonoManager::Init()
 #pragma region Animator
 	mono_add_internal_call("DiamondEngine.Animator::Play", Play);
 	mono_add_internal_call("DiamondEngine.Animator::Pause", Pause);
+	mono_add_internal_call("DiamondEngine.Animator::SetSpeed", SetSpeed);
 	mono_add_internal_call("DiamondEngine.Animator::Resume", Resume);
 	mono_add_internal_call("DiamondEngine.Animator::GetCurrentAnimation", GetCurrentAnimation);
 	mono_add_internal_call("DiamondEngine.Animator::GetAnimationDuration", GetAnimationDuration);
 #pragma endregion
 
 #pragma region MeshRenderer
-	mono_add_internal_call("DiamondEngine.MeshRenderer::get_drawStencil",GetDrawStencil);
+	mono_add_internal_call("DiamondEngine.MeshRenderer::get_drawStencil", GetDrawStencil);
 	mono_add_internal_call("DiamondEngine.MeshRenderer::set_drawStencil", SetDrawStencil);
 	mono_add_internal_call("DiamondEngine.MeshRenderer::get_color", GetMeshColor);
 	mono_add_internal_call("DiamondEngine.MeshRenderer::set_color", SetMeshColor);
@@ -250,10 +251,12 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.Time::get_totalTime", GetTotalTime);
 	mono_add_internal_call("DiamondEngine.Time::PauseGame", CS_PauseGame);
 	mono_add_internal_call("DiamondEngine.Time::ResumeGame", CS_ResumeGame);
-  
+
 	mono_add_internal_call("DiamondEngine.Quaternion::Slerp", MonoSlerp);
-  
+
 	mono_add_internal_call("DiamondEngine.Scene::FindObjectWithTag", FindObjectWithTag);
+	mono_add_internal_call("DiamondEngine.Scene::get_totalTris", GetTotalTris);
+
 
 	mono_add_internal_call("DiamondEngine.SceneManager::LoadScene", CS_LoadScene);
 	mono_add_internal_call("DiamondEngine.Audio::PlayAudio", PlayAudio);
@@ -297,12 +300,12 @@ void M_MonoManager::OnGUI()
 	if (ImGui::CollapsingHeader("Mono Settings", ImGuiTreeNodeFlags_DefaultOpen))
 	{
 		ImGui::Text("Compile tool: "); ImGui::SameLine(); ImGui::TextColored(ImVec4(1.f, 1.f, 0.f, 1.f), "MSBuild portable version");
-		
+
 	}
 }
 
 
-void M_MonoManager::ReCompileCS() 
+void M_MonoManager::ReCompileCS()
 {
 	if (DETime::state == GameState::PLAY)
 		return;
@@ -363,7 +366,7 @@ void M_MonoManager::DebugAllFields(const char* className, std::vector<Serialized
 	void* iter = NULL;
 	MonoClassField* field;
 	MonoClass* klass = mono_class_from_name(mono_assembly_get_image(EngineExternal->moduleMono->assembly), namespace_name, className);
-	
+
 	while (field = mono_class_get_fields(klass, &iter))
 	{
 		if (mono_field_get_flags(field) != 1) // Private = 1, public = 6, static = 22
@@ -406,7 +409,7 @@ MonoObject* M_MonoManager::GoToCSGO(GameObject* inGo) const
 
 	uintptr_t transPTR = reinterpret_cast<uintptr_t>(inGo->transform);
 	args[2] = &transPTR;
-	
+
 	MonoMethodDesc* constructorDesc = mono_method_desc_new("DiamondEngine.GameObject:.ctor(string,uintptr,uintptr)", true);
 	MonoMethod* method = mono_method_desc_search_in_class(constructorDesc, goClass);
 	MonoObject* goObj = mono_object_new(domain, goClass);
@@ -428,7 +431,7 @@ MonoObject* M_MonoManager::Float3ToCS(float3& inVec) const
 	args[0] = &inVec.x;
 	args[1] = &inVec.y;
 	args[2] = &inVec.z;
-	
+
 	MonoMethodDesc* constDesc = mono_method_desc_new("DiamondEngine.Vector3:.ctor(single,single,single)", true);
 	MonoMethod* method = mono_method_desc_search_in_class(constDesc, vecClass);
 
@@ -531,7 +534,7 @@ SerializedField::SerializedField(MonoClassField* _field, MonoObject* _object, C_
 	M_MonoManager::LoadFieldData(*this, _object);
 }
 
-void M_MonoManager::CreateAssetsScript(const char* localPath) 
+void M_MonoManager::CreateAssetsScript(const char* localPath)
 {
 	std::string unnormalizedPath(localPath);
 	unnormalizedPath = FileSystem::UnNormalizePath(unnormalizedPath.c_str());
@@ -649,7 +652,7 @@ void M_MonoManager::InitMono()
 		mono_metadata_decode_row(table_info, i, cols, MONO_TYPEDEF_SIZE);
 		const char* name = mono_metadata_string_heap(image, cols[MONO_TYPEDEF_NAME]);
 
-		if (name[0] != '<') 
+		if (name[0] != '<')
 		{
 			const char* name_space = mono_metadata_string_heap(image, cols[MONO_TYPEDEF_NAMESPACE]);
 			_class = mono_class_from_name(image, name_space, name);

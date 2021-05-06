@@ -30,9 +30,10 @@
 
 #include "COMM_DeleteGO.h"
 
+
 extern bool LOADING_SCENE = false;
 M_Scene::M_Scene(Application* app, bool start_enabled) : Module(app, start_enabled), root(nullptr),
-defaultMaterial(nullptr), holdUID(0), prefabToOverride(0)
+defaultMaterial(nullptr), holdUID(0), prefabToOverride(0), totalTris(0)
 {
 	current_scene[0] = '\0';
 	current_scene_name[0] = '\0';
@@ -90,7 +91,7 @@ update_status M_Scene::PreUpdate(float dt)
 	}
 
 	if (prefabToOverride != 0)
-	{		
+	{
 		root->OverrideGameObject(prefabToOverride);
 		LoadScriptsData();
 		LoadNavigationData();
@@ -148,6 +149,8 @@ update_status M_Scene::Update(float dt)
 				LoadNavigationData();
 				LoadScriptsData();
 
+				EngineExternal->moduleEditor->SetSelectedGO(gameObjectRoot);
+
 				//Free memory
 				json_value_free(scene);
 			}
@@ -186,9 +189,11 @@ update_status M_Scene::Update(float dt)
 		if (EngineExternal->moduleEditor->IsWindowSelected(EditorWindow::SCENE) || EngineExternal->moduleEditor->IsWindowSelected(EditorWindow::HIERARCHY))
 		{
 			App->moduleEditor->shortcutManager.PushCommand(new COMM_DeleteGO(App->moduleEditor->GetSelectedGO()));
+			//App->moduleEditor->DeleteSelectedGameObjects();
 			App->moduleEditor->GetSelectedGO()->Destroy();
 		}
 	}
+
 #endif // !STANDALONE
 
 	UpdateGameObjects();
@@ -217,6 +222,22 @@ GameObject* M_Scene::GetGOFromUID(GameObject* n, uint sUID)
 	for (size_t i = 0; i < n->children.size(); i++)
 	{
 		ret = GetGOFromUID(n->children[i], sUID);
+		if (ret != nullptr)
+			return ret;
+	}
+
+	return nullptr;
+}
+
+GameObject* M_Scene::GetGOFromPrefabReference(GameObject* n, uint prefabReference)
+{
+	if (n->prefabReference == prefabReference)
+		return n;
+
+	GameObject* ret = nullptr;
+	for (size_t i = 0; i < n->children.size(); i++)
+	{
+		ret = GetGOFromPrefabReference(n->children[i], prefabReference);
 		if (ret != nullptr)
 			return ret;
 	}
@@ -285,7 +306,7 @@ void M_Scene::LoadScriptsData(GameObject* rootObject)
 
 				if (std::find(d->second->fiValue.goValue->csReferences.begin(), d->second->fiValue.goValue->csReferences.end(), d->second) == d->second->fiValue.goValue->csReferences.end())
 					d->second->fiValue.goValue->csReferences.push_back(d->second);
-				
+
 				d->second->parentSC->SetField(d->second->field, d->second->fiValue.goValue);
 
 				//d->second = nullptr;
@@ -315,10 +336,15 @@ void M_Scene::LoadNavigationData()
 		auto range = navigationReferenceMap.equal_range(i->first);
 
 		GameObject* ref = GetGOFromUID(EngineExternal->moduleScene->root, i->first);
+		GameObject* prefabRef = GetGOFromPrefabReference(EngineExternal->moduleScene->root, i->first);
+
 		// Now render out that whole range
 		for (auto d = range.first; d != range.second; ++d)
 		{
-			d->second->referenceGO = ref;
+			if(prefabRef != nullptr)
+				d->second->referenceGO = prefabRef;
+			else
+				d->second->referenceGO = ref;
 		}
 	}
 
@@ -355,6 +381,16 @@ void M_Scene::FindGameObjectsWithTag(const char* tag, std::vector<GameObject*>& 
 	}
 
 	gameObjects.clear();
+}
+
+void M_Scene::SetCurrentScene(std::string& scenePath)
+{
+	strcpy(current_scene, scenePath.c_str());
+
+	std::string sceneName;
+	FileSystem::GetFileName(scenePath.c_str(), sceneName, false);
+
+	strcpy(current_scene_name, sceneName.c_str());
 }
 
 void M_Scene::SetGameCamera(C_Camera* cam)
@@ -604,15 +640,6 @@ void M_Scene::LoadScene(const char* name)
 
 	//Free memory
 	json_value_free(scene);
-
-	if (strcmp(name, "Library/Scenes/tmp.des") != 0)
-		strcpy(current_scene, name);
-
-	std::string scene_name;
-	FileSystem::GetFileName(name, scene_name, false);
-
-	if (strcmp(name, "Library/Scenes/tmp.des") != 0)
-		strcpy(current_scene_name, scene_name.c_str());
 
 	App->moduleResources->ZeroReferenceCleanUp();
 

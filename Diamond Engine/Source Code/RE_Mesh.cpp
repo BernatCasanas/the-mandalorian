@@ -240,6 +240,11 @@ int* ResourceMesh::GetTriangles() const
 	return (int*)(indices);
 }
 
+bool ResourceMesh::HasVertexColors()
+{
+	return vertices[COLORS_OFFSET] != 0.0f && vertices[COLORS_OFFSET + 1] != 0.0f && vertices[COLORS_OFFSET + 2] != 0.0f;
+}
+
 const char* ResourceMesh::SaveCustomFormat(uint& retSize)
 {
 	uint aCounts[4] = { hasSkeleton, indices_count, vertices_count, bonesOffsets.size()};

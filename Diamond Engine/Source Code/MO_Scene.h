@@ -29,6 +29,7 @@ public:
 	bool CleanUp() override;
 
 	GameObject* GetGOFromUID(GameObject* n, uint sUID);
+	GameObject* GetGOFromPrefabReference(GameObject* n, uint prefabReference);
 	GameObject* CreateGameObject(const char* name, GameObject* parent, int _uid = -1);
 	void GetAllGameObjects(std::vector<GameObject*>& gameObjects);
 	void ReplaceScriptsReferences(uint oldUID, uint newUID);
@@ -47,8 +48,9 @@ public:
 #endif // !STANDALONE
 	void LoadScene(const char* name);
 
+	void SetCurrentScene(std::string& scenePath);
 	void SetGameCamera(C_Camera* cam);
-	
+
 	void CreateGameCamera(const char* name);
 	void LoadModelTree(const char* modelPath);
 
@@ -70,6 +72,8 @@ public:
 	std::vector<std::string> layers;
 
 	std::vector<C_Script*> activeScriptsVector;
+
+	int totalTris;
 
 	void LoadHoldScene();
 private:
