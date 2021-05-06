@@ -24,7 +24,7 @@ void PostProcessEffect::SetActive(bool active)
 }
 
 PostProcessEffectInvertTest::PostProcessEffectInvertTest() : PostProcessEffect(),
-invertFilter(nullptr)
+invertFilter(nullptr), blurHFilter(nullptr), blurVFilter(nullptr)
 {
 	Init();
 }
@@ -37,6 +37,9 @@ PostProcessEffectInvertTest::~PostProcessEffectInvertTest()
 void PostProcessEffectInvertTest::Init()
 {
 	invertFilter = new PostProcessFilterContrastTest();
+	blurHFilter = new PostProcessFilterBlurH();
+	blurVFilter = new PostProcessFilterBlurV();
+
 }
 
 void PostProcessEffectInvertTest::CleanUp()
@@ -46,12 +49,26 @@ void PostProcessEffectInvertTest::CleanUp()
 		delete(invertFilter);
 		invertFilter = nullptr;
 	}
+	if (blurHFilter != nullptr)
+	{
+		delete(blurHFilter);
+		blurHFilter = nullptr;
+	}
+	if (blurVFilter != nullptr)
+	{
+		delete(blurVFilter);
+		blurVFilter = nullptr;
+	}
 }
 
 int PostProcessEffectInvertTest::Render(int width, int height, int colorTexture)
 {
-	invertFilter->Render(width, height, colorTexture);
-	return invertFilter->GetOutputTexture();
+	//invertFilter->Render(width, height, colorTexture);
+	blurHFilter->Render(width/4, height/4, colorTexture);
+	blurVFilter->Render(width/4, height/4, blurHFilter->GetOutputTexture());
+	blurHFilter->Render(width / 8, height / 8, blurVFilter->GetOutputTexture());
+	blurVFilter->Render(width / 8, height / 8, blurHFilter->GetOutputTexture());
+	return blurVFilter->GetOutputTexture();
 }
 
 PostProcessEffectDepthTest::PostProcessEffectDepthTest(): PostProcessEffect(),
@@ -130,6 +147,8 @@ PostProcessEffectAO::~PostProcessEffectAO()
 void PostProcessEffectAO::Init()
 {
 	aoFilter = new PostProcessFilterAO();
+	blurHFilter = new PostProcessFilterBlurH();
+
 }
 
 void PostProcessEffectAO::CleanUp()
@@ -139,10 +158,16 @@ void PostProcessEffectAO::CleanUp()
 		delete(aoFilter);
 		aoFilter = nullptr;
 	}
+	if (blurHFilter != nullptr)
+	{
+		delete(blurHFilter);
+		blurHFilter = nullptr;
+	}
 }
 
 int PostProcessEffectAO::Render(int width, int height, int depthTexture,C_Camera* camera)
 {
-	aoFilter->Render(width, height, depthTexture,camera);
-	return aoFilter->GetOutputTexture();
+	//aoFilter->Render(width, height, depthTexture,camera);
+	blurHFilter->Render(width, height, depthTexture);//TODO not depth texture but ao
+	return blurHFilter->GetOutputTexture();
 }

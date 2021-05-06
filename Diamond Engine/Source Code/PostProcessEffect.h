@@ -3,6 +3,8 @@
 class PostProcessFilterContrastTest;
 class PostProcessFilterDepthTest;
 class PostProcessFilterAO;
+class PostProcessFilterBlurH;
+class PostProcessFilterBlurV;
 class PostProcessFilterRender;
 
 class DE_Advanced_FrameBuffer;
@@ -36,6 +38,8 @@ public:
 
 private:
 	PostProcessFilterContrastTest* invertFilter;
+	PostProcessFilterBlurH* blurHFilter;
+	PostProcessFilterBlurV* blurVFilter;
 };
 
 class PostProcessEffectDepthTest : public PostProcessEffect
@@ -79,6 +83,7 @@ public:
 	int Render(int width, int height, int depthTexture,C_Camera* camera);
 private:
 	PostProcessFilterAO* aoFilter;
+	PostProcessFilterBlurH* blurHFilter;
 };
 
 

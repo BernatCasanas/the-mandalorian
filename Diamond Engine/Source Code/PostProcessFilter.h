@@ -48,8 +48,7 @@ class PostProcessFilterAO : public PostProcessFilter
 public:
 	PostProcessFilterAO();
 	~PostProcessFilterAO();
-	void Render(int width, int height, unsigned int depthTexture, C_Camera* currCam);//ony one render will be needed for real PostProcessFilters
-
+	void Render(int width, int height, unsigned int depthTexture, C_Camera* currCam);
 	void PopulateKernel();
 	private:
 	std::vector<float3> kernelAO;
@@ -60,6 +59,28 @@ class PostProcessFilterRender : public PostProcessFilter
 public:
 	PostProcessFilterRender();
 	~PostProcessFilterRender();
-	void Render(int width, int height, unsigned int colorTexture);//ony one render will be needed for real PostProcessFilters
+	void Render(int width, int height, unsigned int colorTexture);
+};
 
+class PostProcessFilterBlurH : public PostProcessFilter
+{
+public:
+	PostProcessFilterBlurH();
+	~PostProcessFilterBlurH();
+	void Render(int width, int height, unsigned int texture);
+
+	void PopulateKernel();
+	std::vector<float> gaussianKernel;
+};
+
+
+class PostProcessFilterBlurV : public PostProcessFilter
+{
+public:
+	PostProcessFilterBlurV();
+	~PostProcessFilterBlurV();
+	void Render(int width, int height, unsigned int texture);
+
+	void PopulateKernel();
+	std::vector<float> gaussianKernel;
 };

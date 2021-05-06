@@ -254,3 +254,100 @@ void PostProcessFilterAO::PopulateKernel()
 		kernelAO.push_back(float3::RandomSphere(randomizer, float3::zero, 1));
 	}
 }
+
+PostProcessFilterBlurH::PostProcessFilterBlurH(): PostProcessFilter(1278174060,true)
+{
+	PopulateKernel();
+}
+
+PostProcessFilterBlurH::~PostProcessFilterBlurH()
+{
+}
+
+void PostProcessFilterBlurH::Render(int width, int height, unsigned int texture)
+{
+	quadRenderer->RegenerateFBO(width, height);
+	myShader->Bind();
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "colourTexture"), 0);
+
+	GLint uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "targetWidth");
+	glUniform1f(uniformLoc, width);
+	uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "blurTextureWeights");
+	glUniform1fv(uniformLoc, 11, &gaussianKernel[0]);
+
+	quadRenderer->RenderQuad();
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	myShader->Unbind();
+}
+
+void PostProcessFilterBlurH::PopulateKernel()
+{
+	//Hardcoded for now https://dev.theomader.com/gaussian-kernel-calculator/
+
+	gaussianKernel.push_back(0.0093f);
+	gaussianKernel.push_back(0.028002f);
+	gaussianKernel.push_back(0.065984f);
+	gaussianKernel.push_back(0.121703f);
+	gaussianKernel.push_back(0.175713f);
+	gaussianKernel.push_back(0.198596f);
+	gaussianKernel.push_back(0.175713f);
+	gaussianKernel.push_back(0.121703f);
+	gaussianKernel.push_back(0.065984f);
+	gaussianKernel.push_back(0.028002f);
+	gaussianKernel.push_back(0.0093f);
+
+
+}
+
+
+PostProcessFilterBlurV::PostProcessFilterBlurV() : PostProcessFilter(1690621317, true)
+{
+	PopulateKernel();
+}
+
+PostProcessFilterBlurV::~PostProcessFilterBlurV()
+{
+}
+
+void PostProcessFilterBlurV::Render(int width, int height, unsigned int texture)
+{
+	quadRenderer->RegenerateFBO(width, height);
+	myShader->Bind();
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "colourTexture"), 0);
+
+	GLint uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "targetHeight");
+	glUniform1f(uniformLoc, height);
+	uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "blurTextureWeights");
+	glUniform1fv(uniformLoc, 11, &gaussianKernel[0]);
+
+	quadRenderer->RenderQuad();
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	myShader->Unbind();
+}
+
+void PostProcessFilterBlurV::PopulateKernel()
+{
+	//Hardcoded for now https://dev.theomader.com/gaussian-kernel-calculator/
+
+	gaussianKernel.push_back(0.0093f);
+	gaussianKernel.push_back(0.028002f);
+	gaussianKernel.push_back(0.065984f);
+	gaussianKernel.push_back(0.121703f);
+	gaussianKernel.push_back(0.175713f);
+	gaussianKernel.push_back(0.198596f);
+	gaussianKernel.push_back(0.175713f);
+	gaussianKernel.push_back(0.121703f);
+	gaussianKernel.push_back(0.065984f);
+	gaussianKernel.push_back(0.028002f);
+	gaussianKernel.push_back(0.0093f);
+
+
+}

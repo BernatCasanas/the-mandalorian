@@ -56,7 +56,7 @@ void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBu
 
 	//do post processing here
 
-	if (false)
+	if (true)
 	{
 		currentColTexIndex = contrastTest->Render(width, height, currentColTexIndex);
 	}
@@ -64,7 +64,7 @@ void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBu
 	{
 		currentColTexIndex = depthTest->Render(width, height, currentColTexIndex, depthTexture);
 	}
-	if (true)
+	if (false)
 	{
 		currentColTexIndex = aoEffect->Render(width, height, depthTexture,sceneCam);
 	}
