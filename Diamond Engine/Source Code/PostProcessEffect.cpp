@@ -69,7 +69,7 @@ void PostProcessEffectBloom::CleanUp()
 
 int PostProcessEffectBloom::Render(int width, int height, int colorTexture)
 {
-	brighterThanFilter->Render(width/2, height/2, colorTexture,0.5f);//TODO change the value for the actual value once we have the resource
+	brighterThanFilter->Render(width/2, height/2, colorTexture,0.5f,true);//TODO change the value for the actual value once we have the resource
 	blurVFilter->Render(width/4, height/4, brighterThanFilter->GetOutputTexture());
 	blurHFilter->Render(width/4, height/4, blurVFilter->GetOutputTexture());
 	blurVFilter->Render(width / 8, height / 8, blurHFilter->GetOutputTexture());
@@ -141,7 +141,8 @@ void PostProcessEffectRender::Render(int width, int height, int colorTexture, DE
 }
 
 PostProcessEffectAO::PostProcessEffectAO(): PostProcessEffect(),
-aoFilter(nullptr)
+aoFilter(nullptr), blurHFilter(nullptr), blurVFilter(nullptr),
+multiplyFilter(nullptr)
 {
 	Init();
 }
@@ -155,7 +156,8 @@ void PostProcessEffectAO::Init()
 {
 	aoFilter = new PostProcessFilterAO();
 	blurHFilter = new PostProcessFilterBlurH();
-
+	blurVFilter = new PostProcessFilterBlurV();
+	multiplyFilter = new PostProcessFilterMultiply();
 }
 
 void PostProcessEffectAO::CleanUp()
@@ -170,11 +172,23 @@ void PostProcessEffectAO::CleanUp()
 		delete(blurHFilter);
 		blurHFilter = nullptr;
 	}
+	if (blurVFilter != nullptr)
+	{
+		delete(blurVFilter);
+		blurVFilter = nullptr;
+	}
+	if (multiplyFilter != nullptr)
+	{
+		delete(multiplyFilter);
+		multiplyFilter = nullptr;
+	}
 }
 
-int PostProcessEffectAO::Render(int width, int height, int depthTexture,C_Camera* camera)
+int PostProcessEffectAO::Render(int width, int height, int colorTexture,int depthTexture,C_Camera* camera)
 {
-	//aoFilter->Render(width, height, depthTexture,camera);
-	blurHFilter->Render(width, height, depthTexture);//TODO not depth texture but ao
-	return blurHFilter->GetOutputTexture();
+	aoFilter->Render(width/2, height/2, depthTexture,camera);
+	blurVFilter->Render(width / 4, height / 4, aoFilter->GetOutputTexture());
+	blurHFilter->Render(width/4, height/4, blurVFilter->GetOutputTexture());
+	multiplyFilter->Render(width, height, colorTexture, blurHFilter->GetOutputTexture());
+	return multiplyFilter->GetOutputTexture();
 }

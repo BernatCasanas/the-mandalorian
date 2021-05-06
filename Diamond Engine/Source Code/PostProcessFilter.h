@@ -90,7 +90,7 @@ class PostProcessFilterBrighterThan : public PostProcessFilter
 public:
 	PostProcessFilterBrighterThan();
 	~PostProcessFilterBrighterThan();
-	void Render(int width, int height, unsigned int colorTexture,float brightnessTreshold);
+	void Render(int width, int height, unsigned int colorTexture,float brightnessTreshold,bool useSmoothMask);//smooth mask lets you choose between a gradient in the glowing areas and binary glow/no glow
 };
 
 
@@ -100,4 +100,13 @@ public:
 	PostProcessFilterCombine();
 	~PostProcessFilterCombine();
 	void Render(int width, int height, unsigned int colorTexture, unsigned int brightnessTexture, float brightnessIntensity);
+};
+
+
+class PostProcessFilterMultiply : public PostProcessFilter
+{
+public:
+	PostProcessFilterMultiply();
+	~PostProcessFilterMultiply();
+	void Render(int width, int height, unsigned int texture1, unsigned int texture2);
 };

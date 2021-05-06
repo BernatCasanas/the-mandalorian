@@ -93,18 +93,21 @@ void main()
 
         	float sampleDepth = CalcViewZ(offset.xy);
 
-        	if (abs(position.z - sampleDepth) < sampleRad) {
+        	if ((position.z-sampleDepth) < sampleRad) {
             	AO += step(sampleDepth,samplePos.z);
             
         	}
     	}
 
-    	AO = 1- AO / MAX_KERNEL_SIZE;
-		//AO = clamp(AO,0.0,0.5);
-    	out_Colour = vec4(pow(AO,2));
+    	AO = 1 - AO / MAX_KERNEL_SIZE;
+    	AO*=2;
+		AO = clamp(AO,0.0,1.0);
+
+    	out_Colour = vec4(AO,AO,AO,1);
     	//out_Colour = vec4(position,1.0);
 }
 #endif
+
 
 
 

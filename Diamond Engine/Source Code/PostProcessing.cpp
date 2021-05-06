@@ -11,7 +11,7 @@
 
 PostProcessing::PostProcessing() :
 	quadVAO(0), quadVBO(0),
-	contrastTest(nullptr),
+	bloomEffect(nullptr),
 	depthTest(nullptr),
 	aoEffect(nullptr)
 {
@@ -40,7 +40,7 @@ void PostProcessing::Init()
 	glBindVertexArray(0);
 
 	//init effects
-	contrastTest = new PostProcessEffectBloom();
+	bloomEffect = new PostProcessEffectBloom();
 	depthTest = new PostProcessEffectDepthTest();
 	renderFilter = new PostProcessEffectRender();
 	aoEffect = new PostProcessEffectAO();
@@ -56,17 +56,18 @@ void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBu
 
 	//do post processing here
 
-	if (true)
-	{
-		currentColTexIndex = contrastTest->Render(width, height, currentColTexIndex);
-	}
 	if (false)
 	{
 		currentColTexIndex = depthTest->Render(width, height, currentColTexIndex, depthTexture);
 	}
-	if (false)
+
+	if (true)
 	{
-		currentColTexIndex = aoEffect->Render(width, height, depthTexture,sceneCam);
+		currentColTexIndex = aoEffect->Render(width, height, currentColTexIndex, depthTexture,sceneCam);
+	}
+	if (true)
+	{
+		currentColTexIndex = bloomEffect->Render(width, height, currentColTexIndex);
 	}
 
 	//end of postprocessing
@@ -93,10 +94,10 @@ void PostProcessing::CleanUp()
 		quadVAO = 0;
 	}
 
-	if (contrastTest != nullptr)
+	if (bloomEffect != nullptr)
 	{
-		delete(contrastTest);
-		contrastTest = nullptr;
+		delete(bloomEffect);
+		bloomEffect = nullptr;
 	}
 
 	if (depthTest != nullptr)

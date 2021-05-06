@@ -7,6 +7,7 @@ class PostProcessFilterBlurH;
 class PostProcessFilterBlurV;
 class PostProcessFilterBrighterThan;
 class PostProcessFilterCombine;
+class PostProcessFilterMultiply;
 class PostProcessFilterRender;
 
 class DE_Advanced_FrameBuffer;
@@ -83,8 +84,10 @@ public:
 	void Init() override;
 	void CleanUp() override;
 	//returns the index of the color texture that has been rendered
-	int Render(int width, int height, int depthTexture,C_Camera* camera);
+	int Render(int width, int height, int colorTexture, int depthTexture,C_Camera* camera);
 private:
 	PostProcessFilterAO* aoFilter;
 	PostProcessFilterBlurH* blurHFilter;
+	PostProcessFilterBlurV* blurVFilter;
+	PostProcessFilterMultiply* multiplyFilter;
 };

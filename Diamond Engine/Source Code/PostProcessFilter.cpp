@@ -361,7 +361,7 @@ PostProcessFilterBrighterThan::~PostProcessFilterBrighterThan()
 {
 }
 
-void PostProcessFilterBrighterThan::Render(int width, int height, unsigned int colorTexture, float brightnessTreshold)
+void PostProcessFilterBrighterThan::Render(int width, int height, unsigned int colorTexture, float brightnessTreshold,bool useSmoothMask)
 {
 	quadRenderer->RegenerateFBO(width, height);
 	myShader->Bind();
@@ -371,6 +371,10 @@ void PostProcessFilterBrighterThan::Render(int width, int height, unsigned int c
 
 	GLint uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "brightnessTreshold");
 	glUniform1f(uniformLoc, brightnessTreshold);
+	uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "useSmoothMask");
+	glUniform1i(uniformLoc, useSmoothMask);
+
+	
 
 	quadRenderer->RenderQuad();
 
@@ -400,6 +404,36 @@ void PostProcessFilterCombine::Render(int width, int height, unsigned int colorT
 	
 	GLint uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "brightnessIntensity");
 	glUniform1f(uniformLoc, brightnessIntensity);
+	quadRenderer->RenderQuad();
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	myShader->Unbind();
+}
+
+
+
+PostProcessFilterMultiply::PostProcessFilterMultiply() : PostProcessFilter(660095860, true)
+{
+}
+
+PostProcessFilterMultiply::~PostProcessFilterMultiply()
+{
+}
+
+void PostProcessFilterMultiply::Render(int width, int height, unsigned int texture1, unsigned int texture2)
+{
+	quadRenderer->RegenerateFBO(width, height);
+	myShader->Bind();
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture1);
+	glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "texture1"), 0);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, texture2);
+	glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "texture2"), 1);
+
 	quadRenderer->RenderQuad();
 
 	glActiveTexture(GL_TEXTURE0);

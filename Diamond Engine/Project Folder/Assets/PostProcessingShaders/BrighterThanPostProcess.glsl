@@ -18,13 +18,21 @@ in vec2 textureCoords;
 out vec4 out_Colour;
 uniform sampler2D colourTexture;
 uniform float brightnessTreshold;
+uniform bool useSmoothMask;
 
 void main()
 {
 	vec4 myColor = texture(colourTexture,textureCoords);
 	float brightness = (myColor.r * 0.2126)+(myColor.g * 0.7152)+(myColor.b * 0.0722); //Luma conversion to make the average
 	
-	out_Colour=myColor*brightness*brightness*brightness;
+	if(useSmoothMask)
+	{
+		out_Colour=myColor*brightness*brightness*brightness;
+	}
+	else if(brightness >= brightnessTreshold)
+	{
+		out_Colour=myColor;
+	}
 	
 }
 #endif

@@ -26,7 +26,7 @@ private:
 	void Start();
 	void End();
 
-	PostProcessEffectBloom* contrastTest;
+	PostProcessEffectBloom* bloomEffect;
 	PostProcessEffectDepthTest* depthTest;
 	PostProcessEffectAO* aoEffect;
 	PostProcessEffectRender* renderFilter;
