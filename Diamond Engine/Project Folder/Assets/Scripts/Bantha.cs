@@ -7,7 +7,7 @@ using DiamondEngine;
 
 public class Bantha : Enemy
 {
-   /* enum STATE : int
+   enum STATE : int
     {
         NONE = -1,
         IDLE,
@@ -822,5 +822,4 @@ public class Bantha : Enemy
             currAnimationPlaySpd = newSpd;
         }
     }
-   */
 }
