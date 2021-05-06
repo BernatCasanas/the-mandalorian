@@ -49,6 +49,19 @@ bool CS_CalculatePath(MonoObject* go, MonoObject* startPos, MonoObject* endPos)
 	return false;
 }
 
+bool CS_PathIsPossible(MonoObject* go, MonoObject* startPos, MonoObject* endPos)
+{
+	if (EngineExternal == nullptr || go == nullptr)
+		return false;
+
+	std::vector<float3> possibleVector;
+
+	if (EngineExternal->modulePathfinding->FindPath(EngineExternal->moduleMono->UnboxVector(startPos), EngineExternal->moduleMono->UnboxVector(endPos), possibleVector))
+		return true;
+
+	return false;
+}
+
 int CS_GetPathSize(MonoObject* go)
 {
 	if (EngineExternal == nullptr || go == nullptr)
