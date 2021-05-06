@@ -228,14 +228,15 @@ return value;
 void main()
 {
  vec2 motion = vec2(Generate_Fractal_Perlin_Noise(vec2(pos.xz) + water_direction));
- float value = Generate_Fractal_Cellular_Noise(vec2(pos.xz) * 30.0 + motion * 0.5);
+ float value = Generate_Fractal_Cellular_Noise(vec2(pos.xz) + motion * 0.5);
  ripple_color *= value * relative_position;
  
- water_color =  water_color + ripple_color * (relative_position * 6.0);
+ water_color =  water_color + ripple_color * min(relative_position, 0.5);
  color = vec4(water_color, 1.0);
 }
 
 #endif
+
 
 
 

@@ -898,6 +898,7 @@ public class HeavyTrooper : Enemy
         if (currAnimationPlaySpd != newSpd)
         {
             Animator.SetSpeed(gameObject, newSpd);
+            Animator.SetSpeed(spear, newSpd);
             currAnimationPlaySpd = newSpd;
         }
     }
