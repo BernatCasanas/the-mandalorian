@@ -2,9 +2,11 @@
 
 class PostProcessFilterContrastTest;
 class PostProcessFilterDepthTest;
+class PostProcessFilterAO;
 class PostProcessFilterRender;
 
 class DE_Advanced_FrameBuffer;
+class C_Camera;
 
 class PostProcessEffect
 {
@@ -74,8 +76,9 @@ public:
 	void Init() override;
 	void CleanUp() override;
 	//returns the index of the color texture that has been rendered
-	int Render(int width, int height, int colorTexture, int depthTexture);
-	
+	int Render(int width, int height, int depthTexture,C_Camera* camera);
+private:
+	PostProcessFilterAO* aoFilter;
 };
 
 

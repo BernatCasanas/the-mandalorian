@@ -7,11 +7,13 @@
 #include "PostProcessEffect.h"
 #include "DE_Advanced_FrameBuffer.h"
 
+#include "CO_Camera.h"
 
 PostProcessing::PostProcessing() :
 	quadVAO(0), quadVBO(0),
 	contrastTest(nullptr),
-	depthTest(nullptr)
+	depthTest(nullptr),
+	aoEffect(nullptr)
 {
 }
 
@@ -41,9 +43,10 @@ void PostProcessing::Init()
 	contrastTest = new PostProcessEffectInvertTest();
 	depthTest = new PostProcessEffectDepthTest();
 	renderFilter = new PostProcessEffectRender();
+	aoEffect = new PostProcessEffectAO();
 }
 
-void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBuffer& outputFBO, unsigned int colorTexture, unsigned int depthTexture, ResourcePostProcess* settings)
+void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBuffer& outputFBO, unsigned int colorTexture, unsigned int depthTexture,C_Camera* sceneCam, ResourcePostProcess* settings)
 {
 
 	Start();
@@ -53,15 +56,18 @@ void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBu
 
 	//do post processing here
 
-	if (contrastTest->GetActive()==true)
+	if (false)
 	{
 		currentColTexIndex = contrastTest->Render(width, height, currentColTexIndex);
 	}
-	if (depthTest->GetActive() == true)
+	if (false)
 	{
 		currentColTexIndex = depthTest->Render(width, height, currentColTexIndex, depthTexture);
 	}
-
+	if (aoEffect->GetActive() == true)
+	{
+		currentColTexIndex = aoEffect->Render(width, height, depthTexture,sceneCam);
+	}
 
 	//end of postprocessing
 

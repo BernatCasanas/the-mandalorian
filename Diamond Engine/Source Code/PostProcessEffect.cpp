@@ -2,7 +2,9 @@
 
 #include "PostProcessFilter.h"
 #include "DE_Advanced_FrameBuffer.h"
+#include "CO_Camera.h"
 
+//A post processing effect consists of 1 or more filters (Ex. Blur needs horizontal blur filter then Vertical blur filter)
 PostProcessEffect::PostProcessEffect() :active(true)
 {
 }
@@ -112,4 +114,35 @@ void PostProcessEffectRender::Render(int width, int height, int colorTexture, DE
 {
 	renderPostProcess->Render(width, height, colorTexture);
 	renderPostProcess->GetOutputFBO()->ResolveToFBO(outputFBO);
+}
+
+PostProcessEffectAO::PostProcessEffectAO(): PostProcessEffect(),
+aoFilter(nullptr)
+{
+	Init();
+}
+
+PostProcessEffectAO::~PostProcessEffectAO()
+{
+	CleanUp();
+}
+
+void PostProcessEffectAO::Init()
+{
+	aoFilter = new PostProcessFilterAO();
+}
+
+void PostProcessEffectAO::CleanUp()
+{
+	if (aoFilter != nullptr)
+	{
+		delete(aoFilter);
+		aoFilter = nullptr;
+	}
+}
+
+int PostProcessEffectAO::Render(int width, int height, int depthTexture,C_Camera* camera)
+{
+	aoFilter->Render(width, height, depthTexture,camera);
+	return aoFilter->GetOutputTexture();
 }
