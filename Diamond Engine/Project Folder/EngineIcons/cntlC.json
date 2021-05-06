@@ -1,31 +1,31 @@
 {
     "Game Objects": [
         {
-            "name": "Ground",
+            "name": "Empty",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1343611164,
-            "ParentUID": 417356794,
+            "UID": 1562599426,
+            "ParentUID": 1676501951,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                -3.0444240570068359,
-                3.51617431640625
+                12.065034866333008,
+                1.5045620203018188,
+                9.1934585571289063
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                0.44909781217575073,
+                0.707050621509552,
+                -0.54618144035339355,
+                0.0087410509586334229
             ],
             "Scale": [
-                1,
-                1,
-                1
+                1.2191243171691895,
+                5.8826236724853516,
+                0.98299890756607056
             ],
             "Components": [
                 {
@@ -33,30 +33,22 @@
                     "Active": true
                 },
                 {
-                    "Type": 2,
+                    "Type": 27,
                     "Active": true,
-                    "Path": "Library\/Meshes\/327484566.mmh",
-                    "UID": 327484566,
-                    "alternColor": [
+                    "lightColor": [
+                        1,
+                        0,
+                        0
+                    ],
+                    "ambientLightColor": [
                         1,
                         1,
                         1
                     ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "stencilEmission": 0,
-                    "doNotDrawStencil": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/191464233.mat",
-                    "MaterialUID": 191464233
+                    "lightIntensity": 1.3999999761581421,
+                    "specularValue": 4,
+                    "fadeDistance": 20,
+                    "maxDistance": 50
                 }
             ]
         }
