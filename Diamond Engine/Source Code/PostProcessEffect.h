@@ -5,6 +5,8 @@ class PostProcessFilterDepthTest;
 class PostProcessFilterAO;
 class PostProcessFilterBlurH;
 class PostProcessFilterBlurV;
+class PostProcessFilterBrighterThan;
+class PostProcessFilterCombine;
 class PostProcessFilterRender;
 
 class DE_Advanced_FrameBuffer;
@@ -25,11 +27,11 @@ protected:
 	bool active;
 };
 
-class PostProcessEffectInvertTest : public PostProcessEffect
+class PostProcessEffectBloom : public PostProcessEffect
 {
 public:
-	PostProcessEffectInvertTest();
-	~PostProcessEffectInvertTest();
+	PostProcessEffectBloom();
+	~PostProcessEffectBloom();
 
 	void Init() override;
 	void CleanUp() override;
@@ -37,9 +39,10 @@ public:
 	int Render(int width, int height, int colorTexture);
 
 private:
-	PostProcessFilterContrastTest* invertFilter;
+	PostProcessFilterBrighterThan* brighterThanFilter;
 	PostProcessFilterBlurH* blurHFilter;
 	PostProcessFilterBlurV* blurVFilter;
+	PostProcessFilterCombine* combineFilter;
 };
 
 class PostProcessEffectDepthTest : public PostProcessEffect
@@ -84,17 +87,4 @@ public:
 private:
 	PostProcessFilterAO* aoFilter;
 	PostProcessFilterBlurH* blurHFilter;
-};
-
-
-class PostProcessEffectBloom : public PostProcessEffect
-{
-public:
-	PostProcessEffectBloom();
-	~PostProcessEffectBloom();
-
-	void Init() override;
-	void CleanUp() override;
-	//returns the index of the color texture that has been rendered
-	int Render(int width, int height, int colorTexture, int depthTexture);
 };

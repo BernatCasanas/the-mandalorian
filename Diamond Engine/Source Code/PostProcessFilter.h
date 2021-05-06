@@ -84,3 +84,20 @@ public:
 	void PopulateKernel();
 	std::vector<float> gaussianKernel;
 };
+
+class PostProcessFilterBrighterThan : public PostProcessFilter
+{
+public:
+	PostProcessFilterBrighterThan();
+	~PostProcessFilterBrighterThan();
+	void Render(int width, int height, unsigned int colorTexture,float brightnessTreshold);
+};
+
+
+class PostProcessFilterCombine : public PostProcessFilter
+{
+public:
+	PostProcessFilterCombine();
+	~PostProcessFilterCombine();
+	void Render(int width, int height, unsigned int colorTexture, unsigned int brightnessTexture, float brightnessIntensity);
+};

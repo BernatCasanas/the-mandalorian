@@ -40,7 +40,7 @@ void PostProcessing::Init()
 	glBindVertexArray(0);
 
 	//init effects
-	contrastTest = new PostProcessEffectInvertTest();
+	contrastTest = new PostProcessEffectBloom();
 	depthTest = new PostProcessEffectDepthTest();
 	renderFilter = new PostProcessEffectRender();
 	aoEffect = new PostProcessEffectAO();

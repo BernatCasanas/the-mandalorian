@@ -4,7 +4,7 @@
 
 class DE_Advanced_FrameBuffer;
 
-class PostProcessEffectInvertTest;
+class PostProcessEffectBloom;
 class PostProcessEffectDepthTest;
 class PostProcessEffectAO;
 class PostProcessEffectRender;
@@ -26,7 +26,7 @@ private:
 	void Start();
 	void End();
 
-	PostProcessEffectInvertTest* contrastTest;
+	PostProcessEffectBloom* contrastTest;
 	PostProcessEffectDepthTest* depthTest;
 	PostProcessEffectAO* aoEffect;
 	PostProcessEffectRender* renderFilter;

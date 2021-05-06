@@ -23,31 +23,32 @@ void PostProcessEffect::SetActive(bool active)
 	this->active = active;
 }
 
-PostProcessEffectInvertTest::PostProcessEffectInvertTest() : PostProcessEffect(),
-invertFilter(nullptr), blurHFilter(nullptr), blurVFilter(nullptr)
+PostProcessEffectBloom::PostProcessEffectBloom() : PostProcessEffect(),
+brighterThanFilter(nullptr), blurHFilter(nullptr), blurVFilter(nullptr),
+combineFilter(nullptr)
 {
 	Init();
 }
 
-PostProcessEffectInvertTest::~PostProcessEffectInvertTest()
+PostProcessEffectBloom::~PostProcessEffectBloom()
 {
 	CleanUp();
 }
 
-void PostProcessEffectInvertTest::Init()
+void PostProcessEffectBloom::Init()
 {
-	invertFilter = new PostProcessFilterContrastTest();
+	brighterThanFilter = new PostProcessFilterBrighterThan();
 	blurHFilter = new PostProcessFilterBlurH();
 	blurVFilter = new PostProcessFilterBlurV();
-
+	combineFilter = new PostProcessFilterCombine();
 }
 
-void PostProcessEffectInvertTest::CleanUp()
+void PostProcessEffectBloom::CleanUp()
 {
-	if (invertFilter != nullptr)
+	if (brighterThanFilter != nullptr)
 	{
-		delete(invertFilter);
-		invertFilter = nullptr;
+		delete(brighterThanFilter);
+		brighterThanFilter = nullptr;
 	}
 	if (blurHFilter != nullptr)
 	{
@@ -59,16 +60,22 @@ void PostProcessEffectInvertTest::CleanUp()
 		delete(blurVFilter);
 		blurVFilter = nullptr;
 	}
+	if (combineFilter != nullptr)
+	{
+		delete(combineFilter);
+		combineFilter = nullptr;
+	}
 }
 
-int PostProcessEffectInvertTest::Render(int width, int height, int colorTexture)
+int PostProcessEffectBloom::Render(int width, int height, int colorTexture)
 {
-	//invertFilter->Render(width, height, colorTexture);
-	blurHFilter->Render(width/4, height/4, colorTexture);
-	blurVFilter->Render(width/4, height/4, blurHFilter->GetOutputTexture());
-	blurHFilter->Render(width / 8, height / 8, blurVFilter->GetOutputTexture());
+	brighterThanFilter->Render(width/2, height/2, colorTexture,0.5f);//TODO change the value for the actual value once we have the resource
+	blurVFilter->Render(width/4, height/4, brighterThanFilter->GetOutputTexture());
+	blurHFilter->Render(width/4, height/4, blurVFilter->GetOutputTexture());
 	blurVFilter->Render(width / 8, height / 8, blurHFilter->GetOutputTexture());
-	return blurVFilter->GetOutputTexture();
+	blurHFilter->Render(width / 8, height / 8, blurVFilter->GetOutputTexture());
+	combineFilter->Render(width, height, colorTexture, blurHFilter->GetOutputTexture(), 1.0);//TODO change the value for the actual value once we have the resource
+	return combineFilter->GetOutputTexture();
 }
 
 PostProcessEffectDepthTest::PostProcessEffectDepthTest(): PostProcessEffect(),

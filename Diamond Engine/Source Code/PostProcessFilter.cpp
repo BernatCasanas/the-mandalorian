@@ -351,3 +351,60 @@ void PostProcessFilterBlurV::PopulateKernel()
 
 
 }
+
+PostProcessFilterBrighterThan::PostProcessFilterBrighterThan(): PostProcessFilter(1086671310,true)
+
+{
+}
+
+PostProcessFilterBrighterThan::~PostProcessFilterBrighterThan()
+{
+}
+
+void PostProcessFilterBrighterThan::Render(int width, int height, unsigned int colorTexture, float brightnessTreshold)
+{
+	quadRenderer->RegenerateFBO(width, height);
+	myShader->Bind();
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, colorTexture);
+	glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "colourTexture"), 0);
+
+	GLint uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "brightnessTreshold");
+	glUniform1f(uniformLoc, brightnessTreshold);
+
+	quadRenderer->RenderQuad();
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	myShader->Unbind();
+}
+
+PostProcessFilterCombine::PostProcessFilterCombine(): PostProcessFilter(1301726242,true)
+{
+}
+
+PostProcessFilterCombine::~PostProcessFilterCombine()
+{
+}
+
+void PostProcessFilterCombine::Render(int width, int height, unsigned int colorTexture, unsigned int brightnessTexture, float brightnessIntensity)
+{
+	quadRenderer->RegenerateFBO(width, height);
+	myShader->Bind();
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, colorTexture);
+	glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "colourTexture"), 0);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, brightnessTexture);
+	glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "brightnessTexture"), 1);
+	
+	GLint uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "brightnessIntensity");
+	glUniform1f(uniformLoc, brightnessIntensity);
+	quadRenderer->RenderQuad();
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	myShader->Unbind();
+}
