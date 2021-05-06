@@ -32,6 +32,12 @@ public:
 
 	void PushCameraMatrix();
 
+	void SetCameraToPerspective();
+	void SetCameraToOrthographic();
+	void SetVerticalFOV(float verticalFOV);
+	void SetHorizontalFOV(float horizontalFOV);
+
+public:
 	DE_FrameBuffer resolvedFBO;
 	DE_FrameBuffer msaaFBO;
 
@@ -55,4 +61,5 @@ public:
 
 private:
 	int msaaSamples;
+	float verticalFOV;
 };

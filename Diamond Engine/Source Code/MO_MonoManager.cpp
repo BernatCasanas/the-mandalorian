@@ -65,6 +65,7 @@ bool M_MonoManager::Init()
 
 	mono_add_internal_call("DiamondEngine.Debug::Log", CSLog);
 
+#pragma region Input
 	mono_add_internal_call("DiamondEngine.Input::GetKey", GetKey);
 	mono_add_internal_call("DiamondEngine.Input::GetMouseClick", GetMouseClick);
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreateGameObject", CSCreateGameObject);
@@ -85,6 +86,7 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.Input::PlayHaptic", PlayHaptic);
 	mono_add_internal_call("DiamondEngine.Input::GetControllerType", CS_GetControllerType);
 	// --- Controller gamepad end --- //
+#pragma endregion
 
 	mono_add_internal_call("DiamondEngine.InternalCalls::Destroy", Destroy);
 	mono_add_internal_call("DiamondEngine.InternalCalls::CreateBullet", CreateBullet);
@@ -259,6 +261,8 @@ bool M_MonoManager::Init()
 
 
 	mono_add_internal_call("DiamondEngine.SceneManager::LoadScene", CS_LoadScene);
+
+#pragma region Audio
 	mono_add_internal_call("DiamondEngine.Audio::PlayAudio", PlayAudio);
 	mono_add_internal_call("DiamondEngine.Audio::StopAudio", StopAudio);
 	mono_add_internal_call("DiamondEngine.Audio::StopOneAudio", StopOneAudio);
@@ -272,11 +276,15 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.Audio::SetMuted", SetMuted);
 	mono_add_internal_call("DiamondEngine.Audio::SetState", SetState);
 	mono_add_internal_call("DiamondEngine.Audio::SetSwitch", SetSwitch);
+#pragma endregion
 
+#pragma region CameraManager
 	mono_add_internal_call("DiamondEngine.CameraManager::SetOrthSize", SetOrthSize);
 	mono_add_internal_call("DiamondEngine.CameraManager::GetOrthSize", GetOrthSize);
 	mono_add_internal_call("DiamondEngine.CameraManager::SetCameraOrthographic", CS_SetCameraOrthographic);
 	mono_add_internal_call("DiamondEngine.CameraManager::SetCameraPerspective", CS_SetCameraPerspective);
+	mono_add_internal_call("DiamondEngine.CameraManager::SetVerticalFOV", CS_SetCameraVerticalFOV);
+#pragma endregion
 
 	InitMono();
 
