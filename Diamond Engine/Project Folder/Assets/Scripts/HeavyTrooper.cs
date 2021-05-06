@@ -546,6 +546,8 @@ public class HeavyTrooper : Enemy
         Animator.Play(gameObject, "HVY_Run", speedMult);
         Animator.Play(spear, "HVY_Run", speedMult);
         UpdateAnimationSpd(speedMult);
+        Audio.PlayAudio(gameObject, "Play_Heavytrooper_Run");
+        Audio.PlayAudio(gameObject, "Play_Heavytrooper_Enemy_Detection");
     }
     private void UpdateRun()
     {
@@ -584,7 +586,7 @@ public class HeavyTrooper : Enemy
         Animator.Play(spear, "HVY_Run", speedMult);
 
         UpdateAnimationSpd(speedMult);
-        Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
+        Audio.PlayAudio(gameObject, "Play_Heavytrooper_Wander");
     }
     private void UpdateWander()
     {
@@ -723,8 +725,7 @@ public class HeavyTrooper : Enemy
         //Animator.Play(gameObject, "BT_Die", speedMult);
         UpdateAnimationSpd(speedMult);
 
-        Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Death");
-        Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
+        Audio.PlayAudio(gameObject, "Play_Heavytrooper_Death");
 
         if (hitParticles != null)
             hitParticles.GetComponent<ParticleSystem>().Play();
