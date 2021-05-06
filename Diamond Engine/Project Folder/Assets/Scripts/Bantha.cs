@@ -7,7 +7,7 @@ using DiamondEngine;
 
 public class Bantha : Enemy
 {
-    enum STATE : int
+   /* enum STATE : int
     {
         NONE = -1,
         IDLE,
@@ -194,7 +194,7 @@ public class Bantha : Enemy
     {
         if (currentState != STATE.DIE && currentState != STATE.CHARGE)
         {
-            if (InRange(player.transform.globalPosition, detectionRange) && agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition))
+            if (InRange(player.transform.globalPosition, detectionRange) && agent.IsPathPossible(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition))
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
             }
@@ -560,13 +560,13 @@ public class Bantha : Enemy
         if (directionDecisionTimer > 0.0f)
         {
             directionDecisionTimer -= myDeltaTime;
-            LookAt(player.transform.globalPosition);
 
-            if (directionDecisionTimer < 0.1f)
+            if (directionDecisionTimer > 0.1f)
             {
-                Vector3 direction = player.transform.globalPosition - gameObject.transform.globalPosition;
+                Vector3 direction = Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition;
                 targetPosition = direction.normalized * chargeLength + gameObject.transform.globalPosition;
                 agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
+                LookAt(targetPosition);
             }
         }
         if (visualFeedback.transform.globalScale.z < 1.0)
@@ -822,5 +822,5 @@ public class Bantha : Enemy
             currAnimationPlaySpd = newSpd;
         }
     }
-
+   */
 }

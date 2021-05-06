@@ -126,12 +126,6 @@ public class HeavyTrooper : Enemy
 
     public void Update()
     {
-        if (player == null)
-        {
-            Debug.Log("Null player");
-            player = Core.instance.gameObject;
-        }
-
         myDeltaTime = Time.deltaTime * speedMult;
         UpdateStatuses();
 
@@ -210,6 +204,8 @@ public class HeavyTrooper : Enemy
         {
             tiredTimer -= myDeltaTime;
 
+            LookAt(Core.instance.gameObject.transform.globalPosition);
+
             if (tiredTimer < 0.0f)
             {
                 inputsList.Add(INPUT.IN_RUN);
@@ -233,11 +229,11 @@ public class HeavyTrooper : Enemy
     {
         if (currentState != STATE.DIE && currentState != STATE.DASH)
         {
-            if (InRange(player.transform.globalPosition, detectionRange) && agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition))
+            if (InRange(Core.instance.gameObject.transform.globalPosition, detectionRange) && agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition))
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
             }
-            if (InRange(player.transform.globalPosition, dashRange) && straightPath)
+            if (InRange(Core.instance.gameObject.transform.globalPosition, dashRange) && straightPath)
             {
                 inputsList.Add(INPUT.IN_DASH_RANGE);
             }
@@ -251,7 +247,7 @@ public class HeavyTrooper : Enemy
                 Debug.Log("My agent is null :)");
             }
 
-            if (!InRange(player.transform.globalPosition, detectionRange))
+            if (!InRange(Core.instance.gameObject.transform.globalPosition, detectionRange))
             {
                 inputsList.Add(INPUT.IN_WANDER);
             }
@@ -551,9 +547,9 @@ public class HeavyTrooper : Enemy
     }
     private void UpdateRun()
     {
-        if (player != null)
+        if (Core.instance != null)
         {
-            if (agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition) == false)
+            if (agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) == false)
             {
                 inputsList.Add(INPUT.IN_IDLE);
                 return;
@@ -620,12 +616,12 @@ public class HeavyTrooper : Enemy
         {
             //Debug.Log("HEAVYTROOPER LOADING ENTRY 1");
             directionDecisionTimer -= myDeltaTime;
-            LookAt(player.transform.globalPosition);
+            LookAt(Core.instance.gameObject.transform.globalPosition);
 
             if (directionDecisionTimer < 0.1f)
             {
                 //Debug.Log("HEAVYTROOPER LOADING ENTRY 2");
-                Vector3 direction = player.transform.globalPosition - gameObject.transform.globalPosition;
+                Vector3 direction = Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition;
                 targetPosition = direction.normalized * dashLength + gameObject.transform.globalPosition;
                 agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
             }
@@ -687,7 +683,7 @@ public class HeavyTrooper : Enemy
         if (directionSweepDecisionTimer > 0.0f)
         {
             directionSweepDecisionTimer -= myDeltaTime;
-            LookAt(player.transform.globalPosition);
+            LookAt(Core.instance.gameObject.transform.globalPosition);
         }
 
         UpdateAnimationSpd(speedMult);
@@ -702,6 +698,7 @@ public class HeavyTrooper : Enemy
 
         //Audio.StopAudio(gameObject);
 
+        LookAt(Core.instance.gameObject.transform.globalPosition);
         UpdateAnimationSpd(speedMult);
         Animator.Play(gameObject, "ST_Idle",speedMult);
         //Audio.PlayAudio(gameObject, "Play_Bantha_Breath");
@@ -755,7 +752,7 @@ public class HeavyTrooper : Enemy
 
         DropCoins();
 
-        player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+        Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
 
         InternalCalls.Destroy(gameObject);
     }
@@ -764,7 +761,7 @@ public class HeavyTrooper : Enemy
     #region PUSH
     private void StartPush()
     {
-        Vector3 force = gameObject.transform.globalPosition - player.transform.globalPosition;
+        Vector3 force = gameObject.transform.globalPosition - Core.instance.gameObject.transform.globalPosition;
         if (BabyYoda.instance != null)
         {
             force.y = BabyYoda.instance.pushVerticalForce * Time.deltaTime;
