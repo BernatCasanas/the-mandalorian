@@ -527,7 +527,8 @@ public class HeavyTrooper : Enemy
     {
         //Debug.Log("HEAVYTROOPER IDLE");
         idleTimer = idleTime;
-        Animator.Play(gameObject, "ST_Idle", speedMult);
+        Animator.Play(gameObject, "HVY_Idle", speedMult);
+        Animator.Play(spear, "HVY_Idle", speedMult);
         UpdateAnimationSpd(speedMult);
     }
 
@@ -542,7 +543,8 @@ public class HeavyTrooper : Enemy
     private void StartRun()
     {
         //Debug.Log("HEAVYTROOPER RUN");
-        Animator.Play(gameObject, "ST_Run", speedMult);
+        Animator.Play(gameObject, "HVY_Run", speedMult);
+        Animator.Play(spear, "HVY_Run", speedMult);
         UpdateAnimationSpd(speedMult);
     }
     private void UpdateRun()
@@ -578,7 +580,9 @@ public class HeavyTrooper : Enemy
         //Debug.Log("HEAVYTROOPER WANDER");
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
-        //Animator.Play(gameObject, "ST_Run", speedMult);
+        Animator.Play(gameObject, "HVY_Run", speedMult);
+        Animator.Play(spear, "HVY_Run", speedMult);
+
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
     }

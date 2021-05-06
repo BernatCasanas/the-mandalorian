@@ -41,6 +41,7 @@ public class Deathtrooper : Enemy
     private List<INPUT> inputsList = new List<INPUT>();
 
     public GameObject shootPoint = null;
+    public GameObject shotgun = null;
     //public GameObject hitParticles = null;
 
     //Timers
@@ -94,7 +95,8 @@ public class Deathtrooper : Enemy
         targetPosition = null;
 
         currentState = STATE.IDLE;
-        Animator.Play(gameObject, "ST_Idle", speedMult);
+        Animator.Play(gameObject, "DTH_Idle", speedMult);
+        Animator.Play(shotgun, "DTH_Idle", speedMult);
         UpdateAnimationSpd(speedMult);
 
         idleTimer = idleTime;
@@ -361,7 +363,8 @@ public class Deathtrooper : Enemy
     {
         Debug.Log("DEATHTROOPER IDLE");
         idleTimer = idleTime;
-        Animator.Play(gameObject, "ST_Idle", speedMult);
+        Animator.Play(gameObject, "DTH_Idle", speedMult);
+        Animator.Play(shotgun, "DTH_Idle", speedMult);
         UpdateAnimationSpd(speedMult);
     }
 
@@ -378,7 +381,9 @@ public class Deathtrooper : Enemy
         Debug.Log("DEATHTROOPER WANDER");
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
-        Animator.Play(gameObject, "ST_Run", speedMult);
+        Animator.Play(gameObject, "DTH_Run", speedMult);
+        Animator.Play(shotgun, "DTH_Run", speedMult);
+
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
     }
@@ -402,7 +407,8 @@ public class Deathtrooper : Enemy
     private void StartRun()
     {
         Debug.Log("DEATHTROOPER RUN");
-        Animator.Play(gameObject, "ST_Run", speedMult);
+        Animator.Play(gameObject, "DTH_Run", speedMult);
+        Animator.Play(shotgun, "DTH_Run", speedMult);
         UpdateAnimationSpd(speedMult);
     }
     private void UpdateRun()
@@ -426,7 +432,8 @@ public class Deathtrooper : Enemy
     private void StartShoot()
     {
         Debug.Log("DEATHTROOPER SHOOT");
-        Animator.Play(gameObject, "ST_Shoot", speedMult);
+        Animator.Play(gameObject, "DTH_Shoot", speedMult);
+        Animator.Play(shotgun, "DTH_Shoot", speedMult);
         UpdateAnimationSpd(speedMult);
         betweenStatesTimer = betweenStatesTime;
     }
@@ -486,7 +493,8 @@ public class Deathtrooper : Enemy
         //GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         //bullet.GetComponent<BH_Bullet>().damage = damage;
 
-        Animator.Play(gameObject, "ST_Shoot", speedMult);
+        Animator.Play(gameObject, "DTH_Shoot", speedMult);
+        Animator.Play(shotgun, "DTH_Shoot", speedMult);
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Blaster_Stormtrooper");
         
@@ -660,6 +668,7 @@ public class Deathtrooper : Enemy
         if (currAnimationPlaySpd != newSpd)
         {
             Animator.SetSpeed(gameObject, newSpd);
+            Animator.SetSpeed(shotgun, newSpd);
             currAnimationPlaySpd = newSpd;
         }
     }
