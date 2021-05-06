@@ -40,9 +40,12 @@ private:
 	float3 ambientLightColor;
 	float lightIntensity;
 	float specularValue;
+
+	float maxDistance;
+	float fadeDistance;
 };
 
-const float color[] = { 0.85, 0.85, 0.85 };
+const float color[] = { 0.95, 0.95, 0.95 };
 
 const float arrayAreaLightVAO[] = {
 -1, -1,

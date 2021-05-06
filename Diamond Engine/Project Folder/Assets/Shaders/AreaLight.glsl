@@ -18,23 +18,6 @@ uniform mat4 model_matrix;
 uniform mat4 view;
 uniform mat4 projection;
 
-struct AreaLightInfo 
-{
-	vec3 lightPosition;
-	mat4 lightSpaceMatrix;
-	
-	vec3 lightColor;
-	vec3 ambientLightColor;
-	float lightIntensity;
-	float specularValue;
-	
-	bool activeLight;
-
-};
-
-
-uniform AreaLightInfo areaLightInfo[30];
-
 uniform vec3 cameraPosition;
 
 void main()
@@ -66,7 +49,11 @@ struct AreaLightInfo
 	float lightIntensity;
 	float specularValue;
 	
+	float lFadeDistance;
+	float lMaxDistance;
+	
 	bool activeLight;
+	bool calculateShadows;
 };
 
 
@@ -82,7 +69,6 @@ vec4 upLeft = vec4(-1.0, 1.0, 0.0, 1.0);
 vec4 downLeft = vec4(-1.0, -1.0, 0.0, 1.0);
 
 vec3 rectVertex[4];
-float NAN = 0.0000012345;
 
 float SignedDistancePlanePoint(vec3 planePoint, vec3 lForward)
 {
@@ -228,7 +214,7 @@ vec3 CalculateLightDirection(int iterator)
 	
 	vec3 lightPos = CalculateClosestPoint(projectedPoint);
 
-	return normalize(lightPos - fs_in.FragPos);
+	return (lightPos - fs_in.FragPos);
 }
 
 
@@ -241,27 +227,39 @@ void main()
 		if (areaLightInfo[i].activeLight == true)
 		{
     		vec3 lightDir = CalculateLightDirection(i);
+    		float fade = 1.0;
+    		float dst = LengthScuared(lightDir);
     		
-    	if (dot(lightDir, areaLightInfo[i].lightForward) <= 0.0)
+    		if (dst > areaLightInfo[i].lMaxDistance)
+    			continue;
+    		
+    		else if (dst > areaLightInfo[i].lFadeDistance && dst < areaLightInfo[i].lMaxDistance)
+    			fade = 1.0 - ((dst - areaLightInfo[i].lFadeDistance) / (areaLightInfo[i].lMaxDistance - areaLightInfo[i].lFadeDistance));
+			
+			lightDir = normalize(lightDir);
+    		
+    		if (dot(lightDir, areaLightInfo[i].lightForward) <= 0.0)
     		{
-   	 		// diffusesssaasw
-    		float diff = max(dot(lightDir, fs_in.Normal), 0.0);
-    		vec3 diffuse = diff * areaLightInfo[i].lightColor;
-   	 		// specular
-   			vec3 viewDir = normalize(cameraPosition - fs_in.FragPos);
-    		float spec = 0.0;
-    		vec3 halfwayDir = normalize(lightDir + viewDir);  
-    		spec = pow(max(dot(fs_in.Normal, halfwayDir), 0.0), areaLightInfo[i].specularValue);
-    		vec3 specular = spec * areaLightInfo[i].lightColor;
+   	 			// diffuse
+    			float diff = max(dot(lightDir, fs_in.Normal), 0.0);
+    			vec3 diffuse = diff * areaLightInfo[i].lightColor;
+   	 			// specular
+   				vec3 viewDir = normalize(cameraPosition - fs_in.FragPos);
+    			float spec = 0.0;
+    			vec3 halfwayDir = normalize(lightDir + viewDir);  
+    			spec = pow(max(dot(fs_in.Normal, halfwayDir), 0.0), areaLightInfo[i].specularValue);
+    			vec3 specular = spec * areaLightInfo[i].lightColor;
         	
-    	 // calculate shadow
-    		lighting += (areaLightInfo[i].ambientLightColor + (diffuse + specular)) * areaLightInfo[i].lightIntensity;
+    	 		// calculate light value
+    			lighting += (areaLightInfo[i].ambientLightColor + (diffuse + specular)) * areaLightInfo[i].lightIntensity * fade;
     		}
     	}
     }
     color = vec4(lighting * vec3(0.7, 0.3, 0.3), 1.0);
 }
 #endif
+
+
 
 
 
