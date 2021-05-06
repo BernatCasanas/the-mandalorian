@@ -128,7 +128,7 @@ public class SpawnManager : DiamondComponent
                 float delay = (float)randomizer.NextDouble();
                 int retryNum = 0;
 
-                while (delay <= maxDelayTimePoint)
+                while (delay > maxDelayTimePoint)
                 {
                     delay = (float)randomizer.NextDouble();
                     ++retryNum;
@@ -138,7 +138,6 @@ public class SpawnManager : DiamondComponent
                 }
 
                 delay = (float)(randomizer.Next(0, maxDelayTimeSec) + delay);
-                delay = Math.Max(delay, 0.22f);
 
                 spawnScript.QueueSpawnEnemy(delay);
 
