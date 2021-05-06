@@ -64,7 +64,7 @@ void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBu
 	{
 		currentColTexIndex = depthTest->Render(width, height, currentColTexIndex, depthTexture);
 	}
-	if (aoEffect->GetActive() == true)
+	if (true)
 	{
 		currentColTexIndex = aoEffect->Render(width, height, depthTexture,sceneCam);
 	}

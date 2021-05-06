@@ -25,10 +25,11 @@ void main()
 	vec4 myColor = texture(colourTexture,textureCoords);
 	vec4 myDepth = texture(depthTexture,textureCoords);
 	//out_Colour = myColor * vec4(1-myColor.x,1-myColor.y,1-myColor.z,1);
-	out_Colour=myColor*vec4(myDepth.z);
+	out_Colour=vec4(myDepth.z);
 	//out_Colour=myColor;
 }
 #endif
+
 
 
 

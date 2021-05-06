@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        0.56210923194885254,
-        59.200443267822266,
-        -21.540456771850586
+        4.773932933807373,
+        7.4400520324707031,
+        -0.36702567338943481
     ],
     "EditorCameraZ": [
-        -0.0089223682880401611,
-        -0.93968957662582397,
-        0.34191200137138367
+        -0.58770239353179932,
+        -0.80901151895523071,
+        0.010314822196960449
     ],
     "EditorCameraY": [
-        -0.024513332173228264,
-        0.34202837944030762,
-        0.93936973810195923
+        -0.80888694524765015,
+        0.58779287338256836,
+        0.014196854084730148
     ],
     "tags": [],
     "layers": [],
@@ -52,11 +52,167 @@
             ]
         },
         {
+            "name": "Sphere",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1396479567,
+            "ParentUID": 401791649,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0.77649247646331787,
+                0.81456685066223145,
+                -2.1183726787567139
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                1,
+                0.99991768598556519,
+                0.99991768598556519
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/965117995.mmh",
+                    "UID": 965117995,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                }
+            ]
+        },
+        {
+            "name": "Sphere",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1276783476,
+            "ParentUID": 401791649,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.039117634296417236,
+                0.81456685066223145,
+                -1.9336259365081787
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                1,
+                0.99989515542984009,
+                0.99989515542984009
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/965117995.mmh",
+                    "UID": 965117995,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                }
+            ]
+        },
+        {
+            "name": "Sphere",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 151782325,
+            "ParentUID": 401791649,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.039117634296417236,
+                2.2993669509887695,
+                -1.8354682922363281
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                1,
+                0.99989527463912964,
+                0.99989527463912964
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/965117995.mmh",
+                    "UID": 965117995,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                }
+            ]
+        },
+        {
             "name": "Game Camera",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 14409207,
+            "UID": 764373384,
             "ParentUID": 401791649,
             "PrefabReference": 0,
             "PrefabID": 0,
@@ -65,18 +221,18 @@
             "Position": [
                 -0.37376832962036133,
                 0,
-                -7.7064676284790039
+                -15.875392913818359
             ],
             "Rotation": [
                 0,
+                0.021108102053403854,
                 0,
-                0,
-                1
+                0.99977719783782959
             ],
             "Scale": [
+                0.99999886751174927,
                 1,
-                1,
-                1
+                0.99999886751174927
             ],
             "Components": [
                 {
@@ -86,169 +242,14 @@
                 {
                     "Type": 4,
                     "Active": true,
-                    "fType": 2,
+                    "fType": 1,
+                    "fSize": 99.900001525878906,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 1.0437068939208984,
-                    "hFOV": 1.1150562763214111,
+                    "vFOV": 6.7667665481567383,
+                    "hFOV": 5.305305004119873,
                     "culling": false,
                     "drawSkybox": true
-                }
-            ]
-        },
-        {
-            "name": "Sphere",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1550748864,
-            "ParentUID": 401791649,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                -0.7071068286895752,
-                0,
-                0,
-                0.70710670948028564
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/965117995.mmh",
-                    "UID": 965117995,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
-                }
-            ]
-        },
-        {
-            "name": "Sphere",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 890135898,
-            "ParentUID": 401791649,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -0.71853631734848022,
-                0,
-                -0.32105144858360291
-            ],
-            "Rotation": [
-                -0.7071068286895752,
-                0,
-                0,
-                0.70710670948028564
-            ],
-            "Scale": [
-                1,
-                0.99992215633392334,
-                0.99992215633392334
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/965117995.mmh",
-                    "UID": 965117995,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
-                }
-            ]
-        },
-        {
-            "name": "Sphere",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 350675420,
-            "ParentUID": 401791649,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.30039072036743164,
-                0.81456685066223145,
-                0
-            ],
-            "Rotation": [
-                -0.7071068286895752,
-                0,
-                0,
-                0.70710670948028564
-            ],
-            "Scale": [
-                1,
-                0.9999927282333374,
-                0.9999927282333374
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/965117995.mmh",
-                    "UID": 965117995,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
                 }
             ]
         }

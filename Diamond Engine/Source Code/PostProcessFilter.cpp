@@ -221,9 +221,9 @@ void PostProcessFilterAO::Render(int width, int height, unsigned int depthTextur
 	else
 	{
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "tanHalfFoVx");
-		glUniform1f(uniformLoc, currCam->camFrustrum.orthographicWidth * 0.5f);
+		glUniform1f(uniformLoc, currCam->camFrustrum.orthographicWidth*0.5f );
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "tanHalfFoVy");
-		glUniform1f(uniformLoc, currCam->camFrustrum.orthographicHeight * 0.5f);
+		glUniform1f(uniformLoc, currCam->camFrustrum.orthographicHeight*0.5f);
 	}
 
 	uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "sampleRad");
@@ -233,6 +233,10 @@ void PostProcessFilterAO::Render(int width, int height, unsigned int depthTextur
 	glUniformMatrix4fv(uniformLoc, 1, GL_FALSE, currCam->ProjectionMatrixOpenGL().ptr());
 	uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "kernel");
 	glUniform3fv(uniformLoc, 64, &kernelAO[0].x);
+
+	uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "cameraSize");
+	glUniform1f(uniformLoc,currCam->orthoSize);
+
 	quadRenderer->RenderQuad();
 
 	glActiveTexture(GL_TEXTURE0);
