@@ -1,31 +1,31 @@
 {
     "Game Objects": [
         {
-            "name": "FPS",
+            "name": "Empty",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 535668061,
-            "ParentUID": 857087823,
+            "UID": 1336852597,
+            "ParentUID": 1788828234,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                0,
-                0
+                12.624422073364258,
+                -37.304397583007813,
+                -11.015588760375977
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                6.1817260643692862e-08,
+                -0.70710659027099609,
+                -0.70710694789886475,
+                1.0658141036401503e-14
             ],
             "Scale": [
                 1,
-                1,
-                1
+                0.99981993436813354,
+                0.99981993436813354
             ],
             "Components": [
                 {
@@ -33,37 +33,22 @@
                     "Active": true
                 },
                 {
-                    "Type": 6,
+                    "Type": 27,
                     "Active": true,
-                    "Position": [
-                        90,
-                        94
+                    "lightColor": [
+                        1,
+                        0,
+                        0
                     ],
-                    "Rotation": 0,
-                    "Size": [
-                        10,
-                        10
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
-                },
-                {
-                    "Type": 9,
-                    "Active": true,
-                    "text": "30",
-                    "maxTextLenght": 109,
-                    "fontName": "Library\/Fonts\/teko-semibold.ttf",
-                    "textColor": [
+                    "ambientLightColor": [
                         1,
-                        1,
-                        1
-                    ]
+                        0,
+                        0
+                    ],
+                    "lightIntensity": 10,
+                    "specularValue": 1,
+                    "fadeDistance": 50,
+                    "maxDistance": 2500
                 }
             ]
         }
