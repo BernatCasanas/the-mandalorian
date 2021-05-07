@@ -202,12 +202,10 @@ float GetShadowValue()
 }
 
 
-vec3 CalculateDirectionalLight()
+vec3 CalculateDirectionalLight(float specMapValue)
 {
 	vec3 normal = texture(normalMap, fs_in.TexCoords).rgb;
     normal = normalize(normal * 2.0 - 1.0);
-    
-    float specMapValue = texture(specularMap, fs_in.TexCoords).r;
     
 	vec3 lighting = vec3(0.0, 0.0, 0.0);
     
@@ -268,12 +266,16 @@ vec3 ProjectPointOnPlane(vec3 planePoint, vec3 lForward)
 	return vec3(fs_in.FragPos + translationVector);
 }
 
+float LengthScuared(vec3 line)
+{
+	return (line.x * line.x + line.y * line.y + line.z * line.z);
+}
 
 bool IsBetween(vec3 value, vec3 b, vec3 c)
 {
-	float dst = distance(b, c);
+	float dst = LengthScuared(c - b);
 	
-	if (distance(value, b) <= dst && distance(value, c) <= dst)
+	if (LengthScuared(b - value) <= dst && LengthScuared(c - value) <= dst)
 		return true;
 		
 	return false;
@@ -291,10 +293,7 @@ vec3 NearestPointOnLine(vec3 point, vec3 lineP1, vec3 lineP2)
 }
 
 
-float LengthScuared(vec3 line)
-{
-	return (line.x * line.x + line.y * line.y + line.z * line.z);
-}
+
 
 
 vec3 NearestPointOnFiniteLine(vec3 point, vec3 lineP1, vec3 lineP2)
@@ -388,7 +387,7 @@ vec3 CalculateAreaLightDirection(int iterator)
 }
 
 
-vec3 CalculateAreaLight()
+vec3 CalculateAreaLight( float specMapValue)
 {
 	vec3 lighting = vec3(0.0, 0.0, 0.0);
     
@@ -418,7 +417,7 @@ vec3 CalculateAreaLight()
     			float spec = 0.0;
     			vec3 halfwayDir = normalize(lightDir + viewDir);  
     			spec = pow(max(dot(fs_in.Normal, halfwayDir), 0.0), areaLightInfo[i].specularValue);
-    			vec3 specular = spec * areaLightInfo[i].lightColor;
+    			vec3 specular = spec * areaLightInfo[i].lightColor * specMapValue;
         	
     	 		// calculate light value
     			lighting += (areaLightInfo[i].ambientLightColor + (diffuse + specular)) * areaLightInfo[i].lightIntensity * fade;
@@ -426,19 +425,21 @@ vec3 CalculateAreaLight()
     	}
     }
 
-return lighting;
+	return lighting;
 }
 
 
 void main()
 {
-    vec3 directionalLight = CalculateDirectionalLight();
-    vec3 areaLight = CalculateAreaLight();
+	float specMapValue = texture(specularMap, fs_in.TexCoords).r;
+    vec3 directionalLight = CalculateDirectionalLight(specMapValue);
+    vec3 areaLight = CalculateAreaLight(specMapValue);
     
 
     color = vec4((directionalLight + areaLight) * fs_in.vertexColor, 1.0);
 }
 #endif
+
 
 
 

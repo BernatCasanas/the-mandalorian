@@ -1,31 +1,65 @@
 {
     "Game Objects": [
         {
-            "name": "Empty",
+            "name": "BossRoom",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1562599426,
+            "UID": 1507368592,
             "ParentUID": 1676501951,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                12.065034866333008,
-                1.5045620203018188,
-                9.1934585571289063
+                0,
+                0,
+                0
             ],
             "Rotation": [
-                0.44909781217575073,
-                0.707050621509552,
-                -0.54618144035339355,
-                0.0087410509586334229
+                0,
+                0,
+                0,
+                1
             ],
             "Scale": [
-                1.2191243171691895,
-                5.8826236724853516,
-                0.98299890756607056
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Ground",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1277882036,
+            "ParentUID": 1507368592,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
             ],
             "Components": [
                 {
@@ -33,22 +67,216 @@
                     "Active": true
                 },
                 {
-                    "Type": 27,
+                    "Type": 2,
                     "Active": true,
-                    "lightColor": [
-                        1,
-                        0,
-                        0
-                    ],
-                    "ambientLightColor": [
+                    "Path": "Library\/Meshes\/327484566.mmh",
+                    "UID": 327484566,
+                    "NormalMapAssetPath": "Empty",
+                    "NormalMapLibraryPath": "Library\/Textures\/459243839.dds",
+                    "NormalMapUID": 459243839,
+                    "SpecularMapAssetPath": "Empty",
+                    "SpecularMapLibraryPath": "Library\/Textures\/1117794463.dds",
+                    "SpecularMapUID": 1117794463,
+                    "alternColor": [
                         1,
                         1,
                         1
                     ],
-                    "lightIntensity": 1.3999999761581421,
-                    "specularValue": 4,
-                    "fadeDistance": 20,
-                    "maxDistance": 50
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "Rocks",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1472700440,
+            "ParentUID": 1507368592,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/2116572934.mmh",
+                    "UID": 2116572934,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "BonesDecoration",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1418090872,
+            "ParentUID": 1507368592,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1891348168.mmh",
+                    "UID": 1891348168,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "Doors",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 491412334,
+            "ParentUID": 1507368592,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/296021229.mmh",
+                    "UID": 296021229,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
                 }
             ]
         }
