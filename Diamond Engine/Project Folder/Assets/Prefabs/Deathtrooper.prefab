@@ -55,19 +55,19 @@
                     "stoppingDistance": 1,
                     "coinDropPath": "Library\/Prefabs\/1907169014.prefab",
                     "slerpSpeed": 5,
+                    "shootPoint": 179710061,
                     "shotgun": 373372710,
                     "idleTime": 5,
                     "timeBewteenBursts": 0.80000001192092896,
                     "betweenStatesTime": 1.5,
                     "wanderSpeed": 3.5,
                     "runningSpeed": 7.5,
-                    "recoilSpeed": 0,
+                    "recoilSpeed": 10,
                     "wanderRange": 7.5,
                     "shotRange": 12.5,
-                    "recoilDistance": 0,
-                    "numShots": 0,
-                    "maxShots": 2,
-                    "dispersionAngleDeg": 0,
+                    "recoilDistance": 5,
+                    "maxShots": 4,
+                    "dispersionAngleDeg": 45,
                     "pushHorizontalForce": 100,
                     "pushVerticalForce": 10,
                     "PushStun": 2
@@ -113,6 +113,16 @@
                     "LockAngularZ": false,
                     "Mass": 10,
                     "Density": 1
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "Deathtrooper",
+                    "volume": 50,
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false
                 }
             ]
         },
@@ -1769,10 +1779,10 @@
                 2.441623292437356e-16
             ],
             "Rotation": [
-                0.37796294689178467,
-                0.40847727656364441,
-                0.59761530160903931,
-                0.57718819379806519
+                0.37796300649642944,
+                0.40847733616828918,
+                0.59761536121368408,
+                0.57718825340270996
             ],
             "Scale": [
                 1,
@@ -1945,6 +1955,40 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
                     "MaterialUID": 1948688504
+                }
+            ]
+        },
+        {
+            "name": "ShootPoint",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 179710061,
+            "ParentUID": 258529861,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                1.3182494640350342,
+                0.53600084781646729
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                0.05000000074505806,
+                0.05000000074505806,
+                0.40000000596046448
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
                 }
             ]
         }

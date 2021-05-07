@@ -74,9 +74,8 @@ public class Deathtrooper : Enemy
     public float recoilDistance = 0.0f;
 
     //Action variables
-    public int numShots;
     private int shotsShooted = 0;
-    public int maxShots = 2;
+    public int maxShots = 4;
     public float dispersionAngleDeg = 0.0f;
     private bool canShoot = true;
 
@@ -432,8 +431,8 @@ public class Deathtrooper : Enemy
     private void StartShoot()
     {
         Debug.Log("DEATHTROOPER SHOOT");
-        Animator.Play(gameObject, "DTH_Shoot", speedMult);
-        Animator.Play(shotgun, "DTH_Shoot", speedMult);
+        Animator.Play(gameObject, "DTH_Idle", speedMult);
+        Animator.Play(shotgun, "DTH_Idle", speedMult);
         UpdateAnimationSpd(speedMult);
         betweenStatesTimer = betweenStatesTime;
     }
@@ -447,7 +446,7 @@ public class Deathtrooper : Enemy
             betweenStatesTimer -= myDeltaTime;
             if(betweenStatesTimer <= 0.0f)
             {
-                ShotgunShoot(numShots);
+                ShotgunShoot(maxShots);
                 betweenBurstsTimer = timeBewteenBursts;
             }
             
@@ -471,7 +470,7 @@ public class Deathtrooper : Enemy
 
             if(betweenBurstsTimer <= 0.0f)
             {
-                ShotgunShoot(numShots - 1);
+                ShotgunShoot(maxShots - 1);
             }
         }
 
@@ -481,26 +480,36 @@ public class Deathtrooper : Enemy
     private void ShotgunShoot(int numShots)
     {
         float angleIncrement = dispersionAngleDeg / (numShots - 1);
-        float currentAngle = -(dispersionAngleDeg / 2);
+        float currentAngle = -(dispersionAngleDeg * 0.5f);
+
         for(int i = 0; i < numShots; i++)
         {
             GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
-            bullet.GetComponent<BH_Bullet>().damage = damage;
-            bullet.transform.localRotation *= Quaternion.RotateAroundAxis(Vector3.up, currentAngle * Mathf.Deg2RRad);
-            currentAngle += angleIncrement;
+           
+            if(bullet != null)
+            {
+                bullet.GetComponent<BH_Bullet>().damage = damage;
+                bullet.transform.localRotation *= Quaternion.RotateAroundAxis(Vector3.up, currentAngle * Mathf.Deg2RRad);
+                bullet.transform.localPosition += bullet.transform.GetForward().normalized * 1.25f;
+                currentAngle += angleIncrement;
+            }
         }
 
-        //GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
-        //bullet.GetComponent<BH_Bullet>().damage = damage;
+        recoilTimer = recoilTime * ((float)numShots / (float)maxShots);
+        shotsShooted++;
 
-        Animator.Play(gameObject, "DTH_Shoot", speedMult);
-        Animator.Play(shotgun, "DTH_Shoot", speedMult);
+        if(numShots == maxShots) //First Shot
+        {
+            Animator.Play(gameObject, "DTH_ShootRecoil", speedMult);
+            Animator.Play(shotgun, "DTH_ShootRecoil", speedMult);
+        }
+        else //Second Shot
+        {
+            Animator.Play(gameObject, "DTH_ShootNoRecoil", speedMult);
+            Animator.Play(shotgun, "DTH_ShootNoRecoil", speedMult);
+        }
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Blaster_Stormtrooper");
-        
-        recoilTimer = recoilTime * ((float)numShots / (float)maxShots);
-        //canShoot = false;
-        shotsShooted++;
     }
     private void PlayerDetected()
     {
