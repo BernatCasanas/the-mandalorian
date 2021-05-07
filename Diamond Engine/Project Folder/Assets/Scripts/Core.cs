@@ -150,6 +150,7 @@ public class Core : Entity
     private Vector3 currSniperLaserColor = new Vector3(1, 0, 0);
     public float overheatTimeBeeping = 0.08f;
     private float changeColorSniperTimer = 0f;
+    private float sniperShotTimer = 0.0f;
 
     //Animations
     private float shootAnimationTotalTime = 0.0f;
@@ -453,6 +454,14 @@ public class Core : Entity
                 skill_groguIncreaseDamageActive = false;
         }
 
+        if(sniperShotTimer > 0.0f)
+        {
+            sniperShotTimer -= myDeltaTime;
+
+            if(sniperShotTimer <= 0.0f)
+                inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
+        }
+
         grenadesFireRateTimer -= myDeltaTime;
         timeOfRoom += myDeltaTime;
         timeSinceLastDash += myDeltaTime;
@@ -503,7 +512,13 @@ public class Core : Entity
             }
             else if (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_UP && lockAttacks == false)
             {
-                inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
+                sniperShotTimer = Animator.GetAnimationDuration(gameObject, "SniperShotP2");
+                Animator.Play(gameObject, "SniperShotP2");
+
+                if (rifle != null)
+                {
+                    Animator.Play(rifle, "SniperShotP2");
+                }
             }
 
             if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false && dashAvailable == true && lockAttacks == false)
@@ -989,7 +1004,7 @@ public class Core : Entity
         if(rifle != null)
         {
             rifle.Enable(true);
-            Animator.Play(rifle, "SniperShotP1", normalShootSpeed * speedMult);
+            Animator.Play(rifle, "SniperShotP1");
         }
         //Animation play :O
     }
@@ -1054,9 +1069,15 @@ public class Core : Entity
         chargeTimer += myDeltaTime;
         //UpdateAnimationSpd(0.01f);
 
-        if (chargeTimer >= timeToAutomaticallyShootCharge)
+        if (chargeTimer >= timeToAutomaticallyShootCharge && sniperShotTimer <= 0.0f)
         {
-            inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
+            sniperShotTimer = Animator.GetAnimationDuration(gameObject, "SniperShotP2");
+            Animator.Play(gameObject, "SniperShotP2");
+
+            if (rifle != null)
+            {
+                Animator.Play(rifle, "SniperShotP2");
+            }
         }
 
     }
