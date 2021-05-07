@@ -53,6 +53,7 @@ public class Core : Entity
 
     public GameObject shootPoint = null;
     public GameObject hud = null;
+    public GameObject rifle = null;
 
     private bool scriptStart = true;
 
@@ -246,6 +247,10 @@ public class Core : Entity
         Debug.Log("Start!");
         mySpawnPos = new Vector3(gameObject.transform.globalPosition.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z);
         runTime = Animator.GetAnimationDuration(gameObject, "Run") / 2;
+
+        if (rifle != null)
+            rifle.Enable(false);
+
         #endregion
 
         #region STATUS_SYSTEM
@@ -979,6 +984,13 @@ public class Core : Entity
     {
         chargeTimer = 0f;
         changeColorSniperTimer = 0f;
+        Animator.Play(gameObject, "SniperShotP1");
+
+        if(rifle != null)
+        {
+            rifle.Enable(true);
+            Animator.Play(rifle, "SniperShotP1", normalShootSpeed * speedMult);
+        }
         //Animation play :O
     }
 
@@ -986,6 +998,11 @@ public class Core : Entity
     {
         chargeTimer = 0f;
         changeColorSniperTimer = 0f;
+
+        if (rifle != null)
+        {
+            rifle.Enable(false);
+        }
     }
 
     private void UpdateSecondaryShootCharge()
@@ -1035,9 +1052,7 @@ public class Core : Entity
         }
 
         chargeTimer += myDeltaTime;
-        //TODO: This needs to go away once the sniper animations are done
-        Animator.Play(gameObject, "Shoot", 0.01f);
-        UpdateAnimationSpd(0.01f);
+        //UpdateAnimationSpd(0.01f);
 
         if (chargeTimer >= timeToAutomaticallyShootCharge)
         {
