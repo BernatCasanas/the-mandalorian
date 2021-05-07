@@ -413,12 +413,12 @@ public class Skill_Tree_Node : DiamondComponent
 
                         break;
                     case "PSlowEnem":
+                        Core.instance.AddStatus(STATUS_TYPE.PRIM_SLOW, STATUS_APPLY_TYPE.SUBSTITUTE, 30, 1, true);
+                                                break;
+                    case "PHeat":
 
                         break;
-                    case "PCritChance":
-
-                        break;
-                    case "PCritDmg":
+                    case "PChargedBullet":
 
                         break;
                     case "PIncDmg":

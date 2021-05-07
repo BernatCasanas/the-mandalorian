@@ -60,6 +60,9 @@ public enum STATUS_TYPE
     LIFESTEAL,
     BLOCK,
     PRIM_SPEED,
+    PRIM_RANGE,
+    PRIM_SLOW,
+
 }
 
 public enum STATUS_APPLY_TYPE
