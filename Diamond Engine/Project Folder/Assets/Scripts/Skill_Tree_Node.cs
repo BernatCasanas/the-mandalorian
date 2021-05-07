@@ -270,6 +270,27 @@ public class Skill_Tree_Node : DiamondComponent
         switch(skillTree)
         {
             case 1:
+                switch (name)
+                {
+                    case "GForceReg":
+
+                        break;
+                    case "GPushRange":
+
+                        break;
+                    case "GForceDur":
+
+                        break;
+                    case "GMaxForce":
+
+                        break;
+                    case "GComboTimer":
+
+                        break;
+                    case "GHPForceReg":
+
+                        break;
+                }
                 break;
             case 2:
                 switch (name)
@@ -380,6 +401,74 @@ public class Skill_Tree_Node : DiamondComponent
                 }
                 break;
             case 3:
+                switch (name)
+                {
+                    #region primary
+
+                    case "PMovSpd":
+
+                        break;
+                    case "PProjRange":
+
+                        break;
+                    case "PSlowEnem":
+
+                        break;
+                    case "PCritChance":
+
+                        break;
+                    case "PCritDmg":
+
+                        break;
+                    case "PIncDmg":
+
+                        break;
+                    case "PRateFire":
+
+                        break;
+                    #endregion
+                    #region secondary
+                    case "SeStatEfct":
+
+                        break;
+                    case "SeCritChance":
+
+                        break;
+                    case "SeDelay":
+
+                        break;
+                    case "SeUseRange":
+
+                        break;
+                    case "SeCritDmg":
+
+                        break;
+                    case "SeDmgInc":
+
+                        break;
+                    #endregion
+                    #region primary
+                    case "SpCritChance":
+
+                        break;
+                    case "SpChargeTime":
+
+                        break;
+                    case "SpBullet":
+
+                        break;
+                    case "SpRegForce":
+
+                        break;
+                    case "SpCritDmg":
+
+                        break;
+                    case "SpMaxDmg":
+
+                        break;
+                        #endregion
+
+                }
                 break;
         }
         

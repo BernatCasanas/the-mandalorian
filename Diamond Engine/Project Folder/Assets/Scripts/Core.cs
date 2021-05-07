@@ -1813,4 +1813,353 @@ public class Core : Entity
     {
         PlayerStatuses.Clear();
     }
+
+    protected override void InitEntity(ENTITY_TYPE myType)
+    {
+        eType = myType;
+        speedMult = 1f;
+        MovspeedMult = 1f;
+        OverheatMult = 1f;
+        BlasterDamageMult = 1f;
+        GrenadeDamageMult = 1f;
+        SniperDamageMult = 1f;
+        DamageToBosses = 1f;
+        BlasterDamagePerHpMult = 1f;
+        SniperDamagePerHpMult = 1f;
+        DamagePerHeatMult = 1f;
+        DamageRed = 1f;
+        GroguCost = 1f;
+        myDeltaTime = Time.deltaTime;
+        FireRateMult = 1f;
+        RawDamageMult = 1f;
+    }
+
+    protected override void OnInitStatus(ref StatusData statusToInit)
+    {
+        switch (statusToInit.statusType)
+        {
+            case STATUS_TYPE.SLOWED:
+                {
+                    this.speedMult -= statusToInit.severity;
+
+                    if (speedMult < 0.1f)
+                    {
+                        statusToInit.severity = statusToInit.severity - (Math.Abs(this.speedMult) + 0.1f);
+
+                        speedMult = 0.1f;
+                    }
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+
+                }
+                break;
+            case STATUS_TYPE.ACCELERATED:
+                {
+                    this.speedMult += statusToInit.severity;
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
+            case STATUS_TYPE.DAMAGE_DOWN:
+                {
+
+                }
+                break;
+            case STATUS_TYPE.MOV_SPEED:
+                {
+                    statusToInit.statChange = this.MovspeedMult * statusToInit.severity / 100;
+                    this.MovspeedMult += statusToInit.statChange;
+                    //  Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.OVERHEAT:
+                {
+                    statusToInit.statChange = this.OverheatMult * (statusToInit.severity) / 100;
+                    this.OverheatMult += statusToInit.statChange;
+                    // Debug.Log(this.OverheatMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.BLASTER_DAMAGE:
+                {
+                    statusToInit.statChange = this.BlasterDamageMult * (statusToInit.severity) / 100;
+                    this.BlasterDamageMult += statusToInit.statChange;
+                    // Debug.Log(this.DamageMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.GRENADE_DAMAGE:
+                {
+                    statusToInit.statChange = this.GrenadeDamageMult * (statusToInit.severity) / 100;
+                    this.GrenadeDamageMult += statusToInit.statChange;
+                    // Debug.Log(this.DamageMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.SNIPER_DAMAGE:
+                {
+                    statusToInit.statChange = this.SniperDamageMult * (statusToInit.severity) / 100;
+                    this.SniperDamageMult += statusToInit.statChange;
+                    // Debug.Log(this.DamageMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.DMG_TO_BOSSES:
+                {
+                    statusToInit.statChange = this.DamageToBosses * (statusToInit.severity) / 100;
+                    this.DamageToBosses += statusToInit.statChange;
+                    //  Debug.Log(this.DamageToBosses.ToString());
+                }
+                break;
+            case STATUS_TYPE.MAX_HP:
+                {
+                    if (Core.instance != null)
+                    {
+                        PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                        if (myHealth != null)
+                        {
+                            Debug.Log("TESTING / max hp");
+                            Debug.Log("Old Max Health = " + PlayerHealth.currMaxHealth.ToString());
+                            statusToInit.statChange = statusToInit.severity * PlayerHealth.currMaxHealth / 100;
+                            myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth + statusToInit.statChange));
+                            Debug.Log("New Max Health = " + PlayerHealth.currMaxHealth.ToString());
+
+                        }
+                    }
+
+                }
+                break;
+            case STATUS_TYPE.DMG_RED:
+                {
+                    statusToInit.statChange = 1 * (statusToInit.severity) / 100;
+                    this.DamageRed += statusToInit.statChange;
+                    Debug.Log("Damage red = " + this.DamageRed.ToString());
+
+                }
+                break;
+            case STATUS_TYPE.COMBO_DMG_RED:
+                {
+                    statusToInit.statChange = 1 * (statusToInit.severity) / 100;
+                    this.DamageRed += statusToInit.statChange;
+                    Debug.Log("Damage red = " + this.DamageRed.ToString());
+
+                }
+                break;
+            case STATUS_TYPE.GROGU_COST:
+                {
+                    statusToInit.statChange = statusToInit.severity / 100;
+                    this.GroguCost += statusToInit.statChange;
+                }
+                break;
+            case STATUS_TYPE.FIRE_RATE:
+                {
+
+                    statusToInit.statChange = -statusToInit.severity / 100;
+                    this.FireRateMult += statusToInit.statChange;
+
+
+                }
+                break;
+            case STATUS_TYPE.RAW_DAMAGE:
+                {
+
+                    statusToInit.statChange = (statusToInit.severity) / 100;
+                    this.RawDamageMult += statusToInit.statChange;
+                    // Debug.Log(this.DamageMult.ToString());
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    protected override void OnUpdateStatus(StatusData statusToUpdate)
+    {
+        switch (statusToUpdate.statusType)
+        {
+            case STATUS_TYPE.BLAST_DMG_PER_HP:
+                {
+                    if (Core.instance != null)
+                    {
+                        //PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                        //if (myHealth != null)
+                        //{
+                        float missingHealth = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
+                        float missingHealtPercentage = missingHealth / PlayerHealth.currMaxHealth;
+                        BlasterDamagePerHpMult = 1 + missingHealtPercentage;
+                        //  Debug.Log("TESTING / dmg per missing hp = " + DamagePerHpMult.ToString());
+                        // }
+                    }
+
+                }
+                break;
+            case STATUS_TYPE.SNIPER_DMG_PER_HP:
+                {
+                    if (Core.instance != null)
+                    {
+                        //PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                        //if (myHealth != null)
+                        //{
+                        float missingHealth = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
+                        float missingHealtPercentage = missingHealth / PlayerHealth.currMaxHealth;
+                        SniperDamagePerHpMult = 1 + missingHealtPercentage;
+                        //  Debug.Log("TESTING / dmg per missing hp = " + DamagePerHpMult.ToString());
+                        // }
+                    }
+
+                }
+                break;
+            case STATUS_TYPE.DMG_PER_HEAT:
+                {
+                    if (Core.instance != null)
+                    {
+                        //PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                        //if (myHealth != null)
+                        //{
+                        if (Core.instance.hud != null)
+                        {
+                            float currentheat = Core.instance.hud.GetComponent<HUD>().primaryWeaponHeat;
+                            float HeatPercentage = currentheat / Core.instance.hud.GetComponent<HUD>().primaryWeaponMaxHeat;
+                            DamagePerHeatMult = 1 + HeatPercentage;
+                            //    Debug.Log("TESTING / dmg per heat = " + DamagePerHeatMult.ToString());
+                        }
+
+
+                        // }
+                    }
+
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    protected override void OnDeleteStatus(StatusData statusToDelete)
+    {
+        switch (statusToDelete.statusType)
+        {
+            case STATUS_TYPE.SLOWED:
+                {
+                    this.speedMult += statusToDelete.severity;
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
+            case STATUS_TYPE.ACCELERATED:
+                {
+                    this.speedMult -= statusToDelete.severity;
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
+            case STATUS_TYPE.DAMAGE_DOWN:
+                {
+                }
+                break;
+            case STATUS_TYPE.MOV_SPEED:
+                {
+                    this.MovspeedMult -= statusToDelete.statChange;
+                    //  Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.OVERHEAT:
+                {
+                    this.OverheatMult -= statusToDelete.statChange;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.BLASTER_DAMAGE:
+                {
+                    this.BlasterDamageMult -= statusToDelete.statChange;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.GRENADE_DAMAGE:
+                {
+                    this.GrenadeDamageMult -= statusToDelete.statChange;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.SNIPER_DAMAGE:
+                {
+                    this.SniperDamageMult -= statusToDelete.statChange;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.DMG_TO_BOSSES:
+                {
+                    this.DamageToBosses -= statusToDelete.statChange;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.BLAST_DMG_PER_HP:
+                {
+                    this.BlasterDamagePerHpMult = 1;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.SNIPER_DMG_PER_HP:
+                {
+                    this.SniperDamagePerHpMult = 1;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.MAX_HP:
+                {
+                    if (Core.instance != null)
+                    {
+                        PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                        if (myHealth != null)
+                        {
+
+                            myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth - statusToDelete.statChange));
+
+                        }
+                    }
+                }
+                break;
+            case STATUS_TYPE.DMG_RED:
+                {
+                    this.DamageRed -= statusToDelete.statChange;
+                    Debug.Log("Damage red = " + this.DamageRed.ToString());
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.COMBO_DMG_RED:
+                {
+                    this.DamageRed -= statusToDelete.statChange;
+                    Debug.Log("Damage red = " + this.DamageRed.ToString());
+
+                }
+                break;
+            case STATUS_TYPE.DMG_PER_HEAT:
+                {
+                    this.DamagePerHeatMult = 1;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.GROGU_COST:
+                {
+                    this.GroguCost -= statusToDelete.statChange;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.FIRE_RATE:
+                {
+                    Debug.Log("delete fire rate buff");
+                    this.FireRateMult -= statusToDelete.statChange;
+                    if (this.FireRateMult <= 0)
+                        this.FireRateMult = 1;
+                }
+                break;
+            case STATUS_TYPE.RAW_DAMAGE:
+                {
+                    Debug.Log("delete raw damage buff");
+
+                    this.RawDamageMult -= statusToDelete.statChange;
+                    if (this.RawDamageMult > 2)
+                        this.RawDamageMult = 1;
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }
