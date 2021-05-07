@@ -50,6 +50,7 @@ public class IntroCinematic : DiamondComponent
             nonCinematicCameraPos = cameraObject.transform.localPosition;
             nonCinematicCameraRotation = cameraObject.transform.localRotation;
             CameraManager.SetCameraPerspective(cameraObject);
+            CameraManager.SetVerticalFOV(cameraObject, 60.0f);
 
             if (InitializeTimers())
             {
