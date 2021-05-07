@@ -42,7 +42,6 @@ public class Deathtrooper : Enemy
 
     public GameObject shootPoint = null;
     public GameObject shotgun = null;
-    //public GameObject hitParticles = null;
 
     //Timers
     private float idleTimer = 0.0f;
@@ -64,7 +63,6 @@ public class Deathtrooper : Enemy
     //Speeds
     public float wanderSpeed = 3.5f;
     public float runningSpeed = 7.5f;
-    //public float bulletSpeed = 10.0f;
     private bool skill_slowDownActive = false;
     public float recoilSpeed = 0.0f;
 
@@ -141,15 +139,6 @@ public class Deathtrooper : Enemy
             }
         }
 
-        //if(shotCDTimer > 0.0f)
-        //{
-        //    shotCDTimer -= myDeltaTime;
-        //    if(shotCDTimer <= 0.0f)
-        //    {
-        //        canShoot = true;
-        //    }
-        //}
-
         if (skill_slowDownActive)
         {
             skill_slowDownTimer += myDeltaTime;
@@ -171,14 +160,17 @@ public class Deathtrooper : Enemy
 
             if (InRange(Core.instance.gameObject.transform.globalPosition, detectionRange))
             {
-                inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
-                //LookAt(Core.instance.gameObject.transform.globalPosition);
+                if (InRange(Core.instance.gameObject.transform.globalPosition, shotRange) && canShoot)
+                    inputsList.Add(INPUT.IN_SHOT_RANGE);
+                else
+                    inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
             }
-            if (InRange(Core.instance.gameObject.transform.globalPosition, shotRange) && canShoot)
+            else
             {
-                inputsList.Add(INPUT.IN_SHOT_RANGE);
-                //LookAt(Core.instance.gameObject.transform.globalPosition);
+                if (currentState == STATE.RUN)
+                    inputsList.Add(INPUT.IN_RUN_END);
             }
+
         }
     }
 
@@ -209,6 +201,11 @@ public class Deathtrooper : Enemy
                             StartRun();
                             break;
 
+                        case INPUT.IN_SHOT_RANGE:
+                            currentState = STATE.SHOOT;
+                            StartShoot();
+                            break;
+
                         case INPUT.IN_PUSHED:
                             currentState = STATE.PUSHED;
                             StartPush();
@@ -235,6 +232,12 @@ public class Deathtrooper : Enemy
                             WanderEnd();
                             PlayerDetected();
                             StartRun();
+                            break;
+
+                        case INPUT.IN_SHOT_RANGE:
+                            currentState = STATE.SHOOT;
+                            WanderEnd();
+                            StartShoot();
                             break;
 
                         case INPUT.IN_PUSHED:
@@ -276,7 +279,7 @@ public class Deathtrooper : Enemy
                             RunEnd();
                             StartDie();
                             break;
-     
+
                     }
                     break;
 
@@ -288,10 +291,10 @@ public class Deathtrooper : Enemy
                             StartRun();
                             break;
 
-                        //case INPUT.IN_RUN:
-                        //    currentState = STATE.RUN;
-                        //    StartRun();
-                        //    break;
+                        case INPUT.IN_RUN:
+                            currentState = STATE.RUN;
+                            StartRun();
+                            break;
 
                         case INPUT.IN_PUSHED:
                             currentState = STATE.PUSHED;
@@ -392,7 +395,7 @@ public class Deathtrooper : Enemy
         //if (skill_slowDownActive)
         //    agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
         //else 
-            agent.MoveToCalculatedPos(wanderSpeed * speedMult);
+        agent.MoveToCalculatedPos(wanderSpeed * speedMult);
 
         UpdateAnimationSpd(speedMult);
     }
@@ -417,7 +420,7 @@ public class Deathtrooper : Enemy
         //if (skill_slowDownActive)
         //    agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
         //else
-            agent.MoveToCalculatedPos(runningSpeed * speedMult);
+        agent.MoveToCalculatedPos(runningSpeed * speedMult);
 
         UpdateAnimationSpd(speedMult);
     }
@@ -441,15 +444,15 @@ public class Deathtrooper : Enemy
     {
         LookAt(Core.instance.gameObject.transform.globalPosition);
 
-        if(betweenStatesTimer > 0.0f)
+        if (betweenStatesTimer > 0.0f)
         {
             betweenStatesTimer -= myDeltaTime;
-            if(betweenStatesTimer <= 0.0f)
+            if (betweenStatesTimer <= 0.0f)
             {
                 ShotgunShoot(maxShots);
                 betweenBurstsTimer = timeBewteenBursts;
             }
-            
+
         }
 
         if (recoilTimer > 0.0f)
@@ -457,10 +460,10 @@ public class Deathtrooper : Enemy
             recoilTimer -= Time.deltaTime;
             gameObject.transform.localPosition -= gameObject.transform.GetForward().normalized * recoilSpeed * Time.deltaTime;
 
-            if(recoilTimer <= 0.0f && shotsShooted >= 2)
-            {            
+            if (recoilTimer <= 0.0f && shotsShooted >= 2)
+            {
                 inputsList.Add(INPUT.IN_SHOOT_END);
-                shotsShooted = 0;   
+                shotsShooted = 0;
             }
         }
 
@@ -468,7 +471,7 @@ public class Deathtrooper : Enemy
         {
             betweenBurstsTimer -= myDeltaTime;
 
-            if(betweenBurstsTimer <= 0.0f)
+            if (betweenBurstsTimer <= 0.0f)
             {
                 ShotgunShoot(maxShots - 1);
             }
@@ -482,11 +485,11 @@ public class Deathtrooper : Enemy
         float angleIncrement = dispersionAngleDeg / (numShots - 1);
         float currentAngle = -(dispersionAngleDeg * 0.5f);
 
-        for(int i = 0; i < numShots; i++)
+        for (int i = 0; i < numShots; i++)
         {
             GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
-           
-            if(bullet != null)
+
+            if (bullet != null)
             {
                 bullet.GetComponent<BH_Bullet>().damage = damage;
                 bullet.transform.localRotation *= Quaternion.RotateAroundAxis(Vector3.up, currentAngle * Mathf.Deg2RRad);
@@ -498,7 +501,7 @@ public class Deathtrooper : Enemy
         recoilTimer = recoilTime * ((float)numShots / (float)maxShots);
         shotsShooted++;
 
-        if(numShots == maxShots) //First Shot
+        if (numShots == maxShots) //First Shot
         {
             Animator.Play(gameObject, "DTH_ShootRecoil", speedMult);
             Animator.Play(shotgun, "DTH_ShootRecoil", speedMult);
@@ -557,7 +560,7 @@ public class Deathtrooper : Enemy
         Vector3 forward = gameObject.transform.GetForward();
         Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
         InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
-        
+
         DropCoins();
 
         InternalCalls.Destroy(gameObject);
