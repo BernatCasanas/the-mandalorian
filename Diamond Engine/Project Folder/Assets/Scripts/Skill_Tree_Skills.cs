@@ -410,7 +410,7 @@ namespace DiamondEngine
         }
     }
 
-    public class PrimaryCriticalChanceSkill : Skills
+    public class PrimaryOverheatSkill : Skills
     {
         public override void Use()
         {
@@ -418,7 +418,7 @@ namespace DiamondEngine
         }
     }
 
-    public class PrimaryCriticalDamageSkill : Skills
+    public class PrimaryChargedkill : Skills
     {
         public override void Use()
         {
@@ -612,8 +612,8 @@ namespace DiamondEngine
             {"PMovSpd", typeof(PrimaryMovementSpeedSkill)},
             {"PProjRange", typeof(PrimaryProjectileRangeSkill)},
             {"PSlowEnem", typeof(PrimarySlowEnemiesSkill)},
-            {"PCritChance", typeof(PrimaryCriticalChanceSkill)},
-            {"PCritDmg", typeof(PrimaryCriticalDamageSkill)},
+            {"PHeat", typeof(PrimaryOverheatSkill)},
+            {"PChargedBullet", typeof(PrimaryChargedkill)},
             {"PIncDmg", typeof(PrimaryIncreaseDamageSkill)},
             {"PRateFire", typeof(PrimaryRateFireSkill)},
             {"SeStatEfct", typeof(SecondaryStatusEffectSkill)},

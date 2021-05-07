@@ -313,7 +313,7 @@ public class Skill_Tree_Node : DiamondComponent
                         break;
                     case "UOverheat":
                         //Debug.Log("More Shots before overheat not implemented yet");
-                        Core.instance.AddStatus(STATUS_TYPE.OVERHEAT, STATUS_APPLY_TYPE.SUBSTITUTE, -20, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.OVERHEATCAP, STATUS_APPLY_TYPE.ADDITIVE, -20, 0, true);
                         break;
                     case "URedGroguCost":
                         Debug.Log("Grogu Cost reduced");
@@ -331,11 +331,11 @@ public class Skill_Tree_Node : DiamondComponent
                     #region Aggression
                     case "ABlasterDmg":
                        // Debug.Log("Damage not implemented yet");
-                        Core.instance.AddStatus(STATUS_TYPE.BLASTER_DAMAGE, STATUS_APPLY_TYPE.SUBSTITUTE, 15, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.BLASTER_DAMAGE, STATUS_APPLY_TYPE.ADDITIVE, 15, 0, true);
                         break;
                     case "AComboFireRate":
                         // Debug.Log("Combo * speed not implemented yet");
-                        Core.instance.AddStatus(STATUS_TYPE.COMBO_FIRE_RATE, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.COMBO_FIRE_RATE, STATUS_APPLY_TYPE.ADDITIVE, 20, 0, true);
                         break;
                     case "AComboDmg":
                        // Debug.Log("Combo * damage not implemented yet");
@@ -409,21 +409,26 @@ public class Skill_Tree_Node : DiamondComponent
                         Core.instance.AddStatus(STATUS_TYPE.PRIM_SPEED, STATUS_APPLY_TYPE.SUBSTITUTE, 30, 1, true);
                         break;
                     case "PProjRange":
-
+                      //  Core.instance.AddStatus(STATUS_TYPE.PRIM_SPEED, STATUS_APPLY_TYPE.SUBSTITUTE, 30, 1, true);
+                      // WIP
                         break;
                     case "PSlowEnem":
-
+                        Core.instance.AddStatus(STATUS_TYPE.PRIM_SLOW, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 1, true);
                         break;
-                    case "PCritChance":
-
+                    case "PHeat":
+                        Core.instance.AddStatus(STATUS_TYPE.OVERHEAT, STATUS_APPLY_TYPE.SUBSTITUTE, 30, 1, true);
+                        //WIP
                         break;
-                    case "PCritDmg":
-
+                    case "PChargedBullet":
+                        Core.instance.AddStatus(STATUS_TYPE.PRIM_CHARGED, STATUS_APPLY_TYPE.SUBSTITUTE, 5, 1, true);
                         break;
                     case "PIncDmg":
+                        Core.instance.AddStatus(STATUS_TYPE.BLASTER_DAMAGE, STATUS_APPLY_TYPE.ADDITIVE, 25, 0, true);
 
                         break;
                     case "PRateFire":
+                        Core.instance.AddStatus(STATUS_TYPE.OVERHEATCAP, STATUS_APPLY_TYPE.ADDITIVE, -30, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.FIRE_RATE, STATUS_APPLY_TYPE.ADDITIVE, -20, 0, true);
 
                         break;
                     #endregion

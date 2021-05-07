@@ -112,5 +112,8 @@ public class BH_Bullet : DiamondComponent
     public void SetEntity(Entity myEntity)
     {
         entity = myEntity;
+
+        if(entity.HasStatus(STATUS_TYPE.PRIM_RANGE))
+        range_squared *= (1 + entity.GetStatusData(STATUS_TYPE.PRIM_RANGE).severity / 100);
     }
 }
