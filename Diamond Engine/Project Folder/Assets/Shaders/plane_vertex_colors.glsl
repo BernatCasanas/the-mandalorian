@@ -124,7 +124,7 @@ struct AreaLightInfo
 
 
 uniform LightInfo lightInfo[2];
-uniform AreaLightInfo areaLightInfo[30];
+uniform AreaLightInfo areaLightInfo[5];
 
 
 uniform sampler2D shadowMap;
@@ -393,7 +393,7 @@ vec3 CalculateAreaLight()
 {
 	vec3 lighting = vec3(0.0, 0.0, 0.0);
     
-    for (int i = 0; i < 30; i++)
+    for (int i = 0; i < 5; i++)
     {
 		if (areaLightInfo[i].activeLight == false)
 			return lighting;
@@ -449,6 +449,7 @@ void main()
     	color = vec4((directionalLight + areaLight) * fs_in.vertexColor, 1.0);
 }
 #endif
+
 
 
 
