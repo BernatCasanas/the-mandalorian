@@ -24,6 +24,7 @@ public class BH_Bullet : DiamondComponent
 
     private GameObject destroyOBJ = null;
     private GameObject mesh = null;
+    private Entity entity = null;
 
     public ParticleSystem destroyPar = null;
 
@@ -46,7 +47,14 @@ public class BH_Bullet : DiamondComponent
         // gameObject.transform.localPosition += gameObject.transform.GetForward() * (speed * Time.deltaTime);
         if (!triggered)
         {
-            gameObject.SetVelocity(gameObject.transform.GetForward() * speed);
+            if(entity != null && entity.HasStatus(STATUS_TYPE.PRIM_SPEED))
+            {
+                gameObject.SetVelocity(gameObject.transform.GetForward() * speed * (1 + entity.GetStatusData(STATUS_TYPE.PRIM_SPEED).severity / 100));
+            }
+            else
+            {
+                gameObject.SetVelocity(gameObject.transform.GetForward() * speed);
+            }
         }
         else
         {
@@ -100,5 +108,9 @@ public class BH_Bullet : DiamondComponent
         if (Core.instance == null)
             return damage;
         return damage * Core.instance.GetBlasterDamageMod();
+    }
+    public void SetEntity(Entity myEntity)
+    {
+        entity = myEntity;
     }
 }

@@ -929,6 +929,7 @@ public class Core : Entity
             //Debug.Log("Bullet Shot!");
 
             bullet.GetComponent<BH_Bullet>().damage = bulletDamage * GetBlasterDamageMod();
+            bullet.GetComponent<BH_Bullet>().SetEntity(this);
         }
     }
 
