@@ -1730,7 +1730,16 @@ public class Core : Entity
     public float GetBlasterDamageMod()
     {
         //We apply modifications to the damage based on the skill actives in the talent tree
-        float Damage = BlasterDamageMult * BlasterDamagePerHpMult * DamagePerHeatMult * RawDamageMult;
+        float supercharged = 1;
+        if(HasStatus(STATUS_TYPE.PRIM_CHARGED))
+        {
+            Random rand = new Random();
+            float result = rand.Next(1, 101);
+            if (result <= Core.instance.GetStatusData(STATUS_TYPE.PRIM_CHARGED).severity)
+                supercharged = 2;
+        }
+          
+        float Damage = BlasterDamageMult * BlasterDamagePerHpMult * DamagePerHeatMult * RawDamageMult * supercharged;
 
         //if (skill_groguIncreaseDamageActive)
         //{
@@ -1873,7 +1882,7 @@ public class Core : Entity
                     //  Debug.Log(this.MovspeedMult.ToString());
                 }
                 break;
-            case STATUS_TYPE.OVERHEAT:
+            case STATUS_TYPE.OVERHEATCAP:
                 {
                     statusToInit.statChange = this.OverheatMult * (statusToInit.severity) / 100;
                     this.OverheatMult += statusToInit.statChange;
@@ -2060,7 +2069,7 @@ public class Core : Entity
                     //  Debug.Log(this.MovspeedMult.ToString());
                 }
                 break;
-            case STATUS_TYPE.OVERHEAT:
+            case STATUS_TYPE.OVERHEATCAP:
                 {
                     this.OverheatMult -= statusToDelete.statChange;
                     //    Debug.Log(this.MovspeedMult.ToString());
