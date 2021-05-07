@@ -13,6 +13,7 @@ public class FloatingVehicles : DiamondComponent
     {
         initialPos = gameObject.transform.localPosition;
         SetVehicleProperties();
+        currPercentageOfAnimation = GetRandomStartHeight();
     }
 
     public void Update()
@@ -39,6 +40,15 @@ public class FloatingVehicles : DiamondComponent
         double val = (random.NextDouble() * (max - min) + min);
         return (float)val;
     }*/
+
+    private float GetRandomStartHeight()
+    {
+        float min = 0.0f;
+        float max = 1.0f;
+        System.Random random = new System.Random();
+        double val = (random.NextDouble() * (max - min) + min);
+        return (float)val;
+    }
 
     private void SetVehicleProperties()
     {
