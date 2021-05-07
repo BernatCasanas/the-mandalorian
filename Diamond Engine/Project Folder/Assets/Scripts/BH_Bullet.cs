@@ -94,4 +94,11 @@ public class BH_Bullet : DiamondComponent
 
 
     }
+
+    public float GetDamage()
+    {
+        if (Core.instance == null)
+            return damage;
+        return damage * Core.instance.GetBlasterDamageMod();
+    }
 }

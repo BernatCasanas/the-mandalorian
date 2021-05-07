@@ -113,4 +113,10 @@ public class ChargedBullet : DiamondComponent
         Mathf.LookAt(ref this.gameObject.transform, targetPosition);
     }
 
+    public float GetDamage()
+    {
+        if (Core.instance == null)
+            return damage;
+        return damage * Core.instance.GetSniperDamageMod();
+    }
 }

@@ -413,8 +413,13 @@ public class LaserTurret : Enemy
     {
         if (collidedGameObject.CompareTag("Bullet"))
         {
-            healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+            BH_Bullet bullet = collidedGameObject.GetComponent<BH_Bullet>();
+            if (bullet != null)
+            {
 
+                TakeDamage(bullet.GetDamage());
+                // healthPoints -= collidedGameObject.GetComponent<BH_Bullet>().damage;
+            }
             Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
             if (Core.instance.hud != null)
@@ -434,7 +439,8 @@ public class LaserTurret : Enemy
 
             if (bullet != null)
             {
-                healthPoints -= bullet.damage;
+                TakeDamage(bullet.GetDamage());
+                //healthPoints -= bullet.damage;
                 this.AddStatus(STATUS_TYPE.DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
             }
 

@@ -359,12 +359,14 @@ public class Skel : Bosseslv2
 
             if (bulletComp != null)
             {
-                float damageToBoss = bulletComp.damage;
+                float damageToBoss = bulletComp.GetDamage();
+                if (Core.instance != null)
+                    damageToBoss *= Core.instance.DamageToBosses;
 
-                if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
-                {
-                    damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
-                }
+                //if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
+                //{
+                //    damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
+                //}
 
                 TakeDamage(damageToBoss);
             }
@@ -386,7 +388,10 @@ public class Skel : Bosseslv2
             {
                 this.AddStatus(STATUS_TYPE.DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
 
-                float damageToBoss = bulletComp.damage;
+                float damageToBoss = bulletComp.GetDamage();
+                if (Core.instance != null)
+                    damageToBoss *= Core.instance.DamageToBosses;
+
                 TakeDamage(damageToBoss);
             }
 
@@ -449,7 +454,7 @@ public class Skel : Bosseslv2
         {
             if (currentState != STATE.DEAD)
             {
-                healthPoints -= damage * Core.instance.DamageToBosses;
+                healthPoints -= damage;
                 Debug.Log("Skel HP: " + healthPoints.ToString());
 
                 if (healthPoints <= 0.0f)

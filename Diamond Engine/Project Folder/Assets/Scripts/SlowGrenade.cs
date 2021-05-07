@@ -49,6 +49,10 @@ public class SlowGrenade : DiamondComponent
         }
         else
         {
+            float grenadeDamage = damage;
+            if (Core.instance != null)
+                grenadeDamage *= Core.instance.GetGrenadeDamageMod();
+
             explosionTimer += Time.deltaTime;
             procTimer += Time.deltaTime;
 
@@ -83,7 +87,7 @@ public class SlowGrenade : DiamondComponent
                     else if (procActivation == true)
                     {
                         Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.45f);
-                        script.TakeDamage(damage);
+                        script.TakeDamage(grenadeDamage);
                         script.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, 0.33f, 0.175f);
                     }
 
@@ -102,7 +106,7 @@ public class SlowGrenade : DiamondComponent
                         else if (procActivation == true)
                         {
                             Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.45f);
-                            bossScript.TakeDamage(damage);
+                            bossScript.TakeDamage(grenadeDamage);
                             bossScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, 0.33f, 0.175f);
                         }
                     }
@@ -121,7 +125,7 @@ public class SlowGrenade : DiamondComponent
                             else if (procActivation == true)
                             {
                                 Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.45f);
-                                skelScript.TakeDamage(damage);
+                                skelScript.TakeDamage(grenadeDamage);
                                 skelScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, 0.33f, 0.175f);
                             }
                         }
@@ -135,7 +139,7 @@ public class SlowGrenade : DiamondComponent
                             else if (procActivation == true)
                             {
                                 Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.45f);
-                                wampaScript.TakeDamage(damage);
+                                wampaScript.TakeDamage(grenadeDamage);
                                 wampaScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, 0.33f, 0.175f);
                             }
                         }
