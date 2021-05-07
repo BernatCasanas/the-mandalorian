@@ -8,9 +8,28 @@ public class StartMenu : DiamondComponent
     public GameObject options = null;
     public GameObject background = null;
     public GameObject default_selected = null;
+    public GameObject optionsButton = null;
+    public GameObject newGameButton = null;
 
     private bool musicplayed = false;
 
+    public void Awake()
+    {
+        if (gameObject.Name != "New Game" && gameObject.Name != "Options")
+            return;
+        DiamondPrefs.LoadData();
+        if (DiamondPrefs.ReadBool("loadData") == true)
+            return;
+        if(gameObject.Name == "New Game" && optionsButton!=null)
+        {
+            gameObject.GetComponent<Navigation>().SetDownNavButton(optionsButton);
+            gameObject.GetComponent<Navigation>().Select();
+        }
+        else if(gameObject.Name == "Options" && newGameButton != null)
+        {
+            gameObject.GetComponent<Navigation>().SetUpNavButton(newGameButton);
+        }
+    }
     public void OnExecuteButton()
     {
         if (gameObject.Name == "New Game" || gameObject.Name == "Load Game")
