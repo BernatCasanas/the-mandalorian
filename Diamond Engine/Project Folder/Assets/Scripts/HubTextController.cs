@@ -65,31 +65,18 @@ public class HubTextController : DiamondComponent
     private int total_interactions_and_stages = 0;
     private bool dialog_finished = false;
 
-    private bool start = true;
-
 
     Interaction interaction = Interaction.NONE;
 
     public void Awake()
     {
         total_interactions_and_stages = total_stages * total_interactions;
-        DiamondPrefs.Write("boKatanStage", boKatanStage);
-        DiamondPrefs.Write("greefStage", greefStage);
-        DiamondPrefs.Write("ashokaStage", ashokaStage);
-        DiamondPrefs.Write("groguStage", groguStage);
-        DiamondPrefs.Write("boKatanInteractionNum", boKatanInteractionNum);
-        DiamondPrefs.Write("greefInteractionNum", greefInteractionNum);
-        DiamondPrefs.Write("ashokaInteractionNum", ashokaInteractionNum);
-        DiamondPrefs.Write("groguInteractionNum", groguInteractionNum);
+        if (DiamondPrefs.ReadBool("reset"))
+            return;
+        WriteDataToJSon();
     }
     public void Update()
     {
-        if (start)
-        {
-            if (DiamondPrefs.ReadBool("loadData") == false)
-                DiamondPrefs.Write("loadData", true);
-            start = false;
-        }
         if (mando == null || Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN || textController == null || textController.GetComponent<TextController>().otherimage == null || dialog == null ||
             textController.IsEnabled() == false)
         {
@@ -246,5 +233,34 @@ public class HubTextController : DiamondComponent
                 }
                 break;
         }
+    }
+
+    public void Reset()
+    {
+        boKatanStage = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("boKatanStage") : 1;
+        greefStage = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("greefStage") : 1;
+        ashokaStage = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("ashokaStage") : 1;
+        groguStage = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("groguStage") : 1;
+
+        boKatanInteractionNum = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("boKatanInteractionNum") : 1;
+        greefInteractionNum = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("greefInteractionNum") : 1;
+        ashokaInteractionNum = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("ashokaInteractionNum") : 1;
+        groguInteractionNum = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("groguInteractionNum") : 1;
+
+
+        if (DiamondPrefs.ReadBool("loadData"))
+            return;
+        WriteDataToJSon();
+    }
+    private void WriteDataToJSon()
+    {
+        DiamondPrefs.Write("boKatanStage", boKatanStage);
+        DiamondPrefs.Write("greefStage", greefStage);
+        DiamondPrefs.Write("ashokaStage", ashokaStage);
+        DiamondPrefs.Write("groguStage", groguStage);
+        DiamondPrefs.Write("boKatanInteractionNum", boKatanInteractionNum);
+        DiamondPrefs.Write("greefInteractionNum", greefInteractionNum);
+        DiamondPrefs.Write("ashokaInteractionNum", ashokaInteractionNum);
+        DiamondPrefs.Write("groguInteractionNum", groguInteractionNum);
     }
 }

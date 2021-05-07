@@ -35,7 +35,7 @@ public class Skill_Tree_Data : DiamondComponent
         PRIMARY_SLOW_SPEED = 3,
         PRIMARY4 = 4,
         PRIMARY5 = 5,
-        PRIMARY_INCREASE_DAMAGE = 3,
+        PRIMARY_INCREASE_DAMAGE = 6,
         PRIMARY7 = 7,
         SECONDARY1 = 8,
         SECONDARY2 = 9,
@@ -130,21 +130,18 @@ public class Skill_Tree_Data : DiamondComponent
         {5, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 5.ToString()) : false },
         {6, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 6.ToString()) : false },
         {7, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 7.ToString()) : false },
-        {8, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 8.ToString()) : false },
-        {9, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 9.ToString()) : false }, //Secondary weapons
+        {8, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 8.ToString()) : false }, //Secondary weapons
+        {9, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 9.ToString()) : false },
         {10, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 10.ToString()) : false },
         {11, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 11.ToString()) : false },
         {12, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 12.ToString()) : false },
         {13, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 13.ToString()) : false },
-        {14, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 14.ToString()) : false },
+        {14, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 14.ToString()) : false }, //Special weapons
         {15, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 15.ToString()) : false },
-        {16, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 16.ToString()) : false }, //Special weapons
+        {16, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 16.ToString()) : false },
         {17, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 17.ToString()) : false },
         {18, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 18.ToString()) : false },
         {19, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 19.ToString()) : false },
-        {20, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 20.ToString()) : false },
-        {21, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 21.ToString()) : false },
-        {22, DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + 22.ToString()) : false },
     };
     #endregion
 
@@ -155,7 +152,6 @@ public class Skill_Tree_Data : DiamondComponent
         {
             case 1: //Grogu Skill Tree
                 groguSkillEnabled[skill_Number] = true;
-                DiamondPrefs.Write("loadData", true);
                 DiamondPrefs.Write("groguSkill" + skill_Number.ToString(), groguSkillEnabled[skill_Number]);
                 break;
             case 2: //Mando Skill Tree
@@ -176,6 +172,7 @@ public class Skill_Tree_Data : DiamondComponent
         switch (skillTree)
         {
             case 1:
+                Debug.Log(groguSkillEnabled[skill_Number].ToString());
                 return groguSkillEnabled[skill_Number];
             case 2:
                 return mandoSkillEnabled[skill_Number];
@@ -329,5 +326,24 @@ public class Skill_Tree_Data : DiamondComponent
         //Secondary Weapon Skill 5
         //Secondary Weapon Skill 6
         //Secondary Weapon Skill 7
+    }
+
+    public static void Reset()
+    {
+        for (int i = 0; i < groguSkillEnabled.Count; i++)
+        {
+            groguSkillEnabled[i + 1] = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("groguSkill" + (i + 1).ToString()) : false;
+        }
+        for (int i = 0; i < mandoSkillEnabled.Count; i++)
+        {
+            mandoSkillEnabled[i + 1] = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("mandoSkill" + (i + 1).ToString()) : false;
+        }
+        for (int i = 0; i < weaponsSkillEnabled.Count; i++)
+        {
+            weaponsSkillEnabled[i + 1] = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadBool("weaponSkill" + (i + 1).ToString()) : false;
+        }
+
+        if(Core.instance!=null)
+            Core.instance.ResetBuffs();
     }
 }

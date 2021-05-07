@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        4.8505606651306152,
-        1.9870537519454956,
-        4.3182101249694824
+        2.8574106693267822,
+        0.69225645065307617,
+        -0.59664487838745117
     ],
     "EditorCameraZ": [
         -0.95247024297714233,
-        -0.23075214028358459,
+        -0.23075215518474579,
         0.19888162612915039
     ],
     "EditorCameraY": [
-        -0.22587977349758148,
+        -0.22588050365447998,
         0.97301256656646729,
-        0.047168612480163574
+        0.047165233641862869
     ],
     "tags": [],
     "layers": [],
@@ -177,11 +177,156 @@
             ]
         },
         {
-            "name": "Play",
+            "name": "New Game",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "UID": 1306709165,
+            "ParentUID": 1573871419,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        86.199996948242188,
+                        -27.200000762939453
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        20,
+                        10
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/play_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/519676096.dds",
+                    "Pressed_UID": 519676096,
+                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/play_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1251341352.dds",
+                    "Hovered_UID": 1251341352,
+                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/play_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1400920931.dds",
+                    "Unhovered_UID": 1400920931,
+                    "Script_Name": "StartMenu",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/play_button.png",
+                    "LibraryPath": "Library\/Textures\/1400920931.dds",
+                    "UID": 1400920931
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1306709165,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 1555216131,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 1063470039,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 15,
+                            "UID": 1555216131,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 16,
+                            "UID": 1063470039,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 19,
+                            "UID": 1555216131,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 20,
+                            "UID": 1063470039,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "StartMenu",
+                    "popUpNewGame": 1432964897,
+                    "menuButtons": 1392636434,
+                    "default_selected": 2124152547,
+                    "optionsButton": 549038604
+                }
+            ]
+        },
+        {
+            "name": "Load Game",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1063470039,
             "ParentUID": 1573871419,
             "PrefabReference": 0,
             "PrefabID": 0,
@@ -258,14 +403,14 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 1306709165,
+                            "UID": 1063470039,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 1555216131,
+                            "UID": 1306709165,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -279,7 +424,7 @@
                         },
                         {
                             "Index": 15,
-                            "UID": 1555216131,
+                            "UID": 1306709165,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -293,7 +438,7 @@
                         },
                         {
                             "Index": 19,
-                            "UID": 1555216131,
+                            "UID": 1306709165,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
@@ -314,6 +459,152 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "StartMenu"
+                }
+            ]
+        },
+        {
+            "name": "Options",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 549038604,
+            "ParentUID": 1573871419,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        81.900001525878906,
+                        -64
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        20,
+                        10
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/options_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/1608512240.dds",
+                    "Pressed_UID": 1608512240,
+                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/options_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1136581469.dds",
+                    "Hovered_UID": 1136581469,
+                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/options_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/711926849.dds",
+                    "Unhovered_UID": 711926849,
+                    "Script_Name": "StartMenu",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/options_button.png",
+                    "LibraryPath": "Library\/Textures\/711926849.dds",
+                    "UID": 711926849
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 549038604,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 1063470039,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 1555216131,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 15,
+                            "UID": 1063470039,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 16,
+                            "UID": 1555216131,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 19,
+                            "UID": 1063470039,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 20,
+                            "UID": 1555216131,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "StartMenu",
+                    "menuButtons": 1392636434,
+                    "options": 1311017402,
+                    "background": 560716722,
+                    "default_selected": 105485055,
+                    "newGameButton": 1306709165
                 }
             ]
         },
@@ -458,151 +749,6 @@
                     "menuButtons": 1392636434,
                     "options": 839126900,
                     "default_selected": 530044586
-                }
-            ]
-        },
-        {
-            "name": "Options",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 549038604,
-            "ParentUID": 1573871419,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        81.900001525878906,
-                        -64
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        20,
-                        10
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 7,
-                    "Active": true,
-                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/options_button_pressed.png",
-                    "Pressed_LibraryPath": "Library\/Textures\/1608512240.dds",
-                    "Pressed_UID": 1608512240,
-                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/options_button_hover.png",
-                    "Hovered_LibraryPath": "Library\/Textures\/1136581469.dds",
-                    "Hovered_UID": 1136581469,
-                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/options_button.png",
-                    "Unhovered_LibraryPath": "Library\/Textures\/711926849.dds",
-                    "Unhovered_UID": 711926849,
-                    "Script_Name": "StartMenu",
-                    "ButtonState": 2,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/options_button.png",
-                    "LibraryPath": "Library\/Textures\/711926849.dds",
-                    "UID": 711926849
-                },
-                {
-                    "Type": 17,
-                    "Active": true,
-                    "Map": [
-                        {
-                            "Index": 0,
-                            "UID": 549038604,
-                            "Action": 2,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 11,
-                            "UID": 1306709165,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 12,
-                            "UID": 1555216131,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 15,
-                            "UID": 1306709165,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 16,
-                            "UID": 1555216131,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 19,
-                            "UID": 1306709165,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        },
-                        {
-                            "Index": 20,
-                            "UID": 1555216131,
-                            "Action": 1,
-                            "Is Key Down": false,
-                            "Is Key Up": true
-                        }
-                    ],
-                    "Button Being Used": -1,
-                    "Type Of UI": 7,
-                    "Is Selected": false
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "StartMenu",
-                    "menuButtons": 1392636434,
-                    "options": 1311017402,
-                    "background": 560716722,
-                    "default_selected": 105485055
                 }
             ]
         },
@@ -864,15 +1010,15 @@
                     "Unhovered_LibraryPath": "Library\/Textures\/834295412.dds",
                     "Unhovered_UID": 834295412,
                     "Script_Name": "Return",
-                    "ButtonState": 1,
-                    "Is Selected": true
+                    "ButtonState": 2,
+                    "Is Selected": false
                 },
                 {
                     "Type": 11,
                     "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/button_return_hover.png",
-                    "LibraryPath": "Library\/Textures\/1490678443.dds",
-                    "UID": 1490678443
+                    "AssetPath": "Assets\/UI\/MENU\/button_return.png",
+                    "LibraryPath": "Library\/Textures\/834295412.dds",
+                    "UID": 834295412
                 },
                 {
                     "Type": 17,
@@ -895,7 +1041,7 @@
                     ],
                     "Button Being Used": -1,
                     "Type Of UI": 7,
-                    "Is Selected": true
+                    "Is Selected": false
                 },
                 {
                     "Type": 5,
@@ -1139,16 +1285,16 @@
                     "Unactive_LibraryPath": "Library\/Textures\/1244819265.dds",
                     "Unactive_UID": 1244819265,
                     "Script_Name": "DisSett",
-                    "ButtonState": 4,
+                    "ButtonState": 3,
                     "Checkbox Active": false,
-                    "Is Selected": true
+                    "Is Selected": false
                 },
                 {
                     "Type": 11,
                     "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/checkbox_empty_hover.png",
-                    "LibraryPath": "Library\/Textures\/1711990233.dds",
-                    "UID": 1711990233
+                    "AssetPath": "Assets\/UI\/MENU\/checkbox_empty.png",
+                    "LibraryPath": "Library\/Textures\/1244819265.dds",
+                    "UID": 1244819265
                 },
                 {
                     "Type": 17,
@@ -1213,7 +1359,7 @@
                     ],
                     "Button Being Used": -1,
                     "Type Of UI": 8,
-                    "Is Selected": true
+                    "Is Selected": false
                 },
                 {
                     "Type": 5,
@@ -2654,15 +2800,15 @@
                     "Unhovered_LibraryPath": "Library\/Textures\/1884509864.dds",
                     "Unhovered_UID": 1884509864,
                     "Script_Name": "Settings",
-                    "ButtonState": 1,
-                    "Is Selected": true
+                    "ButtonState": 2,
+                    "Is Selected": false
                 },
                 {
                     "Type": 11,
                     "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/bar_empty_hover.png",
-                    "LibraryPath": "Library\/Textures\/619086891.dds",
-                    "UID": 619086891
+                    "AssetPath": "Assets\/UI\/MENU\/bar_hover.png",
+                    "LibraryPath": "Library\/Textures\/1884509864.dds",
+                    "UID": 1884509864
                 },
                 {
                     "Type": 17,
@@ -2762,7 +2908,7 @@
                     ],
                     "Button Being Used": -1,
                     "Type Of UI": 7,
-                    "Is Selected": true
+                    "Is Selected": false
                 },
                 {
                     "Type": 5,
@@ -5847,15 +5993,15 @@
                     "Unhovered_LibraryPath": "Library\/Textures\/834295412.dds",
                     "Unhovered_UID": 834295412,
                     "Script_Name": "DisplayOptions",
-                    "ButtonState": 1,
-                    "Is Selected": true
+                    "ButtonState": 2,
+                    "Is Selected": false
                 },
                 {
                     "Type": 11,
                     "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/button_return_hover.png",
-                    "LibraryPath": "Library\/Textures\/1490678443.dds",
-                    "UID": 1490678443
+                    "AssetPath": "Assets\/UI\/MENU\/button_return.png",
+                    "LibraryPath": "Library\/Textures\/834295412.dds",
+                    "UID": 834295412
                 },
                 {
                     "Type": 17,
@@ -5920,7 +6066,7 @@
                     ],
                     "Button Being Used": 0,
                     "Type Of UI": 7,
-                    "Is Selected": true
+                    "Is Selected": false
                 },
                 {
                     "Type": 5,
@@ -6474,15 +6620,15 @@
                     "Unhovered_LibraryPath": "Library\/Textures\/1618474496.dds",
                     "Unhovered_UID": 1618474496,
                     "Script_Name": "Confirmation",
-                    "ButtonState": 1,
-                    "Is Selected": true
+                    "ButtonState": 2,
+                    "Is Selected": false
                 },
                 {
                     "Type": 11,
                     "Active": true,
-                    "AssetPath": "Assets\/UI\/MENU\/second_button_hover.png",
-                    "LibraryPath": "Library\/Textures\/1345927926.dds",
-                    "UID": 1345927926
+                    "AssetPath": "Assets\/UI\/MENU\/second_button.png",
+                    "LibraryPath": "Library\/Textures\/1618474496.dds",
+                    "UID": 1618474496
                 },
                 {
                     "Type": 17,
@@ -6540,7 +6686,7 @@
                     ],
                     "Button Being Used": -1,
                     "Type Of UI": 7,
-                    "Is Selected": true
+                    "Is Selected": false
                 },
                 {
                     "Type": 5,
@@ -6885,6 +7031,590 @@
                     "Type": 9,
                     "Active": true,
                     "text": "ARE YOU SURE YOU WANT TO QUIT?",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "NewGameConfirmationScreen",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1432964897,
+            "ParentUID": 456622386,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Image",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 948789005,
+            "ParentUID": 1432964897,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        64.900001525878906,
+                        34.799999237060547
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1381190712.dds",
+                    "UID": 1381190712
+                }
+            ]
+        },
+        {
+            "name": "Yes",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1189819032,
+            "ParentUID": 948789005,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -18.399999618530273,
+                        -9.1000003814697266
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        18.100000381469727,
+                        9.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/second_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/1546682848.dds",
+                    "Pressed_UID": 1546682848,
+                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/second_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1345927926.dds",
+                    "Hovered_UID": 1345927926,
+                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/second_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1618474496.dds",
+                    "Unhovered_UID": 1618474496,
+                    "Script_Name": "NewGamePopUp",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/second_button.png",
+                    "LibraryPath": "Library\/Textures\/1618474496.dds",
+                    "UID": 1618474496
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1189819032,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 13,
+                            "UID": 2124152547,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 14,
+                            "UID": 2124152547,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 17,
+                            "UID": 2124152547,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 18,
+                            "UID": 2124152547,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 21,
+                            "UID": 2124152547,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 22,
+                            "UID": 2124152547,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "NewGamePopUp",
+                    "popUpNewGame": 1432964897,
+                    "confirmNewGame": true
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1504111141,
+            "ParentUID": 1189819032,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -6.1999998092651367,
+                        -5.0999999046325684
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        10,
+                        16
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "YES",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "No",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 2124152547,
+            "ParentUID": 948789005,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        19.600000381469727,
+                        -9.1000003814697266
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        18.100000381469727,
+                        9.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/MENU\/second_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/1546682848.dds",
+                    "Pressed_UID": 1546682848,
+                    "Hovered_AssetsPath": "Assets\/UI\/MENU\/second_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1345927926.dds",
+                    "Hovered_UID": 1345927926,
+                    "Unhovered_AssetsPath": "Assets\/UI\/MENU\/second_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1618474496.dds",
+                    "Unhovered_UID": 1618474496,
+                    "Script_Name": "NewGamePopUp",
+                    "ButtonState": 2,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/MENU\/second_button.png",
+                    "LibraryPath": "Library\/Textures\/1618474496.dds",
+                    "UID": 1618474496
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 2124152547,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 13,
+                            "UID": 1189819032,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 14,
+                            "UID": 1189819032,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 17,
+                            "UID": 1189819032,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 18,
+                            "UID": 1189819032,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 21,
+                            "UID": 1189819032,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 22,
+                            "UID": 1189819032,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "NewGamePopUp",
+                    "popUpNewGame": 1432964897,
+                    "mainMenu": 1392636434,
+                    "confirmNewGame": false
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1310607679,
+            "ParentUID": 2124152547,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -5.1999998092651367,
+                        -5.0999999046325684
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        10,
+                        16
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "NO",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1384542276,
+            "ParentUID": 948789005,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -60.900001525878906,
+                        10.300000190734863
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        6.9000000953674316,
+                        15
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "ARE YOU SURE YOU WANT TO START A NEW GAME?",
                     "maxTextLenght": 0,
                     "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
@@ -9646,7 +10376,7 @@
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
                     "vFOV": 1.0471975803375244,
-                    "hFOV": 1.6781150102615356,
+                    "hFOV": 1.6752912998199463,
                     "culling": false,
                     "drawSkybox": false
                 },

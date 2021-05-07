@@ -77,6 +77,15 @@ public class Skill_Tree_Node : DiamondComponent
         UnlockTreeAfterRun();
     }
 
+    public void Reset()
+    {
+        UnlockTreeAfterRun();
+        if (children_1 != null)
+            children_1.GetComponent<Skill_Tree_Node>().Reset();
+        if (children_2 != null)
+            children_2.GetComponent<Skill_Tree_Node>().Reset();
+    }
+
     //Remember the skills that have already been bought before the run
     private void UnlockTreeAfterRun()
     {
@@ -242,7 +251,7 @@ public class Skill_Tree_Node : DiamondComponent
             }
         }
         skill.Use();
-        addSkill(skill_name);
+        addSkill(skillTreeName,skill_name);
         state = NODE_STATE.OWNED;
 
         if (children_1 != null)
@@ -255,12 +264,33 @@ public class Skill_Tree_Node : DiamondComponent
             oppositeNode.GetComponent<Skill_Tree_Node>().state = NODE_STATE.LOCKED;
     }
 
-    private void addSkill(string name)
+    public static void addSkill(int skillTree, string name)
     {
-        Debug.Log(skillTreeName.ToString() + " / " + skillTreeNumber.ToString());
-        switch(skillTreeName)
+        Debug.Log(skillTree.ToString() + " / " + skillTree.ToString());
+        switch(skillTree)
         {
             case 1:
+                switch (name)
+                {
+                    case "GForceReg":
+
+                        break;
+                    case "GPushRange":
+
+                        break;
+                    case "GForceDur":
+
+                        break;
+                    case "GMaxForce":
+
+                        break;
+                    case "GComboTimer":
+
+                        break;
+                    case "GHPForceReg":
+
+                        break;
+                }
                 break;
             case 2:
                 switch (name)
@@ -371,6 +401,74 @@ public class Skill_Tree_Node : DiamondComponent
                 }
                 break;
             case 3:
+                switch (name)
+                {
+                    #region primary
+
+                    case "PMovSpd":
+
+                        break;
+                    case "PProjRange":
+
+                        break;
+                    case "PSlowEnem":
+
+                        break;
+                    case "PCritChance":
+
+                        break;
+                    case "PCritDmg":
+
+                        break;
+                    case "PIncDmg":
+
+                        break;
+                    case "PRateFire":
+
+                        break;
+                    #endregion
+                    #region secondary
+                    case "SeStatEfct":
+
+                        break;
+                    case "SeCritChance":
+
+                        break;
+                    case "SeDelay":
+
+                        break;
+                    case "SeUseRange":
+
+                        break;
+                    case "SeCritDmg":
+
+                        break;
+                    case "SeDmgInc":
+
+                        break;
+                    #endregion
+                    #region primary
+                    case "SpCritChance":
+
+                        break;
+                    case "SpChargeTime":
+
+                        break;
+                    case "SpBullet":
+
+                        break;
+                    case "SpRegForce":
+
+                        break;
+                    case "SpCritDmg":
+
+                        break;
+                    case "SpMaxDmg":
+
+                        break;
+                        #endregion
+
+                }
                 break;
         }
         
