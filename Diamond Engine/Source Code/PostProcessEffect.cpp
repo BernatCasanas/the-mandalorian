@@ -3,6 +3,7 @@
 #include "PostProcessFilter.h"
 #include "DE_Advanced_FrameBuffer.h"
 #include "CO_Camera.h"
+#include "RE_PostProcess.h"
 
 //A post processing effect consists of 1 or more filters (Ex. Blur needs horizontal blur filter then Vertical blur filter)
 PostProcessEffect::PostProcessEffect() :active(true)
@@ -67,14 +68,14 @@ void PostProcessEffectBloom::CleanUp()
 	}
 }
 
-int PostProcessEffectBloom::Render(int width, int height, int colorTexture)
+int PostProcessEffectBloom::Render(int width, int height, int colorTexture,PostProcessDataBloom* bloomVars)
 {
-	brighterThanFilter->Render(width/2, height/2, colorTexture,0.5f,true);//TODO change the value for the actual value once we have the resource
-	blurVFilter->Render(width/4, height/4, brighterThanFilter->GetOutputTexture());
-	blurHFilter->Render(width/4, height/4, blurVFilter->GetOutputTexture());
-	blurVFilter->Render(width / 8, height / 8, blurHFilter->GetOutputTexture());
-	blurHFilter->Render(width / 8, height / 8, blurVFilter->GetOutputTexture());
-	combineFilter->Render(width, height, colorTexture, blurHFilter->GetOutputTexture(), 1.0);//TODO change the value for the actual value once we have the resource
+	brighterThanFilter->Render(width/2, height/2, colorTexture, bloomVars->brightThreshold, bloomVars->smoothMask);
+	blurVFilter->Render(width/4, height/4, brighterThanFilter->GetOutputTexture(),bloomVars->blurSpread);
+	blurHFilter->Render(width/4, height/4, blurVFilter->GetOutputTexture(),bloomVars->blurSpread);
+	blurVFilter->Render(width / 8, height / 8, blurHFilter->GetOutputTexture(), bloomVars->blurSpread);
+	blurHFilter->Render(width / 8, height / 8, blurVFilter->GetOutputTexture(), bloomVars->blurSpread);
+	combineFilter->Render(width, height, colorTexture, blurHFilter->GetOutputTexture(), bloomVars->brightnessIntensity);//TODO change the value for the actual value once we have the resource
 	return combineFilter->GetOutputTexture();
 }
 
@@ -184,11 +185,11 @@ void PostProcessEffectAO::CleanUp()
 	}
 }
 
-int PostProcessEffectAO::Render(int width, int height, int colorTexture,int depthTexture,C_Camera* camera)
+int PostProcessEffectAO::Render(int width, int height, int colorTexture,int depthTexture,C_Camera* camera, PostProcessDataAO* aoVars)
 {
-	aoFilter->Render(width/2, height/2, depthTexture,camera);
-	blurVFilter->Render(width / 4, height / 4, aoFilter->GetOutputTexture());
-	blurHFilter->Render(width/4, height/4, blurVFilter->GetOutputTexture());
+	aoFilter->Render(width/2, height/2, depthTexture,camera,aoVars->radiusAO);
+	blurVFilter->Render(width / 4, height / 4, aoFilter->GetOutputTexture(),aoVars->blurSpread);
+	blurHFilter->Render(width/4, height/4, blurVFilter->GetOutputTexture(), aoVars->blurSpread);
 	multiplyFilter->Render(width, height, colorTexture, blurHFilter->GetOutputTexture());
 	return multiplyFilter->GetOutputTexture();
 }

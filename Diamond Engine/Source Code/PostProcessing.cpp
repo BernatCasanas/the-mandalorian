@@ -47,28 +47,31 @@ void PostProcessing::Init()
 	aoEffect = new PostProcessEffectAO();
 }
 
-void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBuffer& outputFBO, unsigned int colorTexture, unsigned int depthTexture,C_Camera* sceneCam, ResourcePostProcess* settings)
+void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBuffer& outputFBO, unsigned int colorTexture, unsigned int depthTexture,C_Camera* sceneCam)
 {
 
 	Start();
 
 	int currentColTexIndex = colorTexture;
-
+	ResourcePostProcess* camProfile = sceneCam->postProcessProfile;
 
 	//do post processing here
 
-	if (false)
+	/*if (false)
 	{
 		currentColTexIndex = depthTest->Render(width, height, currentColTexIndex, depthTexture);
+	}*/
+
+	PostProcessDataAO* aoVars = dynamic_cast<PostProcessDataAO*>(camProfile->GetDataOfType(POSTPROCESS_DATA_TYPE::AO));
+	if (aoVars->active)
+	{
+		currentColTexIndex = aoEffect->Render(width, height, currentColTexIndex, depthTexture,sceneCam,aoVars);
 	}
 
-	if (true)
+	PostProcessDataBloom* bloomVars = dynamic_cast<PostProcessDataBloom*>(camProfile->GetDataOfType(POSTPROCESS_DATA_TYPE::BLOOM));
+	if (bloomVars->active)
 	{
-		currentColTexIndex = aoEffect->Render(width, height, currentColTexIndex, depthTexture,sceneCam);
-	}
-	if (true)
-	{
-		currentColTexIndex = bloomEffect->Render(width, height, currentColTexIndex);
+		currentColTexIndex = bloomEffect->Render(width, height, currentColTexIndex,bloomVars);
 	}
 
 	//end of postprocessing

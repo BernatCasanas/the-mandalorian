@@ -194,7 +194,7 @@ PostProcessFilterAO::~PostProcessFilterAO()
 {
 }
 
-void PostProcessFilterAO::Render(int width, int height, unsigned int depthTexture, C_Camera* currCam)
+void PostProcessFilterAO::Render(int width, int height, unsigned int depthTexture, C_Camera* currCam,float sampleRad)
 {
 	quadRenderer->RegenerateFBO(width, height);
 	myShader->Bind();
@@ -227,7 +227,7 @@ void PostProcessFilterAO::Render(int width, int height, unsigned int depthTextur
 	}
 
 	uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "sampleRad");
-	glUniform1f(uniformLoc,0.01f);//TODO radius here
+	glUniform1f(uniformLoc, sampleRad);
 
 	uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "projectionMat");
 	glUniformMatrix4fv(uniformLoc, 1, GL_FALSE, currCam->ProjectionMatrixOpenGL().ptr());
@@ -264,7 +264,7 @@ PostProcessFilterBlurH::~PostProcessFilterBlurH()
 {
 }
 
-void PostProcessFilterBlurH::Render(int width, int height, unsigned int texture)
+void PostProcessFilterBlurH::Render(int width, int height, unsigned int texture, int blurSpread)
 {
 	quadRenderer->RegenerateFBO(width, height);
 	myShader->Bind();
@@ -313,7 +313,7 @@ PostProcessFilterBlurV::~PostProcessFilterBlurV()
 {
 }
 
-void PostProcessFilterBlurV::Render(int width, int height, unsigned int texture)
+void PostProcessFilterBlurV::Render(int width, int height, unsigned int texture,int blurSpread)
 {
 	quadRenderer->RegenerateFBO(width, height);
 	myShader->Bind();

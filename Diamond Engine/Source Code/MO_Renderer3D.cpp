@@ -387,8 +387,12 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 		RenderStencilWithOrdering(true);
 
 		gameCamera->EndDraw();
-		postProcessing.DoPostProcessing(gameCamera->resolvedFBO.texBufferSize.x, gameCamera->resolvedFBO.texBufferSize.y, gameCamera->resolvedFBO, gameCamera->resolvedFBO.GetColorTexture(), gameCamera->resolvedFBO.GetDepthTexture(), gameCamera, nullptr);
-		
+		if (gameCamera->postProcessProfile != nullptr)
+		{
+			postProcessing.DoPostProcessing(gameCamera->resolvedFBO.texBufferSize.x, gameCamera->resolvedFBO.texBufferSize.y, gameCamera->resolvedFBO, gameCamera->resolvedFBO.GetColorTexture(), gameCamera->resolvedFBO.GetDepthTexture(), gameCamera);
+		}
+
+
 		gameCamera->resolvedFBO.BindFrameBuffer();
 		glClear(GL_DEPTH_BUFFER_BIT);
 		App->moduleGui->RenderCanvas2D();

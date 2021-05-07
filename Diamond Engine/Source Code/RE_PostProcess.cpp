@@ -79,7 +79,7 @@ POSTPROCESS_DATA_TYPE PostProcessData::GetType() const
 }
 
 PostProcessDataAO::PostProcessDataAO() : PostProcessData(POSTPROCESS_DATA_TYPE::AO, "Screen Space Ambient Oclussion"),
-radiusAO(1.0f)
+radiusAO(1.0f), blurSpread(0)
 {
 }
 
@@ -100,6 +100,9 @@ void PostProcessDataAO::DrawEditor()
 		label = "AO radius";
 		label += suffix;
 		ImGui::SliderFloat(label.c_str(), &radiusAO, 0.0f, 100.0f, "%.3f", 2.0f);
+		label = "Glow Spread";
+		label += suffix;
+		ImGui::SliderFloat(label.c_str(), &blurSpread, 0.0f, 20.0f, "%.3f");
 
 		PostProcessData::DrawEditorEnd();
 	}
@@ -110,6 +113,7 @@ void PostProcessDataAO::SaveToJson(JSON_Object* nObj)
 	PostProcessData::SaveToJson(nObj);
 	//TODO save data here
 	DEJson::WriteFloat(nObj, "RadiusAO", radiusAO);
+	DEJson::WriteFloat(nObj, "GlowSpread", blurSpread);
 
 }
 
@@ -118,6 +122,69 @@ void PostProcessDataAO::LoadFromJson(DEConfig& nObj)
 	PostProcessData::LoadFromJson(nObj);
 	//TODO load data here
 	radiusAO = nObj.ReadFloat("RadiusAO");
+	blurSpread = nObj.ReadFloat("GlowSpread");
+
+}
+
+
+PostProcessDataBloom::PostProcessDataBloom() : PostProcessData(POSTPROCESS_DATA_TYPE::BLOOM, "Bloom"),
+ brightThreshold(0.7f),
+ brightnessIntensity(1.0f),
+ blurSpread(0.0f),
+ smoothMask(false)
+{
+}
+
+PostProcessDataBloom::~PostProcessDataBloom()
+{
+}
+
+void PostProcessDataBloom::DrawEditor()
+{
+	const std::string suffix = "##Bloom";
+	std::string label = name + suffix;
+	if (ImGui::CollapsingHeader(label.c_str()))
+	{
+		PostProcessData::DrawEditorStart(suffix);
+
+		//TODO drawEditorHere
+
+		label = "Bright Threshold";
+		label += suffix;
+		ImGui::SliderFloat(label.c_str(), &brightThreshold, 0.0f, 250.0f, "%.3f", 2.0f);
+		label = "Brightness Intensity";
+		label += suffix;
+		ImGui::SliderFloat(label.c_str(), &brightnessIntensity, 0.0f, 10.0f, "%.3f");
+		label = "Glow Blur Spread";
+		label += suffix;
+		ImGui::SliderFloat(label.c_str(), &blurSpread, 0.0f, 20.0f, "%.3f");
+		label = "Use Smooth Glow";
+		label += suffix;
+		ImGui::Checkbox(label.c_str(), &smoothMask);
+
+		PostProcessData::DrawEditorEnd();
+	}
+}
+
+void PostProcessDataBloom::SaveToJson(JSON_Object* nObj)
+{
+	PostProcessData::SaveToJson(nObj);
+	//TODO save data here
+	DEJson::WriteFloat(nObj, "BrightThreshold", brightThreshold);
+	DEJson::WriteFloat(nObj, "BrightnessIntensity", brightnessIntensity);
+	DEJson::WriteFloat(nObj, "GlowBlurSpread", blurSpread);
+	DEJson::WriteBool(nObj, "SmoothGlow", smoothMask);
+
+}
+
+void PostProcessDataBloom::LoadFromJson(DEConfig& nObj)
+{
+	PostProcessData::LoadFromJson(nObj);
+	//TODO load data here
+	brightThreshold = nObj.ReadFloat("BrightThreshold");
+	brightnessIntensity = nObj.ReadFloat("BrightnessIntensity");
+	blurSpread = nObj.ReadFloat("GlowBlurSpread");
+	smoothMask = nObj.ReadBool("SmoothGlow");
 }
 
 ResourcePostProcess::ResourcePostProcess(unsigned int _uid) : Resource(_uid, Resource::Type::POSTPROCESS)
@@ -196,6 +263,8 @@ PostProcessData* ResourcePostProcess::GetDataOfType(POSTPROCESS_DATA_TYPE type)
 void ResourcePostProcess::Init()
 {
 	postProcessData.push_back(dynamic_cast<PostProcessData*>(new PostProcessDataAO()));
+	postProcessData.push_back(dynamic_cast<PostProcessData*>(new PostProcessDataBloom()));
+
 }
 
 void ResourcePostProcess::CleanUp()

@@ -19,7 +19,7 @@ public:
 
 	//create screen quad here
 	void Init();
-	void DoPostProcessing(int width, int height, DE_Advanced_FrameBuffer& outputFBO, unsigned int colorTexture, unsigned int depthTexture, C_Camera* sceneCam, ResourcePostProcess* settings);
+	void DoPostProcessing(int width, int height, DE_Advanced_FrameBuffer& outputFBO, unsigned int colorTexture, unsigned int depthTexture, C_Camera* sceneCam);
 	void CleanUp();
 
 private:

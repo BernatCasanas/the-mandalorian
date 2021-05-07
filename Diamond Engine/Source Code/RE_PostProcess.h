@@ -44,6 +44,22 @@ public:
 	void LoadFromJson(DEConfig& nObj);
 public:
 	float radiusAO;
+	float blurSpread;
+};
+
+class PostProcessDataBloom : public PostProcessData
+{
+public:
+	PostProcessDataBloom();
+	~PostProcessDataBloom();
+	void DrawEditor() override;
+	void SaveToJson(JSON_Object* nObj);
+	void LoadFromJson(DEConfig& nObj);
+public:
+	float brightThreshold;
+	float brightnessIntensity;
+	float blurSpread;
+	bool smoothMask;
 };
 
 class ResourcePostProcess : public Resource {
