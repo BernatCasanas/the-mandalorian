@@ -264,7 +264,7 @@ PostProcessFilterBlurH::~PostProcessFilterBlurH()
 {
 }
 
-void PostProcessFilterBlurH::Render(int width, int height, unsigned int texture, int blurSpread)
+void PostProcessFilterBlurH::Render(int width, int height, unsigned int texture, float blurSpread)
 {
 	quadRenderer->RegenerateFBO(width, height);
 	myShader->Bind();
@@ -276,6 +276,8 @@ void PostProcessFilterBlurH::Render(int width, int height, unsigned int texture,
 	glUniform1f(uniformLoc, width);
 	uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "blurTextureWeights");
 	glUniform1fv(uniformLoc, 11, &gaussianKernel[0]);
+	uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "blurSpread");
+	glUniform1f(uniformLoc, blurSpread);
 
 	quadRenderer->RenderQuad();
 
@@ -313,7 +315,7 @@ PostProcessFilterBlurV::~PostProcessFilterBlurV()
 {
 }
 
-void PostProcessFilterBlurV::Render(int width, int height, unsigned int texture,int blurSpread)
+void PostProcessFilterBlurV::Render(int width, int height, unsigned int texture,float blurSpread)
 {
 	quadRenderer->RegenerateFBO(width, height);
 	myShader->Bind();
@@ -325,6 +327,8 @@ void PostProcessFilterBlurV::Render(int width, int height, unsigned int texture,
 	glUniform1f(uniformLoc, height);
 	uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "blurTextureWeights");
 	glUniform1fv(uniformLoc, 11, &gaussianKernel[0]);
+	uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "blurSpread");
+	glUniform1f(uniformLoc, blurSpread);
 
 	quadRenderer->RenderQuad();
 

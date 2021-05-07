@@ -27,7 +27,7 @@ void main()
 	
 	if(useSmoothMask)
 	{
-		out_Colour=myColor*brightness*brightness*brightness;
+		out_Colour=myColor*brightness*brightness*brightness*(1/brightnessTreshold);
 	}
 	else if(brightness >= brightnessTreshold)
 	{

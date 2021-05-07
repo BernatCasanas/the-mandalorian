@@ -67,7 +67,7 @@ class PostProcessFilterBlurH : public PostProcessFilter
 public:
 	PostProcessFilterBlurH();
 	~PostProcessFilterBlurH();
-	void Render(int width, int height, unsigned int texture, int blurSpread);
+	void Render(int width, int height, unsigned int texture, float blurSpread);
 
 	void PopulateKernel();
 	std::vector<float> gaussianKernel;
@@ -79,7 +79,7 @@ class PostProcessFilterBlurV : public PostProcessFilter
 public:
 	PostProcessFilterBlurV();
 	~PostProcessFilterBlurV();
-	void Render(int width, int height, unsigned int texture, int blurSpread);
+	void Render(int width, int height, unsigned int texture, float blurSpread);
 
 	void PopulateKernel();
 	std::vector<float> gaussianKernel;

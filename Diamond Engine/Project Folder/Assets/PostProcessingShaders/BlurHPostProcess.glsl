@@ -6,6 +6,7 @@ const int GAUSSIAN_KERNEL_SIZE=11;//GAUSSIAN KERNEL MUST BE AN ODD NUMBER
 layout (location=0) in vec3 pos;
 uniform float targetWidth;
 out vec2 blurTextureCoords[GAUSSIAN_KERNEL_SIZE];
+uniform float blurSpread;
 void main()
 {
 	gl_Position= vec4(pos,1);
@@ -14,7 +15,7 @@ void main()
 
 	for(int i=-(GAUSSIAN_KERNEL_SIZE-1)/2; i<=(GAUSSIAN_KERNEL_SIZE-1)/2; i++)
 	{
-		blurTextureCoords[i+(GAUSSIAN_KERNEL_SIZE-1)/2] = centerTextureCoords + vec2(pixelSize*i,0.0);
+		blurTextureCoords[i+(GAUSSIAN_KERNEL_SIZE-1)/2] = centerTextureCoords + vec2((pixelSize+pixelSize*blurSpread)*i,0.0);
 	}
 
 
