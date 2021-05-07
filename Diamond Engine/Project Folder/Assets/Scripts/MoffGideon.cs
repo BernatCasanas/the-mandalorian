@@ -72,19 +72,32 @@ public class MoffGideon : Entity
     //Public Variables
     public float followSpeed = 15f;
     public float touchDamage = 10f;
+    public GameObject spawner1 = null;
+    public GameObject spawner2 = null;
+    public GameObject spawner3 = null;
+    public GameObject spawner4 = null;
 
     //Private Variables
     private float damaged = 0.0f;
     private float currAnimationPlaySpd = 1f;
+    private bool invencible = false;
+    private List<GameObject> spawners = null;
 
     //Timers
     private float dieTimer = 0f;
     public float dieTime = 0.1f;
+    private float followTimer = 0f;
+    public float followTime = 5f;
+    private float deadEnemiesTimer = 0f;
+    public float deadEnemiesTime = 5f;
 
     private void Start()
     {
         StartFollow();
-
+        spawners.Add(spawner1);
+        spawners.Add(spawner2);
+        spawners.Add(spawner3);
+        spawners.Add(spawner4);
     }
 
     public void Awake()
@@ -130,11 +143,20 @@ public class MoffGideon : Entity
     //Timers go here
     private void ProcessInternalInput()
     {
+        if (followTimer > 0)
+        {
+            followTimer -= myDeltaTime;
 
+            if (followTimer <= 0)
+                inputsList.Add(MOFFGIDEON_INPUT.IN_SPAWN_ENEMIES);
+
+        }
     }
 
     private void ProcessExternalInput()
     {
+        if (currentState == MOFFGIDEON_STATE.SPAWN_ENEMIES && CheckDeathtroopers())
+            inputsList.Add(MOFFGIDEON_INPUT.IN_FOLLOW);
 
     }
 
@@ -339,7 +361,7 @@ public class MoffGideon : Entity
 
     private void StartFollow()
     {
-
+        followTimer = followTime;
     }
 
 
@@ -444,17 +466,26 @@ public class MoffGideon : Entity
 
     private void StartSpawnEnemies()
     {
-
+        invencible = true;
+        deadEnemiesTimer = deadEnemiesTime;
+        SpawnEnemies();
     }
 
     private void UpdateSpawnEnemies()
     {
+        if (deadEnemiesTimer > 0)
+        {
+            deadEnemiesTimer -= myDeltaTime;
 
+            if (deadEnemiesTimer <= 0)
+                SpawnEnemies();
+
+        }
     }
 
     private void EndSpawnEnemies()
     {
-
+        invencible = false;
     }
 
     #endregion
@@ -721,5 +752,18 @@ public class MoffGideon : Entity
 
 
     #endregion
+
+    private bool CheckDeathtroopers()
+    {
+        return (spawner1.GetComponent<Deathtrooper>().GetCurrentSate() == Deathtrooper.STATE.DIE && spawner2.GetComponent<Deathtrooper>().GetCurrentSate() == Deathtrooper.STATE.DIE && spawner3.GetComponent<Deathtrooper>().GetCurrentSate() == Deathtrooper.STATE.DIE && spawner4.GetComponent<Deathtrooper>().GetCurrentSate() == Deathtrooper.STATE.DIE);
+    }
+
+    private void SpawnEnemies()
+    {
+        InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner1.transform.globalPosition, gameObject.transform.localRotation, null);
+        InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner2.transform.globalPosition, gameObject.transform.localRotation, null);
+        InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner3.transform.globalPosition, gameObject.transform.localRotation, null);
+        InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner4.transform.globalPosition, gameObject.transform.localRotation, null);
+    }
 
 }
