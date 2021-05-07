@@ -9,13 +9,13 @@
             "UID": 2041003809,
             "ParentUID": 0,
             "PrefabReference": 0,
-            "PrefabID": 0,
+            "PrefabID": 1327417573,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -30.560619354248047,
-                0,
-                0
+                9.0959997177124023,
+                6.8600001335144043,
+                -9.1490001678466797
             ],
             "Rotation": [
                 0,
@@ -82,15 +82,16 @@
                         1,
                         1
                     ],
+                    "stencilEmission": 0,
                     "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
+                    "MaterialAssetPath": "Assets\/Materials\/animated_material.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
+                    "MaterialUID": 1948688504
                 },
                 {
                     "Type": 14,
@@ -132,6 +133,16 @@
                     "Active": true,
                     "ScriptName": "ColliderDamage",
                     "damage": 10
+                },
+                {
+                    "Type": 16,
+                    "Active": true,
+                    "RootBone UID": 1878973515,
+                    "MeshRendererUID": 2028231693,
+                    "Animations": [
+                        1484409394,
+                        1429587511
+                    ]
                 }
             ]
         },
