@@ -129,6 +129,7 @@ uniform AreaLightInfo areaLightInfo[5];
 
 uniform sampler2D shadowMap;
 uniform sampler2D normalMap;
+uniform sampler2D specularMap;
 uniform vec3 cameraPosition;
 
 out vec4 color;
@@ -206,6 +207,7 @@ vec3 CalculateDirectionalLight()
 	vec3 normal = texture(normalMap, fs_in.TexCoords).rgb;
     normal = normalize(normal * 2.0 - 1.0);
     
+    float specMapValue = texture(specularMap, fs_in.TexCoords).r;
     
 	vec3 lighting = vec3(0.0, 0.0, 0.0);
     
@@ -226,7 +228,7 @@ vec3 CalculateDirectionalLight()
     		float spec = 0.0;
     		vec3 halfwayDir = normalize(lightDir + viewDir);  
     		spec = pow(max(dot(normal, halfwayDir), 0.0), lightInfo[i].specularValue);
-    		vec3 specular = spec * lightInfo[i].lightColor;
+    		vec3 specular = spec * lightInfo[i].lightColor * specMapValue;
         	
     	 // calculate shadow
     		lighting += (lightInfo[i].ambientLightColor + (1.0 - shadow) * (diffuse + specular)) * lightInfo[i].lightIntensity;
@@ -437,6 +439,7 @@ void main()
     color = vec4((directionalLight + areaLight) * fs_in.vertexColor, 1.0);
 }
 #endif
+
 
 
 

@@ -49,6 +49,7 @@ public:
 private:
 	ResourceMesh* _mesh = nullptr;
 	ResourceTexture* normalMap = nullptr;
+	ResourceTexture* specularMap = nullptr;
 
 	bool drawDebugVertices;
 	C_Transform* gameObjectTransform = nullptr;

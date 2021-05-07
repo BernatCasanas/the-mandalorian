@@ -215,6 +215,26 @@ bool ModuleRenderer3D::Init()
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, SQUARE_TEXTURE_W, SQUARE_TEXTURE_H, 0, GL_RGBA, GL_UNSIGNED_BYTE, defaultNormalMapImage);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
+	//Generate default specular map
+
+	for (int i = 0; i < SQUARE_TEXTURE_W; i++) {
+		for (int j = 0; j < SQUARE_TEXTURE_H; j++) {
+			defaultSpecularMapImage[i][j][0] = (GLubyte)255;
+			defaultSpecularMapImage[i][j][1] = (GLubyte)255;
+			defaultSpecularMapImage[i][j][2] = (GLubyte)255;
+			defaultSpecularMapImage[i][j][3] = (GLubyte)255;
+		}
+	}
+
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glGenTextures(1, &defaultSpecularMap);
+	glBindTexture(GL_TEXTURE_2D, defaultSpecularMap);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, SQUARE_TEXTURE_W, SQUARE_TEXTURE_H, 0, GL_RGBA, GL_UNSIGNED_BYTE, defaultSpecularMapImage);
+	glBindTexture(GL_TEXTURE_2D, 0);
 
 	// Projection matrix for
 	OnResize(App->moduleWindow->s_width, App->moduleWindow->s_height);
@@ -429,6 +449,7 @@ bool ModuleRenderer3D::CleanUp()
 
 	glDeleteTextures(1, &checkersTexture);
 	glDeleteTextures(1, &defaultNormalMap);
+	glDeleteTextures(1, &defaultSpecularMap);
 
 	SDL_GL_DeleteContext(context);
 	ClearAllRenderData();

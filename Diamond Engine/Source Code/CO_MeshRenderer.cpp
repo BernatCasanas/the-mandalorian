@@ -28,7 +28,7 @@
 #include "MathGeoLib/include/Geometry/Plane.h"
 
 
-C_MeshRenderer::C_MeshRenderer(GameObject* _gm) : Component(_gm), _mesh(nullptr), normalMap(nullptr),
+C_MeshRenderer::C_MeshRenderer(GameObject* _gm) : Component(_gm), _mesh(nullptr), normalMap(nullptr), specularMap(nullptr),
 faceNormals(false), vertexNormals(false), showAABB(false), showOBB(false), drawDebugVertices(false), drawStencil(false),
 calculatedBonesThisFrame(false), boneTransforms(), stencilEmissionAmmount(0.9f)
 {
@@ -55,6 +55,12 @@ C_MeshRenderer::~C_MeshRenderer()
 	{
 		EngineExternal->moduleResources->UnloadResource(normalMap->GetUID());
 		normalMap = nullptr;
+	}
+
+	if (specularMap != nullptr)
+	{
+		EngineExternal->moduleResources->UnloadResource(specularMap->GetUID());
+		specularMap = nullptr;
 	}
 
 	gameObjectTransform = nullptr;
@@ -127,7 +133,7 @@ void C_MeshRenderer::RenderMesh(bool rTex)
 	if (drawDebugVertices)
 		DrawDebugVertices();
 
-	_mesh->RenderMesh(id, alternColor, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform, normalMap, stencilEmissionAmmount);
+	_mesh->RenderMesh(id, alternColor, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform, normalMap, specularMap, stencilEmissionAmmount);
 
 	if (vertexNormals || faceNormals)
 		_mesh->RenderMeshDebug(&vertexNormals, &faceNormals, transform->GetGlobalTransposed());
@@ -159,9 +165,9 @@ void C_MeshRenderer::RenderMeshStencil(bool rTex)
 	TryCalculateBones();
 
 	if (hasStencilMatActive)
-		_mesh->RenderMesh(id, alternColorStencil, rTex, (stencilMaterial && stencilMaterial->material != nullptr) ? stencilMaterial->material : EngineExternal->moduleScene->defaultMaterial, transform, nullptr, stencilEmissionAmmount);
+		_mesh->RenderMesh(id, alternColorStencil, rTex, (stencilMaterial && stencilMaterial->material != nullptr) ? stencilMaterial->material : EngineExternal->moduleScene->defaultMaterial, transform, nullptr, nullptr, stencilEmissionAmmount);
 	else
-		_mesh->RenderMesh(id, alternColorStencil, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform, nullptr, stencilEmissionAmmount);
+		_mesh->RenderMesh(id, alternColorStencil, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform, nullptr, nullptr, stencilEmissionAmmount);
 
 }
 
@@ -180,6 +186,13 @@ void C_MeshRenderer::SaveData(JSON_Object* nObj)
 		DEJson::WriteString(nObj, "NormalMapAssetPath", normalMap->GetAssetPath());
 		DEJson::WriteString(nObj, "NormalMapLibraryPath", normalMap->GetLibraryPath());
 		DEJson::WriteInt(nObj, "NormalMapUID", normalMap->GetUID());
+	}
+
+	if (specularMap != nullptr)
+	{
+		DEJson::WriteString(nObj, "SpecularMapAssetPath", specularMap->GetAssetPath());
+		DEJson::WriteString(nObj, "SpecularMapLibraryPath", specularMap->GetLibraryPath());
+		DEJson::WriteInt(nObj, "SpecularMapUID", specularMap->GetUID());
 	}
 
 	DEJson::WriteVector3(nObj, "alternColor", &alternColor.x);
@@ -209,6 +222,12 @@ void C_MeshRenderer::LoadData(DEConfig& nObj)
 
 	if (texName != "")
 		normalMap = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("NormalMapUID"), texName.c_str()));
+
+	texPath = nObj.ReadString("SpecularMapAssetPath");
+	texName = nObj.ReadString("SpecularMapLibraryPath");
+
+	if (texName != "")
+		specularMap = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("SpecularMapUID"), texName.c_str()));
 
 	gameObject->transform->UpdateBoxes();
 }
@@ -290,6 +309,43 @@ bool C_MeshRenderer::OnEditor()
 			{
 				EngineExternal->moduleResources->UnloadResource(normalMap->GetUID());
 				normalMap = nullptr;
+			}
+		}
+
+		//Specular map
+		ImGui::TextColored(ImVec4(1.f, 1.f, 0.f, 1.f), "Specular map");
+		if (specularMap != nullptr)
+			ImGui::Image((ImTextureID)specularMap->textureID, ImVec2(64, 64), ImVec2(0, 1), ImVec2(1, 0));
+
+		else
+			ImGui::Image((ImTextureID)EngineExternal->moduleRenderer3D->defaultSpecularMap, ImVec2(64, 64), ImVec2(0, 1), ImVec2(1, 0));
+
+		if (ImGui::BeginDragDropTarget())
+		{
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("_TEXTURE"))
+			{
+				//Drop asset from Asset window to scene window
+				std::string* metaFileDrop = (std::string*)payload->Data;
+
+				if (specularMap != nullptr)
+					EngineExternal->moduleResources->UnloadResource(specularMap->GetUID());
+
+				std::string libraryName = EngineExternal->moduleResources->LibraryFromMeta(metaFileDrop->c_str());
+
+				specularMap = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(EngineExternal->moduleResources->GetMetaUID(metaFileDrop->c_str()), libraryName.c_str()));
+				LOG(LogType::L_WARNING, "File %s loaded to scene", (*metaFileDrop).c_str());
+			}
+			ImGui::EndDragDropTarget();
+		}
+
+		if (specularMap != nullptr)
+		{
+			char name[32];
+			sprintf_s(name, "Remove specular map: %d", specularMap->GetUID());
+			if (ImGui::Button(name))
+			{
+				EngineExternal->moduleResources->UnloadResource(specularMap->GetUID());
+				specularMap = nullptr;
 			}
 		}
 

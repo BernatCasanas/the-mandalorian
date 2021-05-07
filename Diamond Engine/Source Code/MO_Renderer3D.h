@@ -134,6 +134,9 @@ public:
 	GLuint defaultNormalMap;
 	GLubyte defaultNormalMapImage[SQUARE_TEXTURE_W][SQUARE_TEXTURE_H][4];
 
+	GLuint defaultSpecularMap;
+	GLubyte defaultSpecularMapImage[SQUARE_TEXTURE_W][SQUARE_TEXTURE_H][4];
+
 
 	unsigned int resolution;
 	bool debugDraw;

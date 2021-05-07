@@ -107,7 +107,8 @@ bool ResourceMesh::UnloadFromMemory()
 	return true;
 }
 
-void ResourceMesh::RenderMesh(GLuint textureID, float3 color, bool renderTexture, ResourceMaterial* material, C_Transform* _transform, ResourceTexture* normalMap, float emissionAmmount)
+void ResourceMesh::RenderMesh(GLuint textureID, float3 color, bool renderTexture, ResourceMaterial* material, C_Transform* _transform, 
+							  ResourceTexture* normalMap, ResourceTexture* specularMap, float emissionAmmount)
 {
 	//ASK: glDrawElementsInstanced()?
 	//if (textureID != 0 && (renderTexture || (generalWireframe != nullptr && *generalWireframe == false)))
@@ -118,7 +119,7 @@ void ResourceMesh::RenderMesh(GLuint textureID, float3 color, bool renderTexture
 		material->shader->Bind();
 		material->PushUniforms();
 
-		PushDefaultMeshUniforms(material->shader->shaderProgramID, textureID, _transform, color, normalMap, emissionAmmount);
+		PushDefaultMeshUniforms(material->shader->shaderProgramID, textureID, _transform, color, normalMap, specularMap, emissionAmmount);
 
 		EngineExternal->moduleRenderer3D->PushLightUniforms(material);
 	}
@@ -399,7 +400,7 @@ void ResourceMesh::LoadBones(char** cursor)
 	}
 }
 
-void ResourceMesh::PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Transform* _transform, float3 color, ResourceTexture* normalMap,float emissionAmmount)
+void ResourceMesh::PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Transform* _transform, float3 color, ResourceTexture* normalMap, ResourceTexture* specularMap, float emissionAmmount)
 {
 	if (textureID != 0)
 		glUniform1i(glGetUniformLocation(shaderID, "hasTexture"), 1);
@@ -439,14 +440,25 @@ void ResourceMesh::PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Tran
 	modelLoc = glGetUniformLocation(shaderID, "lightPosition");
 	glUniform3fv(modelLoc, 1, &lightPosition.x);
 
-	glActiveTexture(GL_TEXTURE8);
-	glUniform1i(glGetUniformLocation(shaderID, "normalMap"), 8);
+	glActiveTexture(GL_TEXTURE15);
+	glUniform1i(glGetUniformLocation(shaderID, "normalMap"), 15);
 
 	if (normalMap != nullptr)
 		glBindTexture(GL_TEXTURE_2D, normalMap->textureID);
 
 	else
 		glBindTexture(GL_TEXTURE_2D, EngineExternal->moduleRenderer3D->defaultNormalMap);
+
+	glActiveTexture(GL_TEXTURE16);
+	glUniform1i(glGetUniformLocation(shaderID, "specularMap"), 16);
+
+	if (normalMap != nullptr)
+		glBindTexture(GL_TEXTURE_2D, specularMap->textureID);
+
+	else
+		glBindTexture(GL_TEXTURE_2D, EngineExternal->moduleRenderer3D->defaultSpecularMap);
+
+
 
 	if (boneTransforms.size() > 0)
 	{
