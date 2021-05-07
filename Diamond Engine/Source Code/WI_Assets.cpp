@@ -378,6 +378,9 @@ void W_Assets::SetFilePayload(AssetDir& file)
 	case  Resource::Type::SCRIPT:
 		ImGui::SetDragDropPayload("_SCRIPT", &file.importPath, file.importPath.length());
 		break;
+	case  Resource::Type::POSTPROCESS:
+		ImGui::SetDragDropPayload("_PPROCESS", &file.importPath, file.importPath.length());
+		break;
 	default:
 		break;
 	}

@@ -13,17 +13,21 @@
 #include"CO_Transform.h"
 #include"OpenGL.h"
 #include"MO_Window.h"
+#include "MO_ResourceManager.h"
+#include "IM_PostProcessImporter.h"
 
-C_Camera::C_Camera() : Component(nullptr), 
-	fov(60.0f), 
-	cullingState(true),
-	msaaSamples(4), 
-	orthoSize(0.0f),
-	windowWidth(0),
-	windowHeight(0),
-	drawSkybox(true),
-	msaaFBO(1920,1080,4),
-	resolvedFBO(1920,1080,DEPTH_BUFFER_TYPE::DEPTH_TEXTURE)
+C_Camera::C_Camera() : Component(nullptr),
+fov(60.0f),
+cullingState(true),
+msaaSamples(4),
+orthoSize(0.0f),
+windowWidth(0),
+windowHeight(0),
+drawSkybox(true),
+msaaFBO(1920, 1080, 4),
+resolvedFBO(1920, 1080, DEPTH_BUFFER_TYPE::DEPTH_TEXTURE),
+postProcessProfile(nullptr)
+
 {
 	name = "Camera";
 	camFrustrum.type = FrustumType::PerspectiveFrustum;
@@ -42,7 +46,8 @@ C_Camera::C_Camera() : Component(nullptr),
 C_Camera::C_Camera(GameObject* _gm) : Component(_gm), fov(60.0f), cullingState(true),
 msaaSamples(4), orthoSize(0.0f), drawSkybox(true),
 msaaFBO(1920, 1080, 4),
-resolvedFBO(1920, 1080, DEPTH_BUFFER_TYPE::DEPTH_TEXTURE)
+resolvedFBO(1920, 1080, DEPTH_BUFFER_TYPE::DEPTH_TEXTURE),
+postProcessProfile(nullptr)
 {
 
 	name = "Camera";
@@ -54,7 +59,7 @@ resolvedFBO(1920, 1080, DEPTH_BUFFER_TYPE::DEPTH_TEXTURE)
 
 	camFrustrum.verticalFov = 60.0f * DEGTORAD;
 	camFrustrum.horizontalFov = 2.0f * atanf(tanf(camFrustrum.verticalFov / 2.0f) * 1.7f);
-	
+
 	camFrustrum.pos = gameObject->transform->position;
 }
 
@@ -68,6 +73,12 @@ C_Camera::~C_Camera()
 
 	if (EngineExternal && EngineExternal->moduleRenderer3D->activeRenderCamera == this)
 		EngineExternal->moduleRenderer3D->activeRenderCamera = nullptr;
+
+	if (postProcessProfile != nullptr)
+	{
+		EngineExternal->moduleResources->UnloadResource(postProcessProfile->GetUID());
+		postProcessProfile = nullptr;
+	}
 }
 
 #ifndef STANDALONE
@@ -83,8 +94,8 @@ bool C_Camera::OnEditor()
 		ImGui::DragFloat("Far Distance: ", &camFrustrum.farPlaneDistance, 0.1f, camFrustrum.nearPlaneDistance, 10000.f);
 
 		ImGui::Separator();
-		
-		if (camFrustrum.type == FrustumType::PerspectiveFrustum) 
+
+		if (camFrustrum.type == FrustumType::PerspectiveFrustum)
 		{
 			ImGui::Text("Vertical FOV: %f", camFrustrum.verticalFov);
 			ImGui::Text("Horizontal FOV: %f", camFrustrum.horizontalFov);
@@ -97,18 +108,18 @@ bool C_Camera::OnEditor()
 		}
 		else
 		{
-			if (ImGui::DragFloat("Size: ", &orthoSize, 0.01f, 0.01f, 100.0f)) 
+			if (ImGui::DragFloat("Size: ", &orthoSize, 0.01f, 0.01f, 100.0f))
 			{
 				//camFrustrum.orthographicWidth = 1920 / orthoSize;
 				//camFrustrum.orthographicHeight = 1080 / orthoSize;
 			}
 		}
-		
 
-		
-		if (ImGui::BeginCombo("Frustrum Type", (camFrustrum.type == FrustumType::PerspectiveFrustum) ? "Prespective" : "Orthographic")) 
+
+
+		if (ImGui::BeginCombo("Frustrum Type", (camFrustrum.type == FrustumType::PerspectiveFrustum) ? "Prespective" : "Orthographic"))
 		{
-			if (ImGui::Selectable("Perspective")) 
+			if (ImGui::Selectable("Perspective"))
 				camFrustrum.type = FrustumType::PerspectiveFrustum;
 
 			if (ImGui::Selectable("Orthographic"))
@@ -123,17 +134,64 @@ bool C_Camera::OnEditor()
 		ImGui::Text("Draw Skybox: "); ImGui::SameLine();
 		ImGui::Checkbox("##drawSkybox", &drawSkybox);
 
-		ImGui::Text("MSAA Samples: "); ImGui::SameLine(); 
-		if (ImGui::SliderInt("##msaasamp", &msaaSamples, 1, 8)) 
+		ImGui::Text("MSAA Samples: "); ImGui::SameLine();
+		if (ImGui::SliderInt("##msaasamp", &msaaSamples, 1, 8))
 		{
-			msaaFBO.ReGenerateBuffer(msaaFBO.texBufferSize.x, msaaFBO.texBufferSize.y,msaaSamples);
+			msaaFBO.ReGenerateBuffer(msaaFBO.texBufferSize.x, msaaFBO.texBufferSize.y, msaaSamples);
 			resolvedFBO.ReGenerateBuffer(resolvedFBO.texBufferSize.x, resolvedFBO.texBufferSize.y);
 		}
 
-		if(ImGui::Button("Set as Game Camera")) 
+		if (ImGui::Button("Set as Game Camera"))
 		{
 			EngineExternal->moduleRenderer3D->SetGameRenderTarget(this);
 		}
+
+		ImGui::Separator();
+		ImGui::Spacing();
+		ImGui::Text("Drop here to change profile");
+		ImGui::Spacing();
+
+		if (ImGui::BeginDragDropTarget())
+		{
+			if (const ImGuiPayload * payload = ImGui::AcceptDragDropPayload("_PPROCESS"))
+			{
+				std::string* assetsPath = (std::string*)payload->Data;
+
+				ResourcePostProcess* newProfile = dynamic_cast<ResourcePostProcess*>(EngineExternal->moduleResources->RequestFromAssets(assetsPath->c_str()));
+
+				SetPostProcessProfile(newProfile);
+			}
+			ImGui::EndDragDropTarget();
+		}
+
+		if (postProcessProfile == nullptr)
+		{
+			if (ImGui::Button("Create new Profile ##Post Processing Profile"))
+			{
+				//PostProcessImporter::CreateBaseProfileFile("Assets/PostProcessingProfiles/test1.pprocess");
+				//TODO open  Popup & create new resource with the name
+				ImGui::OpenPopup("Create new Profile##CamProfile", ImGuiPopupFlags_NoOpenOverExistingPopup);
+			}
+			DrawCreationWindow();
+		}
+		else
+		{
+			postProcessProfile->DrawEditor("##Post Processing Profile");
+			ImGui::SameLine();
+			if (ImGui::Button("Erase Profile##CamProfile"))
+			{
+				SetPostProcessProfile(nullptr);
+			}
+		}
+
+		
+
+
+
+
+
+
+
 
 		return true;
 	}
@@ -176,6 +234,11 @@ void C_Camera::SaveData(JSON_Object* nObj)
 	DEJson::WriteBool(nObj, "culling", cullingState);
 
 	DEJson::WriteBool(nObj, "drawSkybox", drawSkybox);
+
+	if (postProcessProfile != nullptr)
+	{
+		DEJson::WriteInt(nObj, "ProfileUID", postProcessProfile->GetUID());
+	}
 }
 
 void C_Camera::LoadData(DEConfig& nObj)
@@ -197,6 +260,16 @@ void C_Camera::LoadData(DEConfig& nObj)
 	drawSkybox = nObj.ReadBool("drawSkybox");
 
 	EngineExternal->moduleScene->SetGameCamera(this);
+
+	if (postProcessProfile != nullptr)
+	{
+		EngineExternal->moduleResources->UnloadResource(postProcessProfile->GetUID());
+		postProcessProfile = nullptr;
+	}
+	if (nObj.ReadInt("ProfileUID") != 0)
+	{
+		postProcessProfile = dynamic_cast<ResourcePostProcess*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("ProfileUID"), Resource::Type::POSTPROCESS));
+	}
 }
 
 void C_Camera::StartDraw()
@@ -236,7 +309,7 @@ void C_Camera::StartDraw()
 void C_Camera::EndDraw()
 {
 	msaaFBO.ResolveToFBO(resolvedFBO);
-	
+
 	glDisable(GL_DEPTH_TEST);
 	EngineExternal->moduleRenderer3D->activeRenderCamera = nullptr;
 }
@@ -247,8 +320,8 @@ void C_Camera::ReGenerateBuffer(int w, int h)
 	windowHeight = h;
 
 	SetAspectRatio((float)w / (float)h);
-	
-	msaaFBO.ReGenerateBuffer(w, h,msaaSamples);
+
+	msaaFBO.ReGenerateBuffer(w, h, msaaSamples);
 	resolvedFBO.ReGenerateBuffer(w, h);
 }
 
@@ -260,6 +333,52 @@ void C_Camera::PushCameraMatrix()
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf((GLfloat*)ViewMatrixOpenGL().v);
+}
+
+void C_Camera::SetPostProcessProfile(ResourcePostProcess* newProfile)
+{
+	if (postProcessProfile != nullptr)
+	{
+		EngineExternal->moduleResources->UnloadResource(postProcessProfile->GetUID());
+	}
+	postProcessProfile = newProfile;
+}
+
+void C_Camera::DrawCreationWindow()
+{
+	if (ImGui::BeginPopupContextWindow("Create new Profile##CamProfile", ImGuiWindowFlags_NoInputs))
+	{
+
+		static char name[50] = "\0";
+
+		ImGui::Text("Profile Name:"); ImGui::SameLine();
+
+		std::string id("##");
+		id += ".pprocess";
+
+		ImGui::InputText(id.c_str(), name, sizeof(char) * 50);
+		if (ImGui::Button("Create##CamProfile"))
+		{
+			std::string path = "Assets/PostProcessingProfiles/";
+			path += name;
+
+			if (path.find('.') == path.npos)
+				path += ".pprocess";
+
+			//TODO: Check if the extension is correct, to avoid a .cs.glsl file
+			if (path.find(".pprocess") != path.npos)
+			{
+
+				SetPostProcessProfile(PostProcessImporter::CreateBaseProfileFile(path.c_str()));
+
+				name[0] = '\0';
+			}
+
+			ImGui::CloseCurrentPopup();
+		}
+
+		ImGui::EndPopup();
+	}
 }
 
 void C_Camera::LookAt(const float3& Spot)

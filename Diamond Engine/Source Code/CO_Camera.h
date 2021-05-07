@@ -4,6 +4,7 @@
 #include "DE_Advanced_FrameBuffer.h"
 
 #include"MathGeoLib/include/Geometry/Frustum.h"
+class ResourcePostProcess;
 
 class C_Camera : public Component
 {
@@ -33,6 +34,8 @@ public:
 
 	void PushCameraMatrix();
 
+	void SetPostProcessProfile(ResourcePostProcess* newProfile);
+	void DrawCreationWindow();
 	//DE_FrameBuffer resolvedFBO;
 	//DE_FrameBuffer msaaFBO;
 
@@ -46,6 +49,8 @@ public:
 
 	float windowWidth;
 	float windowHeight;
+
+	ResourcePostProcess* postProcessProfile;
 
 //Movement logic
 public: 
