@@ -1808,4 +1808,9 @@ public class Core : Entity
 
         }
     }
+
+    public void ResetBuffs()
+    {
+        PlayerStatuses.Clear();
+    }
 }

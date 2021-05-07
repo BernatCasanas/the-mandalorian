@@ -21,6 +21,7 @@ namespace DiamondEngine
 
         public static void LoadData()
         {
+            data.Clear();
             string jsonString = File.ReadAllText("SaveData/saveData.json");
             data = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonString);
         }

@@ -23,6 +23,10 @@ public class HubSkillTreeController : DiamondComponent
     public GameObject macaronResourceText = null;
     public GameObject scrapResourceText = null;
 
+    private int beskarResource = 0;
+    private int macaronResource = 0;
+    private int scrapResource = 0;
+
     public void Awake()
     {
         beskarResourceText.GetComponent<Text>().text = PlayerResources.GetResourceCount(RewardType.REWARD_BESKAR).ToString();
@@ -32,6 +36,24 @@ public class HubSkillTreeController : DiamondComponent
 
     public void Update()
     {
+        if(beskarResource!= PlayerResources.GetResourceCount(RewardType.REWARD_BESKAR))
+        {
+            beskarResource = PlayerResources.GetResourceCount(RewardType.REWARD_BESKAR);
+            beskarResourceText.GetComponent<Text>().text = beskarResource.ToString();
+        }
+
+        if (macaronResource != PlayerResources.GetResourceCount(RewardType.REWARD_MACARON))
+        {
+            macaronResource = PlayerResources.GetResourceCount(RewardType.REWARD_MACARON);
+            macaronResourceText.GetComponent<Text>().text = macaronResource.ToString();
+        }
+
+        if (scrapResource != PlayerResources.GetResourceCount(RewardType.REWARD_SCRAP))
+        {
+            scrapResource = PlayerResources.GetResourceCount(RewardType.REWARD_SCRAP);
+            scrapResourceText.GetComponent<Text>().text = scrapResource.ToString();
+        }
+
         if (Core.instance.gameObject != null)
             mando = Core.instance.gameObject;
 

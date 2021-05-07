@@ -242,4 +242,13 @@ public static class PlayerResources
         Debug.Log("Boons reseted");
     }
 
+    public static void ResetResources()
+    {
+        beskarCounter = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("beskarCounter") : 0;
+        macaronCounter = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("macaronCounter") : 0;
+        milkCounter = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("milkCounter") : 0;
+        scrapCounter = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("scrapCounter") : 0;
+        runCoins = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("runCoins") : 0;
+    }
+
 }

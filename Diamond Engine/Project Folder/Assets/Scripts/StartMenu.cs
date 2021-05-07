@@ -12,9 +12,13 @@ public class StartMenu : DiamondComponent
 
 	public void OnExecuteButton()
 	{
-		if (gameObject.Name == "Play")
+		if (gameObject.Name == "New Game" || gameObject.Name == "Load Game")
 		{
-			DiamondPrefs.LoadData();
+			if (gameObject.Name == "Load Game")
+				DiamondPrefs.LoadData();
+			else
+				DiamondPrefs.Clear();
+			DiamondPrefs.Write("reset", true);
 			if (Core.instance != null)
 				Core.instance.SaveBuffs();
 			SceneManager.LoadScene(1564453141);
