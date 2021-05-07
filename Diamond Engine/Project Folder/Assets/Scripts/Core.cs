@@ -1735,7 +1735,7 @@ public class Core : Entity
         {
             Random rand = new Random();
             float result = rand.Next(1, 101);
-            if (result <= Core.instance.GetStatusData(STATUS_TYPE.PRIM_CHARGED).severity)
+            if (result <= GetStatusData(STATUS_TYPE.PRIM_CHARGED).severity)
                 supercharged = 2;
         }
           
