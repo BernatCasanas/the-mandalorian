@@ -7,7 +7,7 @@
             "layer": "Default",
             "Active": true,
             "UID": 1871892114,
-            "ParentUID": 0,
+            "ParentUID": 1152800351,
             "PrefabReference": 0,
             "PrefabID": 2881544,
             "DontDestroy": false,
@@ -15,7 +15,41 @@
             "Position": [
                 0,
                 0,
-                -9.8412103652954102
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "ForceParticle",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 610870844,
+            "ParentUID": 1871892114,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
             ],
             "Rotation": [
                 0,
@@ -88,8 +122,8 @@
                             "texUID": 1635986629,
                             "paEmitterName": "Empty",
                             "paLifeTime": [
-                                0.80000001192092896,
-                                0.80000001192092896
+                                0.60000002384185791,
+                                0.60000002384185791
                             ],
                             "paSize": [
                                 0.30000001192092896,
@@ -101,8 +135,8 @@
                                 1,
                                 1
                             ],
-                            "paPerSec": 30,
-                            "paRelative": true,
+                            "paPerSec": 20,
+                            "paRelative": false,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 0,
@@ -148,16 +182,16 @@
                         },
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/568017479.dds",
-                            "texUID": 568017479,
+                            "LibraryPath": "Library\/Textures\/1736389418.dds",
+                            "texUID": 1736389418,
                             "paEmitterName": "Empty",
                             "paLifeTime": [
                                 0.5,
                                 0.30000001192092896
                             ],
                             "paSize": [
-                                0.10000000149011612,
-                                0.10000000149011612
+                                0.05000000074505806,
+                                0.029999999329447746
                             ],
                             "paColor": [
                                 0.99998998641967773,
@@ -179,6 +213,17 @@
                                     "paFOLT_gravityMod": 0,
                                     "paFOLT_gravity": -0,
                                     "paFOLT_forceType": 0
+                                },
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        0,
+                                        0
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        -8,
+                                        8
+                                    ]
                                 },
                                 {
                                     "paEffectType": 2,
