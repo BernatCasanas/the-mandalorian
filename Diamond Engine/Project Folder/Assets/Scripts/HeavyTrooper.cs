@@ -681,7 +681,8 @@ public class HeavyTrooper : Enemy
         sweepTimer = sweepTime;
         //doneDashes = 0;
 
-        Animator.Play(gameObject, "ST_Shoot", speedMult);
+        Animator.Play(gameObject, "HVY_Sweep", speedMult);
+        Animator.Play(spear, "HVY_Sweep", speedMult);
         Audio.PlayAudio(gameObject, "Play_Heavytrooper_Attack");
         //UpdateAnimationSpd(speedMult);
     }
@@ -723,7 +724,8 @@ public class HeavyTrooper : Enemy
 
         dieTimer = dieTime;
 
-        //Animator.Play(gameObject, "BT_Die", speedMult);
+        Animator.Play(gameObject, "HVY_Die", speedMult);
+        Animator.Play(spear, "HVY_Die", speedMult);
         UpdateAnimationSpd(speedMult);
 
         Audio.PlayAudio(gameObject, "Play_Heavytrooper_Death");
