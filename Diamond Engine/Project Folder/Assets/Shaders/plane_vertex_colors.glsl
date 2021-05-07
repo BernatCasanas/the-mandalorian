@@ -124,7 +124,7 @@ struct AreaLightInfo
 
 
 uniform LightInfo lightInfo[2];
-uniform AreaLightInfo areaLightInfo[30];
+uniform AreaLightInfo areaLightInfo[5];
 
 
 uniform sampler2D shadowMap;
@@ -315,7 +315,7 @@ vec3 CalculateClosestPoint(vec3 projectedPoint)
 	
 	for (int i = 0; i < 4; ++i)
 	{
-		float dst = distance(projectedPoint, rectVertex[i]);
+		float dst = LengthScuared(rectVertex[i] - projectedPoint);
 		
 		if (dst < closestDistance)
 		{
@@ -360,7 +360,7 @@ vec3 CalculateClosestPoint(vec3 projectedPoint)
 		vec3 posiblePoint2 = NearestPointOnFiniteLine(projectedPoint, prevVertex, closestVertex);
 			
 			
-		if (distance(projectedPoint, posiblePoint1) < distance (projectedPoint, posiblePoint2))
+		if (LengthScuared(posiblePoint1 - projectedPoint) < LengthScuared(posiblePoint2 - projectedPoint))
 			return posiblePoint1;
 			
 				
@@ -390,7 +390,7 @@ vec3 CalculateAreaLight()
 {
 	vec3 lighting = vec3(0.0, 0.0, 0.0);
     
-    for (int i = 0; i < 30; i++)
+    for (int i = 0; i < 5; i++)
     {
 		if (areaLightInfo[i].activeLight == true)
 		{
@@ -433,16 +433,11 @@ void main()
     vec3 directionalLight = CalculateDirectionalLight();
     vec3 areaLight = CalculateAreaLight();
     
-    if (directionalLight == vec3(0.0, 0.0, 0.0))
-    	color = vec4(areaLight * fs_in.vertexColor, 1.0);
-    	
-    else if (areaLight == vec3(0.0, 0.0, 0.0))
-    	color = vec4(directionalLight * fs_in.vertexColor, 1.0);
-    	
-    else
-    	color = vec4((directionalLight + areaLight) * fs_in.vertexColor, 1.0);
+
+    color = vec4((directionalLight + areaLight) * fs_in.vertexColor, 1.0);
 }
 #endif
+
 
 
 

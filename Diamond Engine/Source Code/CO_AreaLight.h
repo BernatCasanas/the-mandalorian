@@ -32,6 +32,9 @@ public:
 
 	float3 GetPosition() const;
 
+	void ActivateLight();
+	void DeactivateLight();
+
 public:
 	float4x4 spaceMatrixOpenGL;
 
@@ -43,6 +46,8 @@ private:
 
 	float maxDistance;
 	float fadeDistance;
+
+	bool active = true;
 };
 
 const float color[] = { 0.95, 0.95, 0.95 };

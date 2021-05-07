@@ -19,7 +19,8 @@ C_AreaLight::C_AreaLight(GameObject* gameObject) : Component(gameObject),
 	lightIntensity(1.0f),
 	specularValue(1.0f),
 	maxDistance(600.f),
-	fadeDistance(50.f)
+	fadeDistance(50.f),
+	active(true)
 {
 	name = "Area Light";
 
@@ -62,9 +63,14 @@ bool C_AreaLight::OnEditor()
 
 		ImGui::NewLine();
 
-		if (ImGui::Button("Set light source", ImVec2(0, 50)))
-			EngineExternal->moduleRenderer3D->AddAreaLight(this);
+		if (ImGui::Checkbox("Light active", &active))
+		{
+			if (active == true)
+				EngineExternal->moduleRenderer3D->AddAreaLight(this);
 
+			else
+				EngineExternal->moduleRenderer3D->RemoveAreaLight(this);
+		}
 		return true;
 	}
 
@@ -116,6 +122,7 @@ void C_AreaLight::DebugDraw()
 }
 #endif // !STANDALONE
 
+
 void C_AreaLight::SaveData(JSON_Object* nObj)
 {
 	Component::SaveData(nObj);
@@ -127,6 +134,7 @@ void C_AreaLight::SaveData(JSON_Object* nObj)
 	data.WriteFloat("specularValue", specularValue);
 	data.WriteFloat("fadeDistance", fadeDistance);
 	data.WriteFloat("maxDistance", maxDistance);
+	data.WriteBool("lightActive", active);
 }
 
 
@@ -140,6 +148,11 @@ void C_AreaLight::LoadData(DEConfig& nObj)
 	specularValue = nObj.ReadFloat("specularValue");
 	fadeDistance = nObj.ReadFloat("fadeDistance");
 	maxDistance = nObj.ReadFloat("maxDistance");
+
+	active = nObj.ReadBool("lightActive");
+
+	if (active == false)
+		DeactivateLight();
 }
 
 
@@ -218,4 +231,18 @@ void C_AreaLight::EndPass()
 float3 C_AreaLight::GetPosition() const
 {
 	return gameObject->transform->position;
+}
+
+
+void C_AreaLight::ActivateLight()
+{
+	active = true;
+	EngineExternal->moduleRenderer3D->AddAreaLight(this);
+}
+
+
+void C_AreaLight::DeactivateLight()
+{
+	active = false;
+	EngineExternal->moduleRenderer3D->RemoveAreaLight(this);
 }
