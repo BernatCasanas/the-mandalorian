@@ -7,7 +7,7 @@ using DiamondEngine;
 
 public class Deathtrooper : Enemy
 {
-    enum STATE : int
+    public enum STATE : int
     {
         NONE = -1,
         IDLE,
@@ -685,6 +685,10 @@ public class Deathtrooper : Enemy
             Animator.SetSpeed(shotgun, newSpd);
             currAnimationPlaySpd = newSpd;
         }
+    }
+    public STATE GetCurrentSate()
+    {
+        return currentState;
     }
 
 }
