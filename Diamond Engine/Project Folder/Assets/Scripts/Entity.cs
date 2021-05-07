@@ -59,6 +59,7 @@ public enum STATUS_TYPE
     RAW_DAMAGE,
     LIFESTEAL,
     BLOCK,
+    PRIM_SPEED,
 }
 
 public enum STATUS_APPLY_TYPE
