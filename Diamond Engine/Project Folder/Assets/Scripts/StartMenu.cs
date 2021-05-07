@@ -29,7 +29,6 @@ public class StartMenu : DiamondComponent
         {
             gameObject.GetComponent<Navigation>().SetUpNavButton(newGameButton);
         }
-        Config.SetWindowMode(2);
         ConfigFunctionality.UpdateDisplayText();
     }
     public void OnExecuteButton()
