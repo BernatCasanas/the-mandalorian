@@ -45,7 +45,14 @@ public class EnemyManager : DiamondComponent
 
         //Debug.Log("Enemies left: " + currentEnemies.Count.ToString());
 
-        if (currentEnemies.Count == 0 && GameSceneManager.instance != null)
+        bool enemiesLeftToSpawn = true;
+
+        if(SpawnManager.instance != null)
+        {
+            enemiesLeftToSpawn = SpawnManager.instance.AreEnemiesLeftToSpawn();
+        }
+
+        if (currentEnemies.Count == 0  && awaitingForEnemiesToSpawn == 0 && enemiesLeftToSpawn == false && GameSceneManager.instance != null )
         {
             Debug.Log("Enemy Manager calling to Level End");
             GameSceneManager.instance.LevelEnd();

@@ -25,6 +25,8 @@ public class SpawnManager : DiamondComponent
     private int maxDelayTimeSec = 0;
     private float maxDelayTimePoint = 0f;
 
+    private bool endWave = false;
+
     public void Awake()
     {
         instance = this;
@@ -39,6 +41,7 @@ public class SpawnManager : DiamondComponent
 
         maxDelayTimeSec = (int)maxDelayTime;
         maxDelayTimePoint = maxDelayTime - (float)maxDelayTimeSec;
+        endWave = false;
     }
 
     public void Update()
@@ -65,6 +68,8 @@ public class SpawnManager : DiamondComponent
                     maxEnemiesPerWave += enemyIncreasePerWave;
                     enemiesToSpawn = maxEnemiesPerWave;
                 }
+                else
+                    endWave = true;
             }
         }
 
@@ -154,5 +159,20 @@ public class SpawnManager : DiamondComponent
         }
 
         enemiesToSpawn = enemiesLeftInWave = pendingEnemies;
+    }
+
+    public int GetCurrentWave()
+    {
+        return wave;
+    }
+
+    public bool IsOnEndWave()
+    {
+        return endWave;
+    }
+
+    public bool AreEnemiesLeftToSpawn()
+    {
+        return enemiesLeftInWave > 0 || !endWave;
     }
 }
