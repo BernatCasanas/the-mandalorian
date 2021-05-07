@@ -479,7 +479,7 @@ public class Skytrooper : Enemy
 
     private void Shoot()
     {
-        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1662408971.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, new Vector3(0.5f, 0.5f, 0.5f));
+        //GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1662408971.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, new Vector3(0.5f, 0.5f, 0.5f));
 
         Vector2 player2DPosition = new Vector2(Core.instance.gameObject.transform.globalPosition.x, Core.instance.gameObject.transform.globalPosition.z);
         Vector2 randomPosition = Mathf.RandomPointAround(player2DPosition, 1);
@@ -501,7 +501,7 @@ public class Skytrooper : Enemy
         }
 
 
-        bullet.GetComponent<SkyTrooperShot>().SetTarget(projectileEndPosition, false);
+        //bullet.GetComponent<SkyTrooperShot>().SetTarget(projectileEndPosition, false);
         Animator.Play(gameObject, "SK_Shoot", speedMult);
         Animator.Play(blaster, "SK_Shoot", speedMult);
         UpdateAnimationSpd(speedMult);
