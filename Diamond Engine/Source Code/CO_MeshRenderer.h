@@ -26,8 +26,6 @@ public:
 	bool OnEditor() override;
 #endif // !STANDALONE
 
-	bool IsInsideFrustum(Frustum* camFrustum);
-
 	void SetRootBone(GameObject* _rootBone);
 	void SetRenderMesh(ResourceMesh* mesh);
 	ResourceMesh* GetRenderMesh();
@@ -42,6 +40,7 @@ public:
 	GameObject* rootBone = nullptr;
 	void SetStencilEmissionAmmount(float ammount);
 	float GetStencilEmssionAmmount() const;
+
 public:
 	bool drawStencil;
 	float3 alternColor;

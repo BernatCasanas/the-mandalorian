@@ -118,7 +118,8 @@ public class HeavyTrooper : Enemy
 
         //loadingTime = Animator.GetAnimationDuration(gameObject, "BT_Charge");
         //sweepTime = Animator.GetAnimationDuration(gameObject, "SWEEP");
-        dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
+        //dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
+        dieTime = 3.0f;
 
         if (stunParticle != null)
             stun = stunParticle.GetComponent<ParticleSystem>();

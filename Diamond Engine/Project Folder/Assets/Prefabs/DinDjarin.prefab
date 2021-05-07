@@ -13,20 +13,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                2.6106491088867188,
-                0,
-                0
+                -11.015664100646973,
+                8.8377418518066406,
+                -11.111222267150879
             ],
             "Rotation": [
-                0,
-                0,
-                0,
+                -2.120925657322914e-09,
+                1.4958196530010793e-18,
+                7.0526734452514006e-10,
                 1
             ],
             "Scale": [
+                0.99999821186065674,
                 1,
-                1,
-                1
+                0.99999821186065674
             ],
             "Components": [
                 {
@@ -55,6 +55,7 @@
                     "FireRateMult": 0,
                     "PlayerStatuses": 0,
                     "shootPoint": 158286609,
+                    "rifle": 866035125,
                     "rotationSpeed": 2,
                     "movementSpeed": 5.0500001907348633,
                     "mouseSens": 1,
@@ -1858,6 +1859,108 @@
             ]
         },
         {
+            "name": "RifleJoint",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 2097824215,
+            "ParentUID": 1333412432,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0.23088550567626953,
+                1.0673608779907227,
+                -0.40240001678466797
+            ],
+            "Rotation": [
+                -6.4111318920367921e-08,
+                0.67976999282836914,
+                -0.73342537879943848,
+                -1.7784529404707428e-10
+            ],
+            "Scale": [
+                0.0099999997764825821,
+                0.010000003501772881,
+                0.010000003501772881
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "RifleJoint_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 109356398,
+            "ParentUID": 2097824215,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                1,
+                0
+            ],
+            "Rotation": [
+                2.2204460492503131e-16,
+                -2.2204463139481091e-16,
+                1.7763568394002505e-15,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                0.99999994039535522
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "RifleJoint_end_end",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 856763728,
+            "ParentUID": 109356398,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -1055.39111328125,
+                -1459.1865234375,
+                -830.327392578125
+            ],
+            "Rotation": [
+                -3.7023202281716294e-08,
+                -0.07582554966211319,
+                -0.99712109565734863,
+                -4.6653003238361634e-08
+            ],
+            "Scale": [
+                100.00017547607422,
+                100.00013732910156,
+                99.999969482421875
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
             "name": "Mesh",
             "tag": "Untagged",
             "layer": "Default",
@@ -2588,10 +2691,10 @@
                 -0.19471836090087891
             ],
             "Rotation": [
-                0.19392229616641998,
-                -2.7353405651631135e-10,
-                1.3877789462175682e-17,
-                0.98101699352264404
+                0.1939222663640976,
+                -2.7353402876073574e-10,
+                1.3877787807814457e-17,
+                0.98101687431335449
             ],
             "Scale": [
                 1,
@@ -3525,7 +3628,7 @@
             "layer": "Default",
             "Active": true,
             "UID": 970959798,
-            "ParentUID": 47750865,
+            "ParentUID": 1735369742,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -3564,11 +3667,40 @@
             ]
         },
         {
+            "name": "Healing Particles",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 488266168,
+            "ParentUID": 47750865,
+            "PrefabReference": 0,
+            "PrefabID": 1060233965,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                17.624029159545898,
+                -7.4664182662963867,
+                14.094988822937012
+            ],
+            "Rotation": [
+                2.120925657322914e-09,
+                -1.4958198597962324e-18,
+                -7.0526734452514006e-10,
+                1
+            ],
+            "Scale": [
+                1.0000017881393433,
+                1,
+                1.0000017881393433
+            ],
+            "PrefabObjects": []
+        },
+        {
             "name": "Rifle",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": false,
-            "UID": 613886019,
+            "Active": true,
+            "UID": 866035125,
             "ParentUID": 47750865,
             "PrefabReference": 0,
             "PrefabID": 0,
@@ -3599,7 +3731,7 @@
                     "Type": 16,
                     "Active": true,
                     "RootBone UID": 2097824215,
-                    "MeshRendererUID": 914177485,
+                    "MeshRendererUID": 1521546145,
                     "Animations": [
                         1309854030,
                         1241720770
@@ -3612,8 +3744,8 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 914177485,
-            "ParentUID": 613886019,
+            "UID": 1521546145,
+            "ParentUID": 866035125,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -3624,10 +3756,10 @@
                 0
             ],
             "Rotation": [
-                4.3711381181310571e-08,
-                1,
-                1.9470718370939721e-07,
-                -4.3711423813874717e-08
+                0,
+                0,
+                0,
+                1
             ],
             "Scale": [
                 1,
@@ -3642,8 +3774,8 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/433630866.mmh",
-                    "UID": 433630866,
+                    "Path": "Library\/Meshes\/80155016.mmh",
+                    "UID": 80155016,
                     "alternColor": [
                         1,
                         1,
@@ -3664,74 +3796,6 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
                     "MaterialUID": 1948688504
-                }
-            ]
-        },
-        {
-            "name": "RifleJoint",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 2097824215,
-            "ParentUID": 613886019,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.23088471591472626,
-                1.0673612356185913,
-                -0.40240004658699036
-            ],
-            "Rotation": [
-                4.6839474521220836e-09,
-                -0.67976999282836914,
-                0.73342537879943848,
-                -6.3940241545878962e-08
-            ],
-            "Scale": [
-                0.0099999997764825821,
-                0.010000002570450306,
-                0.010000002570450306
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "RifleJoint_end",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 109356398,
-            "ParentUID": 2097824215,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                1,
-                0
-            ],
-            "Rotation": [
-                2.2204460492503131e-16,
-                -2.2204463139481091e-16,
-                1.7763568394002505e-15,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                0.99999994039535522
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
                 }
             ]
         }

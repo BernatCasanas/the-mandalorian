@@ -65,6 +65,7 @@ public class HubTextController : DiamondComponent
     private int total_interactions_and_stages = 0;
     private bool dialog_finished = false;
 
+    private bool start = true;
 
 
     Interaction interaction = Interaction.NONE;
@@ -83,6 +84,12 @@ public class HubTextController : DiamondComponent
     }
     public void Update()
     {
+        if (start)
+        {
+            if (DiamondPrefs.ReadBool("loadData") == false)
+                DiamondPrefs.Write("loadData", true);
+            start = false;
+        }
         if (mando == null || Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN || textController == null || textController.GetComponent<TextController>().otherimage == null || dialog == null ||
             textController.IsEnabled() == false)
         {

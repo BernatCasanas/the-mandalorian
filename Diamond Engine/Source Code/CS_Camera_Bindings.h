@@ -50,8 +50,7 @@ void CS_SetCameraOrthographic(MonoObject* go)
 
 	if (cam != nullptr)
 	{
-		cam->camFrustrum.type = FrustumType::OrthographicFrustum;
-		cam->SetOrthSize(50.0f);
+		cam->SetCameraToOrthographic();
 	}
 }
 
@@ -65,5 +64,22 @@ void CS_SetCameraPerspective(MonoObject* go)
 	C_Camera* cam = dynamic_cast<C_Camera*>(GO->GetComponent(Component::TYPE::CAMERA));
 
 	if (cam != nullptr)
-		cam->camFrustrum.type = FrustumType::PerspectiveFrustum;
+	{
+		cam->SetCameraToPerspective();
+	}
+}
+
+void CS_SetCameraVerticalFOV(MonoObject* go, float verticalFOV)
+{
+	if (go == nullptr)
+		return;
+
+	GameObject* GO = EngineExternal->moduleMono->GameObject_From_CSGO(go);
+
+	C_Camera* cam = dynamic_cast<C_Camera*>(GO->GetComponent(Component::TYPE::CAMERA));
+
+	if (cam != nullptr)
+	{
+		cam->SetVerticalFOV(verticalFOV);
+	}
 }

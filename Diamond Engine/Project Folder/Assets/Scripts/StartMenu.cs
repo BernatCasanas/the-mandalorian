@@ -14,6 +14,7 @@ public class StartMenu : DiamondComponent
 	{
 		if (gameObject.Name == "Play")
 		{
+			DiamondPrefs.LoadData();
 			if (Core.instance != null)
 				Core.instance.SaveBuffs();
 			SceneManager.LoadScene(1564453141);
