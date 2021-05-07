@@ -409,6 +409,8 @@ public class Deathtrooper : Enemy
         Animator.Play(gameObject, "DTH_Run", speedMult);
         Animator.Play(shotgun, "DTH_Run", speedMult);
         UpdateAnimationSpd(speedMult);
+        Audio.PlayAudio(gameObject, "Play_Deathtrooper_Run");
+        
     }
     private void UpdateRun()
     {
@@ -502,6 +504,7 @@ public class Deathtrooper : Enemy
         {
             Animator.Play(gameObject, "DTH_ShootRecoil", speedMult);
             Animator.Play(shotgun, "DTH_ShootRecoil", speedMult);
+            Audio.PlayAudio(gameObject, "Play_Deathtrooper_Recoil");
         }
         else //Second Shot
         {
@@ -509,12 +512,12 @@ public class Deathtrooper : Enemy
             Animator.Play(shotgun, "DTH_ShootNoRecoil", speedMult);
         }
         UpdateAnimationSpd(speedMult);
-        Audio.PlayAudio(gameObject, "Play_Blaster_Stormtrooper");
+        Audio.PlayAudio(gameObject, "Play_Deathtrooper_Shot");
     }
     private void PlayerDetected()
     {
         //Debug.Log("SKYTROOPER PLAYER DETECTED");
-        Audio.PlayAudio(gameObject, "Play_Enemy_Detection");
+        Audio.PlayAudio(gameObject, "Play_Deathtrooper_Enemy_Detection");
     }
     #endregion
 
@@ -527,8 +530,7 @@ public class Deathtrooper : Enemy
 
         //Animator.Play(gameObject, "ST_Die", 1.0f);
 
-        Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
-        Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
+        Audio.PlayAudio(gameObject, "Play_Deathtrooper_Death");
 
         //Combo
         if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
