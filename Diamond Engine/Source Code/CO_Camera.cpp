@@ -168,8 +168,6 @@ bool C_Camera::OnEditor()
 		{
 			if (ImGui::Button("Create new Profile ##Post Processing Profile"))
 			{
-				//PostProcessImporter::CreateBaseProfileFile("Assets/PostProcessingProfiles/test1.pprocess");
-				//TODO open  Popup & create new resource with the name
 				ImGui::OpenPopup("Create new Profile##CamProfile", ImGuiPopupFlags_NoOpenOverExistingPopup);
 			}
 			DrawCreationWindow();
@@ -261,14 +259,9 @@ void C_Camera::LoadData(DEConfig& nObj)
 
 	EngineExternal->moduleScene->SetGameCamera(this);
 
-	if (postProcessProfile != nullptr)
-	{
-		EngineExternal->moduleResources->UnloadResource(postProcessProfile->GetUID());
-		postProcessProfile = nullptr;
-	}
 	if (nObj.ReadInt("ProfileUID") != 0)
 	{
-		postProcessProfile = dynamic_cast<ResourcePostProcess*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("ProfileUID"), Resource::Type::POSTPROCESS));
+		SetPostProcessProfile(dynamic_cast<ResourcePostProcess*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("ProfileUID"), Resource::Type::POSTPROCESS)));
 	}
 }
 

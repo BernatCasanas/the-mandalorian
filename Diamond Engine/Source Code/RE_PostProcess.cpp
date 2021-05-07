@@ -239,6 +239,7 @@ void ResourcePostProcess::DrawEditor(std::string suffix)
 			char* fileBuffer = nullptr;
 			PostProcessImporter::Save(this, &fileBuffer);
 			RELEASE_ARRAY(fileBuffer);
+			fileBuffer = nullptr;
 		}
 	}
 }

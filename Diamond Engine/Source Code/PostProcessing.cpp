@@ -13,7 +13,8 @@ PostProcessing::PostProcessing() :
 	quadVAO(0), quadVBO(0),
 	bloomEffect(nullptr),
 	depthTest(nullptr),
-	aoEffect(nullptr)
+	aoEffect(nullptr),
+	renderFilter(nullptr)
 {
 }
 
@@ -110,6 +111,11 @@ void PostProcessing::CleanUp()
 	{
 		delete(renderFilter);
 		renderFilter = nullptr;
+	}
+	if (aoEffect != nullptr)
+	{
+		delete(aoEffect);
+		aoEffect = nullptr;
 	}
 }
 
