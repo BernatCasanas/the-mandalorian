@@ -141,6 +141,8 @@ public class BabyYoda : DiamondComponent
 
         if (forceGaugeFeedback != null)
             forceGaugeFeedback.Enable(false);
+
+        forceFBTime = 0.25f;
     }
 
     public void Update()

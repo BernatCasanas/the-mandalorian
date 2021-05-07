@@ -268,6 +268,7 @@ public class Core : Entity
         // Placeholder for Start() function
         if (scriptStart == true)
         {
+            ConfigFunctionality.UpdateDisplayText();
             LoadBuffs();
             hud = InternalCalls.FindObjectWithName("HUD");
 
