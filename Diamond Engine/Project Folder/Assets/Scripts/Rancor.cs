@@ -1372,17 +1372,18 @@ public class Rancor : Entity
 
             if (bulletScript != null)
             {
-                damageToBoss += bulletScript.damage;
+                damageToBoss += bulletScript.GetDamage();
             }
             else
             {
                 Debug.Log("The collider with tag Bullet didn't have a bullet Script!!");
             }
-
-            if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
-            {
-                damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
-            }
+            if (Core.instance != null)
+                damageToBoss *= Core.instance.DamageToBosses;
+            //if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
+            //{
+            //    damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
+            //}
 
             TakeDamage(damageToBoss);
             Debug.Log("Rancor HP: " + healthPoints.ToString());
@@ -1414,17 +1415,20 @@ public class Rancor : Entity
             if (bulletScript != null)
             {
                 this.AddStatus(STATUS_TYPE.DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
-                damageToBoss += bulletScript.damage;
+                damageToBoss += bulletScript.GetDamage();
             }
             else
             {
                 Debug.Log("The collider with tag Bullet didn't have a bullet Script!!");
             }
 
-            if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
-            {
-                damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
-            }
+            //if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
+            //{
+            //    damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
+            //}
+
+            if (Core.instance != null)
+                damageToBoss *= Core.instance.DamageToBosses;
 
             TakeDamage(damageToBoss);
             Debug.Log("Rancor HP: " + healthPoints.ToString());
@@ -1563,7 +1567,7 @@ public class Rancor : Entity
             Debug.Log("Rancor damage" + damage.ToString());
             if (currentState != RANCOR_STATE.DEAD)
             {
-                healthPoints -= damage * Core.instance.DamageToBosses;
+                healthPoints -= damage;
 
                 if (healthPoints <= 0.0f)
                 {

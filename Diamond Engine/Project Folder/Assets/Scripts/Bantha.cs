@@ -703,7 +703,7 @@ public class Bantha : Enemy
             BH_Bullet bullet = collidedGameObject.GetComponent<BH_Bullet>();
             if (bullet != null)
             {
-                healthPoints -= bullet.damage;
+                healthPoints -= bullet.GetDamage();
 
                 Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
 
@@ -730,7 +730,7 @@ public class Bantha : Enemy
             ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
             if (bullet != null)
             {
-                healthPoints -= bullet.damage;
+                healthPoints -= bullet.GetDamage();
                 this.AddStatus(STATUS_TYPE.DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
 
                 Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");

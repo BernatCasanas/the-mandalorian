@@ -171,6 +171,7 @@ public class Core : Entity
     AimBot myAimbot = null;
 
     private static float bulletDamage = 9f;
+
     private float bulletDamageDefault = 9f;
 
     //Audio
@@ -927,7 +928,7 @@ public class Core : Entity
             AddPrimaryHeat();
             //Debug.Log("Bullet Shot!");
 
-            bullet.GetComponent<BH_Bullet>().damage = GetDamage();
+            bullet.GetComponent<BH_Bullet>().damage = bulletDamage * GetBlasterDamageMod();
         }
     }
 
@@ -1128,25 +1129,25 @@ public class Core : Entity
 
             if (chrBulletComp != null)
             {
-                float bulletDamage = chargedBulletDmg;
+                float sniperBulletDamage = chargedBulletDmg;
 
                 if (perfectShot == true)
                 {
-                    bulletDamage *= perfectShotDmgMult;
+                    sniperBulletDamage *= perfectShotDmgMult;
                     bullet.transform.localScale *= perfectShotDmgMult;
                 }
                 else if (chargeTimer > timeToPerfectChargeEnd)
                 {
-                    bulletDamage = (chargedBulletDmg * overShotDmgMult);
+                    sniperBulletDamage = (chargedBulletDmg * overShotDmgMult);
                 }
                 else
                 {
                     float dmgMult = Mathf.InvLerp(0.0f, timeToPerfectCharge, chargeTimer);
 
                     dmgMult = Math.Max(dmgMult, 0.15f);
-                    bulletDamage = (chargedBulletDmg * dmgMult);
+                    sniperBulletDamage = (chargedBulletDmg * dmgMult);
 
-                    bulletDamage = Math.Max(bulletDamage, 1f);
+                    sniperBulletDamage = Math.Max(sniperBulletDamage, 1f);
                 }
                 //Debug.Log("Charge Bullet dmg: " + bulletDamage.ToString());
 
@@ -1156,7 +1157,7 @@ public class Core : Entity
                 //        bullet.GetComponent<ChargedBullet>().damage = GetExtraDamageWithSkill();
                 //    }  
 
-                chrBulletComp.InitChargedBullet(bulletDamage);
+                chrBulletComp.InitChargedBullet(sniperBulletDamage);
 
                 if (aimHelpTarget != null)
                 {
@@ -1725,10 +1726,10 @@ public class Core : Entity
         }
     }
 
-    private float GetDamage()
+    public float GetBlasterDamageMod()
     {
         //We apply modifications to the damage based on the skill actives in the talent tree
-        float damageWithSkills = bulletDamage * BlasterDamageMult * BlasterDamagePerHpMult * DamagePerHeatMult * RawDamageMult;
+        float Damage = BlasterDamageMult * BlasterDamagePerHpMult * DamagePerHeatMult * RawDamageMult;
 
         //if (skill_groguIncreaseDamageActive)
         //{
@@ -1743,9 +1744,22 @@ public class Core : Entity
         //    float local_HPStep = Skill_Tree_Data.GetMandoSkillTree().A7_extraDamageHPStep;
         //    damageWithSkills += (damageWithSkills * local_damageAmount * (HPMissing / local_HPStep));
         //}
-        return damageWithSkills;
+        return Damage;
     }
+    public float GetSniperDamageMod()
+    {
+        //We apply modifications to the damage based on the skill actives in the talent tree
+        float Damage = SniperDamageMult * SniperDamagePerHpMult * DamagePerHeatMult * RawDamageMult;
 
+        return Damage;
+    }
+    public float GetGrenadeDamageMod()
+    {
+        //We apply modifications to the damage based on the skill actives in the talent tree
+        float Damage = DamagePerHeatMult * GrenadeDamageMult * RawDamageMult;
+
+        return Damage;
+    }
     public void LockInputs(bool locked)
     {
         if (locked)
