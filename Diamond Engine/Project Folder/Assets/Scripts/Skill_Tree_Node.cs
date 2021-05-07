@@ -406,7 +406,7 @@ public class Skill_Tree_Node : DiamondComponent
                     #region primary
 
                     case "PMovSpd":
-                        Core.instance.AddStatus(STATUS_TYPE.PRIM_SPEED, STATUS_APPLY_TYPE.SUBSTITUTE, 400, 1, true);
+                        Core.instance.AddStatus(STATUS_TYPE.PRIM_SPEED, STATUS_APPLY_TYPE.SUBSTITUTE, 30, 1, true);
                         break;
                     case "PProjRange":
 
