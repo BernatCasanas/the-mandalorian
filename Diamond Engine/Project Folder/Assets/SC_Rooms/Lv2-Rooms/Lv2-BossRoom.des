@@ -93,8 +93,8 @@
                     "fSize": 25,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 25.760000228881836,
-                    "hFOV": 50.439998626708984,
+                    "vFOV": 25.799999237060547,
+                    "hFOV": 51.959999084472656,
                     "culling": false,
                     "drawSkybox": true
                 },
@@ -2003,10 +2003,10 @@
                         -0.19471836090087891
                     ],
                     "Rotation": [
-                        0.1939222663640976,
-                        -2.7353402876073574e-10,
-                        1.3877787807814457e-17,
-                        0.98101687431335449
+                        0.19392229616641998,
+                        -2.7353405651631135e-10,
+                        1.3877789462175682e-17,
+                        0.98101699352264404
                     ],
                     "Scale": [
                         1,
@@ -2292,6 +2292,174 @@
                         1.0000017881393433,
                         1,
                         1.0000017881393433
+                    ]
+                },
+                {
+                    "name": "RifleJoint",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 2097824215,
+                    "ParentUID": 1857170606,
+                    "PrefabID": 0,
+                    "PrefabReference": 2097824215,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.23088550567626953,
+                        1.0673608779907227,
+                        -0.40240001678466797
+                    ],
+                    "Rotation": [
+                        -6.4111318920367921e-08,
+                        0.67976999282836914,
+                        -0.73342537879943848,
+                        -1.7784529404707428e-10
+                    ],
+                    "Scale": [
+                        0.0099999997764825821,
+                        0.010000003501772881,
+                        0.010000003501772881
+                    ]
+                },
+                {
+                    "name": "RifleJoint_end",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 109356398,
+                    "ParentUID": 2097824215,
+                    "PrefabID": 0,
+                    "PrefabReference": 109356398,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        1,
+                        0
+                    ],
+                    "Rotation": [
+                        2.2204460492503131e-16,
+                        -2.2204463139481091e-16,
+                        1.7763568394002505e-15,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        0.99999994039535522
+                    ]
+                },
+                {
+                    "name": "RifleJoint_end_end",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 856763728,
+                    "ParentUID": 109356398,
+                    "PrefabID": 0,
+                    "PrefabReference": 856763728,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -1055.39111328125,
+                        -1459.1865234375,
+                        -830.327392578125
+                    ],
+                    "Rotation": [
+                        -3.7023202281716294e-08,
+                        -0.07582554966211319,
+                        -0.99712109565734863,
+                        -4.6653003238361634e-08
+                    ],
+                    "Scale": [
+                        100.00017547607422,
+                        100.00013732910156,
+                        99.999969482421875
+                    ]
+                },
+                {
+                    "name": "Healing Particles",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 488266168,
+                    "ParentUID": 856763728,
+                    "PrefabID": 1060233965,
+                    "PrefabReference": 488266168,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        17.624029159545898,
+                        -7.4664182662963867,
+                        14.094988822937012
+                    ],
+                    "Rotation": [
+                        2.120925657322914e-09,
+                        -1.4958198597962324e-18,
+                        -7.0526734452514006e-10,
+                        1
+                    ],
+                    "Scale": [
+                        1.0000017881393433,
+                        1,
+                        1.0000017881393433
+                    ]
+                },
+                {
+                    "name": "Rifle",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 866035125,
+                    "ParentUID": 488266168,
+                    "PrefabID": 0,
+                    "PrefabReference": 866035125,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Rifle_Mesh",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1521546145,
+                    "ParentUID": 866035125,
+                    "PrefabID": 0,
+                    "PrefabReference": 1521546145,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
                     ]
                 }
             ]
@@ -2590,6 +2758,7 @@
                     "combo_text": 1900634701,
                     "combo_gameobject": 506480956,
                     "max_hp_number": 1868732486,
+                    "fpsText": 535668061,
                     "comboNumber": 0,
                     "last_hp": 0,
                     "shooting_blink": 879789337
@@ -4188,6 +4357,73 @@
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1560256272.dds",
                     "UID": 1560256272
+                }
+            ]
+        },
+        {
+            "name": "FPS",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 535668061,
+            "ParentUID": 857087823,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        90,
+                        94
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        10,
+                        10
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "30",
+                    "maxTextLenght": 109,
+                    "fontName": "Library\/Fonts\/teko-semibold.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
@@ -15424,10 +15660,10 @@
                         2.56847494661816e-16
                     ],
                     "Rotation": [
-                        0.49999174475669861,
-                        0.50000834465026855,
-                        0.50000834465026855,
-                        0.49999174475669861
+                        0.49999168515205383,
+                        0.50000828504562378,
+                        0.50000828504562378,
+                        0.49999168515205383
                     ],
                     "Scale": [
                         1,
@@ -15676,10 +15912,10 @@
                         -0.028598707169294357
                     ],
                     "Rotation": [
-                        0.01664484478533268,
-                        -0.056602273136377335,
-                        0.059395376592874527,
-                        0.99648958444595337
+                        0.016644842922687531,
+                        -0.056602265685796738,
+                        0.05939536914229393,
+                        0.99648946523666382
                     ],
                     "Scale": [
                         0.99999994039535522,
@@ -16585,7 +16821,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/water.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/153880261.mat",
                     "MaterialUID": 153880261
                 }
@@ -16679,7 +16915,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/water.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/153880261.mat",
                     "MaterialUID": 153880261
                 }
@@ -16739,7 +16975,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/water.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/153880261.mat",
                     "MaterialUID": 153880261
                 }
@@ -16799,7 +17035,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/water.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/153880261.mat",
                     "MaterialUID": 153880261
                 }
@@ -16859,7 +17095,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/water.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/153880261.mat",
                     "MaterialUID": 153880261
                 }
@@ -16919,7 +17155,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/water.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/153880261.mat",
                     "MaterialUID": 153880261
                 }
@@ -16979,7 +17215,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/water.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/153880261.mat",
                     "MaterialUID": 153880261
                 }
