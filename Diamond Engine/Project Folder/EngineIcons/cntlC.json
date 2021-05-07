@@ -1,31 +1,31 @@
 {
     "Game Objects": [
         {
-            "name": "FPS",
+            "name": "AreaLightTest",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 535668061,
-            "ParentUID": 857087823,
+            "UID": 55470375,
+            "ParentUID": 529855152,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                0,
-                0
+                -13.801380157470703,
+                10.56360912322998,
+                10.446131706237793
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                0.68535590171813965,
+                -0.23742716014385223,
+                0.25437289476394653,
+                0.63969528675079346
             ],
             "Scale": [
-                1,
-                1,
-                1
+                0.9999995231628418,
+                0.99999994039535522,
+                0.99999940395355225
             ],
             "Components": [
                 {
@@ -33,37 +33,22 @@
                     "Active": true
                 },
                 {
-                    "Type": 6,
+                    "Type": 27,
                     "Active": true,
-                    "Position": [
-                        90,
-                        94
+                    "lightColor": [
+                        0.36496272683143616,
+                        0.44075927138328552,
+                        0.98989897966384888
                     ],
-                    "Rotation": 0,
-                    "Size": [
-                        10,
-                        10
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
-                },
-                {
-                    "Type": 9,
-                    "Active": true,
-                    "text": "30",
-                    "maxTextLenght": 109,
-                    "fontName": "Library\/Fonts\/teko-semibold.ttf",
-                    "textColor": [
+                    "ambientLightColor": [
                         1,
                         1,
                         1
-                    ]
+                    ],
+                    "lightIntensity": 4.4499998092651367,
+                    "specularValue": 1,
+                    "fadeDistance": 50,
+                    "maxDistance": 600
                 }
             ]
         }

@@ -42,6 +42,7 @@ public class StormTrooper : Enemy
     private List<INPUT> inputsList = new List<INPUT>();
 
     public GameObject shootPoint = null;
+    public GameObject blaster = null;
 
     //Action times
     public float idleTime = 5.0f;
@@ -101,7 +102,12 @@ public class StormTrooper : Enemy
         targetPosition = null;
 
         currentState = STATE.IDLE;
-        Animator.Play(gameObject, "ST_Idle", 1f);
+
+        Animator.Play(gameObject, "ST_Idle", 1.0f);
+
+        if (blaster != null)
+            Animator.Play(blaster, "ST_Idle", 1.0f);
+
         UpdateAnimationSpd(1f);
 
         shotTimes = 0;
@@ -385,6 +391,9 @@ public class StormTrooper : Enemy
     {
         idleTimer = idleTime;
         Animator.Play(gameObject, "ST_Idle", speedMult);
+        if (blaster != null)
+            Animator.Play(blaster, "ST_Idle", speedMult);
+
         UpdateAnimationSpd(speedMult);
 
     }
@@ -402,6 +411,8 @@ public class StormTrooper : Enemy
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
         Animator.Play(gameObject, "ST_Run", speedMult);
+        if (blaster != null)
+            Animator.Play(blaster, "ST_Idle", speedMult);
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
     }
@@ -428,6 +439,8 @@ public class StormTrooper : Enemy
         agent.CalculateRandomPath(gameObject.transform.globalPosition, runningRange);
 
         Animator.Play(gameObject, "ST_Run", speedMult);
+        if (blaster != null)
+            Animator.Play(blaster, "ST_Run", speedMult);
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
     }
@@ -472,6 +485,8 @@ public class StormTrooper : Enemy
             targetPosition = (targetPosition - gameObject.transform.globalPosition).normalized * wanderRange;
 
             Animator.Play(gameObject, "ST_Run", speedMult);
+            if (blaster != null)
+                Animator.Play(blaster, "ST_Idle", speedMult);
             UpdateAnimationSpd(speedMult);
             reAimTimer = reAimTime;
         }
@@ -512,6 +527,8 @@ public class StormTrooper : Enemy
     {
         statesTimer = timeBetweenStates;
         Animator.Play(gameObject, "ST_Idle", speedMult);
+        if (blaster != null)
+            Animator.Play(blaster, "ST_Idle", speedMult);
         UpdateAnimationSpd(speedMult);
     }
 
@@ -527,6 +544,8 @@ public class StormTrooper : Enemy
                 statesTimer = timeBetweenStates;
                 endedAvoidingObjects = false;
                 Animator.Play(gameObject, "ST_Idle");
+                if (blaster != null)
+                    Animator.Play(blaster, "ST_Idle");
             }
             else return;
         }
@@ -577,6 +596,8 @@ public class StormTrooper : Enemy
                     shotSequences++;
 
                     Animator.Play(gameObject, "ST_Idle", speedMult);
+                    if (blaster != null)
+                        Animator.Play(blaster, "ST_Idle", speedMult);
                     UpdateAnimationSpd(speedMult);
 
                     //End of second shot of the first sequence
@@ -627,6 +648,8 @@ public class StormTrooper : Enemy
             shotSequences = 0;
             sequenceTimer = 0.0f;
             Animator.Play(gameObject, "ST_Run", speedMult);
+            if (blaster != null)
+                Animator.Play(blaster, "ST_Run", speedMult);
             UpdateAnimationSpd(speedMult);
             agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
             destinationAvoidObject = agent.GetDestination().normalized * avoidRange;
@@ -641,6 +664,8 @@ public class StormTrooper : Enemy
         bullet.GetComponent<BH_Bullet>().damage = damage;
 
         Animator.Play(gameObject, "ST_Shoot", speedMult);
+        if (blaster != null)
+            Animator.Play(blaster, "ST_Shoot", speedMult);
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "PLay_Blaster_Stormtrooper");
         shotTimes++;
@@ -661,6 +686,8 @@ public class StormTrooper : Enemy
         //Audio.StopAudio(gameObject);
 
         Animator.Play(gameObject, "ST_Die", speedMult);
+        if (blaster != null)
+            Animator.Play(blaster, "ST_Die", speedMult);
         UpdateAnimationSpd(speedMult);
 
         Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
@@ -875,6 +902,8 @@ public class StormTrooper : Enemy
         if (currAnimationPlaySpd != newSpd)
         {
             Animator.SetSpeed(gameObject, newSpd);
+            if (blaster != null)
+                Animator.SetSpeed(blaster, newSpd);
             currAnimationPlaySpd = newSpd;
         }
     }
