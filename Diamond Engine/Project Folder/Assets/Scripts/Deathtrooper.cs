@@ -389,7 +389,7 @@ public class Deathtrooper : Enemy
             Animator.Play(shotgun, "DTH_Wander", speedMult);
 
         UpdateAnimationSpd(speedMult);
-        Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
+        Audio.PlayAudio(gameObject, "Play_Deathtrooper_Wander");
     }
     private void UpdateWander()
     {

@@ -679,6 +679,7 @@ public class MoffGideon : Entity
         targetDash = Core.instance.gameObject.transform.globalPosition;
         Animator.Play(gameObject, "MG_Dash", speedMult);
         UpdateAnimationSpd(speedMult);
+        Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Dash");
     }
 
     private void UpdateDashForward()
@@ -702,6 +703,7 @@ public class MoffGideon : Entity
         Animator.Play(gameObject, "MG_Slash", speedMult);
         UpdateAnimationSpd(speedMult);
         comboTimer = comboTime;
+        Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Lightsaber_Whoosh");
     }
 
     private void UpdateMeleeCombo()
@@ -723,6 +725,7 @@ public class MoffGideon : Entity
         targetDash = (Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition).normalized * -1 * dashDistance;
         targetDash.y = gameObject.transform.globalPosition.y;
         agent.CalculatePath(gameObject.transform.globalPosition, targetDash);
+        Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Dash");
     }
 
     private void UpdateDashBackward()
@@ -766,6 +769,7 @@ public class MoffGideon : Entity
         SpawnEnemies();
         Animator.Play(gameObject, "MG_Spawn", speedMult);
         UpdateAnimationSpd(speedMult);
+        Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Spawn_Enemies");
     }
 
     private void UpdateSpawnEnemies()
@@ -916,7 +920,7 @@ public class MoffGideon : Entity
             Debug.Log("GIDEON HP: " + healthPoints.ToString());
             damaged = 1.0f;
             //CHANGE FOR APPROPIATE RANCOR HIT
-            Audio.PlayAudio(gameObject, "Play_Rancor_Hit");
+            Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Hit_Phase_1");
 
             if (Core.instance.hud != null)
             {
@@ -958,7 +962,7 @@ public class MoffGideon : Entity
             Debug.Log("Rancor HP: " + healthPoints.ToString());
             damaged = 1.0f;
             //CHANGE FOR APPROPIATE RANCOR HIT
-            Audio.PlayAudio(gameObject, "Play_Rancor_Hit");
+            Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Hit_Phase_1");
 
             if (Core.instance.hud != null)
             {
