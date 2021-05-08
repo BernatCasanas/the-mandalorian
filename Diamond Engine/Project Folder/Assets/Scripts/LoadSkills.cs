@@ -48,7 +48,7 @@ public class LoadSkills : DiamondComponent
             {"groguSkill4","GThrshComboForce"},
             {"groguSkill5","GMaxForce"},
             {"groguSkill6","GSingComboForce"},
-            {"groguSkill7","GComboTimer"},
+            {"groguSkill7","GComboGain"},
             {"groguSkill8","GHPForceReg"},
             {"weaponSkill1","PMovSpd"},
             {"weaponSkill2","PProjRange"},

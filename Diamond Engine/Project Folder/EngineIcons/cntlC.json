@@ -1,31 +1,31 @@
 {
     "Game Objects": [
         {
-            "name": "SpeederBike",
+            "name": "AreaLight",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 59181445,
-            "ParentUID": 1676501951,
+            "UID": 391060195,
+            "ParentUID": 1823420575,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                30.408464431762695,
-                6.4158601760864258,
-                -9.1826343536376953
+                7.3857278823852539,
+                1.3709602355957031,
+                4.6652140617370605
             ],
             "Rotation": [
-                2.9763810971417115e-08,
-                -0.77939605712890625,
-                2.9763810971417115e-08,
-                0.62653154134750366
+                0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
             ],
             "Scale": [
-                1.3297973871231079,
-                1.3298001289367676,
-                1.3297973871231079
+                14.452498435974121,
+                14.451640129089355,
+                14.451640129089355
             ],
             "Components": [
                 {
@@ -33,35 +33,22 @@
                     "Active": true
                 },
                 {
-                    "Type": 2,
+                    "Type": 27,
                     "Active": true,
-                    "Path": "Library\/Meshes\/2075249175.mmh",
-                    "UID": 2075249175,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
+                    "lightColor": [
+                        0.8888888955116272,
+                        0,
+                        0
                     ],
-                    "alternColorStencil": [
+                    "ambientLightColor": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ],
-                    "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "FloatingVehicles"
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/vertex_color.mat",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
+                    "lightIntensity": 3,
+                    "specularValue": 1,
+                    "fadeDistance": 100,
+                    "maxDistance": 600
                 }
             ]
         }

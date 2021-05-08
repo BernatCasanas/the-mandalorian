@@ -87,16 +87,25 @@ public class BabyYoda : DiamondComponent
     {
         if (Core.instance.hud == null)
             return;
-
-        if (currentForce < totalForce)
+        float maxForceMod = 0;
+        if (Core.instance != null)
+            maxForceMod = Core.instance.MaxForceModifier;
+        if (currentForce < totalForce + maxForceMod)
         {
-            if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION))
-                currentForce += (GetForceRegenSpeedWithSkill() * Time.deltaTime);
-            else currentForce += (forceRegenerationSpeed * Time.deltaTime);
-
-            if (currentForce > totalForce)
+            //if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION))
+            //    currentForce += (GetForceRegenSpeedWithSkill() * Time.deltaTime);
+            float extraForceRegen = 0;
+            if (Core.instance != null && Core.instance != null && Core.instance.hud.GetComponent<HUD>() != null)
+                extraForceRegen = Core.instance.hud.GetComponent<HUD>().ExtraForceRegen;
+            if (Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.GRO_FORCE_REGEN))
             {
-                currentForce = totalForce;
+                currentForce += (forceRegenerationSpeed + extraForceRegen) * Time.deltaTime * Core.instance.GetStatusData(STATUS_TYPE.GRO_FORCE_REGEN).severity;
+            }
+            else currentForce += ((forceRegenerationSpeed + extraForceRegen )* Time.deltaTime);
+
+            if (currentForce > totalForce + maxForceMod)
+            {
+                currentForce = totalForce + maxForceMod;
                 if (canPlayParticles)
                 {
                     Debug.Log("PARTICLES PLAY!!");
@@ -109,7 +118,7 @@ public class BabyYoda : DiamondComponent
                 }
             }
 
-            Core.instance.hud.GetComponent<HUD>().UpdateForce((int)currentForce, totalForce);
+            Core.instance.hud.GetComponent<HUD>().UpdateForce((int)currentForce,totalForce + (int) maxForceMod);
         }
     }
     #endregion
