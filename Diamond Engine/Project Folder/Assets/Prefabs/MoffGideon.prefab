@@ -113,6 +113,7 @@
                     "GroguCost": 1,
                     "FireRateMult": 1,
                     "SecTickDamage": 1,
+                    "sniperShotIntervalModifier": 0,
                     "slerpSpeed": 5,
                     "healthPoints": 8500,
                     "maxHealthPoints_fase1": 4500,
@@ -139,6 +140,16 @@
                     "dieTime": 0.10000000149011612,
                     "neutralTime": 5,
                     "enemiesTime": 20
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "Moff_Guideon",
+                    "volume": 50,
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false
                 }
             ]
         },
@@ -1213,10 +1224,10 @@
                 -6.0736510931747034e-08
             ],
             "Rotation": [
-                0.008198215626180172,
-                -0.023347694426774979,
-                -0.10966071486473083,
-                0.99366098642349243
+                0.0081982165575027466,
+                -0.023347696289420128,
+                -0.10966072976589203,
+                0.99366110563278198
             ],
             "Scale": [
                 1,
