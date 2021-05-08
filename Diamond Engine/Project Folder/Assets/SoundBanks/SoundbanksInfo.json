@@ -637,7 +637,7 @@
    {
     "Id": "1093318992",
     "Language": "SFX",
-    "Hash": "2647426608",
+    "Hash": "1744138558",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Mando",
     "ShortName": "Mando",
     "Path": "Mando.bnk",
@@ -649,6 +649,22 @@
       "DurationType": "OneShot",
       "DurationMin": "0.000000",
       "DurationMax": "0.000000"
+     },
+     {
+      "Id": "128036816",
+      "Name": "Play_Blaster_Cooldown_Finished",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Blaster_Cooldown_Finished",
+      "DurationType": "OneShot",
+      "DurationMin": "0.365465",
+      "DurationMax": "0.365465",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "357751838",
+        "Language": "SFX",
+        "ShortName": "Blaster Mando overcharged finished.wav",
+        "Path": "SFX\\Blaster Mando overcharged finished_FC2D3A10.wem"
+       }
+      ]
      },
      {
       "Id": "3416257419",
@@ -702,7 +718,9 @@
       "Id": "1421476365",
       "Name": "Play_Footsteps_Metal_Platform_Mando",
       "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Footsteps_Metal_Platform_Mando",
-      "DurationType": "Infinite",
+      "DurationType": "OneShot",
+      "DurationMin": "0.192834",
+      "DurationMax": "0.213515",
       "IncludedMemoryFiles": [
        {
         "Id": "217252079",
@@ -741,8 +759,8 @@
       "Name": "Play_Footsteps_Sand_Mando",
       "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Footsteps_Sand_Mando",
       "DurationType": "OneShot",
-      "DurationMin": "0.972358",
-      "DurationMax": "0.972358",
+      "DurationMin": "0.235578",
+      "DurationMax": "0.257528",
       "IncludedMemoryFiles": [
        {
         "Id": "222927635",
@@ -775,8 +793,8 @@
       "Name": "Play_Footsteps_Snow_Mando",
       "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Footsteps_Snow_Mando",
       "DurationType": "OneShot",
-      "DurationMin": "0.992437",
-      "DurationMax": "0.992437",
+      "DurationMin": "0.241906",
+      "DurationMax": "0.261104",
       "IncludedMemoryFiles": [
        {
         "Id": "180750331",
@@ -2169,7 +2187,7 @@
    {
     "Id": "3721236575",
     "Language": "SFX",
-    "Hash": "2989079448",
+    "Hash": "209905936",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Moff_Guideon",
     "ShortName": "Moff_Guideon",
     "Path": "Moff_Guideon.bnk",
@@ -2253,14 +2271,36 @@
       "Name": "Play_Moff_Guideon_Lightsaber_Attack",
       "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Lightsaber_Attack",
       "DurationType": "OneShot",
-      "DurationMin": "1.394853",
-      "DurationMax": "1.394853",
+      "DurationMin": "0.803084",
+      "DurationMax": "0.982358",
       "IncludedMemoryFiles": [
        {
         "Id": "608559747",
         "Language": "SFX",
         "ShortName": "moff guideon lightsaber attack 1.wav",
         "Path": "SFX\\moff guideon lightsaber attack 1_FC2D3A10.wem"
+       },
+       {
+        "Id": "703060658",
+        "Language": "SFX",
+        "ShortName": "moff guideon lightsaber attack 2.wav",
+        "Path": "SFX\\moff guideon lightsaber attack 2_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "314845868",
+      "Name": "Play_Moff_Guideon_Lightsaber_Turn_Off",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Lightsaber_Turn_Off",
+      "DurationType": "OneShot",
+      "DurationMin": "0.732104",
+      "DurationMax": "0.732104",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "1050035490",
+        "Language": "SFX",
+        "ShortName": "moff guideon lightsaber turn off.wav",
+        "Path": "SFX\\moff guideon lightsaber turn off_FC2D3A10.wem"
        }
       ]
      },
@@ -2277,6 +2317,28 @@
         "Language": "SFX",
         "ShortName": "moff guideon lightsaber turn on.wav",
         "Path": "SFX\\moff guideon lightsaber turn on_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1818257593",
+      "Name": "Play_Moff_Guideon_Lightsaber_Whoosh",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Lightsaber_Whoosh",
+      "DurationType": "OneShot",
+      "DurationMin": "0.720658",
+      "DurationMax": "0.771769",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "270470728",
+        "Language": "SFX",
+        "ShortName": "moff guideon lightsaber whoosh 1.wav",
+        "Path": "SFX\\moff guideon lightsaber whoosh 1_FC2D3A10.wem"
+       },
+       {
+        "Id": "720678292",
+        "Language": "SFX",
+        "ShortName": "moff guideon lightsaber whoosh 2.wav",
+        "Path": "SFX\\moff guideon lightsaber whoosh 2_FC2D3A10.wem"
        }
       ]
      },
