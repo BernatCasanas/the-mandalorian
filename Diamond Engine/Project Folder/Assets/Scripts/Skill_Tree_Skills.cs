@@ -518,7 +518,7 @@ namespace DiamondEngine
 
     #region Special Weapon Skills
 
-    public class SpecialCriticalChanceSkill : Skills
+    public class SpecialNonChargedSkill : Skills
     {
         public override void Use()
         {
@@ -534,7 +534,7 @@ namespace DiamondEngine
         }
     }
 
-    public class SpecialBulletsSkill : Skills
+    public class SpecialHealSkill : Skills
     {
         public override void Use()
         {
@@ -550,7 +550,7 @@ namespace DiamondEngine
         }
     }
 
-    public class SpecialCriticalDamageSkill : Skills
+    public class SpecialMaxIntervalSkill : Skills
     {
         public override void Use()
         {
@@ -622,11 +622,11 @@ namespace DiamondEngine
             {"SeUseRange", typeof(SecondaryUseRangeSkill)},
             {"SeDuration", typeof(SecondaryDurationSkill)},
             {"SeDmgInc", typeof(SecondaryDamageIncreaseSkill)},
-            {"SpCritChance", typeof(SpecialCriticalChanceSkill)},
+            {"SpNonCharged", typeof(SpecialNonChargedSkill)},
             {"SpChargeTime", typeof(SpecialChargeTimeSkill)},
-            {"SpBullet", typeof(SpecialBulletsSkill)},
+            {"SpHeal", typeof(SpecialHealSkill)},
             {"SpRegForce", typeof(SpecialRegenerateForceSkill)},
-            {"SpCritDmg", typeof(SpecialCriticalDamageSkill)},
+            {"SpMaxIntDmg", typeof(SpecialMaxIntervalSkill)},
             {"SpMaxDmg", typeof(SpecialMaximumDamageSkill)},
         };
     }
