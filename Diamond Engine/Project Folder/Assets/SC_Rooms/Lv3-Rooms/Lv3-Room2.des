@@ -2692,9 +2692,8 @@
                     "max_hp": 50,
                     "force": 50,
                     "max_force": 50,
-                    "currency": 0,
-                    "bullets_main_weapon": 0,
-                    "max_bullets_main_weapon": 0,
+                    "primaryWeaponHeat": 0,
+                    "primaryWeaponMaxHeat": 0,
                     "bullets_secondary_weapon": 10,
                     "max_bullets_secondary_weapon": 10,
                     "main_weapon": true,
@@ -2708,7 +2707,10 @@
                     "combo_bar": 1673911203,
                     "combo_text": 1876792314,
                     "combo_gameobject": 1640507135,
-                    "comboNumber": 0
+                    "fpsText": 1668468032,
+                    "trisText": 1163293801,
+                    "comboNumber": 0,
+                    "last_hp": 0
                 }
             ]
         },
@@ -4364,6 +4366,73 @@
                     "Type": 9,
                     "Active": true,
                     "text": "30",
+                    "maxTextLenght": 109,
+                    "fontName": "Library\/Fonts\/teko-semibold.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Tris",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1163293801,
+            "ParentUID": 1854901952,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        65,
+                        94
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        10,
+                        10
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "500",
                     "maxTextLenght": 109,
                     "fontName": "Library\/Fonts\/teko-semibold.ttf",
                     "textColor": [
@@ -21105,9 +21174,9 @@
             ],
             "Rotation": [
                 0,
-                0.92021715641021729,
+                0.92021727561950684,
                 0,
-                -0.39140814542770386
+                -0.39140820503234863
             ],
             "Scale": [
                 9.608856201171875,
