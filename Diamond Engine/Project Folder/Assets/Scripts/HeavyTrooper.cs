@@ -45,29 +45,28 @@ public class HeavyTrooper : Enemy
 
     private List<INPUT> inputsList = new List<INPUT>();
 
-    public GameObject chargePoint = null;
-    public GameObject spear = null;
-    public GameObject hitParticles = null;
-    private GameObject visualFeedback = null;
+    public  GameObject  spear = null;
+    private BoxCollider spearCollider = null;
+    public  GameObject  hitParticles = null;
+    private GameObject  visualFeedback = null;
 
     private bool straightPath = false;
 
     //Action times
-    public float idleTime = 5.0f;
-    private float dieTime = 3.0f;
-    public float sweepTime = 0.0f;
-    public float tiredTime = 2.0f;
-    public float loadingTime = 2.0f;
-    //public float timeBewteenStates = 1.5f;
-    public float directionDecisionTime = 0.8f;
-    public float directionSweepDecisionTime = 0.8f;
+    public  float  idleTime = 5.0f;
+    private float  dieTime = 3.0f;
+    private float  sweepTime = 0.0f;
+    public  float  tiredTime = 2.0f;
+    public  float  loadingTime = 2.0f;
+    public  float  directionDecisionTime = 0.8f;
+    public  float  directionSweepDecisionTime = 0.8f;
 
     //Speeds
-    public float wanderSpeed = 3.5f;
-    public float runningSpeed = 7.5f;
-    public float dashSpeed = 60.0f;
-    public float dashSpeedReduction = 0.3f;
-    private bool skill_slowDownActive = false;
+    public  float wanderSpeed = 3.5f;
+    public  float runningSpeed = 7.5f;
+    public  float dashSpeed = 60.0f;
+    public  float dashSpeedReduction = 0.3f;
+    private bool  skill_slowDownActive = false;
 
     //Ranges
     public float wanderRange = 7.5f;
@@ -114,12 +113,11 @@ public class HeavyTrooper : Enemy
 
             heavyTrooperSpear.damage = (int)damage;
 
+            spearCollider = spear.GetComponent<BoxCollider>();
         }
 
-        //loadingTime = Animator.GetAnimationDuration(gameObject, "BT_Charge");
-        //sweepTime = Animator.GetAnimationDuration(gameObject, "SWEEP");
-        //dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
-        dieTime = 3.0f;
+        sweepTime = Animator.GetAnimationDuration(gameObject, "HVY_Sweep");
+        dieTime = Animator.GetAnimationDuration(gameObject, "HVY_Die");
 
         if (stunParticle != null)
             stun = stunParticle.GetComponent<ParticleSystem>();
@@ -679,12 +677,13 @@ public class HeavyTrooper : Enemy
     {
         Debug.Log("HEAVYTROOPER SWEEP");
         sweepTimer = sweepTime;
-        //doneDashes = 0;
 
         Animator.Play(gameObject, "HVY_Sweep", speedMult);
-        Animator.Play(spear, "HVY_Sweep", speedMult);
+        
+        if(spear != null)
+            Animator.Play(spear, "HVY_Sweep", speedMult);
+
         Audio.PlayAudio(gameObject, "Play_Heavytrooper_Attack");
-        //UpdateAnimationSpd(speedMult);
     }
     private void UpdateSweep()
     {
@@ -694,8 +693,21 @@ public class HeavyTrooper : Enemy
             LookAt(Core.instance.gameObject.transform.globalPosition);
         }
 
+        if(spearCollider != null)
+        {
+            if(sweepTimer < sweepTime * 0.33f && spearCollider.active) // Stop doing damage at the last third of the animation
+            {
+                spearCollider.active = false;
+            }
+            else if(sweepTimer < sweepTime * 0.75f && !spearCollider.active) //Start doing damage at the first fourth of the animation
+            {
+                spearCollider.active = true;
+            }
+        }
+
         UpdateAnimationSpd(speedMult);
     }
+
     #endregion
 
     #region TIRED
