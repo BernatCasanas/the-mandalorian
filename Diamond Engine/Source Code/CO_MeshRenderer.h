@@ -51,6 +51,8 @@ private:
 	ResourceTexture* normalMap = nullptr;
 	ResourceTexture* specularMap = nullptr;
 
+	float bumpDepth = 1.0f;
+
 	bool drawDebugVertices;
 	C_Transform* gameObjectTransform = nullptr;
 	std::vector<C_Transform*> bonesMap;

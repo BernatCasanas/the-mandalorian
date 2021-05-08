@@ -129,7 +129,10 @@ uniform AreaLightInfo areaLightInfo[5];
 uniform sampler2D shadowMap;
 uniform sampler2D normalMap;
 uniform sampler2D specularMap;
+uniform float bumpDepth;
+
 uniform vec3 cameraPosition;
+uniform vec3 altColor;
 
 out vec4 color;
 
@@ -203,7 +206,7 @@ float GetShadowValue()
 
 vec3 CalculateDirectionalLight(float specMapValue)
 {
-	vec3 normal = texture(normalMap, fs_in.TexCoords).rgb;
+	vec3 normal = texture(normalMap, fs_in.TexCoords).rgb + bumpDepth;
     normal = normalize(normal * 2.0 - 1.0);
     
 	vec3 lighting = vec3(0.0, 0.0, 0.0);
@@ -389,7 +392,7 @@ vec3 CalculateAreaLightDirection(int iterator)
 vec3 CalculateAreaLight( float specMapValue)
 {
 	vec3 lighting = vec3(0.0, 0.0, 0.0);
-	vec3 normal = texture(normalMap, fs_in.TexCoords).rgb;
+	vec3 normal = texture(normalMap, fs_in.TexCoords).rgb + bumpDepth;
 	normal = normalize(transpose(fs_in.TBN) * normal);
     
     for (int i = 0; i < 5; i++)
@@ -437,9 +440,15 @@ void main()
     vec3 areaLight = CalculateAreaLight(specMapValue);
     
 
-    color = vec4((directionalLight + areaLight) * fs_in.vertexColor, 1.0);
+    color = vec4((directionalLight + areaLight) * (fs_in.vertexColor * altColor), 1.0);
 }
 #endif
+
+
+
+
+
+
 
 
 

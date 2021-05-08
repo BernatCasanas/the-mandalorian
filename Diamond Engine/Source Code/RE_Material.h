@@ -48,7 +48,7 @@ static const char* defaultUniforms[] = { "position", "tangents", "texCoord", "no
 										 "time", "ourTexture","altColor", "hasTexture", 
 										 "lightPos", "lightPosition", "viewPos", "lightColor", "lightSpaceMatrix",
 										 "ambientLightColor", "lightIntensity", "specularValue", "shadowMap",
-										 "normalMap", "specularMap"};
+										 "normalMap", "specularMap", "bumpDepth"};
 
 static const char* defaultUniformStructures[] = { "lightInfo", "areaLightInfo" };
 

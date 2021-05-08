@@ -28,7 +28,7 @@
 #include "MathGeoLib/include/Geometry/Plane.h"
 
 
-C_MeshRenderer::C_MeshRenderer(GameObject* _gm) : Component(_gm), _mesh(nullptr), normalMap(nullptr), specularMap(nullptr),
+C_MeshRenderer::C_MeshRenderer(GameObject* _gm) : Component(_gm), _mesh(nullptr), normalMap(nullptr), specularMap(nullptr), bumpDepth(1.0f),
 faceNormals(false), vertexNormals(false), showAABB(false), showOBB(false), drawDebugVertices(false), drawStencil(false),
 calculatedBonesThisFrame(false), boneTransforms(), stencilEmissionAmmount(0.9f)
 {
@@ -133,7 +133,7 @@ void C_MeshRenderer::RenderMesh(bool rTex)
 	if (drawDebugVertices)
 		DrawDebugVertices();
 
-	_mesh->RenderMesh(id, alternColor, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform, normalMap, specularMap, stencilEmissionAmmount);
+	_mesh->RenderMesh(id, alternColor, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform, normalMap, specularMap, bumpDepth, stencilEmissionAmmount);
 
 	if (vertexNormals || faceNormals)
 		_mesh->RenderMeshDebug(&vertexNormals, &faceNormals, transform->GetGlobalTransposed());
@@ -195,6 +195,7 @@ void C_MeshRenderer::SaveData(JSON_Object* nObj)
 		DEJson::WriteInt(nObj, "SpecularMapUID", specularMap->GetUID());
 	}
 
+	DEJson::WriteFloat(nObj, "bumpDepth", bumpDepth);
 	DEJson::WriteVector3(nObj, "alternColor", &alternColor.x);
 	DEJson::WriteVector3(nObj, "alternColorStencil", &alternColorStencil.x);
 	DEJson::WriteFloat(nObj, "stencilEmission", stencilEmissionAmmount);
@@ -228,6 +229,8 @@ void C_MeshRenderer::LoadData(DEConfig& nObj)
 
 	if (texName != "")
 		specularMap = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("SpecularMapUID"), texName.c_str()));
+
+	bumpDepth = nObj.ReadFloat("bumpDepth");
 
 	gameObject->transform->UpdateBoxes();
 }
@@ -348,6 +351,11 @@ bool C_MeshRenderer::OnEditor()
 				specularMap = nullptr;
 			}
 		}
+
+		ImGui::NewLine();
+		ImGui::DragFloat("Bump depth", &bumpDepth, 0.001f, -1, 1);
+		ImGui::NewLine();
+		ImGui::Separator();
 
 		ImGui::Checkbox("Vertex Normals", &vertexNormals);
 		ImGui::SameLine();

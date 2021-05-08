@@ -108,7 +108,7 @@ bool ResourceMesh::UnloadFromMemory()
 }
 
 void ResourceMesh::RenderMesh(GLuint textureID, float3 color, bool renderTexture, ResourceMaterial* material, C_Transform* _transform, 
-							  ResourceTexture* normalMap, ResourceTexture* specularMap, float emissionAmmount)
+							  ResourceTexture* normalMap, ResourceTexture* specularMap, float bumpDepth, float emissionAmmount)
 {
 	//ASK: glDrawElementsInstanced()?
 	//if (textureID != 0 && (renderTexture || (generalWireframe != nullptr && *generalWireframe == false)))
@@ -119,7 +119,7 @@ void ResourceMesh::RenderMesh(GLuint textureID, float3 color, bool renderTexture
 		material->shader->Bind();
 		material->PushUniforms();
 
-		PushDefaultMeshUniforms(material->shader->shaderProgramID, textureID, _transform, color, normalMap, specularMap, emissionAmmount);
+		PushDefaultMeshUniforms(material->shader->shaderProgramID, textureID, _transform, color, normalMap, specularMap, bumpDepth, emissionAmmount);
 
 		EngineExternal->moduleRenderer3D->PushLightUniforms(material);
 	}
@@ -400,7 +400,7 @@ void ResourceMesh::LoadBones(char** cursor)
 	}
 }
 
-void ResourceMesh::PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Transform* _transform, float3 color, ResourceTexture* normalMap, ResourceTexture* specularMap, float emissionAmmount)
+void ResourceMesh::PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Transform* _transform, float3 color, ResourceTexture* normalMap, ResourceTexture* specularMap, float bumpDepth, float emissionAmmount)
 {
 	if (textureID != 0)
 		glUniform1i(glGetUniformLocation(shaderID, "hasTexture"), 1);
@@ -432,7 +432,6 @@ void ResourceMesh::PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Tran
 	modelLoc = glGetUniformLocation(shaderID, "time");
 	glUniform1f(modelLoc, DETime::realTimeSinceStartup);
 
-
 	modelLoc = glGetUniformLocation(shaderID, "altColor");
 	glUniform3fv(modelLoc, 1, &color.x);
 
@@ -458,6 +457,8 @@ void ResourceMesh::PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Tran
 	else
 		glBindTexture(GL_TEXTURE_2D, EngineExternal->moduleRenderer3D->defaultSpecularMap);
 
+	modelLoc = glGetUniformLocation(shaderID, "bumpDepth");
+	glUniform1f(modelLoc, bumpDepth);
 
 
 	if (boneTransforms.size() > 0)
