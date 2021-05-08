@@ -63,11 +63,11 @@ public class LoadSkills : DiamondComponent
             {"weaponSkill11","SeUseRange"},
             {"weaponSkill12","SeDuration"},
             {"weaponSkill13","SeDmgInc"},
-            {"weaponSkill14","SpCritChance"},
+            {"weaponSkill14","SpNonCharged"},
             {"weaponSkill15","SpChargeTime"},
-            {"weaponSkill16","SpBullet"},
+            {"weaponSkill16","SpHeal"},
             {"weaponSkill17","SpRegForce"},
-            {"weaponSkill18","SpCritDmg"},
+            {"weaponSkill18","SpMaxIntDmg"},
             {"weaponSkill19","SpMaxDmg"},
         };
     public void Update()

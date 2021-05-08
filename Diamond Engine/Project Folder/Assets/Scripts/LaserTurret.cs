@@ -63,9 +63,11 @@ public class LaserTurret : Enemy
     public GameObject explosion = null;
     public GameObject wave = null;
     public GameObject mesh = null;
+    public GameObject hit = null;
 
     private ParticleSystem partExp = null;
     private ParticleSystem partWave = null;
+    private ParticleSystem hitParticle = null;
 
     public void Awake()
     {
@@ -97,6 +99,10 @@ public class LaserTurret : Enemy
         else
         {
             //Debug.Log("CAN'T PLAY SPAWN!!!"); 
+        }
+        if (hit != null)
+        {
+            hitParticle = hit.GetComponent<ParticleSystem>();
         }
 
         rotationSpeed = shotTotalAngle * Mathf.Deg2RRad / shotTime;
@@ -448,6 +454,26 @@ public class LaserTurret : Enemy
             if (currentState != STATE.DIE && healthPoints <= 0.0f)
             {
                 inputsList.Add(INPUT.IN_DIE);
+                if (Core.instance != null)
+                {
+                    if (Core.instance.HasStatus(STATUS_TYPE.SP_HEAL))
+                    {
+                        if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
+                        {
+                            float healing = Core.instance.GetStatusData(STATUS_TYPE.SP_HEAL).severity;
+                            Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
+                        }
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SP_FORCE_REGEN))
+                    {
+                        if (Core.instance.gameObject != null && BabyYoda.instance != null)
+                        {
+                            float force = Core.instance.GetStatusData(STATUS_TYPE.SP_FORCE_REGEN).severity;
+                            BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
+                        }
+                    }
+                }
+
             }
 
         }
@@ -458,7 +484,7 @@ public class LaserTurret : Enemy
     {
         Debug.Log("Turret Takes damage");
         healthPoints -= damage;
-
+        hitParticle.Play();
         if (currentState != STATE.DIE)
         {
             if (healthPoints <= 0.0f)

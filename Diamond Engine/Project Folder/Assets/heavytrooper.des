@@ -1,19 +1,19 @@
 {
     "NavMesh": 1915681073,
     "EditorCameraPosition": [
-        -9.0375690460205078,
-        5.767488956451416,
-        10.144328117370605
+        -11.084226608276367,
+        4.7553949356079102,
+        -7.2766594886779785
     ],
     "EditorCameraZ": [
-        0.11761930584907532,
-        -0.30694052577018738,
-        -0.94443273544311523
+        0.062098070979118347,
+        -0.98285603523254395,
+        -0.17360246181488037
     ],
     "EditorCameraY": [
-        0.037637237459421158,
-        0.95172864198684692,
-        -0.30462434887886047
+        0.32955431938171387,
+        0.18437439203262329,
+        -0.92595899105072021
     ],
     "tags": [
         "Bantha"
@@ -330,10 +330,8 @@
                     "stoppingDistance": 1,
                     "coinDropPath": "Library\/Prefabs\/1907169014.prefab",
                     "slerpSpeed": 5,
-                    "chargePoint": 1770085314,
                     "spear": 1199307117,
                     "idleTime": 5,
-                    "sweepTime": 1,
                     "tiredTime": 2,
                     "loadingTime": 1,
                     "directionDecisionTime": 0.80000001192092896,
@@ -1693,7 +1691,7 @@
                 2.6077032089233398e-06
             ],
             "Rotation": [
-                0.39665603637695313,
+                0.39665603637695312,
                 -0.15679711103439331,
                 -0.26382708549499512,
                 0.86514389514923096
@@ -1826,7 +1824,7 @@
             "Position": [
                 3.7252902984619141e-09,
                 0.079039148986339569,
-                2.9802322387695313e-08
+                2.9802322387695312e-08
             ],
             "Rotation": [
                 2.2351743567128324e-08,
@@ -3212,7 +3210,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -0.086336135864257813,
+                -0.086336135864257812,
                 1.6674346923828125,
                 0.017107963562011719
             ],
@@ -3941,7 +3939,7 @@
                         0,
                         0,
                         -0.0073059904389083385,
-                        0.99997329711914063
+                        0.99997329711914062
                     ],
                     "Scale": [
                         1,
@@ -4857,7 +4855,7 @@
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        0.49832534790039063,
+                        0.49832534790039062,
                         2.0816681711721685e-17,
                         1.3898392876873153e-17
                     ],
@@ -5165,7 +5163,7 @@
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        -1.8636245727539063,
+                        -1.8636245727539062,
                         0.046333789825439453,
                         -0.77125072479248047
                     ],
@@ -5193,7 +5191,7 @@
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        -1.8636245727539063,
+                        -1.8636245727539062,
                         0.046333789825439453,
                         0.86050128936767578
                     ],
@@ -5221,7 +5219,7 @@
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        0.76593399047851563,
+                        0.76593399047851562,
                         0.046333789825439453,
                         0.86050128936767578
                     ],
@@ -5278,7 +5276,7 @@
                     "Static": false,
                     "Position": [
                         -0.0040745735168457031,
-                        -0.0062532424926757813,
+                        -0.0062532424926757812,
                         -0.058134078979492188
                     ],
                     "Rotation": [
@@ -5394,10 +5392,10 @@
                         -0.19471836090087891
                     ],
                     "Rotation": [
-                        0.19392229616641998,
-                        -2.7353405651631135e-10,
-                        1.3877789462175682e-17,
-                        0.98101699352264404
+                        0.1939222663640976,
+                        -2.7353402876073574e-10,
+                        1.3877787807814457e-17,
+                        0.98101687431335449
                     ],
                     "Scale": [
                         1,
@@ -5824,6 +5822,62 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "name": "Heal",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 470704054,
+                    "ParentUID": 2008599538,
+                    "PrefabID": 0,
+                    "PrefabReference": 470704054,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0.83409100770950317,
+                        0
+                    ],
+                    "Rotation": [
+                        2.120925657322914e-09,
+                        -1.4958200665913856e-18,
+                        -7.0526734452514006e-10,
+                        1
+                    ],
+                    "Scale": [
+                        1.0000017881393433,
+                        1,
+                        1.0000017881393433
+                    ]
+                },
+                {
+                    "name": "Healing Particles",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1310219336,
+                    "ParentUID": 470704054,
+                    "PrefabID": 0,
+                    "PrefabReference": 1310219336,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        2.3418415857888483e-39,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
@@ -5834,7 +5888,7 @@
             "Active": true,
             "UID": 1116614551,
             "ParentUID": 143570472,
-            "PrefabReference": 1696886781,
+            "PrefabReference": 1116614551,
             "PrefabID": 21832274,
             "DontDestroy": false,
             "Static": false,
@@ -5863,7 +5917,7 @@
                     "UID": 913633771,
                     "ParentUID": 1116614551,
                     "PrefabID": 0,
-                    "PrefabReference": 1584191237,
+                    "PrefabReference": 913633771,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -5891,7 +5945,7 @@
                     "UID": 1778630298,
                     "ParentUID": 1116614551,
                     "PrefabID": 0,
-                    "PrefabReference": 2038251728,
+                    "PrefabReference": 1778630298,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -5919,7 +5973,7 @@
                     "UID": 1817923744,
                     "ParentUID": 1778630298,
                     "PrefabID": 0,
-                    "PrefabReference": 1551644975,
+                    "PrefabReference": 1817923744,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -5947,7 +6001,7 @@
                     "UID": 1572761432,
                     "ParentUID": 1817923744,
                     "PrefabID": 0,
-                    "PrefabReference": 57425787,
+                    "PrefabReference": 1572761432,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -5975,7 +6029,7 @@
                     "UID": 1327464036,
                     "ParentUID": 1572761432,
                     "PrefabID": 0,
-                    "PrefabReference": 1573649660,
+                    "PrefabReference": 1327464036,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6003,7 +6057,7 @@
                     "UID": 267418064,
                     "ParentUID": 1327464036,
                     "PrefabID": 0,
-                    "PrefabReference": 889759861,
+                    "PrefabReference": 267418064,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6031,7 +6085,7 @@
                     "UID": 1377297901,
                     "ParentUID": 267418064,
                     "PrefabID": 0,
-                    "PrefabReference": 1805484966,
+                    "PrefabReference": 1377297901,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6059,7 +6113,7 @@
                     "UID": 1564843324,
                     "ParentUID": 1778630298,
                     "PrefabID": 0,
-                    "PrefabReference": 1008508035,
+                    "PrefabReference": 1564843324,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6087,7 +6141,7 @@
                     "UID": 1964164247,
                     "ParentUID": 1564843324,
                     "PrefabID": 0,
-                    "PrefabReference": 1360066070,
+                    "PrefabReference": 1964164247,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6115,7 +6169,7 @@
                     "UID": 1762850368,
                     "ParentUID": 1964164247,
                     "PrefabID": 0,
-                    "PrefabReference": 163412299,
+                    "PrefabReference": 1762850368,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6143,7 +6197,7 @@
                     "UID": 567560831,
                     "ParentUID": 1762850368,
                     "PrefabID": 0,
-                    "PrefabReference": 1706790520,
+                    "PrefabReference": 567560831,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6171,7 +6225,7 @@
                     "UID": 453510251,
                     "ParentUID": 567560831,
                     "PrefabID": 0,
-                    "PrefabReference": 1750153469,
+                    "PrefabReference": 453510251,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6199,7 +6253,7 @@
                     "UID": 1532606677,
                     "ParentUID": 453510251,
                     "PrefabID": 0,
-                    "PrefabReference": 1360018116,
+                    "PrefabReference": 1532606677,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6227,7 +6281,7 @@
                     "UID": 1736974575,
                     "ParentUID": 567560831,
                     "PrefabID": 0,
-                    "PrefabReference": 1119774159,
+                    "PrefabReference": 1736974575,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6255,7 +6309,7 @@
                     "UID": 807756211,
                     "ParentUID": 1736974575,
                     "PrefabID": 0,
-                    "PrefabReference": 1845370345,
+                    "PrefabReference": 807756211,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6283,7 +6337,7 @@
                     "UID": 640902042,
                     "ParentUID": 807756211,
                     "PrefabID": 0,
-                    "PrefabReference": 1172123823,
+                    "PrefabReference": 640902042,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6311,7 +6365,7 @@
                     "UID": 1973332363,
                     "ParentUID": 640902042,
                     "PrefabID": 0,
-                    "PrefabReference": 54095083,
+                    "PrefabReference": 1973332363,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6339,7 +6393,7 @@
                     "UID": 106127598,
                     "ParentUID": 1973332363,
                     "PrefabID": 0,
-                    "PrefabReference": 1614940352,
+                    "PrefabReference": 106127598,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6367,7 +6421,7 @@
                     "UID": 1365754678,
                     "ParentUID": 106127598,
                     "PrefabID": 0,
-                    "PrefabReference": 108424260,
+                    "PrefabReference": 1365754678,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6395,7 +6449,7 @@
                     "UID": 1072998819,
                     "ParentUID": 1365754678,
                     "PrefabID": 0,
-                    "PrefabReference": 200386255,
+                    "PrefabReference": 1072998819,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6423,7 +6477,7 @@
                     "UID": 884633057,
                     "ParentUID": 1973332363,
                     "PrefabID": 0,
-                    "PrefabReference": 1037688443,
+                    "PrefabReference": 884633057,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6451,7 +6505,7 @@
                     "UID": 1354549084,
                     "ParentUID": 884633057,
                     "PrefabID": 0,
-                    "PrefabReference": 1409721376,
+                    "PrefabReference": 1354549084,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6479,7 +6533,7 @@
                     "UID": 464902806,
                     "ParentUID": 1354549084,
                     "PrefabID": 0,
-                    "PrefabReference": 1914283302,
+                    "PrefabReference": 464902806,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6507,7 +6561,7 @@
                     "UID": 124728942,
                     "ParentUID": 1973332363,
                     "PrefabID": 0,
-                    "PrefabReference": 1482635722,
+                    "PrefabReference": 124728942,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6535,7 +6589,7 @@
                     "UID": 1477286161,
                     "ParentUID": 124728942,
                     "PrefabID": 0,
-                    "PrefabReference": 1632624660,
+                    "PrefabReference": 1477286161,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6563,7 +6617,7 @@
                     "UID": 705509210,
                     "ParentUID": 1477286161,
                     "PrefabID": 0,
-                    "PrefabReference": 799501797,
+                    "PrefabReference": 705509210,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6591,7 +6645,7 @@
                     "UID": 1010735226,
                     "ParentUID": 567560831,
                     "PrefabID": 0,
-                    "PrefabReference": 1485962344,
+                    "PrefabReference": 1010735226,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6619,7 +6673,7 @@
                     "UID": 1800508097,
                     "ParentUID": 1010735226,
                     "PrefabID": 0,
-                    "PrefabReference": 1307141046,
+                    "PrefabReference": 1800508097,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6647,7 +6701,7 @@
                     "UID": 258778553,
                     "ParentUID": 1800508097,
                     "PrefabID": 0,
-                    "PrefabReference": 552254647,
+                    "PrefabReference": 258778553,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6675,7 +6729,7 @@
                     "UID": 1181323730,
                     "ParentUID": 258778553,
                     "PrefabID": 0,
-                    "PrefabReference": 2121046546,
+                    "PrefabReference": 1181323730,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6703,7 +6757,7 @@
                     "UID": 610693524,
                     "ParentUID": 1181323730,
                     "PrefabID": 0,
-                    "PrefabReference": 1963560405,
+                    "PrefabReference": 610693524,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6731,7 +6785,7 @@
                     "UID": 1212591098,
                     "ParentUID": 610693524,
                     "PrefabID": 0,
-                    "PrefabReference": 524955779,
+                    "PrefabReference": 1212591098,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6759,7 +6813,7 @@
                     "UID": 2075186641,
                     "ParentUID": 1212591098,
                     "PrefabID": 0,
-                    "PrefabReference": 2069585113,
+                    "PrefabReference": 2075186641,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6787,7 +6841,7 @@
                     "UID": 311813842,
                     "ParentUID": 1181323730,
                     "PrefabID": 0,
-                    "PrefabReference": 1169856708,
+                    "PrefabReference": 311813842,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6815,7 +6869,7 @@
                     "UID": 2026790006,
                     "ParentUID": 311813842,
                     "PrefabID": 0,
-                    "PrefabReference": 1129071546,
+                    "PrefabReference": 2026790006,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6843,7 +6897,7 @@
                     "UID": 291530650,
                     "ParentUID": 2026790006,
                     "PrefabID": 0,
-                    "PrefabReference": 598689278,
+                    "PrefabReference": 291530650,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6871,7 +6925,7 @@
                     "UID": 787435853,
                     "ParentUID": 1181323730,
                     "PrefabID": 0,
-                    "PrefabReference": 836119015,
+                    "PrefabReference": 787435853,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6899,7 +6953,7 @@
                     "UID": 1108981097,
                     "ParentUID": 787435853,
                     "PrefabID": 0,
-                    "PrefabReference": 1750207733,
+                    "PrefabReference": 1108981097,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6927,7 +6981,7 @@
                     "UID": 2040877293,
                     "ParentUID": 1108981097,
                     "PrefabID": 0,
-                    "PrefabReference": 842964766,
+                    "PrefabReference": 2040877293,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6955,7 +7009,7 @@
                     "UID": 1809995845,
                     "ParentUID": 1778630298,
                     "PrefabID": 0,
-                    "PrefabReference": 1616868470,
+                    "PrefabReference": 1809995845,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -6983,7 +7037,7 @@
                     "UID": 1527802432,
                     "ParentUID": 1809995845,
                     "PrefabID": 0,
-                    "PrefabReference": 1201941424,
+                    "PrefabReference": 1527802432,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -7011,7 +7065,7 @@
                     "UID": 120598715,
                     "ParentUID": 1527802432,
                     "PrefabID": 0,
-                    "PrefabReference": 1516091302,
+                    "PrefabReference": 120598715,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -7039,7 +7093,7 @@
                     "UID": 1689560892,
                     "ParentUID": 120598715,
                     "PrefabID": 0,
-                    "PrefabReference": 823802845,
+                    "PrefabReference": 1689560892,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -7067,7 +7121,7 @@
                     "UID": 502097507,
                     "ParentUID": 1689560892,
                     "PrefabID": 0,
-                    "PrefabReference": 1132111316,
+                    "PrefabReference": 502097507,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -7095,7 +7149,7 @@
                     "UID": 1939212628,
                     "ParentUID": 1116614551,
                     "PrefabID": 0,
-                    "PrefabReference": 1786429628,
+                    "PrefabReference": 1939212628,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -7123,7 +7177,7 @@
                     "UID": 1920454392,
                     "ParentUID": 1939212628,
                     "PrefabID": 0,
-                    "PrefabReference": 365484904,
+                    "PrefabReference": 1920454392,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -7151,24 +7205,136 @@
                     "UID": 1623363212,
                     "ParentUID": 1939212628,
                     "PrefabID": 0,
-                    "PrefabReference": 1777119042,
+                    "PrefabReference": 1623363212,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        -0.44775080680847168,
+                        -0.44775104522705078,
                         0.84239524602890015,
-                        -0.11104831099510193
+                        -0.11104869842529297
                     ],
                     "Rotation": [
-                        0.52949410676956177,
-                        0.20679919421672821,
-                        0.63180512189865112,
-                        0.52696520090103149
+                        0.36945819854736328,
+                        0.36808079481124878,
+                        0.55358850955963135,
+                        0.64927423000335693
                     ],
                     "Scale": [
                         0.99999994039535522,
                         0.99999994039535522,
                         0.99999988079071045
+                    ]
+                },
+                {
+                    "name": "Sweep",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1744866104,
+                    "ParentUID": 1623363212,
+                    "PrefabID": 0,
+                    "PrefabReference": 1744866104,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -0.8217008113861084,
+                        0.9323420524597168,
+                        0.063090324401855469
+                    ],
+                    "Rotation": [
+                        -0.27717506885528564,
+                        -0.32110750675201416,
+                        -0.18416918814182281,
+                        0.88664859533309937
+                    ],
+                    "Scale": [
+                        0.99999552965164185,
+                        0.99999892711639404,
+                        0.99997943639755249
+                    ]
+                },
+                {
+                    "name": "SweepParticles",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 747588289,
+                    "ParentUID": 1744866104,
+                    "PrefabID": 0,
+                    "PrefabReference": 747588289,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0.00031614303588867188,
+                        0.0003299713134765625,
+                        0.000171661376953125
+                    ],
+                    "Rotation": [
+                        -3.6460772889768123e-07,
+                        3.2037499408943404e-07,
+                        -4.4167359192215372e-07,
+                        1
+                    ],
+                    "Scale": [
+                        0.99999988079071045,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Heavy Trooper Dash Particle",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1367650268,
+                    "ParentUID": 1116614551,
+                    "PrefabID": 0,
+                    "PrefabReference": 1367650268,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        1.0007987022399902,
+                        1.3916463851928711
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        0.99999862909317017,
+                        1,
+                        0.99999862909317017
+                    ]
+                },
+                {
+                    "name": "DashParticles",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 2049367742,
+                    "ParentUID": 1367650268,
+                    "PrefabID": 0,
+                    "PrefabReference": 2049367742,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        2.2351740014414645e-08,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1.0000001192092896
                     ]
                 }
             ]

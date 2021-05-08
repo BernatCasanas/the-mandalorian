@@ -5932,7 +5932,7 @@
                     "lockedButtonUnhovered": 1462646886,
                     "ownedButtonHovered": 2084525819,
                     "ownedButtonUnhovered": 1744642559,
-                    "skill_name": "GComboTimer",
+                    "skill_name": "GComboGain",
                     "children_1": 727434170,
                     "parent_1": 1446875919,
                     "oppositeNode": 772807125,
@@ -8591,7 +8591,7 @@
                     "lockedButtonUnhovered": 1717509064,
                     "ownedButtonHovered": 2139183051,
                     "ownedButtonUnhovered": 1096582681,
-                    "skill_name": "SpCritChance",
+                    "skill_name": "SpNonCharged",
                     "children_1": 492922447,
                     "text_description": 571255318,
                     "hub_skill_controller": 1070040184,
@@ -8858,7 +8858,7 @@
                     "lockedButtonUnhovered": 1717509064,
                     "ownedButtonHovered": 152376566,
                     "ownedButtonUnhovered": 197782530,
-                    "skill_name": "SpBullet",
+                    "skill_name": "SpHeal",
                     "children_1": 1033023848,
                     "parent_1": 492922447,
                     "oppositeNode": 484656872,
@@ -9134,7 +9134,7 @@
                     "lockedButtonUnhovered": 1717509064,
                     "ownedButtonHovered": 103946528,
                     "ownedButtonUnhovered": 1858988644,
-                    "skill_name": "SpCritDmg",
+                    "skill_name": "SpMaxIntDmg",
                     "children_1": 925983578,
                     "parent_1": 965003527,
                     "parent_2": 484656872,
@@ -46993,10 +46993,10 @@
                         -0.19471836090087891
                     ],
                     "Rotation": [
-                        0.19392229616641998,
-                        -2.7353405651631135e-10,
-                        1.3877789462175682e-17,
-                        0.98101699352264404
+                        0.1939222663640976,
+                        -2.7353402876073574e-10,
+                        1.3877787807814457e-17,
+                        0.98101687431335449
                     ],
                     "Scale": [
                         1,
@@ -47472,6 +47472,62 @@
                         0,
                         0,
                         0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Heal",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 470704054,
+                    "ParentUID": 728409309,
+                    "PrefabID": 0,
+                    "PrefabReference": 470704054,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0.83409100770950317,
+                        0
+                    ],
+                    "Rotation": [
+                        2.120925657322914e-09,
+                        -1.4958200665913856e-18,
+                        -7.0526734452514006e-10,
+                        1
+                    ],
+                    "Scale": [
+                        1.0000017881393433,
+                        1,
+                        1.0000017881393433
+                    ]
+                },
+                {
+                    "name": "Healing Particles",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1310219336,
+                    "ParentUID": 470704054,
+                    "PrefabID": 0,
+                    "PrefabReference": 1310219336,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        2.3418415857888483e-39,
                         1
                     ],
                     "Scale": [

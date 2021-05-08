@@ -68,6 +68,12 @@ public enum STATUS_TYPE
     SEC_SLOW,
     SEC_RECOVERY,
     SEC_DURATION,
+    SP_NONCHARGED,
+    SP_CHARGE_TIME,
+    SP_HEAL,
+    SP_FORCE_REGEN,
+    SP_INTERVAL,
+    SP_DAMAGE_CHARGED,
 }
 
 public enum STATUS_APPLY_TYPE
@@ -136,6 +142,7 @@ public class Entity : DiamondComponent
     public float GroguCost = 1f;
     public float FireRateMult = 1f;
     protected float SecTickDamage = 1f;
+    protected float sniperShotIntervalModifier = 1f;
 
     protected virtual void InitEntity(ENTITY_TYPE myType)
     {

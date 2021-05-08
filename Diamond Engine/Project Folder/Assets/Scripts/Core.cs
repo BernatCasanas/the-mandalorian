@@ -152,7 +152,6 @@ public class Core : Entity
     public float overheatTimeBeeping = 0.08f;
     private float changeColorSniperTimer = 0f;
     private float sniperShotTimer = 0.0f;
-
     //Animations
     private float shootAnimationTotalTime = 0.0f;
 
@@ -1075,8 +1074,15 @@ public class Core : Entity
 
             InternalCalls.DrawRay(shootPoint.transform.globalPosition, shootPoint.transform.globalPosition + (shootPoint.transform.GetForward() * hitDistance), currSniperLaserColor);
         }
-
-        chargeTimer += myDeltaTime;
+        if (HasStatus(STATUS_TYPE.SP_NONCHARGED))
+        {
+            float modifier = 1 + GetStatusData(STATUS_TYPE.SP_CHARGE_TIME).severity / 100;
+            chargeTimer += myDeltaTime * modifier;
+        }
+        else
+        {
+            chargeTimer += myDeltaTime;
+        }
         //UpdateAnimationSpd(0.01f);
 
         if (chargeTimer >= timeToAutomaticallyShootCharge && sniperShotTimer <= 0.0f)
@@ -1144,8 +1150,13 @@ public class Core : Entity
                 {
                     sniperBulletDamage *= perfectShotDmgMult;
                     bullet.transform.localScale *= perfectShotDmgMult;
+                    if (HasStatus(STATUS_TYPE.SP_DAMAGE_CHARGED))
+                    {
+                        float modifier = 1 + GetStatusData(STATUS_TYPE.SP_DAMAGE_CHARGED).severity / 100;
+                        sniperBulletDamage *= modifier;
+                    }
                 }
-                else if (chargeTimer > timeToPerfectChargeEnd)
+                else if (chargeTimer > timeToPerfectChargeEnd * sniperShotIntervalModifier)
                 {
                     sniperBulletDamage = (chargedBulletDmg * overShotDmgMult);
                 }
@@ -1157,6 +1168,12 @@ public class Core : Entity
                     sniperBulletDamage = (chargedBulletDmg * dmgMult);
 
                     sniperBulletDamage = Math.Max(sniperBulletDamage, 1f);
+
+                    if (HasStatus(STATUS_TYPE.SP_NONCHARGED))
+                    {
+                        float modifier = 1 + GetStatusData(STATUS_TYPE.SP_NONCHARGED).severity / 100;
+                        sniperBulletDamage *= modifier;
+                    }
                 }
                 //Debug.Log("Charge Bullet dmg: " + bulletDamage.ToString());
 
@@ -1865,7 +1882,7 @@ public class Core : Entity
         FireRateMult = 1f;
         RawDamageMult = 1f;
         SecTickDamage = 1f;
-
+        sniperShotIntervalModifier = 1f;
     }
 
     protected override void OnInitStatus(ref StatusData statusToInit)
@@ -2002,6 +2019,12 @@ public class Core : Entity
                 {
                     statusToInit.statChange = statusToInit.severity;
                     this.SecTickDamage += statusToInit.statChange;
+                }
+                break;
+            case STATUS_TYPE.SP_INTERVAL:
+                {
+                    statusToInit.statChange = statusToInit.severity / 100;
+                    sniperShotIntervalModifier += statusToInit.statChange;
                 }
                 break;
             default:
@@ -2202,6 +2225,12 @@ public class Core : Entity
                 {
                     
                     this.SecTickDamage -= statusToDelete.statChange;
+                }
+                break;
+            case STATUS_TYPE.SP_INTERVAL:
+                {
+
+                    sniperShotIntervalModifier -= statusToDelete.statChange;
                 }
                 break;
             default:
