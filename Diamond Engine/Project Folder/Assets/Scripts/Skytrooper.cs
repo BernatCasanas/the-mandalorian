@@ -540,28 +540,20 @@ public class Skytrooper : Enemy
 
         //Combo
         //UNCOMMENT
-        //if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
-        //{
-        //    Debug.Log("Start die ended");
-        //    HUD hud = Core.instance.hud.GetComponent<HUD>();
+        if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
+        {
+            Debug.Log("Start die ended");
+            HUD hud = Core.instance.hud.GetComponent<HUD>();
 
-        //    if(hud != null)
-        //        hud.AddToCombo(300, 1.0f);
-        //}
+            if (hud != null)
+                hud.AddToCombo(300, 1.0f);
+        }
         //UNCOMMENT
     }
     private void UpdateDie()
     {
         if (dieTimer > 0.0f)
         {
-            //Quaternion dieRotation = gameObject.transform.localRotation;
-            //Quaternion rotation = new Quaternion(0,45,0);
-            //dieRotation = rotation * dieRotation;
-            //Vector3 dieTransform = gameObject.transform.localPosition;
-            //dieTransform.y += 0.15f;
-            //gameObject.transform.localPosition = dieTransform;
-            //gameObject.transform.localRotation = dieRotation;
-
             dieTimer -= myDeltaTime;
 
             if (dieTimer <= 0.0f)
@@ -697,7 +689,6 @@ public class Skytrooper : Enemy
             if (healthPoints <= 0.0f)
                 inputsList.Add(INPUT.IN_DIE);
         }
-
     }
 
     private Vector3 CalculateRandomInRangePosition()
