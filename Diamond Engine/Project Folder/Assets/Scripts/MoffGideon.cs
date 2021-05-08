@@ -85,7 +85,7 @@ public class MoffGideon : Entity
     public float radiusWander = 5f;
     public float distanceProjectile = 17f;
     public float dashSpeed = 10f;
-    public float dashDistance = 10f;
+    public float dashDistance = 3f;
     public float closerDistance = 5f;
     public float farDistance = 10f;
     public float furtherDistance = 15f;
@@ -112,22 +112,24 @@ public class MoffGideon : Entity
     private float neutralTimer = 0f;
     public float neutralTime = 5f;
     private float enemiesTimer = 0f;
-    public float enemiesTime = 20f;
+    public float enemiesTime = 1f;
     private float comboTime = 0f;
     private float comboTimer = 0f;
 
     private void Start()
     {
         StartNeutral();
-        //sword.DisableCollider();
+        sword.DisableCollider();
 
-        //comboTime = Animator.GetAnimationDuration(gameObject, "") - 0.016f;
+        comboTime = Animator.GetAnimationDuration(gameObject, "MG_Slash") - 0.016f;
+        enemiesTimer = enemiesTime;
+
     }
-    
+
     public void Awake()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
-
+        targetDash = new Vector3(0, 0, 0);
         InitEntity(ENTITY_TYPE.MOFF);
 
         damageMult = 1f;
@@ -154,7 +156,6 @@ public class MoffGideon : Entity
             Start();
             start = true;
         }
-
         myDeltaTime = Time.deltaTime * speedMult;
 
         UpdateStatuses();
@@ -162,6 +163,8 @@ public class MoffGideon : Entity
         ProcessInternalInput();
         ProcessExternalInput();
         ProcessState();
+
+        Debug.Log(ready2Spawn.ToString());
 
         UpdateState();
     }
@@ -181,6 +184,7 @@ public class MoffGideon : Entity
         if (enemiesTimer > 0)
         {
             enemiesTimer -= myDeltaTime;
+            Debug.Log(enemiesTimer.ToString());
 
             if (enemiesTimer <= 0)
                 ready2Spawn = true;
@@ -192,7 +196,7 @@ public class MoffGideon : Entity
             comboTimer -= myDeltaTime;
 
             if (comboTimer <= 0)
-                inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_BACKWARDS);
+                inputsList.Add(MOFFGIDEON_INPUT.IN_MELEE_COMBO_END);
 
         }
     }
@@ -209,7 +213,10 @@ public class MoffGideon : Entity
             wander = true;
 
         if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, targetDash) <= 1f)
-            inputsList.Add(MOFFGIDEON_INPUT.IN_MELEE_COMBO);
+            inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD_END);
+
+        if (currentState == MOFFGIDEON_STATE.DASH_BACKWARDS && Mathf.Distance(gameObject.transform.globalPosition, targetDash) <= 1f)
+            inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_BACKWARDS_END);
 
         if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, targetDash) >= dashDistance && justDashing)
         {
@@ -312,7 +319,7 @@ public class MoffGideon : Entity
                     case MOFFGIDEON_STATE.DASH_FORWARD:
                         switch (input)
                         {
-                            case MOFFGIDEON_INPUT.IN_DASH_BACKWARDS_END:
+                            case MOFFGIDEON_INPUT.IN_DASH_FORWARD_END:
                                 currentState = MOFFGIDEON_STATE.MELEE_COMBO;
                                 EndDashForward();
                                 StartMeleeCombo();
@@ -345,8 +352,9 @@ public class MoffGideon : Entity
                         switch (input)
                         {
                             case MOFFGIDEON_INPUT.IN_DASH_BACKWARDS_END:
-                                currentState = MOFFGIDEON_STATE.SEARCH_STATE;
+                                currentState = MOFFGIDEON_STATE.NEUTRAL;
                                 EndDashBackward();
+                                StartNeutral();
                                 break;
 
                             case MOFFGIDEON_INPUT.IN_DEAD:
@@ -519,8 +527,9 @@ public class MoffGideon : Entity
                         switch (input)
                         {
                             case MOFFGIDEON_INPUT.IN_DASH_BACKWARDS_END:
-                                currentState = MOFFGIDEON_STATE.SEARCH_STATE;
+                                currentState = MOFFGIDEON_STATE.NEUTRAL;
                                 EndDashBackward();
+                                StartNeutral();
                                 break;
 
                             case MOFFGIDEON_INPUT.IN_DEAD:
@@ -668,12 +677,14 @@ public class MoffGideon : Entity
     private void StartDashForward()
     {
         targetDash = Core.instance.gameObject.transform.globalPosition;
+        Animator.Play(gameObject, "MG_Dash", speedMult);
+        UpdateAnimationSpd(speedMult);
     }
 
     private void UpdateDashForward()
     {
         LookAt(targetDash);
-        MoveToPosition(targetDash, dashSpeed * speedMult);
+        if(Mathf.Distance(gameObject.transform.globalPosition, targetDash) >= 1f) MoveToPosition(targetDash, dashSpeed * speedMult);
         Debug.Log("Dash Forward");
     }
 
@@ -688,6 +699,9 @@ public class MoffGideon : Entity
     private void StartMeleeCombo()
     {
         sword.EnableCollider();
+        Animator.Play(gameObject, "MG_Slash", speedMult);
+        UpdateAnimationSpd(speedMult);
+        comboTimer = comboTime;
     }
 
     private void UpdateMeleeCombo()
@@ -706,12 +720,14 @@ public class MoffGideon : Entity
     #region DASH_BACKWARD
     private void StartDashBackward()
     {
-
+        targetDash = (Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition).normalized * -1 * dashDistance;
+        targetDash.y = gameObject.transform.globalPosition.y;
+        agent.CalculatePath(gameObject.transform.globalPosition, targetDash);
     }
 
     private void UpdateDashBackward()
     {
-        gameObject.transform.localPosition += dashSpeed * myDeltaTime * speedMult;
+        agent.MoveToCalculatedPos(dashSpeed);
         Debug.Log("Dash Backward");
     }
 
@@ -748,6 +764,8 @@ public class MoffGideon : Entity
         invencible = true;
         ready2Spawn = false;
         SpawnEnemies();
+        Animator.Play(gameObject, "MG_Spawn", speedMult);
+        UpdateAnimationSpd(speedMult);
     }
 
     private void UpdateSpawnEnemies()
@@ -824,7 +842,8 @@ public class MoffGideon : Entity
     private void StartDie()
     {
         dieTimer = dieTime;
-
+        Animator.Play(gameObject, "MG_Death", speedMult);
+        UpdateAnimationSpd(speedMult);
     }
 
     private void UpdateDie()
@@ -1090,10 +1109,10 @@ public class MoffGideon : Entity
 
     private void SpawnEnemies()
     {
-        InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner1.transform.globalPosition, gameObject.transform.localRotation, null);
-        InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner2.transform.globalPosition, gameObject.transform.localRotation, null);
-        InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner3.transform.globalPosition, gameObject.transform.localRotation, null);
-        InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner4.transform.globalPosition, gameObject.transform.localRotation, null);
+        //InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner1.transform.globalPosition, gameObject.transform.localRotation, null);
+        //InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner2.transform.globalPosition, gameObject.transform.localRotation, null);
+        //InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner3.transform.globalPosition, gameObject.transform.localRotation, null);
+        //InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner4.transform.globalPosition, gameObject.transform.localRotation, null);
     }
 
     public void MoveToPosition(Vector3 positionToReach, float speed)
