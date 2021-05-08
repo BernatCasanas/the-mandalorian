@@ -14,7 +14,7 @@ DE_Advanced_FrameBuffer::DE_Advanced_FrameBuffer(int width, int height, DEPTH_BU
 
 DE_Advanced_FrameBuffer::DE_Advanced_FrameBuffer(int width, int height, int msaaSamples) :
 	framebuffer(0), colorTexture(0), depthTexture(0), depthBufferAttachment(0), colorBufferAttachment(0), texBufferSize(float2::zero),
-	isMultisample(true), msaaSamples(msaaSamples), myDepthType(DEPTH_BUFFER_TYPE::DEPTH_RENDER_BUFER), alreadyInitialized(false)
+	isMultisample(true), msaaSamples(msaaSamples), myDepthType(DEPTH_BUFFER_TYPE::DEPTH_RENDER_STENCIl_BUFER), alreadyInitialized(false)
 {
 	texBufferSize.x = width;
 	texBufferSize.y = height;
@@ -75,6 +75,7 @@ void DE_Advanced_FrameBuffer::InitializeFrameBuffer(DEPTH_BUFFER_TYPE depthType)
 		CreateTextureAttachment();
 	}
 
+	//TODO change this for a switch?
 	if (depthType == DEPTH_BUFFER_TYPE::DEPTH_RENDER_BUFER)
 	{
 		CreateDepthBufferAttachment();
@@ -82,6 +83,10 @@ void DE_Advanced_FrameBuffer::InitializeFrameBuffer(DEPTH_BUFFER_TYPE depthType)
 	else if (depthType == DEPTH_BUFFER_TYPE::DEPTH_TEXTURE)
 	{
 		CreateDepthTextureAttachment();
+	}
+	else if (depthType == DEPTH_BUFFER_TYPE::DEPTH_RENDER_STENCIl_BUFER)
+	{
+		CreateDepthStencilBufferAttachment();
 	}
 	UnbindFrameBuffer();
 }
@@ -139,7 +144,7 @@ void DE_Advanced_FrameBuffer::ResolveToFBO(DE_Advanced_FrameBuffer& outputFbo)
 	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, outputFbo.framebuffer);
 	glBindFramebuffer(GL_READ_FRAMEBUFFER, framebuffer);
 	glBlitFramebuffer(0, 0, texBufferSize.x, texBufferSize.y, 0, 0, outputFbo.texBufferSize.x, outputFbo.texBufferSize.y,
-		GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT, GL_NEAREST); //TODO is stencil needed here?
+		GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT |GL_STENCIL_BUFFER_BIT, GL_NEAREST); //TODO is stencil needed here?
 	UnbindFrameBuffer();
 }
 
@@ -225,5 +230,20 @@ void DE_Advanced_FrameBuffer::CreateDepthBufferAttachment()
 		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, texBufferSize.x, texBufferSize.y);
 	}
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthBufferAttachment);
+}
+
+void DE_Advanced_FrameBuffer::CreateDepthStencilBufferAttachment()
+{
+	glGenRenderbuffers(1, (GLuint*)& depthBufferAttachment);
+	glBindRenderbuffer(GL_RENDERBUFFER, depthBufferAttachment);
+	if (isMultisample)
+	{
+		glRenderbufferStorageMultisample(GL_RENDERBUFFER, msaaSamples, GL_DEPTH24_STENCIL8, texBufferSize.x, texBufferSize.y);
+	}
+	else
+	{
+		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, texBufferSize.x, texBufferSize.y);
+	}
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, depthBufferAttachment);
 }
 

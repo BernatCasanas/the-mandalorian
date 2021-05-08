@@ -790,8 +790,10 @@ void ModuleRenderer3D::RenderStencilWithOrdering(bool rTex)
 	//2. We then draw the stencil objects in front of the mask
 
 	glStencilFunc(GL_NOTEQUAL, 0, 0xFF);
+	//glDepthMask(GL_FALSE);
+	glDisable(GL_DEPTH_TEST);
 	//We now want to draw on the color & depth buffers takin into account the stencil (without changing it)
-	glClear(GL_DEPTH_BUFFER_BIT);
+	//glClear(GL_DEPTH_BUFFER_BIT);
 
 	for (auto i = renderQueueMapStencil.rbegin(); i != renderQueueMapStencil.rend(); ++i)
 	{

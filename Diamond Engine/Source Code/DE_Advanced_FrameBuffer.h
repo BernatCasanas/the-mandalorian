@@ -8,7 +8,8 @@ enum class DEPTH_BUFFER_TYPE
 {
 	NONE,
 	DEPTH_TEXTURE,
-	DEPTH_RENDER_BUFER
+	DEPTH_RENDER_BUFER,
+	DEPTH_RENDER_STENCIl_BUFER
 };
 
 class DE_Advanced_FrameBuffer
@@ -44,6 +45,7 @@ private:
 	void CreateMultisampleColorAttachment();
 	void CreateTextureAttachment();
 	void CreateDepthBufferAttachment();//TODO we do not support stencil for the moment
+	void CreateDepthStencilBufferAttachment();//TODO we do not support stencil for the moment
 	void CreateDepthTextureAttachment();//TODO we do not support stencil for the moment
 
 
