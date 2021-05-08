@@ -83,6 +83,10 @@ public class Deathtrooper : Enemy
     public float pushVerticalForce = 10;
     public float PushStun = 2;
 
+    //hit particles
+    public GameObject hitParticlesObj = null;
+    private ParticleSystem hitParticle = null;
+
     public void Awake()
     {
         InitEntity(ENTITY_TYPE.DEATHTROOPER);
@@ -100,6 +104,10 @@ public class Deathtrooper : Enemy
         dieTime = Animator.GetAnimationDuration(gameObject, "DTH_Die");
 
         recoilTime = recoilDistance / recoilSpeed;
+        if (hitParticlesObj != null)
+            hitParticle = hitParticlesObj.GetComponent<ParticleSystem>();
+        else
+            Debug.Log("Hit particles gameobject not found!");
     }
 
     public void Update()
@@ -691,7 +699,7 @@ public class Deathtrooper : Enemy
     public override void TakeDamage(float damage)
     {
         healthPoints -= damage;
-
+        hitParticle.Play();
         if (currentState != STATE.DIE)
         {
             if (healthPoints <= 0.0f)

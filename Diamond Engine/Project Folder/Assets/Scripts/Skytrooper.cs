@@ -82,6 +82,10 @@ public class Skytrooper : Enemy
     public float pushVerticalForce = 10;
     public float PushStun = 2;
 
+    //hit particles
+    public GameObject hitParticlesObj = null;
+    private ParticleSystem hitParticles = null;
+
     public void Awake()
     {
         InitEntity(ENTITY_TYPE.SKYTROOPER);
@@ -99,7 +103,10 @@ public class Skytrooper : Enemy
         dashTime = Animator.GetAnimationDuration(gameObject, "SK_Dash");
 
         initialHeight = gameObject.transform.globalPosition.y;
-
+        if (hitParticlesObj != null)
+            hitParticles = hitParticlesObj.GetComponent<ParticleSystem>();
+        else
+            Debug.Log("Hit particles gameobject not found!");
     }
 
     public void Update()
@@ -703,7 +710,7 @@ public class Skytrooper : Enemy
     public override void TakeDamage(float damage)
     {
         healthPoints -= damage;
-
+        hitParticles.Play();
         if (currentState != STATE.DIE)
         {
             if (healthPoints <= 0.0f)

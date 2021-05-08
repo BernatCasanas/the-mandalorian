@@ -924,7 +924,7 @@ public class HeavyTrooper : Enemy
     public override void TakeDamage(float damage)
     {
         healthPoints -= damage;
-
+        particles.Play(HeavyTrooperParticles.HEAVYROOPER_PARTICLES.HIT);
         if (currentState != STATE.DIE)
         {
             if (healthPoints <= 0.0f)

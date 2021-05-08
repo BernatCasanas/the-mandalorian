@@ -5,13 +5,16 @@ public class HeavyTrooperParticles : DiamondComponent
 {
     public GameObject sweepParticlesObj = null;
     public GameObject dashParticlesObj = null;
+    public GameObject hitParticlesObj = null;
     private ParticleSystem sweepParticles = null;
     private ParticleSystem dashParticles = null;
+    private ParticleSystem hitParticles = null;
 
     public enum HEAVYROOPER_PARTICLES : int
     {
         SPEAR,
-        DASH
+        DASH,
+        HIT
     }
 
     public void Awake()
@@ -23,6 +26,10 @@ public class HeavyTrooperParticles : DiamondComponent
         if (dashParticlesObj != null)
         {
             dashParticles = dashParticlesObj.GetComponent<ParticleSystem>();
+        }
+        if (hitParticlesObj != null)
+        {
+            hitParticles = hitParticlesObj.GetComponent<ParticleSystem>();
         }
     }
 
@@ -42,6 +49,12 @@ public class HeavyTrooperParticles : DiamondComponent
                 else
                     Debug.Log("Dash particles not found!");
                 break;
+            case HEAVYROOPER_PARTICLES.HIT:
+                if (hitParticles != null)
+                    hitParticles.Play();
+                else
+                    Debug.Log("Hit particles not found!");
+                break;
         }
     }
 
@@ -60,6 +73,12 @@ public class HeavyTrooperParticles : DiamondComponent
                     dashParticles.Stop();
                 else
                     Debug.Log("Dash particles not found!");
+                break;
+            case HEAVYROOPER_PARTICLES.HIT:
+                if (hitParticles != null)
+                    hitParticles.Stop();
+                else
+                    Debug.Log("Hit particles not found!");
                 break;
         }
     }
