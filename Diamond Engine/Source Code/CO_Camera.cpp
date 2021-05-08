@@ -13,15 +13,16 @@
 #include"CO_Transform.h"
 #include"OpenGL.h"
 #include"MO_Window.h"
+#include"MathGeoLib/include/Geometry/AABB.h"
 
-C_Camera::C_Camera() : Component(nullptr), 
-	fov(60.0f), 
-	cullingState(true),
-	msaaSamples(4), 
-	orthoSize(0.0f),
-	windowWidth(0),
-	windowHeight(0),
-	drawSkybox(true)
+C_Camera::C_Camera() : Component(nullptr),
+fov(60.0f),
+cullingState(true),
+msaaSamples(4),
+orthoSize(0.0f),
+windowWidth(0),
+windowHeight(0),
+drawSkybox(true)
 {
 	name = "Camera";
 	camFrustrum.type = FrustumType::PerspectiveFrustum;
@@ -34,13 +35,11 @@ C_Camera::C_Camera() : Component(nullptr),
 	camFrustrum.horizontalFov = 2.0f * atanf(tanf(camFrustrum.verticalFov / 2.0f) * 1.7f);
 
 	camFrustrum.pos = float3::zero;
-	orthoSize = 0.0f;
 }
 
 C_Camera::C_Camera(GameObject* _gm) : Component(_gm), fov(60.0f), cullingState(true),
 msaaSamples(4), orthoSize(0.0f), drawSkybox(true)
 {
-
 	name = "Camera";
 	camFrustrum.type = FrustumType::PerspectiveFrustum;
 	camFrustrum.nearPlaneDistance = 1;
@@ -50,7 +49,7 @@ msaaSamples(4), orthoSize(0.0f), drawSkybox(true)
 
 	camFrustrum.verticalFov = 60.0f * DEGTORAD;
 	camFrustrum.horizontalFov = 2.0f * atanf(tanf(camFrustrum.verticalFov / 2.0f) * 1.7f);
-	
+
 	camFrustrum.pos = gameObject->transform->position;
 }
 
@@ -79,36 +78,43 @@ bool C_Camera::OnEditor()
 		ImGui::DragFloat("Far Distance: ", &camFrustrum.farPlaneDistance, 0.1f, camFrustrum.nearPlaneDistance, 10000.f);
 
 		ImGui::Separator();
-		
-		if (camFrustrum.type == FrustumType::PerspectiveFrustum) 
+
+		if (camFrustrum.type == FrustumType::PerspectiveFrustum)
 		{
 			ImGui::Text("Vertical FOV: %f", camFrustrum.verticalFov);
 			ImGui::Text("Horizontal FOV: %f", camFrustrum.horizontalFov);
 			ImGui::Separator();
 			if (ImGui::DragFloat("FOV: ", &fov, 0.1f, 1.0f, 180.f))
 			{
-				camFrustrum.verticalFov = fov * DEGTORAD;
-				//camFrustrum.horizontalFov = 2.0f * atanf(tanf(camFrustrum.verticalFov / 2.0f) * App->window->GetWindowWidth() / App->window->GetWindowHeight());
+				SetVerticalFOV(fov);
 			}
 		}
 		else
 		{
-			if (ImGui::DragFloat("Size: ", &orthoSize, 0.01f, 0.01f, 100.0f)) 
+			if (ImGui::DragFloat("Size: ", &orthoSize, 0.01f, 0.01f, 100.0f))
 			{
+				//camFrustrum.verticalFov = fov * DEGTORAD;
 				//camFrustrum.orthographicWidth = 1920 / orthoSize;
 				//camFrustrum.orthographicHeight = 1080 / orthoSize;
 			}
 		}
-		
 
-		
-		if (ImGui::BeginCombo("Frustrum Type", (camFrustrum.type == FrustumType::PerspectiveFrustum) ? "Prespective" : "Orthographic")) 
+
+
+		if (ImGui::BeginCombo("Frustrum Type", (camFrustrum.type == FrustumType::PerspectiveFrustum) ? "Prespective" : "Orthographic"))
 		{
-			if (ImGui::Selectable("Perspective")) 
+			if (ImGui::Selectable("Perspective"))
+			{
 				camFrustrum.type = FrustumType::PerspectiveFrustum;
+				camFrustrum.verticalFov = 60.0f * DEGTORAD;
+				camFrustrum.horizontalFov = 2.0f * atanf(tanf(camFrustrum.verticalFov / 2.0f) * 1.7f);
+			}
 
 			if (ImGui::Selectable("Orthographic"))
+			{
 				camFrustrum.type = FrustumType::OrthographicFrustum;
+				SetOrthSize(orthoSize);
+			}
 
 			ImGui::EndCombo();
 		}
@@ -119,14 +125,14 @@ bool C_Camera::OnEditor()
 		ImGui::Text("Draw Skybox: "); ImGui::SameLine();
 		ImGui::Checkbox("##drawSkybox", &drawSkybox);
 
-		ImGui::Text("MSAA Samples: "); ImGui::SameLine(); 
-		if (ImGui::SliderInt("##msaasamp", &msaaSamples, 1, 4)) 
+		ImGui::Text("MSAA Samples: "); ImGui::SameLine();
+		if (ImGui::SliderInt("##msaasamp", &msaaSamples, 1, 4))
 		{
 			msaaFBO.ReGenerateBuffer(msaaFBO.texBufferSize.x, msaaFBO.texBufferSize.y, true, msaaSamples);
 			resolvedFBO.ReGenerateBuffer(resolvedFBO.texBufferSize.x, resolvedFBO.texBufferSize.y, false, 0);
 		}
 
-		if(ImGui::Button("Set as Game Camera")) 
+		if (ImGui::Button("Set as Game Camera"))
 		{
 			EngineExternal->moduleRenderer3D->SetGameRenderTarget(this);
 		}
@@ -270,7 +276,7 @@ void C_Camera::ReGenerateBuffer(int w, int h)
 	windowHeight = h;
 
 	SetAspectRatio((float)w / (float)h);
-	
+
 	msaaFBO.ReGenerateBuffer(w, h, true, 4);
 	resolvedFBO.ReGenerateBuffer(w, h, false, 0);
 }
@@ -285,6 +291,38 @@ void C_Camera::PushCameraMatrix()
 	glLoadMatrixf((GLfloat*)ViewMatrixOpenGL().v);
 }
 
+void C_Camera::SetCameraToPerspective()
+{
+	if (camFrustrum.type == FrustumType::PerspectiveFrustum)
+		return;
+
+	camFrustrum.type = FrustumType::PerspectiveFrustum;
+
+	SetVerticalFOV(fov);
+}
+
+void C_Camera::SetCameraToOrthographic()
+{
+	if (camFrustrum.type == FrustumType::OrthographicFrustum)
+		return;
+
+	camFrustrum.type = FrustumType::OrthographicFrustum;
+}
+
+void C_Camera::SetVerticalFOV(float _verticalFOV)
+{
+	fov = _verticalFOV;
+	camFrustrum.verticalFov = _verticalFOV * DEGTORAD;
+	camFrustrum.horizontalFov = 2.0f * atanf(tanf(camFrustrum.verticalFov / 2.0f) * 1.7f);
+}
+
+void C_Camera::SetHorizontalFOV(float horizontalFOV)
+{
+	camFrustrum.horizontalFov = horizontalFOV * DEGTORAD;
+	camFrustrum.verticalFov = 2.0f * atanf(tanf(camFrustrum.horizontalFov / 2.0f) * 1.7f);
+	fov = camFrustrum.verticalFov;
+}
+
 void C_Camera::LookAt(const float3& Spot)
 {
 	/*Reference = Spot;*/
@@ -293,12 +331,12 @@ void C_Camera::LookAt(const float3& Spot)
 	camFrustrum.up = camFrustrum.front.Cross(X);
 }
 
-void C_Camera::LookAt(Frustum& frust, const float3& Spot)
+void C_Camera::LookAt(Frustum& camFrustrum, const float3& Spot)
 {
 	/*Reference = Spot;*/
-	frust.front = (Spot - frust.pos).Normalized();
-	float3 X = float3(0, 1, 0).Cross(frust.front).Normalized();
-	frust.up = frust.front.Cross(X);
+	camFrustrum.front = (Spot - camFrustrum.pos).Normalized();
+	float3 X = float3(0, 1, 0).Cross(camFrustrum.front).Normalized();
+	camFrustrum.up = camFrustrum.front.Cross(X);
 }
 
 void C_Camera::Move(const float3& Movement)
@@ -335,4 +373,95 @@ float4x4 C_Camera::ProjectionMatrixOpenGL() const
 void C_Camera::SetAspectRatio(float aspectRatio)
 {
 	camFrustrum.horizontalFov = 2.f * atanf(tanf(camFrustrum.verticalFov * 0.5f) * aspectRatio);
+}
+
+bool C_Camera::IsInsideFrustum(AABB& globalAABB)
+{
+	return (this->camFrustrum.type == FrustumType::PerspectiveFrustum) ? PrespectiveCulling(globalAABB) : OrthoCulling(globalAABB);
+}
+bool C_Camera::OrthoCulling(AABB& globalAABB)
+{
+	float3 obbPoints[8];
+
+
+	float3 orthoNormals[6];
+	orthoNormals[0] = -camFrustrum.front;
+	orthoNormals[1] = camFrustrum.front;
+	orthoNormals[2] = -camFrustrum.front.Cross(camFrustrum.up);
+	orthoNormals[3] = camFrustrum.front.Cross(camFrustrum.up);
+	orthoNormals[4] = camFrustrum.up;
+	orthoNormals[5] = -camFrustrum.up;
+
+	float3 planePoints[6];
+	planePoints[0] = camFrustrum.pos;
+	planePoints[1] = camFrustrum.pos + (camFrustrum.front * camFrustrum.farPlaneDistance);
+	planePoints[2] = (camFrustrum.pos + (camFrustrum.front * (camFrustrum.farPlaneDistance / 2))) + (orthoNormals[2] * (camFrustrum.orthographicWidth / 2));
+	planePoints[3] = (camFrustrum.pos + (camFrustrum.front * (camFrustrum.farPlaneDistance / 2))) + (orthoNormals[3] * (camFrustrum.orthographicWidth / 2));
+	planePoints[4] = (camFrustrum.pos + (camFrustrum.front * (camFrustrum.farPlaneDistance / 2))) + (orthoNormals[4] * (camFrustrum.orthographicHeight / 2));
+	planePoints[5] = (camFrustrum.pos + (camFrustrum.front * (camFrustrum.farPlaneDistance / 2))) + (orthoNormals[5] * (camFrustrum.orthographicHeight / 2));
+
+	int totalIn = 0;
+	globalAABB.GetCornerPoints(obbPoints);
+
+	for (size_t i = 2; i < 6; i++)
+	{
+		int inCount = 8;
+		int iPtIn = 1;
+
+		for (size_t k = 0; k < 8; k++)
+		{
+			//Is "IsOnPositiveSide" slow?
+			//if (camFrustrumumPlanes[i].IsOnPositiveSide(obbPoints[k]))
+			if (orthoNormals[i].Dot(obbPoints[k]) - Dot(planePoints[i], orthoNormals[i]) >= 0.f)
+			{
+				iPtIn = 0;
+				--inCount;
+			}
+			if (inCount == 0)
+				return false;
+
+			totalIn += iPtIn;
+		}
+	}
+
+	if (totalIn == 6)
+		return true;
+
+	return true;
+}
+
+bool C_Camera::PrespectiveCulling(AABB& globalAABB)
+{
+	float3 obbPoints[8];
+	Plane camFrustrumumPlanes[6];
+
+	int totalIn = 0;
+
+	globalAABB.GetCornerPoints(obbPoints);
+	camFrustrum.GetPlanes(camFrustrumumPlanes);
+
+	for (size_t i = 0; i < 6; i++)
+	{
+		int inCount = 8;
+		int iPtIn = 1;
+
+		for (size_t k = 0; k < 8; k++)
+		{
+			//Is "IsOnPositiveSide" slow?
+			if (camFrustrumumPlanes[i].IsOnPositiveSide(obbPoints[k]))
+			{
+				iPtIn = 0;
+				--inCount;
+			}
+			if (inCount == 0)
+				return false;
+
+			totalIn += iPtIn;
+		}
+	}
+
+	if (totalIn == 6)
+		return true;
+
+	return true;
 }

@@ -317,6 +317,19 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 		}
 	}
 
+	//-------- CAMERA CULLING PROCESS -----------//
+	if (GetGameRenderTarget() != nullptr && GetGameRenderTarget()->cullingState == true)
+	{
+		std::vector<C_MeshRenderer*> copy = renderQueue;
+		renderQueue.clear();
+		for (size_t i = 0; i < copy.size(); i++)
+		{
+			if (GetGameRenderTarget()->IsInsideFrustum(copy[i]->globalAABB))
+				renderQueue.push_back(copy[i]);
+		}
+		copy.clear();
+	}
+
 #ifndef STANDALONE
 
 	App->moduleCamera->editorCamera.StartDraw();
