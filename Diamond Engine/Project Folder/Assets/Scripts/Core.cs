@@ -48,7 +48,8 @@ public class Core : Entity
         JETPACK,
         IMPACT,
         SNIPER,
-        GRENADE
+        GRENADE,
+        HEAL
     }
 
     public GameObject shootPoint = null;
@@ -184,6 +185,7 @@ public class Core : Entity
     float distanceMoved = 0f;
     float timeOfRoom = 0f;
 
+    private float old_hp = 0.0f;
 
     public void Awake()
     {
@@ -260,7 +262,6 @@ public class Core : Entity
         InitEntity(ENTITY_TYPE.PLAYER);
 
         #endregion
-
     }
 
     public void Update()
@@ -314,7 +315,7 @@ public class Core : Entity
                 lockAttacks = true;
 
             //SkillDataTree -> LoadStaticBuffs();
-
+            old_hp = PlayerHealth.currMaxHealth;
             //Start();
             scriptStart = false;
         }
@@ -364,6 +365,10 @@ public class Core : Entity
 
 
         #endregion
+
+        if (old_hp < PlayerHealth.currHealth)
+            PlayParticles(PARTICLES.HEAL);
+        old_hp = PlayerHealth.currHealth;
     }
 
 
@@ -1711,6 +1716,20 @@ public class Core : Entity
                         particle.Stop();
                     else
                         Debug.Log("Sniper particle not found");
+                }
+                else
+                    Debug.Log("Component Particles not found");
+                break;
+            case PARTICLES.HEAL:
+                if (myParticles != null)
+                {
+                    particle = myParticles.heal;
+                    if (particle != null)
+                        particle.Play();
+                    else if (particle != null && stopParticle == true)
+                        particle.Stop();
+                    else
+                        Debug.Log("Heal particle not found");
                 }
                 else
                     Debug.Log("Component Particles not found");

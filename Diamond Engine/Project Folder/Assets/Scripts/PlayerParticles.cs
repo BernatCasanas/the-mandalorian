@@ -9,6 +9,7 @@ public class PlayerParticles : DiamondComponent
 	public GameObject impactObj = null;
     public GameObject grenade_not = null;
     public GameObject sniper_not = null;
+    public GameObject healObj = null;
 
 	public ParticleSystem dust = null;
 	public ParticleSystem muzzle = null;
@@ -16,6 +17,7 @@ public class PlayerParticles : DiamondComponent
 	public ParticleSystem impact = null;
     public ParticleSystem grenade = null;
     public ParticleSystem sniper = null;
+    public ParticleSystem heal = null;
 
     public void Awake()
     {
@@ -44,6 +46,10 @@ public class PlayerParticles : DiamondComponent
         if (sniper_not != null)
         {
             sniper = sniper_not.GetComponent<ParticleSystem>();
+        }
+        if(healObj != null)
+        {
+            heal = healObj.GetComponent<ParticleSystem>();
         }
     }
     public void Update()
