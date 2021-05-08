@@ -3,11 +3,16 @@ using DiamondEngine;
 
 public class FloatingVehicles : DiamondComponent
 {
+    //Vehicle Movement
 	private float maxHeight = 1.0f;
 	private float verticalSpeed = 0.5f;
 	private bool goingUp = true;
-	private float currPercentageOfAnimation = 0.0f;
+	private float currPercentageOfAnimation = 0.0f;    
     private Vector3 initialPos;
+
+    //Vehicle Rotation
+    private float currRotation = 0.0f;
+    private float maxRotation = 0.15f; 
 
     public void Awake()
     {
@@ -17,29 +22,26 @@ public class FloatingVehicles : DiamondComponent
     }
 
     public void Update()
-    {
+    {   
         if (goingUp) currPercentageOfAnimation += Time.deltaTime * verticalSpeed;        
-        else currPercentageOfAnimation -= Time.deltaTime * verticalSpeed;        
+        else currPercentageOfAnimation -= Time.deltaTime * verticalSpeed;
+        
+        VehicleRotation();
 
         if (currPercentageOfAnimation > 1.0f) goingUp = false;
-        else if (currPercentageOfAnimation < 0.0f) goingUp = true;        
+        else if (currPercentageOfAnimation < 0.0f) goingUp = true;
 
+        //Vehicle Position
         float yPos = ParametricBlend(currPercentageOfAnimation);
         Vector3 newPos = new Vector3(initialPos.x, initialPos.y, initialPos.z);
         newPos.y += yPos * maxHeight;
         gameObject.transform.localPosition = newPos;
+
+        //Vehicle Rotation
+        gameObject.transform.localRotation *= Quaternion.RotateAroundAxis(Vector3.right, currRotation * Mathf.Deg2RRad);
     }
 
     public float ParametricBlend(float t) => ((t * t) / (2.0f * ((t * t) - t) + 1.0f));
-
-    /*private float GenerateRandomHeight()
-    {
-        float min = 1.0f - randomPercentage;
-        float max = 1.0f + randomPercentage;
-        System.Random random = new System.Random();
-        double val = (random.NextDouble() * (max - min) + min);
-        return (float)val;
-    }*/
 
     private float GetRandomStartHeight()
     {
@@ -50,9 +52,21 @@ public class FloatingVehicles : DiamondComponent
         return (float)val;
     }
 
+    private void VehicleRotation()
+    {
+        if(currPercentageOfAnimation <= 0.5f)
+        {
+            currRotation = currPercentageOfAnimation * 2.0f * maxRotation;
+        }
+        else
+        {
+            float localPercentage = (currPercentageOfAnimation - 0.5f) * 2.0f;
+            currRotation = -1.0f * (1.0f - localPercentage) * maxRotation;
+        }
+    }
+
     private void SetVehicleProperties()
     {
-        Debug.Log("-------------------GO Name:" + gameObject.Name);
         switch (gameObject.Name)
         {
             case "LandSpeeder": 
