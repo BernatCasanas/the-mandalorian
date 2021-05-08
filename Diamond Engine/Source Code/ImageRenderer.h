@@ -10,7 +10,7 @@ public:
 	~ImageRenderer();
 	void CleanUp();
 	//in case an fbo exists it will change its dimensions
-	void RegenerateFBO(int width, int height);
+	void RegenerateFBO(int width, int height, bool isHDR);
 	//a quad must be bound before rendering (see post processing init to check a quad)
 	void RenderQuad();
 	int GetOutputTexture() const;

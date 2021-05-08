@@ -24,9 +24,10 @@ orthoSize(0.0f),
 windowWidth(0),
 windowHeight(0),
 drawSkybox(true),
-msaaFBO(1920, 1080, 4),
-resolvedFBO(1920, 1080, DEPTH_BUFFER_TYPE::DEPTH_TEXTURE),
-postProcessProfile(nullptr)
+msaaFBO(1920, 1080, 4,false),
+resolvedFBO(1920, 1080, DEPTH_BUFFER_TYPE::DEPTH_TEXTURE, false),
+postProcessProfile(nullptr),
+isHDR(false)
 
 {
 	name = "Camera";
@@ -45,9 +46,10 @@ postProcessProfile(nullptr)
 
 C_Camera::C_Camera(GameObject* _gm) : Component(_gm), fov(60.0f), cullingState(true),
 msaaSamples(4), orthoSize(0.0f), drawSkybox(true),
-msaaFBO(1920, 1080, 4),
-resolvedFBO(1920, 1080, DEPTH_BUFFER_TYPE::DEPTH_TEXTURE),
-postProcessProfile(nullptr)
+msaaFBO(1920, 1080, 4,false),
+resolvedFBO(1920, 1080, DEPTH_BUFFER_TYPE::DEPTH_TEXTURE,false),
+postProcessProfile(nullptr),
+isHDR(false)
 {
 
 	name = "Camera";
@@ -87,6 +89,11 @@ bool C_Camera::OnEditor()
 	if (Component::OnEditor() == true)
 	{
 		ImGui::Separator();
+		bool newHDR = isHDR;
+		if (ImGui::Checkbox("HDR camera", &newHDR))
+		{
+			ChangeHDR(newHDR);
+		}
 
 		//ImGui::Text("FB %i, TB %i, RBO %i", framebuffer, texColorBuffer, rbo);
 
@@ -231,6 +238,8 @@ void C_Camera::SaveData(JSON_Object* nObj)
 	DEJson::WriteFloat(nObj, "hFOV", camFrustrum.horizontalFov);
 	DEJson::WriteBool(nObj, "culling", cullingState);
 
+	DEJson::WriteBool(nObj, "HDR", isHDR);
+
 	DEJson::WriteBool(nObj, "drawSkybox", drawSkybox);
 
 	if (postProcessProfile != nullptr)
@@ -254,6 +263,8 @@ void C_Camera::LoadData(DEConfig& nObj)
 	camFrustrum.verticalFov = nObj.ReadFloat("vFOV");
 	camFrustrum.horizontalFov = nObj.ReadFloat("hFOV");
 	cullingState = nObj.ReadBool("culling");
+
+	ChangeHDR(nObj.ReadBool("HDR"));
 
 	drawSkybox = nObj.ReadBool("drawSkybox");
 
@@ -371,6 +382,16 @@ void C_Camera::DrawCreationWindow()
 		}
 
 		ImGui::EndPopup();
+	}
+}
+
+void C_Camera::ChangeHDR(bool isHDR)
+{
+	if (this->isHDR != isHDR)
+	{
+		this->isHDR = isHDR;
+		msaaFBO.ReGenerateBuffer(msaaFBO.texBufferSize.x, msaaFBO.texBufferSize.y, msaaFBO.GetMSAA(), this->isHDR);
+		resolvedFBO.ReGenerateBuffer(resolvedFBO.texBufferSize.x, resolvedFBO.texBufferSize.y, resolvedFBO.GetMSAA(), this->isHDR);
 	}
 }
 

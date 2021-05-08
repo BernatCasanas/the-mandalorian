@@ -24,10 +24,10 @@ void main()
 {
 	vec4 myColor = texture(colourTexture,textureCoords);
 	float brightness = (myColor.r * 0.2126)+(myColor.g * 0.7152)+(myColor.b * 0.0722); //Luma conversion to make the average
-	
+
 	if(useSmoothMask)
 	{
-		out_Colour=myColor*brightness*brightness*brightness*(1/brightnessTreshold);
+		out_Colour=clamp(myColor*brightness*brightness*brightness*(1/brightnessTreshold),0,1);
 	}
 	else if(brightness >= brightnessTreshold)
 	{
@@ -36,6 +36,9 @@ void main()
 	
 }
 #endif
+
+
+
 
 
 

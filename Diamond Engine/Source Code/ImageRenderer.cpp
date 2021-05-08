@@ -8,7 +8,7 @@ ImageRenderer::ImageRenderer() : myFbo(nullptr) //doesn't use its own FBO, rende
 
 ImageRenderer::ImageRenderer(int width, int height) : myFbo(nullptr) //renders to its own fbo
 {
-	myFbo = new DE_Advanced_FrameBuffer(width, height, DEPTH_BUFFER_TYPE::NONE);
+	myFbo = new DE_Advanced_FrameBuffer(width, height, DEPTH_BUFFER_TYPE::NONE,false);
 }
 
 ImageRenderer::~ImageRenderer()
@@ -25,12 +25,12 @@ void ImageRenderer::CleanUp()
 	}
 }
 
-void ImageRenderer::RegenerateFBO(int width, int height)
+void ImageRenderer::RegenerateFBO(int width, int height,bool isHDR)
 {
 	if (myFbo == nullptr)
 		return;
-	if (myFbo->texBufferSize.x != width || myFbo->texBufferSize.y != height)
-		myFbo->ReGenerateBuffer(width, height);
+	if (myFbo->texBufferSize.x != width || myFbo->texBufferSize.y != height || myFbo->IsHDR()!=isHDR)
+		myFbo->ReGenerateBuffer(width, height,1,isHDR);
 }
 
 void ImageRenderer::RenderQuad()

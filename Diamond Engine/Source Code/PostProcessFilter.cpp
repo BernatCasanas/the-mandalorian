@@ -76,9 +76,9 @@ PostProcessFilterContrastTest::~PostProcessFilterContrastTest()
 
 }
 
-void PostProcessFilterContrastTest::Render(int width, int height, unsigned int colorTexture)
+void PostProcessFilterContrastTest::Render(bool isHDR, int width, int height, unsigned int colorTexture)
 {
-	quadRenderer->RegenerateFBO(width, height);
+	quadRenderer->RegenerateFBO(width, height,isHDR);
 	myShader->Bind();
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, colorTexture);
@@ -116,9 +116,9 @@ PostProcessFilterDepthTest::~PostProcessFilterDepthTest()
 }
 
 
-void PostProcessFilterDepthTest::Render(int width, int height, unsigned int colorTexture, unsigned int depthTexture)
+void PostProcessFilterDepthTest::Render(bool isHDR,int width, int height, unsigned int colorTexture, unsigned int depthTexture)
 {
-	quadRenderer->RegenerateFBO(width, height);
+	quadRenderer->RegenerateFBO(width, height,isHDR);
 	myShader->Bind();
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, colorTexture);
@@ -169,9 +169,9 @@ PostProcessFilterRender::~PostProcessFilterRender()
 
 }
 
-void PostProcessFilterRender::Render(int width, int height, unsigned int colorTexture)
+void PostProcessFilterRender::Render(bool isHDR, int width, int height, unsigned int colorTexture)
 {
-	quadRenderer->RegenerateFBO(width, height);
+	quadRenderer->RegenerateFBO(width, height,isHDR);
 	myShader->Bind();
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, colorTexture);
@@ -194,9 +194,9 @@ PostProcessFilterAO::~PostProcessFilterAO()
 {
 }
 
-void PostProcessFilterAO::Render(int width, int height, unsigned int depthTexture, C_Camera* currCam,float sampleRad)
+void PostProcessFilterAO::Render(bool isHDR, int width, int height, unsigned int depthTexture, C_Camera* currCam,float sampleRad)
 {
-	quadRenderer->RegenerateFBO(width, height);
+	quadRenderer->RegenerateFBO(width, height,isHDR);
 	myShader->Bind();
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, depthTexture);
@@ -264,9 +264,9 @@ PostProcessFilterBlurH::~PostProcessFilterBlurH()
 {
 }
 
-void PostProcessFilterBlurH::Render(int width, int height, unsigned int texture, float blurSpread)
+void PostProcessFilterBlurH::Render(bool isHDR,int width, int height, unsigned int texture, float blurSpread)
 {
-	quadRenderer->RegenerateFBO(width, height);
+	quadRenderer->RegenerateFBO(width, height,isHDR);
 	myShader->Bind();
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
@@ -315,9 +315,9 @@ PostProcessFilterBlurV::~PostProcessFilterBlurV()
 {
 }
 
-void PostProcessFilterBlurV::Render(int width, int height, unsigned int texture,float blurSpread)
+void PostProcessFilterBlurV::Render(bool isHDR,int width, int height, unsigned int texture,float blurSpread)
 {
-	quadRenderer->RegenerateFBO(width, height);
+	quadRenderer->RegenerateFBO(width, height,isHDR);
 	myShader->Bind();
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
@@ -365,9 +365,9 @@ PostProcessFilterBrighterThan::~PostProcessFilterBrighterThan()
 {
 }
 
-void PostProcessFilterBrighterThan::Render(int width, int height, unsigned int colorTexture, float brightnessTreshold,bool useSmoothMask)
+void PostProcessFilterBrighterThan::Render(bool isHDR,int width, int height, unsigned int colorTexture, float brightnessTreshold,bool useSmoothMask)
 {
-	quadRenderer->RegenerateFBO(width, height);
+	quadRenderer->RegenerateFBO(width, height,isHDR);
 	myShader->Bind();
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, colorTexture);
@@ -377,8 +377,6 @@ void PostProcessFilterBrighterThan::Render(int width, int height, unsigned int c
 	glUniform1f(uniformLoc, brightnessTreshold);
 	uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "useSmoothMask");
 	glUniform1i(uniformLoc, useSmoothMask);
-
-	
 
 	quadRenderer->RenderQuad();
 
@@ -395,9 +393,9 @@ PostProcessFilterCombine::~PostProcessFilterCombine()
 {
 }
 
-void PostProcessFilterCombine::Render(int width, int height, unsigned int colorTexture, unsigned int brightnessTexture, float brightnessIntensity)
+void PostProcessFilterCombine::Render(bool isHDR,int width, int height, unsigned int colorTexture, unsigned int brightnessTexture, float brightnessIntensity)
 {
-	quadRenderer->RegenerateFBO(width, height);
+	quadRenderer->RegenerateFBO(width, height,isHDR);
 	myShader->Bind();
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, colorTexture);
@@ -408,6 +406,9 @@ void PostProcessFilterCombine::Render(int width, int height, unsigned int colorT
 	
 	GLint uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "brightnessIntensity");
 	glUniform1f(uniformLoc, brightnessIntensity);
+	uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "isHDR");
+	glUniform1i(uniformLoc, isHDR);
+
 	quadRenderer->RenderQuad();
 
 	glActiveTexture(GL_TEXTURE0);
@@ -427,9 +428,9 @@ PostProcessFilterMultiply::~PostProcessFilterMultiply()
 {
 }
 
-void PostProcessFilterMultiply::Render(int width, int height, unsigned int texture1, unsigned int texture2)
+void PostProcessFilterMultiply::Render(bool isHDR,int width, int height, unsigned int texture1, unsigned int texture2)
 {
-	quadRenderer->RegenerateFBO(width, height);
+	quadRenderer->RegenerateFBO(width, height,isHDR);
 	myShader->Bind();
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture1);

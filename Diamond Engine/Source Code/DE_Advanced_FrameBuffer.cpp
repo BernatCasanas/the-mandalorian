@@ -3,18 +3,18 @@
 #include "Application.h"
 #include "MO_Window.h"
 
-DE_Advanced_FrameBuffer::DE_Advanced_FrameBuffer(int width, int height, DEPTH_BUFFER_TYPE depthBufferType) :
+DE_Advanced_FrameBuffer::DE_Advanced_FrameBuffer(int width, int height, DEPTH_BUFFER_TYPE depthBufferType, bool isHDR) :
 	framebuffer(0), colorTexture(0), depthTexture(0), depthBufferAttachment(0), colorBufferAttachment(0), texBufferSize(float2::zero),
-	isMultisample(false), msaaSamples(0), myDepthType(depthBufferType), alreadyInitialized(false)
+	isMultisample(false), msaaSamples(0), myDepthType(depthBufferType), alreadyInitialized(false), isHDR(isHDR)
 {
 	texBufferSize.x = width;
 	texBufferSize.y = height;
 	//InitializeFrameBuffer(depthBufferType);
 }
 
-DE_Advanced_FrameBuffer::DE_Advanced_FrameBuffer(int width, int height, int msaaSamples) :
+DE_Advanced_FrameBuffer::DE_Advanced_FrameBuffer(int width, int height, int msaaSamples, bool isHDR) :
 	framebuffer(0), colorTexture(0), depthTexture(0), depthBufferAttachment(0), colorBufferAttachment(0), texBufferSize(float2::zero),
-	isMultisample(true), msaaSamples(msaaSamples), myDepthType(DEPTH_BUFFER_TYPE::DEPTH_RENDER_STENCIl_BUFER), alreadyInitialized(false)
+	isMultisample(true), msaaSamples(msaaSamples), myDepthType(DEPTH_BUFFER_TYPE::DEPTH_RENDER_STENCIl_BUFER), alreadyInitialized(false), isHDR(isHDR)
 {
 	texBufferSize.x = width;
 	texBufferSize.y = height;
@@ -91,10 +91,14 @@ void DE_Advanced_FrameBuffer::InitializeFrameBuffer(DEPTH_BUFFER_TYPE depthType)
 	UnbindFrameBuffer();
 }
 
-void DE_Advanced_FrameBuffer::ReGenerateBuffer(int w, int h, int msaaSamples)
+void DE_Advanced_FrameBuffer::ReGenerateBuffer(int w, int h, int msaaSamples, int isHDR)
 {
 	texBufferSize = float2(w, h);
 	this->msaaSamples = msaaSamples;
+	if (isHDR != -1)
+	{
+		this->isHDR = isHDR;
+	}
 	ClearBuffer();
 	InitializeFrameBuffer(myDepthType);
 
@@ -144,7 +148,7 @@ void DE_Advanced_FrameBuffer::ResolveToFBO(DE_Advanced_FrameBuffer& outputFbo)
 	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, outputFbo.framebuffer);
 	glBindFramebuffer(GL_READ_FRAMEBUFFER, framebuffer);
 	glBlitFramebuffer(0, 0, texBufferSize.x, texBufferSize.y, 0, 0, outputFbo.texBufferSize.x, outputFbo.texBufferSize.y,
-		GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT |GL_STENCIL_BUFFER_BIT, GL_NEAREST); //TODO is stencil needed here?
+		GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT, GL_NEAREST); //TODO is stencil needed here?
 	UnbindFrameBuffer();
 }
 
@@ -176,7 +180,7 @@ void DE_Advanced_FrameBuffer::CreateTextureAttachment()
 	glGenTextures(1, (GLuint*)& colorTexture);
 
 	glBindTexture(GL_TEXTURE_2D, colorTexture);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texBufferSize.x, texBufferSize.y, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+	glTexImage2D(GL_TEXTURE_2D, 0, isHDR ? GL_RGBA16F : GL_RGB, texBufferSize.x, texBufferSize.y, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
@@ -208,7 +212,7 @@ void DE_Advanced_FrameBuffer::CreateMultisampleColorAttachment()
 	glGenTextures(1, (GLuint*)& colorTexture);
 
 	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, colorTexture);
-	glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, msaaSamples, GL_RGB, texBufferSize.x, texBufferSize.y, GL_TRUE);
+	glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, msaaSamples, isHDR ? GL_RGBA16F : GL_RGB, texBufferSize.x, texBufferSize.y, GL_TRUE);
 	glTexParameteri(GL_TEXTURE_2D_MULTISAMPLE, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D_MULTISAMPLE, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 

@@ -54,7 +54,7 @@ void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBu
 
 	int currentColTexIndex = colorTexture;
 	ResourcePostProcess* camProfile = sceneCam->postProcessProfile;
-
+	bool isHDR = sceneCam->GetIsHDR();
 	//do post processing here
 
 	/*if (false)
@@ -65,13 +65,13 @@ void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBu
 	PostProcessDataAO* aoVars = dynamic_cast<PostProcessDataAO*>(camProfile->GetDataOfType(POSTPROCESS_DATA_TYPE::AO));
 	if (aoVars->active)
 	{
-		currentColTexIndex = aoEffect->Render(width, height, currentColTexIndex, depthTexture,sceneCam,aoVars);
+		currentColTexIndex = aoEffect->Render(isHDR,width, height, currentColTexIndex, depthTexture,sceneCam,aoVars);
 	}
 
 	PostProcessDataBloom* bloomVars = dynamic_cast<PostProcessDataBloom*>(camProfile->GetDataOfType(POSTPROCESS_DATA_TYPE::BLOOM));
 	if (bloomVars->active)
 	{
-		currentColTexIndex = bloomEffect->Render(width, height, currentColTexIndex,bloomVars);
+		currentColTexIndex = bloomEffect->Render(isHDR,width, height, currentColTexIndex,bloomVars);
 	}
 
 	//end of postprocessing
@@ -79,7 +79,7 @@ void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBu
 	if (currentColTexIndex != colorTexture) //only if any effect has been applied
 	{
 		//Post process filter to resolve to fbo MUST BE AT THE END
-		renderFilter->Render(width, height, currentColTexIndex, outputFBO);
+		renderFilter->Render(isHDR,width, height, currentColTexIndex, outputFBO);
 	}
 	End();
 }

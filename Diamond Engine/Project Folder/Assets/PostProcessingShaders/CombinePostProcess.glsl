@@ -19,14 +19,27 @@ out vec4 out_Colour;
 uniform sampler2D colourTexture;
 uniform sampler2D brightnessTexture;
 uniform float brightnessIntensity;
+uniform int isHDR;
 
 void main()
 {
+	
 	vec4 myColor = texture(colourTexture,textureCoords);
 	vec4 myBrightness = texture(brightnessTexture,textureCoords);
-	out_Colour= myColor+myBrightness * brightnessIntensity;
+	if(isHDR==0)
+	{
+		out_Colour= myColor+myBrightness * brightnessIntensity;
+	}
+	else
+	{	
+		//myBrightness=clamp(myBrightness,0,1);
+		out_Colour= myColor + myBrightness * brightnessIntensity;
+	}
 }
 #endif
+
+
+
 
 
 

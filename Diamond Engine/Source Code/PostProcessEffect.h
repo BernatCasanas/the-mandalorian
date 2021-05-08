@@ -40,7 +40,7 @@ public:
 	void Init() override;
 	void CleanUp() override;
 	//returns the index of the color texture that has been rendered
-	int Render(int width, int height, int colorTexture, PostProcessDataBloom* aoVars);
+	int Render(bool isHDR,int width, int height, int colorTexture, PostProcessDataBloom* aoVars);
 
 private:
 	PostProcessFilterBrighterThan* brighterThanFilter;
@@ -58,7 +58,7 @@ public:
 	void Init() override;
 	void CleanUp() override;
 	//returns the index of the color texture that has been rendered
-	int Render(int width, int height, int colorTexture, int depthTexture);
+	int Render(bool isHDR,int width, int height, int colorTexture, int depthTexture);
 private:
 	PostProcessFilterDepthTest* depthFilter;
 };
@@ -72,7 +72,7 @@ public:
 	void Init() override;
 	void CleanUp() override;
 	//renders the color texture to the output FBO
-	void Render(int width, int height, int colorTexture, DE_Advanced_FrameBuffer& outputFBO);
+	void Render(bool isHDR,int width, int height, int colorTexture, DE_Advanced_FrameBuffer& outputFBO);
 private:
 	PostProcessFilterRender* renderPostProcess;
 };
@@ -87,7 +87,7 @@ public:
 	void Init() override;
 	void CleanUp() override;
 	//returns the index of the color texture that has been rendered
-	int Render(int width, int height, int colorTexture, int depthTexture,C_Camera* camera, PostProcessDataAO* aoVars);
+	int Render(bool isHDR,int width, int height, int colorTexture, int depthTexture,C_Camera* camera, PostProcessDataAO* aoVars);
 private:
 	PostProcessFilterAO* aoFilter;
 	PostProcessFilterBlurH* blurHFilter;

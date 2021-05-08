@@ -28,7 +28,7 @@ class PostProcessFilterContrastTest : public PostProcessFilter
 public:
 	PostProcessFilterContrastTest();
 	~PostProcessFilterContrastTest();
-	void Render(int width, int height, unsigned int colorTexture);//ony one render will be needed for real PostProcessFilters
+	void Render(bool isHDR,int width, int height, unsigned int colorTexture);//ony one render will be needed for real PostProcessFilters
 	void Render(DE_Advanced_FrameBuffer* outputFBO, unsigned int colorTexture);
 
 };
@@ -38,7 +38,7 @@ class PostProcessFilterDepthTest : public PostProcessFilter
 public:
 	PostProcessFilterDepthTest();
 	~PostProcessFilterDepthTest();
-	void Render(int width, int height, unsigned int colorTexture, unsigned int depthTexture);//ony one render will be needed for real PostProcessFilters
+	void Render(bool isHDR,int width, int height, unsigned int colorTexture, unsigned int depthTexture);//ony one render will be needed for real PostProcessFilters
 	void Render(DE_Advanced_FrameBuffer* outputFBO, unsigned int colorTexture, unsigned int depthTexture);
 
 };
@@ -48,7 +48,7 @@ class PostProcessFilterAO : public PostProcessFilter
 public:
 	PostProcessFilterAO();
 	~PostProcessFilterAO();
-	void Render(int width, int height, unsigned int depthTexture, C_Camera* currCam, float sampleRad);
+	void Render(bool isHDR, int width, int height, unsigned int depthTexture, C_Camera* currCam, float sampleRad);
 	void PopulateKernel();
 	private:
 	std::vector<float3> kernelAO;
@@ -59,7 +59,7 @@ class PostProcessFilterRender : public PostProcessFilter
 public:
 	PostProcessFilterRender();
 	~PostProcessFilterRender();
-	void Render(int width, int height, unsigned int colorTexture);
+	void Render(bool isHDR,int width, int height, unsigned int colorTexture);
 };
 
 class PostProcessFilterBlurH : public PostProcessFilter
@@ -67,7 +67,7 @@ class PostProcessFilterBlurH : public PostProcessFilter
 public:
 	PostProcessFilterBlurH();
 	~PostProcessFilterBlurH();
-	void Render(int width, int height, unsigned int texture, float blurSpread);
+	void Render(bool isHDR,int width, int height, unsigned int texture, float blurSpread);
 
 	void PopulateKernel();
 	std::vector<float> gaussianKernel;
@@ -79,7 +79,7 @@ class PostProcessFilterBlurV : public PostProcessFilter
 public:
 	PostProcessFilterBlurV();
 	~PostProcessFilterBlurV();
-	void Render(int width, int height, unsigned int texture, float blurSpread);
+	void Render(bool isHDR,int width, int height, unsigned int texture, float blurSpread);
 
 	void PopulateKernel();
 	std::vector<float> gaussianKernel;
@@ -90,7 +90,7 @@ class PostProcessFilterBrighterThan : public PostProcessFilter
 public:
 	PostProcessFilterBrighterThan();
 	~PostProcessFilterBrighterThan();
-	void Render(int width, int height, unsigned int colorTexture,float brightnessTreshold,bool useSmoothMask);//smooth mask lets you choose between a gradient in the glowing areas and binary glow/no glow
+	void Render(bool isHDR,int width, int height, unsigned int colorTexture,float brightnessTreshold,bool useSmoothMask);//smooth mask lets you choose between a gradient in the glowing areas and binary glow/no glow
 };
 
 
@@ -99,7 +99,7 @@ class PostProcessFilterCombine : public PostProcessFilter
 public:
 	PostProcessFilterCombine();
 	~PostProcessFilterCombine();
-	void Render(int width, int height, unsigned int colorTexture, unsigned int brightnessTexture, float brightnessIntensity);
+	void Render(bool isHDR,int width, int height, unsigned int colorTexture, unsigned int brightnessTexture, float brightnessIntensity);
 };
 
 
@@ -108,5 +108,5 @@ class PostProcessFilterMultiply : public PostProcessFilter
 public:
 	PostProcessFilterMultiply();
 	~PostProcessFilterMultiply();
-	void Render(int width, int height, unsigned int texture1, unsigned int texture2);
+	void Render(bool isHDR,int width, int height, unsigned int texture1, unsigned int texture2);
 };

@@ -36,6 +36,9 @@ public:
 
 	void SetPostProcessProfile(ResourcePostProcess* newProfile);
 	void DrawCreationWindow();
+
+	inline bool GetIsHDR() { return isHDR; }
+	void ChangeHDR(bool isHDR);
 	//DE_FrameBuffer resolvedFBO;
 	//DE_FrameBuffer msaaFBO;
 
@@ -49,7 +52,6 @@ public:
 
 	float windowWidth;
 	float windowHeight;
-
 	ResourcePostProcess* postProcessProfile;
 
 //Movement logic
@@ -64,4 +66,5 @@ public:
 
 private:
 	int msaaSamples;
+	bool isHDR;
 };

@@ -16,15 +16,15 @@ class DE_Advanced_FrameBuffer
 {
 public:
 	//normal buffer constructor
-	DE_Advanced_FrameBuffer(int width,int height, DEPTH_BUFFER_TYPE depthBufferType);
+	DE_Advanced_FrameBuffer(int width,int height, DEPTH_BUFFER_TYPE depthBufferType, bool isHDR);
 	//Multisampled buffer constructor
-	DE_Advanced_FrameBuffer(int width, int height,int msaaSamples);
+	DE_Advanced_FrameBuffer(int width, int height,int msaaSamples, bool isHDR);
 	~DE_Advanced_FrameBuffer();
 
 	void ClearBuffer();
 
 	void InitializeFrameBuffer(DEPTH_BUFFER_TYPE depthType);
-	void ReGenerateBuffer(int w, int h,int msaaSamples=1);
+	void ReGenerateBuffer(int w, int h,int msaaSamples=1,int isHDR=-1); //-1 no change, (0,1),bool
 
 	void BindFrameBuffer();
 	void UnbindFrameBuffer();
@@ -39,7 +39,8 @@ public:
 
 	inline unsigned int GetColorTexture() { return colorTexture; }
 	inline unsigned int GetDepthTexture() { return depthTexture; }
-
+	inline bool IsHDR() { return isHDR; }
+	inline int GetMSAA() { return msaaSamples; }
 private:
 	int CreateFramBuffer();
 	void CreateMultisampleColorAttachment();
@@ -63,6 +64,7 @@ private:
 
 	bool alreadyInitialized;
 	bool isMultisample;
+	bool isHDR;
 	int msaaSamples;
 	DEPTH_BUFFER_TYPE myDepthType;
 };
