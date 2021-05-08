@@ -466,7 +466,7 @@ namespace DiamondEngine
         }
     }
 
-    public class SecondaryCriticalChanceSkill : Skills
+    public class SecondarySlowSkill : Skills
     {
         public override void Use()
         {
@@ -496,7 +496,7 @@ namespace DiamondEngine
         }
     }
 
-    public class SecondaryCriticalDamageSkill : Skills
+    public class SecondaryDurationSkill : Skills
     {
         public override void Use()
         {
@@ -617,10 +617,10 @@ namespace DiamondEngine
             {"PIncDmg", typeof(PrimaryIncreaseDamageSkill)},
             {"PRateFire", typeof(PrimaryRateFireSkill)},
             {"SeStatEfct", typeof(SecondaryStatusEffectSkill)},
-            {"SeCritChance", typeof(SecondaryCriticalChanceSkill)},
+            {"SeSlow", typeof(SecondarySlowSkill)},
             {"SeDelay", typeof(SecondaryDelaySkill)},
             {"SeUseRange", typeof(SecondaryUseRangeSkill)},
-            {"SeCritDmg", typeof(SecondaryCriticalDamageSkill)},
+            {"SeDuration", typeof(SecondaryDurationSkill)},
             {"SeDmgInc", typeof(SecondaryDamageIncreaseSkill)},
             {"SpCritChance", typeof(SpecialCriticalChanceSkill)},
             {"SpChargeTime", typeof(SpecialChargeTimeSkill)},
