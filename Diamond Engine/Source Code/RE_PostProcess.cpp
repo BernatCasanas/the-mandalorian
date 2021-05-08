@@ -242,7 +242,7 @@ void PostProcessDataToneMapping::LoadFromJson(DEConfig& nObj)
 
 
 PostProcessDataVignette::PostProcessDataVignette() : PostProcessData(POSTPROCESS_DATA_TYPE::VIGNETTE, "Vignette"),
-intensity(15.0f), extend(0.25f), tint(1.0f, 1.0f, 1.0f, 1.0f), minMaxRadius(0.65f,0.4f), mode(VIGNETTE_MODE::RECTANGULAR)
+intensity(15.0f), extend(0.25f), tint(1.0f, 1.0f, 1.0f, 0.0f), minMaxRadius(0.4f,0.7f), mode(VIGNETTE_MODE::RECTANGULAR)
 {
 }
 
@@ -263,8 +263,9 @@ void PostProcessDataVignette::DrawEditor()
 		//TODO drawEditorHere
 		label = "tint";
 		label += suffix;
-		ImGui::ColorPicker4(label.c_str(), &tint.x);
-
+		ImGui::ColorPicker4(label.c_str(), &tint.x,ImGuiColorEditFlags_AlphaBar);
+		ImGui::Spacing();
+	
 		//=========================================== Combo
 		label = "VignetteMode";
 		label += suffix;
@@ -290,11 +291,12 @@ void PostProcessDataVignette::DrawEditor()
 
 
 
+		ImGui::Indent();
 		if (mode == VIGNETTE_MODE::RECTANGULAR)
 		{
 			label = "intensity";
 			label += suffix;
-			ImGui::SliderFloat(label.c_str(), &intensity, 0.0f, 1000.0f, "%.3f", 2.0f);
+			ImGui::SliderFloat(label.c_str(), &intensity, 0.0f, 15.0f, "%.3f", 2.0f);
 			label = "extend";
 			label += suffix;
 			ImGui::SliderFloat(label.c_str(), &extend, 0.0f, 75.0f, "%.3f", 1.5f);
@@ -307,6 +309,7 @@ void PostProcessDataVignette::DrawEditor()
 			ImGui::SliderFloat2(label.c_str(), &minMaxRadius.x, 0.0f, 5.0f, "%.3f", 1.25f);
 			
 		}
+		ImGui::Unindent();
 
 		PostProcessData::DrawEditorEnd();
 	}
