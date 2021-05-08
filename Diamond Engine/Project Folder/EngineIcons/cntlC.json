@@ -1,36 +1,67 @@
 {
     "Game Objects": [
         {
-            "name": "Spawn1",
+            "name": "SpeederBike",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 748886634,
-            "ParentUID": 177309790,
-            "PrefabReference": 748886634,
+            "UID": 59181445,
+            "ParentUID": 1676501951,
+            "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                0,
-                0
+                30.408464431762695,
+                6.4158601760864258,
+                -9.1826343536376953
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                2.9763810971417115e-08,
+                -0.77939605712890625,
+                2.9763810971417115e-08,
+                0.62653154134750366
             ],
             "Scale": [
-                1,
-                1,
-                1
+                1.3297973871231079,
+                1.3298001289367676,
+                1.3297973871231079
             ],
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/2075249175.mmh",
+                    "UID": 2075249175,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FloatingVehicles"
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/vertex_color.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
                 }
             ]
         }

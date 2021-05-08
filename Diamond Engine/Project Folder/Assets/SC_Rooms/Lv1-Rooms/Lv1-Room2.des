@@ -1,19 +1,19 @@
 {
     "NavMesh": 1522584861,
     "EditorCameraPosition": [
-        48.860618591308594,
-        8.3009023666381836,
-        -2.6063542366027832
+        50.785552978515625,
+        9.8735103607177734,
+        0.33053472638130188
     ],
     "EditorCameraZ": [
-        0.48930138349533081,
-        -0.76301205158233643,
-        0.42237043380737305
+        0.2420678436756134,
+        -0.96915590763092041,
+        0.046264171600341797
     ],
     "EditorCameraY": [
-        0.57758951187133789,
-        0.64638423919677734,
-        0.49857568740844727
+        0.95198404788970947,
+        0.24644899368286133,
+        0.18163013458251953
     ],
     "tags": [
         "Player",
@@ -286,8 +286,8 @@
                     "fSize": 30.239999771118164,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 10.119048118591309,
-                    "hFOV": 21.263227462768555,
+                    "vFOV": 17.195766448974609,
+                    "hFOV": 29.596561431884766,
                     "culling": false,
                     "drawSkybox": true
                 },
@@ -779,71 +779,6 @@
             ]
         },
         {
-            "name": "LandSpeeder",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1106916468,
-            "ParentUID": 1654404139,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                10.969048500061035,
-                -9.6301755905151367,
-                -30.234640121459961
-            ],
-            "Rotation": [
-                -5.3290705182007514e-15,
-                3.3527616238870905e-08,
-                -7.1054273576010019e-15,
-                1
-            ],
-            "Scale": [
-                1.0000001192092896,
-                1,
-                0.99999988079071045
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/1722848756.mmh",
-                    "UID": 1722848756,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "stencilEmission": 0,
-                    "doNotDrawStencil": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "FloatingVehicles"
-                }
-            ]
-        },
-        {
             "name": "AntennaHouses",
             "tag": "Untagged",
             "layer": "Default",
@@ -1012,6 +947,138 @@
                     ],
                     "stencilEmission": 0,
                     "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "LandSpeeder",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1688532955,
+            "ParentUID": 1654404139,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                8.6710357666015625,
+                -9.6297616958618164,
+                -31.325433731079102
+            ],
+            "Rotation": [
+                -0.013645716942846775,
+                0.063036821782588959,
+                0.00086201034719124436,
+                0.99791759252548218
+            ],
+            "Scale": [
+                0.3386690616607666,
+                0.33866938948631287,
+                0.32098808884620667
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1908793743.mmh",
+                    "UID": 1908793743,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FloatingVehicles",
+                    "maxRotation": 0
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "LandSpeeder",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1950539628,
+            "ParentUID": 1654404139,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                12.927986145019531,
+                -9.7256135940551758,
+                -29.033140182495117
+            ],
+            "Rotation": [
+                -0.011103104799985886,
+                -0.47649878263473511,
+                0.0079773999750614166,
+                0.87906885147094727
+            ],
+            "Scale": [
+                0.29079294204711914,
+                0.29078972339630127,
+                0.27561026811599731
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1908793743.mmh",
+                    "UID": 1908793743,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FloatingVehicles",
+                    "maxRotation": 0
                 },
                 {
                     "Type": 3,
@@ -6090,10 +6157,10 @@
                         -0.19471836090087891
                     ],
                     "Rotation": [
-                        0.19392229616641998,
-                        -2.7353405651631135e-10,
-                        1.3877789462175682e-17,
-                        0.98101699352264404
+                        0.1939222663640976,
+                        -2.7353402876073574e-10,
+                        1.3877787807814457e-17,
+                        0.98101687431335449
                     ],
                     "Scale": [
                         1,
@@ -6542,6 +6609,62 @@
                         0,
                         0,
                         0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Heal",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 470704054,
+                    "ParentUID": 996062598,
+                    "PrefabID": 0,
+                    "PrefabReference": 470704054,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0.83409100770950317,
+                        0
+                    ],
+                    "Rotation": [
+                        2.120925657322914e-09,
+                        -1.4958200665913856e-18,
+                        -7.0526734452514006e-10,
+                        1
+                    ],
+                    "Scale": [
+                        1.0000017881393433,
+                        1,
+                        1.0000017881393433
+                    ]
+                },
+                {
+                    "name": "Healing Particles",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1310219336,
+                    "ParentUID": 470704054,
+                    "PrefabID": 0,
+                    "PrefabReference": 1310219336,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        2.3418415857888483e-39,
                         1
                     ],
                     "Scale": [
