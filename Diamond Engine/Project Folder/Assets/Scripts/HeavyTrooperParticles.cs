@@ -4,11 +4,14 @@ using DiamondEngine;
 public class HeavyTrooperParticles : DiamondComponent
 {
     public GameObject sweepParticlesObj = null;
+    public GameObject dashParticlesObj = null;
     private ParticleSystem sweepParticles = null;
+    private ParticleSystem dashParticles = null;
 
     public enum HEAVYROOPER_PARTICLES : int
     {
         SPEAR,
+        DASH
     }
 
     public void Awake()
@@ -16,6 +19,10 @@ public class HeavyTrooperParticles : DiamondComponent
         if (sweepParticlesObj != null)
         {
             sweepParticles = sweepParticlesObj.GetComponent<ParticleSystem>();
+        }
+        if (dashParticlesObj != null)
+        {
+            dashParticles = dashParticlesObj.GetComponent<ParticleSystem>();
         }
     }
 
@@ -29,6 +36,12 @@ public class HeavyTrooperParticles : DiamondComponent
                 else
                     Debug.Log("Sweep particles not found!");
                 break;
+            case HEAVYROOPER_PARTICLES.DASH:
+                if (dashParticles != null)
+                    dashParticles.Play();
+                else
+                    Debug.Log("Dash particles not found!");
+                break;
         }
     }
 
@@ -41,6 +54,12 @@ public class HeavyTrooperParticles : DiamondComponent
                     sweepParticles.Stop();
                 else
                     Debug.Log("Sweep particles not found!");
+                break;
+            case HEAVYROOPER_PARTICLES.DASH:
+                if (dashParticles != null)
+                    dashParticles.Stop();
+                else
+                    Debug.Log("Dash particles not found!");
                 break;
         }
     }
