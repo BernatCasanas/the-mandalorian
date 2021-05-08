@@ -3,14 +3,45 @@ using DiamondEngine;
 
 public class HeavyTrooperParticles : DiamondComponent
 {
-    public GameObject spearObj = null;
-    public ParticleSystem spear = null;
+    public GameObject sweepParticlesObj = null;
+    private ParticleSystem sweepParticles = null;
+
+    public enum HEAVYROOPER_PARTICLES : int
+    {
+        SPEAR,
+    }
 
     public void Awake()
     {
-        if (spearObj != null)
+        if (sweepParticlesObj != null)
         {
-            spear = spearObj.GetComponent<ParticleSystem>();
+            sweepParticles = sweepParticlesObj.GetComponent<ParticleSystem>();
+        }
+    }
+
+    public void Play(HEAVYROOPER_PARTICLES particleType)
+    {
+        switch (particleType)
+        {
+            case HEAVYROOPER_PARTICLES.SPEAR:
+                if (sweepParticles != null)
+                    sweepParticles.Play();
+                else
+                    Debug.Log("Sweep particles not found!");
+                break;
+        }
+    }
+
+    public void Stop(HEAVYROOPER_PARTICLES particleType)
+    {
+        switch (particleType)
+        {
+            case HEAVYROOPER_PARTICLES.SPEAR:
+                if (sweepParticles != null)
+                    sweepParticles.Stop();
+                else
+                    Debug.Log("Sweep particles not found!");
+                break;
         }
     }
 }
