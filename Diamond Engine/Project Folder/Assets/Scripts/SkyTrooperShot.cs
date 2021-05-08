@@ -35,7 +35,7 @@ public class SkyTrooperShot : DiamondComponent
 			pos.x += velocity.x * time;
 			pos.z += velocity.z * time;
 			pos.y += (velocity.y * time) + (0.5f * gravity * time * time);
-			gameObject.transform.localPosition = new Vector3(pos.x,pos.y,pos.z);
+			gameObject.transform.localPosition = pos;
         }
 
 		if(deleteTimer > 0.0f)
