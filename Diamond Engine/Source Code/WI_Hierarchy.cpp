@@ -170,9 +170,13 @@ void W_Hierarchy::DrawGameObjectsTree(GameObject* node, bool drawAsDisabled)
 		{
 			//GameObject* dropGO = static_cast<GameObject*>(payload->Data);
 			//memcpy(dropGO, payload->Data, payload->DataSize);
-			dropTarget->ChangeParent(node);
-			LOG(LogType::L_NORMAL, "%s", dropTarget->name.c_str());
-			dropTarget = nullptr;
+			
+			if (dropTarget != nullptr)
+			{
+				dropTarget->ChangeParent(node);
+				LOG(LogType::L_NORMAL, "%s", dropTarget->name.c_str());
+				dropTarget = nullptr;
+			}
 		}
 		ImGui::EndDragDropTarget();
 	}
