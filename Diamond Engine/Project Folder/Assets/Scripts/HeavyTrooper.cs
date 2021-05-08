@@ -666,7 +666,7 @@ public class HeavyTrooper : Enemy
 
         Audio.PlayAudio(gameObject, "Play_Heavytrooper_Dash");
         UpdateAnimationSpd(speedMult);
-        //particles.Play(HeavyTrooperParticles.HEAVYROOPER_PARTICLES.DASH);
+        particles.Play(HeavyTrooperParticles.HEAVYROOPER_PARTICLES.DASH);
     }
     private void UpdateDash()
     {
@@ -686,7 +686,7 @@ public class HeavyTrooper : Enemy
     {
         //Debug.Log("HEAVYTROOPER SWEEP");
         sweepTimer = sweepTime;
-
+        particles.Stop(HeavyTrooperParticles.HEAVYROOPER_PARTICLES.DASH);
         Animator.Play(gameObject, "HVY_Sweep", speedMult);
         
         if(spear != null)
