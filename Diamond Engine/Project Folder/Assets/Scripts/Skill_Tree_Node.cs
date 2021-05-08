@@ -436,7 +436,7 @@ public class Skill_Tree_Node : DiamondComponent
                     case "SeStatEfct":
 
                         break;
-                    case "SeCritChance":
+                    case "SeSlow":
 
                         break;
                     case "SeDelay":
@@ -445,7 +445,7 @@ public class Skill_Tree_Node : DiamondComponent
                     case "SeUseRange":
 
                         break;
-                    case "SeCritDmg":
+                    case "SeDuration":
 
                         break;
                     case "SeDmgInc":
