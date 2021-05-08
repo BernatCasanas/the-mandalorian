@@ -44,6 +44,13 @@ public:
 
 	DE_Advanced_FrameBuffer resolvedFBO;
 	DE_Advanced_FrameBuffer msaaFBO;
+	void SetCameraToPerspective();
+	void SetCameraToOrthographic();
+	void SetVerticalFOV(float verticalFOV);
+	void SetHorizontalFOV(float horizontalFOV);
+
+public:
+
 
 	Frustum camFrustrum;
 	float fov;
@@ -64,7 +71,13 @@ public:
 	void SetOrthSize(float size);
 	float GetOrthSize();
 
+	bool IsInsideFrustum(AABB& globalAABB);
+
 private:
+	bool OrthoCulling(AABB& globalAABB);
+	bool PrespectiveCulling(AABB& globalAABB);
+
 	int msaaSamples;
 	bool isHDR;
+	float verticalFOV;
 };

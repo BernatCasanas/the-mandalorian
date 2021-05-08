@@ -297,6 +297,19 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 		}
 	}
 
+	//-------- CAMERA CULLING PROCESS -----------//
+	if (GetGameRenderTarget() != nullptr && GetGameRenderTarget()->cullingState == true)
+	{
+		std::vector<C_MeshRenderer*> copy = renderQueue;
+		renderQueue.clear();
+		for (size_t i = 0; i < copy.size(); i++)
+		{
+			if (GetGameRenderTarget()->IsInsideFrustum(copy[i]->globalAABB))
+				renderQueue.push_back(copy[i]);
+		}
+		copy.clear();
+	}
+
 #ifndef STANDALONE
 
 	App->moduleCamera->editorCamera.StartDraw();
@@ -314,6 +327,17 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 		RenderWithOrdering();
 		(wireframe) ? glPolygonMode(GL_FRONT_AND_BACK, GL_FILL) : glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+	for (int i = 0; i < areaLightVector.size(); ++i)
+	{
+		//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+		areaLightVector[i]->DebugDraw();
+	}
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	DrawRays();
 
@@ -532,6 +556,8 @@ void ModuleRenderer3D::OnGUI()
 
 	}
 }
+
+
 void ModuleRenderer3D::DrawDebugLines()
 {
 	glBegin(GL_LINES);

@@ -15,6 +15,7 @@
 #include"MO_Window.h"
 #include "MO_ResourceManager.h"
 #include "IM_PostProcessImporter.h"
+#include"MathGeoLib/include/Geometry/AABB.h"
 
 C_Camera::C_Camera() : Component(nullptr),
 fov(60.0f),
@@ -41,7 +42,6 @@ isHDR(false)
 	camFrustrum.horizontalFov = 2.0f * atanf(tanf(camFrustrum.verticalFov / 2.0f) * 1.7f);
 
 	camFrustrum.pos = float3::zero;
-	orthoSize = 0.0f;
 }
 
 C_Camera::C_Camera(GameObject* _gm) : Component(_gm), fov(60.0f), cullingState(true),
@@ -51,7 +51,6 @@ resolvedFBO(1920, 1080, DEPTH_BUFFER_TYPE::DEPTH_TEXTURE,false),
 postProcessProfile(nullptr),
 isHDR(false)
 {
-
 	name = "Camera";
 	camFrustrum.type = FrustumType::PerspectiveFrustum;
 	camFrustrum.nearPlaneDistance = 1;
@@ -109,14 +108,14 @@ bool C_Camera::OnEditor()
 			ImGui::Separator();
 			if (ImGui::DragFloat("FOV: ", &fov, 0.1f, 1.0f, 180.f))
 			{
-				camFrustrum.verticalFov = fov * DEGTORAD;
-				//camFrustrum.horizontalFov = 2.0f * atanf(tanf(camFrustrum.verticalFov / 2.0f) * App->window->GetWindowWidth() / App->window->GetWindowHeight());
+				SetVerticalFOV(fov);
 			}
 		}
 		else
 		{
 			if (ImGui::DragFloat("Size: ", &orthoSize, 0.01f, 0.01f, 100.0f))
 			{
+				//camFrustrum.verticalFov = fov * DEGTORAD;
 				//camFrustrum.orthographicWidth = 1920 / orthoSize;
 				//camFrustrum.orthographicHeight = 1080 / orthoSize;
 			}
@@ -127,10 +126,17 @@ bool C_Camera::OnEditor()
 		if (ImGui::BeginCombo("Frustrum Type", (camFrustrum.type == FrustumType::PerspectiveFrustum) ? "Prespective" : "Orthographic"))
 		{
 			if (ImGui::Selectable("Perspective"))
+			{
 				camFrustrum.type = FrustumType::PerspectiveFrustum;
+				camFrustrum.verticalFov = 60.0f * DEGTORAD;
+				camFrustrum.horizontalFov = 2.0f * atanf(tanf(camFrustrum.verticalFov / 2.0f) * 1.7f);
+			}
 
 			if (ImGui::Selectable("Orthographic"))
+			{
 				camFrustrum.type = FrustumType::OrthographicFrustum;
+				SetOrthSize(orthoSize);
+			}
 
 			ImGui::EndCombo();
 		}
@@ -395,6 +401,38 @@ void C_Camera::ChangeHDR(bool isHDR)
 	}
 }
 
+void C_Camera::SetCameraToPerspective()
+{
+	if (camFrustrum.type == FrustumType::PerspectiveFrustum)
+		return;
+
+	camFrustrum.type = FrustumType::PerspectiveFrustum;
+
+	SetVerticalFOV(fov);
+}
+
+void C_Camera::SetCameraToOrthographic()
+{
+	if (camFrustrum.type == FrustumType::OrthographicFrustum)
+		return;
+
+	camFrustrum.type = FrustumType::OrthographicFrustum;
+}
+
+void C_Camera::SetVerticalFOV(float _verticalFOV)
+{
+	fov = _verticalFOV;
+	camFrustrum.verticalFov = _verticalFOV * DEGTORAD;
+	camFrustrum.horizontalFov = 2.0f * atanf(tanf(camFrustrum.verticalFov / 2.0f) * 1.7f);
+}
+
+void C_Camera::SetHorizontalFOV(float horizontalFOV)
+{
+	camFrustrum.horizontalFov = horizontalFOV * DEGTORAD;
+	camFrustrum.verticalFov = 2.0f * atanf(tanf(camFrustrum.horizontalFov / 2.0f) * 1.7f);
+	fov = camFrustrum.verticalFov;
+}
+
 void C_Camera::LookAt(const float3& Spot)
 {
 	/*Reference = Spot;*/
@@ -403,12 +441,12 @@ void C_Camera::LookAt(const float3& Spot)
 	camFrustrum.up = camFrustrum.front.Cross(X);
 }
 
-void C_Camera::LookAt(Frustum& frust, const float3& Spot)
+void C_Camera::LookAt(Frustum& camFrustrum, const float3& Spot)
 {
 	/*Reference = Spot;*/
-	frust.front = (Spot - frust.pos).Normalized();
-	float3 X = float3(0, 1, 0).Cross(frust.front).Normalized();
-	frust.up = frust.front.Cross(X);
+	camFrustrum.front = (Spot - camFrustrum.pos).Normalized();
+	float3 X = float3(0, 1, 0).Cross(camFrustrum.front).Normalized();
+	camFrustrum.up = camFrustrum.front.Cross(X);
 }
 
 void C_Camera::Move(const float3& Movement)
@@ -445,4 +483,95 @@ float4x4 C_Camera::ProjectionMatrixOpenGL() const
 void C_Camera::SetAspectRatio(float aspectRatio)
 {
 	camFrustrum.horizontalFov = 2.f * atanf(tanf(camFrustrum.verticalFov * 0.5f) * aspectRatio);
+}
+
+bool C_Camera::IsInsideFrustum(AABB& globalAABB)
+{
+	return (this->camFrustrum.type == FrustumType::PerspectiveFrustum) ? PrespectiveCulling(globalAABB) : OrthoCulling(globalAABB);
+}
+bool C_Camera::OrthoCulling(AABB& globalAABB)
+{
+	float3 obbPoints[8];
+
+
+	float3 orthoNormals[6];
+	orthoNormals[0] = -camFrustrum.front;
+	orthoNormals[1] = camFrustrum.front;
+	orthoNormals[2] = -camFrustrum.front.Cross(camFrustrum.up);
+	orthoNormals[3] = camFrustrum.front.Cross(camFrustrum.up);
+	orthoNormals[4] = camFrustrum.up;
+	orthoNormals[5] = -camFrustrum.up;
+
+	float3 planePoints[6];
+	planePoints[0] = camFrustrum.pos;
+	planePoints[1] = camFrustrum.pos + (camFrustrum.front * camFrustrum.farPlaneDistance);
+	planePoints[2] = (camFrustrum.pos + (camFrustrum.front * (camFrustrum.farPlaneDistance / 2))) + (orthoNormals[2] * (camFrustrum.orthographicWidth / 2));
+	planePoints[3] = (camFrustrum.pos + (camFrustrum.front * (camFrustrum.farPlaneDistance / 2))) + (orthoNormals[3] * (camFrustrum.orthographicWidth / 2));
+	planePoints[4] = (camFrustrum.pos + (camFrustrum.front * (camFrustrum.farPlaneDistance / 2))) + (orthoNormals[4] * (camFrustrum.orthographicHeight / 2));
+	planePoints[5] = (camFrustrum.pos + (camFrustrum.front * (camFrustrum.farPlaneDistance / 2))) + (orthoNormals[5] * (camFrustrum.orthographicHeight / 2));
+
+	int totalIn = 0;
+	globalAABB.GetCornerPoints(obbPoints);
+
+	for (size_t i = 2; i < 6; i++)
+	{
+		int inCount = 8;
+		int iPtIn = 1;
+
+		for (size_t k = 0; k < 8; k++)
+		{
+			//Is "IsOnPositiveSide" slow?
+			//if (camFrustrumumPlanes[i].IsOnPositiveSide(obbPoints[k]))
+			if (orthoNormals[i].Dot(obbPoints[k]) - Dot(planePoints[i], orthoNormals[i]) >= 0.f)
+			{
+				iPtIn = 0;
+				--inCount;
+			}
+			if (inCount == 0)
+				return false;
+
+			totalIn += iPtIn;
+		}
+	}
+
+	if (totalIn == 6)
+		return true;
+
+	return true;
+}
+
+bool C_Camera::PrespectiveCulling(AABB& globalAABB)
+{
+	float3 obbPoints[8];
+	Plane camFrustrumumPlanes[6];
+
+	int totalIn = 0;
+
+	globalAABB.GetCornerPoints(obbPoints);
+	camFrustrum.GetPlanes(camFrustrumumPlanes);
+
+	for (size_t i = 0; i < 6; i++)
+	{
+		int inCount = 8;
+		int iPtIn = 1;
+
+		for (size_t k = 0; k < 8; k++)
+		{
+			//Is "IsOnPositiveSide" slow?
+			if (camFrustrumumPlanes[i].IsOnPositiveSide(obbPoints[k]))
+			{
+				iPtIn = 0;
+				--inCount;
+			}
+			if (inCount == 0)
+				return false;
+
+			totalIn += iPtIn;
+		}
+	}
+
+	if (totalIn == 6)
+		return true;
+
+	return true;
 }

@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        6.1002588272094727,
-        10.952276229858398,
-        -11.501533508300781
+        -30.696279525756836,
+        27.578657150268555,
+        41.047214508056641
     ],
     "EditorCameraZ": [
-        -0.23097644746303558,
-        -0.64418798685073853,
-        0.72915828227996826
+        0.56305968761444092,
+        -0.57590866088867188,
+        -0.59269976615905762
     ],
     "EditorCameraY": [
-        -0.19468870759010315,
-        0.76486718654632568,
-        0.61406391859054565
+        0.39705580472946167,
+        0.81751394271850586,
+        -0.4171542227268219
     ],
     "tags": [
         "Player",
@@ -26,6 +26,11 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1676501951,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0,
                 0,
@@ -42,10 +47,6 @@
                 1,
                 1
             ],
-            "UID": 1676501951,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
             "Components": [
                 {
                     "Type": 1,
@@ -58,6 +59,12 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1991298347,
+            "ParentUID": 1676501951,
+            "PrefabReference": 0,
+            "PrefabID": 1599948487,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 -31.825237274169922,
                 18.808588027954102,
@@ -74,61 +81,23 @@
                 0.9999997615814209,
                 0.9999997615814209
             ],
-            "UID": 1991298347,
-            "PrefabID": 1599948487,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1676501951,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 4,
-                    "Active": true,
-                    "fType": 1,
-                    "fSize": 50,
-                    "nearPlaneDist": 1,
-                    "farPlaneDist": 100,
-                    "vFOV": 1.0471975803375244,
-                    "hFOV": 1.5521194934844971,
-                    "culling": false,
-                    "drawSkybox": true
-                },
-                {
-                    "Type": 12,
-                    "Active": true,
-                    "isDefaultListener": false,
-                    "masterVolume": 50
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "CameraController",
-                    "x": -10.300000190734863,
-                    "y": 9.3000001907348633,
-                    "z": -10,
-                    "smoothSpeed": 0.10000000149011612,
-                    "zoomDesired": 0.10000000149011612,
-                    "timer_easing_sec": 0,
-                    "timer": 0,
-                    "cornerTopLeftX": -100,
-                    "cornerTopLeftY": -100,
-                    "cornerBotRightX": 100,
-                    "cornerBotRightY": 100
-                }
-            ]
+            "PrefabObjects": []
         },
         {
-            "name": "BossRoom",
+            "name": "Plane",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
+            "UID": 1758555483,
+            "ParentUID": 1676501951,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
             "Position": [
                 0,
-                0,
-                0
+                5.6553196907043457,
+                4.7060585021972656
             ],
             "Rotation": [
                 0,
@@ -137,48 +106,10 @@
                 1
             ],
             "Scale": [
+                52.260932922363281,
                 1,
-                1,
-                1
+                73.855422973632813
             ],
-            "UID": 417356794,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1676501951,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Ground",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1343611164,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 417356794,
             "Components": [
                 {
                     "Type": 1,
@@ -187,8 +118,8 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/327484566.mmh",
-                    "UID": 327484566,
+                    "Path": "Library\/Meshes\/1342727876.mmh",
+                    "UID": 1342727876,
                     "alternColor": [
                         1,
                         1,
@@ -199,64 +130,7 @@
                         1,
                         1
                     ],
-                    "doNotDrawStencil": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/191464233.mat",
-                    "MaterialUID": 191464233
-                }
-            ]
-        },
-        {
-            "name": "Ground",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 656205489,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1676501951,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/327484566.mmh",
-                    "UID": 327484566,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
+                    "stencilEmission": 0.89999997615814209,
                     "doNotDrawStencil": true
                 },
                 {
@@ -274,27 +148,28 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "Position": [
-                0.32701766490936279,
-                1.4092673063278198,
-                0.079390645027160645
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1294708416,
+            "UID": 53599179,
+            "ParentUID": 1676501951,
+            "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
-            "ParentUID": 1676501951,
+            "Position": [
+                0,
+                12.141676902770996,
+                9.8995513916015625
+            ],
+            "Rotation": [
+                0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                5,
+                5,
+                0.99994039535522461
+            ],
             "Components": [
                 {
                     "Type": 1,
@@ -313,106 +188,10 @@
                         1,
                         1
                     ],
-                    "lightIntensity": 0.80000001192092896,
-                    "specularValue": 64
-                }
-            ]
-        },
-        {
-            "name": "Empty",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                -9.5935001373291016,
-                1.2341439723968506,
-                3.2593538761138916
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 1767722659,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1676501951,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 27,
-                    "Active": true,
-                    "lightColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "ambientLightColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "lightIntensity": 0.80000001192092896,
-                    "specularValue": 64
-                }
-            ]
-        },
-        {
-            "name": "Empty",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "Position": [
-                10.529803276062012,
-                1.5856003761291504,
-                6.8846397399902344
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "UID": 478916316,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "ParentUID": 1676501951,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 27,
-                    "Active": true,
-                    "lightColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "ambientLightColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "lightIntensity": 0.80000001192092896,
-                    "specularValue": 64
+                    "lightIntensity": 1,
+                    "specularValue": 1,
+                    "fadeDistance": 50,
+                    "maxDistance": 600
                 }
             ]
         }

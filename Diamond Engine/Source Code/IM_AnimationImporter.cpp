@@ -47,7 +47,11 @@ ResourceAnimation* AnimationLoader::ImportAnimation(aiAnimation* importedAnimati
 
 	ResourceAnimation* animation = dynamic_cast<ResourceAnimation*>(EngineExternal->moduleResources->CreateNewResource("", UID, Resource::Type::ANIMATION));
 
-	strcpy(animation->animationName, importedAnimation->mName.C_Str());
+	std::string animationName = importedAnimation->mName.C_Str();
+	if (animationName.size() > 32)
+		animationName.resize(32);
+
+	strcpy(animation->animationName, animationName.c_str());
 	animation->ticksPerSecond = importedAnimation->mTicksPerSecond;
 	animation->duration = importedAnimation->mDuration;
 
@@ -65,7 +69,7 @@ ResourceAnimation* AnimationLoader::ImportAnimation(aiAnimation* importedAnimati
 		}
 		for (int j = 0; j < importedAnimation->mChannels[i]->mNumPositionKeys; j++)
 		{
-			aiVector3t<float> aiValue = importedAnimation->mChannels[i]->mPositionKeys[j].mValue;
+			aiVector3D aiValue = importedAnimation->mChannels[i]->mPositionKeys[j].mValue;
 			float3 positionKey = float3(aiValue.x, aiValue.y, aiValue.z);
 
 			channel.positionKeys[importedAnimation->mChannels[i]->mPositionKeys[j].mTime] = positionKey;
@@ -73,7 +77,7 @@ ResourceAnimation* AnimationLoader::ImportAnimation(aiAnimation* importedAnimati
 
 		for (int j = 0; j < importedAnimation->mChannels[i]->mNumRotationKeys; j++)
 		{
-			aiQuaterniont<float> aiValue = importedAnimation->mChannels[i]->mRotationKeys[j].mValue;
+			aiQuaternion aiValue = importedAnimation->mChannels[i]->mRotationKeys[j].mValue;
 			Quat rotationKey = Quat(aiValue.x, aiValue.y, aiValue.z, aiValue.w);
 
 			channel.rotationKeys[importedAnimation->mChannels[i]->mRotationKeys[j].mTime] = rotationKey;
@@ -81,7 +85,7 @@ ResourceAnimation* AnimationLoader::ImportAnimation(aiAnimation* importedAnimati
 
 		for (int j = 0; j < importedAnimation->mChannels[i]->mNumScalingKeys; j++)
 		{
-			aiVector3t<float> aiValue = importedAnimation->mChannels[i]->mScalingKeys[j].mValue;
+			aiVector3D aiValue = importedAnimation->mChannels[i]->mScalingKeys[j].mValue;
 			float3 scaleKey = float3(aiValue.x, aiValue.y, aiValue.z);
 
 			channel.scaleKeys[importedAnimation->mChannels[i]->mScalingKeys[j].mTime] = scaleKey;
