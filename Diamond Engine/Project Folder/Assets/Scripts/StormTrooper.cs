@@ -115,6 +115,8 @@ public class StormTrooper : Enemy
 
         idleTimer = idleTime;
         dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
+
+        myParticles = gameObject.GetComponent<StormTrooperParticles>();
     }
 
     public void Update()
@@ -779,8 +781,6 @@ public class StormTrooper : Enemy
     {
         if (collidedGameObject.CompareTag("Bullet"))
         {
-            if (myParticles != null && myParticles.hit != null)
-                myParticles.hit.Play();
             BH_Bullet bullet = collidedGameObject.GetComponent<BH_Bullet>();
 
             if (bullet != null)
@@ -804,8 +804,6 @@ public class StormTrooper : Enemy
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))
         {
-            if (myParticles != null && myParticles.hit != null)
-                myParticles.hit.Play();
             ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
 
             if (bullet != null)
@@ -836,8 +834,6 @@ public class StormTrooper : Enemy
         }
         else if (collidedGameObject.CompareTag("ExplosiveBarrel") && collidedGameObject.GetComponent<SphereCollider>().active)
         {
-            if (myParticles != null && myParticles.hit != null)
-                myParticles.hit.Play();
             BH_DestructBox explosion = collidedGameObject.GetComponent<BH_DestructBox>();
 
             if (explosion != null)
@@ -868,6 +864,10 @@ public class StormTrooper : Enemy
 
         if (currentState != STATE.DIE)
         {
+            if (myParticles != null && myParticles.hit != null)
+                myParticles.hit.Play();
+            else
+                Debug.Log("No hit particles for you");
             healthPoints -= damage;
 
             if (Core.instance != null)

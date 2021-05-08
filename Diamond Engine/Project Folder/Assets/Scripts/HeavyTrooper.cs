@@ -666,6 +666,7 @@ public class HeavyTrooper : Enemy
 
         Audio.PlayAudio(gameObject, "Play_Heavytrooper_Dash");
         UpdateAnimationSpd(speedMult);
+        //particles.Play(HeavyTrooperParticles.HEAVYROOPER_PARTICLES.DASH);
     }
     private void UpdateDash()
     {
