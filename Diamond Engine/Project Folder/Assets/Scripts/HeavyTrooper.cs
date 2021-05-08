@@ -831,7 +831,7 @@ public class HeavyTrooper : Enemy
 
             if (bullet != null)
             {
-                TakeDamage(bullet.damage);
+                TakeDamage(bullet.GetDamage());
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -856,10 +856,10 @@ public class HeavyTrooper : Enemy
 
             if (bullet != null)
             {
-                healthPoints -= bullet.damage;
+                //healthPoints -= bullet.GetDamage();
                 this.AddStatus(STATUS_TYPE.DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
 
-                TakeDamage(bullet.damage);
+                TakeDamage(bullet.GetDamage());
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -871,6 +871,26 @@ public class HeavyTrooper : Enemy
                 if (currentState != STATE.DIE && healthPoints <= 0.0f)
                 {
                     inputsList.Add(INPUT.IN_DIE);
+                    if (Core.instance != null)
+                    {
+                        if (Core.instance.HasStatus(STATUS_TYPE.SP_HEAL))
+                        {
+                            if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
+                            {
+                                float healing = Core.instance.GetStatusData(STATUS_TYPE.SP_HEAL).severity;
+                                Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
+                            }
+                        }
+                        if (Core.instance.HasStatus(STATUS_TYPE.SP_FORCE_REGEN))
+                        {
+                            if (Core.instance.gameObject != null && BabyYoda.instance != null)
+                            {
+                                float force = Core.instance.GetStatusData(STATUS_TYPE.SP_FORCE_REGEN).severity;
+                                BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
+                            }
+                        }
+                    }
+                    
                 }
             }
         }
