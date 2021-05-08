@@ -13,6 +13,7 @@ public class HeavyTrooperSpear : DiamondComponent
 
         if (collider != null)
             collider.active = false;
+
     }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
