@@ -452,7 +452,7 @@ void ResourceMesh::PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Tran
 	glActiveTexture(GL_TEXTURE16);
 	glUniform1i(glGetUniformLocation(shaderID, "specularMap"), 16);
 
-	if (normalMap != nullptr)
+	if (specularMap != nullptr)
 		glBindTexture(GL_TEXTURE_2D, specularMap->textureID);
 
 	else

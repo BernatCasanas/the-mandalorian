@@ -9,10 +9,10 @@ layout (location = 6) in vec3 colors;
 
 out VS_OUT {
     vec3 FragPos;
-    vec3 Normal;
     vec2 TexCoords;
     vec4 FragPosLightSpace[2];
     
+    mat3 TBN;
     vec3 TangentLightPos[2];
     vec3 TangentViewPos;
     vec3 TangentFragPos;
@@ -50,7 +50,6 @@ void main()
     vs_out.vertexColor = colors;
     
     vs_out.FragPos = vec3(model_matrix * vec4(position, 1.0));
-    vs_out.Normal = normalize(transpose(inverse(mat3(model_matrix))) * normals);
     vs_out.TexCoords = texCoord;
     vs_out.FragPosLightSpace[0] = lightInfo[0].lightSpaceMatrix * vec4(vs_out.FragPos, 1.0);
     vs_out.FragPosLightSpace[1] = lightInfo[1].lightSpaceMatrix * vec4(vs_out.FragPos, 1.0);
@@ -61,11 +60,11 @@ void main()
     vec3 N = normalize(vec3(model_matrix * vec4(normals,  0.0)));
     vec3 B = cross(N, T);
 	
-	mat3 TBN = transpose(mat3(T, B, N));
-    vs_out.TangentLightPos[0] = TBN * lightInfo[0].lightPosition;
-    vs_out.TangentLightPos[1] = TBN * lightInfo[1].lightPosition;
-    vs_out.TangentViewPos  = TBN * cameraPosition;
-    vs_out.TangentFragPos  = TBN * vec3(model_matrix * vec4(position, 1.0));
+	vs_out.TBN = transpose(mat3(T, B, N));
+    vs_out.TangentLightPos[0] = vs_out.TBN * lightInfo[0].lightPosition;
+    vs_out.TangentLightPos[1] = vs_out.TBN * lightInfo[1].lightPosition;
+    vs_out.TangentViewPos  = vs_out.TBN * cameraPosition;
+    vs_out.TangentFragPos  = vs_out.TBN * vec3(model_matrix * vec4(position, 1.0));
 
     gl_Position = projection * view * model_matrix * vec4(position, 1.0);
 
@@ -77,10 +76,10 @@ void main()
 
 in VS_OUT {
     vec3 FragPos;
-    vec3 Normal;
     vec2 TexCoords;
     vec4 FragPosLightSpace[2];
     
+    mat3 TBN;
     vec3 TangentLightPos[2];
     vec3 TangentViewPos;
     vec3 TangentFragPos;
@@ -222,7 +221,7 @@ vec3 CalculateDirectionalLight(float specMapValue)
     		float diff = max(dot(lightDir, normal), 0.0);
     		vec3 diffuse = diff * lightInfo[i].lightColor;
    	 	// specular
-   	 		vec3 viewDir = normalize(fs_in.TangentViewPos - fs_in.TangentFragPos[i]);
+   	 		vec3 viewDir = normalize(fs_in.TangentViewPos - fs_in.TangentFragPos);
     		float spec = 0.0;
     		vec3 halfwayDir = normalize(lightDir + viewDir);  
     		spec = pow(max(dot(normal, halfwayDir), 0.0), lightInfo[i].specularValue);
@@ -390,6 +389,8 @@ vec3 CalculateAreaLightDirection(int iterator)
 vec3 CalculateAreaLight( float specMapValue)
 {
 	vec3 lighting = vec3(0.0, 0.0, 0.0);
+	vec3 normal = texture(normalMap, fs_in.TexCoords).rgb;
+	normal = normalize(transpose(fs_in.TBN) * normal);
     
     for (int i = 0; i < 5; i++)
     {
@@ -410,13 +411,13 @@ vec3 CalculateAreaLight( float specMapValue)
     		if (dot(lightDir, areaLightInfo[i].lightForward) <= 0.0)
     		{
    	 			// diffuse
-    			float diff = max(dot(lightDir, fs_in.Normal), 0.0);
+    			float diff = max(dot(lightDir, normal), 0.0);
     			vec3 diffuse = diff * areaLightInfo[i].lightColor;
    	 			// specular
    				vec3 viewDir = normalize(cameraPosition - fs_in.FragPos);
     			float spec = 0.0;
     			vec3 halfwayDir = normalize(lightDir + viewDir);  
-    			spec = pow(max(dot(fs_in.Normal, halfwayDir), 0.0), areaLightInfo[i].specularValue);
+    			spec = pow(max(dot(normal, halfwayDir), 0.0), areaLightInfo[i].specularValue);
     			vec3 specular = spec * areaLightInfo[i].lightColor * specMapValue;
         	
     	 		// calculate light value
@@ -439,6 +440,8 @@ void main()
     color = vec4((directionalLight + areaLight) * fs_in.vertexColor, 1.0);
 }
 #endif
+
+
 
 
 
