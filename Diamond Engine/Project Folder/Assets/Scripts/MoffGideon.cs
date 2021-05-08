@@ -22,7 +22,7 @@ public class MoffGideon : Entity
         DASH_BACKWARDS,
         PROJECTILE,
         SPAWN_ENEMIES,
-        FOLLOW,
+        NEUTRAL,
         DEAD
     }
 
@@ -41,8 +41,8 @@ public class MoffGideon : Entity
         IN_SPAWN_ENEMIES_END,
         IN_PROJECTILE,
         IN_PROJECTILE_END,
-        IN_FOLLOW,
-        IN_FOLLOW_END,
+        IN_NEUTRAL,
+        IN_NEUTRAL_END,
         IN_DEAD
     }
 
@@ -50,7 +50,7 @@ public class MoffGideon : Entity
     public GameObject camera = null;
 
     //State
-    private MOFFGIDEON_STATE currentState = MOFFGIDEON_STATE.FOLLOW;
+    private MOFFGIDEON_STATE currentState = MOFFGIDEON_STATE.NEUTRAL;
     private List<MOFFGIDEON_INPUT> inputsList = new List<MOFFGIDEON_INPUT>();
     private MOFFGIDEON_PHASE currentPhase = MOFFGIDEON_PHASE.PHASE1;
 
@@ -70,34 +70,48 @@ public class MoffGideon : Entity
     public float maxHealthPoints_fase2 = 4000.0f;
 
     //Public Variables
-    public float followSpeed = 15f;
+    public float followSpeed = 7f;
     public float touchDamage = 10f;
+    public float distance2Melee = 10f;
+    public float probWanderP1 = 60f;
+    public float probWanderP2 = 40f;
+    public float probWander = 0f;
+    public float radiusWander = 5f;
+    public float distanceProjectile = 17f;
+    public float dashSpeed = 10f;
+    public float dashDistance = 10f;
     public GameObject spawner1 = null;
     public GameObject spawner2 = null;
     public GameObject spawner3 = null;
     public GameObject spawner4 = null;
+    public GameObject sword = null;
+    public GameObject shootPoint = null;
 
     //Private Variables
     private float damaged = 0.0f;
     private float currAnimationPlaySpd = 1f;
     private bool invencible = false;
-    private List<GameObject> spawners = null;
+    private bool wander = false;
+    private bool ready2Spawn = false;
+    private Vector3 targetDash = null;
+
 
     //Timers
     private float dieTimer = 0f;
     public float dieTime = 0.1f;
-    private float followTimer = 0f;
-    public float followTime = 5f;
-    private float deadEnemiesTimer = 0f;
-    public float deadEnemiesTime = 5f;
+    private float neutralTimer = 0f;
+    public float neutralTime = 5f;
+    private float enemiesTimer = 0f;
+    public float enemiesTime = 20f;
+    private float comboTime = 0f;
+    private float comboTimer = 0f;
 
     private void Start()
     {
-        StartFollow();
-        spawners.Add(spawner1);
-        spawners.Add(spawner2);
-        spawners.Add(spawner3);
-        spawners.Add(spawner4);
+        StartNeutral();
+        sword.DisableCollider();
+
+        comboTime = Animator.GetAnimationDuration(gameObject, "") - 0.016f;
     }
 
     public void Awake()
@@ -109,6 +123,8 @@ public class MoffGideon : Entity
         damageMult = 1f;
 
         damaged = 0f;
+
+        probWander = probWanderP1;
 
         if (EnemyManager.EnemiesLeft() > 0)
             EnemyManager.ClearList();
@@ -143,12 +159,30 @@ public class MoffGideon : Entity
     //Timers go here
     private void ProcessInternalInput()
     {
-        if (followTimer > 0)
+        if (neutralTimer > 0)
         {
-            followTimer -= myDeltaTime;
+            neutralTimer -= myDeltaTime;
 
-            if (followTimer <= 0)
-                inputsList.Add(MOFFGIDEON_INPUT.IN_SPAWN_ENEMIES);
+            if (neutralTimer <= 0)
+                inputsList.Add(MOFFGIDEON_INPUT.IN_NEUTRAL_END);
+
+        }
+
+        if (enemiesTimer > 0)
+        {
+            enemiesTimer -= myDeltaTime;
+
+            if (enemiesTimer <= 0)
+                ready2Spawn = true;
+
+        }
+
+        if (comboTimer > 0)
+        {
+            comboTimer -= myDeltaTime;
+
+            if (comboTimer <= 0)
+                inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_BACKWARDS);
 
         }
     }
@@ -156,7 +190,22 @@ public class MoffGideon : Entity
     private void ProcessExternalInput()
     {
         if (currentState == MOFFGIDEON_STATE.SPAWN_ENEMIES && CheckDeathtroopers())
-            inputsList.Add(MOFFGIDEON_INPUT.IN_FOLLOW);
+            inputsList.Add(MOFFGIDEON_INPUT.IN_NEUTRAL);
+
+        if (currentState == MOFFGIDEON_STATE.NEUTRAL && Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= distance2Melee)
+            inputsList.Add(MOFFGIDEON_INPUT.IN_MELEE_COMBO);
+
+        if (currentState == MOFFGIDEON_STATE.NEUTRAL && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= 1.0f && wander)
+            agent.CalculateRandomPath(gameObject.transform.globalPosition, radiusWander);
+
+        if (currentState == MOFFGIDEON_STATE.NEUTRAL && Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= 1.0f && !wander)
+            wander = true;
+
+        if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, targetDash) <= agent.stoppingDistance)
+            inputsList.Add(MOFFGIDEON_INPUT.IN_MELEE_COMBO);
+
+        if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, targetDash) >= dashDistance)
+            inputsList.Add(MOFFGIDEON_INPUT.IN_NEUTRAL);
 
     }
 
@@ -174,35 +223,41 @@ public class MoffGideon : Entity
                         Debug.Log("CORE ERROR STATE");
                         break;
 
-                    case MOFFGIDEON_STATE.FOLLOW:
+                    case MOFFGIDEON_STATE.NEUTRAL:
                         switch (input)
                         {
-                            case MOFFGIDEON_INPUT.IN_FOLLOW_END:
+                            case MOFFGIDEON_INPUT.IN_NEUTRAL_END:
                                 currentState = MOFFGIDEON_STATE.SEARCH_STATE;
-                                EndFollow();
+                                EndNeutral();
                                 break;
 
+                            case MOFFGIDEON_INPUT.IN_DEAD:
+                                EndNeutral();
+                                StartDie();
+                                break;
+                        }
+                        break;
+
+
+                    case MOFFGIDEON_STATE.SEARCH_STATE:
+                        switch (input)
+                        {
                             case MOFFGIDEON_INPUT.IN_SPAWN_ENEMIES:
                                 currentState = MOFFGIDEON_STATE.SPAWN_ENEMIES;
-                                EndFollow();
+                                EndNeutral();
                                 StartSpawnEnemies();
                                 break;
 
                             case MOFFGIDEON_INPUT.IN_PROJECTILE:
                                 currentState = MOFFGIDEON_STATE.PROJECTILE;
-                                EndFollow();
+                                EndNeutral();
                                 StartProjectile();
                                 break;
 
                             case MOFFGIDEON_INPUT.IN_DASH_FORWARD:
                                 currentState = MOFFGIDEON_STATE.DASH_FORWARD;
-                                EndFollow();
+                                EndNeutral();
                                 StartDashForward();
-                                break;
-
-                            case MOFFGIDEON_INPUT.IN_DEAD:
-                                EndFollow();
-                                StartDie();
                                 break;
                         }
                         break;
@@ -236,10 +291,10 @@ public class MoffGideon : Entity
                                 EndProjectile();
                                 break;
 
-                            case MOFFGIDEON_INPUT.IN_FOLLOW:
-                                currentState = MOFFGIDEON_STATE.FOLLOW;
+                            case MOFFGIDEON_INPUT.IN_NEUTRAL:
+                                currentState = MOFFGIDEON_STATE.NEUTRAL;
                                 EndProjectile();
-                                StartFollow();
+                                StartNeutral();
                                 break;
 
                             case MOFFGIDEON_INPUT.IN_DEAD:
@@ -317,8 +372,8 @@ public class MoffGideon : Entity
                 Debug.Log("GIDEON ERROR STATE");
                 break;
 
-            case MOFFGIDEON_STATE.FOLLOW:
-                UpdateFollow();
+            case MOFFGIDEON_STATE.NEUTRAL:
+                UpdateNeutral();
                 break;
 
             case MOFFGIDEON_STATE.SEARCH_STATE:
@@ -353,36 +408,48 @@ public class MoffGideon : Entity
 
     private void SelectAction()
     {
-        
+        if (ready2Spawn)
+            inputsList.Add(MOFFGIDEON_INPUT.IN_SPAWN_ENEMIES);
+
+        else if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= distanceProjectile)
+            inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD);
+
+        else
+            inputsList.Add(MOFFGIDEON_INPUT.IN_PROJECTILE);
+
     }
 
 
-    #region FOLLOW
+    #region NEUTRAL
 
-    private void StartFollow()
+    private void StartNeutral()
     {
-        followTimer = followTime;
+        neutralTimer = neutralTime;
+
+        if (randomNum.Next(1, 100) <= probWander)
+        {
+            wander = true;
+            agent.CalculateRandomPath(gameObject.transform.globalPosition, radiusWander);
+        }
     }
 
 
-    private void UpdateFollow()
+    private void UpdateNeutral()
     {
-        if (agent != null)
-            agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
-
-        //Move character
-        if (agent != null && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance)
+        if (agent != null && !wander)
         {
             agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
-            LookAt(agent.GetDestination());
-            agent.MoveToCalculatedPos(followSpeed * speedMult);
         }
 
-        Debug.Log("Following");
+        //Move character
+        LookAt(agent.GetDestination());
+        agent.MoveToCalculatedPos(followSpeed * speedMult);
+
+        Debug.Log("Neutral");
     }
 
 
-    private void EndFollow()
+    private void EndNeutral()
     {
 
     }
@@ -392,12 +459,13 @@ public class MoffGideon : Entity
     #region DASH_FORWARD
     private void StartDashForward()
     {
-
+        targetDash = Core.instance.gameObject.transform.globalPosition;
     }
 
     private void UpdateDashForward()
     {
-
+        LookAt(targetDash);
+        MoveToPosition(targetDash, dashSpeed * speedMult);
     }
 
     private void EndDashForward()
@@ -410,17 +478,17 @@ public class MoffGideon : Entity
     #region MELEE_COMBO
     private void StartMeleeCombo()
     {
-
+        sword.EnableCollider();
     }
 
     private void UpdateMeleeCombo()
     {
-        
+        LookAt(Core.instance.gameObject.transform.globalPosition);
     }
 
     private void EndMeleeCombo()
     {
-        
+        sword.DisableCollider();
     }
 
     #endregion
@@ -433,7 +501,7 @@ public class MoffGideon : Entity
 
     private void UpdateDashBackward()
     {
-
+        gameObject.transform.localPosition += dashSpeed * myDeltaTime * speedMult; 
     }
 
     private void EndDashBackward()
@@ -447,7 +515,7 @@ public class MoffGideon : Entity
 
     private void StartProjectile()
     {
-
+        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1606118587.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
     }
 
     private void UpdateProjectile()
@@ -467,24 +535,18 @@ public class MoffGideon : Entity
     private void StartSpawnEnemies()
     {
         invencible = true;
-        deadEnemiesTimer = deadEnemiesTime;
+        ready2Spawn = false;
         SpawnEnemies();
     }
 
     private void UpdateSpawnEnemies()
     {
-        if (deadEnemiesTimer > 0)
-        {
-            deadEnemiesTimer -= myDeltaTime;
 
-            if (deadEnemiesTimer <= 0)
-                SpawnEnemies();
-
-        }
     }
 
     private void EndSpawnEnemies()
     {
+        enemiesTimer = enemiesTime;
         invencible = false;
     }
 
@@ -764,6 +826,13 @@ public class MoffGideon : Entity
         InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner2.transform.globalPosition, gameObject.transform.localRotation, null);
         InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner3.transform.globalPosition, gameObject.transform.localRotation, null);
         InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner4.transform.globalPosition, gameObject.transform.localRotation, null);
+    }
+
+    public void MoveToPosition(Vector3 positionToReach, float speed)
+    {
+        Vector3 direction = positionToReach - gameObject.transform.localPosition;
+
+        gameObject.transform.localPosition += direction.normalized * speed * myDeltaTime;
     }
 
 }
