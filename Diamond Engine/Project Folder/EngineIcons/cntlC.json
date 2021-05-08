@@ -1,36 +1,54 @@
 {
     "Game Objects": [
         {
-            "name": "Spawn1",
+            "name": "AreaLight",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 748886634,
-            "ParentUID": 177309790,
-            "PrefabReference": 748886634,
+            "UID": 391060195,
+            "ParentUID": 1823420575,
+            "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                0,
-                0
+                7.3857278823852539,
+                1.3709602355957031,
+                4.6652140617370605
             ],
             "Rotation": [
+                0.7071068286895752,
                 0,
                 0,
-                0,
-                1
+                0.70710670948028564
             ],
             "Scale": [
-                1,
-                1,
-                1
+                14.452498435974121,
+                14.451640129089355,
+                14.451640129089355
             ],
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
+                },
+                {
+                    "Type": 27,
+                    "Active": true,
+                    "lightColor": [
+                        0.8888888955116272,
+                        0,
+                        0
+                    ],
+                    "ambientLightColor": [
+                        1,
+                        0,
+                        0
+                    ],
+                    "lightIntensity": 3,
+                    "specularValue": 1,
+                    "fadeDistance": 100,
+                    "maxDistance": 600
                 }
             ]
         }
