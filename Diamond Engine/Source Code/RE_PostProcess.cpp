@@ -86,7 +86,7 @@ radiusAO(1.0f), blurSpread(0)
 PostProcessDataAO::~PostProcessDataAO()
 {
 }
-
+#ifndef STANDALONE
 void PostProcessDataAO::DrawEditor()
 {
 	const std::string suffix = "##AO";
@@ -107,6 +107,7 @@ void PostProcessDataAO::DrawEditor()
 		PostProcessData::DrawEditorEnd();
 	}
 }
+#endif
 
 void PostProcessDataAO::SaveToJson(JSON_Object* nObj)
 {
@@ -139,6 +140,7 @@ PostProcessDataBloom::~PostProcessDataBloom()
 {
 }
 
+#ifndef STANDALONE
 void PostProcessDataBloom::DrawEditor()
 {
 	const std::string suffix = "##Bloom";
@@ -165,6 +167,7 @@ void PostProcessDataBloom::DrawEditor()
 		PostProcessData::DrawEditorEnd();
 	}
 }
+#endif
 
 void PostProcessDataBloom::SaveToJson(JSON_Object* nObj)
 {
@@ -196,6 +199,7 @@ PostProcessDataToneMapping::~PostProcessDataToneMapping()
 {
 }
 
+#ifndef STANDALONE
 void PostProcessDataToneMapping::DrawEditor()
 {
 	const std::string suffix = "##Tone Mapping";
@@ -216,6 +220,7 @@ void PostProcessDataToneMapping::DrawEditor()
 		PostProcessData::DrawEditorEnd();
 	}
 }
+#endif
 
 void PostProcessDataToneMapping::SaveToJson(JSON_Object* nObj)
 {

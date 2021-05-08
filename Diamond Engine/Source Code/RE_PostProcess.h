@@ -20,7 +20,9 @@ class PostProcessData
 public:
 	PostProcessData(POSTPROCESS_DATA_TYPE type, std::string name);
 	~PostProcessData();
+#ifndef STANDALONE
 	virtual void DrawEditor();
+#endif
 	virtual void SaveToJson(JSON_Object* nObj);
 	virtual void LoadFromJson(DEConfig& nObj);
 	POSTPROCESS_DATA_TYPE GetType()const;
@@ -40,7 +42,9 @@ class PostProcessDataAO: public PostProcessData
 public:
 	PostProcessDataAO();
 	~PostProcessDataAO();
+#ifndef STANDALONE
 	void DrawEditor() override;
+#endif
 	void SaveToJson(JSON_Object* nObj);
 	void LoadFromJson(DEConfig& nObj);
 public:
@@ -53,7 +57,9 @@ class PostProcessDataBloom : public PostProcessData
 public:
 	PostProcessDataBloom();
 	~PostProcessDataBloom();
+#ifndef STANDALONE
 	void DrawEditor() override;
+#endif
 	void SaveToJson(JSON_Object* nObj);
 	void LoadFromJson(DEConfig& nObj);
 public:
@@ -68,7 +74,9 @@ class PostProcessDataToneMapping : public PostProcessData
 public:
 	PostProcessDataToneMapping();
 	~PostProcessDataToneMapping();
+#ifndef STANDALONE
 	void DrawEditor() override;
+#endif
 	void SaveToJson(JSON_Object* nObj);
 	void LoadFromJson(DEConfig& nObj);
 public:
