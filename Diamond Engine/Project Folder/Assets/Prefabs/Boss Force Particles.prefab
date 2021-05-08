@@ -1,20 +1,54 @@
 {
-    "assets_path": "Assets\/Prefabs\/Combo Particles.prefab",
+    "assets_path": "Assets\/Prefabs\/Boss Force Particles.prefab",
     "Game Objects": [
         {
-            "name": "Combo Particles",
+            "name": "Boss Force Particles",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "UID": 0,
             "ParentUID": 0,
             "PrefabReference": 0,
-            "PrefabID": 1974204683,
+            "PrefabID": 790881914,
             "DontDestroy": false,
             "Static": false,
             "Position": [
                 0,
-                1.9954221248626709,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Force",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 0,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
                 0
             ],
             "Rotation": [
@@ -37,28 +71,25 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
                 {
                     "Type": 20,
                     "Active": true,
-                    "systemActive": true,
-                    "looping": true,
-                    "maxDuration": 10,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 1.0490000247955322,
                     "ParticleEmitters": [
                         {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/2134419253.dds",
-                            "texUID": 2134419253,
-                            "paEmitterName": "Fire",
+                            "paEmitterName": "Empty",
                             "paLifeTime": [
-                                0.10000000149011612,
-                                0.30000001192092896
+                                0,
+                                0
                             ],
                             "paSize": [
-                                0.05000000074505806,
+                                1,
                                 1
                             ],
                             "paColor": [
@@ -67,88 +98,16 @@
                                 1,
                                 1
                             ],
-                            "paPerSec": 500,
+                            "paPerSec": 0,
                             "paRelative": true,
-                            "ParticleEffects": [
-                                {
-                                    "paEffectType": 0,
-                                    "paFOLT_direction": [
-                                        0,
-                                        1,
-                                        0
-                                    ],
-                                    "paFOLT_magnitude": 15,
-                                    "paFOLT_gravityMod": 0,
-                                    "paFOLT_gravity": -0,
-                                    "paFOLT_forceType": 0
-                                },
-                                {
-                                    "paEffectType": 2,
-                                    "Gradients": [
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0,
-                                                0,
-                                                0
-                                            ],
-                                            "paColorOLTposition": 0
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                0.8540339469909668,
-                                                0,
-                                                0,
-                                                0.85882353782653809
-                                            ],
-                                            "paColorOLTposition": 0.14594535529613495
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                0.83003950119018555,
-                                                0,
-                                                0,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 1
-                                        }
-                                    ]
-                                },
-                                {
-                                    "paEffectType": 3,
-                                    "paSizeOLTStartSize": -0.029999999329447746,
-                                    "paSizeOLTEndSize": -0.05000000074505806
-                                },
-                                {
-                                    "paEffectType": 5,
-                                    "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 2,
-                                    "paShapeRandSpeed": 1,
-                                    "PaShapeCircumferenceinnerRadius": 1,
-                                    "PaShapeCircumferenceoutterRadius": 2,
-                                    "PaShapeCircumferenceDirection": false,
-                                    "PaShapeCircumferenceAngle": 0,
-                                    "paShapeType": 3,
-                                    "PaShapeOffset": [
-                                        0,
-                                        0,
-                                        0
-                                    ]
-                                }
-                            ]
+                            "ParticleEffects": []
                         }
                     ]
-                },
-                {
-                    "Type": 21,
-                    "Active": true,
-                    "billboardAlignment": 0,
-                    "horizantalAligned": true
                 }
             ]
         },
         {
-            "name": "Combo Particles",
+            "name": "Combo wave",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -160,41 +119,7 @@
             "Static": false,
             "Position": [
                 0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Combo wave",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 90890101,
-            "ParentUID": 0,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                -0.33548879623413086,
+                1.65993332862854,
                 0
             ],
             "Rotation": [
@@ -217,16 +142,16 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
                 {
                     "Type": 20,
                     "Active": true,
-                    "systemActive": true,
-                    "looping": true,
-                    "maxDuration": 10,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 1.0140000581741333,
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
