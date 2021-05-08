@@ -58,7 +58,7 @@ void W_Scene::Draw()
 		ImVec2 size = ImGui::GetContentRegionAvail();
 
 		App->moduleCamera->editorCamera.SetAspectRatio(ImGui::GetContentRegionAvail().x / ImGui::GetContentRegionAvail().y);
-		ImGui::Image((ImTextureID)App->moduleCamera->editorCamera.resolvedFBO.GetTextureBuffer(), size, ImVec2(0, 1), ImVec2(1, 0));
+		ImGui::Image((ImTextureID)App->moduleCamera->editorCamera.resolvedFBO.GetColorTexture(), size, ImVec2(0, 1), ImVec2(1, 0));
 
 		if (ImGui::BeginDragDropTarget())
 		{

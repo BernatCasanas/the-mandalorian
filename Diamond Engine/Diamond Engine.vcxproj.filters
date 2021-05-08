@@ -163,6 +163,9 @@
     <Filter Include="Externals\RecastNavigation\DetourTileCache">
       <UniqueIdentifier>{d66569a2-3ffb-4054-9a11-057343c0d173}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Helpers\PostProcessing">
+      <UniqueIdentifier>{e337fadb-d6f6-479e-8655-c771380004dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source Code\Globals.h">
@@ -1037,6 +1040,27 @@
     <ClInclude Include="Source Code\CS_MeshRenderer_Bindings.h">
       <Filter>Sources\Tools\Bindings</Filter>
     </ClInclude>
+    <ClInclude Include="Source Code\DE_Advanced_FrameBuffer.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\RE_PostProcess.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\IM_PostProcessImporter.h">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\PostProcessing.h">
+      <Filter>Sources\Helpers\PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\ImageRenderer.h">
+      <Filter>Sources\Helpers\PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\PostProcessFilter.h">
+      <Filter>Sources\Helpers\PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\PostProcessEffect.h">
+      <Filter>Sources\Helpers\PostProcessing</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source Code\Main.cpp">
@@ -1609,6 +1633,27 @@
     </ClCompile>
     <ClCompile Include="Source Code\CO_AreaLight.cpp">
       <Filter>Sources\Components\Derived\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\DE_Advanced_FrameBuffer.cpp">
+      <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\RE_PostProcess.cpp">
+      <Filter>Sources\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\IM_PostProcessImporter.cpp">
+      <Filter>Sources\Tools\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\PostProcessing.cpp">
+      <Filter>Sources\Helpers\PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\ImageRenderer.cpp">
+      <Filter>Sources\Helpers\PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\PostProcessFilter.cpp">
+      <Filter>Sources\Helpers\PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\PostProcessEffect.cpp">
+      <Filter>Sources\Helpers\PostProcessing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

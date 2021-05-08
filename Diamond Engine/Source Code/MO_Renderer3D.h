@@ -10,6 +10,7 @@
 #include"MathGeoLib/include/Geometry/LineSegment.h"
 
 #include"DE_Cubemap.h"
+#include "PostProcessing.h"
 
 #include<map>
 
@@ -138,6 +139,7 @@ public:
 	unsigned int resolution;
 	bool debugDraw;
 
+	PostProcessing postProcessing;
 private:
 	std::vector<LineRender> lines;
 	std::vector<DebugTriangle> triangles;
@@ -146,4 +148,5 @@ private:
 	C_Camera* gameCamera;
 	LineSegment pickingDebug;
 	std::string str_CAPS;
+
 };
