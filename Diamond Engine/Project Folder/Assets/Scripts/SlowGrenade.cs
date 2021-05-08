@@ -172,9 +172,17 @@ public class SlowGrenade : DiamondComponent
             lifeTimer = 0;
 
         }
-
-        if (explosionTimer >= explosionTime)
-            InternalCalls.Destroy(gameObject);
+        if(Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.SEC_DURATION))
+        {
+            if (explosionTimer >= explosionTime * (1 + Core.instance.GetStatusData(STATUS_TYPE.SEC_DURATION).severity / 100))
+                InternalCalls.Destroy(gameObject);
+        }
+        else
+        {
+            if (explosionTimer >= explosionTime)
+                InternalCalls.Destroy(gameObject);
+        }
+      
     }
 
 

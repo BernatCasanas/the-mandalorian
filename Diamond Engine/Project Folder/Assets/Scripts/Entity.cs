@@ -64,6 +64,10 @@ public enum STATUS_TYPE
     PRIM_SLOW,
     OVERHEAT,
     PRIM_CHARGED,
+    SEC_TICKDMG,
+    SEC_SLOW,
+    SEC_RECOVERY,
+    SEC_DURATION,
 }
 
 public enum STATUS_APPLY_TYPE
@@ -131,6 +135,7 @@ public class Entity : DiamondComponent
     public float DamageRed = 1f;
     public float GroguCost = 1f;
     public float FireRateMult = 1f;
+    protected float SecTickDamage = 1f;
 
     protected virtual void InitEntity(ENTITY_TYPE myType)
     {

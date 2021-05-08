@@ -343,7 +343,7 @@ public class Skill_Tree_Node : DiamondComponent
                         break;
                     case "AGrenadeDmg":
                         //Debug.Log("Critical chance not implemented yet");
-                        Core.instance.AddStatus(STATUS_TYPE.GRENADE_DAMAGE, STATUS_APPLY_TYPE.SUBSTITUTE, 15, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.GRENADE_DAMAGE, STATUS_APPLY_TYPE.ADDITIVE, 15, 0, true);
 
                         break;
                     case "ASniperDmg":
@@ -434,22 +434,24 @@ public class Skill_Tree_Node : DiamondComponent
                     #endregion
                     #region secondary
                     case "SeStatEfct":
+                        Core.instance.AddStatus(STATUS_TYPE.SEC_TICKDMG, STATUS_APPLY_TYPE.ADDITIVE, 2, 0, true);
 
                         break;
                     case "SeSlow":
-
+                        Debug.Log("slow not implemented");
+                        Core.instance.AddStatus(STATUS_TYPE.SEC_SLOW, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 1, true);
                         break;
                     case "SeDelay":
-
+                        Core.instance.AddStatus(STATUS_TYPE.SEC_RECOVERY, STATUS_APPLY_TYPE.SUBSTITUTE, 30, 1, true);
                         break;
                     case "SeUseRange":
-
+                        Debug.Log("range not implemented, rework on grenade?");
                         break;
                     case "SeDuration":
-
+                        Core.instance.AddStatus(STATUS_TYPE.SEC_DURATION, STATUS_APPLY_TYPE.SUBSTITUTE, 30, 1, true);
                         break;
                     case "SeDmgInc":
-
+                        Core.instance.AddStatus(STATUS_TYPE.GRENADE_DAMAGE, STATUS_APPLY_TYPE.ADDITIVE, 50, 1, true);
                         break;
                     #endregion
                     #region primary

@@ -463,8 +463,10 @@ public class Core : Entity
             if(sniperShotTimer <= 0.0f)
                 inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
         }
-
-        grenadesFireRateTimer -= myDeltaTime;
+        if (HasStatus(STATUS_TYPE.SEC_RECOVERY))
+            grenadesFireRateTimer -= myDeltaTime * (1 + GetStatusData(STATUS_TYPE.SEC_RECOVERY).severity / 100);
+        else
+            grenadesFireRateTimer -= myDeltaTime;
         timeOfRoom += myDeltaTime;
         timeSinceLastDash += myDeltaTime;
     }
@@ -1767,7 +1769,7 @@ public class Core : Entity
     public float GetGrenadeDamageMod()
     {
         //We apply modifications to the damage based on the skill actives in the talent tree
-        float Damage = DamagePerHeatMult * GrenadeDamageMult * RawDamageMult;
+        float Damage = DamagePerHeatMult * GrenadeDamageMult * RawDamageMult + SecTickDamage;
 
         return Damage;
     }
@@ -1843,6 +1845,8 @@ public class Core : Entity
         myDeltaTime = Time.deltaTime;
         FireRateMult = 1f;
         RawDamageMult = 1f;
+        SecTickDamage = 1f;
+
     }
 
     protected override void OnInitStatus(ref StatusData statusToInit)
@@ -1973,6 +1977,12 @@ public class Core : Entity
                     statusToInit.statChange = (statusToInit.severity) / 100;
                     this.RawDamageMult += statusToInit.statChange;
                     // Debug.Log(this.DamageMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.SEC_TICKDMG:
+                {
+                    statusToInit.statChange = statusToInit.severity;
+                    this.SecTickDamage += statusToInit.statChange;
                 }
                 break;
             default:
@@ -2167,6 +2177,12 @@ public class Core : Entity
                     this.RawDamageMult -= statusToDelete.statChange;
                     if (this.RawDamageMult > 2)
                         this.RawDamageMult = 1;
+                }
+                break;
+            case STATUS_TYPE.SEC_TICKDMG:
+                {
+                    
+                    this.SecTickDamage -= statusToDelete.statChange;
                 }
                 break;
             default:
