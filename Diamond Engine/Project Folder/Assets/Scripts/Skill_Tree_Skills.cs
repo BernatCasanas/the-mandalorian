@@ -351,7 +351,7 @@ namespace DiamondEngine
         }
     }
 
-    public class GroguComboTimerSkill : Skills
+    public class GroguComboGainSkill : Skills
     {
         public override void Use()
         {
@@ -607,7 +607,7 @@ namespace DiamondEngine
             {"GThrshComboForce", typeof(GroguThresholdComboForceSkill)},
             {"GMaxForce", typeof(GroguMaxForceSkill)},
             {"GSingComboForce", typeof(GroguSingularComboForceSkill)},
-            {"GComboTimer", typeof(GroguComboTimerSkill)},
+            {"GComboGain", typeof(GroguComboGainSkill)},
             {"GHPForceReg", typeof(GroguHPForceRegenerationSkill)},
             {"PMovSpd", typeof(PrimaryMovementSpeedSkill)},
             {"PProjRange", typeof(PrimaryProjectileRangeSkill)},
