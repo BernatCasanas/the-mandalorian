@@ -76,7 +76,7 @@ public class MoffGideon : Entity
     public float maxHealthPoints_fase2 = 4000.0f;
 
     //Public Variables
-    public float followSpeed = 7f;
+    public float followSpeed = 3f;
     public float touchDamage = 10f;
     public float distance2Melee = 10f;
     public float probWanderP1 = 60f;
@@ -115,11 +115,11 @@ public class MoffGideon : Entity
     private void Start()
     {
         StartNeutral();
-        sword.DisableCollider();
+        //sword.DisableCollider();
 
-        comboTime = Animator.GetAnimationDuration(gameObject, "") - 0.016f;
+        //comboTime = Animator.GetAnimationDuration(gameObject, "") - 0.016f;
     }
-
+    
     public void Awake()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
@@ -140,7 +140,7 @@ public class MoffGideon : Entity
         if (agent == null)
             Debug.Log("Null agent, add a NavMeshAgent Component");
 
-        Audio.SetState("Game_State", "Rancor_Room");
+
     }
 
     public void Update()
@@ -197,9 +197,6 @@ public class MoffGideon : Entity
     {
         if (currentState == MOFFGIDEON_STATE.SPAWN_ENEMIES && CheckDeathtroopers())
             inputsList.Add(MOFFGIDEON_INPUT.IN_NEUTRAL);
-
-        if (currentState == MOFFGIDEON_STATE.NEUTRAL && Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= distance2Melee)
-            inputsList.Add(MOFFGIDEON_INPUT.IN_MELEE_COMBO);
 
         if (currentState == MOFFGIDEON_STATE.NEUTRAL && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= 1.0f && wander)
             agent.CalculateRandomPath(gameObject.transform.globalPosition, radiusWander);
@@ -600,6 +597,7 @@ public class MoffGideon : Entity
         else
             inputsList.Add(MOFFGIDEON_INPUT.IN_PROJECTILE);
 
+        Debug.Log("Selecting Action");
     }
 
 
@@ -607,6 +605,9 @@ public class MoffGideon : Entity
 
     private void StartNeutral()
     {
+        Animator.Play(gameObject, "MG_Run", speedMult);
+        UpdateAnimationSpd(speedMult);
+
         neutralTimer = neutralTime;
 
         if (randomNum.Next(1, 100) <= probWander)
@@ -649,6 +650,7 @@ public class MoffGideon : Entity
     {
         LookAt(targetDash);
         MoveToPosition(targetDash, dashSpeed * speedMult);
+        Debug.Log("Dash Forward");
     }
 
     private void EndDashForward()
@@ -667,6 +669,7 @@ public class MoffGideon : Entity
     private void UpdateMeleeCombo()
     {
         LookAt(Core.instance.gameObject.transform.globalPosition);
+        Debug.Log("Combo");
     }
 
     private void EndMeleeCombo()
@@ -684,7 +687,8 @@ public class MoffGideon : Entity
 
     private void UpdateDashBackward()
     {
-        gameObject.transform.localPosition += dashSpeed * myDeltaTime * speedMult; 
+        gameObject.transform.localPosition += dashSpeed * myDeltaTime * speedMult;
+        Debug.Log("Dash Backward");
     }
 
     private void EndDashBackward()
@@ -703,7 +707,7 @@ public class MoffGideon : Entity
 
     private void UpdateProjectile()
     {
-        
+        Debug.Log("Projectile");
     }
 
     private void EndProjectile()
@@ -724,6 +728,7 @@ public class MoffGideon : Entity
 
     private void UpdateSpawnEnemies()
     {
+        Debug.Log("Spawning Enemies");
 
     }
 
@@ -745,6 +750,7 @@ public class MoffGideon : Entity
 
     private void UpdateChargeThrow()
     {
+        Debug.Log("Charge Throw");
 
     }
 
@@ -762,7 +768,7 @@ public class MoffGideon : Entity
 
     private void UpdateThrowSaber()
     {
-
+        Debug.Log("Throw Saber");
     }
 
 
@@ -779,7 +785,7 @@ public class MoffGideon : Entity
 
     private void UpdateRetrieveSaber()
     {
-
+        Debug.Log("Retrieve Saber");
     }
 
 
@@ -928,20 +934,17 @@ public class MoffGideon : Entity
                 inputsList.Add(MOFFGIDEON_INPUT.IN_DEAD);
             }
         }
-        else if (collidedGameObject.CompareTag("Wall"))
-        {
-            //if (currentState == MOFFGIDEON_STATE.RUSH)
-            //    inputsList.Add(RANCOR_INPUT.IN_RUSH_STUN);
-        }
         else if (collidedGameObject.CompareTag("Player"))
         {
             if (currentState == MOFFGIDEON_STATE.DEAD) return;
 
+
             float damageToPlayer = touchDamage;
 
             PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
-                playerHealth.TakeDamage((int)(damageToPlayer * damageMult));
+            //if (playerHealth != null)
+                //playerHealth.TakeDamage((int)(damageToPlayer * damageMult));
+            
 
         }
         else if (collidedGameObject.CompareTag("WallSkill"))
