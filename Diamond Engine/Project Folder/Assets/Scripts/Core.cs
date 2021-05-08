@@ -2033,6 +2033,12 @@ public class Core : Entity
                     MaxForceModifier += statusToInit.statChange;
                 }
                 break;
+            case STATUS_TYPE.ADD_FORCE:
+                {
+                    statusToInit.statChange = statusToInit.severity;
+                    MaxForceModifier += statusToInit.statChange;
+                }
+                break;
             default:
                 break;
         }

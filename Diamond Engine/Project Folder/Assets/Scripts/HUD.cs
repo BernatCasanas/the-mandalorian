@@ -380,7 +380,8 @@ public class HUD : DiamondComponent
                 }
                 if (Core.instance.HasStatus(STATUS_TYPE.GRO_COMBO_ADD))
                 {
-                    Core.instance.AddStatus(STATUS_TYPE.ADD_FORCE, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.GRO_COMBO_ADD).severity, 5f, true);
+                    //  Core.instance.AddStatus(STATUS_TYPE.ADD_FORCE, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.GRO_COMBO_ADD).severity, 0.1f, false);
+                    Debug.Log("Can't acces to grogu, kill me pls");
                 }
             }
                 

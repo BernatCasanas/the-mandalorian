@@ -82,7 +82,7 @@ public enum STATUS_TYPE
     GRO_COMBO_ADD,
     GRO_COMBO_GAIN,
     GRO_FORCE_PER_HP,
-
+    ADD_FORCE
 }
 
 public enum STATUS_APPLY_TYPE
