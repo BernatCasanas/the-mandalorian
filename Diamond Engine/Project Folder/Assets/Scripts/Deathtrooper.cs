@@ -97,6 +97,7 @@ public class Deathtrooper : Enemy
         UpdateAnimationSpd(speedMult);
 
         idleTimer = idleTime;
+        dieTime = Animator.GetAnimationDuration(gameObject, "DTH_Die");
 
         recoilTime = recoilDistance / recoilSpeed;
     }
@@ -383,8 +384,9 @@ public class Deathtrooper : Enemy
         Debug.Log("DEATHTROOPER WANDER");
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
-        Animator.Play(gameObject, "DTH_Run", speedMult);
-        Animator.Play(shotgun, "DTH_Run", speedMult);
+        Animator.Play(gameObject, "DTH_Wander", speedMult);
+        if(shotgun != null)
+            Animator.Play(shotgun, "DTH_Wander", speedMult);
 
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
@@ -527,11 +529,11 @@ public class Deathtrooper : Enemy
     #region DIE
     private void StartDie()
     {
-        //Debug.Log("SKYTROOPER DIE");
         dieTimer = dieTime;
-        //Audio.StopAudio(gameObject);
 
-        //Animator.Play(gameObject, "ST_Die", 1.0f);
+        Animator.Play(gameObject, "DTH_Die");
+        if (shotgun != null)
+            Animator.Play(shotgun, "DTH_Die");
 
         Audio.PlayAudio(gameObject, "Play_Deathtrooper_Death");
 
