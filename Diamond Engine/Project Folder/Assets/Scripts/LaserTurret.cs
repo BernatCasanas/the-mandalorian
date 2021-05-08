@@ -63,9 +63,11 @@ public class LaserTurret : Enemy
     public GameObject explosion = null;
     public GameObject wave = null;
     public GameObject mesh = null;
+    public GameObject hit = null;
 
     private ParticleSystem partExp = null;
     private ParticleSystem partWave = null;
+    private ParticleSystem hitParticle = null;
 
     public void Awake()
     {
@@ -97,6 +99,10 @@ public class LaserTurret : Enemy
         else
         {
             //Debug.Log("CAN'T PLAY SPAWN!!!"); 
+        }
+        if (hit != null)
+        {
+            hitParticle = hit.GetComponent<ParticleSystem>();
         }
 
         rotationSpeed = shotTotalAngle * Mathf.Deg2RRad / shotTime;
@@ -458,7 +464,7 @@ public class LaserTurret : Enemy
     {
         Debug.Log("Turret Takes damage");
         healthPoints -= damage;
-
+        hitParticle.Play();
         if (currentState != STATE.DIE)
         {
             if (healthPoints <= 0.0f)
