@@ -2027,6 +2027,12 @@ public class Core : Entity
                     sniperShotIntervalModifier += statusToInit.statChange;
                 }
                 break;
+            case STATUS_TYPE.GRO_MAX_FORCE:
+                {
+                    statusToInit.statChange = statusToInit.severity;
+                    MaxForceModifier += statusToInit.statChange;
+                }
+                break;
             default:
                 break;
         }
@@ -2231,6 +2237,11 @@ public class Core : Entity
                 {
 
                     sniperShotIntervalModifier -= statusToDelete.statChange;
+                }
+                break;
+            case STATUS_TYPE.GRO_MAX_FORCE:
+                {
+                    MaxForceModifier -= 0;
                 }
                 break;
             default:

@@ -74,6 +74,15 @@ public enum STATUS_TYPE
     SP_FORCE_REGEN,
     SP_INTERVAL,
     SP_DAMAGE_CHARGED,
+    GRO_FORCE_REGEN,
+    GRO_PUSH,
+    GRO_COVER,
+    GRO_COMBO_REGEN,
+    GRO_MAX_FORCE,
+    GRO_COMBO_ADD,
+    GRO_COMBO_GAIN,
+    GRO_FORCE_PER_HP,
+
 }
 
 public enum STATUS_APPLY_TYPE
@@ -143,6 +152,7 @@ public class Entity : DiamondComponent
     public float FireRateMult = 1f;
     protected float SecTickDamage = 1f;
     protected float sniperShotIntervalModifier = 1f;
+    public float MaxForceModifier = 0f;
 
     protected virtual void InitEntity(ENTITY_TYPE myType)
     {
