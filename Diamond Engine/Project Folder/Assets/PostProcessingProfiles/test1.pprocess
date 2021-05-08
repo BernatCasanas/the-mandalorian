@@ -3,7 +3,7 @@
     "EffectData": [
         {
             "Type": 0,
-            "Active": true,
+            "Active": false,
             "Name": "Screen Space Ambient Oclussion",
             "RadiusAO": 0.010999999940395355,
             "GlowSpread": 1.2139999866485596
@@ -12,10 +12,17 @@
             "Type": 1,
             "Active": true,
             "Name": "Bloom",
-            "BrightThreshold": 0.81599998474121094,
+            "BrightThreshold": 0.61100000143051147,
             "BrightnessIntensity": 1,
-            "GlowBlurSpread": 8.7139997482299805,
+            "GlowBlurSpread": 0,
             "SmoothGlow": true
+        },
+        {
+            "Type": 2,
+            "Active": true,
+            "Name": "Tone Mapping",
+            "Exposure": 4.505000114440918,
+            "Gamma": 0.25
         }
     ]
 }

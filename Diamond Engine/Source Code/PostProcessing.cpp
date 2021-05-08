@@ -14,6 +14,7 @@ PostProcessing::PostProcessing() :
 	bloomEffect(nullptr),
 	depthTest(nullptr),
 	aoEffect(nullptr),
+	toneMappingEffect(nullptr),
 	renderFilter(nullptr)
 {
 }
@@ -45,6 +46,7 @@ void PostProcessing::Init()
 	depthTest = new PostProcessEffectDepthTest();
 	renderFilter = new PostProcessEffectRender();
 	aoEffect = new PostProcessEffectAO();
+	toneMappingEffect = new PostProcessEffectToneMapping();
 }
 
 void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBuffer& outputFBO, unsigned int colorTexture, unsigned int depthTexture,C_Camera* sceneCam)
@@ -73,6 +75,15 @@ void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBu
 	{
 		currentColTexIndex = bloomEffect->Render(isHDR,width, height, currentColTexIndex,bloomVars);
 	}
+
+	PostProcessDataToneMapping* toneMappingVars = dynamic_cast<PostProcessDataToneMapping*>(camProfile->GetDataOfType(POSTPROCESS_DATA_TYPE::TONE_MAPPING));
+	if (toneMappingVars->active)
+	{
+		currentColTexIndex = toneMappingEffect->Render(isHDR, width, height, currentColTexIndex, toneMappingVars);
+	}
+
+
+
 
 	//end of postprocessing
 
@@ -119,6 +130,11 @@ void PostProcessing::CleanUp()
 	{
 		delete(aoEffect);
 		aoEffect = nullptr;
+	}
+	if (toneMappingEffect != nullptr)
+	{
+		delete(toneMappingEffect);
+		toneMappingEffect = nullptr;
 	}
 }
 

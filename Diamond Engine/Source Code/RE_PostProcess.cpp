@@ -100,7 +100,7 @@ void PostProcessDataAO::DrawEditor()
 		label = "AO radius";
 		label += suffix;
 		ImGui::SliderFloat(label.c_str(), &radiusAO, 0.0f, 100.0f, "%.3f", 2.0f);
-		label = "Glow Spread";
+		label = "AO Spread";
 		label += suffix;
 		ImGui::SliderFloat(label.c_str(), &blurSpread, 0.0f, 20.0f, "%.3f");
 
@@ -187,6 +187,54 @@ void PostProcessDataBloom::LoadFromJson(DEConfig& nObj)
 	smoothMask = nObj.ReadBool("SmoothGlow");
 }
 
+PostProcessDataToneMapping::PostProcessDataToneMapping() : PostProcessData(POSTPROCESS_DATA_TYPE::TONE_MAPPING, "Tone Mapping"),
+exposure(1.0f),gamma(2.2f)
+{
+}
+
+PostProcessDataToneMapping::~PostProcessDataToneMapping()
+{
+}
+
+void PostProcessDataToneMapping::DrawEditor()
+{
+	const std::string suffix = "##Tone Mapping";
+	std::string label = name + suffix;
+	if (ImGui::CollapsingHeader(label.c_str()))
+	{
+		PostProcessData::DrawEditorStart(suffix);
+
+		//TODO drawEditorHere
+
+		label = "Exposure";
+		label += suffix;
+		ImGui::SliderFloat(label.c_str(), &exposure, 0.0f, 20.0f, "%.3f");
+		label = "Gamma";
+		label += suffix;
+		ImGui::SliderFloat(label.c_str(), &gamma, 0.25f, 4.0f, "%.3f");
+
+		PostProcessData::DrawEditorEnd();
+	}
+}
+
+void PostProcessDataToneMapping::SaveToJson(JSON_Object* nObj)
+{
+	PostProcessData::SaveToJson(nObj);
+	//TODO save data here
+	DEJson::WriteFloat(nObj, "Exposure", exposure);
+	DEJson::WriteFloat(nObj, "Gamma", gamma);
+
+
+}
+
+void PostProcessDataToneMapping::LoadFromJson(DEConfig& nObj)
+{
+	PostProcessData::LoadFromJson(nObj);
+	//TODO load data here
+	exposure = nObj.ReadFloat("Exposure");
+	gamma = nObj.ReadFloat("Gamma");
+}
+
 ResourcePostProcess::ResourcePostProcess(unsigned int _uid) : Resource(_uid, Resource::Type::POSTPROCESS)
 {
 	Init();
@@ -199,6 +247,9 @@ ResourcePostProcess::~ResourcePostProcess()
 
 bool ResourcePostProcess::LoadToMemory()
 {
+	CleanUp();
+	Init();
+
 	//Load file to buffer [DONE]
 	JSON_Value* file = json_parse_file(this->libraryFile.c_str());
 	DEConfig root_object(json_value_get_object(file));
@@ -214,22 +265,6 @@ bool ResourcePostProcess::LoadToMemory()
 		val.nObj = json_array_get_object(EffectData, i);
 
 		postProcessData[i]->LoadFromJson(val);
-
-		/*if (val.ReadInt("type") == GL_SAMPLER_2D && val.ReadInt("value") != 0)
-		{
-			for (size_t k = 0; k < postProcessData.size(); ++k)
-			{
-				if (strcmp(val.ReadString("name"), postProcessData[k]->name) == 0)
-					postProcessData[k].data.textureValue = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(val.ReadInt("value"), Resource::Type::TEXTURE));
-			}
-		}
-		else if (val.ReadInt("type") == GL_FLOAT) {
-			for (size_t k = 0; k < postProcessData.size(); ++k)
-			{
-				if (strcmp(val.ReadString("name"), postProcessData[k].name) == 0)
-					postProcessData[k].data.floatValue = val.ReadFloat("value");
-			}
-		}*/
 	}
 
 	json_value_free(file);
@@ -241,7 +276,7 @@ bool ResourcePostProcess::UnloadFromMemory()
 {
 
 	//TODO: Unload resources (uniform and attributes) by reference count 
-
+	CleanUp();
 	return true;
 }
 
@@ -264,6 +299,7 @@ void ResourcePostProcess::Init()
 {
 	postProcessData.push_back(dynamic_cast<PostProcessData*>(new PostProcessDataAO()));
 	postProcessData.push_back(dynamic_cast<PostProcessData*>(new PostProcessDataBloom()));
+	postProcessData.push_back(dynamic_cast<PostProcessData*>(new PostProcessDataToneMapping()));
 
 }
 

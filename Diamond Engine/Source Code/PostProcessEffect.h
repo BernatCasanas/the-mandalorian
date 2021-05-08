@@ -9,12 +9,14 @@ class PostProcessFilterBrighterThan;
 class PostProcessFilterCombine;
 class PostProcessFilterMultiply;
 class PostProcessFilterRender;
+class PostProcessFilterToneMapping;
 
 class DE_Advanced_FrameBuffer;
 class C_Camera;
 
 class PostProcessDataAO;
 class PostProcessDataBloom;
+class PostProcessDataToneMapping;
 
 class PostProcessEffect
 {
@@ -93,4 +95,20 @@ private:
 	PostProcessFilterBlurH* blurHFilter;
 	PostProcessFilterBlurV* blurVFilter;
 	PostProcessFilterMultiply* multiplyFilter;
+};
+
+
+class PostProcessEffectToneMapping : public PostProcessEffect
+{
+public:
+	PostProcessEffectToneMapping();
+	~PostProcessEffectToneMapping();
+
+	void Init() override;
+	void CleanUp() override;
+	//returns the index of the color texture that has been rendered
+	int Render(bool isHDR, int width, int height, int colorTexture, PostProcessDataToneMapping* toneMappingVars);
+private:
+	PostProcessFilterToneMapping* toneMappingFilter;
+	
 };

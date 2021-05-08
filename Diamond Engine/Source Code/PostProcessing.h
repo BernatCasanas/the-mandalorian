@@ -8,6 +8,7 @@ class PostProcessEffectBloom;
 class PostProcessEffectDepthTest;
 class PostProcessEffectAO;
 class PostProcessEffectRender;
+class PostProcessEffectToneMapping;
 
 class C_Camera;
 
@@ -30,6 +31,8 @@ private:
 	PostProcessEffectDepthTest* depthTest;
 	PostProcessEffectAO* aoEffect;
 	PostProcessEffectRender* renderFilter;
+	PostProcessEffectToneMapping* toneMappingEffect;
+
 	unsigned int quadVAO;
 	unsigned int quadVBO;
 };

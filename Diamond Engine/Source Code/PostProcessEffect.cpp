@@ -193,3 +193,35 @@ int PostProcessEffectAO::Render(bool isHDR,int width, int height, int colorTextu
 	multiplyFilter->Render(isHDR,width, height, colorTexture, blurHFilter->GetOutputTexture());
 	return multiplyFilter->GetOutputTexture();
 }
+
+PostProcessEffectToneMapping::PostProcessEffectToneMapping() : PostProcessEffect(),
+toneMappingFilter(nullptr)
+{
+	Init();
+}
+
+PostProcessEffectToneMapping::~PostProcessEffectToneMapping()
+{
+	CleanUp();
+}
+
+void PostProcessEffectToneMapping::Init()
+{
+	toneMappingFilter = new PostProcessFilterToneMapping();
+	
+}
+
+void PostProcessEffectToneMapping::CleanUp()
+{
+	if (toneMappingFilter != nullptr)
+	{
+		delete(toneMappingFilter);
+		toneMappingFilter = nullptr;
+	}
+}
+
+int PostProcessEffectToneMapping::Render(bool isHDR, int width, int height, int colorTexture, PostProcessDataToneMapping* toneMappingVars)
+{
+	toneMappingFilter->Render(isHDR, width, height, colorTexture, toneMappingVars->exposure,toneMappingVars->gamma);
+	return toneMappingFilter->GetOutputTexture();
+}

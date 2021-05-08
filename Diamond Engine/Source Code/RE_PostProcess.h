@@ -11,6 +11,7 @@ enum class POSTPROCESS_DATA_TYPE
 {
 	AO,
 	BLOOM,
+	TONE_MAPPING,
 	NONE
 };
 
@@ -60,6 +61,19 @@ public:
 	float brightnessIntensity;
 	float blurSpread;
 	bool smoothMask;
+};
+
+class PostProcessDataToneMapping : public PostProcessData
+{
+public:
+	PostProcessDataToneMapping();
+	~PostProcessDataToneMapping();
+	void DrawEditor() override;
+	void SaveToJson(JSON_Object* nObj);
+	void LoadFromJson(DEConfig& nObj);
+public:
+	float exposure;
+	float gamma;
 };
 
 class ResourcePostProcess : public Resource {

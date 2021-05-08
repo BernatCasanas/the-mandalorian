@@ -110,3 +110,11 @@ public:
 	~PostProcessFilterMultiply();
 	void Render(bool isHDR,int width, int height, unsigned int texture1, unsigned int texture2);
 };
+
+class PostProcessFilterToneMapping : public PostProcessFilter
+{
+public:
+	PostProcessFilterToneMapping();
+	~PostProcessFilterToneMapping();
+	void Render(bool isHDR, int width, int height, unsigned int colorTexture, float exposure, float gamma);
+};

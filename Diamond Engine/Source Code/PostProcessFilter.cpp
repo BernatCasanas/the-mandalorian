@@ -447,3 +447,34 @@ void PostProcessFilterMultiply::Render(bool isHDR,int width, int height, unsigne
 	glBindTexture(GL_TEXTURE_2D, 0);
 	myShader->Unbind();
 }
+
+PostProcessFilterToneMapping::PostProcessFilterToneMapping() : PostProcessFilter(1084013554, true)
+{
+}
+
+PostProcessFilterToneMapping::~PostProcessFilterToneMapping()
+{
+}
+
+void PostProcessFilterToneMapping::Render(bool isHDR, int width, int height, unsigned int colorTexture, float exposure,float gamma)
+{
+	quadRenderer->RegenerateFBO(width, height, isHDR);
+	myShader->Bind();
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, colorTexture);
+	glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "colourTexture"), 0);
+	GLint uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "exposure");
+	glUniform1f(uniformLoc, exposure);
+
+	gamma = min(gamma, 4.0f);
+	gamma = max(gamma, 0.25f);
+	uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "gamma");
+	glUniform1f(uniformLoc, gamma);
+
+	quadRenderer->RenderQuad();
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	myShader->Unbind();
+}
