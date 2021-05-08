@@ -16,7 +16,9 @@ public class MoffGideon : Entity
     {
         NONE = -1,
         SEARCH_STATE,
+        CHARGE_THROW,
         THROW_SABER,
+        RETRIEVE_SABER,
         DASH_FORWARD,
         MELEE_COMBO,
         DASH_BACKWARDS,
@@ -31,6 +33,10 @@ public class MoffGideon : Entity
         NONE = -1,
         IN_THROW_SABER,
         IN_THROW_SABER_END,
+        IN_CHARGE_THROW,
+        IN_CHARGE_THROW_END,
+        IN_RETRIEVE_SABER,
+        IN_RETRIEVE_SABER_END,
         IN_DASH_FORWARD,
         IN_DASH_FORWARD_END,
         IN_DASH_BACKWARDS,
@@ -270,15 +276,10 @@ public class MoffGideon : Entity
                                 EndSpawnEnemies();
                                 break;
 
-                            case MOFFGIDEON_INPUT.IN_PROJECTILE:
-                                currentState = MOFFGIDEON_STATE.PROJECTILE;
+                            case MOFFGIDEON_INPUT.IN_NEUTRAL:
+                                currentState = MOFFGIDEON_STATE.NEUTRAL;
                                 EndSpawnEnemies();
-                                StartProjectile();
-                                break;
-
-                            case MOFFGIDEON_INPUT.IN_DEAD:
-                                EndSpawnEnemies();
-                                StartDie();
+                                StartNeutral();
                                 break;
                         }
                         break;
@@ -358,7 +359,177 @@ public class MoffGideon : Entity
             }
             else if (currentPhase == MOFFGIDEON_PHASE.PHASE2)
             {
+                switch (currentState)
+                {
+                    case MOFFGIDEON_STATE.NONE:
+                        Debug.Log("CORE ERROR STATE");
+                        break;
 
+                    case MOFFGIDEON_STATE.NEUTRAL:
+                        switch (input)
+                        {
+                            case MOFFGIDEON_INPUT.IN_NEUTRAL_END:
+                                currentState = MOFFGIDEON_STATE.SEARCH_STATE;
+                                EndNeutral();
+                                break;
+
+                            case MOFFGIDEON_INPUT.IN_DEAD:
+                                EndNeutral();
+                                StartDie();
+                                break;
+                        }
+                        break;
+
+
+                    case MOFFGIDEON_STATE.SEARCH_STATE:
+                        switch (input)
+                        {
+                            case MOFFGIDEON_INPUT.IN_SPAWN_ENEMIES:
+                                currentState = MOFFGIDEON_STATE.SPAWN_ENEMIES;
+                                EndNeutral();
+                                StartSpawnEnemies();
+                                break;
+
+                            case MOFFGIDEON_INPUT.IN_PROJECTILE:
+                                currentState = MOFFGIDEON_STATE.PROJECTILE;
+                                EndNeutral();
+                                StartProjectile();
+                                break;
+
+                            case MOFFGIDEON_INPUT.IN_DASH_FORWARD:
+                                currentState = MOFFGIDEON_STATE.DASH_FORWARD;
+                                EndNeutral();
+                                StartDashForward();
+                                break;
+                        }
+                        break;
+
+                    case MOFFGIDEON_STATE.SPAWN_ENEMIES:
+                        switch (input)
+                        {
+                            case MOFFGIDEON_INPUT.IN_SPAWN_ENEMIES_END:
+                                currentState = MOFFGIDEON_STATE.SEARCH_STATE;
+                                EndSpawnEnemies();
+                                break;
+
+                            case MOFFGIDEON_INPUT.IN_NEUTRAL:
+                                currentState = MOFFGIDEON_STATE.NEUTRAL;
+                                EndSpawnEnemies();
+                                StartNeutral();
+                                break;
+
+                            case MOFFGIDEON_INPUT.IN_DEAD:
+                                EndSpawnEnemies();
+                                StartDie();
+                                break;
+                        }
+                        break;
+
+                    case MOFFGIDEON_STATE.CHARGE_THROW:
+                        switch (input)
+                        {
+                            case MOFFGIDEON_INPUT.IN_THROW_SABER:
+                                currentState = MOFFGIDEON_STATE.THROW_SABER;
+                                EndChargeThrow();
+                                StartThrowSaber();
+                                break;
+
+                            case MOFFGIDEON_INPUT.IN_DEAD:
+                                EndProjectile();
+                                StartDie();
+                                break;
+                        }
+                        break;
+
+                    case MOFFGIDEON_STATE.THROW_SABER:
+                        switch (input)
+                        {
+                            case MOFFGIDEON_INPUT.IN_RETRIEVE_SABER:
+                                currentState = MOFFGIDEON_STATE.RETRIEVE_SABER;
+                                EndThrowSaber();
+                                StartRetrieveSaber();
+                                break;
+
+                            case MOFFGIDEON_INPUT.IN_DEAD:
+                                EndThrowSaber();
+                                StartDie();
+                                break;
+                        }
+                        break;
+
+                    case MOFFGIDEON_STATE.RETRIEVE_SABER:
+                        switch (input)
+                        {
+                            case MOFFGIDEON_INPUT.IN_RETRIEVE_SABER_END:
+                                currentState = MOFFGIDEON_STATE.NEUTRAL;
+                                EndRetrieveSaber();
+                                StartNeutral();
+                                break;
+
+                            case MOFFGIDEON_INPUT.IN_DEAD:
+                                EndRetrieveSaber();
+                                StartDie();
+                                break;
+                        }
+                        break;
+
+                    case MOFFGIDEON_STATE.DASH_FORWARD:
+                        switch (input)
+                        {
+                            case MOFFGIDEON_INPUT.IN_DASH_BACKWARDS_END:
+                                currentState = MOFFGIDEON_STATE.MELEE_COMBO;
+                                EndDashForward();
+                                StartMeleeCombo();
+                                break;
+
+                            case MOFFGIDEON_INPUT.IN_NEUTRAL:
+                                currentState = MOFFGIDEON_STATE.NEUTRAL;
+                                EndDashForward();
+                                StartNeutral();
+                                break;
+
+                            case MOFFGIDEON_INPUT.IN_DEAD:
+                                EndProjectile();
+                                StartDie();
+                                break;
+                        }
+                        break;
+
+                    case MOFFGIDEON_STATE.MELEE_COMBO:
+                        switch (input)
+                        {
+                            case MOFFGIDEON_INPUT.IN_MELEE_COMBO_END:
+                                currentState = MOFFGIDEON_STATE.DASH_BACKWARDS;
+                                EndDashBackward();
+                                StartDashBackward();
+                                break;
+
+                            case MOFFGIDEON_INPUT.IN_DEAD:
+                                EndProjectile();
+                                StartDie();
+                                break;
+                        }
+                        break;
+
+                    case MOFFGIDEON_STATE.DASH_BACKWARDS:
+                        switch (input)
+                        {
+                            case MOFFGIDEON_INPUT.IN_DASH_BACKWARDS_END:
+                                currentState = MOFFGIDEON_STATE.SEARCH_STATE;
+                                EndDashBackward();
+                                break;
+
+                            case MOFFGIDEON_INPUT.IN_DEAD:
+                                EndProjectile();
+                                StartDie();
+                                break;
+                        }
+                        break;
+
+                    default:
+                        Debug.Log("NEED TO ADD STATE TO MOFF GIDEON");
+                        break;
+                }
             }
             inputsList.RemoveAt(0);
         }
@@ -402,6 +573,18 @@ public class MoffGideon : Entity
 
             case MOFFGIDEON_STATE.DEAD:
                 UpdateDie();
+                break;
+
+            case MOFFGIDEON_STATE.CHARGE_THROW:
+                UpdateChargeThrow();
+                break;
+
+            case MOFFGIDEON_STATE.THROW_SABER:
+                UpdateThrowSaber();
+                break;
+
+            case MOFFGIDEON_STATE.RETRIEVE_SABER:
+                UpdateRetrieveSaber();
                 break;
         }
     }
@@ -552,6 +735,60 @@ public class MoffGideon : Entity
 
     #endregion
 
+    #region THROW SABER
+
+    private void StartChargeThrow()
+    {
+
+    }
+
+
+    private void UpdateChargeThrow()
+    {
+
+    }
+
+
+    private void EndChargeThrow()
+    {
+
+    }
+
+    private void StartThrowSaber()
+    {
+
+    }
+
+
+    private void UpdateThrowSaber()
+    {
+
+    }
+
+
+    private void EndThrowSaber()
+    {
+
+    }
+
+    private void StartRetrieveSaber()
+    {
+
+    }
+
+
+    private void UpdateRetrieveSaber()
+    {
+
+    }
+
+
+    private void EndRetrieveSaber()
+    {
+
+    }
+
+    #endregion
 
     #region DIE
     private void StartDie()
@@ -575,7 +812,7 @@ public class MoffGideon : Entity
 
     public void Die()
     {
-        Debug.Log("RANCOR'S DEAD");
+        Debug.Log("MOFF'S DEAD");
 
         EnemyManager.RemoveEnemy(gameObject);
 
@@ -683,11 +920,6 @@ public class MoffGideon : Entity
                     hudComponent.AddToCombo(55, 0.25f);
                 }
             }
-
-            if (currentState != MOFFGIDEON_STATE.DEAD && healthPoints <= 0.0f)
-            {
-                inputsList.Add(MOFFGIDEON_INPUT.IN_DEAD);
-            }
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))
         {
@@ -723,14 +955,20 @@ public class MoffGideon : Entity
     {
         if (!DebugOptionsHolder.bossDmg)
         {
-            Debug.Log("Rancor damage" + damage.ToString());
+            Debug.Log("Moff damage" + damage.ToString());
             if (currentState != MOFFGIDEON_STATE.DEAD)
             {
                 healthPoints -= damage * Core.instance.DamageToBosses;
 
                 if (healthPoints <= 0.0f)
                 {
-                    inputsList.Add(MOFFGIDEON_INPUT.IN_DEAD);
+                    if(currentPhase==MOFFGIDEON_PHASE.PHASE1)
+                    {
+                        currentPhase = MOFFGIDEON_PHASE.PHASE2;
+                        currentState = MOFFGIDEON_STATE.NEUTRAL;
+                    }
+                    else
+                        inputsList.Add(MOFFGIDEON_INPUT.IN_DEAD);
                 }
             }
         }
