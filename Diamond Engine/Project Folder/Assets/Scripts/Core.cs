@@ -1611,7 +1611,7 @@ public class Core : Entity
                 finalHealthSubstract = PlayerHealth.currHealth - 1;
             }
 
-            myHealth.TakeDamage(finalHealthSubstract); //TODO whats the right amount we have to substract?
+            myHealth.TakeDamage(finalHealthSubstract, true); //TODO whats the right amount we have to substract?
             damageTaken += finalHealthSubstract;
             timesFellOfMap += 1;
 
