@@ -28,6 +28,7 @@
 #include "CS_Pathfinder_Bindings.h"
 #include "CS_Button_Bindings.h"
 #include "CS_MeshRenderer_Bindings.h"
+#include "CS_AreaLight_Bindings.h"
 
 #include <iostream>
 #include <fstream> 
@@ -244,6 +245,12 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.MeshRenderer::set_color", SetMeshColor);
 	mono_add_internal_call("DiamondEngine.MeshRenderer::get_stencilColor", GetMeshStencilColor);
 	mono_add_internal_call("DiamondEngine.MeshRenderer::set_stencilColor", SetMeshStencilColor);
+
+#pragma endregion
+
+#pragma region AreaLight
+	mono_add_internal_call("DiamondEngine.AreaLight::ActivateLight", CS_ActivateLight);
+	mono_add_internal_call("DiamondEngine.AreaLight::DeactivateLight", CS_DeactivateLight);
 
 #pragma endregion
 
