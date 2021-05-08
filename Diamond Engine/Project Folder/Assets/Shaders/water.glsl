@@ -12,7 +12,7 @@ uniform float time;
 
 float speed = 0.01;
 float wave_length = 0.075;
-float steepness = 0.5;
+float steepness = 0.4;
 
 vec3 direction_1 = vec3(0.35, 0.315, -0.35);
 vec3 direction_2 = vec3(-0.25, -0.2, 0.25);
@@ -84,7 +84,7 @@ void main()
  float w = sqrt(9.81 * (2 * pi / wave_length));
  float num_waves = 3.0;
  
- float amp1 = 0.3;
+ float amp1 = 0.25;
  vec3 wave1 = generateWave(amp1, direction_1, num_waves, steepness, phase_constant, w);
  
  float amp2 = 0.15;
@@ -236,6 +236,8 @@ void main()
 }
 
 #endif
+
+
 
 
 

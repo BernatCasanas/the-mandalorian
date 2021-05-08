@@ -1,19 +1,19 @@
 {
     "NavMesh": 942369955,
     "EditorCameraPosition": [
-        -47.792396545410156,
-        9.7229223251342773,
-        -9.0486593246459961
+        12.65821361541748,
+        13.478198051452637,
+        0.49893087148666382
     ],
     "EditorCameraZ": [
-        0.93056046962738037,
-        -0.35389405488967896,
-        0.093894839286804199
+        0.75527495145797729,
+        -0.61189955472946167,
+        0.23481643199920654
     ],
     "EditorCameraY": [
-        0.35211434960365295,
-        0.93528550863265991,
-        0.0354471355676651
+        0.58435392379760742,
+        0.79093551635742188,
+        0.18152576684951782
     ],
     "tags": [
         "Skel",
@@ -93,8 +93,8 @@
                     "fSize": 25,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 25.799999237060547,
-                    "hFOV": 51.959999084472656,
+                    "vFOV": 27.559999465942383,
+                    "hFOV": 51.599998474121094,
                     "culling": false,
                     "drawSkybox": true
                 },
@@ -16774,11 +16774,11 @@
             ]
         },
         {
-            "name": "Water",
+            "name": "Water_Planes_BossRoomLvl2",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1234224806,
+            "UID": 1720497876,
             "ParentUID": 329214743,
             "PrefabReference": 0,
             "PrefabID": 0,
@@ -16808,12 +16808,12 @@
             ]
         },
         {
-            "name": "Central_Water",
+            "name": "Boos_Room",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 702051115,
-            "ParentUID": 1234224806,
+            "UID": 439762630,
+            "ParentUID": 1720497876,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -16832,6 +16832,74 @@
             "Scale": [
                 1,
                 1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Water",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 39707951,
+            "ParentUID": 439762630,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Central_Water",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 695802882,
+            "ParentUID": 39707951,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0.83640003204345703,
+                2.9239850044250488,
+                6.242403507232666
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                0.3365861177444458,
                 1
             ],
             "Components": [
@@ -16872,8 +16940,8 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 772871695,
-            "ParentUID": 1234224806,
+            "UID": 1703822343,
+            "ParentUID": 39707951,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -16906,16 +16974,16 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 750018363,
-            "ParentUID": 772871695,
+            "UID": 1261132664,
+            "ParentUID": 1703822343,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                1.1598224639892578,
-                0
+                -30.573368072509766,
+                4.362605094909668,
+                14.854594230651855
             ],
             "Rotation": [
                 0,
@@ -16925,7 +16993,7 @@
             ],
             "Scale": [
                 1,
-                1,
+                0.15908899903297424,
                 1
             ],
             "Components": [
@@ -16966,16 +17034,16 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 963573618,
-            "ParentUID": 772871695,
+            "UID": 1448292749,
+            "ParentUID": 1703822343,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                0,
-                0
+                13.583011627197266,
+                4.362605094909668,
+                42.225791931152344
             ],
             "Rotation": [
                 0,
@@ -16985,7 +17053,7 @@
             ],
             "Scale": [
                 1,
-                1,
+                0.80232799053192139,
                 1
             ],
             "Components": [
@@ -17026,16 +17094,16 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1864693792,
-            "ParentUID": 772871695,
+            "UID": 789800538,
+            "ParentUID": 1703822343,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                0,
-                0
+                -3.825624942779541,
+                4.1720771789550781,
+                -23.668735504150391
             ],
             "Rotation": [
                 0,
@@ -17045,7 +17113,7 @@
             ],
             "Scale": [
                 1,
-                1,
+                0.12630400061607361,
                 1
             ],
             "Components": [
@@ -17086,16 +17154,16 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 17580741,
-            "ParentUID": 772871695,
+            "UID": 384474663,
+            "ParentUID": 1703822343,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                0,
-                0
+                10.378948211669922,
+                4.2727723121643066,
+                -25.045848846435547
             ],
             "Rotation": [
                 0,
@@ -17146,16 +17214,16 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 2070574018,
-            "ParentUID": 772871695,
+            "UID": 1274336515,
+            "ParentUID": 1703822343,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                0,
-                0
+                29.401531219482422,
+                11.42432689666748,
+                -0.62270355224609375
             ],
             "Rotation": [
                 0,
@@ -17206,16 +17274,16 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1298935009,
-            "ParentUID": 772871695,
+            "UID": 1590602304,
+            "ParentUID": 1703822343,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                0,
-                0
+                27.405696868896484,
+                4.3155317306518555,
+                2.8737387657165527
             ],
             "Rotation": [
                 0,
@@ -17225,7 +17293,7 @@
             ],
             "Scale": [
                 1,
-                1,
+                0.42372491955757141,
                 1
             ],
             "Components": [
