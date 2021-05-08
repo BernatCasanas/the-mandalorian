@@ -40,6 +40,11 @@ public class HeavyTrooper : Enemy
         IN_PLAYER_IN_RANGE
     }
 
+    enum PARTICLES: int
+    {
+        SPEAR,
+    }
+
     //State
     private STATE currentState = STATE.NONE;
 
@@ -95,7 +100,7 @@ public class HeavyTrooper : Enemy
     //Particles
     public GameObject stunParticle = null;
     private ParticleSystem stun = null;
-
+    HeavyTrooperParticles heavyTroopParticles = null;
     public void Awake()
     {
         InitEntity(ENTITY_TYPE.HEAVYTROOPER);
@@ -121,6 +126,8 @@ public class HeavyTrooper : Enemy
 
         if (stunParticle != null)
             stun = stunParticle.GetComponent<ParticleSystem>();
+
+        heavyTroopParticles = gameObject.GetComponent<HeavyTrooperParticles>();
     }
 
     public void Update()
@@ -684,6 +691,7 @@ public class HeavyTrooper : Enemy
             Animator.Play(spear, "HVY_Sweep", speedMult);
 
         Audio.PlayAudio(gameObject, "Play_Heavytrooper_Attack");
+        //UpdateAnimationSpd(speedMult);
     }
     private void UpdateSweep()
     {
@@ -698,10 +706,12 @@ public class HeavyTrooper : Enemy
             if(sweepTimer < sweepTime * 0.33f && spearCollider.active) // Stop doing damage at the last third of the animation
             {
                 spearCollider.active = false;
+                PlayParticles(PARTICLES.SPEAR, false);
             }
             else if(sweepTimer < sweepTime * 0.75f && !spearCollider.active) //Start doing damage at the first fourth of the animation
             {
                 spearCollider.active = true;
+                PlayParticles(PARTICLES.SPEAR, true);
             }
         }
 
@@ -916,6 +926,29 @@ public class HeavyTrooper : Enemy
             Animator.SetSpeed(gameObject, newSpd);
             Animator.SetSpeed(spear, newSpd);
             currAnimationPlaySpd = newSpd;
+        }
+    }
+
+    private void PlayParticles(PARTICLES particleType, bool play)
+    {
+        if (heavyTroopParticles == null)
+        {
+            Debug.Log("Heavytrooper particles not found!");
+            return;
+        }
+        ParticleSystem particle = null;
+        switch (particleType)
+        {
+            case PARTICLES.SPEAR:
+
+                particle = heavyTroopParticles.spear;
+                if (particle != null && play)
+                    particle.Play();
+                else if (particle != null && !play)
+                    particle.Stop();
+                else
+                    Debug.Log("Heavytrooper spear particle not found!");
+                break;
         }
     }
 }
