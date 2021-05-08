@@ -54,6 +54,8 @@ public class HUD : DiamondComponent
     public int max_hp = 0;
     public int force = 0;
     public int max_force = 0;
+    public float ExtraForceRegen = 0;
+
     //public int currency = 10000;
     public float primaryWeaponHeat = 0f;
     public float primaryWeaponMaxHeat = 100f;
@@ -372,6 +374,15 @@ public class HUD : DiamondComponent
                        Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(Core.instance.GetStatusData(STATUS_TYPE.COMBO_HEAL).severity));
                     }
                 }
+                if (Core.instance.HasStatus(STATUS_TYPE.GRO_COMBO_REGEN))
+                {
+                    ExtraForceRegen = Core.instance.GetStatusData(STATUS_TYPE.GRO_COMBO_REGEN).severity;
+                }
+                if (Core.instance.HasStatus(STATUS_TYPE.GRO_COMBO_ADD))
+                {
+                    //  Core.instance.AddStatus(STATUS_TYPE.ADD_FORCE, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.GRO_COMBO_ADD).severity, 0.1f, false);
+                    Debug.Log("Can't acces to grogu, kill me pls");
+                }
             }
                 
         }
@@ -540,6 +551,14 @@ public class HUD : DiamondComponent
                     {
                         Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(Core.instance.GetStatusData(STATUS_TYPE.HEAL_COMBO_FINNISH).severity));
                     }
+                }
+                if (Core.instance.HasStatus(STATUS_TYPE.GRO_COMBO_REGEN))
+                {
+                    ExtraForceRegen = 0;
+                }
+                if (Core.instance.HasStatus(STATUS_TYPE.GRO_COMBO_ADD))
+                {
+                    Core.instance.RemoveStatus(STATUS_TYPE.ADD_FORCE, true);
                 }
             }
 

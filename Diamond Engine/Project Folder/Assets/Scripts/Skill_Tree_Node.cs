@@ -273,22 +273,36 @@ public class Skill_Tree_Node : DiamondComponent
                 switch (name)
                 {
                     case "GForceReg":
-
+                        Core.instance.AddStatus(STATUS_TYPE.GRO_FORCE_REGEN, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
+                      //  Debug.Log("GForceReg not implemented yet");
                         break;
                     case "GPushRange":
-
+                        Core.instance.AddStatus(STATUS_TYPE.GRO_PUSH, STATUS_APPLY_TYPE.SUBSTITUTE, 3, 0, true);
+                        Debug.Log("GPushRange not implemented yet");
                         break;
                     case "GForceDur":
-
+                        Core.instance.AddStatus(STATUS_TYPE.GRO_COVER, STATUS_APPLY_TYPE.SUBSTITUTE, 3, 0, true);
+                        Debug.Log("GForceDur heat not implemented yet");
+                        break;
+                    case "GThrshComboForce":
+                        Core.instance.AddStatus(STATUS_TYPE.GRO_COMBO_REGEN, STATUS_APPLY_TYPE.SUBSTITUTE, 4, 0, true);
+                        Debug.Log("GThrshComboForce not implemented yet");
                         break;
                     case "GMaxForce":
-
+                        Core.instance.AddStatus(STATUS_TYPE.GRO_MAX_FORCE, STATUS_APPLY_TYPE.SUBSTITUTE, 10, 0, true);
+                        Debug.Log("GMaxForce not implemented yet");
                         break;
-                    case "GComboTimer":
-
+                    case "GSingComboForce":
+                        Core.instance.AddStatus(STATUS_TYPE.GRO_COMBO_ADD, STATUS_APPLY_TYPE.SUBSTITUTE, 2, 0, true);
+                        Debug.Log("GSingComboForce not implemented yet");
+                        break;
+                    case "GComboGain":
+                        Core.instance.AddStatus(STATUS_TYPE.GRO_COMBO_GAIN, STATUS_APPLY_TYPE.SUBSTITUTE, 30, 0, true);
+                        Debug.Log("GComboGain not implemented yet");
                         break;
                     case "GHPForceReg":
-
+                        Core.instance.AddStatus(STATUS_TYPE.GRO_FORCE_PER_HP, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
+                        Debug.Log("GHPForceReg heat not implemented yet");
                         break;
                 }
                 break;

@@ -76,11 +76,24 @@ public class BarrierSkill : DiamondComponent
             once = false;
         }
 
-        if (currTimeAlive <= 0.0f)
+        if (Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.GRO_COVER))
         {
-            Die();
-            once = true;
+            if (currTimeAlive <= 0.0f + Core.instance.GetStatusData(STATUS_TYPE.GRO_COVER).severity)
+            {
+                Die();
+                once = true;
+            }
         }
+        else
+        {
+            if (currTimeAlive <= 0.0f)
+            {
+                Die();
+                once = true;
+            }
+        }
+
+       
     }
 
     private void Die()
