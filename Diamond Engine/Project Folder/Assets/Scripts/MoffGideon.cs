@@ -86,6 +86,9 @@ public class MoffGideon : Entity
     public float distanceProjectile = 17f;
     public float dashSpeed = 10f;
     public float dashDistance = 10f;
+    public float closerDistance = 5f;
+    public float farDistance = 10f;
+    public float furtherDistance = 15f;
     public GameObject spawner1 = null;
     public GameObject spawner2 = null;
     public GameObject spawner3 = null;
@@ -100,6 +103,7 @@ public class MoffGideon : Entity
     private bool wander = false;
     private bool ready2Spawn = false;
     private Vector3 targetDash = null;
+    private bool justDashing = false;
 
 
     //Timers
@@ -198,17 +202,20 @@ public class MoffGideon : Entity
         if (currentState == MOFFGIDEON_STATE.SPAWN_ENEMIES && CheckDeathtroopers())
             inputsList.Add(MOFFGIDEON_INPUT.IN_NEUTRAL);
 
-        if (currentState == MOFFGIDEON_STATE.NEUTRAL && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= 1.0f && wander)
+        if (currentState == MOFFGIDEON_STATE.NEUTRAL && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance && wander)
             agent.CalculateRandomPath(gameObject.transform.globalPosition, radiusWander);
 
         if (currentState == MOFFGIDEON_STATE.NEUTRAL && Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= 1.0f && !wander)
             wander = true;
 
-        if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, targetDash) <= agent.stoppingDistance)
+        if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, targetDash) <= 1f)
             inputsList.Add(MOFFGIDEON_INPUT.IN_MELEE_COMBO);
 
-        if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, targetDash) >= dashDistance)
+        if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, targetDash) >= dashDistance && justDashing)
+        {
             inputsList.Add(MOFFGIDEON_INPUT.IN_NEUTRAL);
+            justDashing = false;
+        }
 
     }
 
@@ -588,15 +595,32 @@ public class MoffGideon : Entity
 
     private void SelectAction()
     {
-        if (ready2Spawn)
-            inputsList.Add(MOFFGIDEON_INPUT.IN_SPAWN_ENEMIES);
+        if (currentPhase == MOFFGIDEON_PHASE.PHASE1)
+        {
+            if (ready2Spawn)
+                inputsList.Add(MOFFGIDEON_INPUT.IN_SPAWN_ENEMIES);
 
-        else if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= distanceProjectile)
-            inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD);
+            else if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= distanceProjectile)
+                inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD);
 
+            else
+                inputsList.Add(MOFFGIDEON_INPUT.IN_PROJECTILE);
+        }
         else
-            inputsList.Add(MOFFGIDEON_INPUT.IN_PROJECTILE);
+        {
+            if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= closerDistance)
+            {
+                justDashing = true;
+                inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD);
+            }
 
+            else if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= farDistance)
+                inputsList.Add(MOFFGIDEON_INPUT.IN_CHARGE_THROW);
+
+            else if(Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= furtherDistance)
+                inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD);
+
+        }
         Debug.Log("Selecting Action");
     }
 
@@ -942,7 +966,10 @@ public class MoffGideon : Entity
             float damageToPlayer = touchDamage;
 
             PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
-            //if (playerHealth != null)
+            if (playerHealth != null)
+            {
+
+            }
                 //playerHealth.TakeDamage((int)(damageToPlayer * damageMult));
             
 

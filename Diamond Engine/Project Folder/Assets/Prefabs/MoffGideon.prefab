@@ -117,7 +117,7 @@
                     "healthPoints": 8500,
                     "maxHealthPoints_fase1": 4500,
                     "maxHealthPoints_fase2": 4000,
-                    "followSpeed": 7,
+                    "followSpeed": 4,
                     "touchDamage": 10,
                     "distance2Melee": 10,
                     "probWanderP1": 60,
@@ -127,10 +127,14 @@
                     "distanceProjectile": 17,
                     "dashSpeed": 10,
                     "dashDistance": 10,
+                    "closerDistance": 0,
+                    "farDistance": 0,
+                    "furtherDistance": 0,
                     "spawner1": 748886634,
                     "spawner2": 523728804,
                     "spawner3": 398220871,
                     "spawner4": 521377121,
+                    "sword": 928044328,
                     "shootPoint": 2027939547,
                     "dieTime": 0.10000000149011612,
                     "neutralTime": 5,
@@ -2405,6 +2409,79 @@
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Sword",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 928044328,
+            "ParentUID": 837518950,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }
