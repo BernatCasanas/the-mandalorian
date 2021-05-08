@@ -107,12 +107,6 @@ public class Bantha : Enemy
 
     public void Update()
     {
-        if (player == null)
-        {
-            Debug.Log("Null player");
-            player = Core.instance.gameObject;
-        }
-
         myDeltaTime = Time.deltaTime * speedMult;
         UpdateStatuses();
 
@@ -194,11 +188,11 @@ public class Bantha : Enemy
     {
         if (currentState != STATE.DIE && currentState != STATE.CHARGE)
         {
-            if (InRange(player.transform.globalPosition, detectionRange) && agent.IsPathPossible(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition))
+            if (InRange(Core.instance.gameObject.transform.globalPosition, detectionRange) && agent.IsPathPossible(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition))
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
             }
-            if (InRange(player.transform.globalPosition, chargeRange) && straightPath)
+            if (InRange(Core.instance.gameObject.transform.globalPosition, chargeRange) && straightPath)
             {
                 inputsList.Add(INPUT.IN_CHARGE_RANGE);
             }
@@ -211,7 +205,7 @@ public class Bantha : Enemy
                 Debug.Log("My agent is null :)");
             }
 
-            if (!InRange(player.transform.globalPosition, detectionRange))
+            if (!InRange(Core.instance.gameObject.transform.globalPosition, detectionRange))
             {
                 inputsList.Add(INPUT.IN_WANDER);
             }
@@ -494,9 +488,9 @@ public class Bantha : Enemy
     }
     private void UpdateRun()
     {
-        if (player != null)
+        if (Core.instance != null)
         {
-            if (agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition) == false)
+            if (agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) == false)
             {
                 inputsList.Add(INPUT.IN_IDLE);
                 return;
@@ -661,7 +655,7 @@ public class Bantha : Enemy
 
         DropCoins();
 
-        player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+        Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
 
         InternalCalls.Destroy(gameObject);
     }
@@ -670,7 +664,7 @@ public class Bantha : Enemy
     #region PUSH
     private void StartPush()
     {
-        Vector3 force = gameObject.transform.globalPosition - player.transform.globalPosition;
+        Vector3 force = gameObject.transform.globalPosition - Core.instance.gameObject.transform.globalPosition;
         if (BabyYoda.instance != null)
         {
             force.y = BabyYoda.instance.pushVerticalForce * forcePushMod;

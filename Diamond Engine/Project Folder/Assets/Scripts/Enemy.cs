@@ -4,8 +4,6 @@ using DiamondEngine;
 
 public class Enemy : Entity
 {
-	public GameObject player = null;
-
 	public float detectionRange = 12.5f;
 	public float damage = 5.0f;
 	private float baseDamage = 1f;

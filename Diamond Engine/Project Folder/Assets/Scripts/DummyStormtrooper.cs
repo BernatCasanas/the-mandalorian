@@ -519,15 +519,13 @@ public class DummyStormtrooper : Enemy
             }
 
         }
-
-
     }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         {
-            if (player != null)
+            if (Core.instance != null)
                 inputsList.Add(INPUT.IN_PUSHED);
         }
     }

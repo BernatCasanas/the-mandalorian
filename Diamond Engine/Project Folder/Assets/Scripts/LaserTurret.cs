@@ -104,12 +104,6 @@ public class LaserTurret : Enemy
 
     public void Update()
     {
-        if (player == null)
-        {
-            Debug.Log("Null player");
-            player = Core.instance.gameObject;
-        }
-
         myDeltaTime = Time.deltaTime * speedMult;
         UpdateStatuses();
 
@@ -403,7 +397,7 @@ public class LaserTurret : Enemy
 
         DropCoins();
 
-        player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+        Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
         InternalCalls.Destroy(gameObject);
     }
 

@@ -119,11 +119,6 @@ public class StormTrooper : Enemy
 
     public void Update()
     {
-        if (player == null)
-        {
-            player = Core.instance.gameObject;
-        }
-
         myDeltaTime = Time.deltaTime * speedMult;
         UpdateStatuses();
 
@@ -176,12 +171,12 @@ public class StormTrooper : Enemy
     {
         if (currentState != STATE.DIE && currentState != STATE.RUN)
         {
-            if (InRange(player.transform.globalPosition, detectionRange))
+            if (InRange(Core.instance.gameObject.transform.globalPosition, detectionRange))
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
 
-                if (player != null && currentState != STATE.SHOOT)
-                    LookAt(player.transform.globalPosition);
+                if (Core.instance != null && currentState != STATE.SHOOT)
+                    LookAt(Core.instance.gameObject.transform.globalPosition);
             }
         }
     }
@@ -466,9 +461,9 @@ public class StormTrooper : Enemy
 
     private void StartFindAim()
     {
-        if (agent != null && player != null)
+        if (agent != null && Core.instance != null)
         {
-            if (!agent.CalculatePath(gameObject.transform.globalPosition, player.transform.globalPosition))
+            if (!agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition))
             {
                 inputsList.Add(INPUT.IN_SHOOT);
                 return;
@@ -723,7 +718,7 @@ public class StormTrooper : Enemy
         Vector3 forward = gameObject.transform.GetForward();
         forward = forward.normalized * (-dist);
 
-        player.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+        Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
         InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
         DropCoins();
 
@@ -735,7 +730,7 @@ public class StormTrooper : Enemy
     #region PUSH
     private void StartPush()
     {
-        Vector3 force = gameObject.transform.globalPosition - player.transform.globalPosition;
+        Vector3 force = gameObject.transform.globalPosition - Core.instance.gameObject.transform.globalPosition;
         if (BabyYoda.instance != null)
         {
             force.y = BabyYoda.instance.pushVerticalForce * forcePushMod;
@@ -861,10 +856,9 @@ public class StormTrooper : Enemy
     {
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         {
-            if (player != null)
+            if (Core.instance != null)
             {
                 inputsList.Add(INPUT.IN_PUSHED);
-
             }
         }
     }

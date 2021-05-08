@@ -233,142 +233,6 @@
             ]
         },
         {
-            "name": "Master_Gun",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": false,
-            "UID": 2088651865,
-            "ParentUID": 20250879,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -0.27551984786987305,
-                1.5396730899810791,
-                -0.13102462887763977
-            ],
-            "Rotation": [
-                -0.20757476985454559,
-                0.113498255610466,
-                0.050552040338516235,
-                0.97029662132263184
-            ],
-            "Scale": [
-                0.99999988079071045,
-                0.99999982118606567,
-                0.99999994039535522
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Back",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1471303854,
-            "ParentUID": 2088651865,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.00040231738239526749,
-                -0.051440834999084473,
-                0.16805882751941681
-            ],
-            "Rotation": [
-                -7.0366588111880901e-09,
-                3.5183298496832549e-09,
-                -2.2797999044144035e-09,
-                1
-            ],
-            "Scale": [
-                1,
-                1.0000001192092896,
-                1.0000001192092896
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Front",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 823141081,
-            "ParentUID": 1471303854,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.001717651030048728,
-                0.035801135003566742,
-                0.56471425294876099
-            ],
-            "Rotation": [
-                -7.0366588111880901e-09,
-                3.5183298496832549e-09,
-                -2.2797999044144035e-09,
-                1
-            ],
-            "Scale": [
-                1,
-                1.0000001192092896,
-                1.0000001192092896
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Front_end",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 156596459,
-            "ParentUID": 823141081,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0.56585061550140381,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
             "name": "SkyBlaster_Mesh",
             "tag": "Untagged",
             "layer": "Default",
@@ -412,11 +276,11 @@
                     ],
                     "alternColorStencil": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": false
                 },
                 {
                     "Type": 3,
@@ -425,6 +289,14 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
                     "MaterialUID": 1948688504
+                },
+                {
+                    "Type": 26,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/animated_colored_mat.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/2086070049.mat",
+                    "MaterialUID": 2086070049
                 }
             ]
         },
@@ -441,14 +313,14 @@
             "Static": false,
             "Position": [
                 -0.14755105972290039,
-                1.7599313259124756,
+                1.559999942779541,
                 0.11782816052436829
             ],
             "Rotation": [
                 -0.080550827085971832,
                 0.56077080965042114,
-                0.016854114830493927,
-                0.82387113571166992
+                0.016854129731655121,
+                0.82387107610702515
             ],
             "Scale": [
                 0.99999994039535522,
@@ -542,20 +414,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0.0050513898022472858,
-                1.3551390171051025,
+                0.0050513744354248047,
+                1.1549999713897705,
                 -0.065868072211742401
             ],
             "Rotation": [
-                -0.016089377924799919,
-                -0.039463628083467484,
-                -0.35003891587257385,
-                0.93576526641845703
+                -0.016089431941509247,
+                -0.039463866502046585,
+                -0.35003906488418579,
+                0.93576520681381226
             ],
             "Scale": [
                 1,
                 1,
-                1
+                0.99999898672103882
             ],
             "Components": [
                 {
@@ -5472,11 +5344,11 @@
                     ],
                     "alternColorStencil": [
                         1,
-                        1,
-                        1
+                        0,
+                        0
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": false
                 },
                 {
                     "Type": 3,
@@ -5485,6 +5357,14 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
                     "MaterialUID": 1948688504
+                },
+                {
+                    "Type": 26,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/animated_colored_mat.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/2086070049.mat",
+                    "MaterialUID": 2086070049
                 }
             ]
         }
