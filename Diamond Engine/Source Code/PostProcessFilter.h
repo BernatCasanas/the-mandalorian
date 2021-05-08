@@ -18,7 +18,9 @@ public:
 	int GetOutputTexture()const;
 	DE_Advanced_FrameBuffer* GetOutputFBO();
 	bool HasOwnFBO()const;
+	bool TryLoadShader();//This is here in case we erase lib
 protected:
+	unsigned int myShaderUID;
 	ResourceShader* myShader;
 	ImageRenderer* quadRenderer;
 };
