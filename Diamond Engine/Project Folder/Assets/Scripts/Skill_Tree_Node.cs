@@ -454,23 +454,29 @@ public class Skill_Tree_Node : DiamondComponent
                         Core.instance.AddStatus(STATUS_TYPE.GRENADE_DAMAGE, STATUS_APPLY_TYPE.ADDITIVE, 50, 1, true);
                         break;
                     #endregion
-                    #region primary
-                    case "SpCritChance":
+                    #region special
+                    case "SpNonCharged":
+                        Core.instance.AddStatus(STATUS_TYPE.SP_NONCHARGED, STATUS_APPLY_TYPE.SUBSTITUTE, 50, 0, true);
 
                         break;
                     case "SpChargeTime":
+                        Core.instance.AddStatus(STATUS_TYPE.SP_CHARGE_TIME, STATUS_APPLY_TYPE.SUBSTITUTE, 30, 0, true);
 
                         break;
-                    case "SpBullet":
+                    case "SpHeal":
+                        Core.instance.AddStatus(STATUS_TYPE.SP_HEAL, STATUS_APPLY_TYPE.SUBSTITUTE, 5, 0, true);
 
                         break;
                     case "SpRegForce":
+                        Core.instance.AddStatus(STATUS_TYPE.SP_FORCE_REGEN, STATUS_APPLY_TYPE.SUBSTITUTE, 5, 0, true);
 
                         break;
-                    case "SpCritDmg":
+                    case "SpMaxIntDmg":
+                        Core.instance.AddStatus(STATUS_TYPE.SP_INTERVAL, STATUS_APPLY_TYPE.SUBSTITUTE, 50, 0, true);
 
                         break;
                     case "SpMaxDmg":
+                        Core.instance.AddStatus(STATUS_TYPE.SP_DAMAGE_CHARGED, STATUS_APPLY_TYPE.SUBSTITUTE, 100, 0, true);
 
                         break;
                         #endregion
