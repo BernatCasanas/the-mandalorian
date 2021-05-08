@@ -8,6 +8,7 @@
 #include "DE_Advanced_FrameBuffer.h"
 #include "MathGeoLib/include/Math/float4x4.h"
 #include "MathGeoLib/include/Algorithm/Random/LCG.h"
+#include "RE_PostProcess.h"
 
 #include "CO_Camera.h"
 
@@ -527,6 +528,49 @@ void PostProcessFilterToneMapping::Render(bool isHDR, int width, int height, uns
 		gamma = max(gamma, 0.25f);
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "gamma");
 		glUniform1f(uniformLoc, gamma);
+
+		quadRenderer->RenderQuad();
+
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		myShader->Unbind();
+	}
+}
+
+PostProcessFilterVignette::PostProcessFilterVignette(): PostProcessFilter(1407530245, true)
+{
+}
+
+PostProcessFilterVignette::~PostProcessFilterVignette()
+{
+}
+
+void PostProcessFilterVignette::Render(bool isHDR, int width, int height, unsigned int colorTexture, PostProcessDataVignette* vignetteData)
+{
+	if (TryLoadShader())
+	{
+		quadRenderer->RegenerateFBO(width, height, isHDR);
+		myShader->Bind();
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, colorTexture);
+		glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "colourTexture"), 0);
+
+		GLint uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "screenRes");
+		glUniform2f(uniformLoc, width,height);
+
+		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "intensity");
+		glUniform1f(uniformLoc, vignetteData->intensity);
+		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "extend");
+		glUniform1f(uniformLoc, vignetteData->extend);
+		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "tint");
+		glUniform4fv(uniformLoc,1, &vignetteData->tint.x);
+		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "outerRadius");
+		glUniform1f(uniformLoc, vignetteData->minMaxRadius.y);
+		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "innerRadius");
+		glUniform1f(uniformLoc, vignetteData->minMaxRadius.x);
+		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "vignetteMode");
+		glUniform1f(uniformLoc, (int)vignetteData->mode);
 
 		quadRenderer->RenderQuad();
 

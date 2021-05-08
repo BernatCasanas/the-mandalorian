@@ -7,6 +7,7 @@ class ResourceShader;
 class ImageRenderer;
 class C_Camera;
 
+class PostProcessDataVignette;
 
 class PostProcessFilter
 {
@@ -119,4 +120,12 @@ public:
 	PostProcessFilterToneMapping();
 	~PostProcessFilterToneMapping();
 	void Render(bool isHDR, int width, int height, unsigned int colorTexture, float exposure, float gamma);
+};
+
+class PostProcessFilterVignette : public PostProcessFilter
+{
+public:
+	PostProcessFilterVignette();
+	~PostProcessFilterVignette();
+	void Render(bool isHDR, int width, int height, unsigned int colorTexture, PostProcessDataVignette* vignetteData);
 };

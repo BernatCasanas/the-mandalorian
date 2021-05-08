@@ -9,6 +9,7 @@ class PostProcessEffectDepthTest;
 class PostProcessEffectAO;
 class PostProcessEffectRender;
 class PostProcessEffectToneMapping;
+class PostProcessEffectVignette;
 
 class C_Camera;
 
@@ -32,6 +33,7 @@ private:
 	PostProcessEffectAO* aoEffect;
 	PostProcessEffectRender* renderFilter;
 	PostProcessEffectToneMapping* toneMappingEffect;
+	PostProcessEffectVignette* vignetteEffect;
 
 	unsigned int quadVAO;
 	unsigned int quadVBO;

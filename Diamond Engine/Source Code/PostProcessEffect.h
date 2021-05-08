@@ -10,6 +10,7 @@ class PostProcessFilterCombine;
 class PostProcessFilterMultiply;
 class PostProcessFilterRender;
 class PostProcessFilterToneMapping;
+class PostProcessFilterVignette;
 
 class DE_Advanced_FrameBuffer;
 class C_Camera;
@@ -17,6 +18,7 @@ class C_Camera;
 class PostProcessDataAO;
 class PostProcessDataBloom;
 class PostProcessDataToneMapping;
+class PostProcessDataVignette;
 
 class PostProcessEffect
 {
@@ -111,4 +113,19 @@ public:
 private:
 	PostProcessFilterToneMapping* toneMappingFilter;
 	
+};
+
+class PostProcessEffectVignette : public PostProcessEffect
+{
+public:
+	PostProcessEffectVignette();
+	~PostProcessEffectVignette();
+
+	void Init() override;
+	void CleanUp() override;
+	//returns the index of the color texture that has been rendered
+	int Render(bool isHDR, int width, int height, int colorTexture, PostProcessDataVignette* vignetteVars);
+private:
+	PostProcessFilterVignette* vignetteFilter;
+
 };

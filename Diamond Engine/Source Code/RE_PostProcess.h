@@ -1,6 +1,8 @@
 #pragma once
 
 #include "DEResource.h"
+#include "MathGeoLib/include/Math/float2.h"
+#include "MathGeoLib/include/Math/float4.h"
 
 #include<vector>
 #include "parson/parson.h"
@@ -12,6 +14,14 @@ enum class POSTPROCESS_DATA_TYPE
 	AO,
 	BLOOM,
 	TONE_MAPPING,
+	VIGNETTE,
+	NONE
+};
+
+enum class VIGNETTE_MODE
+{
+	RECTANGULAR,
+	CIRCULAR,
 	NONE
 };
 
@@ -82,6 +92,25 @@ public:
 public:
 	float exposure;
 	float gamma;
+};
+
+class PostProcessDataVignette : public PostProcessData
+{
+public:
+	PostProcessDataVignette();
+	~PostProcessDataVignette();
+#ifndef STANDALONE
+	void DrawEditor() override;
+#endif
+	void SaveToJson(JSON_Object* nObj);
+	void LoadFromJson(DEConfig& nObj);
+public:
+
+	float intensity;
+	float extend;
+	float4 tint;
+	float2 minMaxRadius;
+	VIGNETTE_MODE mode;
 };
 
 class ResourcePostProcess : public Resource {

@@ -15,6 +15,7 @@ PostProcessing::PostProcessing() :
 	depthTest(nullptr),
 	aoEffect(nullptr),
 	toneMappingEffect(nullptr),
+	vignetteEffect(nullptr),
 	renderFilter(nullptr)
 {
 }
@@ -47,6 +48,7 @@ void PostProcessing::Init()
 	renderFilter = new PostProcessEffectRender();
 	aoEffect = new PostProcessEffectAO();
 	toneMappingEffect = new PostProcessEffectToneMapping();
+	vignetteEffect = new PostProcessEffectVignette();
 }
 
 void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBuffer& outputFBO, unsigned int colorTexture, unsigned int depthTexture,C_Camera* sceneCam)
@@ -82,6 +84,11 @@ void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBu
 		currentColTexIndex = toneMappingEffect->Render(isHDR, width, height, currentColTexIndex, toneMappingVars);
 	}
 
+	PostProcessDataVignette* vignetteVars = dynamic_cast<PostProcessDataVignette*>(camProfile->GetDataOfType(POSTPROCESS_DATA_TYPE::VIGNETTE));
+	if (vignetteVars->active)
+	{
+		currentColTexIndex = vignetteEffect->Render(isHDR, width, height, currentColTexIndex, vignetteVars);
+	}
 
 
 

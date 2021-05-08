@@ -129,10 +129,10 @@ void PostProcessDataAO::LoadFromJson(DEConfig& nObj)
 
 
 PostProcessDataBloom::PostProcessDataBloom() : PostProcessData(POSTPROCESS_DATA_TYPE::BLOOM, "Bloom"),
- brightThreshold(0.7f),
- brightnessIntensity(1.0f),
- blurSpread(0.0f),
- smoothMask(false)
+brightThreshold(0.7f),
+brightnessIntensity(1.0f),
+blurSpread(0.0f),
+smoothMask(false)
 {
 }
 
@@ -191,7 +191,7 @@ void PostProcessDataBloom::LoadFromJson(DEConfig& nObj)
 }
 
 PostProcessDataToneMapping::PostProcessDataToneMapping() : PostProcessData(POSTPROCESS_DATA_TYPE::TONE_MAPPING, "Tone Mapping"),
-exposure(1.0f),gamma(2.2f)
+exposure(1.0f), gamma(2.2f)
 {
 }
 
@@ -238,6 +238,103 @@ void PostProcessDataToneMapping::LoadFromJson(DEConfig& nObj)
 	//TODO load data here
 	exposure = nObj.ReadFloat("Exposure");
 	gamma = nObj.ReadFloat("Gamma");
+}
+
+
+PostProcessDataVignette::PostProcessDataVignette() : PostProcessData(POSTPROCESS_DATA_TYPE::VIGNETTE, "Vignette"),
+intensity(15.0f), extend(0.25f), tint(1.0f, 1.0f, 1.0f, 1.0f), minMaxRadius(0.65f,0.4f), mode(VIGNETTE_MODE::RECTANGULAR)
+{
+}
+
+PostProcessDataVignette::~PostProcessDataVignette()
+{
+}
+
+#ifndef STANDALONE
+void PostProcessDataVignette::DrawEditor()
+{
+	const std::string suffix = "##Vignette";
+	std::string label = name + suffix;
+
+	if (ImGui::CollapsingHeader(label.c_str()))
+	{
+		PostProcessData::DrawEditorStart(suffix);
+
+		//TODO drawEditorHere
+		label = "tint";
+		label += suffix;
+		ImGui::ColorPicker4(label.c_str(), &tint.x);
+
+		//=========================================== Combo
+		label = "VignetteMode";
+		label += suffix;
+		const std::string modes[2] = { "RECTANGULAR","CIRCULAR" };
+
+		if (ImGui::BeginCombo(label.c_str(), modes[(int)mode].c_str()))
+		{
+			for (int i = 0; i < (int)VIGNETTE_MODE::NONE; ++i)
+			{
+				bool isSelected = ((int)mode == i) ? true : false;
+				if (ImGui::Selectable(modes[i].c_str(), isSelected))
+				{
+					mode = (VIGNETTE_MODE)i;
+				}
+				// Set the initial focus when opening the combo (scrolling + keyboard navigation focus)
+				if (isSelected)
+					ImGui::SetItemDefaultFocus();
+
+			}
+			ImGui::EndCombo();
+		}
+		//=========================================== end combo
+
+
+
+		if (mode == VIGNETTE_MODE::RECTANGULAR)
+		{
+			label = "intensity";
+			label += suffix;
+			ImGui::SliderFloat(label.c_str(), &intensity, 0.0f, 1000.0f, "%.3f", 2.0f);
+			label = "extend";
+			label += suffix;
+			ImGui::SliderFloat(label.c_str(), &extend, 0.0f, 75.0f, "%.3f", 1.5f);
+
+		}
+		else
+		{
+			label = "minMaxRadius";
+			label += suffix;
+			ImGui::SliderFloat2(label.c_str(), &minMaxRadius.x, 0.0f, 5.0f, "%.3f", 1.25f);
+			
+		}
+
+		PostProcessData::DrawEditorEnd();
+	}
+}
+#endif
+
+void PostProcessDataVignette::SaveToJson(JSON_Object* nObj)
+{
+	PostProcessData::SaveToJson(nObj);
+	//TODO save data here
+	DEJson::WriteInt(nObj, "Mode", (int)mode);
+	DEJson::WriteVector4(nObj, "Tint", &tint.x);
+	DEJson::WriteFloat(nObj, "Intensity", intensity);
+	DEJson::WriteFloat(nObj, "Extend", extend);
+	DEJson::WriteVector2(nObj, "MinMaxRadius", &minMaxRadius.x);
+
+}
+
+void PostProcessDataVignette::LoadFromJson(DEConfig& nObj)
+{
+	PostProcessData::LoadFromJson(nObj);
+	//TODO load data here
+	mode = (VIGNETTE_MODE)nObj.ReadInt("Mode");
+	tint = nObj.ReadVector4("Tint");
+	intensity = nObj.ReadFloat("Intensity");
+	extend = nObj.ReadFloat("Extend");
+	minMaxRadius = nObj.ReadVector2("MinMaxRadius");
+
 }
 
 ResourcePostProcess::ResourcePostProcess(unsigned int _uid) : Resource(_uid, Resource::Type::POSTPROCESS)
@@ -302,9 +399,11 @@ PostProcessData* ResourcePostProcess::GetDataOfType(POSTPROCESS_DATA_TYPE type)
 
 void ResourcePostProcess::Init()
 {
+	//TODO add new resource data components here
 	postProcessData.push_back(dynamic_cast<PostProcessData*>(new PostProcessDataAO()));
 	postProcessData.push_back(dynamic_cast<PostProcessData*>(new PostProcessDataBloom()));
 	postProcessData.push_back(dynamic_cast<PostProcessData*>(new PostProcessDataToneMapping()));
+	postProcessData.push_back(dynamic_cast<PostProcessData*>(new PostProcessDataVignette()));
 
 }
 

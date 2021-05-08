@@ -225,3 +225,36 @@ int PostProcessEffectToneMapping::Render(bool isHDR, int width, int height, int 
 	toneMappingFilter->Render(isHDR, width, height, colorTexture, toneMappingVars->exposure,toneMappingVars->gamma);
 	return toneMappingFilter->GetOutputTexture();
 }
+
+
+PostProcessEffectVignette::PostProcessEffectVignette() : PostProcessEffect(),
+vignetteFilter(nullptr)
+{
+	Init();
+}
+
+PostProcessEffectVignette::~PostProcessEffectVignette()
+{
+	CleanUp();
+}
+
+void PostProcessEffectVignette::Init()
+{
+	vignetteFilter = new PostProcessFilterVignette();
+
+}
+
+void PostProcessEffectVignette::CleanUp()
+{
+	if (vignetteFilter != nullptr)
+	{
+		delete(vignetteFilter);
+		vignetteFilter = nullptr;
+	}
+}
+
+int PostProcessEffectVignette::Render(bool isHDR, int width, int height, int colorTexture, PostProcessDataVignette* vignetteVars)
+{
+	vignetteFilter->Render(isHDR, width, height, colorTexture, vignetteVars);
+	return vignetteFilter->GetOutputTexture();
+}
