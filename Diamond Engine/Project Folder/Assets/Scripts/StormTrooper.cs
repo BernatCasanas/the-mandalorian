@@ -131,8 +131,6 @@ public class StormTrooper : Enemy
         UpdateState();
 
         #endregion
-
-        Debug.Log("NeedFindAim: " + needFindAim.ToString());
     }
 
 
@@ -206,7 +204,7 @@ public class StormTrooper : Enemy
             switch (currentState)
             {
                 case STATE.NONE:
-                    Debug.Log("CORE ERROR STATE");
+                    Debug.Log("STORMTROOPER ERROR STATE");
                     break;
 
                 case STATE.IDLE:
@@ -358,7 +356,7 @@ public class StormTrooper : Enemy
                     }
                     break;
                 default:
-                    Debug.Log("NEED TO ADD STATE TO CORE SWITCH");
+                    Debug.Log("NEED TO ADD STATE TO STORMTROOPER SWITCH");
                     break;
             }
             inputsList.RemoveAt(0);
@@ -394,7 +392,7 @@ public class StormTrooper : Enemy
                 UpdatePush();
                 break;
             default:
-                Debug.Log("NEED TO ADD STATE TO CORE");
+                Debug.Log("NEED TO ADD STATE TO STORMTROOPER");
                 break;
         }
     }
@@ -449,7 +447,7 @@ public class StormTrooper : Enemy
     #region RUN
     private void StartRun()
     {
-        Debug.Log("STORMTROOPER RUN");
+        //Debug.Log("STORMTROOPER RUN");
         agent.CalculateRandomPath(gameObject.transform.globalPosition, runningRange);
 
         Animator.Play(gameObject, "ST_Run", speedMult);
@@ -479,7 +477,7 @@ public class StormTrooper : Enemy
 
     private void StartFindAim()
     {
-        Debug.Log("STORMTROOPER FIND AIM");
+        //Debug.Log("STORMTROOPER FIND AIM");
         Animator.Play(gameObject, "ST_Run", speedMult);
         if (blaster != null)
             Animator.Play(blaster, "ST_Run", speedMult);
@@ -850,7 +848,7 @@ public class StormTrooper : Enemy
             if (myParticles != null && myParticles.hit != null)
                 myParticles.hit.Play();
             else
-                Debug.Log("No hit particles for you");
+                //Debug.Log("No hit particles for you");
             healthPoints -= damage;
 
             if (Core.instance != null)

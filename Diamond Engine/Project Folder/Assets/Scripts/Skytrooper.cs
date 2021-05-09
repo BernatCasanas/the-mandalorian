@@ -110,7 +110,7 @@ public class Skytrooper : Enemy
         if (hitParticlesObj != null)
             hitParticles = hitParticlesObj.GetComponent<ParticleSystem>();
         else
-            Debug.Log("Hit particles gameobject not found!");
+            //Debug.Log("Hit particles gameobject not found!");
 
         shootTime = Animator.GetAnimationDuration(gameObject, "SK_Shoot") * 0.5f;
 
@@ -204,7 +204,7 @@ public class Skytrooper : Enemy
             switch (currentState)
             {
                 case STATE.NONE:
-                    Debug.Log("CORE ERROR STATE");
+                    Debug.Log("SKYTROOPER ERROR STATE");
                     break;
 
                 case STATE.IDLE:
@@ -328,7 +328,7 @@ public class Skytrooper : Enemy
                     }
                     break;
                 default:
-                    Debug.Log("NEED TO ADD STATE TO CORE SWITCH");
+                    Debug.Log("NEED TO ADD STATE TO SKYTROOPER SWITCH");
                     break;
             }
             inputsList.RemoveAt(0);
@@ -361,7 +361,7 @@ public class Skytrooper : Enemy
                 UpdatePush();
                 break;
             default:
-                Debug.Log("NEED TO ADD STATE TO CORE");
+                Debug.Log("NEED TO ADD STATE TO SKYTROOPER");
                 break;
         }
     }
@@ -580,7 +580,7 @@ public class Skytrooper : Enemy
         //UNCOMMENT
         if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
         {
-            Debug.Log("Start die ended");
+            //Debug.Log("Start die ended");
             HUD hud = Core.instance.hud.GetComponent<HUD>();
 
             if (hud != null)

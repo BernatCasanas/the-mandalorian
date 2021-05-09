@@ -202,7 +202,7 @@ public class Bantha : Enemy
             if (agent == null)
             {
                 inputsList.Add(INPUT.IN_IDLE);
-                Debug.Log("My agent is null :)");
+                //Debug.Log("My agent is null :)");
             }
 
             if (!InRange(Core.instance.gameObject.transform.globalPosition, detectionRange))
