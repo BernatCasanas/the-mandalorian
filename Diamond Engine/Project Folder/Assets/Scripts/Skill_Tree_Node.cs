@@ -405,11 +405,12 @@ public class Skill_Tree_Node : DiamondComponent
                         //Debug.Log("Lifesteal not implemented yet");
                         break;
                     case "DHealEfct":
-                        Debug.Log("Healing effects increased not implemented yet");
+                      //  Debug.Log("Healing effects increased not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.REVIVE, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
                         break;
                     case "DAvoidDmg":
                         Core.instance.AddStatus(STATUS_TYPE.BLOCK, STATUS_APPLY_TYPE.SUBSTITUTE, 10, 0, true);
-                        Debug.Log("chance to avoid damage not implemented yet");
+                     //   Debug.Log("chance to avoid damage not implemented yet");
                         break;
                         #endregion
                 }

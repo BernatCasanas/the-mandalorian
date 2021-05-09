@@ -13,7 +13,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -44.738723754882813,
+                -44.738723754882812,
                 0,
                 0
             ],
@@ -349,6 +349,86 @@
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "NPC Interaction ",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 246480180,
+            "ParentUID": 1829561008,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0.007122039794921875,
+                0.488319993019104,
+                -0.016629219055175781
+            ],
+            "Rotation": [
+                -0.017723001539707184,
+                -0.093236818909645081,
+                -0.0056445123627781868,
+                0.99547022581100464
+            ],
+            "Scale": [
+                1.0000002384185791,
+                0.99998664855957031,
+                0.99999654293060303
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": true,
+                    "looping": true,
+                    "maxDuration": 0.17499999701976776,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/47596514.dds",
+                            "texUID": 47596514,
+                            "paEmitterName": "Empty",
+                            "paLifeTime": [
+                                3,
+                                3
+                            ],
+                            "paSize": [
+                                0.25,
+                                0.25
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "paRelative": true,
+                            "ParticleEffects": []
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
                 }
             ]
         },
@@ -944,7 +1024,7 @@
             "Position": [
                 -4.4703483581542969e-08,
                 0.20422577857971191,
-                -2.9802322387695313e-08
+                -2.9802322387695312e-08
             ],
             "Rotation": [
                 0.033438049256801605,
