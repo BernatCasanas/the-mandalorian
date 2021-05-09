@@ -847,8 +847,7 @@ public class StormTrooper : Enemy
         {
             if (myParticles != null && myParticles.hit != null)
                 myParticles.hit.Play();
-            else
-                //Debug.Log("No hit particles for you");
+            
             healthPoints -= damage;
 
             if (Core.instance != null)
