@@ -88,6 +88,7 @@ public class MoffGideon : Entity
     public float closerDistance = 5f;
     public float farDistance = 10f;
     public float furtherDistance = 15f;
+    public float velocityRotationShooting = 10f;
     public GameObject spawner1 = null;
     public GameObject spawner2 = null;
     public GameObject spawner3 = null;
@@ -773,7 +774,7 @@ public class MoffGideon : Entity
             return;
         }
 
-        gameObject.transform.localRotation.y += slerpSpeed * myDeltaTime * speedMult;
+        gameObject.transform.localRotation.z += velocityRotationShooting * myDeltaTime * speedMult;
 
         if (cadencyTimer > 0)
         {
