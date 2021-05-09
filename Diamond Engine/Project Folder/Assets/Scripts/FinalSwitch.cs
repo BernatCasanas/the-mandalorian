@@ -14,6 +14,8 @@ public class FinalSwitch : DiamondComponent
 		{
 			if (Core.instance != null)
 				Core.instance.SaveBuffs();
+
+			EnemyManager.ClearList();
 			SceneManager.LoadScene(821370213);
 
 		}

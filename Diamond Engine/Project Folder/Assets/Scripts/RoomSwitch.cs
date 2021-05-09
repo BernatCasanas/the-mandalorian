@@ -180,4 +180,44 @@ public static class RoomSwitch
                 break;
         }
     }
+
+    public static void OnPlayerDeath()
+    {
+        Counter.gameResult = Counter.GameResult.DEFEAT;
+
+        ToWinLoseScene();
+    }
+
+    public static void OnPlayerWin()
+    {
+        Counter.gameResult = Counter.GameResult.VICTORY;
+        DebugOptionsHolder.goToNextLevel = false;
+
+        ToWinLoseScene();
+    }
+
+    public static void OnPlayerQuit()
+    {
+        Counter.gameResult = Counter.GameResult.NONE;
+
+        //TODo: Maybe this should go to HUB?
+        //if (Core.instance != null)
+        //    Core.instance.SaveBuffs();
+
+        //EnemyManager.ClearList();
+
+        //ToHub();
+        ToWinLoseScene();
+    }
+
+    private static void ToWinLoseScene()
+    {
+        if (Core.instance != null)
+            Core.instance.SaveBuffs();
+
+        EnemyManager.ClearList();
+
+        SceneManager.LoadScene(821370213);
+    }
+
 }
