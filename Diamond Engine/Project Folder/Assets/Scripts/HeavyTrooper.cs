@@ -958,4 +958,9 @@ public class HeavyTrooper : Enemy
             currAnimationPlaySpd = newSpd;
         }
     }
+
+    public void OnDestroy()
+    {
+        EnemyManager.RemoveEnemy(this.gameObject);
+    }
 }

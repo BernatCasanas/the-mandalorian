@@ -41,18 +41,25 @@ public class EnemyManager : DiamondComponent
         }
 
         if (ret == false)
+        {
             Debug.Log("Enemy to remove not found in enmies list");
+            return ret;
+        }
 
         //Debug.Log("Enemies left: " + currentEnemies.Count.ToString());
 
-        bool enemiesLeftToSpawn = true;
+        bool enemiesLeftToSpawn = false;
 
-        if(SpawnManager.instance != null)
+        if (SpawnManager.instance != null)
         {
             enemiesLeftToSpawn = SpawnManager.instance.AreEnemiesLeftToSpawn();
         }
 
-        if (currentEnemies.Count == 0  && awaitingForEnemiesToSpawn == 0 && enemiesLeftToSpawn == false && GameSceneManager.instance != null )
+        Debug.Log("Enemy remaining: " + currentEnemies.Count.ToString());
+        Debug.Log("awaitingForEnemiesToSpawn: " + awaitingForEnemiesToSpawn.ToString());
+        Debug.Log("enemiesLeftToSpawn: " + enemiesLeftToSpawn.ToString());
+
+        if (currentEnemies.Count == 0 && awaitingForEnemiesToSpawn == 0 && enemiesLeftToSpawn == false && GameSceneManager.instance != null)
         {
             Debug.Log("Enemy Manager calling to Level End");
             GameSceneManager.instance.LevelEnd();

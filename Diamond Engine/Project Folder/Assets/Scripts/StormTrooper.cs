@@ -924,4 +924,9 @@ public class StormTrooper : Enemy
             currAnimationPlaySpd = newSpd;
         }
     }
+
+    public void OnDestroy()
+    {
+        EnemyManager.RemoveEnemy(this.gameObject);
+    }
 }

@@ -721,4 +721,9 @@ public class Deathtrooper : Enemy
         return currentState;
     }
 
+    public void OnDestroy()
+    {
+        EnemyManager.RemoveEnemy(this.gameObject);
+    }
+
 }
