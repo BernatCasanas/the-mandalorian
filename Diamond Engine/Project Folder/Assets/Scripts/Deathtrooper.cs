@@ -86,6 +86,8 @@ public class Deathtrooper : Enemy
     //hit particles
     public GameObject hitParticlesObj = null;
     private ParticleSystem hitParticle = null;
+    public GameObject shotgunParticlesObj = null;
+    private ParticleSystem shotgunParticle = null;
 
     public void Awake()
     {
@@ -108,6 +110,10 @@ public class Deathtrooper : Enemy
             hitParticle = hitParticlesObj.GetComponent<ParticleSystem>();
         else
             Debug.Log("Hit particles gameobject not found!");
+        if (shotgunParticlesObj != null)
+            shotgunParticle = shotgunParticlesObj.GetComponent<ParticleSystem>();
+        else
+            Debug.Log("Shotgun particles gameobject not found!");
     }
 
     public void Update()
@@ -463,6 +469,7 @@ public class Deathtrooper : Enemy
             {
                 ShotgunShoot(maxShots);
                 betweenBurstsTimer = timeBewteenBursts;
+                shotgunParticle.Play();
             }
 
         }
@@ -719,6 +726,11 @@ public class Deathtrooper : Enemy
     public STATE GetCurrentSate()
     {
         return currentState;
+    }
+
+    public void OnDestroy()
+    {
+        EnemyManager.RemoveEnemy(this.gameObject);
     }
 
 }

@@ -492,4 +492,9 @@ public class LaserTurret : Enemy
         }
 
     }
+
+    public void OnDestroy()
+    {
+        EnemyManager.RemoveEnemy(this.gameObject);
+    }
 }

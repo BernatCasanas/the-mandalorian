@@ -550,4 +550,9 @@ public class DummyStormtrooper : Enemy
             currAnimationPlaySpd = newSpd;
         }
     }
+
+    public void OnDestroy()
+    {
+        EnemyManager.RemoveEnemy(this.gameObject);
+    }
 }

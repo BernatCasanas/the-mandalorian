@@ -838,4 +838,10 @@ public class Bantha : Enemy
             currAnimationPlaySpd = newSpd;
         }
     }
+
+    public void OnDestroy()
+    {
+        EnemyManager.RemoveEnemy(this.gameObject);
+    }
+
 }
