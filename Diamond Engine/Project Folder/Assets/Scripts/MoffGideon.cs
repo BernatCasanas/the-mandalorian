@@ -1127,10 +1127,11 @@ public class MoffGideon : Entity
 
     private void SpawnEnemies()
     {
-        //InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner1.transform.globalPosition, gameObject.transform.localRotation, null);
-        //InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner2.transform.globalPosition, gameObject.transform.localRotation, null);
-        //InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner3.transform.globalPosition, gameObject.transform.localRotation, null);
-        //InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner4.transform.globalPosition, gameObject.transform.localRotation, null);
+        Vector3 scale = new Vector3(1, 1, 1);
+        InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner1.transform.globalPosition, gameObject.transform.localRotation, scale);
+        InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner2.transform.globalPosition, gameObject.transform.localRotation, scale);
+        InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner3.transform.globalPosition, gameObject.transform.localRotation, scale);
+        InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner4.transform.globalPosition, gameObject.transform.localRotation, scale);
     }
 
     public void MoveToPosition(Vector3 positionToReach, float speed)
