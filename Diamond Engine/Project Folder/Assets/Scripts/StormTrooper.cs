@@ -131,6 +131,8 @@ public class StormTrooper : Enemy
         UpdateState();
 
         #endregion
+
+        Debug.Log("NeedFindAim: " + needFindAim.ToString());
     }
 
 
@@ -447,6 +449,7 @@ public class StormTrooper : Enemy
     #region RUN
     private void StartRun()
     {
+        Debug.Log("STORMTROOPER RUN");
         agent.CalculateRandomPath(gameObject.transform.globalPosition, runningRange);
 
         Animator.Play(gameObject, "ST_Run", speedMult);
@@ -467,9 +470,8 @@ public class StormTrooper : Enemy
     private void RunEnd()
     {
         Audio.StopAudio(gameObject);
-
-        if (!PlayerIsShootable())
-            needFindAim = true;
+        
+        PlayerIsShootable();
     }
     #endregion
 
@@ -477,16 +479,21 @@ public class StormTrooper : Enemy
 
     private void StartFindAim()
     {
+        Debug.Log("STORMTROOPER FIND AIM");
         Animator.Play(gameObject, "ST_Run", speedMult);
         if (blaster != null)
             Animator.Play(blaster, "ST_Run", speedMult);
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
 
-        agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
-        Vector3 directionFindAim = new Vector3(agent.GetPointAt(1) - gameObject.transform.globalPosition);
-        targetPosition = directionFindAim.normalized * runningRange + gameObject.transform.globalPosition;
-        agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
+        if(agent != null && Core.instance != null)
+        {
+            agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
+            Vector3 directionFindAim = new Vector3(agent.GetPointAt(1) - gameObject.transform.globalPosition);
+            agent.ClearPath();
+            targetPosition = directionFindAim.normalized * runningRange + gameObject.transform.globalPosition;
+            agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
+        }  
     }
 
     private void UpdateFindAim()
@@ -501,7 +508,7 @@ public class StormTrooper : Enemy
     {
         Audio.StopAudio(gameObject);
 
-        needFindAim = false;
+        PlayerIsShootable();
     }
     #endregion
 
@@ -713,12 +720,14 @@ public class StormTrooper : Enemy
             if (raycastHit.CompareTag("Player"))
             {
                 //Debug.Log("RayCast Player True with tag");
+                needFindAim = false;
                 return true;
             }
 
         }
 
         //Debug.Log("RayCast Player False");
+        needFindAim = true;
         return false;
     }
 
