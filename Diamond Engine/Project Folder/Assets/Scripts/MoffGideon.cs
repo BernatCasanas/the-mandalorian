@@ -97,9 +97,9 @@ public class MoffGideon : Entity
     private List<GameObject> deathtroopers = null;
 
     //Private Variables
-    private float damaged = 0.0f;
+    //private float damaged = 0.0f;
     private float currAnimationPlaySpd = 1f;
-    private bool invencible = false;
+    //private bool invencible = false;
     private bool wander = false;
     private bool ready2Spawn = false;
     private Vector3 targetDash = null;
@@ -124,7 +124,7 @@ public class MoffGideon : Entity
 
         damageMult = 1f;
 
-        damaged = 0f;
+        //damaged = 0f;
 
         probWander = probWanderP1;
 
@@ -757,7 +757,7 @@ public class MoffGideon : Entity
 
     private void StartSpawnEnemies()
     {
-        invencible = true;
+        //invencible = true;
         ready2Spawn = false;
         SpawnEnemies();
         Animator.Play(gameObject, "MG_Spawn", speedMult);
@@ -774,7 +774,7 @@ public class MoffGideon : Entity
     private void EndSpawnEnemies()
     {
         enemiesTimer = enemiesTime;
-        invencible = false;
+        //invencible = false;
     }
 
     #endregion
@@ -915,7 +915,7 @@ public class MoffGideon : Entity
 
             TakeDamage(damageToBoss);
             Debug.Log("GIDEON HP: " + healthPoints.ToString());
-            damaged = 1.0f;
+            //damaged = 1.0f;
             //CHANGE FOR APPROPIATE RANCOR HIT
             if (currentPhase == MOFFGIDEON_PHASE.PHASE1)
             {
@@ -966,7 +966,7 @@ public class MoffGideon : Entity
 
             TakeDamage(damageToBoss);
             Debug.Log("Rancor HP: " + healthPoints.ToString());
-            damaged = 1.0f;
+            //damaged = 1.0f;
             //CHANGE FOR APPROPIATE RANCOR HIT
             Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Hit_Phase_1");
 
