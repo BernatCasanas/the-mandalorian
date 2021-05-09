@@ -14,7 +14,7 @@ public class StormTrooper : Enemy
         WANDER,
         RUN,
         PUSHED,
-        //FIND_AIM,
+        FIND_AIM,
         SHOOT,
         HIT,
         DIE
@@ -28,7 +28,7 @@ public class StormTrooper : Enemy
         IN_RUN_END,
         IN_WANDER,
         IN_PUSHED,
-        //IN_FIND_AIM,
+        IN_FIND_AIM,
         IN_SHOOT,
         IN_HIT,
         IN_DIE,
@@ -79,6 +79,8 @@ public class StormTrooper : Enemy
     public int maxShots = 2;
     private int shotSequences = 0;
     public int maxSequences = 2;
+    private bool shooting = false;
+    private bool needFindAim = false;
 
     //force
     public float forcePushMod = 1;
@@ -153,6 +155,14 @@ public class StormTrooper : Enemy
             }
         }
 
+        if (currentState == STATE.FIND_AIM)
+        {
+            if (Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance)
+            {
+                inputsList.Add(INPUT.IN_SHOOT);
+            }
+        }
+
         if (skill_slowDownActive)
         {
             skill_slowDownTimer += myDeltaTime;
@@ -173,9 +183,14 @@ public class StormTrooper : Enemy
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
 
-                if (Core.instance != null /*&& currentState != STATE.SHOOT*/)
-                    LookAt(Core.instance.gameObject.transform.globalPosition);
+                //if (Core.instance != null && currentState != STATE.SHOOT)
+                //    LookAt(Core.instance.gameObject.transform.globalPosition);
             }
+        }
+
+        if(currentState == STATE.RUN && needFindAim)
+        {
+            inputsList.Add(INPUT.IN_FIND_AIM);
         }
     }
 
@@ -263,6 +278,12 @@ public class StormTrooper : Enemy
                             StartWander();
                             break;
 
+                        case INPUT.IN_FIND_AIM:
+                            currentState = STATE.FIND_AIM;
+                            RunEnd();
+                            StartFindAim();
+                            break;
+
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
                             RunEnd();
@@ -277,26 +298,28 @@ public class StormTrooper : Enemy
                     }
                     break;
 
-                //case STATE.FIND_AIM:
-                //    switch(input)
-                //    {
-                //        case INPUT.IN_SHOOT:
-                //            currentState = STATE.SHOOT;
-                //            RunEnd();
-                //            StartShoot();
-                //            break;
+                case STATE.FIND_AIM:
+                    switch (input)
+                    {
+                        case INPUT.IN_SHOOT:
+                            currentState = STATE.SHOOT;
+                            FindAimEnd();
+                            StartShoot();
+                            break;
 
-                //        case INPUT.IN_PUSHED:
-                //            currentState = STATE.PUSHED;
-                //            StartPush();
-                //            break;
+                        case INPUT.IN_PUSHED:
+                            currentState = STATE.PUSHED;
+                            FindAimEnd();
+                            StartPush();
+                            break;
 
-                //        case INPUT.IN_DIE:
-                //            currentState = STATE.DIE;
-                //            StartDie();
-                //            break;
-                //    }
-                //    break;
+                        case INPUT.IN_DIE:
+                            currentState = STATE.DIE;
+                            FindAimEnd();
+                            StartDie();
+                            break;
+                    }
+                    break;
 
                 case STATE.SHOOT:
                     switch (input)
@@ -305,11 +328,6 @@ public class StormTrooper : Enemy
                             currentState = STATE.RUN;
                             StartRun();
                             break;
-
-                        //case INPUT.IN_FIND_AIM:
-                        //    currentState = STATE.FIND_AIM;
-                        //    StartFindAim();
-                        //    break;
 
                         case INPUT.IN_DIE:
                             currentState = STATE.DIE;
@@ -361,9 +379,9 @@ public class StormTrooper : Enemy
             case STATE.WANDER:
                 UpdateWander();
                 break;
-            //case STATE.FIND_AIM:
-            //    UpdateFindAim();
-            //    break;
+            case STATE.FIND_AIM:
+                UpdateFindAim();
+                break;
             case STATE.SHOOT:
                 UpdateShoot();
                 break;
@@ -442,9 +460,6 @@ public class StormTrooper : Enemy
     {
         LookAt(agent.GetDestination());
 
-        //if (skill_slowDownActive)
-        //    agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-
         agent.MoveToCalculatedPos(runningSpeed * speedMult);
 
         UpdateAnimationSpd(speedMult);
@@ -452,6 +467,9 @@ public class StormTrooper : Enemy
     private void RunEnd()
     {
         Audio.StopAudio(gameObject);
+
+        if (!PlayerIsShootable())
+            needFindAim = true;
     }
     #endregion
 
@@ -459,60 +477,32 @@ public class StormTrooper : Enemy
 
     private void StartFindAim()
     {
-        if (agent != null && Core.instance != null)
-        {
-            if (!agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition))
-            {
-                inputsList.Add(INPUT.IN_SHOOT);
-                return;
-            }
+        Animator.Play(gameObject, "ST_Run", speedMult);
+        if (blaster != null)
+            Animator.Play(blaster, "ST_Run", speedMult);
+        UpdateAnimationSpd(speedMult);
+        Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
 
-            targetPosition = agent.GetPointAt(agent.GetPathSize() - 1);
-
-            if (targetPosition == null)
-            {
-                inputsList.Add(INPUT.IN_SHOOT);
-                return;
-            }
-
-            targetPosition = (targetPosition - gameObject.transform.globalPosition).normalized * wanderRange;
-
-            Animator.Play(gameObject, "ST_Run", speedMult);
-            if (blaster != null)
-                Animator.Play(blaster, "ST_Idle", speedMult);
-            UpdateAnimationSpd(speedMult);
-            reAimTimer = reAimTime;
-        }
-
+        agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
+        Vector3 directionFindAim = new Vector3(agent.GetPointAt(1) - gameObject.transform.globalPosition);
+        targetPosition = directionFindAim.normalized * runningRange + gameObject.transform.globalPosition;
+        agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
     }
 
     private void UpdateFindAim()
     {
-        if (targetPosition != null)
-        {
-            if (reAimTimer > 0.0f)
-            {
-                reAimTimer -= myDeltaTime;
+        LookAt(agent.GetDestination());
 
-                LookAt(targetPosition);
-                MoveToPosition(targetPosition, wanderSpeed);
+        agent.MoveToCalculatedPos(runningSpeed * speedMult);
 
-                if (reAimTime <= 0.0f)
-                {
-                    if (PlayerIsShootable())
-                    {
-                        inputsList.Add(INPUT.IN_SHOOT);
-                    }
-                    else
-                    {
-                        reAimTimer = reAimTime;
-                    }
-                }
-            }
-        }
-
+        UpdateAnimationSpd(speedMult);
     }
+    private void FindAimEnd()
+    {
+        Audio.StopAudio(gameObject);
 
+        needFindAim = false;
+    }
     #endregion
 
     #region SHOOT
@@ -544,6 +534,7 @@ public class StormTrooper : Enemy
                 else
                 {
                     //Reboot times
+                    shooting = false;
                     shotTimes = 0;
                     shotSequences = 0;
                     inputsList.Add(INPUT.IN_RUN);
@@ -559,6 +550,7 @@ public class StormTrooper : Enemy
             if (shotTimer <= 0.0f)
             {
                 Shoot();
+                //shooting = true;
 
                 if (shotTimes >= maxShots)
                 {
@@ -575,11 +567,13 @@ public class StormTrooper : Enemy
                         //Start of pause between sequences
                         sequenceTimer = timeBetweenSequences;
                         shotTimes = 0;
+                        shooting = false;
                     }
                     //End of second shot of the second sequence
                     else
                     {
                         statesTimer = timeBetweenStates;
+                        shooting = false;
                         //Debug.Log("Ending 2 time shot");
                     }
                 }
@@ -594,16 +588,20 @@ public class StormTrooper : Enemy
             {
                 Shoot();
                 shotTimer = timeBetweenShots;
+                //shooting = true;
             }
         }
 
-        LookAt(Core.instance.gameObject.transform.globalPosition);
+        if(!shooting)
+            LookAt(Core.instance.gameObject.transform.globalPosition);
 
         UpdateAnimationSpd(speedMult);
     }
 
     private void Shoot()
     {
+        shooting = true;
+
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         bullet.GetComponent<BH_Bullet>().damage = damage;
 
