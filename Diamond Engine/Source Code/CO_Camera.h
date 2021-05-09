@@ -1,8 +1,10 @@
 #pragma once
 #include "Component.h"
 #include"DE_FrameBuffer.h"
+#include "DE_Advanced_FrameBuffer.h"
 
 #include"MathGeoLib/include/Geometry/Frustum.h"
+class ResourcePostProcess;
 
 class C_Camera : public Component
 {
@@ -32,14 +34,23 @@ public:
 
 	void PushCameraMatrix();
 
+	void SetPostProcessProfile(ResourcePostProcess* newProfile);
+	void DrawCreationWindow();
+
+	inline bool GetIsHDR() { return isHDR; }
+	void ChangeHDR(bool isHDR);
+	//DE_FrameBuffer resolvedFBO;
+	//DE_FrameBuffer msaaFBO;
+
+	DE_Advanced_FrameBuffer resolvedFBO;
+	DE_Advanced_FrameBuffer msaaFBO;
 	void SetCameraToPerspective();
 	void SetCameraToOrthographic();
 	void SetVerticalFOV(float verticalFOV);
 	void SetHorizontalFOV(float horizontalFOV);
 
 public:
-	DE_FrameBuffer resolvedFBO;
-	DE_FrameBuffer msaaFBO;
+
 
 	Frustum camFrustrum;
 	float fov;
@@ -48,6 +59,7 @@ public:
 
 	float windowWidth;
 	float windowHeight;
+	ResourcePostProcess* postProcessProfile;
 
 //Movement logic
 public: 
@@ -66,5 +78,6 @@ private:
 	bool PrespectiveCulling(AABB& globalAABB);
 
 	int msaaSamples;
+	bool isHDR;
 	float verticalFOV;
 };

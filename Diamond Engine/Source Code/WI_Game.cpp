@@ -44,7 +44,7 @@ void W_Game::Draw()
 
 			//float w = ImGui::GetWindowSize().x;
 			//float h = (9 * w) / 16;
-			ImGui::Image((ImTextureID)targetCamera->resolvedFBO.GetTextureBuffer(), ImGui::GetContentRegionAvail(), ImVec2(0, 1), ImVec2(1, 0));
+			ImGui::Image((ImTextureID)targetCamera->resolvedFBO.GetColorTexture(), ImGui::GetContentRegionAvail(), ImVec2(0, 1), ImVec2(1, 0));
 		}
 
 		if (ImGui::IsWindowHovered() && DETime::state == GameState::PLAY && ImGui::IsMouseClicked(ImGuiMouseButton_Left))

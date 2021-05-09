@@ -16,7 +16,7 @@
 
 C_Script* C_Script::runningScript = nullptr;
 C_Script::C_Script(GameObject* _gm, const char* scriptName) : Component(_gm), noGCobject(0), updateMethod(nullptr), onCollisionEnter(nullptr), onTriggerEnter(nullptr), onApplicationQuit(nullptr)
-, onExecuteButton(nullptr), onExecuteCheckbox(nullptr), onAwake(nullptr), onStart(nullptr)
+, onExecuteButton(nullptr), onExecuteCheckbox(nullptr), onAwake(nullptr), onStart(nullptr), onDestroyMethod(nullptr)
 {
 	name = scriptName;
 	//strcpy(name, scriptName);
@@ -31,6 +31,11 @@ C_Script::~C_Script()
 {
 	if (C_Script::runningScript == this)
 		C_Script::runningScript = nullptr;
+
+	if ((DETime::state == GameState::PLAY || DETime::state == GameState::STEP) && onDestroyMethod != nullptr)
+	{
+		OnDestroy();
+	}
 
 	mono_gchandle_free(noGCobject);
 
@@ -353,8 +358,17 @@ void C_Script::LoadScriptData(const char* scriptName)
 	oncDesc = mono_method_desc_new(":Start", false);
 	onStart = mono_method_desc_search_in_class(oncDesc, klass);
 	mono_method_desc_free(oncDesc);
+
+
 #pragma endregion
 
+#pragma region DestroyCSMethods
+
+	oncDesc = mono_method_desc_new(":OnDestroy", false);
+	onDestroyMethod = mono_method_desc_search_in_class(oncDesc, klass);
+	mono_method_desc_free(oncDesc);
+
+#pragma endregion
 
 	oncDesc = mono_method_desc_new(":OnTriggerEnter", false);
 	onTriggerEnter = mono_method_desc_search_in_class(oncDesc, klass);
@@ -471,6 +485,12 @@ void C_Script::OnAwake()
 {
 	if (onAwake != nullptr)
 		mono_runtime_invoke(onAwake, mono_gchandle_get_target(noGCobject), NULL, NULL);
+}
+
+void C_Script::OnDestroy()
+{
+	if (onDestroyMethod != nullptr)
+		mono_runtime_invoke(onDestroyMethod, mono_gchandle_get_target(noGCobject), NULL, NULL);
 }
 
 void C_Script::SetField(MonoClassField* field, GameObject* value)
