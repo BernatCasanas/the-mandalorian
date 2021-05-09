@@ -13,20 +13,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -14.6763916015625,
-                0.6578211784362793,
-                -14.604031562805176
+                0,
+                0.19323915243148804,
+                0
             ],
             "Rotation": [
-                -2.120925657322914e-09,
-                1.4958196530010793e-18,
-                7.0526734452514006e-10,
+                0,
+                0,
+                0,
                 1
             ],
             "Scale": [
-                0.99999821186065674,
                 1,
-                0.99999821186065674
+                1,
+                1
             ],
             "Components": [
                 {
@@ -54,8 +54,12 @@
                     "GroguCost": 0,
                     "FireRateMult": 0,
                     "SecTickDamage": 0,
+                    "sniperShotIntervalModifier": 0,
+                    "MaxForceModifier": 0,
                     "PlayerStatuses": 0,
                     "shootPoint": 158286609,
+                    "rifle": 866035125,
+                    "blaster": 2037029300,
                     "rotationSpeed": 2,
                     "movementSpeed": 5.0500001907348633,
                     "mouseSens": 1,
@@ -122,7 +126,7 @@
                         814877702,
                         1359170899,
                         518908689,
-                        1939818159,
+                        965558850,
                         1309854030,
                         1241720770
                     ]
@@ -519,7 +523,7 @@
                 0,
                 0,
                 -0.0073059904389083385,
-                0.99997329711914062
+                0.99997329711914063
             ],
             "Scale": [
                 1,
@@ -1633,7 +1637,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0.49832534790039062,
+                0.49832534790039063,
                 2.0816681711721685e-17,
                 1.3898392876873153e-17
             ],
@@ -1860,6 +1864,74 @@
             ]
         },
         {
+            "name": "Blaster_Joint",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 161577509,
+            "ParentUID": 1333412432,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.25737485289573669,
+                1.17997145652771,
+                0.8974299430847168
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "RifleJoint",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1874872386,
+            "ParentUID": 1333412432,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.23088483512401581,
+                0.87412208318710327,
+                0.40240010619163513
+            ],
+            "Rotation": [
+                0.73342525959014893,
+                0,
+                0,
+                0.67977017164230347
+            ],
+            "Scale": [
+                0.0099999997764825821,
+                0.0099999997764825821,
+                0.0099999997764825821
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
             "name": "Mesh",
             "tag": "Untagged",
             "layer": "Default",
@@ -2041,7 +2113,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -1.8636245727539062,
+                -1.8636245727539063,
                 0.046333789825439453,
                 -0.77125072479248047
             ],
@@ -2075,7 +2147,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -1.8636245727539062,
+                -1.8636245727539063,
                 0.046333789825439453,
                 0.86050128936767578
             ],
@@ -2109,7 +2181,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0.76593399047851562,
+                0.76593399047851563,
                 0.046333789825439453,
                 0.86050128936767578
             ],
@@ -2178,7 +2250,7 @@
             "Static": false,
             "Position": [
                 -0.0040745735168457031,
-                -0.0062532424926757812,
+                -0.0062532424926757813,
                 -0.058134078979492188
             ],
             "Rotation": [
@@ -3407,7 +3479,7 @@
             "layer": "Default",
             "Active": true,
             "UID": 471896988,
-            "ParentUID": 47750865,
+            "ParentUID": 1143011820,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -3527,7 +3599,7 @@
             "layer": "Default",
             "Active": true,
             "UID": 970959798,
-            "ParentUID": 47750865,
+            "ParentUID": 1735369742,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -3566,114 +3638,12 @@
             ]
         },
         {
-            "name": "RifleJoint",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 2097824215,
-            "ParentUID": 47750865,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0.23088550567626953,
-                1.0673608779907227,
-                -0.40240001678466797
-            ],
-            "Rotation": [
-                -6.4111318920367921e-08,
-                0.67976999282836914,
-                -0.73342537879943848,
-                -1.7784529404707428e-10
-            ],
-            "Scale": [
-                0.0099999997764825821,
-                0.010000003501772881,
-                0.010000003501772881
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "RifleJoint_end",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 109356398,
-            "ParentUID": 2097824215,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                1,
-                0
-            ],
-            "Rotation": [
-                2.2204460492503131e-16,
-                -2.2204463139481091e-16,
-                1.7763568394002505e-15,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                0.99999994039535522
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "RifleJoint_end_end",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 856763728,
-            "ParentUID": 109356398,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -1055.39111328125,
-                -1459.1865234375,
-                -830.327392578125
-            ],
-            "Rotation": [
-                -3.7023202281716294e-08,
-                -0.07582554966211319,
-                -0.99712109565734863,
-                -4.6653003238361634e-08
-            ],
-            "Scale": [
-                100.00017547607422,
-                100.00013732910156,
-                99.999969482421875
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
             "name": "Healing Particles",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "UID": 488266168,
-            "ParentUID": 856763728,
+            "ParentUID": 47750865,
             "PrefabReference": 0,
             "PrefabID": 1060233965,
             "DontDestroy": false,
@@ -3694,62 +3664,212 @@
                 1,
                 1.0000017881393433
             ],
-            "PrefabObjects": [
+            "PrefabObjects": []
+        },
+        {
+            "name": "Rifle",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 866035125,
+            "ParentUID": 47750865,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
                 {
-                    "name": "Rifle",
-                    "tag": "Untagged",
-                    "layer": "Default",
-                    "Active": true,
-                    "UID": 866035125,
-                    "ParentUID": 488266168,
-                    "PrefabID": 0,
-                    "PrefabReference": 866035125,
-                    "DontDestroy": false,
-                    "Static": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
+                    "Type": 1,
+                    "Active": true
                 },
                 {
-                    "name": "Rifle_Mesh",
-                    "tag": "Untagged",
-                    "layer": "Default",
+                    "Type": 16,
                     "Active": true,
-                    "UID": 1521546145,
-                    "ParentUID": 866035125,
-                    "PrefabID": 0,
-                    "PrefabReference": 1521546145,
-                    "DontDestroy": false,
-                    "Static": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
+                    "RootBone UID": 1874872386,
+                    "MeshRendererUID": 1626255120,
+                    "Animations": [
+                        1309854030,
+                        1241720770
                     ]
+                }
+            ]
+        },
+        {
+            "name": "Rifle_Mesh",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1626255120,
+            "ParentUID": 866035125,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                -0.19323915243148804,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1736852453.mmh",
+                    "UID": 1736852453,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
+                    "MaterialUID": 1948688504
+                }
+            ]
+        },
+        {
+            "name": "Blaster",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 2037029300,
+            "ParentUID": 47750865,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                -0.19323915243148804,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 16,
+                    "Active": true,
+                    "RootBone UID": 161577509,
+                    "MeshRendererUID": 246734222,
+                    "Animations": [
+                        965558850
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Blaster_Mesh",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 246734222,
+            "ParentUID": 2037029300,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1228577233.mmh",
+                    "UID": 1228577233,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
+                    "MaterialUID": 1948688504
                 }
             ]
         },

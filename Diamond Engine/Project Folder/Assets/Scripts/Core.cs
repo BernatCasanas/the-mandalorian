@@ -54,7 +54,9 @@ public class Core : Entity
 
     public GameObject shootPoint = null;
     public GameObject hud = null;
-    public GameObject rifle = null;
+
+    public GameObject rifle   = null;
+    public GameObject blaster = null;
 
     private bool scriptStart = true;
 
@@ -509,6 +511,13 @@ public class Core : Entity
                 {
                     stopShootingTime += myDeltaTime;
                     Animator.Play(gameObject, "Shoot", 0.01f);
+
+                    if (blaster != null)
+                    {
+                        blaster.Enable(true);
+                        Animator.Play(blaster, "Shoot", normalShootSpeed * speedMult);
+                    }
+
                     UpdateAnimationSpd(0.01f);
                 }
             }
@@ -868,7 +877,15 @@ public class Core : Entity
             currFireRate = shootingTimer;
             numberOfShots += 1;
         }
+        
         Animator.Play(gameObject, "Shoot", normalShootSpeed * speedMult);
+
+        if (blaster != null)
+        {
+            blaster.Enable(true);
+            Animator.Play(blaster, "Shoot", normalShootSpeed * speedMult);
+        }
+
         UpdateAnimationSpd(normalShootSpeed * speedMult);
 
         PlayParticles(PARTICLES.MUZZLE);
@@ -894,6 +911,9 @@ public class Core : Entity
     {
         if (myAimbot != null)
             myAimbot.isShooting = false;
+
+        if(blaster != null)
+            blaster.Enable(false);
     }
 
     private bool CanStopShooting()
@@ -944,6 +964,13 @@ public class Core : Entity
     private void StartGadgetShoot()
     {
         Animator.Play(gameObject, "Shoot", gadgetShootSkill * speedMult);
+
+        if (blaster != null)
+        {
+            blaster.Enable(true);
+            Animator.Play(blaster, "Shoot", normalShootSpeed * speedMult);
+        }
+
         UpdateAnimationSpd(gadgetShootSkill * speedMult);
         gadgetShootTimer = gadgetFireRate;
         grenade_reloading = true;
@@ -963,6 +990,9 @@ public class Core : Entity
             Debug.Log("Shootpoint reference is null!");
             return;
         }
+
+        if (blaster != null)
+            blaster.Enable(false);
 
         Audio.StopAudio(gameObject);
         Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot_Mando");
@@ -1103,6 +1133,7 @@ public class Core : Entity
         bool perfectShot = false;
 
         Animator.Play(gameObject, "Shoot", normalShootSpeed * speedMult);
+
         UpdateAnimationSpd(normalShootSpeed * speedMult);
 
         if (chargeTimer > timeToPerfectCharge && chargeTimer < timeToPerfectChargeEnd)
