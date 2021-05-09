@@ -69,7 +69,8 @@ public class HeavyTrooper : Enemy
     //Ranges
     public float wanderRange = 7.5f;
     public float sweepRange = 3.0f;
-    public float dashRange = 5.0f;
+    public float attackRange = 5.0f;
+    public float dashLength = 5.0f;
     //public float dashLength = 20.0f;
     //public float spearLength = 1.5f;
 
@@ -160,7 +161,7 @@ public class HeavyTrooper : Enemy
 
             if (dashTimer < 0.0f)
             {
-                if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) < sweepRange)
+                if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) < sweepRange || doneDashes >= 2)
                 {
                     inputsList.Add(INPUT.IN_SWEEP);
                 }
@@ -226,7 +227,7 @@ public class HeavyTrooper : Enemy
             {
                 inputsList.Add(INPUT.IN_SWEEP);
             }
-            else if (InRange(Core.instance.gameObject.transform.globalPosition, dashRange) && straightPath)
+            else if (InRange(Core.instance.gameObject.transform.globalPosition, attackRange) && straightPath)
             {
                 inputsList.Add(INPUT.IN_DASH_RANGE);
             }
@@ -657,7 +658,7 @@ public class HeavyTrooper : Enemy
             {
                 //Debug.Log("HEAVYTROOPER LOADING ENTRY 2");
                 Vector3 direction = Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition;
-                targetPosition = direction.normalized * dashRange + gameObject.transform.globalPosition;
+                targetPosition = direction.normalized * dashLength + gameObject.transform.globalPosition;
                 agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
             }
         }
@@ -671,9 +672,9 @@ public class HeavyTrooper : Enemy
     {
         Debug.Log("HEAVYTROOPER DASH");
         if (!straightPath)
-            dashTimer = (dashRange / (dashSpeed * dashSpeedReduction * speedMult));
+            dashTimer = (dashLength / (dashSpeed * dashSpeedReduction * speedMult));
         else 
-            dashTimer = (dashRange / (dashSpeed * speedMult));
+            dashTimer = (dashLength / (dashSpeed * speedMult));
 
         StraightPath();
 
@@ -684,6 +685,8 @@ public class HeavyTrooper : Enemy
         Audio.PlayAudio(gameObject, "Play_Heavytrooper_Dash");
         UpdateAnimationSpd(speedMult);
         particles.Play(HeavyTrooperParticles.HEAVYROOPER_PARTICLES.DASH);
+
+        doneDashes++;
     }
     private void UpdateDash()
     {

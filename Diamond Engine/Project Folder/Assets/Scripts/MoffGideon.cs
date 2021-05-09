@@ -54,11 +54,12 @@ public class MoffGideon : Entity
 
     private NavMeshAgent agent = null;
     public GameObject camera = null;
+    public GameObject saber = null;
 
     //State
     private MOFFGIDEON_STATE currentState = MOFFGIDEON_STATE.NEUTRAL;
     private List<MOFFGIDEON_INPUT> inputsList = new List<MOFFGIDEON_INPUT>();
-    private MOFFGIDEON_PHASE currentPhase = MOFFGIDEON_PHASE.PHASE1;
+    private MOFFGIDEON_PHASE currentPhase = MOFFGIDEON_PHASE.PHASE2;
 
     Random randomNum = new Random();
 
@@ -828,7 +829,6 @@ public class MoffGideon : Entity
 
     private void StartChargeThrow()
     {
-
     }
 
 
@@ -846,6 +846,16 @@ public class MoffGideon : Entity
 
     private void StartThrowSaber()
     {
+        if (saber != null)
+        {
+            MoffGideonSword moffGideonSword = saber.GetComponent<MoffGideonSword>();
+
+            if(moffGideonSword != null)
+            {
+                moffGideonSword.ThrowSword(gameObject.transform.GetForward());
+            }
+        }
+
         Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Lightsaber_Throw");
     }
 

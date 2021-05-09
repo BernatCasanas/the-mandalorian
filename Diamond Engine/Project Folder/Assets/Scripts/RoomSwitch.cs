@@ -5,13 +5,16 @@ using DiamondEngine;
 public class RoomDataHolder
 {
     public List<int> visited = new List<int>(); //I think this is a fucking pointer-type shit? i don't know, i don't think this is working, im out
-    public int finalScene = 0;
+    public int bossScene = 0;
+    public int preBossScene = 0;
 
-    public RoomDataHolder(List<int> initList, int final)
+    public RoomDataHolder(List<int> initList, int final, int preBoss = 0)
     {
         //visited.Clear();
         visited = new List<int>(initList);
-        finalScene = final;
+        bossScene = final;
+
+        preBossScene = preBoss;
     }
 
     public void ClearData(List<int> initList)
@@ -55,7 +58,7 @@ public static class RoomSwitch
         {
             494045661,  //Room 1
             573625925,  //Room 2
-            1529493583, //Room 3
+            1529493583, //Should remove one of these
         },
 
     };
@@ -64,10 +67,10 @@ public static class RoomSwitch
     {
         new RoomDataHolder(originalLevelPools[0], 308281119),
         new RoomDataHolder(originalLevelPools[1], 880545183),
-        new RoomDataHolder(originalLevelPools[2], 2069575406),
+        new RoomDataHolder(originalLevelPools[2], 2069575406, 518439386),
     };
 
-    private readonly static int postBossRoom = 466646284;
+    private readonly static int shopRoom = 466646284;
 
     private static int roomID = 0;
     public static int currentroom = 0;
@@ -97,15 +100,6 @@ public static class RoomSwitch
         }
     }
 
-    public static void SwitchToLevel2()
-    {
-        currentLevelIndicator = LEVELS.TWO;
-        Debug.Log("Level 2 loaded");
-        currentroom = levelLists[(int)currentLevelIndicator - 1].finalScene;
-        levelLists[0].ClearData(originalLevelPools[0]);
-        SwitchRooms();
-    }
-
     public static void SwitchRooms()
     {
 
@@ -115,11 +109,11 @@ public static class RoomSwitch
             Core.instance.SaveBuffs();
 
         //Load Post Boss Room
-        if (index > 0 && currentLevelIndicator == LEVELS.TWO && levelLists[index - 1].finalScene == currentroom  /*&& currentLevelIndicator == LEVELS.TWO*/)
+        if (index > 0 && currentLevelIndicator <= LEVELS.MAX && levelLists[index - 1].bossScene == currentroom  /*&& currentLevelIndicator == LEVELS.TWO*/)
         {
             Debug.Log("PostBoss loaded");
-            SceneManager.LoadScene(postBossRoom);
-            currentroom = postBossRoom;
+            SceneManager.LoadScene(shopRoom);
+            currentroom = shopRoom;
             return;
         }
 
@@ -137,17 +131,27 @@ public static class RoomSwitch
         //Switch Level
         else
         {
-            //levelLists[index].visited.Clear();
-            levelLists[index].visited = new List<int>(originalLevelPools[index]);
 
-            currentLevelIndicator++;
-            //IMPORTANT: isFinalScene is needed to know when to change from a room to the end scene to show statistics
+            if(levelLists[index].preBossScene != 0 && currentroom != levelLists[index].preBossScene)
+            {
+                currentroom = levelLists[index].preBossScene;
+                SceneManager.LoadScene(levelLists[index].preBossScene);
+            }
+            else
+            {
+                Debug.Log("Loading boss scene");
+                //levelLists[index].visited.Clear();
+                levelLists[index].visited = new List<int>(originalLevelPools[index]);
 
-            if (currentLevelIndicator == LEVELS.MAX)
-                Counter.isFinalScene = true;
+                currentLevelIndicator++;
+                //IMPORTANT: isFinalScene is needed to know when to change from a room to the end scene to show statistics
 
-            currentroom = levelLists[index].finalScene;
-            SceneManager.LoadScene(levelLists[index].finalScene);
+                if (currentLevelIndicator == LEVELS.MAX)
+                    Counter.isFinalScene = true;
+
+                currentroom = levelLists[index].bossScene;
+                SceneManager.LoadScene(levelLists[index].bossScene);
+            }
 
             PlayLevelEnvironment();
         }

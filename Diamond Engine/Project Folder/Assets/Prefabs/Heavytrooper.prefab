@@ -52,7 +52,7 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "HeavyTrooper",
-                    "detectionRange": 12.5,
+                    "detectionRange": 20,
                     "damage": 5,
                     "healthPoints": 60,
                     "stoppingDistance": 1,
@@ -60,18 +60,18 @@
                     "slerpSpeed": 5,
                     "spear": 1623363212,
                     "idleTime": 5,
-                    "tiredTime": 2,
-                    "loadingTime": 0.5,
+                    "tiredTime": 1,
+                    "loadingTime": 1,
                     "directionDecisionTime": 0.80000001192092896,
                     "directionSweepDecisionTime": 0.80000001192092896,
-                    "wanderSpeed": 3.5,
-                    "runningSpeed": 7.5,
-                    "dashSpeed": 20,
+                    "wanderSpeed": 2,
+                    "runningSpeed": 6,
+                    "dashSpeed": 10,
                     "dashSpeedReduction": 0.30000001192092896,
                     "wanderRange": 7.5,
                     "sweepRange": 2,
-                    "dashRange": 8,
-                    "spearLength": 1.5,
+                    "attackRange": 9,
+                    "dashLength": 6,
                     "forcePushMod": 1
                 },
                 {
@@ -1896,7 +1896,7 @@
             "name": "SweepParticles",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 747588289,
             "ParentUID": 1744866104,
             "PrefabReference": 0,
@@ -1935,7 +1935,7 @@
                 {
                     "Type": 20,
                     "Active": true,
-                    "systemActive": true,
+                    "systemActive": false,
                     "looping": true,
                     "maxDuration": 0.63700002431869507,
                     "ParticleEmitters": [
@@ -2069,15 +2069,15 @@
             "layer": "Default",
             "Active": true,
             "UID": 1367650268,
-            "ParentUID": 1116614551,
+            "ParentUID": 1744866104,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
                 0,
-                1.0007987022399902,
-                1.3916463851928711
+                0,
+                0
             ],
             "Rotation": [
                 0,
@@ -2086,9 +2086,9 @@
                 1
             ],
             "Scale": [
-                0.99999862909317017,
                 1,
-                0.99999862909317017
+                1,
+                1
             ],
             "Components": [
                 {
@@ -2101,7 +2101,7 @@
             "name": "DashParticles",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 2049367742,
             "ParentUID": 1367650268,
             "PrefabReference": 0,
@@ -2195,11 +2195,22 @@
                                     "paSizeOLTEndSize": 0.10000000149011612
                                 },
                                 {
-                                    "paEffectType": 4,
-                                    "paVelocityOLTVelocity": [
-                                        0.80000001192092896,
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": false,
+                                    "paShapePartSpeed": 0,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeAreaDimensions": [
+                                        0.10000000149011612,
+                                        2.3694278276172396e-38,
+                                        2.3694278276172396e-38
+                                    ],
+                                    "PaShapeSphereDirection": false,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 0,
+                                    "PaShapeOffset": [
+                                        0.10000000149011612,
                                         0,
-                                        -2
+                                        0
                                     ]
                                 }
                             ]
@@ -2255,11 +2266,22 @@
                                     "paSizeOLTEndSize": 0.10000000149011612
                                 },
                                 {
-                                    "paEffectType": 4,
-                                    "paVelocityOLTVelocity": [
-                                        -0.80000001192092896,
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": false,
+                                    "paShapePartSpeed": 0,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeAreaDimensions": [
+                                        -0.10000000149011612,
+                                        2.3694278276172396e-38,
+                                        0
+                                    ],
+                                    "PaShapeSphereDirection": false,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 0,
+                                    "PaShapeOffset": [
+                                        -0.10000000149011612,
                                         0,
-                                        -2
+                                        0
                                     ]
                                 }
                             ]
