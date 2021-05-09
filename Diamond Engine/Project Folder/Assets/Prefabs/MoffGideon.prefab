@@ -140,7 +140,7 @@
                     "spawner2": 1167400653,
                     "spawner3": 1934758151,
                     "spawner4": 1032956343,
-                    "sword": 1889709846,
+                    "sword": 1935053102,
                     "shootPoint": 2027939547,
                     "dieTime": 0.10000000149011612,
                     "neutralTime": 5,
@@ -1231,10 +1231,10 @@
                 -6.0736510931747034e-08
             ],
             "Rotation": [
-                0.008198215626180172,
-                -0.023347694426774979,
-                -0.10966071486473083,
-                0.99366098642349243
+                0.0081982165575027466,
+                -0.023347696289420128,
+                -0.10966072976589203,
+                0.99366110563278198
             ],
             "Scale": [
                 1,
@@ -1760,7 +1760,7 @@
         },
         {
             "name": "Dark_Lase_Moff",
-            "tag": "Untagged",
+            "tag": "Saber",
             "layer": "Default",
             "Active": true,
             "UID": 1935053102,
@@ -1816,6 +1816,57 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "HeavyTrooperSpear",
+                    "damage": 10
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0.5,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": true,
+                    "LockLinearY": true,
+                    "LockLinearZ": true,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "Moff_Guideon",
+                    "volume": 50,
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false
                 }
             ]
         },

@@ -26,6 +26,10 @@ public class HeavyTrooperSpear : DiamondComponent
             {
                 Debug.Log("Player Hit with damage: " + damage);
                 playerHealth.TakeDamage(damage);
+                if (gameObject.CompareTag("Saber"))
+                {
+                    Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Lightsaber_Attack");
+                }
             }
         }
     }
