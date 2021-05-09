@@ -425,8 +425,7 @@ public class Skill_Tree_Node : DiamondComponent
                         Core.instance.AddStatus(STATUS_TYPE.PRIM_SPEED, STATUS_APPLY_TYPE.SUBSTITUTE, 30, 1, true);
                         break;
                     case "PProjRange":
-                      //  Core.instance.AddStatus(STATUS_TYPE.PRIM_SPEED, STATUS_APPLY_TYPE.SUBSTITUTE, 30, 1, true);
-                      // WIP
+                        Core.instance.AddStatus(STATUS_TYPE.PRIM_MOV_SPEED, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 1, true);
                         break;
                     case "PSlowEnem":
                         Core.instance.AddStatus(STATUS_TYPE.PRIM_SLOW, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 1, true);

@@ -354,6 +354,9 @@ public class Skel : Bosseslv2
     {
         if (collidedGameObject.CompareTag("Bullet"))
         {
+            if (Core.instance != null)
+                if (Core.instance.HasStatus(STATUS_TYPE.PRIM_MOV_SPEED))
+                    AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_MOV_SPEED).severity / 100, 5, false);
             BH_Bullet bulletComp = collidedGameObject.GetComponent<BH_Bullet>();
 
 

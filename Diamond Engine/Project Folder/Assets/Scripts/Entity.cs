@@ -62,6 +62,7 @@ public enum STATUS_TYPE
     LIFESTEAL,
     BLOCK,
     PRIM_SPEED,
+    PRIM_MOV_SPEED,
     PRIM_RANGE,
     PRIM_SLOW,
     OVERHEAT,
