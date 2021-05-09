@@ -11,7 +11,7 @@ public class Enemy : Entity
 
 	protected Vector3 targetPosition = null;
 	protected float stoppingDistance = 1.0f;
-	protected string coinDropPath = "Library/Prefabs/1907169014.prefab";
+	private string coinDropPath = "Library/Prefabs/989682380.prefab";
 
 	public float slerpSpeed = 5.0f;
 
@@ -106,7 +106,8 @@ public class Enemy : Entity
 			Vector3 pos = gameObject.transform.globalPosition;
 			pos.x += rand.Next(-200, 201) / 100;
 			pos.z += rand.Next(-200, 201) / 100;
-			InternalCalls.CreatePrefab(coinDropPath, pos, Quaternion.identity, new Vector3(0.07f, 0.07f, 0.07f));
+			InternalCalls.CreatePrefab(coinDropPath, pos, Quaternion.identity, new Vector3(2.0f, 2.0f, 2.0f));
+			Debug.Log("Coins dropped with path " + coinDropPath.ToString());
 		}
 	}
 
