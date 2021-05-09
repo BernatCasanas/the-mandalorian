@@ -79,10 +79,6 @@ public class StormTrooper : Enemy
     public int maxShots = 2;
     private int shotSequences = 0;
     public int maxSequences = 2;
-    private bool shooting = false;
-    private bool unableToShoot = false;
-    private Vector3 destinationAvoidObject = null;
-    private bool endedAvoidingObjects = true;
 
     //force
     public float forcePushMod = 1;
@@ -177,7 +173,7 @@ public class StormTrooper : Enemy
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
 
-                if (Core.instance != null && currentState != STATE.SHOOT)
+                if (Core.instance != null /*&& currentState != STATE.SHOOT*/)
                     LookAt(Core.instance.gameObject.transform.globalPosition);
             }
         }
@@ -531,39 +527,18 @@ public class StormTrooper : Enemy
 
     private void UpdateShoot()
     {
-        if (unableToShoot)
-        {
-            agent.MoveToCalculatedPos(runningSpeed * speedMult);
-            LookAt(agent.GetDestination());
-            if (PlayerIsShootable() || Mathf.Distance(gameObject.transform.globalPosition, destinationAvoidObject) <= 1f)
-            {
-                unableToShoot = false;
-                statesTimer = timeBetweenStates;
-                endedAvoidingObjects = false;
-                Animator.Play(gameObject, "ST_Idle");
-                if (blaster != null)
-                    Animator.Play(blaster, "ST_Idle");
-            }
-            else return;
-        }
-
-
-
         if (statesTimer > 0.0f)
         {
             statesTimer -= myDeltaTime;
 
             if (statesTimer <= 0.0f)
             {
-
-
                 //First Timer
                 if (shotSequences == 0)
                 {
                     //First Shot
-                    if (!Shoot()) return;
+                    Shoot();
                     shotTimer = timeBetweenShots;
-                    shooting = true;
                 }
                 //Second Timer
                 else
@@ -571,7 +546,6 @@ public class StormTrooper : Enemy
                     //Reboot times
                     shotTimes = 0;
                     shotSequences = 0;
-                    shooting = false;
                     inputsList.Add(INPUT.IN_RUN);
                 }
             }
@@ -584,9 +558,7 @@ public class StormTrooper : Enemy
 
             if (shotTimer <= 0.0f)
             {
-                shooting = true;
-
-                if (!Shoot()) return;
+                Shoot();
 
                 if (shotTimes >= maxShots)
                 {
@@ -600,17 +572,15 @@ public class StormTrooper : Enemy
                     //End of second shot of the first sequence
                     if (shotSequences < maxSequences)
                     {
+                        //Start of pause between sequences
                         sequenceTimer = timeBetweenSequences;
                         shotTimes = 0;
-                        shooting = false;
-                        //Start of pause between sequences
                     }
                     //End of second shot of the second sequence
                     else
                     {
                         statesTimer = timeBetweenStates;
-                        endedAvoidingObjects = true;
-                        Debug.Log("Ending 2 time shot");
+                        //Debug.Log("Ending 2 time shot");
                     }
                 }
             }
@@ -622,51 +592,28 @@ public class StormTrooper : Enemy
 
             if (sequenceTimer <= 0.0f)
             {
-                if (!Shoot()) return;
+                Shoot();
                 shotTimer = timeBetweenShots;
-                shooting = true;
             }
         }
 
-        if (!shooting)
-            LookAt(Core.instance.gameObject.transform.globalPosition);
+        LookAt(Core.instance.gameObject.transform.globalPosition);
 
         UpdateAnimationSpd(speedMult);
     }
 
-    private bool Shoot()
+    private void Shoot()
     {
-        if (!PlayerIsShootable() && endedAvoidingObjects)
-        {
-            unableToShoot = true;
-            endedAvoidingObjects = false;
-            shotTimes = 0;
-            shotTimer = 0.0f;
-            shotSequences = 0;
-            sequenceTimer = 0.0f;
-            Animator.Play(gameObject, "ST_Run", speedMult);
-            if (blaster != null)
-                Animator.Play(blaster, "ST_Run", speedMult);
-            UpdateAnimationSpd(speedMult);
-            agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
-            destinationAvoidObject = agent.GetDestination().normalized * avoidRange;
-            destinationAvoidObject.y = gameObject.transform.globalPosition.y;
-            agent.CalculatePath(gameObject.transform.globalPosition, destinationAvoidObject);
-
-
-            return false;
-        }
-
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         bullet.GetComponent<BH_Bullet>().damage = damage;
 
         Animator.Play(gameObject, "ST_Shoot", speedMult);
         if (blaster != null)
             Animator.Play(blaster, "ST_Shoot", speedMult);
-        UpdateAnimationSpd(speedMult);
+
         Audio.PlayAudio(gameObject, "PLay_Blaster_Stormtrooper");
+        UpdateAnimationSpd(speedMult);
         shotTimes++;
-        return true;
     }
     private void PlayerDetected()
     {
@@ -767,13 +714,13 @@ public class StormTrooper : Enemy
         {
             if (raycastHit.CompareTag("Player"))
             {
-                Debug.Log("RayCast Player True with tag");
+                //Debug.Log("RayCast Player True with tag");
                 return true;
             }
 
         }
 
-        Debug.Log("RayCast Player False");
+        //Debug.Log("RayCast Player False");
         return false;
     }
 

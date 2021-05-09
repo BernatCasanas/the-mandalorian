@@ -686,7 +686,7 @@ public class HeavyTrooper : Enemy
     #region SWEEP
     private void StartSweep()
     {
-        //Debug.Log("HEAVYTROOPER SWEEP");
+        Debug.Log("HEAVYTROOPER SWEEP");
         sweepTimer = sweepTime;
         particles.Stop(HeavyTrooperParticles.HEAVYROOPER_PARTICLES.DASH);
         Animator.Play(gameObject, "HVY_Sweep", speedMult);
@@ -738,7 +738,7 @@ public class HeavyTrooper : Enemy
     #region TIRED
     private void StartTired()
     {
-        //Debug.Log("HEAVYTROOPER TIRED");
+        Debug.Log("HEAVYTROOPER TIRED");
         tiredTimer = tiredTime;
         doneDashes = 0;
         canSweep = true;
