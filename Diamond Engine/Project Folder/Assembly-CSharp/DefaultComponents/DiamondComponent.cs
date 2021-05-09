@@ -32,6 +32,9 @@ namespace DiamondEngine
         SPHERECOLLIDER,
         DIRECTIONAL_LIGHT,
         NAVMESHAGENT,
+        CAPSULECOLLIDER,
+        STENCIL_MATERIAL,
+        AREA_LIGHT,
         COUNT
     }
 
@@ -55,6 +58,7 @@ namespace DiamondEngine
             { typeof(MeshCollider), ComponentType.MESHCOLLIDER},
             { typeof(SphereCollider), ComponentType.SPHERECOLLIDER},
             { typeof(Rigidbody), ComponentType.RIGIDBODY},
+            { typeof(AreaLight), ComponentType.AREA_LIGHT},
         };
 
         public DiamondComponent()
