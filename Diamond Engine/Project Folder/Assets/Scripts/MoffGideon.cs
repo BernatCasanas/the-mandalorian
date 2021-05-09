@@ -145,7 +145,6 @@ public class MoffGideon : Entity
             Debug.Log("Null agent, add a NavMeshAgent Component");
 
         StartNeutral();
-        sword.DisableCollider();
 
         comboTime = Animator.GetAnimationDuration(gameObject, "MG_Slash") - 0.016f;
         enemiesTimer = enemiesTime;
@@ -340,7 +339,7 @@ public class MoffGideon : Entity
                         {
                             case MOFFGIDEON_INPUT.IN_MELEE_COMBO_END:
                                 currentState = MOFFGIDEON_STATE.DASH_BACKWARDS;
-                                EndDashBackward();
+                                EndMeleeCombo();
                                 StartDashBackward();
                                 break;
 
