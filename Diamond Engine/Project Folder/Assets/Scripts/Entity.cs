@@ -32,9 +32,11 @@ public enum STATUS_TYPE
 {
     NONE = -1,
 
+    //General
     SLOWED,
     ACCELERATED,
-    DAMAGE_DOWN,
+
+    //Mando
     MOV_SPEED,
     OVERHEATCAP,
     BLASTER_DAMAGE,
@@ -82,7 +84,12 @@ public enum STATUS_TYPE
     GRO_COMBO_ADD,
     GRO_COMBO_GAIN,
     GRO_FORCE_PER_HP,
-    ADD_FORCE
+    ADD_FORCE,
+
+    // Enemies
+    ENEMY_DAMAGE_DOWN,
+    ENEMY_DAMAGE_UP,
+
 }
 
 public enum STATUS_APPLY_TYPE

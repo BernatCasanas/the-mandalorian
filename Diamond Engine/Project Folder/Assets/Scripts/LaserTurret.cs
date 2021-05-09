@@ -441,7 +441,7 @@ public class LaserTurret : Enemy
             {
                 TakeDamage(bullet.GetDamage());
                 //healthPoints -= bullet.damage;
-                this.AddStatus(STATUS_TYPE.DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
+                this.AddStatus(STATUS_TYPE.ENEMY_DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
             }
 
             Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");

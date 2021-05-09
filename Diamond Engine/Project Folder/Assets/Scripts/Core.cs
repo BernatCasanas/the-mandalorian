@@ -1942,7 +1942,7 @@ public class Core : Entity
                     this.myDeltaTime = Time.deltaTime * speedMult;
                 }
                 break;
-            case STATUS_TYPE.DAMAGE_DOWN:
+            case STATUS_TYPE.ENEMY_DAMAGE_DOWN:
                 {
 
                 }
@@ -2155,7 +2155,7 @@ public class Core : Entity
                     this.myDeltaTime = Time.deltaTime * speedMult;
                 }
                 break;
-            case STATUS_TYPE.DAMAGE_DOWN:
+            case STATUS_TYPE.ENEMY_DAMAGE_DOWN:
                 {
                 }
                 break;

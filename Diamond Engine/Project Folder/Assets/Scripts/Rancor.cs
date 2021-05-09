@@ -1414,7 +1414,7 @@ public class Rancor : Entity
 
             if (bulletScript != null)
             {
-                this.AddStatus(STATUS_TYPE.DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
+                this.AddStatus(STATUS_TYPE.ENEMY_DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
                 damageToBoss += bulletScript.GetDamage();
             }
             else
@@ -1614,7 +1614,7 @@ public class Rancor : Entity
                     this.myDeltaTime = Time.deltaTime * speedMult;
                 }
                 break;
-            case STATUS_TYPE.DAMAGE_DOWN:
+            case STATUS_TYPE.ENEMY_DAMAGE_DOWN:
                 {
                     this.damageMult -= statusToInit.severity;
                 }
@@ -1642,7 +1642,7 @@ public class Rancor : Entity
                     this.myDeltaTime = Time.deltaTime * speedMult;
                 }
                 break;
-            case STATUS_TYPE.DAMAGE_DOWN:
+            case STATUS_TYPE.ENEMY_DAMAGE_DOWN:
                 {
                     this.damageMult += statusToDelete.severity;
                 }

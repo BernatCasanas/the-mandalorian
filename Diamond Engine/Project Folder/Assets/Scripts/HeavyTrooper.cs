@@ -861,7 +861,7 @@ public class HeavyTrooper : Enemy
             if (bullet != null)
             {
                 //healthPoints -= bullet.GetDamage();
-                this.AddStatus(STATUS_TYPE.DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
+                this.AddStatus(STATUS_TYPE.ENEMY_DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
 
                 TakeDamage(bullet.GetDamage());
 
