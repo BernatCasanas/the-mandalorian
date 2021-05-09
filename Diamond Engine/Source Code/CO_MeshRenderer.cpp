@@ -162,9 +162,9 @@ void C_MeshRenderer::RenderMeshStencil(bool rTex)
 	TryCalculateBones();
 
 	if (hasStencilMatActive)
-		_mesh->RenderMesh(id, alternColorStencil, rTex, (stencilMaterial && stencilMaterial->material != nullptr) ? stencilMaterial->material : EngineExternal->moduleScene->defaultMaterial, transform, nullptr, nullptr, stencilEmissionAmmount);
+		_mesh->RenderMesh(id, alternColorStencil, rTex, (stencilMaterial && stencilMaterial->material != nullptr) ? stencilMaterial->material : EngineExternal->moduleScene->defaultMaterial, transform, nullptr, nullptr,1.0f, stencilEmissionAmmount);
 	else
-		_mesh->RenderMesh(id, alternColorStencil, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform, nullptr, nullptr, stencilEmissionAmmount);
+		_mesh->RenderMesh(id, alternColorStencil, rTex, (material && material->material != nullptr) ? material->material : EngineExternal->moduleScene->defaultMaterial, transform, nullptr, nullptr,1.0f, stencilEmissionAmmount);
 
 }
 
