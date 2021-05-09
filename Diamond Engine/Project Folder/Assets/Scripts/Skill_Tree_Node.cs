@@ -319,8 +319,7 @@ public class Skill_Tree_Node : DiamondComponent
                         Core.instance.AddStatus(STATUS_TYPE.MOV_SPEED, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
                         break;
                     case "USlowDamage":
-
-
+                        Core.instance.AddStatus(STATUS_TYPE.REFILL_CHANCE, STATUS_APPLY_TYPE.SUBSTITUTE, 100, 0, true);
                         break;
                     case "UFallDmgRed":
                         Core.instance.AddStatus(STATUS_TYPE.FALL, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
@@ -331,7 +330,7 @@ public class Skill_Tree_Node : DiamondComponent
                         Core.instance.AddStatus(STATUS_TYPE.OVERHEATCAP, STATUS_APPLY_TYPE.ADDITIVE, -20, 0, true);
                         break;
                     case "URedGroguCost":
-                        Debug.Log("Grogu Cost reduced");
+                      //  Debug.Log("Grogu Cost reduced");
                         Core.instance.AddStatus(STATUS_TYPE.GROGU_COST, STATUS_APPLY_TYPE.SUBSTITUTE, -20, 0, true);
                       //  Debug.Log("Grogu reduction cost not implemented yet");
                         break;
@@ -340,7 +339,9 @@ public class Skill_Tree_Node : DiamondComponent
                         Core.instance.AddStatus(STATUS_TYPE.SKILL_HEAL, STATUS_APPLY_TYPE.SUBSTITUTE, 10, 1, true);
                         break;
                     case "UDash":
-                        Debug.Log("Double dash not implemented yet");
+                        //Debug.Log("Double dash not implemented yet");
+                        Core.instance.AddStatus(STATUS_TYPE.GRENADE_ON_DASH, STATUS_APPLY_TYPE.SUBSTITUTE, 10, 1, true);
+
                         break;
                     #endregion
                     #region Aggression
@@ -458,7 +459,8 @@ public class Skill_Tree_Node : DiamondComponent
                         Core.instance.AddStatus(STATUS_TYPE.SEC_RECOVERY, STATUS_APPLY_TYPE.SUBSTITUTE, 30, 1, true);
                         break;
                     case "SeUseRange":
-                        Debug.Log("range not implemented, rework on grenade?");
+                        Core.instance.AddStatus(STATUS_TYPE.SEC_RANGE, STATUS_APPLY_TYPE.SUBSTITUTE, 30, 1, true);
+                        Debug.Log("rework on grenade?");
                         break;
                     case "SeDuration":
                         Core.instance.AddStatus(STATUS_TYPE.SEC_DURATION, STATUS_APPLY_TYPE.SUBSTITUTE, 30, 1, true);

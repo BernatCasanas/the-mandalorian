@@ -36,7 +36,11 @@ public class SlowGrenade : DiamondComponent
         if (start == true)
         {
             start = false;
-            Vector3 myForce = gameObject.transform.GetForward() * forwardForce;
+            float modifier = 1;
+            if(Core.instance != null)
+            if (Core.instance.HasStatus(STATUS_TYPE.SEC_RANGE))
+                modifier = 1 + Core.instance.GetStatusData(STATUS_TYPE.SEC_RANGE).severity /100;
+            Vector3 myForce = gameObject.transform.GetForward() * forwardForce * modifier;
 
             myForce.y = upForce;
 

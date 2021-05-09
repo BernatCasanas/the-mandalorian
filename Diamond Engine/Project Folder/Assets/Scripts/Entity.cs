@@ -86,7 +86,9 @@ public enum STATUS_TYPE
     GRO_COMBO_GAIN,
     GRO_FORCE_PER_HP,
     REVIVE,
-    
+    REFILL_CHANCE,
+    GRENADE_ON_DASH,
+    SEC_RANGE,
 
     // Enemies
     ENEMY_DAMAGE_DOWN,
