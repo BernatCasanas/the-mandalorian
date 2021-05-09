@@ -318,6 +318,8 @@ public class Core : Entity
             if (lockInputsScene != null)
                 lockAttacks = true;
 
+            DisableBlaster();
+
             //SkillDataTree -> LoadStaticBuffs();
             old_hp = PlayerHealth.currMaxHealth;
             //Start();
