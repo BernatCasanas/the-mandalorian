@@ -10,7 +10,7 @@ public class AreaLightTest : DiamondComponent
 
         if (timer > 2.0f)
         {
-			gameObject.GetComponent<AreaLight>().ActivateLight();
+			//gameObject.GetComponent<AreaLight>().ActivateLight();
         }
 	}
 
