@@ -107,7 +107,6 @@ public class Enemy : Entity
 			pos.x += rand.Next(-200, 201) / 100;
 			pos.z += rand.Next(-200, 201) / 100;
 			InternalCalls.CreatePrefab(coinDropPath, pos, Quaternion.identity, new Vector3(2.0f, 2.0f, 2.0f));
-			Debug.Log("Coins dropped with path " + coinDropPath.ToString());
 		}
 	}
 
