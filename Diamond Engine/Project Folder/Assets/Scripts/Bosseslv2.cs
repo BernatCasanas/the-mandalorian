@@ -599,7 +599,7 @@ public class Bosseslv2 : Entity
                     this.myDeltaTime = Time.deltaTime * speedMult;
                 }
                 break;
-            case STATUS_TYPE.DAMAGE_DOWN:
+            case STATUS_TYPE.ENEMY_DAMAGE_DOWN:
                 {
                     this.damageMult -= statusToInit.severity;
                 }
@@ -627,7 +627,7 @@ public class Bosseslv2 : Entity
                     this.myDeltaTime = Time.deltaTime * speedMult;
                 }
                 break;
-            case STATUS_TYPE.DAMAGE_DOWN:
+            case STATUS_TYPE.ENEMY_DAMAGE_DOWN:
                 {
                     this.damageMult += statusToDelete.severity;
                 }

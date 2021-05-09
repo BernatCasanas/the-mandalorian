@@ -25,6 +25,22 @@ public class Enemy : Entity
 		speedMult = 1f;
 		myDeltaTime = Time.deltaTime;
 		baseDamage = damage;
+
+		AddLoC();
+	}
+
+	protected virtual void AddLoC()
+    {
+		if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
+		{
+			AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.SUBSTITUTE, 0.075f, 1f, true);
+			AddStatus(STATUS_TYPE.ENEMY_DAMAGE_UP, STATUS_APPLY_TYPE.SUBSTITUTE, 0.1f, 1f, true);
+		}
+		else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
+		{
+			AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.SUBSTITUTE, 0.15f, 1f, true);
+			AddStatus(STATUS_TYPE.ENEMY_DAMAGE_UP, STATUS_APPLY_TYPE.SUBSTITUTE, 0.2f, 1f, true);
+		}
 	}
 
 	public virtual void TakeDamage(float damage)
@@ -120,11 +136,21 @@ public class Enemy : Entity
 					this.myDeltaTime = Time.deltaTime * speedMult;
 				}
 				break;
-			case STATUS_TYPE.DAMAGE_DOWN:
+			case STATUS_TYPE.ENEMY_DAMAGE_DOWN:
 				{
 					float damageSubstracted = baseDamage * statusToInit.severity;
 
 					this.damage -= damageSubstracted;
+
+					statusToInit.statChange = damageSubstracted;
+
+				}
+				break;
+			case STATUS_TYPE.ENEMY_DAMAGE_UP:
+				{
+					float damageSubstracted = baseDamage * statusToInit.severity;
+
+					this.damage += damageSubstracted;
 
 					statusToInit.statChange = damageSubstracted;
 
@@ -153,9 +179,14 @@ public class Enemy : Entity
 					this.myDeltaTime = Time.deltaTime * speedMult;
 				}
 				break;
-			case STATUS_TYPE.DAMAGE_DOWN:
+			case STATUS_TYPE.ENEMY_DAMAGE_DOWN:
 				{
 					this.damage += statusToDelete.statChange;
+				}
+				break;
+			case STATUS_TYPE.ENEMY_DAMAGE_UP:
+				{
+					this.damage -= statusToDelete.statChange;
 				}
 				break;
 			default:

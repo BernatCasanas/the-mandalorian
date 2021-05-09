@@ -367,7 +367,7 @@ public class Wampa : Bosseslv2
 
             if (bulletComp != null)
             {
-                this.AddStatus(STATUS_TYPE.DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
+                this.AddStatus(STATUS_TYPE.ENEMY_DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
 
                 float damageToBoss = bulletComp.GetDamage();
                 if (Core.instance != null)
