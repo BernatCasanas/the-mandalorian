@@ -1122,27 +1122,21 @@ public class Core : Entity
             hitDistance = Math.Min(hitDistance, Mathf.Lerp(0, myAimbot.maxRange, chargeTimer / timeToPerfectCharge));
 
             InternalCalls.DrawRay(shootPoint.transform.globalPosition, shootPoint.transform.globalPosition + (shootPoint.transform.GetForward() * hitDistance), currSniperLaserColor);
+            if (snipercharge)
+            {
+                PlayParticles(PARTICLES.SNIPER_CHARGE);
+                snipercharge = false;
+                Debug.Log("Charging sniper");
+            }
         }
         if (HasStatus(STATUS_TYPE.SP_NONCHARGED))
         {
             float modifier = 1 + GetStatusData(STATUS_TYPE.SP_CHARGE_TIME).severity / 100;
             chargeTimer += myDeltaTime * modifier;
-            if (snipercharge)
-            {
-                PlayParticles(PARTICLES.SNIPER_CHARGE);
-                snipercharge = false;
-                Debug.Log("Charging sniper");
-            }
         }
         else
         {
             chargeTimer += myDeltaTime;
-            if (snipercharge)
-            {
-                PlayParticles(PARTICLES.SNIPER_CHARGE);
-                snipercharge = false;
-                Debug.Log("Charging sniper");
-            }
         }
         //UpdateAnimationSpd(0.01f);
 
