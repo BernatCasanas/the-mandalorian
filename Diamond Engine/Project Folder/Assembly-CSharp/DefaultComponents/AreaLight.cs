@@ -11,12 +11,6 @@ namespace DiamondEngine
         {
             type = ComponentType.AREA_LIGHT;
         }
-
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public extern void ActivateLight();
-
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public extern void DeactivateLight();
     }
 
 
