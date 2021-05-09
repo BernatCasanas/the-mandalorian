@@ -25,12 +25,18 @@ public class MoffGideon : Entity
         PROJECTILE,
         SPAWN_ENEMIES,
         NEUTRAL,
+        PRESENTATION,
+        CHANGE_STATE,
         DEAD
     }
 
     enum MOFFGIDEON_INPUT : int
     {
         NONE = -1,
+        IN_PRESENTATION,
+        IN_PRESENTATION_END,
+        IN_CHANGE_STATE,
+        IN_CHANGE_STATE_END,
         IN_THROW_SABER,
         IN_THROW_SABER_END,
         IN_CHARGE_THROW,
@@ -57,7 +63,7 @@ public class MoffGideon : Entity
     public GameObject saber = null;
 
     //State
-    private MOFFGIDEON_STATE currentState = MOFFGIDEON_STATE.NEUTRAL;
+    private MOFFGIDEON_STATE currentState = MOFFGIDEON_STATE.PRESENTATION;
     private List<MOFFGIDEON_INPUT> inputsList = new List<MOFFGIDEON_INPUT>();
     private MOFFGIDEON_PHASE currentPhase = MOFFGIDEON_PHASE.PHASE1;
 
@@ -120,6 +126,10 @@ public class MoffGideon : Entity
     public float enemiesTime = 1f;
     private float comboTime = 0f;
     private float comboTimer = 0f;
+    private float presentationTime = 0f;
+    private float presentationTimer = 0f;
+    private float changingStateTime = 0f;
+    private float changingStateTimer = 0f;
     public float cadencyTime = 0.2f;
     public float cadencyTimer = 0f;
     private float privateTimer = 0f;
@@ -144,9 +154,13 @@ public class MoffGideon : Entity
         if (agent == null)
             Debug.Log("Null agent, add a NavMeshAgent Component");
 
-        StartNeutral();
 
         comboTime = Animator.GetAnimationDuration(gameObject, "MG_Slash") - 0.016f;
+        presentationTime = Animator.GetAnimationDuration(gameObject, "MG_Presentation") - 0.016f;
+        changingStateTime = Animator.GetAnimationDuration(gameObject, "MG_Presentation2") - 0.016f;
+
+        StartPresentation();
+
         enemiesTimer = enemiesTime;
 
         deathtroopers = new List<GameObject>();
@@ -193,6 +207,24 @@ public class MoffGideon : Entity
 
             if (comboTimer <= 0)
                 inputsList.Add(MOFFGIDEON_INPUT.IN_MELEE_COMBO_END);
+
+        }
+
+        if (presentationTimer > 0)
+        {
+            presentationTimer -= myDeltaTime;
+
+            if (presentationTimer <= 0)
+                inputsList.Add(MOFFGIDEON_INPUT.IN_PRESENTATION_END);
+
+        }
+
+        if (changingStateTimer > 0)
+        {
+            changingStateTimer -= myDeltaTime;
+
+            if (changingStateTimer <= 0)
+                inputsList.Add(MOFFGIDEON_INPUT.IN_CHANGE_STATE_END);
 
         }
     }
@@ -250,9 +282,10 @@ public class MoffGideon : Entity
                                 EndNeutral();
                                 break;
 
-                            case MOFFGIDEON_INPUT.IN_DEAD:
+                            case MOFFGIDEON_INPUT.IN_CHANGE_STATE:
+                                currentState = MOFFGIDEON_STATE.CHANGE_STATE;
                                 EndNeutral();
-                                StartDie();
+                                StartChangeState();
                                 break;
                         }
                         break;
@@ -311,9 +344,10 @@ public class MoffGideon : Entity
                                 StartNeutral();
                                 break;
 
-                            case MOFFGIDEON_INPUT.IN_DEAD:
+                            case MOFFGIDEON_INPUT.IN_CHANGE_STATE:
+                                currentState = MOFFGIDEON_STATE.CHANGE_STATE;
                                 EndProjectile();
-                                StartDie();
+                                StartChangeState();
                                 break;
                         }
                         break;
@@ -327,9 +361,10 @@ public class MoffGideon : Entity
                                 StartMeleeCombo();
                                 break;
 
-                            case MOFFGIDEON_INPUT.IN_DEAD:
-                                EndProjectile();
-                                StartDie();
+                            case MOFFGIDEON_INPUT.IN_CHANGE_STATE:
+                                currentState = MOFFGIDEON_STATE.CHANGE_STATE;
+                                EndDashForward();
+                                StartChangeState();
                                 break;
                         }
                         break;
@@ -343,9 +378,10 @@ public class MoffGideon : Entity
                                 StartDashBackward();
                                 break;
 
-                            case MOFFGIDEON_INPUT.IN_DEAD:
-                                EndProjectile();
-                                StartDie();
+                            case MOFFGIDEON_INPUT.IN_CHANGE_STATE:
+                                currentState = MOFFGIDEON_STATE.CHANGE_STATE;
+                                EndMeleeCombo();
+                                StartChangeState();
                                 break;
                         }
                         break;
@@ -359,9 +395,33 @@ public class MoffGideon : Entity
                                 StartNeutral();
                                 break;
 
-                            case MOFFGIDEON_INPUT.IN_DEAD:
-                                EndProjectile();
-                                StartDie();
+                            case MOFFGIDEON_INPUT.IN_CHANGE_STATE:
+                                currentState = MOFFGIDEON_STATE.CHANGE_STATE;
+                                EndDashBackward();
+                                StartChangeState();
+                                break;
+                        }
+                        break;
+
+                    case MOFFGIDEON_STATE.PRESENTATION:
+                        switch (input)
+                        {
+                            case MOFFGIDEON_INPUT.IN_PRESENTATION_END:
+                                currentState = MOFFGIDEON_STATE.NEUTRAL;
+                                EndPresentation();
+                                StartNeutral();
+                                break;
+                        }
+                        break;
+
+
+                    case MOFFGIDEON_STATE.CHANGE_STATE:
+                        switch (input)
+                        {
+                            case MOFFGIDEON_INPUT.IN_CHANGE_STATE_END:
+                                currentState = MOFFGIDEON_STATE.NEUTRAL;
+                                EndChangeState();
+                                StartNeutral();
                                 break;
                         }
                         break;
@@ -601,6 +661,14 @@ public class MoffGideon : Entity
             case MOFFGIDEON_STATE.RETRIEVE_SABER:
                 UpdateRetrieveSaber();
                 break;
+
+            case MOFFGIDEON_STATE.PRESENTATION:
+                UpdatePresentation();
+                break;
+
+            case MOFFGIDEON_STATE.CHANGE_STATE:
+                UpdateChangeState();
+                break;
         }
     }
 
@@ -635,6 +703,63 @@ public class MoffGideon : Entity
         Debug.Log("Selecting Action");
     }
 
+    #region PRESENTATION
+
+    private void StartPresentation()
+    {
+        Animator.Play(gameObject, "MG_Presentation", speedMult);
+        UpdateAnimationSpd(speedMult);
+
+        //Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Lightsaber_Turn_On");
+
+        presentationTimer = presentationTime;
+
+    }
+
+
+    private void UpdatePresentation()
+    {
+
+        Debug.Log("Presentation");
+    }
+
+
+    private void EndPresentation()
+    {
+
+    }
+
+    #endregion
+
+    #region CHANGE_STATE
+
+    private void StartChangeState()
+    {
+        Animator.Play(gameObject, "MG_Presentation2", speedMult);
+        UpdateAnimationSpd(speedMult);
+
+        //Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Lightsaber_Turn_On");
+
+        changingStateTimer = changingStateTime;
+
+        healthPoints = maxHealthPoints_fase2;
+
+    }
+
+
+    private void UpdateChangeState()
+    {
+
+        Debug.Log("Changing State");
+    }
+
+
+    private void EndChangeState()
+    {
+        currentPhase = MOFFGIDEON_PHASE.PHASE2;
+    }
+
+    #endregion
 
     #region NEUTRAL
 
@@ -1078,8 +1203,7 @@ public class MoffGideon : Entity
                 {
                     if (currentPhase == MOFFGIDEON_PHASE.PHASE1)
                     {
-                        currentPhase = MOFFGIDEON_PHASE.PHASE2;
-                        currentState = MOFFGIDEON_STATE.NEUTRAL;
+                        inputsList.Add(MOFFGIDEON_INPUT.IN_CHANGE_STATE);
                     }
                     else
                         inputsList.Add(MOFFGIDEON_INPUT.IN_DEAD);
