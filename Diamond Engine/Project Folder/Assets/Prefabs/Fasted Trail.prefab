@@ -7,15 +7,15 @@
             "layer": "Default",
             "Active": true,
             "UID": 1973663272,
-            "ParentUID": 0,
+            "ParentUID": 47750865,
             "PrefabReference": 0,
             "PrefabID": 2073226706,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -11.015999794006348,
-                9.5108976364135742,
-                -11.111000061035156
+                0.03125,
+                0.65602970123291016,
+                0.0043191909790039062
             ],
             "Rotation": [
                 0,
@@ -80,7 +80,7 @@
                     "Active": true,
                     "systemActive": true,
                     "looping": true,
-                    "maxDuration": 0.096000000834465027,
+                    "maxDuration": 10,
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
@@ -109,8 +109,8 @@
                                     "Gradients": [
                                         {
                                             "paColorOLTcolor": [
-                                                0.45454537868499756,
                                                 1,
+                                                0.99604743719100952,
                                                 0,
                                                 0.81422924995422363
                                             ],
@@ -118,8 +118,8 @@
                                         },
                                         {
                                             "paColorOLTcolor": [
-                                                0.19642782211303711,
                                                 1,
+                                                0.92490118741989136,
                                                 0,
                                                 1
                                             ],
@@ -140,6 +140,84 @@
                                     "PaShapeAreaDimensions": [
                                         0.30000001192092896,
                                         0.25,
+                                        1
+                                    ],
+                                    "PaShapeSphereDirection": false,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 0,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/244086718.dds",
+                            "texUID": 244086718,
+                            "paEmitterName": "Empty",
+                            "paLifeTime": [
+                                0.5,
+                                1
+                            ],
+                            "paSize": [
+                                0.070000000298023224,
+                                0.10000000149011612
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 3,
+                            "paRelative": true,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        0,
+                                        1,
+                                        0
+                                    ],
+                                    "paFOLT_magnitude": 2,
+                                    "paFOLT_gravityMod": 0,
+                                    "paFOLT_gravity": -0,
+                                    "paFOLT_forceType": 0
+                                },
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.91304349899291992,
+                                                0.86116570234298706,
+                                                0,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0.922618567943573,
+                                                0,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": false,
+                                    "paShapePartSpeed": 0,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeAreaDimensions": [
+                                        0.30000001192092896,
+                                        0.20000000298023224,
                                         1
                                     ],
                                     "PaShapeSphereDirection": false,
