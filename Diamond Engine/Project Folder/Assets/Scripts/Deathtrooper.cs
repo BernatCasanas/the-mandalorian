@@ -590,7 +590,6 @@ public class Deathtrooper : Enemy
         if(moffGideon != null)
             moffGideon.RemoveDeathrooperFromList(gameObject);
         
-
         InternalCalls.Destroy(gameObject);
     }
 
