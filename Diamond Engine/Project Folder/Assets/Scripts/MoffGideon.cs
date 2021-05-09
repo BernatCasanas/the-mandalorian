@@ -93,7 +93,6 @@ public class MoffGideon : Entity
     public float dashDistance = 3f;
     public float closerDistance = 5f;
     public float farDistance = 10f;
-    public float furtherDistance = 15f;
     public float velocityRotationShooting = 10f;
     public GameObject spawner1 = null;
     public GameObject spawner2 = null;
@@ -240,7 +239,7 @@ public class MoffGideon : Entity
         if (currentState == MOFFGIDEON_STATE.NEUTRAL && Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= 1.0f && !wander)
             wander = true;
 
-        if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, targetDash) <= 1f)
+        if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, targetDash) <= 1f && !justDashing)
             inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD_END);
 
         if (currentState == MOFFGIDEON_STATE.DASH_BACKWARDS && Mathf.Distance(gameObject.transform.globalPosition, targetDash) <= 1f)
@@ -502,7 +501,7 @@ public class MoffGideon : Entity
                     case MOFFGIDEON_STATE.CHARGE_THROW:
                         switch (input)
                         {
-                            case MOFFGIDEON_INPUT.IN_THROW_SABER:
+                            case MOFFGIDEON_INPUT.IN_CHARGE_THROW_END:
                                 currentState = MOFFGIDEON_STATE.THROW_SABER;
                                 EndChargeThrow();
                                 StartThrowSaber();
@@ -518,7 +517,7 @@ public class MoffGideon : Entity
                     case MOFFGIDEON_STATE.THROW_SABER:
                         switch (input)
                         {
-                            case MOFFGIDEON_INPUT.IN_RETRIEVE_SABER:
+                            case MOFFGIDEON_INPUT.IN_THROW_SABER_END:
                                 currentState = MOFFGIDEON_STATE.RETRIEVE_SABER;
                                 EndThrowSaber();
                                 StartRetrieveSaber();
@@ -550,7 +549,7 @@ public class MoffGideon : Entity
                     case MOFFGIDEON_STATE.DASH_FORWARD:
                         switch (input)
                         {
-                            case MOFFGIDEON_INPUT.IN_DASH_BACKWARDS_END:
+                            case MOFFGIDEON_INPUT.IN_DASH_FORWARD_END:
                                 currentState = MOFFGIDEON_STATE.MELEE_COMBO;
                                 EndDashForward();
                                 StartMeleeCombo();
@@ -688,16 +687,19 @@ public class MoffGideon : Entity
         else
         {
             if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= closerDistance)
-            {
-                justDashing = true;
                 inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD);
-            }
 
             else if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= farDistance)
                 inputsList.Add(MOFFGIDEON_INPUT.IN_CHARGE_THROW);
 
-            else if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= furtherDistance)
+            else
+            {
                 inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD);
+                justDashing = true;
+
+            }
+
+            Debug.Log(Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition).ToString());
 
         }
         Debug.Log("Selecting Action");
@@ -757,6 +759,7 @@ public class MoffGideon : Entity
     private void EndChangeState()
     {
         currentPhase = MOFFGIDEON_PHASE.PHASE2;
+        enemiesTimer = enemiesTime;
     }
 
     #endregion
