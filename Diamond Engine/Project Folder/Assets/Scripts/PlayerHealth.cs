@@ -242,7 +242,11 @@ public class PlayerHealth : DiamondComponent
 
         if (Core.instance.hud != null)
         {
-            Core.instance.hud.GetComponent<HUD>().UpdateHP(currHealth, currMaxHealth);
+            HUD playerHud = Core.instance.hud.GetComponent<HUD>();
+
+            if(playerHud != null)
+                playerHud.UpdateHP(currHealth, currMaxHealth);
+
             Core.instance.ReduceComboOnHit(damage);
         }
 
