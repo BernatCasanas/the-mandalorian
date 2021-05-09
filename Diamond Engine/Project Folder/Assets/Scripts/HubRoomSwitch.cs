@@ -15,8 +15,11 @@ public class HubRoomSwitch : DiamondComponent
 		//PlayerResources.ResetRunBoons(); //TODO: This has a bug when starting the run at the HUB
 		if (Core.instance != null)
 			Core.instance.SaveBuffs();
+
 		if (nextRoomUID != -1)
 			SceneManager.LoadScene(nextRoomUID);
+		else
+			RoomSwitch.SwitchRooms();
 
 
 		if (MusicSourceLocate.instance != null)
