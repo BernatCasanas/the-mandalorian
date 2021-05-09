@@ -49,7 +49,9 @@ public class Core : Entity
         IMPACT,
         SNIPER,
         GRENADE,
-        HEAL
+        HEAL,
+        SNIPER_CHARGE,
+        SNIPER_MUZZEL
     }
 
     public GameObject shootPoint = null;
@@ -186,6 +188,8 @@ public class Core : Entity
     float timeOfRoom = 0f;
 
     private float old_hp = 0.0f;
+
+    private bool snipercharge = true;
 
     public void Awake()
     {
@@ -1005,9 +1009,6 @@ public class Core : Entity
         if (blaster != null)
             blaster.Enable(false);
 
-        Audio.StopAudio(gameObject);
-        Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot_Mando");
-
         Input.PlayHaptic(2f, 30);
 
         //Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
@@ -1119,10 +1120,22 @@ public class Core : Entity
         {
             float modifier = 1 + GetStatusData(STATUS_TYPE.SP_CHARGE_TIME).severity / 100;
             chargeTimer += myDeltaTime * modifier;
+            if (snipercharge)
+            {
+                PlayParticles(PARTICLES.SNIPER_CHARGE);
+                snipercharge = false;
+                Debug.Log("Charging sniper");
+            }
         }
         else
         {
             chargeTimer += myDeltaTime;
+            if (snipercharge)
+            {
+                PlayParticles(PARTICLES.SNIPER_CHARGE);
+                snipercharge = false;
+                Debug.Log("Charging sniper");
+            }
         }
         //UpdateAnimationSpd(0.01f);
 
@@ -1142,7 +1155,6 @@ public class Core : Entity
     private void StartSecondaryShoot()
     {
         bool perfectShot = false;
-
         Animator.Play(gameObject, "Shoot", normalShootSpeed * speedMult);
 
         UpdateAnimationSpd(normalShootSpeed * speedMult);
@@ -1175,7 +1187,9 @@ public class Core : Entity
         Input.PlayHaptic(.5f, 10);
 
         GameObject aimHelpTarget = myAimbot.SearchForNewObjRaw(15, myAimbot.maxRange);
-
+        PlayParticles(PARTICLES.SNIPER_CHARGE, true);
+        PlayParticles(PARTICLES.SNIPER_MUZZEL);
+        snipercharge = true;
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/739906161.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, null);
         if (bullet != null)
         {
@@ -1421,6 +1435,10 @@ public class Core : Entity
         else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
         {
             Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
+        }
+        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
+        {
+            Audio.PlayAudio(this.gameObject, "Play_Footsteps_Metal_Platform_Mando");
         }
 
     }
@@ -1789,6 +1807,34 @@ public class Core : Entity
                         particle.Stop();
                     else
                         Debug.Log("Heal particle not found");
+                }
+                else
+                    Debug.Log("Component Particles not found");
+                break;
+            case PARTICLES.SNIPER_CHARGE:
+                if (myParticles != null)
+                {
+                    particle = myParticles.sniperCharge;
+                    if (particle != null)
+                        particle.Play();
+                    else if (particle != null && stopParticle == true)
+                        particle.Stop();
+                    else
+                        Debug.Log("Sniper charge particle not found");
+                }
+                else
+                    Debug.Log("Component Particles not found");
+                break;
+            case PARTICLES.SNIPER_MUZZEL:
+                if (myParticles != null)
+                {
+                    particle = myParticles.sniperMuzzel;
+                    if (particle != null)
+                        particle.Play();
+                    else if (particle != null && stopParticle == true)
+                        particle.Stop();
+                    else
+                        Debug.Log("Sniper muzzel particle not found");
                 }
                 else
                     Debug.Log("Component Particles not found");

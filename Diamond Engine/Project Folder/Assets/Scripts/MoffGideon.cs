@@ -899,6 +899,10 @@ public class MoffGideon : Entity
     {
         if (collidedGameObject.CompareTag("Bullet"))
         {
+            if (Core.instance != null)
+                if (Core.instance.HasStatus(STATUS_TYPE.PRIM_MOV_SPEED))
+                    AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_MOV_SPEED).severity / 100, 5, false);
+
             float damageToBoss = 0f;
 
             BH_Bullet bulletScript = collidedGameObject.GetComponent<BH_Bullet>();
