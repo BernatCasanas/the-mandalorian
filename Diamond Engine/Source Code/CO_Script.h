@@ -41,6 +41,7 @@ public:
 
 	void OnStart();
 	void OnAwake();
+	void OnDestroy();
 
 	void OnApplicationQuit();
 
@@ -51,6 +52,7 @@ public:
 
 	MonoMethod* onAwake;
 	MonoMethod* onStart;
+	MonoMethod* onDestroyMethod;
 
 	MonoMethod* onCollisionEnter;
 	MonoMethod* onTriggerEnter;

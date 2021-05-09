@@ -20,6 +20,7 @@ public:
 		FONT,
 		PREFAB,
 		NAVMESH,
+		POSTPROCESS,
 		UNKNOWN
 	};
 

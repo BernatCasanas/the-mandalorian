@@ -257,6 +257,7 @@
     <ClInclude Include="Source Code\DEJsonSupport.h" />
     <ClInclude Include="Source Code\DERect.h" />
     <ClInclude Include="Source Code\DETime.h" />
+    <ClInclude Include="Source Code\DE_Advanced_FrameBuffer.h" />
     <ClInclude Include="Source Code\DE_Cubemap.h" />
     <ClInclude Include="Source Code\DE_FrameBuffer.h" />
     <ClInclude Include="Source Code\EngineVersion.h" />
@@ -375,6 +376,7 @@
     <ClInclude Include="Source Code\External Libraries\RecastNavigation\Recast\Recast.h" />
     <ClInclude Include="Source Code\External Libraries\RecastNavigation\Recast\RecastAlloc.h" />
     <ClInclude Include="Source Code\External Libraries\RecastNavigation\Recast\RecastAssert.h" />
+    <ClInclude Include="Source Code\ImageRenderer.h" />
     <ClInclude Include="Source Code\IM_AnimationImporter.h" />
     <ClInclude Include="Source Code\External Libraries\Wwise\low_level_IO\Common\AkDefaultLowLevelIODispatcher.h" />
     <ClInclude Include="Source Code\External Libraries\Wwise\low_level_IO\Common\AkFileLocationBase.h" />
@@ -396,6 +398,7 @@
     <ClInclude Include="Source Code\IM_MaterialImporter.h" />
     <ClInclude Include="Source Code\IM_ModelImporter.h" />
     <ClInclude Include="Source Code\IM_NavMeshImporter.h" />
+    <ClInclude Include="Source Code\IM_PostProcessImporter.h" />
     <ClInclude Include="Source Code\IM_PrefabImporter.h" />
     <ClInclude Include="Source Code\IM_ShaderImporter.h" />
     <ClInclude Include="Source Code\IM_TextureImporter.h" />
@@ -422,6 +425,9 @@
     <ClInclude Include="Source Code\PE_Spawn_Sphere.h" />
     <ClInclude Include="Source Code\PE_Velocity_Over_Lifetime.h" />
     <ClInclude Include="Source Code\PE__Spawn_Shape_Base.h" />
+    <ClInclude Include="Source Code\PostProcessEffect.h" />
+    <ClInclude Include="Source Code\PostProcessFilter.h" />
+    <ClInclude Include="Source Code\PostProcessing.h" />
     <ClInclude Include="Source Code\RE_Animation.h" />
     <ClInclude Include="Source Code\MO_Physics.h" />
     <ClInclude Include="Source Code\MO_Physics\Header.h" />
@@ -442,6 +448,7 @@
     <ClInclude Include="Source Code\OpenGL.h" />
     <ClInclude Include="Source Code\Primitive.h" />
     <ClInclude Include="Source Code\DEResource.h" />
+    <ClInclude Include="Source Code\RE_PostProcess.h" />
     <ClInclude Include="Source Code\RE_Shader.h" />
     <ClInclude Include="Source Code\RE_Texture.h" />
     <ClInclude Include="Source Code\MA_ShortcutManager.h" />
@@ -499,6 +506,7 @@
     <ClCompile Include="Source Code\DERect.cpp" />
     <ClCompile Include="Source Code\DEResource.cpp" />
     <ClCompile Include="Source Code\DETime.cpp" />
+    <ClCompile Include="Source Code\DE_Advanced_FrameBuffer.cpp" />
     <ClCompile Include="Source Code\DE_Cubemap.cpp" />
     <ClCompile Include="Source Code\DE_FrameBuffer.cpp" />
     <ClCompile Include="Source Code\EngineVersion.cpp" />
@@ -575,6 +583,7 @@
     <ClCompile Include="Source Code\External Libraries\RecastNavigation\Recast\RecastMeshDetail.cpp" />
     <ClCompile Include="Source Code\External Libraries\RecastNavigation\Recast\RecastRasterization.cpp" />
     <ClCompile Include="Source Code\External Libraries\RecastNavigation\Recast\RecastRegion.cpp" />
+    <ClCompile Include="Source Code\ImageRenderer.cpp" />
     <ClCompile Include="Source Code\IM_AnimationImporter.cpp" />
     <ClCompile Include="Source Code\External Libraries\Wwise\low_level_IO\Common\AkDefaultLowLevelIODispatcher.cpp" />
     <ClCompile Include="Source Code\External Libraries\Wwise\low_level_IO\Common\AkFileLocationBase.cpp" />
@@ -591,6 +600,7 @@
     <ClCompile Include="Source Code\IM_MaterialImporter.cpp" />
     <ClCompile Include="Source Code\IM_ModelImporter.cpp" />
     <ClCompile Include="Source Code\IM_NavMeshImporter.cpp" />
+    <ClCompile Include="Source Code\IM_PostProcessImporter.cpp" />
     <ClCompile Include="Source Code\IM_PrefabImporter.cpp" />
     <ClCompile Include="Source Code\IM_ShaderImporter.cpp" />
     <ClCompile Include="Source Code\IM_TextureImporter.cpp" />
@@ -614,6 +624,9 @@
     <ClCompile Include="Source Code\PE_Spawn_Sphere.cpp" />
     <ClCompile Include="Source Code\PE_Velocity_Over_Lifetime.cpp" />
     <ClCompile Include="Source Code\PE__Spawn_Shape_Base.cpp" />
+    <ClCompile Include="Source Code\PostProcessEffect.cpp" />
+    <ClCompile Include="Source Code\PostProcessFilter.cpp" />
+    <ClCompile Include="Source Code\PostProcessing.cpp" />
     <ClCompile Include="Source Code\RE_Animation.cpp" />
     <ClCompile Include="Source Code\MO_Physics.cpp" />
     <ClCompile Include="Source Code\RE_Material.cpp" />
@@ -622,6 +635,7 @@
     <ClCompile Include="Source Code\MO_FileSystem.cpp" />
     <ClCompile Include="Source Code\MO_ResourceManager.cpp" />
     <ClCompile Include="Source Code\MO_Scene.cpp" />
+    <ClCompile Include="Source Code\RE_PostProcess.cpp" />
     <ClCompile Include="Source Code\RE_Shader.cpp" />
     <ClCompile Include="Source Code\RE_Texture.cpp" />
     <ClCompile Include="Source Code\MA_ShortcutManager.cpp" />

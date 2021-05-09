@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -30.59880256652832,
-        29.876064300537109,
-        -18.087116241455078
+        9.1737804412841797,
+        3.631319522857666,
+        -21.054355621337891
     ],
     "EditorCameraZ": [
-        0.53064829111099243,
-        -0.83373969793319702,
-        0.15261253714561462
+        -0.39454638957977295,
+        -0.15617595613002777,
+        0.9055066704750061
     ],
     "EditorCameraY": [
-        0.80126112699508667,
-        0.55215775966644287,
-        0.23043981194496155
+        -0.06238415464758873,
+        0.98772931098937988,
+        0.14317522943019867
     ],
     "tags": [
         "Player",
@@ -101,6 +101,7 @@
                         1,
                         1
                     ],
+                    "stencilEmission": 0,
                     "doNotDrawStencil": true
                 }
             ]
@@ -117,9 +118,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -1.1570694446563721,
+                -0.43245983123779297,
                 0.80271846055984497,
-                4.158027172088623
+                -0.85576790571212769
             ],
             "Rotation": [
                 -0.70193439722061157,
@@ -152,6 +153,7 @@
                         1,
                         0
                     ],
+                    "stencilEmission": 0,
                     "doNotDrawStencil": false
                 },
                 {
@@ -202,10 +204,11 @@
                     "fType": 2,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 1.0471975803375244,
-                    "hFOV": 1.4096142053604126,
+                    "vFOV": 0.21816615760326385,
+                    "hFOV": 0.19027350842952728,
                     "culling": false,
-                    "drawSkybox": true
+                    "drawSkybox": true,
+                    "ProfileUID": 1634951890
                 }
             ]
         },
@@ -256,6 +259,7 @@
                         1,
                         1
                     ],
+                    "stencilEmission": 0,
                     "doNotDrawStencil": true
                 }
             ]
@@ -272,8 +276,8 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -0.31640052795410156,
-                0.48256421089172363,
+                0.36504483222961426,
+                -0.69938033819198608,
                 4.1276760101318359
             ],
             "Rotation": [
@@ -307,6 +311,7 @@
                         0.00013232231140136719,
                         1
                     ],
+                    "stencilEmission": 0,
                     "doNotDrawStencil": false
                 },
                 {
@@ -366,6 +371,7 @@
                         1,
                         1
                     ],
+                    "stencilEmission": 0,
                     "doNotDrawStencil": true
                 },
                 {
@@ -431,12 +437,6 @@
                 0.99999940395355225,
                 1,
                 0.99999940395355225
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
             ],
             "PrefabObjects": [
                 {
@@ -1576,10 +1576,10 @@
                         4.4703483581542969e-08
                     ],
                     "Rotation": [
-                        -0.0012516910210251808,
-                        0.016178568825125694,
-                        0.094921909272670746,
-                        0.99535256624221802
+                        -0.001251690904609859,
+                        0.016178566962480545,
+                        0.094921894371509552,
+                        0.99535244703292847
                     ],
                     "Scale": [
                         1,
@@ -2344,12 +2344,6 @@
                 1,
                 1
             ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ],
             "PrefabObjects": [
                 {
                     "name": "DinDjarin",
@@ -2377,102 +2371,6 @@
                         1,
                         1,
                         1
-                    ],
-                    "Components": [
-                        {
-                            "Type": 1,
-                            "Active": true
-                        },
-                        {
-                            "Type": 5,
-                            "Active": true,
-                            "ScriptName": "Core",
-                            "rotationSpeed": 10,
-                            "movementSpeed": 5.5,
-                            "mouseSens": 1,
-                            "dashCD": 0.30000001192092896,
-                            "dashDuration": 0.20000000298023224,
-                            "dashDistance": 4.75,
-                            "dashforce": 1000,
-                            "fireRate": 0.15000000596046448,
-                            "secondaryRate": 1,
-                            "fireRateAfterDashRecoverRatio": 1.75,
-                            "fireRateMultCap": 2,
-                            "normalShootSpeed": 2,
-                            "grenadesFireRate": 0.125,
-                            "currentStateString": "Empty",
-                            "smallGrenades": 0,
-                            "BigGrenades": 0
-                        },
-                        {
-                            "Type": 13,
-                            "Active": true,
-                            "evName": "Empty",
-                            "audBankReference": "Mando",
-                            "volume": 50,
-                            "pitch": 50,
-                            "playOnAwake": false,
-                            "isMuted": false
-                        },
-                        {
-                            "Type": 14,
-                            "Active": true,
-                            "kinematic": false,
-                            "Gravity": true,
-                            "LockLinearX": false,
-                            "LockLinearY": false,
-                            "LockLinearZ": false,
-                            "LockAngularX": true,
-                            "LockAngularY": true,
-                            "LockAngularZ": true,
-                            "Mass": 10,
-                            "Density": 1
-                        },
-                        {
-                            "Type": 15,
-                            "Active": true,
-                            "isTrigger": false,
-                            "Position": [
-                                0,
-                                0.85000002384185791,
-                                0
-                            ],
-                            "Rotation": [
-                                0,
-                                0,
-                                0,
-                                1
-                            ],
-                            "Scale": [
-                                1,
-                                1.7999999523162842,
-                                1
-                            ]
-                        },
-                        {
-                            "Type": 5,
-                            "Active": true,
-                            "ScriptName": "AimBot",
-                            "startAimConeAngle": 90,
-                            "maxRange": 50,
-                            "angleWeight": 0.5,
-                            "distanceWeight": 0.5,
-                            "isShooting": false
-                        },
-                        {
-                            "Type": 5,
-                            "Active": true,
-                            "ScriptName": "BoonSpawn",
-                            "boonsToSpawn": 1,
-                            "separation": 3.5
-                        },
-                        {
-                            "Type": 16,
-                            "Active": true,
-                            "RootBone UID": 7572352,
-                            "MeshRendererUID": 713750560,
-                            "Animations": []
-                        }
                     ],
                     "PrefabObjects": [
                         {
@@ -3861,7 +3759,7 @@
                             "Position": [
                                 0,
                                 0,
-                                3.6742544174194336
+                                0
                             ],
                             "Rotation": [
                                 0,
@@ -4125,21 +4023,6 @@
                                 1,
                                 1,
                                 1
-                            ],
-                            "Components": [
-                                {
-                                    "Type": 1,
-                                    "Active": true
-                                },
-                                {
-                                    "Type": 5,
-                                    "Active": true,
-                                    "ScriptName": "BabyYoda",
-                                    "verticalSpeed": 0.80000001192092896,
-                                    "verticalTimeInterval": 1.2000000476837158,
-                                    "horizontalSpeed": 4,
-                                    "skillPushDuration": 1
-                                }
                             ],
                             "PrefabObjects": [
                                 {
@@ -5907,21 +5790,6 @@
                                 1,
                                 1
                             ],
-                            "Components": [
-                                {
-                                    "Type": 1,
-                                    "Active": true
-                                },
-                                {
-                                    "Type": 5,
-                                    "Active": true,
-                                    "ScriptName": "BabyYoda",
-                                    "verticalSpeed": 0.80000001192092896,
-                                    "verticalTimeInterval": 1.2000000476837158,
-                                    "horizontalSpeed": 4,
-                                    "skillPushDuration": 1
-                                }
-                            ],
                             "PrefabObjects": [
                                 {
                                     "name": "GroguMesh",
@@ -7664,12 +7532,6 @@
                 1,
                 1
             ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ],
             "PrefabObjects": [
                 {
                     "name": "DinDjarin",
@@ -7697,102 +7559,6 @@
                         1,
                         1,
                         1
-                    ],
-                    "Components": [
-                        {
-                            "Type": 1,
-                            "Active": true
-                        },
-                        {
-                            "Type": 5,
-                            "Active": true,
-                            "ScriptName": "Core",
-                            "rotationSpeed": 10,
-                            "movementSpeed": 5.5,
-                            "mouseSens": 1,
-                            "dashCD": 0.30000001192092896,
-                            "dashDuration": 0.20000000298023224,
-                            "dashDistance": 4.75,
-                            "dashforce": 1000,
-                            "fireRate": 0.15000000596046448,
-                            "secondaryRate": 1,
-                            "fireRateAfterDashRecoverRatio": 1.75,
-                            "fireRateMultCap": 2,
-                            "normalShootSpeed": 2,
-                            "grenadesFireRate": 0.125,
-                            "currentStateString": "Empty",
-                            "smallGrenades": 0,
-                            "BigGrenades": 0
-                        },
-                        {
-                            "Type": 13,
-                            "Active": true,
-                            "evName": "Empty",
-                            "audBankReference": "Mando",
-                            "volume": 50,
-                            "pitch": 50,
-                            "playOnAwake": false,
-                            "isMuted": false
-                        },
-                        {
-                            "Type": 14,
-                            "Active": true,
-                            "kinematic": false,
-                            "Gravity": true,
-                            "LockLinearX": false,
-                            "LockLinearY": false,
-                            "LockLinearZ": false,
-                            "LockAngularX": true,
-                            "LockAngularY": true,
-                            "LockAngularZ": true,
-                            "Mass": 10,
-                            "Density": 1
-                        },
-                        {
-                            "Type": 15,
-                            "Active": true,
-                            "isTrigger": false,
-                            "Position": [
-                                0,
-                                0.85000002384185791,
-                                0
-                            ],
-                            "Rotation": [
-                                0,
-                                0,
-                                0,
-                                1
-                            ],
-                            "Scale": [
-                                1,
-                                1.7999999523162842,
-                                1
-                            ]
-                        },
-                        {
-                            "Type": 5,
-                            "Active": true,
-                            "ScriptName": "AimBot",
-                            "startAimConeAngle": 90,
-                            "maxRange": 50,
-                            "angleWeight": 0.5,
-                            "distanceWeight": 0.5,
-                            "isShooting": false
-                        },
-                        {
-                            "Type": 5,
-                            "Active": true,
-                            "ScriptName": "BoonSpawn",
-                            "boonsToSpawn": 1,
-                            "separation": 3.5
-                        },
-                        {
-                            "Type": 16,
-                            "Active": true,
-                            "RootBone UID": 7572352,
-                            "MeshRendererUID": 713750560,
-                            "Animations": []
-                        }
                     ],
                     "PrefabObjects": [
                         {
@@ -9445,21 +9211,6 @@
                                 1,
                                 1,
                                 1
-                            ],
-                            "Components": [
-                                {
-                                    "Type": 1,
-                                    "Active": true
-                                },
-                                {
-                                    "Type": 5,
-                                    "Active": true,
-                                    "ScriptName": "BabyYoda",
-                                    "verticalSpeed": 0.80000001192092896,
-                                    "verticalTimeInterval": 1.2000000476837158,
-                                    "horizontalSpeed": 4,
-                                    "skillPushDuration": 1
-                                }
                             ],
                             "PrefabObjects": [
                                 {
@@ -11226,21 +10977,6 @@
                                 1,
                                 1,
                                 1
-                            ],
-                            "Components": [
-                                {
-                                    "Type": 1,
-                                    "Active": true
-                                },
-                                {
-                                    "Type": 5,
-                                    "Active": true,
-                                    "ScriptName": "BabyYoda",
-                                    "verticalSpeed": 0.80000001192092896,
-                                    "verticalTimeInterval": 1.2000000476837158,
-                                    "horizontalSpeed": 4,
-                                    "skillPushDuration": 1
-                                }
                             ],
                             "PrefabObjects": [
                                 {
@@ -13004,6 +12740,7 @@
                         1,
                         1
                     ],
+                    "stencilEmission": 0,
                     "doNotDrawStencil": true
                 }
             ]
@@ -13055,6 +12792,7 @@
                         1,
                         1
                     ],
+                    "stencilEmission": 0,
                     "doNotDrawStencil": true
                 }
             ]
@@ -13071,7 +12809,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
+                0.84909170866012573,
                 0,
                 2.0647151470184326
             ],
@@ -13095,7 +12833,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -13126,6 +12864,7 @@
                                 1
                             ],
                             "paPerSec": 100,
+                            "paRelative": true,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 5,

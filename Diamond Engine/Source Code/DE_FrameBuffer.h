@@ -22,7 +22,7 @@ public:
 
 private:
 
-	unsigned int texColorBuffer;
-	unsigned int framebuffer;
-	unsigned int rbo;
+	unsigned int texColorBuffer; //index of the color buffer
+	unsigned int framebuffer; //index of the frame buffer
+	unsigned int rbo; //index of the Depth/Stencil buffer
 };
