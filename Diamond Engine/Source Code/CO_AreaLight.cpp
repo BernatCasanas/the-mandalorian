@@ -35,12 +35,6 @@ C_AreaLight::~C_AreaLight()
 }
 
 
-void C_AreaLight::Update()
-{
-
-}
-
-
 #ifndef STANDALONE
 bool C_AreaLight::OnEditor()
 {
@@ -59,12 +53,6 @@ bool C_AreaLight::OnEditor()
 
 		ImGui::DragFloat("Light fade distance", &fadeDistance, 0.1, 0.0f);
 		ImGui::DragFloat("Light max distance", &maxDistance, 0.1, 0.0f);
-
-		ImGui::NewLine();
-
-		if (ImGui::Button("Set light source", ImVec2(0, 50)))
-			EngineExternal->moduleRenderer3D->AddAreaLight(this);
-
 		return true;
 	}
 
@@ -116,6 +104,7 @@ void C_AreaLight::DebugDraw()
 }
 #endif // !STANDALONE
 
+
 void C_AreaLight::SaveData(JSON_Object* nObj)
 {
 	Component::SaveData(nObj);
@@ -140,6 +129,21 @@ void C_AreaLight::LoadData(DEConfig& nObj)
 	specularValue = nObj.ReadFloat("specularValue");
 	fadeDistance = nObj.ReadFloat("fadeDistance");
 	maxDistance = nObj.ReadFloat("maxDistance");
+}
+
+
+void C_AreaLight::Enable()
+{
+	Component::Enable();
+
+	EngineExternal->moduleRenderer3D->AddAreaLight(this);
+}
+
+void C_AreaLight::Disable()
+{
+	Component::Disable();
+
+	EngineExternal->moduleRenderer3D->RemoveAreaLight(this);
 }
 
 
@@ -218,4 +222,18 @@ void C_AreaLight::EndPass()
 float3 C_AreaLight::GetPosition() const
 {
 	return gameObject->transform->position;
+}
+
+
+void C_AreaLight::ActivateLight()
+{
+	active = true;
+	EngineExternal->moduleRenderer3D->AddAreaLight(this);
+}
+
+
+void C_AreaLight::DeactivateLight()
+{
+	active = false;
+	EngineExternal->moduleRenderer3D->RemoveAreaLight(this);
 }

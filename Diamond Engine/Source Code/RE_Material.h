@@ -48,7 +48,9 @@ static const char* defaultUniforms[] = { "position", "tangents", "texCoord", "no
 										 "time", "ourTexture","altColor", "hasTexture", 
 										 "lightPos", "lightPosition", "viewPos", "lightColor", "lightSpaceMatrix",
 										 "ambientLightColor", "lightIntensity", "specularValue", "shadowMap",
-										 "normalMap"};
+										 "normalMap", "specularMap", "bumpDepth"};
+
+static const char* defaultUniformStructures[] = { "lightInfo", "areaLightInfo" };
 
 class ResourceMaterial : public Resource {
 public:

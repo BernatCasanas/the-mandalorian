@@ -25,7 +25,7 @@ class C_DirectionalLight;
 class C_AreaLight;
 
 #define MAX_DIRECTIONAL_LIGHTS 2	//IF YOU MODIFY THIS VALUE, YOU MUST MODIFY THE SIZE OF THE ARRAY IN THE SHADER
-#define MAX_AREA_LIGHTS 30
+#define MAX_AREA_LIGHTS 5			//IF YOU MODIFY THIS VALUE, YOU MUST MODIFY THE SIZE OF THE ARRAY IN THE SHADER
 
 #define SQUARE_TEXTURE_W 256
 #define SQUARE_TEXTURE_H 256
@@ -134,6 +134,9 @@ public:
 
 	GLuint defaultNormalMap;
 	GLubyte defaultNormalMapImage[SQUARE_TEXTURE_W][SQUARE_TEXTURE_H][4];
+
+	GLuint defaultSpecularMap;
+	GLubyte defaultSpecularMapImage[SQUARE_TEXTURE_W][SQUARE_TEXTURE_H][4];
 
 
 	unsigned int resolution;

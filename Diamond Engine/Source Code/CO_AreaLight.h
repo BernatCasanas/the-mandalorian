@@ -14,8 +14,6 @@ public:
 	C_AreaLight(GameObject* gameObject);
 	~C_AreaLight() override;
 
-	void Update() override;
-
 #ifndef STANDALONE
 	bool OnEditor() override;
 	void DebugDraw();
@@ -26,11 +24,17 @@ public:
 	void SaveData(JSON_Object* nObj) override;
 	void LoadData(DEConfig& nObj) override;
 
+	void Enable() override;
+	void Disable() override;
+
 	void StartPass();
 	void PushLightUniforms(ResourceMaterial* material, int lightNumber);
 	void EndPass();
 
 	float3 GetPosition() const;
+
+	void ActivateLight();
+	void DeactivateLight();
 
 public:
 	float4x4 spaceMatrixOpenGL;
