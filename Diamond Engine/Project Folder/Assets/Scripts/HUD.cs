@@ -344,7 +344,13 @@ public class HUD : DiamondComponent
 
         lastWeaponDecrementMultiplier = weaponDecreaseTimeMultiplier;
         float tmpLastWeaponMod = lastWeaponDecrementMultiplier >= 1.0f ? lastWeaponDecrementMultiplier : 1.0f;
-        currComboTime += comboUnitsToAdd * (1 / (tmpLastWeaponMod * comboDecrementMultiplier));
+
+        float comboMultiplier = 1;
+        if (Core.instance.HasStatus(STATUS_TYPE.GRO_COMBO_GAIN))
+        {
+          comboMultiplier = 1 + Core.instance.GetStatusData(STATUS_TYPE.GRO_COMBO_GAIN).severity / 100;
+        }
+        currComboTime += comboUnitsToAdd * (1 / (tmpLastWeaponMod * comboDecrementMultiplier)) * comboMultiplier;
 
         if (currComboTime > fullComboTime)
         {
@@ -380,8 +386,11 @@ public class HUD : DiamondComponent
                 }
                 if (Core.instance.HasStatus(STATUS_TYPE.GRO_COMBO_ADD))
                 {
-                    //  Core.instance.AddStatus(STATUS_TYPE.ADD_FORCE, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.GRO_COMBO_ADD).severity, 0.1f, false);
-                    Debug.Log("Can't acces to grogu, kill me pls");
+                    if (BabyYoda.instance != null)
+                    {
+                        BabyYoda.instance.SetCurrentForce(BabyYoda.instance.GetCurrentForce() + 4);
+                    }
+                         
                 }
             }
                 
@@ -556,10 +565,7 @@ public class HUD : DiamondComponent
                 {
                     ExtraForceRegen = 0;
                 }
-                if (Core.instance.HasStatus(STATUS_TYPE.GRO_COMBO_ADD))
-                {
-                    Core.instance.RemoveStatus(STATUS_TYPE.ADD_FORCE, true);
-                }
+                
             }
 
 

@@ -99,9 +99,9 @@ public class BabyYoda : DiamondComponent
                 extraForceRegen = Core.instance.hud.GetComponent<HUD>().ExtraForceRegen;
             if (Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.GRO_FORCE_REGEN))
             {
-                currentForce += (forceRegenerationSpeed + extraForceRegen) * Time.deltaTime * Core.instance.GetStatusData(STATUS_TYPE.GRO_FORCE_REGEN).severity;
+                currentForce += (forceRegenerationSpeed + extraForceRegen + Core.instance.ForceRegentPerHPMod) * Time.deltaTime * Core.instance.GetStatusData(STATUS_TYPE.GRO_FORCE_REGEN).severity;
             }
-            else currentForce += ((forceRegenerationSpeed + extraForceRegen )* Time.deltaTime);
+            else currentForce += ((forceRegenerationSpeed + extraForceRegen + Core.instance.ForceRegentPerHPMod) * Time.deltaTime);
 
             if (currentForce > totalForce + maxForceMod)
             {

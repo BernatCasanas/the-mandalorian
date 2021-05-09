@@ -84,7 +84,6 @@ public enum STATUS_TYPE
     GRO_COMBO_ADD,
     GRO_COMBO_GAIN,
     GRO_FORCE_PER_HP,
-    ADD_FORCE,
 
     // Enemies
     ENEMY_DAMAGE_DOWN,
@@ -160,6 +159,7 @@ public class Entity : DiamondComponent
     protected float SecTickDamage = 1f;
     protected float sniperShotIntervalModifier = 1f;
     public float MaxForceModifier = 0f;
+    public float ForceRegentPerHPMod = 0f;
 
     protected virtual void InitEntity(ENTITY_TYPE myType)
     {
