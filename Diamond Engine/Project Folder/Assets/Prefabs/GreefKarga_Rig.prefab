@@ -9,24 +9,24 @@
             "UID": 1405801659,
             "ParentUID": 0,
             "PrefabReference": 0,
-            "PrefabID": 0,
+            "PrefabID": 10119111,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -22.98699951171875,
+                -6.5878872871398926,
                 0.13456147909164429,
                 3.2292325496673584
             ],
             "Rotation": [
-                -6.1817253538265504e-08,
-                0.7071068286895752,
-                -6.1817253538265504e-08,
-                0.7071068286895752
+                6.1817239327410789e-08,
+                -0.70722883939743042,
+                6.1817239327410789e-08,
+                -0.70698469877243042
             ],
             "Scale": [
+                1.0000001192092896,
                 1,
-                1,
-                1
+                1.0000001192092896
             ],
             "Components": [
                 {
@@ -38,10 +38,7 @@
                     "Active": true,
                     "RootBone UID": 1181488055,
                     "MeshRendererUID": 1750089214,
-                    "Animations": [
-                        1264343231,
-                        161473410
-                    ]
+                    "Animations": []
                 }
             ]
         },
@@ -53,7 +50,7 @@
             "UID": 1750089214,
             "ParentUID": 1405801659,
             "PrefabReference": 0,
-            "PrefabID": 0,
+            "PrefabID": 1973842313,
             "DontDestroy": false,
             "Static": false,
             "Position": [
@@ -72,37 +69,7 @@
                 1,
                 1
             ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/1724882934.mmh",
-                    "UID": 1724882934,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "doNotDrawStencil": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
-                    "MaterialUID": 1948688504
-                }
-            ]
+            "PrefabObjects": []
         },
         {
             "name": "mixamorig:Hips",
@@ -951,6 +918,304 @@
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Greef Particle System",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1326102003,
+            "ParentUID": 1405801659,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                6.9141387939453125e-06,
+                1,
+                0
+            ],
+            "Rotation": [
+                1.8436322194776865e-15,
+                -0.7071068286895752,
+                -1.8436322194776865e-15,
+                0.7071068286895752
+            ],
+            "Scale": [
+                0.99999994039535522,
+                1,
+                0.99999994039535522
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": true,
+                    "looping": true,
+                    "maxDuration": 10,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/2134419253.dds",
+                            "texUID": 2134419253,
+                            "paEmitterName": "Empty",
+                            "paLifeTime": [
+                                0.5,
+                                1.5
+                            ],
+                            "paSize": [
+                                1,
+                                1
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 70,
+                            "paRelative": true,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0.52272731065750122,
+                                                0,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0.52409631013870239,
+                                                0,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0.019999999552965164,
+                                    "paSizeOLTEndSize": 0
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": false,
+                                    "paShapePartSpeed": 0,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeAreaDimensions": [
+                                        0.40000000596046448,
+                                        0.69999998807907104,
+                                        0.40000000596046448
+                                    ],
+                                    "PaShapeSphereDirection": false,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 0,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "GroguNPC",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 132068283,
+            "ParentUID": 1405801659,
+            "PrefabReference": 0,
+            "PrefabID": 1453817131,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0.92820549011230469,
+                2.0172951221466064,
+                2.9176445007324219
+            ],
+            "Rotation": [
+                -1.9655590222100727e-07,
+                0.92323422431945801,
+                -1.151696835677285e-07,
+                0.38423767685890198
+            ],
+            "Scale": [
+                0.99999839067459106,
+                1,
+                0.99999839067459106
+            ],
+            "PrefabObjects": [
+                {
+                    "name": "GroguMesh",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 2076386133,
+                    "ParentUID": 132068283,
+                    "PrefabID": 0,
+                    "PrefabReference": 1348437936,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "CapsuleDoor",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 69784141,
+                    "ParentUID": 2076386133,
+                    "PrefabID": 0,
+                    "PrefabReference": 1591616870,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Capsule",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 833671047,
+                    "ParentUID": 2076386133,
+                    "PrefabID": 0,
+                    "PrefabReference": 1949404717,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "GrogusBody",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 971435718,
+                    "ParentUID": 2076386133,
+                    "PrefabID": 0,
+                    "PrefabReference": 202430004,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Grogu Particle System",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 275149273,
+                    "ParentUID": 132068283,
+                    "PrefabID": 0,
+                    "PrefabReference": 275149273,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }
