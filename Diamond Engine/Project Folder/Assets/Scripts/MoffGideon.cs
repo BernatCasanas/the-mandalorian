@@ -94,6 +94,8 @@ public class MoffGideon : Entity
     public GameObject sword = null;
     public GameObject shootPoint = null;
 
+    private List<GameObject> deathtroopers = null;
+
     //Private Variables
     private float damaged = 0.0f;
     private float currAnimationPlaySpd = 1f;
@@ -139,6 +141,8 @@ public class MoffGideon : Entity
 
         comboTime = Animator.GetAnimationDuration(gameObject, "MG_Slash") - 0.016f;
         enemiesTimer = enemiesTime;
+
+        deathtroopers = new List<GameObject>();
 
     }
 
@@ -191,7 +195,7 @@ public class MoffGideon : Entity
 
     private void ProcessExternalInput()
     {
-        if (currentState == MOFFGIDEON_STATE.SPAWN_ENEMIES && CheckDeathtroopers())
+        if (currentState == MOFFGIDEON_STATE.SPAWN_ENEMIES && deathtroopers.Count == 0)
             inputsList.Add(MOFFGIDEON_INPUT.IN_NEUTRAL);
 
         if (currentState == MOFFGIDEON_STATE.NEUTRAL && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance && wander)
@@ -1107,18 +1111,45 @@ public class MoffGideon : Entity
 
     #endregion
 
-    private bool CheckDeathtroopers()
-    {
-        return (spawner1.GetComponent<Deathtrooper>().GetCurrentSate() == Deathtrooper.STATE.DIE && spawner2.GetComponent<Deathtrooper>().GetCurrentSate() == Deathtrooper.STATE.DIE && spawner3.GetComponent<Deathtrooper>().GetCurrentSate() == Deathtrooper.STATE.DIE && spawner4.GetComponent<Deathtrooper>().GetCurrentSate() == Deathtrooper.STATE.DIE);
-    }
-
     private void SpawnEnemies()
     {
-        Vector3 scale = new Vector3(1, 1, 1);
-        InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner1.transform.globalPosition, gameObject.transform.localRotation, scale);
-        InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner2.transform.globalPosition, gameObject.transform.localRotation, scale);
-        InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner3.transform.globalPosition, gameObject.transform.localRotation, scale);
-        InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawner4.transform.globalPosition, gameObject.transform.localRotation, scale);
+        SpawnDeathrooper(spawner1);
+        SpawnDeathrooper(spawner2);
+        SpawnDeathrooper(spawner3);
+        SpawnDeathrooper(spawner4);
+    }
+
+    private void SpawnDeathrooper(GameObject spawnPoint)
+    {
+        if(spawnPoint != null)
+        {
+            GameObject deathtrooper = InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawnPoint.transform.globalPosition, gameObject.transform.localRotation, new Vector3(1.0f, 1.0f, 1.0f));
+
+            if(deathtrooper != null)
+            {
+                deathtroopers.Add(deathtrooper);
+
+                Deathtrooper deathtrooperScript = deathtrooper.GetComponent<Deathtrooper>();
+
+                if (deathtrooperScript != null)
+                    deathtrooperScript.moffGideon = this;
+            }
+        }
+    }
+
+    public void RemoveDeathrooperFromList(GameObject deathtrooper)
+    {
+        if (deathtrooper == null)
+            return;
+
+        for(int i = 0; i < deathtroopers.Count; ++i)
+        {
+            if(deathtroopers[i].GetUid() == deathtrooper.GetUid())
+            {
+                deathtroopers.RemoveAt(i);
+                return;
+            }
+        }
     }
 
     public void MoveToPosition(Vector3 positionToReach, float speed)

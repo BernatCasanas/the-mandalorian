@@ -43,6 +43,8 @@ public class Deathtrooper : Enemy
     public GameObject shootPoint = null;
     public GameObject shotgun = null;
 
+    public MoffGideon moffGideon = null;
+
     //Timers
     private float idleTimer = 0.0f;
     private float dieTimer = 0.0f;
@@ -584,6 +586,10 @@ public class Deathtrooper : Enemy
         InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
 
         DropCoins();
+
+        if(moffGideon != null)
+            moffGideon.RemoveDeathrooperFromList(gameObject);
+        
 
         InternalCalls.Destroy(gameObject);
     }
