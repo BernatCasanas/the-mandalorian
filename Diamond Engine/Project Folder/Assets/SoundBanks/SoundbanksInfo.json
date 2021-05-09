@@ -2772,7 +2772,7 @@
    {
     "Id": "3991942870",
     "Language": "SFX",
-    "Hash": "3525115400",
+    "Hash": "2271838655",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Music",
     "ShortName": "Music",
     "Path": "Music.bnk",
@@ -2808,6 +2808,12 @@
         "Language": "SFX",
         "ShortName": "OST 12-17-Strings and Brass 2.wav",
         "Path": "SFX\\OST 12-17-Strings and Brass 2_0BA09294.wem"
+       },
+       {
+        "Id": "359960869",
+        "Language": "SFX",
+        "ShortName": "Moff guideon song.wav",
+        "Path": "SFX\\Moff guideon song_0BA09294.wem"
        },
        {
         "Id": "366591278",
@@ -3086,6 +3092,24 @@
           ]
          }
         ]
+       },
+       {
+        "SwitchValue": "{D651359C-1684-4E02-8D22-5225AA612899}",
+        "Children": [
+         {
+          "SwitchValue": "{C826D092-9E88-4F28-AD9B-BB26DAA56935}",
+          "Children": [
+           {
+            "SwitchValue": "{979A83A1-5FD3-4444-AB96-1ABEDBCBCCEC}",
+            "Media": [
+             {
+              "Id": "359960869"
+             }
+            ]
+           }
+          ]
+         }
+        ]
        }
       ]
      },
@@ -3158,6 +3182,11 @@
         "Id": "4178932914",
         "Name": "Cruiser_Explore",
         "ObjectPath": "\\States\\Default Work Unit\\Game_State\\Cruiser_Explore"
+       },
+       {
+        "Id": "1791748623",
+        "Name": "Moff_Guideon_Room",
+        "ObjectPath": "\\States\\Default Work Unit\\Game_State\\Moff_Guideon_Room"
        }
       ]
      },
