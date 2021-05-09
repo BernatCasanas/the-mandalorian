@@ -59,7 +59,6 @@ public class Core : Entity
     public GameObject blaster = null;
 
     private bool scriptStart = true;
-
     //State
     private STATE currentState = STATE.NONE;   //NEVER SET THIS VARIABLE DIRECTLLY, ALLWAYS USE INPUTS
                                                //Setting states directlly will break the behaviour  -Jose
@@ -239,7 +238,7 @@ public class Core : Entity
 
         //player instance
         instance = this;
-
+        
         //Controller
         deathZone = 15000;
 
@@ -2077,7 +2076,6 @@ public class Core : Entity
                     MaxForceModifier += statusToInit.statChange;
                 }
                 break;
-
             default:
                 break;
         }
@@ -2246,6 +2244,12 @@ public class Core : Entity
                 break;
             case STATUS_TYPE.DMG_PER_HEAT:
                 {
+                    this.ForceRegentPerHPMod = 0;
+                    //    Debug.Log(this.MovspeedMult.ToString());
+                }
+                break;
+            case STATUS_TYPE.GRO_FORCE_PER_HP:
+                {
                     this.DamagePerHeatMult = 1;
                     //    Debug.Log(this.MovspeedMult.ToString());
                 }
@@ -2281,7 +2285,6 @@ public class Core : Entity
                 break;
             case STATUS_TYPE.SP_INTERVAL:
                 {
-
                     sniperShotIntervalModifier -= statusToDelete.statChange;
                 }
                 break;

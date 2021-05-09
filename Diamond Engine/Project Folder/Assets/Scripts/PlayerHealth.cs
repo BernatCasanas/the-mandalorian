@@ -22,8 +22,20 @@ public class PlayerHealth : DiamondComponent
     {
         if (die && !DebugOptionsHolder.godModeActive)
         {
-            die = false;
-            Die();
+            if (Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.REVIVE) && Core.instance.GetStatusData(STATUS_TYPE.REVIVE).severity == 1 )
+            {
+                HealPercentMax(0.5f);
+                Core.instance.GetStatusData(STATUS_TYPE.REVIVE).severity = 0;
+                die = false;
+            }
+            else
+            {
+                Core.instance.GetStatusData(STATUS_TYPE.REVIVE).severity = 1;
+
+                die = false;
+                Die();
+            }
+         
         }
         if (damaged > 0.01f)
         {
@@ -242,6 +254,7 @@ public class PlayerHealth : DiamondComponent
 
     public void Die()
     {
+      
         ResetMaxAndCurrentHPToDefault();
         //TODO die
         Audio.PlayAudio(gameObject, "Play_Mando_Death");
