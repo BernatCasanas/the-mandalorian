@@ -185,7 +185,6 @@ public class Deathtrooper : Enemy
                 if (currentState == STATE.RUN)
                     inputsList.Add(INPUT.IN_RUN_END);
             }
-
         }
     }
 
