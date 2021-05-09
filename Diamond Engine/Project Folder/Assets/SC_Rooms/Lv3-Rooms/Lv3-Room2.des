@@ -1,19 +1,19 @@
 {
     "NavMesh": 759541763,
     "EditorCameraPosition": [
-        -10.413222312927246,
-        14.280013084411621,
-        2.500598669052124
+        -8.525782585144043,
+        4.2380647659301758,
+        -1.360682487487793
     ],
     "EditorCameraZ": [
-        0.49887332320213318,
-        -0.71143805980682373,
-        -0.49495583772659302
+        -0.53014481067657471,
+        -0.44390231370925903,
+        -0.72242456674575806
     ],
     "EditorCameraY": [
-        0.50496840476989746,
-        0.70274877548217773,
-        -0.50114965438842773
+        -0.26270651817321777,
+        0.89607518911361694,
+        -0.35781913995742798
     ],
     "tags": [],
     "layers": [],
@@ -93,7 +93,7 @@
             "Static": false,
             "Position": [
                 -11.933846473693848,
-                3.2446901798248291,
+                0.33115881681442261,
                 -4.6871066093444824
             ],
             "Rotation": [
@@ -2707,9 +2707,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -12.650406837463379,
-                2.3820154666900635,
-                -7.4733448028564453
+                -12.621711730957031,
+                0.96085774898529053,
+                -6.2117490768432617
             ],
             "Rotation": [
                 0,
@@ -12137,7 +12137,7 @@
             "Static": false,
             "Position": [
                 0,
-                0,
+                -1.3575620651245117,
                 0
             ],
             "Rotation": [
@@ -12159,7 +12159,15 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "Missing script reference"
+                    "ScriptName": "SpawnManager",
+                    "availableSpawnPoints": 0,
+                    "maxEnemiesPerWave": 6,
+                    "enemyIncreasePerWave": 2,
+                    "maxWaves": 5,
+                    "delayInWaveSpawn": 5,
+                    "enemiesLeftToNextWave": 3,
+                    "timeBetweenWaves": 20,
+                    "maxDelayTime": 0.75
                 }
             ]
         },
@@ -12243,6 +12251,19 @@
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
                     "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": false,
+                    "spawnBantha": false,
+                    "spawnSkytrooper": false,
+                    "spawnLaserTurret": true,
+                    "spawnDeathrooper": false,
+                    "spawnHeavyTrooper": false,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 1061682352
                 }
             ]
         },
@@ -12517,6 +12538,19 @@
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
                     "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": false,
+                    "spawnBantha": false,
+                    "spawnSkytrooper": false,
+                    "spawnLaserTurret": true,
+                    "spawnDeathrooper": false,
+                    "spawnHeavyTrooper": false,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 1603642173
                 }
             ]
         },
@@ -12778,11 +12812,6 @@
                     "Active": true
                 },
                 {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "Missing script reference"
-                },
-                {
                     "Type": 13,
                     "Active": true,
                     "evName": "Play_Enemy_Respawn",
@@ -12791,6 +12820,19 @@
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
                     "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": false,
+                    "spawnBantha": false,
+                    "spawnSkytrooper": false,
+                    "spawnLaserTurret": true,
+                    "spawnDeathrooper": false,
+                    "spawnHeavyTrooper": false,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 2035285998
                 }
             ]
         },
@@ -13099,6 +13141,19 @@
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
                     "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": true,
+                    "spawnBantha": false,
+                    "spawnSkytrooper": true,
+                    "spawnLaserTurret": false,
+                    "spawnDeathrooper": false,
+                    "spawnHeavyTrooper": false,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 561443422
                 }
             ]
         },
@@ -13373,6 +13428,19 @@
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
                     "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": true,
+                    "spawnBantha": false,
+                    "spawnSkytrooper": true,
+                    "spawnLaserTurret": false,
+                    "spawnDeathrooper": false,
+                    "spawnHeavyTrooper": false,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 1795900958
                 }
             ]
         },
@@ -13681,6 +13749,19 @@
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
                     "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": true,
+                    "spawnBantha": false,
+                    "spawnSkytrooper": true,
+                    "spawnLaserTurret": false,
+                    "spawnDeathrooper": true,
+                    "spawnHeavyTrooper": true,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 612647053
                 }
             ]
         },
@@ -13955,6 +14036,19 @@
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
                     "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": true,
+                    "spawnBantha": false,
+                    "spawnSkytrooper": true,
+                    "spawnLaserTurret": false,
+                    "spawnDeathrooper": true,
+                    "spawnHeavyTrooper": true,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 808532459
                 }
             ]
         },
@@ -14229,6 +14323,19 @@
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
                     "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": true,
+                    "spawnBantha": false,
+                    "spawnSkytrooper": true,
+                    "spawnLaserTurret": false,
+                    "spawnDeathrooper": true,
+                    "spawnHeavyTrooper": true,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 1417505643
                 }
             ]
         },
@@ -14503,6 +14610,19 @@
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
                     "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": true,
+                    "spawnBantha": false,
+                    "spawnSkytrooper": true,
+                    "spawnLaserTurret": false,
+                    "spawnDeathrooper": true,
+                    "spawnHeavyTrooper": true,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 1104903810
                 }
             ]
         },
@@ -14777,6 +14897,19 @@
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
                     "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": true,
+                    "spawnBantha": false,
+                    "spawnSkytrooper": true,
+                    "spawnLaserTurret": false,
+                    "spawnDeathrooper": true,
+                    "spawnHeavyTrooper": true,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 1601551556
                 }
             ]
         },
@@ -15051,6 +15184,19 @@
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
                     "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": true,
+                    "spawnBantha": false,
+                    "spawnSkytrooper": true,
+                    "spawnLaserTurret": false,
+                    "spawnDeathrooper": true,
+                    "spawnHeavyTrooper": true,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 25861137
                 }
             ]
         },
@@ -15325,6 +15471,19 @@
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
                     "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": true,
+                    "spawnBantha": false,
+                    "spawnSkytrooper": true,
+                    "spawnLaserTurret": false,
+                    "spawnDeathrooper": true,
+                    "spawnHeavyTrooper": true,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 1792857823
                 }
             ]
         },
@@ -15599,6 +15758,19 @@
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
                     "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": true,
+                    "spawnBantha": false,
+                    "spawnSkytrooper": true,
+                    "spawnLaserTurret": false,
+                    "spawnDeathrooper": true,
+                    "spawnHeavyTrooper": true,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 546059082
                 }
             ]
         },
@@ -15873,6 +16045,19 @@
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
                     "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": true,
+                    "spawnBantha": false,
+                    "spawnSkytrooper": true,
+                    "spawnLaserTurret": false,
+                    "spawnDeathrooper": true,
+                    "spawnHeavyTrooper": true,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 1904852226
                 }
             ]
         },
@@ -16147,6 +16332,19 @@
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
                     "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": true,
+                    "spawnBantha": false,
+                    "spawnSkytrooper": true,
+                    "spawnLaserTurret": false,
+                    "spawnDeathrooper": true,
+                    "spawnHeavyTrooper": true,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 558245829
                 }
             ]
         },
@@ -16421,6 +16619,19 @@
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
                     "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": true,
+                    "spawnBantha": false,
+                    "spawnSkytrooper": true,
+                    "spawnLaserTurret": false,
+                    "spawnDeathrooper": true,
+                    "spawnHeavyTrooper": true,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 391582652
                 }
             ]
         },
@@ -16695,6 +16906,19 @@
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
                     "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": true,
+                    "spawnBantha": false,
+                    "spawnSkytrooper": true,
+                    "spawnLaserTurret": false,
+                    "spawnDeathrooper": true,
+                    "spawnHeavyTrooper": true,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 1906511533
                 }
             ]
         },
