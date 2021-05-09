@@ -37,7 +37,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -68,18 +68,19 @@
                                 1
                             ],
                             "paPerSec": 500,
+                            "paRelative": true,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 0,
                                     "paFOLT_direction": [
-                                        -11.204000473022461,
-                                        7.3460001945495605,
-                                        -9
+                                        0,
+                                        0,
+                                        1
                                     ],
                                     "paFOLT_magnitude": 20,
                                     "paFOLT_gravityMod": 0,
                                     "paFOLT_gravity": -0,
-                                    "paFOLT_forceType": 1
+                                    "paFOLT_forceType": 0
                                 },
                                 {
                                     "paEffectType": 2,
@@ -89,7 +90,7 @@
                                                 0,
                                                 0.94071149826049805,
                                                 1,
-                                                1
+                                                0
                                             ],
                                             "paColorOLTposition": 0.051353387534618378
                                         },
@@ -121,13 +122,13 @@
                                 {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 1.5,
+                                    "paShapePartSpeed": 0,
                                     "paShapeRandSpeed": 1,
-                                    "PaShapeConeRadius": 0.20000000298023224,
-                                    "PaShapeConeHeight": 0.10000000149011612,
-                                    "PaShapeSphereDirection": false,
-                                    "PaShapeSphereAngle": 0,
-                                    "paShapeType": 2,
+                                    "PaShapeCircumferenceinnerRadius": 0.10000000149011612,
+                                    "PaShapeCircumferenceoutterRadius": 0.10000000149011612,
+                                    "PaShapeCircumferenceDirection": false,
+                                    "PaShapeCircumferenceAngle": 0,
+                                    "paShapeType": 3,
                                     "PaShapeOffset": [
                                         0,
                                         0,
@@ -156,6 +157,7 @@
                                 1
                             ],
                             "paPerSec": 10,
+                            "paRelative": true,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 1,

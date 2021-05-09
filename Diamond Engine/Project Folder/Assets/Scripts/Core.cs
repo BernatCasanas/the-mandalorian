@@ -1926,6 +1926,7 @@ public class Core : Entity
         RawDamageMult = 1f;
         SecTickDamage = 1f;
         sniperShotIntervalModifier = 1f;
+        ForceRegentPerHPMod = 1f;
     }
 
     protected override void OnInitStatus(ref StatusData statusToInit)
@@ -2076,12 +2077,7 @@ public class Core : Entity
                     MaxForceModifier += statusToInit.statChange;
                 }
                 break;
-            case STATUS_TYPE.ADD_FORCE:
-                {
-                    statusToInit.statChange = statusToInit.severity;
-                    MaxForceModifier += statusToInit.statChange;
-                }
-                break;
+
             default:
                 break;
         }
@@ -2093,8 +2089,7 @@ public class Core : Entity
         {
             case STATUS_TYPE.BLAST_DMG_PER_HP:
                 {
-                    if (Core.instance != null)
-                    {
+                    
                         //PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
                         //if (myHealth != null)
                         //{
@@ -2103,14 +2098,13 @@ public class Core : Entity
                         BlasterDamagePerHpMult = 1 + missingHealtPercentage;
                         //  Debug.Log("TESTING / dmg per missing hp = " + DamagePerHpMult.ToString());
                         // }
-                    }
+                    
 
                 }
                 break;
             case STATUS_TYPE.SNIPER_DMG_PER_HP:
                 {
-                    if (Core.instance != null)
-                    {
+                   
                         //PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
                         //if (myHealth != null)
                         //{
@@ -2119,18 +2113,14 @@ public class Core : Entity
                         SniperDamagePerHpMult = 1 + missingHealtPercentage;
                         //  Debug.Log("TESTING / dmg per missing hp = " + DamagePerHpMult.ToString());
                         // }
-                    }
+                    
 
                 }
                 break;
             case STATUS_TYPE.DMG_PER_HEAT:
                 {
-                    if (Core.instance != null)
-                    {
-                        //PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
-                        //if (myHealth != null)
-                        //{
-                        if (Core.instance.hud != null)
+                   
+                        if (instance.hud != null)
                         {
                             float currentheat = Core.instance.hud.GetComponent<HUD>().primaryWeaponHeat;
                             float HeatPercentage = currentheat / Core.instance.hud.GetComponent<HUD>().primaryWeaponMaxHeat;
@@ -2139,8 +2129,15 @@ public class Core : Entity
                         }
 
 
-                        // }
-                    }
+                }
+                break;
+            case STATUS_TYPE.GRO_FORCE_PER_HP:
+                {
+                    float missingHealth = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
+                    float missingHealthPercentage = missingHealth / PlayerHealth.currMaxHealth * 10;
+                    ForceRegentPerHPMod = missingHealthPercentage;
+
+                    //    Debug.Log("TESTING / dmg per heat = " + DamagePerHeatMult.ToString());
 
                 }
                 break;

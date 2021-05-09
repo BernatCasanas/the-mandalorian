@@ -113,6 +113,8 @@ public static class RoomSwitch
         int index = (int)currentLevelIndicator;
         if (Core.instance != null)
             Core.instance.SaveBuffs();
+
+        //Load Post Boss Room
         if (index > 0 && currentLevelIndicator == LEVELS.TWO && levelLists[index - 1].finalScene == currentroom  /*&& currentLevelIndicator == LEVELS.TWO*/)
         {
             Debug.Log("PostBoss loaded");
@@ -121,6 +123,7 @@ public static class RoomSwitch
             return;
         }
 
+        //Switch Rooms
         if (levelLists[index].visited.Count > 0)
         {
             int roomnumber = randomGenerator.Next(0, levelLists[index].visited.Count);
@@ -128,7 +131,10 @@ public static class RoomSwitch
             currentroom = roomID;
             levelLists[index].visited.Remove(currentroom);
             SceneManager.LoadScene(roomID);
+
+            PlayLevelEnvironment();
         }
+        //Switch Level
         else
         {
             //levelLists[index].visited.Clear();
@@ -142,6 +148,8 @@ public static class RoomSwitch
 
             currentroom = levelLists[index].finalScene;
             SceneManager.LoadScene(levelLists[index].finalScene);
+
+            PlayLevelEnvironment();
         }
 
     }
@@ -159,9 +167,16 @@ public static class RoomSwitch
         Counter.gameResult = Counter.GameResult.NONE;   // This is morally wrong. But we don't have a scene manager
     }
 
-    //public void OnApplicationQuit()
-    //   {
-    //	RoomSwitch.ClearStaticData();
-    //}
-
+    public static void PlayLevelEnvironment()
+    {
+        switch(currentLevelIndicator)
+        {
+            case LEVELS.ONE:
+                break;
+            case LEVELS.TWO:
+                break;
+            case LEVELS.THREE:
+                break;
+        }
+    }
 }
