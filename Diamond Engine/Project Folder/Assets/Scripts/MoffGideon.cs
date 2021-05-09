@@ -68,8 +68,6 @@ public class MoffGideon : Entity
 
     private float damageMult = 1.0f;
 
-    private bool start = false;
-
     //Stats
     public float healthPoints = 8500.0f;
     public float maxHealthPoints_fase1 = 4500.0f;
@@ -116,16 +114,6 @@ public class MoffGideon : Entity
     private float comboTime = 0f;
     private float comboTimer = 0f;
 
-    private void Start()
-    {
-        StartNeutral();
-        sword.DisableCollider();
-
-        comboTime = Animator.GetAnimationDuration(gameObject, "MG_Slash") - 0.016f;
-        enemiesTimer = enemiesTime;
-
-    }
-
     public void Awake()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
@@ -146,16 +134,16 @@ public class MoffGideon : Entity
         if (agent == null)
             Debug.Log("Null agent, add a NavMeshAgent Component");
 
+        StartNeutral();
+        sword.DisableCollider();
+
+        comboTime = Animator.GetAnimationDuration(gameObject, "MG_Slash") - 0.016f;
+        enemiesTimer = enemiesTime;
 
     }
 
     public void Update()
     {
-        if (!start)
-        {
-            Start();
-            start = true;
-        }
         myDeltaTime = Time.deltaTime * speedMult;
 
         UpdateStatuses();
@@ -1005,10 +993,9 @@ public class MoffGideon : Entity
             PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-
-            }
                 //playerHealth.TakeDamage((int)(damageToPlayer * damageMult));
-            
+            }
+            Debug.Log(damageToPlayer.ToString() + " " + damageMult.ToString());
 
         }
         else if (collidedGameObject.CompareTag("WallSkill"))
