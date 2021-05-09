@@ -59,7 +59,7 @@ public class MoffGideon : Entity
     //State
     private MOFFGIDEON_STATE currentState = MOFFGIDEON_STATE.NEUTRAL;
     private List<MOFFGIDEON_INPUT> inputsList = new List<MOFFGIDEON_INPUT>();
-    private MOFFGIDEON_PHASE currentPhase = MOFFGIDEON_PHASE.PHASE2;
+    private MOFFGIDEON_PHASE currentPhase = MOFFGIDEON_PHASE.PHASE1;
 
     Random randomNum = new Random();
 
