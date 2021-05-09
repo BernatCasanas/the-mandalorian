@@ -181,6 +181,8 @@ public static class RoomSwitch
                 break;
             case LEVELS.THREE:
                 Audio.PlayAudio(EnvironmentSourceLocate.instance.gameObject, "Play_Spaceship_Interior_Ambience");
+                Audio.SetState("Player_State", "Alive");
+                Audio.SetState("Game_State", "Cruiser_Explore");
                 break;
         }
     }
