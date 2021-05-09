@@ -105,9 +105,7 @@ public class GameSceneManager : DiamondComponent
             RoomSwitch.SwitchRooms();
         else
         {
-            Counter.gameResult = Counter.GameResult.VICTORY;
-            DebugOptionsHolder.goToNextLevel = false;
-            SceneManager.LoadScene(821370213);
+            RoomSwitch.OnPlayerWin();
         }
 
         Debug.Log("SAVING SCENE");

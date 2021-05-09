@@ -246,11 +246,7 @@ public class PlayerHealth : DiamondComponent
         //TODO die
         Audio.PlayAudio(gameObject, "Play_Mando_Death");
         // Set as defeat:
-        Counter.gameResult = Counter.GameResult.DEFEAT;
-        // When the player has died load the scene:
-        if (Core.instance != null)
-            Core.instance.SaveBuffs();
-        SceneManager.LoadScene(821370213);
+        RoomSwitch.OnPlayerDeath();
     
     }
     public static void ResetMaxAndCurrentHPToDefault()
