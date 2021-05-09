@@ -161,6 +161,12 @@ public class SpawnManager : DiamondComponent
         enemiesToSpawn = enemiesLeftInWave = pendingEnemies;
     }
 
+    public void OnDestroy()
+    {
+        if (instance == this)
+            instance = null;
+    }
+
     public int GetCurrentWave()
     {
         return wave;

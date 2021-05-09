@@ -766,4 +766,9 @@ public class Skytrooper : Enemy
         }
     }
 
+    public void OnDestroy()
+    {
+        EnemyManager.RemoveEnemy(this.gameObject);
+    }
+
 }
