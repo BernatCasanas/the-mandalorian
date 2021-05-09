@@ -1,31 +1,31 @@
 {
     "Game Objects": [
         {
-            "name": "AreaLight",
+            "name": "NPC Interaction ",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 391060195,
-            "ParentUID": 1823420575,
+            "UID": 576026679,
+            "ParentUID": 1481651339,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                7.3857278823852539,
-                1.3709602355957031,
-                4.6652140617370605
+                4.6223888397216797,
+                1.761621356010437,
+                21.455696105957031
             ],
             "Rotation": [
-                0.7071068286895752,
                 0,
                 0,
-                0.70710670948028564
+                0,
+                1
             ],
             "Scale": [
-                14.452498435974121,
-                14.451640129089355,
-                14.451640129089355
+                1,
+                1,
+                1
             ],
             "Components": [
                 {
@@ -33,22 +33,50 @@
                     "Active": true
                 },
                 {
-                    "Type": 27,
+                    "Type": 3,
                     "Active": true,
-                    "lightColor": [
-                        0.8888888955116272,
-                        0,
-                        0
-                    ],
-                    "ambientLightColor": [
-                        1,
-                        0,
-                        0
-                    ],
-                    "lightIntensity": 3,
-                    "specularValue": 1,
-                    "fadeDistance": 100,
-                    "maxDistance": 600
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": true,
+                    "looping": true,
+                    "maxDuration": 0.17499999701976776,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1718707501.dds",
+                            "texUID": 1718707501,
+                            "paEmitterName": "Empty",
+                            "paLifeTime": [
+                                3,
+                                3
+                            ],
+                            "paSize": [
+                                0.34999999403953552,
+                                0.34999999403953552
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "paRelative": true,
+                            "ParticleEffects": []
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
                 }
             ]
         }
