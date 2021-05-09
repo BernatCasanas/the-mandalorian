@@ -179,11 +179,11 @@ bool C_Camera::OnEditor()
 
 		if (postProcessProfile == nullptr)
 		{
+			DrawCreationWindow();
 			if (ImGui::Button("Create new Profile ##Post Processing Profile"))
 			{
 				ImGui::OpenPopup("Create new Profile##CamProfile", ImGuiPopupFlags_NoOpenOverExistingPopup);
 			}
-			DrawCreationWindow();
 		}
 		else
 		{
@@ -356,7 +356,7 @@ void C_Camera::SetPostProcessProfile(ResourcePostProcess* newProfile)
 
 void C_Camera::DrawCreationWindow()
 {
-	if (ImGui::BeginPopupContextWindow("Create new Profile##CamProfile", ImGuiWindowFlags_NoInputs))
+	if (ImGui::BeginPopup("Create new Profile##CamProfile", ImGuiWindowFlags_AlwaysAutoResize))
 	{
 
 		static char name[50] = "\0";
