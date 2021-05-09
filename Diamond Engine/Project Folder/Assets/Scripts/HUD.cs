@@ -739,7 +739,6 @@ public class HUD : DiamondComponent
         {
             heat_descending = true;
             SetPrimaryOVerheat(true);
-            Audio.PlayAudio(gameObject, "Play_Mando_Blaster_Overcharged");
             primaryWeaponHeat = primaryWeaponMaxHeat;
         }
 
@@ -756,7 +755,6 @@ public class HUD : DiamondComponent
         if (primaryWeaponHeat <= 0f)
         {
             SetPrimaryOVerheat(false);
-            Audio.PlayAudio(gameObject, "Play_Blaster_Cooldown_Finished");
             primaryWeaponHeat = 0f;
             heat_descending = false;
         }

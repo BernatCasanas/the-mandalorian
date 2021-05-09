@@ -131,7 +131,7 @@ public class Core : Entity
     private static float grenadesFireRate;
     private float grenadesFireRateTimer = 0.0f;
     private bool grenade_reloading = false;
-
+    private float grenade_onDash = 5.0f;
     private Material grenadeCooldownIcon = null;
     private Material sniperBullet1 = null;
     private Material sniperBullet2 = null;
@@ -204,7 +204,7 @@ public class Core : Entity
         //Dash - if scene doesnt have its values
         //dashDuration = 0.2f;
         //dashDistance = 4.5f;
-
+        grenade_onDash = 5.0f;
         #endregion
 
         #region SHOOT
@@ -470,7 +470,7 @@ public class Core : Entity
                 skill_groguIncreaseDamageActive = false;
         }
 
-        if(sniperShotTimer > 0.0f)
+        if(sniperShotTimer >= 0.0f)
         {
             sniperShotTimer -= myDeltaTime;
 
@@ -484,9 +484,17 @@ public class Core : Entity
             grenadesFireRateTimer -= myDeltaTime;
         timeOfRoom += myDeltaTime;
         timeSinceLastDash += myDeltaTime;
+
+        if (HasStatus(STATUS_TYPE.GRENADE_ON_DASH))
+        grenade_onDash += myDeltaTime;
+
     }
 
-
+    public void refreshCooldowns()
+    {
+        //sniperRechargeTimer = 0;
+        //grenadesFireRateTimer = 0;
+    }
     //Controler inputs go here
     private void ProcessExternalInput()
     {
@@ -498,7 +506,8 @@ public class Core : Entity
 
             if (isPrimaryOverHeat == true && primaryWeaponOverHeat == false)
                 Audio.PlayAudio(secSound, "Play_Mando_Blaster_Overcharged");
-
+            else if (isPrimaryOverHeat == false && primaryWeaponOverHeat == true)
+                Audio.PlayAudio(secSound, "Play_Blaster_Cooldown_Finished");
             primaryWeaponOverHeat = isPrimaryOverHeat;
         }
 
@@ -590,7 +599,7 @@ public class Core : Entity
             grenadeCooldownIcon.SetFloatUniform("currentGrenadeCooldown", grenadesFireRate - grenadesFireRateTimer);
             grenadeCooldownIcon.SetFloatUniform("maxGrenadeCooldown", grenadesFireRate);
         }
-        else if (grenade_reloading && grenadesFireRateTimer < 0.0f)
+        else if (grenade_reloading && grenadesFireRateTimer <= 0.0f)
         {
             PlayParticles(PARTICLES.GRENADE);
             grenade_reloading = false;
@@ -1008,9 +1017,6 @@ public class Core : Entity
 
         if (blaster != null)
             blaster.Enable(false);
-
-        Input.PlayHaptic(2f, 30);
-
         //Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
         //Quaternion rotation = Quaternion.RotateAroundAxis(Vector3.up, 0.383972f);
 
@@ -1032,6 +1038,7 @@ public class Core : Entity
         //    Vector3 targetPos = grenadeComp.gameObject.transform.globalPosition + grenadeComp.gameObject.transform.GetForward() * 1.9f;
         //    grenadeComp.InitGrenade(targetPos, 0.204f, 10);
         //}
+        Input.PlayHaptic(2f, 30);
 
         Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
         InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation, scale);
@@ -1278,6 +1285,25 @@ public class Core : Entity
         }
 
         PlayParticles(PARTICLES.JETPACK);
+        if(HasStatus(STATUS_TYPE.GRENADE_ON_DASH) && grenade_onDash >= GetStatusData(STATUS_TYPE.GRENADE_ON_DASH).severity)
+        {
+            grenade_onDash = 0;
+
+            if (shootPoint == null)
+            {
+                Debug.Log("Shootpoint reference is null!");
+                return;
+            }
+
+            Quaternion rotation = Quaternion.RotateAroundAxis(Vector3.up, 3.14159f);
+            Input.PlayHaptic(2f, 30);
+            Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
+            Vector3 pos = new Vector3(shootPoint.transform.globalPosition.x, shootPoint.transform.globalPosition.y - 1f, shootPoint.transform.globalPosition.z - 0.8f);
+            InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", pos, shootPoint.transform.globalRotation * rotation, scale);
+
+        }
+
+
     }
 
     private void UpdateDash()
@@ -1527,7 +1553,7 @@ public class Core : Entity
 
     private void UpdateSecondaryShotAmmo()
     {
-        if (sniperRechargeTimer > 0f)
+        if (sniperRechargeTimer >= 0f)
         {
             sniperRechargeTimer -= myDeltaTime;
 

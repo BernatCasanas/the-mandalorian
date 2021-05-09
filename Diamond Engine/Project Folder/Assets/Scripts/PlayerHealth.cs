@@ -199,6 +199,14 @@ public class PlayerHealth : DiamondComponent
                 if (result <= Core.instance.GetStatusData(STATUS_TYPE.BLOCK).severity)
                     return currHealth;
             }
+
+            if(Core.instance.HasStatus(STATUS_TYPE.REFILL_CHANCE))
+            {
+                Random rand = new Random();
+                float result = rand.Next(1, 101);
+                if (result <= Core.instance.GetStatusData(STATUS_TYPE.REFILL_CHANCE).severity)
+                    Core.instance.refreshCooldowns();
+            }
         }
 
         if (Core.instance != null && damage > 0 && ignoreDashInv == false)
