@@ -9,7 +9,7 @@ public class TutoButtonLoop : DiamondComponent
 	private int buttonToChange = 0;
 
 	Material buttonMaterial = null;
-	private float maxTime = 0.5f;
+	private float maxTime = 0.2f;
 	private float currentTime = 0.0f;
 	int loopState = 0;
 
