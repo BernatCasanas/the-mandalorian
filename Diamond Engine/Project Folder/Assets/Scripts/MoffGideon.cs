@@ -97,13 +97,16 @@ public class MoffGideon : Entity
     private List<GameObject> deathtroopers = null;
 
     //Private Variables
-    //private float damaged = 0.0f;
     private float currAnimationPlaySpd = 1f;
+    //private float damaged = 0.0f;
     //private bool invencible = false;
     private bool wander = false;
     private bool ready2Spawn = false;
     private Vector3 targetDash = null;
     private bool justDashing = false;
+    private int maxProjectiles = 7;
+    private int projectiles = 0;
+    private bool aiming = false;
 
 
     //Timers
@@ -115,6 +118,9 @@ public class MoffGideon : Entity
     public float enemiesTime = 1f;
     private float comboTime = 0f;
     private float comboTimer = 0f;
+    public float cadencyTime = 0.2f;
+    public float cadencyTimer = 0f;
+    private float privateTimer = 0f;
 
     public void Awake()
     {
@@ -156,8 +162,6 @@ public class MoffGideon : Entity
         ProcessExternalInput();
         ProcessState();
 
-        Debug.Log(ready2Spawn.ToString());
-
         UpdateState();
     }
 
@@ -176,7 +180,6 @@ public class MoffGideon : Entity
         if (enemiesTimer > 0)
         {
             enemiesTimer -= myDeltaTime;
-            Debug.Log(enemiesTimer.ToString());
 
             if (enemiesTimer <= 0)
                 ready2Spawn = true;
@@ -214,6 +217,12 @@ public class MoffGideon : Entity
         {
             inputsList.Add(MOFFGIDEON_INPUT.IN_NEUTRAL);
             justDashing = false;
+        }
+
+        if(currentState == MOFFGIDEON_STATE.PROJECTILE && projectiles == maxProjectiles)
+        {
+            projectiles = 0;
+            inputsList.Add(MOFFGIDEON_INPUT.IN_NEUTRAL);
         }
 
     }
@@ -737,19 +746,55 @@ public class MoffGideon : Entity
 
     private void StartProjectile()
     {
-        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1606118587.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
-        Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Shot");
+        Animator.Play(gameObject, "MG_Shoot", speedMult);
+        UpdateAnimationSpd(speedMult);
+        cadencyTimer = cadencyTime;
+        aiming = true;
+        privateTimer = 1f;
     }
 
     private void UpdateProjectile()
     {
         Debug.Log("Projectile");
+
+        if (aiming)
+        {
+            LookAt(Core.instance.gameObject.transform.globalPosition);
+
+            if (privateTimer > 0)
+            {
+                privateTimer -= myDeltaTime;
+
+                if (privateTimer <= 0)
+                    aiming = false;
+            }
+
+            return;
+        }
+
+        gameObject.transform.localRotation.y += slerpSpeed * myDeltaTime * speedMult;
+
+        if (cadencyTimer > 0)
+        {
+            cadencyTimer -= myDeltaTime;
+
+            if (cadencyTimer <= 0)
+            {
+                Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Shot");
+                cadencyTimer = cadencyTime;
+                projectiles++;
+                GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1606118587.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+            }
+
+        }
     }
 
     private void EndProjectile()
     {
 
     }
+
+
 
     #endregion
 
@@ -885,6 +930,7 @@ public class MoffGideon : Entity
         Quaternion desiredRotation = Quaternion.Slerp(gameObject.transform.localRotation, dir, rotationSpeed);
 
         gameObject.transform.localRotation = desiredRotation;
+
     }
 
     public void OnCollisionEnter(GameObject collidedGameObject)
