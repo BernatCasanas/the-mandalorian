@@ -13,20 +13,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                1,
-                0
+                -8.341242790222168,
+                55.439807891845703,
+                17.389276504516602
             ],
             "Rotation": [
-                1.0033831543410088e-08,
-                0.81250351667404175,
-                -1.0033831543410088e-08,
-                0.58295625448226929
+                -1.4001412473874097e-08,
+                -0.00017251078679692,
+                -2.2905608521028853e-09,
+                1
             ],
             "Scale": [
-                0.85979646444320679,
-                0.85979658365249634,
-                0.85979640483856201
+                0.9999997615814209,
+                1,
+                0.9999997615814209
             ],
             "Components": [
                 {
@@ -102,6 +102,7 @@
                                 1
                             ],
                             "paPerSec": 250,
+                            "paRelative": true,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 0,
@@ -208,6 +209,7 @@
                                 1
                             ],
                             "paPerSec": 250,
+                            "paRelative": true,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 0,
@@ -291,123 +293,6 @@
                     "Type": 21,
                     "Active": true,
                     "billboardAlignment": 0,
-                    "horizantalAligned": true
-                }
-            ]
-        },
-        {
-            "name": "Particle System",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 2013029087,
-            "ParentUID": 1947430717,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
-                    "MaterialUID": 355756108
-                },
-                {
-                    "Type": 20,
-                    "Active": true,
-                    "systemActive": true,
-                    "looping": true,
-                    "maxDuration": 0.73400002717971802,
-                    "ParticleEmitters": [
-                        {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/294166960.dds",
-                            "texUID": 294166960,
-                            "paEmitterName": "Empty",
-                            "paLifeTime": [
-                                1,
-                                1
-                            ],
-                            "paSize": [
-                                1,
-                                1
-                            ],
-                            "paColor": [
-                                0.55897587537765503,
-                                0,
-                                0.69565218687057495,
-                                1
-                            ],
-                            "paPerSec": 1,
-                            "ParticleEffects": [
-                                {
-                                    "paEffectType": 2,
-                                    "Gradients": [
-                                        {
-                                            "paColorOLTcolor": [
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ],
-                                            "paColorOLTposition": 0
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                0.53163719177246094,
-                                                0,
-                                                1,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 0.2351340651512146
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                0.5295262336730957,
-                                                0,
-                                                1,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 1
-                                        }
-                                    ]
-                                },
-                                {
-                                    "paEffectType": 3,
-                                    "paSizeOLTStartSize": 0.10000000149011612,
-                                    "paSizeOLTEndSize": 1.2999999523162842
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "Type": 21,
-                    "Active": true,
-                    "billboardAlignment": 3,
                     "horizantalAligned": true
                 }
             ]

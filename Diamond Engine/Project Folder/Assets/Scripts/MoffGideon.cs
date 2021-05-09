@@ -618,7 +618,7 @@ public class MoffGideon : Entity
             else if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= farDistance)
                 inputsList.Add(MOFFGIDEON_INPUT.IN_CHARGE_THROW);
 
-            else if(Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= furtherDistance)
+            else if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= furtherDistance)
                 inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD);
 
         }
@@ -677,7 +677,7 @@ public class MoffGideon : Entity
     private void UpdateDashForward()
     {
         LookAt(targetDash);
-        if(Mathf.Distance(gameObject.transform.globalPosition, targetDash) >= 1f) MoveToPosition(targetDash, dashSpeed * speedMult);
+        if (Mathf.Distance(gameObject.transform.globalPosition, targetDash) >= 1f) MoveToPosition(targetDash, dashSpeed * speedMult);
         Debug.Log("Dash Forward");
     }
 
@@ -710,7 +710,7 @@ public class MoffGideon : Entity
     }
 
     #endregion
-    
+
     #region DASH_BACKWARD
     private void StartDashBackward()
     {
@@ -748,7 +748,7 @@ public class MoffGideon : Entity
 
     private void EndProjectile()
     {
-        
+
     }
 
     #endregion
@@ -1020,7 +1020,7 @@ public class MoffGideon : Entity
 
                 if (healthPoints <= 0.0f)
                 {
-                    if(currentPhase==MOFFGIDEON_PHASE.PHASE1)
+                    if (currentPhase == MOFFGIDEON_PHASE.PHASE1)
                     {
                         currentPhase = MOFFGIDEON_PHASE.PHASE2;
                         currentState = MOFFGIDEON_STATE.NEUTRAL;
@@ -1121,20 +1121,27 @@ public class MoffGideon : Entity
 
     private void SpawnDeathrooper(GameObject spawnPoint)
     {
-        if(spawnPoint != null)
+        if (spawnPoint == null)
+            return;
+
+        //Spawn Enemy
+        GameObject deathtrooper = InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawnPoint.transform.globalPosition, gameObject.transform.localRotation, new Vector3(1.0f, 1.0f, 1.0f));
+
+        if (deathtrooper != null)
         {
-            GameObject deathtrooper = InternalCalls.CreatePrefab("Library/Prefabs/1439379622.prefab", spawnPoint.transform.globalPosition, gameObject.transform.localRotation, new Vector3(1.0f, 1.0f, 1.0f));
+            deathtroopers.Add(deathtrooper);
 
-            if(deathtrooper != null)
-            {
-                deathtroopers.Add(deathtrooper);
+            Deathtrooper deathtrooperScript = deathtrooper.GetComponent<Deathtrooper>();
 
-                Deathtrooper deathtrooperScript = deathtrooper.GetComponent<Deathtrooper>();
-
-                if (deathtrooperScript != null)
-                    deathtrooperScript.moffGideon = this;
-            }
+            if (deathtrooperScript != null)
+                deathtrooperScript.moffGideon = this;
         }
+
+        //Play Particles
+        ParticleSystem particleSystem = spawnPoint.GetComponent<ParticleSystem>();
+
+        if (particleSystem != null)
+            particleSystem.Play();
     }
 
     public void RemoveDeathrooperFromList(GameObject deathtrooper)
@@ -1142,9 +1149,9 @@ public class MoffGideon : Entity
         if (deathtrooper == null)
             return;
 
-        for(int i = 0; i < deathtroopers.Count; ++i)
+        for (int i = 0; i < deathtroopers.Count; ++i)
         {
-            if(deathtroopers[i].GetUid() == deathtrooper.GetUid())
+            if (deathtroopers[i].GetUid() == deathtrooper.GetUid())
             {
                 deathtroopers.RemoveAt(i);
                 return;
