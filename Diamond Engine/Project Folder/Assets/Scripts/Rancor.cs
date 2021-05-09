@@ -1272,7 +1272,7 @@ public class Rancor : Entity
     {
         Animator.Play(gameObject, "RN_Roar", speedMult);
         UpdateAnimationSpd(speedMult);
-        Audio.PlayAudio(gameObject, "Play_Rancor_Breath");
+        Audio.PlayAudio(gameObject, "Play_Rancor_Roar_Presentation");
         Input.PlayHaptic(0.9f, (int)roarTime * 1000);
         roarTimer = roarTime;
     }

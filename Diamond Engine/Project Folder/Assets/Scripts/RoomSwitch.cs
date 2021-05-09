@@ -176,6 +176,7 @@ public static class RoomSwitch
             case LEVELS.TWO:
                 break;
             case LEVELS.THREE:
+                Audio.PlayAudio(EnvironmentSourceLocate.instance.gameObject, "Play_Spaceship_Interior_Ambience");
                 break;
         }
     }

@@ -746,6 +746,7 @@ public class MoffGideon : Entity
     private void StartProjectile()
     {
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1606118587.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+        Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Shot");
     }
 
     private void UpdateProjectile()
@@ -808,7 +809,7 @@ public class MoffGideon : Entity
 
     private void StartThrowSaber()
     {
-
+        Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Lightsaber_Throw");
     }
 
 
@@ -920,7 +921,16 @@ public class MoffGideon : Entity
             Debug.Log("GIDEON HP: " + healthPoints.ToString());
             damaged = 1.0f;
             //CHANGE FOR APPROPIATE RANCOR HIT
-            Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Hit_Phase_1");
+            if (currentPhase == MOFFGIDEON_PHASE.PHASE1)
+            {
+                Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Hit_Phase_1");
+                Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Intimidation_Phase_1");
+            }
+            else if (currentPhase == MOFFGIDEON_PHASE.PHASE2)
+            {
+                Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Hit_Phase_2");
+                Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Intimidation_Phase_2");
+            }
 
             if (Core.instance.hud != null)
             {
