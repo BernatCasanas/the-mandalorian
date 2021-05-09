@@ -609,6 +609,10 @@ public class Deathtrooper : Enemy
     {
         if (collidedGameObject.CompareTag("Bullet"))
         {
+            if (Core.instance != null)
+                if (Core.instance.HasStatus(STATUS_TYPE.PRIM_SLOW))
+                    AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_SLOW).severity / 100, 1, false);
+
             BH_Bullet bullet = collidedGameObject.GetComponent<BH_Bullet>();
 
             if (bullet != null)

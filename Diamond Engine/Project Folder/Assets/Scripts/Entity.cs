@@ -85,6 +85,7 @@ public enum STATUS_TYPE
     GRO_COMBO_GAIN,
     GRO_FORCE_PER_HP,
     REVIVE,
+    
 
     // Enemies
     ENEMY_DAMAGE_DOWN,

@@ -319,7 +319,8 @@ public class Skill_Tree_Node : DiamondComponent
                         Core.instance.AddStatus(STATUS_TYPE.MOV_SPEED, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 0, true);
                         break;
                     case "USlowDamage":
-                        Debug.Log("Slow when damage not implemented yet");
+
+
                         break;
                     case "UFallDmgRed":
                         Core.instance.AddStatus(STATUS_TYPE.FALL, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
@@ -450,10 +451,8 @@ public class Skill_Tree_Node : DiamondComponent
                     #region secondary
                     case "SeStatEfct":
                         Core.instance.AddStatus(STATUS_TYPE.SEC_TICKDMG, STATUS_APPLY_TYPE.ADDITIVE, 2, 0, true);
-
                         break;
                     case "SeSlow":
-                        Debug.Log("slow not implemented");
                         Core.instance.AddStatus(STATUS_TYPE.SEC_SLOW, STATUS_APPLY_TYPE.SUBSTITUTE, 20, 1, true);
                         break;
                     case "SeDelay":
