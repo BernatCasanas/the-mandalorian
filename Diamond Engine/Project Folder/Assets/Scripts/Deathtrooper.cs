@@ -476,7 +476,11 @@ public class Deathtrooper : Enemy
         if (recoilTimer > 0.0f)
         {
             recoilTimer -= Time.deltaTime;
-            gameObject.transform.localPosition -= gameObject.transform.GetForward().normalized * recoilSpeed * Time.deltaTime;
+
+            //Recoil
+            targetPosition = gameObject.transform.globalPosition - gameObject.transform.GetForward().normalized * recoilDistance;
+            agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
+            agent.MoveToCalculatedPos(recoilSpeed);
 
             if (recoilTimer <= 0.0f && shotsShooted >= 2)
             {
