@@ -26,5 +26,8 @@ public class HubRoomSwitch : DiamondComponent
 			Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
 			Debug.Log("Exploring");
         }
+
+		RoomSwitch.PlayLevelEnvironment();
+		
 	}
 }
