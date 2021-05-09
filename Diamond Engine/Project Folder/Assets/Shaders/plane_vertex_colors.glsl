@@ -9,10 +9,10 @@ layout (location = 6) in vec3 colors;
 
 out VS_OUT {
     vec3 FragPos;
-    vec3 Normal;
     vec2 TexCoords;
     vec4 FragPosLightSpace[2];
     
+    mat3 TBN;
     vec3 TangentLightPos[2];
     vec3 TangentViewPos;
     vec3 TangentFragPos;
@@ -50,7 +50,6 @@ void main()
     vs_out.vertexColor = colors;
     
     vs_out.FragPos = vec3(model_matrix * vec4(position, 1.0));
-    vs_out.Normal = normalize(transpose(inverse(mat3(model_matrix))) * normals);
     vs_out.TexCoords = texCoord;
     vs_out.FragPosLightSpace[0] = lightInfo[0].lightSpaceMatrix * vec4(vs_out.FragPos, 1.0);
     vs_out.FragPosLightSpace[1] = lightInfo[1].lightSpaceMatrix * vec4(vs_out.FragPos, 1.0);
@@ -61,11 +60,11 @@ void main()
     vec3 N = normalize(vec3(model_matrix * vec4(normals,  0.0)));
     vec3 B = cross(N, T);
 	
-	mat3 TBN = transpose(mat3(T, B, N));
-    vs_out.TangentLightPos[0] = TBN * lightInfo[0].lightPosition;
-    vs_out.TangentLightPos[1] = TBN * lightInfo[1].lightPosition;
-    vs_out.TangentViewPos  = TBN * cameraPosition;
-    vs_out.TangentFragPos  = TBN * vec3(model_matrix * vec4(position, 1.0));
+	vs_out.TBN = transpose(mat3(T, B, N));
+    vs_out.TangentLightPos[0] = vs_out.TBN * lightInfo[0].lightPosition;
+    vs_out.TangentLightPos[1] = vs_out.TBN * lightInfo[1].lightPosition;
+    vs_out.TangentViewPos  = vs_out.TBN * cameraPosition;
+    vs_out.TangentFragPos  = vs_out.TBN * vec3(model_matrix * vec4(position, 1.0));
 
     gl_Position = projection * view * model_matrix * vec4(position, 1.0);
 
@@ -77,10 +76,10 @@ void main()
 
 in VS_OUT {
     vec3 FragPos;
-    vec3 Normal;
     vec2 TexCoords;
     vec4 FragPosLightSpace[2];
     
+    mat3 TBN;
     vec3 TangentLightPos[2];
     vec3 TangentViewPos;
     vec3 TangentFragPos;
@@ -129,7 +128,11 @@ uniform AreaLightInfo areaLightInfo[5];
 
 uniform sampler2D shadowMap;
 uniform sampler2D normalMap;
+uniform sampler2D specularMap;
+uniform float bumpDepth;
+
 uniform vec3 cameraPosition;
+uniform vec3 altColor;
 
 out vec4 color;
 
@@ -201,11 +204,10 @@ float GetShadowValue()
 }
 
 
-vec3 CalculateDirectionalLight()
+vec3 CalculateDirectionalLight(float specMapValue)
 {
-	vec3 normal = texture(normalMap, fs_in.TexCoords).rgb;
+	vec3 normal = texture(normalMap, fs_in.TexCoords).rgb + bumpDepth;
     normal = normalize(normal * 2.0 - 1.0);
-    
     
 	vec3 lighting = vec3(0.0, 0.0, 0.0);
     
@@ -214,10 +216,7 @@ vec3 CalculateDirectionalLight()
     
     for (int i = 0; i < 2; i++)
     {
-    	if (lightInfo[i].activeLight == false)
-    		return lighting;
-    	
-    	else
+    	if (lightInfo[i].activeLight == true)
     	{
     		vec3 lightDir = normalize(fs_in.TangentLightPos[i] - vec3(0, 0, 0));
     
@@ -225,11 +224,11 @@ vec3 CalculateDirectionalLight()
     		float diff = max(dot(lightDir, normal), 0.0);
     		vec3 diffuse = diff * lightInfo[i].lightColor;
    	 	// specular
-   	 		vec3 viewDir = normalize(fs_in.TangentViewPos - fs_in.TangentFragPos[i]);
+   	 		vec3 viewDir = normalize(fs_in.TangentViewPos - fs_in.TangentFragPos);
     		float spec = 0.0;
     		vec3 halfwayDir = normalize(lightDir + viewDir);  
     		spec = pow(max(dot(normal, halfwayDir), 0.0), lightInfo[i].specularValue);
-    		vec3 specular = spec * lightInfo[i].lightColor;
+    		vec3 specular = spec * lightInfo[i].lightColor * specMapValue;
         	
     	 // calculate shadow
     		lighting += (lightInfo[i].ambientLightColor + (1.0 - shadow) * (diffuse + specular)) * lightInfo[i].lightIntensity;
@@ -269,12 +268,16 @@ vec3 ProjectPointOnPlane(vec3 planePoint, vec3 lForward)
 	return vec3(fs_in.FragPos + translationVector);
 }
 
+float LengthScuared(vec3 line)
+{
+	return (line.x * line.x + line.y * line.y + line.z * line.z);
+}
 
 bool IsBetween(vec3 value, vec3 b, vec3 c)
 {
-	float dst = distance(b, c);
+	float dst = LengthScuared(c - b);
 	
-	if (distance(value, b) <= dst && distance(value, c) <= dst)
+	if (LengthScuared(b - value) <= dst && LengthScuared(c - value) <= dst)
 		return true;
 		
 	return false;
@@ -292,10 +295,7 @@ vec3 NearestPointOnLine(vec3 point, vec3 lineP1, vec3 lineP2)
 }
 
 
-float LengthScuared(vec3 line)
-{
-	return (line.x * line.x + line.y * line.y + line.z * line.z);
-}
+
 
 
 vec3 NearestPointOnFiniteLine(vec3 point, vec3 lineP1, vec3 lineP2)
@@ -318,7 +318,7 @@ vec3 CalculateClosestPoint(vec3 projectedPoint)
 	
 	for (int i = 0; i < 4; ++i)
 	{
-		float dst = distance(projectedPoint, rectVertex[i]);
+		float dst = LengthScuared(rectVertex[i] - projectedPoint);
 		
 		if (dst < closestDistance)
 		{
@@ -363,7 +363,7 @@ vec3 CalculateClosestPoint(vec3 projectedPoint)
 		vec3 posiblePoint2 = NearestPointOnFiniteLine(projectedPoint, prevVertex, closestVertex);
 			
 			
-		if (distance(projectedPoint, posiblePoint1) < distance (projectedPoint, posiblePoint2))
+		if (LengthScuared(posiblePoint1 - projectedPoint) < LengthScuared(posiblePoint2 - projectedPoint))
 			return posiblePoint1;
 			
 				
@@ -389,16 +389,16 @@ vec3 CalculateAreaLightDirection(int iterator)
 }
 
 
-vec3 CalculateAreaLight()
+vec3 CalculateAreaLight( float specMapValue)
 {
 	vec3 lighting = vec3(0.0, 0.0, 0.0);
+	vec3 normal = texture(normalMap, fs_in.TexCoords).rgb + bumpDepth;
+	normal = normalize(normal * 2.0 - 1.0);
+	normal = transpose(fs_in.TBN) * normal;
     
     for (int i = 0; i < 5; i++)
     {
-		if (areaLightInfo[i].activeLight == false)
-			return lighting;
-		
-		else
+		if (areaLightInfo[i].activeLight == true)
 		{
     		vec3 lightDir = CalculateAreaLightDirection(i);
     		float fade = 1.0;
@@ -415,14 +415,14 @@ vec3 CalculateAreaLight()
     		if (dot(lightDir, areaLightInfo[i].lightForward) <= 0.0)
     		{
    	 			// diffuse
-    			float diff = max(dot(lightDir, fs_in.Normal), 0.0);
+    			float diff = max(dot(lightDir, normal), 0.0);
     			vec3 diffuse = diff * areaLightInfo[i].lightColor;
    	 			// specular
    				vec3 viewDir = normalize(cameraPosition - fs_in.FragPos);
     			float spec = 0.0;
     			vec3 halfwayDir = normalize(lightDir + viewDir);  
-    			spec = pow(max(dot(fs_in.Normal, halfwayDir), 0.0), areaLightInfo[i].specularValue);
-    			vec3 specular = spec * areaLightInfo[i].lightColor;
+    			spec = pow(max(dot(normal, halfwayDir), 0.0), areaLightInfo[i].specularValue);
+    			vec3 specular = spec * areaLightInfo[i].lightColor * specMapValue;
         	
     	 		// calculate light value
     			lighting += (areaLightInfo[i].ambientLightColor + (diffuse + specular)) * areaLightInfo[i].lightIntensity * fade;
@@ -430,25 +430,34 @@ vec3 CalculateAreaLight()
     	}
     }
 
-return lighting;
+	return lighting;
 }
 
 
 void main()
 {
-    vec3 directionalLight = CalculateDirectionalLight();
-    vec3 areaLight = CalculateAreaLight();
+	float specMapValue = texture(specularMap, fs_in.TexCoords).r;
+    vec3 directionalLight = CalculateDirectionalLight(specMapValue);
+    vec3 areaLight = CalculateAreaLight(specMapValue);
     
-    if (directionalLight == vec3(0.0, 0.0, 0.0))
-    	color = vec4(areaLight * fs_in.vertexColor, 1.0);
-    	
-    else if (areaLight == vec3(0.0, 0.0, 0.0))
-    	color = vec4(directionalLight * fs_in.vertexColor, 1.0);
-    	
-    else
-    	color = vec4((directionalLight + areaLight) * fs_in.vertexColor, 1.0);
+
+    color = vec4((directionalLight + areaLight) * (fs_in.vertexColor * altColor), 1.0);
 }
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

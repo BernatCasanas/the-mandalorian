@@ -671,7 +671,7 @@ public class HeavyTrooper : Enemy
     {
         Debug.Log("HEAVYTROOPER DASH");
         if (!straightPath)
-            dashTimer = (dashRange / (dashSpeed * dashSpeedReduction)) * speedMult;
+            dashTimer = (dashRange / (dashSpeed * dashSpeedReduction * speedMult));
         else 
             dashTimer = (dashRange / (dashSpeed * speedMult));
 

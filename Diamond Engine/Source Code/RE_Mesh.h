@@ -34,7 +34,9 @@ public:
 	bool LoadToMemory() override;
 	bool UnloadFromMemory() override;
 
-	void RenderMesh(GLuint textureID, float3 color, bool renderTexture = false, ResourceMaterial* shader = nullptr, C_Transform* _transform = nullptr, ResourceTexture* normalMap = nullptr, float emissionAmmount = 0.0f);
+	void RenderMesh(GLuint textureID, float3 color, bool renderTexture = false, ResourceMaterial* shader = nullptr, 
+					C_Transform* _transform = nullptr, ResourceTexture* normalMap = nullptr, ResourceTexture* specularMap = nullptr, 
+					float bumpDepth = 1.0f, float emissionAmmount = 0.0f);
 	void RenderMeshDebug(bool* vertexNormals, bool* faceNormals, const float*);
 
 	vec3 GetVectorFromIndex(float* startValue);
@@ -43,7 +45,8 @@ public:
 	bool HasVertexColors();
 
 	void OGL_GPU_Render();
-	void PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Transform* _transform, float3 color, ResourceTexture* normalMap = nullptr,float emissionAmmount=0.0f);
+	void PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Transform* _transform, float3 color, 
+			ResourceTexture* normalMap = nullptr, ResourceTexture* specularMap = nullptr, float bumpDepth = 1.0f, float emissionAmmount = 0.0f);
 
 public:
 
