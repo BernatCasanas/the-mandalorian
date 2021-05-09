@@ -82,6 +82,10 @@ public class Skytrooper : Enemy
     public float pushVerticalForce = 10;
     public float PushStun = 2;
 
+    //Shoot
+    private float shootTime = 0f;
+    private float shootAnimTimer = 0f;
+
     //hit particles
     public GameObject hitParticlesObj = null;
     private ParticleSystem hitParticles = null;
@@ -107,6 +111,9 @@ public class Skytrooper : Enemy
             hitParticles = hitParticlesObj.GetComponent<ParticleSystem>();
         else
             Debug.Log("Hit particles gameobject not found!");
+
+        shootTime = Animator.GetAnimationDuration(gameObject, "SK_Shoot") * 0.5f;
+
     }
 
     public void Update()
@@ -470,6 +477,8 @@ public class Skytrooper : Enemy
     {
         shootTimer -= myDeltaTime;
 
+        HandleShootAnimation();
+
         if (shootTimer <= 0.0f)
         {
             if (shotsShooted == maxShots)
@@ -482,6 +491,34 @@ public class Skytrooper : Enemy
             }
         }
         UpdateAnimationSpd(speedMult);
+    }
+
+    private void HandleShootAnimation()
+    {
+        if (shootTimer <= shootTime && shotsShooted < maxShots)
+        {
+            if (Animator.GetCurrentAnimation(gameObject) != "SK_Shoot")
+            {
+                Animator.Play(gameObject, "SK_Shoot", speedMult);
+                Animator.Play(blaster, "SK_Shoot", speedMult);
+                UpdateAnimationSpd(speedMult);
+            }
+
+            shootAnimTimer = shootTime;
+        }
+
+        if (shootAnimTimer > 0f)
+        {
+            shootAnimTimer -= myDeltaTime;
+
+            if (shootAnimTimer <= 0f)
+            {
+                Animator.Play(gameObject, "SK_Idle", speedMult);
+                Animator.Play(blaster, "SK_Idle", speedMult);
+                UpdateAnimationSpd(speedMult);
+                shootAnimTimer = 0f;
+            }
+        }
     }
 
     private void Shoot()
@@ -500,18 +537,15 @@ public class Skytrooper : Enemy
         Vector3 projectileEndPosition = null;
 
         projectileEndPosition = new Vector3(randomPosition.x, Core.instance.gameObject.transform.globalPosition.y, randomPosition.y);
-        
+
         if (Core.instance.GetSate() == Core.STATE.DASH)
         {
-           // Debug.Log("Skytrooper shot while dashing");
+            // Debug.Log("Skytrooper shot while dashing");
             projectileEndPosition += Core.instance.gameObject.transform.GetForward().normalized * Core.instance.dashDistance;
         }
 
 
         bullet.GetComponent<SkyTrooperShot>().SetTarget(projectileEndPosition, false);
-        Animator.Play(gameObject, "SK_Shoot", speedMult);
-        Animator.Play(blaster, "SK_Shoot", speedMult);
-        UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "PLay_Skytrooper_Grenade_Launch");
 
         shotsShooted++;
@@ -520,9 +554,6 @@ public class Skytrooper : Enemy
         else
         {
             shootTimer = timeBewteenShootingStates;
-            Animator.Play(gameObject, "SK_Idle", speedMult);
-            Animator.Play(blaster, "SK_Idle", speedMult);
-            UpdateAnimationSpd(speedMult);
         }
 
     }
@@ -664,7 +695,7 @@ public class Skytrooper : Enemy
             if (bullet != null)
             {
                 this.AddStatus(STATUS_TYPE.ENEMY_DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
-               // healthPoints -= bullet.damage;
+                // healthPoints -= bullet.damage;
 
                 TakeDamage(bullet.GetDamage());
 
