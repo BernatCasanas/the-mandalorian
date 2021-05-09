@@ -1005,9 +1005,6 @@ public class Core : Entity
         if (blaster != null)
             blaster.Enable(false);
 
-        Audio.StopAudio(gameObject);
-        Audio.PlayAudio(shootPoint, "Play_Weapon_Shoot_Mando");
-
         Input.PlayHaptic(2f, 30);
 
         //Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
@@ -1421,6 +1418,10 @@ public class Core : Entity
         else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
         {
             Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
+        }
+        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
+        {
+            Audio.PlayAudio(this.gameObject, "Play_Footsteps_Metal_Platform_Mando");
         }
 
     }
