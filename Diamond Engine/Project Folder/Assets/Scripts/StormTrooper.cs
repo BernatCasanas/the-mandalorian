@@ -50,7 +50,7 @@ public class StormTrooper : Enemy
     public float timeBetweenShots = 0.5f;
     public float timeBetweenSequences = 0.5f;
     public float timeBetweenStates = 1.5f;
-    private float reAimTime = 0.5f;
+    //private float reAimTime = 0.5f;
 
     //Speeds
     public float wanderSpeed = 3.5f;
@@ -71,7 +71,7 @@ public class StormTrooper : Enemy
     private float dieTimer = 0.0f;
     private float statesTimer = 0.0f;
     private float pushTimer = 0.0f;
-    private float reAimTimer = 0.0f;
+    //private float reAimTimer = 0.0f;
     private float skill_slowDownTimer = 0.0f;
 
     //Action variables
