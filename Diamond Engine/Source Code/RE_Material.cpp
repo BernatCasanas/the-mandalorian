@@ -181,6 +181,14 @@ bool ResourceMaterial::IsDefaultUniform(const char* uniform_name)
 		}
 	}
 
+	std::string name = uniform_name;
+
+	for (size_t df = 0; df < sizeof(defaultUniformStructures) / sizeof(defaultUniformStructures[0]); df++)
+	{
+		if (name.find(defaultUniformStructures[df]) != std::string::npos)
+			return true;
+	}
+
 	return false;
 }
 
