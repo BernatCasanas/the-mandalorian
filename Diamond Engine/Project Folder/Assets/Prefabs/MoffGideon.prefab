@@ -140,11 +140,13 @@
                     "spawner2": 1167400653,
                     "spawner3": 1934758151,
                     "spawner4": 1032956343,
-                    "sword": 1889709846,
+                    "sword": 1935053102,
                     "shootPoint": 2027939547,
                     "dieTime": 0.10000000149011612,
                     "neutralTime": 5,
-                    "enemiesTime": 5
+                    "enemiesTime": 20,
+                    "cadencyTime": 0.20000000298023224,
+                    "cadencyTimer": 0
                 },
                 {
                     "Type": 13,
@@ -1229,10 +1231,10 @@
                 -6.0736510931747034e-08
             ],
             "Rotation": [
-                0.008198215626180172,
-                -0.023347694426774979,
-                -0.10966071486473083,
-                0.99366098642349243
+                0.0081982165575027466,
+                -0.023347696289420128,
+                -0.10966072976589203,
+                0.99366110563278198
             ],
             "Scale": [
                 1,
@@ -1757,51 +1759,12 @@
             ]
         },
         {
-            "name": "Saber",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 843134367,
-            "ParentUID": 1422873276,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -0.024040102958679199,
-                0.10703277587890625,
-                0.01377558708190918
-            ],
-            "Rotation": [
-                -0.70710670948028564,
-                -0.7071068286895752,
-                3.0888003266227315e-08,
-                -3.0929232508469795e-08
-            ],
-            "Scale": [
-                0.9999968409538269,
-                0.99998867511749268,
-                0.99999916553497314
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "MoffGideonSword"
-                }
-            ]
-        },
-        {
             "name": "Dark_Lase_Moff",
-            "tag": "Untagged",
+            "tag": "Saber",
             "layer": "Default",
             "Active": true,
             "UID": 1935053102,
-            "ParentUID": 843134367,
+            "ParentUID": 1422873276,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -1853,6 +1816,57 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "HeavyTrooperSpear",
+                    "damage": 10
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0.5,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": false,
+                    "LockLinearX": true,
+                    "LockLinearY": true,
+                    "LockLinearZ": true,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "Moff_Guideon",
+                    "volume": 50,
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false
                 }
             ]
         },
@@ -1861,7 +1875,7 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1889709846,
+            "UID": 0,
             "ParentUID": 1935053102,
             "PrefabReference": 0,
             "PrefabID": 0,
@@ -1896,7 +1910,7 @@
             "layer": "Default",
             "Active": true,
             "UID": 51038558,
-            "ParentUID": 1889709846,
+            "ParentUID": 0,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -3180,9 +3194,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                4.175715446472168,
-                -2.0945391654968262,
-                -3
+                -0.0861968994140625,
+                1.28741455078125,
+                0.44677981734275818
             ],
             "Rotation": [
                 0,
@@ -3191,9 +3205,9 @@
                 1
             ],
             "Scale": [
-                1,
-                1,
-                1
+                0.05000000074505806,
+                0.05000000074505806,
+                0.05000000074505806
             ],
             "Components": [
                 {
@@ -3778,6 +3792,45 @@
                     "Active": true,
                     "billboardAlignment": 0,
                     "horizantalAligned": false
+                }
+            ]
+        },
+        {
+            "name": "Saber",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 843134367,
+            "ParentUID": 837518950,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.024040102958679199,
+                0.10703277587890625,
+                0.01377558708190918
+            ],
+            "Rotation": [
+                -0.70710670948028564,
+                -0.7071068286895752,
+                3.0888003266227315e-08,
+                -3.0929232508469795e-08
+            ],
+            "Scale": [
+                0.9999968409538269,
+                0.99998867511749268,
+                0.99999916553497314
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "MoffGideonSword"
                 }
             ]
         }

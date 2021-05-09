@@ -1678,7 +1678,7 @@ public class Core : Entity
     {
         if (triggeredGameObject.CompareTag("Coin"))
         {
-            PlayerResources.AddRunCoins(1);
+            PlayerResources.AddRunCoins(10);
 
             if (hud != null)
             {
