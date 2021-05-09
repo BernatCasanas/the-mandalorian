@@ -498,7 +498,8 @@ public class Core : Entity
 
             if (isPrimaryOverHeat == true && primaryWeaponOverHeat == false)
                 Audio.PlayAudio(secSound, "Play_Mando_Blaster_Overcharged");
-
+            else if (isPrimaryOverHeat == false && primaryWeaponOverHeat == true)
+                Audio.PlayAudio(secSound, "Play_Blaster_Cooldown_Finished");
             primaryWeaponOverHeat = isPrimaryOverHeat;
         }
 

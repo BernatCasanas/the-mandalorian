@@ -2772,7 +2772,7 @@
    {
     "Id": "3991942870",
     "Language": "SFX",
-    "Hash": "10091446",
+    "Hash": "3525115400",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Music",
     "ShortName": "Music",
     "Path": "Music.bnk",
@@ -2880,6 +2880,12 @@
         "Language": "SFX",
         "ShortName": "EXP STRINGS.wav",
         "Path": "SFX\\EXP STRINGS_0BA09294.wem"
+       },
+       {
+        "Id": "858066275",
+        "Language": "SFX",
+        "ShortName": "Spaceship Exploring.wav",
+        "Path": "SFX\\Spaceship Exploring_0BA09294.wem"
        },
        {
         "Id": "914423924",
@@ -3062,6 +3068,24 @@
           ]
          }
         ]
+       },
+       {
+        "SwitchValue": "{D651359C-1684-4E02-8D22-5225AA612899}",
+        "Children": [
+         {
+          "SwitchValue": "{7B56CD26-D41D-4E95-B202-EEE0956FC8CB}",
+          "Children": [
+           {
+            "SwitchValue": "{979A83A1-5FD3-4444-AB96-1ABEDBCBCCEC}",
+            "Media": [
+             {
+              "Id": "858066275"
+             }
+            ]
+           }
+          ]
+         }
+        ]
        }
       ]
      },
@@ -3129,6 +3153,11 @@
         "Id": "347961279",
         "Name": "Wampa_Skel_Room",
         "ObjectPath": "\\States\\Default Work Unit\\Game_State\\Wampa_Skel_Room"
+       },
+       {
+        "Id": "4178932914",
+        "Name": "Cruiser_Explore",
+        "ObjectPath": "\\States\\Default Work Unit\\Game_State\\Cruiser_Explore"
        }
       ]
      },
