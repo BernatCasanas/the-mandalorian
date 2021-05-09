@@ -256,6 +256,9 @@ public class Core : Entity
         if (rifle != null)
             rifle.Enable(false);
 
+        if (blaster != null)
+            blaster.Enable(false);
+
         #endregion
 
         #region STATUS_SYSTEM
@@ -469,6 +472,7 @@ public class Core : Entity
             if(sniperShotTimer <= 0.0f)
                 inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
         }
+
         if (HasStatus(STATUS_TYPE.SEC_RECOVERY))
             grenadesFireRateTimer -= myDeltaTime * (1 + GetStatusData(STATUS_TYPE.SEC_RECOVERY).severity / 100);
         else
@@ -515,7 +519,7 @@ public class Core : Entity
                     if (blaster != null)
                     {
                         blaster.Enable(true);
-                        Animator.Play(blaster, "Shoot", normalShootSpeed * speedMult);
+                        Animator.Play(blaster, "Shoot", 0.01f);
                     }
 
                     UpdateAnimationSpd(0.01f);
@@ -772,6 +776,7 @@ public class Core : Entity
                     {
                         case INPUT.IN_SEC_SHOOT_END:
                             currentState = STATE.IDLE;
+                            DisableBlaster();
                             StartIdle();
                             //EndSecondaryShoot();
                             break;
@@ -912,7 +917,12 @@ public class Core : Entity
         if (myAimbot != null)
             myAimbot.isShooting = false;
 
-        if(blaster != null)
+        DisableBlaster();
+    }
+
+    private void DisableBlaster()
+    {
+        if (blaster != null)
             blaster.Enable(false);
     }
 
