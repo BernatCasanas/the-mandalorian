@@ -70,7 +70,8 @@ public class HeavyTrooper : Enemy
     public float wanderRange = 7.5f;
     public float sweepRange = 3.0f;
     public float dashRange = 5.0f;
-    public float dashLength = 20.0f;
+    //public float dashLength = 20.0f;
+    //public float spearLength = 1.5f;
 
     //Timers
     private float idleTimer = 0.0f;
@@ -157,18 +158,15 @@ public class HeavyTrooper : Enemy
             if (targetPosition == null)
                 targetPosition = Core.instance.gameObject.transform.globalPosition;
 
-            if (Mathf.Distance(gameObject.transform.globalPosition, targetPosition) <= agent.stoppingDistance || dashTimer < 0.0f)
+            if (dashTimer < 0.0f)
             {
-                doneDashes++;
-
-                if(Mathf.Distance(Core.instance.gameObject.transform.globalPosition, gameObject.transform.globalPosition) > dashRange 
-                   || Mathf.Distance(Core.instance.gameObject.transform.globalPosition, gameObject.transform.globalPosition) > sweepRange && doneDashes < 2)
+                if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) < sweepRange)
                 {
-                    inputsList.Add(INPUT.IN_LOADING_DASH);
+                    inputsList.Add(INPUT.IN_SWEEP);
                 }
                 else
                 {
-                    inputsList.Add(INPUT.IN_DASH_END);
+                    inputsList.Add(INPUT.IN_RUN);
                 }
             }
         }
@@ -224,26 +222,29 @@ public class HeavyTrooper : Enemy
     {
         if (currentState != STATE.DIE && currentState != STATE.DASH)
         {
-            if (InRange(Core.instance.gameObject.transform.globalPosition, detectionRange) 
+            if(InRange(Core.instance.gameObject.transform.globalPosition, sweepRange) && tiredTimer <= 0.0f)
+            {
+                inputsList.Add(INPUT.IN_SWEEP);
+            }
+            else if (InRange(Core.instance.gameObject.transform.globalPosition, dashRange) && straightPath)
+            {
+                inputsList.Add(INPUT.IN_DASH_RANGE);
+            }
+            
+            if (InRange(Core.instance.gameObject.transform.globalPosition, detectionRange)
                 && agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition))
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
             }
-            if (InRange(Core.instance.gameObject.transform.globalPosition, dashRange) && straightPath)
-            {
-                inputsList.Add(INPUT.IN_DASH_RANGE);
-            }
         }
 
         if (currentState == STATE.RUN)
-        {
-            if (agent == null)
-                inputsList.Add(INPUT.IN_IDLE);
-            
+        {            
             if(InRange(Core.instance.gameObject.transform.globalPosition, sweepRange))
             {
                 inputsList.Add(INPUT.IN_SWEEP);
             }
+
             if (!InRange(Core.instance.gameObject.transform.globalPosition, detectionRange))
             {
                 inputsList.Add(INPUT.IN_WANDER);
@@ -379,6 +380,16 @@ public class HeavyTrooper : Enemy
                 case STATE.DASH:
                     switch (input)
                     {
+                        case INPUT.IN_IDLE:
+                            currentState = STATE.IDLE;
+                            StartIdle();
+                            break;
+
+                        case INPUT.IN_RUN:
+                            currentState = STATE.RUN;
+                            StartRun();
+                            break;
+
                         case INPUT.IN_WANDER:
                             currentState = STATE.WANDER;
                             StartWander();
@@ -389,7 +400,11 @@ public class HeavyTrooper : Enemy
                             StartLoading();
                             break;
 
-                        case INPUT.IN_DASH_END:
+                        case INPUT.IN_DASH:
+                            StartDash();
+                            break;
+
+                        case INPUT.IN_SWEEP:
                             currentState = STATE.SWEEP;
                             StartSweep();
                             break;
@@ -642,7 +657,7 @@ public class HeavyTrooper : Enemy
             {
                 //Debug.Log("HEAVYTROOPER LOADING ENTRY 2");
                 Vector3 direction = Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition;
-                targetPosition = direction.normalized * dashLength + gameObject.transform.globalPosition;
+                targetPosition = direction.normalized * dashRange + gameObject.transform.globalPosition;
                 agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
             }
         }
@@ -656,9 +671,9 @@ public class HeavyTrooper : Enemy
     {
         Debug.Log("HEAVYTROOPER DASH");
         if (!straightPath)
-            dashTimer = (dashLength * 0.5f / (dashSpeed * dashSpeedReduction)) * speedMult;
+            dashTimer = (dashRange / (dashSpeed * dashSpeedReduction)) * speedMult;
         else 
-            dashTimer = (dashLength * 0.5f / dashSpeed) * speedMult;
+            dashTimer = (dashRange / (dashSpeed * speedMult));
 
         StraightPath();
 
@@ -742,12 +757,24 @@ public class HeavyTrooper : Enemy
         tiredTimer = tiredTime;
         doneDashes = 0;
         canSweep = true;
+
+        Animator.Play(gameObject, "HVY_Idle", speedMult * 0.5f);
+
+        if (spear != null)
+            Animator.Play(spear, "HVY_Idle", speedMult * 0.5f);
     }
 
     private void UpdateTired()
     {
         if(tiredTimer < tiredTime * 0.5f)
+        {
            LookAt(Core.instance.gameObject.transform.globalPosition);
+            if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) < sweepRange * 2.0f)
+            {
+                Debug.Log("Going Back");
+                gameObject.transform.localPosition -= new Vector3(0.0f, 0.0f, 0.1f);
+            }
+        }
 
         UpdateAnimationSpd(speedMult);
     }
