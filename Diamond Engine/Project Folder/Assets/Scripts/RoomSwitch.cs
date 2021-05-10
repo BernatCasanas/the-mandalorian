@@ -152,6 +152,7 @@ public static class RoomSwitch
 
                 currentroom = levelLists[index].bossScene;
                 SceneManager.LoadScene(levelLists[index].bossScene);
+                PlayMusicBoss((LEVELS)index);
             }
 
             
@@ -189,7 +190,21 @@ public static class RoomSwitch
                 break;
         }
     }
-
+    public static void PlayMusicBoss(LEVELS index)
+    {
+        Debug.Log(index.ToString());
+        switch (index)
+        {
+            case LEVELS.ONE:
+                break;
+            case LEVELS.TWO:
+                break;
+            case LEVELS.THREE:
+                Audio.SetState("Player_State", "Alive");
+                Audio.SetState("Game_State", "Moff_Guideon_Room");
+                break;
+        }
+    }
     public static void OnPlayerDeath()
     {
         Counter.gameResult = Counter.GameResult.DEFEAT;
