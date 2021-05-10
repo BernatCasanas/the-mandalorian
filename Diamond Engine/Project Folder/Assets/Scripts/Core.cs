@@ -204,7 +204,6 @@ public class Core : Entity
         //Dash - if scene doesnt have its values
         //dashDuration = 0.2f;
         //dashDistance = 4.5f;
-        grenade_onDash = 5.0f;
         #endregion
 
         #region SHOOT
@@ -276,6 +275,7 @@ public class Core : Entity
         // Placeholder for Start() function
         if (scriptStart == true)
         {
+
             ConfigFunctionality.UpdateDisplayText();
             LoadBuffs();
             hud = InternalCalls.FindObjectWithName("HUD");
@@ -322,6 +322,8 @@ public class Core : Entity
                 lockAttacks = true;
 
             DisableBlaster();
+
+            grenade_onDash = 10.0f;
 
             //SkillDataTree -> LoadStaticBuffs();
             old_hp = PlayerHealth.currMaxHealth;
