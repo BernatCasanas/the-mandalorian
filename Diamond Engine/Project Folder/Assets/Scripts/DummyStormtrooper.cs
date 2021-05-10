@@ -34,6 +34,7 @@ public class DummyStormtrooper : Enemy
     private List<INPUT> inputsList = new List<INPUT>();
 
     public GameObject shootPoint = null;
+    public GameObject blaster = null;
 
     public bool canShoot = true;
 
@@ -80,6 +81,9 @@ public class DummyStormtrooper : Enemy
 
         currentState = STATE.IDLE;
         Animator.Play(gameObject, "ST_Idle", 1.0f);
+        if (blaster != null)
+            Animator.Play(blaster, "ST_Idle");
+
         UpdateAnimationSpd(1.0f);
 
         targetPosition = null;
@@ -256,6 +260,8 @@ public class DummyStormtrooper : Enemy
     private void StartIdle()
     {
         Animator.Play(gameObject, "ST_Idle", speedMult);
+        if (blaster != null)
+            Animator.Play(blaster, "ST_Idle");
         UpdateAnimationSpd(speedMult);
     }
 
@@ -274,6 +280,8 @@ public class DummyStormtrooper : Enemy
         //Debug.Log("Start Shoot");
         statesTimer = timeBewteenStates;
         Animator.Play(gameObject, "ST_Idle", speedMult);
+        if (blaster != null)
+            Animator.Play(blaster, "ST_Idle");
         UpdateAnimationSpd(speedMult);
     }
 
@@ -316,6 +324,8 @@ public class DummyStormtrooper : Enemy
                     shotSequences++;
 
                     Animator.Play(gameObject, "ST_Idle", speedMult);
+                    if (blaster != null)
+                        Animator.Play(blaster, "ST_Idle");
                     UpdateAnimationSpd(speedMult);
 
                     //End of second shot of the first sequence
@@ -358,6 +368,8 @@ public class DummyStormtrooper : Enemy
         bullet.GetComponent<BH_Bullet>().damage = damage;
 
         Animator.Play(gameObject, "ST_Shoot", speedMult);
+        if (blaster != null)
+            Animator.Play(blaster, "ST_Shoot");
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "PLay_Blaster_Stormtrooper");
         shotTimes++;
@@ -377,6 +389,8 @@ public class DummyStormtrooper : Enemy
         dieTimer = dieTime;
 
         Animator.Play(gameObject, "ST_Die", speedMult);
+        if (blaster != null)
+            Animator.Play(blaster, "ST_Die");
         UpdateAnimationSpd(speedMult);
 
         Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
@@ -450,12 +464,16 @@ public class DummyStormtrooper : Enemy
     {
         if (collidedGameObject.CompareTag("Bullet"))
         {
-            if (myParticles != null && myParticles.hit != null)
-                myParticles.hit.Play();
+            if (Core.instance != null)
+                if (Core.instance.HasStatus(STATUS_TYPE.PRIM_SLOW))
+                    AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_SLOW).severity / 100, 2, false);
+            if (Core.instance != null)
+                if (Core.instance.HasStatus(STATUS_TYPE.PRIM_MOV_SPEED))
+                    AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_MOV_SPEED).severity / 100, 5, false);
             BH_Bullet bullet = collidedGameObject.GetComponent<BH_Bullet>();
 
             if (bullet != null)
-                TakeDamage(bullet.damage);
+                TakeDamage(bullet.GetDamage());
 
             Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -475,14 +493,12 @@ public class DummyStormtrooper : Enemy
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))
         {
-            if (myParticles != null && myParticles.hit != null)
-                myParticles.hit.Play();
             ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
 
             if (bullet != null)
             {
                 this.AddStatus(STATUS_TYPE.ENEMY_DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
-                TakeDamage(bullet.damage);
+                TakeDamage(bullet.GetDamage());
 
             }
 
@@ -495,7 +511,30 @@ public class DummyStormtrooper : Enemy
                 if (hudComponent != null)
                     hudComponent.AddToCombo(55, 0.25f);
             }
+            if (currentState != STATE.DIE && healthPoints <= 0.0f)
+            {
+                inputsList.Add(INPUT.IN_DIE);
+                if (Core.instance != null)
+                {
+                    if (Core.instance.HasStatus(STATUS_TYPE.SP_HEAL))
+                    {
+                        if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
+                        {
+                            float healing = Core.instance.GetStatusData(STATUS_TYPE.SP_HEAL).severity;
+                            Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
+                        }
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SP_FORCE_REGEN))
+                    {
+                        if (Core.instance.gameObject != null && BabyYoda.instance != null)
+                        {
+                            float force = Core.instance.GetStatusData(STATUS_TYPE.SP_FORCE_REGEN).severity;
+                            BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
+                        }
+                    }
+                }
 
+            }
 
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))
@@ -507,8 +546,6 @@ public class DummyStormtrooper : Enemy
         }
         else if (collidedGameObject.CompareTag("ExplosiveBarrel") && collidedGameObject.GetComponent<SphereCollider>().active)
         {
-            if (myParticles != null && myParticles.hit != null)
-                myParticles.hit.Play();
             BH_DestructBox explosion = collidedGameObject.GetComponent<BH_DestructBox>();
 
             if (explosion != null)
@@ -519,6 +556,8 @@ public class DummyStormtrooper : Enemy
             }
 
         }
+
+
     }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
@@ -526,27 +565,50 @@ public class DummyStormtrooper : Enemy
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         {
             if (Core.instance != null)
+            {
                 inputsList.Add(INPUT.IN_PUSHED);
+            }
         }
     }
 
     public override void TakeDamage(float damage)
     {
+
         if (currentState != STATE.DIE)
         {
+            if (myParticles != null && myParticles.hit != null)
+                myParticles.hit.Play();
+
             healthPoints -= damage;
 
+            if (Core.instance != null)
+            {
+                if (Core.instance.HasStatus(STATUS_TYPE.LIFESTEAL))
+                {
+                    if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
+                    {
+                        float healing = Core.instance.GetStatusData(STATUS_TYPE.LIFESTEAL).severity * damage / 100;
+                        if (healing < 1) healing = 1;
+                        Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
+                    }
+                }
+            }
+
             if (healthPoints <= 0.0f)
+            {
                 inputsList.Add(INPUT.IN_DIE);
-
+            }
         }
-    }
 
+
+    }
     private void UpdateAnimationSpd(float newSpd)
     {
         if (currAnimationPlaySpd != newSpd)
         {
             Animator.SetSpeed(gameObject, newSpd);
+            if (blaster != null)
+                Animator.SetSpeed(blaster, newSpd);
             currAnimationPlaySpd = newSpd;
         }
     }
