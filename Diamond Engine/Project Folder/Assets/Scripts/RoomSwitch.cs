@@ -136,6 +136,7 @@ public static class RoomSwitch
             {
                 currentroom = levelLists[index].preBossScene;
                 SceneManager.LoadScene(levelLists[index].preBossScene);
+                PlayLevelEnvironment();
             }
             else
             {
@@ -153,7 +154,7 @@ public static class RoomSwitch
                 SceneManager.LoadScene(levelLists[index].bossScene);
             }
 
-            PlayLevelEnvironment();
+            
         }
 
     }
@@ -176,8 +177,10 @@ public static class RoomSwitch
         switch(currentLevelIndicator)
         {
             case LEVELS.ONE:
+                Audio.StopAudio(EnvironmentSourceLocate.instance.gameObject);
                 break;
             case LEVELS.TWO:
+                Audio.StopAudio(EnvironmentSourceLocate.instance.gameObject);
                 break;
             case LEVELS.THREE:
                 Audio.PlayAudio(EnvironmentSourceLocate.instance.gameObject, "Play_Spaceship_Interior_Ambience");
