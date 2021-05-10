@@ -1000,7 +1000,9 @@ public class MoffGideon : Entity
         Animator.Play(gameObject, "MG_Throw", speedMult);
         UpdateAnimationSpd(speedMult);
 
-        saber = InternalCalls.CreatePrefab("Library/Prefabs/2025992973.prefab", sword.transform.globalPosition, new Quaternion(0, 0, 90), new Vector3(1.0f, 1.0f, 1.0f));
+        Quaternion rot = new Quaternion(0, 0, 90);
+
+        saber = InternalCalls.CreatePrefab("Library/Prefabs/2025992973.prefab", sword.transform.globalPosition, rot, new Vector3(1.0f, 1.0f, 1.0f));
 
         if (saber != null)
         {
@@ -1010,7 +1012,7 @@ public class MoffGideon : Entity
             {
                 moffGideonSword.ThrowSword((Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition).normalized);
                 saber.Enable(true);
-                sword.Enable(false);
+                sword.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
                 inputsList.Add(MOFFGIDEON_INPUT.IN_THROW_SABER_END);
             }
         }
@@ -1050,7 +1052,7 @@ public class MoffGideon : Entity
     {
         InternalCalls.Destroy(saber);
         saber = null;
-        sword.Enable(true);
+        sword.transform.localScale = new Vector3(1, 1, 1);
     }
 
     #endregion

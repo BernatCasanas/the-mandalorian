@@ -117,7 +117,6 @@
                     "MaxForceModifier": 0,
                     "ForceRegentPerHPMod": 0,
                     "camera": 1889709846,
-                    "saber": 843134367,
                     "hitParticles": 1889709846,
                     "slerpSpeed": 5,
                     "healthPoints": 40,
@@ -1231,10 +1230,10 @@
                 -6.0736510931747034e-08
             ],
             "Rotation": [
-                0.008198215626180172,
-                -0.023347694426774979,
-                -0.10966071486473083,
-                0.99366098642349243
+                0.0081982165575027466,
+                -0.023347696289420128,
+                -0.10966072976589203,
+                0.99366110563278198
             ],
             "Scale": [
                 1,
@@ -1759,31 +1758,65 @@
             ]
         },
         {
-            "name": "Dark_Lase_Moff",
+            "name": "Empty",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1935053102,
+            "UID": 133970082,
             "ParentUID": 1422873276,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -0.024039983749389648,
-                0.10703229904174805,
-                0.01377558708190918
+                0,
+                0,
+                0
             ],
             "Rotation": [
-                0.7071068286895752,
-                0.7071068286895752,
-                3.0908623216419073e-08,
-                -3.0908623216419073e-08
+                0,
+                1,
+                0,
+                -4.3711388286737929e-08
             ],
             "Scale": [
-                0.99999672174453735,
-                0.99998849630355835,
-                0.99999886751174927
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Dark_Lase_Moff",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1935053102,
+            "ParentUID": 133970082,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
             ],
             "Components": [
                 {
