@@ -22,6 +22,8 @@ namespace DiamondEngine
         public static void LoadData()
         {
             data.Clear();
+            if (!File.Exists("SaveData/saveData.json"))
+                return;
             string jsonString = File.ReadAllText("SaveData/saveData.json");
             if (jsonString.Length == 0) 
                 return;
