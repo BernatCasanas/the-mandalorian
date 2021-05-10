@@ -380,7 +380,7 @@ public class Skill_Tree_Node : DiamondComponent
                         // Debug.Log("Max Hp not implemented yet");
                         break;
                     case "DDmgRed":
-                        Core.instance.AddStatus(STATUS_TYPE.DMG_RED, STATUS_APPLY_TYPE.SUBSTITUTE, -15, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.DMG_RED, STATUS_APPLY_TYPE.SUBSTITUTE, -10, 0, true);
 
                         //   Debug.Log("Dmg reduction not implemented yet");
                         break;
@@ -389,7 +389,7 @@ public class Skill_Tree_Node : DiamondComponent
                       //  Debug.Log("Combo * damage red not implemented yet");
                         break;
                     case "DComboHeal":
-                        Core.instance.AddStatus(STATUS_TYPE.COMBO_HEAL, STATUS_APPLY_TYPE.SUBSTITUTE, 5, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.COMBO_HEAL, STATUS_APPLY_TYPE.SUBSTITUTE, 2, 0, true);
                      //   Debug.Log("Combo * heal not implemented yet");
                         break;
                     case "DComboFnshHeal":
@@ -405,7 +405,7 @@ public class Skill_Tree_Node : DiamondComponent
                         Core.instance.AddStatus(STATUS_TYPE.REVIVE, STATUS_APPLY_TYPE.SUBSTITUTE, 1, 0, true);
                         break;
                     case "DAvoidDmg":
-                        Core.instance.AddStatus(STATUS_TYPE.BLOCK, STATUS_APPLY_TYPE.SUBSTITUTE, 10, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.BLOCK, STATUS_APPLY_TYPE.SUBSTITUTE, 5, 0, true);
                      //   Debug.Log("chance to avoid damage not implemented yet");
                         break;
                         #endregion
@@ -438,7 +438,7 @@ public class Skill_Tree_Node : DiamondComponent
                         break;
                     case "PRateFire":
                         Core.instance.AddStatus(STATUS_TYPE.OVERHEATCAP, STATUS_APPLY_TYPE.ADDITIVE, -30, 0, true);
-                        Core.instance.AddStatus(STATUS_TYPE.FIRE_RATE, STATUS_APPLY_TYPE.ADDITIVE, -20, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.FIRE_RATE_PERMANENT, STATUS_APPLY_TYPE.ADDITIVE, -20, 0, true);
 
                         break;
                     #endregion
