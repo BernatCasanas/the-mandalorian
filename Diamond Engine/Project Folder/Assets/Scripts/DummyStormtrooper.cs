@@ -77,7 +77,6 @@ public class DummyStormtrooper : Enemy
         Debug.Log("Stormtrooper Awake");
 
         InitEntity(ENTITY_TYPE.STROMTROOPER);
-        EnemyManager.AddEnemy(gameObject);
 
         currentState = STATE.IDLE;
         Animator.Play(gameObject, "ST_Idle", 1.0f);
@@ -417,16 +416,10 @@ public class DummyStormtrooper : Enemy
 
     private void Die()
     {
-        Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOPER);
-        EnemyManager.RemoveEnemy(gameObject);
-
         float dist = (deathPoint.transform.globalPosition - gameObject.transform.globalPosition).magnitude;
         Vector3 forward = gameObject.transform.GetForward();
         forward = forward.normalized * (-dist);
-
-        Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
         InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
-        DropCoins();
 
         InternalCalls.Destroy(gameObject);
     }
@@ -614,10 +607,5 @@ public class DummyStormtrooper : Enemy
                 Animator.SetSpeed(blaster, newSpd);
             currAnimationPlaySpd = newSpd;
         }
-    }
-
-    public void OnDestroy()
-    {
-        EnemyManager.RemoveEnemy(this.gameObject);
     }
 }
