@@ -32,7 +32,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().U1_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -45,7 +45,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().U2_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -59,7 +59,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().U3_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -73,7 +73,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().U4_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -86,7 +86,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().U5_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -100,7 +100,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().U6_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -114,7 +114,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().U7_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -129,7 +129,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().U8_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -146,7 +146,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().A1_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -159,7 +159,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().A2_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -172,7 +172,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().A3_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -185,7 +185,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().A4_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -198,7 +198,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().A5_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -213,7 +213,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().A6_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -227,7 +227,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().A7_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -241,7 +241,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().A8_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -262,7 +262,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().D1_description;        
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -276,7 +276,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().D2_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -289,7 +289,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().D3_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -302,7 +302,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().D4_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -315,7 +315,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().D5_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -329,7 +329,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().D6_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -342,7 +342,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().D7_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -357,7 +357,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetMandoSkillTree().D8_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
     #endregion
@@ -375,7 +375,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetGroguSkillTree().G1_description;
-            type_of_price = RewardType.REWARD_MACARON;
+             
         }
     }
 
@@ -388,7 +388,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetGroguSkillTree().G2_description;
-            type_of_price = RewardType.REWARD_MACARON;
+             
         }
     }
 
@@ -401,7 +401,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetGroguSkillTree().G3_description;
-            type_of_price = RewardType.REWARD_MACARON;
+             
         }
     }
 
@@ -414,7 +414,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetGroguSkillTree().G4_description;
-            type_of_price = RewardType.REWARD_MACARON;
+             
         }
     }
 
@@ -427,7 +427,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetGroguSkillTree().G5_description;
-            type_of_price = RewardType.REWARD_MACARON;
+             
         }
     }
 
@@ -441,7 +441,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetGroguSkillTree().G6_description;
-            type_of_price = RewardType.REWARD_MACARON;
+             
         }
     }
 
@@ -454,7 +454,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetGroguSkillTree().G7_description;
-            type_of_price = RewardType.REWARD_MACARON;
+             
         }
     }
 
@@ -469,7 +469,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetGroguSkillTree().G8_description;         
-            type_of_price = RewardType.REWARD_MACARON;
+             
         }
     }
 
@@ -488,7 +488,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().PrimaryW1_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -501,7 +501,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().PrimaryW2_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -514,7 +514,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().PrimaryW3_description;        
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -527,7 +527,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().PrimaryW4_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -540,7 +540,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().PrimaryW5_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -568,7 +568,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().PrimaryW7_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -586,7 +586,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().SecondaryW1_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -599,7 +599,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().SecondaryW2_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -613,7 +613,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().SecondaryW3_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -626,7 +626,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().SecondaryW4_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -639,7 +639,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().SecondaryW5_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -653,7 +653,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().SecondaryW6_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -671,7 +671,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().SpecialW1_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -684,7 +684,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().SpecialW2_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -697,7 +697,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().SpecialW3_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -710,7 +710,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().SpecialW4_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -723,7 +723,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().SpecialW5_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
@@ -737,7 +737,7 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().SpecialW6_description;
-            type_of_price = RewardType.REWARD_BESKAR;
+             
         }
     }
 
