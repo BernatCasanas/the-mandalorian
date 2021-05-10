@@ -101,7 +101,8 @@ public class Deathtrooper : Enemy
 
         currentState = STATE.IDLE;
         Animator.Play(gameObject, "DTH_Idle", speedMult);
-        Animator.Play(shotgun, "DTH_Idle", speedMult);
+        if (shotgun != null)
+            Animator.Play(shotgun, "DTH_Idle", speedMult);
         UpdateAnimationSpd(speedMult);
 
         idleTimer = idleTime;
@@ -112,6 +113,7 @@ public class Deathtrooper : Enemy
             hitParticle = hitParticlesObj.GetComponent<ParticleSystem>();
         //else
             //Debug.Log("Hit particles gameobject not found!");
+
         if (shotgunParticlesObj != null)
             shotgunParticle = shotgunParticlesObj.GetComponent<ParticleSystem>();
         //else
@@ -429,7 +431,8 @@ public class Deathtrooper : Enemy
     {
         //Debug.Log("DEATHTROOPER RUN");
         Animator.Play(gameObject, "DTH_Run", speedMult);
-        Animator.Play(shotgun, "DTH_Run", speedMult);
+        if (shotgun != null)
+            Animator.Play(shotgun, "DTH_Run", speedMult);
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Deathtrooper_Run");
         
@@ -438,11 +441,7 @@ public class Deathtrooper : Enemy
     {
         agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
         LookAt(agent.GetDestination());
-        //if (skill_slowDownActive)
-        //    agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-        //else
         agent.MoveToCalculatedPos(runningSpeed * speedMult);
-
         UpdateAnimationSpd(speedMult);
     }
     private void RunEnd()
@@ -456,7 +455,8 @@ public class Deathtrooper : Enemy
     {
         //Debug.Log("DEATHTROOPER SHOOT");
         Animator.Play(gameObject, "DTH_Idle", speedMult);
-        Animator.Play(shotgun, "DTH_Idle", speedMult);
+        if(shotgun != null)
+            Animator.Play(shotgun, "DTH_Idle", speedMult);
         UpdateAnimationSpd(speedMult);
         betweenStatesTimer = betweenStatesTime;
     }
@@ -472,7 +472,9 @@ public class Deathtrooper : Enemy
             {
                 ShotgunShoot(maxShots);
                 betweenBurstsTimer = timeBewteenBursts;
-                shotgunParticle.Play();
+
+                if(shotgunParticle != null)
+                    shotgunParticle.Play();
             }
 
         }
@@ -530,13 +532,15 @@ public class Deathtrooper : Enemy
         if (numShots == maxShots) //First Shot
         {
             Animator.Play(gameObject, "DTH_ShootRecoil", speedMult);
-            Animator.Play(shotgun, "DTH_ShootRecoil", speedMult);
+            if(shotgun != null)
+                Animator.Play(shotgun, "DTH_ShootRecoil", speedMult);
             Audio.PlayAudio(gameObject, "Play_Deathtrooper_Recoil");
         }
         else //Second Shot
         {
             Animator.Play(gameObject, "DTH_ShootNoRecoil", speedMult);
-            Animator.Play(shotgun, "DTH_ShootNoRecoil", speedMult);
+            if (shotgun != null)
+                Animator.Play(shotgun, "DTH_ShootNoRecoil", speedMult);
         }
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Deathtrooper_Shot");
@@ -739,7 +743,10 @@ public class Deathtrooper : Enemy
                     }
             }
         }
-        hitParticle.Play();
+
+        if(hitParticle != null)
+            hitParticle.Play();
+
         if (currentState != STATE.DIE)
         {
             if (healthPoints <= 0.0f)

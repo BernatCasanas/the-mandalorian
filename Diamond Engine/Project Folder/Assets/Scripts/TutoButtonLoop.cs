@@ -3,37 +3,52 @@ using DiamondEngine;
 
 public class TutoButtonLoop : DiamondComponent
 {
-	public int releasedButton = 0;
-	public int pressedButton = 0;
-	public int radiantButton = 0;
-	private int buttonToChange = 0;
+	public GameObject releasedButton = null;
+	public GameObject pressedButton = null;
+	public GameObject radiantButton = null;
 
-	Material buttonMaterial = null;
 	private float maxTime = 0.35f;
 	private float currentTime = 0.0f;
-	int loopState = 0;
+	private int loopState = 0;
 
 	public void Update()
 	{
 		//buttonMaterial=this.gameObject.GetComponent<Material>();
-
-		currentTime += Time.deltaTime;
-		if (currentTime >= maxTime)
+		if (releasedButton == null || pressedButton == null || radiantButton == null)
 		{
-			switch (loopState)
+			Debug.Log("Missing tutorial button reference");
+		}
+
+		else
+		{
+			currentTime += Time.deltaTime;
+			if (currentTime >= maxTime)
 			{
-				case 0:
-					buttonToChange = pressedButton; loopState = 1;
-					break;
-				case 1:
-					buttonToChange = radiantButton; loopState = 2;
-					break;
-				case 2:
-					buttonToChange = releasedButton; loopState = 0;
-					break;
+				switch (loopState)
+				{
+					case 0:
+						pressedButton.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+						//pressedButton.transform.localRotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
+						//pressedButton.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+
+						releasedButton.transform.localPosition = new Vector3(10000.0f, 0.0f, 0.0f);
+						//releasedButton.transform.localPosition = new Vector3(10000.0f, 0.0f, 0.0f);
+						//releasedButton.transform.localPosition = new Vector3(10000.0f, 0.0f, 0.0f);
+						loopState = 1;
+						break;
+					case 1:
+						radiantButton.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+						pressedButton.transform.localPosition = new Vector3(10000.0f, 0.0f, 0.0f);
+						loopState = 2;
+						break;
+					case 2:
+						releasedButton.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+						radiantButton.transform.localPosition = new Vector3(10000.0f, 0.0f, 0.0f);
+						loopState = 0;
+						break;
+				}
+				currentTime = 0.0f;
 			}
-			this.gameObject.AssignLibraryTextureToMaterial(buttonToChange, "diffuseTexture");
-			currentTime = 0.0f;
 		}
 	}
 

@@ -228,13 +228,13 @@ public class Skill_Tree_Data : DiamondComponent
         public string U4_description = "Fall damage   reduced by    50%";
         public string U5_description = "Weapon        overheat takes20% longer";
         public string U6_description = "Grogu's skill  cost reduced  by 20%";
-        public string U7_description = "Heal 10HP     when Grogu   uses a skill";
+        public string U7_description = "Heal  5HP      when Grogu   uses a skill";
         public string U8_description = "Dashing         leaves a         grenade        behind (10 sec CD)";
 
         //Descriptions - Aggression
         public string A1_description = "Blaster deals  15% more      damage";
-        public string A2_description = "Getting combogrants 20%    fire rate";
-        public string A3_description = "Getting combogrants 20%    damage";
+        public string A2_description = "Getting combogrants 10%    fire rate per   level";
+        public string A3_description = "Getting combogrants 20%    damage per   level";
         public string A4_description = "Grenade        deals 15%      more damage";
         public string A5_description = "Sniper deals  15% more      damage";
         public string A6_description = "Greater         enemies take   20% extra     damage";
@@ -243,13 +243,13 @@ public class Skill_Tree_Data : DiamondComponent
 
         //Descriptions - Defense
         public string D1_description = "Max Health    +10%";
-        public string D2_description = "15% of           incoming       damage is     negated";
-        public string D3_description = "Getting combogrants 20%    damage         reduction";
-        public string D4_description = "Getting comboheals 5 HP";
+        public string D2_description = "10% of           incoming       damage is     negated";
+        public string D3_description = "Getting combogrants 5%      damage         reduction";
+        public string D4_description = "Getting comboheals 2 HP";
         public string D5_description = "Heal 10 HP oncombo finish";
-        public string D6_description = "Heal back      some of the   damage dealt to enemies";
+        public string D6_description = "30% chance   to heal 1 HP   per bullet";
         public string D7_description = "1 Extra life per run (revive at 50% hp)";
-        public string D8_description = "10% chance toavoid             incoming       damage";
+        public string D8_description = "5% chance to avoid             incoming       damage";
     }
     public class Weapons_Skills_Data
     {
