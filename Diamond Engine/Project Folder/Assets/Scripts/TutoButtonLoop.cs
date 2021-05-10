@@ -11,8 +11,13 @@ public class TutoButtonLoop : DiamondComponent
 	Material buttonMaterial = null;
 	private float maxTime = 0.35f;
 	private float currentTime = 0.0f;
-	int loopState = 0;
+	private int loopState = 0;
+	public float timeDelay = 0.0f;
+	public void Awake() {
 
+		currentTime = timeDelay;
+	
+	}
 	public void Update()
 	{
 		//buttonMaterial=this.gameObject.GetComponent<Material>();
