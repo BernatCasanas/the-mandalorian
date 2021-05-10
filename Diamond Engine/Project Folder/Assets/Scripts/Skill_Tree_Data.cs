@@ -254,30 +254,30 @@ public class Skill_Tree_Data : DiamondComponent
     public class Weapons_Skills_Data
     {
         //Descriptions - Primary Weapon
-        public string PrimaryW1_description = "";
-        public string PrimaryW2_description = "";
-        public string PrimaryW3_description = "";
-        public string PrimaryW4_description = "";
-        public string PrimaryW5_description = "";
-        public string PrimaryW6_description = "";
-        public string PrimaryW7_description = "";
+        public string PrimaryW1_description = "Bullet speed   increased by   30%";
+        public string PrimaryW2_description = "Gain move     speed after    dealing          damage";
+        public string PrimaryW3_description = "Bullets slow    enemies by    20% for 2      seconds";
+        public string PrimaryW4_description = "Overheat       recovery        reduced by    30%";
+        public string PrimaryW5_description = "5% chance to fire double     damage         bullets";
+        public string PrimaryW6_description = "Damage        increased       by 25%";
+        public string PrimaryW7_description = "Rate of fire     +30%, +30%  shots to         overheat";
         public string PrimaryW8_description = "";
 
         //Descriptions - Secondary Weapon
-        public string SecondaryW1_description = "";
-        public string SecondaryW2_description = "";
-        public string SecondaryW3_description = "";
-        public string SecondaryW4_description = "";
-        public string SecondaryW5_description = "";
-        public string SecondaryW6_description = "";
+        public string SecondaryW1_description = "Tick damage  +2";
+        public string SecondaryW2_description = "Grenade Areaslows by 20%";
+        public string SecondaryW3_description = "Time between uses reduced by 30%";
+        public string SecondaryW4_description = "Increased      throw range   by 20%";
+        public string SecondaryW5_description = "Duration        increased by  30%";
+        public string SecondaryW6_description = "Damage        increased by  50%";
 
         //Descriptions - Special Weapon
-        public string SpecialW1_description = "";
-        public string SpecialW2_description = "";
-        public string SpecialW3_description = "";
-        public string SpecialW4_description = "";
-        public string SpecialW5_description = "";
-        public string SpecialW6_description = "";
+        public string SpecialW1_description = "Non charged damage         increased by  50%";
+        public string SpecialW2_description = "Charge up     time reduced  by 30%";
+        public string SpecialW3_description = "Kills on minor enemies heal  5HP";
+        public string SpecialW4_description = "Kills on minor enemies         regenerate     5 force";
+        public string SpecialW5_description = "Charge          hotspot          duration         increased by  50%";
+        public string SpecialW6_description = "Deal double damage on full charged shots";
     }
 
     public static void Reset()
