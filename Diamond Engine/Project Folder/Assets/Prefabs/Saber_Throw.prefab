@@ -1,0 +1,106 @@
+{
+    "assets_path": "Assets\/Prefabs\/Saber_Throw.prefab",
+    "Game Objects": [
+        {
+            "name": "Saber_Throw",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 843134367,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 2025992973,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "MoffGideonSword",
+                    "parent": 343994744
+                }
+            ]
+        },
+        {
+            "name": "Dark_Lase_Moff",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 2118408292,
+            "ParentUID": 843134367,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/288767238.mmh",
+                    "UID": 288767238,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        }
+    ]
+}

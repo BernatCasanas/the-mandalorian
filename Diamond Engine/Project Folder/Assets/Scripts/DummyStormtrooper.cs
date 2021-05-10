@@ -127,7 +127,7 @@ public class DummyStormtrooper : Enemy
     //Timers go here
     private void ProcessInternalInput()
     {
-        if (skill_slowDownActive)
+        /*if (skill_slowDownActive)
         {
             skill_slowDownTimer += myDeltaTime;
             if (skill_slowDownTimer >= Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownDuration)
@@ -135,7 +135,7 @@ public class DummyStormtrooper : Enemy
                 skill_slowDownTimer = 0.0f;
                 skill_slowDownActive = false;
             }
-        }
+        }*/
     }
 
     //All events from outside the stormtrooper

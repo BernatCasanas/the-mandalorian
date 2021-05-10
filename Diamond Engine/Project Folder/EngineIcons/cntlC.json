@@ -1,31 +1,70 @@
 {
     "Game Objects": [
         {
-            "name": "Co_Wall",
+            "name": "Saber_Throw",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
-            "UID": 1551429042,
-            "ParentUID": 734982776,
+            "Active": false,
+            "UID": 843134367,
+            "ParentUID": 1788828234,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                19.199586868286133,
-                3.1462278366088867,
-                -5.5828614234924316
+                -4.3670988082885742,
+                3.2260212898254395,
+                0.35683467984199524
             ],
             "Rotation": [
-                -0.50000256299972534,
-                -0.50000327825546265,
-                -0.49999958276748657,
-                0.49999457597732544
+                -3.0908623216419073e-08,
+                0.7071068286895752,
+                0.7071068286895752,
+                -3.0908623216419073e-08
             ],
             "Scale": [
-                0.53203624486923218,
-                5.6638150215148926,
-                4.9999785423278809
+                0.99999028444290161,
+                0.99998176097869873,
+                0.9999995231628418
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "MoffGideonSword"
+                }
+            ]
+        },
+        {
+            "name": "Dark_Lase_Moff",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 2118408292,
+            "ParentUID": 843134367,
+            "PrefabReference": 2118408292,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
             ],
             "Components": [
                 {
@@ -35,8 +74,9 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/1313575480.mmh",
-                    "UID": 1313575480,
+                    "Path": "Library\/Meshes\/288767238.mmh",
+                    "UID": 288767238,
+                    "bumpDepth": 1,
                     "alternColor": [
                         1,
                         1,
@@ -47,43 +87,16 @@
                         1,
                         1
                     ],
-                    "stencilEmission": 0,
+                    "stencilEmission": 0.89999997615814209,
                     "doNotDrawStencil": true
                 },
                 {
-                    "Type": 14,
+                    "Type": 3,
                     "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
                 }
             ]
         }

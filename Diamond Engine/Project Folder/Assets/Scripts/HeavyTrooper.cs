@@ -206,7 +206,7 @@ public class HeavyTrooper : Enemy
             }
         }
 
-        if (skill_slowDownActive)
+        /*if (skill_slowDownActive)
         {
             skill_slowDownTimer += myDeltaTime;
 
@@ -215,7 +215,7 @@ public class HeavyTrooper : Enemy
                 skill_slowDownTimer = 0.0f;
                 skill_slowDownActive = false;
             }
-        }
+        }*/
     }
 
     //All events from outside the heavytrooper

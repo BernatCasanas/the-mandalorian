@@ -117,10 +117,9 @@
                     "MaxForceModifier": 0,
                     "ForceRegentPerHPMod": 0,
                     "camera": 1889709846,
-                    "saber": 843134367,
                     "hitParticles": 1889709846,
                     "slerpSpeed": 5,
-                    "healthPoints": 8500,
+                    "healthPoints": 500,
                     "maxHealthPoints_fase1": 4500,
                     "maxHealthPoints_fase2": 4000,
                     "followSpeed": 4,
@@ -132,10 +131,9 @@
                     "radiusWander": 5,
                     "distanceProjectile": 17,
                     "dashSpeed": 10,
-                    "dashDistance": 4,
-                    "closerDistance": 0,
-                    "farDistance": 0,
-                    "furtherDistance": 0,
+                    "dashDistance": 20,
+                    "closerDistance": 1,
+                    "farDistance": 20,
                     "velocityRotationShooting": 20,
                     "spawner1": 1797586545,
                     "spawner2": 1167400653,
@@ -1232,10 +1230,10 @@
                 -6.0736510931747034e-08
             ],
             "Rotation": [
-                0.0081982165575027466,
-                -0.023347696289420128,
-                -0.10966072976589203,
-                0.99366110563278198
+                0.008198215626180172,
+                -0.023347694426774979,
+                -0.10966071486473083,
+                0.99366098642349243
             ],
             "Scale": [
                 1,
@@ -1760,31 +1758,65 @@
             ]
         },
         {
-            "name": "Dark_Lase_Moff",
+            "name": "Empty",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1935053102,
+            "UID": 133970082,
             "ParentUID": 1422873276,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -0.024039983749389648,
-                0.10703229904174805,
-                0.01377558708190918
+                0,
+                0,
+                0
             ],
             "Rotation": [
-                0.7071068286895752,
-                0.7071068286895752,
-                3.0908623216419073e-08,
-                -3.0908623216419073e-08
+                0,
+                1,
+                0,
+                -4.3711388286737929e-08
             ],
             "Scale": [
-                0.99999672174453735,
-                0.99998849630355835,
-                0.99999886751174927
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Dark_Lase_Moff",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1935053102,
+            "ParentUID": 133970082,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
             ],
             "Components": [
                 {
@@ -3797,41 +3829,36 @@
             ]
         },
         {
-            "name": "Saber",
+            "name": "Saber Spawn",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 843134367,
+            "UID": 343994744,
             "ParentUID": 837518950,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -0.024040102958679199,
-                0.10703277587890625,
-                0.01377558708190918
+                -0.21411418914794922,
+                1.3710439205169678,
+                0.49906972050666809
             ],
             "Rotation": [
-                -0.70710670948028564,
-                -0.7071068286895752,
-                3.0888003266227315e-08,
-                -3.0929232508469795e-08
+                0,
+                0,
+                0,
+                1
             ],
             "Scale": [
-                0.9999968409538269,
-                0.99998867511749268,
-                0.99999916553497314
+                1,
+                1,
+                1
             ],
             "Components": [
                 {
                     "Type": 1,
                     "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "MoffGideonSword"
                 }
             ]
         }

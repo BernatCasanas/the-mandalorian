@@ -136,6 +136,7 @@ public static class RoomSwitch
             {
                 currentroom = levelLists[index].preBossScene;
                 SceneManager.LoadScene(levelLists[index].preBossScene);
+                PlayLevelEnvironment();
             }
             else
             {
@@ -151,9 +152,10 @@ public static class RoomSwitch
 
                 currentroom = levelLists[index].bossScene;
                 SceneManager.LoadScene(levelLists[index].bossScene);
+                PlayMusicBoss((LEVELS)index);
             }
 
-            PlayLevelEnvironment();
+            
         }
 
     }
@@ -176,8 +178,10 @@ public static class RoomSwitch
         switch(currentLevelIndicator)
         {
             case LEVELS.ONE:
+                Audio.StopAudio(EnvironmentSourceLocate.instance.gameObject);
                 break;
             case LEVELS.TWO:
+                Audio.StopAudio(EnvironmentSourceLocate.instance.gameObject);
                 break;
             case LEVELS.THREE:
                 Audio.PlayAudio(EnvironmentSourceLocate.instance.gameObject, "Play_Spaceship_Interior_Ambience");
@@ -186,7 +190,21 @@ public static class RoomSwitch
                 break;
         }
     }
-
+    public static void PlayMusicBoss(LEVELS index)
+    {
+        Debug.Log(index.ToString());
+        switch (index)
+        {
+            case LEVELS.ONE:
+                break;
+            case LEVELS.TWO:
+                break;
+            case LEVELS.THREE:
+                Audio.SetState("Player_State", "Alive");
+                Audio.SetState("Game_State", "Moff_Guideon_Room");
+                break;
+        }
+    }
     public static void OnPlayerDeath()
     {
         Counter.gameResult = Counter.GameResult.DEFEAT;

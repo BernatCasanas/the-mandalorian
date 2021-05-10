@@ -25,12 +25,18 @@ public class MoffGideon : Entity
         PROJECTILE,
         SPAWN_ENEMIES,
         NEUTRAL,
+        PRESENTATION,
+        CHANGE_STATE,
         DEAD
     }
 
     enum MOFFGIDEON_INPUT : int
     {
         NONE = -1,
+        IN_PRESENTATION,
+        IN_PRESENTATION_END,
+        IN_CHANGE_STATE,
+        IN_CHANGE_STATE_END,
         IN_THROW_SABER,
         IN_THROW_SABER_END,
         IN_CHARGE_THROW,
@@ -53,11 +59,11 @@ public class MoffGideon : Entity
     }
 
     private NavMeshAgent agent = null;
+    private GameObject saber = null;
     public GameObject camera = null;
-    public GameObject saber = null;
 
     //State
-    private MOFFGIDEON_STATE currentState = MOFFGIDEON_STATE.NEUTRAL;
+    private MOFFGIDEON_STATE currentState = MOFFGIDEON_STATE.PRESENTATION;
     private List<MOFFGIDEON_INPUT> inputsList = new List<MOFFGIDEON_INPUT>();
     private MOFFGIDEON_PHASE currentPhase = MOFFGIDEON_PHASE.PHASE1;
 
@@ -85,9 +91,8 @@ public class MoffGideon : Entity
     public float distanceProjectile = 17f;
     public float dashSpeed = 10f;
     public float dashDistance = 3f;
-    public float closerDistance = 5f;
-    public float farDistance = 10f;
-    public float furtherDistance = 15f;
+    public float closerDistance = 1f;
+    public float farDistance = 50f;
     public float velocityRotationShooting = 10f;
     public GameObject spawner1 = null;
     public GameObject spawner2 = null;
@@ -120,6 +125,12 @@ public class MoffGideon : Entity
     public float enemiesTime = 1f;
     private float comboTime = 0f;
     private float comboTimer = 0f;
+    private float presentationTime = 0f;
+    private float presentationTimer = 0f;
+    private float changingStateTime = 0f;
+    private float changingStateTimer = 0f;
+    private float chargeThrowTime = 1f;
+    private float chargeThrowTimer = 0f;
     public float cadencyTime = 0.2f;
     public float cadencyTimer = 0f;
     private float privateTimer = 0f;
@@ -144,9 +155,13 @@ public class MoffGideon : Entity
         if (agent == null)
             Debug.Log("Null agent, add a NavMeshAgent Component");
 
-        StartNeutral();
 
         comboTime = Animator.GetAnimationDuration(gameObject, "MG_Slash") - 0.016f;
+        presentationTime = Animator.GetAnimationDuration(gameObject, "MG_Presentation") - 0.016f;
+        changingStateTime = Animator.GetAnimationDuration(gameObject, "MG_Presentation2") - 0.016f;
+
+        StartPresentation();
+
         enemiesTimer = enemiesTime;
 
         deathtroopers = new List<GameObject>();
@@ -195,6 +210,33 @@ public class MoffGideon : Entity
                 inputsList.Add(MOFFGIDEON_INPUT.IN_MELEE_COMBO_END);
 
         }
+
+        if (presentationTimer > 0)
+        {
+            presentationTimer -= myDeltaTime;
+
+            if (presentationTimer <= 0)
+                inputsList.Add(MOFFGIDEON_INPUT.IN_PRESENTATION_END);
+
+        }
+
+        if (changingStateTimer > 0)
+        {
+            changingStateTimer -= myDeltaTime;
+
+            if (changingStateTimer <= 0)
+                inputsList.Add(MOFFGIDEON_INPUT.IN_CHANGE_STATE_END);
+
+        }
+
+        if (chargeThrowTimer > 0)
+        {
+            chargeThrowTimer -= myDeltaTime;
+
+            if (chargeThrowTimer <= 0)
+                inputsList.Add(MOFFGIDEON_INPUT.IN_CHARGE_THROW_END);
+
+        }
     }
 
     private void ProcessExternalInput()
@@ -208,7 +250,7 @@ public class MoffGideon : Entity
         if (currentState == MOFFGIDEON_STATE.NEUTRAL && Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= 1.0f && !wander)
             wander = true;
 
-        if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, targetDash) <= 1f)
+        if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, targetDash) <= 1f && !justDashing)
             inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD_END);
 
         if (currentState == MOFFGIDEON_STATE.DASH_BACKWARDS && Mathf.Distance(gameObject.transform.globalPosition, targetDash) <= 1f)
@@ -224,6 +266,11 @@ public class MoffGideon : Entity
         {
             projectiles = 0;
             inputsList.Add(MOFFGIDEON_INPUT.IN_NEUTRAL);
+        }
+
+        if(currentState==MOFFGIDEON_STATE.RETRIEVE_SABER && Mathf.Distance(gameObject.transform.globalPosition, saber.transform.globalPosition) <= 1f)
+        {
+            inputsList.Add(MOFFGIDEON_INPUT.IN_RETRIEVE_SABER_END);
         }
 
     }
@@ -250,9 +297,10 @@ public class MoffGideon : Entity
                                 EndNeutral();
                                 break;
 
-                            case MOFFGIDEON_INPUT.IN_DEAD:
+                            case MOFFGIDEON_INPUT.IN_CHANGE_STATE:
+                                currentState = MOFFGIDEON_STATE.CHANGE_STATE;
                                 EndNeutral();
-                                StartDie();
+                                StartChangeState();
                                 break;
                         }
                         break;
@@ -311,9 +359,10 @@ public class MoffGideon : Entity
                                 StartNeutral();
                                 break;
 
-                            case MOFFGIDEON_INPUT.IN_DEAD:
+                            case MOFFGIDEON_INPUT.IN_CHANGE_STATE:
+                                currentState = MOFFGIDEON_STATE.CHANGE_STATE;
                                 EndProjectile();
-                                StartDie();
+                                StartChangeState();
                                 break;
                         }
                         break;
@@ -327,9 +376,10 @@ public class MoffGideon : Entity
                                 StartMeleeCombo();
                                 break;
 
-                            case MOFFGIDEON_INPUT.IN_DEAD:
-                                EndProjectile();
-                                StartDie();
+                            case MOFFGIDEON_INPUT.IN_CHANGE_STATE:
+                                currentState = MOFFGIDEON_STATE.CHANGE_STATE;
+                                EndDashForward();
+                                StartChangeState();
                                 break;
                         }
                         break;
@@ -343,9 +393,10 @@ public class MoffGideon : Entity
                                 StartDashBackward();
                                 break;
 
-                            case MOFFGIDEON_INPUT.IN_DEAD:
-                                EndProjectile();
-                                StartDie();
+                            case MOFFGIDEON_INPUT.IN_CHANGE_STATE:
+                                currentState = MOFFGIDEON_STATE.CHANGE_STATE;
+                                EndMeleeCombo();
+                                StartChangeState();
                                 break;
                         }
                         break;
@@ -359,9 +410,33 @@ public class MoffGideon : Entity
                                 StartNeutral();
                                 break;
 
-                            case MOFFGIDEON_INPUT.IN_DEAD:
-                                EndProjectile();
-                                StartDie();
+                            case MOFFGIDEON_INPUT.IN_CHANGE_STATE:
+                                currentState = MOFFGIDEON_STATE.CHANGE_STATE;
+                                EndDashBackward();
+                                StartChangeState();
+                                break;
+                        }
+                        break;
+
+                    case MOFFGIDEON_STATE.PRESENTATION:
+                        switch (input)
+                        {
+                            case MOFFGIDEON_INPUT.IN_PRESENTATION_END:
+                                currentState = MOFFGIDEON_STATE.NEUTRAL;
+                                EndPresentation();
+                                StartNeutral();
+                                break;
+                        }
+                        break;
+
+
+                    case MOFFGIDEON_STATE.CHANGE_STATE:
+                        switch (input)
+                        {
+                            case MOFFGIDEON_INPUT.IN_CHANGE_STATE_END:
+                                currentState = MOFFGIDEON_STATE.NEUTRAL;
+                                EndChangeState();
+                                StartNeutral();
                                 break;
                         }
                         break;
@@ -415,6 +490,12 @@ public class MoffGideon : Entity
                                 EndNeutral();
                                 StartDashForward();
                                 break;
+
+                            case MOFFGIDEON_INPUT.IN_CHARGE_THROW:
+                                currentState = MOFFGIDEON_STATE.CHARGE_THROW;
+                                EndNeutral();
+                                StartChargeThrow();
+                                break;
                         }
                         break;
 
@@ -442,7 +523,7 @@ public class MoffGideon : Entity
                     case MOFFGIDEON_STATE.CHARGE_THROW:
                         switch (input)
                         {
-                            case MOFFGIDEON_INPUT.IN_THROW_SABER:
+                            case MOFFGIDEON_INPUT.IN_CHARGE_THROW_END:
                                 currentState = MOFFGIDEON_STATE.THROW_SABER;
                                 EndChargeThrow();
                                 StartThrowSaber();
@@ -458,7 +539,7 @@ public class MoffGideon : Entity
                     case MOFFGIDEON_STATE.THROW_SABER:
                         switch (input)
                         {
-                            case MOFFGIDEON_INPUT.IN_RETRIEVE_SABER:
+                            case MOFFGIDEON_INPUT.IN_THROW_SABER_END:
                                 currentState = MOFFGIDEON_STATE.RETRIEVE_SABER;
                                 EndThrowSaber();
                                 StartRetrieveSaber();
@@ -490,7 +571,7 @@ public class MoffGideon : Entity
                     case MOFFGIDEON_STATE.DASH_FORWARD:
                         switch (input)
                         {
-                            case MOFFGIDEON_INPUT.IN_DASH_BACKWARDS_END:
+                            case MOFFGIDEON_INPUT.IN_DASH_FORWARD_END:
                                 currentState = MOFFGIDEON_STATE.MELEE_COMBO;
                                 EndDashForward();
                                 StartMeleeCombo();
@@ -601,6 +682,14 @@ public class MoffGideon : Entity
             case MOFFGIDEON_STATE.RETRIEVE_SABER:
                 UpdateRetrieveSaber();
                 break;
+
+            case MOFFGIDEON_STATE.PRESENTATION:
+                UpdatePresentation();
+                break;
+
+            case MOFFGIDEON_STATE.CHANGE_STATE:
+                UpdateChangeState();
+                break;
         }
     }
 
@@ -620,21 +709,82 @@ public class MoffGideon : Entity
         else
         {
             if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= closerDistance)
-            {
-                justDashing = true;
                 inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD);
-            }
 
             else if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= farDistance)
                 inputsList.Add(MOFFGIDEON_INPUT.IN_CHARGE_THROW);
 
-            else if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= furtherDistance)
+            else
+            {
                 inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD);
+                justDashing = true;
+
+            }
+
+            Debug.Log(Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition).ToString());
 
         }
         Debug.Log("Selecting Action");
     }
 
+    #region PRESENTATION
+
+    private void StartPresentation()
+    {
+        Animator.Play(gameObject, "MG_Presentation", speedMult);
+        UpdateAnimationSpd(speedMult);
+
+        //Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Lightsaber_Turn_On");
+
+        presentationTimer = presentationTime;
+
+    }
+
+
+    private void UpdatePresentation()
+    {
+
+        Debug.Log("Presentation");
+    }
+
+
+    private void EndPresentation()
+    {
+
+    }
+
+    #endregion
+
+    #region CHANGE_STATE
+
+    private void StartChangeState()
+    {
+        Animator.Play(gameObject, "MG_Presentation2", speedMult);
+        UpdateAnimationSpd(speedMult);
+
+        //Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Lightsaber_Turn_On");
+
+        changingStateTimer = changingStateTime;
+
+        healthPoints = maxHealthPoints_fase2;
+
+    }
+
+
+    private void UpdateChangeState()
+    {
+
+        Debug.Log("Changing State");
+    }
+
+
+    private void EndChangeState()
+    {
+        currentPhase = MOFFGIDEON_PHASE.PHASE2;
+        enemiesTimer = enemiesTime;
+    }
+
+    #endregion
 
     #region NEUTRAL
 
@@ -829,13 +979,14 @@ public class MoffGideon : Entity
 
     private void StartChargeThrow()
     {
+        chargeThrowTimer = chargeThrowTime;
     }
 
 
     private void UpdateChargeThrow()
     {
         Debug.Log("Charge Throw");
-
+        LookAt(Core.instance.gameObject.transform.globalPosition);
     }
 
 
@@ -846,13 +997,23 @@ public class MoffGideon : Entity
 
     private void StartThrowSaber()
     {
+        Animator.Play(gameObject, "MG_Throw", speedMult);
+        UpdateAnimationSpd(speedMult);
+
+        Quaternion rot = new Quaternion(0, 0, 90);
+
+        saber = InternalCalls.CreatePrefab("Library/Prefabs/2025992973.prefab", sword.transform.globalPosition, rot, new Vector3(1.0f, 1.0f, 1.0f));
+
         if (saber != null)
         {
             MoffGideonSword moffGideonSword = saber.GetComponent<MoffGideonSword>();
 
             if(moffGideonSword != null)
             {
-                moffGideonSword.ThrowSword(gameObject.transform.GetForward());
+                moffGideonSword.ThrowSword((Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition).normalized);
+                saber.Enable(true);
+                sword.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+                inputsList.Add(MOFFGIDEON_INPUT.IN_THROW_SABER_END);
             }
         }
 
@@ -873,19 +1034,25 @@ public class MoffGideon : Entity
 
     private void StartRetrieveSaber()
     {
-
+        Animator.Play(gameObject, "MG_Run", speedMult);
+        UpdateAnimationSpd(speedMult);
     }
 
 
     private void UpdateRetrieveSaber()
     {
+        agent.CalculatePath(gameObject.transform.globalPosition, saber.transform.globalPosition);
+        agent.MoveToCalculatedPos(speedMult * followSpeed);
+        LookAt(agent.GetDestination());
         Debug.Log("Retrieve Saber");
     }
 
 
     private void EndRetrieveSaber()
     {
-
+        InternalCalls.Destroy(saber);
+        saber = null;
+        sword.transform.localScale = new Vector3(1, 1, 1);
     }
 
     #endregion
@@ -964,10 +1131,10 @@ public class MoffGideon : Entity
                 Debug.Log("The collider with tag Bullet didn't have a bullet Script!!");
             }
 
-            if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
+            /*if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
             {
                 damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
-            }
+            }*/
 
             TakeDamage(damageToBoss);
             Debug.Log("GIDEON HP: " + healthPoints.ToString());
@@ -1015,10 +1182,10 @@ public class MoffGideon : Entity
                 Debug.Log("The collider with tag Bullet didn't have a bullet Script!!");
             }
 
-            if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
+            /*if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
             {
                 damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
-            }
+            }*/
 
             TakeDamage(damageToBoss);
             Debug.Log("Rancor HP: " + healthPoints.ToString());
@@ -1078,8 +1245,7 @@ public class MoffGideon : Entity
                 {
                     if (currentPhase == MOFFGIDEON_PHASE.PHASE1)
                     {
-                        currentPhase = MOFFGIDEON_PHASE.PHASE2;
-                        currentState = MOFFGIDEON_STATE.NEUTRAL;
+                        inputsList.Add(MOFFGIDEON_INPUT.IN_CHANGE_STATE);
                     }
                     else
                         inputsList.Add(MOFFGIDEON_INPUT.IN_DEAD);
