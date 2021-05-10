@@ -2110,7 +2110,15 @@ public class Core : Entity
             case STATUS_TYPE.FIRE_RATE:
                 {
 
-                    statusToInit.statChange = -statusToInit.severity / 100;
+                    statusToInit.statChange = statusToInit.severity / 100;
+                    this.FireRateMult += statusToInit.statChange;
+
+                }
+                break;
+            case STATUS_TYPE.FIRE_RATE_PERMANENT:
+                {
+
+                    statusToInit.statChange = statusToInit.severity / 100;
                     this.FireRateMult += statusToInit.statChange;
 
 
@@ -2328,10 +2336,14 @@ public class Core : Entity
                 break;
             case STATUS_TYPE.FIRE_RATE:
                 {
-                    Debug.Log("delete fire rate buff");
                     this.FireRateMult -= statusToDelete.statChange;
-                    if (this.FireRateMult <= 0)
-                        this.FireRateMult = 1;
+                }
+                break;
+            case STATUS_TYPE.FIRE_RATE_PERMANENT:
+                {
+                    this.FireRateMult -= statusToDelete.statChange;
+
+                   
                 }
                 break;
             case STATUS_TYPE.RAW_DAMAGE:

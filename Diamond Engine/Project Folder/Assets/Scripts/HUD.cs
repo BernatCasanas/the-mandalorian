@@ -361,17 +361,17 @@ public class HUD : DiamondComponent
             OnLvlUpComboChange();
             if (Core.instance != null)
             {
-                if (Core.instance.HasStatus(STATUS_TYPE.COMBO_FIRE_RATE) && Core.instance.FireRateMult > 0.40f)
+                if (Core.instance.HasStatus(STATUS_TYPE.COMBO_FIRE_RATE) && Core.instance.FireRateMult > 0.50f)
                 {
-                    Core.instance.AddStatus(STATUS_TYPE.FIRE_RATE, STATUS_APPLY_TYPE.ADDITIVE, 20f, 5f, false);
+                    Core.instance.AddStatus(STATUS_TYPE.FIRE_RATE, STATUS_APPLY_TYPE.ADDITIVE, -10f, 5f, false);
                 }
                 if (Core.instance.HasStatus(STATUS_TYPE.COMBO_DAMAGE) && Core.instance.RawDamageMult < 2f)
                 {
-                    Core.instance.AddStatus(STATUS_TYPE.RAW_DAMAGE, STATUS_APPLY_TYPE.ADDITIVE, 20f, 5f, false);
+                    Core.instance.AddStatus(STATUS_TYPE.RAW_DAMAGE, STATUS_APPLY_TYPE.ADDITIVE, 20f, 3f, false);
                 }
                 if (Core.instance.HasStatus(STATUS_TYPE.COMBO_RED))
                 {
-                    Core.instance.AddStatus(STATUS_TYPE.COMBO_DMG_RED, STATUS_APPLY_TYPE.ADDITIVE, -15f, 5f, true);
+                    Core.instance.AddStatus(STATUS_TYPE.COMBO_DMG_RED, STATUS_APPLY_TYPE.ADDITIVE, -5f, 5f, true);
                 }
                 if (Core.instance.HasStatus(STATUS_TYPE.COMBO_HEAL))
                 {
