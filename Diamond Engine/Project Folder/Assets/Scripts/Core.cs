@@ -1862,7 +1862,7 @@ public class Core : Entity
         }
     }
 
-    public void SetSkill(int skillTree, int SkillNumber)
+    /*public void SetSkill(int skillTree, int SkillNumber)
     {
         if (skillTree == (int)Skill_Tree_Data.SkillTreesNames.MANDO)
         {
@@ -1872,7 +1872,7 @@ public class Core : Entity
                 skill_groguIncreaseDamageTimer = Skill_Tree_Data.GetMandoSkillTree().U3_duration;
             }
         }
-    }
+    }*/
 
     public float GetBlasterDamageMod()
     {

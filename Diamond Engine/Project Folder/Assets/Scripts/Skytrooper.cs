@@ -55,7 +55,7 @@ public class Skytrooper : Enemy
     public float wanderSpeed = 3.5f;
     public float dashSpeed = 7.5f;
     //public float bulletSpeed = 10.0f;
-    private bool skill_slowDownActive = false;
+    //private bool skill_slowDownActive = false;
 
     //Ranges
     public float wanderRange = 7.5f;
@@ -167,7 +167,7 @@ public class Skytrooper : Enemy
             }
         }
 
-        if (skill_slowDownActive)
+        /*if (skill_slowDownActive)
         {
             skill_slowDownTimer += myDeltaTime;
             if (skill_slowDownTimer >= Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownDuration)
@@ -175,7 +175,7 @@ public class Skytrooper : Enemy
                 skill_slowDownTimer = 0.0f;
                 skill_slowDownActive = false;
             }
-        }
+        }*/
     }
 
     //All events from outside the stormtrooper
@@ -681,11 +681,11 @@ public class Skytrooper : Enemy
                         hudComponent.AddToCombo(25, 0.95f);
                 }
 
-                if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
+                /*if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
                 {
                     skill_slowDownActive = true;
                     skill_slowDownTimer = 0.0f;
-                }
+                }*/
             }
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))

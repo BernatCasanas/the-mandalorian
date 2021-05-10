@@ -524,13 +524,6 @@ public class BabyYoda : DiamondComponent
         return true;
     }
 
-    public static float GetForceRegenerationSpeed()
-    {
-        if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.FORCE_REGENERATION))
-            return GetForceRegenSpeedWithSkill();
-        else return forceRegenerationSpeed;
-    }
-
     public static void AugmentForceRegenSpeed(float newSpeed)
     {
         forceRegenerationSpeed += newSpeed;
@@ -577,13 +570,5 @@ public class BabyYoda : DiamondComponent
     public void OnApplicationQuit()
     {
         forceRegenerationSpeed = forceRegenerationSpeedDft;
-    }
-
-    private static float GetForceRegenSpeedWithSkill()
-    {
-        int HPDiff = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
-        float steps = (float)HPDiff / Skill_Tree_Data.GetGroguSkillTree().Grogu8_HPMissingPercentage;
-
-        return forceRegenerationSpeed + steps * Skill_Tree_Data.GetGroguSkillTree().Grogu8_gainPassiveForceRegeneration;
     }
 }

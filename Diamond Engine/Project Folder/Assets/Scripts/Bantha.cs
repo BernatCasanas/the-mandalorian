@@ -171,7 +171,7 @@ public class Bantha : Enemy
             }
         }
 
-        if (skill_slowDownActive)
+        /*if (skill_slowDownActive)
         {
             skill_slowDownTimer += myDeltaTime;
 
@@ -180,7 +180,7 @@ public class Bantha : Enemy
                 skill_slowDownTimer = 0.0f;
                 skill_slowDownActive = false;
             }
-        }
+        }*/
     }
 
     //All events from outside the stormtrooper
