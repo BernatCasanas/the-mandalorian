@@ -56,7 +56,6 @@ public static class RoomSwitch
 
         new List<int>()
         {
-            494045661,  //Room 1
             573625925,  //Room 2
             1529493583, //Should remove one of these
         },
