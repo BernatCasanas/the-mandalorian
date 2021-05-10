@@ -393,8 +393,8 @@ vec3 CalculateAreaLight( float specMapValue)
 {
 	vec3 lighting = vec3(0.0, 0.0, 0.0);
 	vec3 normal = texture(normalMap, fs_in.TexCoords).rgb + bumpDepth;
-	normal = normalize(normal * 2.0 - 1.0);
-	normal = transpose(fs_in.TBN) * normal;
+	normal = normal * 2.0 - 1.0;
+	normal = normalize(transpose(fs_in.TBN) * normal);
     
     for (int i = 0; i < 5; i++)
     {
