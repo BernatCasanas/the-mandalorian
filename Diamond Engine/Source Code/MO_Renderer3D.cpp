@@ -913,6 +913,10 @@ void ModuleRenderer3D::ClearAllRenderData()
 
 	particleSystemQueue.clear();
 	rays.clear();
+
+	lines.clear();
+	triangles.clear();
+	points.clear();
 }
 
 bool ModuleRenderer3D::IsWalkable(float3 pointToCheck)
