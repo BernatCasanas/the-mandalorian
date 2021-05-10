@@ -1263,6 +1263,7 @@ public class Core : Entity
         Audio.StopAudio(gameObject);
         Audio.PlayAudio(gameObject, "Play_Dash");
         Animator.Play(gameObject, "Dash", speedMult);
+        DisableBlaster();
         UpdateAnimationSpd(speedMult);
 
         dashTimer = dashDuration;
