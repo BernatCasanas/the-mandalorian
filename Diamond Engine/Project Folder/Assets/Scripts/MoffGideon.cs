@@ -106,7 +106,7 @@ public class MoffGideon : Entity
     //Private Variables
     private float currAnimationPlaySpd = 1f;
     //private float damaged = 0.0f;
-    //private bool invencible = false;
+    private bool invencible = false;
     private bool wander = false;
     private bool ready2Spawn = false;
     private Vector3 targetDash = null;
@@ -953,7 +953,7 @@ public class MoffGideon : Entity
 
     private void StartSpawnEnemies()
     {
-        //invencible = true;
+        invencible = true;
         ready2Spawn = false;
         SpawnEnemies();
         Animator.Play(gameObject, "MG_Spawn", speedMult);
@@ -970,7 +970,7 @@ public class MoffGideon : Entity
     private void EndSpawnEnemies()
     {
         enemiesTimer = enemiesTime;
-        //invencible = false;
+        invencible = false;
     }
 
     #endregion
@@ -1118,6 +1118,8 @@ public class MoffGideon : Entity
                 if (Core.instance.HasStatus(STATUS_TYPE.PRIM_MOV_SPEED))
                     AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_MOV_SPEED).severity / 100, 5, false);
 
+            if (invencible) return;
+
             float damageToBoss = 0f;
 
             BH_Bullet bulletScript = collidedGameObject.GetComponent<BH_Bullet>();
@@ -1220,7 +1222,7 @@ public class MoffGideon : Entity
             PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                //playerHealth.TakeDamage((int)(damageToPlayer * damageMult));
+                playerHealth.TakeDamage((int)(damageToPlayer * damageMult));
             }
             Debug.Log(damageToPlayer.ToString() + " " + damageMult.ToString());
 
