@@ -876,7 +876,7 @@ public class MoffGideon : Entity
     #region DASH_BACKWARD
     private void StartDashBackward()
     {
-        targetDash = (Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition).normalized * -1 * dashDistance;
+        targetDash = (Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition).normalized * -1 * 7f;
         targetDash.y = gameObject.transform.globalPosition.y;
         agent.CalculatePath(gameObject.transform.globalPosition, targetDash);
         Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Dash");
@@ -1218,6 +1218,9 @@ public class MoffGideon : Entity
         {
             if (currentState == MOFFGIDEON_STATE.DEAD) return;
 
+            if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && justDashing)
+                inputsList.Add(MOFFGIDEON_INPUT.IN_NEUTRAL);
+
 
             float damageToPlayer = touchDamage;
 
@@ -1229,10 +1232,17 @@ public class MoffGideon : Entity
             Debug.Log(damageToPlayer.ToString() + " " + damageMult.ToString());
 
         }
-        else if (collidedGameObject.CompareTag("WallSkill"))
+        else if (collidedGameObject.CompareTag("Column") || collidedGameObject.CompareTag("Wall"))
         {
-            //if (currentState == RANCOR_STATE.RUSH)
-            //    inputsList.Add(RANCOR_INPUT.IN_RUSH_STUN);
+            if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && justDashing)
+                inputsList.Add(MOFFGIDEON_INPUT.IN_NEUTRAL);
+
+            else if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && !justDashing)
+                inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD_END);
+
+            else if (currentState == MOFFGIDEON_STATE.DASH_BACKWARDS)
+                inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_BACKWARDS_END);
+
         }
     }
 
