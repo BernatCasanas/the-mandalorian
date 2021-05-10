@@ -3,7 +3,10 @@ using DiamondEngine;
 
 public class Skill_Trees_Data_Entry : DiamondComponent
 {
-    #region Variables showing in the inspector
+    //Now we are introducing the values directly from c#
+    //Descriptions in Skill_Tree_Data.cs
+
+    /*#region Variables showing in the inspector
     #region Grogu variables
     //Grogu Skill 1
     //Grogu Skill 2
@@ -158,5 +161,5 @@ public class Skill_Trees_Data_Entry : DiamondComponent
         Skill_Tree_Data.mandoSkillTree.D8_changeToAvoidDamage = Defense8_chanceToAvoidDamage;
 
         Skill_Tree_Data.data_entry_assigned = true;
-    }
+    }*/
 }

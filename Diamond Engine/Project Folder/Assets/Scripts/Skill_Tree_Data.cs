@@ -8,8 +8,6 @@ public class Skill_Tree_Data : DiamondComponent
     public static Weapons_Skills_Data weaponsSkillTree = null;
     public static Mando_Skills_Data mandoSkillTree = null;
 
-    public static bool data_entry_assigned = false;
-
     #region skillNames
     public enum SkillTreesNames
     {
@@ -187,15 +185,24 @@ public class Skill_Tree_Data : DiamondComponent
     #region Geters for SkillTrees
     public static Grogu_Skills_Data GetGroguSkillTree()
     {
+        if(groguSkillTree == null)
+            groguSkillTree = new Grogu_Skills_Data();
+
         return groguSkillTree;
     }
     public static Weapons_Skills_Data GetWeaponsSkillTree()
     {
+        if (weaponsSkillTree == null)
+            weaponsSkillTree = new Weapons_Skills_Data();
+
         return weaponsSkillTree;
     }
 
     public static Mando_Skills_Data GetMandoSkillTree()
     {
+        if (mandoSkillTree == null)
+            mandoSkillTree = new Mando_Skills_Data();
+
         return mandoSkillTree;
     }
     #endregion
@@ -211,23 +218,11 @@ public class Skill_Tree_Data : DiamondComponent
         public string G6_description = "";
         public string G7_description = "";
         public string G8_description = "";
-
-        //Grogu Skills
-        //Grogu Skill 1
-        //Grogu Skill 2
-        //Grogu Skill 3
-        //Grogu Skill 4
-        //Grogu Skill 5
-        //Grogu Skill 6
-        //Grogu Skill 7
-        //Grogu Skill 8
-        public float Grogu8_HPMissingPercentage = -1.0f;
-        public float Grogu8_gainPassiveForceRegeneration = -1.0f;
     }
     public class Mando_Skills_Data
     {
         //Descriptions - Utility
-        public string U1_description = "";
+        public string U1_description = "AAAAAA";
         public string U2_description = "";
         public string U3_description = "";
         public string U4_description = "";
@@ -255,24 +250,6 @@ public class Skill_Tree_Data : DiamondComponent
         public string D6_description = "";
         public string D7_description = "";
         public string D8_description = "";
-
-        //Utility Skill 3
-        public float U3_duration = -1.0f;
-        public float U3_increasedDamagePercentage = -1.0f;
-        //Utility Skill 4
-        public float U4_seconds = -1.0f;
-        public float U4_damageReduction = -1.0f;
-        //Utility Skill 7
-        public int U7_healAmount = -1;
-        //Utility Skill 8
-        public int U8_consecutiveDashAmount = -1;
-        //Aggression Skill 6
-        public float A6_increaseDamageToBossAmount = -1.0f;
-        //Aggression Skill 7
-        public float A7_extraDamageHPStep = -1.0f;
-        public float A7_extraDamageAmount = -1.0f;
-        //Defense Skill 8
-        public int D8_changeToAvoidDamage = -1;
     }
     public class Weapons_Skills_Data
     {
@@ -293,8 +270,6 @@ public class Skill_Tree_Data : DiamondComponent
         public string SecondaryW4_description = "";
         public string SecondaryW5_description = "";
         public string SecondaryW6_description = "";
-        public string SecondaryW7_description = "";
-        public string SecondaryW8_description = "";
 
         //Descriptions - Special Weapon
         public string SpecialW1_description = "";
@@ -303,29 +278,6 @@ public class Skill_Tree_Data : DiamondComponent
         public string SpecialW4_description = "";
         public string SpecialW5_description = "";
         public string SpecialW6_description = "";
-        public string SpecialW7_description = "";
-        public string SpecialW8_description = "";
-
-        //Primary Weapon Skill 1
-        //Primary Weapon Skill 2
-        //Primary Weapon Skill 3
-        //Primary Weapon Skill 4
-        public float PW3_SlowDownAmount = -1.0f;
-        public float PW3_SlowDownDuration = -1.0f;
-        //Primary Weapon Skill 5
-        //Primary Weapon Skill 6
-        //Primary Weapon Skill 7
-        public float PW6_IncreaseDamageAmount = -1.0f;
-        //Primary Weapon Skill 8
-
-        //Secondary Weapon Skill 1
-        //Secondary Weapon Skill 2
-        //Secondary Weapon Skill 3
-        //Secondary Weapon Skill 4
-        public float SW4_DelayReducedAmount = -1.0f;
-        //Secondary Weapon Skill 5
-        //Secondary Weapon Skill 6
-        //Secondary Weapon Skill 7
     }
 
     public static void Reset()

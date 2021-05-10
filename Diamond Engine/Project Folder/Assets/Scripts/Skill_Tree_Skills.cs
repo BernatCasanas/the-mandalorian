@@ -29,10 +29,11 @@ namespace DiamondEngine
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY1);
         }
 
-        //public override void AssignCharacteristics()
-        //{
-        //    description = "Knockback Skill. Press 'A' to buy it. Price: it's free!";
-        //}
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetMandoSkillTree().U1_description;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
     public class UtilityMovementSpeedSkill : Skills
@@ -41,7 +42,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY2);
         }
-
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetMandoSkillTree().U2_description;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
     public class UtilitySlowDamageSkill : Skills
@@ -78,6 +83,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY5);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetMandoSkillTree().U5_description;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
 
@@ -86,6 +96,11 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY6);
+        }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetMandoSkillTree().U6_description;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -109,7 +124,6 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_CONSECUTIVE_DASH);
-            Core.instance.maxDashNumber = Skill_Tree_Data.GetMandoSkillTree().U8_consecutiveDashAmount;
         }
 
         public override void AssignCharacteristics()
@@ -129,10 +143,11 @@ namespace DiamondEngine
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION1);
         }
 
-        //public override void AssignCharacteristics()
-        //{
-        //    description = "Increase Damage Skill. Press 'A' to buy it. Price: it's free!";
-        //}
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetMandoSkillTree().A1_description;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
     public class AggressionFireRateSkill : Skills
@@ -140,6 +155,11 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION2);
+        }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetMandoSkillTree().A2_description;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -149,6 +169,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION3);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetMandoSkillTree().A3_description;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
     public class AggressionGrenadeDamageSkill : Skills
@@ -157,6 +182,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION4);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetMandoSkillTree().A4_description;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
     public class AggressionSniperDamageSkill : Skills
@@ -164,6 +194,11 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION5);
+        }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetMandoSkillTree().A5_description;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -203,6 +238,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION8);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetMandoSkillTree().A8_description;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
     #endregion
@@ -221,8 +261,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            //description = Skill_Tree_Data.GetMandoSkillTree().D1_description;
-            description = "Increase Mando's Max HP by 10%. Press 'A' to buy it. Price: 1 Beskar Ingot";            
+            description = Skill_Tree_Data.GetMandoSkillTree().D1_description;        
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -236,7 +275,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = "Decrease the Damage Reduction Skill. Press 'A' to buy it. Price: it's free!";            
+            description = Skill_Tree_Data.GetMandoSkillTree().D2_description;
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -247,6 +286,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE3);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetMandoSkillTree().D3_description;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
     public class DefenseComboHealSkill : Skills
@@ -255,6 +299,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE4);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetMandoSkillTree().D4_description;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
     public class DefenseComboFinishHealSkill : Skills
@@ -262,6 +311,11 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE5);
+        }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetMandoSkillTree().D5_description;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -272,6 +326,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE6);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetMandoSkillTree().D6_description;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
     public class DefenseHealEffectsSkill : Skills
@@ -279,6 +338,11 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE7);
+        }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetMandoSkillTree().D7_description;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -308,6 +372,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.Skill1);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetGroguSkillTree().G1_description;
+            type_of_price = RewardType.REWARD_MACARON;
+        }
     }
 
     public class GroguPushRangeSkill : Skills
@@ -315,6 +384,11 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.Skill2);
+        }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetGroguSkillTree().G2_description;
+            type_of_price = RewardType.REWARD_MACARON;
         }
     }
 
@@ -324,6 +398,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.Skill3);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetGroguSkillTree().G3_description;
+            type_of_price = RewardType.REWARD_MACARON;
+        }
     }
 
     public class GroguThresholdComboForceSkill : Skills
@@ -332,6 +411,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.Skill4);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetGroguSkillTree().G4_description;
+            type_of_price = RewardType.REWARD_MACARON;
+        }
     }
 
     public class GroguMaxForceSkill : Skills
@@ -339,6 +423,11 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.Skill5);
+        }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetGroguSkillTree().G5_description;
+            type_of_price = RewardType.REWARD_MACARON;
         }
     }
 
@@ -349,6 +438,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.Skill6);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetGroguSkillTree().G6_description;
+            type_of_price = RewardType.REWARD_MACARON;
+        }
     }
 
     public class GroguComboGainSkill : Skills
@@ -356,6 +450,11 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.GROGU, (int)Skill_Tree_Data.GroguSkillNames.Skill7);
+        }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetGroguSkillTree().G7_description;
+            type_of_price = RewardType.REWARD_MACARON;
         }
     }
 
@@ -386,6 +485,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY1);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetWeaponsSkillTree().PrimaryW1_description;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
     public class PrimaryProjectileRangeSkill : Skills
@@ -393,6 +497,11 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY2);
+        }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetWeaponsSkillTree().PrimaryW2_description;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -404,8 +513,7 @@ namespace DiamondEngine
         }
         public override void AssignCharacteristics()
         {
-            description = Skill_Tree_Data.GetWeaponsSkillTree().PrimaryW3_description;
-            description = "Bullet impacts slow enemy speed by 20% for 3 seconds";            
+            description = Skill_Tree_Data.GetWeaponsSkillTree().PrimaryW3_description;        
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -416,6 +524,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY4);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetWeaponsSkillTree().PrimaryW4_description;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
     public class PrimaryChargedkill : Skills
@@ -423,6 +536,11 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY5);
+        }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetWeaponsSkillTree().PrimaryW5_description;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -432,10 +550,6 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY7);
-            if(Core.instance != null && Skill_Tree_Data.GetWeaponsSkillTree() != null)
-            {
-                Core.instance.IncreaseNormalShootDamage(Skill_Tree_Data.GetWeaponsSkillTree().PW6_IncreaseDamageAmount);
-            }
         }
 
         public override void AssignCharacteristics()
@@ -451,6 +565,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY7);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetWeaponsSkillTree().PrimaryW7_description;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
 
@@ -464,6 +583,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SECONDARY1);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetWeaponsSkillTree().SecondaryW1_description;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
     public class SecondarySlowSkill : Skills
@@ -471,6 +595,11 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SECONDARY2);
+        }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetWeaponsSkillTree().SecondaryW2_description;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -483,7 +612,7 @@ namespace DiamondEngine
 
         public override void AssignCharacteristics()
         {
-            description = Skill_Tree_Data.GetWeaponsSkillTree().SecondaryW4_description;
+            description = Skill_Tree_Data.GetWeaponsSkillTree().SecondaryW3_description;
             type_of_price = RewardType.REWARD_BESKAR;
         }
     }
@@ -494,6 +623,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SECONDARY4);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetWeaponsSkillTree().SecondaryW4_description;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
     public class SecondaryDurationSkill : Skills
@@ -501,6 +635,11 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SECONDARY5);
+        }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetWeaponsSkillTree().SecondaryW5_description;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -510,6 +649,11 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SECONDARY6);
+        }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetWeaponsSkillTree().SecondaryW6_description;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -524,6 +668,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SPECIAL1);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetWeaponsSkillTree().SpecialW1_description;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
     public class SpecialChargeTimeSkill : Skills
@@ -531,6 +680,11 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SPECIAL2);
+        }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetWeaponsSkillTree().SpecialW2_description;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -540,6 +694,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SPECIAL3);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetWeaponsSkillTree().SpecialW3_description;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
     public class SpecialRegenerateForceSkill : Skills
@@ -547,6 +706,11 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SPECIAL4);
+        }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetWeaponsSkillTree().SpecialW4_description;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 
@@ -556,6 +720,11 @@ namespace DiamondEngine
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SPECIAL5);
         }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetWeaponsSkillTree().SpecialW5_description;
+            type_of_price = RewardType.REWARD_BESKAR;
+        }
     }
 
 
@@ -564,6 +733,11 @@ namespace DiamondEngine
         public override void Use()
         {
             Skill_Tree_Data.EnableSkill((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.SPECIAL6);
+        }
+        public override void AssignCharacteristics()
+        {
+            description = Skill_Tree_Data.GetWeaponsSkillTree().SpecialW6_description;
+            type_of_price = RewardType.REWARD_BESKAR;
         }
     }
 

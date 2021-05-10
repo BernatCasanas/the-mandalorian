@@ -46,8 +46,6 @@ public class Skill_Tree_Node : DiamondComponent
     public int skillTreeName;
     public int skillTreeNumber;
 
-    private bool started = false;
-
     public NODE_STATE state 
     {
         get { return _state; }
@@ -75,6 +73,8 @@ public class Skill_Tree_Node : DiamondComponent
     public void Awake()
     {
         UnlockTreeAfterRun();
+
+        AssignCharacteristics();
     }
 
     public void Reset()
@@ -149,12 +149,6 @@ public class Skill_Tree_Node : DiamondComponent
 
     public void Update()
 	{
-        if (started == false && Skill_Tree_Data.data_entry_assigned)
-        {
-            AssignCharacteristics();
-            started = true;
-        }
-
         if (skill == null)
             return;
 
