@@ -1,19 +1,19 @@
 {
     "NavMesh": 1440000066,
     "EditorCameraPosition": [
-        4.9915351867675781,
-        -0.25307294726371765,
-        3.0662379264831543
+        -2.9454622268676758,
+        6.1455068588256836,
+        -2.0978102684020996
     ],
     "EditorCameraZ": [
-        -0.58101969957351685,
-        -0.41703540086746216,
-        -0.69892603158950806
+        -0.41264793276786804,
+        -0.65805721282958984,
+        -0.62982726097106934
     ],
     "EditorCameraY": [
-        -0.26659595966339111,
-        0.9088902473449707,
-        -0.32069474458694458
+        -0.36068069934844971,
+        0.7529679536819458,
+        -0.5504077672958374
     ],
     "tags": [],
     "layers": [],
@@ -28070,94 +28070,6 @@
             ]
         },
         {
-            "name": "Center_Platform_Collider3",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1423659577,
-            "ParentUID": 165511528,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -4.7056088447570801,
-                -5.3854002952575684,
-                -0.78853893280029297
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": false,
-                    "Path": "Library\/Meshes\/998890981.mmh",
-                    "UID": 998890981,
-                    "bumpDepth": 0,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
-                },
-                {
-                    "Type": 14,
-                    "Active": true,
-                    "kinematic": true,
-                    "Gravity": true,
-                    "LockLinearX": false,
-                    "LockLinearY": false,
-                    "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
-                    "Density": 1
-                },
-                {
-                    "Type": 18,
-                    "Active": true,
-                    "isTrigger": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
             "name": "Center_Platform_Collider4",
             "tag": "Untagged",
             "layer": "Default",
@@ -28598,6 +28510,94 @@
             ]
         },
         {
+            "name": "Center_Platform_Collider_3_Fixed",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1442953866,
+            "ParentUID": 165511528,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -4.9893603324890137,
+                -5.2799897193908691,
+                -0.51885920763015747
+            ],
+            "Rotation": [
+                -0.26887574791908264,
+                0.65399205684661865,
+                0.65399479866027832,
+                0.26886990666389465
+            ],
+            "Scale": [
+                4.6554269790649414,
+                1.8595026731491089,
+                0.9999968409538269
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 0,
+                    "alternColor": [
+                        0.98701298236846924,
+                        0,
+                        0
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": true,
+                    "LockLinearY": true,
+                    "LockLinearZ": true,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
             "name": "Left_Platform_Collider",
             "tag": "Untagged",
             "layer": "Default",
@@ -28643,20 +28643,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -2.8215384483337402,
+                -1.9836269617080688,
                 -5.3854012489318848,
-                12.968621253967285
+                13.786541938781738
             ],
             "Rotation": [
                 0,
+                -0.41529110074043274,
                 0,
-                0,
-                1
+                0.90968859195709229
             ],
             "Scale": [
+                0.99999934434890747,
                 1,
-                1,
-                1
+                0.99999934434890747
             ],
             "Components": [
                 {
@@ -28907,20 +28907,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                7.92864990234375,
+                8.69732666015625,
                 -5.3854007720947266,
-                9.6208877563476563
+                10.229302406311035
             ],
             "Rotation": [
                 0,
+                0.36977052688598633,
                 0,
-                0,
-                1
+                0.92912310361862183
             ],
             "Scale": [
+                0.99999988079071045,
                 1,
-                1,
-                1
+                0.99999988079071045
             ],
             "Components": [
                 {
@@ -29509,20 +29509,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                8.5474681854248047,
+                8.3441991806030273,
                 -5.3854007720947266,
-                -8.8200302124023438
+                -9.1917448043823242
             ],
             "Rotation": [
                 0,
+                0.32832527160644531,
                 0,
-                0,
-                1
+                0.94456470012664795
             ],
             "Scale": [
+                0.9999997615814209,
                 1,
-                1,
-                1
+                0.9999997615814209
             ],
             "Components": [
                 {
@@ -29719,20 +29719,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -22.617593765258789,
-                -5.3854002952575684,
-                -13.022501945495605
+                -20.875574111938477,
+                -5.3854007720947266,
+                -11.445208549499512
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                2.8679936647790782e-08,
+                0.37255415320396423,
+                8.2482863206223556e-08,
+                0.92801046371459961
             ],
             "Scale": [
+                0.99999910593032837,
                 1,
-                1,
-                1
+                0.99999910593032837
             ],
             "Components": [
                 {
@@ -29807,20 +29807,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -16.832595825195313,
+                -17.769136428833008,
                 -5.3854007720947266,
-                -10.798959732055664
+                -12.042381286621094
             ],
             "Rotation": [
                 0,
+                0.38265231251716614,
                 0,
-                0,
-                1
+                0.92389243841171265
             ],
             "Scale": [
+                0.99999988079071045,
                 1,
-                1,
-                1
+                0.99999988079071045
             ],
             "Components": [
                 {
@@ -30159,20 +30159,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -10.793669700622559,
-                -5.3854007720947266,
-                9.9592351913452148
+                -18.840293884277344,
+                -5.3854002952575684,
+                11.319425582885742
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                6.0174791371991887e-08,
+                0.69892418384552002,
+                6.3407085804101371e-08,
+                0.71519577503204346
             ],
             "Scale": [
+                0.99999833106994629,
                 1,
-                1,
-                1
+                0.99999833106994629
             ],
             "Components": [
                 {
@@ -30247,20 +30247,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -9.9416351318359375,
+                -11.196702003479004,
                 -5.3854007720947266,
-                6.4418315887451172
+                8.2831954956054688
             ],
             "Rotation": [
                 0,
+                0.38971468806266785,
                 0,
-                0,
-                1
+                0.92093563079833984
             ],
             "Scale": [
+                0.99999934434890747,
                 1,
-                1,
-                1
+                0.99999934434890747
             ],
             "Components": [
                 {
