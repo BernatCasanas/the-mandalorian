@@ -233,7 +233,7 @@ public class Skill_Tree_Data : DiamondComponent
 
         //Descriptions - Aggression
         public string A1_description = "Blaster deals  15% more      damage";
-        public string A2_description = "Getting combogrants 10%    fire rate per   level";
+        public string A2_description = "Getting combogrants   5%    fire rate per   level";
         public string A3_description = "Getting combogrants 20%    damage per   level";
         public string A4_description = "Grenade        deals 15%      more damage";
         public string A5_description = "Sniper deals  15% more      damage";
