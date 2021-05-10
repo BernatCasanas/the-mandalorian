@@ -222,34 +222,34 @@ public class Skill_Tree_Data : DiamondComponent
     public class Mando_Skills_Data
     {
         //Descriptions - Utility
-        public string U1_description = "AAAAAA";
-        public string U2_description = "";
-        public string U3_description = "";
-        public string U4_description = "";
-        public string U5_description = "";
-        public string U6_description = "";
-        public string U7_description = "";
-        public string U8_description = "";
+        public string U1_description = "As heat rises, so does         damage";
+        public string U2_description = "Movement      speed +20%";
+        public string U3_description = "Damaging an enemy slows  them by 15%";
+        public string U4_description = "Fall damage   reduced by    50%";
+        public string U5_description = "Weapon        overheat takes20% longer";
+        public string U6_description = "Grogu's skill  cost reduced  by 20%";
+        public string U7_description = "Heal 10HP     when Grogu   uses a skill";
+        public string U8_description = "Dashing         leaves a         grenade        behind (10 sec CD)";
 
         //Descriptions - Aggression
-        public string A1_description = "";
-        public string A2_description = "";
-        public string A3_description = "";
-        public string A4_description = "";
-        public string A5_description = "";
-        public string A6_description = "";
-        public string A7_description = "";
-        public string A8_description = "";
+        public string A1_description = "Blaster deals  15% more      damage";
+        public string A2_description = "Getting combogrants 20%    fire rate";
+        public string A3_description = "Getting combogrants 20%    damage";
+        public string A4_description = "Grenade        deals 15%      more damage";
+        public string A5_description = "Sniper deals  15% more      damage";
+        public string A6_description = "Greater         enemies take   20% extra     damage";
+        public string A7_description = "Blaster does   more damageas health        decreases";
+        public string A8_description = "Sniper does   more damageas health        decreases";
 
         //Descriptions - Defense
-        public string D1_description = "";
-        public string D2_description = "";
-        public string D3_description = "";
-        public string D4_description = "";
-        public string D5_description = "";
-        public string D6_description = "";
-        public string D7_description = "";
-        public string D8_description = "";
+        public string D1_description = "Max Health    +10%";
+        public string D2_description = "15% of           incoming       damage is     negated";
+        public string D3_description = "Getting combogrants 20%    damage         reduction";
+        public string D4_description = "Getting comboheals 5 HP";
+        public string D5_description = "Heal 10 HP oncombo finish";
+        public string D6_description = "Heal back      some of the   damage dealt to enemies";
+        public string D7_description = "1 Extra life per run (revive at 50% hp)";
+        public string D8_description = "10% chance toavoid             incoming       damage";
     }
     public class Weapons_Skills_Data
     {
