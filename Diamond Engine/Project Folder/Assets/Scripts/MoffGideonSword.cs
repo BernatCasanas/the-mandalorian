@@ -10,6 +10,8 @@ public class MoffGideonSword : DiamondComponent
 	float throwSpeed = 15f;
 	float throwRange = 20.0f;
 
+	public float damage = 10f;
+
 	Vector3 throwDirection = null;
 
 	public void Awake()
@@ -41,6 +43,25 @@ public class MoffGideonSword : DiamondComponent
 		Quaternion dir = Quaternion.RotateAroundAxis(Vector3.up, angle);
 
 		gameObject.transform.localRotation = dir;
+	}
+
+	public void OnCollisionEnter(GameObject collidedGameObject)
+    {
+
+		if (collidedGameObject.CompareTag("Column") || collidedGameObject.CompareTag("Wall"))
+		{
+			throwTimer = 0f;	
+		}
+
+		if(collidedGameObject.CompareTag("Player"))
+        {
+			PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
+			if (playerHealth != null)
+			{
+				playerHealth.TakeDamage((int)(damage));
+			}
+		}
+			
 	}
 
 }
