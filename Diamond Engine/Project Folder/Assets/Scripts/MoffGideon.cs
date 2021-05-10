@@ -59,8 +59,8 @@ public class MoffGideon : Entity
     }
 
     private NavMeshAgent agent = null;
+    private GameObject saber = null;
     public GameObject camera = null;
-    public GameObject saber = null;
 
     //State
     private MOFFGIDEON_STATE currentState = MOFFGIDEON_STATE.PRESENTATION;
@@ -91,8 +91,8 @@ public class MoffGideon : Entity
     public float distanceProjectile = 17f;
     public float dashSpeed = 10f;
     public float dashDistance = 3f;
-    public float closerDistance = 5f;
-    public float farDistance = 10f;
+    public float closerDistance = 1f;
+    public float farDistance = 50f;
     public float velocityRotationShooting = 10f;
     public GameObject spawner1 = null;
     public GameObject spawner2 = null;
@@ -129,6 +129,8 @@ public class MoffGideon : Entity
     private float presentationTimer = 0f;
     private float changingStateTime = 0f;
     private float changingStateTimer = 0f;
+    private float chargeThrowTime = 1f;
+    private float chargeThrowTimer = 0f;
     public float cadencyTime = 0.2f;
     public float cadencyTimer = 0f;
     private float privateTimer = 0f;
@@ -226,6 +228,15 @@ public class MoffGideon : Entity
                 inputsList.Add(MOFFGIDEON_INPUT.IN_CHANGE_STATE_END);
 
         }
+
+        if (chargeThrowTimer > 0)
+        {
+            chargeThrowTimer -= myDeltaTime;
+
+            if (chargeThrowTimer <= 0)
+                inputsList.Add(MOFFGIDEON_INPUT.IN_CHARGE_THROW_END);
+
+        }
     }
 
     private void ProcessExternalInput()
@@ -255,6 +266,11 @@ public class MoffGideon : Entity
         {
             projectiles = 0;
             inputsList.Add(MOFFGIDEON_INPUT.IN_NEUTRAL);
+        }
+
+        if(currentState==MOFFGIDEON_STATE.RETRIEVE_SABER && Mathf.Distance(gameObject.transform.globalPosition, saber.transform.globalPosition) <= 1f)
+        {
+            inputsList.Add(MOFFGIDEON_INPUT.IN_RETRIEVE_SABER_END);
         }
 
     }
@@ -473,6 +489,12 @@ public class MoffGideon : Entity
                                 currentState = MOFFGIDEON_STATE.DASH_FORWARD;
                                 EndNeutral();
                                 StartDashForward();
+                                break;
+
+                            case MOFFGIDEON_INPUT.IN_CHARGE_THROW:
+                                currentState = MOFFGIDEON_STATE.CHARGE_THROW;
+                                EndNeutral();
+                                StartChargeThrow();
                                 break;
                         }
                         break;
@@ -957,13 +979,14 @@ public class MoffGideon : Entity
 
     private void StartChargeThrow()
     {
+        chargeThrowTimer = chargeThrowTime;
     }
 
 
     private void UpdateChargeThrow()
     {
         Debug.Log("Charge Throw");
-
+        LookAt(Core.instance.gameObject.transform.globalPosition);
     }
 
 
@@ -974,13 +997,21 @@ public class MoffGideon : Entity
 
     private void StartThrowSaber()
     {
+        Animator.Play(gameObject, "MG_Throw", speedMult);
+        UpdateAnimationSpd(speedMult);
+
+        saber = InternalCalls.CreatePrefab("Library/Prefabs/2025992973.prefab", sword.transform.globalPosition, new Quaternion(0, 0, 90), new Vector3(1.0f, 1.0f, 1.0f));
+
         if (saber != null)
         {
             MoffGideonSword moffGideonSword = saber.GetComponent<MoffGideonSword>();
 
             if(moffGideonSword != null)
             {
-                moffGideonSword.ThrowSword(gameObject.transform.GetForward());
+                moffGideonSword.ThrowSword((Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition).normalized);
+                saber.Enable(true);
+                sword.Enable(false);
+                inputsList.Add(MOFFGIDEON_INPUT.IN_THROW_SABER_END);
             }
         }
 
@@ -1001,19 +1032,25 @@ public class MoffGideon : Entity
 
     private void StartRetrieveSaber()
     {
-
+        Animator.Play(gameObject, "MG_Run", speedMult);
+        UpdateAnimationSpd(speedMult);
     }
 
 
     private void UpdateRetrieveSaber()
     {
+        agent.CalculatePath(gameObject.transform.globalPosition, saber.transform.globalPosition);
+        agent.MoveToCalculatedPos(speedMult * followSpeed);
+        LookAt(agent.GetDestination());
         Debug.Log("Retrieve Saber");
     }
 
 
     private void EndRetrieveSaber()
     {
-
+        InternalCalls.Destroy(saber);
+        saber = null;
+        sword.Enable(true);
     }
 
     #endregion

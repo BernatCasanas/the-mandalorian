@@ -1,19 +1,19 @@
 {
     "NavMesh": 345181959,
     "EditorCameraPosition": [
-        -17.495326995849609,
-        13.216235160827637,
-        2.6103196144104004
+        -9.1465530395507813,
+        6.9878263473510742,
+        0.51756101846694946
     ],
     "EditorCameraZ": [
-        0.79672038555145264,
-        -0.5998072624206543,
-        -0.073945105075836182
+        0.78330928087234497,
+        -0.61370211839675903,
+        0.098976016044616699
     ],
     "EditorCameraY": [
-        0.59723424911499023,
-        0.80014455318450928,
-        -0.055497676134109497
+        0.60887348651885986,
+        0.78953766822814941,
+        0.076833784580230713
     ],
     "tags": [],
     "layers": [],
@@ -1287,10 +1287,10 @@
                         -6.0736510931747034e-08
                     ],
                     "Rotation": [
-                        0.008198215626180172,
-                        -0.023347694426774979,
-                        -0.10966071486473083,
-                        0.99366098642349243
+                        0.0081982165575027466,
+                        -0.023347696289420128,
+                        -0.10966072976589203,
+                        0.99366110563278198
                     ],
                     "Scale": [
                         1,
@@ -2447,31 +2447,31 @@
                     ]
                 },
                 {
-                    "name": "Saber",
+                    "name": "Saber Spawn",
                     "tag": "Untagged",
                     "layer": "Default",
                     "Active": true,
-                    "UID": 843134367,
+                    "UID": 343994744,
                     "ParentUID": 1413930625,
                     "PrefabID": 0,
-                    "PrefabReference": 843134367,
+                    "PrefabReference": 343994744,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        -0.024040102958679199,
-                        0.10703277587890625,
-                        0.01377558708190918
+                        -0.21411418914794922,
+                        1.3710439205169678,
+                        0.49906972050666809
                     ],
                     "Rotation": [
-                        -0.70710670948028564,
-                        -0.7071068286895752,
-                        3.0888003266227315e-08,
-                        -3.0929232508469795e-08
+                        0,
+                        0,
+                        0,
+                        1
                     ],
                     "Scale": [
-                        0.9999968409538269,
-                        0.99998867511749268,
-                        0.99999916553497314
+                        1,
+                        1,
+                        1
                     ]
                 }
             ]
@@ -20926,6 +20926,107 @@
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/389352221.dds",
                     "UID": 389352221
+                }
+            ]
+        },
+        {
+            "name": "Saber_Throw",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 843134367,
+            "ParentUID": 1788828234,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -4.3670988082885742,
+                3.2260212898254395,
+                0.35683467984199524
+            ],
+            "Rotation": [
+                -3.0908623216419073e-08,
+                0.7071068286895752,
+                0.7071068286895752,
+                -3.0908623216419073e-08
+            ],
+            "Scale": [
+                0.99999028444290161,
+                0.99998176097869873,
+                0.9999995231628418
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "MoffGideonSword",
+                    "parent": 343994744
+                }
+            ]
+        },
+        {
+            "name": "Dark_Lase_Moff",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 2118408292,
+            "ParentUID": 843134367,
+            "PrefabReference": 2118408292,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/288767238.mmh",
+                    "UID": 288767238,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
                 }
             ]
         }
