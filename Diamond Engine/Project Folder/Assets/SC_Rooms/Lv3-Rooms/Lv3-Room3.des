@@ -1,19 +1,19 @@
 {
     "NavMesh": 1440000066,
     "EditorCameraPosition": [
-        -2.9454622268676758,
-        6.1455068588256836,
-        -2.0978102684020996
+        -39.367839813232422,
+        75.65240478515625,
+        -49.998119354248047
     ],
     "EditorCameraZ": [
-        -0.41264793276786804,
-        -0.65805721282958984,
-        -0.62982726097106934
+        0.38115221261978149,
+        -0.72718703746795654,
+        0.57089579105377197
     ],
     "EditorCameraY": [
-        -0.36068069934844971,
-        0.7529679536819458,
-        -0.5504077672958374
+        0.40377774834632874,
+        0.6864393949508667,
+        0.60478466749191284
     ],
     "tags": [],
     "layers": [],
@@ -1573,8 +1573,8 @@
             "Static": false,
             "Position": [
                 0,
-                -7.034174919128418,
-                8.3853899468522286e-07
+                -11.400931358337402,
+                1.3590969274446252e-06
             ],
             "Rotation": [
                 -0.7071068286895752,
@@ -1584,8 +1584,8 @@
             ],
             "Scale": [
                 31.899999618530273,
-                40.499435424804688,
-                0.99999117851257324
+                40.498336791992188,
+                0.99997401237487793
             ],
             "Components": [
                 {
@@ -30253,9 +30253,9 @@
             ],
             "Rotation": [
                 0,
-                0.38971468806266785,
+                0.38971474766731262,
                 0,
-                0.92093563079833984
+                0.92093575000762939
             ],
             "Scale": [
                 0.99999934434890747,
@@ -41907,6 +41907,568 @@
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/389352221.dds",
                     "UID": 389352221
+                }
+            ]
+        },
+        {
+            "name": "ExteriorColliders",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1890801176,
+            "ParentUID": 684405827,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                -5.0873956680297852,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "ExteriorWallCollider0",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 417921806,
+            "ParentUID": 1890801176,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                18.815261840820313,
+                -3.7219753265380859,
+                0.48576170206069946
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                1,
+                29.674314498901367,
+                16.203060150146484
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ExteriorWallCollider1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 2025605970,
+            "ParentUID": 1890801176,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                3.6236283779144287,
+                -3.7220709323883057,
+                27.241571426391602
+            ],
+            "Rotation": [
+                -0.49999994039535522,
+                0.49999827146530151,
+                0.50000172853469849,
+                0.50000005960464478
+            ],
+            "Scale": [
+                1.0000001192092896,
+                29.674287796020508,
+                16.20301628112793
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ExteriorWallCollider2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1609622527,
+            "ParentUID": 1890801176,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -17.480133056640625,
+                -3.7220821380615234,
+                0.52807521820068359
+            ],
+            "Rotation": [
+                -0.70710664987564087,
+                -3.4244405355821073e-07,
+                3.4244223456880718e-07,
+                0.70710688829421997
+            ],
+            "Scale": [
+                0.99999994039535522,
+                29.673824310302734,
+                16.202541351318359
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ExteriorWallCollider3",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1056932203,
+            "ParentUID": 1890801176,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                3.6236283779144287,
+                -3.7218701839447021,
+                -28.556158065795898
+            ],
+            "Rotation": [
+                -0.49999994039535522,
+                0.49999827146530151,
+                0.50000172853469849,
+                0.50000005960464478
+            ],
+            "Scale": [
+                1.0000001192092896,
+                29.674287796020508,
+                16.20301628112793
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ExteriorWallCollider4",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1149740608,
+            "ParentUID": 1890801176,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                13.31618595123291,
+                -3.7218389511108398,
+                -27.174301147460938
+            ],
+            "Rotation": [
+                -0.65755736827850342,
+                0.26003968715667725,
+                0.26004031300544739,
+                0.65755355358123779
+            ],
+            "Scale": [
+                0.99999994039535522,
+                17.728775024414063,
+                16.20283317565918
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ExteriorWallCollider5",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 785411290,
+            "ParentUID": 1890801176,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -14.995829582214355,
+                -3.7216777801513672,
+                24.048486709594727
+            ],
+            "Rotation": [
+                -0.65657353401184082,
+                0.26251482963562012,
+                0.26251512765884399,
+                0.65656906366348267
+            ],
+            "Scale": [
+                1,
+                12.960291862487793,
+                16.202838897705078
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }
