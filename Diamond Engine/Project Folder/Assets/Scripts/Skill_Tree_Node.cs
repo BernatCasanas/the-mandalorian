@@ -438,7 +438,7 @@ public class Skill_Tree_Node : DiamondComponent
                         break;
                     case "PRateFire":
                         Core.instance.AddStatus(STATUS_TYPE.OVERHEATCAP, STATUS_APPLY_TYPE.ADDITIVE, -30, 0, true);
-                        Core.instance.AddStatus(STATUS_TYPE.FIRE_RATE_PERMANENT, STATUS_APPLY_TYPE.ADDITIVE, -20, 0, true);
+                        Core.instance.AddStatus(STATUS_TYPE.FIRE_RATE_PERMANENT, STATUS_APPLY_TYPE.ADDITIVE, -10, 0, true);
 
                         break;
                     #endregion
