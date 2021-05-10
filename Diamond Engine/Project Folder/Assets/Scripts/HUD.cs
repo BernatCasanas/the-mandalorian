@@ -180,6 +180,8 @@ public class HUD : DiamondComponent
                 shooting_blink.GetComponent<Material>().SetFloatUniform("heat", 1f);
 
             UpdateCombo();
+            UpdateCurrency(PlayerResources.GetRunCoins());
+
 
             start = false;
         }
