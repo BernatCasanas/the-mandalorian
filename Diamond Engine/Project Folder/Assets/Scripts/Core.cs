@@ -1944,6 +1944,7 @@ public class Core : Entity
     {
         Debug.Log("SAVE STATUSES");
         copyBuffs(ref PlayerStatuses);
+        
     }
 
     public void LoadBuffs()
@@ -2072,13 +2073,10 @@ public class Core : Entity
                     if (Core.instance != null)
                     {
                         PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
-                        if (myHealth != null)
-                        {
-                            Debug.Log("TESTING / max hp");
-                            Debug.Log("Old Max Health = " + PlayerHealth.currMaxHealth.ToString());
+                        if (myHealth != null && PlayerHealth.currMaxHealth <= 100)
+                        {   
                             statusToInit.statChange = statusToInit.severity * PlayerHealth.currMaxHealth / 100;
-                            myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth + statusToInit.statChange));
-                            Debug.Log("New Max Health = " + PlayerHealth.currMaxHealth.ToString());
+                            myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth + statusToInit.statChange), true);
 
                         }
                     }
@@ -2293,12 +2291,11 @@ public class Core : Entity
                     if (Core.instance != null)
                     {
                         PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
-                        if (myHealth != null)
-                        {
+                       
 
                             myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth - statusToDelete.statChange));
 
-                        }
+                       
                     }
                 }
                 break;
