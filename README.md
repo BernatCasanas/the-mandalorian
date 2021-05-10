@@ -106,33 +106,38 @@ YouTube:	https://www.youtube.com/channel/UCzwLxtTAxGMVG1belis7tkw
 	- Visual & Audio feedback improved.
 	- Overhauled Mando's animations, model & textures.
 	- Companion now has 2 Force Skills: Push & Wall Force.
-	- Improved Companion skills & follow system.
+	- Improved Companion Skills & follow system.
 	- Overhauled Combat with parameters, dynamics, mechanics,...
 	- New Heat system for the Primary Weapon.
+	- Added weapons attached to the character!
 	- HUD overhauled with full functionallity. <br>
     	> For more information about Mando & Grogu's moveset, see Controls above. 
 	
 * Enemies
-	- Added 4 types of enemies:
+	- Added 6 types of enemies:
 		- Bantha: bug, slow, melee & tanky.
 		- Stromtrooper: balanced range based enemy.
 		- Skytrooper flying ranged based enemy.
 		- Turret: static melee based enemy.
+		- Heavytrooper: very agile melee enemy.
+		- Deathtrooper: close quarters ranged enemy with a shotgun.
 	* All with finished models, animations & attacks.
-	- Added 2 bosses encounters:
+	- Added 3 bosses encounters:
 		- Rancor: 1st level noss,finished & polsihed.
 		- Wampa & Skel: 2nd level boss first iteration.
+		- Moff Gideon: 3rd level & final boss first iteration.
 	- General AI extremely polished & improved.
 
 * Enviroment
 	- 4 room setup that is changed in a random order, with a starting (just in the 1st level) & ending scene for each level.
 	- 1st Level with final & polsihed Art Assets.
-	- New rooms of the 2nd Level with Final Art & blockouts finished.
+	- New rooms of the 2nd Level with Final Art.
+	- 3rd Level Rooms final art assets implemented.
 	- Featuring a fully finished Barrel, Column, Spike Traps & X-Wing props.
-	- Enemies: Bantha & Stromtrooper fully modeled, rigged & animated (not Bantha).
-	- 3rd Level Rooms Blockout implemented.
+	- Fully interactuable Barrels & Traps!
 	- Added directional & point lights with improved shadows!
 	- Now there is a Stencil Buffer to be able to see entities behind meshes.
+	- HUB final art implementation.
 
 * General Gameplay
 	- Perspective Camera.
@@ -143,18 +148,24 @@ YouTube:	https://www.youtube.com/channel/UCzwLxtTAxGMVG1belis7tkw
 	- Boons & Items: each time you finish a level a random boon appears, you obtain its benefits & advance to the next level.
 	- Dialogue System: added dialogues that can be skipped pressing A, at the start & the end of the run.
 	- Money & shop system are now working as intended
-	- First iteration of intro & outro cinematics.
-	- Talent trees: skills & upgrades for the Out-Run progression 1st iteration.
+	- Improved intro & outro cinematics.
+	- Added HUB: for out-run progression & conversations.
+	- Talent trees: fully implemented skills & upgrades for the Out-Run progression.
+	- Wave System: enemies spawn in eaves in the rooms, incrementing the challenge!
+	- Added tutorial room; that only activates the 1st time you play.
+	- Added LoC system: the enemies get stronger each level completed.
+	- Added Status System: now Mando & enemies can have buffs & debuffs that affect their behaviour.
 	
 * Design Prototype Features 
-	- Enemy document expended to 4 enemies.
+	- Enemy document expended to 6 enemies.
 	- Full design document of level 3, all its enemies and the boss.
 	- Unity prototype of 2 new enemies & final boss!
+	- Playtest document, sesions & analysis.
 
 * Debug Tools & Engine Features
 	- First iteration of telemetry implemented on engine.
-	- Debug menu implemented & first debug options added (Press Select)
-	- Fully functional Prefab System
+	- Debug menu implemented & first debug options added (Press Select).
+	- Fully functional Prefab System.
 
 
 
