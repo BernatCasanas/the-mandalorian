@@ -105,11 +105,12 @@ public class MoffGideon : Entity
 
     //Private Variables
     private float currAnimationPlaySpd = 1f;
-    //private float damaged = 0.0f;
     private bool invencible = false;
     private bool wander = false;
     private bool ready2Spawn = false;
+    private Vector3 beginDash = null;
     private Vector3 targetDash = null;
+    //private float damaged = 0.0f;
     private bool justDashing = false;
     private int maxProjectiles = 7;
     private int projectiles = 0;
@@ -256,7 +257,7 @@ public class MoffGideon : Entity
         if (currentState == MOFFGIDEON_STATE.DASH_BACKWARDS && Mathf.Distance(gameObject.transform.globalPosition, targetDash) <= 1f)
             inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_BACKWARDS_END);
 
-        if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, targetDash) >= dashDistance && justDashing)
+        if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, beginDash) >= dashDistance && justDashing)
         {
             inputsList.Add(MOFFGIDEON_INPUT.IN_NEUTRAL);
             justDashing = false;
@@ -829,6 +830,7 @@ public class MoffGideon : Entity
     private void StartDashForward()
     {
         targetDash = Core.instance.gameObject.transform.globalPosition;
+        beginDash = gameObject.transform.globalPosition;
         Animator.Play(gameObject, "MG_Dash", speedMult);
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Dash");
