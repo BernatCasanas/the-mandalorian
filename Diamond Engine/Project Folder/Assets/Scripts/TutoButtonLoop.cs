@@ -3,18 +3,16 @@ using DiamondEngine;
 
 public class TutoButtonLoop : DiamondComponent
 {
-	public GameObject releasedButton =null;
-	public GameObject pressedButton =null;
-	public GameObject radiantButton =null;
+	public int releasedButton = 0;
+	public int pressedButton = 0;
+	public int radiantButton = 0;
 	private int buttonToChange = 0;
 
 	Material buttonMaterial = null;
 	private float maxTime = 0.35f;
 	private float currentTime = 0.0f;
-	private int loopState = 0;
-	public void Awake() {
-		
-	}
+	int loopState = 0;
+
 	public void Update()
 	{
 		//buttonMaterial=this.gameObject.GetComponent<Material>();
