@@ -210,14 +210,14 @@ public class Skill_Tree_Data : DiamondComponent
     public class Grogu_Skills_Data
     {
         //Descriptions
-        public string G1_description = "";
-        public string G2_description = "";
-        public string G3_description = "";
-        public string G4_description = "";
-        public string G5_description = "";
-        public string G6_description = "";
-        public string G7_description = "";
-        public string G8_description = "";
+        public string G1_description = "Regenerate 1 Force  each second";
+        public string G2_description = "Push range             increased";
+        public string G3_description = "Force cover durationincreased";
+        public string G4_description = "While combo is       active regenerate 4  force per second";
+        public string G5_description = "+10% to max Force";
+        public string G6_description = "Rising combo level  grants +2 Force";
+        public string G7_description = "Gain more combo   per hit";
+        public string G8_description = "The more health      missing, the more    force regeneration";
     }
     public class Mando_Skills_Data
     {
