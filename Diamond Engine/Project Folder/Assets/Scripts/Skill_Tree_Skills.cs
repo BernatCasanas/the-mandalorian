@@ -723,7 +723,6 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().SpecialW5_description;
-             
         }
     }
 
@@ -737,7 +736,6 @@ namespace DiamondEngine
         public override void AssignCharacteristics()
         {
             description = Skill_Tree_Data.GetWeaponsSkillTree().SpecialW6_description;
-             
         }
     }
 

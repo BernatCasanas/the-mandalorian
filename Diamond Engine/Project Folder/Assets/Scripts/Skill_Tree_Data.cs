@@ -276,7 +276,7 @@ public class Skill_Tree_Data : DiamondComponent
         public string SpecialW2_description = "Charge up     time reduced  by 30%";
         public string SpecialW3_description = "Kills on minor enemies heal  5HP";
         public string SpecialW4_description = "Kills on minor enemies         regenerate     5 force";
-        public string SpecialW5_description = "Charge          hotspot          duration         increased by  50%";
+        public string SpecialW5_description = "Charge hotspot duration increased by 50%";
         public string SpecialW6_description = "Deal double damage on full charged shots";
     }
 
