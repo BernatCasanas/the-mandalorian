@@ -110,14 +110,14 @@ public class Deathtrooper : Enemy
         recoilTime = recoilDistance / recoilSpeed;
         if (hitParticlesObj != null)
             hitParticle = hitParticlesObj.GetComponent<ParticleSystem>();
-        else
+        //else
             //Debug.Log("Hit particles gameobject not found!");
         if (shotgunParticlesObj != null)
             shotgunParticle = shotgunParticlesObj.GetComponent<ParticleSystem>();
-        else
-        {
-            //Debug.Log("Shotgun particles gameobject not found!");
-        }
+        //else
+        //{
+        //    //Debug.Log("Shotgun particles gameobject not found!");
+        //}
     }
 
     public void Update()
