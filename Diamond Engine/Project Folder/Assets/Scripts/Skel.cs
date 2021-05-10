@@ -458,6 +458,21 @@ public class Skel : Bosseslv2
             if (currentState != STATE.DEAD)
             {
                 healthPoints -= damage;
+                if (Core.instance != null)
+                {
+                    if (Core.instance.HasStatus(STATUS_TYPE.LIFESTEAL))
+                    {
+                        Random rand = new Random();
+                        float result = rand.Next(1, 101);
+                        if (result <= 10)
+                            if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
+                            {
+                                float healing = Core.instance.GetStatusData(STATUS_TYPE.LIFESTEAL).severity * damage / 100;
+                                if (healing < 1) healing = 1;
+                                Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
+                            }
+                    }
+                }
                 Debug.Log("Skel HP: " + healthPoints.ToString());
 
                 if (healthPoints <= 0.0f)

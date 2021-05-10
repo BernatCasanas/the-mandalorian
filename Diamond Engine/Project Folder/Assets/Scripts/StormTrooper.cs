@@ -854,7 +854,10 @@ public class StormTrooper : Enemy
             {
                 if (Core.instance.HasStatus(STATUS_TYPE.LIFESTEAL))
                 {
-                    if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
+                    Random rand = new Random();
+                    float result = rand.Next(1, 101);
+                    if (result <= 11)
+                        if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
                     {
                         float healing = Core.instance.GetStatusData(STATUS_TYPE.LIFESTEAL).severity * damage / 100;
                         if (healing < 1) healing = 1;
