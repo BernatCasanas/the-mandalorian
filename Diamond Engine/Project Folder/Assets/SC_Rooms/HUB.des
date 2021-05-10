@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -29.425165176391602,
-        35.337745666503906,
-        -25.526144027709961
+        -4.3206429481506348,
+        11.138897895812988,
+        9.259577751159668
     ],
     "EditorCameraZ": [
-        0.19592432677745819,
-        -0.81304603815078735,
-        0.54824256896972656
+        0.39078548550605774,
+        -0.91981959342956543,
+        -0.034909904003143311
     ],
     "EditorCameraY": [
-        0.27430897951126099,
-        0.58219921588897705,
-        0.76537483930587769
+        0.9160342812538147,
+        0.39234113693237305,
+        -0.08336445689201355
     ],
     "tags": [],
     "layers": [],
@@ -90,8 +90,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 12.239999771118164,
-                    "hFOV": 23.260000228881836,
+                    "vFOV": 13.659999847412109,
+                    "hFOV": 24.879999160766602,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -33632,6 +33632,493 @@
                     "Active": true,
                     "billboardAlignment": 3,
                     "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "NPC_Spawns",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1574682896,
+            "ParentUID": 1481651339,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "NPCSpawnController",
+                    "Grogu": true,
+                    "BoKatan": true,
+                    "Ahsoka": true,
+                    "CaraDune": false,
+                    "GroguUID": 0,
+                    "BoKatanUID": 0,
+                    "AhsokaUID": 0,
+                    "CaraDuneUID": 0,
+                    "spawnPoint1": 322735051,
+                    "animation1": 2,
+                    "spawnPoint2": 1686300593,
+                    "animation2": 1,
+                    "spawnPoint3": 803229102,
+                    "animation3": 1,
+                    "spawnPoint4": 1423099042,
+                    "animation4": 2,
+                    "spawnPoint5": 1880563027,
+                    "animation5": 1,
+                    "spawnPoint6": 176475776,
+                    "animation6": 2,
+                    "spawnPoint7": 1768916676,
+                    "animation7": 0,
+                    "spawnPoint8": 1740097446,
+                    "animation8": 2
+                }
+            ]
+        },
+        {
+            "name": "Spawnpoint1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 322735051,
+            "ParentUID": 1574682896,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -1.562999963760376,
+                0.13300000131130219,
+                7.6979293823242188
+            ],
+            "Rotation": [
+                1.8436322194776865e-15,
+                -0.7071068286895752,
+                -1.8436322194776865e-15,
+                0.7071068286895752
+            ],
+            "Scale": [
+                0.5,
+                1,
+                0.5
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                }
+            ]
+        },
+        {
+            "name": "Spawnpoint2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1686300593,
+            "ParentUID": 1574682896,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -9.2876358032226563,
+                0.14900000393390656,
+                0.88300001621246338
+            ],
+            "Rotation": [
+                4.3711391839451608e-08,
+                -1,
+                4.3711391839451608e-08,
+                -4.371138473402425e-08
+            ],
+            "Scale": [
+                0.5,
+                1,
+                0.5
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                }
+            ]
+        },
+        {
+            "name": "Spawnpoint3",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 803229102,
+            "ParentUID": 1574682896,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -9.2880001068115234,
+                0.14900000393390656,
+                11.121000289916992
+            ],
+            "Rotation": [
+                -4.3711391839451608e-08,
+                -1,
+                -4.3711391839451608e-08,
+                -4.371138473402425e-08
+            ],
+            "Scale": [
+                0.5,
+                1,
+                0.5
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                }
+            ]
+        },
+        {
+            "name": "Spawnpoint4",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1423099042,
+            "ParentUID": 1574682896,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -1.562999963760376,
+                0.13300000131130219,
+                0.61047375202178955
+            ],
+            "Rotation": [
+                0,
+                -0.7071068286895752,
+                0,
+                0.7071068286895752
+            ],
+            "Scale": [
+                0.5,
+                1,
+                0.5
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                }
+            ]
+        },
+        {
+            "name": "Spawnpoint5",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1880563027,
+            "ParentUID": 1574682896,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -9.2880001068115234,
+                0.14900000393390656,
+                5.7319998741149902
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                0.5,
+                1,
+                0.5
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                }
+            ]
+        },
+        {
+            "name": "Spawnpoint6",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 176475776,
+            "ParentUID": 1574682896,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                3.405970573425293,
+                0.13300000131130219,
+                11.763999938964844
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                0.5,
+                1,
+                0.5
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                }
+            ]
+        },
+        {
+            "name": "Spawnpoint7",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1768916676,
+            "ParentUID": 1574682896,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -12.128036499023438,
+                0.13300000131130219,
+                14.505577087402344
+            ],
+            "Rotation": [
+                0,
+                -1,
+                0,
+                -4.3711388286737929e-08
+            ],
+            "Scale": [
+                0.5,
+                1,
+                0.5
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                }
+            ]
+        },
+        {
+            "name": "Spawnpoint8",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1740097446,
+            "ParentUID": 1574682896,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -1.562999963760376,
+                0.13300000131130219,
+                -8.2006130218505859
+            ],
+            "Rotation": [
+                0,
+                -0.7071068286895752,
+                0,
+                0.7071068286895752
+            ],
+            "Scale": [
+                0.5,
+                1,
+                0.5
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
                 }
             ]
         }
