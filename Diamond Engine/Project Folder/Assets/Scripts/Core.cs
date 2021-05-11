@@ -472,12 +472,17 @@ public class Core : Entity
                 skill_groguIncreaseDamageActive = false;
         }
 
-        if(sniperShotTimer >= 0.0f)
+        Debug.Log("State: " + currentState.ToString());
+
+        if (sniperShotTimer > 0.0f)
         {
             sniperShotTimer -= myDeltaTime;
 
-            if(sniperShotTimer <= 0.0f)
-                inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
+            if (sniperShotTimer <= 0.0f)
+            {
+                //inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
+                inputsList.Add(INPUT.IN_IDLE);
+            }
         }
 
         if (HasStatus(STATUS_TYPE.SEC_RECOVERY))
@@ -549,13 +554,15 @@ public class Core : Entity
             }
             else if (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_UP && lockAttacks == false)
             {
-                sniperShotTimer = Animator.GetAnimationDuration(gameObject, "SniperShotP2");
-                Animator.Play(gameObject, "SniperShotP2");
+                inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
+                
+                //sniperShotTimer = Animator.GetAnimationDuration(gameObject, "SniperShotP2");
+                //Animator.Play(gameObject, "SniperShotP2");
 
-                if (rifle != null)
-                {
-                    Animator.Play(rifle, "SniperShotP2");
-                }
+                //if (rifle != null)
+                //{
+                //    Animator.Play(rifle, "SniperShotP2");
+                //}
             }
 
             if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false && dashAvailable == true && lockAttacks == false)
@@ -770,10 +777,16 @@ public class Core : Entity
                 case STATE.CHARGING_SEC_SHOOT:
                     switch (input)
                     {
+                        case INPUT.IN_IDLE:
+                            currentState = STATE.IDLE;
+                            EndShootCharge();
+                            StartIdle();
+                            break;
+
                         case INPUT.IN_CHARGE_SEC_SHOOT_END:
                             currentState = STATE.SECONDARY_SHOOT;
-                            StartSecondaryShoot();
                             EndShootCharge();
+                            StartSecondaryShoot();
                             break;
 
                         case INPUT.IN_DASH:
@@ -794,7 +807,6 @@ public class Core : Entity
                             currentState = STATE.IDLE;
                             DisableBlaster();
                             StartIdle();
-                            //EndSecondaryShoot();
                             break;
 
                         case INPUT.IN_DEAD:
@@ -1066,7 +1078,6 @@ public class Core : Entity
             rifle.Enable(true);
             Animator.Play(rifle, "SniperShotP1");
         }
-        //Animation play :O
     }
 
     private void EndShootCharge()
@@ -1141,18 +1152,6 @@ public class Core : Entity
             chargeTimer += myDeltaTime;
         }
         //UpdateAnimationSpd(0.01f);
-
-        if (chargeTimer >= timeToAutomaticallyShootCharge && sniperShotTimer <= 0.0f)
-        {
-            sniperShotTimer = Animator.GetAnimationDuration(gameObject, "SniperShotP2");
-            Animator.Play(gameObject, "SniperShotP2");
-
-            if (rifle != null)
-            {
-                Animator.Play(rifle, "SniperShotP2");
-            }
-        }
-
     }
 
     private void StartSecondaryShoot()
