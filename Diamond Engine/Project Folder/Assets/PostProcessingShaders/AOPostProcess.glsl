@@ -11,8 +11,8 @@ uniform float cameraSize;
 uniform int isOrthographic;
 void main()
 {
-	gl_Position= vec4(pos,1);
-	textureCoords = vec2((pos.x + 1.0) * 0.5,(pos.y + 1.0) * 0.5);
+	gl_Position= vec4(pos,1); //-1,1
+	textureCoords = vec2((pos.x + 1.0) * 0.5,(pos.y + 1.0) * 0.5);//0,1
 	
 	if(isOrthographic==1)
 	{
@@ -58,16 +58,34 @@ float CalcViewZ(vec2 coords)
 void main()
 {
 	vec3 position= vec3(0,0,0);
+	float AO = 0.0;
 
 	if(isOrthographic==1)
 	{	
 		
-		float viewZ = CalcViewZ(textureCoords);
+		float viewZ  = texture(depthTexture, textureCoords).x; 
 
-    	float viewX = viewRay.x;
-    	float viewY = viewRay.y;
+    	float viewX = textureCoords.x;
+    	float viewY = textureCoords.y;
 
     	position = vec3(viewX, viewY, viewZ);
+
+		for (int i = 0 ; i < MAX_KERNEL_SIZE ; i++) 
+		{
+        	vec3 samplePos = position + kernel[i]*sampleRad;// generate a random point
+      	
+
+        	float sampleDepth = texture(depthTexture, samplePos.xy).x; 
+
+			float rangeCheck = smoothstep(0.0, 1.0, sampleRad / abs(samplePos.z - sampleDepth));
+			AO += (sampleDepth <= samplePos.z ? 1.0 : 0.0) * rangeCheck; 
+			//AO +=(sampleDepth >= samplePos.z ? 1.0 : 0.0);       
+			
+
+    	}
+
+    	AO = 1.0 - (AO / MAX_KERNEL_SIZE);
+
 	}
 	else
 	{
@@ -78,12 +96,9 @@ void main()
 
     	position = vec3(viewX, viewY, viewZ);
 
-		
-	}
 
-	float AO = 0.0;
-
-    	for (int i = 0 ; i < MAX_KERNEL_SIZE ; i++) {
+    	for (int i = 0 ; i < MAX_KERNEL_SIZE ; i++) 
+		{
         	vec3 samplePos = position + kernel[i]*sampleRad;// generate a random point
       	
         	vec4 offset = vec4(samplePos,1); // make it a 4-vector
@@ -93,20 +108,27 @@ void main()
 
         	float sampleDepth = CalcViewZ(offset.xy);
 
-        	if ((position.z-sampleDepth) < sampleRad) {
+        	if ((position.z-sampleDepth) < sampleRad) 
+			{
             	AO += step(sampleDepth,samplePos.z);
             
         	}
     	}
 
-    	AO = 1 - AO / MAX_KERNEL_SIZE;
-    	AO*=2;
-		AO = clamp(AO,0.0,1.0);
+    	AO = 1 - (AO / MAX_KERNEL_SIZE);
+    	//AO*=2;
+		//AO = clamp(AO,0.0,1.0);
+
+
+	}
 
     	out_Colour = vec4(AO,AO,AO,1);
     	//out_Colour = vec4(position,1.0);
 }
 #endif
+
+
+
 
 
 
