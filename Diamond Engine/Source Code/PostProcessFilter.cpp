@@ -277,6 +277,11 @@ void PostProcessFilterAO::Render(bool isHDR, int width, int height, unsigned int
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "cameraSize");
 		glUniform1f(uniformLoc, currCam->orthoSize);
 
+		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "depthDimensions");
+		glUniform2f(uniformLoc, width, height);
+		
+
+
 		quadRenderer->RenderQuad();
 
 		glActiveTexture(GL_TEXTURE0);
@@ -289,10 +294,23 @@ void PostProcessFilterAO::Render(bool isHDR, int width, int height, unsigned int
 
 void PostProcessFilterAO::PopulateKernel()
 {
+	//Hemisphere with z+ being the normal
 	LCG randomizer;
 	for (int i = 0; i < 64; ++i)//TODO this number is hardcoded for the moment
 	{
-		kernelAO.push_back(float3::RandomSphere(randomizer, float3::zero, 1));
+		float3 rNum = float3::RandomSphere(randomizer, float3::zero, 1);
+		//Only if we want a good cubic fallof (more samples near 0,0)
+		rNum.x = rNum.x * abs(rNum.x); //abs so it always is positive and we do not end multiplying negative with negative
+		rNum.y = rNum.y * abs(rNum.y);
+		rNum.z = rNum.z * abs(rNum.z);
+
+		//this if only if we want hemisphere
+		if (rNum.z < 0.0f)
+		{
+			rNum.z *= -1;
+		}
+
+		kernelAO.push_back(rNum);
 	}
 }
 
@@ -538,7 +556,7 @@ void PostProcessFilterToneMapping::Render(bool isHDR, int width, int height, uns
 	}
 }
 
-PostProcessFilterVignette::PostProcessFilterVignette(): PostProcessFilter(1407530245, true)
+PostProcessFilterVignette::PostProcessFilterVignette() : PostProcessFilter(1407530245, true)
 {
 }
 
@@ -557,14 +575,14 @@ void PostProcessFilterVignette::Render(bool isHDR, int width, int height, unsign
 		glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "colourTexture"), 0);
 
 		GLint uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "screenRes");
-		glUniform2f(uniformLoc, width,height);
+		glUniform2f(uniformLoc, width, height);
 
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "intensity");
 		glUniform1f(uniformLoc, vignetteData->intensity);
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "extend");
 		glUniform1f(uniformLoc, vignetteData->extend);
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "tint");
-		glUniform4fv(uniformLoc,1, &vignetteData->tint.x);
+		glUniform4fv(uniformLoc, 1, &vignetteData->tint.x);
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "outerRadius");
 		glUniform1f(uniformLoc, vignetteData->minMaxRadius.y);
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "innerRadius");

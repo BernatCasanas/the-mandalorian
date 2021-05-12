@@ -79,7 +79,7 @@ POSTPROCESS_DATA_TYPE PostProcessData::GetType() const
 }
 
 PostProcessDataAO::PostProcessDataAO() : PostProcessData(POSTPROCESS_DATA_TYPE::AO, "Screen Space Ambient Oclussion"),
-radiusAO(1.0f), blurSpread(0)
+radiusAO(0.015f), blurSpread(0)
 {
 }
 
@@ -99,7 +99,7 @@ void PostProcessDataAO::DrawEditor()
 
 		label = "AO radius";
 		label += suffix;
-		ImGui::SliderFloat(label.c_str(), &radiusAO, 0.0f, 100.0f, "%.3f", 2.0f);
+		ImGui::SliderFloat(label.c_str(), &radiusAO, 0.0f, 1.0f, "%.3f", 2.0f);
 		label = "AO Spread";
 		label += suffix;
 		ImGui::SliderFloat(label.c_str(), &blurSpread, 0.0f, 20.0f, "%.3f");

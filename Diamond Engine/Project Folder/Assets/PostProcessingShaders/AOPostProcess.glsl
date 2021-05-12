@@ -43,7 +43,7 @@ uniform int isOrthographic;
 uniform float cameraSize;
 const int MAX_KERNEL_SIZE = 64;
 uniform vec3 kernel[MAX_KERNEL_SIZE];
-
+uniform vec2 depthDimensions;
 
 float CalcViewZ(vec2 coords)
 {
@@ -53,6 +53,24 @@ float CalcViewZ(vec2 coords)
     
 }
 
+vec3 CalculateFlatNormal(vec2 coords) //Note this should make artifacts on geometry edges
+{
+	vec2 uv0 = coords; // center
+	vec2 uv1 = coords + vec2(1, 0) / depthDimensions; // right 
+	vec2 uv2 = coords + vec2(0, 1) / depthDimensions; // top
+
+	float depth0 = texture(depthTexture, uv0, 0).r;
+	float depth1 = texture(depthTexture, uv1, 0).r;
+	float depth2 = texture(depthTexture, uv2, 0).r;
+	
+	vec3 P0 = vec3(uv0, depth0);
+	vec3 P1 = vec3(uv1, depth1);
+	vec3 P2 = vec3(uv2, depth2);
+	
+	vec3 normal = normalize(cross(P2 - P0, P1 - P0));
+
+	return normal;
+}
 
 
 void main()
@@ -70,10 +88,21 @@ void main()
 
     	position = vec3(viewX, viewY, viewZ);
 
+		//Construct orthogonal basis (use to rotate kernel)
+
+		vec3 randomVec = normalize(vec3(0.1,0.1,0.0)); //TODO this must be passed as a uniform random vector or texture 
+
+		vec3 normal = CalculateFlatNormal(textureCoords);
+		vec3 tangent   = normalize(randomVec - normal * dot(randomVec, normal));
+		vec3 bitangent = cross(normal, tangent);
+		mat3 TBN       = mat3(tangent, bitangent, normal);  
+
+		//Iterate all kernel samples
+
 		for (int i = 0 ; i < MAX_KERNEL_SIZE ; i++) 
 		{
-        	vec3 samplePos = position + kernel[i]*sampleRad;// generate a random point
-      	
+        	vec3 samplePos = TBN*kernel[i];//rotate the kernel by TBN rotation matrix
+      		samplePos = position + samplePos * sampleRad;// generate a random point
 
         	float sampleDepth = texture(depthTexture, samplePos.xy).x; 
 
@@ -126,6 +155,7 @@ void main()
     	//out_Colour = vec4(position,1.0);
 }
 #endif
+
 
 
 
