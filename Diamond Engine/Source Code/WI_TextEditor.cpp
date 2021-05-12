@@ -39,12 +39,12 @@ void W_TextEditor::DrawShaderEditor()
 	if (ImGui::Button("Save and compile shader"))
 	{
 		//Check for errors
-		TempShader vertexShaderPair, fragmentShaderPair;
+		TempShader vertexShaderPair, fragmentShaderPair, geometryShaderPair;
 
 		TextEditor::ErrorMarkers markers;
 		txtEditor.SetErrorMarkers(markers);
 
-		if (ShaderImporter::CheckForErrors(txtEditor.GetText(), vertexShaderPair, fragmentShaderPair) == true)
+		if (ShaderImporter::CheckForErrors(txtEditor.GetText(), vertexShaderPair, fragmentShaderPair, geometryShaderPair) == true)
 		{
 			//Save glsl
 			FileSystem::Save(txtName.c_str(), &txtEditor.GetText()[0], txtEditor.GetText().length(), false);

@@ -29,7 +29,8 @@ void ResourceShader::LinkToProgram()
 
 	for (size_t i = 0; i < static_cast<int>(ShaderType::SH_Max); i++)
 	{
-		glAttachShader(shaderProgramID,  shaderObjects[i]);
+		if (shaderObjects[i] != 0)
+			glAttachShader(shaderProgramID,  shaderObjects[i]);
 	}
 
 	glLinkProgram(shaderProgramID);
@@ -91,11 +92,11 @@ void ResourceShader::Unbind()
 	glUseProgram(0);
 }
 
-char* ResourceShader::SaveShaderCustomFormat(char* vertexObjectBuffer, int vofSize, char* fragObjectBuffer, int fobSize)
+char* ResourceShader::SaveShaderCustomFormat(char* vertexObjectBuffer, int vofSize, char* fragObjectBuffer, int fobSize, char* geometryObjectBuffer, int gobSize)
 {
-	int aCounts[2] = { vofSize, fobSize};
+	int aCounts[3] = { vofSize, fobSize, gobSize};
 
-	int retSize = sizeof(aCounts) + (sizeof(char) * vofSize) + (sizeof(char) * fobSize);
+	int retSize = sizeof(aCounts) + (sizeof(char) * vofSize) + (sizeof(char) * fobSize) + (sizeof(char) * gobSize);
 
 	char* fileBuffer = new char[retSize];
 	char* cursor = fileBuffer;
@@ -112,6 +113,10 @@ char* ResourceShader::SaveShaderCustomFormat(char* vertexObjectBuffer, int vofSi
 	memcpy(cursor, fragObjectBuffer, bytes);
 	cursor += bytes;
 
+	bytes = gobSize;
+	memcpy(cursor, geometryObjectBuffer, bytes);
+	cursor += bytes;
+
 	return fileBuffer;
 }
 
@@ -125,7 +130,7 @@ void ResourceShader::LoadShaderCustomFormat(const char* libraryPath)
 		return;
 
 	char* cursor = fileBuffer;
-	uint variables[2];
+	uint variables[3];
 
 	uint bytes = sizeof(variables);
 	memcpy(variables, cursor, bytes);
@@ -142,6 +147,17 @@ void ResourceShader::LoadShaderCustomFormat(const char* libraryPath)
 	char* fragment = new char[bytes];
 	ZeroMemory(fragment, bytes);
 	memcpy(fragment, cursor, bytes);
+
+	bytes = sizeof(char) * variables[(int)ShaderType::SH_Geometry];
+	if (bytes != 0)
+	{
+		char* geometry = new char[bytes];
+		ZeroMemory(geometry, bytes);
+		memcpy(geometry, cursor, bytes);
+
+		shaderObjects[(int)ShaderType::SH_Geometry] = ShaderImporter::Compile(geometry, ShaderType::SH_Geometry, variables[(int)ShaderType::SH_Geometry]);
+		RELEASE_ARRAY(geometry);
+	}
 
 	shaderObjects[(int)ShaderType::SH_Vertex] = ShaderImporter::Compile(vertex, ShaderType::SH_Vertex, variables[(int)ShaderType::SH_Vertex]);
 	shaderObjects[(int)ShaderType::SH_Frag] = ShaderImporter::Compile(fragment, ShaderType::SH_Frag, variables[(int)ShaderType::SH_Frag]);
