@@ -145,6 +145,7 @@
                     "Active": true,
                     "Path": "Library\/Meshes\/1726883054.mmh",
                     "UID": 1726883054,
+                    "bumpDepth": 0,
                     "alternColor": [
                         1,
                         1,
@@ -155,6 +156,7 @@
                         1,
                         1
                     ],
+                    "stencilEmission": 0,
                     "doNotDrawStencil": true
                 },
                 {
@@ -268,6 +270,7 @@
                                 1
                             ],
                             "paPerSec": 2000,
+                            "paRelative": true,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 1,
@@ -354,6 +357,7 @@
                                 1
                             ],
                             "paPerSec": 100,
+                            "paRelative": true,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 0,
@@ -465,6 +469,7 @@
                                 1
                             ],
                             "paPerSec": 50,
+                            "paRelative": true,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 0,
@@ -564,6 +569,7 @@
                                 1
                             ],
                             "paPerSec": 500,
+                            "paRelative": true,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 0,
@@ -721,6 +727,7 @@
                                 1
                             ],
                             "paPerSec": 2,
+                            "paRelative": true,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 2,
@@ -768,6 +775,59 @@
                     "Active": true,
                     "billboardAlignment": 3,
                     "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "RecastDetection",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 2075004042,
+            "ParentUID": 1874412914,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": true,
+            "Position": [
+                0,
+                0.29825925827026367,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                0.36348319053649902,
+                0.85974591970443726,
+                0.36338722705841064
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
                 }
             ]
         }
