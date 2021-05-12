@@ -26,7 +26,8 @@ public class TextController : DiamondComponent
 
 	public void Awake()
     {
-		
+		if (gui == null)
+			gui = InternalCalls.FindObjectWithName("HUD");
     }
 
 	public void OnExecuteButton()
