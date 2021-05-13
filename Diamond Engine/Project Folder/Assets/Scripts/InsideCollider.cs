@@ -3,14 +3,15 @@ using DiamondEngine;
 
 public class InsideCollider : DiamondComponent
 {
-	public GameObject colliderPosition = null;
-	private GameObject player = null;
+    public GameObject colliderPosition = null;
+    private GameObject player = null;
     public float maxDistance = 5;
     public GameObject displayText = null;
     public GameObject selectButton = null;
+    public GameObject hubTextController = null;
 
     public void Update()
-	{
+    {
         if (Core.instance != null)
             player = Core.instance.gameObject;
 
@@ -21,6 +22,9 @@ public class InsideCollider : DiamondComponent
         {
             displayText.Enable(true);
 
+            if (hubTextController != null)
+                hubTextController.GetComponent<HubTextController>().insideColliderTextActive = true;
+
             if (selectButton != null)
             {
                 Navigation navComponent = selectButton.GetComponent<Navigation>();
@@ -30,7 +34,11 @@ public class InsideCollider : DiamondComponent
             }
         }
         else if (!IsInside() && displayText.IsEnabled())
+        {
             displayText.Enable(false);
+            if (hubTextController != null)
+                hubTextController.GetComponent<HubTextController>().insideColliderTextActive = false;
+        }
     }
 
     public bool IsInside()
@@ -42,8 +50,8 @@ public class InsideCollider : DiamondComponent
         Vector3 colliderPos = colliderPosition.transform.globalPosition;
         double distance = playerPos.DistanceNoSqrt(colliderPos);
 
-        if (distance >= -maxDistance && distance <= maxDistance)        
-            return true;    
+        if (distance >= -maxDistance && distance <= maxDistance)
+            return true;
         else
             return false;
     }

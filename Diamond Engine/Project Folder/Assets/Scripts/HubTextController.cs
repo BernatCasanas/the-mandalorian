@@ -52,6 +52,8 @@ public class HubTextController : DiamondComponent
 
     public float maximum_distance_to_interact_squared = 0.0f;
 
+    public bool insideColliderTextActive = false;
+
     private static int boKatanStage = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("boKatanStage") : 1;
     private static int greefStage = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("greefStage") : 1;
     private static int ashokaStage = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("ashokaStage") : 1;
@@ -78,7 +80,7 @@ public class HubTextController : DiamondComponent
     public void Update()
     {
         if (mando == null || Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN || textController == null || textController.GetComponent<TextController>().otherimage == null || dialog == null ||
-            textController.IsEnabled() == false)
+            textController.IsEnabled() == false || insideColliderTextActive)
         {
             return;
         }
