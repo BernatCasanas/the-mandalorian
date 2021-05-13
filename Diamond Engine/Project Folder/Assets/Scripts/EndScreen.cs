@@ -4,8 +4,23 @@ using DiamondEngine;
 public class EndScreen : DiamondComponent
 {
 	public GameObject result = null;
+	public GameObject banthaPanel = null;
 	public GameObject banthaKills = null;
+	public GameObject stormsPanel = null;
 	public GameObject stormsKills = null;
+	public GameObject skytrooperPanel = null;
+	public GameObject skytrooperKills = null;
+	public GameObject laserturretPanel = null;
+	public GameObject laserturretKills = null;
+	public GameObject heavytrooperPanel = null;
+	public GameObject heavytrooperKills = null;
+	public GameObject deathtrooperPanel = null;
+	public GameObject deathtrooperKills = null;
+	public GameObject rancorPanel = null;
+	public GameObject wampaPanel = null;
+	public GameObject skelPanel = null;
+	public GameObject wampaandskelPanel = null;
+	public GameObject moffPanel = null;
 	public GameObject leftImage = null;
 	public GameObject leftMultiplier = null;
 	public GameObject rightImage = null;
@@ -64,10 +79,111 @@ public class EndScreen : DiamondComponent
 		else
 			result.GetComponent<Text>().text = "            RETREAT!";
 
+		//Update Bantha PANEL
 		if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_BANTHA))
+		{
 			banthaKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_BANTHA].amount.ToString();
+		}
+		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_BANTHA))
+        {
+			banthaPanel.Enable(false);
+		}
+
+		//Update Stormtrooper PANEL
 		if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_STORMTROOPER))
+		{
 			stormsKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_STORMTROOPER].amount.ToString();
+		}
+		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_STORMTROOPER))
+        {
+			stormsPanel.Enable(false);
+		}
+
+		//Update Skytrooper PANEL
+		if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_SKYTROOPER))
+		{
+			skytrooperKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_SKYTROOPER].amount.ToString();
+		}
+		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_SKYTROOPER))
+        {
+			skytrooperPanel.Enable(false);
+		}
+
+        //Update Laser Turret PANEL
+        if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_LASER_TURRET))
+        {
+			laserturretKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_LASER_TURRET].amount.ToString();
+		}
+		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_LASER_TURRET))
+        {
+			laserturretPanel.Enable(false);
+		}
+
+		//Update Heavytrooper PANEL
+		if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_HEAVYTROOPER))
+        {
+			heavytrooperKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_HEAVYTROOPER].amount.ToString();
+		}
+		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_HEAVYTROOPER))
+        {
+			heavytrooperPanel.Enable(false);
+		}
+
+        //Update Laser Turret PANEL
+        if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_DEATHTROOPER))
+        {
+			deathtrooperKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_DEATHTROOPER].amount.ToString();
+		}
+		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_DEATHTROOPER))
+        {
+			deathtrooperPanel.Enable(false);
+		}
+
+		//Update Rancor PANEL
+		if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.RANCOR))
+		{
+			rancorPanel.Enable(true);
+		}
+		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.RANCOR))
+		{
+			rancorPanel.Enable(false);
+		}
+
+		//Update Wampa and Skel PANEL
+		if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.WAMPA) && Counter.GameCounters.ContainsKey(Counter.CounterTypes.SKEL))
+		{
+			wampaandskelPanel.Enable(true);
+			skelPanel.Enable(false);
+			wampaPanel.Enable(false);
+		}
+		else if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.WAMPA) && !Counter.GameCounters.ContainsKey(Counter.CounterTypes.SKEL))
+		{
+			wampaPanel.Enable(true);
+			skelPanel.Enable(false);
+			wampaandskelPanel.Enable(false);
+		}
+		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.WAMPA) && Counter.GameCounters.ContainsKey(Counter.CounterTypes.SKEL))
+		{
+			skelPanel.Enable(true);
+			wampaPanel.Enable(false);
+			wampaandskelPanel.Enable(false);
+		}
+		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.WAMPA) && !Counter.GameCounters.ContainsKey(Counter.CounterTypes.SKEL))
+        {
+			skelPanel.Enable(false);
+			wampaPanel.Enable(false);
+			wampaandskelPanel.Enable(false);
+		}
+
+		//Update Moff Gideon PANEL
+		if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.MOFFGIDEON))
+		{
+			moffPanel.Enable(true);
+		}
+		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.MOFFGIDEON))
+		{
+			moffPanel.Enable(false);
+		}
 
 		/*
 		This system will have to be eventually changed, because it's NOT feasible to have this for 40 boons. I (Ferran-Roger Basart i Bosch) have touched and made code that solves this in a very simple way.

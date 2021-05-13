@@ -1334,7 +1334,7 @@ public class Rancor : Entity
     public void Die()
     {
         Debug.Log("RANCOR'S DEAD");
-
+        Counter.SumToCounterType(Counter.CounterTypes.RANCOR);
         EnemyManager.RemoveEnemy(gameObject);
 
         Animator.Pause(gameObject);

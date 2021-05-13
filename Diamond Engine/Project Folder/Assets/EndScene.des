@@ -1,8 +1,8 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        123.02468872070313,
-        43.976943969726563,
+        123.02468872070312,
+        43.976943969726562,
         -38.491603851318359
     ],
     "EditorCameraZ": [
@@ -90,8 +90,9 @@
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
                     "vFOV": 1.0471975803375244,
-                    "hFOV": 1.6039054393768311,
+                    "hFOV": 1.5920333862304688,
                     "culling": true,
+                    "HDR": true,
                     "drawSkybox": true
                 },
                 {
@@ -177,8 +178,23 @@
                     "Active": true,
                     "ScriptName": "EndScreen",
                     "result": 917288620,
-                    "banthaKills": 1092938150,
-                    "stormsKills": 1806360646,
+                    "banthaPanel": 2112412910,
+                    "banthaKills": 29125962,
+                    "stormsPanel": 1349160974,
+                    "stormsKills": 1148934721,
+                    "skytrooperPanel": 2008777309,
+                    "skytrooperKills": 360002661,
+                    "laserturretPanel": 463617344,
+                    "laserturretKills": 823892214,
+                    "heavytrooperPanel": 636186201,
+                    "heavytrooperKills": 69280446,
+                    "deathtrooperPanel": 125659804,
+                    "deathtrooperKills": 1860320053,
+                    "rancorPanel": 513327285,
+                    "wampaPanel": 911619524,
+                    "skelPanel": 1151247102,
+                    "wampaandskelPanel": 442331361,
+                    "moffPanel": 456175696,
                     "leftImage": 675362497,
                     "leftMultiplier": 257952572,
                     "rightImage": 663647262,
@@ -287,12 +303,12 @@
                     "Active": true,
                     "Position": [
                         0,
-                        -64.800003051757813
+                        -66.300003051757812
                     ],
                     "Rotation": 0,
                     "Size": [
-                        14.199999809265137,
-                        7.3000001907348633
+                        18.600000381469727,
+                        8.5
                     ]
                 },
                 {
@@ -429,13 +445,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -9.1999998092651367,
-                        -4.4000000953674316
+                        -7.1999998092651367,
+                        -3.7000000476837158
                     ],
                     "Rotation": 0,
                     "Size": [
-                        9.5,
-                        15
+                        7.4000000953674316,
+                        12.800000190734863
                     ]
                 },
                 {
@@ -497,12 +513,12 @@
                     "Active": true,
                     "Position": [
                         0,
-                        -84.599998474121094
+                        -85.800003051757812
                     ],
                     "Rotation": 0,
                     "Size": [
-                        14.199999809265137,
-                        7.3000001907348633
+                        18.600000381469727,
+                        8.5
                     ]
                 },
                 {
@@ -639,13 +655,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -9.1000003814697266,
-                        -4.4000000953674316
+                        -6.4000000953674316,
+                        -3.9000000953674316
                     ],
                     "Rotation": 0,
                     "Size": [
-                        9.5,
-                        15
+                        6.4000000953674316,
+                        11.899999618530273
                     ]
                 },
                 {
@@ -671,7 +687,7 @@
             ]
         },
         {
-            "name": "Image",
+            "name": "Enemies_Panel",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -706,13 +722,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -44.5,
-                        20.700000762939453
+                        -58.099998474121094,
+                        -1.2999999523162842
                     ],
                     "Rotation": 0,
                     "Size": [
-                        38.700000762939453,
-                        67.599998474121094
+                        38.099998474121094,
+                        94.599998474121094
                     ]
                 },
                 {
@@ -727,13 +743,13 @@
                     "Type": 11,
                     "Active": true,
                     "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/2126775415.dds",
-                    "UID": 2126775415
+                    "LibraryPath": "Library\/Textures\/712433695.dds",
+                    "UID": 712433695
                 }
             ]
         },
         {
-            "name": "Kills 1",
+            "name": "Kills_Title",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -768,12 +784,12 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -18.700000762939453,
-                        30.299999237060547
+                        -15.800000190734863,
+                        78.400001525878906
                     ],
                     "Rotation": 0,
                     "Size": [
-                        14,
+                        10.899999618530273,
                         20
                     ]
                 },
@@ -788,7 +804,7 @@
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "KILLS",
+                    "text": "ENEMIES",
                     "maxTextLenght": 0,
                     "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
@@ -800,11 +816,11 @@
             ]
         },
         {
-            "name": "Kills 2",
+            "name": "Kills_Bantha",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 2017808774,
+            "UID": 2112412910,
             "ParentUID": 1409212991,
             "PrefabReference": 0,
             "PrefabID": 0,
@@ -835,13 +851,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -33.200000762939453,
-                        10.600000381469727
+                        -22.799999237060547,
+                        44.5
                     ],
                     "Rotation": 0,
                     "Size": [
-                        10,
-                        16
+                        12,
+                        21.5
                     ]
                 },
                 {
@@ -849,30 +865,25 @@
                     "Active": true,
                     "IsEmpty": true,
                     "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
                 },
                 {
-                    "Type": 9,
+                    "Type": 11,
                     "Active": true,
-                    "text": "BANTHA:",
-                    "maxTextLenght": 0,
-                    "fontName": "Library\/Fonts\/renner-medium.ttf",
-                    "textColor": [
-                        1,
-                        1,
-                        1
-                    ]
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/976483232.dds",
+                    "UID": 976483232
                 }
             ]
         },
         {
-            "name": "BanthaKills",
+            "name": "Kills_Bantha_Number",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1092938150,
-            "ParentUID": 2017808774,
+            "UID": 29125962,
+            "ParentUID": 2112412910,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -902,13 +913,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        56,
-                        0
+                        -9.3000001907348633,
+                        -15.399999618530273
                     ],
                     "Rotation": 0,
                     "Size": [
-                        10,
-                        16
+                        7.0999999046325684,
+                        13.399999618530273
                     ]
                 },
                 {
@@ -922,7 +933,7 @@
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "0",
+                    "text": "88",
                     "maxTextLenght": 0,
                     "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
@@ -934,11 +945,11 @@
             ]
         },
         {
-            "name": "Kills 3",
+            "name": "Kills_Stormtrooper",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1687829289,
+            "UID": 1349160974,
             "ParentUID": 1409212991,
             "PrefabReference": 0,
             "PrefabID": 0,
@@ -969,13 +980,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -33.200000762939453,
-                        -10
+                        0.20000000298023224,
+                        44.5
                     ],
                     "Rotation": 0,
                     "Size": [
-                        8.5,
-                        16
+                        12,
+                        21.5
                     ]
                 },
                 {
@@ -983,30 +994,25 @@
                     "Active": true,
                     "IsEmpty": true,
                     "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
                 },
                 {
-                    "Type": 9,
+                    "Type": 11,
                     "Active": true,
-                    "text": "STORM TROOPER:",
-                    "maxTextLenght": 0,
-                    "fontName": "Library\/Fonts\/renner-medium.ttf",
-                    "textColor": [
-                        1,
-                        1,
-                        1
-                    ]
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/2069984476.dds",
+                    "UID": 2069984476
                 }
             ]
         },
         {
-            "name": "StormKills",
+            "name": "Kills_Stormtrooper_Number",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1806360646,
-            "ParentUID": 1687829289,
+            "UID": 1148934721,
+            "ParentUID": 1349160974,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -1036,13 +1042,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        56,
-                        0
+                        -9.3000001907348633,
+                        -15.600000381469727
                     ],
                     "Rotation": 0,
                     "Size": [
-                        10,
-                        16
+                        7.0999999046325684,
+                        13.399999618530273
                     ]
                 },
                 {
@@ -1056,7 +1062,7 @@
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "0",
+                    "text": "88",
                     "maxTextLenght": 0,
                     "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
@@ -1068,11 +1074,11 @@
             ]
         },
         {
-            "name": "Screen ",
+            "name": "Kills_Rancor",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 917288620,
+            "UID": 513327285,
             "ParentUID": 1409212991,
             "PrefabReference": 0,
             "PrefabID": 0,
@@ -1103,13 +1109,137 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -55.5,
-                        51.200000762939453
+                        22.899999618530273,
+                        44.5
                     ],
                     "Rotation": 0,
                     "Size": [
-                        14,
-                        25
+                        12,
+                        21.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/2056082081.dds",
+                    "UID": 2056082081
+                }
+            ]
+        },
+        {
+            "name": "Kills_Skytrooper",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 2008777309,
+            "ParentUID": 1409212991,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -22.799999237060547,
+                        0.20000000298023224
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        12,
+                        21.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1458921935.dds",
+                    "UID": 1458921935
+                }
+            ]
+        },
+        {
+            "name": "Kills_Skytrooper_Number",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 360002661,
+            "ParentUID": 2008777309,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -9.3000001907348633,
+                        -15.399999618530273
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7.0999999046325684,
+                        13.399999618530273
                     ]
                 },
                 {
@@ -1123,7 +1253,7 @@
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "            DEFEAT!",
+                    "text": "88",
                     "maxTextLenght": 0,
                     "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
@@ -1135,7 +1265,642 @@
             ]
         },
         {
-            "name": "Image",
+            "name": "Kills_LaserTurret",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 463617344,
+            "ParentUID": 1409212991,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0.20000000298023224,
+                        0.20000000298023224
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        12,
+                        21.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1341141555.dds",
+                    "UID": 1341141555
+                }
+            ]
+        },
+        {
+            "name": "Kills_LaserTurret_Number",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 823892214,
+            "ParentUID": 463617344,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -9.3000001907348633,
+                        -15.399999618530273
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7.0999999046325684,
+                        13.399999618530273
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "88",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Kills_Wampa",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 911619524,
+            "ParentUID": 1409212991,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        22.899999618530273,
+                        0.20000000298023224
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        12,
+                        21.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1056620720.dds",
+                    "UID": 1056620720
+                }
+            ]
+        },
+        {
+            "name": "Kills_Skel",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1151247102,
+            "ParentUID": 1409212991,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        22.899999618530273,
+                        0.20000000298023224
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        12,
+                        21.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1673103222.dds",
+                    "UID": 1673103222
+                }
+            ]
+        },
+        {
+            "name": "Kills_WampaAndSkel",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 442331361,
+            "ParentUID": 1409212991,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        22.899999618530273,
+                        0.20000000298023224
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        12,
+                        21.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/938819135.dds",
+                    "UID": 938819135
+                }
+            ]
+        },
+        {
+            "name": "Kills_Heavytrooper",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 636186201,
+            "ParentUID": 1409212991,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -22.799999237060547,
+                        -44.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        12,
+                        21.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1194381802.dds",
+                    "UID": 1194381802
+                }
+            ]
+        },
+        {
+            "name": "Kills_Heavytrooper_Number",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 69280446,
+            "ParentUID": 636186201,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -9.3000001907348633,
+                        -15.399999618530273
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7.0999999046325684,
+                        13.399999618530273
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "88",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Kills_Deathtrooper",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 125659804,
+            "ParentUID": 1409212991,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0.20000000298023224,
+                        -44.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        12,
+                        21.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/849281993.dds",
+                    "UID": 849281993
+                }
+            ]
+        },
+        {
+            "name": "Kills_Deathtrooper_Number",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1860320053,
+            "ParentUID": 125659804,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -9.3000001907348633,
+                        -15.399999618530273
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7.0999999046325684,
+                        13.399999618530273
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "88",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Kills_MoffGideon",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 456175696,
+            "ParentUID": 1409212991,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        22.799999237060547,
+                        -44.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        12,
+                        21.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1174712742.dds",
+                    "UID": 1174712742
+                }
+            ]
+        },
+        {
+            "name": "Findings_Panel",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
@@ -1170,13 +1935,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        44.700000762939453,
-                        20.700000762939453
+                        58.5,
+                        -1.2999999523162842
                     ],
                     "Rotation": 0,
                     "Size": [
-                        38.700000762939453,
-                        68.599998474121094
+                        38.099998474121094,
+                        94.599998474121094
                     ]
                 },
                 {
@@ -1191,8 +1956,8 @@
                     "Type": 11,
                     "Active": true,
                     "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/2126775415.dds",
-                    "UID": 2126775415
+                    "LibraryPath": "Library\/Textures\/712433695.dds",
+                    "UID": 712433695
                 }
             ]
         },
@@ -1233,11 +1998,11 @@
                     "Active": true,
                     "Position": [
                         -3.0999999046325684,
-                        13
+                        45.799999237060547
                     ],
                     "Rotation": 0,
                     "Size": [
-                        6.0999999046325684,
+                        6.1999998092651367,
                         13.600000381469727
                     ]
                 },
@@ -1429,7 +2194,7 @@
                     "Active": true,
                     "Position": [
                         -25.299999237060547,
-                        13
+                        45.599998474121094
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -1624,13 +2389,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -19.5,
-                        51.599998474121094
+                        -16.600000381469727,
+                        78.099998474121094
                     ],
                     "Rotation": 0,
                     "Size": [
-                        12,
-                        25
+                        10.300000190734863,
+                        20
                     ]
                 },
                 {
@@ -1656,11 +2421,656 @@
             ]
         },
         {
-            "name": "Background",
+            "name": "Middle_Panel",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1309953242,
+            "ParentUID": 682318534,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        1.8999999761581421
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        18.799999237060547,
+                        51.099998474121094
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/835039019.dds",
+                    "UID": 835039019
+                }
+            ]
+        },
+        {
+            "name": "Max_Combo_Panel",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1686537642,
+            "ParentUID": 1309953242,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        28.799999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        15.5,
+                        13
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/20400766.dds",
+                    "UID": 20400766
+                }
+            ]
+        },
+        {
+            "name": "Max_Combo_Number",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 473806663,
+            "ParentUID": 1686537642,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -1.7000000476837158,
+                        -7.3000001907348633
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7.1999998092651367,
+                        14.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "88",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Max_Combo_X",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1544866803,
+            "ParentUID": 1686537642,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -4.6999998092651367,
+                        -7.3000001907348633
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        5.1999998092651367,
+                        9.3000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "X",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Currency_Panel",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 600715315,
+            "ParentUID": 1309953242,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        -0.20000000298023224
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        15.5,
+                        13
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/2063968483.dds",
+                    "UID": 2063968483
+                }
+            ]
+        },
+        {
+            "name": "Currency_Number",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 156920290,
+            "ParentUID": 600715315,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -5.5999999046325684,
+                        -7.3000001907348633
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7.1999998092651367,
+                        13.800000190734863
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "88",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Levels_Panel",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 936753576,
+            "ParentUID": 1309953242,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        -29.899999618530273
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        15.5,
+                        13
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/714717743.dds",
+                    "UID": 714717743
+                }
+            ]
+        },
+        {
+            "name": "Levels_Number",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 789838953,
+            "ParentUID": 936753576,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -3.2000000476837158,
+                        -7.3000001907348633
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7.1999998092651367,
+                        13.800000190734863
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "88",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Result_title",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 917288620,
+            "ParentUID": 682318534,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -42.599998474121094,
+                        65.800003051757812
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        10.699999809265137,
+                        22.299999237060547
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "            DEFEAT!",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Result_Title_Background",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
             "UID": 1692778293,
+            "ParentUID": 682318534,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        72
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        21,
+                        10.199999809265137
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1388776950.dds",
+                    "UID": 1388776950
+                }
+            ]
+        },
+        {
+            "name": "Background",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 670091516,
             "ParentUID": 682318534,
             "PrefabReference": 0,
             "PrefabID": 0,
@@ -1712,8 +3122,8 @@
                     "Type": 11,
                     "Active": true,
                     "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/1515287946.dds",
-                    "UID": 1515287946
+                    "LibraryPath": "Library\/Textures\/897023662.dds",
+                    "UID": 897023662
                 }
             ]
         }

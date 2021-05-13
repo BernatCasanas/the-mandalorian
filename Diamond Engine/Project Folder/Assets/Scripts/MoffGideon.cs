@@ -1083,7 +1083,7 @@ public class MoffGideon : Entity
     public void Die()
     {
         Debug.Log("MOFF'S DEAD");
-
+        Counter.SumToCounterType(Counter.CounterTypes.MOFFGIDEON);
         EnemyManager.RemoveEnemy(gameObject);
 
         Animator.Pause(gameObject);

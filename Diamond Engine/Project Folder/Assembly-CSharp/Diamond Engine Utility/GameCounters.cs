@@ -17,8 +17,11 @@ namespace DiamondEngine
             RANCOR,
             ENEMY_SKYTROOPER,
             ENEMY_LASER_TURRET,
+            WAMPA,
+            SKEL,
             ENEMY_DEATHTROOPER,
             ENEMY_HEAVYTROOPER,
+            MOFFGIDEON,
             MAX,
         }
 
