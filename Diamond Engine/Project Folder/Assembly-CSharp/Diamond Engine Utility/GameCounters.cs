@@ -31,6 +31,7 @@ namespace DiamondEngine
         public int amount = 0;
         public CounterTypes type;
         public static int roomEnemies = 0;
+        public static int maxCombo = 0;
         public static bool isFinalScene = false;
         public static bool allEnemiesDead = false;
         public static bool firstRun = true; // When we have save / load functionality, this should be in it
@@ -66,6 +67,7 @@ namespace DiamondEngine
         {
             GameCounters.Clear();
             roomEnemies = 0;
+            maxCombo = 0;
             isFinalScene = false;
         }
         public enum GameResult

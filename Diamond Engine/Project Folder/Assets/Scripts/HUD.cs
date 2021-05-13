@@ -425,6 +425,7 @@ public class HUD : DiamondComponent
             extraCombo = 0;
         }
 
+        if (comboNumber > Counter.maxCombo) Counter.maxCombo = comboNumber;
 
         if (!anakinBoonApplied && PlayerResources.CheckBoon(BOONS.BOON_ANAKINKILLSTREAK))
         {

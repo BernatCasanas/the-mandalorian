@@ -219,11 +219,7 @@ public class EndScreen : DiamondComponent
 		//Update Combo PANEL
 		if (comboTxt != null)
 		{
-			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_DEATHTROOPER))
-			{
-				//comboTxt.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_DEATHTROOPER].amount.ToString();
-			}
-			else comboTxt.GetComponent<Text>().text = "0";
+			comboTxt.GetComponent<Text>().text = Counter.maxCombo.ToString();
 		}
 
 		//Update Currency PANEL
