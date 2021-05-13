@@ -22,6 +22,8 @@ namespace DiamondEngine
             ENEMY_DEATHTROOPER,
             ENEMY_HEAVYTROOPER,
             MOFFGIDEON,
+            LEVELS,
+            RUN_COINS,
             MAX,
         }
 
@@ -74,6 +76,5 @@ namespace DiamondEngine
         }
 
         public static GameResult gameResult = GameResult.NONE;
-
     }
 }

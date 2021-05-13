@@ -118,7 +118,7 @@ public class GameSceneManager : DiamondComponent
         {
             PlayerResources.AddRunCoins(2);
         }
-
+        Counter.SumToCounterType(Counter.CounterTypes.LEVELS);
         rewardMenu = new EndLevelRewards();
 
         rewardMenu.GenerateRewardPipeline();

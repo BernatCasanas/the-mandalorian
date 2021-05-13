@@ -227,12 +227,24 @@ public static class PlayerResources
     public static void AddRunCoins(int val)
     {
         runCoins += val;
+
+        for (int i = 0; i < val; i++)
+        {
+            Counter.SumToCounterType(Counter.CounterTypes.RUN_COINS);
+        }
+
         DiamondPrefs.Write("runCoins", runCoins);
     }
 
     public static void SetRunCoins(int val)
     {
         runCoins = val;
+
+        for (int i = 0; i < val; i++)
+        {
+            Counter.SumToCounterType(Counter.CounterTypes.RUN_COINS);
+        }
+
         DiamondPrefs.Write("runCoins", runCoins);
     }
 

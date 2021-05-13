@@ -25,6 +25,9 @@ public class EndScreen : DiamondComponent
 	public GameObject leftMultiplier = null;
 	public GameObject rightImage = null;
 	public GameObject rightMultiplier = null;
+	public GameObject comboTxt = null;
+	public GameObject currencyTxt = null;
+	public GameObject levelsTxt = null;
 
 	private bool firstFrame = true;
 
@@ -79,110 +82,174 @@ public class EndScreen : DiamondComponent
 		else
 			result.GetComponent<Text>().text = "            RETREAT!";
 
-		//Update Bantha PANEL
-		if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_BANTHA))
+		if (banthaKills != null)
 		{
-			banthaKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_BANTHA].amount.ToString();
-		}
-		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_BANTHA))
-        {
-			banthaPanel.Enable(false);
+			//Update Bantha PANEL
+			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_BANTHA))
+			{
+				banthaKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_BANTHA].amount.ToString();
+			}
+			else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_BANTHA))
+			{
+				banthaPanel.Enable(false);
+			}
 		}
 
-		//Update Stormtrooper PANEL
-		if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_STORMTROOPER))
+		if (stormsKills != null)
 		{
-			stormsKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_STORMTROOPER].amount.ToString();
-		}
-		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_STORMTROOPER))
-        {
-			stormsPanel.Enable(false);
+			//Update Stormtrooper PANEL
+			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_STORMTROOPER))
+			{
+				stormsKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_STORMTROOPER].amount.ToString();
+			}
+			else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_STORMTROOPER))
+			{
+				stormsPanel.Enable(false);
+			}
 		}
 
-		//Update Skytrooper PANEL
-		if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_SKYTROOPER))
-		{
-			skytrooperKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_SKYTROOPER].amount.ToString();
-		}
-		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_SKYTROOPER))
-        {
-			skytrooperPanel.Enable(false);
+		if (skytrooperKills != null)
+		{ 
+			//Update Skytrooper PANEL
+			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_SKYTROOPER))
+			{
+				skytrooperKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_SKYTROOPER].amount.ToString();
+			}
+			else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_SKYTROOPER))
+			{
+				skytrooperPanel.Enable(false);
+			}
+
 		}
 
-        //Update Laser Turret PANEL
-        if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_LASER_TURRET))
-        {
-			laserturretKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_LASER_TURRET].amount.ToString();
-		}
-		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_LASER_TURRET))
-        {
-			laserturretPanel.Enable(false);
+		if (laserturretKills != null)
+		{
+			//Update Laser Turret PANEL
+			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_LASER_TURRET))
+			{
+				laserturretKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_LASER_TURRET].amount.ToString();
+			}
+			else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_LASER_TURRET))
+			{
+				laserturretPanel.Enable(false);
+			}
 		}
 
-		//Update Heavytrooper PANEL
-		if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_HEAVYTROOPER))
-        {
-			heavytrooperKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_HEAVYTROOPER].amount.ToString();
-		}
-		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_HEAVYTROOPER))
-        {
-			heavytrooperPanel.Enable(false);
+		if (heavytrooperKills != null)
+		{
+			//Update Heavytrooper PANEL
+			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_HEAVYTROOPER))
+			{
+				heavytrooperKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_HEAVYTROOPER].amount.ToString();
+			}
+			else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_HEAVYTROOPER))
+			{
+				heavytrooperPanel.Enable(false);
+			}
 		}
 
-        //Update Laser Turret PANEL
-        if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_DEATHTROOPER))
-        {
-			deathtrooperKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_DEATHTROOPER].amount.ToString();
-		}
-		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_DEATHTROOPER))
-        {
-			deathtrooperPanel.Enable(false);
+		if (deathtrooperKills != null)
+		{
+			//Update Deathtrooper PANEL
+			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_DEATHTROOPER))
+			{
+				deathtrooperKills.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_DEATHTROOPER].amount.ToString();
+			}
+			else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_DEATHTROOPER))
+			{
+				deathtrooperPanel.Enable(false);
+			}
 		}
 
-		//Update Rancor PANEL
-		if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.RANCOR))
+		if (rancorPanel != null)
 		{
-			rancorPanel.Enable(true);
-		}
-		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.RANCOR))
-		{
-			rancorPanel.Enable(false);
-		}
-
-		//Update Wampa and Skel PANEL
-		if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.WAMPA) && Counter.GameCounters.ContainsKey(Counter.CounterTypes.SKEL))
-		{
-			wampaandskelPanel.Enable(true);
-			skelPanel.Enable(false);
-			wampaPanel.Enable(false);
-		}
-		else if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.WAMPA) && !Counter.GameCounters.ContainsKey(Counter.CounterTypes.SKEL))
-		{
-			wampaPanel.Enable(true);
-			skelPanel.Enable(false);
-			wampaandskelPanel.Enable(false);
-		}
-		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.WAMPA) && Counter.GameCounters.ContainsKey(Counter.CounterTypes.SKEL))
-		{
-			skelPanel.Enable(true);
-			wampaPanel.Enable(false);
-			wampaandskelPanel.Enable(false);
-		}
-		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.WAMPA) && !Counter.GameCounters.ContainsKey(Counter.CounterTypes.SKEL))
-        {
-			skelPanel.Enable(false);
-			wampaPanel.Enable(false);
-			wampaandskelPanel.Enable(false);
+			//Update Rancor PANEL
+			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.RANCOR))
+			{
+				rancorPanel.Enable(true);
+			}
+			else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.RANCOR))
+			{
+				rancorPanel.Enable(false);
+			}
 		}
 
-		//Update Moff Gideon PANEL
-		if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.MOFFGIDEON))
+		if (wampaandskelPanel != null && skelPanel != null && wampaPanel != null)
 		{
-			moffPanel.Enable(true);
+			//Update Wampa and Skel PANEL
+			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.WAMPA) && Counter.GameCounters.ContainsKey(Counter.CounterTypes.SKEL))
+			{
+				wampaandskelPanel.Enable(true);
+				skelPanel.Enable(false);
+				wampaPanel.Enable(false);
+			}
+			else if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.WAMPA) && !Counter.GameCounters.ContainsKey(Counter.CounterTypes.SKEL))
+			{
+				wampaPanel.Enable(true);
+				skelPanel.Enable(false);
+				wampaandskelPanel.Enable(false);
+			}
+			else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.WAMPA) && Counter.GameCounters.ContainsKey(Counter.CounterTypes.SKEL))
+			{
+				skelPanel.Enable(true);
+				wampaPanel.Enable(false);
+				wampaandskelPanel.Enable(false);
+			}
+			else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.WAMPA) && !Counter.GameCounters.ContainsKey(Counter.CounterTypes.SKEL))
+			{
+				skelPanel.Enable(false);
+				wampaPanel.Enable(false);
+				wampaandskelPanel.Enable(false);
+			}
 		}
-		else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.MOFFGIDEON))
+
+		if (moffPanel != null)
 		{
-			moffPanel.Enable(false);
+			//Update Moff Gideon PANEL
+			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.MOFFGIDEON))
+			{
+				moffPanel.Enable(true);
+			}
+			else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.MOFFGIDEON))
+			{
+				moffPanel.Enable(false);
+			}
+		}
+
+		//Update Combo PANEL
+		if (comboTxt != null)
+		{
+			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.ENEMY_DEATHTROOPER))
+			{
+				//comboTxt.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.ENEMY_DEATHTROOPER].amount.ToString();
+			}
+			else comboTxt.GetComponent<Text>().text = "0";
+		}
+
+		//Update Currency PANEL
+		if (currencyTxt != null)
+		{
+			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.RUN_COINS))
+			{
+				currencyTxt.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.RUN_COINS].amount.ToString();
+			}
+			else
+			{
+				currencyTxt.GetComponent<Text>().text = "0";
+			}
+		}
+
+		//Update Levels PANEL
+		if (levelsTxt != null)
+		{
+			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.LEVELS))
+			{
+				levelsTxt.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.LEVELS].amount.ToString();
+			}
+			else
+			{
+				levelsTxt.GetComponent<Text>().text = "0";
+			}
 		}
 
 		/*
