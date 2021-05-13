@@ -97,6 +97,10 @@ namespace DiamondEngine
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern void ControllerVibrationEnable(bool enable);
 
+        // Get if controller vibration is enabled or disabled
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public static extern bool IsControllerVibrationEnabled();
+
     }
     public class Input
     {

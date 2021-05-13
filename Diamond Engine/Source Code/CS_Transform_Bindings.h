@@ -466,8 +466,8 @@ MonoObject* CreateUIPrefab(MonoString* prefabPath, MonoObject* position, MonoObj
 	GameObject* prefab_object = PrefabImporter::LoadUIPrefab(library_path);
 	mono_free(library_path);
 
-	if(prefab_object != nullptr)
-	{ 
+	if (prefab_object != nullptr)
+	{
 		C_Transform* object_transform = dynamic_cast<C_Transform*>(prefab_object->GetComponent(Component::TYPE::TRANSFORM));
 
 		float3 posVector = M_MonoManager::UnboxVector(position);
@@ -734,12 +734,19 @@ float CS_GetSFXVolume()
 	return EngineExternal->moduleAudio->fxVolume;
 }
 
-void CS_ControllerEnableVibration(bool enable)
+void CS_SetControllerEnableVibration(bool enable)
 {
 	if (EngineExternal == nullptr)
 		return;
 
 	EngineExternal->moduleInput->hapticEnabled = enable;
+}
+bool CS_GetControllerEnableVibration()
+{
+	if (EngineExternal == nullptr)
+		return false;
+
+	return EngineExternal->moduleInput->hapticEnabled;
 }
 #pragma endregion
 
