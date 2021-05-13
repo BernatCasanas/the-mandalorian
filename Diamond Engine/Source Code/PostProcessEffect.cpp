@@ -187,11 +187,11 @@ void PostProcessEffectAO::CleanUp()
 
 int PostProcessEffectAO::Render(bool isHDR,int width, int height, int colorTexture,int depthTexture,C_Camera* camera, PostProcessDataAO* aoVars)
 {
-	//aoFilter->Render(isHDR,width/2, height/2, depthTexture,camera,aoVars->radiusAO);
-	//blurVFilter->Render(isHDR,width / 4, height / 4, aoFilter->GetOutputTexture(),aoVars->blurSpread);
-	//blurHFilter->Render(isHDR,width/4, height/4, blurVFilter->GetOutputTexture(), aoVars->blurSpread);
-	//multiplyFilter->Render(isHDR,width, height, colorTexture, blurHFilter->GetOutputTexture());
-	//return multiplyFilter->GetOutputTexture();
+	/*aoFilter->Render(isHDR,width, height, depthTexture,camera,aoVars->radiusAO);
+	blurVFilter->Render(isHDR,width / 2, height / 2, aoFilter->GetOutputTexture(),aoVars->blurSpread);
+	blurHFilter->Render(isHDR,width/2, height/2, blurVFilter->GetOutputTexture(), aoVars->blurSpread);
+	multiplyFilter->Render(isHDR,width, height, colorTexture, blurHFilter->GetOutputTexture());
+	return multiplyFilter->GetOutputTexture();*/
 	
 	//Test Code
 	aoFilter->Render(isHDR,width, height, depthTexture,camera,aoVars->radiusAO);

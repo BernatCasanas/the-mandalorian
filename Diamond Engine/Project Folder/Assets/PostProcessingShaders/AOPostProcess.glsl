@@ -72,6 +72,59 @@ vec3 CalculateFlatNormal(vec2 coords) //Note this should make artifacts on geome
 	return normal;
 }
 
+vec3 CalculateSmoothNormal(vec2 coords) //More performance intesive, no edge case errors
+{
+	vec2 uv0 = coords; // center
+	vec2 uv1 = coords + vec2(1, 0) / depthDimensions; // right 
+	vec2 uv2 = coords + vec2(0, 1) / depthDimensions; // top
+	vec2 uv3 = coords + vec2(-1, 0) / depthDimensions; // left
+	vec2 uv4 = coords + vec2(0, -1) / depthDimensions; // bottom
+
+	float depth0 = texture(depthTexture, uv0, 0).r;
+	float depth1 = texture(depthTexture, uv1, 0).r;
+	float depth2 = texture(depthTexture, uv2, 0).r;
+	float depth3 = texture(depthTexture, uv3, 0).r;
+	float depth4 = texture(depthTexture, uv4, 0).r;
+
+	int bestHorizontal = ( abs(depth1-depth0) < abs(depth3-depth0) ) ? 1 : 3; //1 right 3 left
+	int bestVertical = ( abs(depth2-depth0) < abs(depth4-depth0) ) ? 2 : 4; //2 up 4 bottom
+
+	vec3 P0 = vec3(uv0, depth0);
+	vec3 P1 = vec3(0);
+	vec3 P2 = vec3(0);
+
+	if(bestHorizontal==1)
+	{
+		if(bestVertical==2)
+		{
+			P1 = vec3(uv1, depth1);
+			P2 = vec3(uv2, depth2);
+		}
+		else //best vertical ==4
+		{
+			P1 = vec3(uv4, depth4);
+			P2 = vec3(uv1, depth1);
+		}
+	}
+	else //best horizontal ==3
+	{
+		if(bestVertical==2)
+		{
+			P1 = vec3(uv2, depth2);
+			P2 = vec3(uv3, depth3);
+		}
+		else //best vertical ==4
+		{
+			P1 = vec3(uv3, depth3);
+			P2 = vec3(uv4, depth4);
+		}
+	}
+
+	vec3 normal = normalize(cross(P2 - P0, P1 - P0));
+
+	return normal;
+}
+
 
 void main()
 {
@@ -92,7 +145,7 @@ void main()
 
 		vec3 randomVec = normalize(vec3(0.1,0.1,0.0)); //TODO this must be passed as a uniform random vector or texture 
 
-		vec3 normal = CalculateFlatNormal(textureCoords);
+		vec3 normal = CalculateSmoothNormal(textureCoords);
 		vec3 tangent   = normalize(randomVec - normal * dot(randomVec, normal));
 		vec3 bitangent = cross(normal, tangent);
 		mat3 TBN       = mat3(tangent, bitangent, normal);  
@@ -155,6 +208,7 @@ void main()
     	//out_Colour = vec4(position,1.0);
 }
 #endif
+
 
 
 
