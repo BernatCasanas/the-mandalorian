@@ -79,7 +79,7 @@ POSTPROCESS_DATA_TYPE PostProcessData::GetType() const
 }
 
 PostProcessDataAO::PostProcessDataAO() : PostProcessData(POSTPROCESS_DATA_TYPE::AO, "Screen Space Ambient Oclussion"),
-radiusAO(0.015f), blurSpread(0)
+radiusAO(0.015f), blurSpread(0),useBlur(false)
 {
 }
 
@@ -100,9 +100,16 @@ void PostProcessDataAO::DrawEditor()
 		label = "AO radius";
 		label += suffix;
 		ImGui::SliderFloat(label.c_str(), &radiusAO, 0.0f, 1.0f, "%.3f", 2.0f);
-		label = "AO Spread";
+
+		label = "Smooth AO";
 		label += suffix;
-		ImGui::SliderFloat(label.c_str(), &blurSpread, 0.0f, 20.0f, "%.3f");
+		ImGui::Checkbox(label.c_str(), &useBlur);
+		if (useBlur)
+		{
+			label = "AO Spread";
+			label += suffix;
+			ImGui::SliderFloat(label.c_str(), &blurSpread, 0.0f, 20.0f, "%.3f");
+		}
 
 		PostProcessData::DrawEditorEnd();
 	}
@@ -115,7 +122,7 @@ void PostProcessDataAO::SaveToJson(JSON_Object* nObj)
 	//TODO save data here
 	DEJson::WriteFloat(nObj, "RadiusAO", radiusAO);
 	DEJson::WriteFloat(nObj, "GlowSpread", blurSpread);
-
+	DEJson::WriteBool(nObj, "UseBlur", blurSpread);
 }
 
 void PostProcessDataAO::LoadFromJson(DEConfig& nObj)
@@ -124,7 +131,7 @@ void PostProcessDataAO::LoadFromJson(DEConfig& nObj)
 	//TODO load data here
 	radiusAO = nObj.ReadFloat("RadiusAO");
 	blurSpread = nObj.ReadFloat("GlowSpread");
-
+	useBlur = nObj.ReadBool("UseBlur");
 }
 
 
@@ -242,7 +249,7 @@ void PostProcessDataToneMapping::LoadFromJson(DEConfig& nObj)
 
 
 PostProcessDataVignette::PostProcessDataVignette() : PostProcessData(POSTPROCESS_DATA_TYPE::VIGNETTE, "Vignette"),
-intensity(15.0f), extend(0.25f), tint(1.0f, 1.0f, 1.0f, 0.0f), minMaxRadius(0.4f,0.7f), mode(VIGNETTE_MODE::RECTANGULAR)
+intensity(15.0f), extend(0.25f), tint(1.0f, 1.0f, 1.0f, 0.0f), minMaxRadius(0.4f, 0.7f), mode(VIGNETTE_MODE::RECTANGULAR)
 {
 }
 
@@ -263,9 +270,9 @@ void PostProcessDataVignette::DrawEditor()
 		//TODO drawEditorHere
 		label = "tint";
 		label += suffix;
-		ImGui::ColorPicker4(label.c_str(), &tint.x,ImGuiColorEditFlags_AlphaBar);
+		ImGui::ColorPicker4(label.c_str(), &tint.x, ImGuiColorEditFlags_AlphaBar);
 		ImGui::Spacing();
-	
+
 		//=========================================== Combo
 		label = "VignetteMode";
 		label += suffix;
@@ -307,7 +314,7 @@ void PostProcessDataVignette::DrawEditor()
 			label = "minMaxRadius";
 			label += suffix;
 			ImGui::SliderFloat2(label.c_str(), &minMaxRadius.x, 0.0f, 5.0f, "%.3f", 1.25f);
-			
+
 		}
 		ImGui::Unindent();
 

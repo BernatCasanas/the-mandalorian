@@ -53,8 +53,10 @@ public:
 	~PostProcessFilterAO();
 	void Render(bool isHDR, int width, int height, unsigned int depthTexture, C_Camera* currCam, float sampleRad);
 	void PopulateKernel();
+	void GenerateNoiseTexture();
 	private:
 	std::vector<float3> kernelAO;
+	unsigned int noiseTexture; //random rotation vectors for the kernel
 };
 
 class PostProcessFilterRender : public PostProcessFilter

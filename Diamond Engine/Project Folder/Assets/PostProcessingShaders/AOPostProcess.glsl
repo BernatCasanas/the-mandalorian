@@ -36,6 +36,7 @@ in vec2 viewRay;
 out vec4 out_Colour;
 
 uniform sampler2D depthTexture;
+uniform sampler2D noiseTexture;
 uniform mat4 projectionMat;
 uniform float sampleRad;
 uniform int isOrthographic;
@@ -128,12 +129,16 @@ vec3 CalculateSmoothNormal(vec2 coords) //More performance intesive, no edge cas
 
 void main()
 {
+
 	vec3 position= vec3(0,0,0);
 	float AO = 0.0;
 
 	if(isOrthographic==1)
 	{	
-		
+		// tile noise texture over screen, based on screen dimensions divided by noise size
+		vec2 noiseScale = vec2(depthDimensions.x/4.0, depthDimensions.y/4.0); // noise 4x4 texture
+
+
 		float viewZ  = texture(depthTexture, textureCoords).x; 
 
     	float viewX = textureCoords.x;
@@ -143,7 +148,7 @@ void main()
 
 		//Construct orthogonal basis (use to rotate kernel)
 
-		vec3 randomVec = normalize(vec3(0.1,0.1,0.0)); //TODO this must be passed as a uniform random vector or texture 
+		vec3 randomVec = texture(noiseTexture,textureCoords*noiseScale).xyz;
 
 		vec3 normal = CalculateSmoothNormal(textureCoords);
 		vec3 tangent   = normalize(randomVec - normal * dot(randomVec, normal));
@@ -160,8 +165,7 @@ void main()
         	float sampleDepth = texture(depthTexture, samplePos.xy).x; 
 
 			float rangeCheck = smoothstep(0.0, 1.0, sampleRad / abs(samplePos.z - sampleDepth));
-			AO += (sampleDepth <= samplePos.z ? 1.0 : 0.0) * rangeCheck; 
-			//AO +=(sampleDepth >= samplePos.z ? 1.0 : 0.0);       
+			AO += (sampleDepth <= samplePos.z  ? 1.0 : 0.0) * rangeCheck; 
 			
 
     	}
@@ -208,6 +212,7 @@ void main()
     	//out_Colour = vec4(position,1.0);
 }
 #endif
+
 
 
 

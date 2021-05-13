@@ -68,18 +68,18 @@ void PostProcessEffectBloom::CleanUp()
 	}
 }
 
-int PostProcessEffectBloom::Render(bool isHDR, int width, int height, int colorTexture,PostProcessDataBloom* bloomVars)
+int PostProcessEffectBloom::Render(bool isHDR, int width, int height, int colorTexture, PostProcessDataBloom* bloomVars)
 {
-	brighterThanFilter->Render(isHDR, width/2, height/2, colorTexture, bloomVars->brightThreshold, bloomVars->smoothMask);
-	blurVFilter->Render(isHDR, width/4, height/4, brighterThanFilter->GetOutputTexture(),bloomVars->blurSpread);
-	blurHFilter->Render(isHDR, width/4, height/4, blurVFilter->GetOutputTexture(),bloomVars->blurSpread);
+	brighterThanFilter->Render(isHDR, width / 2, height / 2, colorTexture, bloomVars->brightThreshold, bloomVars->smoothMask);
+	blurVFilter->Render(isHDR, width / 4, height / 4, brighterThanFilter->GetOutputTexture(), bloomVars->blurSpread);
+	blurHFilter->Render(isHDR, width / 4, height / 4, blurVFilter->GetOutputTexture(), bloomVars->blurSpread);
 	blurVFilter->Render(isHDR, width / 8, height / 8, blurHFilter->GetOutputTexture(), bloomVars->blurSpread);
 	blurHFilter->Render(isHDR, width / 8, height / 8, blurVFilter->GetOutputTexture(), bloomVars->blurSpread);
 	combineFilter->Render(isHDR, width, height, colorTexture, blurHFilter->GetOutputTexture(), bloomVars->brightnessIntensity);//TODO change the value for the actual value once we have the resource
 	return combineFilter->GetOutputTexture();
 }
 
-PostProcessEffectDepthTest::PostProcessEffectDepthTest(): PostProcessEffect(),
+PostProcessEffectDepthTest::PostProcessEffectDepthTest() : PostProcessEffect(),
 depthFilter(nullptr)
 {
 	Init();
@@ -110,7 +110,7 @@ int PostProcessEffectDepthTest::Render(bool isHDR, int width, int height, int co
 	return depthFilter->GetOutputTexture();
 }
 
-PostProcessEffectRender::PostProcessEffectRender(): PostProcessEffect(),
+PostProcessEffectRender::PostProcessEffectRender() : PostProcessEffect(),
 renderPostProcess(nullptr)
 {
 	Init();
@@ -135,13 +135,13 @@ void PostProcessEffectRender::CleanUp()
 	}
 }
 
-void PostProcessEffectRender::Render(bool isHDR,int width, int height, int colorTexture, DE_Advanced_FrameBuffer& outputFBO)
+void PostProcessEffectRender::Render(bool isHDR, int width, int height, int colorTexture, DE_Advanced_FrameBuffer& outputFBO)
 {
 	renderPostProcess->Render(isHDR, width, height, colorTexture);
 	renderPostProcess->GetOutputFBO()->ResolveToFBO(outputFBO);
 }
 
-PostProcessEffectAO::PostProcessEffectAO(): PostProcessEffect(),
+PostProcessEffectAO::PostProcessEffectAO() : PostProcessEffect(),
 aoFilter(nullptr), blurHFilter(nullptr), blurVFilter(nullptr),
 multiplyFilter(nullptr)
 {
@@ -185,17 +185,25 @@ void PostProcessEffectAO::CleanUp()
 	}
 }
 
-int PostProcessEffectAO::Render(bool isHDR,int width, int height, int colorTexture,int depthTexture,C_Camera* camera, PostProcessDataAO* aoVars)
+int PostProcessEffectAO::Render(bool isHDR, int width, int height, int colorTexture, int depthTexture, C_Camera* camera, PostProcessDataAO* aoVars)
 {
-	/*aoFilter->Render(isHDR,width, height, depthTexture,camera,aoVars->radiusAO);
-	blurVFilter->Render(isHDR,width / 2, height / 2, aoFilter->GetOutputTexture(),aoVars->blurSpread);
-	blurHFilter->Render(isHDR,width/2, height/2, blurVFilter->GetOutputTexture(), aoVars->blurSpread);
-	multiplyFilter->Render(isHDR,width, height, colorTexture, blurHFilter->GetOutputTexture());
-	return multiplyFilter->GetOutputTexture();*/
-	
+	aoFilter->Render(isHDR, width, height, depthTexture, camera, aoVars->radiusAO);
+	if (aoVars->useBlur)
+	{
+		blurVFilter->Render(isHDR, width, height, aoFilter->GetOutputTexture(), aoVars->blurSpread);
+		blurHFilter->Render(isHDR, width, height, blurVFilter->GetOutputTexture(), aoVars->blurSpread);
+		multiplyFilter->Render(isHDR, width, height, colorTexture, blurHFilter->GetOutputTexture());
+	}
+	else
+	{
+		multiplyFilter->Render(isHDR, width, height, colorTexture, aoFilter->GetOutputTexture());
+	}
+
+	return multiplyFilter->GetOutputTexture();
+
 	//Test Code
-	aoFilter->Render(isHDR,width, height, depthTexture,camera,aoVars->radiusAO);
-	return aoFilter->GetOutputTexture();
+	/*aoFilter->Render(isHDR,width, height, depthTexture,camera,aoVars->radiusAO);
+	return aoFilter->GetOutputTexture();*/
 }
 
 PostProcessEffectToneMapping::PostProcessEffectToneMapping() : PostProcessEffect(),
@@ -212,7 +220,7 @@ PostProcessEffectToneMapping::~PostProcessEffectToneMapping()
 void PostProcessEffectToneMapping::Init()
 {
 	toneMappingFilter = new PostProcessFilterToneMapping();
-	
+
 }
 
 void PostProcessEffectToneMapping::CleanUp()
@@ -226,7 +234,7 @@ void PostProcessEffectToneMapping::CleanUp()
 
 int PostProcessEffectToneMapping::Render(bool isHDR, int width, int height, int colorTexture, PostProcessDataToneMapping* toneMappingVars)
 {
-	toneMappingFilter->Render(isHDR, width, height, colorTexture, toneMappingVars->exposure,toneMappingVars->gamma);
+	toneMappingFilter->Render(isHDR, width, height, colorTexture, toneMappingVars->exposure, toneMappingVars->gamma);
 	return toneMappingFilter->GetOutputTexture();
 }
 
