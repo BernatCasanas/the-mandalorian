@@ -590,6 +590,14 @@ void CS_Enable_VSYNC(bool enable)
 	EngineExternal->moduleRenderer3D->vsync = enable;
 }
 
+bool CS_Get_VSYNC()
+{
+	if (EngineExternal == nullptr)
+		return false;
+
+	return EngineExternal->moduleRenderer3D->vsync;
+}
+
 void CS_SetResolution(int resolution)
 {
 	//if (EngineExternal == nullptr)
