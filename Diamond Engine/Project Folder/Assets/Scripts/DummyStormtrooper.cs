@@ -72,6 +72,8 @@ public class DummyStormtrooper : Enemy
     public GameObject deathPoint = null;
 
     private StormTrooperParticles myParticles = null;
+
+    private bool start = true;
     public void Awake()
     {
         Debug.Log("Stormtrooper Awake");
@@ -105,6 +107,11 @@ public class DummyStormtrooper : Enemy
 
     public void Update()
     {
+        if (start)
+        {
+            EnemyManager.AddEnemy(this.gameObject);
+            start = false;
+        }
         //Debug.Log("Current State: " + currentState.ToString());
 
 
@@ -582,11 +589,11 @@ public class DummyStormtrooper : Enemy
                     float result = rand.Next(1, 101);
                     if (result <= 11)
                         if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
-                    {
-                        float healing = Core.instance.GetStatusData(STATUS_TYPE.LIFESTEAL).severity * damage / 100;
-                        if (healing < 1) healing = 1;
-                        Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
-                    }
+                        {
+                            float healing = Core.instance.GetStatusData(STATUS_TYPE.LIFESTEAL).severity * damage / 100;
+                            if (healing < 1) healing = 1;
+                            Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
+                        }
                 }
             }
 
