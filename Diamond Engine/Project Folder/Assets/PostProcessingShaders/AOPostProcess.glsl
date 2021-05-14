@@ -180,7 +180,7 @@ void main()
 
         	float sampleDepth = CalcViewZ(offset.xy);
 
-			float rangeCheck = smoothstep(0.0, 1.0, sampleRad / abs(samplePos.z - sampleDepth));
+			float rangeCheck = smoothstep(0.0, 1.0, sampleRad / abs(position.z - sampleDepth));
 			AO += (sampleDepth >= samplePos.z + bias  ? 1.0 : 0.0) * rangeCheck; 
 			
 
