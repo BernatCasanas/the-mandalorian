@@ -3,107 +3,117 @@ using DiamondEngine;
 
 public class Settings : DiamondComponent
 {
-	public GameObject settingsWindow = null;
-	public GameObject bigBrother = null;
-	public GameObject bar = null;
-	public GameObject aux_bar_1 = null;
-	public GameObject aux_bar_2 = null;
-	public GameObject aux_bar_3 = null;
-	//private Pause aux = null;
+    public GameObject settingsWindow = null;
+    public GameObject bigBrother = null;
+    public GameObject bar = null;
+    public GameObject aux_bar_1 = null;
+    public GameObject aux_bar_2 = null;
+    public GameObject aux_bar_3 = null;
+    //private Pause aux = null;
 
-	public void OnExecuteCheckbox(bool active)
-	{
-		if (active)
-		{
-			Config.ControllerVibrationEnable(true); 
-			Input.PlayHaptic(0.5f, 1);
-		}
-		else
-		{
-			Config.ControllerVibrationEnable(false);
-		}
-	}
-	public void FirstFrame()
+    public void Awake()
     {
-		if (bar != null)
-			bar.GetComponent<Material>().SetFloatUniform("length_used", Config.GetBrightness());
-		if (aux_bar_1 != null)
-			aux_bar_1.GetComponent<Material>().SetFloatUniform("length_used", Config.GetMasterVolume() / 99);
-		if (aux_bar_2 != null)
-			aux_bar_2.GetComponent<Material>().SetFloatUniform("length_used", Config.GetMusicVolume() / 99);
-		if (aux_bar_3 != null)
-			aux_bar_3.GetComponent<Material>().SetFloatUniform("length_used", Config.GetSFXVolume() / 99);
-	}
-	public void OnExecuteButton()
-	{
-		if (gameObject.Name == "BrightnessUp")
+        Checkbox checkbox = gameObject.GetComponent<Checkbox>();
+        if (checkbox == null)
+            return;
+        if (Config.IsControllerVibrationEnabled())
+            checkbox.ChangeActive(true);
+        else
+            checkbox.ChangeActive(false);
+    }
+    public void OnExecuteCheckbox(bool active)
+    {
+        if (active)
         {
-			Config.SetBrightness(Config.GetBrightness() + 0.05f);
-			Debug.Log(Config.GetBrightness().ToString());
-			if (bar == null)
-				return;
-			bar.GetComponent<Material>().SetFloatUniform("length_used",Config.GetBrightness());
+            Config.ControllerVibrationEnable(true);
+            Input.PlayHaptic(0.5f, 1);
         }
-		else if (gameObject.Name == "BrightnessDown")
+        else
         {
-			Config.SetBrightness(Config.GetBrightness() - 0.05f); 
-			Debug.Log(Config.GetBrightness().ToString());
-			if (bar == null)
-				return;
-			bar.GetComponent<Material>().SetFloatUniform("length_used", Config.GetBrightness());
-		}
-		else if (gameObject.Name == "MasterVolumeUp")
+            Config.ControllerVibrationEnable(false);
+        }
+    }
+    public void FirstFrame()
+    {
+        if (bar != null)
+            bar.GetComponent<Material>().SetFloatUniform("length_used", Config.GetBrightness());
+        if (aux_bar_1 != null)
+            aux_bar_1.GetComponent<Material>().SetFloatUniform("length_used", Config.GetMasterVolume() / 99);
+        if (aux_bar_2 != null)
+            aux_bar_2.GetComponent<Material>().SetFloatUniform("length_used", Config.GetMusicVolume() / 99);
+        if (aux_bar_3 != null)
+            aux_bar_3.GetComponent<Material>().SetFloatUniform("length_used", Config.GetSFXVolume() / 99);
+    }
+    public void OnExecuteButton()
+    {
+        if (gameObject.Name == "BrightnessUp")
         {
-			Config.SetMasterVolume(Config.GetMasterVolume() + 5.0f);
-			if (bar == null)
-				return;
-			bar.GetComponent<Material>().SetFloatUniform("length_used", Config.GetMasterVolume()/99);
-		}
-		else if (gameObject.Name == "MasterVolumeDown")
+            Config.SetBrightness(Config.GetBrightness() + 0.05f);
+            Debug.Log(Config.GetBrightness().ToString());
+            if (bar == null)
+                return;
+            bar.GetComponent<Material>().SetFloatUniform("length_used", Config.GetBrightness());
+        }
+        else if (gameObject.Name == "BrightnessDown")
         {
-			Config.SetMasterVolume(Config.GetMasterVolume() - 5.0f);
-			if (bar == null)
-				return;
-			bar.GetComponent<Material>().SetFloatUniform("length_used", Config.GetMasterVolume() / 99);
-		}
-		else if (gameObject.Name == "MusicVolumeUp")
+            Config.SetBrightness(Config.GetBrightness() - 0.05f);
+            Debug.Log(Config.GetBrightness().ToString());
+            if (bar == null)
+                return;
+            bar.GetComponent<Material>().SetFloatUniform("length_used", Config.GetBrightness());
+        }
+        else if (gameObject.Name == "MasterVolumeUp")
         {
-			Config.SetMusciVolume(Config.GetMusicVolume() + 5.0f);
-			if (bar == null)
-				return;
-			bar.GetComponent<Material>().SetFloatUniform("length_used", Config.GetMusicVolume() / 99);
-		}
-		else if (gameObject.Name == "MusicVolumeDown")
+            Config.SetMasterVolume(Config.GetMasterVolume() + 5.0f);
+            if (bar == null)
+                return;
+            bar.GetComponent<Material>().SetFloatUniform("length_used", Config.GetMasterVolume() / 99);
+        }
+        else if (gameObject.Name == "MasterVolumeDown")
         {
-			Config.SetMusciVolume(Config.GetMusicVolume() - 5.0f);
-			if (bar == null)
-				return;
-			bar.GetComponent<Material>().SetFloatUniform("length_used", Config.GetMusicVolume() / 99);
-		}
-		else if (gameObject.Name == "SFXVolumeUp")
+            Config.SetMasterVolume(Config.GetMasterVolume() - 5.0f);
+            if (bar == null)
+                return;
+            bar.GetComponent<Material>().SetFloatUniform("length_used", Config.GetMasterVolume() / 99);
+        }
+        else if (gameObject.Name == "MusicVolumeUp")
         {
-			Config.SetSFXVolume(Config.GetSFXVolume() + 5.0f);
-			if (bar == null)
-				return;
-			bar.GetComponent<Material>().SetFloatUniform("length_used", Config.GetSFXVolume() / 99);
-		}
-		else if (gameObject.Name == "SFXVolumeDown")
+            Config.SetMusciVolume(Config.GetMusicVolume() + 5.0f);
+            if (bar == null)
+                return;
+            bar.GetComponent<Material>().SetFloatUniform("length_used", Config.GetMusicVolume() / 99);
+        }
+        else if (gameObject.Name == "MusicVolumeDown")
         {
-			Config.SetSFXVolume(Config.GetSFXVolume() - 5.0f);
-			if (bar == null)
-				return;
-			bar.GetComponent<Material>().SetFloatUniform("length_used", Config.GetSFXVolume() / 99);
-		}
+            Config.SetMusciVolume(Config.GetMusicVolume() - 5.0f);
+            if (bar == null)
+                return;
+            bar.GetComponent<Material>().SetFloatUniform("length_used", Config.GetMusicVolume() / 99);
+        }
+        else if (gameObject.Name == "SFXVolumeUp")
+        {
+            Config.SetSFXVolume(Config.GetSFXVolume() + 5.0f);
+            if (bar == null)
+                return;
+            bar.GetComponent<Material>().SetFloatUniform("length_used", Config.GetSFXVolume() / 99);
+        }
+        else if (gameObject.Name == "SFXVolumeDown")
+        {
+            Config.SetSFXVolume(Config.GetSFXVolume() - 5.0f);
+            if (bar == null)
+                return;
+            bar.GetComponent<Material>().SetFloatUniform("length_used", Config.GetSFXVolume() / 99);
+        }
 
-		else if (gameObject.Name == "Return")
+        else if (gameObject.Name == "Return")
         {
-			bigBrother.EnableNav(true);
-			settingsWindow.EnableNav(false);
-		}
-	}
-	public void Update()
-	{
-       
-	}
+            bigBrother.EnableNav(true);
+            settingsWindow.EnableNav(false);
+        }
+    }
+    public void Update()
+    {
+
+    }
 
 }

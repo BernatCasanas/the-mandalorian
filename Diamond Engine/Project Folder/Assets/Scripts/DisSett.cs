@@ -6,6 +6,17 @@ public class DisSett : DiamondComponent
     public GameObject displayScreen = null;
     public GameObject bigBrother = null;
     //private Pause aux = null;
+
+    public void Awake()
+    {
+        Checkbox checkbox = gameObject.GetComponent<Checkbox>();
+        if (checkbox == null)
+            return;
+        if (Config.IsVSYNCEnabled())
+            checkbox.ChangeActive(true);
+        else
+            checkbox.ChangeActive(false);
+    }
     public void OnExecuteCheckbox(bool active)
     {
         if (active)
