@@ -60,6 +60,7 @@ namespace DiamondEngine
             { typeof(MeshRenderer), ComponentType.MESH_RENDERER},
             { typeof(Rigidbody), ComponentType.RIGIDBODY},
             { typeof(AreaLight), ComponentType.AREA_LIGHT},
+            { typeof(Checkbox), ComponentType.CHECKBOX  },
         };
 
         public DiamondComponent()
