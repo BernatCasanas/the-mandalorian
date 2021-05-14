@@ -47,7 +47,7 @@ public class GameSceneManager : DiamondComponent
             {
                 EnemyManager.ClearList();
 
-                rewardInitialPos = Core.instance.gameObject.transform.globalPosition + new Vector3(1.5f, 0.0f, 0.0f);    // Not this position, but for now it's fine;
+                rewardInitialPos = Core.instance.gameObject.transform.globalPosition + new Vector3(1.5f, 1.0f, 0.0f);    // Not this position, but for now it's fine;
                 rewardObject.transform.localPosition = rewardInitialPos;
 
                 //Debug.Log("Boon mesh position: " + rewardInitialPos.ToString());
