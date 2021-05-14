@@ -46,11 +46,17 @@ const int MAX_KERNEL_SIZE = 64;
 uniform vec3 kernel[MAX_KERNEL_SIZE];
 uniform vec2 depthDimensions;
 
-float CalcViewZ(vec2 coords)
+float CalcViewZ(vec2 coords) //converts depth at coords from clip space to view space
 {
-	
-    float depth = texture(depthTexture, coords).x; 
-    return projectionMat[3][2] / (2 * depth -1 - projectionMat[2][2]);
+	float depth = texture(depthTexture, coords).x; 
+	if(isOrthographic==1)
+	{
+		return (2*depth-1-projectionMat[3][2])/projectionMat[2][2];
+	}
+	else
+	{
+		return projectionMat[3][2] / (2 * depth -1 - projectionMat[2][2]);
+	}
     
 }
 
@@ -81,11 +87,17 @@ vec3 CalculateSmoothNormal(vec2 coords) //More performance intesive, no edge cas
 	vec2 uv3 = coords + vec2(-1, 0) / depthDimensions; // left
 	vec2 uv4 = coords + vec2(0, -1) / depthDimensions; // bottom
 
-	float depth0 = texture(depthTexture, uv0, 0).r;
-	float depth1 = texture(depthTexture, uv1, 0).r;
-	float depth2 = texture(depthTexture, uv2, 0).r;
-	float depth3 = texture(depthTexture, uv3, 0).r;
-	float depth4 = texture(depthTexture, uv4, 0).r;
+	float depth0 = CalcViewZ(uv0);
+	float depth1 = CalcViewZ(uv1);
+	float depth2 = CalcViewZ(uv2);
+	float depth3 = CalcViewZ(uv3);
+	float depth4 = CalcViewZ(uv4);
+
+	//float depth0 = texture(depthTexture, uv0, 0).r;
+	//float depth1 = texture(depthTexture, uv1, 0).r;
+	//float depth2 = texture(depthTexture, uv2, 0).r;
+	//float depth3 = texture(depthTexture, uv3, 0).r;
+	//float depth4 = texture(depthTexture, uv4, 0).r;
 
 	int bestHorizontal = ( abs(depth1-depth0) < abs(depth3-depth0) ) ? 1 : 3; //1 right 3 left
 	int bestVertical = ( abs(depth2-depth0) < abs(depth4-depth0) ) ? 2 : 4; //2 up 4 bottom
@@ -132,19 +144,18 @@ void main()
 
 	vec3 position= vec3(0,0,0);
 	float AO = 0.0;
-
+	float bias = 0.025;
 	if(isOrthographic==1)
 	{	
 		// tile noise texture over screen, based on screen dimensions divided by noise size
 		vec2 noiseScale = vec2(depthDimensions.x/4.0, depthDimensions.y/4.0); // noise 4x4 texture
 
+		float viewZ  = 	CalcViewZ(textureCoords); //get view space depth from texture coords
+ 
+    	float viewX = viewRay.x;
+    	float viewY = viewRay.y;
 
-		float viewZ  = texture(depthTexture, textureCoords).x; 
-
-    	float viewX = textureCoords.x;
-    	float viewY = textureCoords.y;
-
-    	position = vec3(viewX, viewY, viewZ);
+    	position = vec3(viewX, viewY, viewZ); //position in view space
 
 		//Construct orthogonal basis (use to rotate kernel)
 
@@ -162,10 +173,15 @@ void main()
         	vec3 samplePos = TBN*kernel[i];//rotate the kernel by TBN rotation matrix
       		samplePos = position + samplePos * sampleRad;// generate a random point
 
-        	float sampleDepth = texture(depthTexture, samplePos.xy).x; 
+			vec4 offset= vec4(samplePos,1);
+			offset = projectionMat * offset; //change from view to clip space
+			//offset.xyz /= offset.w;               // perspective divide only in perspective?
+			offset.xyz  = offset.xyz * 0.5 + 0.5; // transform to range 0.0 - 1.0
+
+        	float sampleDepth = CalcViewZ(offset.xy);
 
 			float rangeCheck = smoothstep(0.0, 1.0, sampleRad / abs(samplePos.z - sampleDepth));
-			AO += (sampleDepth <= samplePos.z  ? 1.0 : 0.0) * rangeCheck; 
+			AO += (sampleDepth >= samplePos.z + bias  ? 1.0 : 0.0) * rangeCheck; 
 			
 
     	}
@@ -209,9 +225,10 @@ void main()
 	}
 
     	out_Colour = vec4(AO,AO,AO,1);
-    	//out_Colour = vec4(position,1.0);
+    	//out_Colour = vec4(CalculateSmoothNormal(textureCoords),1.0);
 }
 #endif
+
 
 
 

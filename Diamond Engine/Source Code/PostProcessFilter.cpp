@@ -325,7 +325,7 @@ void PostProcessFilterAO::PopulateKernel()
 		rNum *= scale;
 
 		//this if only if we want hemisphere
-		if (rNum.z < 0.0f)
+		if (rNum.z > 0.0f)
 		{
 			rNum.z *= -1;
 		}
