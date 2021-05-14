@@ -57,7 +57,7 @@ public class Core : Entity
     public GameObject shootPoint = null;
     public GameObject hud = null;
 
-    public GameObject rifle   = null;
+    public GameObject rifle = null;
     public GameObject blaster = null;
 
     private bool scriptStart = true;
@@ -241,7 +241,7 @@ public class Core : Entity
 
         //player instance
         instance = this;
-        
+
         //Controller
         deathZone = 15000;
 
@@ -306,7 +306,7 @@ public class Core : Entity
             if (sniper2Cooldown != null)
                 sniperBullet2 = sniper2Cooldown.GetComponent<Material>();
 
-            if(secSound == null)
+            if (secSound == null)
             {
                 secSound = InternalCalls.FindObjectWithName("SecSound");
 
@@ -493,7 +493,7 @@ public class Core : Entity
         timeSinceLastDash += myDeltaTime;
 
         if (HasStatus(STATUS_TYPE.GRENADE_ON_DASH))
-        grenade_onDash += myDeltaTime;
+            grenade_onDash += myDeltaTime;
 
     }
 
@@ -555,7 +555,7 @@ public class Core : Entity
             else if (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_UP && lockAttacks == false)
             {
                 inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
-                
+
                 //sniperShotTimer = Animator.GetAnimationDuration(gameObject, "SniperShotP2");
                 //Animator.Play(gameObject, "SniperShotP2");
 
@@ -910,7 +910,7 @@ public class Core : Entity
             currFireRate = shootingTimer;
             numberOfShots += 1;
         }
-        
+
         Animator.Play(gameObject, "Shoot", normalShootSpeed * speedMult);
 
         if (blaster != null)
@@ -1073,7 +1073,7 @@ public class Core : Entity
         changeColorSniperTimer = 0f;
         Animator.Play(gameObject, "SniperShotP1");
 
-        if(rifle != null)
+        if (rifle != null)
         {
             rifle.Enable(true);
             Animator.Play(rifle, "SniperShotP1");
@@ -1281,7 +1281,7 @@ public class Core : Entity
         }
 
         PlayParticles(PARTICLES.JETPACK);
-        if(HasStatus(STATUS_TYPE.GRENADE_ON_DASH) && grenade_onDash >= GetStatusData(STATUS_TYPE.GRENADE_ON_DASH).severity)
+        if (HasStatus(STATUS_TYPE.GRENADE_ON_DASH) && grenade_onDash >= GetStatusData(STATUS_TYPE.GRENADE_ON_DASH).severity)
         {
             grenade_onDash = 0;
 
@@ -1736,9 +1736,12 @@ public class Core : Entity
                 {
                     particle = myParticles.dust;
                     if (particle != null)
-                        particle.Play();
-                    else if (particle != null && stopParticle == true)
-                        particle.Stop();
+                    {
+                        if (stopParticle == false)
+                            particle.Play();
+                        else
+                            particle.Stop();
+                    }
                     else
                         Debug.Log("Jetpack particle not found");
                 }
@@ -1751,9 +1754,12 @@ public class Core : Entity
                 {
                     particle = myParticles.impact;
                     if (particle != null)
-                        particle.Play();
-                    else if (particle != null && stopParticle == true)
-                        particle.Stop();
+                    {
+                        if (stopParticle == false)
+                            particle.Play();
+                        else
+                            particle.Stop();
+                    }
                     //else
                     //    Debug.Log("Jetpack particle not found");
                 }
@@ -1765,10 +1771,13 @@ public class Core : Entity
                 if (myParticles != null)
                 {
                     particle = myParticles.jetpack;
-                    if (particle != null && !particle.playing)
-                        particle.Play();
-                    else if (particle != null && stopParticle == true)
-                        particle.Stop();
+                    if (particle != null)
+                    {
+                        if (stopParticle == false)
+                            particle.Play();
+                        else
+                            particle.Stop();
+                    }
                     else
                         Debug.Log("Jetpack Rush particle not found!");
 
@@ -1782,9 +1791,12 @@ public class Core : Entity
                 {
                     particle = myParticles.muzzle;
                     if (particle != null)
-                        particle.Play();
-                    else if (particle != null && stopParticle == true)
-                        particle.Stop();
+                    {
+                        if (stopParticle == false)
+                            particle.Play();
+                        else
+                            particle.Stop();
+                    }
                     else
                         Debug.Log("Jetpack particle not found");
                 }
@@ -1796,9 +1808,12 @@ public class Core : Entity
                 {
                     particle = myParticles.grenade;
                     if (particle != null)
-                        particle.Play();
-                    else if (particle != null && stopParticle == true)
-                        particle.Stop();
+                    {
+                        if (stopParticle == false)
+                            particle.Play();
+                        else
+                            particle.Stop();
+                    }
                     else
                         Debug.Log("Grenade particle not found");
                 }
@@ -1810,9 +1825,12 @@ public class Core : Entity
                 {
                     particle = myParticles.sniper;
                     if (particle != null)
-                        particle.Play();
-                    else if (particle != null && stopParticle == true)
-                        particle.Stop();
+                    {
+                        if (stopParticle == false)
+                            particle.Play();
+                        else
+                            particle.Stop();
+                    }
                     else
                         Debug.Log("Sniper particle not found");
                 }
@@ -1824,9 +1842,12 @@ public class Core : Entity
                 {
                     particle = myParticles.heal;
                     if (particle != null)
-                        particle.Play();
-                    else if (particle != null && stopParticle == true)
-                        particle.Stop();
+                    {
+                        if (stopParticle == false)
+                            particle.Play();
+                        else
+                            particle.Stop();
+                    }
                     else
                         Debug.Log("Heal particle not found");
                 }
@@ -1838,9 +1859,12 @@ public class Core : Entity
                 {
                     particle = myParticles.sniperCharge;
                     if (particle != null)
-                        particle.Play();
-                    else if (particle != null && stopParticle == true)
-                        particle.Stop();
+                    {
+                        if (stopParticle == false)
+                            particle.Play();
+                        else
+                            particle.Stop();
+                    }
                     else
                         Debug.Log("Sniper charge particle not found");
                 }
@@ -1852,9 +1876,12 @@ public class Core : Entity
                 {
                     particle = myParticles.sniperMuzzel;
                     if (particle != null)
-                        particle.Play();
-                    else if (particle != null && stopParticle == true)
-                        particle.Stop();
+                    {
+                        if (stopParticle == false)
+                            particle.Play();
+                        else
+                            particle.Stop();
+                    }
                     else
                         Debug.Log("Sniper muzzel particle not found");
                 }
@@ -1880,14 +1907,14 @@ public class Core : Entity
     {
         //We apply modifications to the damage based on the skill actives in the talent tree
         float supercharged = 1;
-        if(HasStatus(STATUS_TYPE.PRIM_CHARGED))
+        if (HasStatus(STATUS_TYPE.PRIM_CHARGED))
         {
             Random rand = new Random();
             float result = rand.Next(1, 101);
             if (result <= GetStatusData(STATUS_TYPE.PRIM_CHARGED).severity)
                 supercharged = 2;
         }
-          
+
         float Damage = BlasterDamageMult * BlasterDamagePerHpMult * DamagePerHeatMult * RawDamageMult * supercharged;
 
         //if (skill_groguIncreaseDamageActive)
@@ -1946,7 +1973,7 @@ public class Core : Entity
     {
         Debug.Log("SAVE STATUSES");
         copyBuffs(ref PlayerStatuses);
-        
+
     }
 
     public void LoadBuffs()
@@ -2076,7 +2103,7 @@ public class Core : Entity
                     {
                         PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
                         if (myHealth != null && PlayerHealth.currMaxHealth <= 100)
-                        {   
+                        {
                             statusToInit.statChange = statusToInit.severity * PlayerHealth.currMaxHealth / 100;
                             myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth + statusToInit.statChange), true);
 
@@ -2161,44 +2188,44 @@ public class Core : Entity
         {
             case STATUS_TYPE.BLAST_DMG_PER_HP:
                 {
-                    
-                        //PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
-                        //if (myHealth != null)
-                        //{
-                        float missingHealth = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
-                        float missingHealtPercentage = missingHealth / PlayerHealth.currMaxHealth;
-                        BlasterDamagePerHpMult = 1 + missingHealtPercentage;
-                        //  Debug.Log("TESTING / dmg per missing hp = " + DamagePerHpMult.ToString());
-                        // }
-                    
+
+                    //PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                    //if (myHealth != null)
+                    //{
+                    float missingHealth = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
+                    float missingHealtPercentage = missingHealth / PlayerHealth.currMaxHealth;
+                    BlasterDamagePerHpMult = 1 + missingHealtPercentage;
+                    //  Debug.Log("TESTING / dmg per missing hp = " + DamagePerHpMult.ToString());
+                    // }
+
 
                 }
                 break;
             case STATUS_TYPE.SNIPER_DMG_PER_HP:
                 {
-                   
-                        //PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
-                        //if (myHealth != null)
-                        //{
-                        float missingHealth = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
-                        float missingHealtPercentage = missingHealth / PlayerHealth.currMaxHealth;
-                        SniperDamagePerHpMult = 1 + missingHealtPercentage;
-                        //  Debug.Log("TESTING / dmg per missing hp = " + DamagePerHpMult.ToString());
-                        // }
-                    
+
+                    //PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+                    //if (myHealth != null)
+                    //{
+                    float missingHealth = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
+                    float missingHealtPercentage = missingHealth / PlayerHealth.currMaxHealth;
+                    SniperDamagePerHpMult = 1 + missingHealtPercentage;
+                    //  Debug.Log("TESTING / dmg per missing hp = " + DamagePerHpMult.ToString());
+                    // }
+
 
                 }
                 break;
             case STATUS_TYPE.DMG_PER_HEAT:
                 {
-                   
-                        if (instance.hud != null)
-                        {
-                            float currentheat = Core.instance.hud.GetComponent<HUD>().primaryWeaponHeat;
-                            float HeatPercentage = currentheat / Core.instance.hud.GetComponent<HUD>().primaryWeaponMaxHeat;
-                            DamagePerHeatMult = 1 + HeatPercentage;
-                            //    Debug.Log("TESTING / dmg per heat = " + DamagePerHeatMult.ToString());
-                        }
+
+                    if (instance.hud != null)
+                    {
+                        float currentheat = Core.instance.hud.GetComponent<HUD>().primaryWeaponHeat;
+                        float HeatPercentage = currentheat / Core.instance.hud.GetComponent<HUD>().primaryWeaponMaxHeat;
+                        DamagePerHeatMult = 1 + HeatPercentage;
+                        //    Debug.Log("TESTING / dmg per heat = " + DamagePerHeatMult.ToString());
+                    }
 
 
                 }
@@ -2293,11 +2320,11 @@ public class Core : Entity
                     if (Core.instance != null)
                     {
                         PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
-                       
 
-                            myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth - statusToDelete.statChange));
 
-                       
+                        myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth - statusToDelete.statChange));
+
+
                     }
                 }
                 break;
@@ -2342,7 +2369,7 @@ public class Core : Entity
                 {
                     this.FireRateMult -= statusToDelete.statChange;
 
-                   
+
                 }
                 break;
             case STATUS_TYPE.RAW_DAMAGE:
@@ -2356,7 +2383,7 @@ public class Core : Entity
                 break;
             case STATUS_TYPE.SEC_TICKDMG:
                 {
-                    
+
                     this.SecTickDamage -= statusToDelete.statChange;
                 }
                 break;
