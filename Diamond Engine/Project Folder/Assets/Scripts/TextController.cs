@@ -19,10 +19,10 @@ public class TextController : DiamondComponent
 	private List<String> texts;
 	private List<bool> images;
 
-
-
 	private bool startMenu = true;
 	private bool finished = false;
+
+	private float timer = 0.05f;
 
 	public void Awake()
     {
@@ -55,8 +55,6 @@ public class TextController : DiamondComponent
 
         }
 
-
-
         if (index >= texts.Count && gui_not_enabled)
         {
             index = -1;
@@ -84,9 +82,15 @@ public class TextController : DiamondComponent
 		if (gui == null)
 			gui = Core.instance.hud;
 
+		if(timer > 0.0f)
+        {
+			timer -= Time.deltaTime;
+			return;
+        }
+
 		if (startMenu == true && dialog != null && list_of_dialogs != null && dialog_index >= 0)
 		{
-			Debug.Log(dialog_index.ToString());
+			//Debug.Log(dialog_index.ToString());
 
 			if (gui != null)
 			{
@@ -103,7 +107,6 @@ public class TextController : DiamondComponent
 
 			startMenu = true;
 			finished = false;
-
 		}
 
 
