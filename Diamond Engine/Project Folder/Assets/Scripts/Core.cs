@@ -472,7 +472,7 @@ public class Core : Entity
                 skill_groguIncreaseDamageActive = false;
         }
 
-        Debug.Log("State: " + currentState.ToString());
+        //Debug.Log("State: " + currentState.ToString());
 
         if (sniperShotTimer > 0.0f)
         {
@@ -1085,10 +1085,11 @@ public class Core : Entity
         chargeTimer = 0f;
         changeColorSniperTimer = 0f;
 
+        //PlayParticles(PARTICLES.SNIPER_CHARGE, true);
+
         if (rifle != null)
-        {
             rifle.Enable(false);
-        }
+        
     }
 
     private void UpdateSecondaryShootCharge()

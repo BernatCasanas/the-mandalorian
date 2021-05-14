@@ -64,7 +64,7 @@ public class Skytrooper : Enemy
     //Timers
     private float idleTimer = 0.0f;
     private float wanderTimer = 0.0f;
-    private float dashTimer = 0.0f;
+    public float dashTimer = 0.0f;
     //private float shotTimer = 0.0f;
     private float dieTimer = 0.0f;
     private float shootTimer = 0.0f;

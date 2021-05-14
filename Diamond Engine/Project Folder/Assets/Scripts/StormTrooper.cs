@@ -490,6 +490,7 @@ public class StormTrooper : Enemy
             Vector3 directionFindAim = new Vector3(agent.GetPointAt(1) - gameObject.transform.globalPosition);
             agent.ClearPath();
             targetPosition = directionFindAim.normalized * runningRange + gameObject.transform.globalPosition;
+            targetPosition.y = gameObject.transform.globalPosition.y;
             agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
         }  
     }
