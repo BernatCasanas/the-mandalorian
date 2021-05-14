@@ -50,6 +50,7 @@ uniform float bias;
 float CalcViewZ(vec2 coords) //converts depth at coords from clip space to view space
 {
 	float depth = texture(depthTexture, coords).x; 
+	
 	if(isOrthographic==1)
 	{
 		return (2*depth-1-projectionMat[3][2])/projectionMat[2][2];
@@ -80,7 +81,7 @@ vec3 CalculateFlatNormal(vec2 coords) //Note this should make artifacts on geome
 	return normal;
 }
 
-vec3 CalculateSmoothNormal(vec2 coords) //More performance intesive, no edge case errors
+vec3 CalculateSmoothNormal(vec2 coords,float depth0) //More performance intesive, no edge case errors
 {
 	vec2 uv0 = coords; // center
 	vec2 uv1 = coords + vec2(1, 0) / depthDimensions; // right 
@@ -88,7 +89,7 @@ vec3 CalculateSmoothNormal(vec2 coords) //More performance intesive, no edge cas
 	vec2 uv3 = coords + vec2(-1, 0) / depthDimensions; // left
 	vec2 uv4 = coords + vec2(0, -1) / depthDimensions; // bottom
 
-	float depth0 = CalcViewZ(uv0);
+	//float depth0 = CalcViewZ(uv0);
 	float depth1 = CalcViewZ(uv1);
 	float depth2 = CalcViewZ(uv2);
 	float depth3 = CalcViewZ(uv3);
@@ -161,7 +162,7 @@ void main()
 
 		vec3 randomVec = texture(noiseTexture,textureCoords*noiseScale).xyz;
 
-		vec3 normal = CalculateSmoothNormal(textureCoords);
+		vec3 normal = CalculateSmoothNormal(textureCoords,viewZ);
 		vec3 tangent   = normalize(randomVec - normal * dot(randomVec, normal));
 		vec3 bitangent = cross(normal, tangent);
 		mat3 TBN       = mat3(tangent, bitangent, normal);  
@@ -182,7 +183,7 @@ void main()
 
 			float rangeCheck = smoothstep(0.0, 1.0, sampleRad / abs(position.z - sampleDepth));
 			AO += (sampleDepth >= samplePos.z + bias  ? 1.0 : 0.0) * rangeCheck; 
-			
+
 
     	}
 
@@ -228,6 +229,8 @@ void main()
     	//out_Colour = vec4(CalculateSmoothNormal(textureCoords),1.0);
 }
 #endif
+
+
 
 
 
