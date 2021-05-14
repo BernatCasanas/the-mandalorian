@@ -240,7 +240,7 @@ PostProcessFilterAO::~PostProcessFilterAO()
 	}
 }
 
-void PostProcessFilterAO::Render(bool isHDR, int width, int height, unsigned int depthTexture, C_Camera* currCam, float sampleRad,float bias)
+void PostProcessFilterAO::Render(bool isHDR, int width, int height, unsigned int depthTexture, C_Camera* currCam, float sampleRad,float bias,bool fastAO)
 {
 	if (TryLoadShader())
 	{
@@ -294,6 +294,9 @@ void PostProcessFilterAO::Render(bool isHDR, int width, int height, unsigned int
 		glUniform2f(uniformLoc, width, height);
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "bias");
 		glUniform1f(uniformLoc, bias);
+
+		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "fastAO");
+		glUniform1i(uniformLoc, fastAO);
 
 
 

@@ -51,7 +51,7 @@ class PostProcessFilterAO : public PostProcessFilter
 public:
 	PostProcessFilterAO();
 	~PostProcessFilterAO();
-	void Render(bool isHDR, int width, int height, unsigned int depthTexture, C_Camera* currCam, float sampleRad, float bias);
+	void Render(bool isHDR, int width, int height, unsigned int depthTexture, C_Camera* currCam, float sampleRad, float bias, bool fastAO);
 	void PopulateKernel();
 	void GenerateNoiseTexture();
 	private:

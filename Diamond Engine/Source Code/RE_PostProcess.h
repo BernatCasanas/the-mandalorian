@@ -62,6 +62,7 @@ public:
 	float blurSpread;
 	bool useBlur;
 	float bias;
+	bool fastAO;
 };
 
 class PostProcessDataBloom : public PostProcessData
