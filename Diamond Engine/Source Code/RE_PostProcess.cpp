@@ -79,7 +79,7 @@ POSTPROCESS_DATA_TYPE PostProcessData::GetType() const
 }
 
 PostProcessDataAO::PostProcessDataAO() : PostProcessData(POSTPROCESS_DATA_TYPE::AO, "Screen Space Ambient Oclussion"),
-radiusAO(0.015f), blurSpread(0),useBlur(false)
+radiusAO(1.0f), blurSpread(0),useBlur(false), bias(0.1f)
 {
 }
 
@@ -99,7 +99,10 @@ void PostProcessDataAO::DrawEditor()
 
 		label = "AO radius";
 		label += suffix;
-		ImGui::SliderFloat(label.c_str(), &radiusAO, 0.0f, 1.0f, "%.3f", 2.0f);
+		ImGui::SliderFloat(label.c_str(), &radiusAO, 0.0f, 5.0f, "%.3f", 3.0f);
+		label = "Bias";
+		label += suffix;
+		ImGui::SliderFloat(label.c_str(), &bias, -1.0f, 1.0f, "%.3f", 2.0f);
 
 		label = "Smooth AO";
 		label += suffix;
@@ -123,6 +126,8 @@ void PostProcessDataAO::SaveToJson(JSON_Object* nObj)
 	DEJson::WriteFloat(nObj, "RadiusAO", radiusAO);
 	DEJson::WriteFloat(nObj, "GlowSpread", blurSpread);
 	DEJson::WriteBool(nObj, "UseBlur", blurSpread);
+	DEJson::WriteFloat(nObj, "Bias", bias);
+
 }
 
 void PostProcessDataAO::LoadFromJson(DEConfig& nObj)
@@ -132,6 +137,7 @@ void PostProcessDataAO::LoadFromJson(DEConfig& nObj)
 	radiusAO = nObj.ReadFloat("RadiusAO");
 	blurSpread = nObj.ReadFloat("GlowSpread");
 	useBlur = nObj.ReadBool("UseBlur");
+	bias = nObj.ReadFloat("Bias");
 }
 
 

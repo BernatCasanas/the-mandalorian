@@ -45,6 +45,7 @@ uniform float cameraSize;
 const int MAX_KERNEL_SIZE = 64;
 uniform vec3 kernel[MAX_KERNEL_SIZE];
 uniform vec2 depthDimensions;
+uniform float bias;
 
 float CalcViewZ(vec2 coords) //converts depth at coords from clip space to view space
 {
@@ -144,7 +145,6 @@ void main()
 
 	vec3 position= vec3(0,0,0);
 	float AO = 0.0;
-	float bias = 0.025;
 	if(isOrthographic==1)
 	{	
 		// tile noise texture over screen, based on screen dimensions divided by noise size

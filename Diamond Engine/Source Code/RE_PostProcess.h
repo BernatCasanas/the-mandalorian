@@ -61,6 +61,7 @@ public:
 	float radiusAO;
 	float blurSpread;
 	bool useBlur;
+	float bias;
 };
 
 class PostProcessDataBloom : public PostProcessData
