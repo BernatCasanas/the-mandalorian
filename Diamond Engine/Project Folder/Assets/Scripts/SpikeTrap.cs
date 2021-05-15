@@ -3,19 +3,40 @@ using DiamondEngine;
 
 public class SpikeTrap : DiamondComponent
 {
-	public void Awake()
+    bool triggered = false;
+
+    private float timer = 0.0f;
+    private float activateAnimationTime = 0.0f;
+    private float hideAnimationTime = 0.0f;
+
+    public void Awake()
     {
-		Animator.Play(this.gameObject, "SpikeTrap_Hide");
-	}
+        Animator.Play(this.gameObject, "SpikeTrap_Hide");
+        activateAnimationTime = Animator.GetAnimationDuration(gameObject, "SpikeTrap_Activate");
+        hideAnimationTime = Animator.GetAnimationDuration(gameObject, "SpikeTrap_Hide");
+    }
 
-	public void OnTriggerEnter()
-	{
-		Animator.Play(this.gameObject, "SpikeTrap_Activate");
-	}
-
-	public void OnTriggerExit()
+    public void Update()
     {
-		Animator.Play(this.gameObject, "SpikeTrap_Hide");
-	}
+        if (timer > 0.0f)
+        {
+            timer -= Time.deltaTime;
 
+            if (timer <= 0.0f && triggered)
+            {
+                Animator.Play(this.gameObject, "SpikeTrap_Hide");
+                triggered = false;
+            }
+        }
+    }
+
+    public void OnTriggerEnter()
+    {
+        if (!triggered)
+        {
+            Animator.Play(this.gameObject, "SpikeTrap_Activate");
+            timer = activateAnimationTime;
+            triggered = true;
+        }
+    }
 }
