@@ -6,6 +6,14 @@ public class MainMenuNPCController : DiamondComponent
 	public GameObject point1 = null;
 	public GameObject point2 = null;
 	public GameObject point3 = null;
+	public GameObject point4 = null;
+	public GameObject point5 = null;
+	public GameObject point6 = null;
+	public GameObject point7 = null;
+	public GameObject point8 = null;
+	public GameObject point9 = null;
+	public GameObject point10 = null;
+	public GameObject point11 = null;
 
 	public GameObject DinDjarin = null;
 	public GameObject Grogu = null;
@@ -27,14 +35,15 @@ public class MainMenuNPCController : DiamondComponent
 		toGoVector = point1.transform.localPosition;
 		toRotateQuaternion = point1.transform.localRotation;
 
-		pointArray = new GameObject[] { point1, point2, point3 };
+		pointArray = new GameObject[] { point1, point2, point3, point4, point5, point6, point7, point8, point9, point10, point11 };
 		NPCS = new GameObject[] { DinDjarin, Grogu, Bantha, Skytrooper };
 	}
+
 	public void Update()
 	{
-		if (Mathf.Distance(NPCS[WhichNPC].transform.localPosition, toGoVector) < 0.5f)
+		if (Mathf.Distance(NPCS[WhichNPC].transform.localPosition, toGoVector) < 0.2f)
 		{
-			timer = 0;
+			//timer = 0;
 			pointCount++;
 			if (pointCount >= pointArray.Length)
             {
@@ -45,7 +54,7 @@ public class MainMenuNPCController : DiamondComponent
 			toGoVector = pointArray[pointCount].transform.localPosition;
 			toRotateQuaternion = pointArray[pointCount].transform.globalRotation;
 
-			speed = Mathf.Distance(NPCS[WhichNPC].transform.localPosition, toGoVector) / 10;
+			//speed = Mathf.Distance(NPCS[WhichNPC].transform.localPosition, toGoVector) / 10;
 
 		}
 
@@ -54,7 +63,7 @@ public class MainMenuNPCController : DiamondComponent
 			NPCS[WhichNPC].transform.localPosition += (toGoVector - NPCS[WhichNPC].transform.localPosition).normalized * Time.deltaTime * speed;
 			//NPCS[WhichNPC].transform.localRotation = Quaternion.Slerp(NPCS[WhichNPC].transform.localRotation, toRotateQuaternion, Time.deltaTime);
 		}
-		timer += Time.deltaTime;
+		//timer += Time.deltaTime;
 	}
 
 	public void PutInPlaceNPCs()
