@@ -4,6 +4,7 @@
 #include "Component.h"
 
 #include"MathGeoLib/include/Math/float4x4.h"
+#include"MathGeoLib/include/Geometry/Frustum.h"
 
 class ResourceShader;
 class ResourceMaterial;
@@ -13,6 +14,8 @@ class C_AreaLight : public Component
 public:
 	C_AreaLight(GameObject* gameObject);
 	~C_AreaLight() override;
+
+	void Update() override;
 
 #ifndef STANDALONE
 	bool OnEditor() override;
@@ -40,6 +43,13 @@ public:
 	float4x4 spaceMatrixOpenGL;
 
 private:
+	unsigned int depthCubemap = 0;
+	unsigned int depthCubemapFBO = 0;
+
+	Frustum shadowTransforms[6];
+
+	bool calculateShadows = true;
+
 	float3 lightColor;
 	float3 ambientLightColor;
 	float lightIntensity;

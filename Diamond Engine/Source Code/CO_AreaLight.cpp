@@ -1,19 +1,24 @@
 #include "CO_AreaLight.h"
 
 #include "Application.h"
-#include"MO_Renderer3D.h"
+#include "MO_Renderer3D.h"
 
-#include"GameObject.h"
-#include"CO_Transform.h"
+#include "GameObject.h"
+#include "CO_Transform.h"
+#include "CO_Camera.h"
 
 #include "RE_Material.h"
 #include "RE_Shader.h"
 
 #include "ImGui/imgui.h"
 
+const unsigned int SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
 
 C_AreaLight::C_AreaLight(GameObject* gameObject) : Component(gameObject),
 	spaceMatrixOpenGL(float4x4::identity),
+	depthCubemap(0u),
+	depthCubemapFBO(0u),
+	calculateShadows(true),
 	lightColor(float3::one),
 	ambientLightColor(float3::one),
 	lightIntensity(1.0f),
@@ -23,6 +28,42 @@ C_AreaLight::C_AreaLight(GameObject* gameObject) : Component(gameObject),
 {
 	name = "Area Light";
 
+	//Prepare depth cubemap
+	glGenFramebuffers(1, &depthCubemapFBO);
+
+	glGenTextures(1, &depthCubemap);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, depthCubemap);
+
+	for (unsigned int i = 0; i < 6; ++i)
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_DEPTH_COMPONENT, SHADOW_WIDTH, SHADOW_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, depthCubemapFBO);
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthCubemap, 0);
+	glDrawBuffer(GL_NONE);
+	glReadBuffer(GL_NONE);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	for (int i = 0; i < 6; ++i)
+	{
+		shadowTransforms[i].type = FrustumType::PerspectiveFrustum;
+		shadowTransforms[i].nearPlaneDistance = 1.0f;
+		shadowTransforms[i].farPlaneDistance = 500.0f;
+		shadowTransforms[i].pos = float3::zero;
+	}
+	
+	C_Camera::LookAt(shadowTransforms[0], float3(1.0,  0.0,  0.0));
+	C_Camera::LookAt(shadowTransforms[1], float3(-1.0, 0.0,  0.0));
+	C_Camera::LookAt(shadowTransforms[2], float3(0.0,  1.0,  0.0));
+	C_Camera::LookAt(shadowTransforms[3], float3(0.0, -1.0,  0.0));
+	C_Camera::LookAt(shadowTransforms[4], float3(0.0,  0.0,  1.0));
+	C_Camera::LookAt(shadowTransforms[5], float3(0.0,  0.0,  -1.0));
+
 	//Add light
 	EngineExternal->moduleRenderer3D->AddAreaLight(this);
 }
@@ -30,8 +71,21 @@ C_AreaLight::C_AreaLight(GameObject* gameObject) : Component(gameObject),
 
 C_AreaLight::~C_AreaLight()
 {
+	if (depthCubemapFBO != 0)
+		glDeleteFramebuffers(1, (GLuint*)&depthCubemapFBO);
+
+	if (depthCubemap != 0)
+		glDeleteTextures(1, (GLuint*)&depthCubemap);
+
 	//Remove light
 	EngineExternal->moduleRenderer3D->RemoveAreaLight(this);
+}
+
+
+void C_AreaLight::Update()
+{
+	for (int i = 0; i < 6; ++i)
+		shadowTransforms[i].pos = gameObject->transform->globalTransform.TranslatePart();
 }
 
 
@@ -53,6 +107,11 @@ bool C_AreaLight::OnEditor()
 
 		ImGui::DragFloat("Light fade distance", &fadeDistance, 0.1, 0.0f);
 		ImGui::DragFloat("Light max distance", &maxDistance, 0.1, 0.0f);
+
+		ImGui::NewLine();
+
+		ImGui::Checkbox("Calculate shadows", &calculateShadows);
+
 		return true;
 	}
 
@@ -116,6 +175,8 @@ void C_AreaLight::SaveData(JSON_Object* nObj)
 	data.WriteFloat("specularValue", specularValue);
 	data.WriteFloat("fadeDistance", fadeDistance);
 	data.WriteFloat("maxDistance", maxDistance);
+
+	data.WriteBool("calculateShadows", calculateShadows);
 }
 
 
@@ -129,6 +190,8 @@ void C_AreaLight::LoadData(DEConfig& nObj)
 	specularValue = nObj.ReadFloat("specularValue");
 	fadeDistance = nObj.ReadFloat("fadeDistance");
 	maxDistance = nObj.ReadFloat("maxDistance");
+
+	calculateShadows = nObj.ReadBool("calculateShadows");
 }
 
 
@@ -201,15 +264,15 @@ void C_AreaLight::PushLightUniforms(ResourceMaterial* material, int lightNumber)
 	//glUniform1i(glGetUniformLocation(material->shader->shaderProgramID, shadowMap), used_textures);
 	sprintf(buffer, "areaLightInfo[%i].calculateShadows", lightNumber);
 	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
-	glUniform1i(modelLoc, false);
+	glUniform1i(modelLoc, calculateShadows);
 
-	/*if (calculateShadows == true)
+	if (calculateShadows == true)
 	{
 		glActiveTexture(GL_TEXTURE5);
 		modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "shadowMap");
 		glUniform1i(modelLoc, 5);
-		glBindTexture(GL_TEXTURE_2D, depthMap);
-	}*/
+		glBindTexture(GL_TEXTURE_2D, depthCubemap);
+	}
 }
 
 
