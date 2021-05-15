@@ -3,7 +3,7 @@ using DiamondEngine;
 
 public class AtackBosslv2 : DiamondComponent
 {
-	public float damage = 20f;
+	public float damage = 0.0f;
 
 	public void Update()
 	{
