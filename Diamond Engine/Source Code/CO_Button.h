@@ -30,6 +30,9 @@ public:
 	}
 
 	void ChangeSprite(BUTTONSTATE num_sprite, ResourceTexture* sprite);
+
+	void PlayHoveredSFX();
+	void PlayPressedSFX();
 #ifndef STANDALONE
 	void ChangeScript(const char* script_name);
 	bool OnEditor() override;
@@ -47,4 +50,7 @@ private:
 	BUTTONSTATE num_sprite_used;
 	std::string script_name;
 	C_AudioSource* thisAudSource;
+
+	std::string hoverSFX;
+	std::string pressedSFX;
 };
