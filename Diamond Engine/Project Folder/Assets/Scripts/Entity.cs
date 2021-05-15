@@ -98,7 +98,10 @@ public enum STATUS_TYPE
     // Boons
     CAD_BANE_SOH,
     CAD_BANE_BOOTS,
-
+    MANDO_QUICK_DRAW,
+    FENNEC_SR,
+    //BOBBA_AMMO
+    BOSSK_STR,
 }
 
 public enum STATUS_APPLY_TYPE

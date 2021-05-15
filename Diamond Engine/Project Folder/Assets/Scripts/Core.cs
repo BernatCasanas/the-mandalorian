@@ -200,6 +200,8 @@ public class Core : Entity
     private bool snipercharge = true;
 
     private ACTION lastAction = ACTION.NONE;
+    private bool hasDashed = false;
+
     public void Awake()
     {
         #region VARIABLES WITH DEPENDENCIES
@@ -287,6 +289,7 @@ public class Core : Entity
 
             ConfigFunctionality.UpdateDisplayText();
             lastAction = ACTION.NONE;
+            hasDashed = false;
             LoadBuffs();
             hud = InternalCalls.FindObjectWithName("HUD");
 
@@ -1118,11 +1121,11 @@ public class Core : Entity
             currSniperLaserColor = defaultSniperLaserColor;
 
         }
-        else if (chargeTimer > timeToPerfectCharge && chargeTimer < timeToPerfectChargeEnd)
+        else if (chargeTimer > timeToPerfectCharge && chargeTimer < timeToPerfectChargeEnd * sniperShotIntervalModifier)
         {
             currSniperLaserColor = new Vector3(1, 1, 0);
         }
-        else if (chargeTimer > timeToPerfectChargeEnd)
+        else if (chargeTimer > timeToPerfectChargeEnd * sniperShotIntervalModifier)
         {
             changeColorSniperTimer += myDeltaTime;
 
@@ -1178,7 +1181,7 @@ public class Core : Entity
 
         UpdateAnimationSpd(normalShootSpeed * speedMult);
 
-        if (chargeTimer > timeToPerfectCharge && chargeTimer < timeToPerfectChargeEnd)
+        if (chargeTimer > timeToPerfectCharge && chargeTimer < timeToPerfectChargeEnd * sniperShotIntervalModifier)
         {
             perfectShot = true;
             Debug.Log("Frame Perfect Charge!");
@@ -1280,6 +1283,7 @@ public class Core : Entity
         Audio.StopAudio(gameObject);
         Audio.PlayAudio(gameObject, "Play_Dash");
         Animator.Play(gameObject, "Dash", speedMult);
+        hasDashed = true;
         DisableBlaster();
         UpdateAnimationSpd(speedMult);
 
@@ -1933,6 +1937,8 @@ public class Core : Entity
                 supercharged = 2;
         }
         float ChadBaneModifier = 1;
+        float AfterDashModifier = 1;
+
         Debug.Log(lastAction.ToString());
         if (HasStatus(STATUS_TYPE.CAD_BANE_SOH) && lastAction != ACTION.SHOOT_BLASTER)
         {
@@ -1940,7 +1946,14 @@ public class Core : Entity
             Debug.Log("Chad Bane Mod = " + ChadBaneModifier.ToString());
             lastAction = ACTION.SHOOT_BLASTER;
         }
-        float Damage = BlasterDamageMult * BlasterDamagePerHpMult * DamagePerHeatMult * RawDamageMult * supercharged * ChadBaneModifier;
+        if (hasDashed)
+        {
+            hasDashed = false;
+            AfterDashModifier += 0.25f;
+        }
+      
+
+        float Damage = BlasterDamageMult * BlasterDamagePerHpMult * DamagePerHeatMult * RawDamageMult * supercharged * ChadBaneModifier * AfterDashModifier;
 
         //if (skill_groguIncreaseDamageActive)
         //{
@@ -2171,6 +2184,14 @@ public class Core : Entity
 
                 }
                 break;
+            case STATUS_TYPE.BOSSK_STR:
+                {
+                    statusToInit.statChange = 1 * (statusToInit.severity) / 100;
+                    this.DamageRed += statusToInit.statChange;
+                    Debug.Log("Damage red = " + this.DamageRed.ToString());
+
+                }
+                break;
             case STATUS_TYPE.GROGU_COST:
                 {
                     statusToInit.statChange = statusToInit.severity / 100;
@@ -2209,6 +2230,12 @@ public class Core : Entity
                 }
                 break;
             case STATUS_TYPE.SP_INTERVAL:
+                {
+                    statusToInit.statChange = statusToInit.severity / 100;
+                    sniperShotIntervalModifier += statusToInit.statChange;
+                }
+                break;
+            case STATUS_TYPE.FENNEC_SR:
                 {
                     statusToInit.statChange = statusToInit.severity / 100;
                     sniperShotIntervalModifier += statusToInit.statChange;
@@ -2396,6 +2423,13 @@ public class Core : Entity
 
                 }
                 break;
+            case STATUS_TYPE.BOSSK_STR:
+                {
+                    this.DamageRed -= statusToDelete.statChange;
+                    Debug.Log("Damage red = " + this.DamageRed.ToString());
+
+                }
+                break;
             case STATUS_TYPE.DMG_PER_HEAT:
                 {
                     this.ForceRegentPerHPMod = 0;
@@ -2442,6 +2476,11 @@ public class Core : Entity
                 }
                 break;
             case STATUS_TYPE.SP_INTERVAL:
+                {
+                    sniperShotIntervalModifier -= statusToDelete.statChange;
+                }
+                break;
+            case STATUS_TYPE.FENNEC_SR:
                 {
                     sniperShotIntervalModifier -= statusToDelete.statChange;
                 }

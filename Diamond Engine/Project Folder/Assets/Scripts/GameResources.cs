@@ -139,19 +139,67 @@ public class CadBaneBoots : GameResources
     {
         if (Core.instance != null)
         {
-
-            Core.instance.AddStatus(STATUS_TYPE.CAD_BANE_BOOTS, STATUS_APPLY_TYPE.ADDITIVE, 30f, 0, true);
+            Core.instance.AddStatus(STATUS_TYPE.CAD_BANE_BOOTS, STATUS_APPLY_TYPE.ADDITIVE, 5f, 0, true);
             //Counter.SumToCounterType(Counter.CounterTypes.CAD_BANE_SOH);
             if (!Core.boons.Contains(STATUS_TYPE.CAD_BANE_BOOTS))
                 Core.boons.Add(STATUS_TYPE.CAD_BANE_BOOTS);
         }
-        //else
-        //{
-        //    Debug.Log("ERROR!! Din Djarin has no player health component");
-        //}
+
 
     }
 }
+
+public class MandoQuickDraw : GameResources
+{
+    public MandoQuickDraw() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "first attack after a dash does 25% more damage") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+
+            Core.instance.AddStatus(STATUS_TYPE.MANDO_QUICK_DRAW, STATUS_APPLY_TYPE.ADDITIVE, 25F, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.MANDO_QUICK_DRAW))
+                Core.boons.Add(STATUS_TYPE.MANDO_QUICK_DRAW);
+        }
+
+    }
+}
+
+// TO DO
+//public class BobbaAmmo : GameResources
+//{
+//    public BobbaAmmo() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "first attack after a dash does 25% more damage") { }
+
+//    public override void Use()
+//    {
+//        if (Core.instance != null)
+//        {
+
+//            Core.instance.AddStatus(STATUS_TYPE.BOBBA_AMMO, STATUS_APPLY_TYPE.ADDITIVE, 25F, 0, true);
+//            if (!Core.boons.Contains(STATUS_TYPE.BOBBA_AMMO))
+//                Core.boons.Add(STATUS_TYPE.BOBBA_AMMO);
+//        }
+
+//    }
+//}
+
+public class BosskStrength : GameResources
+{
+    public BosskStrength() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "mitigate 10% of the damage received (rounded down).") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.BOSSK_STR, STATUS_APPLY_TYPE.ADDITIVE, 25F, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.BOSSK_STR))
+                Core.boons.Add(STATUS_TYPE.BOSSK_STR);
+        }
+
+    }
+}
+
 static class BoonDataHolder
 {
     static BoonDataHolder()
@@ -170,6 +218,9 @@ static class BoonDataHolder
             new IncrementMaxHpBoon(),
             new CadBaneSoH(),
             new CadBaneBoots(),
+            new MandoQuickDraw(),
+            //new BobbaAmmo(),
+            new BosskStrength(),
             //TODO Add boons here
         };
 
