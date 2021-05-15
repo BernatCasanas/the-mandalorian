@@ -76,22 +76,22 @@ public class BarrierSkill : DiamondComponent
             once = false;
         }
 
+        float timemod = 0;
+
         if (Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.GRO_COVER))
         {
-            if (currTimeAlive <= 0.0f + Core.instance.GetStatusData(STATUS_TYPE.GRO_COVER).severity)
-            {
-                Die();
-                once = true;
-            }
+            timemod += Core.instance.GetStatusData(STATUS_TYPE.GRO_COVER).severity;
         }
-        else
+        if (Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.LUMINARA_FORCE))
         {
-            if (currTimeAlive <= 0.0f)
+            timemod += Core.instance.GetStatusData(STATUS_TYPE.LUMINARA_FORCE).severity;
+        }
+        if (currTimeAlive <= 0.0f - timemod)
             {
                 Die();
                 once = true;
             }
-        }
+        
 
        
     }

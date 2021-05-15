@@ -158,7 +158,7 @@ public class MandoQuickDraw : GameResources
         if (Core.instance != null)
         {
 
-            Core.instance.AddStatus(STATUS_TYPE.MANDO_QUICK_DRAW, STATUS_APPLY_TYPE.ADDITIVE, 25F, 0, true);
+            Core.instance.AddStatus(STATUS_TYPE.MANDO_QUICK_DRAW, STATUS_APPLY_TYPE.ADDITIVE, 25f, 0, true);
             if (!Core.boons.Contains(STATUS_TYPE.MANDO_QUICK_DRAW))
                 Core.boons.Add(STATUS_TYPE.MANDO_QUICK_DRAW);
         }
@@ -192,13 +192,125 @@ public class BosskStrength : GameResources
     {
         if (Core.instance != null)
         {
-            Core.instance.AddStatus(STATUS_TYPE.BOSSK_STR, STATUS_APPLY_TYPE.ADDITIVE, 25F, 0, true);
+            Core.instance.AddStatus(STATUS_TYPE.BOSSK_STR, STATUS_APPLY_TYPE.ADDITIVE, 10f, 0, true);
             if (!Core.boons.Contains(STATUS_TYPE.BOSSK_STR))
                 Core.boons.Add(STATUS_TYPE.BOSSK_STR);
         }
 
     }
 }
+public class RexSecBlaster : GameResources
+{
+    public RexSecBlaster() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "when switching weapons, you get 5% additive haste for 5 seconds, stackable up to 20%.") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.REX_SEC_BLASTER, STATUS_APPLY_TYPE.ADDITIVE, 5f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.REX_SEC_BLASTER))
+                Core.boons.Add(STATUS_TYPE.REX_SEC_BLASTER);
+        }
+
+    }
+}
+
+public class GreedoShooter : GameResources
+{
+    public GreedoShooter() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "+20% fire rate on the primary weapon") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.GREEDO_SHOOTER, STATUS_APPLY_TYPE.ADDITIVE, -20f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.GREEDO_SHOOTER))
+                Core.boons.Add(STATUS_TYPE.GREEDO_SHOOTER);
+        }
+
+    }
+}
+
+
+public class AnakinKillstreak : GameResources
+{
+    public AnakinKillstreak() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "While over a combo of 3, +5% additive Hasted") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.ANAKIN_KILLSTREAK, STATUS_APPLY_TYPE.ADDITIVE, 5f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.ANAKIN_KILLSTREAK))
+                Core.boons.Add(STATUS_TYPE.ANAKIN_KILLSTREAK);
+        }
+
+    }
+}
+
+public class EchoRecovery : GameResources
+{
+    public EchoRecovery() : base(1240646973, RewardType.REWARD_BOON, 1.0f, " +10% additive hasted state for 5 seconds after losing a combo.") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.ECHO_RECOVERY, STATUS_APPLY_TYPE.ADDITIVE, 10f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.ECHO_RECOVERY))
+                Core.boons.Add(STATUS_TYPE.ECHO_RECOVERY);
+        }
+
+    }
+}
+
+public class WattoCoolant : GameResources
+{
+    public WattoCoolant() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "dash cooldown is reduced by 40%") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.WATTO_COOLANT, STATUS_APPLY_TYPE.ADDITIVE, 40f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.WATTO_COOLANT))
+                Core.boons.Add(STATUS_TYPE.WATTO_COOLANT);
+        }
+
+    }
+}
+
+public class LuminaraForce : GameResources
+{
+    public LuminaraForce() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Grogu’s dynamic covers lasts +5 seconds") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.LUMINARA_FORCE, STATUS_APPLY_TYPE.ADDITIVE, 4f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.LUMINARA_FORCE))
+                Core.boons.Add(STATUS_TYPE.LUMINARA_FORCE);
+        }
+
+    }
+}
+public class MandoCode : GameResources
+{
+    public MandoCode() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Deal +20% damage but have -20% less max health (stackable)") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.MANDO_CODE, STATUS_APPLY_TYPE.ADDITIVE, 20f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.MANDO_CODE))
+                Core.boons.Add(STATUS_TYPE.MANDO_CODE);
+        }
+
+    }
+}
+
 
 static class BoonDataHolder
 {
@@ -214,14 +326,21 @@ static class BoonDataHolder
 
     public static GameResources[] boonType = new GameResources[] // There's probably a better way to organize this data, can't take care of it right now
         {
-            new LifeStealBoon(),
-            new IncrementMaxHpBoon(),
-            new CadBaneSoH(),
-            new CadBaneBoots(),
-            new MandoQuickDraw(),
-            //new BobbaAmmo(),
-            new BosskStrength(),
-            //TODO Add boons here
+            //new LifeStealBoon(),
+            //new IncrementMaxHpBoon(),
+            //new CadBaneSoH(),
+            //new CadBaneBoots(),
+            //new MandoQuickDraw(),
+            //// not finnished new BobbaAmmo(),
+            //new BosskStrength(),
+            //new RexSecBlaster(),
+            //new GreedoShooter(),
+            //new AnakinKillstreak(),
+            //new EchoRecovery(),
+            //new WattoCoolant(),
+            new LuminaraForce(),
+            new MandoCode(),
+           // TODO Add boons here
         };
 
     public static float boonTotalWeights;

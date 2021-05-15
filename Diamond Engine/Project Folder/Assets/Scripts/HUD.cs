@@ -394,6 +394,12 @@ public class HUD : DiamondComponent
                     }
                          
                 }
+                if (comboNumber == 3 && Core.instance.HasStatus(STATUS_TYPE.ANAKIN_KILLSTREAK))
+                {
+                    Core.instance.AddStatus(STATUS_TYPE.ANAKIN_KILLSTREAK_SUBSKILL, STATUS_APPLY_TYPE.SUBSTITUTE, Core.instance.GetStatusData(STATUS_TYPE.ANAKIN_KILLSTREAK).severity, 0, true);
+
+                }
+          
             }
                 
         }
@@ -568,7 +574,16 @@ public class HUD : DiamondComponent
                 {
                     ExtraForceRegen = 0;
                 }
-                
+                if (Core.instance.HasStatus(STATUS_TYPE.ANAKIN_KILLSTREAK))
+                {
+                    Core.instance.RemoveStatus(STATUS_TYPE.ANAKIN_KILLSTREAK_SUBSKILL, true);
+
+                }
+                if (Core.instance.HasStatus(STATUS_TYPE.ECHO_RECOVERY))
+                {
+                    Core.instance.AddStatus(STATUS_TYPE.ECHO_RECOVERY_SUBSKILL, STATUS_APPLY_TYPE.SUBSTITUTE, Core.instance.GetStatusData(STATUS_TYPE.ECHO_RECOVERY).severity, 5);
+
+                }
             }
 
 

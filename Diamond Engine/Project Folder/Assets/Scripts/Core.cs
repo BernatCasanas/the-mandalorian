@@ -103,6 +103,7 @@ public class Core : Entity
     public float betweeMultiplenDashesCD = 0.12f;
     private float dashTimer = 0.0f;
     private float dashCDTimer = 0.0f;
+    private float dashCDModifier = 1.0f;
     private int currentDashes = 1;
     private float betweenDashesCDTimer = 0.0f;
     private float dashStartYPos = 0.0f;
@@ -290,6 +291,7 @@ public class Core : Entity
             ConfigFunctionality.UpdateDisplayText();
             lastAction = ACTION.NONE;
             hasDashed = false;
+            dashCDModifier = 1;
             LoadBuffs();
             hud = InternalCalls.FindObjectWithName("HUD");
 
@@ -439,8 +441,8 @@ public class Core : Entity
 
         if (dashCDTimer > 0)
         {
-            dashCDTimer -= myDeltaTime;
-            betweenDashesCDTimer -= myDeltaTime;
+            dashCDTimer -= myDeltaTime * dashCDModifier;
+            betweenDashesCDTimer -= myDeltaTime* dashCDModifier;
 
             if (dashCDTimer <= 0f)
                 currentDashes = maxDashNumber;
@@ -1019,7 +1021,15 @@ public class Core : Entity
     private void StartGadgetShoot()
     {
         Animator.Play(gameObject, "Shoot", gadgetShootSkill * speedMult);
+
         lastAction = ACTION.SHOOT_GRENADE;
+
+        if (HasStatus(STATUS_TYPE.REX_SEC_BLASTER) && GetStatusData(STATUS_TYPE.REX_SEC_BLASTER_SUBSKILL).severity < 20)
+        {
+ 
+            AddStatus(STATUS_TYPE.REX_SEC_BLASTER_SUBSKILL, STATUS_APPLY_TYPE.ADDITIVE, GetStatusData(STATUS_TYPE.REX_SEC_BLASTER).severity, 5);
+        }
+
         if (blaster != null)
         {
             blaster.Enable(true);
@@ -1541,14 +1551,7 @@ public class Core : Entity
         ret = Math.Min(ret, baseFireRate * fireRateMultCap * 0.45f);
         ret = Math.Max(ret, baseFireRate * 0.75f);
 
-        if (Core.instance.HasStatus(STATUS_TYPE.COMBO_FIRE_RATE))
-        {
-            Debug.Log("FireRate: " + FireRateMult.ToString());
-        }
-        if (Core.instance.HasStatus(STATUS_TYPE.COMBO_DAMAGE))
-        {
-            Debug.Log("Damage: " + RawDamageMult.ToString());
-        }
+      
 
         return ret * FireRateMult;
     }
@@ -1939,13 +1942,22 @@ public class Core : Entity
         float ChadBaneModifier = 1;
         float AfterDashModifier = 1;
 
-        Debug.Log(lastAction.ToString());
-        if (HasStatus(STATUS_TYPE.CAD_BANE_SOH) && lastAction != ACTION.SHOOT_BLASTER)
+        if(lastAction != ACTION.SHOOT_BLASTER)
         {
-            ChadBaneModifier = 1 + GetStatusData(STATUS_TYPE.CAD_BANE_SOH).severity / 100;
-            Debug.Log("Chad Bane Mod = " + ChadBaneModifier.ToString());
             lastAction = ACTION.SHOOT_BLASTER;
+
+            if (HasStatus(STATUS_TYPE.REX_SEC_BLASTER) && GetStatusData(STATUS_TYPE.REX_SEC_BLASTER_SUBSKILL).severity < 20)
+            {
+                AddStatus(STATUS_TYPE.REX_SEC_BLASTER_SUBSKILL, STATUS_APPLY_TYPE.ADDITIVE, GetStatusData(STATUS_TYPE.REX_SEC_BLASTER).severity, 5);
+            }
+
+            if (HasStatus(STATUS_TYPE.CAD_BANE_SOH))
+            {
+                ChadBaneModifier = 1 + GetStatusData(STATUS_TYPE.CAD_BANE_SOH).severity / 100;
+                Debug.Log("Chad Bane Mod = " + ChadBaneModifier.ToString());
+            }
         }
+       
         if (hasDashed)
         {
             hasDashed = false;
@@ -1974,11 +1986,19 @@ public class Core : Entity
     {
         //We apply modifications to the damage based on the skill actives in the talent tree
         float ChadBaneModifier = 1;
-        if (HasStatus(STATUS_TYPE.CAD_BANE_SOH) && lastAction != ACTION.SHOOT_SNIPER)
+        if(lastAction != ACTION.SHOOT_SNIPER)
         {
-            ChadBaneModifier = 1 + GetStatusData(STATUS_TYPE.CAD_BANE_SOH).severity / 100;
             lastAction = ACTION.SHOOT_SNIPER;
-            Debug.Log("Chad Bane Mod = " + ChadBaneModifier.ToString());
+            if (HasStatus(STATUS_TYPE.REX_SEC_BLASTER) && GetStatusData(STATUS_TYPE.REX_SEC_BLASTER_SUBSKILL).severity < 20)
+            {
+                AddStatus(STATUS_TYPE.REX_SEC_BLASTER_SUBSKILL, STATUS_APPLY_TYPE.ADDITIVE, GetStatusData(STATUS_TYPE.REX_SEC_BLASTER).severity, 5);
+            }
+            if (HasStatus(STATUS_TYPE.CAD_BANE_SOH))
+            {
+                ChadBaneModifier = 1 + GetStatusData(STATUS_TYPE.CAD_BANE_SOH).severity / 100;
+                Debug.Log("Chad Bane Mod = " + ChadBaneModifier.ToString());
+            }
+
         }
 
         float Damage = SniperDamageMult * SniperDamagePerHpMult * DamagePerHeatMult * RawDamageMult * ChadBaneModifier;
@@ -2106,6 +2126,33 @@ public class Core : Entity
                     this.myDeltaTime = Time.deltaTime * speedMult;
                 }
                 break;
+            case STATUS_TYPE.REX_SEC_BLASTER_SUBSKILL:
+                {
+                    statusToInit.statChange = statusToInit.severity / 100;
+                   
+                    speedMult += statusToInit.statChange;
+                    Debug.Log("mult = " + speedMult.ToString() + "statChange = " + statusToInit.statChange.ToString());
+                    myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
+            case STATUS_TYPE.ANAKIN_KILLSTREAK_SUBSKILL:
+                {
+                    statusToInit.statChange = statusToInit.severity / 100;
+
+                    speedMult += statusToInit.statChange;
+                    Debug.Log("mult = " + speedMult.ToString() + "statChange = " + statusToInit.statChange.ToString());
+                    myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
+            case STATUS_TYPE.ECHO_RECOVERY_SUBSKILL:
+                {
+                    statusToInit.statChange = statusToInit.severity / 100;
+
+                    speedMult += statusToInit.statChange;
+                    Debug.Log("mult = " + speedMult.ToString() + "statChange = " + statusToInit.statChange.ToString());
+                    myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
             case STATUS_TYPE.ENEMY_DAMAGE_DOWN:
                 {
 
@@ -2113,58 +2160,68 @@ public class Core : Entity
                 break;
             case STATUS_TYPE.MOV_SPEED:
                 {
-                    statusToInit.statChange = this.MovspeedMult * statusToInit.severity / 100;
+                    statusToInit.statChange = statusToInit.severity / 100;
                     this.MovspeedMult += statusToInit.statChange;
                     //  Debug.Log(this.MovspeedMult.ToString());
                 }
                 break;
+
             case STATUS_TYPE.OVERHEATCAP:
                 {
-                    statusToInit.statChange = this.OverheatMult * (statusToInit.severity) / 100;
+                    statusToInit.statChange = (statusToInit.severity) / 100;
                     this.OverheatMult += statusToInit.statChange;
                     // Debug.Log(this.OverheatMult.ToString());
                 }
                 break;
             case STATUS_TYPE.BLASTER_DAMAGE:
                 {
-                    statusToInit.statChange = this.BlasterDamageMult * (statusToInit.severity) / 100;
+                    statusToInit.statChange = (statusToInit.severity) / 100;
                     this.BlasterDamageMult += statusToInit.statChange;
                     // Debug.Log(this.DamageMult.ToString());
                 }
                 break;
             case STATUS_TYPE.GRENADE_DAMAGE:
                 {
-                    statusToInit.statChange = this.GrenadeDamageMult * (statusToInit.severity) / 100;
+                    statusToInit.statChange = (statusToInit.severity) / 100;
                     this.GrenadeDamageMult += statusToInit.statChange;
                     // Debug.Log(this.DamageMult.ToString());
                 }
                 break;
             case STATUS_TYPE.SNIPER_DAMAGE:
                 {
-                    statusToInit.statChange = this.SniperDamageMult * (statusToInit.severity) / 100;
+                    statusToInit.statChange = (statusToInit.severity) / 100;
                     this.SniperDamageMult += statusToInit.statChange;
                     // Debug.Log(this.DamageMult.ToString());
                 }
                 break;
             case STATUS_TYPE.DMG_TO_BOSSES:
                 {
-                    statusToInit.statChange = this.DamageToBosses * (statusToInit.severity) / 100;
+                    statusToInit.statChange =(statusToInit.severity) / 100;
                     this.DamageToBosses += statusToInit.statChange;
                     //  Debug.Log(this.DamageToBosses.ToString());
                 }
                 break;
             case STATUS_TYPE.MAX_HP:
                 {
-                    if (Core.instance != null)
+                    PlayerHealth myHealth = gameObject.GetComponent<PlayerHealth>();
+                    if (myHealth != null && PlayerHealth.currMaxHealth <= 100)
                     {
-                        PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
-                        if (myHealth != null && PlayerHealth.currMaxHealth <= 100)
-                        {
-                            statusToInit.statChange = statusToInit.severity * PlayerHealth.currMaxHealth / 100;
-                            myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth + statusToInit.statChange), true);
-
-                        }
+                        statusToInit.statChange = statusToInit.severity * PlayerHealth.currMaxHealth / 100;
+                        myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth + statusToInit.statChange), true);
                     }
+                   
+                }
+                break;
+            case STATUS_TYPE.MANDO_CODE:
+                {
+                    PlayerHealth myHealth = gameObject.GetComponent<PlayerHealth>();
+                    if (myHealth != null)
+                    {
+                        statusToInit.statChange -= 20 * PlayerHealth.currMaxHealth / 100;
+                        myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth + statusToInit.statChange), false);
+
+                    }
+                    this.RawDamageMult += statusToInit.severity / 100;
 
                 }
                 break;
@@ -2204,6 +2261,12 @@ public class Core : Entity
                     statusToInit.statChange = statusToInit.severity / 100;
                     this.FireRateMult += statusToInit.statChange;
 
+                }
+                break;
+            case STATUS_TYPE.GREEDO_SHOOTER:
+                {
+                    statusToInit.statChange = statusToInit.severity / 100;
+                    this.FireRateMult += statusToInit.statChange;
                 }
                 break;
             case STATUS_TYPE.FIRE_RATE_PERMANENT:
@@ -2247,7 +2310,12 @@ public class Core : Entity
                     MaxForceModifier += statusToInit.statChange;
                 }
                 break;
-          
+            case STATUS_TYPE.WATTO_COOLANT:
+                {
+                    statusToInit.statChange = statusToInit.severity / 100;
+                    dashCDModifier += statusToInit.statChange;
+                }
+                break;
             default:
                 break;
         }
@@ -2321,6 +2389,7 @@ public class Core : Entity
 
                 }
                 break;
+            
             default:
                 break;
         }
@@ -2340,6 +2409,27 @@ public class Core : Entity
             case STATUS_TYPE.ACCELERATED:
                 {
                     this.speedMult -= statusToDelete.severity;
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
+            case STATUS_TYPE.REX_SEC_BLASTER_SUBSKILL:
+                {
+                    this.speedMult -= statusToDelete.statChange;
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
+            case STATUS_TYPE.ANAKIN_KILLSTREAK_SUBSKILL:
+                {
+                    this.speedMult -= statusToDelete.statChange;
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
+            case STATUS_TYPE.ECHO_RECOVERY_SUBSKILL:
+                {
+                    this.speedMult -= statusToDelete.statChange;
 
                     this.myDeltaTime = Time.deltaTime * speedMult;
                 }
@@ -2398,15 +2488,17 @@ public class Core : Entity
                 break;
             case STATUS_TYPE.MAX_HP:
                 {
-                    if (Core.instance != null)
-                    {
-                        PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
-
-
+                        PlayerHealth myHealth = gameObject.GetComponent<PlayerHealth>();
                         myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth - statusToDelete.statChange));
+                }
+                break;
+            case STATUS_TYPE.MANDO_CODE:
+                {
+                    PlayerHealth myHealth = gameObject.GetComponent<PlayerHealth>();
+                    myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth - statusToDelete.statChange));
+                
 
-
-                    }
+                this.RawDamageMult -= statusToDelete.severity / 100;
                 }
                 break;
             case STATUS_TYPE.DMG_RED:
@@ -2453,6 +2545,11 @@ public class Core : Entity
                     this.FireRateMult -= statusToDelete.statChange;
                 }
                 break;
+            case STATUS_TYPE.GREEDO_SHOOTER:
+                {
+                    this.FireRateMult -= statusToDelete.statChange;
+                }
+                break;
             case STATUS_TYPE.FIRE_RATE_PERMANENT:
                 {
                     this.FireRateMult -= statusToDelete.statChange;
@@ -2487,10 +2584,14 @@ public class Core : Entity
                 break;
             case STATUS_TYPE.GRO_MAX_FORCE:
                 {
-                    MaxForceModifier -= 0;
+                    MaxForceModifier = 0;
                 }
                 break;
-
+            case STATUS_TYPE.WATTO_COOLANT:
+                {
+                    dashCDModifier -= statusToDelete.statChange;
+                }
+                break;
             default:
                 break;
         }
