@@ -11,11 +11,13 @@ public class PlayerHealth : DiamondComponent
     public static int healWhenKillingAnEnemy { get; private set; }
     public GameObject character_mesh = null;
 
-    private bool die = false;
+    private bool  die = false;
     private float damaged = 0.0f;
 
     public void Awake()
     {
+        if(currHealth <= 0 && currMaxHealth <= 0)
+            ResetMaxAndCurrentHPToDefault();
     }
 
     public void Update()
@@ -266,7 +268,6 @@ public class PlayerHealth : DiamondComponent
 
     public void Die()
     {
-      
         ResetMaxAndCurrentHPToDefault();
         //TODO die
         Audio.PlayAudio(gameObject, "Play_Mando_Death");
@@ -278,7 +279,7 @@ public class PlayerHealth : DiamondComponent
     {
         healWhenKillingAnEnemy = 0;
 
-        currHealth = currMaxHealth = 100;//TODO set the starting heath here for now
+        currHealth = currMaxHealth = 100; //TODO set the starting health here for now
     }
 
     //chanceToAvoid must be a number between 0 and 100 (%)
