@@ -71,8 +71,6 @@ public class HeavyTrooper : Enemy
     public float sweepRange = 3.0f;
     public float attackRange = 5.0f;
     public float dashLength = 5.0f;
-    //public float dashLength = 20.0f;
-    //public float spearLength = 1.5f;
 
     //Timers
     private float idleTimer = 0.0f;

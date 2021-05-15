@@ -531,16 +531,16 @@ public class Deathtrooper : Enemy
 
         if (numShots == maxShots) //First Shot
         {
-            Animator.Play(gameObject, "DTH_ShootRecoil", speedMult);
+            Animator.Play(gameObject, "DTH_ShootRecoil", speedMult * 2.0f);
             if(shotgun != null)
-                Animator.Play(shotgun, "DTH_ShootRecoil", speedMult);
+                Animator.Play(shotgun, "DTH_ShootRecoil", speedMult * 2.0f);
             Audio.PlayAudio(gameObject, "Play_Deathtrooper_Recoil");
         }
         else //Second Shot
         {
-            Animator.Play(gameObject, "DTH_ShootNoRecoil", speedMult);
+            Animator.Play(gameObject, "DTH_ShootNoRecoil", speedMult * 2.0f);
             if (shotgun != null)
-                Animator.Play(shotgun, "DTH_ShootNoRecoil", speedMult);
+                Animator.Play(shotgun, "DTH_ShootNoRecoil", speedMult * 2.0f);
         }
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Deathtrooper_Shot");
