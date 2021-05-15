@@ -236,7 +236,11 @@ public static class RoomSwitch
     private static void ToWinLoseScene()
     {
         if (Core.instance != null)
+        {
             Core.instance.SaveBuffs();
+            Core.instance.RemoveBoons();
+        }
+
 
         EnemyManager.ClearList();
 

@@ -95,6 +95,10 @@ public enum STATUS_TYPE
     ENEMY_DAMAGE_DOWN,
     ENEMY_DAMAGE_UP,
 
+    // Boons
+    CAD_BANE_SOH,
+    CAD_BANE_BOOTS,
+
 }
 
 public enum STATUS_APPLY_TYPE

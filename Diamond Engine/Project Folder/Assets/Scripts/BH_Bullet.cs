@@ -29,6 +29,7 @@ public class BH_Bullet : DiamondComponent
     public ParticleSystem destroyPar = null;
     private string tagToAvoid = "None";
 
+
     public void Update()
     {
         if (started == false)
@@ -105,9 +106,8 @@ public class BH_Bullet : DiamondComponent
 
     public float GetDamage()
     {
-        if (Core.instance == null)
-            return damage;
-        return damage * Core.instance.GetBlasterDamageMod();
+       
+        return damage;
     }
 
     public void SetEntity(Entity myEntity)

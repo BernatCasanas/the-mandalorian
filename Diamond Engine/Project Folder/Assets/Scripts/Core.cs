@@ -6,7 +6,7 @@ public class Core : Entity
 {
     public static Core instance;
     private static Dictionary<STATUS_TYPE, StatusData> PlayerStatuses = new Dictionary<STATUS_TYPE, StatusData>();
-
+    public static List<STATUS_TYPE> boons = new List<STATUS_TYPE>();
     public enum STATE : int
     {
         NONE = -1,
@@ -52,6 +52,14 @@ public class Core : Entity
         HEAL,
         SNIPER_CHARGE,
         SNIPER_MUZZEL
+    }
+
+    enum ACTION : int
+    {
+        NONE = -1,
+        SHOOT_BLASTER,
+        SHOOT_SNIPER,
+        SHOOT_GRENADE
     }
 
     public GameObject shootPoint = null;
@@ -191,6 +199,7 @@ public class Core : Entity
 
     private bool snipercharge = true;
 
+    private ACTION lastAction = ACTION.NONE;
     public void Awake()
     {
         #region VARIABLES WITH DEPENDENCIES
@@ -277,6 +286,7 @@ public class Core : Entity
         {
 
             ConfigFunctionality.UpdateDisplayText();
+            lastAction = ACTION.NONE;
             LoadBuffs();
             hud = InternalCalls.FindObjectWithName("HUD");
 
@@ -605,11 +615,15 @@ public class Core : Entity
 
         if (grenadesFireRateTimer > 0.0f && grenadeCooldownIcon != null)
         {
+            if (HasStatus(STATUS_TYPE.CAD_BANE_BOOTS))
+                GetStatusData(STATUS_TYPE.CAD_BANE_BOOTS).statChange = 0;
             grenadeCooldownIcon.SetFloatUniform("currentGrenadeCooldown", grenadesFireRate - grenadesFireRateTimer);
             grenadeCooldownIcon.SetFloatUniform("maxGrenadeCooldown", grenadesFireRate);
         }
         else if (grenade_reloading && grenadesFireRateTimer <= 0.0f)
         {
+            GetStatusData(STATUS_TYPE.CAD_BANE_BOOTS).statChange = - (1 + GetStatusData(STATUS_TYPE.CAD_BANE_BOOTS).severity / 100);
+
             PlayParticles(PARTICLES.GRENADE);
             grenade_reloading = false;
             Audio.PlayAudio(secSound, "Play_Grenade_Cooldown_Finish");
@@ -903,6 +917,7 @@ public class Core : Entity
     private void StartShooting()
     {
         shootingTimer = GetCurrentFireRate();
+        
 
         if (currFireRate != shootingTimer)
         {
@@ -973,7 +988,6 @@ public class Core : Entity
     {
         inputsList.Add(INPUT.IN_SHOOT_END);
         hasShot = true;
-
         if (shootPoint == null)
         {
             Debug.Log("Shootpoint reference is null!");
@@ -1002,7 +1016,7 @@ public class Core : Entity
     private void StartGadgetShoot()
     {
         Animator.Play(gameObject, "Shoot", gadgetShootSkill * speedMult);
-
+        lastAction = ACTION.SHOOT_GRENADE;
         if (blaster != null)
         {
             blaster.Enable(true);
@@ -1012,7 +1026,9 @@ public class Core : Entity
         UpdateAnimationSpd(gadgetShootSkill * speedMult);
         gadgetShootTimer = gadgetFireRate;
         grenade_reloading = true;
-
+        if (HasStatus(STATUS_TYPE.CAD_BANE_BOOTS))
+            GetStatusData(STATUS_TYPE.CAD_BANE_BOOTS).statChange = 1 + GetStatusData(STATUS_TYPE.CAD_BANE_BOOTS).severity /100;
+       
         ReducePrimaryWeaponHeat(onGrenadeHeatReduction);
     }
 
@@ -1175,6 +1191,7 @@ public class Core : Entity
     private void ShootChargeShot(bool perfectShot, float chargeTimer)
     {
 
+
         inputsList.Add(INPUT.IN_SEC_SHOOT_END);
         --currentBullets;
         sniperRechargeTimer += bulletRechargeTime;
@@ -1242,7 +1259,7 @@ public class Core : Entity
                 //        bullet.GetComponent<ChargedBullet>().damage = GetExtraDamageWithSkill();
                 //    }  
 
-                chrBulletComp.InitChargedBullet(sniperBulletDamage);
+                chrBulletComp.InitChargedBullet(sniperBulletDamage * GetSniperDamageMod());
 
                 if (aimHelpTarget != null)
                 {
@@ -1915,8 +1932,15 @@ public class Core : Entity
             if (result <= GetStatusData(STATUS_TYPE.PRIM_CHARGED).severity)
                 supercharged = 2;
         }
-
-        float Damage = BlasterDamageMult * BlasterDamagePerHpMult * DamagePerHeatMult * RawDamageMult * supercharged;
+        float ChadBaneModifier = 1;
+        Debug.Log(lastAction.ToString());
+        if (HasStatus(STATUS_TYPE.CAD_BANE_SOH) && lastAction != ACTION.SHOOT_BLASTER)
+        {
+            ChadBaneModifier = 1 + GetStatusData(STATUS_TYPE.CAD_BANE_SOH).severity / 100;
+            Debug.Log("Chad Bane Mod = " + ChadBaneModifier.ToString());
+            lastAction = ACTION.SHOOT_BLASTER;
+        }
+        float Damage = BlasterDamageMult * BlasterDamagePerHpMult * DamagePerHeatMult * RawDamageMult * supercharged * ChadBaneModifier;
 
         //if (skill_groguIncreaseDamageActive)
         //{
@@ -1936,7 +1960,15 @@ public class Core : Entity
     public float GetSniperDamageMod()
     {
         //We apply modifications to the damage based on the skill actives in the talent tree
-        float Damage = SniperDamageMult * SniperDamagePerHpMult * DamagePerHeatMult * RawDamageMult;
+        float ChadBaneModifier = 1;
+        if (HasStatus(STATUS_TYPE.CAD_BANE_SOH) && lastAction != ACTION.SHOOT_SNIPER)
+        {
+            ChadBaneModifier = 1 + GetStatusData(STATUS_TYPE.CAD_BANE_SOH).severity / 100;
+            lastAction = ACTION.SHOOT_SNIPER;
+            Debug.Log("Chad Bane Mod = " + ChadBaneModifier.ToString());
+        }
+
+        float Damage = SniperDamageMult * SniperDamagePerHpMult * DamagePerHeatMult * RawDamageMult * ChadBaneModifier;
 
         return Damage;
     }
@@ -1996,7 +2028,17 @@ public class Core : Entity
 
         }
     }
-
+    public void RemoveBoons()
+    {
+        Debug.Log("REMOVING BOONS" + boons.Count.ToString());
+        for (int i = 0; i < boons.Count; i++)
+        {
+            Debug.Log(boons[i].ToString());
+            PlayerStatuses.Remove(boons[i]);
+            boons.RemoveAt(i);
+            i--;
+        }
+    }
     public void ResetBuffs()
     {
         PlayerStatuses.Clear();
@@ -2178,6 +2220,7 @@ public class Core : Entity
                     MaxForceModifier += statusToInit.statChange;
                 }
                 break;
+          
             default:
                 break;
         }
@@ -2237,6 +2280,16 @@ public class Core : Entity
                     float missingHealthPercentage = missingHealth / PlayerHealth.currMaxHealth * 10;
                     ForceRegentPerHPMod = missingHealthPercentage;
 
+                    //    Debug.Log("TESTING / dmg per heat = " + DamagePerHeatMult.ToString());
+
+                }
+                break;
+            case STATUS_TYPE.CAD_BANE_BOOTS:
+                {
+                    speedMult += statusToUpdate.statChange;
+
+                    myDeltaTime = Time.deltaTime * speedMult;
+                    statusToUpdate.statChange = 0;
                     //    Debug.Log("TESTING / dmg per heat = " + DamagePerHeatMult.ToString());
 
                 }
@@ -2398,6 +2451,7 @@ public class Core : Entity
                     MaxForceModifier -= 0;
                 }
                 break;
+
             default:
                 break;
         }

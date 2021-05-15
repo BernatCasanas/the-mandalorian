@@ -12,6 +12,8 @@ namespace DiamondEngine
             NONE,
             BOKATAN_RES,
             WRECKER_RES,
+            CAD_BANE_SOH,
+            CAD_BANE_BOOTS,
             ENEMY_BANTHA,
             ENEMY_STORMTROOPER,
             RANCOR,

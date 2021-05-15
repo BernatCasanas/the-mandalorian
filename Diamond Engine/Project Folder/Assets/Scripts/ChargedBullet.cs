@@ -115,8 +115,7 @@ public class ChargedBullet : DiamondComponent
 
     public float GetDamage()
     {
-        if (Core.instance == null)
-            return damage;
-        return damage * Core.instance.GetSniperDamageMod();
+
+        return damage;
     }
 }

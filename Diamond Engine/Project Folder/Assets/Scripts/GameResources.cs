@@ -91,6 +91,7 @@ public class IncrementMaxHpBoon : GameResources
 
     public override void Use()
     {
+
         if (Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
         {
             int toIncrement = 20;
@@ -98,7 +99,7 @@ public class IncrementMaxHpBoon : GameResources
             int currentHp = Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-toIncrement);
             Debug.Log("Max HP increased to: " + currentMaxHp);
             Debug.Log("Curr HP increased to: " + currentHp);
-            Counter.SumToCounterType(Counter.CounterTypes.WRECKER_RES);
+           // Counter.SumToCounterType(Counter.CounterTypes.WRECKER_RES);
         }
         else
         {
@@ -108,6 +109,49 @@ public class IncrementMaxHpBoon : GameResources
     }
 }
 
+public class CadBaneSoH : GameResources
+{
+    public CadBaneSoH() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "first attack with a different weapon from last attack deals +33% damage.") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.CAD_BANE_SOH, STATUS_APPLY_TYPE.ADDITIVE, 30f, 0, true);
+            //Counter.SumToCounterType(Counter.CounterTypes.CAD_BANE_SOH);
+            if (!Core.boons.Contains(STATUS_TYPE.CAD_BANE_SOH))
+                Core.boons.Add(STATUS_TYPE.CAD_BANE_SOH);
+        }
+        //else
+        //{
+        //    Debug.Log("ERROR!! Din Djarin has no player health component");
+        //}
+
+    }
+}
+
+
+public class CadBaneBoots : GameResources
+{
+    public CadBaneBoots() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "+5% permanent hasted state while grenade is on CD.") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+
+            Core.instance.AddStatus(STATUS_TYPE.CAD_BANE_BOOTS, STATUS_APPLY_TYPE.ADDITIVE, 30f, 0, true);
+            //Counter.SumToCounterType(Counter.CounterTypes.CAD_BANE_SOH);
+            if (!Core.boons.Contains(STATUS_TYPE.CAD_BANE_BOOTS))
+                Core.boons.Add(STATUS_TYPE.CAD_BANE_BOOTS);
+        }
+        //else
+        //{
+        //    Debug.Log("ERROR!! Din Djarin has no player health component");
+        //}
+
+    }
+}
 static class BoonDataHolder
 {
     static BoonDataHolder()
@@ -124,6 +168,8 @@ static class BoonDataHolder
         {
             new LifeStealBoon(),
             new IncrementMaxHpBoon(),
+            new CadBaneSoH(),
+            new CadBaneBoots(),
             //TODO Add boons here
         };
 
