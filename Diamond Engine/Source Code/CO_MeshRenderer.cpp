@@ -30,7 +30,7 @@
 
 C_MeshRenderer::C_MeshRenderer(GameObject* _gm) : Component(_gm), _mesh(nullptr), normalMap(nullptr), specularMap(nullptr), bumpDepth(1.0f),
 faceNormals(false), vertexNormals(false), showAABB(false), showOBB(false), drawDebugVertices(false), drawStencil(false),
-calculatedBonesThisFrame(false), boneTransforms(), stencilEmissionAmmount(0.9f)
+calculatedBonesThisFrame(false), boneTransforms(), stencilEmissionAmmount(0.9f),drawShadows(true)
 {
 	name = "Mesh Renderer";
 	alternColor = float3::one;
@@ -198,6 +198,8 @@ void C_MeshRenderer::SaveData(JSON_Object* nObj)
 	DEJson::WriteFloat(nObj, "stencilEmission", stencilEmissionAmmount);
 	bool doNotDrawStencil = !drawStencil; //We do that because Json defaults to true if doesn't find a certain property and we don't want every object to be drawn with stencil
 	DEJson::WriteBool(nObj, "doNotDrawStencil", doNotDrawStencil);
+	DEJson::WriteBool(nObj, "drawShadows", drawShadows);
+
 }
 
 void C_MeshRenderer::LoadData(DEConfig& nObj)
@@ -228,6 +230,7 @@ void C_MeshRenderer::LoadData(DEConfig& nObj)
 		specularMap = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("SpecularMapUID"), texName.c_str()));
 
 	bumpDepth = nObj.ReadFloat("bumpDepth");
+	drawShadows = nObj.ReadBool("drawShadows");
 
 	gameObject->transform->UpdateBoxes();
 }
@@ -367,6 +370,8 @@ bool C_MeshRenderer::OnEditor()
 
 		if (drawStencil)
 			ImGui::ColorPicker3("No texture Stencil color: ", &alternColorStencil.x);
+
+		ImGui::Checkbox("Draw Shadows", &drawShadows);
 
 		return true;
 	}
@@ -544,4 +549,9 @@ void C_MeshRenderer::SetStencilEmissionAmmount(float ammount)
 float C_MeshRenderer::GetStencilEmssionAmmount() const
 {
 	return stencilEmissionAmmount;
+}
+
+bool C_MeshRenderer::GetDrawShadows() const
+{
+	return drawShadows;
 }

@@ -277,14 +277,20 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 				{
 					for (size_t j = 0; j < renderQueue.size(); ++j)
 					{
-						float distance = directLightVector[i]->orthoFrustum.pos.DistanceSq(renderQueue[j]->globalOBB.pos);
-						renderQueueMap.emplace(distance, renderQueue[j]);
+						if (renderQueue[j]->GetDrawShadows())
+						{
+							float distance = directLightVector[i]->orthoFrustum.pos.DistanceSq(renderQueue[j]->globalOBB.pos);
+							renderQueueMap.emplace(distance, renderQueue[j]);
+						}
 					}
 
 					for (size_t j = 0; j < renderQueuePostStencil.size(); ++j)
 					{
-						float distance = directLightVector[i]->orthoFrustum.pos.DistanceSq(renderQueuePostStencil[j]->globalOBB.pos);
-						renderQueueMap.emplace(distance, renderQueuePostStencil[j]);
+						if (renderQueue[j]->GetDrawShadows())
+						{
+							float distance = directLightVector[i]->orthoFrustum.pos.DistanceSq(renderQueuePostStencil[j]->globalOBB.pos);
+							renderQueueMap.emplace(distance, renderQueuePostStencil[j]);
+						}
 					}
 
 					if (!renderQueueMap.empty())

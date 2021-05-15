@@ -41,6 +41,8 @@ public:
 	void SetStencilEmissionAmmount(float ammount);
 	float GetStencilEmssionAmmount() const;
 
+	bool GetDrawShadows()const;
+
 public:
 	bool drawStencil;
 	float3 alternColor;
@@ -58,4 +60,5 @@ private:
 	std::vector<float4x4> boneTransforms;
 	bool calculatedBonesThisFrame;
 	float stencilEmissionAmmount;
+	bool drawShadows;
 };
