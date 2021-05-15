@@ -116,7 +116,10 @@ public class SkyTrooperShot : DiamondComponent
 		if ((distanceZ < 0 && velocity.z > 0) || (distanceZ > 0 && velocity.z < 0))
 			velocity.z = -velocity.z;
 
-		GameObject hitColliderObject = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", targetPosition, new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
+		GameObject hitColliderObject = InternalCalls.CreatePrefab("Library/Prefabs/203996773.prefab", 
+												new Vector3(targetPosition.x, targetPosition.y + 0.1f, targetPosition.z), 
+												new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), 
+												new Vector3(1.0f, 1.0f, 1.0f));
 
 		if (hitColliderObject != null)
 			hitCollider = hitColliderObject.GetComponent<SkytrooperHitCollider>();

@@ -27,6 +27,7 @@ public class BH_Bullet : DiamondComponent
     private Entity entity = null;
 
     public ParticleSystem destroyPar = null;
+    private string tagToAvoid = "None";
 
     public void Update()
     {
@@ -86,8 +87,7 @@ public class BH_Bullet : DiamondComponent
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-
-        if (triggered == false)
+        if (triggered == false && !triggeredGameObject.CompareTag(tagToAvoid))
         {
             triggered = true;
 
@@ -109,11 +109,17 @@ public class BH_Bullet : DiamondComponent
             return damage;
         return damage * Core.instance.GetBlasterDamageMod();
     }
+
     public void SetEntity(Entity myEntity)
     {
         entity = myEntity;
 
         if(entity.HasStatus(STATUS_TYPE.PRIM_RANGE))
         range_squared *= (1 + entity.GetStatusData(STATUS_TYPE.PRIM_RANGE).severity / 100);
+    }
+
+    public void SetTagToAvoid(string _tagToAvoid)
+    {
+        tagToAvoid = _tagToAvoid;
     }
 }

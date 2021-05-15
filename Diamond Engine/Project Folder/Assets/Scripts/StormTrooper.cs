@@ -112,7 +112,8 @@ public class StormTrooper : Enemy
         shotSequences = 0;
 
         idleTimer = idleTime;
-        dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
+        dieTime  = Animator.GetAnimationDuration(gameObject, "ST_Die");
+        timeBetweenShots = Animator.GetAnimationDuration(gameObject, "ST_Shoot");   
 
         myParticles = gameObject.GetComponent<StormTrooperParticles>();
     }
@@ -550,7 +551,6 @@ public class StormTrooper : Enemy
 
         if (shotTimer > 0.0f)
         {
-
             shotTimer -= myDeltaTime;
 
             if (shotTimer <= 0.0f)
@@ -609,7 +609,9 @@ public class StormTrooper : Enemy
         shooting = true;
 
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
-        bullet.GetComponent<BH_Bullet>().damage = damage;
+        BH_Bullet bulletScript = bullet.GetComponent<BH_Bullet>();
+        bulletScript.damage = damage;
+        bulletScript.SetTagToAvoid(gameObject.tag);
 
         Animator.Play(gameObject, "ST_Shoot", speedMult);
         if (blaster != null)
