@@ -2,6 +2,7 @@
 
 #include "Application.h"
 #include "MO_Renderer3D.h"
+#include "MO_Window.h"
 
 #include "GameObject.h"
 #include "CO_Transform.h"
@@ -212,7 +213,17 @@ void C_AreaLight::Disable()
 
 void C_AreaLight::StartPass()
 {
-	//Shadows thingy
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
+
+	glDisable(GL_CULL_FACE);
+	glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, depthCubemapFBO);
+
+	glClear(GL_DEPTH_BUFFER_BIT);
+
+	//Bind depth shader
 }
 
 
@@ -268,17 +279,29 @@ void C_AreaLight::PushLightUniforms(ResourceMaterial* material, int lightNumber)
 
 	if (calculateShadows == true)
 	{
+		sprintf(buffer, "areaLightInfo[%i].shadowMap", lightNumber);
 		glActiveTexture(GL_TEXTURE5);
-		modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "shadowMap");
+		modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
 		glUniform1i(modelLoc, 5);
-		glBindTexture(GL_TEXTURE_2D, depthCubemap);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, depthCubemap);
 	}
 }
 
 
 void C_AreaLight::EndPass()
 {
-	//Shadows thingy
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glActiveTexture(GL_TEXTURE5);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+
+	glActiveTexture(GL_TEXTURE0);
+
+	//Unbind depth shader
+
+	glEnable(GL_CULL_FACE);
+	glViewport(0, 0, EngineExternal->moduleWindow->s_width, EngineExternal->moduleWindow->s_height);
 }
 
 
