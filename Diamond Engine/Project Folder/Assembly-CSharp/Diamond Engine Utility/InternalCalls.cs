@@ -7,7 +7,7 @@ namespace DiamondEngine
 {
     class InternalCalls
     {
-        
+
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern void CreateGameObject(object name, object position);
 
@@ -44,6 +44,10 @@ namespace DiamondEngine
         // Enable or disable vsync
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern void VSYNCEnable(bool enable);
+
+        // Get if vsync is enabled or disabled
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public static extern bool IsVSYNCEnabled();
 
         // Change resolution, use Resolution enum
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
@@ -97,6 +101,10 @@ namespace DiamondEngine
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern void ControllerVibrationEnable(bool enable);
 
+        // Get if controller vibration is enabled or disabled
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public static extern bool IsControllerVibrationEnabled();
+
     }
     public class Input
     {
@@ -133,8 +141,8 @@ namespace DiamondEngine
         public static extern int GetLeftTrigger();
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public static extern int GetRightTrigger();  
-        
+        public static extern int GetRightTrigger();
+
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public static extern void PlayHaptic(float strength, int length);
 
@@ -406,7 +414,7 @@ namespace DiamondEngine
             string ret = "";
             for (int i = 0; i < 16; i += 4)
             {
-                ret += (this[i].ToString() + ", " + this[i + 1].ToString() + ", " + this[i + 2].ToString() + ", " + this[i+3].ToString()) + Environment.NewLine;
+                ret += (this[i].ToString() + ", " + this[i + 1].ToString() + ", " + this[i + 2].ToString() + ", " + this[i + 3].ToString()) + Environment.NewLine;
             }
 
             return ret;

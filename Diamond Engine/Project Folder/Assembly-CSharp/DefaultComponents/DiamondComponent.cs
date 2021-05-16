@@ -59,6 +59,7 @@ namespace DiamondEngine
             { typeof(SphereCollider), ComponentType.SPHERECOLLIDER},
             { typeof(Rigidbody), ComponentType.RIGIDBODY},
             { typeof(AreaLight), ComponentType.AREA_LIGHT},
+            { typeof(Checkbox), ComponentType.CHECKBOX  },
         };
 
         public DiamondComponent()

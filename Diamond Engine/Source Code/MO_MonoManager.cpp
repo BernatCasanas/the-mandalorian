@@ -28,6 +28,7 @@
 #include "CS_Pathfinder_Bindings.h"
 #include "CS_Button_Bindings.h"
 #include "CS_MeshRenderer_Bindings.h"
+#include "CS_Checkbox_Bindings.h"
 
 #include <iostream>
 #include <fstream> 
@@ -174,6 +175,7 @@ bool M_MonoManager::Init()
 
 #pragma region Settings
 	mono_add_internal_call("DiamondEngine.Config::VSYNCEnable", CS_Enable_VSYNC);
+	mono_add_internal_call("DiamondEngine.Config::IsVSYNCEnabled", CS_Get_VSYNC);
 	mono_add_internal_call("DiamondEngine.Config::SetResolution", CS_SetResolution);
 	mono_add_internal_call("DiamondEngine.Config::GetResolution", CS_GetResolution);
 	mono_add_internal_call("DiamondEngine.Config::SetWindowMode", CS_SetWindowMode);
@@ -186,7 +188,8 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.Config::GetMusicVolume", CS_GetMusicVolume);
 	mono_add_internal_call("DiamondEngine.Config::SetSFXVolume", CS_SetSFXVolume);
 	mono_add_internal_call("DiamondEngine.Config::GetSFXVolume", CS_GetSFXVolume);
-	mono_add_internal_call("DiamondEngine.Config::ControllerVibrationEnable", CS_ControllerEnableVibration);
+	mono_add_internal_call("DiamondEngine.Config::IsControllerVibrationEnabled", CS_GetControllerEnableVibration);
+	mono_add_internal_call("DiamondEngine.Config::ControllerVibrationEnable", CS_SetControllerEnableVibration);
 #pragma endregion
 
 #pragma region Pathfinder
@@ -208,6 +211,10 @@ bool M_MonoManager::Init()
 
 #pragma region Button
 	mono_add_internal_call("DiamondEngine.Button::ChangeSprites", CS_ButtonChangeSprites);
+#pragma endregion
+
+#pragma region Checkbox
+	mono_add_internal_call("DiamondEngine.Checkbox::ChangeActive", CS_CheckboxChangeActive);
 #pragma endregion
 
 	mono_add_internal_call("DiamondEngine.DiamondComponent::get_gameObject", CS_Component_Get_GO);
