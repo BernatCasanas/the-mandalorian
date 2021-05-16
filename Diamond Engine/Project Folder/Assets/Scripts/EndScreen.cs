@@ -270,6 +270,7 @@ public class EndScreen : DiamondComponent
 		{
 			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.BOKATAN_RES))
 				leftMultiplier.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.BOKATAN_RES].amount.ToString();
+
 			if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.WRECKER_RES))
 				rightMultiplier.GetComponent<Text>().text = Counter.GameCounters[Counter.CounterTypes.WRECKER_RES].amount.ToString();
 		}

@@ -42,7 +42,7 @@ public class SpawnPoint : DiamondComponent
         if (SpawnManager.instance != null)
         {
             SpawnManager.instance.AddSpawnPoint(gameObject);
-            Debug.Log("Spawn Point added");
+            //Debug.Log("Spawn Point added");
         }
 
         possibleEnemies = new List<string>();

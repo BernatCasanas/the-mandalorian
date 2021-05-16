@@ -56,14 +56,14 @@ namespace DiamondEngine
         {
             if (GameCounters.ContainsKey(type))
             {
-                Debug.Log("Current" + type.ToString());
+                Debug.Log("Current counter count: " + type.ToString());
                 GameCounters[type].amount += 1;
             }
             else 
             {
                 Counter aux = new Counter(GameCounters.Count + 1, 1, type);
                 GameCounters.Add(type, aux);
-                Debug.Log(type.ToString() + "added");
+                Debug.Log(type.ToString() + ": added");
             }
         }
 

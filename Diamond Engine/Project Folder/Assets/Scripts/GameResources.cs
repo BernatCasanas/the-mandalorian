@@ -21,6 +21,7 @@ public class GameResources
 
 }
 
+#region RESOURCES
 public class BeskarResource : GameResources
 {
     public BeskarResource() : base(1068400135, RewardType.REWARD_BESKAR, -1.0f, "The metal of the mandalorian people, second to none in the galaxy.") { }
@@ -60,9 +61,11 @@ public class MilkResource : GameResources
         PlayerResources.AddResourceBy1(RewardType.REWARD_MILK);
     }
 }
+#endregion
 
 // WE SHOULD PROBABLY CHANGE THE NAMES TO THE BOON'S ACTUAL NAME
 
+#region BOONS
 //Each time you kill an enemy heal +1 HP. - Bo Katan’s resilience
 public class LifeStealBoon : GameResources
 {
@@ -91,15 +94,14 @@ public class IncrementMaxHpBoon : GameResources
 
     public override void Use()
     {
-
         if (Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
         {
             int toIncrement = 20;
             int currentMaxHp = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementMaxHpValue(toIncrement);
             int currentHp = Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-toIncrement);
+            Counter.SumToCounterType(Counter.CounterTypes.WRECKER_RES);
             Debug.Log("Max HP increased to: " + currentMaxHp);
             Debug.Log("Curr HP increased to: " + currentHp);
-           // Counter.SumToCounterType(Counter.CounterTypes.WRECKER_RES);
         }
         else
         {
@@ -143,8 +145,6 @@ public class CadBaneBoots : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.CAD_BANE_BOOTS))
                 Core.boons.Add(STATUS_TYPE.CAD_BANE_BOOTS);
         }
-
-
     }
 }
 
@@ -194,7 +194,6 @@ public class BosskStrength : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.BOSSK_STR))
                 Core.boons.Add(STATUS_TYPE.BOSSK_STR);
         }
-
     }
 }
 public class RexSecBlaster : GameResources
@@ -308,7 +307,7 @@ public class MandoCode : GameResources
 
     }
 }
-
+#endregion
 
 static class BoonDataHolder
 {
