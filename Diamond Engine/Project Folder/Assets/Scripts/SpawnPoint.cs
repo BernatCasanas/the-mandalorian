@@ -20,14 +20,14 @@ public class SpawnPoint : DiamondComponent
     public bool spawnSkytrooper = false;
     public bool spawnLaserTurret = false;
     public bool spawnDeathrooper = false;
-    public bool spawnHeavyTrooper   = false;
+    public bool spawnHeavyTrooper = false;
 
     private string stormtrooperPath = "Library/Prefabs/489054570.prefab";
     private string banthaPath = "Library/Prefabs/978476012.prefab";
     private string skytrooperPath = "Library/Prefabs/355603284.prefab";
     private string laserTurretPath = "Library/Prefabs/1243866490.prefab";
     private string deathrooperPath = "Library/Prefabs/1439379622.prefab";
-    private string heavytrooperPath  = "Library/Prefabs/21832274.prefab";
+    private string heavytrooperPath = "Library/Prefabs/21832274.prefab";
 
     public float spawnEnemyAt = 0f;
 
@@ -52,7 +52,7 @@ public class SpawnPoint : DiamondComponent
         if (spawnSkytrooper) possibleEnemies.Add(skytrooperPath);
         if (spawnLaserTurret) possibleEnemies.Add(laserTurretPath);
         if (spawnDeathrooper) possibleEnemies.Add(deathrooperPath);
-        if (spawnHeavyTrooper)  possibleEnemies.Add(heavytrooperPath);
+        if (spawnHeavyTrooper) possibleEnemies.Add(heavytrooperPath);
 
         enemiesToSpawn = new List<float>();
         spawningEnemies = new List<float>();
@@ -118,7 +118,7 @@ public class SpawnPoint : DiamondComponent
 
         int prefabIndex = randomizer.Next(possibleEnemies.Count);
 
-        GameObject enemy = InternalCalls.CreatePrefab(possibleEnemies[prefabIndex], gameObject.transform.globalPosition, Quaternion.identity, new Vector3(1, 1, 1));
+        GameObject enemy = InternalCalls.CreatePrefab(possibleEnemies[prefabIndex], gameObject.transform.globalPosition, Quaternion.identity, null);
 
         EnemyManager.awaitingForEnemiesToSpawn--;
 
