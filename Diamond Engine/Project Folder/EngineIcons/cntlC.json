@@ -1,30 +1,30 @@
 {
     "Game Objects": [
         {
-            "name": "Text",
+            "name": "NPC Interaction ",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1972702714,
-            "ParentUID": 206711398,
-            "PrefabReference": 0,
+            "UID": 1533890886,
+            "ParentUID": 2090059379,
+            "PrefabReference": 1295968634,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
                 0,
-                0,
-                0
+                0.65379142761230469,
+                0.043018072843551636
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                0.036077074706554413,
+                2.6020990917530185e-11,
+                1.9470144246858112e-11,
+                0.99934899806976318
             ],
             "Scale": [
                 1,
-                1,
+                0.99999994039535522,
                 1
             ],
             "Components": [
@@ -33,37 +33,50 @@
                     "Active": true
                 },
                 {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -45.299999237060547,
-                        -53.099998474121094
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        6.5,
-                        11.5
-                    ]
-                },
-                {
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
                     "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
                 },
                 {
-                    "Type": 9,
+                    "Type": 20,
                     "Active": true,
-                    "text": " ",
-                    "maxTextLenght": 1476,
-                    "fontName": "Library\/Fonts\/renner-medium.ttf",
-                    "textColor": [
-                        1,
-                        1,
-                        1
+                    "systemActive": true,
+                    "looping": true,
+                    "maxDuration": 0.17499999701976776,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1718707501.dds",
+                            "texUID": 1718707501,
+                            "paEmitterName": "Empty",
+                            "paLifeTime": [
+                                3,
+                                3
+                            ],
+                            "paSize": [
+                                0.25,
+                                0.25
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "paRelative": true,
+                            "ParticleEffects": []
+                        }
                     ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
                 }
             ]
         }
