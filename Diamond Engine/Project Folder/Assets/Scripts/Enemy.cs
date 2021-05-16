@@ -8,6 +8,8 @@ public class Enemy : Entity
 	public float damage = 5.0f;
 	private float baseDamage = 1f;
     public float healthPoints = 60.0f;
+	public float damageRecieveMult { get; protected set; } = 1f;
+
 
 	protected Vector3 targetPosition = null;
 	protected float stoppingDistance = 1.0f;
@@ -25,6 +27,7 @@ public class Enemy : Entity
 		speedMult = 1f;
 		myDeltaTime = Time.deltaTime;
 		baseDamage = damage;
+		damageRecieveMult = 1f;
 
 		AddLoC();
 	}
@@ -146,6 +149,12 @@ public class Enemy : Entity
 
 				}
 				break;
+			case STATUS_TYPE.ENEMY_VULNERABLE:
+				{
+					this.damageRecieveMult += statusToInit.severity;
+
+				}
+				break;
 			case STATUS_TYPE.ENEMY_DAMAGE_UP:
 				{
 					float damageSubstracted = baseDamage * statusToInit.severity;
@@ -182,6 +191,11 @@ public class Enemy : Entity
 			case STATUS_TYPE.ENEMY_DAMAGE_DOWN:
 				{
 					this.damage += statusToDelete.statChange;
+				}
+				break;
+			case STATUS_TYPE.ENEMY_VULNERABLE:
+				{
+					this.damageRecieveMult -= statusToDelete.severity;
 				}
 				break;
 			case STATUS_TYPE.ENEMY_DAMAGE_UP:

@@ -371,7 +371,7 @@ public class Skel : Bosseslv2
                 //    damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
                 //}
 
-                TakeDamage(damageToBoss);
+                TakeDamage(damageToBoss * damageRecieveMult);
             }
 
             //damaged = 1.0f; this is HUD things
@@ -389,7 +389,7 @@ public class Skel : Bosseslv2
 
             if (bulletComp != null)
             {
-                this.AddStatus(STATUS_TYPE.ENEMY_DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
 
                 float damageToBoss = bulletComp.GetDamage();
                 if (Core.instance != null)

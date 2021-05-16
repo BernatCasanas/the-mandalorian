@@ -10,21 +10,25 @@ class ComboLvlUpEffects
     {
         colorUpdate = new Vector3(1.0f, 1.0f, 1.0f); //default color case
         forceBarPercentageRecovery = 0.0f;
+        acceleratedAmount = 0.0f;
     }
-    public ComboLvlUpEffects(Vector3 color, float forceBarRecoveryPercent)
+    public ComboLvlUpEffects(Vector3 color, float forceBarRecoveryPercent, float acceleratedAmountToAdd)
     {
         colorUpdate = color;
         forceBarPercentageRecovery = forceBarRecoveryPercent;
+        acceleratedAmount = acceleratedAmountToAdd;
     }
     // Copy constructor.
     public ComboLvlUpEffects(ComboLvlUpEffects previouscomboLvlUp)
     {
         colorUpdate = previouscomboLvlUp.colorUpdate;
         forceBarPercentageRecovery = previouscomboLvlUp.forceBarPercentageRecovery;
+        acceleratedAmount = previouscomboLvlUp.acceleratedAmount;
     }
 
     public Vector3 colorUpdate = new Vector3(1.0f, 1.0f, 1.0f); //default color case
     public float forceBarPercentageRecovery = 0.0f;
+    public float acceleratedAmount = 0.0f;
 }
 
 //used for when the combo ends; easily expanded
@@ -33,19 +37,19 @@ class ComboResetEffects
     //Constructors
     public ComboResetEffects()
     {
-        hpToRestore = 0.0f;
+        coinsToGain = 0.0f;
     }
     public ComboResetEffects(float hpToRestore)
     {
-        this.hpToRestore = hpToRestore;
+        this.coinsToGain = hpToRestore;
     }
     // Copy constructor.
     public ComboResetEffects(ComboResetEffects previouscomboReset)
     {
-        hpToRestore = previouscomboReset.hpToRestore;
+        coinsToGain = previouscomboReset.coinsToGain;
     }
 
-    public float hpToRestore = 0.0f;
+    public float coinsToGain = 0.0f;
 }
 
 public class HUD : DiamondComponent
@@ -104,20 +108,21 @@ public class HUD : DiamondComponent
     //stores the level as a key and the reward as a value
     Dictionary<int, ComboLvlUpEffects> lvlUpComboRewards = new Dictionary<int, ComboLvlUpEffects>
     {
-        { 0,   new ComboLvlUpEffects(   new Vector3(0.0f,0.8f,1.0f),    0.0f)},
-        { 3,   new ComboLvlUpEffects(   new Vector3(0.0f,1.0f,0.0f),    0.05f)},
-        { 8,   new ComboLvlUpEffects(   new Vector3(1.0f,1.0f,0.0f),    0.1f)},
-        { 15,   new ComboLvlUpEffects(   new Vector3(0.79f,0.28f,0.96f), 0.15f)},
-        { 25,   new ComboLvlUpEffects(   new Vector3(1.0f,1.0f,1.0f),    0.2f)},
+        { 0,   new ComboLvlUpEffects(   new Vector3(0.0f,0.8f,1.0f),    0.0f, 0.0f)},
+        { 3,   new ComboLvlUpEffects(   new Vector3(0.0f,1.0f,0.0f),    0.05f, 0.06f)},
+        { 8,   new ComboLvlUpEffects(   new Vector3(1.0f,1.0f,0.0f),    0.1f, 0.13f)},
+        { 15,   new ComboLvlUpEffects(   new Vector3(0.79f,0.28f,0.96f), 0.15f, 0.25f)},
+        { 25,   new ComboLvlUpEffects(   new Vector3(1.0f,1.0f,1.0f),    0.2f, 0.4f)},
             //TODO Add lvlUpRewards here
     };
     //stores the level as a key and the reward as a value
     Dictionary<int, ComboResetEffects> endOfComboRewards = new Dictionary<int, ComboResetEffects>
     {
-        { 0,   new ComboResetEffects( 0.0f)},
-        { 8,   new ComboResetEffects( 0.05f)},
-        { 15,   new ComboResetEffects( 0.12f)},
-        { 25,   new ComboResetEffects( 0.2f)},
+        { 0,   new ComboResetEffects( 0)},
+        { 3,   new ComboResetEffects( 25)},
+        { 8,   new ComboResetEffects( 50)},
+        { 15,   new ComboResetEffects( 125)},
+        { 25,   new ComboResetEffects( 200)},
             //TODO Add endOfComboRewards here
     };
     public void Awake()
@@ -291,7 +296,7 @@ public class HUD : DiamondComponent
         if (pulsation_forward)
         {
             float health_diff = PlayerHealth.currMaxHealth - PlayerHealth.currHealth;
-            pulsation_rate += Time.deltaTime * Math.Max(health_diff/PlayerHealth.currMaxHealth,0.3f);
+            pulsation_rate += Time.deltaTime * Math.Max(health_diff / PlayerHealth.currMaxHealth, 0.3f);
             if (pulsation_rate > 1.0f) pulsation_forward = false;
         }
         else if (!pulsation_forward)
@@ -350,7 +355,7 @@ public class HUD : DiamondComponent
         float comboMultiplier = 1;
         if (Core.instance.HasStatus(STATUS_TYPE.GRO_COMBO_GAIN))
         {
-          comboMultiplier = 1 + Core.instance.GetStatusData(STATUS_TYPE.GRO_COMBO_GAIN).severity / 100;
+            comboMultiplier = 1 + Core.instance.GetStatusData(STATUS_TYPE.GRO_COMBO_GAIN).severity / 100;
         }
         currComboTime += comboUnitsToAdd * (1 / (tmpLastWeaponMod * comboDecrementMultiplier)) * comboMultiplier;
 
@@ -379,7 +384,7 @@ public class HUD : DiamondComponent
                 {
                     if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
                     {
-                       Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(Core.instance.GetStatusData(STATUS_TYPE.COMBO_HEAL).severity));
+                        Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(Core.instance.GetStatusData(STATUS_TYPE.COMBO_HEAL).severity));
                     }
                 }
                 if (Core.instance.HasStatus(STATUS_TYPE.GRO_COMBO_REGEN))
@@ -392,16 +397,16 @@ public class HUD : DiamondComponent
                     {
                         BabyYoda.instance.SetCurrentForce(BabyYoda.instance.GetCurrentForce() + 4);
                     }
-                         
+
                 }
                 if (comboNumber == 3 && Core.instance.HasStatus(STATUS_TYPE.ANAKIN_KILLSTREAK))
                 {
                     Core.instance.AddStatus(STATUS_TYPE.ANAKIN_KILLSTREAK_SUBSKILL, STATUS_APPLY_TYPE.SUBSTITUTE, Core.instance.GetStatusData(STATUS_TYPE.ANAKIN_KILLSTREAK).severity, 0, true);
 
                 }
-          
+
             }
-                
+
         }
 
         if (comboNumber > 0 && combo_gameobject != null && !combo_gameobject.IsEnabled())
@@ -479,8 +484,8 @@ public class HUD : DiamondComponent
     {
         float toSubstract = currComboTime - Mathf.Lerp(currComboTime, -0.0f, Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier);
 
-        toSubstract = Math.Max(toSubstract, Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier);
-        toSubstract = Math.Min(toSubstract, Time.deltaTime * 3f * comboDecrementMultiplier * fullComboTime * 0.085f);
+        toSubstract = Math.Max(toSubstract, Time.deltaTime * comboDecrementMultiplier * lastWeaponDecrementMultiplier * 0.75f);
+        toSubstract = Math.Min(toSubstract, Time.deltaTime * comboDecrementMultiplier * fullComboTime * 0.255f);
         currComboTime -= toSubstract;
 
         if (currComboTime <= 0.0f)
@@ -544,24 +549,24 @@ public class HUD : DiamondComponent
                 }
             }
 
-            float hpPercentageToIncrease = 0.0f;
+            float coinsToGain = 0.0f;
             if (lastEffect)//special formula for when the effect applied is the last one in the dictionary
             {
                 int comboLvlToOffset = 10; //every X lvls, offset will increase by 1
                 int comboLvlOffset = (comboNumber - key) / comboLvlToOffset;
-                hpPercentageToIncrease = endOfComboData.hpToRestore + (0.05f * comboLvlOffset);
+                coinsToGain = endOfComboData.coinsToGain + (0.05f * comboLvlOffset);
             }
             else //normal reward case
             {
-                hpPercentageToIncrease = endOfComboData.hpToRestore;
+                coinsToGain = endOfComboData.coinsToGain;
             }
 
             if (Core.instance != null)
             {
                 Core.instance.RemoveStatus(STATUS_TYPE.COMBO_DMG_RED, true);
-                if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
+                if (Core.instance.gameObject != null)
                 {
-                    Core.instance.gameObject.GetComponent<PlayerHealth>().HealPercentMax(hpPercentageToIncrease);
+                    PlayerResources.AddRunCoins((int)Math.Round(coinsToGain));
                 }
                 if (Core.instance.HasStatus(STATUS_TYPE.HEAL_COMBO_FINNISH))
                 {
@@ -597,6 +602,10 @@ public class HUD : DiamondComponent
 
         OnLvlUpComboChange();
 
+        if(Core.instance != null)
+        {
+            Core.instance.RemoveStatus(STATUS_TYPE.COMBO_UP_ACCEL, true);
+        }
 
         comboHUDneedsUpdate = true;
 
@@ -617,8 +626,17 @@ public class HUD : DiamondComponent
             }
         }
 
-        if (BabyYoda.instance != null)
-            UpdateForce((int)(BabyYoda.instance.GetCurrentForce() + (BabyYoda.GetMaxForce() * lvlUpComboData.forceBarPercentageRecovery)), BabyYoda.GetMaxForce()); //TODO check this works fine (at the time of creating this line force doesn't work and this part of the method cannot be tested)
+        //TODO: This should fly away
+        {
+            if (BabyYoda.instance != null)
+                UpdateForce((int)(BabyYoda.instance.GetCurrentForce() + (BabyYoda.GetMaxForce() * lvlUpComboData.forceBarPercentageRecovery)), BabyYoda.GetMaxForce()); //TODO check this works fine (at the time of creating this line force doesn't work and this part of the method cannot be tested)
+        }
+
+        if(Core.instance != null)
+        {
+            float comboAccel = 1f - (1f / (1f + 0.0325f * comboNumber));
+            Core.instance.AddStatus(STATUS_TYPE.COMBO_UP_ACCEL, STATUS_APPLY_TYPE.SUBSTITUTE, comboAccel, 1f, true);
+        }
 
         comboColor.x = lvlUpComboData.colorUpdate.x;
         comboColor.y = lvlUpComboData.colorUpdate.y;
@@ -744,7 +762,7 @@ public class HUD : DiamondComponent
         if (Core.instance != null)
             newValue *= Core.instance.OverheatMult;
 
-   //     Debug.Log("Added Heat: " + newValue);
+        //     Debug.Log("Added Heat: " + newValue);
 
         AddPrimaryHeatAmount(newValue);
     }
@@ -800,8 +818,8 @@ public class HUD : DiamondComponent
 
         if (primaryWeaponOverheat == false)
             weapon_bar.GetComponent<Material>().SetFloatUniform("colorLerpLength", newHeatValue);
-        
-        if (newHeatValue>=0.5f || heat_descending)
+
+        if (newHeatValue >= 0.5f || heat_descending)
         {
             if (weapon_gauge != null)
                 weapon_gauge.GetComponent<Material>().SetFloatUniform("heat", newHeatValue);

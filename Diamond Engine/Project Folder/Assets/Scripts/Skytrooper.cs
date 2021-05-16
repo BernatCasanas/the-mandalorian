@@ -669,7 +669,7 @@ public class Skytrooper : Enemy
 
             if (bullet != null)
             {
-                TakeDamage(bullet.GetDamage());
+                TakeDamage(bullet.GetDamage() * damageRecieveMult);
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -694,7 +694,7 @@ public class Skytrooper : Enemy
 
             if (bullet != null)
             {
-                this.AddStatus(STATUS_TYPE.ENEMY_DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
                 // healthPoints -= bullet.damage;
 
                 TakeDamage(bullet.GetDamage());

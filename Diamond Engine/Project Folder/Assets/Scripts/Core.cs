@@ -18,6 +18,7 @@ public class Core : Entity
         GADGET_SHOOT,
         CHARGING_SEC_SHOOT,
         SECONDARY_SHOOT,
+        SECONDARY_SHOOT_END,
         DEAD
     }
 
@@ -37,6 +38,7 @@ public class Core : Entity
         IN_CHARGE_SEC_SHOOT_END,
         IN_SEC_SHOOT,
         IN_SEC_SHOOT_END,
+        IN_SEC_SHOOT_ANIM_END,
         IN_DEAD
     }
 
@@ -157,7 +159,6 @@ public class Core : Entity
     public float timeToPerfectCharge = 0.424f;
     public int framesForPerfectCharge = 4;
     private float timeToPerfectChargeEnd = 0f;
-    public float timeToAutomaticallyShootCharge = 2.296f;
     public float bulletRechargeTime = 0f;
     public int numberOfBullets = 0;
     private int currentBullets = 0;
@@ -172,8 +173,14 @@ public class Core : Entity
     public float overheatTimeBeeping = 0.08f;
     private float changeColorSniperTimer = 0f;
     private float sniperShotTimer = 0.0f;
+    private float snipShootAnimTime = 0f;
+    private float snipShootAnimTimer = 0f;
+    private float snipPrepareAnimTime = 0f;
+    private float snipPrepareAnimTimer = 0f;
+    private bool canShootSniper = false;
     //Animations
     private float shootAnimationTotalTime = 0.0f;
+    public float sniperAimAnimMult = 1.5f;
 
     //Controller Variables
     int verticalInput = 0;
@@ -246,6 +253,9 @@ public class Core : Entity
         totalRechargeTime = numberOfBullets * bulletRechargeTime;
         currentBullets = numberOfBullets;
 
+        snipShootAnimTime = Animator.GetAnimationDuration(gameObject, "SniperShotP2");
+        snipPrepareAnimTime = Animator.GetAnimationDuration(gameObject, "SniperShotP1") / sniperAimAnimMult;
+
         grenadesFireRate = 4.0f;
         #endregion
 
@@ -268,7 +278,7 @@ public class Core : Entity
         deathZone = 15000;
 
         currentState = STATE.IDLE;
-        Animator.Play(gameObject, "Idle");
+        Animator.Play(gameObject, "Idle", speedMult);
         UpdateAnimationSpd(1f);
 
         lockInputs = false;
@@ -368,21 +378,6 @@ public class Core : Entity
                 Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Combat");
                 Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Healthy");
             }
-        }
-
-        if (Input.GetKey(DEKeyCode.Z) == KeyState.KEY_DOWN)
-        {
-            this.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.25f, 60f);
-        }
-
-        if (Input.GetKey(DEKeyCode.X) == KeyState.KEY_DOWN)
-        {
-            this.AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.75f, 60f);
-        }
-
-        if (Input.GetKey(DEKeyCode.D) == KeyState.KEY_DOWN)
-        {
-            this.ClearStatuses();
         }
 
         UpdateControllerInputs();
@@ -508,6 +503,24 @@ public class Core : Entity
                 //inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
                 inputsList.Add(INPUT.IN_IDLE);
             }
+        } 
+        if (snipShootAnimTimer > 0.0f)
+        {
+            snipShootAnimTimer -= myDeltaTime;
+
+            if (snipShootAnimTimer <= 0.0f)
+            {
+                inputsList.Add(INPUT.IN_SEC_SHOOT_ANIM_END);
+            }
+        }        
+        if (snipPrepareAnimTimer > 0.0f)
+        {
+            snipPrepareAnimTimer -= myDeltaTime;
+
+            if (snipPrepareAnimTimer <= 0.0f)
+            {
+                canShootSniper = true;
+            }
         }
 
         if (HasStatus(STATUS_TYPE.SEC_RECOVERY))
@@ -577,17 +590,9 @@ public class Core : Entity
             {
                 inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT);
             }
-            else if (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_UP && lockAttacks == false)
+            else if ((Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_UP || (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_IDLE && currentState == STATE.CHARGING_SEC_SHOOT))&& canShootSniper == true && lockAttacks == false)
             {
                 inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
-
-                //sniperShotTimer = Animator.GetAnimationDuration(gameObject, "SniperShotP2");
-                //Animator.Play(gameObject, "SniperShotP2");
-
-                //if (rifle != null)
-                //{
-                //    Animator.Play(rifle, "SniperShotP2");
-                //}
             }
 
             if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false && dashAvailable == true && lockAttacks == false)
@@ -814,8 +819,8 @@ public class Core : Entity
 
                         case INPUT.IN_CHARGE_SEC_SHOOT_END:
                             currentState = STATE.SECONDARY_SHOOT;
-                            EndShootCharge();
                             StartSecondaryShoot();
+                            EndShootCharge();
                             break;
 
                         case INPUT.IN_DASH:
@@ -833,9 +838,49 @@ public class Core : Entity
                     switch (input)
                     {
                         case INPUT.IN_SEC_SHOOT_END:
+                            currentState = STATE.SECONDARY_SHOOT_END;
+                            break;
+
+                        case INPUT.IN_DEAD:
+                            break;
+                    }
+                    break;
+                case STATE.SECONDARY_SHOOT_END:
+                    switch (input)
+                    {
+                        case INPUT.IN_SEC_SHOOT_ANIM_END:
                             currentState = STATE.IDLE;
                             DisableBlaster();
                             StartIdle();
+                            break;
+
+                        case INPUT.IN_MOVE:
+                            currentState = STATE.MOVE;
+                            StartMove();
+                            break;
+
+                        case INPUT.IN_DASH:
+                            currentState = STATE.DASH;
+                            StartDash();
+                            break;
+
+                        case INPUT.IN_SHOOTING:
+                            currentState = STATE.SHOOTING;
+                            StartShooting();
+                            break;
+
+                        case INPUT.IN_SEC_SHOOT:
+                            currentState = STATE.SECONDARY_SHOOT;
+                            break;
+
+                        case INPUT.IN_GADGET_SHOOT:
+                            currentState = STATE.GADGET_SHOOT;
+                            StartGadgetShoot();
+                            break;
+
+                        case INPUT.IN_CHARGE_SEC_SHOOT:
+                            currentState = STATE.CHARGING_SEC_SHOOT;
+                            StartSecCharge();
                             break;
 
                         case INPUT.IN_DEAD:
@@ -904,6 +949,9 @@ public class Core : Entity
                 ReducePrimaryWeaponHeat();
                 UpdateSecondaryShotAmmo();
                 UpdateGadgetShoot();
+                break;
+            case STATE.SECONDARY_SHOOT_END:
+                ReducePrimaryWeaponHeat();
                 break;
             case STATE.DEAD:
                 break;
@@ -1110,13 +1158,17 @@ public class Core : Entity
     {
         chargeTimer = 0f;
         changeColorSniperTimer = 0f;
-        Animator.Play(gameObject, "SniperShotP1");
+        canShootSniper = false;
+        snipPrepareAnimTimer = snipPrepareAnimTime;
+        Animator.Play(gameObject, "SniperShotP1", speedMult * sniperAimAnimMult);
 
         if (rifle != null)
         {
             rifle.Enable(true);
-            Animator.Play(rifle, "SniperShotP1");
+            Animator.Play(rifle, "SniperShotP1", speedMult * sniperAimAnimMult);
         }
+
+        PlayParticles(PARTICLES.SNIPER_CHARGE);
     }
 
     private void EndShootCharge()
@@ -1124,11 +1176,11 @@ public class Core : Entity
         chargeTimer = 0f;
         changeColorSniperTimer = 0f;
 
-        //PlayParticles(PARTICLES.SNIPER_CHARGE, true);
+        PlayParticles(PARTICLES.SNIPER_CHARGE, true);
 
         if (rifle != null)
             rifle.Enable(false);
-        
+
     }
 
     private void UpdateSecondaryShootCharge()
@@ -1167,21 +1219,11 @@ public class Core : Entity
         {
             float hitDistance = myAimbot.maxRange;
             GameObject hit = InternalCalls.RayCast(shootPoint.transform.globalPosition + (shootPoint.transform.GetForward() * 1.5f), shootPoint.transform.GetForward(), myAimbot.maxRange, ref hitDistance);
-            if (hit != null)
-            {
-                Debug.Log(hitDistance.ToString());
-            }
-
             hitDistance = Math.Min(hitDistance, Mathf.Lerp(0, myAimbot.maxRange, chargeTimer / timeToPerfectCharge));
 
             InternalCalls.DrawRay(shootPoint.transform.globalPosition, shootPoint.transform.globalPosition + (shootPoint.transform.GetForward() * hitDistance), currSniperLaserColor);
-            if (snipercharge)
-            {
-                PlayParticles(PARTICLES.SNIPER_CHARGE);
-                snipercharge = false;
-                Debug.Log("Charging sniper");
-            }
         }
+
         if (HasStatus(STATUS_TYPE.SP_NONCHARGED))
         {
             float modifier = 1 + GetStatusData(STATUS_TYPE.SP_CHARGE_TIME).severity / 100;
@@ -1191,13 +1233,15 @@ public class Core : Entity
         {
             chargeTimer += myDeltaTime;
         }
-        //UpdateAnimationSpd(0.01f);
+
     }
 
     private void StartSecondaryShoot()
     {
         bool perfectShot = false;
-        Animator.Play(gameObject, "Shoot", normalShootSpeed * speedMult);
+        //Animator.Play(gameObject, "Shoot", normalShootSpeed * speedMult);
+        Animator.Play(gameObject, "SniperShotP2");
+        snipShootAnimTimer = snipShootAnimTime;
 
         UpdateAnimationSpd(normalShootSpeed * speedMult);
 
@@ -1205,7 +1249,6 @@ public class Core : Entity
         {
             perfectShot = true;
             Debug.Log("Frame Perfect Charge!");
-            //TODO: Change color beam (yellow)
         }
 
         ShootChargeShot(perfectShot, chargeTimer);
@@ -1213,8 +1256,6 @@ public class Core : Entity
 
     private void ShootChargeShot(bool perfectShot, float chargeTimer)
     {
-
-
         inputsList.Add(INPUT.IN_SEC_SHOOT_END);
         --currentBullets;
         sniperRechargeTimer += bulletRechargeTime;
@@ -1274,13 +1315,7 @@ public class Core : Entity
                         sniperBulletDamage *= modifier;
                     }
                 }
-                //Debug.Log("Charge Bullet dmg: " + bulletDamage.ToString());
-
-                //    if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_EXTRA_DAMAGE_LOW_HEALTH))
-                //    {
-                //        //If the skill is active, we override the damage amount
-                //        bullet.GetComponent<ChargedBullet>().damage = GetExtraDamageWithSkill();
-                //    }  
+                Debug.Log("Charge Bullet dmg: " + sniperBulletDamage.ToString());
 
                 chrBulletComp.InitChargedBullet(sniperBulletDamage * GetSniperDamageMod());
 
@@ -1569,12 +1604,13 @@ public class Core : Entity
 
         //Debug.Log("Firerate: " + ret.ToString());
 
-        ret = Math.Min(ret, baseFireRate * fireRateMultCap * 0.45f);
-        ret = Math.Max(ret, baseFireRate * 0.75f);
+        ret = Math.Min(ret, baseFireRate * fireRateMultCap * 0.5f);
+        ret *= FireRateMult;
+        ret = Math.Max(ret, baseFireRate * 0.8f);
 
       
 
-        return ret * FireRateMult;
+        return ret;
     }
 
     private void AddPrimaryHeat()
@@ -2159,6 +2195,13 @@ public class Core : Entity
                     this.myDeltaTime = Time.deltaTime * speedMult;
                 }
                 break;
+            case STATUS_TYPE.COMBO_UP_ACCEL:
+                {
+                    this.speedMult += statusToInit.severity;
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
             case STATUS_TYPE.REX_SEC_BLASTER_SUBSKILL:
                 {
                     statusToInit.statChange = statusToInit.severity / 100;
@@ -2440,6 +2483,13 @@ public class Core : Entity
                 }
                 break;
             case STATUS_TYPE.ACCELERATED:
+                {
+                    this.speedMult -= statusToDelete.severity;
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
+            case STATUS_TYPE.COMBO_UP_ACCEL:
                 {
                     this.speedMult -= statusToDelete.severity;
 

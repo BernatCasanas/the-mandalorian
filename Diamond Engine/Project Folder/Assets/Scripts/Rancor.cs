@@ -73,6 +73,7 @@ public class Rancor : Entity
     public float longRange = 22.0f;
 
     private float damageMult = 1f;
+    public float damageRecieveMult { get; private set; } = 1f;
 
     //Follow
     public float shortFollowTime = 2.0f;
@@ -1389,7 +1390,7 @@ public class Rancor : Entity
             //    damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
             //}
 
-            TakeDamage(damageToBoss);
+            TakeDamage(damageToBoss * damageRecieveMult);
             Debug.Log("Rancor HP: " + healthPoints.ToString());
             damaged = 1.0f;
             //CHANGE FOR APPROPIATE RANCOR HIT
@@ -1418,7 +1419,7 @@ public class Rancor : Entity
 
             if (bulletScript != null)
             {
-                this.AddStatus(STATUS_TYPE.ENEMY_DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
                 damageToBoss += bulletScript.GetDamage();
             }
             else
@@ -1637,6 +1638,11 @@ public class Rancor : Entity
                     this.damageMult -= statusToInit.severity;
                 }
                 break;
+            case STATUS_TYPE.ENEMY_VULNERABLE:
+                {
+                    this.damageRecieveMult += statusToInit.severity;
+                }
+                break;
             default:
                 break;
         }
@@ -1663,6 +1669,11 @@ public class Rancor : Entity
             case STATUS_TYPE.ENEMY_DAMAGE_DOWN:
                 {
                     this.damageMult += statusToDelete.severity;
+                }
+                break;
+            case STATUS_TYPE.ENEMY_VULNERABLE:
+                {
+                    this.damageRecieveMult -= statusToDelete.severity;
                 }
                 break;
             default:

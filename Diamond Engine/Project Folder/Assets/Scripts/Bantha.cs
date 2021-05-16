@@ -703,7 +703,7 @@ public class Bantha : Enemy
             BH_Bullet bullet = collidedGameObject.GetComponent<BH_Bullet>();
             if (bullet != null)
             {
-                healthPoints -= bullet.GetDamage();
+                TakeDamage(bullet.GetDamage() * damageRecieveMult);
 
                 Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
 
@@ -715,14 +715,6 @@ public class Bantha : Enemy
                         hud.AddToCombo(20, 1.0f);
                 }
 
-                if (currentState != STATE.DIE && healthPoints <= 0.0f)
-                    inputsList.Add(INPUT.IN_DIE);
-
-                if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
-                {
-                    skill_slowDownActive = true;
-                    skill_slowDownTimer = 0.0f;
-                }
             }
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))
@@ -731,7 +723,7 @@ public class Bantha : Enemy
             if (bullet != null)
             {
                 healthPoints -= bullet.GetDamage();
-                this.AddStatus(STATUS_TYPE.ENEMY_DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
 
                 Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
 

@@ -635,7 +635,7 @@ public class Deathtrooper : Enemy
 
             if (bullet != null)
             {
-                TakeDamage(bullet.damage);
+                TakeDamage(bullet.damage * damageRecieveMult);
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -647,11 +647,6 @@ public class Deathtrooper : Enemy
                         hudComponent.AddToCombo(25, 0.95f);
                 }
 
-                if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.WEAPONS, (int)Skill_Tree_Data.WeaponsSkillNames.PRIMARY_SLOW_SPEED))
-                {
-                    skill_slowDownActive = true;
-                    skill_slowDownTimer = 0.0f;
-                }
             }
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))
@@ -661,7 +656,7 @@ public class Deathtrooper : Enemy
             if (bullet != null)
             {
                 healthPoints -= bullet.damage;
-                this.AddStatus(STATUS_TYPE.ENEMY_DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
 
                 TakeDamage(bullet.damage);
 

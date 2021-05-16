@@ -74,6 +74,7 @@ public class MoffGideon : Entity
     public float slerpSpeed = 5.0f;
 
     private float damageMult = 1.0f;
+    private float damageRecieveMult = 1f;
 
     //Stats
     public float healthPoints = 8500.0f;
@@ -143,6 +144,7 @@ public class MoffGideon : Entity
         InitEntity(ENTITY_TYPE.MOFF);
 
         damageMult = 1f;
+        damageRecieveMult = 1f;
 
         //damaged = 0f;
 
@@ -1140,7 +1142,7 @@ public class MoffGideon : Entity
                 damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
             }*/
 
-            TakeDamage(damageToBoss);
+            TakeDamage(damageToBoss * damageRecieveMult);
             Debug.Log("GIDEON HP: " + healthPoints.ToString());
             //damaged = 1.0f;
             //CHANGE FOR APPROPIATE RANCOR HIT
@@ -1178,7 +1180,7 @@ public class MoffGideon : Entity
 
             if (bulletScript != null)
             {
-                this.AddStatus(STATUS_TYPE.ENEMY_DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
                 damageToBoss += bulletScript.damage;
             }
             else
@@ -1324,6 +1326,11 @@ public class MoffGideon : Entity
                     this.damageMult -= statusToInit.severity;
                 }
                 break;
+            case STATUS_TYPE.ENEMY_VULNERABLE:
+                {
+                    this.damageRecieveMult += statusToInit.severity;
+                }
+                break;
             default:
                 break;
         }
@@ -1350,6 +1357,11 @@ public class MoffGideon : Entity
             case STATUS_TYPE.ENEMY_DAMAGE_DOWN:
                 {
                     this.damageMult += statusToDelete.severity;
+                }
+                break;
+            case STATUS_TYPE.ENEMY_VULNERABLE:
+                {
+                    this.damageRecieveMult -= statusToDelete.severity;
                 }
                 break;
             default:

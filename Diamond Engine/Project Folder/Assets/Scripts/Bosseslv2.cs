@@ -33,6 +33,7 @@ public class Bosseslv2 : Entity
     public float fastRushSpeed = 14.0f;
     public float slowRushSpeed = 7.0f;
     protected float damageMult = 1f;
+    public float damageRecieveMult { get; protected set; } = 1f;
 
     //Timers
     public float walkingTime = 4.0f;
@@ -91,6 +92,7 @@ public class Bosseslv2 : Entity
         speedMult = 1f;
         myDeltaTime = Time.deltaTime;
         damageMult = 1f;
+        damageRecieveMult = 1f;
     }
 
     public virtual void Awake()
@@ -604,6 +606,11 @@ public class Bosseslv2 : Entity
                     this.damageMult -= statusToInit.severity;
                 }
                 break;
+            case STATUS_TYPE.ENEMY_VULNERABLE:
+                {
+                    this.damageRecieveMult += statusToInit.severity;
+                }
+                break;
             default:
                 break;
         }
@@ -630,6 +637,11 @@ public class Bosseslv2 : Entity
             case STATUS_TYPE.ENEMY_DAMAGE_DOWN:
                 {
                     this.damageMult += statusToDelete.severity;
+                }
+                break;
+            case STATUS_TYPE.ENEMY_VULNERABLE:
+                {
+                    this.damageRecieveMult -= statusToDelete.severity;
                 }
                 break;
             default:

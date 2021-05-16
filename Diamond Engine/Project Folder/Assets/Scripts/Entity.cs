@@ -90,9 +90,11 @@ public enum STATUS_TYPE
     REFILL_CHANCE,
     GRENADE_ON_DASH,
     SEC_RANGE,
+    COMBO_UP_ACCEL,
 
     // Enemies
     ENEMY_DAMAGE_DOWN,
+    ENEMY_VULNERABLE,
     ENEMY_DAMAGE_UP,
 
     // Boons

@@ -473,7 +473,7 @@ public class DummyStormtrooper : Enemy
             BH_Bullet bullet = collidedGameObject.GetComponent<BH_Bullet>();
 
             if (bullet != null)
-                TakeDamage(bullet.GetDamage());
+                TakeDamage(bullet.GetDamage() * damageRecieveMult);
 
             Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -497,7 +497,7 @@ public class DummyStormtrooper : Enemy
 
             if (bullet != null)
             {
-                this.AddStatus(STATUS_TYPE.ENEMY_DAMAGE_DOWN, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.5f, 3.5f);
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
                 TakeDamage(bullet.GetDamage());
 
             }
