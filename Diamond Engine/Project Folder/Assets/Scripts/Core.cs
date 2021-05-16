@@ -62,6 +62,14 @@ public class Core : Entity
         SHOOT_GRENADE
     }
 
+    enum FLOOR_TYPE : int
+    {
+        NONE = -1,
+        SNOW,
+        METAL,
+        WATER
+    }
+
     public GameObject shootPoint = null;
     public GameObject hud = null;
 
@@ -202,6 +210,8 @@ public class Core : Entity
 
     private ACTION lastAction = ACTION.NONE;
     private bool hasDashed = false;
+
+    private FLOOR_TYPE floorType = FLOOR_TYPE.NONE;
 
     public void Awake()
     {
@@ -1488,7 +1498,18 @@ public class Core : Entity
         }
         else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
         {
-            Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
+            if (floorType == FLOOR_TYPE.METAL)
+            {
+                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Metal_Platform_Mando");
+            }
+            else if (floorType == FLOOR_TYPE.SNOW)
+            {
+                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
+            }
+            else if (floorType == FLOOR_TYPE.WATER)
+            {
+                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Water_Mando");
+            }
         }
         else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
         {
@@ -1696,6 +1717,18 @@ public class Core : Entity
                     if (sphereColl.active)
                         gameObject.GetComponent<PlayerHealth>().TakeDamage((int)(collidedGameObject.GetComponent<BH_DestructBox>().explosion_damage * 0.5f));
                 }
+            }
+            else if(collidedGameObject.CompareTag("MetalFloor"))
+            {
+                floorType = FLOOR_TYPE.METAL;
+            }
+            else if (collidedGameObject.CompareTag("SnowFloor"))
+            {
+                floorType = FLOOR_TYPE.SNOW;
+            }
+            else if (collidedGameObject.CompareTag("WaterFloor"))
+            {
+                floorType = FLOOR_TYPE.WATER;
             }
         }
     }
