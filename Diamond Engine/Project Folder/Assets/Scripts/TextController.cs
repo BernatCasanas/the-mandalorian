@@ -7,6 +7,7 @@ public class TextController : DiamondComponent
 	public GameObject gui = null;
 	public GameObject dialog = null;
 	public GameObject text = null;
+	public GameObject nameText = null;
 	public GameObject mandoimage = null;
 	public GameObject otherimage = null;
 	public GameObject list_of_dialogs = null;
@@ -17,6 +18,7 @@ public class TextController : DiamondComponent
 	private bool gui_not_enabled = true;
 
 	private List<String> texts;
+	private String charName = "";
 	private List<bool> images;
 
 	private bool startMenu = true;
@@ -40,8 +42,12 @@ public class TextController : DiamondComponent
 				text.GetComponent<Text>().text = texts[index];
             if (images[index] == true)
             {
-				if(mandoimage!=null)
+				if (mandoimage != null)
+				{
 					mandoimage.Enable(true);
+					if (nameText != null)
+						nameText.GetComponent<Text>().text = "Mando";
+				}
 				if(otherimage!=null)
 					otherimage.Enable(false);
             }
@@ -49,8 +55,12 @@ public class TextController : DiamondComponent
             {
 				if(mandoimage!=null)
 					mandoimage.Enable(false);
-				if(otherimage!=null)
+				if (otherimage != null)
+				{
 					otherimage.Enable(true);
+					if(nameText != null)
+						nameText.GetComponent<Text>().text = charName;
+				}
             }
 
         }
@@ -66,6 +76,8 @@ public class TextController : DiamondComponent
 				text.GetComponent<Text>().text = " ";
 			if (dialog != null)
 				dialog.Enable(false);
+			if (nameText != null)
+				nameText.GetComponent<Text>().text = " ";
             finished = true;
             if (gui != null)
             {
@@ -99,6 +111,7 @@ public class TextController : DiamondComponent
 			startMenu = false;
 			Time.PauseGame();
 			texts = list_of_dialogs.GetComponent<List_Of_Dialogs>().GetListOfDialog((uint)dialog_index);
+			charName = list_of_dialogs.GetComponent<List_Of_Dialogs>().GetDialogName((uint)dialog_index);
 			images = list_of_dialogs.GetComponent<List_Of_Dialogs>().GetListOfOrder((uint)dialog_index);
 		}
 		else if (finished == true)

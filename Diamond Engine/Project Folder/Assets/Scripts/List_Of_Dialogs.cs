@@ -2503,4 +2503,187 @@ public class List_Of_Dialogs : DiamondComponent
 		return Initial_Cutscene_bool;
 	}
 
+    public String GetDialogName(uint index)
+    {
+        switch (index)
+        {
+            case 0:
+                return "Greef";
+            case 1:
+                return "Bo Katan";
+            case 2:
+                return "Bo Katan";
+            case 3:
+                return "Bo Katan";
+            case 4:
+                return "Bo Katan";
+            case 5:
+                return "Bo Katan";
+            case 6:
+                return "Bo Katan";
+            case 7:
+                return "Bo Katan";
+            case 8:
+                return "Bo Katan";
+            case 9:
+                return "Bo Katan";
+            case 10:
+                return "Bo Katan";
+            case 11:
+                return "Bo Katan";
+            case 12:
+                return "Bo Katan";
+            case 13:
+                return "Bo Katan";
+            case 14:
+                return "Bo Katan";
+            case 15:
+                return "Bo Katan";
+            case 16:
+                return "Bo Katan";
+            case 17:
+                return "Bo Katan";
+            case 18:
+                return "Bo Katan";
+            case 19:
+                return "Greef";
+            case 20:
+                return "Greef";
+            case 21:
+                return "Greef";
+            case 22:
+                return "Greef";
+            case 23:
+                return "Greef";
+            case 24:
+                return "Greef";
+            case 25:
+                return "Greef";
+            case 26:
+                return "Greef";
+            case 27:
+                return "Greef";
+            case 28:
+                return "Greef";
+            case 29:
+                return "Greef";
+            case 30:
+                return "Greef";
+            case 31:
+                return "Greef";
+            case 32:
+                return "Greef";
+            case 33:
+                return "Greef";
+            case 34:
+                return "Greef";
+            case 35:
+                return "Greef";
+            case 36:
+                return "Greef";
+            case 37:
+                return "Ahsoka";
+            case 38:
+                return "Ahsoka";
+            case 39:
+                return "Ahsoka";
+            case 40:
+                return "Ahsoka";
+            case 41:
+                return "Ahsoka";
+            case 42:
+                return "Ahsoka";
+            case 43:
+                return "Ahsoka";
+            case 44:
+                return "Ahsoka";
+            case 45:
+                return "Ahsoka";
+            case 46:
+                return "Ahsoka";
+            case 47:
+                return "Ahsoka";
+            case 48:
+                return "Ahsoka";
+            case 49:
+                return "Ahsoka";
+            case 50:
+                return "Ahsoka";
+            case 51:
+                return "Ahsoka";
+            case 52:
+                return "Ahsoka";
+            case 53:
+                return "Ahsoka";
+            case 54:
+                return "Ahsoka";
+            case 55:
+                return "Cara";
+            case 56:
+                return "Cara";
+            case 57:
+                return "Cara";
+            case 58:
+                return "Cara";
+            case 59:
+                return "Cara";
+            case 60:
+                return "Cara";
+            case 61:
+                return "Cara";
+            case 62:
+                return "Cara";
+            case 63:
+                return "Cara";
+            case 64:
+                return "Cara";
+            case 65:
+                return "Cara";
+            case 66:
+                return "Cara";
+            case 67:
+                return "Cara";
+            case 68:
+                return "Cara";
+            case 69:
+                return "Cara";
+            case 70:
+                return "Cara";
+            case 71:
+                return "Cara";
+            case 72:
+                return "Cara";
+            case 73:
+                return "Grogu";
+            case 74:
+                return "Grogu";
+            case 75:
+                return "Grogu";
+            case 76:
+                return "Grogu";
+            case 77:
+                return "Grogu";
+            case 78:
+                return "Grogu";
+            case 79:
+                return "Grogu";
+            case 80:
+                return "Grogu";
+            case 81:
+                return "Grogu";
+            case 82:
+                return "Grogu";
+            case 83:
+                return "Grogu";
+            case 84:
+                return "Grogu";
+            case 85:
+                return " ";
+            case 86:
+                return " ";
+        }
+        return " ";
+
+    }
+
 }
