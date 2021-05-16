@@ -78,8 +78,12 @@ public:
 public:
 	float brightThreshold;
 	float brightnessIntensity;
-	float blurSpread;
+	float blurSpread; //How far away are blur samples spaced
+	int blurIterations; //Affects performance!
+	float startingDownscaleFactor;//the greater, the less performance hit will the effect have
+	float downscaleFactorMultiplier; // the greater, the less performance impact will consequent iterations have
 	bool smoothMask;
+	bool normalizeAspectRatio;//normalizes blur samples: instead of being taken from adjacent pixels (blur distortion if the aspect ratio differs from 1), they are normalized to be consistent
 };
 
 class PostProcessDataToneMapping : public PostProcessData

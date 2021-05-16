@@ -70,12 +70,21 @@ void PostProcessEffectBloom::CleanUp()
 
 int PostProcessEffectBloom::Render(bool isHDR, int width, int height, int colorTexture, PostProcessDataBloom* bloomVars)
 {
+	int currTexture = 0;
 	brighterThanFilter->Render(isHDR, width / 2, height / 2, colorTexture, bloomVars->brightThreshold, bloomVars->smoothMask);
-	blurVFilter->Render(isHDR, width / 4, height / 4, brighterThanFilter->GetOutputTexture(), bloomVars->blurSpread);
-	blurHFilter->Render(isHDR, width / 4, height / 4, blurVFilter->GetOutputTexture(), bloomVars->blurSpread);
-	blurVFilter->Render(isHDR, width / 8, height / 8, blurHFilter->GetOutputTexture(), bloomVars->blurSpread);
-	blurHFilter->Render(isHDR, width / 8, height / 8, blurVFilter->GetOutputTexture(), bloomVars->blurSpread);
-	combineFilter->Render(isHDR, width, height, colorTexture, blurHFilter->GetOutputTexture(), bloomVars->brightnessIntensity);//TODO change the value for the actual value once we have the resource
+	currTexture = brighterThanFilter->GetOutputTexture();
+
+	float downscaleFactor = bloomVars->startingDownscaleFactor;
+
+	for (int i = 0; i < bloomVars->blurIterations; i++) //1 normal + extra blur
+	{
+		blurVFilter->Render(isHDR, width / downscaleFactor, height / downscaleFactor, currTexture, bloomVars->blurSpread);
+		blurHFilter->Render(isHDR, width / downscaleFactor, height / downscaleFactor, blurVFilter->GetOutputTexture(), bloomVars->blurSpread,bloomVars->normalizeAspectRatio);
+		currTexture = blurHFilter->GetOutputTexture();
+		downscaleFactor *=bloomVars->downscaleFactorMultiplier;
+	}
+	
+	combineFilter->Render(isHDR, width, height, colorTexture, currTexture, bloomVars->brightnessIntensity);//TODO change the value for the actual value once we have the resource
 	return combineFilter->GetOutputTexture();
 }
 
@@ -191,7 +200,7 @@ int PostProcessEffectAO::Render(bool isHDR, int width, int height, int colorText
 	if (aoVars->useBlur)
 	{
 		blurVFilter->Render(isHDR, width, height, aoFilter->GetOutputTexture(), aoVars->blurSpread);
-		blurHFilter->Render(isHDR, width, height, blurVFilter->GetOutputTexture(), aoVars->blurSpread);
+		blurHFilter->Render(isHDR, width, height, blurVFilter->GetOutputTexture(), aoVars->blurSpread,false);
 		multiplyFilter->Render(isHDR, width, height, colorTexture, blurHFilter->GetOutputTexture());
 	}
 	else

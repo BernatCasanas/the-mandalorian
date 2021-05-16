@@ -376,7 +376,7 @@ PostProcessFilterBlurH::~PostProcessFilterBlurH()
 {
 }
 
-void PostProcessFilterBlurH::Render(bool isHDR, int width, int height, unsigned int texture, float blurSpread)
+void PostProcessFilterBlurH::Render(bool isHDR, int width, int height, unsigned int texture, float blurSpread,bool normalizeToAspectRatio)
 {
 	if (TryLoadShader())
 	{
@@ -392,6 +392,11 @@ void PostProcessFilterBlurH::Render(bool isHDR, int width, int height, unsigned 
 		glUniform1fv(uniformLoc, 11, &gaussianKernel[0]);
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "blurSpread");
 		glUniform1f(uniformLoc, blurSpread);
+
+		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "normalizeToAspectRatio");
+		glUniform1i(uniformLoc, normalizeToAspectRatio);
+		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "aspectRatio");
+		glUniform1f(uniformLoc,(float)width / (float)height);
 
 		quadRenderer->RenderQuad();
 
@@ -446,6 +451,7 @@ void PostProcessFilterBlurV::Render(bool isHDR, int width, int height, unsigned 
 		glUniform1fv(uniformLoc, 11, &gaussianKernel[0]);
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "blurSpread");
 		glUniform1f(uniformLoc, blurSpread);
+
 
 		quadRenderer->RenderQuad();
 

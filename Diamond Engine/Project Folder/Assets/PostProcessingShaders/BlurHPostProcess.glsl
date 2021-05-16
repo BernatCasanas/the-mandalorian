@@ -7,11 +7,19 @@ layout (location=0) in vec3 pos;
 uniform float targetWidth;
 out vec2 blurTextureCoords[GAUSSIAN_KERNEL_SIZE];
 uniform float blurSpread;
+uniform int normalizeToAspectRatio;
+uniform float aspectRatio;
+
 void main()
 {
 	gl_Position= vec4(pos,1);
 	vec2 centerTextureCoords =vec2(pos.xy*0.5+0.5);
 	float pixelSize = 1.0/targetWidth; //width of the image in texture coords / number of pixels in the width
+	
+	if(normalizeToAspectRatio==1)
+	{
+		pixelSize = pixelSize * aspectRatio;
+	}
 
 	for(int i=-(GAUSSIAN_KERNEL_SIZE-1)/2; i<=(GAUSSIAN_KERNEL_SIZE-1)/2; i++)
 	{

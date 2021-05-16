@@ -72,7 +72,7 @@ class PostProcessFilterBlurH : public PostProcessFilter
 public:
 	PostProcessFilterBlurH();
 	~PostProcessFilterBlurH();
-	void Render(bool isHDR,int width, int height, unsigned int texture, float blurSpread);
+	void Render(bool isHDR,int width, int height, unsigned int texture, float blurSpread, bool normalizeToAspectRatio);
 
 	void PopulateKernel();
 	std::vector<float> gaussianKernel;

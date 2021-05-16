@@ -151,7 +151,11 @@ PostProcessDataBloom::PostProcessDataBloom() : PostProcessData(POSTPROCESS_DATA_
 brightThreshold(0.7f),
 brightnessIntensity(1.0f),
 blurSpread(0.0f),
-smoothMask(false)
+smoothMask(false),
+blurIterations(2),
+startingDownscaleFactor(2.0f),
+downscaleFactorMultiplier(2.0f),
+normalizeAspectRatio(false)
 {
 }
 
@@ -169,6 +173,10 @@ void PostProcessDataBloom::DrawEditor()
 		PostProcessData::DrawEditorStart(suffix);
 
 		//TODO drawEditorHere
+		label = "Normalize to Aspect Ratio";
+		label += suffix;
+		ImGui::Checkbox(label.c_str(), &normalizeAspectRatio);
+
 
 		label = "Bright Threshold";
 		label += suffix;
@@ -179,6 +187,24 @@ void PostProcessDataBloom::DrawEditor()
 		label = "Glow Blur Spread";
 		label += suffix;
 		ImGui::SliderFloat(label.c_str(), &blurSpread, 0.0f, 20.0f, "%.3f");
+		
+
+		ImGui::Spacing();
+
+		label = "Blur Iterations";
+		label += suffix;
+		ImGui::DragInt(label.c_str(), &blurIterations, 1.0f, 1,6);
+		label = "Starting Blur Downscale Factor";
+		label += suffix;
+		ImGui::SliderFloat(label.c_str(), &startingDownscaleFactor, 1.0f, 16.0f, "%.3f");
+
+		label = "Downscale Factor Multiplier";
+		label += suffix;
+		ImGui::SliderFloat(label.c_str(), &downscaleFactorMultiplier, 0.25f, 4.0f, "%.3f");
+
+
+		ImGui::Spacing();
+		
 		label = "Use Smooth Glow";
 		label += suffix;
 		ImGui::Checkbox(label.c_str(), &smoothMask);
@@ -196,7 +222,12 @@ void PostProcessDataBloom::SaveToJson(JSON_Object* nObj)
 	DEJson::WriteFloat(nObj, "BrightnessIntensity", brightnessIntensity);
 	DEJson::WriteFloat(nObj, "GlowBlurSpread", blurSpread);
 	DEJson::WriteBool(nObj, "SmoothGlow", smoothMask);
+	
+	DEJson::WriteInt(nObj, "BlurIterations", blurIterations);
+	DEJson::WriteFloat(nObj, "StartingDownscaleFactor", startingDownscaleFactor);
+	DEJson::WriteFloat(nObj, "DownscaleFactorMultiplier", downscaleFactorMultiplier);
 
+	DEJson::WriteBool(nObj, "NormalizeAspectRatio", normalizeAspectRatio);
 }
 
 void PostProcessDataBloom::LoadFromJson(DEConfig& nObj)
@@ -207,6 +238,13 @@ void PostProcessDataBloom::LoadFromJson(DEConfig& nObj)
 	brightnessIntensity = nObj.ReadFloat("BrightnessIntensity");
 	blurSpread = nObj.ReadFloat("GlowBlurSpread");
 	smoothMask = nObj.ReadBool("SmoothGlow");
+
+	blurIterations= nObj.ReadInt("BlurIterations");
+	startingDownscaleFactor = nObj.ReadFloat("StartingDownscaleFactor");
+	downscaleFactorMultiplier = nObj.ReadFloat("DownscaleFactorMultiplier");
+
+	normalizeAspectRatio = nObj.ReadBool("NormalizeAspectRatio");
+
 }
 
 PostProcessDataToneMapping::PostProcessDataToneMapping() : PostProcessData(POSTPROCESS_DATA_TYPE::TONE_MAPPING, "Tone Mapping"),
