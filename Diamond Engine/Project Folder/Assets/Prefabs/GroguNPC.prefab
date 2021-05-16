@@ -106,6 +106,7 @@
                     "Active": true,
                     "Path": "Library\/Meshes\/1111006325.mmh",
                     "UID": 1111006325,
+                    "bumpDepth": 0,
                     "alternColor": [
                         1,
                         1,
@@ -166,6 +167,7 @@
                     "Active": true,
                     "Path": "Library\/Meshes\/772459766.mmh",
                     "UID": 772459766,
+                    "bumpDepth": 0,
                     "alternColor": [
                         1,
                         1,
@@ -226,6 +228,7 @@
                     "Active": true,
                     "Path": "Library\/Meshes\/2081829869.mmh",
                     "UID": 2081829869,
+                    "bumpDepth": 0,
                     "alternColor": [
                         1,
                         1,
@@ -292,7 +295,7 @@
                 {
                     "Type": 20,
                     "Active": true,
-                    "systemActive": true,
+                    "systemActive": false,
                     "looping": true,
                     "maxDuration": 10,
                     "ParticleEmitters": [
@@ -366,95 +369,86 @@
                                     ]
                                 }
                             ]
-                        },
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "NPC notification",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1231312929,
+            "ParentUID": 132068283,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.062263965606689453,
+                0.34501266479492188,
+                -0.016927063465118408
+            ],
+            "Rotation": [
+                0.03607703372836113,
+                -7.4554336038090696e-09,
+                -3.9969298981645807e-09,
+                0.99934899806976318
+            ],
+            "Scale": [
+                1,
+                0.99998128414154053,
+                0.99999994039535522
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": true,
+                    "looping": true,
+                    "maxDuration": 10,
+                    "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/2134419253.dds",
-                            "texUID": 2134419253,
+                            "LibraryPath": "Library\/Textures\/1477516694.dds",
+                            "texUID": 1477516694,
                             "paEmitterName": "Empty",
                             "paLifeTime": [
-                                0.5,
-                                1
+                                2,
+                                2
                             ],
                             "paSize": [
-                                1,
-                                1
+                                0.20000000298023224,
+                                0.20000000298023224
                             ],
                             "paColor": [
-                                1,
-                                1,
-                                1,
+                                0.88627451658248901,
+                                0.7921568751335144,
+                                0.40000000596046448,
                                 1
                             ],
-                            "paPerSec": 150,
+                            "paPerSec": 1,
                             "paRelative": true,
-                            "ParticleEffects": [
-                                {
-                                    "paEffectType": 0,
-                                    "paFOLT_direction": [
-                                        0,
-                                        1,
-                                        0
-                                    ],
-                                    "paFOLT_magnitude": 0.30000001192092896,
-                                    "paFOLT_gravityMod": 0,
-                                    "paFOLT_gravity": -0,
-                                    "paFOLT_forceType": 0
-                                },
-                                {
-                                    "paEffectType": 2,
-                                    "Gradients": [
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0.99998998641967773,
-                                                0.99998998641967773,
-                                                0
-                                            ],
-                                            "paColorOLTposition": 0
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                0,
-                                                0.9674980640411377,
-                                                1,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 0.42972981929779053
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                0,
-                                                0.96430134773254395,
-                                                1,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 1
-                                        }
-                                    ]
-                                },
-                                {
-                                    "paEffectType": 3,
-                                    "paSizeOLTStartSize": 0.019999999552965164,
-                                    "paSizeOLTEndSize": 0
-                                },
-                                {
-                                    "paEffectType": 5,
-                                    "paShapeHasInitSpeed": false,
-                                    "paShapePartSpeed": 0,
-                                    "paShapeRandSpeed": 0,
-                                    "PaShapeCircumferenceinnerRadius": 0.20000000298023224,
-                                    "PaShapeCircumferenceoutterRadius": 0.20000000298023224,
-                                    "PaShapeCircumferenceDirection": false,
-                                    "PaShapeCircumferenceAngle": 0,
-                                    "paShapeType": 3,
-                                    "PaShapeOffset": [
-                                        0,
-                                        -0.30000001192092896,
-                                        0
-                                    ]
-                                }
-                            ]
+                            "ParticleEffects": []
                         }
                     ]
                 },
