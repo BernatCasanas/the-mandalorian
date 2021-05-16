@@ -118,7 +118,7 @@ public class CadBaneSoH : GameResources
         if (Core.instance != null)
         {
             Core.instance.AddStatus(STATUS_TYPE.CAD_BANE_SOH, STATUS_APPLY_TYPE.ADDITIVE, 30f, 0, true);
-            //Counter.SumToCounterType(Counter.CounterTypes.CAD_BANE_SOH);
+            Counter.SumToCounterType(Counter.CounterTypes.CAD_BANE_SOH);
             if (!Core.boons.Contains(STATUS_TYPE.CAD_BANE_SOH))
                 Core.boons.Add(STATUS_TYPE.CAD_BANE_SOH);
         }
@@ -126,7 +126,6 @@ public class CadBaneSoH : GameResources
         //{
         //    Debug.Log("ERROR!! Din Djarin has no player health component");
         //}
-
     }
 }
 
@@ -140,7 +139,7 @@ public class CadBaneBoots : GameResources
         if (Core.instance != null)
         {
             Core.instance.AddStatus(STATUS_TYPE.CAD_BANE_BOOTS, STATUS_APPLY_TYPE.ADDITIVE, 5f, 0, true);
-            //Counter.SumToCounterType(Counter.CounterTypes.CAD_BANE_SOH);
+            Counter.SumToCounterType(Counter.CounterTypes.CAD_BANE_BOOTS);
             if (!Core.boons.Contains(STATUS_TYPE.CAD_BANE_BOOTS))
                 Core.boons.Add(STATUS_TYPE.CAD_BANE_BOOTS);
         }
@@ -157,7 +156,6 @@ public class MandoQuickDraw : GameResources
     {
         if (Core.instance != null)
         {
-
             Core.instance.AddStatus(STATUS_TYPE.MANDO_QUICK_DRAW, STATUS_APPLY_TYPE.ADDITIVE, 25f, 0, true);
             if (!Core.boons.Contains(STATUS_TYPE.MANDO_QUICK_DRAW))
                 Core.boons.Add(STATUS_TYPE.MANDO_QUICK_DRAW);

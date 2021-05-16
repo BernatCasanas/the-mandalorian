@@ -91,6 +91,8 @@ public class Pause : DiamondComponent
 			rightText.Enable(true);
 			rightX.Enable(true);
 
+			Counter.DebugAllCounters();
+
 			bo = Counter.GameCounters.ContainsKey(Counter.CounterTypes.BOKATAN_RES) ? 1 : 0;
 			wr = Counter.GameCounters.ContainsKey(Counter.CounterTypes.WRECKER_RES) ? 1 : 0;
 			boPlace = Counter.GameCounters.ContainsKey(Counter.CounterTypes.BOKATAN_RES) ? Counter.GameCounters[Counter.CounterTypes.BOKATAN_RES].place : 0;

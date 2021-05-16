@@ -10,10 +10,10 @@ namespace DiamondEngine
         public enum CounterTypes
         {
             NONE,
-            BOKATAN_RES,
-            WRECKER_RES,
-            CAD_BANE_SOH,
-            CAD_BANE_BOOTS,
+            BOKATAN_RES, //Boon
+            WRECKER_RES, //Boon
+            CAD_BANE_SOH, //Boon
+            CAD_BANE_BOOTS, //Boon
             ENEMY_BANTHA,
             ENEMY_STORMTROOPER,
             RANCOR,
@@ -56,12 +56,14 @@ namespace DiamondEngine
         {
             if (GameCounters.ContainsKey(type))
             {
+                Debug.Log("Current" + type.ToString());
                 GameCounters[type].amount += 1;
             }
             else 
             {
                 Counter aux = new Counter(GameCounters.Count + 1, 1, type);
                 GameCounters.Add(type, aux);
+                Debug.Log(type.ToString() + "added");
             }
         }
 
@@ -72,6 +74,22 @@ namespace DiamondEngine
             maxCombo = 0;
             isFinalScene = false;
         }
+
+        public static void DebugAllCounters()
+        {
+            if(GameCounters.ContainsKey(CounterTypes.BOKATAN_RES))
+                Debug.Log("Bokatan Res: " + GameCounters[CounterTypes.BOKATAN_RES].amount);
+            
+            if (GameCounters.ContainsKey(CounterTypes.WRECKER_RES))
+                Debug.Log("Wrecker Res: " + GameCounters[CounterTypes.WRECKER_RES].amount);
+
+            if (GameCounters.ContainsKey(CounterTypes.CAD_BANE_SOH))
+                Debug.Log("Cad Bane Soh: " + GameCounters[CounterTypes.CAD_BANE_SOH].amount);
+
+            if (GameCounters.ContainsKey(CounterTypes.CAD_BANE_BOOTS))
+                Debug.Log("Cad Bane Boots: " + GameCounters[CounterTypes.CAD_BANE_BOOTS].amount);
+        }
+
         public enum GameResult
         {
             NONE,
