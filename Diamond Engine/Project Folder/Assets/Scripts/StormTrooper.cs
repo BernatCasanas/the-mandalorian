@@ -643,6 +643,8 @@ public class StormTrooper : Enemy
         Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
         Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
 
+        EnemyManager.RemoveEnemy(gameObject);
+
         //Combo
         if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
         {
@@ -667,7 +669,6 @@ public class StormTrooper : Enemy
     private void Die()
     {
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_STORMTROOPER);
-        EnemyManager.RemoveEnemy(gameObject);
 
         float dist = (deathPoint.transform.globalPosition - gameObject.transform.globalPosition).magnitude;
         Vector3 forward = gameObject.transform.GetForward();

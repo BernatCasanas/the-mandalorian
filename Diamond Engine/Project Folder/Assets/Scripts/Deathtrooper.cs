@@ -563,6 +563,8 @@ public class Deathtrooper : Enemy
 
         Audio.PlayAudio(gameObject, "Play_Deathtrooper_Death");
 
+        EnemyManager.RemoveEnemy(gameObject);
+
         //Combo
         if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
         {
@@ -584,13 +586,11 @@ public class Deathtrooper : Enemy
 
     private void Die()
     {
-        Counter.SumToCounterType(Counter.CounterTypes.ENEMY_DEATHTROOPER);
-        EnemyManager.RemoveEnemy(gameObject);
-
         Vector3 forward = gameObject.transform.GetForward();
         Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
         InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
 
+        Counter.SumToCounterType(Counter.CounterTypes.ENEMY_DEATHTROOPER);
         DropCoins();
 
         if(moffGideon != null)

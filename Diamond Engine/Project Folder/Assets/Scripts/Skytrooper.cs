@@ -576,8 +576,9 @@ public class Skytrooper : Enemy
         Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
         Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
 
+        EnemyManager.RemoveEnemy(gameObject);
+
         //Combo
-        //UNCOMMENT
         if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
         {
             //Debug.Log("Start die ended");
@@ -586,7 +587,6 @@ public class Skytrooper : Enemy
             if (hud != null)
                 hud.AddToCombo(300, 1.0f);
         }
-        //UNCOMMENT
     }
     private void UpdateDie()
     {
@@ -603,10 +603,7 @@ public class Skytrooper : Enemy
 
     private void Die()
     {
-        //float dist = (deathPoint.transform.globalPosition - gameObject.transform.globalPosition).magnitude;
-        //forward = forward.normalized * (-dist);
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_SKYTROOPER);
-        EnemyManager.RemoveEnemy(gameObject);
 
         DropCoins();
 

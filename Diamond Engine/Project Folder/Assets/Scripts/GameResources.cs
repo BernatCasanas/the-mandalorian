@@ -208,7 +208,6 @@ public class RexSecBlaster : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.REX_SEC_BLASTER))
                 Core.boons.Add(STATUS_TYPE.REX_SEC_BLASTER);
         }
-
     }
 }
 

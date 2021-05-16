@@ -794,6 +794,8 @@ public class HeavyTrooper : Enemy
 
         Audio.PlayAudio(gameObject, "Play_Heavytrooper_Death");
 
+        EnemyManager.RemoveEnemy(gameObject);
+
         //Combo
         if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
         {
@@ -817,7 +819,6 @@ public class HeavyTrooper : Enemy
     private void Die()
     {
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_HEAVYTROOPER);
-        EnemyManager.RemoveEnemy(gameObject);
 
         DropCoins();
 
