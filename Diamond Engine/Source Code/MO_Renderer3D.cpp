@@ -266,62 +266,8 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 	//Render light depth pass
-	if (directLightVector.size() > 0)
-	{
-		for (int i = 0; i < directLightVector.size(); ++i)
-		{
-			if (directLightVector[i]->calculateShadows == true)
-			{
-				directLightVector[i]->StartPass();
-				if (!renderQueue.empty())
-				{
-					for (size_t j = 0; j < renderQueue.size(); ++j)
-					{
-						if (renderQueue[j]->GetDrawShadows())
-						{
-							float distance = directLightVector[i]->orthoFrustum.pos.DistanceSq(renderQueue[j]->globalOBB.pos);
-							renderQueueMap.emplace(distance, renderQueue[j]);
-						}
-					}
-
-					for (size_t j = 0; j < renderQueuePostStencil.size(); ++j)
-					{
-						if (renderQueue[j]->GetDrawShadows())
-						{
-							float distance = directLightVector[i]->orthoFrustum.pos.DistanceSq(renderQueuePostStencil[j]->globalOBB.pos);
-							renderQueueMap.emplace(distance, renderQueuePostStencil[j]);
-						}
-					}
-
-					if (!renderQueueMap.empty())
-					{
-						for (auto j = renderQueueMap.rbegin(); j != renderQueueMap.rend(); ++j)
-						{
-							// Get the range of the current key
-							auto range = renderQueueMap.equal_range(j->first);
-
-							// Now render out that whole range
-							for (auto d = range.first; d != range.second; ++d)
-							{
-								GLint modelLoc = glGetUniformLocation(directLightVector[i]->depthShader->shaderProgramID, "model");
-								glUniformMatrix4fv(modelLoc, 1, GL_FALSE, d->second->GetGO()->transform->GetGlobalTransposed());
-
-								modelLoc = glGetUniformLocation(directLightVector[i]->depthShader->shaderProgramID, "lightSpaceMatrix");
-								glUniformMatrix4fv(modelLoc, 1, GL_FALSE, directLightVector[i]->spaceMatrixOpenGL.ptr());
-
-								d->second->TryCalculateBones();
-								d->second->GetRenderMesh()->PushDefaultMeshUniforms(directLightVector[i]->depthShader->shaderProgramID, 0, d->second->GetGO()->transform, float3::one);
-								d->second->GetRenderMesh()->OGL_GPU_Render();
-							}
-						}
-
-						renderQueueMap.clear();
-					}
-				}
-				directLightVector[i]->EndPass();
-			}
-		}
-	}
+	DirectionalLightShadowPass();
+	AreaLightShadowPass();
 
 	//-------- CAMERA CULLING PROCESS -----------//
 	if (GetGameRenderTarget() != nullptr && GetGameRenderTarget()->cullingState == true)
@@ -442,13 +388,11 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 			postProcessing.DoPostProcessing(gameCamera->resolvedFBO.texBufferSize.x, gameCamera->resolvedFBO.texBufferSize.y, gameCamera->resolvedFBO, gameCamera->resolvedFBO.GetColorTexture(), gameCamera->resolvedFBO.GetDepthTexture(), gameCamera);
 		}
 
-
 		gameCamera->resolvedFBO.BindFrameBuffer();
 		glEnable(GL_DEPTH_TEST);
 		glClear(GL_DEPTH_BUFFER_BIT);
 		App->moduleGui->RenderCanvas2D();
 		gameCamera->resolvedFBO.UnbindFrameBuffer();
-
 
 #ifdef STANDALONE
 		gameCamera->resolvedFBO.ResolveToScreen();
@@ -869,6 +813,142 @@ void ModuleRenderer3D::RenderStencilWithOrdering(bool rTex)
 	glStencilMask(0xFF);//enable writting to the stencil buffer
 	glDisable(GL_STENCIL_TEST);
 	glClear(GL_STENCIL_BUFFER_BIT);
+}
+
+
+void ModuleRenderer3D::DirectionalLightShadowPass()
+{
+	if (directLightVector.size() > 0)
+	{
+		for (int i = 0; i < directLightVector.size(); ++i)
+		{
+			if (directLightVector[i]->calculateShadows == true)
+			{
+				directLightVector[i]->StartPass();
+				if (!renderQueue.empty())
+				{
+					for (size_t j = 0; j < renderQueue.size(); ++j)
+					{
+						if (renderQueue[j]->GetDrawShadows())
+						{
+							float distance = directLightVector[i]->orthoFrustum.pos.DistanceSq(renderQueue[j]->globalOBB.pos);
+							renderQueueMap.emplace(distance, renderQueue[j]);
+						}
+					}
+
+					for (size_t j = 0; j < renderQueuePostStencil.size(); ++j)
+					{
+						if (renderQueue[j]->GetDrawShadows())
+						{
+							float distance = directLightVector[i]->orthoFrustum.pos.DistanceSq(renderQueuePostStencil[j]->globalOBB.pos);
+							renderQueueMap.emplace(distance, renderQueuePostStencil[j]);
+						}
+					}
+
+					if (!renderQueueMap.empty())
+					{
+						for (auto j = renderQueueMap.rbegin(); j != renderQueueMap.rend(); ++j)
+						{
+							// Get the range of the current key
+							auto range = renderQueueMap.equal_range(j->first);
+
+							// Now render out that whole range
+							for (auto d = range.first; d != range.second; ++d)
+							{
+								GLint modelLoc = glGetUniformLocation(directLightVector[i]->depthShader->shaderProgramID, "model");
+								glUniformMatrix4fv(modelLoc, 1, GL_FALSE, d->second->GetGO()->transform->GetGlobalTransposed());
+
+								modelLoc = glGetUniformLocation(directLightVector[i]->depthShader->shaderProgramID, "lightSpaceMatrix");
+								glUniformMatrix4fv(modelLoc, 1, GL_FALSE, directLightVector[i]->spaceMatrixOpenGL.ptr());
+
+								d->second->TryCalculateBones();
+								d->second->GetRenderMesh()->PushDefaultMeshUniforms(directLightVector[i]->depthShader->shaderProgramID, 0, d->second->GetGO()->transform, float3::one);
+								d->second->GetRenderMesh()->OGL_GPU_Render();
+							}
+						}
+
+						renderQueueMap.clear();
+					}
+				}
+				directLightVector[i]->EndPass();
+			}
+		}
+	}
+}
+
+
+void ModuleRenderer3D::AreaLightShadowPass()
+{
+	if (areaLightVector.size() > 0)
+	{
+		for (int i = 0; i < areaLightVector.size(); ++i)
+		{
+			if (areaLightVector[i]->calculateShadows == true)
+			{
+				areaLightVector[i]->StartPass();
+				if (!renderQueue.empty())
+				{
+					for (size_t j = 0; j < renderQueue.size(); ++j)
+					{
+						if (renderQueue[j]->GetDrawShadows())
+						{
+							float distance = areaLightVector[i]->shadowTransforms[0].pos.DistanceSq(renderQueue[j]->globalOBB.pos);
+							renderQueueMap.emplace(distance, renderQueue[j]);
+						}
+					}
+
+					for (size_t j = 0; j < renderQueuePostStencil.size(); ++j)
+					{
+						if (renderQueue[j]->GetDrawShadows())
+						{
+							float distance = areaLightVector[i]->shadowTransforms[0].pos.DistanceSq(renderQueuePostStencil[j]->globalOBB.pos);
+							renderQueueMap.emplace(distance, renderQueuePostStencil[j]);
+						}
+					}
+
+					if (!renderQueueMap.empty())
+					{
+						for (auto j = renderQueueMap.rbegin(); j != renderQueueMap.rend(); ++j)
+						{
+							// Get the range of the current key
+							auto range = renderQueueMap.equal_range(j->first);
+
+							// Now render out that whole range
+							for (auto d = range.first; d != range.second; ++d)
+							{
+								GLint modelLoc = glGetUniformLocation(areaLightVector[i]->depthShader->shaderProgramID, "model_matrix");
+								glUniformMatrix4fv(modelLoc, 1, GL_FALSE, d->second->GetGO()->transform->GetGlobalTransposed());
+
+								char buffer[64];
+								for (int k = 0; k < 6; ++k)
+								{
+									sprintf(buffer, "shadowMatrices[%i]", k);
+									modelLoc = glGetUniformLocation(areaLightVector[i]->depthShader->shaderProgramID, buffer);
+									glUniformMatrix4fv(modelLoc, 1, GL_FALSE, (areaLightVector[i]->shadowTransforms[k].ProjectionMatrix() * areaLightVector[i]->shadowTransforms[k].ViewMatrix()).Transposed().ptr());
+								}
+								
+								modelLoc = glGetUniformLocation(areaLightVector[i]->depthShader->shaderProgramID, "lightSpaceMatrix");
+								glUniformMatrix4fv(modelLoc, 1, GL_FALSE, areaLightVector[i]->GetGO()->transform->GetGlobalTransposed());
+
+								modelLoc = glGetUniformLocation(areaLightVector[i]->depthShader->shaderProgramID, "lightPosition");
+								glUniform3fv(modelLoc, 1, &areaLightVector[i]->shadowTransforms[0].pos.x);
+
+								modelLoc = glGetUniformLocation(areaLightVector[i]->depthShader->shaderProgramID, "farPlane");
+								glUniform1f(modelLoc, 500.0f);
+
+								d->second->TryCalculateBones();
+								d->second->GetRenderMesh()->PushDefaultMeshUniforms(areaLightVector[i]->depthShader->shaderProgramID, 0, d->second->GetGO()->transform, float3::one);
+								d->second->GetRenderMesh()->OGL_GPU_Render();
+							}
+						}
+
+						renderQueueMap.clear();
+					}
+				}
+				areaLightVector[i]->EndPass();
+			}
+		}
+	}
 }
 
 

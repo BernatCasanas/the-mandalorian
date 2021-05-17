@@ -40,15 +40,14 @@ public:
 	void DeactivateLight();
 
 public:
-	float4x4 spaceMatrixOpenGL;
-
-private:
-	unsigned int depthCubemap = 0;
-	unsigned int depthCubemapFBO = 0;
-
 	Frustum shadowTransforms[6];
+	ResourceShader* depthShader = nullptr;
 
 	bool calculateShadows = true;
+
+	unsigned int depthCubemap = 0;
+private:
+	unsigned int depthCubemapFBO = 0;
 
 	float3 lightColor;
 	float3 ambientLightColor;

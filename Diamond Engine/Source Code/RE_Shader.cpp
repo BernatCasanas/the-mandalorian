@@ -147,6 +147,7 @@ void ResourceShader::LoadShaderCustomFormat(const char* libraryPath)
 	char* fragment = new char[bytes];
 	ZeroMemory(fragment, bytes);
 	memcpy(fragment, cursor, bytes);
+	cursor += bytes;
 
 	bytes = sizeof(char) * variables[(int)ShaderType::SH_Geometry];
 	if (bytes != 0)

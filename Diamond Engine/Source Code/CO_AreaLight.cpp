@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "MO_Renderer3D.h"
 #include "MO_Window.h"
+#include "MO_ResourceManager.h"
 
 #include "GameObject.h"
 #include "CO_Transform.h"
@@ -13,12 +14,12 @@
 
 #include "ImGui/imgui.h"
 
-const unsigned int SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
+const unsigned int SHADOW_WIDTH = 512, SHADOW_HEIGHT = 512;
 
 C_AreaLight::C_AreaLight(GameObject* gameObject) : Component(gameObject),
-	spaceMatrixOpenGL(float4x4::identity),
 	depthCubemap(0u),
 	depthCubemapFBO(0u),
+	depthShader(nullptr),
 	calculateShadows(true),
 	lightColor(float3::one),
 	ambientLightColor(float3::one),
@@ -53,17 +54,32 @@ C_AreaLight::C_AreaLight(GameObject* gameObject) : Component(gameObject),
 	for (int i = 0; i < 6; ++i)
 	{
 		shadowTransforms[i].type = FrustumType::PerspectiveFrustum;
-		shadowTransforms[i].nearPlaneDistance = 1.0f;
+		shadowTransforms[i].nearPlaneDistance = 0.1f;
 		shadowTransforms[i].farPlaneDistance = 500.0f;
 		shadowTransforms[i].pos = float3::zero;
+		shadowTransforms[i].verticalFov = 90 * DEGTORAD;
+		shadowTransforms[i].horizontalFov = 90 * DEGTORAD;
 	}
-	
+
 	C_Camera::LookAt(shadowTransforms[0], float3(1.0,  0.0,  0.0));
+	shadowTransforms[0].up = float3(0.0, -1.0, 0.0);
+
 	C_Camera::LookAt(shadowTransforms[1], float3(-1.0, 0.0,  0.0));
+	shadowTransforms[1].up = float3(0.0, -1.0,  0.0);
+
 	C_Camera::LookAt(shadowTransforms[2], float3(0.0,  1.0,  0.0));
+	shadowTransforms[2].up = float3(0.0, 0.0, 1.0);
+
 	C_Camera::LookAt(shadowTransforms[3], float3(0.0, -1.0,  0.0));
+	shadowTransforms[3].up = float3(0.0, 0.0, -1.0);
+
 	C_Camera::LookAt(shadowTransforms[4], float3(0.0,  0.0,  1.0));
+	shadowTransforms[4].up = float3(0.0, -1.0, 0.0);
+
 	C_Camera::LookAt(shadowTransforms[5], float3(0.0,  0.0,  -1.0));
+	shadowTransforms[5].up = float3(0.0, -1.0, 0.0);
+
+	depthShader = dynamic_cast<ResourceShader*>(EngineExternal->moduleResources->RequestResource(679275240, Resource::Type::SHADER));
 
 	//Add light
 	EngineExternal->moduleRenderer3D->AddAreaLight(this);
@@ -214,7 +230,7 @@ void C_AreaLight::Disable()
 void C_AreaLight::StartPass()
 {
 	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LESS);
+	//glDepthFunc(GL_LESS);
 
 	glDisable(GL_CULL_FACE);
 	glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
@@ -224,6 +240,7 @@ void C_AreaLight::StartPass()
 	glClear(GL_DEPTH_BUFFER_BIT);
 
 	//Bind depth shader
+	depthShader->Bind();
 }
 
 
@@ -279,10 +296,10 @@ void C_AreaLight::PushLightUniforms(ResourceMaterial* material, int lightNumber)
 
 	if (calculateShadows == true)
 	{
-		sprintf(buffer, "areaLightInfo[%i].shadowMap", lightNumber);
-		glActiveTexture(GL_TEXTURE5);
+		sprintf(buffer, "cubeShadowMap[%i]", lightNumber);
+		glActiveTexture(GL_TEXTURE6 + lightNumber);
 		modelLoc = glGetUniformLocation(material->shader->shaderProgramID, buffer);
-		glUniform1i(modelLoc, 5);
+		glUniform1i(modelLoc, 6 + lightNumber);
 		glBindTexture(GL_TEXTURE_CUBE_MAP, depthCubemap);
 	}
 }
@@ -298,7 +315,7 @@ void C_AreaLight::EndPass()
 
 	glActiveTexture(GL_TEXTURE0);
 
-	//Unbind depth shader
+	depthShader->Unbind();
 
 	glEnable(GL_CULL_FACE);
 	glViewport(0, 0, EngineExternal->moduleWindow->s_width, EngineExternal->moduleWindow->s_height);
