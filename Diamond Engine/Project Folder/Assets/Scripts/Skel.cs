@@ -427,12 +427,8 @@ public class Skel : Bosseslv2
             if (currentState == STATE.FAST_RUSH || currentState == STATE.SLOW_RUSH)
             {
                 inputsList.Add(INPUT.IN_SLOW_RUSH_END);
-                PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
-                if (playerHealth != null)
-                {
-                    playerHealth.TakeDamage((int)(rushDamage * damageMult));
-                }
             }
+
             else if (currentState == STATE.BOUNCE_RUSH)
             {
                 inputsList.Add(INPUT.IN_BOUNCERUSH_END);
