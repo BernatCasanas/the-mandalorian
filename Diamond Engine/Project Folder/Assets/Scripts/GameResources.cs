@@ -464,7 +464,7 @@ public class YodaForceControl : GameResources
     {
         if (Core.instance != null)
         {
-            Core.instance.AddStatus(STATUS_TYPE.YODA_FORCE, STATUS_APPLY_TYPE.ADDITIVE, 100f, 0, true);
+            Core.instance.AddStatus(STATUS_TYPE.YODA_FORCE, STATUS_APPLY_TYPE.ADDITIVE, 2f, 0, true);
             if (!Core.boons.Contains(STATUS_TYPE.YODA_FORCE))
                 Core.boons.Add(STATUS_TYPE.YODA_FORCE);
         }
@@ -510,6 +510,7 @@ static class BoonDataHolder
             new BountyHunter(),
             new BosskSpecialAmmo(),
             new WinduForceControl(),
+            new YodaForceControl(),
            // TODO Add boons here
         };
 
