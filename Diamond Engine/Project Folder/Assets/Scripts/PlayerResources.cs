@@ -254,6 +254,14 @@ public static class PlayerResources
         Debug.Log("Boons reseted");
     }
 
+    public static int GetBoonsAmount()
+    {
+        if(boonCounter != null)
+            return boonCounter.Count;
+
+        return 0;
+    }
+
     public static void ResetResources()
     {
         beskarCounter = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("beskarCounter") : 0;

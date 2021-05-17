@@ -10,10 +10,14 @@ namespace DiamondEngine
         public enum CounterTypes
         {
             NONE,
-            BOKATAN_RES, //Boon
-            WRECKER_RES, //Boon
-            CAD_BANE_SOH, //Boon
-            CAD_BANE_BOOTS, //Boon
+
+            //Boons
+            BOKATAN_RES, 
+            WRECKER_RES, 
+            CAD_BANE_SOH, 
+            CAD_BANE_BOOTS, 
+
+            //Enemies & Bosses
             ENEMY_BANTHA,
             ENEMY_STORMTROOPER,
             RANCOR,
@@ -24,29 +28,26 @@ namespace DiamondEngine
             ENEMY_DEATHTROOPER,
             ENEMY_HEAVYTROOPER,
             MOFFGIDEON,
+
+            //Other
             LEVELS,
             RUN_COINS,
             MAX,
         }
 
-        public int place = 6;
         public int amount = 0;
         public CounterTypes type;
-        public static int roomEnemies = 0;
         public static int maxCombo = 0;
         public static bool isFinalScene = false;
-        public static bool allEnemiesDead = false;
         public static bool firstRun = true; // When we have save / load functionality, this should be in it
 
         public Counter()
         {
-            place = 6;
             amount = 0;
             type = CounterTypes.NONE;
         }
-        public Counter(int _place, int _amount, CounterTypes ty)
+        public Counter(int _amount, CounterTypes ty)
         {
-            place = _place;
             amount = _amount;
             type = ty;
         }
@@ -61,7 +62,7 @@ namespace DiamondEngine
             }
             else 
             {
-                Counter aux = new Counter(GameCounters.Count + 1, 1, type);
+                Counter aux = new Counter(1, type);
                 GameCounters.Add(type, aux);
                 Debug.Log(type.ToString() + ": added");
             }
@@ -70,7 +71,6 @@ namespace DiamondEngine
         public static void ResetCounters()
         {
             GameCounters.Clear();
-            roomEnemies = 0;
             maxCombo = 0;
             isFinalScene = false;
         }
