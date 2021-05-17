@@ -133,7 +133,11 @@ public class GameSceneManager : DiamondComponent
         if (rewardData != null)
         {
             rewardData.Use();
-         
+            if (Core.instance != null)
+               if( Core.instance.HasStatus(STATUS_TYPE.BOUNTY_HUNTER))
+                    PlayerResources.AddRunCoins((int)(Core.instance.GetStatusData(STATUS_TYPE.BOUNTY_HUNTER).severity));
+
+
             if (rewardObject != null)
                 rewardObject.Enable(false);
 

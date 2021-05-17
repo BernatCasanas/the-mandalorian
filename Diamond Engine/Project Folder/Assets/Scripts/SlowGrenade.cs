@@ -55,7 +55,13 @@ public class SlowGrenade : DiamondComponent
         {
             float grenadeDamage = damage;
             if (Core.instance != null)
+            {
                 grenadeDamage *= Core.instance.GetGrenadeDamageMod();
+                if (Core.instance.HasStatus(STATUS_TYPE.BOSSK_AMMO) && enemies.Count > 1)
+                    grenadeDamage *= 2;
+            }
+      
+
 
             explosionTimer += Time.deltaTime;
             procTimer += Time.deltaTime;

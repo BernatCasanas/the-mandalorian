@@ -2035,6 +2035,18 @@ public class Core : Entity
       
 
         float Damage = BlasterDamageMult * BlasterDamagePerHpMult * DamagePerHeatMult * RawDamageMult * supercharged * ChadBaneModifier * AfterDashModifier;
+        if (HasStatus(STATUS_TYPE.BLAST_CANNON))
+        {
+            if (hud != null)
+            {
+                float currHeat = hud.GetComponent<HUD>().GetPrimaryHeat();
+                float maxHeat = hud.GetComponent<HUD>().GetPrimaryMaxHeat();
+                if (currHeat / maxHeat >= 75 / 100)
+                    Damage *= 2;
+
+            }
+        }
+            
 
         //if (skill_groguIncreaseDamageActive)
         //{

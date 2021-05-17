@@ -389,6 +389,55 @@ public class MandoQuickCombo : GameResources
 
     }
 }
+public class BlastCannonMouthpiece : GameResources
+{
+    public BlastCannonMouthpiece() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Primary weapon does double damage while on 75% or more heat.") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.BLAST_CANNON, STATUS_APPLY_TYPE.ADDITIVE, 100f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.BLAST_CANNON))
+                Core.boons.Add(STATUS_TYPE.BLAST_CANNON);
+        }
+
+    }
+
+}
+
+public class BountyHunter : GameResources
+{
+    public BountyHunter() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "every time a room is cleared, +10 gold is received.") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.BLAST_CANNON, STATUS_APPLY_TYPE.ADDITIVE, 10f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.BLAST_CANNON))
+                Core.boons.Add(STATUS_TYPE.BLAST_CANNON);
+        }
+
+    }
+
+}
+public class BosskSpecialAmmo : GameResources
+{
+    public BosskSpecialAmmo() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Grenade does double damage as long as more than one enemy is getting hit by it.") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.BOSSK_AMMO, STATUS_APPLY_TYPE.ADDITIVE, 100f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.BOSSK_AMMO))
+                Core.boons.Add(STATUS_TYPE.BLAST_CANNON);
+        }
+
+    }
+
+}
 #endregion
 static class BoonDataHolder
 {
@@ -421,6 +470,10 @@ static class BoonDataHolder
             new FennecSniper(),
             new ItsaTrap(),
             new WreckHeavyShot(),
+            new MandoQuickCombo(),
+            new BlastCannonMouthpiece(),
+            new BountyHunter(),
+            new BosskSpecialAmmo(),
            // TODO Add boons here
         };
 
