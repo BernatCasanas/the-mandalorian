@@ -10,6 +10,8 @@
 #include "MathGeoLib/include/Algorithm/Random/LCG.h"
 #include "RE_PostProcess.h"
 
+#include "MaykMath.h"
+
 #include "CO_Camera.h"
 
 //A post process filter consists of a shader that renders onto a screen quad applying a single shader effect (Ex. Invert Image Colors)
@@ -222,16 +224,23 @@ void PostProcessFilterRender::Render(bool isHDR, int width, int height, unsigned
 	}
 }
 
-PostProcessFilterAO::PostProcessFilterAO() : PostProcessFilter(1926059054, true)
+PostProcessFilterAO::PostProcessFilterAO() : PostProcessFilter(1926059054, true),
+noiseTexture(0)
 {
 	PopulateKernel();
+	GenerateNoiseTexture();
 }
 
 PostProcessFilterAO::~PostProcessFilterAO()
 {
+	if (noiseTexture != 0)
+	{
+		glDeleteTextures(1, &noiseTexture);
+		noiseTexture = 0;
+	}
 }
 
-void PostProcessFilterAO::Render(bool isHDR, int width, int height, unsigned int depthTexture, C_Camera* currCam, float sampleRad)
+void PostProcessFilterAO::Render(bool isHDR, int width, int height, unsigned int depthTexture, C_Camera* currCam, float sampleRad,float bias,bool fastAO)
 {
 	if (TryLoadShader())
 	{
@@ -241,6 +250,10 @@ void PostProcessFilterAO::Render(bool isHDR, int width, int height, unsigned int
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, depthTexture);
 		glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "depthTexture"), 0);
+
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, noiseTexture);
+		glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "noiseTexture"), 0);
 
 		bool isOrthograpic = false;
 		if (currCam->camFrustrum.type == math::FrustumType::OrthographicFrustum)
@@ -277,6 +290,16 @@ void PostProcessFilterAO::Render(bool isHDR, int width, int height, unsigned int
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "cameraSize");
 		glUniform1f(uniformLoc, currCam->orthoSize);
 
+		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "depthDimensions");
+		glUniform2f(uniformLoc, width, height);
+		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "bias");
+		glUniform1f(uniformLoc, bias);
+
+		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "fastAO");
+		glUniform1i(uniformLoc, fastAO);
+
+
+
 		quadRenderer->RenderQuad();
 
 		glActiveTexture(GL_TEXTURE0);
@@ -289,11 +312,59 @@ void PostProcessFilterAO::Render(bool isHDR, int width, int height, unsigned int
 
 void PostProcessFilterAO::PopulateKernel()
 {
+	//Hemisphere with z+ being the normal
 	LCG randomizer;
 	for (int i = 0; i < 64; ++i)//TODO this number is hardcoded for the moment
 	{
-		kernelAO.push_back(float3::RandomSphere(randomizer, float3::zero, 1));
+		float3 rNum = float3::RandomSphere(randomizer, float3::zero, 1);
+
+
+		//Only if we want a good ^2 fallof (more samples near 0,0)
+		//rNum.x = rNum.x * abs(rNum.x); //abs so it always is positive and we do not end multiplying negative with negative
+		//rNum.y = rNum.y * abs(rNum.y);
+		//rNum.z = rNum.z * abs(rNum.z);
+
+		//Accelerating interpolation function (more samples next to the center, use this if not using ^2 fallof)
+		float scale = (float)i / 64.0;
+		scale = MaykMath::Lerp(0.1f, 1.0f, scale * scale);
+		rNum *= scale;
+
+		//this if only if we want hemisphere
+		if (rNum.z > 0.0f)
+		{
+			rNum.z *= -1;
+		}
+
+		kernelAO.push_back(rNum);
 	}
+}
+
+void PostProcessFilterAO::GenerateNoiseTexture()
+{
+	if (noiseTexture != 0)
+		return;
+
+	std::vector<float3> textureVectors;
+	LCG randomizer;
+
+	for (int i = 0; i < 16; i++)
+	{
+		float3 rNum = float3::RandomDir(randomizer);
+		rNum.z = 0;
+		rNum.Normalize();
+		textureVectors.push_back(rNum);
+	}
+
+	glGenTextures(1, &noiseTexture);
+	glBindTexture(GL_TEXTURE_2D, noiseTexture);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, 4, 4, 0, GL_RGB, GL_FLOAT, &textureVectors[0]);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	textureVectors.clear();
+
 }
 
 PostProcessFilterBlurH::PostProcessFilterBlurH() : PostProcessFilter(1278174060, true)
@@ -305,7 +376,7 @@ PostProcessFilterBlurH::~PostProcessFilterBlurH()
 {
 }
 
-void PostProcessFilterBlurH::Render(bool isHDR, int width, int height, unsigned int texture, float blurSpread)
+void PostProcessFilterBlurH::Render(bool isHDR, int width, int height, unsigned int texture, float blurSpread,bool normalizeToAspectRatio)
 {
 	if (TryLoadShader())
 	{
@@ -321,6 +392,11 @@ void PostProcessFilterBlurH::Render(bool isHDR, int width, int height, unsigned 
 		glUniform1fv(uniformLoc, 11, &gaussianKernel[0]);
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "blurSpread");
 		glUniform1f(uniformLoc, blurSpread);
+
+		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "normalizeToAspectRatio");
+		glUniform1i(uniformLoc, normalizeToAspectRatio);
+		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "aspectRatio");
+		glUniform1f(uniformLoc,(float)width / (float)height);
 
 		quadRenderer->RenderQuad();
 
@@ -375,6 +451,7 @@ void PostProcessFilterBlurV::Render(bool isHDR, int width, int height, unsigned 
 		glUniform1fv(uniformLoc, 11, &gaussianKernel[0]);
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "blurSpread");
 		glUniform1f(uniformLoc, blurSpread);
+
 
 		quadRenderer->RenderQuad();
 
@@ -538,7 +615,7 @@ void PostProcessFilterToneMapping::Render(bool isHDR, int width, int height, uns
 	}
 }
 
-PostProcessFilterVignette::PostProcessFilterVignette(): PostProcessFilter(1407530245, true)
+PostProcessFilterVignette::PostProcessFilterVignette() : PostProcessFilter(1407530245, true)
 {
 }
 
@@ -557,14 +634,14 @@ void PostProcessFilterVignette::Render(bool isHDR, int width, int height, unsign
 		glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "colourTexture"), 0);
 
 		GLint uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "screenRes");
-		glUniform2f(uniformLoc, width,height);
+		glUniform2f(uniformLoc, width, height);
 
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "intensity");
 		glUniform1f(uniformLoc, vignetteData->intensity);
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "extend");
 		glUniform1f(uniformLoc, vignetteData->extend);
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "tint");
-		glUniform4fv(uniformLoc,1, &vignetteData->tint.x);
+		glUniform4fv(uniformLoc, 1, &vignetteData->tint.x);
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "outerRadius");
 		glUniform1f(uniformLoc, vignetteData->minMaxRadius.y);
 		uniformLoc = glGetUniformLocation(myShader->shaderProgramID, "innerRadius");

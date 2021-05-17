@@ -11,7 +11,7 @@ void main()
 {
 	gl_Position= vec4(pos,1);
 	vec2 centerTextureCoords =vec2(pos.xy*0.5+0.5);
-	float pixelSize = 1.0/targetHeight; //width of the image in texture coords / number of pixels in the width
+	float pixelSize = 1.0/targetHeight; //width of the image in texture coords / number of pixels in the height
 
 	for(int i=-(GAUSSIAN_KERNEL_SIZE-1)/2; i<=(GAUSSIAN_KERNEL_SIZE-1)/2; i++)
 	{
