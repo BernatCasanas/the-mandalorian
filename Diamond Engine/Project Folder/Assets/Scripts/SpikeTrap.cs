@@ -11,7 +11,7 @@ public class SpikeTrap : DiamondComponent
 
     public void Awake()
     {
-        Animator.Play(this.gameObject, "SpikeTrap_Hide");
+        Animator.Play(this.gameObject, "SpikeTrap_Idle");
         activateAnimationTime = Animator.GetAnimationDuration(gameObject, "SpikeTrap_Activate");
         hideAnimationTime = Animator.GetAnimationDuration(gameObject, "SpikeTrap_Hide");
     }
