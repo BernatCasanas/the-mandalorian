@@ -414,9 +414,9 @@ public class BountyHunter : GameResources
     {
         if (Core.instance != null)
         {
-            Core.instance.AddStatus(STATUS_TYPE.BLAST_CANNON, STATUS_APPLY_TYPE.ADDITIVE, 10f, 0, true);
-            if (!Core.boons.Contains(STATUS_TYPE.BLAST_CANNON))
-                Core.boons.Add(STATUS_TYPE.BLAST_CANNON);
+            Core.instance.AddStatus(STATUS_TYPE.BOUNTY_HUNTER, STATUS_APPLY_TYPE.ADDITIVE, 10f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.BOUNTY_HUNTER))
+                Core.boons.Add(STATUS_TYPE.BOUNTY_HUNTER);
         }
 
     }
@@ -432,12 +432,30 @@ public class BosskSpecialAmmo : GameResources
         {
             Core.instance.AddStatus(STATUS_TYPE.BOSSK_AMMO, STATUS_APPLY_TYPE.ADDITIVE, 100f, 0, true);
             if (!Core.boons.Contains(STATUS_TYPE.BOSSK_AMMO))
-                Core.boons.Add(STATUS_TYPE.BLAST_CANNON);
+                Core.boons.Add(STATUS_TYPE.BOSSK_AMMO);
         }
 
     }
 
 }
+
+public class WinduForceControl : GameResources
+{
+    public WinduForceControl() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "when you kill an enemy, gain Force points equal to 5% of max Force") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.WINDU_FORCE, STATUS_APPLY_TYPE.ADDITIVE, 100f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.WINDU_FORCE))
+                Core.boons.Add(STATUS_TYPE.WINDU_FORCE);
+        }
+
+    }
+
+}
+
 #endregion
 static class BoonDataHolder
 {
@@ -474,6 +492,7 @@ static class BoonDataHolder
             new BlastCannonMouthpiece(),
             new BountyHunter(),
             new BosskSpecialAmmo(),
+            new WinduForceControl(),
            // TODO Add boons here
         };
 

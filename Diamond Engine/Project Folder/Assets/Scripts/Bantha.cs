@@ -834,7 +834,15 @@ public class Bantha : Enemy
         if (currentState != STATE.DIE)
         {
             if (healthPoints <= 0.0f)
+            {
                 inputsList.Add(INPUT.IN_DIE);
+                if (Core.instance != null)
+                {
+                    if (Core.instance.HasStatus(STATUS_TYPE.WINDU_FORCE))
+                        BabyYoda.instance.SetCurrentForce(BabyYoda.instance.GetCurrentForce() + (int)(Core.instance.GetStatusData(STATUS_TYPE.WINDU_FORCE).severity));
+                }
+            }
+
         }
 
     }

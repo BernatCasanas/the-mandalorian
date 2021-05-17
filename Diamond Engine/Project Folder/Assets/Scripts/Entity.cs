@@ -121,6 +121,7 @@ public enum STATUS_TYPE
     BLAST_CANNON,
     BOUNTY_HUNTER,
     BOSSK_AMMO,
+    WINDU_FORCE
 }
 
 public enum STATUS_APPLY_TYPE
