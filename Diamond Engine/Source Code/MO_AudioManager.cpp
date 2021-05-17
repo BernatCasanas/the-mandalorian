@@ -14,7 +14,7 @@
 CAkFilePackageLowLevelIOBlocking g_lowLevelIO;
 
 
-ModuleAudioManager::ModuleAudioManager(Application* app, bool start_enabled) : Module(app, start_enabled), wwiseListenerHasToUpdate(false), defaultListener(nullptr), masterVolume(50.0f), musicVolume(50.0f), fxVolume(50.0f), musicSource(nullptr)
+ModuleAudioManager::ModuleAudioManager(Application* app, bool start_enabled) : Module(app, start_enabled), wwiseListenerHasToUpdate(false), defaultListener(nullptr), masterVolume(50.0f), musicVolume(50.0f), fxVolume(50.0f), musicSource(nullptr), uiBankRef(nullptr)
 {
 	//TODO listener code here
 #ifdef STANDALONE
@@ -132,7 +132,6 @@ bool ModuleAudioManager::Start()
 	{
 		LOG(LogType::L_ERROR, "Audio Manager couldn't load data from SoundbanksInfo.json");
 	}
-	LoadBank(std::string("UI.bnk"));
 	return true;
 }
 
@@ -366,6 +365,11 @@ bool ModuleAudioManager::LoadBanksInfo()
 				}
 			}
 			banks.push_back(tmpBank);
+			if (strcmp(tmp.ReadString("ShortName"), "UI") == 0)
+			{
+				LoadBank(std::string("UI.bnk"));
+				uiBankRef = banks.at(banks.size() - 1);
+			}
 		}
 	}
 	

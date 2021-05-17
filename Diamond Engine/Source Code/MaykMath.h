@@ -34,6 +34,10 @@ namespace MaykMath
 
 	//static const LookUpTables lookUpTables;
 
+	float Lerp(float from, float to, float t);
+	float InvLerp(float from, float to, float value);
+	float Remap(float iMin, float iMax, float oMin, float oMax, float value);
+
 	template <class T>
 	void FixedVectorPushBack(std::vector<T>& vec, T& value) {
 		if (vec.size() == vec.capacity())

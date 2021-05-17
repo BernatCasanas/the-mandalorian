@@ -88,6 +88,8 @@ public:
 	float musicVolume;
 	float fxVolume;
 
+	AudioBank* uiBankRef;
+
 private:
 	bool wwiseListenerHasToUpdate;
 #ifdef  STANDALONE
