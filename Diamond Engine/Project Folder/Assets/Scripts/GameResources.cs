@@ -447,9 +447,26 @@ public class WinduForceControl : GameResources
     {
         if (Core.instance != null)
         {
-            Core.instance.AddStatus(STATUS_TYPE.WINDU_FORCE, STATUS_APPLY_TYPE.ADDITIVE, 100f, 0, true);
+            Core.instance.AddStatus(STATUS_TYPE.WINDU_FORCE, STATUS_APPLY_TYPE.ADDITIVE, 5f, 0, true);
             if (!Core.boons.Contains(STATUS_TYPE.WINDU_FORCE))
                 Core.boons.Add(STATUS_TYPE.WINDU_FORCE);
+        }
+
+    }
+
+}
+
+public class YodaForceControl : GameResources
+{
+    public YodaForceControl() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Grogu’s push pushes double the range.") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.YODA_FORCE, STATUS_APPLY_TYPE.ADDITIVE, 100f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.YODA_FORCE))
+                Core.boons.Add(STATUS_TYPE.YODA_FORCE);
         }
 
     }
