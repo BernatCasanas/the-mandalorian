@@ -61,6 +61,7 @@ public class MoffGideon : Entity
     private NavMeshAgent agent = null;
     private GameObject saber = null;
     public GameObject camera = null;
+    private CameraController cam_comp = null;
 
     //State
     private MOFFGIDEON_STATE currentState = MOFFGIDEON_STATE.PRESENTATION;
@@ -111,6 +112,8 @@ public class MoffGideon : Entity
     private bool ready2Spawn = false;
     private Vector3 beginDash = null;
     private Vector3 targetDash = null;
+    private bool deathTrooperSpawned = false;
+
     //private float damaged = 0.0f;
     private bool justDashing = false;
     private int maxProjectiles = 7;
@@ -163,11 +166,15 @@ public class MoffGideon : Entity
         presentationTime = Animator.GetAnimationDuration(gameObject, "MG_Presentation") - 0.016f;
         changingStateTime = Animator.GetAnimationDuration(gameObject, "MG_Presentation2") - 0.016f;
 
-        StartPresentation();
 
         enemiesTimer = enemiesTime;
 
         deathtroopers = new List<GameObject>();
+
+        if(camera!=null)
+            cam_comp = camera.GetComponent<CameraController>();
+
+        StartPresentation();
 
     }
 
@@ -244,7 +251,7 @@ public class MoffGideon : Entity
 
     private void ProcessExternalInput()
     {
-        if (currentState == MOFFGIDEON_STATE.SPAWN_ENEMIES && deathtroopers.Count == 0)
+        if (currentState == MOFFGIDEON_STATE.SPAWN_ENEMIES && deathtroopers.Count == 0 && deathTrooperSpawned)
             inputsList.Add(MOFFGIDEON_INPUT.IN_NEUTRAL);
 
         if (currentState == MOFFGIDEON_STATE.NEUTRAL && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance && wander)
@@ -741,6 +748,8 @@ public class MoffGideon : Entity
 
         presentationTimer = presentationTime;
 
+        if (cam_comp != null)
+            cam_comp.target = this.gameObject;
     }
 
 
@@ -753,7 +762,8 @@ public class MoffGideon : Entity
 
     private void EndPresentation()
     {
-
+        if(cam_comp!=null)
+            cam_comp.target = Core.instance.gameObject;
     }
 
     #endregion
@@ -771,6 +781,9 @@ public class MoffGideon : Entity
 
         healthPoints = maxHealthPoints_fase2;
 
+        if (cam_comp != null)
+            cam_comp.target = this.gameObject;
+
     }
 
 
@@ -785,6 +798,8 @@ public class MoffGideon : Entity
     {
         currentPhase = MOFFGIDEON_PHASE.PHASE2;
         enemiesTimer = enemiesTime;
+        if (cam_comp != null)
+            cam_comp.target = Core.instance.gameObject;
     }
 
     #endregion
@@ -803,6 +818,7 @@ public class MoffGideon : Entity
             wander = true;
             agent.CalculateRandomPath(gameObject.transform.globalPosition, radiusWander);
         }
+
     }
 
 
@@ -958,23 +974,43 @@ public class MoffGideon : Entity
     private void StartSpawnEnemies()
     {
         invencible = true;
-        ready2Spawn = false;
-        SpawnEnemies();
         Animator.Play(gameObject, "MG_Spawn", speedMult);
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Spawn_Enemies");
+        if (cam_comp != null)
+            cam_comp.target = this.gameObject;
+        privateTimer = 0.5f;
     }
 
     private void UpdateSpawnEnemies()
     {
         Debug.Log("Spawning Enemies");
+        if (privateTimer > 0)
+        {
+            privateTimer -= myDeltaTime;
 
+            if (privateTimer <= 0)
+                if(ready2Spawn)
+                {
+                    SpawnEnemies();
+                    privateTimer = 0.5f;
+                    ready2Spawn = false;
+                    deathTrooperSpawned = true;
+                }
+                else
+                {
+                    if (cam_comp != null)
+                        cam_comp.target = Core.instance.gameObject;
+                }
+            
+        }
     }
 
     private void EndSpawnEnemies()
     {
         enemiesTimer = enemiesTime;
         invencible = false;
+        deathTrooperSpawned = false;
     }
 
     #endregion
@@ -1067,6 +1103,8 @@ public class MoffGideon : Entity
         dieTimer = dieTime;
         Animator.Play(gameObject, "MG_Death", speedMult);
         UpdateAnimationSpd(speedMult);
+        if (cam_comp != null)
+            cam_comp.target = this.gameObject;
     }
 
     private void UpdateDie()
@@ -1092,6 +1130,8 @@ public class MoffGideon : Entity
         Audio.StopAudio(gameObject);
         Input.PlayHaptic(0.3f, 3);
         InternalCalls.Destroy(gameObject);
+        if (cam_comp != null)
+            cam_comp.target = Core.instance.gameObject;
     }
     #endregion
 

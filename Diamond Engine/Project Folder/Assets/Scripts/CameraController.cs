@@ -23,7 +23,7 @@ public class CameraController : DiamondComponent
 
     public void Update()
     {
-        if (Core.instance.gameObject != null)        
+        if (target == null)        
             target = Core.instance.gameObject;
 
         Vector3 offset = new Vector3(x, y, z);
