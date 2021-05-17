@@ -191,12 +191,12 @@ public class SlowGrenade : DiamondComponent
         if(Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.SEC_DURATION))
         {
             if (explosionTimer >= explosionTime * (1 + Core.instance.GetStatusData(STATUS_TYPE.SEC_DURATION).severity / 100))
-                InternalCalls.Destroy(gameObject);
+                Explode();
         }
         else
         {
             if (explosionTimer >= explosionTime)
-                InternalCalls.Destroy(gameObject);
+                Explode();
         }
       
     }
@@ -232,5 +232,11 @@ public class SlowGrenade : DiamondComponent
                 }
             }
         }
+    }
+
+    private void Explode()
+    {
+        InternalCalls.CreatePrefab("Library/Prefabs/2084632366.prefab", gameObject.transform.globalPosition, new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
+        InternalCalls.Destroy(gameObject);
     }
 }

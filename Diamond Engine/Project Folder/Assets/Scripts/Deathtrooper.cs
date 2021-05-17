@@ -515,7 +515,7 @@ public class Deathtrooper : Enemy
 
         for (int i = 0; i < numShots; i++)
         {
-            GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+            GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1234372269.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
 
             if (bullet != null)
             {

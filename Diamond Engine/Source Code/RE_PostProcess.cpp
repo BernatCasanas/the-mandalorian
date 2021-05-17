@@ -79,7 +79,7 @@ POSTPROCESS_DATA_TYPE PostProcessData::GetType() const
 }
 
 PostProcessDataAO::PostProcessDataAO() : PostProcessData(POSTPROCESS_DATA_TYPE::AO, "Screen Space Ambient Oclussion"),
-radiusAO(1.0f), blurSpread(0)
+radiusAO(1.0f), blurSpread(0),useBlur(false), bias(0.1f),fastAO(false)
 {
 }
 
@@ -99,10 +99,24 @@ void PostProcessDataAO::DrawEditor()
 
 		label = "AO radius";
 		label += suffix;
-		ImGui::SliderFloat(label.c_str(), &radiusAO, 0.0f, 100.0f, "%.3f", 2.0f);
-		label = "AO Spread";
+		ImGui::SliderFloat(label.c_str(), &radiusAO, 0.0f, 5.0f, "%.3f", 3.0f);
+		label = "Bias";
 		label += suffix;
-		ImGui::SliderFloat(label.c_str(), &blurSpread, 0.0f, 20.0f, "%.3f");
+		ImGui::SliderFloat(label.c_str(), &bias, -1.0f, 1.0f, "%.3f", 2.0f);
+		
+		label = "Fast AO";
+		label += suffix;
+		ImGui::Checkbox(label.c_str(), &fastAO);
+		ImGui::Spacing();
+		label = "Smooth AO";
+		label += suffix;
+		ImGui::Checkbox(label.c_str(), &useBlur);
+		if (useBlur)
+		{
+			label = "AO Spread";
+			label += suffix;
+			ImGui::SliderFloat(label.c_str(), &blurSpread, 0.0f, 20.0f, "%.3f");
+		}
 
 		PostProcessData::DrawEditorEnd();
 	}
@@ -115,6 +129,9 @@ void PostProcessDataAO::SaveToJson(JSON_Object* nObj)
 	//TODO save data here
 	DEJson::WriteFloat(nObj, "RadiusAO", radiusAO);
 	DEJson::WriteFloat(nObj, "GlowSpread", blurSpread);
+	DEJson::WriteBool(nObj, "UseBlur", blurSpread);
+	DEJson::WriteFloat(nObj, "Bias", bias);
+	DEJson::WriteBool(nObj, "FastAO", fastAO);
 
 }
 
@@ -124,7 +141,9 @@ void PostProcessDataAO::LoadFromJson(DEConfig& nObj)
 	//TODO load data here
 	radiusAO = nObj.ReadFloat("RadiusAO");
 	blurSpread = nObj.ReadFloat("GlowSpread");
-
+	useBlur = nObj.ReadBool("UseBlur");
+	bias = nObj.ReadFloat("Bias");
+	fastAO = nObj.ReadBool("FastAO");
 }
 
 
@@ -132,7 +151,11 @@ PostProcessDataBloom::PostProcessDataBloom() : PostProcessData(POSTPROCESS_DATA_
 brightThreshold(0.7f),
 brightnessIntensity(1.0f),
 blurSpread(0.0f),
-smoothMask(false)
+smoothMask(false),
+blurIterations(2),
+startingDownscaleFactor(2.0f),
+downscaleFactorMultiplier(2.0f),
+normalizeAspectRatio(false)
 {
 }
 
@@ -150,6 +173,10 @@ void PostProcessDataBloom::DrawEditor()
 		PostProcessData::DrawEditorStart(suffix);
 
 		//TODO drawEditorHere
+		label = "Normalize to Aspect Ratio";
+		label += suffix;
+		ImGui::Checkbox(label.c_str(), &normalizeAspectRatio);
+
 
 		label = "Bright Threshold";
 		label += suffix;
@@ -160,6 +187,24 @@ void PostProcessDataBloom::DrawEditor()
 		label = "Glow Blur Spread";
 		label += suffix;
 		ImGui::SliderFloat(label.c_str(), &blurSpread, 0.0f, 20.0f, "%.3f");
+		
+
+		ImGui::Spacing();
+
+		label = "Blur Iterations";
+		label += suffix;
+		ImGui::DragInt(label.c_str(), &blurIterations, 1.0f, 1,6);
+		label = "Starting Blur Downscale Factor";
+		label += suffix;
+		ImGui::SliderFloat(label.c_str(), &startingDownscaleFactor, 1.0f, 16.0f, "%.3f");
+
+		label = "Downscale Factor Multiplier";
+		label += suffix;
+		ImGui::SliderFloat(label.c_str(), &downscaleFactorMultiplier, 0.25f, 4.0f, "%.3f");
+
+
+		ImGui::Spacing();
+		
 		label = "Use Smooth Glow";
 		label += suffix;
 		ImGui::Checkbox(label.c_str(), &smoothMask);
@@ -177,7 +222,12 @@ void PostProcessDataBloom::SaveToJson(JSON_Object* nObj)
 	DEJson::WriteFloat(nObj, "BrightnessIntensity", brightnessIntensity);
 	DEJson::WriteFloat(nObj, "GlowBlurSpread", blurSpread);
 	DEJson::WriteBool(nObj, "SmoothGlow", smoothMask);
+	
+	DEJson::WriteInt(nObj, "BlurIterations", blurIterations);
+	DEJson::WriteFloat(nObj, "StartingDownscaleFactor", startingDownscaleFactor);
+	DEJson::WriteFloat(nObj, "DownscaleFactorMultiplier", downscaleFactorMultiplier);
 
+	DEJson::WriteBool(nObj, "NormalizeAspectRatio", normalizeAspectRatio);
 }
 
 void PostProcessDataBloom::LoadFromJson(DEConfig& nObj)
@@ -188,6 +238,13 @@ void PostProcessDataBloom::LoadFromJson(DEConfig& nObj)
 	brightnessIntensity = nObj.ReadFloat("BrightnessIntensity");
 	blurSpread = nObj.ReadFloat("GlowBlurSpread");
 	smoothMask = nObj.ReadBool("SmoothGlow");
+
+	blurIterations= nObj.ReadInt("BlurIterations");
+	startingDownscaleFactor = nObj.ReadFloat("StartingDownscaleFactor");
+	downscaleFactorMultiplier = nObj.ReadFloat("DownscaleFactorMultiplier");
+
+	normalizeAspectRatio = nObj.ReadBool("NormalizeAspectRatio");
+
 }
 
 PostProcessDataToneMapping::PostProcessDataToneMapping() : PostProcessData(POSTPROCESS_DATA_TYPE::TONE_MAPPING, "Tone Mapping"),
@@ -242,7 +299,7 @@ void PostProcessDataToneMapping::LoadFromJson(DEConfig& nObj)
 
 
 PostProcessDataVignette::PostProcessDataVignette() : PostProcessData(POSTPROCESS_DATA_TYPE::VIGNETTE, "Vignette"),
-intensity(15.0f), extend(0.25f), tint(1.0f, 1.0f, 1.0f, 0.0f), minMaxRadius(0.4f,0.7f), mode(VIGNETTE_MODE::RECTANGULAR)
+intensity(15.0f), extend(0.25f), tint(1.0f, 1.0f, 1.0f, 0.0f), minMaxRadius(0.4f, 0.7f), mode(VIGNETTE_MODE::RECTANGULAR)
 {
 }
 
@@ -263,9 +320,9 @@ void PostProcessDataVignette::DrawEditor()
 		//TODO drawEditorHere
 		label = "tint";
 		label += suffix;
-		ImGui::ColorPicker4(label.c_str(), &tint.x,ImGuiColorEditFlags_AlphaBar);
+		ImGui::ColorPicker4(label.c_str(), &tint.x, ImGuiColorEditFlags_AlphaBar);
 		ImGui::Spacing();
-	
+
 		//=========================================== Combo
 		label = "VignetteMode";
 		label += suffix;
@@ -307,7 +364,7 @@ void PostProcessDataVignette::DrawEditor()
 			label = "minMaxRadius";
 			label += suffix;
 			ImGui::SliderFloat2(label.c_str(), &minMaxRadius.x, 0.0f, 5.0f, "%.3f", 1.25f);
-			
+
 		}
 		ImGui::Unindent();
 

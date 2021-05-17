@@ -25,21 +25,20 @@ public class PushSkill : DiamondComponent
 
 		gameObject.transform.localPosition += gameObject.transform.GetForward() * (speed * Time.deltaTime);
 
-		if (Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.GRO_PUSH))
+		float modifier = 1;
+		if (Core.instance.HasStatus(STATUS_TYPE.GRO_PUSH))
+			modifier *= Core.instance.GetStatusData(STATUS_TYPE.GRO_PUSH).severity;
+
+		if (Core.instance.HasStatus(STATUS_TYPE.YODA_FORCE))
+			modifier *= Core.instance.GetStatusData(STATUS_TYPE.YODA_FORCE).severity;
+
+		if (currentLifeTime >= maxLifeTime * modifier)
 		{
-			if (currentLifeTime >= maxLifeTime * Core.instance.GetStatusData(STATUS_TYPE.GRO_PUSH).severity)
-			{
-				InternalCalls.Destroy(this.gameObject);
-			}
+			InternalCalls.Destroy(this.gameObject);
 		}
-		else
-        {
-			if (currentLifeTime >= maxLifeTime)
-			{
-				InternalCalls.Destroy(this.gameObject);
-			}
-		}
-		
+
+
+
 	}
 
 }
