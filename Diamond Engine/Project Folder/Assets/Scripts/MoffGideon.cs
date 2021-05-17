@@ -749,7 +749,10 @@ public class MoffGideon : Entity
         presentationTimer = presentationTime;
 
         if (cam_comp != null)
+        {
             cam_comp.target = this.gameObject;
+        }
+
     }
 
 
@@ -782,7 +785,10 @@ public class MoffGideon : Entity
         healthPoints = maxHealthPoints_fase2;
 
         if (cam_comp != null)
+        {
             cam_comp.target = this.gameObject;
+            //cam_comp.Zoom(40f);
+        }
 
     }
 

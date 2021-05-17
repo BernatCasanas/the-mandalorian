@@ -8,13 +8,15 @@ public class CameraController : DiamondComponent
     public float x = 0.0f;
     public float y = 0.0f;
     public float z = 0.0f;
-    public float smoothSpeed = 0.0f;
-    public float zoomDesired = 0.1f;
+    public float smoothSpeed = 0.1f;
+    private float zoomDesired = 0.1f;
 
-    //private bool zooming = false;
+    //ZOOM Variables
+    private bool zooming = false;
+    public float time_easing_sec = 0.2f;
     public float timer_easing_sec = 0.2f;
     public float timer = 0.0f;
-    //private float pointA_zoom;
+    private float pointA_zoom;
 
     public float cornerTopLeftX = -100.0f;
     public float cornerTopLeftY = -100.0f;
@@ -37,25 +39,32 @@ public class CameraController : DiamondComponent
         gameObject.transform.localPosition = finalPos;
 
         //ZOOM ALGORITHM || WORKING 
-        //if (Input.GetKey(DEKeyCode.N) == KeyState.KEY_DOWN)
-        //{
-        //    zooming = true;
-        //    pointA_zoom = CameraManager.GetOrthSize(reference);
-        //}
-        //if (zooming && timer_easing_sec!=0.0f)
-        //{
-        //    timer += Time.deltaTime;
-        //    float t = 0;
 
-        //    t = timer / timer_easing_sec;
+        if (zooming && timer_easing_sec>=0.0f)
+        {
+            Debug.Log("sduifhgouisdfhgpsd");
+            timer += Time.deltaTime;
+            float t = 0;
 
-        //    if (timer >= timer_easing_sec)
-        //    {
-        //        timer = 0;
-        //        zooming = false;
-        //    }
-        //    CameraManager.SetOrthSize(reference, Ease.PointLerp(pointA_zoom, zoomDesired, Ease.OutCubic(t)));
-        //}
+            t = timer / timer_easing_sec;
+
+            if (timer >= timer_easing_sec)
+            {
+                timer = 0;
+                zooming = false;
+                timer_easing_sec = time_easing_sec;
+            }
+            CameraManager.SetOrthSize(this.gameObject, Ease.PointLerp(pointA_zoom, zoomDesired, Ease.OutCubic(t)));
+        }
+    }
+
+    public void Zoom(float size, float timeInSec)
+    {
+        zooming = true;
+        pointA_zoom = CameraManager.GetOrthSize(this.gameObject);
+        timer = 0;
+        zoomDesired = size;
+        timer_easing_sec = timeInSec;
     }
 
 
