@@ -325,7 +325,7 @@ public class MandoCode : GameResources
 
 public class ItsaTrap : GameResources
 {
-    public ItsaTrap() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Deal +20% damage but have -20% less max health (stackable)") { }
+    public ItsaTrap() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "traps deal -33% damage to Mando") { }
 
     public override void Use()
     {
@@ -340,7 +340,7 @@ public class ItsaTrap : GameResources
 }
 public class WreckHeavyShot : GameResources
 {
-    public WreckHeavyShot() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Deal +20% damage but have -20% less max health (stackable)") { }
+    public WreckHeavyShot() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "hitting an enemy with a slowed status applies +25% non-stackable extra slowed status for 3 seconds.") { }
 
     public override void Use()
     {
@@ -354,6 +354,21 @@ public class WreckHeavyShot : GameResources
     }
 }
 
+public class MandoQuickCombo : GameResources
+{
+    public MandoQuickCombo() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "hitting an enemy with the primary weapon makes them take +5 % more damage from the primary weapon for 5 seconds. % stacks up to 100%") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.QUICK_COMBO, STATUS_APPLY_TYPE.ADDITIVE, 5f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.QUICK_COMBO))
+                Core.boons.Add(STATUS_TYPE.QUICK_COMBO);
+        }
+
+    }
+}
 #endregion
 static class BoonDataHolder
 {

@@ -340,8 +340,12 @@ public class Wampa : Bosseslv2
         if (collidedGameObject.CompareTag("Bullet"))
         {
             if (Core.instance != null)
+            {
+                if (Core.instance.HasStatus(STATUS_TYPE.MANDO_QUICK_DRAW))
+                    AddStatus(STATUS_TYPE.BLASTER_VULN, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.MANDO_QUICK_DRAW).severity / 100, 5);
                 if (Core.instance.HasStatus(STATUS_TYPE.PRIM_MOV_SPEED))
-                    AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_MOV_SPEED).severity / 100, 5, false);
+                    Core.instance.AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_MOV_SPEED).severity / 100, 5, false);
+            }
             BH_Bullet bulletComp = collidedGameObject.GetComponent<BH_Bullet>();
 
             if (bulletComp != null)
@@ -354,7 +358,7 @@ public class Wampa : Bosseslv2
                 //}
                 if (Core.instance != null)
                     damageToBoss *= Core.instance.DamageToBosses;
-                TakeDamage(damageToBoss * damageRecieveMult);
+                TakeDamage(damageToBoss * damageRecieveMult * BlasterVulnerability);
             }
             //damaged = 1.0f; this is HUD things
 
@@ -420,7 +424,9 @@ public class Wampa : Bosseslv2
                 {
                     if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))
                         AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.WRECK_HEAVY_SHOT).severity / 100, 5);
-
+                    
+                    
+                   
                     if (Core.instance.HasStatus(STATUS_TYPE.LIFESTEAL))
                     {
                         Random rand = new Random();

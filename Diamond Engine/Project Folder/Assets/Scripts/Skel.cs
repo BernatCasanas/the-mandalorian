@@ -355,8 +355,13 @@ public class Skel : Bosseslv2
         if (collidedGameObject.CompareTag("Bullet"))
         {
             if (Core.instance != null)
+            {
                 if (Core.instance.HasStatus(STATUS_TYPE.PRIM_MOV_SPEED))
-                    AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_MOV_SPEED).severity / 100, 5, false);
+                    Core.instance.AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_MOV_SPEED).severity / 100, 5, false);
+                if (Core.instance.HasStatus(STATUS_TYPE.MANDO_QUICK_DRAW))
+                    AddStatus(STATUS_TYPE.BLASTER_VULN, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.MANDO_QUICK_DRAW).severity / 100, 5);
+
+            }
             BH_Bullet bulletComp = collidedGameObject.GetComponent<BH_Bullet>();
 
 
@@ -364,7 +369,7 @@ public class Skel : Bosseslv2
             {
                 float damageToBoss = bulletComp.GetDamage();
                 if (Core.instance != null)
-                    damageToBoss *= Core.instance.DamageToBosses;
+                    damageToBoss *= Core.instance.DamageToBosses * BlasterVulnerability;
 
                 //if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
                 //{

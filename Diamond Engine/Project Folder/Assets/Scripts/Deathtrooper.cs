@@ -624,18 +624,19 @@ public class Deathtrooper : Enemy
         if (collidedGameObject.CompareTag("Bullet"))
         {
             if (Core.instance != null)
+            {
                 if (Core.instance.HasStatus(STATUS_TYPE.PRIM_SLOW))
                     AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_SLOW).severity / 100, 2, false);
-
-            if (Core.instance != null)
+                if (Core.instance.HasStatus(STATUS_TYPE.MANDO_QUICK_DRAW))
+                    AddStatus(STATUS_TYPE.BLASTER_VULN, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.MANDO_QUICK_DRAW).severity / 100, 5);
                 if (Core.instance.HasStatus(STATUS_TYPE.PRIM_MOV_SPEED))
-                    AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_MOV_SPEED).severity / 100, 5, false);
-
+                    Core.instance.AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_MOV_SPEED).severity / 100, 5, false);
+            }
             BH_Bullet bullet = collidedGameObject.GetComponent<BH_Bullet>();
 
             if (bullet != null)
             {
-                TakeDamage(bullet.damage * damageRecieveMult);
+                TakeDamage(bullet.damage * damageRecieveMult * BlasterVulnerability);
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 

@@ -116,6 +116,8 @@ public enum STATUS_TYPE
     MANDO_CODE,
     ITSA_TRAP,
     WRECK_HEAVY_SHOT,
+    QUICK_COMBO,
+    BLASTER_VULN,
 }
 
 public enum STATUS_APPLY_TYPE
@@ -187,12 +189,14 @@ public class Entity : DiamondComponent
     protected float sniperShotIntervalModifier = 1f;
     public float MaxForceModifier = 0f;
     public float ForceRegentPerHPMod = 0f;
+    public float BlasterVulnerability = 1f;
 
     protected virtual void InitEntity(ENTITY_TYPE myType)
     {
         eType = myType;
         speedMult = 1f;
-        
+        BlasterVulnerability = 1f;
+
     }
 
     #region ENTITY TYPES
@@ -398,8 +402,15 @@ public class Entity : DiamondComponent
                     this.myDeltaTime = Time.deltaTime * speedMult;
                 }
                 break;
-      
-            
+            case STATUS_TYPE.BLASTER_VULN:
+                {
+
+                    statusToInit.statChange = statusToInit.severity / 100;
+                    if(statusToInit.statChange > 1) statusToInit.statChange = 1;
+                    this.BlasterVulnerability += statusToInit.statChange;
+                }
+                break;
+
             default:
                 break;
         }
@@ -433,7 +444,11 @@ public class Entity : DiamondComponent
                     this.myDeltaTime = Time.deltaTime * speedMult;
                 }
                 break;
-            
+            case STATUS_TYPE.BLASTER_VULN:
+                {
+                    this.BlasterVulnerability -= statusToDelete.severity;
+                }
+                break;
             default:
                 break;
         }

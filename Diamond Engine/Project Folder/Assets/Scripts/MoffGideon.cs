@@ -1119,9 +1119,12 @@ public class MoffGideon : Entity
         if (collidedGameObject.CompareTag("Bullet"))
         {
             if (Core.instance != null)
+            {
+                if (Core.instance.HasStatus(STATUS_TYPE.MANDO_QUICK_DRAW))
+                    AddStatus(STATUS_TYPE.BLASTER_VULN, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.MANDO_QUICK_DRAW).severity / 100, 5);
                 if (Core.instance.HasStatus(STATUS_TYPE.PRIM_MOV_SPEED))
-                    AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_MOV_SPEED).severity / 100, 5, false);
-
+                    Core.instance.AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_MOV_SPEED).severity / 100, 5, false);
+            }
             if (invencible) return;
 
             float damageToBoss = 0f;
@@ -1142,7 +1145,7 @@ public class MoffGideon : Entity
                 damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
             }*/
 
-            TakeDamage(damageToBoss * damageRecieveMult);
+            TakeDamage(damageToBoss * damageRecieveMult * BlasterVulnerability);
             Debug.Log("GIDEON HP: " + healthPoints.ToString());
             //damaged = 1.0f;
             //CHANGE FOR APPROPIATE RANCOR HIT
