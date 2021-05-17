@@ -17,6 +17,7 @@
 
 #include <string>
 #include"DETime.h"
+#include "mmgr/mmgr.h"
 
 int PrefabImporter::SavePrefab(const char* assets_path, GameObject* gameObject)
 {
@@ -48,7 +49,19 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 
 	GameObject* rootObject = sceneObjects.front();
 
-	JSON_Value* prefab = json_parse_file(libraryPath);
+	std::string id_string;
+	FileSystem::GetFileName(libraryPath, id_string, false);
+	uint prefabID = (uint)atoi(id_string.c_str());
+
+	JSON_Value* prefab;
+	
+	prefab = EngineExternal->moduleScene->GetPrefab(prefabID);
+	
+	if (prefab == nullptr)
+	{
+		prefab = json_parse_file(libraryPath);
+		EngineExternal->moduleScene->AddLoadedPrefab(prefabID, prefab);
+	}
 
 	if (prefab == nullptr)
 		return nullptr;
@@ -164,12 +177,10 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 			saveCopy[i]->OnAwake();
 	}
 
-	std::string id_string;
-	FileSystem::GetFileName(libraryPath, id_string, false);
-	rootObject->prefabID = (uint)atoi(id_string.c_str());
+	rootObject->prefabID = prefabID;
 
 	//Free memory
-	json_value_free(prefab);
+	//json_value_free(prefab);
 	prefabObjects.clear();
 	prefabReferences.clear();
 
@@ -182,7 +193,18 @@ GameObject* PrefabImporter::InstantiatePrefab(const char* libraryPath)
 
 	GameObject* rootObject = nullptr;
 
-	JSON_Value* prefab = json_parse_file(libraryPath);
+	std::string id_string;
+	FileSystem::GetFileName(libraryPath, id_string, false);
+	uint prefabID = (uint)atoi(id_string.c_str());
+
+	JSON_Value* prefab;
+	prefab = EngineExternal->moduleScene->GetPrefab(prefabID);
+
+	if (prefab == nullptr)
+	{
+		prefab = json_parse_file(libraryPath);
+		EngineExternal->moduleScene->AddLoadedPrefab(prefabID, prefab);
+	}
 
 	if (prefab == nullptr)
 		return nullptr;
@@ -230,12 +252,8 @@ GameObject* PrefabImporter::InstantiatePrefab(const char* libraryPath)
 			saveCopy[i]->OnAwake();
 	}
 
-	std::string id_string;
-	FileSystem::GetFileName(libraryPath, id_string, false);
-	rootObject->prefabID = (uint)atoi(id_string.c_str());
-
 	//Free memory
-	json_value_free(prefab);
+	//json_value_free(prefab);
 	gameObjects.clear();
 
 	return rootObject;
@@ -248,7 +266,18 @@ GameObject* PrefabImporter::LoadUIPrefab(const char* libraryPath)
 
 	GameObject* rootObject = nullptr;
 
-	JSON_Value* prefab = json_parse_file(libraryPath);
+	std::string id_string;
+	FileSystem::GetFileName(libraryPath, id_string, false);
+	uint prefabID = (uint)atoi(id_string.c_str());
+
+	JSON_Value* prefab;
+	prefab = EngineExternal->moduleScene->GetPrefab(prefabID);
+
+	if (prefab == nullptr)
+	{
+		prefab = json_parse_file(libraryPath);
+		EngineExternal->moduleScene->AddLoadedPrefab(prefabID, prefab);
+	}
 
 	if (prefab == nullptr)
 		return nullptr;
@@ -297,12 +326,10 @@ GameObject* PrefabImporter::LoadUIPrefab(const char* libraryPath)
 	for (size_t i = 0; i < saveCopy.size(); i++)
 		saveCopy[i]->OnAwake();
 
-	std::string id_string;
-	FileSystem::GetFileName(libraryPath, id_string, false);
-	rootObject->prefabID = (uint)atoi(id_string.c_str());
+	rootObject->prefabID = prefabID;
 
 	//Free memory
-	json_value_free(prefab);
+	//json_value_free(prefab);
 	gameObjects.clear();
 
 	return rootObject;
