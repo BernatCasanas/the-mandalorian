@@ -849,6 +849,7 @@ public class StormTrooper : Enemy
 
         if (currentState != STATE.DIE)
         {
+          
             if (myParticles != null && myParticles.hit != null)
                 myParticles.hit.Play();
             
@@ -856,6 +857,9 @@ public class StormTrooper : Enemy
 
             if (Core.instance != null)
             {
+                if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))
+                    AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.WRECK_HEAVY_SHOT).severity / 100, 5);
+
                 if (Core.instance.HasStatus(STATUS_TYPE.LIFESTEAL))
                 {
                     Random rand = new Random();

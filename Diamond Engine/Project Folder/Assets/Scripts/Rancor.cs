@@ -1569,12 +1569,17 @@ public class Rancor : Entity
     {
         if (!DebugOptionsHolder.bossDmg)
         {
+          
+
             Debug.Log("Rancor damage" + damage.ToString());
             if (currentState != RANCOR_STATE.DEAD)
             {
                 healthPoints -= damage;
                 if (Core.instance != null)
                 {
+                    if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))
+                        AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.WRECK_HEAVY_SHOT).severity / 100, 5);
+
                     if (Core.instance.HasStatus(STATUS_TYPE.LIFESTEAL))
                     {
                         Random rand = new Random();

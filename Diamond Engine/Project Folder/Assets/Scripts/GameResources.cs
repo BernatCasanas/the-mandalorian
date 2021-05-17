@@ -227,6 +227,21 @@ public class GreedoShooter : GameResources
     }
 }
 
+public class FennecSniper : GameResources
+{
+    public FennecSniper() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Double rifle sweet spot time window (non-stackable).") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.FENNEC_SR, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 100f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.FENNEC_SR))
+                Core.boons.Add(STATUS_TYPE.FENNEC_SR);
+        }
+
+    }
+}
 
 public class AnakinKillstreak : GameResources
 {
@@ -306,8 +321,40 @@ public class MandoCode : GameResources
 
     }
 }
-#endregion
 
+
+public class ItsaTrap : GameResources
+{
+    public ItsaTrap() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Deal +20% damage but have -20% less max health (stackable)") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.ITSA_TRAP, STATUS_APPLY_TYPE.ADDITIVE, -33f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.ITSA_TRAP))
+                Core.boons.Add(STATUS_TYPE.ITSA_TRAP);
+        }
+
+    }
+}
+public class WreckHeavyShot : GameResources
+{
+    public WreckHeavyShot() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Deal +20% damage but have -20% less max health (stackable)") { }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.WRECK_HEAVY_SHOT, STATUS_APPLY_TYPE.ADDITIVE, 25f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.WRECK_HEAVY_SHOT))
+                Core.boons.Add(STATUS_TYPE.WRECK_HEAVY_SHOT);
+        }
+
+    }
+}
+
+#endregion
 static class BoonDataHolder
 {
     static BoonDataHolder()
@@ -336,6 +383,9 @@ static class BoonDataHolder
             new WattoCoolant(),
             new LuminaraForce(),
             new MandoCode(),
+            new FennecSniper(),
+            new ItsaTrap(),
+            new WreckHeavyShot(),
            // TODO Add boons here
         };
 
