@@ -1,20 +1,20 @@
 {
-    "assets_path": "Assets\/Prefabs\/BulletStormtrooperUpdated.prefab",
+    "assets_path": "Assets\/Prefabs\/BulletDeathTrooper.prefab",
     "Game Objects": [
         {
-            "name": "BulletStormtrooperUpdated",
+            "name": "BulletDeathTrooper",
             "tag": "StormTrooperBullet",
             "layer": "Default",
             "Active": true,
-            "UID": 1687597095,
+            "UID": 1751307564,
             "ParentUID": 0,
             "PrefabReference": 0,
-            "PrefabID": 1635392825,
+            "PrefabID": 1234372269,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                9.9116678237915039,
-                10.275588989257813,
+                0,
+                0,
                 0
             ],
             "Rotation": [
@@ -64,10 +64,18 @@
                     "damage": 5
                 },
                 {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/571028171.mat",
+                    "MaterialUID": 571028171
+                },
+                {
                     "Type": 14,
                     "Active": true,
                     "kinematic": false,
-                    "Gravity": false,
+                    "Gravity": true,
                     "LockLinearX": false,
                     "LockLinearY": false,
                     "LockLinearZ": false,
@@ -97,14 +105,6 @@
                         1,
                         1
                     ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/571028171.mat",
-                    "MaterialUID": 571028171
                 }
             ]
         },
@@ -113,8 +113,8 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1219539978,
-            "ParentUID": 1687597095,
+            "UID": 104887525,
+            "ParentUID": 1751307564,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -182,8 +182,8 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 531856899,
-            "ParentUID": 1687597095,
+            "UID": 929978225,
+            "ParentUID": 1751307564,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
@@ -216,8 +216,8 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1496123705,
-            "ParentUID": 531856899,
+            "UID": 1529529322,
+            "ParentUID": 929978225,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
