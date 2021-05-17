@@ -14,7 +14,7 @@
 
 #include "ImGui/imgui.h"
 
-const unsigned int SHADOW_WIDTH = 512, SHADOW_HEIGHT = 512;
+const unsigned int SHADOW_WIDTH = 256, SHADOW_HEIGHT = 256;
 
 C_AreaLight::C_AreaLight(GameObject* gameObject) : Component(gameObject),
 	depthCubemap(0u),
@@ -61,22 +61,22 @@ C_AreaLight::C_AreaLight(GameObject* gameObject) : Component(gameObject),
 		shadowTransforms[i].horizontalFov = 90 * DEGTORAD;
 	}
 
-	C_Camera::LookAt(shadowTransforms[0], float3(1.0,  0.0,  0.0));
+	shadowTransforms[0].front = float3(1.0,  0.0,  0.0);
 	shadowTransforms[0].up = float3(0.0, -1.0, 0.0);
 
-	C_Camera::LookAt(shadowTransforms[1], float3(-1.0, 0.0,  0.0));
+	shadowTransforms[1].front = float3(-1.0, 0.0,  0.0);
 	shadowTransforms[1].up = float3(0.0, -1.0,  0.0);
 
-	C_Camera::LookAt(shadowTransforms[2], float3(0.0,  1.0,  0.0));
+	shadowTransforms[2].front = float3(0.0,  1.0,  0.0);
 	shadowTransforms[2].up = float3(0.0, 0.0, 1.0);
 
-	C_Camera::LookAt(shadowTransforms[3], float3(0.0, -1.0,  0.0));
+	shadowTransforms[3].front = float3(0.0, -1.0,  0.0);
 	shadowTransforms[3].up = float3(0.0, 0.0, -1.0);
 
-	C_Camera::LookAt(shadowTransforms[4], float3(0.0,  0.0,  1.0));
+	shadowTransforms[4].front = float3(0.0,  0.0,  1.0);
 	shadowTransforms[4].up = float3(0.0, -1.0, 0.0);
 
-	C_Camera::LookAt(shadowTransforms[5], float3(0.0,  0.0,  -1.0));
+	shadowTransforms[5].front = float3(0.0,  0.0,  -1.0);
 	shadowTransforms[5].up = float3(0.0, -1.0, 0.0);
 
 	depthShader = dynamic_cast<ResourceShader*>(EngineExternal->moduleResources->RequestResource(679275240, Resource::Type::SHADER));
@@ -102,7 +102,7 @@ C_AreaLight::~C_AreaLight()
 void C_AreaLight::Update()
 {
 	for (int i = 0; i < 6; ++i)
-		shadowTransforms[i].pos = gameObject->transform->globalTransform.TranslatePart();
+		shadowTransforms[i].pos = gameObject->transform->position;
 }
 
 

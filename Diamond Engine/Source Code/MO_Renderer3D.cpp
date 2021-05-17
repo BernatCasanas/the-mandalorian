@@ -926,12 +926,9 @@ void ModuleRenderer3D::AreaLightShadowPass()
 									modelLoc = glGetUniformLocation(areaLightVector[i]->depthShader->shaderProgramID, buffer);
 									glUniformMatrix4fv(modelLoc, 1, GL_FALSE, (areaLightVector[i]->shadowTransforms[k].ProjectionMatrix() * areaLightVector[i]->shadowTransforms[k].ViewMatrix()).Transposed().ptr());
 								}
-								
-								modelLoc = glGetUniformLocation(areaLightVector[i]->depthShader->shaderProgramID, "lightSpaceMatrix");
-								glUniformMatrix4fv(modelLoc, 1, GL_FALSE, areaLightVector[i]->GetGO()->transform->GetGlobalTransposed());
 
 								modelLoc = glGetUniformLocation(areaLightVector[i]->depthShader->shaderProgramID, "lightPosition");
-								glUniform3fv(modelLoc, 1, &areaLightVector[i]->shadowTransforms[0].pos.x);
+								glUniform3fv(modelLoc, 1, &areaLightVector[i]->GetGO()->transform->position.x);
 
 								modelLoc = glGetUniformLocation(areaLightVector[i]->depthShader->shaderProgramID, "farPlane");
 								glUniform1f(modelLoc, 500.0f);

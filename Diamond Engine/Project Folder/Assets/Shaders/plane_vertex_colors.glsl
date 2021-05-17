@@ -145,6 +145,8 @@ vec4 downLeft = vec4(-1.0, -1.0, 0.0, 1.0);
 
 vec3 rectVertex[4];
 
+uniform samplerCube cubeShadowMap[5];
+
 
 float ShadowCalculation(vec4 fragPosLightSpace, vec3 lightDir, vec3 normal, int iterator)
 {
@@ -389,6 +391,23 @@ vec3 CalculateAreaLightDirection(int iterator)
 }
 
 
+float GetAreaShadowValue(int lightNum, vec3 normal, vec3 lightDir)
+{
+	if(areaLightInfo[lightNum].calculateShadows == false)
+		return 0.0;
+		
+	vec3 fragToLight = fs_in.FragPos - areaLightInfo[lightNum].lightPosition;
+	
+	float closestDepth = texture(cubeShadowMap[lightNum], fragToLight).r;
+	closestDepth *= 500.0;
+		
+	float currDepth = length(fragToLight);
+	
+	float bias = 0.5;	//magic value for the bias, it works too weel to change it
+	return (currDepth - bias > closestDepth  ? 1.0 : 0.0);
+
+}
+
 vec3 CalculateAreaLight( float specMapValue)
 {
 	vec3 lighting = vec3(0.0, 0.0, 0.0);
@@ -417,15 +436,17 @@ vec3 CalculateAreaLight( float specMapValue)
    	 			// diffuse
     			float diff = max(dot(lightDir, normal), 0.0);
     			vec3 diffuse = diff * areaLightInfo[i].lightColor;
+    			
    	 			// specular
    				vec3 viewDir = normalize(cameraPosition - fs_in.FragPos);
     			float spec = 0.0;
     			vec3 halfwayDir = normalize(lightDir + viewDir);  
     			spec = pow(max(dot(normal, halfwayDir), 0.0), areaLightInfo[i].specularValue);
     			vec3 specular = spec * areaLightInfo[i].lightColor * specMapValue;
-        	
+    			
+    			float shadow = GetAreaShadowValue(i, normal, lightDir);        	
     	 		// calculate light value
-    			lighting += (areaLightInfo[i].ambientLightColor + (diffuse + specular)) * areaLightInfo[i].lightIntensity * fade;
+    			lighting += (areaLightInfo[i].ambientLightColor + (1 - shadow) * (diffuse + specular)) * areaLightInfo[i].lightIntensity * fade;
     		}
     	}
     }
@@ -440,10 +461,15 @@ void main()
     vec3 directionalLight = CalculateDirectionalLight(specMapValue);
     vec3 areaLight = CalculateAreaLight(specMapValue);
     
-
-    color = vec4((directionalLight + areaLight) * (fs_in.vertexColor * altColor), 1.0);
+	color = vec4((directionalLight + areaLight) * (fs_in.vertexColor * altColor), 1.0);
 }
 #endif
+
+
+
+
+
+
 
 
 

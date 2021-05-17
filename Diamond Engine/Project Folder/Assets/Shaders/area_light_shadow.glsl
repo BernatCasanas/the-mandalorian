@@ -19,7 +19,6 @@ in vec4 fragPos;
 
 uniform vec3 lightPosition;
 uniform float farPlane;
-uniform mat4 lightSpaceMatrix;
 
 void main()
 {
@@ -61,6 +60,10 @@ void main()
 }
 
 #endif
+
+
+
+
 
 
 
