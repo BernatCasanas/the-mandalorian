@@ -96,6 +96,9 @@ public class MoffGideon : Entity
     public float closerDistance = 1f;
     public float farDistance = 50f;
     public float velocityRotationShooting = 10f;
+    public float zoomTimeEasing = 0.5f;
+    public float baseZoom = 45f;
+    public float zoomInValue = 40f;
     public GameObject spawner1 = null;
     public GameObject spawner2 = null;
     public GameObject spawner3 = null;
@@ -750,6 +753,7 @@ public class MoffGideon : Entity
 
         if (cam_comp != null)
         {
+            cam_comp.Zoom(baseZoom, zoomTimeEasing);
             cam_comp.target = this.gameObject;
         }
 
@@ -787,7 +791,7 @@ public class MoffGideon : Entity
         if (cam_comp != null)
         {
             cam_comp.target = this.gameObject;
-            //cam_comp.Zoom(40f);
+            
         }
 
     }
@@ -928,6 +932,7 @@ public class MoffGideon : Entity
         cadencyTimer = cadencyTime;
         aiming = true;
         privateTimer = 1f;
+        cam_comp.Zoom(zoomInValue, zoomTimeEasing);
     }
 
     private void UpdateProjectile()
@@ -968,7 +973,7 @@ public class MoffGideon : Entity
 
     private void EndProjectile()
     {
-
+        cam_comp.Zoom(baseZoom, zoomTimeEasing);
     }
 
 
@@ -1026,6 +1031,7 @@ public class MoffGideon : Entity
     private void StartChargeThrow()
     {
         chargeThrowTimer = chargeThrowTime;
+        cam_comp.Zoom(zoomInValue, zoomTimeEasing);
     }
 
 
@@ -1099,6 +1105,7 @@ public class MoffGideon : Entity
         InternalCalls.Destroy(saber);
         saber = null;
         sword.transform.localScale = new Vector3(1, 1, 1);
+        cam_comp.Zoom(baseZoom, zoomTimeEasing);
     }
 
     #endregion

@@ -13,7 +13,6 @@ public class CameraController : DiamondComponent
 
     //ZOOM Variables
     private bool zooming = false;
-    public float time_easing_sec = 0.2f;
     public float timer_easing_sec = 0.2f;
     public float timer = 0.0f;
     private float pointA_zoom;
@@ -38,11 +37,10 @@ public class CameraController : DiamondComponent
         Vector3 finalPos = new Vector3(Mathf.Clamp(smoothPosition.x, cornerTopLeftX, cornerBotRightX), smoothPosition.y, Mathf.Clamp(smoothPosition.z, cornerTopLeftY, cornerBotRightY));
         gameObject.transform.localPosition = finalPos;
 
-        //ZOOM ALGORITHM || WORKING 
+        //ZOOM ALGORITHM 
 
         if (zooming && timer_easing_sec>=0.0f)
         {
-            Debug.Log("sduifhgouisdfhgpsd");
             timer += Time.deltaTime;
             float t = 0;
 
@@ -52,9 +50,10 @@ public class CameraController : DiamondComponent
             {
                 timer = 0;
                 zooming = false;
-                timer_easing_sec = time_easing_sec;
+                return;
             }
             CameraManager.SetOrthSize(this.gameObject, Ease.PointLerp(pointA_zoom, zoomDesired, Ease.OutCubic(t)));
+            Debug.Log(t.ToString());
         }
     }
 
