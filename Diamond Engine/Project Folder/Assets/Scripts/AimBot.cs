@@ -11,6 +11,8 @@ public class AimBot : DiamondComponent
     public float distanceWeight = 0.5f;
     float dotMin = 0;
     int lastFrameEnemyCount = 0;
+    int lastFramePropCount = 0;
+
     GameObject myCurrentObjective = null;
     public bool isShooting = false;
 
@@ -18,6 +20,7 @@ public class AimBot : DiamondComponent
     {
         dotMin = 0;
         lastFrameEnemyCount = 0;
+        lastFramePropCount = 0;
         myCurrentObjective = null;
         isShooting = false;
         ChangeConeAngle(startAimConeAngle);
@@ -37,9 +40,9 @@ public class AimBot : DiamondComponent
                 {
                     SearchForNewObjective();
                 }
-                else if (lastFrameEnemyCount != EnemyManager.currentEnemies.Count) //change in enemies! if targeting an enemy make sure it hasn't died
+                else if (lastFrameEnemyCount != EnemyManager.currentEnemies.Count || (EnemyManager.currentDestructibleProps != null && lastFramePropCount != EnemyManager.currentDestructibleProps.Count)) //change in enemies! if targeting an enemy make sure it hasn't died
                 {
-                    if (myCurrentObjective != null && !EnemyManager.currentEnemies.Contains(myCurrentObjective)) //if the target is not in the list anymore search for a new objective
+                    if (myCurrentObjective != null && !EnemyManager.currentEnemies.Contains(myCurrentObjective) && !EnemyManager.currentDestructibleProps.Contains(myCurrentObjective)) //if the target is not in the list anymore search for a new objective
                     {
                         SearchForNewObjective();
                     }
@@ -47,6 +50,16 @@ public class AimBot : DiamondComponent
             }
 
             lastFrameEnemyCount = EnemyManager.currentEnemies.Count;
+
+            if (EnemyManager.currentDestructibleProps != null)
+            {
+                lastFramePropCount = EnemyManager.currentDestructibleProps.Count;
+            }
+            else
+            {
+                lastFramePropCount = 0;
+            }
+
         }
 
     }
@@ -197,7 +210,6 @@ public class AimBot : DiamondComponent
         if (isProp)
         {
             newThreadWeight = GetThreadWeightRaw(target, 3.0f) * threadWeight;
-            Debug.Log("Barrel weight: " + newThreadWeight.ToString());
         }
 
 
@@ -211,7 +223,7 @@ public class AimBot : DiamondComponent
     {
         const int maxEnemiesThreadLvl = 4; //TODO alex change this const when needed
         int enemiesInsideRange = 0;
-        float threadPerEnemy = 1 / maxEnemiesThreadLvl;
+        float threadPerEnemy = 1.0f /maxEnemiesThreadLvl;
         float threadLvl = 0.0f;
         float radiusPow = targetRadius * targetRadius;
         for (int i = 0; i < EnemyManager.currentEnemies.Count; ++i)
