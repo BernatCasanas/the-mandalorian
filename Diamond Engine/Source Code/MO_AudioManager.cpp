@@ -14,7 +14,7 @@
 CAkFilePackageLowLevelIOBlocking g_lowLevelIO;
 
 
-ModuleAudioManager::ModuleAudioManager(Application* app, bool start_enabled) : Module(app, start_enabled), wwiseListenerHasToUpdate(false), defaultListener(nullptr), masterVolume(50.0f), musicVolume(50.0f), fxVolume(50.0f), musicSource(nullptr), uiBankRef(nullptr)
+ModuleAudioManager::ModuleAudioManager(Application* app, bool start_enabled) : Module(app, start_enabled), wwiseListenerHasToUpdate(false), defaultListener(nullptr), masterVolume(50.0f), musicVolume(50.0f), fxVolume(50.0f), uiBankRef(nullptr)
 {
 	//TODO listener code here
 #ifdef STANDALONE
@@ -199,6 +199,7 @@ bool ModuleAudioManager::CleanUp()
 		(*it) = nullptr;
 	}
 	banks.clear();
+	musicSource.clear();
 
 	defaultListener = nullptr;
 
@@ -252,7 +253,14 @@ void ModuleAudioManager::PlayOnAwake()
 void ModuleAudioManager::PlayEvent(unsigned int id, std::string& eventName)
 {
 	AK::SoundEngine::PostEvent(eventName.c_str(), id);
-	if (musicSource != nullptr && id == musicSource->GetWwiseID())
+	bool isMusic = false;
+	for (int i = 0; i < musicSource.size(); ++i) {
+		if (id == musicSource[i]->GetWwiseID()) {
+			isMusic = true;
+			break;
+		}
+	}
+	if (isMusic)
 	{
 		ChangeRTPCValue(id, std::string("SourceVolume"), musicVolume);
 		return;
@@ -458,8 +466,9 @@ void ModuleAudioManager::SetBusVolume(float volume)
 
 void ModuleAudioManager::SetMusicVolume(float volume)
 {
-	if (musicSource != nullptr)
-		musicSource->SetVolume(volume);
+	for (int i = 0; i < musicSource.size(); ++i) {
+		musicSource[i]->SetVolume(volume);
+	}
 	musicVolume = volume;
 }
 
