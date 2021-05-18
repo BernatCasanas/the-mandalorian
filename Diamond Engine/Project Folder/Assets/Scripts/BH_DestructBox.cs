@@ -15,9 +15,20 @@ public class BH_DestructBox : DiamondComponent
 	private ParticleSystem partExp = null;
 	private ParticleSystem partWave = null;
 	public int explosion_damage = 0;
+	bool firstFrame = true;
+
+	public void Awake()
+    {
+	}
 
 	public void Update()
 	{
+		if(firstFrame)
+        {
+			EnemyManager.AddProp(gameObject);
+			firstFrame = false;
+        }
+
 		if (triggered)
 			timer += Time.deltaTime;
 
@@ -38,6 +49,7 @@ public class BH_DestructBox : DiamondComponent
 				partWave = wave.GetComponent<ParticleSystem>();
 
 				Audio.PlayAudio(gameObject, "Play_Barrel_Explosion");
+				EnemyManager.RemoveProp(gameObject);
 			}
 
 			if (partExp != null && !triggered)
@@ -52,5 +64,10 @@ public class BH_DestructBox : DiamondComponent
 			gameObject.DisableCollider();
 			gameObject.EnableCollider();
 		}
+	}
+
+	public void OnDestroy()
+    {
+		EnemyManager.RemoveProp(gameObject);
 	}
 }

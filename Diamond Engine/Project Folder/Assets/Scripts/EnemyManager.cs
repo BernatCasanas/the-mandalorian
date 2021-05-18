@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class EnemyManager : DiamondComponent
 {
     public static List<GameObject> currentEnemies = null;
+    public static List<GameObject> currentDestructibleProps = null; //props will not count as enemies (barrels)
 
     public static int awaitingForEnemiesToSpawn = 0;
 
@@ -14,6 +15,14 @@ public class EnemyManager : DiamondComponent
             currentEnemies = new List<GameObject>();
 
         currentEnemies.Add(enemy);
+    }
+
+    public static void AddProp(GameObject prop)
+    {
+        if (currentDestructibleProps == null)
+            currentDestructibleProps = new List<GameObject>();
+
+        currentDestructibleProps.Add(prop);
     }
 
     public static bool RemoveEnemy(GameObject enemy)
@@ -68,6 +77,36 @@ public class EnemyManager : DiamondComponent
         return ret;
     }
 
+    public static bool RemoveProp(GameObject prop)
+    {
+        bool ret = false;
+
+        if (prop == null)
+            return false;
+
+        if (currentDestructibleProps == null)
+        {
+            Debug.Log("Current prop list is null!!!");
+            return false;
+        }
+
+        for (int i = 0; i < currentDestructibleProps.Count; ++i)
+        {
+            if (currentDestructibleProps[i].GetUid() == prop.GetUid())
+            {
+                currentDestructibleProps.RemoveAt(i);
+                ret = true;
+            }
+        }
+
+        if (ret == false)
+        {
+            Debug.Log("Prop to remove not found in prop list");
+            return ret;
+        }
+        return ret;
+    }
+
     public static void ClearList()
     {
         if (currentEnemies != null)
@@ -76,6 +115,12 @@ public class EnemyManager : DiamondComponent
             currentEnemies = null;
         }
         awaitingForEnemiesToSpawn = 0;
+
+        if(currentDestructibleProps!=null)
+        {
+            currentDestructibleProps.Clear();
+            currentDestructibleProps = null;
+        }
     }
 
     public static int EnemiesLeft()

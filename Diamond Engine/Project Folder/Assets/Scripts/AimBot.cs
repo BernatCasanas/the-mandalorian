@@ -7,6 +7,7 @@ public class AimBot : DiamondComponent
     public float startAimConeAngle = 90.0f;//this will only be used on the inspector, to change the actual angle use the method
     public float maxRange = 50.0f; //maximum distance at wich it will
     public float angleWeight = 0.5f;
+    public float threadWeight = 0.5f;
     public float distanceWeight = 0.5f;
     float dotMin = 0;
     int lastFrameEnemyCount = 0;
@@ -79,11 +80,24 @@ public class AimBot : DiamondComponent
         Debug.Log("Enemies searching num: " + EnemyManager.currentEnemies.Count.ToString());
         for (int i = 0; i < EnemyManager.currentEnemies.Count; ++i)
         {
-            float targetWeight = GetTargetWeight(EnemyManager.currentEnemies[i],maxRange,dotMin);
+            float targetWeight = GetTargetWeight(EnemyManager.currentEnemies[i], maxRange, dotMin, false);
 
             if (targetWeight > weightedObj.Key)
             {
                 weightedObj = new KeyValuePair<float, GameObject>(targetWeight, EnemyManager.currentEnemies[i]);
+            }
+        }
+        if (EnemyManager.currentDestructibleProps != null)
+        {
+            Debug.Log("Prop searching num: " + EnemyManager.currentDestructibleProps.Count.ToString());
+            for (int i = 0; i < EnemyManager.currentDestructibleProps.Count; ++i)
+            {
+                float targetWeight = GetTargetWeight(EnemyManager.currentDestructibleProps[i], maxRange, dotMin, true);
+
+                if (targetWeight > weightedObj.Key)
+                {
+                    weightedObj = new KeyValuePair<float, GameObject>(targetWeight, EnemyManager.currentDestructibleProps[i]);
+                }
             }
         }
 
@@ -95,14 +109,14 @@ public class AimBot : DiamondComponent
         }
         else
         {
-          //  Debug.Log("No Objective found!!");
+            //  Debug.Log("No Objective found!!");
             myCurrentObjective = null;
             //Debug.Log("No suitable objective found!");
         }
     }
 
     //Search for objective raw. Returns a game object given max search dist and an angle in degrees for the aim cone
-    public GameObject SearchForNewObjRaw(float coneAngleDeg,float maxSearchDist)
+    public GameObject SearchForNewObjRaw(float coneAngleDeg, float maxSearchDist)
     {
         if (EnemyManager.currentEnemies == null)
         {
@@ -115,15 +129,28 @@ public class AimBot : DiamondComponent
         //Debug.Log("Searching for a new objective!");
         KeyValuePair<float, GameObject> weightedObj = new KeyValuePair<float, GameObject>(float.NegativeInfinity, null);
 
-      //  Debug.Log("Enemies searching num: " + EnemyManager.currentEnemies.Count.ToString());
+        //  Debug.Log("Enemies searching num: " + EnemyManager.currentEnemies.Count.ToString());
         for (int i = 0; i < EnemyManager.currentEnemies.Count; ++i)
         {
-            float targetWeight = GetTargetWeight(EnemyManager.currentEnemies[i],maxRange, newDotMin);
+            float targetWeight = GetTargetWeight(EnemyManager.currentEnemies[i], maxRange, newDotMin, false);
 
 
             if (targetWeight > weightedObj.Key)
             {
                 weightedObj = new KeyValuePair<float, GameObject>(targetWeight, EnemyManager.currentEnemies[i]);
+            }
+        }
+        if (EnemyManager.currentDestructibleProps != null)
+        {
+            for (int i = 0; i < EnemyManager.currentDestructibleProps.Count; ++i)
+            {
+                float targetWeight = GetTargetWeight(EnemyManager.currentDestructibleProps[i], maxRange, newDotMin, true);
+
+
+                if (targetWeight > weightedObj.Key)
+                {
+                    weightedObj = new KeyValuePair<float, GameObject>(targetWeight, EnemyManager.currentDestructibleProps[i]);
+                }
             }
         }
 
@@ -133,17 +160,18 @@ public class AimBot : DiamondComponent
         }
         else
         {
-         //   Debug.Log("No Objective found!!");
+            //   Debug.Log("No Objective found!!");
             return null;
         }
 
 
     }
 
-    float GetTargetWeight(GameObject target,float myMaxRange,float minDotProduct)
+    float GetTargetWeight(GameObject target, float myMaxRange, float minDotProduct, bool isProp)
     {
         float newDistanceWeight = 0.0f;
         float newAngleWeight = 0.0f;
+        float newThreadWeight = 0.0f;
 
         Vector3 myPos = new Vector3(gameObject.transform.globalPosition.x, 0.0f, gameObject.transform.globalPosition.z);
         Vector3 myForward = new Vector3(gameObject.transform.GetForward().x, 0.0f, gameObject.transform.GetForward().z).normalized;
@@ -166,10 +194,48 @@ public class AimBot : DiamondComponent
             //newAngleWeight = targetDot * angleWeight;//TODO simplification
         }
 
+        if (isProp)
+        {
+            newThreadWeight = GetThreadWeightRaw(target, 3.0f) * threadWeight;
+            Debug.Log("Barrel weight: " + newThreadWeight.ToString());
+        }
+
+
         if (newDistanceWeight != 0.0f && newAngleWeight != 0.0f)
-            return newDistanceWeight + newAngleWeight;
+            return newDistanceWeight + newAngleWeight + newThreadWeight;
         else
             return float.NegativeInfinity;
+    }
+
+    private float GetThreadWeightRaw(GameObject target, float targetRadius = 1.0f)
+    {
+        const int maxEnemiesThreadLvl = 4; //TODO alex change this const when needed
+        int enemiesInsideRange = 0;
+        float threadPerEnemy = 1 / maxEnemiesThreadLvl;
+        float threadLvl = 0.0f;
+        float radiusPow = targetRadius * targetRadius;
+        for (int i = 0; i < EnemyManager.currentEnemies.Count; ++i)
+        {
+            if (enemiesInsideRange > maxEnemiesThreadLvl)
+                break;
+
+            //if (EnemyManager.currentEnemies[i] == target) //Not needed as props are in a separate list from enemies, uncomment if we want to use this method in entites too
+            //    continue;
+
+            float squareDist = target.transform.globalPosition.DistanceNoSqrt(EnemyManager.currentEnemies[i].transform.globalPosition);
+
+            if (squareDist <= radiusPow)
+            {
+                //enemy is inside range
+                enemiesInsideRange += 1;
+            }
+        }
+
+
+
+        threadLvl += threadPerEnemy * enemiesInsideRange;
+        threadLvl = Math.Min(threadLvl, 1.0f);
+        return threadLvl;
     }
 
     public bool HasObjective()
