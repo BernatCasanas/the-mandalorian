@@ -137,7 +137,6 @@ bool ModuleAudioManager::Start()
 
 update_status ModuleAudioManager::Update(float dt)
 {
-	LOG(LogType::L_NORMAL, "%d", musicSource.size());
 #ifdef STANDALONE
 	if (firstFrame)
 	{
