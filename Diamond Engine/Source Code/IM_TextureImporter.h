@@ -17,5 +17,5 @@ namespace TextureImporter
 
 	void TakeScreenshot(int frameBuffer);
 
-	void LoadCubeMap(std::vector<std::string>& faces, DE_Cubemap& cubeMap);
+	void LoadCubeMap(char* faces[6], DE_Cubemap& cubeMap);
 }

@@ -115,18 +115,32 @@ void TextureImporter::TakeScreenshot(int frameBuffer)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void TextureImporter::LoadCubeMap(std::vector<std::string>& faces, DE_Cubemap& cubeMap)
+void TextureImporter::LoadCubeMap(char* faces[6], DE_Cubemap& cubeMap)
 {
+	int shouldReload = 0;
+	for (size_t i = 0; i < 6; i++)
+	{
+		if (&cubeMap.loadedTextures[i] != nullptr && strcmp(cubeMap.loadedTextures[i].c_str(), faces[i]) == 0) 
+		{
+			shouldReload++;
+		}
+	}
+	if (shouldReload == 6) {
+		return;
+	}
+
+	cubeMap.ClearTextureMemory();
+
 	unsigned int textureID;
 	glGenTextures(1, &textureID);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
 
 
 	int width = 0, height = 0, nrChannels = 0;
-	for (unsigned int i = 0; i < faces.size(); i++)
+	for (unsigned int i = 0; i < 6; i++)
 	{
 		char* buffer = nullptr;
-		unsigned int size = FileSystem::LoadToBuffer(faces[i].c_str(), &buffer);
+		unsigned int size = FileSystem::LoadToBuffer(faces[i], &buffer);
 
 		ILuint imageID;
 		ilGenImages(1, &imageID);
@@ -169,5 +183,12 @@ void TextureImporter::LoadCubeMap(std::vector<std::string>& faces, DE_Cubemap& c
 
 	glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
 
+
+	for (size_t i = 0; i < 6; i++)
+	{
+		cubeMap.loadedTextures[i] = faces[i];
+		//strcpy(cubeMap.loadedTextures[i], faces[i]);
+	}
 	cubeMap.textureID = textureID;
+	cubeMap.canRender = true;
 }
