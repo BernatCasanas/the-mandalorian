@@ -86,13 +86,13 @@ public class MoffGideon : Entity
     public float followSpeed = 3f;
     public float touchDamage = 10f;
     public float distance2Melee = 10f;
-    public float probWanderP1 = 60f;
     public float probWanderP2 = 40f;
-    public float probWander = 0f;
+    public float probWander = 60f;
     public float radiusWander = 5f;
     public float distanceProjectile = 17f;
     public float dashSpeed = 10f;
-    public float dashDistance = 3f;
+    public float dashBackWardDistance = 3f;
+    public float dashForwardDistance = 10f;
     public float closerDistance = 1f;
     public float farDistance = 50f;
     public float velocityRotationShooting = 10f;
@@ -110,6 +110,7 @@ public class MoffGideon : Entity
 
     //Private Variables
     private float currAnimationPlaySpd = 1f;
+    private bool soloDash = false;
     private bool invencible = false;
     private bool wander = false;
     private bool ready2Spawn = false;
@@ -152,10 +153,6 @@ public class MoffGideon : Entity
         damageMult = 1f;
         damageRecieveMult = 1f;
 
-        //damaged = 0f;
-
-        probWander = probWanderP1;
-
         if (EnemyManager.EnemiesLeft() > 0)
             EnemyManager.ClearList();
 
@@ -185,8 +182,6 @@ public class MoffGideon : Entity
     {
         myDeltaTime = Time.deltaTime * speedMult;
         sword.transform.localPosition = new Vector3(0, 0, 0);
-
-        Debug.Log(enemiesTimer.ToString());
 
         UpdateStatuses();
 
@@ -269,16 +264,16 @@ public class MoffGideon : Entity
         if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, targetDash) <= 1f && !justDashing)
             inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD_END);
 
-        if (currentState == MOFFGIDEON_STATE.DASH_BACKWARDS && Mathf.Distance(beginDash, gameObject.transform.globalPosition) >= dashDistance)
+        if (currentState == MOFFGIDEON_STATE.DASH_BACKWARDS && Mathf.Distance(beginDash, gameObject.transform.globalPosition) >= dashBackWardDistance)
         {
             inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_BACKWARDS_END);
-
         }
 
-        if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, beginDash) >= dashDistance && justDashing)
+        if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, beginDash) >= dashForwardDistance && justDashing)
         {
             inputsList.Add(MOFFGIDEON_INPUT.IN_NEUTRAL);
             justDashing = false;
+            soloDash = true;
         }
 
         if(currentState == MOFFGIDEON_STATE.PROJECTILE && projectiles == maxProjectiles)
@@ -766,6 +761,7 @@ public class MoffGideon : Entity
             cam_comp.Zoom(baseZoom, zoomTimeEasing);
             cam_comp.target = this.gameObject;
         }
+        invencible = true;
 
     }
 
@@ -781,6 +777,7 @@ public class MoffGideon : Entity
     {
         if(cam_comp!=null)
             cam_comp.target = Core.instance.gameObject;
+        invencible = false;
     }
 
     #endregion
@@ -803,7 +800,7 @@ public class MoffGideon : Entity
             cam_comp.target = this.gameObject;
             
         }
-
+        invencible = true;
     }
 
 
@@ -818,8 +815,10 @@ public class MoffGideon : Entity
     {
         currentPhase = MOFFGIDEON_PHASE.PHASE2;
         enemiesTimer = enemiesTime;
+        probWander = probWanderP2;
         if (cam_comp != null)
             cam_comp.target = Core.instance.gameObject;
+        invencible = false;
     }
 
     #endregion
@@ -832,8 +831,9 @@ public class MoffGideon : Entity
         UpdateAnimationSpd(speedMult);
 
         neutralTimer = neutralTime;
+        wander = false;
 
-        if (randomNum.Next(1, 100) <= probWander)
+        if (randomNum.Next(1, 100) <= probWander && !soloDash)
         {
             wander = true;
             agent.CalculateRandomPath(gameObject.transform.globalPosition, radiusWander);
@@ -859,7 +859,7 @@ public class MoffGideon : Entity
 
     private void EndNeutral()
     {
-
+        soloDash = false;
     }
 
     #endregion

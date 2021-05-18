@@ -18,6 +18,7 @@ public class GameResources
     public RewardType resourceType;
     public string rewardDescription;
     public float rngChanceWeight;
+    public string name = "No name Boon";
 
 }
 
@@ -69,7 +70,10 @@ public class MilkResource : GameResources
 //Each time you kill an enemy heal +1 HP. - Bo Katan’s resilience
 public class LifeStealBoon : GameResources
 {
-    public LifeStealBoon() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Each enemy kill heals 1 HP") { }
+    public LifeStealBoon() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Each enemy kill heals 1 HP")
+    {
+        name = "Bo-Katan's Resilence";
+    }
 
     public override void Use()
     {
@@ -91,7 +95,10 @@ public class LifeStealBoon : GameResources
 //+20% max HP. - Wrecker’s resilience
 public class IncrementMaxHpBoon : GameResources
 {
-    public IncrementMaxHpBoon() : base(1143141246, RewardType.REWARD_BOON, 1.0f, "Increments +20 health") { }
+    public IncrementMaxHpBoon() : base(1143141246, RewardType.REWARD_BOON, 1.0f, "Increments +20 health")
+    {
+        name = "Wrecker's Resilence";
+    }
 
     public override void Use()
     {
@@ -115,7 +122,10 @@ public class IncrementMaxHpBoon : GameResources
 
 public class CadBaneSoH : GameResources
 {
-    public CadBaneSoH() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "first attack with a different weapon from last attack deals +33% damage.") { }
+    public CadBaneSoH() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "first attack with a different weapon from last attack deals +33% damage.")
+    {
+        name = "Cad Bane’s sleight of hand";
+    }
 
     public override void Use()
     {
@@ -137,7 +147,10 @@ public class CadBaneSoH : GameResources
 
 public class CadBaneBoots : GameResources
 {
-    public CadBaneBoots() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "+5% permanent hasted state while grenade is on CD.") { }
+    public CadBaneBoots() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "+5% permanent hasted state while grenade is on CD.")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -154,7 +167,10 @@ public class CadBaneBoots : GameResources
 
 public class MandoQuickDraw : GameResources
 {
-    public MandoQuickDraw() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "first attack after a dash does 25% more damage") { }
+    public MandoQuickDraw() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "first attack after a dash does 25% more damage")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -190,7 +206,10 @@ public class MandoQuickDraw : GameResources
 
 public class BosskStrength : GameResources
 {
-    public BosskStrength() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "mitigate 10% of the damage received (rounded down).") { }
+    public BosskStrength() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "mitigate 10% of the damage received (rounded down).")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -206,7 +225,10 @@ public class BosskStrength : GameResources
 }
 public class RexSecBlaster : GameResources
 {
-    public RexSecBlaster() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "when switching weapons, you get 5% additive haste for 5 seconds, stackable up to 20%.") { }
+    public RexSecBlaster() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "when switching weapons, you get 5% additive haste for 5 seconds, stackable up to 20%.")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -223,7 +245,10 @@ public class RexSecBlaster : GameResources
 
 public class GreedoShooter : GameResources
 {
-    public GreedoShooter() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "+20% fire rate on the primary weapon") { }
+    public GreedoShooter() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "+20% fire rate on the primary weapon")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -241,7 +266,10 @@ public class GreedoShooter : GameResources
 
 public class FennecSniper : GameResources
 {
-    public FennecSniper() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Double rifle sweet spot time window (non-stackable).") { }
+    public FennecSniper() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Double rifle sweet spot time window (non-stackable).")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -259,7 +287,10 @@ public class FennecSniper : GameResources
 
 public class AnakinKillstreak : GameResources
 {
-    public AnakinKillstreak() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "While over a combo of 3, +5% additive Hasted") { }
+    public AnakinKillstreak() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "While over a combo of 3, +5% additive Hasted")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -277,7 +308,10 @@ public class AnakinKillstreak : GameResources
 
 public class EchoRecovery : GameResources
 {
-    public EchoRecovery() : base(1240646973, RewardType.REWARD_BOON, 1.0f, " +10% additive hasted state for 5 seconds after losing a combo.") { }
+    public EchoRecovery() : base(1240646973, RewardType.REWARD_BOON, 1.0f, " +10% additive hasted state for 5 seconds after losing a combo.")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -295,7 +329,10 @@ public class EchoRecovery : GameResources
 
 public class WattoCoolant : GameResources
 {
-    public WattoCoolant() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "dash cooldown is reduced by 40%") { }
+    public WattoCoolant() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "dash cooldown is reduced by 40%")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -312,7 +349,10 @@ public class WattoCoolant : GameResources
 
 public class LuminaraForce : GameResources
 {
-    public LuminaraForce() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Grogu’s dynamic covers lasts +5 seconds") { }
+    public LuminaraForce() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Grogu’s dynamic covers lasts +5 seconds")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -329,7 +369,10 @@ public class LuminaraForce : GameResources
 }
 public class MandoCode : GameResources
 {
-    public MandoCode() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Deal +20% damage but have -20% less max health (stackable)") { }
+    public MandoCode() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Deal +20% damage but have -20% less max health (stackable)")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -348,7 +391,10 @@ public class MandoCode : GameResources
 
 public class ItsaTrap : GameResources
 {
-    public ItsaTrap() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "traps deal -33% damage to Mando") { }
+    public ItsaTrap() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "traps deal -33% damage to Mando")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -365,7 +411,10 @@ public class ItsaTrap : GameResources
 }
 public class WreckHeavyShot : GameResources
 {
-    public WreckHeavyShot() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "hitting an enemy with a slowed status applies +25% non-stackable extra slowed status for 3 seconds.") { }
+    public WreckHeavyShot() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "hitting an enemy with a slowed status applies +25% non-stackable extra slowed status for 3 seconds.")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -383,7 +432,10 @@ public class WreckHeavyShot : GameResources
 
 public class MandoQuickCombo : GameResources
 {
-    public MandoQuickCombo() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "hitting an enemy with the primary weapon makes them take +5 % more damage from the primary weapon for 5 seconds. % stacks up to 100%") { }
+    public MandoQuickCombo() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "hitting an enemy with the primary weapon makes them take +5 % more damage from the primary weapon for 5 seconds. % stacks up to 100%")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -400,7 +452,10 @@ public class MandoQuickCombo : GameResources
 }
 public class BlastCannonMouthpiece : GameResources
 {
-    public BlastCannonMouthpiece() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Primary weapon does double damage while on 75% or more heat.") { }
+    public BlastCannonMouthpiece() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Primary weapon does double damage while on 75% or more heat.")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -419,7 +474,10 @@ public class BlastCannonMouthpiece : GameResources
 
 public class BountyHunter : GameResources
 {
-    public BountyHunter() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "every time a room is cleared, +10 gold is received.") { }
+    public BountyHunter() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "every time a room is cleared, +10 gold is received.")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -437,7 +495,10 @@ public class BountyHunter : GameResources
 }
 public class BosskSpecialAmmo : GameResources
 {
-    public BosskSpecialAmmo() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Grenade does double damage as long as more than one enemy is getting hit by it.") { }
+    public BosskSpecialAmmo() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Grenade does double damage as long as more than one enemy is getting hit by it.")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -456,7 +517,10 @@ public class BosskSpecialAmmo : GameResources
 
 public class WinduForceControl : GameResources
 {
-    public WinduForceControl() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "when you kill an enemy, gain Force points equal to 5% of max Force") { }
+    public WinduForceControl() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "when you kill an enemy, gain Force points equal to 5% of max Force")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -475,7 +539,10 @@ public class WinduForceControl : GameResources
 
 public class YodaForceControl : GameResources
 {
-    public YodaForceControl() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Grogu’s push pushes double the range.") { }
+    public YodaForceControl() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Grogu’s push pushes double the range.")
+    {
+        name = "Cad Bane’s rocket boots";
+    }
 
     public override void Use()
     {
@@ -503,6 +570,8 @@ static class BoonDataHolder
             boonType[i].rngChanceWeight = boonTotalWeights;
             boonTotalWeights += auxWeight;
         }
+
+        boonType[(int)BOONS.BOON_BOKATAN_RESILENCE] = new LifeStealBoon();
     }
 
     public static GameResources[] boonType = new GameResources[] // There's probably a better way to organize this data, can't take care of it right now

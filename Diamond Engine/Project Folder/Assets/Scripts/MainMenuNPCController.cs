@@ -68,10 +68,10 @@ public class MainMenuNPCController : DiamondComponent
 
 	public void PutInPlaceNPCs()
     {
-		DinDjarin.transform.localPosition = Vector3.zero;
-		Bantha.transform.localPosition = Vector3.zero;
-		Skytrooper.transform.localPosition = Vector3.zero;
-		Grogu.transform.localPosition = Vector3.zero;
+		DinDjarin.transform.localPosition	= new Vector3(0.0f, 0.0f, 0.0f);
+		Grogu.transform.localPosition		= new Vector3(0.0f, 0.0f, 0.0f);
+		Bantha.transform.localPosition		= new Vector3(0.0f, 0.0f, 0.0f);
+		Skytrooper.transform.localPosition	= new Vector3(0.0f, 0.0f, 0.0f);
 	}
 
 	public void SpawnOtherNPC()

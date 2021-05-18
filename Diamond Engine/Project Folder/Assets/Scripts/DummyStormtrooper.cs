@@ -403,7 +403,7 @@ public class DummyStormtrooper : Enemy
         Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
 
         //Combo
-        if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
+        if (PlayerResources.CheckBoon(BOONS.BOON_MASTER_YODA_FORCE))
         {
             Core.instance.hud.GetComponent<HUD>().AddToCombo(300, 1.0f);
         }
