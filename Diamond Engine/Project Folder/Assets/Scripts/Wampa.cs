@@ -73,7 +73,7 @@ public class Wampa : Bosseslv2
         ProcessState();
 
         UpdateState();
-        Debug.Log(healthPoints.ToString());
+        //Debug.Log(healthPoints.ToString());
     }
 
     private void ProcessInternalInput()
