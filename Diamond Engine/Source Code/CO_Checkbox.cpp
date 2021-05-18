@@ -9,6 +9,7 @@
 
 #include "Application.h"
 #include "MO_ResourceManager.h"
+#include "MO_AudioManager.h"
 
 #include "IM_FileSystem.h"
 
@@ -17,7 +18,7 @@
 
 C_Checkbox::C_Checkbox(GameObject* gameObject) : Component(gameObject), sprite_checkbox_active(nullptr), sprite_checkbox_active_hovered(nullptr), sprite_checkbox_active_pressed(nullptr),
 sprite_checkbox_unactive(nullptr), sprite_checkbox_unactive_hovered(nullptr), sprite_checkbox_unactive_pressed(nullptr), script_name(""), num_sprite_used(CHECKBOXSTATE::CHECKBOXUNACTIVE),
-checkbox_active(false), is_selected(false)
+checkbox_active(false), is_selected(false), pressedSFX(""), hoverSFX("")
 {
 	name = "Checkbox";
 	thisAudSource = new C_AudioSource(gameObject);
@@ -66,8 +67,7 @@ void C_Checkbox::Update()
 	case CHECKBOXSTATE::CHECKBOXACTIVE:
 		if (is_selected)
 		{
-			thisAudSource->SetEventName(std::string("Play_UI_Button_Hover"));
-			thisAudSource->PlayEvent();
+			PlayHoverSFX();
 			ChangeTexture(CHECKBOXSTATE::CHECKBOXACTIVEHOVERED);
 		}
 		break;
@@ -78,8 +78,7 @@ void C_Checkbox::Update()
 	case CHECKBOXSTATE::CHECKBOXUNACTIVE:
 		if (is_selected)
 		{
-			thisAudSource->SetEventName(std::string("Play_UI_Button_Hover"));
-			thisAudSource->PlayEvent();
+			PlayHoverSFX();
 			ChangeTexture(CHECKBOXSTATE::CHECKBOXUNACTIVEHOVERED);
 		}
 		break;
@@ -93,8 +92,7 @@ void C_Checkbox::Update()
 
 void C_Checkbox::PressCheckbox()
 {
-	thisAudSource->SetEventName(std::string("Play_UI_Button_Play"));
-	thisAudSource->PlayEvent();
+	PlayPressedSFX();
 	checkbox_active = !checkbox_active;
 	if (checkbox_active) {
 		ChangeTexture(CHECKBOXSTATE::CHECKBOXACTIVEPRESSED);
@@ -255,6 +253,8 @@ void C_Checkbox::SaveData(JSON_Object* nObj)
 	DEJson::WriteInt(nObj, "ButtonState", static_cast<int>(num_sprite_used));
 	DEJson::WriteBool(nObj, "Checkbox Active", checkbox_active);
 	DEJson::WriteBool(nObj, "Is Selected", is_selected);
+	DEJson::WriteString(nObj, "HoverSFX", hoverSFX.c_str());
+	DEJson::WriteString(nObj, "PressedSFX", pressedSFX.c_str());
 }
 
 void C_Checkbox::LoadData(DEConfig& nObj)
@@ -349,6 +349,8 @@ void C_Checkbox::LoadData(DEConfig& nObj)
 	num_sprite_used = static_cast<CHECKBOXSTATE>(nObj.ReadInt("ButtonState"));
 	checkbox_active = nObj.ReadBool("Checkbox Active");
 	is_selected = nObj.ReadBool("Is Selected");
+	pressedSFX = nObj.ReadString("PressedSFX");
+	hoverSFX = nObj.ReadString("HoverSFX");
 }
 
 
@@ -357,6 +359,18 @@ void C_Checkbox::SetAsActive(bool state)
 	checkbox_active = state;
 
 	UnpressCheckbox();
+}
+
+void C_Checkbox::PlayHoverSFX()
+{
+	thisAudSource->SetEventName(hoverSFX);
+	thisAudSource->PlayEvent();
+}
+
+void C_Checkbox::PlayPressedSFX()
+{
+	thisAudSource->SetEventName(pressedSFX);
+	thisAudSource->PlayEvent();
 }
 
 
@@ -639,7 +653,38 @@ bool C_Checkbox::OnEditor()
 			ImGui::EndDragDropTarget();
 		}
 
-
+		if (ImGui::BeginCombo("Hover SFX", hoverSFX.c_str()))
+		{
+			std::map<uint64, std::string>::const_iterator ev_it;
+			AudioBank* ref = EngineExternal->moduleAudio->uiBankRef;
+			for (ev_it = ref->events.begin(); ev_it != ref->events.end(); ++ev_it)
+			{
+				bool isSelected = (hoverSFX == (*ev_it).second);
+				if (ImGui::Selectable((*ev_it).second.c_str()))
+				{
+					hoverSFX = (*ev_it).second;
+				}
+				if (isSelected)
+					ImGui::SetItemDefaultFocus();
+			}
+			ImGui::EndCombo();
+		}
+		if (ImGui::BeginCombo("Press SFX", pressedSFX.c_str()))
+		{
+			std::map<uint64, std::string>::const_iterator ev_it;
+			AudioBank* ref = EngineExternal->moduleAudio->uiBankRef;
+			for (ev_it = ref->events.begin(); ev_it != ref->events.end(); ++ev_it)
+			{
+				bool isSelected = (pressedSFX == (*ev_it).second);
+				if (ImGui::Selectable((*ev_it).second.c_str()))
+				{
+					pressedSFX = (*ev_it).second;
+				}
+				if (isSelected)
+					ImGui::SetItemDefaultFocus();
+			}
+			ImGui::EndCombo();
+		}
 	}
 	return true;
 }
