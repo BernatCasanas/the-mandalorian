@@ -186,6 +186,8 @@ public class MoffGideon : Entity
         myDeltaTime = Time.deltaTime * speedMult;
         sword.transform.localPosition = new Vector3(0, 0, 0);
 
+        Debug.Log(enemiesTimer.ToString());
+
         UpdateStatuses();
 
         ProcessInternalInput();
@@ -267,8 +269,11 @@ public class MoffGideon : Entity
         if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, targetDash) <= 1f && !justDashing)
             inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD_END);
 
-        if (currentState == MOFFGIDEON_STATE.DASH_BACKWARDS && Mathf.Distance(gameObject.transform.globalPosition, targetDash) <= 1f)
+        if (currentState == MOFFGIDEON_STATE.DASH_BACKWARDS && Mathf.Distance(beginDash, gameObject.transform.globalPosition) >= dashDistance)
+        {
             inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_BACKWARDS_END);
+
+        }
 
         if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && Mathf.Distance(gameObject.transform.globalPosition, beginDash) >= dashDistance && justDashing)
         {
@@ -722,6 +727,12 @@ public class MoffGideon : Entity
         }
         else
         {
+            if (ready2Spawn)
+            {
+                inputsList.Add(MOFFGIDEON_INPUT.IN_SPAWN_ENEMIES);
+                return;
+            }
+
             if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) <= closerDistance)
                 inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD);
 
@@ -734,8 +745,6 @@ public class MoffGideon : Entity
                 justDashing = true;
 
             }
-
-            Debug.Log(Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition).ToString());
 
         }
         Debug.Log("Selecting Action");
@@ -905,15 +914,14 @@ public class MoffGideon : Entity
     #region DASH_BACKWARD
     private void StartDashBackward()
     {
-        targetDash = (Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition).normalized * -1 * 7f;
-        targetDash.y = gameObject.transform.globalPosition.y;
-        agent.CalculatePath(gameObject.transform.globalPosition, targetDash);
+        beginDash = gameObject.transform.globalPosition;
         Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Dash");
     }
 
     private void UpdateDashBackward()
     {
-        agent.MoveToCalculatedPos(dashSpeed);
+        gameObject.transform.localPosition += -1 * gameObject.transform.GetForward() * dashSpeed * myDeltaTime * speedMult;
+
         Debug.Log("Dash Backward");
     }
 
@@ -1291,7 +1299,7 @@ public class MoffGideon : Entity
             Debug.Log(damageToPlayer.ToString() + " " + damageMult.ToString());
 
         }
-        else if (collidedGameObject.CompareTag("Column") || collidedGameObject.CompareTag("Wall"))
+        else if (collidedGameObject.CompareTag("Wall"))
         {
             if (currentState == MOFFGIDEON_STATE.DASH_FORWARD && justDashing)
                 inputsList.Add(MOFFGIDEON_INPUT.IN_NEUTRAL);
