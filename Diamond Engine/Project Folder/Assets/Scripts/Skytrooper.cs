@@ -563,7 +563,7 @@ public class Skytrooper : Enemy
         EnemyManager.RemoveEnemy(gameObject);
 
         //Combo
-        if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
+        if (PlayerResources.CheckBoon(BOONS.BOON_MASTER_YODA_FORCE))
         {
             //Debug.Log("Start die ended");
             HUD hud = Core.instance.hud.GetComponent<HUD>();

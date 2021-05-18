@@ -629,7 +629,7 @@ public class Bantha : Enemy
             hitParticles.GetComponent<ParticleSystem>().Play();
 
         //Combo
-        if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
+        if (PlayerResources.CheckBoon(BOONS.BOON_MASTER_YODA_FORCE))
         {
             Core.instance.hud.GetComponent<HUD>().AddToCombo(300, 1.0f);
         }

@@ -438,7 +438,7 @@ public class HUD : DiamondComponent
 
         if (comboNumber > Counter.maxCombo) Counter.maxCombo = comboNumber;
 
-        if (!anakinBoonApplied && PlayerResources.CheckBoon(BOONS.BOON_ANAKINKILLSTREAK))
+        if (!anakinBoonApplied && PlayerResources.CheckBoon(BOONS.BOON_ANAKIN_KILL_STREAK))
         {
             if (comboNumber >= 50)
             {

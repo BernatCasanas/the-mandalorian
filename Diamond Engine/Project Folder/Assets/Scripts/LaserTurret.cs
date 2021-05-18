@@ -380,7 +380,7 @@ public class LaserTurret : Enemy
         EnemyManager.RemoveEnemy(gameObject);
 
         //Combo
-        if (PlayerResources.CheckBoon(BOONS.BOON_MASTERYODAASSITANCE))
+        if (PlayerResources.CheckBoon(BOONS.BOON_MASTER_YODA_FORCE))
         {
             Core.instance.hud.GetComponent<HUD>().AddToCombo(300, 1.0f);
         }

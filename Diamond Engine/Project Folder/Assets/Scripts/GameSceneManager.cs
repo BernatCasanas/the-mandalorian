@@ -114,7 +114,7 @@ public class GameSceneManager : DiamondComponent
 
     public void LevelEnd()
     {
-        if (PlayerResources.CheckBoon(BOONS.BOON_BOUNTYHUNTERSKILLS))
+        if (PlayerResources.CheckBoon(BOONS.BOON_BOUNTY_HUNTER_SKILLS))
         {
             PlayerResources.AddRunCoins(2);
         }

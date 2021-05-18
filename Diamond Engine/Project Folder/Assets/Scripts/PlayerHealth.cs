@@ -228,7 +228,7 @@ public class PlayerHealth : DiamondComponent
         
         if(Core.instance != null)
         {
-            if (PlayerResources.CheckBoon(BOONS.BOON_BOSSKSTRENGTH))
+            if (PlayerResources.CheckBoon(BOONS.BOON_BOSSK_STRENGTH))
             {
                 currHealth -= (int)(damage * Core.instance.DamageRed) - (int)(damage * 0.1f);
             }
