@@ -12,7 +12,6 @@ public class MoffGideonSword : DiamondComponent
 
 	public float damage = 10f;
 
-	Vector3 throwDirection = null;
 
 	public void Awake()
     {
@@ -25,14 +24,13 @@ public class MoffGideonSword : DiamondComponent
 		if(throwTimer > 0.0f)
         {
 			throwTimer -= Time.deltaTime;
-			gameObject.transform.localPosition += throwDirection * throwSpeed * Time.deltaTime;
+			gameObject.transform.localPosition += gameObject.transform.GetForward() * throwSpeed * Time.deltaTime;
         }
 	}
 
 	public void ThrowSword(Vector3 direction)
     {
 
-		throwDirection = direction.normalized;
 		throwTimer = throwRange / throwSpeed;
 
 		float angle = (float)Math.Atan2(direction.x, direction.z);
