@@ -20,7 +20,7 @@ public class Bosseslv2 : Entity
     public float wanderRange = 7.5f;
     public GameObject colliderJumpSlam = null;
     public GameObject colliderBounceRush = null;
-
+    public GameObject jumpPositionIndicator = null;
 
     //Private Variables
     public bool resting = false;
@@ -323,10 +323,17 @@ public class Bosseslv2 : Entity
                     {
                         jumpslamTimer = upTime;
                         jumpslam = JUMPSLAM.UP;
+
                         if (gameObject.CompareTag("Skel"))
                         {
                             Animator.Play(gameObject, "Skel_Jump_P2", speedMult);
                             UpdateAnimationSpd(speedMult);
+
+                            if (jumpPositionIndicator != null)
+                            {
+                                jumpPositionIndicator.Enable(true);
+                                jumpPositionIndicator.transform.localPosition = Core.instance.gameObject.transform.globalPosition;
+                            }
                         }
                         else if (gameObject.CompareTag("Wampa"))
                         {
@@ -415,6 +422,11 @@ public class Bosseslv2 : Entity
     {
         resting = true;
         restingTimer = restingTime;
+
+        if (jumpPositionIndicator != null)
+        {
+            jumpPositionIndicator.Enable(false);
+        }
 
     }
 
