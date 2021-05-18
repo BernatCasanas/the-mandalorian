@@ -28,6 +28,7 @@
 #include "CS_Pathfinder_Bindings.h"
 #include "CS_Button_Bindings.h"
 #include "CS_MeshRenderer_Bindings.h"
+#include "CS_AreaLight_Bindings.h"
 
 #include <iostream>
 #include <fstream> 
@@ -285,6 +286,15 @@ bool M_MonoManager::Init()
 	mono_add_internal_call("DiamondEngine.CameraManager::SetCameraOrthographic", CS_SetCameraOrthographic);
 	mono_add_internal_call("DiamondEngine.CameraManager::SetCameraPerspective", CS_SetCameraPerspective);
 	mono_add_internal_call("DiamondEngine.CameraManager::SetVerticalFOV", CS_SetCameraVerticalFOV);
+#pragma endregion
+
+#pragma region AreaLight
+	mono_add_internal_call("DiamondEngine.AreaLight::GetIntensity", GetAreaLightIntensity);
+	mono_add_internal_call("DiamondEngine.AreaLight::SetIntensity", SetAreaLightIntensity);
+	mono_add_internal_call("DiamondEngine.AreaLight::GetFadeDistance", GetAreaLightFadeDistance);
+	mono_add_internal_call("DiamondEngine.AreaLight::SetFadeDistance", SetAreaLightFadeDistance);
+	mono_add_internal_call("DiamondEngine.AreaLight::GetMaxDistance", GetAreaLightMaxDistance);
+	mono_add_internal_call("DiamondEngine.AreaLight::SetMaxDistance", SetAreaLightMaxDistance);
 #pragma endregion
 
 	InitMono();

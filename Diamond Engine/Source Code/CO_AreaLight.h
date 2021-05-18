@@ -36,8 +36,14 @@ public:
 
 	float3 GetPosition() const;
 
-	void ActivateLight();
-	void DeactivateLight();
+	float GetLightIntensity() const;
+	void SetLightIntensity(float lIntensity);
+
+	float GetFadeDistance() const;
+	void SetFadeDistance(float fDistance);
+
+	float GetMaxDistance() const;
+	void SetMaxDistance(float mDistance);
 
 public:
 	Frustum shadowTransforms[6];

@@ -328,15 +328,37 @@ float3 C_AreaLight::GetPosition() const
 }
 
 
-void C_AreaLight::ActivateLight()
+float C_AreaLight::GetLightIntensity() const
 {
-	active = true;
-	EngineExternal->moduleRenderer3D->AddAreaLight(this);
+	return lightIntensity;
 }
 
 
-void C_AreaLight::DeactivateLight()
+void C_AreaLight::SetLightIntensity(float lIntensity)
 {
-	active = false;
-	EngineExternal->moduleRenderer3D->RemoveAreaLight(this);
+	lightIntensity = lIntensity;
+}
+
+
+float C_AreaLight::GetFadeDistance() const
+{
+	return fadeDistance;
+}
+
+
+void C_AreaLight::SetFadeDistance(float fDistance)
+{
+	fadeDistance = fDistance;
+}
+
+
+float C_AreaLight::GetMaxDistance() const
+{
+	return maxDistance;
+}
+
+
+void C_AreaLight::SetMaxDistance(float mDistance)
+{
+	maxDistance = mDistance;
 }
