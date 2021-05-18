@@ -18,7 +18,6 @@ public:
 	void SaveData(JSON_Object* nObj) override;
 	void LoadData(DEConfig& nObj) override;
 
-	float GetVolume();
 	void SetVolume(float newVol);
 
 	uint GetID();
@@ -32,5 +31,4 @@ private:
 	C_Transform* myTransform;
 	bool isDefaultListener;
 	unsigned int id;
-	float masterVolume;
 };

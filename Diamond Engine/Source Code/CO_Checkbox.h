@@ -30,6 +30,9 @@ public:
 
 	void SetAsActive(bool state);
 
+	void PlayHoverSFX();
+	void PlayPressedSFX();
+
 #ifndef STANDALONE
 	void ChangeSprite(CHECKBOXSTATE num_sprite, ResourceTexture* sprite);
 	void ChangeScript(const char* script);
@@ -53,4 +56,7 @@ private:
 	std::string script_name;
 	C_AudioSource* thisAudSource;
 	bool checkbox_active;
+
+	std::string hoverSFX;
+	std::string pressedSFX;
 };

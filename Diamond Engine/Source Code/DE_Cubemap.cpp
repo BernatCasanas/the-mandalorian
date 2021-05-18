@@ -6,8 +6,12 @@
 #include"Application.h"
 #include"MO_ResourceManager.h"
 
-DE_Cubemap::DE_Cubemap() : shaderRes(nullptr), textureID(0), vboId(0)
+DE_Cubemap::DE_Cubemap() : shaderRes(nullptr), textureID(0), vboId(0), canRender(false)
 {
+	for (size_t i = 0; i < 6; i++)
+	{
+		loadedTextures[i] = "\0";
+	}
 }
 
 DE_Cubemap::~DE_Cubemap()
@@ -29,20 +33,42 @@ void DE_Cubemap::CreateGLData()
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void DE_Cubemap::ClearMemory()
+void DE_Cubemap::ClearMemory(bool clearShader)
 {
-	if (textureID != 0)
-		glDeleteTextures(1, &textureID);
+	ClearTextureMemory();
 
-	if (vboId != 0)
+	if (vboId != 0) {
 		glDeleteBuffers(1, &vboId);
+		vboId = 0;
+	}
 
-	if (shaderRes)
+	if (clearShader == true && shaderRes) {
 		EngineExternal->moduleResources->UnloadResource(shaderRes->GetUID());
+		shaderRes = nullptr;
+	}
+
+	canRender = false;
+}
+
+void DE_Cubemap::ClearTextureMemory()
+{
+	if (textureID != 0) {
+		glDeleteTextures(1, &textureID);
+		textureID = 0;
+	}
+	for (size_t i = 0; i < 6; i++)
+	{
+		this->loadedTextures[i] = "\0";
+	}
+
+	canRender = false;
 }
 
 void DE_Cubemap::DrawAsSkybox(C_Camera* _camera)
 {
+	if (canRender == false)
+		return;
+
 	glDepthFunc(GL_LEQUAL);
 	//glDisable(GL_DEPTH_TEST);
 	//glDepthFunc(GL_EQUAL);

@@ -58,6 +58,7 @@ private:
 	bool			playOnAwake;
 	bool			isMuted;
 	unsigned int	id;
+	bool			isMusic;
 
 	C_Transform*	gameObjectTransform;
 };
