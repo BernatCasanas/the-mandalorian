@@ -6,6 +6,8 @@
 #include "WI_TextEditor.h"
 #include "MO_Editor.h"
 
+#include "mmgr/mmgr.h"
+
 void ShaderImporter::Import(char* buffer, int bSize, ResourceShader* res, const char* assetsPath)
 {
 	//Get every shader typs string from the glsl

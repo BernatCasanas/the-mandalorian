@@ -7,6 +7,8 @@
 #include"ImGui/imgui.h"
 #include"RE_Material.h"
 
+#include "mmgr/mmgr.h"
+
 ResourceShader::ResourceShader(unsigned int _uid) : Resource(_uid, Resource::Type::SHADER), shaderProgramID(0)
 {
 	for (GLuint i = 0; i < static_cast<GLuint>(ShaderType::SH_Max); i++)

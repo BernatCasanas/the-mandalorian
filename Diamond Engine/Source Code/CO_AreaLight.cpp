@@ -14,6 +14,8 @@
 
 #include "ImGui/imgui.h"
 
+#include "mmgr/mmgr.h"
+
 const unsigned int SHADOW_WIDTH = 256, SHADOW_HEIGHT = 256;
 
 C_AreaLight::C_AreaLight(GameObject* gameObject) : Component(gameObject),
@@ -95,6 +97,8 @@ C_AreaLight::~C_AreaLight()
 		glDeleteTextures(1, (GLuint*)&depthCubemap);
 
 	//Remove light
+	EngineExternal->moduleResources->UnloadResource(depthShader->GetUID());
+	depthShader = nullptr;
 	EngineExternal->moduleRenderer3D->RemoveAreaLight(this);
 }
 
