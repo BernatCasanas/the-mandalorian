@@ -10,6 +10,7 @@ public class ShopButtons : DiamondComponent
     public GameObject priceTxt;
     public ShopItems itemType;
     public ShopPrice price_type;    
+    public GameResources resource;
     public bool closeBtn;
 
     bool bought = false;

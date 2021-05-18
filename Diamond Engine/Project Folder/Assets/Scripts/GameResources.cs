@@ -294,7 +294,7 @@ public class AnakinKillstreak : GameResources
 {
     public AnakinKillstreak() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "While over a combo of 3, +5% additive Hasted")
     {
-        name = "anakin's Kill Streak";
+        name = "Anakin's Kill Streak";
         price = ShopPrice.SHOP_AVERAGE;
     }
 

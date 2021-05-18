@@ -101,7 +101,7 @@ public class SHOP : DiamondComponent
             {
                 if (item.itemType == ShopItems.SHOP_ITEM_BOON)
                 {
-                    //Add and apply boon
+                    item.resource.Use();
                 }
                 else if (item.itemType == ShopItems.SHOP_ITEM_HEALTHREPLENISHMENT)
                 {
@@ -199,7 +199,7 @@ public class SHOP : DiamondComponent
             if (BoonDataHolder.boonType[(int)boon] != null)
             {
                 item.SetItem(type, BoonDataHolder.boonType[(int)boon].price, BoonDataHolder.boonType[(int)boon].name, BoonDataHolder.boonType[(int)boon].rewardDescription);
-                //Debug.Log("Not null boon");
+                item.resource = BoonDataHolder.boonType[(int)boon];
             }
             else
                 Debug.Log("Null boon");

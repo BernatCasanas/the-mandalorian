@@ -40,15 +40,15 @@ public class EndLevelRewards
 
     public void GenerateRewardPipeline()
     {
-        firstReward = SelectRewards();
+        firstReward  = SelectRewards();
         secondReward = SelectRewards();
-        thirdReward = SelectRewards();
+        thirdReward  = SelectRewards();
 
         CreatePopUpGameObject();
 
-        firstButton = rewardMenu.GetChild("FirstRewardButton").GetComponent<EndLevelRewardsButtons>();
+        firstButton  = rewardMenu.GetChild("FirstRewardButton").GetComponent<EndLevelRewardsButtons>();
         secondButton = rewardMenu.GetChild("SecondRewardButton").GetComponent<EndLevelRewardsButtons>();
-        thirdButton = rewardMenu.GetChild("ThirdRewardButton").GetComponent<EndLevelRewardsButtons>();
+        thirdButton  = rewardMenu.GetChild("ThirdRewardButton").GetComponent<EndLevelRewardsButtons>();
 
         if (firstButton != null)
             firstButton.gameObject.GetComponent<Navigation>().Select(); // Line added because buttons crashed. For... some reason
@@ -123,7 +123,6 @@ public class EndLevelRewards
 
         for (int i = 0; i < BoonDataHolder.boonType.Length; i++)
         {
-
             if (randomPick < BoonDataHolder.boonType[i].rngChanceWeight)
             {
                 return i;
@@ -159,9 +158,9 @@ public class EndLevelRewards
         secondImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardTexture(secondReward));
         thirdImage.GetComponent<Image2D>().AssignLibrary2DTexture(GetRewardTexture(thirdReward));
 
-        firstText.GetComponent<Text>().text = RewardText(firstReward);
+        firstText.GetComponent<Text>().text  = RewardText(firstReward);
         secondText.GetComponent<Text>().text = RewardText(secondReward);
-        thirdText.GetComponent<Text>().text = RewardText(thirdReward);
+        thirdText.GetComponent<Text>().text  = RewardText(thirdReward);
 
         return;
     }

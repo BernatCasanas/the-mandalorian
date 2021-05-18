@@ -47,10 +47,8 @@ public class GameSceneManager : DiamondComponent
             {
                 EnemyManager.ClearList();
 
-                rewardInitialPos = Core.instance.gameObject.transform.globalPosition + new Vector3(1.5f, 1.0f, 0.0f);    // Not this position, but for now it's fine;
+                rewardInitialPos = Core.instance.gameObject.transform.globalPosition + new Vector3(1.5f, 1.0f, 0.0f); 
                 rewardObject.transform.localPosition = rewardInitialPos;
-
-                //Debug.Log("Boon mesh position: " + rewardInitialPos.ToString());
 
                 rewardObject.AssignLibraryTextureToMaterial(rewardData.libraryTextureID, "diffuseTexture");
                 rewardObject.Enable(true);
@@ -122,10 +120,6 @@ public class GameSceneManager : DiamondComponent
         rewardMenu = new EndLevelRewards();
 
         rewardMenu.GenerateRewardPipeline();
-
-        //Debug.Log("Hi");
-        //if (rewardData != null)
-        //Debug.Log("Reward data texture id is " + rewardData.libraryTextureID + " and reward type is " + rewardData.resourceType);
     }
 
     public void ApplyReward()
@@ -134,15 +128,17 @@ public class GameSceneManager : DiamondComponent
         {
             rewardData.Use();
             if (Core.instance != null)
-               if( Core.instance.HasStatus(STATUS_TYPE.BOUNTY_HUNTER))
+            {
+                if (Core.instance.HasStatus(STATUS_TYPE.BOUNTY_HUNTER))
                     PlayerResources.AddRunCoins((int)(Core.instance.GetStatusData(STATUS_TYPE.BOUNTY_HUNTER).severity));
-
+            }
 
             if (rewardObject != null)
                 rewardObject.Enable(false);
 
             if (rewardSpawnComponent != null)
                 rewardSpawnComponent.trigger = false;
+
             rewardData = null;
         }
     }
