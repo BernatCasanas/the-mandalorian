@@ -391,20 +391,36 @@ vec3 CalculateAreaLightDirection(int iterator)
 }
 
 
+vec3 sampleOffsetDirections[9] = vec3[]
+(
+   vec3( 1, -1, -1), vec3(-1, -1, -1), vec3(-1,  1, -1),
+   vec3( 1,  1,  0), vec3( 1, -1,  0), vec3(-1, -1,  0), 
+   vec3(-1,  1,  0), vec3( 1,  0,  1), vec3(-1,  0,  1)
+);   
+
+
 float GetAreaShadowValue(int lightNum, vec3 normal, vec3 lightDir)
 {
 	if(areaLightInfo[lightNum].calculateShadows == false)
 		return 0.0;
 		
 	vec3 fragToLight = fs_in.FragPos - areaLightInfo[lightNum].lightPosition;
-	
-	float closestDepth = texture(cubeShadowMap[lightNum], fragToLight).r;
-	closestDepth *= 500.0;
-		
 	float currDepth = length(fragToLight);
-	
+
 	float bias = 0.5;	//magic value for the bias, it works too weel to change it
-	return (currDepth - bias > closestDepth  ? 1.0 : 0.0);
+
+	float diskRadius = 0.05;
+	float shadowValue = 0.0;
+
+	for (int i = 0; i < 9; ++i)
+	{
+		float closestDepth = texture(cubeShadowMap[lightNum], fragToLight + sampleOffsetDirections[i] * diskRadius).r;
+		closestDepth *= 500.0;
+		
+		shadowValue += (currDepth - bias > closestDepth  ? 1.0 : 0.0);
+	}
+	
+	return shadowValue / 9.0;
 
 }
 
@@ -464,6 +480,7 @@ void main()
 	color = vec4((directionalLight + areaLight) * (fs_in.vertexColor * altColor), 1.0);
 }
 #endif
+
 
 
 
