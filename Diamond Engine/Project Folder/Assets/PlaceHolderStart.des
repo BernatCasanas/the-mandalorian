@@ -1,19 +1,31 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -1.513275146484375,
-        -0.0083714639768004417,
-        -2.5903534889221191
+        -1.5132749080657959,
+        -0.0083714630454778671,
+        -2.59035325050354
     ],
     "EditorCameraZ": [
-        0.50442498922348022,
+        0.50442492961883545,
         0.0027904876042157412,
-        0.86345106363296509
+        0.86345100402832031
     ],
     "EditorCameraY": [
-        -0.0014075972139835358,
-        0.99999624490737915,
+        -0.0014075969811528921,
+        0.99999606609344482,
         -0.0024094588588923216
+    ],
+    "SkyboxPath0": "",
+    "SkyboxPath1": "",
+    "SkyboxPath2": "",
+    "SkyboxPath3": "",
+    "SkyboxPath4": "",
+    "SkyboxPath5": "",
+    "skyboxColor": [
+        1,
+        1,
+        1,
+        1
     ],
     "tags": [],
     "layers": [],
@@ -90,8 +102,7 @@
                 {
                     "Type": 12,
                     "Active": true,
-                    "isDefaultListener": false,
-                    "masterVolume": 50
+                    "isDefaultListener": false
                 }
             ]
         },
@@ -1297,7 +1308,9 @@
                     "Script_Name": "DisSett",
                     "ButtonState": 3,
                     "Checkbox Active": false,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -2480,7 +2493,7 @@
                     "Active": true,
                     "Position": [
                         27.799999237060547,
-                        -79.800003051757812
+                        -79.800003051757813
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -2985,7 +2998,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -67.300003051757812,
+                        -67.300003051757813,
                         -4.4000000953674316
                     ],
                     "Rotation": 0,
@@ -3486,7 +3499,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -67.300003051757812,
+                        -67.300003051757813,
                         -4.0999999046325684
                     ],
                     "Rotation": 0,
@@ -3988,7 +4001,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -67.300003051757812,
+                        -67.300003051757813,
                         -3.2999999523162842
                     ],
                     "Rotation": 0,
@@ -4490,7 +4503,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -67.300003051757812,
+                        -67.300003051757813,
                         -3.0999999046325684
                     ],
                     "Rotation": 0,
@@ -4846,7 +4859,9 @@
                     "Script_Name": "Settings",
                     "ButtonState": 3,
                     "Checkbox Active": false,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -7727,18 +7742,17 @@
                 {
                     "Type": 12,
                     "Active": true,
-                    "isDefaultListener": false,
-                    "masterVolume": 20.166000366210938
+                    "isDefaultListener": false
                 },
                 {
                     "Type": 13,
                     "Active": true,
                     "evName": "Play_Music_V02",
                     "audBankReference": "Music",
-                    "volume": 50,
                     "pitch": 50,
                     "playOnAwake": true,
-                    "isMuted": false
+                    "isMuted": false,
+                    "isMusic": true
                 },
                 {
                     "Type": 5,
@@ -7909,7 +7923,7 @@
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
                     "vFOV": 0.3228859007358551,
-                    "hFOV": 0.51965117454528809,
+                    "hFOV": 0.60706937313079834,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": false
@@ -7917,8 +7931,7 @@
                 {
                     "Type": 12,
                     "Active": true,
-                    "isDefaultListener": true,
-                    "masterVolume": 50
+                    "isDefaultListener": true
                 },
                 {
                     "Type": 5,
@@ -7964,10 +7977,10 @@
                     "Active": true,
                     "evName": "Empty",
                     "audBankReference": "Environment",
-                    "volume": 50,
                     "pitch": 50,
                     "playOnAwake": false,
-                    "isMuted": false
+                    "isMuted": false,
+                    "isMusic": false
                 },
                 {
                     "Type": 5,
@@ -8132,10 +8145,10 @@
                     "Active": true,
                     "evName": "Empty",
                     "audBankReference": "Grogu",
-                    "volume": 50,
                     "pitch": 50,
                     "playOnAwake": false,
-                    "isMuted": false
+                    "isMuted": false,
+                    "isMusic": false
                 }
             ]
         },
@@ -8715,7 +8728,7 @@
                 0,
                 0,
                 -0.0073059904389083385,
-                0.99997329711914062
+                0.99997329711914063
             ],
             "Scale": [
                 1,
@@ -9829,7 +9842,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0.49832534790039062,
+                0.49832534790039063,
                 2.0816681711721685e-17,
                 1.3898392876873153e-17
             ],
@@ -11949,8 +11962,8 @@
                     "RootBone UID": 656255698,
                     "MeshRendererUID": 556860409,
                     "Animations": [
-                        612056452,
                         2005144276,
+                        612056452,
                         1790673319,
                         1375029942
                     ]
@@ -12826,7 +12839,7 @@
             ],
             "Rotation": [
                 0.089414104819297791,
-                0.19990921020507812,
+                0.19990921020507813,
                 -0.33642089366912842,
                 0.91589432954788208
             ],
@@ -14387,7 +14400,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -2.2920303344726562,
+                -2.2920303344726563,
                 2.1627929527312517e-06,
                 4.3184466361999512
             ],

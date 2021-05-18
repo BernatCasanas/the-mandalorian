@@ -15,6 +15,18 @@
         0.62382805347442627,
         0.4106312096118927
     ],
+    "SkyboxPath0": "",
+    "SkyboxPath1": "",
+    "SkyboxPath2": "",
+    "SkyboxPath3": "",
+    "SkyboxPath4": "",
+    "SkyboxPath5": "",
+    "skyboxColor": [
+        1,
+        1,
+        1,
+        1
+    ],
     "tags": [],
     "layers": [],
     "Game Objects": [
@@ -1626,10 +1638,10 @@
                 0.073834896087646484
             ],
             "Rotation": [
-                0.015012031421065331,
-                0.90432977676391602,
-                -0.031915035098791122,
-                0.42537471652030945
+                0.01501203328371048,
+                0.90432989597320557,
+                -0.031915038824081421,
+                0.42537477612495422
             ],
             "Scale": [
                 1.0000002384185791,
@@ -6158,7 +6170,7 @@
             "Scale": [
                 2.7478435039520264,
                 9.0618162155151367,
-                7.7377395629882812
+                7.7377395629882813
             ],
             "Components": [
                 {
@@ -6410,7 +6422,7 @@
             "Static": false,
             "Position": [
                 -2.559999942779541,
-                8.1800003051757812,
+                8.1800003051757813,
                 6.9000000953674316
             ],
             "Rotation": [
@@ -6804,8 +6816,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 11.939999580383301,
-                    "hFOV": 21.159999847412109,
+                    "vFOV": 12.239999771118164,
+                    "hFOV": 23.540000915527344,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -6818,7 +6830,6 @@
                     "y": 10,
                     "z": -10,
                     "smoothSpeed": 0.10000000149011612,
-                    "zoomDesired": 0.10000000149011612,
                     "timer_easing_sec": 0,
                     "timer": 0,
                     "cornerTopLeftX": -100,
@@ -6829,8 +6840,7 @@
                 {
                     "Type": 12,
                     "Active": true,
-                    "isDefaultListener": true,
-                    "masterVolume": 50
+                    "isDefaultListener": true
                 }
             ]
         },
@@ -6876,10 +6886,10 @@
                     "Active": true,
                     "evName": "Play_Post_Boss_Room_1_Ambience",
                     "audBankReference": "Environment",
-                    "volume": 49.666000366210938,
                     "pitch": 50,
                     "playOnAwake": true,
-                    "isMuted": false
+                    "isMuted": false,
+                    "isMusic": false
                 }
             ]
         },
@@ -7183,7 +7193,7 @@
                         0,
                         0,
                         -0.0073059904389083385,
-                        0.99997329711914062
+                        0.99997329711914063
                     ],
                     "Scale": [
                         1,
@@ -8099,7 +8109,7 @@
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        0.49832534790039062,
+                        0.49832534790039063,
                         2.0816681711721685e-17,
                         1.3898392876873153e-17
                     ],
@@ -8407,7 +8417,7 @@
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        -1.8636245727539062,
+                        -1.8636245727539063,
                         0.046333789825439453,
                         -0.77125072479248047
                     ],
@@ -8435,7 +8445,7 @@
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        -1.8636245727539062,
+                        -1.8636245727539063,
                         0.046333789825439453,
                         0.86050128936767578
                     ],
@@ -8463,7 +8473,7 @@
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        0.76593399047851562,
+                        0.76593399047851563,
                         0.046333789825439453,
                         0.86050128936767578
                     ],
@@ -8520,7 +8530,7 @@
                     "Static": false,
                     "Position": [
                         -0.0040745735168457031,
-                        -0.0062532424926757812,
+                        -0.0062532424926757813,
                         -0.058134078979492188
                     ],
                     "Rotation": [
@@ -9657,7 +9667,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -72.300003051757812,
+                        -72.300003051757813,
                         -24.299999237060547
                     ],
                     "Rotation": 0,
@@ -9720,7 +9730,7 @@
                     "Active": true,
                     "Position": [
                         71.599998474121094,
-                        -28.600000381469726
+                        -28.600000381469727
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -9941,7 +9951,9 @@
                     "Unhovered_UID": 1346482548,
                     "Script_Name": "TextController",
                     "ButtonState": 2,
-                    "Is Selected": true
+                    "Is Selected": true,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -10117,12 +10129,12 @@
                     "Active": true,
                     "Position": [
                         3.4000000953674316,
-                        -67.800003051757812
+                        -67.800003051757813
                     ],
                     "Rotation": 0,
                     "Size": [
                         58.599998474121094,
-                        19.100000381469726
+                        19.100000381469727
                     ]
                 },
                 {
@@ -10179,7 +10191,7 @@
                     "Active": true,
                     "Position": [
                         54.099998474121094,
-                        -10.100000381469726
+                        -10.100000381469727
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -10209,7 +10221,9 @@
                     "Unhovered_UID": 1346482548,
                     "Script_Name": "Enable",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -10383,12 +10397,12 @@
                     "Active": true,
                     "Position": [
                         3.4000000953674316,
-                        -67.800003051757812
+                        -67.800003051757813
                     ],
                     "Rotation": 0,
                     "Size": [
                         58.599998474121094,
-                        19.100000381469726
+                        19.100000381469727
                     ]
                 },
                 {
@@ -10546,12 +10560,12 @@
                     "Active": true,
                     "Position": [
                         3.4000000953674316,
-                        -67.800003051757812
+                        -67.800003051757813
                     ],
                     "Rotation": 0,
                     "Size": [
                         58.599998474121094,
-                        19.100000381469726
+                        19.100000381469727
                     ]
                 },
                 {
@@ -10608,7 +10622,7 @@
                     "Active": true,
                     "Position": [
                         54.099998474121094,
-                        -10.100000381469726
+                        -10.100000381469727
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -10638,7 +10652,9 @@
                     "Unhovered_UID": 1346482548,
                     "Script_Name": "HubRoomSwitch",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -10811,7 +10827,7 @@
                     ],
                     "Rotation": 0,
                     "Size": [
-                        10.600000381469726,
+                        10.600000381469727,
                         1.2000000476837158
                     ]
                 },
@@ -11142,7 +11158,9 @@
                     "Type": 7,
                     "Active": true,
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -11290,7 +11308,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        64.800003051757812,
+                        64.800003051757813,
                         88.599998474121094
                     ],
                     "Rotation": 0,
@@ -11352,7 +11370,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        77.300003051757812,
+                        77.300003051757813,
                         69.599998474121094
                     ],
                     "Rotation": 0,
@@ -11898,7 +11916,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        88.800003051757812,
+                        88.800003051757813,
                         93.5
                     ],
                     "Rotation": 0,
@@ -12032,7 +12050,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -89.300003051757812,
+                        -89.300003051757813,
                         71.099998474121094
                     ],
                     "Rotation": 0,
@@ -12094,7 +12112,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -89.300003051757812,
+                        -89.300003051757813,
                         65.5
                     ],
                     "Rotation": 0,
@@ -12157,7 +12175,7 @@
                     "Active": true,
                     "Position": [
                         -77.900001525878906,
-                        69.300003051757812
+                        69.300003051757813
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -12324,8 +12342,8 @@
                     ],
                     "Rotation": 0,
                     "Size": [
-                        31.100000381469726,
-                        16.100000381469726
+                        31.100000381469727,
+                        16.100000381469727
                     ]
                 },
                 {
@@ -12747,7 +12765,9 @@
                     "Unhovered_UID": 1618474496,
                     "Script_Name": "Pause",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -12877,7 +12897,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -17.600000381469726,
+                        -17.600000381469727,
                         -5.1999998092651367
                     ],
                     "Rotation": 0,
@@ -12975,7 +12995,9 @@
                     "Unhovered_UID": 1618474496,
                     "Script_Name": "Pause",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -13106,7 +13128,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -16.100000381469726,
+                        -16.100000381469727,
                         -5.1999998092651367
                     ],
                     "Rotation": 0,
@@ -13204,7 +13226,9 @@
                     "Unhovered_UID": 1618474496,
                     "Script_Name": "Pause",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -13335,7 +13359,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -13.600000381469726,
+                        -13.600000381469727,
                         -5.1999998092651367
                     ],
                     "Rotation": 0,
@@ -13433,7 +13457,9 @@
                     "Unhovered_UID": 1618474496,
                     "Script_Name": "Pause",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -13662,7 +13688,9 @@
                     "Unhovered_UID": 1618474496,
                     "Script_Name": "Pause",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -14518,7 +14546,9 @@
                     "Script_Name": "DisSett",
                     "ButtonState": 3,
                     "Checkbox Active": false,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -14732,7 +14762,9 @@
                     "Unhovered_UID": 1884509864,
                     "Script_Name": "DisSett",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -14886,7 +14918,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -21.600000381469726,
+                        -21.600000381469727,
                         8.1999998092651367
                     ],
                     "Rotation": 0,
@@ -14980,7 +15012,9 @@
                     "Unhovered_LibraryPath": "Library\/Textures\/1346482548.dds",
                     "Unhovered_UID": 1346482548,
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -15035,7 +15069,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -31.600000381469726,
+                        -31.600000381469727,
                         0
                     ],
                     "Rotation": 0,
@@ -15062,7 +15096,9 @@
                     "Unhovered_LibraryPath": "Library\/Textures\/1148197231.dds",
                     "Unhovered_UID": 1148197231,
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -15212,7 +15248,9 @@
                     "Unhovered_UID": 1884509864,
                     "Script_Name": "DisSett",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -15366,7 +15404,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -27.600000381469726,
+                        -27.600000381469727,
                         7.5999999046325684
                     ],
                     "Rotation": 0,
@@ -15461,7 +15499,9 @@
                     "Unhovered_UID": 1346482548,
                     "Script_Name": "DisSett",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -15549,7 +15589,9 @@
                     "Unhovered_UID": 1148197231,
                     "Script_Name": "DisSett",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -15677,7 +15719,7 @@
                     "Active": true,
                     "Position": [
                         27.799999237060547,
-                        -79.800003051757812
+                        -79.800003051757813
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -15707,7 +15749,9 @@
                     "Unhovered_UID": 834295412,
                     "Script_Name": "DisSett",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -16017,7 +16061,9 @@
                     "Unhovered_UID": 1884509864,
                     "Script_Name": "Settings",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -16172,7 +16218,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -67.300003051757812,
+                        -67.300003051757813,
                         -3.9000000953674316
                     ],
                     "Rotation": 0,
@@ -16267,7 +16313,9 @@
                     "Unhovered_UID": 1346482548,
                     "Script_Name": "Settings",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -16357,7 +16405,9 @@
                     "Unhovered_UID": 1148197231,
                     "Script_Name": "Settings",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -16507,7 +16557,9 @@
                     "Unhovered_UID": 1884509864,
                     "Script_Name": "Settings",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -16662,7 +16714,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -67.300003051757812,
+                        -67.300003051757813,
                         -3.2999999523162842
                     ],
                     "Rotation": 0,
@@ -16757,7 +16809,9 @@
                     "Unhovered_UID": 1346482548,
                     "Script_Name": "Settings",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -16845,7 +16899,9 @@
                     "Unhovered_UID": 1148197231,
                     "Script_Name": "Settings",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -16998,7 +17054,9 @@
                     "Unhovered_UID": 1884509864,
                     "Script_Name": "Settings",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -17153,7 +17211,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -67.300003051757812,
+                        -67.300003051757813,
                         -2.2999999523162842
                     ],
                     "Rotation": 0,
@@ -17248,7 +17306,9 @@
                     "Unhovered_UID": 1148197231,
                     "Script_Name": "Settings",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -17339,7 +17399,9 @@
                     "Unhovered_UID": 1346482548,
                     "Script_Name": "Settings",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -17502,7 +17564,9 @@
                     "Script_Name": "Settings",
                     "ButtonState": 3,
                     "Checkbox Active": false,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -17621,7 +17685,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -67.300003051757812,
+                        -67.300003051757813,
                         -4.3000001907348633
                     ],
                     "Rotation": 0,
@@ -17689,7 +17753,7 @@
                     "Active": true,
                     "Position": [
                         21.799999237060547,
-                        -28.100000381469726
+                        -28.100000381469727
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -17719,7 +17783,9 @@
                     "Unhovered_UID": 1884509864,
                     "Script_Name": "Settings",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -17874,7 +17940,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -67.300003051757812,
+                        -67.300003051757813,
                         -1.8999999761581421
                     ],
                     "Rotation": 0,
@@ -17969,7 +18035,9 @@
                     "Unhovered_UID": 1346482548,
                     "Script_Name": "Settings",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -18057,7 +18125,9 @@
                     "Unhovered_UID": 1148197231,
                     "Script_Name": "Settings",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -18218,7 +18288,9 @@
                     "Unhovered_UID": 834295412,
                     "Script_Name": "Settings",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -18531,7 +18603,9 @@
                     "Unhovered_UID": 834295412,
                     "Script_Name": "Return",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -18766,7 +18840,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -22.600000381469726,
+                        -22.600000381469727,
                         0
                     ],
                     "Rotation": 0,
@@ -18797,7 +18871,9 @@
                     "Unhovered_UID": 1618474496,
                     "Script_Name": "QuitConfirmation",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -19056,7 +19132,9 @@
                     "Unhovered_UID": 1618474496,
                     "Script_Name": "QuitConfirmation",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -19315,7 +19393,9 @@
                     "Unhovered_UID": 1618474496,
                     "Script_Name": "QuitConfirmation",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -19631,7 +19711,7 @@
                     "Active": true,
                     "Position": [
                         77.199996948242188,
-                        -84.300003051757812
+                        -84.300003051757813
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -20123,7 +20203,9 @@
                     "Unhovered_UID": 1455891631,
                     "Script_Name": "ShopButtons",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -20602,7 +20684,9 @@
                     "Unhovered_UID": 1455891631,
                     "Script_Name": "ShopButtons",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -21110,7 +21194,7 @@
                     "Active": true,
                     "Position": [
                         0,
-                        -15.600000381469726
+                        -15.600000381469727
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -21140,7 +21224,9 @@
                     "Unhovered_UID": 1455891631,
                     "Script_Name": "ShopButtons",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -21527,7 +21613,7 @@
                     "Active": true,
                     "Position": [
                         43.200000762939453,
-                        -31.600000381469726
+                        -31.600000381469727
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -21619,7 +21705,9 @@
                     "Unhovered_UID": 1455891631,
                     "Script_Name": "ShopButtons",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -22006,7 +22094,7 @@
                     "Active": true,
                     "Position": [
                         43.200000762939453,
-                        -65.300003051757812
+                        -65.300003051757813
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -22098,7 +22186,9 @@
                     "Unhovered_UID": 1606299495,
                     "Script_Name": "ShopButtons",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -22307,18 +22397,17 @@
                 {
                     "Type": 12,
                     "Active": true,
-                    "isDefaultListener": false,
-                    "masterVolume": 20.166000366210938
+                    "isDefaultListener": false
                 },
                 {
                     "Type": 13,
                     "Active": true,
                     "evName": "Play_Music_V02",
                     "audBankReference": "Music",
-                    "volume": 50,
                     "pitch": 50,
                     "playOnAwake": true,
-                    "isMuted": false
+                    "isMuted": false,
+                    "isMusic": false
                 },
                 {
                     "Type": 5,
@@ -22652,10 +22741,10 @@
                 -5.9824354359250265e-09
             ],
             "Rotation": [
-                0.03607708215713501,
+                0.036077085882425308,
                 0,
                 0,
-                0.99934899806976318
+                0.99934911727905273
             ],
             "Scale": [
                 1,
@@ -22924,10 +23013,10 @@
                 0
             ],
             "Rotation": [
-                -0.1174413338303566,
-                0.013079997152090073,
-                -0.013046309351921082,
-                0.9929080605506897
+                -0.1174413189291954,
+                0.013079995289444923,
+                -0.013046307489275932,
+                0.99290794134140015
             ],
             "Scale": [
                 1,
@@ -23298,10 +23387,10 @@
                 0
             ],
             "Rotation": [
-                0.28693974018096924,
-                0.038619771599769592,
-                -0.011578257195651531,
-                0.9570997953414917
+                0.28693976998329163,
+                0.038619775325059891,
+                -0.011578258126974106,
+                0.95709991455078125
             ],
             "Scale": [
                 1,
