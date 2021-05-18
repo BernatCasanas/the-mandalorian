@@ -6,7 +6,7 @@
 
 #include "ImGui/imgui.h"
 
-C_AudioSource::C_AudioSource(GameObject* _gm) : Component(_gm), audBankReference(nullptr), evName(""), isMuted(false), pitch(50.0f), playOnAwake(false), volume(50.0f), audBankName("")
+C_AudioSource::C_AudioSource(GameObject* _gm) : Component(_gm), audBankReference(nullptr), evName(""), isMuted(false), pitch(50.0f), playOnAwake(false), volume(50.0f), audBankName(""), isMusic(false)
 {
 	name = "Audio Source";
 	id = static_cast<unsigned int>(EngineExternal->GetRandomInt());
@@ -17,6 +17,14 @@ C_AudioSource::C_AudioSource(GameObject* _gm) : Component(_gm), audBankReference
 
 C_AudioSource::~C_AudioSource()
 {
+	if (isMusic) {
+		for (std::vector<C_AudioSource*>::iterator it = EngineExternal->moduleAudio->musicSource.begin(); it != EngineExternal->moduleAudio->musicSource.end(); ++it) {
+			if ((*it) == this) {
+				EngineExternal->moduleAudio->musicSource.erase(it);
+				break;
+			}
+		}
+	}
 	EngineExternal->moduleAudio->StopComponent(id);
 	EngineExternal->moduleAudio->RemoveAudioSource(this);
 	EngineExternal->moduleAudio->UnRegisterAudioObject(id);
@@ -86,6 +94,20 @@ bool C_AudioSource::OnEditor()
 
 		ImGui::Checkbox("Play on Awake", &playOnAwake);
 
+		if (ImGui::Checkbox("Music", &isMusic)) {
+			if (isMusic) {
+				EngineExternal->moduleAudio->musicSource.push_back(this);
+			}
+			else {
+				for (std::vector<C_AudioSource*>::iterator it = EngineExternal->moduleAudio->musicSource.begin(); it!= EngineExternal->moduleAudio->musicSource.end(); ++it) {
+					if ((*it) == this) {
+						EngineExternal->moduleAudio->musicSource.erase(it);
+						break;
+					}
+				}
+			}
+		}
+
 		if (ImGui::SliderFloat("Volume", &volume, 0.0f, 99.99f))
 		{
 			SetVolume(volume);
@@ -121,10 +143,10 @@ void C_AudioSource::SaveData(JSON_Object* nObj)
 	if (this->audBankReference != nullptr)
 		DEJson::WriteString(nObj, "audBankReference", this->audBankReference->bank_name.c_str());
 
-	DEJson::WriteFloat(nObj, "volume", this->volume);
 	DEJson::WriteFloat(nObj, "pitch", this->pitch);
 	DEJson::WriteBool(nObj, "playOnAwake", this->playOnAwake);
 	DEJson::WriteBool(nObj, "isMuted", this->isMuted);
+	DEJson::WriteBool(nObj, "isMusic", this->isMusic);
 }
 
 void C_AudioSource::LoadData(DEConfig& nObj)
@@ -134,9 +156,9 @@ void C_AudioSource::LoadData(DEConfig& nObj)
 	this->evName = nObj.ReadString("evName");
 	std::string bankName = nObj.ReadString("audBankReference");
 	SetMuted(nObj.ReadBool("isMuted"));
-	SetVolume(nObj.ReadFloat("volume"));
 	SetPitch(nObj.ReadFloat("pitch"));
 	this->playOnAwake = nObj.ReadBool("playOnAwake");
+	isMusic = false;
 
 	// Iterate and assign audio bank. If not loaded, load
 	std::vector<AudioBank*>::iterator it;
@@ -184,7 +206,7 @@ float C_AudioSource::GetVolume()
 
 void C_AudioSource::SetVolume(float newVol)
 {
-	this->volume = MIN(newVol, 99.99f);
+	this->volume = MIN(newVol, 99.0f);
 	this->volume = MAX(newVol, 0.0f);
 	if (!isMuted && evName != "")
 		EngineExternal->moduleAudio->ChangeRTPCValue(this->id, std::string("SourceVolume"), this->volume);

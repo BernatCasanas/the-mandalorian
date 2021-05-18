@@ -7,7 +7,7 @@
 #include "MO_AudioManager.h"
 
 
-C_AudioListener::C_AudioListener(GameObject* _gm, bool defaultListener) :Component(_gm), isDefaultListener(false), masterVolume(50), myTransform(nullptr)
+C_AudioListener::C_AudioListener(GameObject* _gm, bool defaultListener) :Component(_gm), isDefaultListener(false), myTransform(nullptr)
 {
 	name = "Audio Listener";
 	myTransform = dynamic_cast<C_Transform*>(gameObject->GetComponent(Component::TYPE::TRANSFORM));
@@ -38,11 +38,6 @@ bool C_AudioListener::OnEditor()
 			SetAsDefaultListener(listenerAux);
 		}
 
-		if (ImGui::SliderFloat("Master Audio Volume", &masterVolume, 0.0f, 99.99f))
-		{
-			SetVolume(masterVolume);
-		}
-
 		return true;
 	}
 	return false;
@@ -59,7 +54,6 @@ void C_AudioListener::SaveData(JSON_Object* nObj)
 {
 	Component::SaveData(nObj);
 	DEJson::WriteBool(nObj, "isDefaultListener", isDefaultListener);
-	DEJson::WriteFloat(nObj, "masterVolume", masterVolume);
 
 }
 
@@ -67,23 +61,18 @@ void C_AudioListener::LoadData(DEConfig& nObj)
 {
 	Component::LoadData(nObj);
 	SetAsDefaultListener(nObj.ReadBool("isDefaultListener"));
-	SetVolume(nObj.ReadFloat("masterVolume"));
 
 }
 
-float C_AudioListener::GetVolume()
-{
-	return masterVolume;
-}
+
 
 void C_AudioListener::SetVolume(float newVol)
 {
-	masterVolume = newVol;
-	this->masterVolume = MIN(newVol, 99.99f);
-	this->masterVolume = MAX(newVol, 0.0f);
+	newVol = MIN(newVol, 99.99f);
+	newVol = MAX(newVol, 0.0f);
 
 	if (isDefaultListener)
-		EngineExternal->moduleAudio->SetBusVolume(masterVolume);
+		EngineExternal->moduleAudio->SetBusVolume(newVol);
 }
 
 uint C_AudioListener::GetID()
@@ -125,7 +114,7 @@ void C_AudioListener::SetAsDefaultListener(bool setDefault)
 	}
 
 	isDefaultListener = setDefault;
-	SetVolume(masterVolume);
+	SetVolume(EngineExternal->moduleAudio->masterVolume);
 }
 
 bool C_AudioListener::IsDefaultListener()

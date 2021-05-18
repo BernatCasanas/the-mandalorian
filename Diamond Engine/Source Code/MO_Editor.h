@@ -33,6 +33,7 @@ enum class EditorWindow {
 
 	//Edit tab
 	CONFIGURATION,
+	ENVIROMENTCONFIG,
 	
 	MAX
 };

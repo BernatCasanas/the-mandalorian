@@ -13,10 +13,12 @@
 
 #include "WI_Hierarchy.h"
 #include"WI_Game.h"
+#include"WI_EnvLightConfig.h"
 #include"MaykMath.h"
 
 #include "IM_FileSystem.h"
 #include "IM_PrefabImporter.h"
+#include "IM_TextureImporter.h"
 
 #include"DEJsonSupport.h"
 #include"CO_Transform.h"
@@ -525,6 +527,15 @@ void M_Scene::SaveToJson(const char* name)
 	root_object.WriteVector3("EditorCameraZ", &App->moduleCamera->editorCamera.camFrustrum.front.x);
 	root_object.WriteVector3("EditorCameraY", &App->moduleCamera->editorCamera.camFrustrum.up.x);
 
+	char* skPath = "SkyboxPath";
+	W_EnvLightConfig* envWindow = dynamic_cast<W_EnvLightConfig*>(App->moduleEditor->GetEditorWindow(EditorWindow::ENVIROMENTCONFIG));
+	for (size_t i = 0; i < 6; ++i)
+	{
+		std::string skPathID = skPath + std::to_string(i);
+		root_object.WriteString(skPathID.c_str(), envWindow->cubemapPaths[i].c_str());
+	}
+	root_object.WriteVector4("skyboxColor", &App->moduleRenderer3D->clearColor[0]);
+
 	//Tags ===================================================================
 	JSON_Value* tagsValue = json_value_init_array();
 	JSON_Array* tagsArray = json_value_get_array(tagsValue);
@@ -597,6 +608,55 @@ void M_Scene::LoadScene(const char* name)
 	MaykMath::GeneralDataSet(&App->moduleCamera->editorCamera.camFrustrum.front.x, &DEJson::ReadVector3(sceneObj, "EditorCameraZ")[0], 3);
 	MaykMath::GeneralDataSet(&App->moduleCamera->editorCamera.camFrustrum.up.x, &DEJson::ReadVector3(sceneObj, "EditorCameraY")[0], 3);
 #endif // !STANDALONE
+	
+	char* skPath = "SkyboxPath";
+	DEConfig conf(sceneObj);
+	std::vector<std::string> paths;
+	bool loadSkybox = true;
+	for (size_t i = 0; i < 6; ++i)
+	{
+		std::string skPathID = skPath + std::to_string(i);
+		const char* ret = conf.ReadString(skPathID.c_str());
+		
+		if (ret == "")
+		{
+			loadSkybox = false;
+			break;
+		}
+
+		paths.push_back("");
+		paths[i] = ret;
+	}
+	if (loadSkybox == true) 
+	{
+		char* faces[6];
+		for (size_t i = 0; i < 6; i++)
+		{
+			faces[i] = new char[50];
+			strcpy(faces[i], paths[i].c_str());
+		}
+
+		TextureImporter::LoadCubeMap(faces, App->moduleRenderer3D->skybox);
+#ifndef STANDALONE
+		W_EnvLightConfig* env = dynamic_cast<W_EnvLightConfig*>(App->moduleEditor->GetEditorWindow(EditorWindow::ENVIROMENTCONFIG));
+		env->SetPaths(faces);
+#endif // !STANDALONE
+
+		for (size_t i = 0; i < 6; i++)
+		{
+			delete[] faces[i];
+		}
+
+	}
+	else
+	{
+		App->moduleRenderer3D->skybox.ClearTextureMemory();
+#ifndef STANDALONE
+		W_EnvLightConfig* env = dynamic_cast<W_EnvLightConfig*>(App->moduleEditor->GetEditorWindow(EditorWindow::ENVIROMENTCONFIG));
+		env->ClearPaths();
+#endif // !STANDALONE
+	}
+	App->moduleRenderer3D->clearColor = conf.ReadVector4("skyboxColor");
 
 	tags.clear();
 	tags = { "Untagged" };
