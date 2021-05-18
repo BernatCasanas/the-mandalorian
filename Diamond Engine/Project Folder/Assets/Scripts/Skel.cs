@@ -75,7 +75,7 @@ public class Skel : Bosseslv2
 
 
         UpdateState();
-        Debug.Log(healthPoints.ToString());
+        //Debug.Log(healthPoints.ToString());
     }
 
     private void ProcessInternalInput()
@@ -432,11 +432,6 @@ public class Skel : Bosseslv2
             else if (currentState == STATE.BOUNCE_RUSH)
             {
                 inputsList.Add(INPUT.IN_BOUNCERUSH_END);
-                PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
-                if (playerHealth != null)
-                {
-                    playerHealth.TakeDamage((int)(damageBounceRush * damageMult));
-                }
             }
         }
         else if (collidedGameObject.CompareTag("PushSkill"))

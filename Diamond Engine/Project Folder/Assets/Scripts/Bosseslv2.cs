@@ -20,7 +20,7 @@ public class Bosseslv2 : Entity
     public float wanderRange = 7.5f;
     public GameObject colliderJumpSlam = null;
     public GameObject colliderBounceRush = null;
-
+    public GameObject jumpPositionIndicator = null;
 
     //Private Variables
     public bool resting = false;
@@ -103,7 +103,6 @@ public class Bosseslv2 : Entity
             chargeTime = Animator.GetAnimationDuration(gameObject, "Skel_Jump_P1") - 0.05f;
             Debug.Log("Rush Start: " + startBounceRushTime.ToString());
         }
-
     }
 
     #region PROJECTILE
@@ -246,7 +245,12 @@ public class Bosseslv2 : Entity
         //Debug.Log("Started Bounce Rush");
         currentTarget = initTarget;
         returnToInitTarget = false;
-        colliderBounceRush.EnableCollider();
+
+        if (colliderBounceRush != null)
+        {
+            colliderBounceRush.GetComponent<BoxCollider>().active = true;
+            colliderBounceRush.GetComponent<AtackBosslv2>().active = true;
+        }
     }
 
     public void UpdateBounceRush()
@@ -281,12 +285,16 @@ public class Bosseslv2 : Entity
         Debug.Log("END BOUNCE RUSH");
         resting = true;
         restingTimer = restingTime;
+
         if (gameObject.CompareTag("Skel"))
         {
             Animator.Play(gameObject, "Skel_Rush_Recover", speedMult);
             UpdateAnimationSpd(speedMult);
         }
-        colliderBounceRush.DisableCollider();
+
+        if (colliderBounceRush != null) {
+            colliderBounceRush.GetComponent<BoxCollider>().active = false;
+        }
     }
 
     #endregion
@@ -323,10 +331,17 @@ public class Bosseslv2 : Entity
                     {
                         jumpslamTimer = upTime;
                         jumpslam = JUMPSLAM.UP;
+
                         if (gameObject.CompareTag("Skel"))
                         {
                             Animator.Play(gameObject, "Skel_Jump_P2", speedMult);
                             UpdateAnimationSpd(speedMult);
+
+                            if (jumpPositionIndicator != null)
+                            {
+                                jumpPositionIndicator.Enable(true);
+                                jumpPositionIndicator.transform.localPosition = Core.instance.gameObject.transform.globalPosition;
+                            }
                         }
                         else if (gameObject.CompareTag("Wampa"))
                         {
@@ -355,7 +370,8 @@ public class Bosseslv2 : Entity
                         float speed = Mathf.Distance(targetPos, gameObject.transform.globalPosition) / fallingTime;
                         if (colliderJumpSlam != null)
                         {
-                            colliderJumpSlam.EnableCollider();
+                            colliderJumpSlam.GetComponent<BoxCollider>().active = true;
+                            colliderJumpSlam.GetComponent<AtackBosslv2>().active = true;
                         }
                     }
                 }
@@ -372,7 +388,7 @@ public class Bosseslv2 : Entity
                     {
                         jumpslamTimer = recoveryTime;
                         jumpslam = JUMPSLAM.RECOVERY;
-                        colliderJumpSlam.DisableCollider();
+
                         if (gameObject.CompareTag("Skel"))
                         {
                             Animator.Play(gameObject, "Skel_Jump_P3", speedMult);
@@ -415,6 +431,16 @@ public class Bosseslv2 : Entity
     {
         resting = true;
         restingTimer = restingTime;
+
+        if (jumpPositionIndicator != null)
+        {
+            jumpPositionIndicator.Enable(false);
+        }
+
+        if (colliderJumpSlam != null)
+        {
+            colliderJumpSlam.GetComponent<BoxCollider>().active = false;
+        }
 
     }
 

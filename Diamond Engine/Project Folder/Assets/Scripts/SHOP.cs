@@ -101,7 +101,7 @@ public class SHOP : DiamondComponent
             {
                 if (item.itemType == ShopItems.SHOP_ITEM_BOON)
                 {
-                    //Add and apply boon
+                    item.resource.Use();
                 }
                 else if (item.itemType == ShopItems.SHOP_ITEM_HEALTHREPLENISHMENT)
                 {
@@ -126,10 +126,10 @@ public class SHOP : DiamondComponent
     public void RandomiseItems()
     {
         List<BOONS> available = new List<BOONS>();
-        for (BOONS boon = 0; boon < BOONS.BOON_MAX; ++boon)  //Number of boons + health replenishments
+        for (int i = 0; i < BoonDataHolder.boonType.Length; ++i)  //Number of boons
         {
-            if (!PlayerResources.CheckBoon(boon))
-                available.Add(boon);
+            if (!PlayerResources.CheckBoon((BOONS)i))
+                available.Add((BOONS)i);
         }
 
         Random rand = new Random();
@@ -140,7 +140,7 @@ public class SHOP : DiamondComponent
             if (available.Count > 0)
             {
                 item = rand.Next(0, available.Count);
-                SetShopItem(item1.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_BOON, (BOONS)item);
+                SetShopItem(item1.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_BOON, available[item]);
                 available.RemoveAt(item);
             }
             else
@@ -154,7 +154,7 @@ public class SHOP : DiamondComponent
             if (available.Count > 0)
             {
                 item = rand.Next(0, available.Count);
-                SetShopItem(item2.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_BOON, (BOONS)item);
+                SetShopItem(item2.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_BOON, available[item]);
                 available.RemoveAt(item);
             }
             else
@@ -168,7 +168,7 @@ public class SHOP : DiamondComponent
             if (available.Count > 0)
             {
                 item = rand.Next(0, available.Count);
-                SetShopItem(item3.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_BOON, (BOONS)item);
+                SetShopItem(item3.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_BOON, available[item]);
                 available.RemoveAt(item);
             }
             else
@@ -182,7 +182,7 @@ public class SHOP : DiamondComponent
             if (available.Count > 0)
             {
                 item = rand.Next(0, available.Count);
-                SetShopItem(item4.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_BOON, (BOONS)item);
+                SetShopItem(item4.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_BOON, available[item]);
                 available.RemoveAt(item);
             }
             else
@@ -196,7 +196,13 @@ public class SHOP : DiamondComponent
     {
         if (type == ShopItems.SHOP_ITEM_BOON)
         {
-            item.SetItem(type, ShopPrice.SHOP_CHEAP, BoonDataHolder.boonType[(int)boon].name, BoonDataHolder.boonType[(int)boon].rewardDescription);
+            if (BoonDataHolder.boonType[(int)boon] != null)
+            {
+                item.SetItem(type, BoonDataHolder.boonType[(int)boon].price, BoonDataHolder.boonType[(int)boon].name, BoonDataHolder.boonType[(int)boon].rewardDescription);
+                item.resource = BoonDataHolder.boonType[(int)boon];
+            }
+            else
+                Debug.Log("Null boon");
         }
         else
         {

@@ -21,7 +21,6 @@ public enum BOONS
     BOON_WRECKER_RESILIENCE,
     BOON_BLAST_CANNON_MOUTHPIECE,
     BOON_GREEDO_QUICKSHOOTER,
-    BOON_MANDALORIAN_QUICK_SHOOTER,
     BOON_MANDALORIAN_QUICK_COMBO,
     BOON_AHSOKA_DETERMINATION,
     BOON_FENNEC_SNIPER_RIFLE,
@@ -94,8 +93,7 @@ public static class PlayerResources
 
     public static bool CheckBoon(BOONS newBoon)
     {
-        if (accquiredBoons[(int)newBoon]) return true;
-        else return false;
+        return accquiredBoons[(int)newBoon];
     }
 
     public static int AddResourceBy1(RewardType type, Type boonType = null)
