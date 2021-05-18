@@ -18,6 +18,7 @@ public class SkyTrooperShot : DiamondComponent
 	float time = 0.0f;
 	float deleteTimer = 0.0f;
 	public float lifeTime = 6.0f;
+	//private float rotationSpeed = 0.0f;
 
 	public void Awake()
     {
@@ -47,6 +48,8 @@ public class SkyTrooperShot : DiamondComponent
 				InternalCalls.Destroy(gameObject);
 			}
         }
+
+		gameObject.transform.localRotation = Quaternion.Slerp(gameObject.transform.localRotation, new Quaternion(210.0f, 10.0f, 0.0f), Time.deltaTime);
 	}
 
 	public void SetTarget(Vector3 target, bool low_angle)
@@ -123,7 +126,21 @@ public class SkyTrooperShot : DiamondComponent
 
 		if (hitColliderObject != null)
 			hitCollider = hitColliderObject.GetComponent<SkytrooperHitCollider>();
+
+		//CalculateRotationSpeed();
+		//rotationSpeed = 2.2f;
 	}
+
+	//private void CalculateRotationSpeed()
+ //   {
+	//	float distance = Mathf.Distance(targetPosition, gameObject.transform.globalPosition);
+
+	//	float timeToPosition = distance / (float)Math.Sqrt(velocity.x * velocity.x + velocity.z * velocity.z);
+	//	Debug.Log("Time: " + timeToPosition.ToString());
+
+	//	rotationSpeed = 180.0f / timeToPosition;
+	//	Debug.Log("Rotation Speed: " + rotationSpeed.ToString());
+	//}
 
 	public void OnCollisionEnter(GameObject collidedGameObject)
 	{
