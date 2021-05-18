@@ -183,8 +183,6 @@ public class MoffGideon : Entity
         myDeltaTime = Time.deltaTime * speedMult;
         sword.transform.localPosition = new Vector3(0, 0, 0);
 
-        Debug.Log(enemiesTimer.ToString());
-
         UpdateStatuses();
 
         ProcessInternalInput();
@@ -763,6 +761,7 @@ public class MoffGideon : Entity
             cam_comp.Zoom(baseZoom, zoomTimeEasing);
             cam_comp.target = this.gameObject;
         }
+        invencible = true;
 
     }
 
@@ -778,6 +777,7 @@ public class MoffGideon : Entity
     {
         if(cam_comp!=null)
             cam_comp.target = Core.instance.gameObject;
+        invencible = false;
     }
 
     #endregion
@@ -800,7 +800,7 @@ public class MoffGideon : Entity
             cam_comp.target = this.gameObject;
             
         }
-
+        invencible = true;
     }
 
 
@@ -818,6 +818,7 @@ public class MoffGideon : Entity
         probWander = probWanderP2;
         if (cam_comp != null)
             cam_comp.target = Core.instance.gameObject;
+        invencible = false;
     }
 
     #endregion
@@ -843,7 +844,6 @@ public class MoffGideon : Entity
 
     private void UpdateNeutral()
     {
-        Debug.Log(wander.ToString());
         if (agent != null && !wander)
         {
             agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
