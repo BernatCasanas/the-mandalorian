@@ -19,7 +19,7 @@ public class GameResources
     public string rewardDescription;
     public float rngChanceWeight;
     public string name = "No name Boon";
-
+    public ShopPrice price = ShopPrice.SHOP_FREE;
 }
 
 #region RESOURCES
@@ -68,11 +68,12 @@ public class MilkResource : GameResources
 
 #region BOONS
 //Each time you kill an enemy heal +1 HP. - Bo Katan’s resilience
-public class LifeStealBoon : GameResources
+public class BokatanResilence : GameResources
 {
-    public LifeStealBoon() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Each enemy kill heals 1 HP")
+    public BokatanResilence() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Each enemy kill heals 1 HP")
     {
         name = "Bo-Katan's Resilence";
+        price = ShopPrice.SHOP_EXPENSIVE;
     }
 
     public override void Use()
@@ -87,17 +88,17 @@ public class LifeStealBoon : GameResources
         else
         {
             Debug.Log("ERROR!! Din Djarin has no player health component");
-
         }
     }
 }
 
 //+20% max HP. - Wrecker’s resilience
-public class IncrementMaxHpBoon : GameResources
+public class WreckerResilence : GameResources
 {
-    public IncrementMaxHpBoon() : base(1143141246, RewardType.REWARD_BOON, 1.0f, "Increments +20 health")
+    public WreckerResilence() : base(1143141246, RewardType.REWARD_BOON, 1.0f, "Increments +20 health")
     {
         name = "Wrecker's Resilence";
+        price = ShopPrice.SHOP_EXPENSIVE;
     }
 
     public override void Use()
@@ -116,7 +117,6 @@ public class IncrementMaxHpBoon : GameResources
         {
             Debug.Log("ERROR!! Din Djarin has no player health component");
         }
-
     }
 }
 
@@ -125,6 +125,7 @@ public class CadBaneSoH : GameResources
     public CadBaneSoH() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "first attack with a different weapon from last attack deals +33% damage.")
     {
         name = "Cad Bane’s sleight of hand";
+        price = ShopPrice.SHOP_CHEAP;
     }
 
     public override void Use()
@@ -150,6 +151,7 @@ public class CadBaneBoots : GameResources
     public CadBaneBoots() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "+5% permanent hasted state while grenade is on CD.")
     {
         name = "Cad Bane’s rocket boots";
+        price = ShopPrice.SHOP_CHEAP;
     }
 
     public override void Use()
@@ -169,7 +171,8 @@ public class MandoQuickDraw : GameResources
 {
     public MandoQuickDraw() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "first attack after a dash does 25% more damage")
     {
-        name = "Cad Bane’s rocket boots";
+        name = "Mandalorian's Quick Draw";
+        price = ShopPrice.SHOP_AVERAGE;
     }
 
     public override void Use()
@@ -208,7 +211,8 @@ public class BosskStrength : GameResources
 {
     public BosskStrength() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "mitigate 10% of the damage received (rounded down).")
     {
-        name = "Cad Bane’s rocket boots";
+        name = "Bossk's Strength";
+        price = ShopPrice.SHOP_CHEAP;
     }
 
     public override void Use()
@@ -227,7 +231,8 @@ public class RexSecBlaster : GameResources
 {
     public RexSecBlaster() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "when switching weapons, you get 5% additive haste for 5 seconds, stackable up to 20%.")
     {
-        name = "Cad Bane’s rocket boots";
+        name = "Rex's second blaster";
+        price = ShopPrice.SHOP_AVERAGE;
     }
 
     public override void Use()
@@ -247,7 +252,8 @@ public class GreedoShooter : GameResources
 {
     public GreedoShooter() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "+20% fire rate on the primary weapon")
     {
-        name = "Cad Bane’s rocket boots";
+        name = "Greedo's quick shooter";
+        price = ShopPrice.SHOP_EXPENSIVE;
     }
 
     public override void Use()
@@ -260,7 +266,6 @@ public class GreedoShooter : GameResources
 
             PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
         }
-
     }
 }
 
@@ -268,7 +273,8 @@ public class FennecSniper : GameResources
 {
     public FennecSniper() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Double rifle sweet spot time window (non-stackable).")
     {
-        name = "Cad Bane’s rocket boots";
+        name = "Fennec's sniper rifle";
+        price = ShopPrice.SHOP_EXPENSIVE;
     }
 
     public override void Use()
@@ -281,7 +287,6 @@ public class FennecSniper : GameResources
 
             PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
         }
-
     }
 }
 
@@ -289,7 +294,8 @@ public class AnakinKillstreak : GameResources
 {
     public AnakinKillstreak() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "While over a combo of 3, +5% additive Hasted")
     {
-        name = "Cad Bane’s rocket boots";
+        name = "anakin's Kill Streak";
+        price = ShopPrice.SHOP_AVERAGE;
     }
 
     public override void Use()
@@ -302,7 +308,6 @@ public class AnakinKillstreak : GameResources
 
             PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
         }
-
     }
 }
 
@@ -310,7 +315,8 @@ public class EchoRecovery : GameResources
 {
     public EchoRecovery() : base(1240646973, RewardType.REWARD_BOON, 1.0f, " +10% additive hasted state for 5 seconds after losing a combo.")
     {
-        name = "Cad Bane’s rocket boots";
+        name = "Echo's quick recovery";
+        price = ShopPrice.SHOP_AVERAGE;
     }
 
     public override void Use()
@@ -323,7 +329,6 @@ public class EchoRecovery : GameResources
 
             PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
         }
-
     }
 }
 
@@ -331,7 +336,8 @@ public class WattoCoolant : GameResources
 {
     public WattoCoolant() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "dash cooldown is reduced by 40%")
     {
-        name = "Cad Bane’s rocket boots";
+        name = "Watto's Coolant";
+        price = ShopPrice.SHOP_CHEAP;
     }
 
     public override void Use()
@@ -351,7 +357,8 @@ public class LuminaraForce : GameResources
 {
     public LuminaraForce() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Grogu’s dynamic covers lasts +5 seconds")
     {
-        name = "Cad Bane’s rocket boots";
+        name = "Luminara's Force Control";
+        price = ShopPrice.SHOP_AVERAGE;
     }
 
     public override void Use()
@@ -364,14 +371,14 @@ public class LuminaraForce : GameResources
 
             PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
         }
-
     }
 }
 public class MandoCode : GameResources
 {
     public MandoCode() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Deal +20% damage but have -20% less max health (stackable)")
     {
-        name = "Cad Bane’s rocket boots";
+        name = "The Mandalorian's Code";
+        price = ShopPrice.SHOP_AVERAGE;
     }
 
     public override void Use()
@@ -384,16 +391,16 @@ public class MandoCode : GameResources
 
             PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
         }
-
     }
 }
 
 
-public class ItsaTrap : GameResources
+public class ItsATrap : GameResources
 {
-    public ItsaTrap() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "traps deal -33% damage to Mando")
+    public ItsATrap() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "traps deal -33% damage to Mando")
     {
-        name = "Cad Bane’s rocket boots";
+        name = "It's a trap!";
+        price = ShopPrice.SHOP_AVERAGE;
     }
 
     public override void Use()
@@ -406,14 +413,14 @@ public class ItsaTrap : GameResources
 
             PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
         }
-
     }
 }
 public class WreckHeavyShot : GameResources
 {
     public WreckHeavyShot() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "hitting an enemy with a slowed status applies +25% non-stackable extra slowed status for 3 seconds.")
     {
-        name = "Cad Bane’s rocket boots";
+        name = "Wrecker's heavy shot";
+        price = ShopPrice.SHOP_EXPENSIVE;
     }
 
     public override void Use()
@@ -426,7 +433,6 @@ public class WreckHeavyShot : GameResources
 
             PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
         }
-
     }
 }
 
@@ -434,7 +440,8 @@ public class MandoQuickCombo : GameResources
 {
     public MandoQuickCombo() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "hitting an enemy with the primary weapon makes them take +5 % more damage from the primary weapon for 5 seconds. % stacks up to 100%")
     {
-        name = "Cad Bane’s rocket boots";
+        name = "Mandalorian Quick Combo";
+        price = ShopPrice.SHOP_AVERAGE;
     }
 
     public override void Use()
@@ -447,14 +454,14 @@ public class MandoQuickCombo : GameResources
 
             PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
         }
-
     }
 }
 public class BlastCannonMouthpiece : GameResources
 {
     public BlastCannonMouthpiece() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Primary weapon does double damage while on 75% or more heat.")
     {
-        name = "Cad Bane’s rocket boots";
+        name = "Blast Cannon Mouthpiece";
+        price = ShopPrice.SHOP_CHEAP;
     }
 
     public override void Use()
@@ -467,9 +474,7 @@ public class BlastCannonMouthpiece : GameResources
 
             PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
         }
-
     }
-
 }
 
 public class BountyHunter : GameResources
@@ -477,6 +482,7 @@ public class BountyHunter : GameResources
     public BountyHunter() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "every time a room is cleared, +10 gold is received.")
     {
         name = "Cad Bane’s rocket boots";
+        price = ShopPrice.SHOP_AVERAGE;
     }
 
     public override void Use()
@@ -489,15 +495,14 @@ public class BountyHunter : GameResources
 
             PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
         }
-
     }
-
 }
 public class BosskSpecialAmmo : GameResources
 {
     public BosskSpecialAmmo() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Grenade does double damage as long as more than one enemy is getting hit by it.")
     {
         name = "Cad Bane’s rocket boots";
+        price = ShopPrice.SHOP_EXPENSIVE;
     }
 
     public override void Use()
@@ -510,9 +515,7 @@ public class BosskSpecialAmmo : GameResources
 
             PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
         }
-
     }
-
 }
 
 public class WinduForceControl : GameResources
@@ -520,6 +523,7 @@ public class WinduForceControl : GameResources
     public WinduForceControl() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "when you kill an enemy, gain Force points equal to 5% of max Force")
     {
         name = "Cad Bane’s rocket boots";
+        price = ShopPrice.SHOP_EXPENSIVE;
     }
 
     public override void Use()
@@ -532,9 +536,7 @@ public class WinduForceControl : GameResources
 
             PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
         }
-
     }
-
 }
 
 public class YodaForceControl : GameResources
@@ -542,6 +544,7 @@ public class YodaForceControl : GameResources
     public YodaForceControl() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Grogu’s push pushes double the range.")
     {
         name = "Cad Bane’s rocket boots";
+        price = ShopPrice.SHOP_EXPENSIVE;
     }
 
     public override void Use()
@@ -554,9 +557,7 @@ public class YodaForceControl : GameResources
 
             PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
         }
-
     }
-
 }
 
 #endregion
@@ -564,43 +565,43 @@ static class BoonDataHolder
 {
     static BoonDataHolder()
     {
+        boonType[(int)BOONS.BOON_ANAKIN_KILL_STREAK]        = new AnakinKillstreak();
+        boonType[(int)BOONS.BOON_BOKATAN_RESILENCE]         = new BokatanResilence();
+        boonType[(int)BOONS.BOON_BOSSK_STRENGTH]            = new BosskStrength();
+        boonType[(int)BOONS.BOON_BOUNTY_HUNTER_SKILLS]      = new BountyHunter();
+        boonType[(int)BOONS.BOON_CADBANE_ROCKET_BOOTS]      = new CadBaneBoots();
+        boonType[(int)BOONS.BOON_CADBANE_SLEIGHT]           = new CadBaneSoH();
+        boonType[(int)BOONS.BOON_ECHO_QUICK_RECOVERY]       = new EchoRecovery();
+        boonType[(int)BOONS.BOON_GREEF_PAYCHECK]            = new EchoRecovery();     //Add this when done = new GreefPaycheck();
+        boonType[(int)BOONS.BOON_ITS_A_TRAP]                = new ItsATrap();
+        boonType[(int)BOONS.BOON_MANDALORIAN_QUICK_DRAW]    = new MandoQuickDraw();
+        boonType[(int)BOONS.BOON_REX_SECOND_BLASTER]        = new RexSecBlaster();
+        boonType[(int)BOONS.BOON_SOLO_QUICK_DRAW]           = new RexSecBlaster();     //Add correct boon
+        boonType[(int)BOONS.BOON_WATTOS_COOLANT]            = new WattoCoolant();
+        boonType[(int)BOONS.BOON_WRECKER_HEAVY_SHOT]        = new WreckHeavyShot();
+        boonType[(int)BOONS.BOON_WRECKER_RESILIENCE]        = new WreckerResilence();
+        boonType[(int)BOONS.BOON_BLAST_CANNON_MOUTHPIECE]   = new BlastCannonMouthpiece();
+        boonType[(int)BOONS.BOON_GREEDO_QUICKSHOOTER]       = new GreedoShooter();
+        boonType[(int)BOONS.BOON_MANDALORIAN_QUICK_COMBO]   = new MandoQuickCombo();
+        boonType[(int)BOONS.BOON_AHSOKA_DETERMINATION]      = new MandoQuickCombo();  //Add this when done= new AhsokaDetermination();
+        boonType[(int)BOONS.BOON_FENNEC_SNIPER_RIFLE]       = new FennecSniper();
+        boonType[(int)BOONS.BOON_BOBBA_FETT_STUN_AMM]       = new FennecSniper();     //Add this when done = new bobbaFettStunAmm();
+        boonType[(int)BOONS.BOON_BOSSK_SPECIAL_AMMO]        = new BosskSpecialAmmo();
+        boonType[(int)BOONS.BOON_GEOTERMAL_MARKER]          = new BosskSpecialAmmo(); //Add this when done= new GeotermalMarker();
+        boonType[(int)BOONS.BOON_MASTER_LUMINARA_FORCE]     = new LuminaraForce();
+        boonType[(int)BOONS.BOON_MASTER_WINDU_FORCE]        = new WinduForceControl();
+        boonType[(int)BOONS.BOON_MASTER_YODA_FORCE]         = new YodaForceControl();
+        boonType[(int)BOONS.BOON_MANDALORIAN_CODE]          = new MandoCode();
+
         for (int i = 0; i < boonType.Length; i++)
         {
             float auxWeight = boonType[i].rngChanceWeight;
             boonType[i].rngChanceWeight = boonTotalWeights;
             boonTotalWeights += auxWeight;
         }
-
-        boonType[(int)BOONS.BOON_BOKATAN_RESILENCE] = new LifeStealBoon();
     }
 
-    public static GameResources[] boonType = new GameResources[] // There's probably a better way to organize this data, can't take care of it right now
-        {
-            new LifeStealBoon(),
-            new IncrementMaxHpBoon(),
-            new CadBaneSoH(),
-            new CadBaneBoots(),
-            new MandoQuickDraw(),
-            // not finnished new BobbaAmmo(),
-            new BosskStrength(),
-            new RexSecBlaster(),
-            new GreedoShooter(),
-            new AnakinKillstreak(),
-            new EchoRecovery(),
-            new WattoCoolant(),
-            new LuminaraForce(),
-            new MandoCode(),
-            new FennecSniper(),
-            new ItsaTrap(),
-            new WreckHeavyShot(),
-            new MandoQuickCombo(),
-            new BlastCannonMouthpiece(),
-            new BountyHunter(),
-            new BosskSpecialAmmo(),
-            new WinduForceControl(),
-            new YodaForceControl(),
-           // TODO Add boons here
-        };
+    public static GameResources[] boonType = new GameResources[(int)BOONS.BOON_MAX];
 
     public static float boonTotalWeights;
 
