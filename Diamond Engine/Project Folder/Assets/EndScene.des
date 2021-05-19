@@ -1,8 +1,8 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        123.02468872070313,
-        43.976943969726563,
+        123.02468872070312,
+        43.976943969726562,
         -38.491603851318359
     ],
     "EditorCameraZ": [
@@ -14,6 +14,18 @@
         -0.31290385127067566,
         0.94968056678771973,
         -0.014072748832404613
+    ],
+    "SkyboxPath0": "",
+    "SkyboxPath1": "",
+    "SkyboxPath2": "",
+    "SkyboxPath3": "",
+    "SkyboxPath4": "",
+    "SkyboxPath5": "",
+    "skyboxColor": [
+        1,
+        1,
+        1,
+        1
     ],
     "tags": [],
     "layers": [],
@@ -90,7 +102,7 @@
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
                     "vFOV": 1.0471975803375244,
-                    "hFOV": 1.652177095413208,
+                    "hFOV": 1.2514607906341553,
                     "culling": true,
                     "HDR": true,
                     "drawSkybox": true
@@ -98,8 +110,7 @@
                 {
                     "Type": 12,
                     "Active": true,
-                    "isDefaultListener": true,
-                    "masterVolume": 50
+                    "isDefaultListener": true
                 }
             ]
         },
@@ -306,7 +317,7 @@
                     "Active": true,
                     "Position": [
                         0,
-                        -66.300003051757813
+                        -66.300003051757812
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -336,7 +347,9 @@
                     "Unhovered_UID": 1618474496,
                     "Script_Name": "HubRoomSwitch",
                     "ButtonState": 1,
-                    "Is Selected": true
+                    "Is Selected": true,
+                    "HoverSFX": "Play_UI_Button_Hover",
+                    "PressedSFX": "Play_UI_Button_Play"
                 },
                 {
                     "Type": 11,
@@ -516,7 +529,7 @@
                     "Active": true,
                     "Position": [
                         0,
-                        -85.800003051757813
+                        -85.800003051757812
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -546,7 +559,9 @@
                     "Unhovered_UID": 1618474496,
                     "Script_Name": "HubRoomSwitch",
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Play_UI_Button_Hover",
+                    "PressedSFX": "Play_UI_Button_Select"
                 },
                 {
                     "Type": 11,
@@ -2976,7 +2991,7 @@
                     "Active": true,
                     "Position": [
                         -42.599998474121094,
-                        65.800003051757813
+                        65.800003051757812
                     ],
                     "Rotation": 0,
                     "Size": [
