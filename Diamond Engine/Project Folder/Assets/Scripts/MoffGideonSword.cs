@@ -8,7 +8,6 @@ public class MoffGideonSword : DiamondComponent
 	float throwTimer = 0.0f;
 
 	float throwSpeed = 15f;
-	float throwRange = 20.0f;
 
 	public float damage = 10f;
 
@@ -28,10 +27,10 @@ public class MoffGideonSword : DiamondComponent
         }
 	}
 
-	public void ThrowSword(Vector3 direction)
+	public void ThrowSword(Vector3 direction, float range)
     {
 
-		throwTimer = throwRange / throwSpeed;
+		throwTimer = range / throwSpeed;
 
 		float angle = (float)Math.Atan2(direction.x, direction.z);
 

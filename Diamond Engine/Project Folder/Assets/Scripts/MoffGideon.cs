@@ -99,6 +99,7 @@ public class MoffGideon : Entity
     public float zoomTimeEasing = 0.5f;
     public float baseZoom = 45f;
     public float zoomInValue = 40f;
+    public float swordRange = 14f;
     public GameObject spawner1 = null;
     public GameObject spawner2 = null;
     public GameObject spawner3 = null;
@@ -117,12 +118,12 @@ public class MoffGideon : Entity
     private Vector3 beginDash = null;
     private Vector3 targetDash = null;
     private bool deathTrooperSpawned = false;
-
-    //private float damaged = 0.0f;
+    private GameObject visualFeedback = null;
     private bool justDashing = false;
     private int maxProjectiles = 7;
     private int projectiles = 0;
     private bool aiming = false;
+    //private float damaged = 0.0f;
 
 
     //Timers
@@ -138,7 +139,7 @@ public class MoffGideon : Entity
     private float presentationTimer = 0f;
     private float changingStateTime = 0f;
     private float changingStateTimer = 0f;
-    private float chargeThrowTime = 1f;
+    private float chargeThrowTime = 2f;
     private float chargeThrowTimer = 0f;
     public float cadencyTime = 0.2f;
     public float cadencyTimer = 0f;
@@ -1030,8 +1031,10 @@ public class MoffGideon : Entity
                 {
                     if (cam_comp != null)
                         cam_comp.target = Core.instance.gameObject;
+
+                    if (currentPhase == MOFFGIDEON_PHASE.PHASE2) inputsList.Add(MOFFGIDEON_INPUT.IN_NEUTRAL);
                 }
-            
+
         }
     }
 
@@ -1050,6 +1053,7 @@ public class MoffGideon : Entity
     {
         chargeThrowTimer = chargeThrowTime;
         cam_comp.Zoom(zoomInValue, zoomTimeEasing);
+        visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/1137197426.prefab", gameObject.transform.globalPosition, gameObject.transform.globalRotation, new Vector3(0.3f, 1f, 0.01f));
     }
 
 
@@ -1057,12 +1061,18 @@ public class MoffGideon : Entity
     {
         Debug.Log("Charge Throw");
         LookAt(Core.instance.gameObject.transform.globalPosition);
+        if (visualFeedback.transform.globalScale.z < 1.0)
+        {
+            visualFeedback.transform.localScale = new Vector3(0.3f, 1.0f, Mathf.Lerp(visualFeedback.transform.localScale.z, 1.0f, myDeltaTime * (chargeThrowTime / chargeThrowTimer)));
+            visualFeedback.transform.localRotation = gameObject.transform.globalRotation;
+        }
     }
 
 
     private void EndChargeThrow()
     {
-
+        InternalCalls.Destroy(visualFeedback);
+        visualFeedback = null;
     }
 
     private void StartThrowSaber()
@@ -1080,7 +1090,7 @@ public class MoffGideon : Entity
 
             if(moffGideonSword != null)
             {
-                moffGideonSword.ThrowSword((Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition).normalized);
+                moffGideonSword.ThrowSword((Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition).normalized, swordRange);
                 saber.Enable(true);
                 sword.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
                 inputsList.Add(MOFFGIDEON_INPUT.IN_THROW_SABER_END);
@@ -1136,6 +1146,8 @@ public class MoffGideon : Entity
         UpdateAnimationSpd(speedMult);
         if (cam_comp != null)
             cam_comp.target = this.gameObject;
+        if (visualFeedback != null)
+            InternalCalls.Destroy(visualFeedback);
     }
 
     private void UpdateDie()
