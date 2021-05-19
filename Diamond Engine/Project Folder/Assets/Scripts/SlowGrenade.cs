@@ -82,6 +82,10 @@ public class SlowGrenade : DiamondComponent
                 Enemy script = enemies[i].GetComponent<StormTrooper>();
                 if (script == null)
                 {
+                    script = enemies[i].GetComponent<DummyStormtrooper>();
+                }
+                if (script == null)
+                {
                     script = enemies[i].GetComponent<Bantha>();
                 }
                 if (script == null)
@@ -92,6 +96,7 @@ public class SlowGrenade : DiamondComponent
                 {
                     script = enemies[i].GetComponent<LaserTurret>();
                 }
+
                 if (script != null)
                 {
                     if (script.healthPoints <= 0)
