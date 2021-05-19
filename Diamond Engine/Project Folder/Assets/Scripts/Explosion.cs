@@ -9,9 +9,6 @@ public class Explosion : DiamondComponent
     ParticleSystem primaryParticles = null;
     ParticleSystem secondaryParticles = null;
 
-    public float duration = 0.0f;
-    private float timer = 0.0f;
-
     public void Awake()
     {
         if (primaryParticlesGO != null)
@@ -23,28 +20,23 @@ public class Explosion : DiamondComponent
         }
 
         if (secondaryParticlesGO != null)
-        { 
+        {
             secondaryParticles = secondaryParticlesGO.GetComponent<ParticleSystem>();
 
             if (secondaryParticles != null)
                 secondaryParticles.Play();
         }
-
-        timer = duration;
     }
 
     public void Update()
     {
-        if(timer > 0.0f)
+        if (primaryParticles != null && !primaryParticles.playing)
         {
-            timer -= Time.deltaTime;
-
-            if(timer <= 0.0f)
+            if (secondaryParticles != null && !secondaryParticles.playing || secondaryParticles == null)
             {
                 InternalCalls.Destroy(gameObject);
             }
         }
-
     }
 
 }
