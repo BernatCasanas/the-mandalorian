@@ -165,6 +165,7 @@ public class MoffGideon : Entity
         comboTime = Animator.GetAnimationDuration(gameObject, "MG_Slash") - 0.016f;
         presentationTime = Animator.GetAnimationDuration(gameObject, "MG_Presentation") - 0.016f;
         changingStateTime = Animator.GetAnimationDuration(gameObject, "MG_Presentation2") - 0.016f;
+        dieTime = Animator.GetAnimationDuration(gameObject, "MG_Death") - 0.016f;
 
 
         enemiesTimer = enemiesTime;
@@ -477,6 +478,7 @@ public class MoffGideon : Entity
                                 break;
 
                             case MOFFGIDEON_INPUT.IN_DEAD:
+                                currentState = MOFFGIDEON_STATE.DEAD;
                                 EndNeutral();
                                 StartDie();
                                 break;
@@ -528,6 +530,7 @@ public class MoffGideon : Entity
                                 break;
 
                             case MOFFGIDEON_INPUT.IN_DEAD:
+                                currentState = MOFFGIDEON_STATE.DEAD;
                                 EndSpawnEnemies();
                                 StartDie();
                                 break;
@@ -544,6 +547,7 @@ public class MoffGideon : Entity
                                 break;
 
                             case MOFFGIDEON_INPUT.IN_DEAD:
+                                currentState = MOFFGIDEON_STATE.DEAD;
                                 EndProjectile();
                                 StartDie();
                                 break;
@@ -560,6 +564,7 @@ public class MoffGideon : Entity
                                 break;
 
                             case MOFFGIDEON_INPUT.IN_DEAD:
+                                currentState = MOFFGIDEON_STATE.DEAD;
                                 EndThrowSaber();
                                 StartDie();
                                 break;
@@ -576,6 +581,7 @@ public class MoffGideon : Entity
                                 break;
 
                             case MOFFGIDEON_INPUT.IN_DEAD:
+                                currentState = MOFFGIDEON_STATE.DEAD;
                                 EndRetrieveSaber();
                                 StartDie();
                                 break;
@@ -598,6 +604,7 @@ public class MoffGideon : Entity
                                 break;
 
                             case MOFFGIDEON_INPUT.IN_DEAD:
+                                currentState = MOFFGIDEON_STATE.DEAD;
                                 EndProjectile();
                                 StartDie();
                                 break;
@@ -614,6 +621,7 @@ public class MoffGideon : Entity
                                 break;
 
                             case MOFFGIDEON_INPUT.IN_DEAD:
+                                currentState = MOFFGIDEON_STATE.DEAD;
                                 EndProjectile();
                                 StartDie();
                                 break;
@@ -630,6 +638,7 @@ public class MoffGideon : Entity
                                 break;
 
                             case MOFFGIDEON_INPUT.IN_DEAD:
+                                currentState = MOFFGIDEON_STATE.DEAD;
                                 EndProjectile();
                                 StartDie();
                                 break;
