@@ -1,7 +1,7 @@
 using System;
 using DiamondEngine;
 
-public class UIFade : DiamondComponent
+public class UI_Fade : DiamondComponent
 {
 	public float delay = 0.5f;
 	public float duration = 1.0f;
