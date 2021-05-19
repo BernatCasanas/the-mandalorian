@@ -10,7 +10,7 @@ public class TriggerSwitch : DiamondComponent
     {
         if (roomUidToLoad != -1 && triggeredGameObject.CompareTag("Player"))
         {
-            EnemyManager.ClearList();
+            StaticVariablesInit.InitStaticVars();
             SceneManager.LoadScene(roomUidToLoad);
         }
 
