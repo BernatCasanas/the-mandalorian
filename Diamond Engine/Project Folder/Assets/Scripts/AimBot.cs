@@ -42,7 +42,11 @@ public class AimBot : DiamondComponent
                 }
                 else if (lastFrameEnemyCount != EnemyManager.currentEnemies.Count || (EnemyManager.currentDestructibleProps != null && lastFramePropCount != EnemyManager.currentDestructibleProps.Count)) //change in enemies! if targeting an enemy make sure it hasn't died
                 {
-                    if (myCurrentObjective != null && !EnemyManager.currentEnemies.Contains(myCurrentObjective) && !EnemyManager.currentDestructibleProps.Contains(myCurrentObjective)) //if the target is not in the list anymore search for a new objective
+                    if (!EnemyManager.currentEnemies.Contains(myCurrentObjective)) 
+                    {
+                        SearchForNewObjective();
+                    }
+                    else if (EnemyManager.currentDestructibleProps != null && !EnemyManager.currentDestructibleProps.Contains(myCurrentObjective)) //if the target is not in the list anymore search for a new objective
                     {
                         SearchForNewObjective();
                     }
