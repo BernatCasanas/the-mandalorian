@@ -15,10 +15,20 @@ public class MainMenuNPCController : DiamondComponent
 	public GameObject point10 = null;
 	public GameObject point11 = null;
 
-	public GameObject DinDjarin = null;
-	public GameObject Grogu = null;
+	public GameObject DinDjarin_Grogu = null;
+	public GameObject stormtrooper = null;
+	public GameObject CaraDune = null;
 	public GameObject Bantha = null;
-	public GameObject Skytrooper = null;
+	public GameObject Rancor = null;
+	public GameObject Ashoka = null;
+	//public GameObject Skytrooper = null;
+	public GameObject BoKatan = null;
+	public GameObject Wampa_Skel = null;
+	public GameObject Deathtrooper = null;
+	public GameObject Watto = null;
+	public GameObject heavyTrooper = null;
+	public GameObject GreefKarga = null;
+	public GameObject MoffGideon = null;
 
 	public float speed = 0.25f;
 	public float timer = 0;
@@ -36,7 +46,8 @@ public class MainMenuNPCController : DiamondComponent
 		toRotateQuaternion = point1.transform.localRotation;
 
 		pointArray = new GameObject[] { point1, point2, point3, point4, point5, point6, point7, point8, point9, point10, point11 };
-		NPCS = new GameObject[] { DinDjarin, Grogu, Bantha, Skytrooper };
+		NPCS = new GameObject[] { DinDjarin_Grogu, stormtrooper, CaraDune, Bantha, Rancor, Ashoka,
+			/*Skytrooper,*/ BoKatan, Wampa_Skel, Deathtrooper, Watto, heavyTrooper, GreefKarga, MoffGideon };
 	}
 
 	public void Update()
@@ -68,10 +79,20 @@ public class MainMenuNPCController : DiamondComponent
 
 	public void PutInPlaceNPCs()
     {
-		DinDjarin.transform.localPosition	= new Vector3(0.0f, 0.0f, 0.0f);
-		Grogu.transform.localPosition		= new Vector3(0.0f, 0.0f, 0.0f);
+		DinDjarin_Grogu.transform.localPosition	= new Vector3(0.0f, 0.0f, 0.0f);
 		Bantha.transform.localPosition		= new Vector3(0.0f, 0.0f, 0.0f);
-		Skytrooper.transform.localPosition	= new Vector3(0.0f, 0.0f, 0.0f);
+		stormtrooper.transform.localPosition	= new Vector3(0.0f, 0.0f, 0.0f);
+		CaraDune.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+		Rancor.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+		Ashoka.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+		//Skytrooper.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+		BoKatan.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+		Wampa_Skel.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+		Deathtrooper.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+		Watto.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+		heavyTrooper.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+		GreefKarga.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+		MoffGideon.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
 	}
 
 	public void SpawnOtherNPC()
