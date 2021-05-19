@@ -1,19 +1,19 @@
 {
     "NavMesh": 912837797,
     "EditorCameraPosition": [
-        -20.090526580810547,
-        26.056795120239258,
-        30.677707672119141
+        27.664146423339844,
+        13.466713905334473,
+        11.792087554931641
     ],
     "EditorCameraZ": [
-        0.47304651141166687,
-        -0.68088734149932861,
-        0.55912387371063232
+        0.25250905752182007,
+        -0.36511513590812683,
+        0.89606380462646484
     ],
     "EditorCameraY": [
-        0.43992307782173157,
-        0.7323881983757019,
-        0.51968765258789063
+        0.099162489175796509,
+        0.93096238374710083,
+        0.35139134526252747
     ],
     "SkyboxPath0": "",
     "SkyboxPath1": "",
@@ -27,7 +27,9 @@
         1,
         1
     ],
-    "tags": [],
+    "tags": [
+        "Gap"
+    ],
     "layers": [],
     "Game Objects": [
         {
@@ -65739,8 +65741,8 @@
                     "fSize": 25,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 27.520000457763672,
-                    "hFOV": 48.200000762939453,
+                    "vFOV": 25.360000610351563,
+                    "hFOV": 38.439998626708984,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -68867,6 +68869,128 @@
                     "maxDistance": 10,
                     "displayText": 1852340202,
                     "selectButton": 1603707694
+                }
+            ]
+        },
+        {
+            "name": "Gaps",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1151662122,
+            "ParentUID": 1960196397,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Cube",
+            "tag": "Gap",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1419151370,
+            "ParentUID": 1151662122,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                29.021228790283203,
+                2.3139772415161133,
+                38.646671295166016
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                0,
+                0,
+                0.70710670948028564
+            ],
+            "Scale": [
+                6.9242258071899414,
+                5.9137539863586426,
+                0.99997490644454956
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 0,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }
