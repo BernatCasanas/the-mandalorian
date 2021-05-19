@@ -44,7 +44,7 @@
 
 
 ModuleRenderer3D::ModuleRenderer3D(Application* app, bool start_enabled) : Module(app, start_enabled), str_CAPS(""),
-vsync(false), wireframe(false), gameCamera(nullptr), resolution(2), debugDraw(true)
+vsync(false), wireframe(false), gameCamera(nullptr), resolution(2), debugDraw(true), clearColor(float4::one)
 {
 	GetCAPS(str_CAPS);
 	/*depth =*/ cull = lightng = color_material = texture_2d = true;
@@ -239,17 +239,18 @@ bool ModuleRenderer3D::Init()
 	// Projection matrix for
 	OnResize(App->moduleWindow->s_width, App->moduleWindow->s_height);
 
-	std::vector<std::string> faces = {
-		"EngineIcons/Skybox/right.jpg",
-		"EngineIcons/Skybox/left.jpg",
-		"EngineIcons/Skybox/top.jpg",
-		"EngineIcons/Skybox/bottom.jpg",
-		"EngineIcons/Skybox/front.jpg",
-		"EngineIcons/Skybox/back.jpg"
-	};
+	//std::vector<char*> faces = {
+	//	"EngineIcons/Skybox/right.jpg",
+	//	"EngineIcons/Skybox/left.jpg",
+	//	"EngineIcons/Skybox/top.jpg",
+	//	"EngineIcons/Skybox/bottom.jpg",
+	//	"EngineIcons/Skybox/front.jpg",
+	//	"EngineIcons/Skybox/back.jpg"
+	//};
 
-	TextureImporter::LoadCubeMap(faces, skybox);
+	//TextureImporter::LoadCubeMap(faces, skybox);
 	skybox.CreateGLData();
+
 	glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
 
 	postProcessing.Init();

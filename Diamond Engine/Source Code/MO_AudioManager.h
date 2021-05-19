@@ -82,11 +82,13 @@ public:
 	std::vector<AudioBank*> banks;
 	std::vector<C_AudioSource*> audio_sources;
 	C_AudioListener* defaultListener;
-	C_AudioSource* musicSource;
+	std::vector<C_AudioSource*> musicSource;
 
 	float masterVolume;
 	float musicVolume;
 	float fxVolume;
+
+	AudioBank* uiBankRef;
 
 private:
 	bool wwiseListenerHasToUpdate;

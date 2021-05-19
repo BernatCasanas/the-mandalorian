@@ -14,6 +14,15 @@
 
 #include<map>
 
+static char* defaultFaces[6] = {
+	"EngineIcons/Skybox/right.jpg",
+	"EngineIcons/Skybox/left.jpg",
+	"EngineIcons/Skybox/top.jpg",
+	"EngineIcons/Skybox/bottom.jpg",
+	"EngineIcons/Skybox/front.jpg",
+	"EngineIcons/Skybox/back.jpg"
+};
+
 class ResourceMesh;
 class ResourceTexture;
 class ResourceMaterial;
@@ -125,6 +134,7 @@ public:
 
 	C_Camera* activeRenderCamera = nullptr; //TODO: This is temporal
 	DE_Cubemap skybox;
+	float4 clearColor;
 
 	std::vector<C_DirectionalLight*> directLightVector;
 	std::vector<C_AreaLight*> areaLightVector;

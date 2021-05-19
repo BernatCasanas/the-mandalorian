@@ -33,6 +33,7 @@
 #include "WI_Game.h"
 #include "WI_TextEditor.h"
 #include "WI_Pathfinding.h"
+#include "WI_EnvLightConfig.h"
 
 #include"GameObject.h"
 #include"IM_TextureImporter.h"
@@ -55,11 +56,12 @@ viewportCorSize(0.f), dockspace_id(0)
 	windows[static_cast<unsigned int>(EditorWindow::TEXTEDITOR)] = new W_TextEditor();
 	windows[static_cast<unsigned int>(EditorWindow::PATHFINDING)] = new W_Pathfinding();
 
-	//TODO: This 2 windows are last on the enum to keep them from drawing on the window
+	//TODO: This 3 windows are last on the enum to keep them from drawing on the window
 	//tab on the main menu bar, and are drawed by hand on other tabs, there
 	//must be a better way to do that
 	windows[static_cast<unsigned int>(EditorWindow::ABOUT)] = new W_About();
 	windows[static_cast<unsigned int>(EditorWindow::CONFIGURATION)] = new W_Configuration();
+	windows[static_cast<unsigned int>(EditorWindow::ENVIROMENTCONFIG)] = new W_EnvLightConfig();
 
 	//Sould load the last used style on start?
 	UpdateLoadedStylesVector(&styles);

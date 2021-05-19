@@ -43,6 +43,22 @@ void MaykMath::GeneralDataSet(float* dest, float* src, size_t vecSize)
 	}
 }
 
+float MaykMath::Lerp(float from, float to, float t)
+{
+	return (1.0f-t)*from + to*t;
+}
+
+float MaykMath::InvLerp(float from, float to, float value)
+{
+	return (value-from)/(to-from);
+}
+
+float MaykMath::Remap(float iMin, float iMax, float oMin, float oMax, float value)
+{
+	float t = InvLerp(iMin,iMax,value);
+	return Lerp(oMin,oMax,t);
+}
+
 //template <class T>
 //void MaykMath::FixedVectorPushBack(std::vector<T>& vec, T& value)
 //{
