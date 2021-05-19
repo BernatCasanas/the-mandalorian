@@ -931,7 +931,7 @@ void ModuleRenderer3D::AreaLightShadowPass()
 								glUniform3fv(modelLoc, 1, &areaLightVector[i]->GetGO()->transform->position.x);
 
 								modelLoc = glGetUniformLocation(areaLightVector[i]->depthShader->shaderProgramID, "farPlane");
-								glUniform1f(modelLoc, 500.0f);
+								glUniform1f(modelLoc, ALIGHT_FAR_PLANE_DISTANCE);
 
 								d->second->TryCalculateBones();
 								d->second->GetRenderMesh()->PushDefaultMeshUniforms(areaLightVector[i]->depthShader->shaderProgramID, 0, d->second->GetGO()->transform, float3::one);

@@ -125,6 +125,7 @@ struct AreaLightInfo
 uniform LightInfo lightInfo[2];
 uniform AreaLightInfo areaLightInfo[5];
 
+uniform float farPlaneDistance;
 
 uniform sampler2D shadowMap;
 uniform sampler2D normalMap;
@@ -415,7 +416,7 @@ float GetAreaShadowValue(int lightNum, vec3 normal, vec3 lightDir)
 	for (int i = 0; i < 9; ++i)
 	{
 		float closestDepth = texture(cubeShadowMap[lightNum], fragToLight + sampleOffsetDirections[i] * diskRadius).r;
-		closestDepth *= 500.0;
+		closestDepth *= farPlaneDistance;
 		
 		shadowValue += (currDepth - bias > closestDepth  ? 1.0 : 0.0);
 	}
@@ -480,6 +481,7 @@ void main()
 	color = vec4((directionalLight + areaLight) * (fs_in.vertexColor * altColor), 1.0);
 }
 #endif
+
 
 
 

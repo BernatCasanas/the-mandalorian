@@ -19,10 +19,10 @@
 const unsigned int SHADOW_WIDTH = 256, SHADOW_HEIGHT = 256;
 
 C_AreaLight::C_AreaLight(GameObject* gameObject) : Component(gameObject),
-	depthCubemap(0u),
-	depthCubemapFBO(0u),
 	depthShader(nullptr),
 	calculateShadows(true),
+	depthCubemap(0u),
+	depthCubemapFBO(0u),
 	lightColor(float3::one),
 	ambientLightColor(float3::one),
 	lightIntensity(1.0f),
@@ -57,7 +57,7 @@ C_AreaLight::C_AreaLight(GameObject* gameObject) : Component(gameObject),
 	{
 		shadowTransforms[i].type = FrustumType::PerspectiveFrustum;
 		shadowTransforms[i].nearPlaneDistance = 0.1f;
-		shadowTransforms[i].farPlaneDistance = 500.0f;
+		shadowTransforms[i].farPlaneDistance = ALIGHT_FAR_PLANE_DISTANCE;
 		shadowTransforms[i].pos = float3::zero;
 		shadowTransforms[i].verticalFov = 90 * DEGTORAD;
 		shadowTransforms[i].horizontalFov = 90 * DEGTORAD;
@@ -306,6 +306,9 @@ void C_AreaLight::PushLightUniforms(ResourceMaterial* material, int lightNumber)
 		glUniform1i(modelLoc, 6 + lightNumber);
 		glBindTexture(GL_TEXTURE_CUBE_MAP, depthCubemap);
 	}
+
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "farPlaneDistance");
+	glUniform1f(modelLoc, ALIGHT_FAR_PLANE_DISTANCE);
 }
 
 

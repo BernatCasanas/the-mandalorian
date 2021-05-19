@@ -6,6 +6,8 @@
 #include"MathGeoLib/include/Math/float4x4.h"
 #include"MathGeoLib/include/Geometry/Frustum.h"
 
+#define ALIGHT_FAR_PLANE_DISTANCE 500.0f
+
 class ResourceShader;
 class ResourceMaterial;
 
