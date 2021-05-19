@@ -407,7 +407,7 @@ float GetAreaShadowValue(int lightNum, vec3 normal, vec3 lightDir)
 	vec3 fragToLight = fs_in.FragPos - areaLightInfo[lightNum].lightPosition;
 	float currDepth = length(fragToLight);
 
-	float bias = 0.5;	//magic value for the bias, it works too weel to change it
+	float bias = max(0.9 * (1.0 - dot(normal, lightDir)), 0.9);
 
 	float diskRadius = 0.05;
 	float shadowValue = 0.0;
@@ -480,6 +480,8 @@ void main()
 	color = vec4((directionalLight + areaLight) * (fs_in.vertexColor * altColor), 1.0);
 }
 #endif
+
+
 
 
 
