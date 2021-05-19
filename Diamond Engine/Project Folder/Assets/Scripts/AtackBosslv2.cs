@@ -7,13 +7,14 @@ public class AtackBosslv2 : DiamondComponent
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-        if (triggeredGameObject.CompareTag("Player"))
+        if (triggeredGameObject.CompareTag("Player") && this.active)
         {
             PlayerHealth health = triggeredGameObject.GetComponent<PlayerHealth>();
             if (health != null)
+            {
                 health.TakeDamage((int)damage);
-
-            gameObject.GetComponent<AtackBosslv2>().active = false;
+                gameObject.GetComponent<AtackBosslv2>().active = false;
+            }
         }
     }
 }

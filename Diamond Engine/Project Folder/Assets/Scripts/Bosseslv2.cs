@@ -248,7 +248,6 @@ public class Bosseslv2 : Entity
 
         if (colliderBounceRush != null)
         {
-            colliderBounceRush.GetComponent<BoxCollider>().active = true;
             colliderBounceRush.GetComponent<AtackBosslv2>().active = true;
         }
     }
@@ -293,7 +292,7 @@ public class Bosseslv2 : Entity
         }
 
         if (colliderBounceRush != null) {
-            colliderBounceRush.GetComponent<BoxCollider>().active = false;
+            colliderBounceRush.GetComponent<AtackBosslv2>().active = false;
         }
     }
 
@@ -370,7 +369,6 @@ public class Bosseslv2 : Entity
                         float speed = Mathf.Distance(targetPos, gameObject.transform.globalPosition) / fallingTime;
                         if (colliderJumpSlam != null)
                         {
-                            colliderJumpSlam.GetComponent<BoxCollider>().active = true;
                             colliderJumpSlam.GetComponent<AtackBosslv2>().active = true;
                         }
                     }
@@ -420,7 +418,7 @@ public class Bosseslv2 : Entity
 
             case JUMPSLAM.NONE:
             default:
-                Debug.Log("Something gone wrong with jump slam");
+                Debug.Log("Jump slam motion ended");
                 break;
         }
 
@@ -439,7 +437,7 @@ public class Bosseslv2 : Entity
 
         if (colliderJumpSlam != null)
         {
-            colliderJumpSlam.GetComponent<BoxCollider>().active = false;
+            colliderJumpSlam.GetComponent<AtackBosslv2>().active = false;
         }
 
     }
