@@ -21,10 +21,6 @@ public class EndScreen : DiamondComponent
     public GameObject skelPanel = null;
     public GameObject wampaandskelPanel = null;
     public GameObject moffPanel = null;
-    public GameObject leftImage = null;
-    public GameObject leftMultiplier = null;
-    public GameObject rightImage = null;
-    public GameObject rightMultiplier = null;
     public GameObject comboTxt = null;
     public GameObject currencyTxt = null;
     public GameObject levelsTxt = null;
@@ -35,6 +31,14 @@ public class EndScreen : DiamondComponent
     public void Awake()
     {
         Counter.firstRun = false;
+
+        if (boonDisplayObject == null)
+        {
+            boonDisplayObject = InternalCalls.FindObjectWithName("Boons Prefab");
+
+            if (boonDisplayObject == null)
+                Debug.Log("Null Boon object");
+        }
     }
 
     public void OnExecuteButton()
@@ -59,7 +63,6 @@ public class EndScreen : DiamondComponent
             if (Core.instance != null)
                 Core.instance.SaveBuffs();
             SceneManager.LoadScene(1726826608);
-
         }
     }
     public void Update()
@@ -74,7 +77,6 @@ public class EndScreen : DiamondComponent
 
     void DisplayResults()
     {
-        int bo, wr, boPlace, wrPlace;
         Debug.Log("Intro display results");
         if (Counter.gameResult == Counter.GameResult.VICTORY)
             result.GetComponent<Text>().text = "            VICTORY!";
@@ -249,15 +251,18 @@ public class EndScreen : DiamondComponent
             }
         }
 
-
         if (boonDisplayObject != null)
         {
             BoonDisplay boonDisplay = boonDisplayObject.GetComponent<BoonDisplay>();
 
+            Debug.Log("Boon 1");
+
             if (boonDisplay != null)
             {
-                for (int i = 0; i < PlayerResources.GetBoonsAmount(); ++i)
+                Debug.Log("Boon 2");
+                for (int i = 0; i < PlayerResources.GetBoonsAmount(); i++)
                 {
+                    Debug.Log("Boon 3");
                     //Boon image
                     int boonTextureId = BoonDataHolder.boonType[i].libraryTextureID;
 
@@ -266,6 +271,10 @@ public class EndScreen : DiamondComponent
 
                     boonDisplay.SetBoon(i, boonTextureId, boonCount);
                 }
+            }
+            else
+            {
+                Debug.Log("Null boon display");
             }
         }
     }

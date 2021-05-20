@@ -4,93 +4,93 @@ using DiamondEngine;
 public class BoonDisplay : DiamondComponent
 {
     #region BOON_IMAGES_&_TEXT
-    public GameObject boonImageObject1;
-    public GameObject boonTextObject1;
+    public GameObject boonImageObject1 = null;
+    public GameObject boonTextObject1 = null;
 
-    public GameObject boonImageObject2;
-    public GameObject boonTextObject2;
+    public GameObject boonImageObject2 = null;
+    public GameObject boonTextObject2 = null;
 
-    public GameObject boonImageObject3;
-    public GameObject boonTextObject3;
+    public GameObject boonImageObject3 = null;
+    public GameObject boonTextObject3 = null;
 
-    public GameObject boonImageObject4;
-    public GameObject boonTextObject4;
+    public GameObject boonImageObject4 = null;
+    public GameObject boonTextObject4 = null;
 
-    public GameObject boonImageObject5;
-    public GameObject boonTextObject5;
+    public GameObject boonImageObject5 = null;
+    public GameObject boonTextObject5 = null;
 
-    public GameObject boonImageObject6;
-    public GameObject boonTextObject6;
+    public GameObject boonImageObject6 = null;
+    public GameObject boonTextObject6 = null;
 
-    public GameObject boonImageObject7;
-    public GameObject boonTextObject7;
+    public GameObject boonImageObject7 = null;
+    public GameObject boonTextObject7 = null;
 
-    public GameObject boonImageObject8;
-    public GameObject boonTextObject8;
+    public GameObject boonImageObject8 = null;
+    public GameObject boonTextObject8 = null;
 
-    public GameObject boonImageObject9;
-    public GameObject boonTextObject9;
+    public GameObject boonImageObject9 = null;
+    public GameObject boonTextObject9 = null;
 
-    public GameObject boonImageObject10;
-    public GameObject boonTextObject10;
+    public GameObject boonImageObject10 = null;
+    public GameObject boonTextObject10 = null;
 
-    public GameObject boonImageObject11;
-    public GameObject boonTextObject11;
+    public GameObject boonImageObject11 = null;
+    public GameObject boonTextObject11 = null;
 
-    public GameObject boonImageObject12;
-    public GameObject boonTextObject12;
+    public GameObject boonImageObject12 = null;
+    public GameObject boonTextObject12 = null;
 
-    public GameObject boonImageObject13;
-    public GameObject boonTextObject13;
+    public GameObject boonImageObject13 = null;
+    public GameObject boonTextObject13 = null;
 
-    public GameObject boonImageObject14;
-    public GameObject boonTextObject14;
+    public GameObject boonImageObject14 = null;
+    public GameObject boonTextObject14 = null;
 
-    public GameObject boonImageObject15;
-    public GameObject boonTextObject15;
+    public GameObject boonImageObject15 = null;
+    public GameObject boonTextObject15 = null;
 
-    public GameObject boonImageObject16;
-    public GameObject boonTextObject16;
+    public GameObject boonImageObject16 = null;
+    public GameObject boonTextObject16 = null;
 
-    public GameObject boonImageObject17;
-    public GameObject boonTextObject17;
+    public GameObject boonImageObject17 = null;
+    public GameObject boonTextObject17 = null;
 
-    public GameObject boonImageObject18;
-    public GameObject boonTextObject18;
+    public GameObject boonImageObject18 = null;
+    public GameObject boonTextObject18 = null;
 
-    public GameObject boonImageObject19;
-    public GameObject boonTextObject19;
+    public GameObject boonImageObject19 = null;
+    public GameObject boonTextObject19 = null;
 
-    public GameObject boonImageObject20;
-    public GameObject boonTextObject20;
+    public GameObject boonImageObject20 = null;
+    public GameObject boonTextObject20 = null;
 
-    public GameObject boonImageObject21;
-    public GameObject boonTextObject21;
+    public GameObject boonImageObject21 = null;
+    public GameObject boonTextObject21 = null;
 
-    public GameObject boonImageObject22;
-    public GameObject boonTextObject22;
+    public GameObject boonImageObject22 = null;
+    public GameObject boonTextObject22 = null;
 
-    public GameObject boonImageObject23;
-    public GameObject boonTextObject23;
+    public GameObject boonImageObject23 = null;
+    public GameObject boonTextObject23 = null;
 
-    public GameObject boonImageObject24;
-    public GameObject boonTextObject24;
+    public GameObject boonImageObject24 = null;
+    public GameObject boonTextObject24 = null;
 
-    public GameObject boonImageObject25;
-    public GameObject boonTextObject25;
+    public GameObject boonImageObject25 = null;
+    public GameObject boonTextObject25 = null;
 
-    public GameObject boonImageObject26;
-    public GameObject boonTextObject26;
+    public GameObject boonImageObject26 = null;
+    public GameObject boonTextObject26 = null;
 
-    public GameObject boonImageObject27;
-    public GameObject boonTextObject27;
+    public GameObject boonImageObject27 = null;
+    public GameObject boonTextObject27 = null;
 
-    public GameObject boonImageObject28;
-    public GameObject boonTextObject28;
+    public GameObject boonImageObject28 = null;
+    public GameObject boonTextObject28 = null;
     #endregion
 
-    private GameObject[] boonImages;
-    private GameObject[] boonTexts;
+    private GameObject[] boonImages = null;
+    private GameObject[] boonTexts = null;
 
     public void Awake()
     {
@@ -114,9 +114,9 @@ public class BoonDisplay : DiamondComponent
             boonTextObject26, boonTextObject27, boonTextObject28
         };
 
-        for(int i = 0; i < boonImages.Length; ++i)
+        for(int i = 0; i < boonImages.Length; i++)
         {
-            if(boonImages != null)
+            if(boonImages[i] != null)
             {
                 boonImages[i].Enable(false);
             }
@@ -125,18 +125,25 @@ public class BoonDisplay : DiamondComponent
 
     public void SetBoon(int index, int textureUID, int boonCount)
     {
-        if (boonImages[index] == null)
+        Debug.Log("About to set boon");
+
+        if (boonImages[index] == null || index > boonImages.Length)
             return;
 
         boonImages[index].Enable(true);
         Image2D image = boonImages[index].GetComponent<Image2D>();
-        image.AssignLibrary2DTexture(textureUID);
+
+        if(image != null)
+            image.AssignLibrary2DTexture(textureUID);
+
+        Debug.Log("Boon image set");
 
         if(boonTexts[index] != null)
         {
             boonTexts[index].Enable(true);
             Text text = boonTexts[index].GetComponent<Text>();
             text.text = boonCount.ToString();
+            Debug.Log("Boon text set");
         }
     }
 
