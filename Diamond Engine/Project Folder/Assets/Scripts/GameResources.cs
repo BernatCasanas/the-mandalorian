@@ -70,7 +70,7 @@ public class MilkResource : GameResources
 //Each time you kill an enemy heal +1 HP. - Bo Katan’s resilience
 public class BokatanResilence : GameResources
 {
-    public BokatanResilence() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Each enemy kill heals 1 HP")
+    public BokatanResilence() : base(1885100100, RewardType.REWARD_BOON, 1.0f, "Each enemy kill heals 1 HP")
     {
         name = "Bo-Katan's Resilence";
         price = ShopPrice.SHOP_EXPENSIVE;
@@ -95,7 +95,7 @@ public class BokatanResilence : GameResources
 //+20% max HP. - Wrecker’s resilience
 public class WreckerResilence : GameResources
 {
-    public WreckerResilence() : base(1143141246, RewardType.REWARD_BOON, 1.0f, "Increments +20 health")
+    public WreckerResilence() : base(1789396100, RewardType.REWARD_BOON, 1.0f, "Increments +20 health")
     {
         name = "Wrecker's Resilence";
         price = ShopPrice.SHOP_EXPENSIVE;
@@ -122,7 +122,7 @@ public class WreckerResilence : GameResources
 
 public class CadBaneSoH : GameResources
 {
-    public CadBaneSoH() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "first attack with a different weapon from last attack deals +33% damage.")
+    public CadBaneSoH() : base(405709743, RewardType.REWARD_BOON, 1.0f, "first attack with a different weapon from last attack deals +33% damage.")
     {
         name = "Cad Bane’s sleight of hand";
         price = ShopPrice.SHOP_CHEAP;
@@ -148,7 +148,7 @@ public class CadBaneSoH : GameResources
 
 public class CadBaneBoots : GameResources
 {
-    public CadBaneBoots() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "+5% permanent hasted state while grenade is on CD.")
+    public CadBaneBoots() : base(1747641289, RewardType.REWARD_BOON, 1.0f, "+5% permanent hasted state while grenade is on CD.")
     {
         name = "Cad Bane’s rocket boots";
         price = ShopPrice.SHOP_CHEAP;
@@ -169,7 +169,7 @@ public class CadBaneBoots : GameResources
 
 public class MandoQuickDraw : GameResources
 {
-    public MandoQuickDraw() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "first attack after a dash does 25% more damage")
+    public MandoQuickDraw() : base(821239276, RewardType.REWARD_BOON, 1.0f, "first attack after a dash does 25% more damage")
     {
         name = "Mandalorian's Quick Draw";
         price = ShopPrice.SHOP_AVERAGE;
@@ -209,7 +209,7 @@ public class MandoQuickDraw : GameResources
 
 public class BosskStrength : GameResources
 {
-    public BosskStrength() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "mitigate 10% of the damage received (rounded down).")
+    public BosskStrength() : base(1309422332, RewardType.REWARD_BOON, 1.0f, "mitigate 10% of the damage received (rounded down).")
     {
         name = "Bossk's Strength";
         price = ShopPrice.SHOP_CHEAP;
@@ -229,7 +229,7 @@ public class BosskStrength : GameResources
 }
 public class RexSecBlaster : GameResources
 {
-    public RexSecBlaster() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "when switching weapons, you get 5% additive haste for 5 seconds, stackable up to 20%.")
+    public RexSecBlaster() : base(1417560378, RewardType.REWARD_BOON, 1.0f, "when switching weapons, you get 5% additive haste for 5 seconds, stackable up to 20%.")
     {
         name = "Rex's second blaster";
         price = ShopPrice.SHOP_AVERAGE;
@@ -250,7 +250,7 @@ public class RexSecBlaster : GameResources
 
 public class GreedoShooter : GameResources
 {
-    public GreedoShooter() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "+20% fire rate on the primary weapon")
+    public GreedoShooter() : base(1721324939, RewardType.REWARD_BOON, 1.0f, "+20% fire rate on the primary weapon")
     {
         name = "Greedo's quick shooter";
         price = ShopPrice.SHOP_EXPENSIVE;
@@ -271,7 +271,7 @@ public class GreedoShooter : GameResources
 
 public class FennecSniper : GameResources
 {
-    public FennecSniper() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Double rifle sweet spot time window (non-stackable).")
+    public FennecSniper() : base(25534683, RewardType.REWARD_BOON, 1.0f, "Double rifle sweet spot time window (non-stackable).")
     {
         name = "Fennec's sniper rifle";
         price = ShopPrice.SHOP_EXPENSIVE;
@@ -292,7 +292,7 @@ public class FennecSniper : GameResources
 
 public class AnakinKillstreak : GameResources
 {
-    public AnakinKillstreak() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "While over a combo of 3, +5% additive Hasted")
+    public AnakinKillstreak() : base(96086378, RewardType.REWARD_BOON, 1.0f, "While over a combo of 3, +5% additive Hasted")
     {
         name = "Anakin's Kill Streak";
         price = ShopPrice.SHOP_AVERAGE;
@@ -313,7 +313,7 @@ public class AnakinKillstreak : GameResources
 
 public class EchoRecovery : GameResources
 {
-    public EchoRecovery() : base(1240646973, RewardType.REWARD_BOON, 1.0f, " +10% additive hasted state for 5 seconds after losing a combo.")
+    public EchoRecovery() : base(65608412, RewardType.REWARD_BOON, 1.0f, " +10% additive hasted state for 5 seconds after losing a combo.")
     {
         name = "Echo's quick recovery";
         price = ShopPrice.SHOP_AVERAGE;
@@ -334,7 +334,7 @@ public class EchoRecovery : GameResources
 
 public class WattoCoolant : GameResources
 {
-    public WattoCoolant() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "dash cooldown is reduced by 40%")
+    public WattoCoolant() : base(1941353969, RewardType.REWARD_BOON, 1.0f, "dash cooldown is reduced by 40%")
     {
         name = "Watto's Coolant";
         price = ShopPrice.SHOP_CHEAP;
@@ -355,7 +355,7 @@ public class WattoCoolant : GameResources
 
 public class LuminaraForce : GameResources
 {
-    public LuminaraForce() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Grogu’s dynamic covers lasts +5 seconds")
+    public LuminaraForce() : base(895016668, RewardType.REWARD_BOON, 1.0f, "Grogu’s dynamic covers lasts +5 seconds")
     {
         name = "Luminara's Force Control";
         price = ShopPrice.SHOP_AVERAGE;
@@ -375,7 +375,7 @@ public class LuminaraForce : GameResources
 }
 public class MandoCode : GameResources
 {
-    public MandoCode() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Deal +20% damage but have -20% less max health (stackable)")
+    public MandoCode() : base(298014769, RewardType.REWARD_BOON, 1.0f, "Deal +20% damage but have -20% less max health (stackable)")
     {
         name = "The Mandalorian's Code";
         price = ShopPrice.SHOP_AVERAGE;
@@ -397,7 +397,7 @@ public class MandoCode : GameResources
 
 public class ItsATrap : GameResources
 {
-    public ItsATrap() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "traps deal -33% damage to Mando")
+    public ItsATrap() : base(561759673, RewardType.REWARD_BOON, 1.0f, "traps deal -33% damage to Mando")
     {
         name = "It's a trap!";
         price = ShopPrice.SHOP_AVERAGE;
@@ -417,7 +417,7 @@ public class ItsATrap : GameResources
 }
 public class WreckHeavyShot : GameResources
 {
-    public WreckHeavyShot() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "hitting an enemy with a slowed status applies +25% non-stackable extra slowed status for 3 seconds.")
+    public WreckHeavyShot() : base(678900863, RewardType.REWARD_BOON, 1.0f, "hitting an enemy with a slowed status applies +25% non-stackable extra slowed status for 3 seconds.")
     {
         name = "Wrecker's heavy shot";
         price = ShopPrice.SHOP_EXPENSIVE;
@@ -438,7 +438,7 @@ public class WreckHeavyShot : GameResources
 
 public class MandoQuickCombo : GameResources
 {
-    public MandoQuickCombo() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "hitting an enemy with the primary weapon makes them take +5 % more damage from the primary weapon for 5 seconds. % stacks up to 100%")
+    public MandoQuickCombo() : base(1246718882, RewardType.REWARD_BOON, 1.0f, "hitting an enemy with the primary weapon makes them take +5 % more damage from the primary weapon for 5 seconds. % stacks up to 100%")
     {
         name = "Mandalorian Quick Combo";
         price = ShopPrice.SHOP_AVERAGE;
@@ -458,7 +458,7 @@ public class MandoQuickCombo : GameResources
 }
 public class BlastCannonMouthpiece : GameResources
 {
-    public BlastCannonMouthpiece() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Primary weapon does double damage while on 75% or more heat.")
+    public BlastCannonMouthpiece() : base(1675434209, RewardType.REWARD_BOON, 1.0f, "Primary weapon does double damage while on 75% or more heat.")
     {
         name = "Blast Cannon Mouthpiece";
         price = ShopPrice.SHOP_CHEAP;
@@ -479,7 +479,7 @@ public class BlastCannonMouthpiece : GameResources
 
 public class BountyHunter : GameResources
 {
-    public BountyHunter() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "every time a room is cleared, +10 gold is received.")
+    public BountyHunter() : base(463877375, RewardType.REWARD_BOON, 1.0f, "every time a room is cleared, +10 gold is received.")
     {
         name = "Cad Bane’s rocket boots";
         price = ShopPrice.SHOP_AVERAGE;
@@ -499,7 +499,7 @@ public class BountyHunter : GameResources
 }
 public class BosskSpecialAmmo : GameResources
 {
-    public BosskSpecialAmmo() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Grenade does double damage as long as more than one enemy is getting hit by it.")
+    public BosskSpecialAmmo() : base(1238459342, RewardType.REWARD_BOON, 1.0f, "Grenade does double damage as long as more than one enemy is getting hit by it.")
     {
         name = "Cad Bane’s rocket boots";
         price = ShopPrice.SHOP_EXPENSIVE;
@@ -520,7 +520,7 @@ public class BosskSpecialAmmo : GameResources
 
 public class WinduForceControl : GameResources
 {
-    public WinduForceControl() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "when you kill an enemy, gain Force points equal to 5% of max Force")
+    public WinduForceControl() : base(569941476, RewardType.REWARD_BOON, 1.0f, "when you kill an enemy, gain Force points equal to 5% of max Force")
     {
         name = "Cad Bane’s rocket boots";
         price = ShopPrice.SHOP_EXPENSIVE;
@@ -541,7 +541,7 @@ public class WinduForceControl : GameResources
 
 public class YodaForceControl : GameResources
 {
-    public YodaForceControl() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "Grogu’s push pushes double the range.")
+    public YodaForceControl() : base(840154977, RewardType.REWARD_BOON, 1.0f, "Grogu’s push pushes double the range.")
     {
         name = "Cad Bane’s rocket boots";
         price = ShopPrice.SHOP_EXPENSIVE;
