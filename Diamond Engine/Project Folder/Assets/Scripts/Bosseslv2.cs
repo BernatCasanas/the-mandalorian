@@ -77,6 +77,7 @@ public class Bosseslv2 : Entity
     private float startBounceRushTime = 0.0f;
     //private float startBounceRushTimer = 0.0f;
 
+    private bool firstThrow = true;
     enum JUMPSLAM : int
     {
         NONE = -1,
@@ -113,7 +114,7 @@ public class Bosseslv2 : Entity
         firstShot = true;
         Animator.Play(gameObject, "WP_Projectile", speedMult);
         UpdateAnimationSpd(speedMult);
-        Audio.PlayAudio(gameObject, "Play_Wampa_Ice_Pick");
+        firstThrow = true;
     }
     public void UpdateProjectile()
     {
@@ -127,7 +128,11 @@ public class Bosseslv2 : Entity
                 {
                     Vector3 pos = projectilePoint.transform.globalPosition;
                     Quaternion rot = new Quaternion(0, 0, 90);
-
+                    if (firstThrow)
+                        Audio.PlayAudio(gameObject, "Play_Wampa_Projectile_Throw_1");
+                    else
+                        Audio.PlayAudio(gameObject, "Play_Wampa_Projectile_Throw_2");
+                    firstThrow = false;
                     WampaProjectile projectile = InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, rot, null).GetComponent<WampaProjectile>();
 
                     if (projectile != null)
@@ -147,6 +152,7 @@ public class Bosseslv2 : Entity
                     }
                     else
                         secondShot = true;
+                    Audio.PlayAudio(gameObject, "Play_Wampa_Ice_Pick");
                 }
             }
         }
