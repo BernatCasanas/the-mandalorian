@@ -58,6 +58,20 @@ public class MoffGideon : Entity
         IN_DEAD
     }
 
+    struct AtackMoff
+    {
+        AtackMoff(string animation, float duration)
+        {
+            this.animation = animation;
+            this.duration = duration;
+            this.last = false;
+        }
+
+        bool last;
+        string animation;
+        float duration;
+    }
+
     private NavMeshAgent agent = null;
     private GameObject saber = null;
     public GameObject camera = null;
@@ -123,6 +137,7 @@ public class MoffGideon : Entity
     private int maxProjectiles = 7;
     private int projectiles = 0;
     private bool aiming = false;
+    private List<AtackMoff> atacks;
     //private float damaged = 0.0f;
 
 

@@ -2508,43 +2508,43 @@ public class List_Of_Dialogs : DiamondComponent
         switch (index)
         {
             case 0:
-                return "Greef";
+                return "Grogu";
             case 1:
-                return "Bo Katan";
-            case 2:
-                return "Bo Katan";
-            case 3:
-                return "Bo Katan";
-            case 4:
-                return "Bo Katan";
-            case 5:
-                return "Bo Katan";
+                return "Bo-Katan";
+            case 2:       
+                return "Bo-Katan";
+            case 3:       
+                return "Bo-Katan";
+            case 4:       
+                return "Bo-Katan";
+            case 5:       
+                return "Bo-Katan";
             case 6:
-                return "Bo Katan";
+                return "Bo-Katan";
             case 7:
-                return "Bo Katan";
+                return "Bo-Katan";
             case 8:
-                return "Bo Katan";
+                return "Bo-Katan";
             case 9:
-                return "Bo Katan";
+                return "Bo-Katan";
             case 10:
-                return "Bo Katan";
+                return "Bo-Katan";
             case 11:
-                return "Bo Katan";
-            case 12:
-                return "Bo Katan";
-            case 13:
-                return "Bo Katan";
-            case 14:
-                return "Bo Katan";
-            case 15:
-                return "Bo Katan";
-            case 16:
-                return "Bo Katan";
-            case 17:
-                return "Bo Katan";
-            case 18:
-                return "Bo Katan";
+                return "Bo-Katan";
+            case 12:      
+                return "Bo-Katan";
+            case 13:      
+                return "Bo-Katan";
+            case 14:      
+                return "Bo-Katan";
+            case 15:      
+                return "Bo-Katan";
+            case 16:      
+                return "Bo-Katan";
+            case 17:      
+                return "Bo-Katan";
+            case 18:      
+                return "Bo-Katan";
             case 19:
                 return "Greef";
             case 20:
@@ -2678,9 +2678,9 @@ public class List_Of_Dialogs : DiamondComponent
             case 84:
                 return "Grogu";
             case 85:
-                return " ";
+                return "Bo-Katan";
             case 86:
-                return " ";
+                return "Greef";
         }
         return " ";
 
