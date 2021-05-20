@@ -106,6 +106,9 @@ private:
 	void RenderWithOrdering(bool rTex = false);
 	void RenderStencilWithOrdering(bool rTex = false);
 
+	void DirectionalLightShadowPass();
+	void AreaLightShadowPass();
+
 #ifndef STANDALONE
 	void DebugLine(LineSegment& line);
 #endif // !STANDALONE

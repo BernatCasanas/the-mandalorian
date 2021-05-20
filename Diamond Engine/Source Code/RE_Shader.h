@@ -9,6 +9,7 @@ enum class ShaderType
 {
 	SH_Vertex,
 	SH_Frag,
+	SH_Geometry,
 	SH_Max
 };
 
@@ -27,7 +28,7 @@ public:
 	void Bind();
 	void Unbind();
 
-	char* SaveShaderCustomFormat(char* vertexObjectBuffer, int vofSize, char* fragObjectBuffer, int fobSize);
+	char* SaveShaderCustomFormat(char* vertexObjectBuffer, int vofSize, char* fragObjectBuffer, int fobSize, char* geometryObjectBuffer, int gobSize);
 	void LoadShaderCustomFormat(const char*);
 
 	GLuint shaderObjects[static_cast<int>(ShaderType::SH_Max)];
