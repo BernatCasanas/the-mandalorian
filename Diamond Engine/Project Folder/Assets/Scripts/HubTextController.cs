@@ -64,6 +64,11 @@ public class HubTextController : DiamondComponent
     private static int ashokaInteractionNum = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("ashokaInteractionNum") : 1;
     private static int groguInteractionNum = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("groguInteractionNum") : 1;
 
+    private bool boKatanHasInteracted = false;
+    private bool greefHasInteracted = false;
+    private bool ashokaHasInteracted = false;
+    private bool groguHasInteracted = false;
+
     private int total_interactions_and_stages = 0;
     private bool dialog_finished = false;
 
@@ -92,7 +97,7 @@ public class HubTextController : DiamondComponent
         }
         interaction = Interaction.NONE;
 
-        if (bo_katan != null)
+        if (bo_katan != null && !boKatanHasInteracted)
         {
             if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(bo_katan.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
             {
@@ -100,7 +105,7 @@ public class HubTextController : DiamondComponent
             }
         }
 
-        if (interaction == Interaction.NONE && greef != null)
+        if (interaction == Interaction.NONE && greef != null && !greefHasInteracted)
         {
             if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(greef.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
             {
@@ -108,7 +113,7 @@ public class HubTextController : DiamondComponent
             }
         }
 
-        if (interaction == Interaction.NONE && ashoka != null)
+        if (interaction == Interaction.NONE && ashoka != null && !ashokaHasInteracted)
         {
             if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(ashoka.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
             {
@@ -116,7 +121,7 @@ public class HubTextController : DiamondComponent
             }
         }
 
-        if (interaction == Interaction.NONE && grogu != null)
+        if (interaction == Interaction.NONE && grogu != null && !groguHasInteracted)
         {
             if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(grogu.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
             {
@@ -145,6 +150,9 @@ public class HubTextController : DiamondComponent
                     boKatanInteractionNum++;
                     DiamondPrefs.Write("boKatanInteractionNum", boKatanInteractionNum);
                 }
+
+                boKatanHasInteracted = true;
+
                 break;
             case Interaction.GREEF:
                 if (greef_portrait_uid != 0)
@@ -159,6 +167,9 @@ public class HubTextController : DiamondComponent
                     greefInteractionNum++;
                     DiamondPrefs.Write("greefInteractionNum", greefInteractionNum);
                 }
+
+                greefHasInteracted = true;
+
                 break;
             case Interaction.ASHOKA:
                 if (ashoka_portrait_uid != 0)
@@ -173,6 +184,9 @@ public class HubTextController : DiamondComponent
                     ashokaInteractionNum++;
                     DiamondPrefs.Write("ashokaInteractionNum", ashokaInteractionNum);
                 }
+
+                ashokaHasInteracted = true;
+
                 break;
             case Interaction.GROGU:
                 if (grogu_portrait_uid != 0)
@@ -187,6 +201,9 @@ public class HubTextController : DiamondComponent
                     groguInteractionNum++;
                     DiamondPrefs.Write("groguInteractionNum", groguInteractionNum);
                 }
+
+                greefHasInteracted = true;
+
                 break;
         }
         dialog_finished = true;
