@@ -1,4 +1,5 @@
 Event	ID	Name			Wwise Object Path	Notes
+	22263181	Play_Mando_Grenade_Set_Up			\Default Work Unit\Mando\Play_Mando_Grenade_Set_Up	
 	103321515	Play_Mando_Kill_Voice			\Default Work Unit\Mando\Play_Mando_Kill_Voice	
 	128036816	Play_Blaster_Cooldown_Finished			\Default Work Unit\Mando\Play_Blaster_Cooldown_Finished	
 	192623117	Pause_Object			\Default Work Unit\Pause_Object	
@@ -10,6 +11,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	1398027825	Play_Footsteps_Water_Mando			\Default Work Unit\Mando\Play_Footsteps_Water_Mando	
 	1421476365	Play_Footsteps_Metal_Platform_Mando			\Default Work Unit\Mando\Play_Footsteps_Metal_Platform_Mando	
 	1931338186	Resume_Object			\Default Work Unit\Resume_Object	
+	2122429847	Play_Mando_Grenade_Throw			\Default Work Unit\Mando\Play_Mando_Grenade_Throw	
 	2203710711	Play_Mando_Hit			\Default Work Unit\Mando\Play_Mando_Hit	
 	2211787386	Play_Dash			\Default Work Unit\Mando\Play_Dash	
 	2246675260	Play_Mando_Blaster_Overcharged			\Default Work Unit\Mando\Play_Mando_Blaster_Overcharged	
@@ -19,12 +21,11 @@ Event	ID	Name			Wwise Object Path	Notes
 	3318621861	Stop_Object			\Default Work Unit\Stop_Object	
 	3328919274	Play_Grenade_Cooldown_Finish			\Default Work Unit\Mando\Play_Grenade_Cooldown_Finish	
 	3416257419	Play_Blaster_Shoot_Mando			\Default Work Unit\Mando\Play_Blaster_Shoot_Mando	
-	3454536245	Play_Mando_Grenade_Charge_1			\Default Work Unit\Mando\Play_Mando_Grenade_Charge_1	
-	3454536246	Play_Mando_Grenade_Charge_2			\Default Work Unit\Mando\Play_Mando_Grenade_Charge_2	
 	3924203421	Play_Mando_Grenade_Explosion_2			\Default Work Unit\Mando\Play_Mando_Grenade_Explosion_2	
 	3924203422	Play_Mando_Grenade_Explosion_1			\Default Work Unit\Mando\Play_Mando_Grenade_Explosion_1	
 	3935346668	Play_Mando_Respawn			\Default Work Unit\Mando\Play_Mando_Respawn	
 	4068193085	Play_Mando_Grenade_Nail			\Default Work Unit\Mando\Play_Mando_Grenade_Nail	
+	4174078032	Play_Mando_Grenade_Pulse_Wave			\Default Work Unit\Mando\Play_Mando_Grenade_Pulse_Wave	
 
 Switch Group	ID	Name			Wwise Object Path	Notes
 	354267144	Terrain			\Default Work Unit\Terrain	
@@ -59,6 +60,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	222927635	Footstep sand 1	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Footstep sand 1_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Footsteps_Mando\Footsteps sand\Footstep sand 1		42028
 	235402370	Footstep metal platform 5	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Footstep metal platform 5_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Footsteps_Mando\Footsteps metal platform\Footstep metal platform 5		37728
 	236232383	Mando voice 2	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Mando voice 2_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Mando_Kill_Voice\Mando voice 2		145388
+	251114599	Grenade throw	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Grenade throw_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Grenade throw		220376
 	280654454	Grenade nail 1	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Grenade nail 1_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Grenade nail 1		146124
 	286980711	Mando cleared room voice 2	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Mando cleared room voice 2_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Mando Clear Room Voice\Mando cleared room voice 2		139984
 	287122511	Grenade explosion 2	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Grenade explosion 2_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Grenade explosion 2		186724
@@ -66,20 +68,19 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	326576311	Footstep sand 2	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Footstep sand 2_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Footsteps_Mando\Footsteps sand\Footstep sand 2		41620
 	357751838	Blaster Mando overcharged finished	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Blaster Mando overcharged finished_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Blaster Mando overcharged finished		64532
 	367905920	Footstep metal platform 4	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Footstep metal platform 4_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Footsteps_Mando\Footsteps metal platform\Footstep metal platform 4		37728
-	371786017	Grenade charge 1	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Grenade charge 1_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Grenade charge 1		28992
+	371786017	Grenade set up	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Grenade charge 1_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Grenade set up		28992
 	390903921	Dash Movement	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Dash Movement_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Dash Movement		117772
 	409049906	Dash Transition	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Dash Transition_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Dash Transition		176512
-	445754893	Grenade charge 2	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Grenade charge 2_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Grenade charge 2		122336
 	472984334	Footstep mando water 2	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Footstep mando water 4_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Footsteps_Mando\Footsteps water\Footstep mando water 2		42728
-	565054485	Mando death 1	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Mando death 1_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Mando Death\Mando death 1		203952
 	572686326	Mando cleared room voice 1	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Mando cleared room voice 1_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Mando Clear Room Voice\Mando cleared room voice 1		125152
 	575047190	Spawn Mando	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Spawn Mando_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Spawn Mando		192140
 	590827425	Mando water hit 1	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Mando water hit 1_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Mando water hit\Mando water hit 1		27508
 	611612210	Mando armor hit 3	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Mando armor hit 3_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Mando_Hit\Mando armor hit 3		61560
 	626340448	Grenade explosion 1	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Grenade explosion 1_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Grenade explosion 1		152192
 	626473573	Blaster Mando overcharged	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Blaster Mando overcharged_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Weapon_Shoot_Mando\Blaster Mando overcharged		67496
+	645236332	mando death	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\mando death_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\mando death		652628
 	659686596	damaging water	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\damaging water_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Mando water hit\damaging water		205524
-	680645700	Mando death 2	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Mando death 2_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Mando Death\Mando death 2		205152
+	690661244	Grenade pulse wave	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Grenade pulse wave_B182BB5A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Grenade pulse wave		38132
 	709294232	Footstep metal platform 2	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Footstep metal platform 2_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Footsteps_Mando\Footsteps metal platform\Footstep metal platform 2		36592
 	713708188	Blaster Sound Effect	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\2Star Wars DC-15A Blaster Rifle Sound Effect_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Weapon_Shoot_Mando\Blaster Sound Effect		252136
 	715733657	Mando voice 3	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Mando voice 3_FC2D3A10.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mando\Mando_Kill_Voice\Mando voice 3		145388
