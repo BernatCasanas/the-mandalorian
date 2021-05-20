@@ -31,6 +31,7 @@ public enum BOONS
     BOON_MASTER_WINDU_FORCE,
     BOON_MASTER_YODA_FORCE,
     BOON_MANDALORIAN_CODE,
+    CROSSHAIR_LUCKY_SHOT,
     BOON_MAX
 }
 
@@ -229,7 +230,10 @@ public static class PlayerResources
             boonCounter[boonType] += amountToAdd;
         }
 
-        if (boonCounter[boonType] < 0) { boonCounter[boonType] = 0; }
+        if (boonCounter[boonType] < 0) 
+        { 
+            boonCounter[boonType] = 0; 
+        }
         boonAmount = boonCounter[boonType];
 
         return boonAmount;

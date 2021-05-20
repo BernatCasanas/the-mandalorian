@@ -82,7 +82,7 @@ MonoObject* CS_GetPointAt(MonoObject* cs_agent, int index)
 
 	C_NavMeshAgent* agent = DECS_CompToComp< C_NavMeshAgent*>(cs_agent);
 
-	if (agent == nullptr || agent->path.size() < index)
+	if (agent == nullptr || agent->path.size() <= index)
 		return nullptr;
 
 	float3 position = agent->path[index];

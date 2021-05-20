@@ -17,12 +17,15 @@ State Group	ID	Name			Wwise Object Path	Notes
 
 State	ID	Name	State Group			Notes
 	347961279	Wampa_Skel_Room	Game_State			
+	554925945	Moff_Gideon_Phase_2	Game_State			
 	646625282	HUB	Game_State			
 	668448342	Run_3	Game_State			
 	668448343	Run_2	Game_State			
 	712161704	Run	Game_State			
 	748895195	None	Game_State			
 	794633738	Rancor_Room	Game_State			
+	1323330439	WampaSkel_WampaDeath	Game_State			
+	1343209842	WampaSkel_SkelDeath	Game_State			
 	1791748623	Moff_Guideon_Room	Game_State			
 	2607556080	Menu	Game_State			
 	4178932914	Cruiser_Explore	Game_State			
@@ -42,14 +45,12 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	32521209	Rancor level music 1	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Rancor level music 1_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Rancor\Rancor level music 1\Rancor level music 1		1154065
 	72485731	OST 12-17-Strings and Brass 2	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\OST 12-17-Strings and Brass 2_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat\Combat Music A\OST 12-17-Strings and Brass 2		505723
 	100927123	OST 8- Percussion	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Combat Music A\OST 8- Percussion_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat Lvl 2\Combat Music B\OST 8- Percussion		2084499
-	150697156	drum	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\drum_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Moff Guideon Room\Moff guideon song\drum		72169
 	157860956	56086-dramatic-orchestra-02-until-they-came-L2	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Combat Music B\56086-dramatic-orchestra-02-until-they-came-L2_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat Lvl 2\Combat Music B\56086-dramatic-orchestra-02-until-they-came-L2		148543
 	359960869	Moff guideon song	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Moff guideon song_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Moff Guideon Room\Moff guideon song\Moff guideon song		645941
 	366591278	Hud	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Hud_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Main Menu\Main menu\Hud		1089724
 	422689495	EXPLORER THEME Strings 2	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\EXP STRINGS 2_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Explore\Explore Music A\EXPLORER THEME Strings 2		2153126
 	435793512	OST Horns	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Combat Music A\OST Horns_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat\Combat Music A\OST Horns		2247146
 	437014933	OST 15-19-Strings	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\OST 15-19-Strings_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat\Combat Music A\OST 15-19-Strings		518724
-	521322019	108790-Orchestral_bass_loop_staccato_C_minor_160_bpm-AOS03030	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Combat Music C\108790-Orchestral_bass_loop_staccato_C_minor_160_bpm-AOS03030_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat Lvl 3\Combat Music C\108790-Orchestral_bass_loop_staccato_C_minor_160_bpm-AOS03030		171078
 	560818724	EXPLORER THEME FLUTE 2	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\EXP FLUTE 2_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Explore\Explore Music A\EXPLORER THEME FLUTE 2		1149881
 	634176552	OST 13-18-Strings and Brass 3	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\OST 13-18-Strings and Brass 3_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat\Combat Music A\OST 13-18-Strings and Brass 3		520393
 	635566548	EXPLORER THEME FLUTE 1	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\EXP FLUTE 1_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Explore\Explore Music A\EXPLORER THEME FLUTE 1		1140791
@@ -63,6 +64,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	888538663	107440-Toms_loop_160_bpm-AOS03071	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Combat Music C\107440-Toms_loop_160_bpm-AOS03071_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat Lvl 3\Combat Music C\107440-Toms_loop_160_bpm-AOS03071		85385
 	914423924	OST 11-16-Strings and Brass 1	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\OST 11-16-Strings and Brass 1_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat\Combat Music A\OST 11-16-Strings and Brass 1		524457
 	929528731	EXPLORER THEME A-Reverb	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Explore Music A\EXPLORER THEME A-Reverb_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Explore\Explore Music A\EXPLORER THEME A-Reverb		4669513
+	935081151	107045-Orchestral_bass_loop_staccato_C_minor_160_bpm-AOS03028 (1)	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Combat Music C\107045-Orchestral_bass_loop_staccato_C_minor_160_bpm-AOS03028_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat Lvl 3\Combat Music C\107045-Orchestral_bass_loop_staccato_C_minor_160_bpm-AOS03028 (1)		90857
 	947589288	EXPLORER THEME Strings 1	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\EXP STRINGS 1_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Explore\Explore Music A\EXPLORER THEME Strings 1		1061786
 	967017406	57235-Dubstep_Factory_Drums	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Combat Music B\57235-Dubstep_Factory_Drums_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Combat Lvl 2\Combat Music B\57235-Dubstep_Factory_Drums		390319
 	1027776590	Wampa skel level music	C:\Users\admin\Documents\GitHub\Wwise-project\Virtual Ragnarok Audio\.cache\Windows\SFX\Wampa skel level music_03682274.wem		\Interactive Music Hierarchy\Default Work Unit\Mando Game Music\Wampa Skel\Wampa skel level music\Wampa skel level music		831882

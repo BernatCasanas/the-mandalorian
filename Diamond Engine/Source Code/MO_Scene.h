@@ -56,6 +56,8 @@ public:
 
 	void CleanScene();
 	GameObject* LoadGOData(JSON_Object* goJsonObj, GameObject* parent);
+	JSON_Value* GetPrefab(uint prefabID);
+	void AddLoadedPrefab(uint prefabID, JSON_Value* value);
 
 	int holdUID;
 
@@ -72,6 +74,7 @@ public:
 	std::vector<std::string> layers;
 
 	std::vector<C_Script*> activeScriptsVector;
+	std::map<uint, JSON_Value*> loadedPrefabs;
 
 	int totalTris;
 

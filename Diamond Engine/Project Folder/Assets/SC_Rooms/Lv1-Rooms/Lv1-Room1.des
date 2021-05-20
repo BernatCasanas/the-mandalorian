@@ -329,7 +329,7 @@
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
                     "vFOV": 13.380000114440918,
-                    "hFOV": 21.780000686645508,
+                    "hFOV": 26.120000839233398,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -9506,13 +9506,13 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -45.299999237060547,
-                        -58.200000762939453
+                        -48.5,
+                        -56.799999237060547
                     ],
                     "Rotation": 0,
                     "Size": [
-                        6.5,
-                        11.5
+                        5.6999998092651367,
+                        10.600000381469727
                     ]
                 },
                 {
@@ -9527,7 +9527,7 @@
                     "Type": 9,
                     "Active": true,
                     "text": " ",
-                    "maxTextLenght": 1476,
+                    "maxTextLenght": 1764,
                     "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
                         1,
@@ -9641,7 +9641,7 @@
                     "Rotation": 0,
                     "Size": [
                         58.600002288818359,
-                        32.599998474121094
+                        29.700000762939453
                     ]
                 },
                 {
@@ -9703,7 +9703,7 @@
                     "Rotation": 0,
                     "Size": [
                         2.9000000953674316,
-                        6.0999999046325684
+                        5.5999999046325684
                     ]
                 },
                 {
@@ -9730,7 +9730,7 @@
                     "ButtonState": 1,
                     "Is Selected": true,
                     "HoverSFX": "Play_UI_Button_Hover",
-                    "PressedSFX": "Play_UI_Button_Play"
+                    "PressedSFX": "Play_UI_Button_Select"
                 },
                 {
                     "Type": 11,
@@ -9759,12 +9759,81 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "TextController",
+                    "gui": 614010231,
                     "dialog": 162634475,
                     "text": 233430036,
+                    "nameText": 1083939472,
                     "mandoimage": 1438875911,
                     "otherimage": 565022676,
                     "list_of_dialogs": 1588586442,
                     "dialog_index": 0
+                }
+            ]
+        },
+        {
+            "name": "NPC Name",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1083939472,
+            "ParentUID": 1662765934,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -37.900001525878906,
+                        22.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        5.6999998092651367,
+                        10.600000381469727
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": " ",
+                    "maxTextLenght": 1764,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },

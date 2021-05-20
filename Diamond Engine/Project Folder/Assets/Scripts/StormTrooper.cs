@@ -774,12 +774,7 @@ public class StormTrooper : Enemy
         {
             ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
 
-            if (bullet != null)
-            {
-                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
-                TakeDamage(bullet.GetDamage());
-
-            }
+            
 
             Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -811,10 +806,26 @@ public class StormTrooper : Enemy
                             BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
                         }
                     }
+                    if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
+                    {
+                        float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
+                        Random rand = new Random();
+                        float result = rand.Next(1, 101);
+                        if (result <= mod)
+                        Core.instance.RefillSniper();
+
+                        Core.instance.luckyMod = 1 + mod / 100;
+                    }
                 }
 
             }
-
+            if (bullet != null)
+            {
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
+                TakeDamage(bullet.GetDamage());
+                if (healthPoints <= 0.0f && Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
+                    Core.instance.RefillSniper();
+            }
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))
         {

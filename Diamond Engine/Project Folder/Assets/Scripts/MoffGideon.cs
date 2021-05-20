@@ -58,6 +58,20 @@ public class MoffGideon : Entity
         IN_DEAD
     }
 
+    struct AtackMoff
+    {
+        AtackMoff(string animation, float duration)
+        {
+            this.animation = animation;
+            this.duration = duration;
+            this.last = false;
+        }
+
+        bool last;
+        string animation;
+        float duration;
+    }
+
     private NavMeshAgent agent = null;
     private GameObject saber = null;
     public GameObject camera = null;
@@ -123,6 +137,7 @@ public class MoffGideon : Entity
     private int maxProjectiles = 7;
     private int projectiles = 0;
     private bool aiming = false;
+    private List<AtackMoff> atacks;
     //private float damaged = 0.0f;
 
 
@@ -1278,6 +1293,16 @@ public class MoffGideon : Entity
             {
                 damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
             }*/
+            if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
+            {
+                float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
+                Random rand = new Random();
+                float result = rand.Next(1, 101);
+                if (result <= mod)
+                    Core.instance.RefillSniper();
+
+                Core.instance.luckyMod = 1 + mod / 100;
+            }
 
             TakeDamage(damageToBoss);
             Debug.Log("Rancor HP: " + healthPoints.ToString());

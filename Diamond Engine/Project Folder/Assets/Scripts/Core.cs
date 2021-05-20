@@ -182,6 +182,7 @@ public class Core : Entity
     //Animations
     private float shootAnimationTotalTime = 0.0f;
     public float sniperAimAnimMult = 1.5f;
+    public float luckyMod = 1f;
 
     //Controller Variables
     int verticalInput = 0;
@@ -1330,6 +1331,12 @@ public class Core : Entity
         }
     }
 
+    public void RefillSniper()
+    {
+        sniperRechargeTimer -= bulletRechargeTime;
+                if (sniperRechargeTimer <= 0f)
+                    sniperRechargeTimer = 0f;
+    }
     #endregion
 
     #region DASH
@@ -1383,7 +1390,7 @@ public class Core : Entity
     {
         StopPlayer();
         //gameObject.AddForce(gameObject.transform.GetForward().normalized * dashSpeed);
-        PlayParticles(PARTICLES.JETPACK);
+        //PlayParticles(PARTICLES.JETPACK);
         UpdateAnimationSpd(speedMult);
 
         gameObject.transform.localPosition = gameObject.transform.localPosition + dashDirection * dashSpeed * myDeltaTime;
@@ -2084,8 +2091,8 @@ public class Core : Entity
 
         }
 
-        float Damage = SniperDamageMult * SniperDamagePerHpMult * DamagePerHeatMult * RawDamageMult * ChadBaneModifier;
-
+        float Damage = SniperDamageMult * SniperDamagePerHpMult * DamagePerHeatMult * RawDamageMult * ChadBaneModifier * luckyMod;
+        luckyMod = 1;
         return Damage;
     }
     public float GetGrenadeDamageMod()

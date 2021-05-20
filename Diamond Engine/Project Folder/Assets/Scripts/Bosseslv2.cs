@@ -77,6 +77,7 @@ public class Bosseslv2 : Entity
     private float startBounceRushTime = 0.0f;
     //private float startBounceRushTimer = 0.0f;
 
+    private bool firstThrow = true;
     enum JUMPSLAM : int
     {
         NONE = -1,
@@ -113,6 +114,7 @@ public class Bosseslv2 : Entity
         firstShot = true;
         Animator.Play(gameObject, "WP_Projectile", speedMult);
         UpdateAnimationSpd(speedMult);
+        firstThrow = true;
     }
     public void UpdateProjectile()
     {
@@ -126,8 +128,12 @@ public class Bosseslv2 : Entity
                 {
                     Vector3 pos = projectilePoint.transform.globalPosition;
                     Quaternion rot = new Quaternion(0, 0, 90);
-
-                    RancorProjectile projectile = InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, rot, null).GetComponent<RancorProjectile>();
+                    if (firstThrow)
+                        Audio.PlayAudio(gameObject, "Play_Wampa_Projectile_Throw_1");
+                    else
+                        Audio.PlayAudio(gameObject, "Play_Wampa_Projectile_Throw_2");
+                    firstThrow = false;
+                    WampaProjectile projectile = InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, rot, null).GetComponent<WampaProjectile>();
 
                     if (projectile != null)
                     {
@@ -146,6 +152,7 @@ public class Bosseslv2 : Entity
                     }
                     else
                         secondShot = true;
+                    Audio.PlayAudio(gameObject, "Play_Wampa_Ice_Pick");
                 }
             }
         }
@@ -162,7 +169,6 @@ public class Bosseslv2 : Entity
         secondShot = false;
         resting = true;
         restingTimer = restingTime;
-        Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Ice_Impact");
     }
     #endregion
 
@@ -173,7 +179,11 @@ public class Bosseslv2 : Entity
         Debug.Log("Fast Rush");
         Animator.Play(gameObject, "WP_Rush", speedMult);
         UpdateAnimationSpd(speedMult);
-        Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Previous_Rush_Roar");
+        Audio.PlayAudio(gameObject, "Play_Wampa_Rush");
+        if (colliderBounceRush != null)
+        {
+            colliderBounceRush.GetComponent<AtackBosslv2>().active = true;
+        }
     }
     public void UpdateFastRush()
     {
@@ -187,7 +197,7 @@ public class Bosseslv2 : Entity
 
     public void EndFastRush()
     {
-
+        Audio.StopOneAudio(gameObject, "Play_Wampa_Rush");
     }
 
     public void StartSlowRush()
@@ -196,6 +206,7 @@ public class Bosseslv2 : Entity
         Debug.Log("Slow Rush");
         Animator.Play(gameObject, "WP_Rush", speedMult);
         UpdateAnimationSpd(speedMult);
+        Audio.PlayAudio(gameObject, "Play_Wampa_Rush");
     }
     public void UpdateSlowRush()
     {
@@ -211,6 +222,11 @@ public class Bosseslv2 : Entity
     {
         resting = true;
         restingTimer = restingTime;
+        if (colliderBounceRush != null)
+        {
+            colliderBounceRush.GetComponent<AtackBosslv2>().active = false;
+        }
+        Audio.StopOneAudio(gameObject, "Play_Wampa_Rush");
     }
     #endregion
 
@@ -219,7 +235,7 @@ public class Bosseslv2 : Entity
 
     public void StartBounceRush()
     {
-        Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Previous_Rush_Roar");
+        Audio.PlayAudio(gameObject, "Play_Wampa_Rush");
         if (gameObject.CompareTag("Skel"))
         {
             Animator.Play(gameObject, "Skel_Rush", speedMult);
@@ -294,6 +310,7 @@ public class Bosseslv2 : Entity
         if (colliderBounceRush != null) {
             colliderBounceRush.GetComponent<AtackBosslv2>().active = false;
         }
+        Audio.StopOneAudio(gameObject, "Play_Wampa_Rush");
     }
 
     #endregion
@@ -458,7 +475,7 @@ public class Bosseslv2 : Entity
             Animator.Play(gameObject, "WP_Walk", speedMult);
             UpdateAnimationSpd(speedMult);
         }
-        Audio.PlayAudio(gameObject, "PLay_Rancor_Footsteps");
+        Audio.PlayAudio(gameObject, "Play_Wampa_Footsteps");
     }
     public void UpdateFollowing()
     {
@@ -492,7 +509,7 @@ public class Bosseslv2 : Entity
             Animator.Play(gameObject, "WP_Walk", speedMult);
             UpdateAnimationSpd(speedMult);
         }
-        Audio.PlayAudio(gameObject, "PLay_Rancor_Footsteps");
+        Audio.PlayAudio(gameObject, "Play_Wampa_Footsteps");
     }
     public void UpdateWander()
     {
@@ -523,7 +540,7 @@ public class Bosseslv2 : Entity
             Animator.Play(gameObject, "WP_Die", speedMult);
             UpdateAnimationSpd(speedMult);
         }
-        Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Death_Roar");
+        Audio.PlayAudio(gameObject, "Play_Wampa_Death");
         Debug.Log("Dying");
     }
     public void UpdateDie()

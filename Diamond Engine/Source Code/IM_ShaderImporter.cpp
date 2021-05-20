@@ -6,6 +6,8 @@
 #include "WI_TextEditor.h"
 #include "MO_Editor.h"
 
+#include "mmgr/mmgr.h"
+
 void ShaderImporter::Import(char* buffer, int bSize, ResourceShader* res, const char* assetsPath)
 {
 	//Get every shader typs string from the glsl
@@ -18,24 +20,26 @@ void ShaderImporter::Import(char* buffer, int bSize, ResourceShader* res, const 
 
 	std::string bufferString(buffer);
 	TempShader vertexShaderPair;
-	TempShader fragmentShaderPair;
+	TempShader fragmentShaderPair; 
+	TempShader geometryShaderPair;
 
-	CheckForErrors(bufferString, vertexShaderPair, fragmentShaderPair);
+	CheckForErrors(bufferString, vertexShaderPair, fragmentShaderPair, geometryShaderPair);
 
 	if (vertexShaderPair.tmpID != 0 && fragmentShaderPair.tmpID != 0)
 	{
 		res->shaderObjects[(int)ShaderType::SH_Vertex] = vertexShaderPair.tmpID;
 		res->shaderObjects[(int)ShaderType::SH_Frag] = fragmentShaderPair.tmpID;
+		res->shaderObjects[(int)ShaderType::SH_Geometry] = geometryShaderPair.tmpID;
 
 		res->LinkToProgram();
 
-		char* saveBuffer = res->SaveShaderCustomFormat(vertexShaderPair.data.second, vertexShaderPair.data.first, fragmentShaderPair.data.second, fragmentShaderPair.data.first);
+		char* saveBuffer = res->SaveShaderCustomFormat(vertexShaderPair.data.second, vertexShaderPair.data.first, fragmentShaderPair.data.second, fragmentShaderPair.data.first, geometryShaderPair.data.second, geometryShaderPair.data.first);
 		
 		std::string shaderFileName = SHADERS_PATH;
 		shaderFileName += std::to_string(res->GetUID());
 		shaderFileName += ".shdr";
 		
-		FileSystem::Save(shaderFileName.c_str(), saveBuffer, 8 + vertexShaderPair.data.first + fragmentShaderPair.data.first, false);
+		FileSystem::Save(shaderFileName.c_str(), saveBuffer, 12 + vertexShaderPair.data.first + fragmentShaderPair.data.first + geometryShaderPair.data.first, false);
 
 		//res->LoadShaderCustomFormat(shaderFileName.c_str());
 
@@ -43,7 +47,7 @@ void ShaderImporter::Import(char* buffer, int bSize, ResourceShader* res, const 
 	}
 }
 
-bool ShaderImporter::CheckForErrors(std::string& glslBuffer, TempShader& vertexShader, TempShader& fragmentShader)
+bool ShaderImporter::CheckForErrors(std::string& glslBuffer, TempShader& vertexShader, TempShader& fragmentShader, TempShader& geometryShader)
 {
 	size_t startByte = glslBuffer.find("#ifdef vertex");
 	if (startByte != std::string::npos)
@@ -61,10 +65,21 @@ bool ShaderImporter::CheckForErrors(std::string& glslBuffer, TempShader& vertexS
 		fragmentShader.data.first = glslBuffer.find("#endif", startByte) - startByte - 1;
 		fragmentShader.data.second = &glslBuffer[startByte];
 	}
+	startByte = std::string::npos;
+
+	startByte = glslBuffer.find("#ifdef geometry");
+	if (startByte != std::string::npos)
+	{
+		startByte += sizeof("#ifdef geometry");
+		geometryShader.data.first = glslBuffer.find("#endif", startByte) - startByte - 1;
+		geometryShader.data.second = &glslBuffer[startByte];
+
+		geometryShader.tmpID = Compile(geometryShader.data.second, ShaderType::SH_Geometry, geometryShader.data.first);
+	}
 
 	vertexShader.tmpID = Compile(vertexShader.data.second, ShaderType::SH_Vertex, vertexShader.data.first);
 	fragmentShader.tmpID = Compile(fragmentShader.data.second, ShaderType::SH_Frag, fragmentShader.data.first);
-
+	
 
 	//RELEASE_ARRAY(buffer);
 	return (vertexShader.tmpID == 0 && fragmentShader.tmpID == 0) ? false : true;
@@ -121,7 +136,22 @@ bool ShaderImporter::CheckForErrors(std::string& glslBuffer, TempShader& vertexS
 GLuint ShaderImporter::Compile(char* fileBuffer, ShaderType type, const GLint size)
 {
 	GLuint compileShader = 0;
-	compileShader = glCreateShader((type == ShaderType::SH_Vertex) ? GL_VERTEX_SHADER : GL_FRAGMENT_SHADER);
+
+	switch (type)
+	{
+	case ShaderType::SH_Vertex:
+		compileShader = glCreateShader(GL_VERTEX_SHADER);
+		break;
+
+	case ShaderType::SH_Frag:
+		compileShader = glCreateShader(GL_FRAGMENT_SHADER);
+		break;
+
+	case ShaderType::SH_Geometry:
+		compileShader = glCreateShader(GL_GEOMETRY_SHADER);
+		break;
+	}
+	
 	glShaderSource(compileShader, 1, &fileBuffer, &size);
 	glCompileShader(compileShader);
 
@@ -132,13 +162,26 @@ GLuint ShaderImporter::Compile(char* fileBuffer, ShaderType type, const GLint si
 	{
 		glGetShaderInfoLog(compileShader, 512, NULL, infoLog);
 
-		if (type == ShaderType::SH_Vertex) 
+		switch (type)
 		{
+		case ShaderType::SH_Vertex:
 			LOG(LogType::L_ERROR, "Error compilating vertex shader: %s", infoLog);
-		}
-		else {
+			break;
+
+		case ShaderType::SH_Frag:
 			LOG(LogType::L_ERROR, "Error compilating fragment shader: %s", infoLog);
-		}
+			break;
+
+		case ShaderType::SH_Geometry:
+			LOG(LogType::L_ERROR, "Error compilating geometry shader: %s", infoLog);
+			break;
+
+		case ShaderType::SH_Max:
+		default:
+			LOG(LogType::L_ERROR, "Invalid shader type");
+			break;
+		}			
+
 		glDeleteShader(compileShader);
 
 #ifndef STANDALONE
@@ -164,6 +207,9 @@ int ShaderImporter::GetTypeMacro(ShaderType type)
 	case ShaderType::SH_Frag:
 		ret = GL_FRAGMENT_SHADER;
 		break;
+	case ShaderType::SH_Geometry:
+		ret = GL_GEOMETRY_SHADER;
+		break;
 	case ShaderType::SH_Max:
 		ret = 0;
 		break;
@@ -175,36 +221,6 @@ int ShaderImporter::GetTypeMacro(ShaderType type)
 	return ret;
 }
 
-ShaderType ShaderImporter::GetAssetsObjType(const char* assetsPath, std::string &pairString)
-{
-	std::string ext(assetsPath);
-	ext = ext.substr(ext.find_last_of('.') + 1);
-
-	for (int i = 0; i < ext.length(); i++)
-	{
-		ext[i] = std::tolower(ext[i]);
-	}
-
-	if (ext == "vert") 
-	{
-		pairString = assetsPath;
-		pairString = pairString.substr(0, pairString.find_last_of('.') + 1);
-		pairString += "frag";
-
-		return ShaderType::SH_Vertex;
-	}
-
-	if (ext == "frag") 
-	{
-		pairString = pairString.substr(0, pairString.find_last_of('.') + 1);
-		pairString += "vert";
-
-		return ShaderType::SH_Frag;
-	}
-
-	LOG(LogType::L_ERROR, "SHADER EXTENSION NOT FOUND");
-	return ShaderType::SH_Max;
-}
 
 void ShaderImporter::CreateBaseShaderFile(const char* path)
 {

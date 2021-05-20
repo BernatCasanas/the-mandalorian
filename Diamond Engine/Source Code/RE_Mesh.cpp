@@ -435,10 +435,6 @@ void ResourceMesh::PushDefaultMeshUniforms(uint shaderID, uint textureID, C_Tran
 	modelLoc = glGetUniformLocation(shaderID, "altColor");
 	glUniform3fv(modelLoc, 1, &color.x);
 
-	float3 lightPosition = float3(0.0f, 0.0f, 1.0f);
-	modelLoc = glGetUniformLocation(shaderID, "lightPosition");
-	glUniform3fv(modelLoc, 1, &lightPosition.x);
-
 	glActiveTexture(GL_TEXTURE15);
 	glUniform1i(glGetUniformLocation(shaderID, "normalMap"), 15);
 

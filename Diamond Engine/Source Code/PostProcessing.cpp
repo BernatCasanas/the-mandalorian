@@ -143,6 +143,11 @@ void PostProcessing::CleanUp()
 		delete(toneMappingEffect);
 		toneMappingEffect = nullptr;
 	}
+	if (vignetteEffect != nullptr)
+	{
+		delete(vignetteEffect);
+		vignetteEffect = nullptr;
+	}
 }
 
 void PostProcessing::Start()
