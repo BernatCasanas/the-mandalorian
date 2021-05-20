@@ -1443,7 +1443,7 @@ public class Rancor : Entity
                 Random rand = new Random();
                 float result = rand.Next(1, 101);
                 if (result <= mod)
-                    Core.instance.RefreshSniper();
+                    Core.instance.RefillSniper();
 
                 Core.instance.luckyMod = 1 + mod / 100;
             }

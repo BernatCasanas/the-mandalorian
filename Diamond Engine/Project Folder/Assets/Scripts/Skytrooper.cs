@@ -678,10 +678,7 @@ public class Skytrooper : Enemy
 
             if (bullet != null)
             {
-                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
-                // healthPoints -= bullet.damage;
-
-                TakeDamage(bullet.GetDamage());
+             
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -717,13 +714,19 @@ public class Skytrooper : Enemy
                             Random rand = new Random();
                             float result = rand.Next(1, 101);
                             if (result <= mod)
-                                Core.instance.RefreshSniper();
+                                Core.instance.RefillSniper();
 
                             Core.instance.luckyMod = 1 + mod / 100;
                         }
                     }
 
                 }
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
+                // healthPoints -= bullet.damage;
+
+                TakeDamage(bullet.GetDamage());
+                if (healthPoints <= 0.0f && Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
+                    Core.instance.RefillSniper();
             }
         }
     }

@@ -1331,7 +1331,7 @@ public class Core : Entity
         }
     }
 
-    public void RefreshSniper()
+    public void RefillSniper()
     {
         sniperRechargeTimer -= bulletRechargeTime;
                 if (sniperRechargeTimer <= 0f)

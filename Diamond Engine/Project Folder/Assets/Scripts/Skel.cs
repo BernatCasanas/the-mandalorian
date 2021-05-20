@@ -399,7 +399,16 @@ public class Skel : Bosseslv2
                 float damageToBoss = bulletComp.GetDamage();
                 if (Core.instance != null)
                     damageToBoss *= Core.instance.DamageToBosses;
+                if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
+                {
+                    float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
+                    Random rand = new Random();
+                    float result = rand.Next(1, 101);
+                    if (result <= mod)
+                        Core.instance.RefillSniper();
 
+                    Core.instance.luckyMod = 1 + mod / 100;
+                }
                 TakeDamage(damageToBoss);
             }
 

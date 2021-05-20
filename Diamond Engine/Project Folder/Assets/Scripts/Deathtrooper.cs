@@ -656,10 +656,7 @@ public class Deathtrooper : Enemy
 
             if (bullet != null)
             {
-                healthPoints -= bullet.damage;
-                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
-
-                TakeDamage(bullet.damage);
+               
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -695,13 +692,19 @@ public class Deathtrooper : Enemy
                             Random rand = new Random();
                             float result = rand.Next(1, 101);
                             if (result <= mod)
-                                Core.instance.RefreshSniper();
+                                Core.instance.RefillSniper();
 
                             Core.instance.luckyMod = 1 + mod / 100;
                         }
                     }
 
                 }
+             //   healthPoints -= bullet.damage;
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
+
+                TakeDamage(bullet.damage);
+                if (healthPoints <= 0.0f && Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
+                    Core.instance.RefillSniper();
             }
         }
         else if (collidedGameObject.CompareTag("ExplosiveBarrel") && collidedGameObject.GetComponent<SphereCollider>().active)
