@@ -31,6 +31,7 @@ public enum BOONS
     BOON_MASTER_WINDU_FORCE,
     BOON_MASTER_YODA_FORCE,
     BOON_MANDALORIAN_CODE,
+    CROSSHAIR_LUCKY_SHOT,
     BOON_MAX
 }
 
@@ -42,10 +43,10 @@ public static class PlayerResources
     static int scrapCounter = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("scrapCounter") : 0;
     static int runCoins = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("runCoins") : 0;
     static bool[] accquiredBoons = new bool[(int)BOONS.BOON_MAX];
-    static Dictionary<BOONS, int> boonCounter = new Dictionary<BOONS, int>();
+    static Dictionary<Type, int> boonCounter = new Dictionary<Type, int>();
 
 
-    public static int GetResourceCount(RewardType type)
+    public static int GetResourceCount(RewardType type, Type boonType = null)
     {
         int auxCounter = 0;
 

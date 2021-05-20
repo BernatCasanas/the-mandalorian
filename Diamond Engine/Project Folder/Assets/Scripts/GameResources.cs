@@ -560,39 +560,59 @@ public class YodaForceControl : GameResources
     }
 }
 
+public class CossHairLuckyShot : GameResources
+{
+    public CossHairLuckyShot() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "After impacting a sniper shot, you have a 33% chance to recover ammo, and next shot deals +33% more damage.")
+    {
+        name = "Cad Bane’s rocket boots";
+        price = ShopPrice.SHOP_EXPENSIVE;
+    }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT, STATUS_APPLY_TYPE.ADDITIVE, 33f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
+                Core.boons.Add(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT);
+
+            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+        }
+    }
+}
 #endregion
 static class BoonDataHolder
 {
     static BoonDataHolder()
     {
-        boonType[(int)BOONS.BOON_ANAKIN_KILL_STREAK]        = new AnakinKillstreak();
-        boonType[(int)BOONS.BOON_BOKATAN_RESILENCE]         = new BokatanResilence();
-        boonType[(int)BOONS.BOON_BOSSK_STRENGTH]            = new BosskStrength();
-        boonType[(int)BOONS.BOON_BOUNTY_HUNTER_SKILLS]      = new BountyHunter();
-        boonType[(int)BOONS.BOON_CADBANE_ROCKET_BOOTS]      = new CadBaneBoots();
-        boonType[(int)BOONS.BOON_CADBANE_SLEIGHT]           = new CadBaneSoH();
-        boonType[(int)BOONS.BOON_ECHO_QUICK_RECOVERY]       = new EchoRecovery();
-        boonType[(int)BOONS.BOON_GREEF_PAYCHECK]            = new EchoRecovery();     //Add this when done = new GreefPaycheck();
-        boonType[(int)BOONS.BOON_ITS_A_TRAP]                = new ItsATrap();
-        boonType[(int)BOONS.BOON_MANDALORIAN_QUICK_DRAW]    = new MandoQuickDraw();
-        boonType[(int)BOONS.BOON_REX_SECOND_BLASTER]        = new RexSecBlaster();
-        boonType[(int)BOONS.BOON_SOLO_QUICK_DRAW]           = new RexSecBlaster();     //Add correct boon
-        boonType[(int)BOONS.BOON_WATTOS_COOLANT]            = new WattoCoolant();
-        boonType[(int)BOONS.BOON_WRECKER_HEAVY_SHOT]        = new WreckHeavyShot();
-        boonType[(int)BOONS.BOON_WRECKER_RESILIENCE]        = new WreckerResilence();
-        boonType[(int)BOONS.BOON_BLAST_CANNON_MOUTHPIECE]   = new BlastCannonMouthpiece();
-        boonType[(int)BOONS.BOON_GREEDO_QUICKSHOOTER]       = new GreedoShooter();
-        boonType[(int)BOONS.BOON_MANDALORIAN_QUICK_COMBO]   = new MandoQuickCombo();
-        boonType[(int)BOONS.BOON_AHSOKA_DETERMINATION]      = new MandoQuickCombo();  //Add this when done= new AhsokaDetermination();
-        boonType[(int)BOONS.BOON_FENNEC_SNIPER_RIFLE]       = new FennecSniper();
-        boonType[(int)BOONS.BOON_BOBBA_FETT_STUN_AMM]       = new FennecSniper();     //Add this when done = new bobbaFettStunAmm();
-        boonType[(int)BOONS.BOON_BOSSK_SPECIAL_AMMO]        = new BosskSpecialAmmo();
-        boonType[(int)BOONS.BOON_GEOTERMAL_MARKER]          = new BosskSpecialAmmo(); //Add this when done= new GeotermalMarker();
-        boonType[(int)BOONS.BOON_MASTER_LUMINARA_FORCE]     = new LuminaraForce();
-        boonType[(int)BOONS.BOON_MASTER_WINDU_FORCE]        = new WinduForceControl();
-        boonType[(int)BOONS.BOON_MASTER_YODA_FORCE]         = new YodaForceControl();
-        boonType[(int)BOONS.BOON_MANDALORIAN_CODE]          = new MandoCode();
-
+        boonType[(int)BOONS.BOON_ANAKIN_KILL_STREAK]        = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_BOKATAN_RESILENCE]         = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_BOSSK_STRENGTH]            = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_BOUNTY_HUNTER_SKILLS]      = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_CADBANE_ROCKET_BOOTS]      = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_CADBANE_SLEIGHT]           = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_ECHO_QUICK_RECOVERY]       = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_GREEF_PAYCHECK]            = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_ITS_A_TRAP]                = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_MANDALORIAN_QUICK_DRAW]    = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_REX_SECOND_BLASTER]        = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_SOLO_QUICK_DRAW]           = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_WATTOS_COOLANT]            = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_WRECKER_HEAVY_SHOT]        = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_WRECKER_RESILIENCE]        = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_BLAST_CANNON_MOUTHPIECE]   = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_GREEDO_QUICKSHOOTER]       = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_MANDALORIAN_QUICK_COMBO]   = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_AHSOKA_DETERMINATION]      = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_FENNEC_SNIPER_RIFLE]       = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_BOBBA_FETT_STUN_AMM]       = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_BOSSK_SPECIAL_AMMO]        = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_GEOTERMAL_MARKER]          = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_MASTER_LUMINARA_FORCE]     = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_MASTER_WINDU_FORCE]        = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_MASTER_YODA_FORCE]         = new CossHairLuckyShot();
+        boonType[(int)BOONS.BOON_MANDALORIAN_CODE]          = new CossHairLuckyShot();
+        boonType[(int)BOONS.CROSSHAIR_LUCKY_SHOT]           = new CossHairLuckyShot();
         for (int i = 0; i < boonType.Length; i++)
         {
             float auxWeight = boonType[i].rngChanceWeight;
