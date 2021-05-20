@@ -83,7 +83,7 @@ public class BokatanResilence : GameResources
             int currentLifeSteal = Core.instance.gameObject.GetComponent<PlayerHealth>().IncrementHealingWhenKillingEnemy(1);
             Debug.Log("LifeSteal increased to: " + currentLifeSteal);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_BOKATAN_RESILENCE);
         }
         else
         {
@@ -111,7 +111,7 @@ public class WreckerResilence : GameResources
             Debug.Log("Max HP increased to: " + currentMaxHp);
             Debug.Log("Curr HP increased to: " + currentHp);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_WRECKER_RESILIENCE);
         }
         else
         {
@@ -136,7 +136,7 @@ public class CadBaneSoH : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.CAD_BANE_SOH))
                 Core.boons.Add(STATUS_TYPE.CAD_BANE_SOH);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_CADBANE_SLEIGHT);
         }
         //else
         //{
@@ -162,7 +162,7 @@ public class CadBaneBoots : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.CAD_BANE_BOOTS))
                 Core.boons.Add(STATUS_TYPE.CAD_BANE_BOOTS);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_CADBANE_ROCKET_BOOTS);
         }
     }
 }
@@ -183,7 +183,7 @@ public class MandoQuickDraw : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.MANDO_QUICK_DRAW))
                 Core.boons.Add(STATUS_TYPE.MANDO_QUICK_DRAW);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_MANDALORIAN_QUICK_DRAW);
         }
 
     }
@@ -223,7 +223,7 @@ public class BosskStrength : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.BOSSK_STR))
                 Core.boons.Add(STATUS_TYPE.BOSSK_STR);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_BOSSK_STRENGTH);
         }
     }
 }
@@ -243,7 +243,7 @@ public class RexSecBlaster : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.REX_SEC_BLASTER))
                 Core.boons.Add(STATUS_TYPE.REX_SEC_BLASTER);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_REX_SECOND_BLASTER);
         }
     }
 }
@@ -264,7 +264,7 @@ public class GreedoShooter : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.GREEDO_SHOOTER))
                 Core.boons.Add(STATUS_TYPE.GREEDO_SHOOTER);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_GREEDO_QUICKSHOOTER);
         }
     }
 }
@@ -285,7 +285,7 @@ public class FennecSniper : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.FENNEC_SR))
                 Core.boons.Add(STATUS_TYPE.FENNEC_SR);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_FENNEC_SNIPER_RIFLE);
         }
     }
 }
@@ -306,7 +306,7 @@ public class AnakinKillstreak : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.ANAKIN_KILLSTREAK))
                 Core.boons.Add(STATUS_TYPE.ANAKIN_KILLSTREAK);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_ANAKIN_KILL_STREAK);
         }
     }
 }
@@ -327,7 +327,7 @@ public class EchoRecovery : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.ECHO_RECOVERY))
                 Core.boons.Add(STATUS_TYPE.ECHO_RECOVERY);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_ECHO_QUICK_RECOVERY);
         }
     }
 }
@@ -348,7 +348,7 @@ public class WattoCoolant : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.WATTO_COOLANT))
                 Core.boons.Add(STATUS_TYPE.WATTO_COOLANT);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_WATTOS_COOLANT);
         }
     }
 }
@@ -369,7 +369,7 @@ public class LuminaraForce : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.LUMINARA_FORCE))
                 Core.boons.Add(STATUS_TYPE.LUMINARA_FORCE);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_MASTER_LUMINARA_FORCE);
         }
     }
 }
@@ -389,7 +389,7 @@ public class MandoCode : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.MANDO_CODE))
                 Core.boons.Add(STATUS_TYPE.MANDO_CODE);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_MANDALORIAN_CODE);
         }
     }
 }
@@ -411,7 +411,7 @@ public class ItsATrap : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.ITSA_TRAP))
                 Core.boons.Add(STATUS_TYPE.ITSA_TRAP);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_ITS_A_TRAP);
         }
     }
 }
@@ -431,7 +431,7 @@ public class WreckHeavyShot : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.WRECK_HEAVY_SHOT))
                 Core.boons.Add(STATUS_TYPE.WRECK_HEAVY_SHOT);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_WRECKER_HEAVY_SHOT);
         }
     }
 }
@@ -452,7 +452,7 @@ public class MandoQuickCombo : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.QUICK_COMBO))
                 Core.boons.Add(STATUS_TYPE.QUICK_COMBO);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_MANDALORIAN_QUICK_COMBO);
         }
     }
 }
@@ -472,7 +472,7 @@ public class BlastCannonMouthpiece : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.BLAST_CANNON))
                 Core.boons.Add(STATUS_TYPE.BLAST_CANNON);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_BLAST_CANNON_MOUTHPIECE);
         }
     }
 }
@@ -493,7 +493,7 @@ public class BountyHunter : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.BOUNTY_HUNTER))
                 Core.boons.Add(STATUS_TYPE.BOUNTY_HUNTER);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_BOUNTY_HUNTER_SKILLS);
         }
     }
 }
@@ -513,7 +513,7 @@ public class BosskSpecialAmmo : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.BOSSK_AMMO))
                 Core.boons.Add(STATUS_TYPE.BOSSK_AMMO);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_BOSSK_SPECIAL_AMMO);
         }
     }
 }
@@ -534,7 +534,7 @@ public class WinduForceControl : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.WINDU_FORCE))
                 Core.boons.Add(STATUS_TYPE.WINDU_FORCE);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_MASTER_WINDU_FORCE);
         }
     }
 }
@@ -555,7 +555,7 @@ public class YodaForceControl : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.YODA_FORCE))
                 Core.boons.Add(STATUS_TYPE.YODA_FORCE);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_MASTER_YODA_FORCE);
         }
     }
 }

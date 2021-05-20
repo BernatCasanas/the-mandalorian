@@ -43,7 +43,7 @@ public static class PlayerResources
     static int scrapCounter = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("scrapCounter") : 0;
     static int runCoins = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("runCoins") : 0;
     static bool[] accquiredBoons = new bool[(int)BOONS.BOON_MAX];
-    static Dictionary<Type, int> boonCounter = new Dictionary<Type, int>();
+    static Dictionary<BOONS, int> boonCounter = new Dictionary<BOONS, int>();
 
 
     public static int GetResourceCount(RewardType type, Type boonType = null)
@@ -52,13 +52,6 @@ public static class PlayerResources
 
         switch (type)
         {
-            case RewardType.REWARD_BOON:
-                if (boonCounter.ContainsKey(boonType))
-                {
-                    auxCounter = boonCounter[boonType];
-                }
-                break;
-
             case RewardType.REWARD_BESKAR:
                 auxCounter = beskarCounter;
                 break;
@@ -79,6 +72,13 @@ public static class PlayerResources
         return auxCounter;
     }
 
+    public static int GetBoonAmount(BOONS boon)
+    {
+        if (boonCounter.ContainsKey(boon))
+            return boonCounter[boon];
+        else
+            return 0;
+    }
     public static void ResetHoldingBoons()
     {
         for (int i = 0; i < accquiredBoons.Length; i++)
@@ -89,12 +89,15 @@ public static class PlayerResources
 
     public static void AddBoon(BOONS newBoon)
     {
-        accquiredBoons[(int)newBoon] = true;
+        if (boonCounter.ContainsKey(newBoon))
+            boonCounter[newBoon]++;
+        else
+            boonCounter.Add(newBoon, 1);
     }
 
     public static bool CheckBoon(BOONS newBoon)
     {
-        return accquiredBoons[(int)newBoon];
+        return boonCounter.ContainsKey(newBoon);
     }
 
     public static int AddResourceBy1(RewardType type, Type boonType = null)
@@ -103,9 +106,9 @@ public static class PlayerResources
 
         switch (type)
         {
-            case RewardType.REWARD_BOON:
-                resourceLeft = AddBoonToMap(1, boonType);
-                break;
+            //case RewardType.REWARD_BOON:
+            //    resourceLeft = AddBoonToMap(1, boonType);
+            //    break;
 
             case RewardType.REWARD_BESKAR:
                 resourceLeft = ++beskarCounter;
@@ -173,9 +176,9 @@ public static class PlayerResources
 
         switch (type)
         {
-            case RewardType.REWARD_BOON:
-                resourceLeft = AddBoonToMap(-total_to_substract, boonType);
-                break;
+            //case RewardType.REWARD_BOON:
+            //    resourceLeft = AddBoonToMap(-total_to_substract, boonType);
+            //    break;
 
             case RewardType.REWARD_BESKAR:
                 if (beskarCounter > 0)
@@ -215,28 +218,6 @@ public static class PlayerResources
         }
 
         return resourceLeft;
-    }
-
-    static int AddBoonToMap(int amountToAdd, Type boonType)
-    {
-        int boonAmount = 0;
-
-        if (boonCounter.ContainsKey(boonType) == false)
-        {
-            boonCounter.Add(boonType, amountToAdd);
-        }
-        else
-        {
-            boonCounter[boonType] += amountToAdd;
-        }
-
-        if (boonCounter[boonType] < 0) 
-        { 
-            boonCounter[boonType] = 0; 
-        }
-        boonAmount = boonCounter[boonType];
-
-        return boonAmount;
     }
 
     public static int GetRunCoins()
