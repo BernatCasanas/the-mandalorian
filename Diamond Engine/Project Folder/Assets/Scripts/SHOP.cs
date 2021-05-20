@@ -45,6 +45,9 @@ public class SHOP : DiamondComponent
         if (autoGenerateItems)
             RandomiseItems();
 
+        if (hud == null)
+            hud = InternalCalls.FindObjectWithName("HUD");
+
         //Audio.PlayAudio(gameObject, "Play_Post_Boss_Room_1_Ambience");
     }
 
@@ -92,16 +95,26 @@ public class SHOP : DiamondComponent
     public bool Buy(ShopButtons item)
     {
         bool ret = false;
-        //int cost = -1;
+
+        Debug.Log("Buy 1");
+
         if (shopOpen)
         {
             int currency = PlayerResources.GetRunCoins();
+            Debug.Log("Buy 2");
 
             if (currency >= (int)item.price_type)
             {
                 if (item.itemType == ShopItems.SHOP_ITEM_BOON)
                 {
-                    item.resource.Use();
+                    Debug.Log("Buy 3");
+                    if (item.resource != null)
+                    {
+                        item.resource.Use();
+                        Debug.Log("Buy 4");
+                    }
+                    else
+                        Debug.Log("Null resource");
                 }
                 else if (item.itemType == ShopItems.SHOP_ITEM_HEALTHREPLENISHMENT)
                 {
@@ -120,7 +133,9 @@ public class SHOP : DiamondComponent
     private void UpdateCurrency(int val)
     {
         PlayerResources.SetRunCoins(val);
-        hud.GetComponent<HUD>().UpdateCurrency(val);
+
+        if(hud != null)
+            hud.GetComponent<HUD>().UpdateCurrency(val);
     }
 
     public void RandomiseItems()

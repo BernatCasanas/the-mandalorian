@@ -42,10 +42,10 @@ public static class PlayerResources
     static int scrapCounter = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("scrapCounter") : 0;
     static int runCoins = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("runCoins") : 0;
     static bool[] accquiredBoons = new bool[(int)BOONS.BOON_MAX];
-    static Dictionary<Type, int> boonCounter = new Dictionary<Type, int>();
+    static Dictionary<BOONS, int> boonCounter = new Dictionary<BOONS, int>();
 
 
-    public static int GetResourceCount(RewardType type, Type boonType = null)
+    public static int GetResourceCount(RewardType type)
     {
         int auxCounter = 0;
 
@@ -229,7 +229,10 @@ public static class PlayerResources
             boonCounter[boonType] += amountToAdd;
         }
 
-        if (boonCounter[boonType] < 0) { boonCounter[boonType] = 0; }
+        if (boonCounter[boonType] < 0) 
+        { 
+            boonCounter[boonType] = 0; 
+        }
         boonAmount = boonCounter[boonType];
 
         return boonAmount;

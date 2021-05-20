@@ -71,10 +71,20 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "RancorProjectile",
+                    "ScriptName": "WampaProjectile",
                     "speed": 30,
                     "lifeTime": 20,
                     "damage": 10
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "Wampa_Skell",
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false,
+                    "isMusic": false
                 }
             ]
         },
@@ -115,6 +125,7 @@
                     "Active": true,
                     "Path": "Library\/Meshes\/944489387.mmh",
                     "UID": 944489387,
+                    "bumpDepth": 0,
                     "alternColor": [
                         1,
                         1,
@@ -140,7 +151,7 @@
                     "Type": 26,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/vertex_color_stencil.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1540644281.mat",
                     "MaterialUID": 1540644281
                 }
