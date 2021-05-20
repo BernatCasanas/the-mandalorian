@@ -196,7 +196,8 @@ void PostProcessEffectAO::CleanUp()
 
 int PostProcessEffectAO::Render(bool isHDR, int width, int height, int colorTexture, int depthTexture, C_Camera* camera, PostProcessDataAO* aoVars)
 {
-	aoFilter->Render(isHDR, width, height, depthTexture, camera, aoVars->radiusAO,aoVars->bias,aoVars->fastAO);
+	float downscaleFactor = (aoVars->downscaleFactor > 0.0f) ? aoVars->downscaleFactor : 1.0f;
+	aoFilter->Render(isHDR, width/ downscaleFactor, height/downscaleFactor, depthTexture, camera, aoVars->radiusAO,aoVars->bias);
 	if (aoVars->useBlur)
 	{
 		blurVFilter->Render(isHDR, width, height, aoFilter->GetOutputTexture(), aoVars->blurSpread);

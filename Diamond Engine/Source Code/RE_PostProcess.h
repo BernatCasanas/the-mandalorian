@@ -62,7 +62,8 @@ public:
 	float blurSpread;
 	bool useBlur;
 	float bias;
-	bool fastAO;
+	float downscaleFactor;//the greater, the less performance hit will the effect have
+
 };
 
 class PostProcessDataBloom : public PostProcessData

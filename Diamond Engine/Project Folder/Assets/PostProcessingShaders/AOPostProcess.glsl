@@ -46,7 +46,6 @@ const int MAX_KERNEL_SIZE = 64;
 uniform vec3 kernel[MAX_KERNEL_SIZE];
 uniform vec2 depthDimensions;
 uniform float bias;
-uniform int fastAO;
 
 float CalcViewZ(vec2 coords) //converts depth at coords from clip space to view space
 {
@@ -61,25 +60,6 @@ float CalcViewZ(vec2 coords) //converts depth at coords from clip space to view 
 		return projectionMat[3][2] / (2 * depth -1 - projectionMat[2][2]);
 	}
     
-}
-
-vec3 CalculateFlatNormal(vec2 coords,float depth0) //Note this should make artifacts on geometry edges
-{
-	vec2 uv0 = coords; // center
-	vec2 uv1 = coords + vec2(1, 0) / depthDimensions; // right 
-	vec2 uv2 = coords + vec2(0, 1) / depthDimensions; // top
-
-	//float depth0 = texture(depthTexture, uv0, 0).r;
-	float depth1 = CalcViewZ(uv1);
-	float depth2 = CalcViewZ(uv2);
-	
-	vec3 P0 = vec3(uv0, depth0);
-	vec3 P1 = vec3(uv1, depth1);
-	vec3 P2 = vec3(uv2, depth2);
-	
-	vec3 normal = normalize(cross(P2 - P0, P1 - P0));
-
-	return normal;
 }
 
 vec3 CalculateSmoothNormal(vec2 coords,float depth0) //More performance intesive, no edge case errors
@@ -163,14 +143,9 @@ void main()
 
 		vec3 randomVec = texture(noiseTexture,textureCoords*noiseScale).xyz;
 		vec3 normal = vec3(0.0);
-		if(fastAO==1)
-		{
-			normal = CalculateFlatNormal(textureCoords,viewZ);
-		}
-		else
-		{
-			normal = CalculateSmoothNormal(textureCoords,viewZ);
-		}
+		
+		normal = CalculateSmoothNormal(textureCoords,viewZ);
+		
 
 		vec3 tangent   = normalize(randomVec - normal * dot(randomVec, normal));
 		vec3 bitangent = cross(normal, tangent);
