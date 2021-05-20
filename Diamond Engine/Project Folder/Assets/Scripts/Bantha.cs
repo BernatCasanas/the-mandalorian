@@ -7,7 +7,7 @@ using DiamondEngine;
 
 public class Bantha : Enemy
 {
-   enum STATE : int
+    enum STATE : int
     {
         NONE = -1,
         IDLE,
@@ -500,7 +500,7 @@ public class Bantha : Enemy
         LookAt(agent.GetDestination());
         //if (skill_slowDownActive)
         //    agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-        
+
         agent.MoveToCalculatedPos(runningSpeed * speedMult);
 
         StraightPath();
@@ -599,7 +599,7 @@ public class Bantha : Enemy
     {
         //if (skill_slowDownActive)
         //    agent.MoveToCalculatedPos(chargeSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-       
+
         if (!straightPath)
             agent.MoveToCalculatedPos(chargeSpeed * chargeSpeedReduction * speedMult);
         else
@@ -664,11 +664,14 @@ public class Bantha : Enemy
     #region PUSH
     private void StartPush()
     {
-        Vector3 force = gameObject.transform.globalPosition - Core.instance.gameObject.transform.globalPosition;
+        Vector3 force = pushDir.normalized;
         if (BabyYoda.instance != null)
         {
-            force.y = BabyYoda.instance.pushVerticalForce * forcePushMod;
-            gameObject.AddForce(force * BabyYoda.instance.pushHorizontalForce * forcePushMod);
+            force.y = BabyYoda.instance.pushVerticalForce;
+            force.x *= BabyYoda.instance.pushHorizontalForce;
+            force.z *= BabyYoda.instance.pushHorizontalForce;
+            gameObject.AddForce(force * forcePushMod);
+
             pushTimer = 0.0f;
         }
 
@@ -805,6 +808,17 @@ public class Bantha : Enemy
     {
         //if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         //    inputsList.Add(INPUT.IN_PUSHED);
+    }
+    public void OnTriggerExit(GameObject triggeredGameObject)
+    {
+        //if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
+        //{
+        //    if (Core.instance != null)
+        //    {
+        //        pushDir = triggeredGameObject.transform.GetForward();
+        //        inputsList.Add(INPUT.IN_PUSHED);
+        //    }
+        //}
     }
 
     public override void TakeDamage(float damage)

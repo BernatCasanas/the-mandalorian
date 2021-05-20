@@ -81,6 +81,7 @@ public class StormTrooper : Enemy
     public int maxSequences = 2;
     private bool shooting = false;
     private bool needFindAim = false;
+    public float pushTime = 0f;
 
     //force
     public float forcePushMod = 1;
@@ -686,14 +687,16 @@ public class StormTrooper : Enemy
     #region PUSH
     private void StartPush()
     {
-        Vector3 force = gameObject.transform.globalPosition - Core.instance.gameObject.transform.globalPosition;
+        Vector3 force = pushDir.normalized;
         if (BabyYoda.instance != null)
         {
             force.y = BabyYoda.instance.pushVerticalForce * forcePushMod;
-            gameObject.AddForce(force * BabyYoda.instance.pushHorizontalForce * forcePushMod);
+            force.x *= BabyYoda.instance.pushHorizontalForce;
+            force.z *= BabyYoda.instance.pushHorizontalForce;
+            gameObject.AddForce(force * forcePushMod);
+
             pushTimer = 0.0f;
         }
-
     }
     private void UpdatePush()
     {
@@ -842,10 +845,24 @@ public class StormTrooper : Enemy
         {
             if (Core.instance != null)
             {
+                pushDir = triggeredGameObject.transform.GetForward();
                 inputsList.Add(INPUT.IN_PUSHED);
             }
         }
     }
+
+    public void OnTriggerExit(GameObject triggeredGameObject)
+    {
+        if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
+        {
+            if (Core.instance != null)
+            {
+                pushDir = triggeredGameObject.transform.GetForward();
+                inputsList.Add(INPUT.IN_PUSHED);
+            }
+        }
+    }
+
 
     public override void TakeDamage(float damage)
     {

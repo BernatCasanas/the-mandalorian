@@ -7,6 +7,7 @@ public class Core : Entity
     public static Core instance;
     private static Dictionary<STATUS_TYPE, StatusData> PlayerStatuses = new Dictionary<STATUS_TYPE, StatusData>();
     public static List<STATUS_TYPE> boons = new List<STATUS_TYPE>();
+
     public enum STATE : int
     {
         NONE = -1,
@@ -447,7 +448,7 @@ public class Core : Entity
         if (dashCDTimer > 0)
         {
             dashCDTimer -= myDeltaTime * dashCDModifier;
-            betweenDashesCDTimer -= myDeltaTime* dashCDModifier;
+            betweenDashesCDTimer -= myDeltaTime * dashCDModifier;
 
             if (dashCDTimer <= 0f)
                 currentDashes = maxDashNumber;
@@ -503,7 +504,7 @@ public class Core : Entity
                 //inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
                 inputsList.Add(INPUT.IN_IDLE);
             }
-        } 
+        }
         if (snipShootAnimTimer > 0.0f)
         {
             snipShootAnimTimer -= myDeltaTime;
@@ -512,7 +513,7 @@ public class Core : Entity
             {
                 inputsList.Add(INPUT.IN_SEC_SHOOT_ANIM_END);
             }
-        }        
+        }
         if (snipPrepareAnimTimer > 0.0f)
         {
             snipPrepareAnimTimer -= myDeltaTime;
@@ -590,7 +591,7 @@ public class Core : Entity
             {
                 inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT);
             }
-            else if ((Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_UP || (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_IDLE && currentState == STATE.CHARGING_SEC_SHOOT))&& canShootSniper == true && lockAttacks == false)
+            else if ((Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_UP || (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_IDLE && currentState == STATE.CHARGING_SEC_SHOOT)) && canShootSniper == true && lockAttacks == false)
             {
                 inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
             }
@@ -642,7 +643,7 @@ public class Core : Entity
         }
         else if (grenade_reloading && grenadesFireRateTimer <= 0.0f)
         {
-            GetStatusData(STATUS_TYPE.CAD_BANE_BOOTS).statChange = - (1 + GetStatusData(STATUS_TYPE.CAD_BANE_BOOTS).severity / 100);
+            GetStatusData(STATUS_TYPE.CAD_BANE_BOOTS).statChange = -(1 + GetStatusData(STATUS_TYPE.CAD_BANE_BOOTS).severity / 100);
 
             PlayParticles(PARTICLES.GRENADE);
             grenade_reloading = false;
@@ -980,7 +981,7 @@ public class Core : Entity
     private void StartShooting()
     {
         shootingTimer = GetCurrentFireRate();
-        
+
 
         if (currFireRate != shootingTimer)
         {
@@ -1084,7 +1085,6 @@ public class Core : Entity
 
         if (HasStatus(STATUS_TYPE.REX_SEC_BLASTER) && GetStatusData(STATUS_TYPE.REX_SEC_BLASTER_SUBSKILL).severity < 20)
         {
- 
             AddStatus(STATUS_TYPE.REX_SEC_BLASTER_SUBSKILL, STATUS_APPLY_TYPE.ADDITIVE, GetStatusData(STATUS_TYPE.REX_SEC_BLASTER).severity, 5);
         }
 
@@ -1098,8 +1098,8 @@ public class Core : Entity
         gadgetShootTimer = gadgetFireRate;
         grenade_reloading = true;
         if (HasStatus(STATUS_TYPE.CAD_BANE_BOOTS))
-            GetStatusData(STATUS_TYPE.CAD_BANE_BOOTS).statChange = 1 + GetStatusData(STATUS_TYPE.CAD_BANE_BOOTS).severity /100;
-       
+            GetStatusData(STATUS_TYPE.CAD_BANE_BOOTS).statChange = 1 + GetStatusData(STATUS_TYPE.CAD_BANE_BOOTS).severity / 100;
+
         ReducePrimaryWeaponHeat(onGrenadeHeatReduction);
     }
 
@@ -1608,7 +1608,7 @@ public class Core : Entity
         ret *= FireRateMult;
         ret = Math.Max(ret, baseFireRate * 0.8f);
 
-      
+
 
         return ret;
     }
@@ -1631,7 +1631,7 @@ public class Core : Entity
 
     private void UpdateSecondaryShotAmmo()
     {
-        if (sniperRechargeTimer >= 0f)
+        if (sniperRechargeTimer >= 0f || currentBullets < numberOfBullets)
         {
             sniperRechargeTimer -= myDeltaTime;
 
@@ -1662,6 +1662,8 @@ public class Core : Entity
 
                 Audio.PlayAudio(secSound, "Play_Sniper_Cooldown_Finish");
             }
+
+
         }
 
     }
@@ -1754,7 +1756,7 @@ public class Core : Entity
                         gameObject.GetComponent<PlayerHealth>().TakeDamage((int)(collidedGameObject.GetComponent<BH_DestructBox>().explosion_damage * 0.5f));
                 }
             }
-            else if(collidedGameObject.CompareTag("MetalFloor"))
+            else if (collidedGameObject.CompareTag("MetalFloor"))
             {
                 floorType = FLOOR_TYPE.METAL;
             }
@@ -2011,7 +2013,7 @@ public class Core : Entity
         float ChadBaneModifier = 1;
         float AfterDashModifier = 1;
 
-        if(lastAction != ACTION.SHOOT_BLASTER)
+        if (lastAction != ACTION.SHOOT_BLASTER)
         {
             lastAction = ACTION.SHOOT_BLASTER;
 
@@ -2026,13 +2028,13 @@ public class Core : Entity
                 Debug.Log("Chad Bane Mod = " + ChadBaneModifier.ToString());
             }
         }
-       
+
         if (hasDashed)
         {
             hasDashed = false;
             AfterDashModifier += 0.25f;
         }
-      
+
 
         float Damage = BlasterDamageMult * BlasterDamagePerHpMult * DamagePerHeatMult * RawDamageMult * supercharged * ChadBaneModifier * AfterDashModifier;
         if (HasStatus(STATUS_TYPE.BLAST_CANNON))
@@ -2046,7 +2048,7 @@ public class Core : Entity
 
             }
         }
-            
+
 
         //if (skill_groguIncreaseDamageActive)
         //{
@@ -2067,7 +2069,7 @@ public class Core : Entity
     {
         //We apply modifications to the damage based on the skill actives in the talent tree
         float ChadBaneModifier = 1;
-        if(lastAction != ACTION.SHOOT_SNIPER)
+        if (lastAction != ACTION.SHOOT_SNIPER)
         {
             lastAction = ACTION.SHOOT_SNIPER;
             if (HasStatus(STATUS_TYPE.REX_SEC_BLASTER) && GetStatusData(STATUS_TYPE.REX_SEC_BLASTER_SUBSKILL).severity < 20)
@@ -2217,7 +2219,7 @@ public class Core : Entity
             case STATUS_TYPE.REX_SEC_BLASTER_SUBSKILL:
                 {
                     statusToInit.statChange = statusToInit.severity / 100;
-                   
+
                     speedMult += statusToInit.statChange;
                     Debug.Log("mult = " + speedMult.ToString() + "statChange = " + statusToInit.statChange.ToString());
                     myDeltaTime = Time.deltaTime * speedMult;
@@ -2284,7 +2286,7 @@ public class Core : Entity
                 break;
             case STATUS_TYPE.DMG_TO_BOSSES:
                 {
-                    statusToInit.statChange =(statusToInit.severity) / 100;
+                    statusToInit.statChange = (statusToInit.severity) / 100;
                     this.DamageToBosses += statusToInit.statChange;
                     //  Debug.Log(this.DamageToBosses.ToString());
                 }
@@ -2297,7 +2299,7 @@ public class Core : Entity
                         statusToInit.statChange = statusToInit.severity * PlayerHealth.currMaxHealth / 100;
                         myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth + statusToInit.statChange), true);
                     }
-                   
+
                 }
                 break;
             case STATUS_TYPE.MANDO_CODE:
@@ -2477,7 +2479,7 @@ public class Core : Entity
 
                 }
                 break;
-            
+
             default:
                 break;
         }
@@ -2583,17 +2585,17 @@ public class Core : Entity
                 break;
             case STATUS_TYPE.MAX_HP:
                 {
-                        PlayerHealth myHealth = gameObject.GetComponent<PlayerHealth>();
-                        myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth - statusToDelete.statChange));
+                    PlayerHealth myHealth = gameObject.GetComponent<PlayerHealth>();
+                    myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth - statusToDelete.statChange));
                 }
                 break;
             case STATUS_TYPE.MANDO_CODE:
                 {
                     PlayerHealth myHealth = gameObject.GetComponent<PlayerHealth>();
                     myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth - statusToDelete.statChange));
-                
 
-                this.RawDamageMult -= statusToDelete.severity / 100;
+
+                    this.RawDamageMult -= statusToDelete.severity / 100;
                 }
                 break;
             case STATUS_TYPE.DMG_RED:

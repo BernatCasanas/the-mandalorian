@@ -25,7 +25,7 @@ public class PushSkill : DiamondComponent
 
 		gameObject.transform.localPosition += gameObject.transform.GetForward() * (speed * Time.deltaTime);
 
-		float modifier = 1;
+		float modifier = 1f;
 		if (Core.instance.HasStatus(STATUS_TYPE.GRO_PUSH))
 			modifier *= Core.instance.GetStatusData(STATUS_TYPE.GRO_PUSH).severity;
 

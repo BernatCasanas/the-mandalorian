@@ -101,7 +101,6 @@ public class BH_Bullet : DiamondComponent
             }
         }
 
-
     }
 
     public float GetDamage()

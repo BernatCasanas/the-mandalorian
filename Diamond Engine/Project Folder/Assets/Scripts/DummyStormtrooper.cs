@@ -436,14 +436,16 @@ public class DummyStormtrooper : Enemy
     #region PUSH
     private void StartPush()
     {
-        Vector3 force = gameObject.transform.globalPosition - Core.instance.gameObject.transform.globalPosition;
+        Vector3 force = pushDir.normalized;
         if (BabyYoda.instance != null)
         {
-            force.y = BabyYoda.instance.pushVerticalForce * forcePushMod;
-            gameObject.AddForce(force * BabyYoda.instance.pushHorizontalForce * forcePushMod);
+            force.y = BabyYoda.instance.pushVerticalForce;
+            force.x *= BabyYoda.instance.pushHorizontalForce;
+            force.z *= BabyYoda.instance.pushHorizontalForce;
+            gameObject.AddForce(force * forcePushMod);
+
             pushTimer = 0.0f;
         }
-
     }
     private void UpdatePush()
     {
@@ -566,6 +568,19 @@ public class DummyStormtrooper : Enemy
         {
             if (Core.instance != null)
             {
+                pushDir = triggeredGameObject.transform.GetForward();
+                inputsList.Add(INPUT.IN_PUSHED);
+            }
+        }
+    }
+
+    public void OnTriggerExit(GameObject triggeredGameObject)
+    {
+        if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
+        {
+            if (Core.instance != null)
+            {
+                pushDir = triggeredGameObject.transform.GetForward();
                 inputsList.Add(INPUT.IN_PUSHED);
             }
         }
