@@ -44,6 +44,8 @@ public class Wampa : Bosseslv2
 
     private STATE currentState = STATE.SEARCH_STATE;
     private List<INPUT> inputsList = new List<INPUT>();
+    public bool firstSorrowRoar = false;
+    private bool firstFrame = true;
 
     public override void Awake()
     {
@@ -65,6 +67,11 @@ public class Wampa : Bosseslv2
 
     public void Update()
     {
+        if (firstFrame)
+        {
+            companion = InternalCalls.FindObjectWithName("Skel");
+            firstFrame = false;
+        }
         myDeltaTime = Time.deltaTime * speedMult;
         UpdateStatuses();
 
@@ -74,6 +81,12 @@ public class Wampa : Bosseslv2
 
         UpdateState();
         //Debug.Log(healthPoints.ToString());
+
+        if (firstSorrowRoar)
+        {
+            firstSorrowRoar = false;
+            Audio.PlayAudio(gameObject, "Play_Wampa_When_Skel_Dies");
+        }
     }
 
     private void ProcessInternalInput()
