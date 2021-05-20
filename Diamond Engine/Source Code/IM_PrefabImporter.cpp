@@ -35,7 +35,7 @@ int PrefabImporter::SavePrefab(const char* assets_path, GameObject* gameObject)
 
 	int uid = EngineExternal->moduleResources->ImportFile(assets_path, Resource::Type::PREFAB);
 	EngineExternal->moduleResources->GenerateMeta(assets_path, EngineExternal->moduleResources->GenLibraryPath(uid, Resource::Type::PREFAB).c_str(),
-												  uid, Resource::Type::PREFAB);
+		uid, Resource::Type::PREFAB);
 
 	//Free memory
 	json_value_free(file);
@@ -54,9 +54,9 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 	uint prefabID = (uint)atoi(id_string.c_str());
 
 	JSON_Value* prefab;
-	
+
 	prefab = EngineExternal->moduleScene->GetPrefab(prefabID);
-	
+
 	if (prefab == nullptr)
 	{
 		prefab = json_parse_file(libraryPath);
@@ -108,7 +108,7 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 				}
 			}
 		}
-	
+
 		if (std::find(prefabReferences.begin(), prefabReferences.end(), prefabReference) != prefabReferences.end())
 			continue;
 
@@ -118,10 +118,10 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 			{
 				prefabObjects[sceneObjects[i]->prefabReference] = sceneObjects[i];
 				sceneObjects[i]->LoadComponents(json_object_get_array(jsonObject, "Components"));
-				
-				if(j != 0)
+
+				if (j != 0)
 					sceneObjects[i]->transform->SetTransformMatrix(DEJson::ReadVector3(jsonObject, "Position"), DEJson::ReadQuat(jsonObject, "Rotation"), DEJson::ReadVector3(jsonObject, "Scale"));
-				
+
 				newObject = false;
 			}
 		}
@@ -167,15 +167,7 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 		}
 	}
 
-	if (DETime::state == GameState::PLAY)
-	{
-		std::vector<C_Script*> saveCopy; //We need to do this in case someone decides to create an instance inside the awake method
-		for (int i = oldSize; i < EngineExternal->moduleScene->activeScriptsVector.size(); ++i)
-			saveCopy.push_back(EngineExternal->moduleScene->activeScriptsVector[i]);
-
-		for (size_t i = 0; i < saveCopy.size(); i++)
-			saveCopy[i]->OnAwake();
-	}
+	
 
 	rootObject->prefabID = prefabID;
 
@@ -237,7 +229,7 @@ GameObject* PrefabImporter::InstantiatePrefab(const char* libraryPath)
 		it->second->prefabReference = it->first;
 		for (size_t i = 0; i < it->second->components.size(); i++)
 		{
-			if(it->second->components[i]->type != Component::TYPE::SCRIPT)
+			if (it->second->components[i]->type != Component::TYPE::SCRIPT)
 				it->second->components[i]->OnRecursiveUIDChange(gameObjects);
 		}
 	}
@@ -426,7 +418,7 @@ GameObject* PrefabImporter::LoadGOPrefabData(JSON_Object* goJsonObj, GameObject*
 	else
 	{
 		parent = new GameObject(json_object_get_string(goJsonObj, "name"), parent, json_object_get_number(goJsonObj, "UID"));
-		parent->LoadFromJson(goJsonObj);		
+		parent->LoadFromJson(goJsonObj);
 	}
 
 	return parent;
