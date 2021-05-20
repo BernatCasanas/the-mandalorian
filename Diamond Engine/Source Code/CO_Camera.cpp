@@ -322,6 +322,8 @@ void C_Camera::EndDraw()
 
 	glDisable(GL_DEPTH_TEST);
 	EngineExternal->moduleRenderer3D->activeRenderCamera = nullptr;
+	glClearColor(0.0f,0.0f,0.0f,1.0f);
+
 }
 
 void C_Camera::ReGenerateBuffer(int w, int h)
