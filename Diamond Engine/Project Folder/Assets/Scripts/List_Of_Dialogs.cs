@@ -57,6 +57,31 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 	};
 
+    private List<DialogImages> Final_Cutscene_images = new List<DialogImages>()
+    {
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+    };
+
     private List<string> Post_Initial_Cutscene_Dialogue = new List<string>()
     {
         "Mando, my friend! Come, I've grabbed you something to drink! It's been too long!",
@@ -68,6 +93,13 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
 		false,
         false,
+    };
+
+    private List<DialogImages> Post_Initial_Cutscene_Dialogue_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
     };
 
     private List<string> Initial_Cutscene = new List<string>()
@@ -92,6 +124,20 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 		true,
 	};
+
+    private List<DialogImages> Initial_Cutscene_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+    };
+
+
     //////////////////////////////////////////////////////////////////////////////////////// BO KATAN ////////////////////////////////////////////////////////////////////////////////////////
     private List<string> Bo_Katan_0_1 = new List<string>()
 	{
@@ -114,7 +160,18 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 	};
 
-	private List<string> Bo_Katan_0_2 = new List<string>()
+    private List<DialogImages> Bo_Katan_0_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+    };
+
+    private List<string> Bo_Katan_0_2 = new List<string>()
 	{
 		"Why did you really come here? Was it to convince me to help you in your campaign?",
 		"Maybe. You made a promise, remember? I helped you find Moff Gideon.",
@@ -133,7 +190,17 @@ public class List_Of_Dialogs : DiamondComponent
 		true,
 	};
 
-	private List<string> Bo_Katan_0_3 = new List<string>()
+    private List<DialogImages> Bo_Katan_0_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+    };
+
+    private List<string> Bo_Katan_0_3 = new List<string>()
 	{
 		"Isn't there some other way I could help you?",
 		"If you're not going to fight like a Mandalorian, give us your armor. A true warrior will use it in your stead.",
@@ -154,7 +221,18 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 	};
 
-	private List<string> Bo_Katan_1_1 = new List<string>()
+    private List<DialogImages> Bo_Katan_0_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+    };
+
+    private List<string> Bo_Katan_1_1 = new List<string>()
 	{
 		"Am I supposed to drink this? It is unapologetically disgusting.",
 		"Oh, excuse me your highness. Is this not worthy enough of royal stomach?",
@@ -180,7 +258,20 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 	};
 
-	private List<string> Bo_Katan_1_2 = new List<string>()
+    private List<DialogImages> Bo_Katan_1_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+    };
+
+    private List<string> Bo_Katan_1_2 = new List<string>()
 	{
 		"Say Bo-Katan, now that the Empire is defeated, why can't you reclaim your title?",
 		"I'm afraid it is not that easy. There are some political implications to that, and even worse... the Empire is not truly gone.",
@@ -197,7 +288,16 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 	};
 
-	private List<string> Bo_Katan_1_3 = new List<string>()
+    private List<DialogImages> Bo_Katan_1_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+    };
+
+    private List<string> Bo_Katan_1_3 = new List<string>()
 	{
 		"Hye, I've been thinking about our last chat. Why did you say that it's not that easy to bring all the mandalorians together?",
 		"The title of Mand'alor is not given, it is earned, and in the same way as it is earned, it can be lost.", 
@@ -216,7 +316,17 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 	};
 
-	private List<string> Bo_Katan_2_1 = new List<string>()
+    private List<DialogImages> Bo_Katan_1_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+    };
+
+    private List<string> Bo_Katan_2_1 = new List<string>()
 	{
 		"Another one? I already told you I cannot drink this, just looking at it is unpleasant.",
 		"You are welcome. By the way, what happened the last time you acquired the Darksaber?",
@@ -243,7 +353,21 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 	};
 
-	private List<string> Bo_Katan_2_2 = new List<string>()
+    private List<DialogImages> Bo_Katan_2_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+    };
+
+    private List<string> Bo_Katan_2_2 = new List<string>()
 	{
 		"How did you gain the people's approval to become their new leader? I'm guessing not thanks to your charming skills...",
 		"Like you are one to talk. Stop trying to develop a sense of humour, thanks. That is a long story.",
@@ -266,7 +390,19 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 	};
 
-	private List<string> Bo_Katan_2_3 = new List<string>()
+    private List<DialogImages> Bo_Katan_2_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+    };
+
+    private List<string> Bo_Katan_2_3 = new List<string>()
 	{
 		"Hold on a second, to have lived through so much... How old are you?",
 		"Well, that is rude. But coming from you, should I be surprised? I assume they do not teach manners in your cult.",
@@ -295,6 +431,21 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 	};
 
+    private List<DialogImages> Bo_Katan_2_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+    };
+
     private List<string> Bo_Katan_3_1 = new List<string>()
     {
         "Stop giving me this awful beverage. I am starting to think you want to poison me.",
@@ -316,6 +467,18 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+    };
+
+    private List<DialogImages> Bo_Katan_3_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
     };
 
     private List<string> Bo_Katan_3_2 = new List<string>()
@@ -351,6 +514,23 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Bo_Katan_3_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+    };
+
     private List<string> Bo_Katan_3_3 = new List<string>()
     {
         "So, what happened with that Sith Lord?",
@@ -376,6 +556,20 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+    };
+
+    private List<DialogImages> Bo_Katan_3_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
     };
 
     private List<string> Bo_Katan_4_1 = new List<string>()
@@ -409,6 +603,22 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Bo_Katan_4_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+    };
+
     private List<string> Bo_Katan_4_2 = new List<string>()
     {
         "Your stories of Mandalore intrigue me, they are so different from what I was told. Tell me more about the culture and society.",
@@ -430,6 +640,18 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         false,
         false,
+    };
+
+    private List<DialogImages> Bo_Katan_4_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
     };
 
     private List<string> Bo_Katan_4_3 = new List<string>()
@@ -459,6 +681,20 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Bo_Katan_4_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+    };
+
     private List<string> Bo_Katan_5_1 = new List<string>()
     {
         "How about we make a deal: I give you this and you promise to never ever, for the rest of your life, give me more of this horrible drink.",
@@ -472,6 +708,14 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+    };
+
+    private List<DialogImages> Bo_Katan_5_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
     };
 
     private List<string> Bo_Katan_5_2 = new List<string>()
@@ -489,6 +733,15 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+    };
+
+    private List<DialogImages> Bo_Katan_5_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
     };
 
     private List<string> Bo_Katan_5_3 = new List<string>()
@@ -512,6 +765,15 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Bo_Katan_5_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_BOKATAN_DEFAULT,
+    };
+
     //////////////////////////////////////////////////////////////////////////////////////// GROGU ////////////////////////////////////////////////////////////////////////////////////////
     private List<string> Grogu_0_1 = new List<string>()
 	{
@@ -530,7 +792,16 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 	};
 
-	private List<string> Grogu_0_2 = new List<string>()
+    private List<DialogImages> Grogu_0_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+    };
+
+    private List<string> Grogu_0_2 = new List<string>()
 	{
 		"Anything new you want to tell me about?",
 		"(The adorable creature extends his arm while opening and closing his three short fingers, he definitely wants something, but his hand can only grasp thin air.)",
@@ -559,6 +830,21 @@ public class List_Of_Dialogs : DiamondComponent
         false,
 	};
 
+    private List<DialogImages> Grogu_0_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+    };
+
     private List<string> Grogu_1_1 = new List<string>()
     {
         "Here's a little present for you kid. You better drink this, it will help you grow big and strong, like me. Drink it slowly.",
@@ -586,6 +872,20 @@ public class List_Of_Dialogs : DiamondComponent
         true,
     };
 
+    private List<DialogImages> Grogu_1_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+    };
+
     private List<string> Grogu_1_2 = new List<string>()
     {
         "How did you do it before I found you? I really doubt those Nikto mercenaries cared to tend to all your urges and whims.",
@@ -609,6 +909,18 @@ public class List_Of_Dialogs : DiamondComponent
         true,
     };
 
+    private List<DialogImages> Grogu_1_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+    };
+
     private List<string> Grogu_2_1 = new List<string>()
     {
         "Here you have, but if you make another mess, I'm leaving you in Tatooine, I promise.",
@@ -628,6 +940,17 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         true,
+    };
+
+    private List<DialogImages> Grogu_2_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
     };
 
     private List<string> Grogu_2_2 = new List<string>()
@@ -655,6 +978,19 @@ public class List_Of_Dialogs : DiamondComponent
         true,
     };
 
+    private List<DialogImages> Grogu_2_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+    };
+
     private List<string> Grogu_3_1 = new List<string>()
     {
         "Like the last time, huh? Taking the enemy's stronghold is the easy part, keeping it is what's complicated, but I'm sure I can count on you.",
@@ -676,6 +1012,18 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         false,
         true,
+    };
+
+    private List<DialogImages> Grogu_3_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
     };
 
     private List<string> Grogu_3_2 = new List<string>()
@@ -701,6 +1049,18 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Grogu_3_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+    };
+
     private List<string> Grogu_4_1 = new List<string>()
     {
         "Another one for you kid. You already know the deal. Nice and easy all right?",
@@ -722,6 +1082,17 @@ public class List_Of_Dialogs : DiamondComponent
         true,
     };
 
+    private List<DialogImages> Grogu_4_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+    };
+
     private List<string> Grogu_4_2 = new List<string>()
     {
         "Say kid, did you really have some training back in the Jedi days? From what Ahsoka told me that's what I understood, but I don't get how they were able to teach you anything, considering the troubles I have now trying to teach you to just drink normally...",
@@ -739,6 +1110,16 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         false,
         true,
+    };
+
+    private List<DialogImages> Grogu_4_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
     };
 
     private List<string> Grogu_5_1 = new List<string>()
@@ -766,6 +1147,19 @@ public class List_Of_Dialogs : DiamondComponent
         true,
     };
 
+    private List<DialogImages> Grogu_5_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+    };
+
     private List<string> Grogu_5_2 = new List<string>()
     {
         "Tell me kid, when all this is over... us I mean. When we find you this wise master... Am I ever going to see you again? ... Another fifty years from now, will you remember an old and grumpy geezer the face of whom you never saw?",
@@ -790,8 +1184,21 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         true,
     };
+
+    private List<DialogImages> Grogu_5_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_GROGU_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+    };
     //////////////////////////////////////////////////////////////////////////////////////// GREEF KARGA ////////////////////////////////////////////////////////////////////////////////////////
-    
+
     private List<string> Greef_0_1 = new List<string>()
 	{
 		"Ahh, if it isn't the great Mando himself. How is my best bounty hunter doing these days?",
@@ -819,7 +1226,21 @@ public class List_Of_Dialogs : DiamondComponent
         false,
 	};
 
-	private List<string> Greef_0_2 = new List<string>()
+    private List<DialogImages> Greef_0_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+    };
+
+    private List<string> Greef_0_2 = new List<string>()
 	{
 		"I bet you are enjoying your new position as magistrate Greef. You've always liked to order people around.",
 		"You're right, I like this job, but I prefer to think I got back what was mine. " ,
@@ -846,7 +1267,21 @@ public class List_Of_Dialogs : DiamondComponent
         false,
 	};
 
-	private List<string> Greef_0_3 = new List<string>()
+    private List<DialogImages> Greef_0_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+    };
+
+    private List<string> Greef_0_3 = new List<string>()
 	{
 		"There's one thing that still doesn't convince me. What you are doing in Nevarro... do you really believe in it? Or are you just doing it to keep your new job?",
 		"You genuinely think that low of me... Look, I could have just cleaned the place up a bit and buried all the bad stuff, because it doesn't matter. ",
@@ -873,6 +1308,20 @@ public class List_Of_Dialogs : DiamondComponent
 		false,
 	};
 
+    private List<DialogImages> Greef_0_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+    };
+
     private List<string> Greef_1_1 = new List<string>()
     {
         "Oh, is this your way of showing how much you appreciate my friendship? You're welcome Mando.",
@@ -894,6 +1343,18 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         false,
         true,
+    };
+
+    private List<DialogImages> Greef_1_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
     };
 
     private List<string> Greef_1_2 = new List<string>()
@@ -923,6 +1384,20 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Greef_1_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+    };
+
     private List<string> Greef_1_3 = new List<string>()
     {
         "Tell me Mando, what is this Mandalore campaign all about?",
@@ -950,6 +1425,20 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Greef_1_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+    };
+
     private List<string> Greef_2_1 = new List<string>()
     {
         "I suppose I shouldn't take this as a token of our beautiful friendship either, should I?",
@@ -971,6 +1460,18 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+    };
+
+    private List<DialogImages> Greef_2_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
     };
 
     private List<string> Greef_2_2 = new List<string>()
@@ -1003,6 +1504,21 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Greef_2_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+    };
+
     private List<string> Greef_2_3 = new List<string>()
     {
         "You never told me what happened after we destroyed that imperial base in Nevarro.",
@@ -1032,6 +1548,21 @@ public class List_Of_Dialogs : DiamondComponent
         true,
     };
 
+    private List<DialogImages> Greef_2_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+    };
+
     private List<string> Greef_3_1 = new List<string>()
     {
         "I know, I know... you had another one to spare.",
@@ -1057,6 +1588,20 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         false,
         false,
+    };
+
+    private List<DialogImages> Greef_3_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
     };
 
     private List<string> Greef_3_2 = new List<string>()
@@ -1090,6 +1635,22 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Greef_3_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+    };
+
     private List<string> Greef_3_3 = new List<string>()
     {
         "I knew you worked for the empire, but I had never thought about your past with them. I just imagined that they had let you be magistrate as long as you didn't give them any problems. But with all that talk about partners and friendships... ",
@@ -1119,6 +1680,21 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Greef_3_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+    };
+
     private List<string> Greef_4_1 = new List<string>()
     {
         "What now? Token of appreciation or one to spare?",
@@ -1146,6 +1722,20 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Greef_4_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+    };
+
     private List<string> Greef_4_2 = new List<string>()
     {
         "About the Jedi. Remember the other bounty hunter I told you about? The one I used to admire. He became number one after Jango's death. He meddled with Jedi many times and yet, always seemed to come out unscratched.",
@@ -1167,6 +1757,18 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+    };
+
+    private List<DialogImages> Greef_4_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
     };
 
     private List<string> Greef_4_3 = new List<string>()
@@ -1194,6 +1796,19 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Greef_4_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+    };
+
     private List<string> Greef_5_1 = new List<string>()
     {
         "Now don't tell me that you had that much to spare. I don't care what you say, after five times I'm definitely going to take this as a kind gesture from you, and thus I'm going to do the same. Here you go, take this and use it when you need it.",
@@ -1217,6 +1832,19 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+    };
+
+    private List<DialogImages> Greef_5_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
     };
 
     private List<string> Greef_5_2 = new List<string>()
@@ -1244,6 +1872,19 @@ public class List_Of_Dialogs : DiamondComponent
         true,
     };
 
+    private List<DialogImages> Greef_5_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+    };
+
     private List<string> Greef_5_3 = new List<string>()
     {
         "Have you suddenly grown wiser? Lately I have the feeling that what you say is actually worth listening to.",
@@ -1265,6 +1906,18 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         false,
         true,
+    };
+
+    private List<DialogImages> Greef_5_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
     };
 
     //////////////////////////////////////////////////////////////////////////////////////// AHSOKA ////////////////////////////////////////////////////////////////////////////////////////
@@ -2539,6 +3192,188 @@ public class List_Of_Dialogs : DiamondComponent
         }
 		return Initial_Cutscene_bool;
 	}
+
+    public List<DialogImages> GetListOfImages(uint index)
+    {
+        switch (index)
+        {
+            case 0:
+                return Initial_Cutscene_images;
+            case 1:
+                return Bo_Katan_0_1_images;
+            case 2:                 
+                return Bo_Katan_0_2_images;
+            case 3:                 
+                return Bo_Katan_0_3_images;
+            case 4:                 
+                return Bo_Katan_1_1_images;
+            case 5:                 
+                return Bo_Katan_1_2_images;
+            case 6:                 
+                return Bo_Katan_1_3_images;
+            case 7:                 
+                return Bo_Katan_2_1_images;
+            case 8:                 
+                return Bo_Katan_2_2_images;
+            case 9:                 
+                return Bo_Katan_2_3_images;
+            case 10:                
+                return Bo_Katan_3_1_images;
+            case 11:                
+                return Bo_Katan_3_2_images;
+            case 12:
+                return Bo_Katan_3_3_images;
+            case 13:                
+                return Bo_Katan_4_1_images;
+            case 14:                
+                return Bo_Katan_4_2_images;
+            case 15:                
+                return Bo_Katan_4_3_images;
+            case 16:                
+                return Bo_Katan_5_1_images;
+            case 17:                
+                return Bo_Katan_5_2_images;
+            case 18:                
+                return Bo_Katan_5_3_images;
+            /*case 19:
+                return Greef_0_1_images;
+            case 20:             
+                return Greef_0_2_images;
+            case 21:             
+                return Greef_0_3_images;
+            case 22:             
+                return Greef_1_1_images;
+            case 23:             
+                return Greef_1_2_images;
+            case 24:
+                return Greef_1_3_images;
+            case 25:             
+                return Greef_2_1_images;
+            case 26:             
+                return Greef_2_2_images;
+            case 27:             
+                return Greef_2_3_images;
+            case 28:             
+                return Greef_3_1_images;
+            case 29:             
+                return Greef_3_2_images;
+            case 30:             
+                return Greef_3_3_images;
+            case 31:             
+                return Greef_4_1_images;
+            case 32:             
+                return Greef_4_2_images;
+            case 33:             
+                return Greef_4_3_images;
+            case 34:             
+                return Greef_5_1_images;
+            case 35:             
+                return Greef_5_2_images;
+            case 36:             
+                return Greef_5_3_images;
+            case 37:
+                return Ahsoka_0_1_images;
+            case 38:              
+                return Ahsoka_0_2_images;
+            case 39:              
+                return Ahsoka_0_3_images;
+            case 40:              
+                return Ahsoka_1_1_images;
+            case 41:              
+                return Ahsoka_1_2_images;
+            case 42:              
+                return Ahsoka_1_3_images;
+            case 43:              
+                return Ahsoka_2_1_images;
+            case 44:
+                return Ahsoka_2_2_images;
+            case 45:              
+                return Ahsoka_2_3_images;
+            case 46:              
+                return Ahsoka_3_1_images;
+            case 47:              
+                return Ahsoka_3_2_images;
+            case 48:              
+                return Ahsoka_3_3_images;
+            case 49:              
+                return Ahsoka_4_1_images;
+            case 50:              
+                return Ahsoka_4_2_images;
+            case 51:              
+                return Ahsoka_4_3_images;
+            case 52:              
+                return Ahsoka_5_1_images;
+            case 53:              
+                return Ahsoka_5_2_images;
+            case 54:              
+                return Ahsoka_5_3_images;
+            case 55:
+                return Cara_0_1_images;
+            case 56:            
+                return Cara_0_2_images;
+            case 57:            
+                return Cara_0_3_images;
+            case 58:
+                return Cara_1_1_images;
+            case 59:            
+                return Cara_1_2_images;
+            case 60:            
+                return Cara_1_3_images;
+            case 61:            
+                return Cara_2_1_images;
+            case 62:            
+                return Cara_2_2_images;
+            case 63:            
+                return Cara_2_3_images;
+            case 64:            
+                return Cara_3_1_images;
+            case 65:            
+                return Cara_3_2_images;
+            case 66:            
+                return Cara_3_3_images;
+            case 67:            
+                return Cara_4_1_images;
+            case 68:            
+                return Cara_4_2_images;
+            case 69:            
+                return Cara_4_3_images;
+            case 70:            
+                return Cara_5_1_images;
+            case 71:            
+                return Cara_5_2_images;
+            case 72:            
+                return Cara_5_3_images;*/
+            case 73:
+                return Grogu_0_1_images;
+            case 74:             
+                return Grogu_0_2_images;
+            case 75:             
+                return Grogu_1_1_images;
+            case 76:             
+                return Grogu_1_2_images;
+            case 77:             
+                return Grogu_2_1_images;
+            case 78:             
+                return Grogu_2_2_images;
+            case 79:             
+                return Grogu_3_1_images;
+            case 80:             
+                return Grogu_3_2_images;
+            case 81:             
+                return Grogu_4_1_images;
+            case 82:             
+                return Grogu_4_2_images;
+            case 83:             
+                return Grogu_5_1_images;
+            case 84:             
+                return Grogu_5_2_images;
+            case 85:
+                return Final_Cutscene_images;
+            case 86:
+                return Post_Initial_Cutscene_Dialogue_images;
+        }
+        return Initial_Cutscene_images;
+    }
 
     public String GetDialogName(uint index)
     {
