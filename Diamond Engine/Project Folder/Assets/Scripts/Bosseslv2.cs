@@ -174,6 +174,10 @@ public class Bosseslv2 : Entity
         Animator.Play(gameObject, "WP_Rush", speedMult);
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Previous_Rush_Roar");
+        if (colliderBounceRush != null)
+        {
+            colliderBounceRush.GetComponent<AtackBosslv2>().active = true;
+        }
     }
     public void UpdateFastRush()
     {
@@ -211,6 +215,10 @@ public class Bosseslv2 : Entity
     {
         resting = true;
         restingTimer = restingTime;
+        if (colliderBounceRush != null)
+        {
+            colliderBounceRush.GetComponent<AtackBosslv2>().active = false;
+        }
     }
     #endregion
 
