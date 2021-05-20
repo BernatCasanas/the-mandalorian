@@ -2,6 +2,16 @@ using System;
 using DiamondEngine;
 using System.Collections.Generic;
 
+public enum DialogImages
+{
+    IMG_MANDO_DEFAULT = 0,
+    IMG_GROGU_DEFAULT,
+    IMG_BOKATAN_DEFAULT,
+    IMG_CARA_DEFAULT,
+    IMG_GREEF_DEFAULT,
+    IMG_AHSOKA_DEFAULT,
+    IMG_MAX
+}
 
 public class List_Of_Dialogs : DiamondComponent
 {
