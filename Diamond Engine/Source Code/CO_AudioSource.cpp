@@ -158,7 +158,7 @@ void C_AudioSource::LoadData(DEConfig& nObj)
 	SetMuted(nObj.ReadBool("isMuted"));
 	SetPitch(nObj.ReadFloat("pitch"));
 	this->playOnAwake = nObj.ReadBool("playOnAwake");
-	isMusic = false;
+	isMusic = nObj.ReadBool("isMusic");
 
 	// Iterate and assign audio bank. If not loaded, load
 	std::vector<AudioBank*>::iterator it;
