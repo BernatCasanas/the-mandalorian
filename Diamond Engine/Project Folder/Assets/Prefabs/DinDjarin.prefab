@@ -13,9 +13,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -11.047249794006348,
-                8.8548679351806641,
-                -11.11531925201416
+                -15.175867080688476,
+                0.68035280704498291,
+                -4.9496994018554688
             ],
             "Rotation": [
                 0,
@@ -92,6 +92,7 @@
                     "overShotDmgMult": 1.0499999523162842,
                     "overheatTimeBeeping": 0.079999998211860657,
                     "sniperAimAnimMult": 0.94999998807907104,
+                    "luckyMod": 0,
                     "lockInputs": false,
                     "bulletDamage": 0,
                     "secSound": 970959798
@@ -530,7 +531,7 @@
                 0,
                 0,
                 -0.0073059904389083385,
-                0.99997329711914063
+                0.99997329711914062
             ],
             "Scale": [
                 1,
@@ -1644,7 +1645,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0.49832534790039063,
+                0.49832534790039062,
                 2.0816681711721685e-17,
                 1.3898392876873153e-17
             ],
@@ -1987,7 +1988,8 @@
                         0
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": false
+                    "doNotDrawStencil": false,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -2121,7 +2123,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -1.8636245727539063,
+                -1.8636245727539062,
                 0.046333789825439453,
                 -0.77125072479248047
             ],
@@ -2155,7 +2157,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -1.8636245727539063,
+                -1.8636245727539062,
                 0.046333789825439453,
                 0.86050128936767578
             ],
@@ -2189,7 +2191,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0.76593399047851563,
+                0.76593399047851562,
                 0.046333789825439453,
                 0.86050128936767578
             ],
@@ -2258,7 +2260,7 @@
             "Static": false,
             "Position": [
                 -0.0040745735168457031,
-                -0.0062532424926757813,
+                -0.0062532424926757812,
                 -0.058134078979492188
             ],
             "Rotation": [
@@ -2670,10 +2672,10 @@
                 -0.19471836090087891
             ],
             "Rotation": [
-                0.19392229616641998,
-                -2.7353405651631135e-10,
-                1.3877789462175682e-17,
-                0.98101699352264404
+                0.1939222663640976,
+                -2.7353402876073574e-10,
+                1.3877787807814457e-17,
+                0.98101687431335449
             ],
             "Scale": [
                 1,
@@ -3767,7 +3769,8 @@
                         0
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": false
+                    "doNotDrawStencil": false,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -3864,7 +3867,7 @@
                 {
                     "Type": 20,
                     "Active": true,
-                    "systemActive": false,
+                    "systemActive": true,
                     "looping": true,
                     "maxDuration": 4.5100002288818359,
                     "ParticleEmitters": [
@@ -3891,32 +3894,44 @@
                             "paRelative": true,
                             "ParticleEffects": [
                                 {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        0,
+                                        0,
+                                        1
+                                    ],
+                                    "paFOLT_magnitude": 10,
+                                    "paFOLT_gravityMod": 0,
+                                    "paFOLT_gravity": -0,
+                                    "paFOLT_forceType": 0
+                                },
+                                {
                                     "paEffectType": 2,
                                     "Gradients": [
                                         {
                                             "paColorOLTcolor": [
-                                                0,
-                                                0.94071149826049805,
-                                                1,
-                                                0
+                                                0.97647058963775635,
+                                                0.77254903316497803,
+                                                0.13725490868091583,
+                                                1
                                             ],
                                             "paColorOLTposition": 0.051353387534618378
                                         },
                                         {
                                             "paColorOLTcolor": [
-                                                0,
-                                                1,
-                                                0.94071125984191895,
+                                                0.97628456354141235,
+                                                0.77438986301422119,
+                                                0.13891796767711639,
                                                 1
                                             ],
                                             "paColorOLTposition": 0.59189152717590332
                                         },
                                         {
                                             "paColorOLTcolor": [
-                                                0.98023712635040283,
                                                 1,
-                                                0.99882829189300537,
-                                                1
+                                                0,
+                                                0,
+                                                0.79446637630462646
                                             ],
                                             "paColorOLTposition": 0.98648655414581299
                                         }
@@ -3925,7 +3940,7 @@
                                 {
                                     "paEffectType": 3,
                                     "paSizeOLTStartSize": 0.039999999105930328,
-                                    "paSizeOLTEndSize": 0.019999999552965164
+                                    "paSizeOLTEndSize": 0
                                 },
                                 {
                                     "paEffectType": 5,
@@ -4303,7 +4318,8 @@
                         0
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": false
+                    "doNotDrawStencil": false,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
