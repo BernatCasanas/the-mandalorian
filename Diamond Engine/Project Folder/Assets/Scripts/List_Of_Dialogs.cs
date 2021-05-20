@@ -2508,7 +2508,7 @@ public class List_Of_Dialogs : DiamondComponent
         switch (index)
         {
             case 0:
-                return "Greef";
+                return "Initial_Cutscene_bool";
             case 1:
                 return "Bo Katan";
             case 2:
@@ -2678,9 +2678,9 @@ public class List_Of_Dialogs : DiamondComponent
             case 84:
                 return "Grogu";
             case 85:
-                return " ";
+                return "Final_Cutscene_bool";
             case 86:
-                return " ";
+                return "Greef";
         }
         return " ";
 
