@@ -6,11 +6,15 @@ public class UI_Move : DiamondComponent
 	public float delay = 0.5f;
 	public float duration = 1.0f;
 
-	public Vector2 initialPos;
-	public Vector2 finalPos;
+	public float initialPosX = 0.0f;
+	public float initialPosY = 0.0f;
+	public float finalPosX = 0.0f;
+	public float finalPosY = 0.0f;
 
-	public Vector2 initialScale;
-	public Vector2 finalScale;
+	public float initialScaleX = 0.0f;
+	public float initialScaleY = 0.0f;
+	public float finalScaleX = 0.0f;
+	public float finalScaleY = 0.0f;
 
 	private float timer = 0.0f;
 
@@ -30,7 +34,7 @@ public class UI_Move : DiamondComponent
 		}
 		else
 		{
-			trans.SetLocalTransform(new Vector3(initialPos.x, initialPos.y, 1.0f), trans.lRot, new Vector3(initialScale.x, initialScale.y, 1.0f)); 
+			trans.SetLocalTransform(new Vector3(initialPosX, initialPosY, 1.0f), trans.lRot, new Vector3(initialScaleX, initialScaleY, 1.0f)); 
 		}
 	}
 
@@ -46,13 +50,18 @@ public class UI_Move : DiamondComponent
 				started = true;
 				timer = 0.0f;
 			}
-			else if (started == true && timer < duration)
+			else if (started == true && timer <= duration)
 			{
-				float xValue = Mathf.Lerp(0.0f, 1.0f, timer / duration); //Working on the lerp
-				//material.SetFloatUniform("fadeValue", value);
+				float xPosition = Mathf.Lerp(initialPosX, finalPosX, timer / duration);
+				float yPosition = Mathf.Lerp(initialPosY, finalPosY, timer / duration);
+
+				float xScale = Mathf.Lerp(initialScaleX, finalScaleX, timer / duration);
+				float yScale = Mathf.Lerp(initialScaleY, finalScaleY, timer / duration);
+
+				trans.SetLocalTransform(new Vector3(xPosition, yPosition, 1.0f), trans.lRot, new Vector3(xScale, yScale, 1.0f));
 			}
 
-			else if (started == true && timer >= duration)
+			else if (started == true && timer > duration)
 				ended = true;
 		}
 
