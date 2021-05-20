@@ -757,8 +757,8 @@ public class Deathtrooper : Enemy
 
     public override void TakeDamage(float damage)
     {
-        
 
+        Audio.PlayAudio(gameObject, "Play_Deathtrooper_Hit");
         healthPoints -= damage;
         if (Core.instance != null)
         {

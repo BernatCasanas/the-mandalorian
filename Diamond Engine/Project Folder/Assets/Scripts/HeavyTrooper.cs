@@ -991,8 +991,8 @@ public class HeavyTrooper : Enemy
 
     public override void TakeDamage(float damage)
     {
-       
 
+        Audio.PlayAudio(gameObject, "Play_Heavytrooper_Hit");
         healthPoints -= damage;
         if (Core.instance != null)
         {

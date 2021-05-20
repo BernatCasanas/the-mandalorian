@@ -1363,7 +1363,14 @@ public class MoffGideon : Entity
     {
         if (!DebugOptionsHolder.bossDmg)
         {
-          
+            if (currentPhase == MOFFGIDEON_PHASE.PHASE1)
+            {
+                Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Hit_Phase_1");
+            }
+            else if (currentPhase == MOFFGIDEON_PHASE.PHASE2)
+            {
+                Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Hit_Phase_2");
+            }
             Debug.Log("Moff damage" + damage.ToString());
             if (currentState != MOFFGIDEON_STATE.DEAD)
             {

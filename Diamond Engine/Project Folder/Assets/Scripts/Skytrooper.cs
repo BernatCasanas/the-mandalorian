@@ -556,8 +556,7 @@ public class Skytrooper : Enemy
 
         //Animator.Play(gameObject, "ST_Die", 1.0f);
 
-        Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
-        Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
+        Audio.PlayAudio(gameObject, "Play_Skytrooper_Death");
 
         EnemyManager.RemoveEnemy(gameObject);
 
@@ -763,6 +762,7 @@ public class Skytrooper : Enemy
 
     public override void TakeDamage(float damage)
     {
+        Audio.PlayAudio(gameObject, "Play_Skytrooper_Hit");
         healthPoints -= damage;
         if (Core.instance != null)
         {
