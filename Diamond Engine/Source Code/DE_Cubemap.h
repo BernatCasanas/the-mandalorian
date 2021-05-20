@@ -1,6 +1,7 @@
 #pragma once
 
 #include"DEResource.h"
+#include<vector>
 
 class ResourceShader;
 class C_Camera;
@@ -14,7 +15,9 @@ public:
 
 	//LoadCubeMap();
 	void CreateGLData();
-	void ClearMemory();
+	void ClearMemory(bool clearShader = true);
+
+    void ClearTextureMemory();
 
 	void DrawAsSkybox(C_Camera* _transform);
 
@@ -22,6 +25,12 @@ public:
 	unsigned int textureID;
 
 	unsigned int vboId;
+
+    bool canRender;
+
+    std::string loadedTextures[6];
+
+    //std::vector<char*>
 };
 
 static const float skyboxVertices[] = 
