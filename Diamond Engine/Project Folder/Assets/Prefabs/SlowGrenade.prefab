@@ -9,7 +9,7 @@
             "UID": 1533908665,
             "ParentUID": 0,
             "PrefabReference": 0,
-            "PrefabID": 0,
+            "PrefabID": 660835192,
             "DontDestroy": false,
             "Static": false,
             "Position": [
@@ -67,6 +67,40 @@
                     "Density": 1
                 },
                 {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SlowGrenade",
+                    "forwardForce": 1000,
+                    "upForce": 500,
+                    "grenadeActiveObj": 1514017107,
+                    "granadeAreaObj": 990157267,
+                    "lifeTime": 2,
+                    "explosionTime": 5,
+                    "damage": 5,
+                    "procTime": 0.25
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        9.5,
+                        2.5,
+                        9.5
+                    ]
+                },
+                {
                     "Type": 22,
                     "Active": true,
                     "isTrigger": false,
@@ -81,37 +115,7 @@
                         0,
                         1
                     ],
-                    "Radius": 0.20000000298023224
-                },
-                {
-                    "Type": 22,
-                    "Active": true,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Radius": 2.5
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "SlowGrenade",
-                    "forwardForce": 1000,
-                    "upForce": 500,
-                    "grenadeActiveObj": 1514017107,
-                    "granadeAreaObj": 990157267,
-                    "lifeTime": 2,
-                    "explosionTime": 5,
-                    "damage": 5,
-                    "procTime": 0.25
+                    "Radius": 0.17499999701976776
                 }
             ]
         },
