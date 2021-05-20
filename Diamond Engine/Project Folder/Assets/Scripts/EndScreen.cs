@@ -255,14 +255,10 @@ public class EndScreen : DiamondComponent
         {
             BoonDisplay boonDisplay = boonDisplayObject.GetComponent<BoonDisplay>();
 
-            Debug.Log("Boon 1");
-
             if (boonDisplay != null)
             {
-                Debug.Log("Boon 2");
                 for (int i = 0; i < PlayerResources.GetBoonsAmount(); i++)
                 {
-                    Debug.Log("Boon 3");
                     //Boon image
                     int boonTextureId = BoonDataHolder.boonType[i].libraryTextureID;
 
