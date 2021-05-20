@@ -179,7 +179,7 @@ public class Bosseslv2 : Entity
         Debug.Log("Fast Rush");
         Animator.Play(gameObject, "WP_Rush", speedMult);
         UpdateAnimationSpd(speedMult);
-        Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Previous_Rush_Roar");
+        Audio.PlayAudio(gameObject, "Play_Wampa_Rush");
         if (colliderBounceRush != null)
         {
             colliderBounceRush.GetComponent<AtackBosslv2>().active = true;
@@ -197,7 +197,7 @@ public class Bosseslv2 : Entity
 
     public void EndFastRush()
     {
-
+        Audio.StopOneAudio(gameObject, "Play_Wampa_Rush");
     }
 
     public void StartSlowRush()
@@ -206,6 +206,7 @@ public class Bosseslv2 : Entity
         Debug.Log("Slow Rush");
         Animator.Play(gameObject, "WP_Rush", speedMult);
         UpdateAnimationSpd(speedMult);
+        Audio.PlayAudio(gameObject, "Play_Wampa_Rush");
     }
     public void UpdateSlowRush()
     {
@@ -225,6 +226,7 @@ public class Bosseslv2 : Entity
         {
             colliderBounceRush.GetComponent<AtackBosslv2>().active = false;
         }
+        Audio.StopOneAudio(gameObject, "Play_Wampa_Rush");
     }
     #endregion
 
@@ -233,7 +235,7 @@ public class Bosseslv2 : Entity
 
     public void StartBounceRush()
     {
-        Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Previous_Rush_Roar");
+        Audio.PlayAudio(gameObject, "Play_Wampa_Rush");
         if (gameObject.CompareTag("Skel"))
         {
             Animator.Play(gameObject, "Skel_Rush", speedMult);
@@ -308,6 +310,7 @@ public class Bosseslv2 : Entity
         if (colliderBounceRush != null) {
             colliderBounceRush.GetComponent<AtackBosslv2>().active = false;
         }
+        Audio.StopOneAudio(gameObject, "Play_Wampa_Rush");
     }
 
     #endregion
@@ -537,7 +540,7 @@ public class Bosseslv2 : Entity
             Animator.Play(gameObject, "WP_Die", speedMult);
             UpdateAnimationSpd(speedMult);
         }
-        Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Death_Roar");
+        Audio.PlayAudio(gameObject, "Play_Wampa_Death");
         Debug.Log("Dying");
     }
     public void UpdateDie()

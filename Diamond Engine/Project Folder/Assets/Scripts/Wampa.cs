@@ -429,6 +429,7 @@ public class Wampa : Bosseslv2
 
             if (currentState != STATE.DEAD)
             {
+                Audio.PlayAudio(gameObject, "Play_Wampa_Hit");
                 healthPoints -= damage;
                 if (Core.instance != null)
                 {
