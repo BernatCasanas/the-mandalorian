@@ -66,9 +66,7 @@ public class EndLevelRewards
 
     public EndLevelReward SelectRewards()
     {
-
         // Do logic about dynamic percentage change (need the player stats to know)
-
         EndLevelReward newReward;
         int randomNum = new Random().Next(100);
         int chanceAcumulation = 0;
@@ -79,7 +77,6 @@ public class EndLevelRewards
 
             if (randomNum <= chanceAcumulation)
             {
-
                 switch (i)
                 {
                     case 0:
