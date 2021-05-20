@@ -1945,6 +1945,18 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Ahsoka_0_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+    };
+
     private List<string> Ahsoka_0_2 = new List<string>()
     {
        "So, have you changed your mind about training the kid? I still need to find him a Jedi master.",
@@ -1968,6 +1980,19 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         false,
         false,
+    };
+
+    private List<DialogImages> Ahsoka_0_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
     };
 
     private List<string> Ahsoka_0_3 = new List<string>()
@@ -1995,6 +2020,19 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Ahsoka_0_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+    };
+
     private List<string> Ahsoka_1_1 = new List<string>()
     {
        "Blue milk... Why are you giving me this Mandalorian? It was one of the most popular beverages among the Jedi, did you know that?",
@@ -2016,6 +2054,18 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+    };
+
+    private List<DialogImages> Ahsoka_1_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
     };
 
     private List<string> Ahsoka_1_2 = new List<string>()
@@ -2045,6 +2095,20 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Ahsoka_1_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+    };
+
     private List<string> Ahsoka_1_3 = new List<string>()
     {
         "So, Grogu should become a Jedi. Are you sure this is the right way?",
@@ -2064,6 +2128,17 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+    };
+
+    private List<DialogImages> Ahsoka_1_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
     };
 
     private List<string> Ahsoka_2_1 = new List<string>()
@@ -2091,6 +2166,19 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Ahsoka_2_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+    };
+
     private List<string> Ahsoka_2_2 = new List<string>()
     {
         "Grogu will live more than 800 years... Do you think he'll remember any of us in a couple of centuries?",
@@ -2113,6 +2201,18 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+    };
+
+    private List<DialogImages> Ahsoka_2_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
     };
 
     private List<string> Ahsoka_2_3 = new List<string>()
@@ -2140,6 +2240,19 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Ahsoka_2_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+    };
+
     private List<string> Ahsoka_3_1 = new List<string>()
     {
         "Another one to spare? Where do you get all this Bantha milk?",
@@ -2161,6 +2274,18 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+    };
+
+    private List<DialogImages> Ahsoka_3_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
     };
 
     private List<string> Ahsoka_3_2 = new List<string>()
@@ -2186,6 +2311,19 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         false,
         false,
+    };
+
+    private List<DialogImages> Ahsoka_3_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
     };
 
     private List<string> Ahsoka_3_3 = new List<string>()
@@ -2217,6 +2355,21 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Ahsoka_3_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+    };
+
     private List<string> Ahsoka_4_1 = new List<string>()
     {
         "You are spoiling me Mandalorian. I am sure other people would profit from this. Consider giving some to them.",
@@ -2244,6 +2397,20 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Ahsoka_4_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+    };
+
     private List<string> Ahsoka_4_2 = new List<string>()
     {
         "It amazes me that you did so much for the Rebellion and still, your involvement has remained a secret. The Republic owes you part of their existence, but your name will be forgotten after you die.",
@@ -2269,6 +2436,20 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         true,
         false,
+    };
+
+    private List<DialogImages> Ahsoka_4_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
     };
 
     private List<string> Ahsoka_4_3 = new List<string>()
@@ -2300,6 +2481,21 @@ public class List_Of_Dialogs : DiamondComponent
         true,
     };
 
+    private List<DialogImages> Ahsoka_4_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+    };
+
     private List<string> Ahsoka_5_1 = new List<string>()
     {
         "Please, let this be the last time you give me blue milk. I am grateful, but I cannot help but wonder whether others might benefit from it more than me. Now, instead, accept this as a gift from me.",
@@ -2323,6 +2519,18 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Ahsoka_5_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+    };
+
     private List<string> Ahsoka_5_2 = new List<string>()
     {
         "Can I ask you what happened with your master?",
@@ -2344,6 +2552,18 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         false,
         false,
+    };
+
+    private List<DialogImages> Ahsoka_5_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
     };
 
     private List<string> Ahsoka_5_3 = new List<string>()
@@ -2375,6 +2595,21 @@ public class List_Of_Dialogs : DiamondComponent
         true,
     };
 
+    private List<DialogImages> Ahsoka_5_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_AHSOKA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+    };
+
     //////////////////////////////////////////////////////////////////////////////////////// CARA DUNE ////////////////////////////////////////////////////////////////////////////////////////
 
     private List<string> Cara_0_1 = new List<string>()
@@ -2398,6 +2633,18 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         false,
         true,
+    };
+
+    private List<DialogImages> Cara_0_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
     };
 
     private List<string> Cara_0_2 = new List<string>()
@@ -2425,6 +2672,19 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Cara_0_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+    };
+
     private List<string> Cara_0_3 = new List<string>()
     {
         "Seriously, is it that bad to remove your helmet? I promise not to tell anyone.",
@@ -2450,6 +2710,20 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         true,
         false,
+    };
+
+    private List<DialogImages> Cara_0_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
     };
 
     private List<string> Cara_1_1 = new List<string>()
@@ -2481,6 +2755,21 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Cara_1_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+    };
+
     private List<string> Cara_1_2 = new List<string>()
     {
         "Now you are working for the New Republic again. Have you changed your mind on the nature of its cause?",
@@ -2500,6 +2789,17 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+    };
+
+    private List<DialogImages> Cara_1_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
     };
 
     private List<string> Cara_1_3 = new List<string>()
@@ -2529,6 +2829,20 @@ public class List_Of_Dialogs : DiamondComponent
         true,
     };
 
+    private List<DialogImages> Cara_1_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+    };
+
     private List<string> Cara_2_1 = new List<string>()
     {
         "Another one? Are you trying to get something from me?",
@@ -2550,6 +2864,18 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+    };
+
+    private List<DialogImages> Cara_2_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
     };
 
     private List<string> Cara_2_2 = new List<string>()
@@ -2577,6 +2903,19 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Cara_2_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+    };
+
     private List<string> Cara_2_3 = new List<string>()
     {
         "Look Cara, I promised Bo-Katan I would help her reclaim Mandalore. I'm not sure if I should do it but if I did, would you help us?",
@@ -2599,7 +2938,19 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
     };
-    
+
+    private List<DialogImages> Cara_2_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+    };
+
     private List<string> Cara_3_1 = new List<string>()
     {
         "Here you go. Now don't complain you don't get anything from me.",
@@ -2623,6 +2974,18 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Cara_3_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+    };
+
     private List<string> Cara_3_2 = new List<string>()
     {
         "Do you remember who this jedi was? He might be the answer I've been looking for. If he is still alive, maybe he could train the kid.",
@@ -2644,6 +3007,18 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+    };
+
+    private List<DialogImages> Cara_3_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
     };
 
     private List<string> Cara_3_3 = new List<string>()
@@ -2675,6 +3050,21 @@ public class List_Of_Dialogs : DiamondComponent
         true,
     };
 
+    private List<DialogImages> Cara_3_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+    };
+
     private List<string> Cara_4_1 = new List<string>()
     {
         "I think I could get used to this, you know. Sitting here, chatting and drinking, you bringing me gift... After all we've been through, we deserve some peace and quiet.",
@@ -2694,6 +3084,17 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         false,
         true,
+    };
+
+    private List<DialogImages> Cara_4_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
     };
 
     private List<string> Cara_4_2 = new List<string>()
@@ -2717,6 +3118,18 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         false,
         false,
+    };
+
+    private List<DialogImages> Cara_4_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
     };
 
     private List<string> Cara_4_3 = new List<string>()
@@ -2744,6 +3157,19 @@ public class List_Of_Dialogs : DiamondComponent
         false,
     };
 
+    private List<DialogImages> Cara_4_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+    };
+
     private List<string> Cara_5_1 = new List<string>()
     {
         "Thanks Mando, I appreciate your kindness, but I must ask you not to give me more of this blue milk.",
@@ -2765,6 +3191,18 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
+    };
+
+    private List<DialogImages> Cara_5_1_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
     };
 
     private List<string> Cara_5_2 = new List<string>()
@@ -2790,6 +3228,19 @@ public class List_Of_Dialogs : DiamondComponent
         true,
         false,
         false,
+    };
+
+    private List<DialogImages> Cara_5_2_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
     };
 
     private List<string> Cara_5_3 = new List<string>()
@@ -2826,6 +3277,24 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         false,
         true,
+    };
+
+    private List<DialogImages> Cara_5_3_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_DEFAULT,
     };
 
     public List<String> GetListOfDialog(uint index)
@@ -3235,7 +3704,7 @@ public class List_Of_Dialogs : DiamondComponent
                 return Bo_Katan_5_2_images;
             case 18:                
                 return Bo_Katan_5_3_images;
-            /*case 19:
+            case 19:
                 return Greef_0_1_images;
             case 20:             
                 return Greef_0_2_images;
@@ -3342,7 +3811,7 @@ public class List_Of_Dialogs : DiamondComponent
             case 71:            
                 return Cara_5_2_images;
             case 72:            
-                return Cara_5_3_images;*/
+                return Cara_5_3_images;
             case 73:
                 return Grogu_0_1_images;
             case 74:             
