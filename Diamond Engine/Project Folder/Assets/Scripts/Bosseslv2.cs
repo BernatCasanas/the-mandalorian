@@ -78,6 +78,8 @@ public class Bosseslv2 : Entity
     //private float startBounceRushTimer = 0.0f;
 
     private bool firstThrow = true;
+    public GameObject companion = null;
+    private bool rushOnce = true;
     enum JUMPSLAM : int
     {
         NONE = -1,
@@ -103,6 +105,7 @@ public class Bosseslv2 : Entity
             startBounceRushTime = Animator.GetAnimationDuration(gameObject, "Skel_RushStart") - 0.016f;
             chargeTime = Animator.GetAnimationDuration(gameObject, "Skel_Jump_P1") - 0.05f;
             Debug.Log("Rush Start: " + startBounceRushTime.ToString());
+            companion = InternalCalls.FindObjectWithName("WampaBoss");
         }
     }
 
@@ -179,7 +182,10 @@ public class Bosseslv2 : Entity
         Debug.Log("Fast Rush");
         Animator.Play(gameObject, "WP_Rush", speedMult);
         UpdateAnimationSpd(speedMult);
-        Audio.PlayAudio(gameObject, "Play_Wampa_Rush");
+        if (gameObject.CompareTag("Wampa"))
+            Audio.PlayAudio(gameObject, "Play_Wampa_Rush");
+        else if (gameObject.CompareTag("Skel"))
+            Audio.PlayAudio(gameObject, "Play_Skel_Preparation");
         if (colliderBounceRush != null)
         {
             colliderBounceRush.GetComponent<AtackBosslv2>().active = true;
@@ -193,11 +199,23 @@ public class Bosseslv2 : Entity
         //Debug.Log("Rush");
 
         UpdateAnimationSpd(speedMult);
+        if (gameObject.CompareTag("Skel") && rushOnce)
+        {
+            Audio.PlayAudio(gameObject, "Play_Skel_In_Progress");
+            rushOnce = false;
+        }
     }
 
     public void EndFastRush()
     {
-        Audio.StopOneAudio(gameObject, "Play_Wampa_Rush");
+        if (gameObject.CompareTag("Wampa"))
+            Audio.StopOneAudio(gameObject, "Play_Wampa_Rush");
+        else if (gameObject.CompareTag("Skel"))
+        {
+            Audio.StopAudio(gameObject);
+            Audio.PlayAudio(gameObject, "Play_Skel_Rush_Recovery");
+        }
+        rushOnce = true;
     }
 
     public void StartSlowRush()
@@ -206,7 +224,10 @@ public class Bosseslv2 : Entity
         Debug.Log("Slow Rush");
         Animator.Play(gameObject, "WP_Rush", speedMult);
         UpdateAnimationSpd(speedMult);
-        Audio.PlayAudio(gameObject, "Play_Wampa_Rush");
+        if (gameObject.CompareTag("Wampa"))
+            Audio.PlayAudio(gameObject, "Play_Wampa_Rush");
+        else if (gameObject.CompareTag("Skel"))
+            Audio.PlayAudio(gameObject, "Play_Skel_Preparation");
     }
     public void UpdateSlowRush()
     {
@@ -216,6 +237,11 @@ public class Bosseslv2 : Entity
         agent.MoveToCalculatedPos(slowRushSpeed * speedMult);
 
         UpdateAnimationSpd(speedMult);
+        if (gameObject.CompareTag("Skel") && rushOnce)
+        {
+            Audio.PlayAudio(gameObject, "Play_Skel_In_Progress");
+            rushOnce = false;
+        }
     }
 
     public void EndSlowRush()
@@ -226,7 +252,14 @@ public class Bosseslv2 : Entity
         {
             colliderBounceRush.GetComponent<AtackBosslv2>().active = false;
         }
-        Audio.StopOneAudio(gameObject, "Play_Wampa_Rush");
+        if (gameObject.CompareTag("Wampa"))
+            Audio.StopOneAudio(gameObject, "Play_Wampa_Rush");
+        else if (gameObject.CompareTag("Skel"))
+        {
+            Audio.StopAudio(gameObject);
+            Audio.PlayAudio(gameObject, "Play_Skel_Rush_Recovery");
+        }
+        rushOnce = true;
     }
     #endregion
 
@@ -235,7 +268,10 @@ public class Bosseslv2 : Entity
 
     public void StartBounceRush()
     {
-        Audio.PlayAudio(gameObject, "Play_Wampa_Rush");
+        if (gameObject.CompareTag("Skel"))
+            Audio.PlayAudio(gameObject, "Play_Skel_Preparation");
+        else if (gameObject.CompareTag("Wampa"))
+            Audio.PlayAudio(gameObject, "Play_Wampa_Rush");
         if (gameObject.CompareTag("Skel"))
         {
             Animator.Play(gameObject, "Skel_Rush", speedMult);
@@ -293,6 +329,11 @@ public class Bosseslv2 : Entity
         //Debug.Log("Bounce Rush");
 
         UpdateAnimationSpd(speedMult);
+        if (gameObject.CompareTag("Skel") && rushOnce)
+        {
+            Audio.PlayAudio(gameObject, "Play_Skel_In_Progress");
+            rushOnce = false;
+        }
     }
 
     public void EndBounceRush()
@@ -310,7 +351,14 @@ public class Bosseslv2 : Entity
         if (colliderBounceRush != null) {
             colliderBounceRush.GetComponent<AtackBosslv2>().active = false;
         }
-        Audio.StopOneAudio(gameObject, "Play_Wampa_Rush");
+        if (gameObject.CompareTag("Wampa"))
+            Audio.StopOneAudio(gameObject, "Play_Wampa_Rush");
+        else if (gameObject.CompareTag("Skel"))
+        {
+            Audio.StopAudio(gameObject);
+            Audio.PlayAudio(gameObject, "Play_Skel_Rush_Recovery");
+        }
+        rushOnce = true;
     }
 
     #endregion
@@ -469,13 +517,14 @@ public class Bosseslv2 : Entity
         {
             Animator.Play(gameObject, "Skel_Walk", speedMult);
             UpdateAnimationSpd(speedMult);
+            Audio.PlayAudio(gameObject, "Play_Skel_Footsteps");
         }
         else if (gameObject.CompareTag("Wampa"))
         {
             Animator.Play(gameObject, "WP_Walk", speedMult);
             UpdateAnimationSpd(speedMult);
+            Audio.PlayAudio(gameObject, "Play_Wampa_Footsteps");
         }
-        Audio.PlayAudio(gameObject, "Play_Wampa_Footsteps");
     }
     public void UpdateFollowing()
     {
@@ -502,14 +551,15 @@ public class Bosseslv2 : Entity
         {
             Animator.Play(gameObject, "Skel_Walk", speedMult);
             UpdateAnimationSpd(speedMult);
+            Audio.PlayAudio(gameObject, "Play_Skel_Footsteps");
         }
         else if (gameObject.CompareTag("Wampa"))
         {
 
             Animator.Play(gameObject, "WP_Walk", speedMult);
             UpdateAnimationSpd(speedMult);
+            Audio.PlayAudio(gameObject, "Play_Wampa_Footsteps");
         }
-        Audio.PlayAudio(gameObject, "Play_Wampa_Footsteps");
     }
     public void UpdateWander()
     {
@@ -534,13 +584,14 @@ public class Bosseslv2 : Entity
         {
             Animator.Play(gameObject, "Skel_Die", speedMult);
             UpdateAnimationSpd(speedMult);
+            Audio.PlayAudio(gameObject, "Play_Skel_Death");
         }
         else if (gameObject.CompareTag("Wampa"))
         {
             Animator.Play(gameObject, "WP_Die", speedMult);
             UpdateAnimationSpd(speedMult);
+            Audio.PlayAudio(gameObject, "Play_Wampa_Death");
         }
-        Audio.PlayAudio(gameObject, "Play_Wampa_Death");
         Debug.Log("Dying");
     }
     public void UpdateDie()
@@ -564,6 +615,15 @@ public class Bosseslv2 : Entity
         Debug.Log("DEAD");
 
         EnemyManager.RemoveEnemy(gameObject);
+        if (gameObject.CompareTag("Wampa") && companion != null)
+        {
+                companion.GetComponent<Skel>().firstSorrowRoar = true;
+        }
+        else if (gameObject.CompareTag("Skel") && companion != null)
+        {
+                companion.GetComponent<Wampa>().firstSorrowRoar = true;
+        }
+        companion = null;
         InternalCalls.Destroy(gameObject);
     }
     #endregion

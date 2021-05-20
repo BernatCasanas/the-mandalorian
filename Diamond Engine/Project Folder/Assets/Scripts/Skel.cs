@@ -44,7 +44,9 @@ public class Skel : Bosseslv2
     }
 
     private STATE currentState = STATE.SEARCH_STATE;
+    public bool firstSorrowRoar = false;
     private List<INPUT> inputsList = new List<INPUT>();
+    private bool firstFrame = true;
 
     public override void Awake()
     {
@@ -66,6 +68,11 @@ public class Skel : Bosseslv2
 
     public void Update()
     {
+        if (firstFrame)
+        {
+            companion = InternalCalls.FindObjectWithName("WampaBoss");
+            firstFrame = false;
+        }
         myDeltaTime = Time.deltaTime * speedMult;
         UpdateStatuses();
 
@@ -76,6 +83,12 @@ public class Skel : Bosseslv2
 
         UpdateState();
         //Debug.Log(healthPoints.ToString());
+
+        if (firstSorrowRoar)
+        {
+            firstSorrowRoar = false;
+            Audio.PlayAudio(gameObject, "Play_Skel_When_Wampa_Dies");
+        }
     }
 
     private void ProcessInternalInput()
@@ -464,6 +477,7 @@ public class Skel : Bosseslv2
 
             if (currentState != STATE.DEAD)
             {
+                Audio.PlayAudio(gameObject, "Play_Skel_Hit");
                 healthPoints -= damage;
                 if (Core.instance != null)
                 {
