@@ -113,6 +113,7 @@ public class Bosseslv2 : Entity
         firstShot = true;
         Animator.Play(gameObject, "WP_Projectile", speedMult);
         UpdateAnimationSpd(speedMult);
+        Audio.PlayAudio(gameObject, "Play_Wampa_Ice_Pick");
     }
     public void UpdateProjectile()
     {
@@ -127,7 +128,7 @@ public class Bosseslv2 : Entity
                     Vector3 pos = projectilePoint.transform.globalPosition;
                     Quaternion rot = new Quaternion(0, 0, 90);
 
-                    RancorProjectile projectile = InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, rot, null).GetComponent<RancorProjectile>();
+                    WampaProjectile projectile = InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, rot, null).GetComponent<WampaProjectile>();
 
                     if (projectile != null)
                     {
@@ -162,7 +163,6 @@ public class Bosseslv2 : Entity
         secondShot = false;
         resting = true;
         restingTimer = restingTime;
-        Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Ice_Impact");
     }
     #endregion
 
@@ -458,7 +458,7 @@ public class Bosseslv2 : Entity
             Animator.Play(gameObject, "WP_Walk", speedMult);
             UpdateAnimationSpd(speedMult);
         }
-        Audio.PlayAudio(gameObject, "PLay_Rancor_Footsteps");
+        Audio.PlayAudio(gameObject, "Play_Wampa_Footsteps");
     }
     public void UpdateFollowing()
     {
@@ -492,7 +492,7 @@ public class Bosseslv2 : Entity
             Animator.Play(gameObject, "WP_Walk", speedMult);
             UpdateAnimationSpd(speedMult);
         }
-        Audio.PlayAudio(gameObject, "PLay_Rancor_Footsteps");
+        Audio.PlayAudio(gameObject, "Play_Wampa_Footsteps");
     }
     public void UpdateWander()
     {
