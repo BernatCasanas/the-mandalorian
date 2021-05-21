@@ -440,6 +440,8 @@ public class Bosseslv2 : Entity
                 if (jumpslamTimer > 0)
                 {
                     gameObject.transform.localPosition += Vector3.up * 50f * myDeltaTime;
+                    Vector3 positionVec = (Core.instance.gameObject.transform.globalPosition - gameObject.transform.localPosition) * myDeltaTime;
+                    gameObject.transform.localPosition += new Vector3(positionVec.x, 0.0f, positionVec.z);
 
                     jumpslamTimer -= myDeltaTime;
 
