@@ -334,8 +334,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 11.659999847412109,
-                    "hFOV": 17.180000305175781,
+                    "vFOV": 13.680000305175781,
+                    "hFOV": 24.559999465942383,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -3840,6 +3840,7 @@
                     "Active": true,
                     "ScriptName": "Enable",
                     "enable": 995881843,
+                    "disable": 847756082,
                     "disable2": 625428609,
                     "select": 464183913
                 }
@@ -26735,15 +26736,6 @@
                         1530020591,
                         2047958449
                     ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "InsideCollider",
-                    "maxDistance": 5,
-                    "colliderPosition": 949564340,
-                    "displayText": 625428609,
-                    "selectButton": 422736431
                 }
             ]
         },
@@ -28556,30 +28548,30 @@
             ]
         },
         {
-            "name": "NPC notification",
+            "name": "InsideCollider",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 557934717,
+            "UID": 847756082,
             "ParentUID": 949564340,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -0.15407943725585938,
-                1.9114725589752197,
-                0.014592446386814117
+                0,
+                0,
+                0
             ],
             "Rotation": [
-                -0.038709908723831177,
-                0.39061141014099121,
-                0.038045484572649002,
-                0.91895413398742676
+                0,
+                0,
+                0,
+                1
             ],
             "Scale": [
-                0.99999970197677612,
-                0.999980628490448,
+                1,
+                1,
                 1
             ],
             "Components": [
@@ -28588,50 +28580,13 @@
                     "Active": true
                 },
                 {
-                    "Type": 3,
+                    "Type": 5,
                     "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
-                    "MaterialUID": 355756108
-                },
-                {
-                    "Type": 20,
-                    "Active": true,
-                    "systemActive": true,
-                    "looping": true,
-                    "maxDuration": 10,
-                    "ParticleEmitters": [
-                        {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1477516694.dds",
-                            "texUID": 1477516694,
-                            "paEmitterName": "Empty",
-                            "paLifeTime": [
-                                2,
-                                2
-                            ],
-                            "paSize": [
-                                0.20000000298023224,
-                                0.20000000298023224
-                            ],
-                            "paColor": [
-                                0.88627451658248901,
-                                0.7921568751335144,
-                                0.40000000596046448,
-                                1
-                            ],
-                            "paPerSec": 1,
-                            "paRelative": true,
-                            "ParticleEffects": []
-                        }
-                    ]
-                },
-                {
-                    "Type": 21,
-                    "Active": true,
-                    "billboardAlignment": 0,
-                    "horizantalAligned": true
+                    "ScriptName": "InsideCollider",
+                    "maxDistance": 5,
+                    "colliderPosition": 847756082,
+                    "displayText": 625428609,
+                    "selectButton": 422736431
                 }
             ]
         },
