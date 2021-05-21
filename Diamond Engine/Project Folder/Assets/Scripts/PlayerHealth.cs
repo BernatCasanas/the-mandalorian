@@ -3,6 +3,9 @@ using DiamondEngine;
 
 public class PlayerHealth : DiamondComponent
 {
+    public static Action onPlayerDeath;
+    public static Action onPlayerDeathEnd;
+
     public static int currMaxHealth { get; private set; }
     public static int currHealth { get; private set; }
 
@@ -18,13 +21,15 @@ public class PlayerHealth : DiamondComponent
     {
         if(currHealth <= 0 && currMaxHealth <= 0)
             ResetMaxAndCurrentHPToDefault();
+
+        onPlayerDeathEnd += Die;
     }
 
     public void Update()
     {
         if (die && !DebugOptionsHolder.godModeActive)
         {
-            if (Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.REVIVE) && Core.instance.GetStatusData(STATUS_TYPE.REVIVE).severity == 1 )
+            if (Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.REVIVE) && Core.instance.GetStatusData(STATUS_TYPE.REVIVE).severity == 1)
             {
                 HealPercentMax(0.5f);
                 Core.instance.GetStatusData(STATUS_TYPE.REVIVE).severity = 0;
@@ -32,10 +37,12 @@ public class PlayerHealth : DiamondComponent
             }
             else
             {
+
                 Core.instance.GetStatusData(STATUS_TYPE.REVIVE).severity = 1;
 
                 die = false;
-                Die();
+                //Die();
+
             }
          
         }
@@ -145,6 +152,8 @@ public class PlayerHealth : DiamondComponent
         if (currHealth <= 0)
         {
             die = true;
+            onPlayerDeath?.Invoke();
+
         }
     }
     //Increments the current Hp by the percentatge given as a parameter (1 = 100% 0 = 0%) It can also be negative to take percentual damage
@@ -164,6 +173,7 @@ public class PlayerHealth : DiamondComponent
         if (currHealth <= 0)
         {
             die = true;
+            onPlayerDeath?.Invoke();
         }
     }
 
@@ -183,6 +193,7 @@ public class PlayerHealth : DiamondComponent
         if (currHealth <= 0)
         {
             die = true;
+            onPlayerDeath?.Invoke();
         }
     }
 
@@ -239,6 +250,7 @@ public class PlayerHealth : DiamondComponent
         if (currHealth <= 0)
         {
             die = true;
+            onPlayerDeath?.Invoke();
         }
         if (currHealth > currMaxHealth) currHealth = currMaxHealth;
 
@@ -246,7 +258,7 @@ public class PlayerHealth : DiamondComponent
         {
             HUD playerHud = Core.instance.hud.GetComponent<HUD>();
 
-            if(playerHud != null)
+            if(playerHud != null && !die)
                 playerHud.UpdateHP(currHealth, currMaxHealth);
 
             Core.instance.ReduceComboOnHit(damage);
@@ -270,7 +282,6 @@ public class PlayerHealth : DiamondComponent
     {
         ResetMaxAndCurrentHPToDefault();
         //TODO die
-        Audio.PlayAudio(gameObject, "Play_Mando_Death");
         // Set as defeat:
         RoomSwitch.OnPlayerDeath();
     
