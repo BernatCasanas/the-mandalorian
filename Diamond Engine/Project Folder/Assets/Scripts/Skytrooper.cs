@@ -110,7 +110,7 @@ public class Skytrooper : Enemy
         if (hitParticlesObj != null)
             hitParticles = hitParticlesObj.GetComponent<ParticleSystem>();
         //else
-            //Debug.Log("Hit particles gameobject not found!");
+        //Debug.Log("Hit particles gameobject not found!");
 
         shootTime = Animator.GetAnimationDuration(gameObject, "SK_Shoot") * 0.5f;
         shootAnimationTime = Animator.GetAnimationDuration(gameObject, "SK_Shoot");
@@ -683,7 +683,7 @@ public class Skytrooper : Enemy
 
             if (bullet != null)
             {
-             
+
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -740,11 +740,17 @@ public class Skytrooper : Enemy
     {
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         {
-            if (Core.instance.gameObject != null)
+            pushDir = triggeredGameObject.transform.GetForward();
+            inputsList.Add(INPUT.IN_PUSHED);
+
+            if (Core.instance != null)
             {
-                pushDir = triggeredGameObject.transform.GetForward();
-                inputsList.Add(INPUT.IN_PUSHED);
+                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                    hudComponent.AddToCombo(10, 0.35f);
             }
+
         }
     }
 
@@ -799,7 +805,7 @@ public class Skytrooper : Enemy
                         BabyYoda.instance.SetCurrentForce(BabyYoda.instance.GetCurrentForce() + (int)(Core.instance.GetStatusData(STATUS_TYPE.WINDU_FORCE).severity));
                 }
             }
-                
+
         }
     }
 

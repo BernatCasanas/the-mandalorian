@@ -214,7 +214,6 @@ public class Rancor : Entity
 
         dieTime = Animator.GetAnimationDuration(gameObject, "RN_Die") - 0.016f;
 
-        Counter.SumToCounterType(Counter.CounterTypes.RANCOR);
         damaged = 0.0f;
         runTime = (Animator.GetAnimationDuration(gameObject, "RN_Walk")) / 2.0f;
         dustTime = (Animator.GetAnimationDuration(gameObject, "RN_Walk")) / 4.0f;

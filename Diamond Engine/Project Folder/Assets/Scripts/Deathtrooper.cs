@@ -111,7 +111,7 @@ public class Deathtrooper : Enemy
         if (hitParticlesObj != null)
             hitParticle = hitParticlesObj.GetComponent<ParticleSystem>();
         //else
-            //Debug.Log("Hit particles gameobject not found!");
+        //Debug.Log("Hit particles gameobject not found!");
 
         if (shotgunParticlesObj != null)
             shotgunParticle = shotgunParticlesObj.GetComponent<ParticleSystem>();
@@ -403,7 +403,7 @@ public class Deathtrooper : Enemy
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
         Animator.Play(gameObject, "DTH_Wander", speedMult);
-        if(shotgun != null)
+        if (shotgun != null)
             Animator.Play(shotgun, "DTH_Wander", speedMult);
 
         UpdateAnimationSpd(speedMult);
@@ -434,7 +434,7 @@ public class Deathtrooper : Enemy
             Animator.Play(shotgun, "DTH_Run", speedMult);
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Deathtrooper_Run");
-        
+
     }
     private void UpdateRun()
     {
@@ -454,7 +454,7 @@ public class Deathtrooper : Enemy
     {
         //Debug.Log("DEATHTROOPER SHOOT");
         Animator.Play(gameObject, "DTH_Idle", speedMult);
-        if(shotgun != null)
+        if (shotgun != null)
             Animator.Play(shotgun, "DTH_Idle", speedMult);
         UpdateAnimationSpd(speedMult);
         betweenStatesTimer = betweenStatesTime;
@@ -472,7 +472,7 @@ public class Deathtrooper : Enemy
                 ShotgunShoot(maxShots);
                 betweenBurstsTimer = timeBewteenBursts;
 
-                if(shotgunParticle != null)
+                if (shotgunParticle != null)
                     shotgunParticle.Play();
             }
 
@@ -531,7 +531,7 @@ public class Deathtrooper : Enemy
         if (numShots == maxShots) //First Shot
         {
             Animator.Play(gameObject, "DTH_ShootRecoil", speedMult * 2.0f);
-            if(shotgun != null)
+            if (shotgun != null)
                 Animator.Play(shotgun, "DTH_ShootRecoil", speedMult * 2.0f);
             Audio.PlayAudio(gameObject, "Play_Deathtrooper_Recoil");
         }
@@ -592,9 +592,9 @@ public class Deathtrooper : Enemy
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_DEATHTROOPER);
         DropCoins();
 
-        if(moffGideon != null)
+        if (moffGideon != null)
             moffGideon.RemoveDeathrooperFromList(gameObject);
-        
+
         InternalCalls.Destroy(gameObject);
     }
 
@@ -664,7 +664,7 @@ public class Deathtrooper : Enemy
 
             if (bullet != null)
             {
-               
+
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -707,7 +707,7 @@ public class Deathtrooper : Enemy
                     }
 
                 }
-             //   healthPoints -= bullet.damage;
+                //   healthPoints -= bullet.damage;
                 this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
 
                 TakeDamage(bullet.damage);
@@ -735,10 +735,15 @@ public class Deathtrooper : Enemy
     {
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         {
-            if (Core.instance.gameObject != null)
+            pushDir = triggeredGameObject.transform.GetForward();
+            inputsList.Add(INPUT.IN_PUSHED);
+
+            if (Core.instance != null)
             {
-                pushDir = triggeredGameObject.transform.GetForward();
-                inputsList.Add(INPUT.IN_PUSHED);
+                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                    hudComponent.AddToCombo(10, 0.35f);
             }
         }
     }
@@ -747,10 +752,16 @@ public class Deathtrooper : Enemy
     {
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         {
+
+            pushDir = triggeredGameObject.transform.GetForward();
+            inputsList.Add(INPUT.IN_PUSHED);
+
             if (Core.instance != null)
             {
-                pushDir = triggeredGameObject.transform.GetForward();
-                inputsList.Add(INPUT.IN_PUSHED);
+                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                    hudComponent.AddToCombo(10, 0.35f);
             }
         }
     }
@@ -784,7 +795,7 @@ public class Deathtrooper : Enemy
             }
         }
 
-        if(hitParticle != null)
+        if (hitParticle != null)
             hitParticle.Play();
 
         if (currentState != STATE.DIE)

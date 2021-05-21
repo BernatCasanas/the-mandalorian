@@ -563,10 +563,10 @@ public class Core : Entity
         if (HasStatus(STATUS_TYPE.GRENADE_ON_DASH))
             grenade_onDash += myDeltaTime;
 
-        if(dieTimer > 0.0f)
+        if (dieTimer > 0.0f)
         {
             dieTimer -= myDeltaTime;
-            if(dieTimer <= 0.0f)
+            if (dieTimer <= 0.0f)
             {
                 inputsList.Add(INPUT.IN_DEAD_END);
             }
@@ -669,7 +669,7 @@ public class Core : Entity
             else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
                 inputsList.Add(INPUT.IN_IDLE);
         }
-        else if(tuto_state == TUTO_STATES.DASH)
+        else if (tuto_state == TUTO_STATES.DASH)
         {
             if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false && dashAvailable == true && lockAttacks == false)
             {
@@ -700,7 +700,7 @@ public class Core : Entity
             else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
                 inputsList.Add(INPUT.IN_IDLE);
         }
-        else if(tuto_state == TUTO_STATES.BLASTER || tuto_state == TUTO_STATES.PUSH)
+        else if (tuto_state == TUTO_STATES.BLASTER || tuto_state == TUTO_STATES.PUSH)
         {
             if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT) && isPrimaryOverHeat == false && lockAttacks == false)
             {
@@ -758,7 +758,7 @@ public class Core : Entity
             else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
                 inputsList.Add(INPUT.IN_IDLE);
         }
-        else if(tuto_state == TUTO_STATES.SNIPER)
+        else if (tuto_state == TUTO_STATES.SNIPER)
         {
             if ((Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_DOWN) && currentBullets > 0 && lockAttacks == false)
             {
@@ -798,7 +798,7 @@ public class Core : Entity
             else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
                 inputsList.Add(INPUT.IN_IDLE);
         }
-        else if(tuto_state == TUTO_STATES.WALL)
+        else if (tuto_state == TUTO_STATES.WALL)
         {
             if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT) && isPrimaryOverHeat == false && lockAttacks == false)
             {
@@ -1405,7 +1405,7 @@ public class Core : Entity
 
         Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
         if (HasStatus(STATUS_TYPE.BOBBA_STUN_AMMO))
-            scale *= 1 + GetStatusData(STATUS_TYPE.BOBBA_STUN_AMMO).severity/100;
+            scale *= 1 + GetStatusData(STATUS_TYPE.BOBBA_STUN_AMMO).severity / 100;
 
         InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation, scale);
 
@@ -1711,8 +1711,8 @@ public class Core : Entity
     }
     private void UpdateDead()
     {
-        
-       Debug.Log("Update Dead");
+
+        Debug.Log("Update Dead");
     }
 
     private void EndDead()
@@ -2654,7 +2654,7 @@ public class Core : Entity
                 break;
             case STATUS_TYPE.MANDO_CODE:
                 {
-                   
+
                     this.RawDamageMult += statusToInit.severity / 100;
 
                 }
@@ -3041,7 +3041,7 @@ public class Core : Entity
                 break;
             case STATUS_TYPE.SOLO_HEAL:
                 {
-                    
+
                     skill_SoloHeal = 0;
                 }
                 break;
