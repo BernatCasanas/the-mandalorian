@@ -267,7 +267,7 @@ public class EndScreen : DiamondComponent
                         int boonTextureId = BoonDataHolder.boonType[i].libraryTextureID;
 
                         //Boon count for text
-                        int boonCount = PlayerResources.GetResourceCount(RewardType.REWARD_BOON);
+                        int boonCount = PlayerResources.GetBoonAmount((BOONS)i);
 
                         boonDisplay.SetBoon(boonDisplayIndex, boonTextureId, boonCount);
 
