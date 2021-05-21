@@ -612,7 +612,7 @@ public class StormTrooper : Enemy
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
         BH_Bullet bulletScript = bullet.GetComponent<BH_Bullet>();
         bulletScript.damage = damage;
-        bulletScript.SetTagToAvoid(gameObject.tag);
+        //bulletScript.SetTagToAvoid(gameObject.tag);
         bulletScript.SetGameObjectToAvoid(this.gameObject);
 
         Animator.Play(gameObject, "ST_Shoot", speedMult);
@@ -841,7 +841,6 @@ public class StormTrooper : Enemy
 
         }
 
-
     }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
@@ -855,12 +854,10 @@ public class StormTrooper : Enemy
 
                 if (Core.instance != null)
                 {
-
                     HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
                     if (hudComponent != null)
-                        hudComponent.AddToCombo(5, 0.45f);
-
+                        hudComponent.AddToCombo(10, 0.35f);
                 }
             }
         }
@@ -880,7 +877,7 @@ public class StormTrooper : Enemy
                     HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
                     if (hudComponent != null)
-                        hudComponent.AddToCombo(5, 0.45f);
+                        hudComponent.AddToCombo(10, 0.35f);
                 }
             }
         }

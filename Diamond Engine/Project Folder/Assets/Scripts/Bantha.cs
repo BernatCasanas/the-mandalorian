@@ -834,8 +834,7 @@ public class Bantha : Enemy
                 HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
                 if (hudComponent != null)
-                    hudComponent.AddToCombo(5, 0.45f);
-
+                    hudComponent.AddToCombo(10, 0.35f);
             }
         }
     }
@@ -847,12 +846,10 @@ public class Bantha : Enemy
             inputsList.Add(INPUT.IN_PUSHED);
             if (Core.instance != null)
             {
-
                 HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
                 if (hudComponent != null)
-                    hudComponent.AddToCombo(5, 0.45f);
-
+                    hudComponent.AddToCombo(10, 0.35f);
             }
         }
     }
