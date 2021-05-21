@@ -53,7 +53,7 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 	FileSystem::GetFileName(libraryPath, id_string, false);
 	uint prefabID = (uint)atoi(id_string.c_str());
 
-	JSON_Value* prefab;
+	JSON_Value* prefab = nullptr;
 
 	prefab = EngineExternal->moduleScene->GetPrefab(prefabID);
 
@@ -166,8 +166,6 @@ GameObject* PrefabImporter::LoadPrefab(const char* libraryPath, std::vector<Game
 			it->second->components[i]->OnRecursiveUIDChange(prefabObjects);
 		}
 	}
-
-	
 
 	rootObject->prefabID = prefabID;
 
@@ -360,9 +358,12 @@ void PrefabImporter::OverridePrefab(uint prefabID, GameObject* referenceObject)
 	}
 
 	referenceObject->prefabID = SavePrefab(assets_path.c_str(), referenceObject);
-	//EngineExternal->moduleResources->ImportFile(assets_path.c_str(), Resource::Type::PREFAB);
+	
+	if (!EngineExternal->moduleScene->ReleasePrefabValue(referenceObject->prefabID))
+	{
+		json_value_free(prefab);
+	}
 
-	json_value_free(prefab);
 
 	EngineExternal->moduleScene->prefabToOverride = prefabID;
 }

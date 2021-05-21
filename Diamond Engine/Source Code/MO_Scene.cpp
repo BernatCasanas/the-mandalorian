@@ -810,3 +810,19 @@ void M_Scene::AddLoadedPrefab(uint prefabID, JSON_Value* value)
 
 	loadedPrefabs[prefabID] = value;
 }
+
+bool M_Scene::ReleasePrefabValue(uint prefabID)
+{
+	std::map<uint, JSON_Value*>::iterator it = loadedPrefabs.find(prefabID);
+
+	if (it != loadedPrefabs.end())
+	{
+		json_value_free(it->second);
+		loadedPrefabs.erase(it);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
