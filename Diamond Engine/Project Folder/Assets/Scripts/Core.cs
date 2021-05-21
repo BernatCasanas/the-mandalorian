@@ -1427,7 +1427,7 @@ public class Core : Entity
         canShootSniper = false;
         snipPrepareAnimTimer = snipPrepareAnimTime;
         Animator.Play(gameObject, "SniperShotP1", speedMult * sniperAimAnimMult);
-
+        Audio.PlayAudio(gameObject, "Play_Sniper_Charge");
         if (rifle != null)
         {
             rifle.Enable(true);
@@ -1442,6 +1442,7 @@ public class Core : Entity
         changeColorSniperTimer = 0f;
 
         PlayParticles(PARTICLES.SNIPER_CHARGE, true);
+        Audio.StopOneAudio(gameObject, "Play_Sniper_Charge");
 
         if (rifle != null)
             rifle.Enable(false);
