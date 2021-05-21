@@ -82,6 +82,7 @@ public class Bantha : Enemy
 
     //force
     public float forcePushMod = 1;
+    public float pushTime = 0f;
 
     //Particles
     public GameObject stunParticle = null;
@@ -274,6 +275,7 @@ public class Bantha : Enemy
                             break;
                         case INPUT.IN_PUSHED:
                             currentState = STATE.PUSHED;
+                            WanderEnd();
                             StartPush();
                             break;
                     }
@@ -307,6 +309,7 @@ public class Bantha : Enemy
                             break;
                         case INPUT.IN_PUSHED:
                             currentState = STATE.PUSHED;
+                            RunEnd();
                             StartPush();
                             break;
                     }
@@ -664,6 +667,12 @@ public class Bantha : Enemy
     #region PUSH
     private void StartPush()
     {
+        if (visualFeedback != null)
+        {
+            InternalCalls.Destroy(visualFeedback);
+            visualFeedback = null;
+        }
+
         Vector3 force = pushDir.normalized;
         if (BabyYoda.instance != null)
         {
@@ -679,15 +688,8 @@ public class Bantha : Enemy
     private void UpdatePush()
     {
         pushTimer += myDeltaTime;
-        if (BabyYoda.instance != null)
-        {
-            if (pushTimer >= BabyYoda.instance.PushStun)
-                inputsList.Add(INPUT.IN_IDLE);
-        }
-        else
-        {
+        if (pushTimer >= pushTime)
             inputsList.Add(INPUT.IN_IDLE);
-        }
 
     }
     #endregion
@@ -726,12 +728,14 @@ public class Bantha : Enemy
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))
         {
+            Debug.Log("Bantha charged bullet detection");
+
             ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
             if (bullet != null)
             {
-                
+                Debug.Log("Bantha charged bullet scripts detect");
 
-                if (currentState != STATE.DIE && healthPoints <= 0.0f)
+                if (currentState != STATE.DIE && healthPoints > 0.0f)
                 {
                     inputsList.Add(INPUT.IN_DIE);
                     if (Core.instance != null)
@@ -767,7 +771,7 @@ public class Bantha : Enemy
                     if (healthPoints <= 0.0f && Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
                         Core.instance.RefillSniper();
 
-                        this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
+                    this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
 
                     Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
 
@@ -779,7 +783,7 @@ public class Bantha : Enemy
                             hud.AddToCombo(55, 0.2f);
                     }
                 }
-               
+
 
             }
         }
@@ -820,19 +824,22 @@ public class Bantha : Enemy
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-        //if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
-        //    inputsList.Add(INPUT.IN_PUSHED);
+        if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
+        {
+            pushDir = triggeredGameObject.transform.GetForward();
+            inputsList.Add(INPUT.IN_PUSHED);
+        }
     }
     public void OnTriggerExit(GameObject triggeredGameObject)
     {
-        //if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
-        //{
-        //    if (Core.instance != null)
-        //    {
-        //        pushDir = triggeredGameObject.transform.GetForward();
-        //        inputsList.Add(INPUT.IN_PUSHED);
-        //    }
-        //}
+        if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
+        {
+            if (Core.instance != null)
+            {
+                pushDir = triggeredGameObject.transform.GetForward();
+                inputsList.Add(INPUT.IN_PUSHED);
+            }
+        }
     }
 
     public override void TakeDamage(float damage)
@@ -856,6 +863,11 @@ public class Bantha : Enemy
                         if (healing < 1) healing = 1;
                         Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
                     }
+            }
+            if (Core.instance.HasStatus(STATUS_TYPE.SOLO_HEAL))
+            {
+                Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)Core.instance.skill_SoloHeal);
+                Core.instance.skill_SoloHeal = 0;
             }
         }
 

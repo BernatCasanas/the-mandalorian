@@ -64,7 +64,10 @@ public class SlowGrenade : DiamondComponent
 
 
             explosionTimer += Time.deltaTime;
-            procTimer += Time.deltaTime;
+            float mult = 1;
+            if (Core.instance.HasStatus(STATUS_TYPE.BOBBA_STUN_AMMO))
+                mult += Core.instance.GetStatusData(STATUS_TYPE.BOBBA_STUN_AMMO).severity/100;
+            procTimer += Time.deltaTime * mult;
 
             if (procTimer > procTime)
             {

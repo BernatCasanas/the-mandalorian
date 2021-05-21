@@ -124,9 +124,7 @@ public class BoonDisplay : DiamondComponent
     }
 
     public void SetBoon(int index, int textureUID, int boonCount)
-    {
-        Debug.Log("About to set boon");
-
+    {                                                                         
         if (boonImages[index] == null || index > boonImages.Length)
             return;
 
@@ -136,14 +134,11 @@ public class BoonDisplay : DiamondComponent
         if(image != null)
             image.AssignLibrary2DTexture(textureUID);
 
-        Debug.Log("Boon image set");
-
         if(boonTexts[index] != null)
         {
             boonTexts[index].Enable(true);
             Text text = boonTexts[index].GetComponent<Text>();
             text.text = boonCount.ToString();
-            Debug.Log("Boon text set");
         }
     }
 

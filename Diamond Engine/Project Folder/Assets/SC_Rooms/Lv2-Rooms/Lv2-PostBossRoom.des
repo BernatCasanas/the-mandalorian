@@ -1,9 +1,9 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -8.9609794616699219,
-        35.667366027832031,
-        -3.6795806884765625
+        -25.138284683227539,
+        35.816936492919922,
+        10.13874340057373
     ],
     "EditorCameraZ": [
         0.41540133953094482,
@@ -27,7 +27,9 @@
         1,
         1
     ],
-    "tags": [],
+    "tags": [
+        "SnowFloor"
+    ],
     "layers": [],
     "Game Objects": [
         {
@@ -334,8 +336,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 13.380000114440918,
-                    "hFOV": 24.040000915527344,
+                    "vFOV": 9.5399999618530273,
+                    "hFOV": 13.020000457763672,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -3181,7 +3183,7 @@
             "name": "Mando",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 215004723,
             "ParentUID": 995881843,
             "PrefabReference": 0,
@@ -3243,7 +3245,7 @@
             "name": "Ahsoka",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 882800393,
             "ParentUID": 995881843,
             "PrefabReference": 0,
@@ -3532,10 +3534,37 @@
                     "dialog": 995881843,
                     "text": 1860266359,
                     "nameText": 464794439,
-                    "mandoimage": 215004723,
-                    "otherimage": 882800393,
                     "list_of_dialogs": 470452819,
-                    "dialog_index": 85
+                    "dialog_index": 85,
+                    "img_mando_serious": 1295460631,
+                    "img_mando_ashamed": 1138834716,
+                    "img_mando_angry": 1715515396,
+                    "img_mando_threatening": 1446873364,
+                    "img_mando_joking": 755045215,
+                    "img_mando_happy": 898202249,
+                    "img_grogu_serious": 1246384145,
+                    "img_grogu_laughing": 1162460636,
+                    "img_grogu_curious": 1603218114,
+                    "img_grogu_scared": 38278322,
+                    "img_bokatan_serious": 2095333682,
+                    "img_bokatan_angry": 662133812,
+                    "img_cara_serious": 534158750,
+                    "img_cara_angry1": 692018651,
+                    "img_cara_angry2": 234880826,
+                    "img_cara_ashamed": 1697498688,
+                    "img_greef_serious": 1236095544,
+                    "img_greef_laughing": 2095682593,
+                    "img_greef_thinker": 1331346426,
+                    "img_greef_ashamed": 2127836379,
+                    "img_ahsoka_serious": 84637711,
+                    "img_ahsoka_thinker": 2014433810,
+                    "img_ahsoka_melancholic": 1181751381,
+                    "img_moff_serious": 319412737,
+                    "img_moff_jester": 640997992,
+                    "img_moff_angry": 63532725,
+                    "img_moff_threatening1": 1543018052,
+                    "img_moff_threatening2": 737840764,
+                    "img_moff_defeated": 1402994204
                 }
             ]
         },
@@ -31171,7 +31200,7 @@
         },
         {
             "name": "Floor",
-            "tag": "Untagged",
+            "tag": "SnowFloor",
             "layer": "Default",
             "Active": true,
             "UID": 1850359864,
@@ -31193,8 +31222,8 @@
             ],
             "Scale": [
                 16.80726432800293,
-                18.67323112487793,
-                0.99998277425765991
+                18.673229217529297,
+                0.99998271465301514
             ],
             "Components": [
                 {

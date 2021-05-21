@@ -819,6 +819,7 @@ public class MoffGideon : Entity
         changingStateTimer = changingStateTime;
 
         healthPoints = maxHealthPoints_fase2;
+        Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Lightsaber_Turn_On");
 
         if (cam_comp != null)
         {
@@ -854,7 +855,7 @@ public class MoffGideon : Entity
     {
         Animator.Play(gameObject, "MG_Run", speedMult);
         UpdateAnimationSpd(speedMult);
-
+        Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Footsteps");
         neutralTimer = neutralTime;
         wander = false;
 
@@ -885,6 +886,7 @@ public class MoffGideon : Entity
     private void EndNeutral()
     {
         soloDash = false;
+        Audio.StopOneAudio(gameObject, "Play_Moff_Gideon_Footsteps");
     }
 
     #endregion
@@ -1159,6 +1161,8 @@ public class MoffGideon : Entity
         dieTimer = dieTime;
         Animator.Play(gameObject, "MG_Death", speedMult);
         UpdateAnimationSpd(speedMult);
+        Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Lightsaber_Turn_Off");
+        Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Death");
         if (cam_comp != null)
             cam_comp.target = this.gameObject;
         if (visualFeedback != null)
@@ -1391,6 +1395,11 @@ public class MoffGideon : Entity
                                 if (healing < 1) healing = 1;
                                 Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
                             }
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SOLO_HEAL))
+                    {
+                        Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)Core.instance.skill_SoloHeal);
+                        Core.instance.skill_SoloHeal = 0;
                     }
                 }
                 if (healthPoints <= 0.0f)

@@ -362,7 +362,8 @@ public class Bosseslv2 : Entity
             UpdateAnimationSpd(speedMult);
         }
 
-        if (colliderBounceRush != null) {
+        if (colliderBounceRush != null)
+        {
             colliderBounceRush.GetComponent<AtackBosslv2>().active = false;
         }
         if (gameObject.CompareTag("Wampa"))
@@ -420,6 +421,7 @@ public class Bosseslv2 : Entity
                                 jumpPositionIndicator.Enable(true);
                                 jumpPositionIndicator.transform.localPosition = Core.instance.gameObject.transform.globalPosition;
                             }
+
                         }
                         else if (gameObject.CompareTag("Wampa"))
                         {
@@ -437,14 +439,21 @@ public class Bosseslv2 : Entity
                 if (jumpslamTimer > 0)
                 {
                     gameObject.transform.localPosition += Vector3.up * 50f * myDeltaTime;
+                    Vector3 positionVec = (Core.instance.gameObject.transform.globalPosition - gameObject.transform.localPosition) * myDeltaTime;
+                    gameObject.transform.localPosition += new Vector3(positionVec.x, 0.0f, positionVec.z);
 
                     jumpslamTimer -= myDeltaTime;
+
+                    if (Mathf.Distance(jumpPositionIndicator.transform.localPosition, Core.instance.gameObject.transform.globalPosition) > 0.3f) {
+                        jumpPositionIndicator.transform.localPosition += (Core.instance.gameObject.transform.globalPosition - jumpPositionIndicator.transform.localPosition) * 0.1f;
+                    }
 
                     if (jumpslamTimer <= 0)
                     {
                         jumpslamTimer = fallingTime;
                         jumpslam = JUMPSLAM.FALLING;
-                        targetPos = Core.instance.gameObject.transform.globalPosition;
+                        jumpPositionIndicator.transform.localPosition = targetPos = Core.instance.gameObject.transform.globalPosition;
+
                         float speed = Mathf.Distance(targetPos, gameObject.transform.globalPosition) / fallingTime;
                         if (colliderJumpSlam != null)
                         {

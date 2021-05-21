@@ -498,6 +498,11 @@ public class Wampa : Bosseslv2
                                 Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
                             }
                     }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SOLO_HEAL))
+                    {
+                        Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)Core.instance.skill_SoloHeal);
+                        Core.instance.skill_SoloHeal = 0;
+                    }
                 }
                 Debug.Log("Wampa HP: " + healthPoints.ToString());
 
