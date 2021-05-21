@@ -18,6 +18,7 @@ public class Skel : Bosseslv2
         PROJECTILE,
         JUMP_SLAM,
         BOUNCE_RUSH,
+        PRESENTATION,
         DEAD
     }
 
@@ -40,10 +41,12 @@ public class Skel : Bosseslv2
         IN_JUMPSLAM_END,
         IN_BOUNCERUSH,
         IN_BOUNCERUSH_END,
+        IN_PRESENTATION,
+        IN_PRESENTATION_END,
         IN_DEAD
     }
 
-    private STATE currentState = STATE.SEARCH_STATE;
+    private STATE currentState = STATE.PRESENTATION;
     public bool firstSorrowRoar = false;
     private List<INPUT> inputsList = new List<INPUT>();
     private bool firstFrame = true;
@@ -72,6 +75,7 @@ public class Skel : Bosseslv2
         {
             companion = InternalCalls.FindObjectWithName("WampaBoss");
             firstFrame = false;
+            StartPresentation();
         }
         myDeltaTime = Time.deltaTime * speedMult;
         UpdateStatuses();
@@ -106,25 +110,15 @@ public class Skel : Bosseslv2
             }
         }
 
-        //if (fastChasingTimer > 0)
-        //{
-        //    fastChasingTimer -= myDeltaTime;
+        if (presentationTimer > 0.0f)
+        {
+            presentationTimer -= myDeltaTime;
 
-        //    if (fastChasingTimer <= 0)
-        //    {
-        //        inputsList.Add(INPUT.IN_FAST_RUSH_END);
-        //    }
-        //}
-
-        //if (slowChasingTimer > 0)
-        //{
-        //    slowChasingTimer -= myDeltaTime;
-
-        //    if (slowChasingTimer <= 0)
-        //    {
-        //        inputsList.Add(INPUT.IN_SLOW_RUSH_END);
-        //    }
-        //}
+            if (presentationTimer <= 0.0f)
+            {
+                inputsList.Add(INPUT.IN_PRESENTATION_END);
+            }
+        }
 
         if (restingTimer > 0)
         {
@@ -200,6 +194,16 @@ public class Skel : Bosseslv2
                         case INPUT.IN_WANDER:
                             currentState = STATE.WANDER;
                             StartWander();
+                            break;
+                    }
+                    break;
+
+                case STATE.PRESENTATION:
+                    switch (input)
+                    {
+                        case INPUT.IN_PRESENTATION_END:
+                            currentState = STATE.SEARCH_STATE;
+                            EndPresentation();
                             break;
                     }
                     break;
@@ -327,6 +331,9 @@ public class Skel : Bosseslv2
                 break;
             case STATE.WANDER:
                 UpdateWander();
+                break;
+            case STATE.PRESENTATION:
+                UpdatePresentation();
                 break;
             case STATE.SEARCH_STATE:
                 SelectAction();

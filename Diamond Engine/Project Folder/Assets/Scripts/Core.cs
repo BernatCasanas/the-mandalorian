@@ -40,7 +40,8 @@ public class Core : Entity
         IN_SEC_SHOOT,
         IN_SEC_SHOOT_END,
         IN_SEC_SHOOT_ANIM_END,
-        IN_DEAD
+        IN_DEAD,
+        IN_DEAD_END
     }
 
     enum PARTICLES : int
@@ -182,6 +183,10 @@ public class Core : Entity
     private bool canShootSniper = false;
     public float sniperStartAngleRays = 35f;
 
+    //Die
+    private float dieTimer = 0.0f;
+    public float dieTime = 0.0f; //Setted in Awake
+
     //Animations
     private float shootAnimationTotalTime = 0.0f;
     public float sniperAimAnimMult = 1.5f;
@@ -298,6 +303,12 @@ public class Core : Entity
         if (blaster != null)
             blaster.Enable(false);
 
+        dieTime = Animator.GetAnimationDuration(gameObject, "Die") - 0.016f;
+
+        #endregion
+
+        #region EVENTS
+        PlayerHealth.onPlayerDeath += DeadInput;
         #endregion
 
         #region STATUS_SYSTEM
@@ -305,6 +316,7 @@ public class Core : Entity
         InitEntity(ENTITY_TYPE.PLAYER);
 
         #endregion
+
     }
 
     public void Update()
@@ -539,6 +551,14 @@ public class Core : Entity
         if (HasStatus(STATUS_TYPE.GRENADE_ON_DASH))
             grenade_onDash += myDeltaTime;
 
+        if(dieTimer > 0.0f)
+        {
+            dieTimer -= myDeltaTime;
+            if(dieTimer <= 0.0f)
+            {
+                inputsList.Add(INPUT.IN_DEAD_END);
+            }
+        }
     }
 
     public void refreshCooldowns()
@@ -704,6 +724,8 @@ public class Core : Entity
                             break;
 
                         case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDead();
                             break;
                     }
                     break;
@@ -745,6 +767,8 @@ public class Core : Entity
 
                         case INPUT.IN_DEAD:
                             MoveEnd();
+                            currentState = STATE.DEAD;
+                            StartDead();
                             break;
                     }
                     break;
@@ -760,6 +784,8 @@ public class Core : Entity
                             break;
 
                         case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDead();
                             break;
                     }
                     break;
@@ -797,6 +823,8 @@ public class Core : Entity
                             break;
 
                         case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDead();
                             break;
                     }
                     break;
@@ -810,6 +838,8 @@ public class Core : Entity
                             break;
 
                         case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDead();
                             break;
                     }
                     break;
@@ -836,6 +866,8 @@ public class Core : Entity
                             break;
 
                         case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDead();
                             break;
                     }
                     break;
@@ -848,6 +880,8 @@ public class Core : Entity
                             break;
 
                         case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDead();
                             break;
                     }
                     break;
@@ -890,6 +924,8 @@ public class Core : Entity
                             break;
 
                         case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDead();
                             break;
                     }
                     break;
@@ -904,10 +940,19 @@ public class Core : Entity
                             break;
 
                         case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDead();
                             break;
                     }
                     break;
-
+                case STATE.DEAD:
+                    switch (input)
+                    {
+                        case INPUT.IN_DEAD_END:
+                            EndDead();
+                            break;
+                    }
+                    break;
                 default:
                     Debug.Log("NEED TO ADD STATE TO CORE SWITCH");
                     break;
@@ -962,6 +1007,7 @@ public class Core : Entity
                 ReducePrimaryWeaponHeat();
                 break;
             case STATE.DEAD:
+                UpdateDead();
                 break;
             default:
                 Debug.Log("NEED TO ADD STATE TO CORE");
@@ -1442,6 +1488,34 @@ public class Core : Entity
 
     #endregion
 
+    #region DIE
+    private void StartDead()
+    {
+        dieTimer = dieTime;
+        Animator.Play(gameObject, "Die");
+        Debug.Log("Start Dead");
+        Audio.PlayAudio(gameObject, "Play_Mando_Death");
+        hud.GetComponent<HUD>().gameObject.Enable(false);
+    }
+    private void UpdateDead()
+    {
+        
+       Debug.Log("Update Dead");
+    }
+
+    private void EndDead()
+    {
+        PlayerHealth.onPlayerDeathEnd?.Invoke();
+        Debug.Log("EEEEEEEEEEEEEEEEENDDDDDDDDDDDDDD DEEAAAD");
+    }
+
+    private void DeadInput()
+    {
+        inputsList.Add(INPUT.IN_DEAD);
+        Debug.Log("DEAAAAAAAAAAAAAD INPUUUUUUUUUUUUUUUUUT");
+    }
+    #endregion
+
     #region MOVE AND ROTATE PLAYER
     private void StartMove()
     {
@@ -1804,6 +1878,7 @@ public class Core : Entity
         if (triggeredGameObject.CompareTag("Coin"))
         {
             PlayerResources.AddRunCoins(10);
+            Audio.PlayAudio(gameObject, "Play_UI_Credit_Pickup");
 
             if (hud != null)
             {
@@ -2714,4 +2789,6 @@ public class Core : Entity
                 break;
         }
     }
+
+
 }
