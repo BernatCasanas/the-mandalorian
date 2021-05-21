@@ -49,6 +49,7 @@ public class Wampa : Bosseslv2
     private List<INPUT> inputsList = new List<INPUT>();
     public bool firstSorrowRoar = false;
     private bool firstFrame = true;
+    private bool angry = false;
 
     public override void Awake()
     {
@@ -117,6 +118,7 @@ public class Wampa : Bosseslv2
                 inputsList.Add(INPUT.IN_FAST_RUSH_END);
             }
         }
+        Debug.Log(presentationTimer.ToString());
 
         if (presentationTimer > 0.0f)
         {
@@ -156,9 +158,18 @@ public class Wampa : Bosseslv2
         {
             agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
         }
+
         if (currentState == STATE.PROJECTILE && secondShot)
         {
             inputsList.Add(INPUT.IN_PROJECTILE_END);
+        }
+
+        if (!companion.IsEnabled() && !angry)
+        {
+            Debug.Log("wampa angry");
+            inputsList.Add(INPUT.IN_PRESENTATION);
+            presentationTimer = presentationTime;
+            angry = true;
         }
     }
 
@@ -204,6 +215,10 @@ public class Wampa : Bosseslv2
                             currentState = STATE.WANDER;
                             StartWander();
                             break;
+                        case INPUT.IN_PRESENTATION:
+                            currentState = STATE.PRESENTATION;
+                            StartPresentation();
+                            break;
                     }
                     break;
 
@@ -218,32 +233,10 @@ public class Wampa : Bosseslv2
                             currentState = STATE.DEAD;
                             StartDie();
                             break;
-                    }
-                    break;
-
-                case STATE.BOUNCE_RUSH:
-                    switch (input)
-                    {
-                        case INPUT.IN_BOUNCERUSH_END:
-                            currentState = STATE.SEARCH_STATE;
-                            EndBounceRush();
-                            break;
-                        case INPUT.IN_DEAD:
-                            currentState = STATE.DEAD;
-                            StartDie();
-                            break;
-                    }
-                    break;
-                case STATE.JUMP_SLAM:
-                    switch (input)
-                    {
-                        case INPUT.IN_JUMPSLAM_END:
-                            currentState = STATE.SEARCH_STATE;
-                            EndJumpSlam();
-                            break;
-                        case INPUT.IN_DEAD:
-                            currentState = STATE.DEAD;
-                            StartDie();
+                        case INPUT.IN_PRESENTATION:
+                            currentState = STATE.PRESENTATION;
+                            EndFollowing();
+                            StartPresentation();
                             break;
                     }
                     break;
@@ -258,6 +251,11 @@ public class Wampa : Bosseslv2
                         case INPUT.IN_DEAD:
                             currentState = STATE.DEAD;
                             StartDie();
+                            break;
+                        case INPUT.IN_PRESENTATION:
+                            currentState = STATE.PRESENTATION;
+                            EndProjectile();
+                            StartPresentation();
                             break;
                     }
                     break;
@@ -276,6 +274,11 @@ public class Wampa : Bosseslv2
                             currentState = STATE.DEAD;
                             StartDie();
                             break;
+                        case INPUT.IN_PRESENTATION:
+                            currentState = STATE.PRESENTATION;
+                            EndSlowRush();
+                            StartPresentation();
+                            break;
                     }
                     break;
 
@@ -290,6 +293,11 @@ public class Wampa : Bosseslv2
                             currentState = STATE.DEAD;
                             StartDie();
                             break;
+                        case INPUT.IN_PRESENTATION:
+                            currentState = STATE.PRESENTATION;
+                            EndSlowRush();
+                            StartPresentation();
+                            break;
                     }
                     break;
 
@@ -303,6 +311,11 @@ public class Wampa : Bosseslv2
                         case INPUT.IN_DEAD:
                             currentState = STATE.DEAD;
                             StartDie();
+                            break;
+                        case INPUT.IN_PRESENTATION:
+                            currentState = STATE.PRESENTATION;
+                            EndWander();
+                            StartPresentation();
                             break;
                     }
                     break;
@@ -335,12 +348,6 @@ public class Wampa : Bosseslv2
                 break;
             case STATE.SLOW_RUSH:
                 UpdateSlowRush();
-                break;
-            case STATE.JUMP_SLAM:
-                UpdateJumpSlam();
-                break;
-            case STATE.BOUNCE_RUSH:
-                UpdateBounceRush();
                 break;
             case STATE.WANDER:
                 UpdateWander();
@@ -467,7 +474,6 @@ public class Wampa : Bosseslv2
     {
         if (!DebugOptionsHolder.bossDmg)
         {
-          
 
             if (currentState != STATE.DEAD)
             {
@@ -491,6 +497,11 @@ public class Wampa : Bosseslv2
                                 if (healing < 1) healing = 1;
                                 Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
                             }
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SOLO_HEAL))
+                    {
+                        Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)Core.instance.skill_SoloHeal);
+                        Core.instance.skill_SoloHeal = 0;
                     }
                 }
                 Debug.Log("Wampa HP: " + healthPoints.ToString());

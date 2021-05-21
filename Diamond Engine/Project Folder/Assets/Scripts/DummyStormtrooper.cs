@@ -610,6 +610,11 @@ public class DummyStormtrooper : Enemy
                             Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
                         }
                 }
+                if (Core.instance.HasStatus(STATUS_TYPE.SOLO_HEAL))
+                {
+                    Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)Core.instance.skill_SoloHeal);
+                    Core.instance.skill_SoloHeal = 0;
+                }
             }
 
             if (healthPoints <= 0.0f)

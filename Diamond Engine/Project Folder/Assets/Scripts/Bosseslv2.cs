@@ -54,7 +54,7 @@ public class Bosseslv2 : Entity
     public float bounceRushTimer = 0.0f;
     private float currAnimationPlaySpd = 1f;
     public float presentationTimer = 0f;
-    private float presentationTime = 1f;
+    public float presentationTime = 1f;
 
     //Atacks
     public float projectileAngle = 30.0f;
@@ -278,7 +278,6 @@ public class Bosseslv2 : Entity
     }
     #endregion
 
-
     #region BOUNCE RUSH
 
     public void StartBounceRush()
@@ -363,7 +362,8 @@ public class Bosseslv2 : Entity
             UpdateAnimationSpd(speedMult);
         }
 
-        if (colliderBounceRush != null) {
+        if (colliderBounceRush != null)
+        {
             colliderBounceRush.GetComponent<AtackBosslv2>().active = false;
         }
         if (gameObject.CompareTag("Wampa"))
@@ -421,6 +421,7 @@ public class Bosseslv2 : Entity
                                 jumpPositionIndicator.Enable(true);
                                 jumpPositionIndicator.transform.localPosition = Core.instance.gameObject.transform.globalPosition;
                             }
+
                         }
                         else if (gameObject.CompareTag("Wampa"))
                         {
@@ -438,14 +439,21 @@ public class Bosseslv2 : Entity
                 if (jumpslamTimer > 0)
                 {
                     gameObject.transform.localPosition += Vector3.up * 50f * myDeltaTime;
+                    Vector3 positionVec = (Core.instance.gameObject.transform.globalPosition - gameObject.transform.localPosition) * myDeltaTime;
+                    gameObject.transform.localPosition += new Vector3(positionVec.x, 0.0f, positionVec.z);
 
                     jumpslamTimer -= myDeltaTime;
+
+                    if (Mathf.Distance(jumpPositionIndicator.transform.localPosition, Core.instance.gameObject.transform.globalPosition) > 0.3f) {
+                        jumpPositionIndicator.transform.localPosition += (Core.instance.gameObject.transform.globalPosition - jumpPositionIndicator.transform.localPosition) * 0.1f;
+                    }
 
                     if (jumpslamTimer <= 0)
                     {
                         jumpslamTimer = fallingTime;
                         jumpslam = JUMPSLAM.FALLING;
-                        targetPos = Core.instance.gameObject.transform.globalPosition;
+                        jumpPositionIndicator.transform.localPosition = targetPos = Core.instance.gameObject.transform.globalPosition;
+
                         float speed = Mathf.Distance(targetPos, gameObject.transform.globalPosition) / fallingTime;
                         if (colliderJumpSlam != null)
                         {
@@ -600,6 +608,7 @@ public class Bosseslv2 : Entity
             Animator.Play(gameObject, "Skel_Die", speedMult);
             UpdateAnimationSpd(speedMult);
             Audio.PlayAudio(gameObject, "Play_Skel_Death");
+            Debug.Log("BOOLEAN IS TRUE");
         }
         else if (gameObject.CompareTag("Wampa"))
         {
@@ -629,17 +638,19 @@ public class Bosseslv2 : Entity
     {
         Debug.Log("DEAD");
 
+
         EnemyManager.RemoveEnemy(gameObject);
         if (gameObject.CompareTag("Wampa") && companion != null)
         {
-                companion.GetComponent<Skel>().firstSorrowRoar = true;
+            companion.GetComponent<Skel>().firstSorrowRoar = true;
         }
         else if (gameObject.CompareTag("Skel") && companion != null)
         {
-                companion.GetComponent<Wampa>().firstSorrowRoar = true;
+            companion.GetComponent<Wampa>().firstSorrowRoar = true;
         }
-        companion = null;
-        InternalCalls.Destroy(gameObject);
+        gameObject.Enable(false);
+        //companion = null;
+        //InternalCalls.Destroy(gameObject);
     }
     #endregion
 
@@ -675,7 +686,6 @@ public class Bosseslv2 : Entity
     }
     public void UpdatePresentation()
     {
-
 
         Debug.Log("Presentation");
 
@@ -809,5 +819,6 @@ public class Bosseslv2 : Entity
                 break;
         }
     }
+
 
 }
