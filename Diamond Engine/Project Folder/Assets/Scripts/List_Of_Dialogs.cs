@@ -4,12 +4,35 @@ using System.Collections.Generic;
 
 public enum DialogImages
 {
-    IMG_MANDO_DEFAULT = 0,
-    IMG_GROGU_DEFAULT,
-    IMG_BOKATAN_DEFAULT,
-    IMG_CARA_DEFAULT,
-    IMG_GREEF_DEFAULT,
-    IMG_AHSOKA_DEFAULT,
+    IMG_MANDO_SERIOUS = 0,
+    IMG_MANDO_ASHAMED,
+    IMG_MANDO_ANGRY,
+    IMG_MANDO_THREATENING,
+    IMG_MANDO_JOKING,
+    IMG_MANDO_HAPPY,
+    IMG_GROGU_SERIOUS,
+    IMG_GROGU_LAUGHING,
+    IMG_GROGU_CURIOUS,
+    IMG_GROGU_SCARED,
+    IMG_BOKATAN_SERIOUS,
+    IMG_BOKATAN_ANGRY,
+    IMG_CARA_SERIOUS,
+    IMG_CARA_ANGRY1,
+    IMG_CARA_ANGRY2,
+    IMG_CARA_ASHAMED,
+    IMG_GREEF_SERIOUS,
+    IMG_GREEF_LAUGHING,
+    IMG_GREEF_THINKER,
+    IMG_GREEF_ASHAMED,
+    IMG_AHSOKA_SERIOUS,
+    IMG_AHSOKA_THINKER,
+    IMG_AHSOKA_MELANCHOLIC,
+    IMG_MOFF_SERIOUS,
+    IMG_MOFF_JESTER,
+    IMG_MOFF_ANGRY,
+    IMG_MOFF_THREATENING1,
+    IMG_MOFF_THREATENING2,
+    IMG_MOFF_DEFEATED,
     IMG_MAX
 }
 
@@ -69,27 +92,27 @@ public class List_Of_Dialogs : DiamondComponent
 
     private List<DialogImages> Final_Cutscene_images = new List<DialogImages>()
     {
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
     };
 
     private List<string> Post_Initial_Cutscene_Dialogue = new List<string>()
@@ -108,8 +131,8 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Post_Initial_Cutscene_Dialogue_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
+		DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
     };
 
     private List<string> Initial_Cutscene = new List<string>()
@@ -138,13 +161,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Initial_Cutscene_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
 
@@ -173,12 +196,12 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Bo_Katan_0_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
     };
 
     private List<string> Bo_Katan_0_2 = new List<string>()
@@ -203,11 +226,11 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Bo_Katan_0_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     private List<string> Bo_Katan_0_3 = new List<string>()
@@ -234,12 +257,12 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Bo_Katan_0_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
     };
 
     private List<string> Bo_Katan_1_1 = new List<string>()
@@ -271,14 +294,14 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Bo_Katan_1_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
+		DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
     };
 
     private List<string> Bo_Katan_1_2 = new List<string>()
@@ -301,10 +324,10 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Bo_Katan_1_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
     };
 
     private List<string> Bo_Katan_1_3 = new List<string>()
@@ -329,11 +352,11 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Bo_Katan_1_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
     };
 
     private List<string> Bo_Katan_2_1 = new List<string>()
@@ -366,15 +389,15 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Bo_Katan_2_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
+		DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
     };
 
     private List<string> Bo_Katan_2_2 = new List<string>()
@@ -403,13 +426,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Bo_Katan_2_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
     };
 
     private List<string> Bo_Katan_2_3 = new List<string>()
@@ -444,16 +467,16 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Bo_Katan_2_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
     };
 
     private List<string> Bo_Katan_3_1 = new List<string>()
@@ -482,13 +505,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Bo_Katan_3_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
     };
 
     private List<string> Bo_Katan_3_2 = new List<string>()
@@ -527,18 +550,18 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Bo_Katan_3_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
     };
 
     private List<string> Bo_Katan_3_3 = new List<string>()
@@ -571,15 +594,15 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Bo_Katan_3_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
     };
 
     private List<string> Bo_Katan_4_1 = new List<string>()
@@ -616,17 +639,17 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Bo_Katan_4_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
     };
 
     private List<string> Bo_Katan_4_2 = new List<string>()
@@ -655,13 +678,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Bo_Katan_4_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
     };
 
     private List<string> Bo_Katan_4_3 = new List<string>()
@@ -694,15 +717,15 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Bo_Katan_4_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
     };
 
     private List<string> Bo_Katan_5_1 = new List<string>()
@@ -723,9 +746,9 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Bo_Katan_5_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
     };
 
     private List<string> Bo_Katan_5_2 = new List<string>()
@@ -748,10 +771,10 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Bo_Katan_5_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
     };
 
     private List<string> Bo_Katan_5_3 = new List<string>()
@@ -778,10 +801,10 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Bo_Katan_5_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_BOKATAN_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_BOKATAN_SERIOUS,
     };
 
     //////////////////////////////////////////////////////////////////////////////////////// GROGU ////////////////////////////////////////////////////////////////////////////////////////
@@ -805,10 +828,10 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Grogu_0_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
     };
 
     private List<string> Grogu_0_2 = new List<string>()
@@ -843,16 +866,16 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Grogu_0_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
     };
 
     private List<string> Grogu_1_1 = new List<string>()
@@ -885,15 +908,15 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Grogu_1_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     private List<string> Grogu_1_2 = new List<string>()
@@ -922,13 +945,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Grogu_1_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     private List<string> Grogu_2_1 = new List<string>()
@@ -955,12 +978,12 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Grogu_2_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     private List<string> Grogu_2_2 = new List<string>()
@@ -991,14 +1014,14 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Grogu_2_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     private List<string> Grogu_3_1 = new List<string>()
@@ -1027,13 +1050,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Grogu_3_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     private List<string> Grogu_3_2 = new List<string>()
@@ -1062,13 +1085,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Grogu_3_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
     };
 
     private List<string> Grogu_4_1 = new List<string>()
@@ -1095,12 +1118,12 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Grogu_4_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     private List<string> Grogu_4_2 = new List<string>()
@@ -1125,11 +1148,11 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Grogu_4_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     private List<string> Grogu_5_1 = new List<string>()
@@ -1160,14 +1183,14 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Grogu_5_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     private List<string> Grogu_5_2 = new List<string>()
@@ -1198,14 +1221,14 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Grogu_5_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_GROGU_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_GROGU_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
     //////////////////////////////////////////////////////////////////////////////////////// GREEF KARGA ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1239,15 +1262,15 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Greef_0_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
+		DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
     };
 
     private List<string> Greef_0_2 = new List<string>()
@@ -1280,15 +1303,15 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Greef_0_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
     };
 
     private List<string> Greef_0_3 = new List<string>()
@@ -1321,15 +1344,15 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Greef_0_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
     };
 
     private List<string> Greef_1_1 = new List<string>()
@@ -1358,13 +1381,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Greef_1_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     private List<string> Greef_1_2 = new List<string>()
@@ -1397,15 +1420,15 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Greef_1_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
     };
 
     private List<string> Greef_1_3 = new List<string>()
@@ -1438,15 +1461,15 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Greef_1_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
     };
 
     private List<string> Greef_2_1 = new List<string>()
@@ -1475,13 +1498,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Greef_2_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
     };
 
     private List<string> Greef_2_2 = new List<string>()
@@ -1517,16 +1540,16 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Greef_2_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
     };
 
     private List<string> Greef_2_3 = new List<string>()
@@ -1561,16 +1584,16 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Greef_2_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     private List<string> Greef_3_1 = new List<string>()
@@ -1603,15 +1626,15 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Greef_3_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
+		DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
     };
 
     private List<string> Greef_3_2 = new List<string>()
@@ -1648,17 +1671,17 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Greef_3_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
     };
 
     private List<string> Greef_3_3 = new List<string>()
@@ -1693,16 +1716,16 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Greef_3_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
     };
 
     private List<string> Greef_4_1 = new List<string>()
@@ -1735,15 +1758,15 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Greef_4_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
     };
 
     private List<string> Greef_4_2 = new List<string>()
@@ -1772,13 +1795,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Greef_4_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
     };
 
     private List<string> Greef_4_3 = new List<string>()
@@ -1809,14 +1832,14 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Greef_4_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
     };
 
     private List<string> Greef_5_1 = new List<string>()
@@ -1847,14 +1870,14 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Greef_5_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
     };
 
     private List<string> Greef_5_2 = new List<string>()
@@ -1885,14 +1908,14 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Greef_5_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     private List<string> Greef_5_3 = new List<string>()
@@ -1921,13 +1944,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Greef_5_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_GREEF_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_GREEF_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     //////////////////////////////////////////////////////////////////////////////////////// AHSOKA ////////////////////////////////////////////////////////////////////////////////////////
@@ -1958,13 +1981,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Ahsoka_0_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
     };
 
     private List<string> Ahsoka_0_2 = new List<string>()
@@ -1995,14 +2018,14 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Ahsoka_0_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
     };
 
     private List<string> Ahsoka_0_3 = new List<string>()
@@ -2033,14 +2056,14 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Ahsoka_0_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
     };
 
     private List<string> Ahsoka_1_1 = new List<string>()
@@ -2069,13 +2092,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Ahsoka_1_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
+		DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
     };
 
     private List<string> Ahsoka_1_2 = new List<string>()
@@ -2108,15 +2131,15 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Ahsoka_1_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
     };
 
     private List<string> Ahsoka_1_3 = new List<string>()
@@ -2143,12 +2166,12 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Ahsoka_1_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
     };
 
     private List<string> Ahsoka_2_1 = new List<string>()
@@ -2179,14 +2202,14 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Ahsoka_2_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
+		DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
     };
 
     private List<string> Ahsoka_2_2 = new List<string>()
@@ -2216,13 +2239,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Ahsoka_2_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
     };
 
     private List<string> Ahsoka_2_3 = new List<string>()
@@ -2253,14 +2276,14 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Ahsoka_2_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
+		DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
     };
 
     private List<string> Ahsoka_3_1 = new List<string>()
@@ -2289,13 +2312,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Ahsoka_3_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
+		DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
     };
 
     private List<string> Ahsoka_3_2 = new List<string>()
@@ -2326,14 +2349,14 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Ahsoka_3_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
     };
 
     private List<string> Ahsoka_3_3 = new List<string>()
@@ -2368,16 +2391,16 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Ahsoka_3_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
     };
 
     private List<string> Ahsoka_4_1 = new List<string>()
@@ -2410,15 +2433,15 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Ahsoka_4_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
+		DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
     };
 
     private List<string> Ahsoka_4_2 = new List<string>()
@@ -2451,15 +2474,15 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Ahsoka_4_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
     };
 
     private List<string> Ahsoka_4_3 = new List<string>()
@@ -2494,16 +2517,16 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Ahsoka_4_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+		DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     private List<string> Ahsoka_5_1 = new List<string>()
@@ -2532,13 +2555,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Ahsoka_5_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
+		DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
     };
 
     private List<string> Ahsoka_5_2 = new List<string>()
@@ -2567,13 +2590,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Ahsoka_5_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
     };
 
     private List<string> Ahsoka_5_3 = new List<string>()
@@ -2608,16 +2631,16 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Ahsoka_5_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_AHSOKA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_AHSOKA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     //////////////////////////////////////////////////////////////////////////////////////// CARA DUNE ////////////////////////////////////////////////////////////////////////////////////////
@@ -2648,13 +2671,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_0_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     private List<string> Cara_0_2 = new List<string>()
@@ -2685,14 +2708,14 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_0_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
+		DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
     };
 
     private List<string> Cara_0_3 = new List<string>()
@@ -2725,15 +2748,15 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_0_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
     };
 
     private List<string> Cara_1_1 = new List<string>()
@@ -2768,16 +2791,16 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_1_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
+		DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
     };
 
     private List<string> Cara_1_2 = new List<string>()
@@ -2804,12 +2827,12 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_1_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
     };
 
     private List<string> Cara_1_3 = new List<string>()
@@ -2842,15 +2865,15 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_1_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     private List<string> Cara_2_1 = new List<string>()
@@ -2879,13 +2902,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_2_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
+		DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
     };
 
     private List<string> Cara_2_2 = new List<string>()
@@ -2916,14 +2939,14 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_2_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
     };
 
     private List<string> Cara_2_3 = new List<string>()
@@ -2952,13 +2975,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_2_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     private List<string> Cara_3_1 = new List<string>()
@@ -2987,13 +3010,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_3_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
     };
 
     private List<string> Cara_3_2 = new List<string>()
@@ -3022,13 +3045,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_3_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
     };
 
     private List<string> Cara_3_3 = new List<string>()
@@ -3063,16 +3086,16 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_3_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     private List<string> Cara_4_1 = new List<string>()
@@ -3099,12 +3122,12 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_4_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     private List<string> Cara_4_2 = new List<string>()
@@ -3133,13 +3156,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_4_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
     };
 
     private List<string> Cara_4_3 = new List<string>()
@@ -3170,14 +3193,14 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_4_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
     };
 
     private List<string> Cara_5_1 = new List<string>()
@@ -3206,13 +3229,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_5_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
     };
 
     private List<string> Cara_5_2 = new List<string>()
@@ -3243,14 +3266,14 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_5_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
     };
 
     private List<string> Cara_5_3 = new List<string>()
@@ -3292,19 +3315,19 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_5_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_CARA_DEFAULT,
-        DialogImages.IMG_MANDO_DEFAULT,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_SERIOUS,
     };
 
     public List<String> GetListOfDialog(uint index)

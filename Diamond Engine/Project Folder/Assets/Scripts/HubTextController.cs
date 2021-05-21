@@ -77,6 +77,8 @@ public class HubTextController : DiamondComponent
 
     public void Awake()
     {
+        ResetInteractionBools();
+
         total_interactions_and_stages = total_stages * total_interactions;
         if (DiamondPrefs.ReadBool("reset"))
             return;
@@ -85,7 +87,7 @@ public class HubTextController : DiamondComponent
     public void Update()
     {
         if (mando == null || Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN || textController == null || textController.GetComponent<TextController>().otherimage == null || dialog == null ||
-            textController.IsEnabled() == false || insideColliderTextActive)
+            textController.IsEnabled() == false || !insideColliderTextActive)
         {
             return;
         }
@@ -281,5 +283,13 @@ public class HubTextController : DiamondComponent
         DiamondPrefs.Write("greefInteractionNum", greefInteractionNum);
         DiamondPrefs.Write("ashokaInteractionNum", ashokaInteractionNum);
         DiamondPrefs.Write("groguInteractionNum", groguInteractionNum);
+    }
+
+    private void ResetInteractionBools()
+    {
+        boKatanHasInteracted = false;
+        greefHasInteracted = false;
+        ashokaHasInteracted = false;
+        groguHasInteracted = false;
     }
 }
