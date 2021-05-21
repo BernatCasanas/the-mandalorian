@@ -116,7 +116,7 @@ public class Core : Entity
     private float skill_damageReductionDashTimer = 0.0f;
     private bool skill_groguIncreaseDamageActive = false;
     private float skill_groguIncreaseDamageTimer = 0.0f;
-
+    public float skill_SoloHeal = 0.0f;
     // Dash
     public float dashCD = 0.33f;
     public float dashDuration = 0.2f;
@@ -1404,6 +1404,9 @@ public class Core : Entity
         Input.PlayHaptic(2f, 30);
 
         Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
+        if (HasStatus(STATUS_TYPE.BOBBA_STUN_AMMO))
+            scale *= 1 + GetStatusData(STATUS_TYPE.BOBBA_STUN_AMMO).severity/100;
+
         InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation, scale);
 
     }
@@ -2747,6 +2750,12 @@ public class Core : Entity
                     dashCDModifier += statusToInit.statChange;
                 }
                 break;
+            case STATUS_TYPE.SOLO_HEAL:
+                {
+                    statusToInit.statChange = statusToInit.severity;
+                    skill_SoloHeal = statusToInit.statChange;
+                }
+                break;
             default:
                 break;
         }
@@ -3028,6 +3037,12 @@ public class Core : Entity
             case STATUS_TYPE.WATTO_COOLANT:
                 {
                     dashCDModifier -= statusToDelete.statChange;
+                }
+                break;
+            case STATUS_TYPE.SOLO_HEAL:
+                {
+                    
+                    skill_SoloHeal = 0;
                 }
                 break;
             default:
