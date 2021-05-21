@@ -613,6 +613,7 @@ public class StormTrooper : Enemy
         BH_Bullet bulletScript = bullet.GetComponent<BH_Bullet>();
         bulletScript.damage = damage;
         bulletScript.SetTagToAvoid(gameObject.tag);
+        bulletScript.SetGameObjectToAvoid(this.gameObject);
 
         Animator.Play(gameObject, "ST_Shoot", speedMult);
         if (blaster != null)
@@ -766,7 +767,8 @@ public class StormTrooper : Enemy
         {
             ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
 
-
+            if (myParticles != null && myParticles.sniperHit != null)
+                myParticles.sniperHit.Play();
 
             Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -850,6 +852,16 @@ public class StormTrooper : Enemy
             {
                 pushDir = triggeredGameObject.transform.GetForward();
                 inputsList.Add(INPUT.IN_PUSHED);
+
+                if (Core.instance != null)
+                {
+
+                    HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                    if (hudComponent != null)
+                        hudComponent.AddToCombo(5, 0.45f);
+
+                }
             }
         }
     }
@@ -862,6 +874,14 @@ public class StormTrooper : Enemy
             {
                 pushDir = triggeredGameObject.transform.GetForward();
                 inputsList.Add(INPUT.IN_PUSHED);
+
+                if (Core.instance != null)
+                {
+                    HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                    if (hudComponent != null)
+                        hudComponent.AddToCombo(5, 0.45f);
+                }
             }
         }
     }

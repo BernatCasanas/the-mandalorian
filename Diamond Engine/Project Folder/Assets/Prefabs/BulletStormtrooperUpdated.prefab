@@ -13,20 +13,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                9.9116678237915039,
-                10.275588989257813,
-                0
+                -14.729999542236328,
+                19.340000152587891,
+                -1.8300000429153442
             ],
             "Rotation": [
-                0,
-                -0.7071068286895752,
-                0,
-                0.7071068286895752
+                -0.035769112408161163,
+                -0.96618485450744629,
+                -0.032691795378923416,
+                0.25325608253479004
             ],
             "Scale": [
-                0.12999999523162842,
-                0.070000000298023224,
-                1.2000000476837158
+                0.050004638731479645,
+                0.050000142306089401,
+                0.60005426406860352
             ],
             "Components": [
                 {
@@ -50,7 +50,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 5,
@@ -71,9 +72,9 @@
                     "LockLinearX": false,
                     "LockLinearY": false,
                     "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
                     "Mass": 10,
                     "Density": 1
                 },
@@ -105,6 +106,27 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/571028171.mat",
                     "MaterialUID": 571028171
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        0.30000004172325134,
+                        0.30000004172325134,
+                        0.30000004172325134
+                    ]
                 }
             ]
         },
@@ -157,7 +179,8 @@
                         0
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": false
+                    "doNotDrawStencil": false,
+                    "drawShadows": true
                 },
                 {
                     "Type": 26,

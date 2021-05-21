@@ -828,16 +828,31 @@ public class Bantha : Enemy
         {
             pushDir = triggeredGameObject.transform.GetForward();
             inputsList.Add(INPUT.IN_PUSHED);
+
+            if (Core.instance != null)
+            {
+                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                    hudComponent.AddToCombo(5, 0.45f);
+
+            }
         }
     }
     public void OnTriggerExit(GameObject triggeredGameObject)
     {
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         {
+            pushDir = triggeredGameObject.transform.GetForward();
+            inputsList.Add(INPUT.IN_PUSHED);
             if (Core.instance != null)
             {
-                pushDir = triggeredGameObject.transform.GetForward();
-                inputsList.Add(INPUT.IN_PUSHED);
+
+                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                    hudComponent.AddToCombo(5, 0.45f);
+
             }
         }
     }
