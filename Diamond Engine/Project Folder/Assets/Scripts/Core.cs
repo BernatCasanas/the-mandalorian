@@ -1896,6 +1896,7 @@ public class Core : Entity
             if (pause != null)
             {
                 pause.EnableNav(true);
+                Audio.PlayAudio(gameObject, "Play_UI_Pause");
                 pause.GetComponent<Pause>().DisplayBoons();
                 pause.GetComponent<Pause>().HideShop();
                 background.Enable(true);
@@ -2089,6 +2090,7 @@ public class Core : Entity
             else if (collidedGameObject.CompareTag("WaterFloor"))
             {
                 floorType = FLOOR_TYPE.WATER;
+                Audio.PlayAudio(gameObject, "Play_Mando_Damaging_Water");
             }
             else if (collidedGameObject.CompareTag("StoneFloor"))
             {
@@ -3062,6 +3064,9 @@ public class Core : Entity
                 break;
         }
     }
-
+    public bool IsMandoDead()
+    {
+        return (currentState == STATE.DEAD);
+    }
 
 }

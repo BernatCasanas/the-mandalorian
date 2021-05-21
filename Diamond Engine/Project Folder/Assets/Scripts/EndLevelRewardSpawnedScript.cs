@@ -16,6 +16,7 @@ public class EndLevelRewardSpawn : DiamondComponent
         if (collidedGameObject != null && collidedGameObject.CompareTag("Player"))
         {
             trigger = true;
+            Audio.PlayAudio(gameObject, "Play_UI_Boon_Pickup");
         }
     }
 
