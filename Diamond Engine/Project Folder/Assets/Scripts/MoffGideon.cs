@@ -854,7 +854,7 @@ public class MoffGideon : Entity
     {
         Animator.Play(gameObject, "MG_Run", speedMult);
         UpdateAnimationSpd(speedMult);
-
+        Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Footsteps");
         neutralTimer = neutralTime;
         wander = false;
 
@@ -885,6 +885,7 @@ public class MoffGideon : Entity
     private void EndNeutral()
     {
         soloDash = false;
+        Audio.StopOneAudio(gameObject, "Play_Moff_Gideon_Footsteps");
     }
 
     #endregion
@@ -1159,6 +1160,7 @@ public class MoffGideon : Entity
         dieTimer = dieTime;
         Animator.Play(gameObject, "MG_Death", speedMult);
         UpdateAnimationSpd(speedMult);
+        Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Death");
         if (cam_comp != null)
             cam_comp.target = this.gameObject;
         if (visualFeedback != null)
