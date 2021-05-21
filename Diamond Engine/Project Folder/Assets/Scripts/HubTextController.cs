@@ -86,8 +86,7 @@ public class HubTextController : DiamondComponent
     }
     public void Update()
     {
-        if (mando == null || Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN || textController == null /*|| textController.GetComponent<TextController>().otherimage == null*/ || dialog == null ||
-            textController.IsEnabled() == false || !insideColliderTextActive)
+        if (mando == null || Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN || textController == null || dialog == null || textController.IsEnabled() == false || insideColliderTextActive == true)
         {
             return;
         }
@@ -204,7 +203,7 @@ public class HubTextController : DiamondComponent
                     DiamondPrefs.Write("groguInteractionNum", groguInteractionNum);
                 }
 
-                greefHasInteracted = true;
+                groguHasInteracted = true;
 
                 break;
         }
