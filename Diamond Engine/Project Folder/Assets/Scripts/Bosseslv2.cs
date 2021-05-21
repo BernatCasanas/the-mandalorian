@@ -608,6 +608,7 @@ public class Bosseslv2 : Entity
             Animator.Play(gameObject, "Skel_Die", speedMult);
             UpdateAnimationSpd(speedMult);
             Audio.PlayAudio(gameObject, "Play_Skel_Death");
+            Counter.SumToCounterType(Counter.CounterTypes.SKEL);
             Debug.Log("BOOLEAN IS TRUE");
         }
         else if (gameObject.CompareTag("Wampa"))
@@ -615,6 +616,7 @@ public class Bosseslv2 : Entity
             Animator.Play(gameObject, "WP_Die", speedMult);
             UpdateAnimationSpd(speedMult);
             Audio.PlayAudio(gameObject, "Play_Wampa_Death");
+            Counter.SumToCounterType(Counter.CounterTypes.WAMPA);
         }
         Debug.Log("Dying");
     }

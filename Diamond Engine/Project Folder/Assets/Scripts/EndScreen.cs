@@ -182,24 +182,28 @@ public class EndScreen : DiamondComponent
             //Update Wampa and Skel PANEL
             if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.WAMPA) && Counter.GameCounters.ContainsKey(Counter.CounterTypes.SKEL))
             {
+                Debug.Log("Wampa&Skel");
                 wampaandskelPanel.Enable(true);
                 skelPanel.Enable(false);
                 wampaPanel.Enable(false);
             }
             else if (Counter.GameCounters.ContainsKey(Counter.CounterTypes.WAMPA) && !Counter.GameCounters.ContainsKey(Counter.CounterTypes.SKEL))
             {
+                Debug.Log("Wampa");
                 wampaPanel.Enable(true);
                 skelPanel.Enable(false);
                 wampaandskelPanel.Enable(false);
             }
             else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.WAMPA) && Counter.GameCounters.ContainsKey(Counter.CounterTypes.SKEL))
             {
+                Debug.Log("Skel");
                 skelPanel.Enable(true);
                 wampaPanel.Enable(false);
                 wampaandskelPanel.Enable(false);
             }
             else if (!Counter.GameCounters.ContainsKey(Counter.CounterTypes.WAMPA) && !Counter.GameCounters.ContainsKey(Counter.CounterTypes.SKEL))
             {
+                Debug.Log("NONE");
                 skelPanel.Enable(false);
                 wampaPanel.Enable(false);
                 wampaandskelPanel.Enable(false);
