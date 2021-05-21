@@ -839,7 +839,7 @@ void ModuleRenderer3D::DirectionalLightShadowPass()
 
 					for (size_t j = 0; j < renderQueuePostStencil.size(); ++j)
 					{
-						if (renderQueue[j]->GetDrawShadows())
+						if (renderQueuePostStencil[j]->GetDrawShadows())
 						{
 							float distance = directLightVector[i]->orthoFrustum.pos.DistanceSq(renderQueuePostStencil[j]->globalOBB.pos);
 							renderQueueMap.emplace(distance, renderQueuePostStencil[j]);
@@ -900,7 +900,7 @@ void ModuleRenderer3D::AreaLightShadowPass()
 
 					for (size_t j = 0; j < renderQueuePostStencil.size(); ++j)
 					{
-						if (renderQueue[j]->GetDrawShadows())
+						if (renderQueuePostStencil[j]->GetDrawShadows())
 						{
 							float distance = areaLightVector[i]->shadowTransforms[0].pos.DistanceSq(renderQueuePostStencil[j]->globalOBB.pos);
 							renderQueueMap.emplace(distance, renderQueuePostStencil[j]);
