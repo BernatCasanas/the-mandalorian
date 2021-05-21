@@ -6,6 +6,8 @@ public class UI_Fade : DiamondComponent
 	public float delay = 0.5f;
 	public float duration = 1.0f;
 
+	public bool playOnAwake = true;
+
 	private float timer = 0.0f;
 
 	private Material material = null;
@@ -26,6 +28,9 @@ public class UI_Fade : DiamondComponent
         {
 			material.SetFloatUniform("fadeValue", 0.0f);
 		}
+
+		if (playOnAwake == false)
+			ended = true;
 	}
 
 	public void Update()
@@ -52,5 +57,11 @@ public class UI_Fade : DiamondComponent
 
 		else
 			firstFramePassed = true;
+	}
+
+	public void Activate()
+	{
+		if (material != null)
+			ended = false;
 	}
 }

@@ -52,7 +52,8 @@ public class TextController : DiamondComponent
 	private List<bool> images;
 	private List<DialogImages> dialogImages;
 
-	private DialogImages lastImage, currentImage;
+	private DialogImages lastImage = DialogImages.IMG_NONE;
+	private DialogImages currentImage = DialogImages.IMG_NONE;
 	private bool startMenu = true;
 	private bool finished = false;
 
