@@ -363,7 +363,8 @@ public class Bosseslv2 : Entity
             UpdateAnimationSpd(speedMult);
         }
 
-        if (colliderBounceRush != null) {
+        if (colliderBounceRush != null)
+        {
             colliderBounceRush.GetComponent<AtackBosslv2>().active = false;
         }
         if (gameObject.CompareTag("Wampa"))
@@ -421,6 +422,7 @@ public class Bosseslv2 : Entity
                                 jumpPositionIndicator.Enable(true);
                                 jumpPositionIndicator.transform.localPosition = Core.instance.gameObject.transform.globalPosition;
                             }
+
                         }
                         else if (gameObject.CompareTag("Wampa"))
                         {
@@ -441,11 +443,16 @@ public class Bosseslv2 : Entity
 
                     jumpslamTimer -= myDeltaTime;
 
+                    if (Mathf.Distance(jumpPositionIndicator.transform.localPosition, Core.instance.gameObject.transform.globalPosition) > 0.3f) {
+                        jumpPositionIndicator.transform.localPosition += (Core.instance.gameObject.transform.globalPosition - jumpPositionIndicator.transform.localPosition) * 0.1f;
+                    }
+
                     if (jumpslamTimer <= 0)
                     {
                         jumpslamTimer = fallingTime;
                         jumpslam = JUMPSLAM.FALLING;
-                        targetPos = Core.instance.gameObject.transform.globalPosition;
+                        jumpPositionIndicator.transform.localPosition = targetPos = Core.instance.gameObject.transform.globalPosition;
+
                         float speed = Mathf.Distance(targetPos, gameObject.transform.globalPosition) / fallingTime;
                         if (colliderJumpSlam != null)
                         {
@@ -632,11 +639,11 @@ public class Bosseslv2 : Entity
         EnemyManager.RemoveEnemy(gameObject);
         if (gameObject.CompareTag("Wampa") && companion != null)
         {
-                companion.GetComponent<Skel>().firstSorrowRoar = true;
+            companion.GetComponent<Skel>().firstSorrowRoar = true;
         }
         else if (gameObject.CompareTag("Skel") && companion != null)
         {
-                companion.GetComponent<Wampa>().firstSorrowRoar = true;
+            companion.GetComponent<Wampa>().firstSorrowRoar = true;
         }
         companion = null;
         InternalCalls.Destroy(gameObject);
