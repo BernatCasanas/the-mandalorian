@@ -1225,6 +1225,7 @@ public class Core : Entity
         if (sniperShootPoint != null && myAimbot != null && canShootSniper == true)
         {
             float currAngle = Mathf.LerpAngle(sniperStartAngleRays, 0f, chargeTimer / timeToPerfectCharge) * Mathf.Deg2RRad;
+            float rayWidth = Mathf.Lerp(7f, 3f, Math.Min(chargeTimer / timeToPerfectCharge, 1f));
 
             float hitDistanceRay1 = myAimbot.maxRange;
             float hitDistanceRay2 = myAimbot.maxRange;
@@ -1236,8 +1237,8 @@ public class Core : Entity
             InternalCalls.RayCast(sniperShootPoint.transform.globalPosition + (sniperShootPoint.transform.GetForward() * 1.5f), sniperDir2, myAimbot.maxRange, ref hitDistanceRay2);
             //hitDistance = Math.Min(hitDistance, Mathf.Lerp(0, myAimbot.maxRange, chargeTimer / timeToPerfectCharge));
 
-            InternalCalls.DrawRay(sniperShootPoint.transform.globalPosition, sniperShootPoint.transform.globalPosition + (sniperDir1 * hitDistanceRay1), currSniperLaserColor, 7f);
-            InternalCalls.DrawRay(sniperShootPoint.transform.globalPosition, sniperShootPoint.transform.globalPosition + (sniperDir2 * hitDistanceRay2), currSniperLaserColor, 7f);
+            InternalCalls.DrawRay(sniperShootPoint.transform.globalPosition, sniperShootPoint.transform.globalPosition + (sniperDir1 * hitDistanceRay1), currSniperLaserColor, rayWidth);
+            InternalCalls.DrawRay(sniperShootPoint.transform.globalPosition, sniperShootPoint.transform.globalPosition + (sniperDir2 * hitDistanceRay2), currSniperLaserColor, rayWidth);
         }
 
         if (canShootSniper == true)

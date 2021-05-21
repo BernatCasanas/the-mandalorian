@@ -69,6 +69,7 @@
                     "chargeRange": 7,
                     "chargeLength": 14,
                     "forcePushMod": 0.5,
+                    "pushTime": 0.75,
                     "stunParticle": 1416713448
                 },
                 {
@@ -118,10 +119,10 @@
                     "Active": true,
                     "evName": "Empty",
                     "audBankReference": "Bantha",
-                    "volume": 49.994998931884766,
                     "pitch": 50,
                     "playOnAwake": false,
-                    "isMuted": false
+                    "isMuted": false,
+                    "isMusic": true
                 }
             ]
         },
@@ -1738,7 +1739,8 @@
                         0
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": false
+                    "doNotDrawStencil": false,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -1987,7 +1989,9 @@
                     "Unhovered_LibraryPath": "Library\/Textures\/1546682848.dds",
                     "Unhovered_UID": 1546682848,
                     "ButtonState": 0,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -2002,35 +2006,35 @@
                     "Map": [
                         {
                             "Index": 0,
-                            "UID": 0,
+                            "UID": 1676501951,
                             "Action": 2,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 11,
-                            "UID": 0,
+                            "UID": 1676501951,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 12,
-                            "UID": 0,
+                            "UID": 1676501951,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 19,
-                            "UID": 0,
+                            "UID": 1676501951,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true
                         },
                         {
                             "Index": 20,
-                            "UID": 0,
+                            "UID": 1676501951,
                             "Action": 1,
                             "Is Key Down": false,
                             "Is Key Up": true

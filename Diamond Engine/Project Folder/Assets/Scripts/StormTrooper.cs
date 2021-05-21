@@ -113,8 +113,8 @@ public class StormTrooper : Enemy
         shotSequences = 0;
 
         idleTimer = idleTime;
-        dieTime  = Animator.GetAnimationDuration(gameObject, "ST_Die");
-        timeBetweenShots = Animator.GetAnimationDuration(gameObject, "ST_Shoot");   
+        dieTime = Animator.GetAnimationDuration(gameObject, "ST_Die");
+        timeBetweenShots = Animator.GetAnimationDuration(gameObject, "ST_Shoot");
 
         myParticles = gameObject.GetComponent<StormTrooperParticles>();
     }
@@ -190,7 +190,7 @@ public class StormTrooper : Enemy
             }
         }
 
-        if(currentState == STATE.RUN && needFindAim)
+        if (currentState == STATE.RUN && needFindAim)
         {
             inputsList.Add(INPUT.IN_FIND_AIM);
         }
@@ -470,7 +470,7 @@ public class StormTrooper : Enemy
     private void RunEnd()
     {
         Audio.StopAudio(gameObject);
-        
+
         PlayerIsShootable();
     }
     #endregion
@@ -486,7 +486,7 @@ public class StormTrooper : Enemy
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
 
-        if(agent != null && Core.instance != null)
+        if (agent != null && Core.instance != null)
         {
             agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
             Vector3 directionFindAim = new Vector3(agent.GetPointAt(1) - gameObject.transform.globalPosition);
@@ -494,7 +494,7 @@ public class StormTrooper : Enemy
             targetPosition = directionFindAim.normalized * runningRange + gameObject.transform.globalPosition;
             targetPosition.y = gameObject.transform.globalPosition.y;
             agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
-        }  
+        }
     }
 
     private void UpdateFindAim()
@@ -599,7 +599,7 @@ public class StormTrooper : Enemy
             }
         }
 
-        if(!shooting)
+        if (!shooting)
             LookAt(Core.instance.gameObject.transform.globalPosition);
 
         UpdateAnimationSpd(speedMult);
@@ -701,16 +701,8 @@ public class StormTrooper : Enemy
     private void UpdatePush()
     {
         pushTimer += Time.deltaTime;
-        if (BabyYoda.instance != null)
-        {
-            if (pushTimer >= BabyYoda.instance.PushStun)
-                inputsList.Add(INPUT.IN_IDLE);
-        }
-        else
-        {
+        if (pushTimer >= pushTime)
             inputsList.Add(INPUT.IN_IDLE);
-        }
-
     }
     #endregion
 
@@ -774,7 +766,7 @@ public class StormTrooper : Enemy
         {
             ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
 
-            
+
 
             Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -812,7 +804,7 @@ public class StormTrooper : Enemy
                         Random rand = new Random();
                         float result = rand.Next(1, 101);
                         if (result <= mod)
-                        Core.instance.RefillSniper();
+                            Core.instance.RefillSniper();
 
                         Core.instance.luckyMod = 1 + mod / 100;
                     }
@@ -880,10 +872,10 @@ public class StormTrooper : Enemy
 
         if (currentState != STATE.DIE)
         {
-          
+
             if (myParticles != null && myParticles.hit != null)
                 myParticles.hit.Play();
-            
+
             healthPoints -= damage;
 
             if (Core.instance != null)
@@ -897,11 +889,11 @@ public class StormTrooper : Enemy
                     float result = rand.Next(1, 101);
                     if (result <= 11)
                         if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
-                    {
-                        float healing = Core.instance.GetStatusData(STATUS_TYPE.LIFESTEAL).severity * damage / 100;
-                        if (healing < 1) healing = 1;
-                        Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
-                    }
+                        {
+                            float healing = Core.instance.GetStatusData(STATUS_TYPE.LIFESTEAL).severity * damage / 100;
+                            if (healing < 1) healing = 1;
+                            Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
+                        }
                 }
             }
 
