@@ -1195,6 +1195,9 @@ public class Core : Entity
         Input.PlayHaptic(2f, 30);
 
         Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
+        if (HasStatus(STATUS_TYPE.BOBBA_STUN_AMMO))
+            scale *= 1 + GetStatusData(STATUS_TYPE.BOBBA_STUN_AMMO).severity/100;
+
         InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation, scale);
 
     }
