@@ -9,6 +9,7 @@ public class BlackFade : DiamondComponent
 	private float current_alpha = 0.0f;
 	private void Awake()
     {
+		fade = gameObject.GetComponent<Material>();
 		current_alpha = 1.0f;
 		fade.SetFloatUniform("fadeValue", current_alpha);
 		
