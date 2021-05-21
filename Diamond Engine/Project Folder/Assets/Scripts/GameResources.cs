@@ -389,6 +389,13 @@ public class MandoCode : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.MANDO_CODE))
                 Core.boons.Add(STATUS_TYPE.MANDO_CODE);
 
+            PlayerHealth myHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+            if (myHealth != null)
+            {
+                
+                myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth - 20 * PlayerHealth.currMaxHealth / 100), false);
+
+            }
             PlayerResources.AddBoon(BOONS.BOON_MANDALORIAN_CODE);
         }
     }

@@ -2330,13 +2330,7 @@ public class Core : Entity
                 break;
             case STATUS_TYPE.MANDO_CODE:
                 {
-                    PlayerHealth myHealth = gameObject.GetComponent<PlayerHealth>();
-                    if (myHealth != null)
-                    {
-                        statusToInit.statChange -= 20 * PlayerHealth.currMaxHealth / 100;
-                        myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth + statusToInit.statChange), false);
-
-                    }
+                   
                     this.RawDamageMult += statusToInit.severity / 100;
 
                 }
@@ -2617,8 +2611,8 @@ public class Core : Entity
                 break;
             case STATUS_TYPE.MANDO_CODE:
                 {
-                    PlayerHealth myHealth = gameObject.GetComponent<PlayerHealth>();
-                    myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth - statusToDelete.statChange));
+                    //PlayerHealth myHealth = gameObject.GetComponent<PlayerHealth>();
+                    //myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth - statusToDelete.statChange));
 
 
                     this.RawDamageMult -= statusToDelete.severity / 100;
