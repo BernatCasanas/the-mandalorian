@@ -186,6 +186,12 @@ public class Bosseslv2 : Entity
             Audio.PlayAudio(gameObject, "Play_Wampa_Rush");
         else if (gameObject.CompareTag("Skel"))
             Audio.PlayAudio(gameObject, "Play_Skel_Preparation");
+
+        if (colliderBounceRush == null)
+        {
+            colliderBounceRush = gameObject.GetChild("Bounce Rush");    // ... You would assume assigning a GameObject to the GameObject would put that GameObject in the GameObject... It doesn't. So I did this. I'm as confused as you are
+        }
+
         if (colliderBounceRush != null)
         {
             colliderBounceRush.GetComponent<AtackBosslv2>().active = true;
