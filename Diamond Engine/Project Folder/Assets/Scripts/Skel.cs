@@ -50,6 +50,7 @@ public class Skel : Bosseslv2
     public bool firstSorrowRoar = false;
     private List<INPUT> inputsList = new List<INPUT>();
     private bool firstFrame = true;
+    private bool angry = false;
 
     public override void Awake()
     {
@@ -157,10 +158,14 @@ public class Skel : Bosseslv2
         {
             agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
         }
-        //if (currentState == STATE.PROJECTILE && secondShot)
-        //{
-        //    inputsList.Add(INPUT.IN_PROJECTILE_END);
-        //}
+
+        if (!companion.IsEnabled() && !angry)
+        {
+            Debug.Log("skel angry");
+            inputsList.Add(INPUT.IN_PRESENTATION);
+            presentationTimer = presentationTime;
+            angry = true;
+        }
     }
 
     private void ProcessState()
@@ -195,6 +200,10 @@ public class Skel : Bosseslv2
                             currentState = STATE.WANDER;
                             StartWander();
                             break;
+                        case INPUT.IN_PRESENTATION:
+                            currentState = STATE.PRESENTATION;
+                            StartPresentation();
+                            break;
                     }
                     break;
 
@@ -219,6 +228,11 @@ public class Skel : Bosseslv2
                             currentState = STATE.DEAD;
                             StartDie();
                             break;
+                        case INPUT.IN_PRESENTATION:
+                            currentState = STATE.PRESENTATION;
+                            EndFollowing();
+                            StartPresentation();
+                            break;
                     }
                     break;
                 case STATE.BOUNCE_RUSH:
@@ -231,6 +245,11 @@ public class Skel : Bosseslv2
                         case INPUT.IN_DEAD:
                             currentState = STATE.DEAD;
                             StartDie();
+                            break;
+                        case INPUT.IN_PRESENTATION:
+                            currentState = STATE.PRESENTATION;
+                            EndBounceRush();
+                            StartPresentation();
                             break;
                     }
                     break;
@@ -245,37 +264,10 @@ public class Skel : Bosseslv2
                             currentState = STATE.DEAD;
                             StartDie();
                             break;
-                    }
-                    break;
-
-                case STATE.FAST_RUSH:
-                    switch (input)
-                    {
-                        case INPUT.IN_FAST_RUSH_END:
-                            currentState = STATE.SLOW_RUSH;
-                            StartSlowRush();
-                            break;
-                        case INPUT.IN_SLOW_RUSH_END:
-                            currentState = STATE.SEARCH_STATE;
-                            EndSlowRush();
-                            break;
-                        case INPUT.IN_DEAD:
-                            currentState = STATE.DEAD;
-                            StartDie();
-                            break;
-                    }
-                    break;
-
-                case STATE.SLOW_RUSH:
-                    switch (input)
-                    {
-                        case INPUT.IN_SLOW_RUSH_END:
-                            currentState = STATE.SEARCH_STATE;
-                            EndSlowRush();
-                            break;
-                        case INPUT.IN_DEAD:
-                            currentState = STATE.DEAD;
-                            StartDie();
+                        case INPUT.IN_PRESENTATION:
+                            currentState = STATE.PRESENTATION;
+                            EndJumpSlam();
+                            StartPresentation();
                             break;
                     }
                     break;
@@ -290,6 +282,11 @@ public class Skel : Bosseslv2
                         case INPUT.IN_DEAD:
                             currentState = STATE.DEAD;
                             StartDie();
+                            break;
+                        case INPUT.IN_PRESENTATION:
+                            currentState = STATE.PRESENTATION;
+                            EndWander();
+                            StartPresentation();
                             break;
                     }
                     break;
@@ -313,15 +310,6 @@ public class Skel : Bosseslv2
                 break;
             case STATE.FOLLOW:
                 UpdateFollowing();
-                break;
-            case STATE.PROJECTILE:
-                UpdateProjectile();
-                break;
-            case STATE.FAST_RUSH:
-                UpdateFastRush();
-                break;
-            case STATE.SLOW_RUSH:
-                UpdateSlowRush();
                 break;
             case STATE.JUMP_SLAM:
                 UpdateJumpSlam();

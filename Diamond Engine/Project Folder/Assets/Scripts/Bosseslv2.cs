@@ -54,7 +54,7 @@ public class Bosseslv2 : Entity
     public float bounceRushTimer = 0.0f;
     private float currAnimationPlaySpd = 1f;
     public float presentationTimer = 0f;
-    private float presentationTime = 1f;
+    public float presentationTime = 1f;
 
     //Atacks
     public float projectileAngle = 30.0f;
@@ -277,7 +277,6 @@ public class Bosseslv2 : Entity
         rushOnce = true;
     }
     #endregion
-
 
     #region BOUNCE RUSH
 
@@ -600,6 +599,7 @@ public class Bosseslv2 : Entity
             Animator.Play(gameObject, "Skel_Die", speedMult);
             UpdateAnimationSpd(speedMult);
             Audio.PlayAudio(gameObject, "Play_Skel_Death");
+            Debug.Log("BOOLEAN IS TRUE");
         }
         else if (gameObject.CompareTag("Wampa"))
         {
@@ -629,17 +629,19 @@ public class Bosseslv2 : Entity
     {
         Debug.Log("DEAD");
 
+
         EnemyManager.RemoveEnemy(gameObject);
         if (gameObject.CompareTag("Wampa") && companion != null)
         {
-                companion.GetComponent<Skel>().firstSorrowRoar = true;
+            companion.GetComponent<Skel>().firstSorrowRoar = true;
         }
         else if (gameObject.CompareTag("Skel") && companion != null)
         {
-                companion.GetComponent<Wampa>().firstSorrowRoar = true;
+            companion.GetComponent<Wampa>().firstSorrowRoar = true;
         }
-        companion = null;
-        InternalCalls.Destroy(gameObject);
+        gameObject.Enable(false);
+        //companion = null;
+        //InternalCalls.Destroy(gameObject);
     }
     #endregion
 
@@ -675,7 +677,6 @@ public class Bosseslv2 : Entity
     }
     public void UpdatePresentation()
     {
-
 
         Debug.Log("Presentation");
 
@@ -809,5 +810,6 @@ public class Bosseslv2 : Entity
                 break;
         }
     }
+
 
 }
