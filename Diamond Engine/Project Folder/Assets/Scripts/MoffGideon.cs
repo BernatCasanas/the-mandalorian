@@ -160,6 +160,13 @@ public class MoffGideon : Entity
     public float cadencyTimer = 0f;
     private float privateTimer = 0f;
 
+    //Boss bar updating
+    public GameObject boss_bar = null;
+    public GameObject moff_mesh = null;
+    private float damaged = 0.0f;
+    private float limbo_health = 0.0f;
+    Material bossBarMat = null;
+    
     public void Awake()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
@@ -191,6 +198,9 @@ public class MoffGideon : Entity
         if(camera!=null)
             cam_comp = camera.GetComponent<CameraController>();
 
+        bossBarMat = boss_bar.GetComponent<Material>();
+
+       
         StartPresentation();
 
     }
@@ -242,18 +252,25 @@ public class MoffGideon : Entity
         if (presentationTimer > 0)
         {
             presentationTimer -= myDeltaTime;
-
+            healthPoints = (1 - (presentationTimer / presentationTime)) * maxHealthPoints_fase1;
             if (presentationTimer <= 0)
+            {
                 inputsList.Add(MOFFGIDEON_INPUT.IN_PRESENTATION_END);
+                healthPoints = limbo_health = maxHealthPoints_fase1;
+                
+            }
 
         }
 
         if (changingStateTimer > 0)
         {
             changingStateTimer -= myDeltaTime;
-
+            healthPoints = (1 - (changingStateTimer / changingStateTime)) * maxHealthPoints_fase2;
             if (changingStateTimer <= 0)
+            {
                 inputsList.Add(MOFFGIDEON_INPUT.IN_CHANGE_STATE_END);
+                healthPoints = limbo_health = maxHealthPoints_fase2;
+            }
 
         }
 
@@ -730,6 +747,46 @@ public class MoffGideon : Entity
                 UpdateChangeState();
                 break;
         }
+        limbo_health = Mathf.Lerp(limbo_health, healthPoints, 0.01f);
+        if (boss_bar != null)
+        {
+
+            if (bossBarMat != null)
+            {
+                if (currentPhase == MOFFGIDEON_PHASE.PHASE1)
+                {
+                    bossBarMat.SetFloatUniform("length_used", healthPoints / maxHealthPoints_fase1);
+                    bossBarMat.SetFloatUniform("limbo", limbo_health / maxHealthPoints_fase1);
+                }
+                else if (currentPhase == MOFFGIDEON_PHASE.PHASE2)
+                {
+                    bossBarMat.SetFloatUniform("length_used", healthPoints / maxHealthPoints_fase2);
+                    bossBarMat.SetFloatUniform("limbo", limbo_health / maxHealthPoints_fase2);
+                }
+            }
+            else
+                Debug.Log("Boss Bar component was null!!");
+
+        }
+        if (damaged > 0.01f)
+        {
+            damaged = Mathf.Lerp(damaged, 0.0f, 0.1f);
+        }
+        else
+        {
+            damaged = 0.0f;
+        }
+        if (moff_mesh != null)
+        {
+            Material moffMeshMat = moff_mesh.GetComponent<Material>();
+
+            if (moffMeshMat != null)
+            {
+                moffMeshMat.SetFloatUniform("damaged", damaged);
+            }
+            else
+                Debug.Log("Moff Mesh Material was null!!");
+        }
     }
 
     private void SelectAction()
@@ -793,7 +850,7 @@ public class MoffGideon : Entity
 
     private void UpdatePresentation()
     {
-
+        healthPoints += 100;
         Debug.Log("Presentation");
     }
 
@@ -1367,6 +1424,7 @@ public class MoffGideon : Entity
     {
         if (!DebugOptionsHolder.bossDmg)
         {
+            damaged = 1.0f;
             if (currentPhase == MOFFGIDEON_PHASE.PHASE1)
             {
                 Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Hit_Phase_1");
