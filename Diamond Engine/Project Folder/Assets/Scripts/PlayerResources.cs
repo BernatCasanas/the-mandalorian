@@ -52,6 +52,10 @@ public static class PlayerResources
 
         switch (type)
         {
+            case RewardType.REWARD_BOON:
+                auxCounter = boonCounter.Count;
+                break;
+
             case RewardType.REWARD_BESKAR:
                 auxCounter = beskarCounter;
                 break;
@@ -89,10 +93,10 @@ public static class PlayerResources
 
     public static void AddBoon(BOONS newBoon)
     {
-        if (boonCounter.ContainsKey(newBoon))
-            boonCounter[newBoon]++;
-        else
+        if (!boonCounter.ContainsKey(newBoon))
             boonCounter.Add(newBoon, 1);
+        else
+            boonCounter[newBoon] += 1;
     }
 
     public static bool CheckBoon(BOONS newBoon)
