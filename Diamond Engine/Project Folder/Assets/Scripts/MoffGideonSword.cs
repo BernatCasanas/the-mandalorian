@@ -9,6 +9,8 @@ public class MoffGideonSword : DiamondComponent
 
 	float throwSpeed = 15f;
 
+	float rotationSpeed = 5f;
+
 	public float damage = 10f;
 
 
@@ -24,6 +26,7 @@ public class MoffGideonSword : DiamondComponent
         {
 			throwTimer -= Time.deltaTime;
 			gameObject.transform.localPosition += gameObject.transform.GetForward() * throwSpeed * Time.deltaTime;
+			Quaternion.RotateAroundAxis(Vector3.up, 10);
         }
 	}
 

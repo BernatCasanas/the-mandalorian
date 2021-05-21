@@ -8,6 +8,8 @@ public class Bosseslv2 : Entity
 
     public Random randomNum = new Random();
 
+    public GameObject camera = null;
+
 
     public float slerpSpeed = 5.0f;
 
@@ -51,6 +53,8 @@ public class Bosseslv2 : Entity
     public float bounceRushTime = 4.0f;
     public float bounceRushTimer = 0.0f;
     private float currAnimationPlaySpd = 1f;
+    public float presentationTimer = 0f;
+    private float presentationTime = 1f;
 
     //Atacks
     public float projectileAngle = 30.0f;
@@ -102,10 +106,15 @@ public class Bosseslv2 : Entity
     {
         if (gameObject.CompareTag("Skel"))
         {
+            //presentationTime = Animator.GetAnimationDuration(gameObject, "Skel_Presentation") - 0.016f;
             startBounceRushTime = Animator.GetAnimationDuration(gameObject, "Skel_RushStart") - 0.016f;
             chargeTime = Animator.GetAnimationDuration(gameObject, "Skel_Jump_P1") - 0.05f;
             Debug.Log("Rush Start: " + startBounceRushTime.ToString());
             companion = InternalCalls.FindObjectWithName("WampaBoss");
+        }
+        else if (gameObject.CompareTag("Wampa"))
+        {
+            //presentationTime = Animator.GetAnimationDuration(gameObject, "Wampa_Presentation") - 0.016f;
         }
     }
 
@@ -625,6 +634,51 @@ public class Bosseslv2 : Entity
         }
         companion = null;
         InternalCalls.Destroy(gameObject);
+    }
+    #endregion
+
+    #region PRESENTATION
+    public void StartPresentation()
+    {
+        presentationTimer = presentationTime;
+
+        if (gameObject.CompareTag("Skel"))
+        {
+            Animator.Play(gameObject, "Skel_Presentation", speedMult);
+            UpdateAnimationSpd(speedMult);
+            //Audio.PlayAudio(gameObject, "Play_Skel_Death");
+        }
+        else if (gameObject.CompareTag("Wampa"))
+        {
+            Animator.Play(gameObject, "WP_Presentation", speedMult);
+            UpdateAnimationSpd(speedMult);
+            //Audio.PlayAudio(gameObject, "Play_Wampa_Death");
+        }
+
+        if (camera != null)
+        {
+            Shake3D shake = camera.GetComponent<Shake3D>();
+            if (shake != null)
+            {
+                shake.StartShaking(1.5f, 0.2f);
+                Input.PlayHaptic(0.9f, 800);
+            }
+        }
+
+        Debug.Log("Start Presentation");
+    }
+    public void UpdatePresentation()
+    {
+
+
+        Debug.Log("Presentation");
+
+        UpdateAnimationSpd(speedMult);
+    }
+
+    public void EndPresentation()
+    {
+
     }
     #endregion
 
