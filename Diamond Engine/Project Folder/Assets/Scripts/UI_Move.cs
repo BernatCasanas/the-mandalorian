@@ -16,6 +16,8 @@ public class UI_Move : DiamondComponent
 	public float finalScaleX = 0.0f;
 	public float finalScaleY = 0.0f;
 
+	public bool playOnAwake = true;
+
 	private float timer = 0.0f;
 
 	private Transform2D trans = null;
@@ -36,6 +38,9 @@ public class UI_Move : DiamondComponent
 		{
 			trans.SetLocalTransform(new Vector3(initialPosX, initialPosY, 1.0f), trans.lRot, new Vector3(initialScaleX, initialScaleY, 1.0f)); 
 		}
+
+		if (playOnAwake == false)
+			ended = true;
 	}
 
 	public void Update()
@@ -68,5 +73,11 @@ public class UI_Move : DiamondComponent
 		else
 			firstFramePassed = true;
 	}
+
+	public void Activate()
+    {
+		if (trans != null)
+			ended = false;
+    }
 
 }
