@@ -1,9 +1,9 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -1.5287747383117676,
-        3.8344442844390869,
-        15.023125648498535
+        -20.311286926269531,
+        3.6567549705505371,
+        1.9684939384460449
     ],
     "EditorCameraZ": [
         0.61738061904907227,
@@ -102,8 +102,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 12.239999771118164,
-                    "hFOV": 22.840000152587891,
+                    "vFOV": 12.5,
+                    "hFOV": 24.399999618530273,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -204,68 +204,6 @@
             ]
         },
         {
-            "name": "Mando",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1166321611,
-            "ParentUID": 206711398,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        -72.300003051757813,
-                        -24.299999237060547
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        40.5,
-                        93.199996948242188
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/270516236.dds",
-                    "UID": 270516236
-                }
-            ]
-        },
-        {
             "name": "Text",
             "tag": "Untagged",
             "layer": "Default",
@@ -329,68 +267,6 @@
                         1,
                         1
                     ]
-                }
-            ]
-        },
-        {
-            "name": "Other Image",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1059935834,
-            "ParentUID": 206711398,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
-                        76.199996948242188,
-                        -28.600000381469727
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        27.80000114440918,
-                        77.199996948242188
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/68326321.dds",
-                    "UID": 68326321
                 }
             ]
         },
@@ -557,10 +433,37 @@
                     "dialog": 206711398,
                     "text": 1972702714,
                     "nameText": 866278034,
-                    "mandoimage": 1166321611,
-                    "otherimage": 1059935834,
                     "list_of_dialogs": 1070040184,
-                    "dialog_index": 0
+                    "dialog_index": 0,
+                    "img_mando_serious": 1166321611,
+                    "img_mando_ashamed": 1340369506,
+                    "img_mando_angry": 1082825245,
+                    "img_mando_threatening": 2057096634,
+                    "img_mando_joking": 1473538048,
+                    "img_mando_happy": 741646178,
+                    "img_grogu_serious": 1059935834,
+                    "img_grogu_laughing": 1526801847,
+                    "img_grogu_curious": 382736100,
+                    "img_grogu_scared": 846517651,
+                    "img_bokatan_serious": 2130956808,
+                    "img_bokatan_angry": 767392044,
+                    "img_cara_serious": 2080029628,
+                    "img_cara_angry1": 285116239,
+                    "img_cara_angry2": 427176037,
+                    "img_cara_ashamed": 624530231,
+                    "img_greef_serious": 817134044,
+                    "img_greef_laughing": 1907268797,
+                    "img_greef_thinker": 1069634740,
+                    "img_greef_ashamed": 658027076,
+                    "img_ahsoka_serious": 285675834,
+                    "img_ahsoka_thinker": 1468827786,
+                    "img_ahsoka_melancholic": 1052076905,
+                    "img_moff_serious": 769933532,
+                    "img_moff_jester": 1450200563,
+                    "img_moff_angry": 1770499034,
+                    "img_moff_threatening1": 434314222,
+                    "img_moff_threatening2": 1832901593,
+                    "img_moff_defeated": 1002272479
                 }
             ]
         },
@@ -628,6 +531,1900 @@
                         1,
                         1
                     ]
+                }
+            ]
+        },
+        {
+            "name": "DialogImages",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 49478467,
+            "ParentUID": 206711398,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Mando_serious",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1166321611,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -72.300003051757813,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1049570191.dds",
+                    "UID": 1049570191
+                }
+            ]
+        },
+        {
+            "name": "Grogu_serious",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1059935834,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76.199996948242188,
+                        -28.600000381469727
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        27.80000114440918,
+                        77.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/634104598.dds",
+                    "UID": 634104598
+                }
+            ]
+        },
+        {
+            "name": "Mando_ashamed",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1340369506,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -72.300003051757813,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/138834254.dds",
+                    "UID": 138834254
+                }
+            ]
+        },
+        {
+            "name": "Mando_angry",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1082825245,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -72.300003051757813,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1903810266.dds",
+                    "UID": 1903810266
+                }
+            ]
+        },
+        {
+            "name": "Mando_threatening",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 2057096634,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -72.300003051757813,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1626908782.dds",
+                    "UID": 1626908782
+                }
+            ]
+        },
+        {
+            "name": "Mando_joking",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1473538048,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -72.300003051757813,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/2103186234.dds",
+                    "UID": 2103186234
+                }
+            ]
+        },
+        {
+            "name": "Mando_happy",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 741646178,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -72.300003051757813,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/336352699.dds",
+                    "UID": 336352699
+                }
+            ]
+        },
+        {
+            "name": "Grogu_laughing",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1526801847,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/118609453.dds",
+                    "UID": 118609453
+                }
+            ]
+        },
+        {
+            "name": "Grogu_curious",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 382736100,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1120674717.dds",
+                    "UID": 1120674717
+                }
+            ]
+        },
+        {
+            "name": "Grogu_scared",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 846517651,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1777355624.dds",
+                    "UID": 1777355624
+                }
+            ]
+        },
+        {
+            "name": "Bokatan_serious",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 2130956808,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/970842383.dds",
+                    "UID": 970842383
+                }
+            ]
+        },
+        {
+            "name": "Bokatan_angry",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 767392044,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1900272165.dds",
+                    "UID": 1900272165
+                }
+            ]
+        },
+        {
+            "name": "Cara_serious",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 2080029628,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/624980869.dds",
+                    "UID": 624980869
+                }
+            ]
+        },
+        {
+            "name": "Cara_angry1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 285116239,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1589454125.dds",
+                    "UID": 1589454125
+                }
+            ]
+        },
+        {
+            "name": "Cara_angry2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 427176037,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1700790362.dds",
+                    "UID": 1700790362
+                }
+            ]
+        },
+        {
+            "name": "Cara_ashamed",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 624530231,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1117241165.dds",
+                    "UID": 1117241165
+                }
+            ]
+        },
+        {
+            "name": "Greef_serious",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 817134044,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1586930187.dds",
+                    "UID": 1586930187
+                }
+            ]
+        },
+        {
+            "name": "Greef_laughing",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1907268797,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/2075361918.dds",
+                    "UID": 2075361918
+                }
+            ]
+        },
+        {
+            "name": "Greef_thinker",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1069634740,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1940966022.dds",
+                    "UID": 1940966022
+                }
+            ]
+        },
+        {
+            "name": "Greef_ashamed",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 658027076,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1847694789.dds",
+                    "UID": 1847694789
+                }
+            ]
+        },
+        {
+            "name": "Ahsoka_serious",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 285675834,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1376500740.dds",
+                    "UID": 1376500740
+                }
+            ]
+        },
+        {
+            "name": "Ahsoka_thinker",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1468827786,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/397554556.dds",
+                    "UID": 397554556
+                }
+            ]
+        },
+        {
+            "name": "Ahsoka_melancholic",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1052076905,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/43466799.dds",
+                    "UID": 43466799
+                }
+            ]
+        },
+        {
+            "name": "Moff_serious",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 769933532,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1387034318.dds",
+                    "UID": 1387034318
+                }
+            ]
+        },
+        {
+            "name": "Moff_jester",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1450200563,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/819098829.dds",
+                    "UID": 819098829
+                }
+            ]
+        },
+        {
+            "name": "Moff_angry",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1770499034,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/819098829.dds",
+                    "UID": 819098829
+                }
+            ]
+        },
+        {
+            "name": "Moff_threatening1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 434314222,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1174885979.dds",
+                    "UID": 1174885979
+                }
+            ]
+        },
+        {
+            "name": "Moff_threatening2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1832901593,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1232113376.dds",
+                    "UID": 1232113376
+                }
+            ]
+        },
+        {
+            "name": "Moff_defeated",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1002272479,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/809648494.dds",
+                    "UID": 809648494
+                }
+            ]
+        },
+        {
+            "name": "Moff_serious",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1391277861,
+            "ParentUID": 49478467,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1387034318.dds",
+                    "UID": 1387034318
                 }
             ]
         },
@@ -9754,8 +11551,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "InsideCollider",
-                    "colliderPosition": 1673613479,
                     "maxDistance": 20,
+                    "colliderPosition": 1673613479,
                     "displayText": 1974668928,
                     "selectButton": 1636443186,
                     "hubTextController": 1070040184
@@ -10066,8 +11863,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "InsideCollider",
-                    "colliderPosition": 995958797,
                     "maxDistance": 20,
+                    "colliderPosition": 995958797,
                     "displayText": 346540431,
                     "selectButton": 1189851388,
                     "hubTextController": 1070040184
@@ -10378,8 +12175,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "InsideCollider",
-                    "colliderPosition": 1852624365,
                     "maxDistance": 1.75,
+                    "colliderPosition": 1852624365,
                     "displayText": 1951394275,
                     "selectButton": 752625694,
                     "hubTextController": 1070040184
@@ -18958,8 +20755,6 @@
                     "dialog": 1027532624,
                     "text": 1846160400,
                     "nameText": 1786068711,
-                    "mandoimage": 873566640,
-                    "otherimage": 341968156,
                     "list_of_dialogs": 1070040184,
                     "dialog_index": 86
                 }
@@ -19334,8 +21129,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "InsideCollider",
-                    "colliderPosition": 719456677,
                     "maxDistance": 1,
+                    "colliderPosition": 719456677,
                     "displayText": 1994074079,
                     "selectButton": 92766785,
                     "hubTextController": 1070040184
@@ -19425,7 +21220,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -19513,7 +21309,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -19601,7 +21398,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -19689,7 +21487,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -19777,7 +21576,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -19865,7 +21665,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -19953,7 +21754,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -20041,7 +21843,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -20129,7 +21932,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -20217,7 +22021,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -20305,7 +22110,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -20393,7 +22199,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -20481,7 +22288,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -20569,7 +22377,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -20657,7 +22466,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -20745,7 +22555,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -20833,7 +22644,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -20921,7 +22733,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -21009,7 +22822,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -21097,7 +22911,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -21185,7 +23000,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -21273,7 +23089,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -21361,7 +23178,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -21449,7 +23267,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -21537,7 +23356,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -21625,7 +23445,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -21713,7 +23534,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -21801,7 +23623,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -21889,7 +23712,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -21977,7 +23801,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -22065,7 +23890,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -22153,7 +23979,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -22241,7 +24068,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -22329,7 +24157,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -22417,7 +24246,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -22505,7 +24335,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -22593,7 +24424,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -22681,7 +24513,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -22769,7 +24602,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -22857,7 +24691,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -22945,7 +24780,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -23033,7 +24869,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -23121,7 +24958,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -23209,7 +25047,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -23297,7 +25136,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -23385,7 +25225,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -23473,7 +25314,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -23561,7 +25403,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -23649,7 +25492,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -23737,7 +25581,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -23825,7 +25670,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 18,
@@ -23913,7 +25759,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -24001,7 +25848,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -24089,7 +25937,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -24177,7 +26026,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -24265,7 +26115,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -24353,7 +26204,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -24441,7 +26293,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -24525,26 +26378,6 @@
                     "dialog": 206711398,
                     "mando": 728409309,
                     "greef": 1079248432,
-                    "bo_katan_portrait_uid": 1777514428,
-                    "greef_portrait_uid": 1439349766,
-                    "ashoka_portrait_uid": 911659653,
-                    "grogu_portrait_uid": 68326321,
-                    "bo_katan_portrait_pos_x": 76.199996948242188,
-                    "bo_katan_portrait_pos_y": -28.600000381469727,
-                    "bo_katan_portrait_size_x": 27.799999237060547,
-                    "bo_katan_portrait_size_y": 77.199996948242188,
-                    "greef_portrait_pos_x": 80.300003051757813,
-                    "greef_portrait_pos_y": -18,
-                    "greef_portrait_size_x": 37.5,
-                    "greef_portrait_size_y": 85.5,
-                    "ashoka_portrait_pos_x": 79.099998474121094,
-                    "ashoka_portrait_pos_y": -21.200000762939453,
-                    "ashoka_portrait_size_x": 37.700000762939453,
-                    "ashoka_portrait_size_y": 81.599998474121094,
-                    "grogu_portrait_pos_x": 76.199996948242188,
-                    "grogu_portrait_pos_y": -28.600000381469727,
-                    "grogu_portrait_size_x": 27.799999237060547,
-                    "grogu_portrait_size_y": 77.199996948242188,
                     "total_interactions": 3,
                     "total_stages": 6,
                     "maximum_distance_to_interact_squared": 15,
@@ -24663,7 +26496,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -24757,7 +26591,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -24851,7 +26686,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 5,
@@ -26698,10 +28534,10 @@
                         -0.19471836090087891
                     ],
                     "Rotation": [
-                        0.19392229616641998,
-                        -2.7353405651631135e-10,
-                        1.3877789462175682e-17,
-                        0.98101699352264404
+                        0.1939222663640976,
+                        -2.7353402876073574e-10,
+                        1.3877787807814457e-17,
+                        0.98101687431335449
                     ],
                     "Scale": [
                         1,
@@ -27464,6 +29300,34 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "name": "SniperShootPoint",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 415492028,
+                    "ParentUID": 728409309,
+                    "PrefabID": 0,
+                    "PrefabReference": 415492028,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -0.25,
+                        1.0399999618530273,
+                        1.2999999523162842
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
@@ -27584,7 +29448,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -27679,7 +29544,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 }
             ]
         },
@@ -27732,7 +29598,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -27827,7 +29694,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -27956,7 +29824,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 }
             ]
         },
@@ -28873,7 +30742,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -28937,7 +30807,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -29001,7 +30872,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -29065,7 +30937,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -29129,7 +31002,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -29193,7 +31067,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -29291,7 +31166,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -29355,7 +31231,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -29419,7 +31296,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -29480,8 +31358,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "InsideCollider",
-                    "colliderPosition": 1079248432,
                     "maxDistance": 5,
+                    "colliderPosition": 1079248432,
                     "displayText": 576026679
                 }
             ]
@@ -29535,7 +31413,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -29632,10 +31511,10 @@
                 7.9888238246894616e-09
             ],
             "Rotation": [
-                0.04504496231675148,
-                0.0032072518952190876,
-                -0.012809193693101406,
-                0.99889767169952393
+                0.045044966042041779,
+                0.0032072523608803749,
+                -0.012809195555746555,
+                0.99889779090881348
             ],
             "Scale": [
                 0.99999982118606567,
@@ -29666,10 +31545,10 @@
                 2.3940856408444233e-08
             ],
             "Rotation": [
-                0.044985927641391754,
-                0.0031942867208272219,
-                -0.012903057038784027,
-                0.99889916181564331
+                0.044985931366682053,
+                0.0031942871864885092,
+                -0.012903058901429176,
+                0.99889928102493286
             ],
             "Scale": [
                 1,
@@ -30108,10 +31987,10 @@
                 2.1506608050003706e-08
             ],
             "Rotation": [
-                -0.80621880292892456,
-                0.041009202599525452,
-                -0.047588322311639786,
-                0.58827269077301025
+                -0.80621892213821411,
+                0.04100920632481575,
+                -0.047588329762220383,
+                0.58827275037765503
             ],
             "Scale": [
                 0.9999995231628418,
@@ -30176,10 +32055,10 @@
                 2.0240104703361794e-08
             ],
             "Rotation": [
-                0.33847442269325256,
-                0.0081740841269493103,
-                0.00042836950160562992,
-                0.94093996286392212
+                0.33847445249557495,
+                0.0081740850582718849,
+                0.00042836955981329083,
+                0.94094008207321167
             ],
             "Scale": [
                 1.0000002384185791,
@@ -30346,10 +32225,10 @@
                 5.1593831429386228e-09
             ],
             "Rotation": [
-                0.36184769868850708,
-                -0.011958763934671879,
-                -0.00081397243775427341,
-                0.9321601390838623
+                0.36184772849082947,
+                -0.011958765797317028,
+                -0.00081397255416959524,
+                0.93216025829315186
             ],
             "Scale": [
                 1,
@@ -30563,7 +32442,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -30695,7 +32575,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -30759,7 +32640,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -30823,7 +32705,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -30887,7 +32770,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -30951,7 +32835,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -31015,7 +32900,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -31079,7 +32965,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -31143,7 +33030,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -31207,7 +33095,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -31305,7 +33194,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -31403,7 +33293,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -31467,7 +33358,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -31531,7 +33423,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -31595,7 +33488,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -31693,7 +33587,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -31757,7 +33652,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -31821,7 +33717,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -31885,7 +33782,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -31949,7 +33847,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -32047,7 +33946,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -32111,7 +34011,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -32175,7 +34076,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -34300,10 +36202,10 @@
                 20.583740234375
             ],
             "Rotation": [
-                0.03607703372836113,
-                2.5934171477004497e-11,
-                1.9463443010070414e-11,
-                0.99934899806976318
+                0.036077037453651428,
+                2.5934174946451449e-11,
+                1.946344474479389e-11,
+                0.99934911727905273
             ],
             "Scale": [
                 1,
@@ -34476,7 +36378,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 }
             ]
         },
@@ -34529,7 +36432,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 }
             ]
         },
@@ -34582,7 +36486,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 }
             ]
         },
@@ -34635,7 +36540,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 }
             ]
         },
@@ -34688,7 +36594,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 }
             ]
         },
@@ -34741,7 +36648,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 }
             ]
         },
@@ -34794,7 +36702,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 }
             ]
         },
@@ -34847,7 +36756,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 }
             ]
         },
@@ -36084,8 +37994,8 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "InsideCollider",
-                    "colliderPosition": 1161898285,
                     "maxDistance": 4.9999957084655762,
+                    "colliderPosition": 1161898285,
                     "displayText": 64421640,
                     "selectButton": 1611487434
                 }

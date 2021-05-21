@@ -12,7 +12,7 @@ public class AimBot : DiamondComponent
     float dotMin = 0;
     int lastFrameEnemyCount = 0;
     int lastFramePropCount = 0;
-
+    public GameObject shootPoint = null;
     GameObject myCurrentObjective = null;
     public bool isShooting = false;
 
@@ -42,7 +42,7 @@ public class AimBot : DiamondComponent
                 }
                 else if (lastFrameEnemyCount != EnemyManager.currentEnemies.Count || (EnemyManager.currentDestructibleProps != null && lastFramePropCount != EnemyManager.currentDestructibleProps.Count)) //change in enemies! if targeting an enemy make sure it hasn't died
                 {
-                    if (!EnemyManager.currentEnemies.Contains(myCurrentObjective)) 
+                    if (!EnemyManager.currentEnemies.Contains(myCurrentObjective))
                     {
                         SearchForNewObjective();
                     }
@@ -101,7 +101,13 @@ public class AimBot : DiamondComponent
 
             if (targetWeight > weightedObj.Key)
             {
-                weightedObj = new KeyValuePair<float, GameObject>(targetWeight, EnemyManager.currentEnemies[i]);
+                float hitDistance = 0.0f;
+                GameObject hit = InternalCalls.RayCast(shootPoint.transform.globalPosition + shootPoint.transform.GetRight() * 0.15f,
+                       (EnemyManager.currentEnemies[i].transform.globalPosition - shootPoint.transform.globalPosition).normalized, maxRange, ref hitDistance);
+                if (hit.GetUid() == EnemyManager.currentEnemies[i].GetUid())
+                {
+                    weightedObj = new KeyValuePair<float, GameObject>(targetWeight, EnemyManager.currentEnemies[i]);
+                }
             }
         }
         if (EnemyManager.currentDestructibleProps != null)
@@ -113,7 +119,13 @@ public class AimBot : DiamondComponent
 
                 if (targetWeight > weightedObj.Key)
                 {
-                    weightedObj = new KeyValuePair<float, GameObject>(targetWeight, EnemyManager.currentDestructibleProps[i]);
+                    float hitDistance = 0.0f;
+                    GameObject hit = InternalCalls.RayCast(shootPoint.transform.globalPosition + shootPoint.transform.GetRight() * 0.15f, 
+                        (EnemyManager.currentDestructibleProps[i].transform.globalPosition- shootPoint.transform.globalPosition).normalized, maxRange, ref hitDistance);
+                    if (hit.GetUid() == EnemyManager.currentEnemies[i].GetUid())
+                    {
+                        weightedObj = new KeyValuePair<float, GameObject>(targetWeight, EnemyManager.currentDestructibleProps[i]);
+                    }
                 }
             }
         }
@@ -227,7 +239,7 @@ public class AimBot : DiamondComponent
     {
         const int maxEnemiesThreadLvl = 4; //TODO alex change this const when needed
         int enemiesInsideRange = 0;
-        float threadPerEnemy = 1.0f /maxEnemiesThreadLvl;
+        float threadPerEnemy = 1.0f / maxEnemiesThreadLvl;
         float threadLvl = 0.0f;
         float radiusPow = targetRadius * targetRadius;
         for (int i = 0; i < EnemyManager.currentEnemies.Count; ++i)

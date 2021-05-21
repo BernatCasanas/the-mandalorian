@@ -334,8 +334,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 11.659999847412109,
-                    "hFOV": 17.180000305175781,
+                    "vFOV": 13.380000114440918,
+                    "hFOV": 24.040000915527344,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -402,12 +402,12 @@
                 {
                     "Type": 13,
                     "Active": true,
-                    "evName": "Play_Post_Boss_Room_1_Ambience",
+                    "evName": "Play_Post_Boss_Room_2_Ambience",
                     "audBankReference": "Environment",
                     "pitch": 50,
                     "playOnAwake": true,
                     "isMuted": false,
-                    "isMusic": false
+                    "isMusic": true
                 }
             ]
         },
@@ -711,7 +711,7 @@
                         0,
                         0,
                         -0.0073059904389083385,
-                        0.99997329711914063
+                        0.99997329711914062
                     ],
                     "Scale": [
                         1,
@@ -1627,7 +1627,7 @@
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        0.49832534790039063,
+                        0.49832534790039062,
                         2.0816681711721685e-17,
                         1.3898392876873153e-17
                     ],
@@ -1935,7 +1935,7 @@
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        -1.8636245727539063,
+                        -1.8636245727539062,
                         0.046333789825439453,
                         -0.77125072479248047
                     ],
@@ -1963,7 +1963,7 @@
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        -1.8636245727539063,
+                        -1.8636245727539062,
                         0.046333789825439453,
                         0.86050128936767578
                     ],
@@ -1991,7 +1991,7 @@
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        0.76593399047851563,
+                        0.76593399047851562,
                         0.046333789825439453,
                         0.86050128936767578
                     ],
@@ -2048,7 +2048,7 @@
                     "Static": false,
                     "Position": [
                         -0.0040745735168457031,
-                        -0.0062532424926757813,
+                        -0.0062532424926757812,
                         -0.058134078979492188
                     ],
                     "Rotation": [
@@ -2874,6 +2874,34 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "name": "SniperShootPoint",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 415492028,
+                    "ParentUID": 701136619,
+                    "PrefabID": 0,
+                    "PrefabReference": 415492028,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        -0.25,
+                        1.0399999618530273,
+                        1.2999999523162842
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
@@ -3185,7 +3213,7 @@
                     "Type": 6,
                     "Active": true,
                     "Position": [
-                        -72.300003051757813,
+                        -72.300003051757812,
                         -24.299999237060547
                     ],
                     "Rotation": 0,
@@ -3579,6 +3607,1900 @@
             ]
         },
         {
+            "name": "DialogImages",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1211284394,
+            "ParentUID": 995881843,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Mando_serious",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1295460631,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -72.300003051757812,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1049570191.dds",
+                    "UID": 1049570191
+                }
+            ]
+        },
+        {
+            "name": "Grogu_serious",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1246384145,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76.199996948242188,
+                        -28.600000381469727
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        27.80000114440918,
+                        77.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/634104598.dds",
+                    "UID": 634104598
+                }
+            ]
+        },
+        {
+            "name": "Mando_ashamed",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1138834716,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -72.300003051757812,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/138834254.dds",
+                    "UID": 138834254
+                }
+            ]
+        },
+        {
+            "name": "Mando_angry",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1715515396,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -72.300003051757812,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1903810266.dds",
+                    "UID": 1903810266
+                }
+            ]
+        },
+        {
+            "name": "Mando_threatening",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1446873364,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -72.300003051757812,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1626908782.dds",
+                    "UID": 1626908782
+                }
+            ]
+        },
+        {
+            "name": "Mando_joking",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 755045215,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -72.300003051757812,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/2103186234.dds",
+                    "UID": 2103186234
+                }
+            ]
+        },
+        {
+            "name": "Mando_happy",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 898202249,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -72.300003051757812,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/336352699.dds",
+                    "UID": 336352699
+                }
+            ]
+        },
+        {
+            "name": "Grogu_laughing",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1162460636,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/118609453.dds",
+                    "UID": 118609453
+                }
+            ]
+        },
+        {
+            "name": "Grogu_curious",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1603218114,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1120674717.dds",
+                    "UID": 1120674717
+                }
+            ]
+        },
+        {
+            "name": "Grogu_scared",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 38278322,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1777355624.dds",
+                    "UID": 1777355624
+                }
+            ]
+        },
+        {
+            "name": "Bokatan_serious",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 2095333682,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/970842383.dds",
+                    "UID": 970842383
+                }
+            ]
+        },
+        {
+            "name": "Bokatan_angry",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 662133812,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1900272165.dds",
+                    "UID": 1900272165
+                }
+            ]
+        },
+        {
+            "name": "Cara_serious",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 534158750,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/624980869.dds",
+                    "UID": 624980869
+                }
+            ]
+        },
+        {
+            "name": "Cara_angry1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 692018651,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1589454125.dds",
+                    "UID": 1589454125
+                }
+            ]
+        },
+        {
+            "name": "Cara_angry2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 234880826,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1700790362.dds",
+                    "UID": 1700790362
+                }
+            ]
+        },
+        {
+            "name": "Cara_ashamed",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1697498688,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1117241165.dds",
+                    "UID": 1117241165
+                }
+            ]
+        },
+        {
+            "name": "Greef_serious",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1236095544,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1586930187.dds",
+                    "UID": 1586930187
+                }
+            ]
+        },
+        {
+            "name": "Greef_laughing",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 2095682593,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/2075361918.dds",
+                    "UID": 2075361918
+                }
+            ]
+        },
+        {
+            "name": "Greef_thinker",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1331346426,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1940966022.dds",
+                    "UID": 1940966022
+                }
+            ]
+        },
+        {
+            "name": "Greef_ashamed",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 2127836379,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1847694789.dds",
+                    "UID": 1847694789
+                }
+            ]
+        },
+        {
+            "name": "Ahsoka_serious",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 84637711,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1376500740.dds",
+                    "UID": 1376500740
+                }
+            ]
+        },
+        {
+            "name": "Ahsoka_thinker",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 2014433810,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/397554556.dds",
+                    "UID": 397554556
+                }
+            ]
+        },
+        {
+            "name": "Ahsoka_melancholic",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1181751381,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/43466799.dds",
+                    "UID": 43466799
+                }
+            ]
+        },
+        {
+            "name": "Moff_serious",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 319412737,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1387034318.dds",
+                    "UID": 1387034318
+                }
+            ]
+        },
+        {
+            "name": "Moff_jester",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 640997992,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/819098829.dds",
+                    "UID": 819098829
+                }
+            ]
+        },
+        {
+            "name": "Moff_angry",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 63532725,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/819098829.dds",
+                    "UID": 819098829
+                }
+            ]
+        },
+        {
+            "name": "Moff_threatening1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1543018052,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1174885979.dds",
+                    "UID": 1174885979
+                }
+            ]
+        },
+        {
+            "name": "Moff_threatening2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 737840764,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1232113376.dds",
+                    "UID": 1232113376
+                }
+            ]
+        },
+        {
+            "name": "Moff_defeated",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1402994204,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/809648494.dds",
+                    "UID": 809648494
+                }
+            ]
+        },
+        {
+            "name": "Moff_serious",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1713276536,
+            "ParentUID": 1211284394,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        76,
+                        -24.299999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        40.5,
+                        93.199996948242188
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1387034318.dds",
+                    "UID": 1387034318
+                }
+            ]
+        },
+        {
             "name": "Press A to Talk",
             "tag": "Untagged",
             "layer": "Default",
@@ -3716,7 +5638,7 @@
                     "Active": true,
                     "Position": [
                         3.4000000953674316,
-                        -67.800003051757813
+                        -67.800003051757812
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -3840,6 +5762,7 @@
                     "Active": true,
                     "ScriptName": "Enable",
                     "enable": 995881843,
+                    "disable": 847756082,
                     "disable2": 625428609,
                     "select": 464183913
                 }
@@ -3983,7 +5906,7 @@
                     "Active": true,
                     "Position": [
                         3.4000000953674316,
-                        -67.800003051757813
+                        -67.800003051757812
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -4146,7 +6069,7 @@
                     "Active": true,
                     "Position": [
                         3.4000000953674316,
-                        -67.800003051757813
+                        -67.800003051757812
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -9517,7 +11440,7 @@
                     "Active": true,
                     "Position": [
                         43.200000762939453,
-                        -65.300003051757813
+                        -65.300003051757812
                     ],
                     "Rotation": 0,
                     "Size": [
@@ -11933,7 +13856,7 @@
             "Position": [
                 -2.272676944732666,
                 0,
-                -0.15546035766601563
+                -0.15546035766601562
             ],
             "Rotation": [
                 -8.6726562994098254e-19,
@@ -12799,7 +14722,7 @@
             "Position": [
                 3.3129243850708008,
                 0.14379826188087463,
-                2.2406997680664063
+                2.2406997680664062
             ],
             "Rotation": [
                 0,
@@ -12983,7 +14906,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                6.3558731079101563,
+                6.3558731079101562,
                 -0.71147704124450684,
                 -9.332606315612793
             ],
@@ -13328,7 +15251,7 @@
             "Static": false,
             "Position": [
                 -0.31397438049316406,
-                0.67418289184570313,
+                0.67418289184570312,
                 3.6933307647705078
             ],
             "Rotation": [
@@ -14231,7 +16154,7 @@
             "Position": [
                 7.0045528411865234,
                 -0.62764710187911987,
-                5.7648086547851563
+                5.7648086547851562
             ],
             "Rotation": [
                 0,
@@ -14291,7 +16214,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                7.0169448852539063,
+                7.0169448852539062,
                 -0.73293578624725342,
                 4.1592803001403809
             ],
@@ -14477,7 +16400,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                5.1873550415039063,
+                5.1873550415039062,
                 -0.83586376905441284,
                 10.623772621154785
             ],
@@ -14849,7 +16772,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -3.9479751586914063,
+                -3.9479751586914062,
                 -0.64550316333770752,
                 12.557474136352539
             ],
@@ -15347,7 +17270,7 @@
             "Position": [
                 -5.2038078308105469,
                 -0.65560322999954224,
-                -4.4006729125976563
+                -4.4006729125976562
             ],
             "Rotation": [
                 0,
@@ -16035,7 +17958,7 @@
             "Position": [
                 2.3428153991699219,
                 -1.7544491291046143,
-                4.7003555297851563
+                4.7003555297851562
             ],
             "Rotation": [
                 0,
@@ -18211,7 +20134,7 @@
             "Position": [
                 -18.217643737792969,
                 -3.8024067878723145,
-                -4.4963150024414063
+                -4.4963150024414062
             ],
             "Rotation": [
                 0,
@@ -18271,7 +20194,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -15.522720336914063,
+                -15.522720336914062,
                 -1.7074291706085205,
                 -9.5700550079345703
             ],
@@ -21593,7 +23516,7 @@
             "Position": [
                 -4.931584358215332,
                 -1.2374355792999268,
-                -4.4318008422851563
+                -4.4318008422851562
             ],
             "Rotation": [
                 0,
@@ -22805,7 +24728,7 @@
             "Position": [
                 4.8990654945373535,
                 0.31852126121520996,
-                -2.4944534301757813
+                -2.4944534301757812
             ],
             "Rotation": [
                 0,
@@ -23429,7 +25352,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -16.859634399414063,
+                -16.859634399414062,
                 3.6061453819274902,
                 1.1453603506088257
             ],
@@ -24999,7 +26922,7 @@
             "Position": [
                 -1.6179616451263428,
                 0.35011255741119385,
-                -0.57110977172851563
+                -0.57110977172851562
             ],
             "Rotation": [
                 0,
@@ -25867,7 +27790,7 @@
             "Position": [
                 -1.5683414936065674,
                 0.084814071655273438,
-                -0.79191970825195313
+                -0.79191970825195312
             ],
             "Rotation": [
                 0,
@@ -26735,15 +28658,6 @@
                         1530020591,
                         2047958449
                     ]
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "InsideCollider",
-                    "maxDistance": 5,
-                    "colliderPosition": 949564340,
-                    "displayText": 625428609,
-                    "selectButton": 422736431
                 }
             ]
         },
@@ -27645,7 +29559,7 @@
             "Position": [
                 -4.4703483581542969e-08,
                 0.20422577857971191,
-                -2.9802322387695313e-08
+                -2.9802322387695312e-08
             ],
             "Rotation": [
                 0.033438049256801605,
@@ -28493,7 +30407,7 @@
             ],
             "Rotation": [
                 -1.6763945609454822e-07,
-                -2.9802322387695313e-08,
+                -2.9802322387695312e-08,
                 3.3527722820281269e-08,
                 1
             ],
@@ -28556,30 +30470,30 @@
             ]
         },
         {
-            "name": "NPC notification",
+            "name": "InsideCollider",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 557934717,
+            "UID": 847756082,
             "ParentUID": 949564340,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -0.15407943725585938,
-                1.9114725589752197,
-                0.014592446386814117
+                0,
+                0,
+                0
             ],
             "Rotation": [
-                -0.038709908723831177,
-                0.39061141014099121,
-                0.038045484572649002,
-                0.91895413398742676
+                0,
+                0,
+                0,
+                1
             ],
             "Scale": [
-                0.99999970197677612,
-                0.999980628490448,
+                1,
+                1,
                 1
             ],
             "Components": [
@@ -28588,50 +30502,13 @@
                     "Active": true
                 },
                 {
-                    "Type": 3,
+                    "Type": 5,
                     "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
-                    "MaterialUID": 355756108
-                },
-                {
-                    "Type": 20,
-                    "Active": true,
-                    "systemActive": true,
-                    "looping": true,
-                    "maxDuration": 10,
-                    "ParticleEmitters": [
-                        {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1477516694.dds",
-                            "texUID": 1477516694,
-                            "paEmitterName": "Empty",
-                            "paLifeTime": [
-                                2,
-                                2
-                            ],
-                            "paSize": [
-                                0.20000000298023224,
-                                0.20000000298023224
-                            ],
-                            "paColor": [
-                                0.88627451658248901,
-                                0.7921568751335144,
-                                0.40000000596046448,
-                                1
-                            ],
-                            "paPerSec": 1,
-                            "paRelative": true,
-                            "ParticleEffects": []
-                        }
-                    ]
-                },
-                {
-                    "Type": 21,
-                    "Active": true,
-                    "billboardAlignment": 0,
-                    "horizantalAligned": true
+                    "ScriptName": "InsideCollider",
+                    "maxDistance": 5,
+                    "colliderPosition": 847756082,
+                    "displayText": 625428609,
+                    "selectButton": 422736431
                 }
             ]
         },

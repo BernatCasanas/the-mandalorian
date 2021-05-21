@@ -21,7 +21,7 @@ public class HubTextController : DiamondComponent
     public GameObject ashoka = null;
     public GameObject grogu = null;
 
-    public int bo_katan_portrait_uid = 0;
+    /*public int bo_katan_portrait_uid = 0;
     public int greef_portrait_uid = 0;
     public int ashoka_portrait_uid = 0;
     public int grogu_portrait_uid = 0;
@@ -44,7 +44,7 @@ public class HubTextController : DiamondComponent
     public float grogu_portrait_pos_x = 0;
     public float grogu_portrait_pos_y = 0;
     public float grogu_portrait_size_x = 0;
-    public float grogu_portrait_size_y = 0;
+    public float grogu_portrait_size_y = 0;*/
 
 
     public int total_interactions = 0;
@@ -77,6 +77,8 @@ public class HubTextController : DiamondComponent
 
     public void Awake()
     {
+        ResetInteractionBools();
+
         total_interactions_and_stages = total_stages * total_interactions;
         if (DiamondPrefs.ReadBool("reset"))
             return;
@@ -84,8 +86,8 @@ public class HubTextController : DiamondComponent
     }
     public void Update()
     {
-        if (mando == null || Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN || textController == null || textController.GetComponent<TextController>().otherimage == null || dialog == null ||
-            textController.IsEnabled() == false || insideColliderTextActive)
+        if (mando == null || Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN || textController == null /*|| textController.GetComponent<TextController>().otherimage == null*/ || dialog == null ||
+            textController.IsEnabled() == false || !insideColliderTextActive)
         {
             return;
         }
@@ -138,12 +140,12 @@ public class HubTextController : DiamondComponent
         switch (interaction)
         {
             case Interaction.BO_KATAN:
-                if (bo_katan_portrait_uid != 0)
+                /*if (bo_katan_portrait_uid != 0)
                 {
                     textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().AssignLibrary2DTexture(bo_katan_portrait_uid);
                     textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = new Vector3(bo_katan_portrait_pos_x, bo_katan_portrait_pos_y, 0);
                     textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = new Vector3(bo_katan_portrait_size_x, bo_katan_portrait_size_y, 0);
-                }
+                }*/
                 textController.GetComponent<TextController>().dialog_index = boKatanInteractionNum;
                 if (boKatanInteractionNum % 3 != 0)
                 {
@@ -155,12 +157,12 @@ public class HubTextController : DiamondComponent
 
                 break;
             case Interaction.GREEF:
-                if (greef_portrait_uid != 0)
+                /*if (greef_portrait_uid != 0)
                 {
                     textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().AssignLibrary2DTexture(greef_portrait_uid);
                     textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = new Vector3(greef_portrait_pos_x, greef_portrait_pos_y, 0);
                     textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = new Vector3(greef_portrait_size_x, greef_portrait_size_y, 0);
-                }
+                }*/
                 textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages) + greefInteractionNum;
                 if (greefInteractionNum % 3 != 0)
                 {
@@ -172,12 +174,12 @@ public class HubTextController : DiamondComponent
 
                 break;
             case Interaction.ASHOKA:
-                if (ashoka_portrait_uid != 0)
+                /*if (ashoka_portrait_uid != 0)
                 {
                     textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().AssignLibrary2DTexture(ashoka_portrait_uid);
                     textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = new Vector3(ashoka_portrait_pos_x, ashoka_portrait_pos_y, 0);
                     textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = new Vector3(ashoka_portrait_size_x, ashoka_portrait_size_y, 0);
-                }
+                }*/
                 textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages * 2) + ashokaInteractionNum;
                 if (ashokaInteractionNum % 3 != 0)
                 {
@@ -189,12 +191,12 @@ public class HubTextController : DiamondComponent
 
                 break;
             case Interaction.GROGU:
-                if (grogu_portrait_uid != 0)
+                /*if (grogu_portrait_uid != 0)
                 {
                     textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().AssignLibrary2DTexture(grogu_portrait_uid);
                     textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = new Vector3(grogu_portrait_pos_x, grogu_portrait_pos_y, 0);
                     textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = new Vector3(grogu_portrait_size_x, grogu_portrait_size_y, 0);
-                }
+                }*/
                 textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages * 4) + groguInteractionNum;
                 if (groguInteractionNum % 2 != 0)
                 {
@@ -281,5 +283,13 @@ public class HubTextController : DiamondComponent
         DiamondPrefs.Write("greefInteractionNum", greefInteractionNum);
         DiamondPrefs.Write("ashokaInteractionNum", ashokaInteractionNum);
         DiamondPrefs.Write("groguInteractionNum", groguInteractionNum);
+    }
+
+    private void ResetInteractionBools()
+    {
+        boKatanHasInteracted = false;
+        greefHasInteracted = false;
+        ashokaHasInteracted = false;
+        groguHasInteracted = false;
     }
 }
