@@ -102,7 +102,7 @@
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
                     "vFOV": 1.0471975803375244,
-                    "hFOV": 1.4126924276351929,
+                    "hFOV": 1.6213690042495728,
                     "culling": true,
                     "HDR": true,
                     "drawSkybox": true
@@ -206,10 +206,6 @@
                     "skelPanel": 1151247102,
                     "wampaandskelPanel": 442331361,
                     "moffPanel": 456175696,
-                    "leftImage": 675362497,
-                    "leftMultiplier": 257952572,
-                    "rightImage": 79541653,
-                    "rightMultiplier": 1556581547,
                     "comboTxt": 473806663,
                     "currencyTxt": 156920290,
                     "levelsTxt": 789838953
@@ -763,6 +759,22 @@
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/712433695.dds",
                     "UID": 712433695
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "UI_Move",
+                    "delay": 0.30000001192092896,
+                    "duration": 0.80000001192092896,
+                    "initialPosX": -58.099998474121094,
+                    "initialPosY": -1.2999999523162842,
+                    "finalPosX": -58.099998474121094,
+                    "finalPosY": -1.2999999523162842,
+                    "initialScaleX": 0,
+                    "initialScaleY": 0,
+                    "finalScaleX": 38.099998474121094,
+                    "finalScaleY": 94.599998474121094,
+                    "playOnAwake": true
                 }
             ]
         },
@@ -830,6 +842,22 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "UI_Move",
+                    "delay": 0.30000001192092896,
+                    "duration": 0.80000001192092896,
+                    "initialPosX": 0,
+                    "initialPosY": 0,
+                    "finalPosX": -15.800000190734863,
+                    "finalPosY": 78.400001525878906,
+                    "initialScaleX": 0,
+                    "initialScaleY": 0,
+                    "finalScaleX": 10.899999618530273,
+                    "finalScaleY": 20,
+                    "playOnAwake": true
                 }
             ]
         },
@@ -1976,73 +2004,22 @@
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/712433695.dds",
                     "UID": 712433695
-                }
-            ]
-        },
-        {
-            "name": "Findings",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1360383974,
-            "ParentUID": 114639979,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
                 },
                 {
-                    "Type": 6,
+                    "Type": 5,
                     "Active": true,
-                    "Position": [
-                        -16.600000381469727,
-                        78.099998474121094
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        10.300000190734863,
-                        20
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
-                    "MaterialUID": 744544911
-                },
-                {
-                    "Type": 9,
-                    "Active": true,
-                    "text": "FINDINGS",
-                    "maxTextLenght": 0,
-                    "fontName": "Library\/Fonts\/renner-medium.ttf",
-                    "textColor": [
-                        1,
-                        1,
-                        1
-                    ]
+                    "ScriptName": "UI_Move",
+                    "delay": 1.1000000238418579,
+                    "duration": 0.80000001192092896,
+                    "initialPosX": 58.5,
+                    "initialPosY": -1.2999999523162842,
+                    "finalPosX": 58.5,
+                    "finalPosY": -1.2999999523162842,
+                    "initialScaleX": 0,
+                    "initialScaleY": 0,
+                    "finalScaleX": 38.099998474121094,
+                    "finalScaleY": 94.599998474121094,
+                    "playOnAwake": true
                 }
             ]
         },
@@ -4597,6 +4574,89 @@
             ]
         },
         {
+            "name": "Findings",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1360383974,
+            "ParentUID": 114639979,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -16.600000381469727,
+                        78.099998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        10.300000190734863,
+                        20
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "FINDINGS",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "UI_Move",
+                    "delay": 1.1000000238418579,
+                    "duration": 0.80000001192092896,
+                    "initialPosX": 0,
+                    "initialPosY": 0,
+                    "finalPosX": -16.600000381469727,
+                    "finalPosY": 78.099998474121094,
+                    "initialScaleX": 0,
+                    "initialScaleY": 0,
+                    "finalScaleX": 10.300000190734863,
+                    "finalScaleY": 20,
+                    "playOnAwake": true
+                }
+            ]
+        },
+        {
             "name": "Middle_Panel",
             "tag": "Untagged",
             "layer": "Default",
@@ -4655,6 +4715,22 @@
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/835039019.dds",
                     "UID": 835039019
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "UI_Move",
+                    "delay": 0.69999998807907104,
+                    "duration": 0.80000001192092896,
+                    "initialPosX": 0,
+                    "initialPosY": 1.8999999761581421,
+                    "finalPosX": 0,
+                    "finalPosY": 1.8999999761581421,
+                    "initialScaleX": 0,
+                    "initialScaleY": 0,
+                    "finalScaleX": 18.799999237060547,
+                    "finalScaleY": 51.099998474121094,
+                    "playOnAwake": true
                 }
             ]
         },
