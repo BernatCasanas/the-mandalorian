@@ -220,10 +220,16 @@ public class PlayerHealth : DiamondComponent
                 if (result <= Core.instance.GetStatusData(STATUS_TYPE.REFILL_CHANCE).severity)
                     Core.instance.refreshCooldowns();
             }
+            if (Core.instance.HasStatus(STATUS_TYPE.SOLO_QUICK_DRAW))
+            {
+                float toHeal = damage * Core.instance.GetStatusData(STATUS_TYPE.SOLO_QUICK_DRAW).severity / 100;
+                Core.instance.AddStatus(STATUS_TYPE.SOLO_HEAL, STATUS_APPLY_TYPE.SUBSTITUTE, toHeal, 4);
+            }
         }
 
         if (Core.instance != null && damage > 0 && ignoreDashInv == false)
         {
+    
             if (Core.instance.IsDashing())
                 return currHealth;
         }

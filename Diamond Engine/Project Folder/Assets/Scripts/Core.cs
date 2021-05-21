@@ -106,7 +106,7 @@ public class Core : Entity
     private float skill_damageReductionDashTimer = 0.0f;
     private bool skill_groguIncreaseDamageActive = false;
     private float skill_groguIncreaseDamageTimer = 0.0f;
-
+    public float skill_SoloHeal = 0.0f;
     // Dash
     public float dashCD = 0.33f;
     public float dashDuration = 0.2f;
@@ -2505,6 +2505,12 @@ public class Core : Entity
                     dashCDModifier += statusToInit.statChange;
                 }
                 break;
+            case STATUS_TYPE.SOLO_HEAL:
+                {
+                    statusToInit.statChange = statusToInit.severity;
+                    skill_SoloHeal = statusToInit.statChange;
+                }
+                break;
             default:
                 break;
         }
@@ -2786,6 +2792,12 @@ public class Core : Entity
             case STATUS_TYPE.WATTO_COOLANT:
                 {
                     dashCDModifier -= statusToDelete.statChange;
+                }
+                break;
+            case STATUS_TYPE.SOLO_HEAL:
+                {
+                    
+                    skill_SoloHeal = 0;
                 }
                 break;
             default:
