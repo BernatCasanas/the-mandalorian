@@ -13,9 +13,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -15.175867080688476,
-                0.68035280704498291,
-                -4.9496994018554688
+                -11.047249794006348,
+                8.8548679351806641,
+                -11.11531925201416
             ],
             "Rotation": [
                 0,
@@ -61,6 +61,7 @@
                     "PlayerStatuses": 0,
                     "boons": 0,
                     "shootPoint": 158286609,
+                    "sniperShootPoint": 415492028,
                     "rifle": 866035125,
                     "blaster": 2037029300,
                     "rotationSpeed": 2,
@@ -91,7 +92,8 @@
                     "perfectShotDmgMult": 1.4500000476837158,
                     "overShotDmgMult": 1.0499999523162842,
                     "overheatTimeBeeping": 0.079999998211860657,
-                    "sniperAimAnimMult": 0.94999998807907104,
+                    "sniperStartAngleRays": 20,
+                    "sniperAimAnimMult": 1.9500000476837158,
                     "luckyMod": 0,
                     "lockInputs": false,
                     "bulletDamage": 0,
@@ -531,7 +533,7 @@
                 0,
                 0,
                 -0.0073059904389083385,
-                0.99997329711914062
+                0.99997329711914063
             ],
             "Scale": [
                 1,
@@ -1645,7 +1647,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0.49832534790039062,
+                0.49832534790039063,
                 2.0816681711721685e-17,
                 1.3898392876873153e-17
             ],
@@ -2123,7 +2125,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -1.8636245727539062,
+                -1.8636245727539063,
                 0.046333789825439453,
                 -0.77125072479248047
             ],
@@ -2157,7 +2159,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -1.8636245727539062,
+                -1.8636245727539063,
                 0.046333789825439453,
                 0.86050128936767578
             ],
@@ -2191,7 +2193,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0.76593399047851562,
+                0.76593399047851563,
                 0.046333789825439453,
                 0.86050128936767578
             ],
@@ -2260,7 +2262,7 @@
             "Static": false,
             "Position": [
                 -0.0040745735168457031,
-                -0.0062532424926757812,
+                -0.0062532424926757813,
                 -0.058134078979492188
             ],
             "Rotation": [
@@ -4749,6 +4751,40 @@
                     "Active": true,
                     "billboardAlignment": 0,
                     "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "SniperShootPoint",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 415492028,
+            "ParentUID": 47750865,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.25,
+                1.0399999618530273,
+                1.2999999523162842
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
                 }
             ]
         }

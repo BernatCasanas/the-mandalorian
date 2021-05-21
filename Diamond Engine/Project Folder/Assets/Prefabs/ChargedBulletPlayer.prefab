@@ -13,20 +13,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -8.5305824279785156,
-                7,
-                -13.628684043884277
+                -11.300000190734863,
+                9.7700004577636719,
+                5.3000001907348633
             ],
             "Rotation": [
-                1.3417533750725852e-09,
-                -0.72228807210922241,
-                1.3417533750725852e-09,
-                0.69159227609634399
+                -1.4012984643248171e-45,
+                1.2924697071141057e-25,
+                -3.4694469519536142e-17,
+                1
             ],
             "Scale": [
-                0.15922649204730988,
-                0.08782292902469635,
-                0.40173119306564331
+                0.11713781207799911,
+                0.096834667026996613,
+                0.33476471900939941
             ],
             "Components": [
                 {
@@ -83,9 +83,9 @@
                         1
                     ],
                     "Scale": [
-                        0.60000002384185791,
-                        0.69999998807907104,
-                        0.60000002384185791
+                        0.67500001192092896,
+                        0.89999997615814209,
+                        0.75
                     ]
                 },
                 {
@@ -106,68 +106,6 @@
                     "use_range_instead_of_time": true,
                     "yVel": 0,
                     "damage": 25
-                }
-            ]
-        },
-        {
-            "name": "bulletmesh",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1388425420,
-            "ParentUID": 1083678544,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                3.814697265625e-05,
-                0,
-                0
-            ],
-            "Rotation": [
-                -4.6726433621880128e-14,
-                2.7567743643430731e-08,
-                -3.3350195145019065e-17,
-                1
-            ],
-            "Scale": [
-                0.45572018623352051,
-                0.66999983787536621,
-                0.49156135320663452
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/965117995.mmh",
-                    "UID": 965117995,
-                    "bumpDepth": 0,
-                    "alternColor": [
-                        1,
-                        0,
-                        0
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        0,
-                        0
-                    ],
-                    "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": false,
-                    "drawShadows": true
-                },
-                {
-                    "Type": 26,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/1540644281.mat",
-                    "MaterialUID": 1540644281
                 }
             ]
         },
@@ -313,20 +251,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -0.0018463134765625,
+                -0.00188446044921875,
                 0,
-                0.001071929931640625
+                0.0010728836059570313
             ],
             "Rotation": [
-                0.54802322387695312,
-                0.47227466106414795,
-                0.45679682493209839,
-                0.51765233278274536
+                0.5480198860168457,
+                0.47227787971496582,
+                0.45681416988372803,
+                0.51763761043548584
             ],
             "Scale": [
-                11.365514755249023,
-                2.5890283584594727,
-                6.2755379676818848
+                15.257248878479004,
+                2.5890295505523682,
+                9.855586051940918
             ],
             "Components": [
                 {
@@ -509,6 +447,68 @@
                     "Active": true,
                     "billboardAlignment": 0,
                     "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "bulletmesh",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1388425420,
+            "ParentUID": 1083678544,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                3.814697265625e-05,
+                0,
+                0
+            ],
+            "Rotation": [
+                -4.6726433621880128e-14,
+                2.7567743643430731e-08,
+                -3.3350195145019065e-17,
+                1
+            ],
+            "Scale": [
+                0.45572018623352051,
+                0.66999983787536621,
+                0.49156135320663452
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/965117995.mmh",
+                    "UID": 965117995,
+                    "bumpDepth": 0,
+                    "alternColor": [
+                        1,
+                        0,
+                        0
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        0,
+                        0
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": false,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 26,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/1540644281.mat",
+                    "MaterialUID": 1540644281
                 }
             ]
         }

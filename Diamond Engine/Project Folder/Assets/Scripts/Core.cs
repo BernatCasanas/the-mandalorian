@@ -74,6 +74,7 @@ public class Core : Entity
     }
 
     public GameObject shootPoint = null;
+    public GameObject sniperShootPoint = null;
     public GameObject hud = null;
 
     public GameObject rifle = null;
@@ -179,6 +180,8 @@ public class Core : Entity
     private float snipPrepareAnimTime = 0f;
     private float snipPrepareAnimTimer = 0f;
     private bool canShootSniper = false;
+    public float sniperStartAngleRays = 35f;
+
     //Animations
     private float shootAnimationTotalTime = 0.0f;
     public float sniperAimAnimMult = 1.5f;
@@ -522,6 +525,7 @@ public class Core : Entity
             if (snipPrepareAnimTimer <= 0.0f)
             {
                 canShootSniper = true;
+                PlayParticles(PARTICLES.SNIPER_CHARGE);
             }
         }
 
@@ -943,6 +947,7 @@ public class Core : Entity
                 break;
             case STATE.CHARGING_SEC_SHOOT:
                 UpdateSecondaryShootCharge();
+                ReducePrimaryWeaponHeat();
                 break;
             case STATE.SECONDARY_SHOOT:
                 ReducePrimaryWeaponHeat();
@@ -953,6 +958,7 @@ public class Core : Entity
                 UpdateGadgetShoot();
                 break;
             case STATE.SECONDARY_SHOOT_END:
+                ReducePrimaryWeaponHeat();
                 ReducePrimaryWeaponHeat();
                 break;
             case STATE.DEAD:
@@ -1169,7 +1175,6 @@ public class Core : Entity
             Animator.Play(rifle, "SniperShotP1", speedMult * sniperAimAnimMult);
         }
 
-        PlayParticles(PARTICLES.SNIPER_CHARGE);
     }
 
     private void EndShootCharge()
@@ -1202,6 +1207,7 @@ public class Core : Entity
         {
             changeColorSniperTimer += myDeltaTime;
 
+
             if (changeColorSniperTimer > 0f && changeColorSniperTimer < overheatTimeBeeping)
             {
                 currSniperLaserColor = defaultSniperLaserColor;
@@ -1216,23 +1222,36 @@ public class Core : Entity
 
         }
 
-        if (shootPoint != null && myAimbot != null)
+        if (sniperShootPoint != null && myAimbot != null && canShootSniper == true)
         {
-            float hitDistance = myAimbot.maxRange;
-            GameObject hit = InternalCalls.RayCast(shootPoint.transform.globalPosition + (shootPoint.transform.GetForward() * 1.5f), shootPoint.transform.GetForward(), myAimbot.maxRange, ref hitDistance);
-            hitDistance = Math.Min(hitDistance, Mathf.Lerp(0, myAimbot.maxRange, chargeTimer / timeToPerfectCharge));
+            float currAngle = Mathf.LerpAngle(sniperStartAngleRays, 0f, chargeTimer / timeToPerfectCharge) * Mathf.Deg2RRad;
 
-            InternalCalls.DrawRay(shootPoint.transform.globalPosition, shootPoint.transform.globalPosition + (shootPoint.transform.GetForward() * hitDistance), currSniperLaserColor);
+            float hitDistanceRay1 = myAimbot.maxRange;
+            float hitDistanceRay2 = myAimbot.maxRange;
+
+            Vector3 sniperDir1 = Vector3.RotateAroundQuaternion(Quaternion.RotateAroundAxis(Vector3.up, currAngle), sniperShootPoint.transform.GetForward());
+            Vector3 sniperDir2 = Vector3.RotateAroundQuaternion(Quaternion.RotateAroundAxis(Vector3.up, -currAngle), sniperShootPoint.transform.GetForward());
+
+            InternalCalls.RayCast(sniperShootPoint.transform.globalPosition + (sniperShootPoint.transform.GetForward() * 1.5f), sniperDir1, myAimbot.maxRange, ref hitDistanceRay1);
+            InternalCalls.RayCast(sniperShootPoint.transform.globalPosition + (sniperShootPoint.transform.GetForward() * 1.5f), sniperDir2, myAimbot.maxRange, ref hitDistanceRay2);
+            //hitDistance = Math.Min(hitDistance, Mathf.Lerp(0, myAimbot.maxRange, chargeTimer / timeToPerfectCharge));
+
+            InternalCalls.DrawRay(sniperShootPoint.transform.globalPosition, sniperShootPoint.transform.globalPosition + (sniperDir1 * hitDistanceRay1), currSniperLaserColor, 7f);
+            InternalCalls.DrawRay(sniperShootPoint.transform.globalPosition, sniperShootPoint.transform.globalPosition + (sniperDir2 * hitDistanceRay2), currSniperLaserColor, 7f);
         }
 
-        if (HasStatus(STATUS_TYPE.SP_NONCHARGED))
+        if (canShootSniper == true)
         {
-            float modifier = 1 + GetStatusData(STATUS_TYPE.SP_CHARGE_TIME).severity / 100;
-            chargeTimer += myDeltaTime * modifier;
-        }
-        else
-        {
-            chargeTimer += myDeltaTime;
+            if (HasStatus(STATUS_TYPE.SP_NONCHARGED))
+            {
+                float modifier = 1 + GetStatusData(STATUS_TYPE.SP_CHARGE_TIME).severity / 100;
+                chargeTimer += myDeltaTime * modifier;
+            }
+            else
+            {
+                chargeTimer += myDeltaTime;
+            }
+
         }
 
     }
@@ -1334,8 +1353,8 @@ public class Core : Entity
     public void RefillSniper()
     {
         sniperRechargeTimer -= bulletRechargeTime;
-                if (sniperRechargeTimer <= 0f)
-                    sniperRechargeTimer = 0f;
+        if (sniperRechargeTimer <= 0f)
+            sniperRechargeTimer = 0f;
     }
     #endregion
 
