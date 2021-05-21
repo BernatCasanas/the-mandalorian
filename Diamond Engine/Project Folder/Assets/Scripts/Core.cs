@@ -74,6 +74,16 @@ public class Core : Entity
         WATER
     }
 
+    enum TUTO_STATES : int
+    {
+        NONE = -1,
+        DASH,
+        BLASTER,
+        PUSH,
+        SNIPER,
+        WALL
+    }
+
     public GameObject shootPoint = null;
     public GameObject sniperShootPoint = null;
     public GameObject hud = null;
@@ -229,6 +239,8 @@ public class Core : Entity
     private bool hasDashed = false;
 
     private FLOOR_TYPE floorType = FLOOR_TYPE.NONE;
+
+    private TUTO_STATES tuto_state = TUTO_STATES.NONE;
 
     public void Awake()
     {
@@ -582,7 +594,7 @@ public class Core : Entity
             primaryWeaponOverHeat = isPrimaryOverHeat;
         }
 
-        if (!lockInputs)
+        if (!lockInputs && tuto_state == TUTO_STATES.NONE)
         {
             if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT) && isPrimaryOverHeat == false && lockAttacks == false)
             {
@@ -650,6 +662,203 @@ public class Core : Entity
                 grenadesFireRateTimer = grenadesFireRate;
             }
 
+
+            if (IsJoystickMoving() == true)
+                inputsList.Add(INPUT.IN_MOVE);
+
+            else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
+                inputsList.Add(INPUT.IN_IDLE);
+        }
+        else if(tuto_state == TUTO_STATES.DASH)
+        {
+            if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false && dashAvailable == true && lockAttacks == false)
+            {
+                inputsList.Add(INPUT.IN_DASH);
+                rightTriggerPressed = true;
+            }
+            else if (Input.GetRightTrigger() == 0 && rightTriggerPressed == true && lockAttacks == false)
+                rightTriggerPressed = false;
+
+
+            if ((Input.GetKey(DEKeyCode.LSHIFT) == KeyState.KEY_REPEAT && Input.GetKey(DEKeyCode.LALT) == KeyState.KEY_REPEAT &&
+                Input.GetKey(DEKeyCode.D) == KeyState.KEY_DOWN && myDeltaTime != 0.0f) || Input.GetGamepadButton(DEControllerButton.BACK) == KeyState.KEY_DOWN)
+            {
+                InternalCalls.CreateUIPrefab("Library/Prefabs/1342862578.prefab", new Vector3(0, 0, 0), new Quaternion(0, 0, 0), new Vector3(1, 1, 1));
+            }
+
+            if (Input.GetKey(DEKeyCode.T) == KeyState.KEY_DOWN)
+            {
+                Debug.Log("Amount of bullets fired: " + numberOfShots.ToString());
+                Debug.Log("Time to complete room: " + timeOfRoom.ToString() + " seconds");
+                Debug.Log("Times fallen of the map: " + timesFellOfMap.ToString());
+                Debug.Log("Total distance moved: " + distanceMoved.ToString() + " mandos");
+            }
+
+            if (IsJoystickMoving() == true)
+                inputsList.Add(INPUT.IN_MOVE);
+
+            else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
+                inputsList.Add(INPUT.IN_IDLE);
+        }
+        else if(tuto_state == TUTO_STATES.BLASTER || tuto_state == TUTO_STATES.PUSH)
+        {
+            if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT) && isPrimaryOverHeat == false && lockAttacks == false)
+            {
+                stopShootingTime = 0f;
+                inputsList.Add(INPUT.IN_SHOOTING);
+            }
+            else if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE || isPrimaryOverHeat == true) && hasShot == true && lockAttacks == false)
+            {
+                if (CanStopShooting() == true || isPrimaryOverHeat == true || (this.currentState != STATE.SHOOT && this.currentState != STATE.SHOOTING))
+                {
+                    inputsList.Add(INPUT.IN_SHOOTING_END);
+                    hasShot = false;
+                }
+                else if (CanStopShooting() == false)
+                {
+                    stopShootingTime += myDeltaTime;
+                    Animator.Play(gameObject, "Shoot", 0.01f);
+
+                    if (blaster != null)
+                    {
+                        blaster.Enable(true);
+                        Animator.Play(blaster, "Shoot", 0.01f);
+                    }
+
+                    UpdateAnimationSpd(0.01f);
+                }
+            }
+
+            if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false && dashAvailable == true && lockAttacks == false)
+            {
+                inputsList.Add(INPUT.IN_DASH);
+                rightTriggerPressed = true;
+            }
+            else if (Input.GetRightTrigger() == 0 && rightTriggerPressed == true && lockAttacks == false)
+                rightTriggerPressed = false;
+
+
+            if ((Input.GetKey(DEKeyCode.LSHIFT) == KeyState.KEY_REPEAT && Input.GetKey(DEKeyCode.LALT) == KeyState.KEY_REPEAT &&
+                Input.GetKey(DEKeyCode.D) == KeyState.KEY_DOWN && myDeltaTime != 0.0f) || Input.GetGamepadButton(DEControllerButton.BACK) == KeyState.KEY_DOWN)
+            {
+                InternalCalls.CreateUIPrefab("Library/Prefabs/1342862578.prefab", new Vector3(0, 0, 0), new Quaternion(0, 0, 0), new Vector3(1, 1, 1));
+            }
+
+            if (Input.GetKey(DEKeyCode.T) == KeyState.KEY_DOWN)
+            {
+                Debug.Log("Amount of bullets fired: " + numberOfShots.ToString());
+                Debug.Log("Time to complete room: " + timeOfRoom.ToString() + " seconds");
+                Debug.Log("Times fallen of the map: " + timesFellOfMap.ToString());
+                Debug.Log("Total distance moved: " + distanceMoved.ToString() + " mandos");
+            }
+
+            if (IsJoystickMoving() == true)
+                inputsList.Add(INPUT.IN_MOVE);
+
+            else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
+                inputsList.Add(INPUT.IN_IDLE);
+        }
+        else if(tuto_state == TUTO_STATES.SNIPER)
+        {
+            if ((Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_DOWN) && currentBullets > 0 && lockAttacks == false)
+            {
+                inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT);
+            }
+            else if ((Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_UP || (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_IDLE && currentState == STATE.CHARGING_SEC_SHOOT)) && canShootSniper == true && lockAttacks == false)
+            {
+                inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
+            }
+
+            if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false && dashAvailable == true && lockAttacks == false)
+            {
+                inputsList.Add(INPUT.IN_DASH);
+                rightTriggerPressed = true;
+            }
+            else if (Input.GetRightTrigger() == 0 && rightTriggerPressed == true && lockAttacks == false)
+                rightTriggerPressed = false;
+
+
+            if ((Input.GetKey(DEKeyCode.LSHIFT) == KeyState.KEY_REPEAT && Input.GetKey(DEKeyCode.LALT) == KeyState.KEY_REPEAT &&
+                Input.GetKey(DEKeyCode.D) == KeyState.KEY_DOWN && myDeltaTime != 0.0f) || Input.GetGamepadButton(DEControllerButton.BACK) == KeyState.KEY_DOWN)
+            {
+                InternalCalls.CreateUIPrefab("Library/Prefabs/1342862578.prefab", new Vector3(0, 0, 0), new Quaternion(0, 0, 0), new Vector3(1, 1, 1));
+            }
+
+            if (Input.GetKey(DEKeyCode.T) == KeyState.KEY_DOWN)
+            {
+                Debug.Log("Amount of bullets fired: " + numberOfShots.ToString());
+                Debug.Log("Time to complete room: " + timeOfRoom.ToString() + " seconds");
+                Debug.Log("Times fallen of the map: " + timesFellOfMap.ToString());
+                Debug.Log("Total distance moved: " + distanceMoved.ToString() + " mandos");
+            }
+
+            if (IsJoystickMoving() == true)
+                inputsList.Add(INPUT.IN_MOVE);
+
+            else if (currentState == STATE.MOVE && IsJoystickMoving() == false)
+                inputsList.Add(INPUT.IN_IDLE);
+        }
+        else if(tuto_state == TUTO_STATES.WALL)
+        {
+            if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_DOWN || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_REPEAT) && isPrimaryOverHeat == false && lockAttacks == false)
+            {
+                stopShootingTime = 0f;
+                inputsList.Add(INPUT.IN_SHOOTING);
+            }
+            else if ((Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_UP || Input.GetGamepadButton(DEControllerButton.X) == KeyState.KEY_IDLE || isPrimaryOverHeat == true) && hasShot == true && lockAttacks == false)
+            {
+                if (CanStopShooting() == true || isPrimaryOverHeat == true || (this.currentState != STATE.SHOOT && this.currentState != STATE.SHOOTING))
+                {
+                    inputsList.Add(INPUT.IN_SHOOTING_END);
+                    hasShot = false;
+                }
+                else if (CanStopShooting() == false)
+                {
+                    stopShootingTime += myDeltaTime;
+                    Animator.Play(gameObject, "Shoot", 0.01f);
+
+                    if (blaster != null)
+                    {
+                        blaster.Enable(true);
+                        Animator.Play(blaster, "Shoot", 0.01f);
+                    }
+
+                    UpdateAnimationSpd(0.01f);
+                }
+            }
+
+
+            if ((Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_DOWN) && currentBullets > 0 && lockAttacks == false)
+            {
+                inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT);
+            }
+            else if ((Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_UP || (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_IDLE && currentState == STATE.CHARGING_SEC_SHOOT)) && canShootSniper == true && lockAttacks == false)
+            {
+                inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
+            }
+
+            if (Input.GetRightTrigger() > 0 && rightTriggerPressed == false && dashAvailable == true && lockAttacks == false)
+            {
+                inputsList.Add(INPUT.IN_DASH);
+                rightTriggerPressed = true;
+            }
+            else if (Input.GetRightTrigger() == 0 && rightTriggerPressed == true && lockAttacks == false)
+                rightTriggerPressed = false;
+
+
+            if ((Input.GetKey(DEKeyCode.LSHIFT) == KeyState.KEY_REPEAT && Input.GetKey(DEKeyCode.LALT) == KeyState.KEY_REPEAT &&
+                Input.GetKey(DEKeyCode.D) == KeyState.KEY_DOWN && myDeltaTime != 0.0f) || Input.GetGamepadButton(DEControllerButton.BACK) == KeyState.KEY_DOWN)
+            {
+                InternalCalls.CreateUIPrefab("Library/Prefabs/1342862578.prefab", new Vector3(0, 0, 0), new Quaternion(0, 0, 0), new Vector3(1, 1, 1));
+            }
+
+            if (Input.GetKey(DEKeyCode.T) == KeyState.KEY_DOWN)
+            {
+                Debug.Log("Amount of bullets fired: " + numberOfShots.ToString());
+                Debug.Log("Time to complete room: " + timeOfRoom.ToString() + " seconds");
+                Debug.Log("Times fallen of the map: " + timesFellOfMap.ToString());
+                Debug.Log("Total distance moved: " + distanceMoved.ToString() + " mandos");
+            }
 
             if (IsJoystickMoving() == true)
                 inputsList.Add(INPUT.IN_MOVE);
@@ -1889,6 +2098,42 @@ public class Core : Entity
             }
 
             InternalCalls.Destroy(triggeredGameObject);
+        }
+
+        if (triggeredGameObject.CompareTag("Zone1"))
+        {
+            tuto_state = TUTO_STATES.DASH;
+            Debug.Log("Entering Zone 1");
+        }
+
+        if (triggeredGameObject.CompareTag("Zone2"))
+        {
+            tuto_state = TUTO_STATES.BLASTER;
+            Debug.Log("Entering Zone 2");
+        }
+
+        if (triggeredGameObject.CompareTag("Zone3"))
+        {
+            tuto_state = TUTO_STATES.PUSH;
+            Debug.Log("Entering Zone 3");
+        }
+
+        if (triggeredGameObject.CompareTag("Zone4"))
+        {
+            tuto_state = TUTO_STATES.SNIPER;
+            Debug.Log("Entering Zone 4");
+        }
+
+        if (triggeredGameObject.CompareTag("Zone5"))
+        {
+            tuto_state = TUTO_STATES.WALL;
+            Debug.Log("Entering Zone 5");
+        }
+
+        if (triggeredGameObject.CompareTag("Zone6"))
+        {
+            tuto_state = TUTO_STATES.NONE;
+            Debug.Log("Entering Zone 6");
         }
     }
 
