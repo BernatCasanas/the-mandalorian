@@ -9,7 +9,7 @@
             "UID": 1115908282,
             "ParentUID": 0,
             "PrefabReference": 0,
-            "PrefabID": 0,
+            "PrefabID": 551315197,
             "DontDestroy": false,
             "Static": false,
             "Position": [
@@ -68,6 +68,15 @@
                     "comboNumber": 0,
                     "last_hp": 0,
                     "shooting_blink": 1864514105
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false,
+                    "isMusic": false
                 }
             ]
         },
@@ -477,7 +486,9 @@
                     "Type": 7,
                     "Active": true,
                     "ButtonState": 2,
-                    "Is Selected": false
+                    "Is Selected": false,
+                    "HoverSFX": "Empty",
+                    "PressedSFX": "Empty"
                 },
                 {
                     "Type": 11,
@@ -497,7 +508,7 @@
             "name": "Combo Holder",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 853446538,
             "ParentUID": 1115908282,
             "PrefabReference": 0,
@@ -1388,7 +1399,7 @@
             "name": "FPS",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 583476287,
             "ParentUID": 1115908282,
             "PrefabReference": 0,
@@ -1489,7 +1500,7 @@
             "name": "ForceFeedback",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 1467405751,
             "ParentUID": 671973388,
             "PrefabReference": 0,
@@ -1551,7 +1562,7 @@
             "name": "DamageScreen1",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 296062438,
             "ParentUID": 671973388,
             "PrefabReference": 0,
@@ -1613,7 +1624,7 @@
             "name": "DamageScreen2",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 614952092,
             "ParentUID": 671973388,
             "PrefabReference": 0,
@@ -1675,7 +1686,7 @@
             "name": "DamageScreen3",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 74785433,
             "ParentUID": 671973388,
             "PrefabReference": 0,
@@ -1737,7 +1748,7 @@
             "name": "Tris",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 1367657917,
             "ParentUID": 1115908282,
             "PrefabReference": 0,
@@ -1793,6 +1804,122 @@
                     "maxTextLenght": 109,
                     "fontName": "Library\/Fonts\/teko-semibold.ttf",
                     "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "WampaLifeBar",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1007388580,
+            "ParentUID": 1115908282,
+            "PrefabReference": 0,
+            "PrefabID": 1636070343,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "PrefabObjects": [
+                {
+                    "name": "WampaLifeGauge",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 731900807,
+                    "ParentUID": 1007388580,
+                    "PrefabID": 0,
+                    "PrefabReference": 731900807,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "SkelLifeBar",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 174108131,
+            "ParentUID": 1115908282,
+            "PrefabReference": 0,
+            "PrefabID": 173229476,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "PrefabObjects": [
+                {
+                    "name": "SkelLifeGauge",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1184484683,
+                    "ParentUID": 174108131,
+                    "PrefabID": 0,
+                    "PrefabReference": 1184484683,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
                         1,
                         1,
                         1

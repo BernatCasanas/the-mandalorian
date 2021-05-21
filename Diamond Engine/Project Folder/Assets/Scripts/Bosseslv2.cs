@@ -671,7 +671,7 @@ public class Bosseslv2 : Entity
         {
             Animator.Play(gameObject, "WP_Presentation", speedMult);
             UpdateAnimationSpd(speedMult);
-            //Audio.PlayAudio(gameObject, "Play_Wampa_Death");
+            Audio.PlayAudio(gameObject, "Play_Wampa_Roar_Presentation");
         }
 
         if (camera != null)

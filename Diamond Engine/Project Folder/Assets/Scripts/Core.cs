@@ -71,7 +71,8 @@ public class Core : Entity
         NONE = -1,
         SNOW,
         METAL,
-        WATER
+        WATER,
+        STONE
     }
 
     enum TUTO_STATES : int
@@ -1342,7 +1343,7 @@ public class Core : Entity
     private void StartGadgetShoot()
     {
         Animator.Play(gameObject, "Shoot", gadgetShootSkill * speedMult);
-
+        Audio.PlayAudio(gameObject, "Play_Mando_Grenade_Throw");
         lastAction = ACTION.SHOOT_GRENADE;
 
         if (HasStatus(STATUS_TYPE.REX_SEC_BLASTER) && GetStatusData(STATUS_TYPE.REX_SEC_BLASTER_SUBSKILL).severity < 20)
@@ -1842,7 +1843,14 @@ public class Core : Entity
 
         if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
         {
-            Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
+            if (floorType == FLOOR_TYPE.STONE)
+            {
+                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
+            }
+            else
+            {
+                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
+            }
         }
         else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
         {
@@ -2080,6 +2088,10 @@ public class Core : Entity
             else if (collidedGameObject.CompareTag("WaterFloor"))
             {
                 floorType = FLOOR_TYPE.WATER;
+            }
+            else if (collidedGameObject.CompareTag("StoneFloor"))
+            {
+                floorType = FLOOR_TYPE.STONE;
             }
         }
     }

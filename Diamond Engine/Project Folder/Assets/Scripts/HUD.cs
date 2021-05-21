@@ -623,6 +623,8 @@ public class HUD : DiamondComponent
             if (comboNumber >= key)
             {
                 lvlUpComboData = lvlUpChange.Value;
+                Audio.PlayAudio(gameObject, "Play_UI_Combro_Increase");
+                Audio.SetPitch(gameObject, comboNumber * 5);
             }
         }
 
