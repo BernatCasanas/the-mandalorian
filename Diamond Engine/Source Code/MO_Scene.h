@@ -58,6 +58,7 @@ public:
 	GameObject* LoadGOData(JSON_Object* goJsonObj, GameObject* parent);
 	JSON_Value* GetPrefab(uint prefabID);
 	void AddLoadedPrefab(uint prefabID, JSON_Value* value);
+	bool ReleasePrefabValue(uint prefabID);
 
 	int holdUID;
 
