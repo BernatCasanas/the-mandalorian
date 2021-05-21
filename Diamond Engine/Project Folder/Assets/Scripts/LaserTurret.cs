@@ -375,7 +375,7 @@ public class LaserTurret : Enemy
         if (mesh != null)
             InternalCalls.Destroy(mesh);
 
-        Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
+        Audio.PlayAudio(gameObject, "Play_Turrer_Destruction");
 
         EnemyManager.RemoveEnemy(gameObject);
 
