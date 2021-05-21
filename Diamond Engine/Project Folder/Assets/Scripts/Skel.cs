@@ -18,6 +18,7 @@ public class Skel : Bosseslv2
         PROJECTILE,
         JUMP_SLAM,
         BOUNCE_RUSH,
+        PRESENTATION,
         DEAD
     }
 
@@ -40,11 +41,15 @@ public class Skel : Bosseslv2
         IN_JUMPSLAM_END,
         IN_BOUNCERUSH,
         IN_BOUNCERUSH_END,
+        IN_PRESENTATION,
+        IN_PRESENTATION_END,
         IN_DEAD
     }
 
-    private STATE currentState = STATE.SEARCH_STATE;
+    private STATE currentState = STATE.PRESENTATION;
+    public bool firstSorrowRoar = false;
     private List<INPUT> inputsList = new List<INPUT>();
+    private bool firstFrame = true;
 
     public override void Awake()
     {
@@ -66,6 +71,12 @@ public class Skel : Bosseslv2
 
     public void Update()
     {
+        if (firstFrame)
+        {
+            companion = InternalCalls.FindObjectWithName("WampaBoss");
+            firstFrame = false;
+            StartPresentation();
+        }
         myDeltaTime = Time.deltaTime * speedMult;
         UpdateStatuses();
 
@@ -76,6 +87,12 @@ public class Skel : Bosseslv2
 
         UpdateState();
         //Debug.Log(healthPoints.ToString());
+
+        if (firstSorrowRoar)
+        {
+            firstSorrowRoar = false;
+            Audio.PlayAudio(gameObject, "Play_Skel_When_Wampa_Dies");
+        }
     }
 
     private void ProcessInternalInput()
@@ -93,25 +110,15 @@ public class Skel : Bosseslv2
             }
         }
 
-        //if (fastChasingTimer > 0)
-        //{
-        //    fastChasingTimer -= myDeltaTime;
+        if (presentationTimer > 0.0f)
+        {
+            presentationTimer -= myDeltaTime;
 
-        //    if (fastChasingTimer <= 0)
-        //    {
-        //        inputsList.Add(INPUT.IN_FAST_RUSH_END);
-        //    }
-        //}
-
-        //if (slowChasingTimer > 0)
-        //{
-        //    slowChasingTimer -= myDeltaTime;
-
-        //    if (slowChasingTimer <= 0)
-        //    {
-        //        inputsList.Add(INPUT.IN_SLOW_RUSH_END);
-        //    }
-        //}
+            if (presentationTimer <= 0.0f)
+            {
+                inputsList.Add(INPUT.IN_PRESENTATION_END);
+            }
+        }
 
         if (restingTimer > 0)
         {
@@ -187,6 +194,16 @@ public class Skel : Bosseslv2
                         case INPUT.IN_WANDER:
                             currentState = STATE.WANDER;
                             StartWander();
+                            break;
+                    }
+                    break;
+
+                case STATE.PRESENTATION:
+                    switch (input)
+                    {
+                        case INPUT.IN_PRESENTATION_END:
+                            currentState = STATE.SEARCH_STATE;
+                            EndPresentation();
                             break;
                     }
                     break;
@@ -315,6 +332,9 @@ public class Skel : Bosseslv2
             case STATE.WANDER:
                 UpdateWander();
                 break;
+            case STATE.PRESENTATION:
+                UpdatePresentation();
+                break;
             case STATE.SEARCH_STATE:
                 SelectAction();
                 break;
@@ -399,7 +419,16 @@ public class Skel : Bosseslv2
                 float damageToBoss = bulletComp.GetDamage();
                 if (Core.instance != null)
                     damageToBoss *= Core.instance.DamageToBosses;
+                if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
+                {
+                    float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
+                    Random rand = new Random();
+                    float result = rand.Next(1, 101);
+                    if (result <= mod)
+                        Core.instance.RefillSniper();
 
+                    Core.instance.luckyMod = 1 + mod / 100;
+                }
                 TakeDamage(damageToBoss);
             }
 
@@ -455,6 +484,7 @@ public class Skel : Bosseslv2
 
             if (currentState != STATE.DEAD)
             {
+                Audio.PlayAudio(gameObject, "Play_Skel_Hit");
                 healthPoints -= damage;
                 if (Core.instance != null)
                 {

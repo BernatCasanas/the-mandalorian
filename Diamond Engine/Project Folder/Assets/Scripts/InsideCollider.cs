@@ -11,7 +11,7 @@ public class InsideCollider : DiamondComponent
 
     public void Update()
     {
-        if (displayText == null || hubTextController == null)
+        if (displayText == null)
             return;
 
         if (IsInside() && displayText.IsEnabled() == false)

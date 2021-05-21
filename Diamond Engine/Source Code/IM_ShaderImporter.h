@@ -6,17 +6,16 @@ typedef int GLint;
 
 struct TempShader {
 	std::pair<size_t, char*> data;
-	int tmpID;
+	int tmpID = 0;
 };
 
 namespace ShaderImporter
 {
 	void Import(char* buffer, int bSize, ResourceShader* res, const char* assetsPath);
 
-	bool CheckForErrors(std::string& glslBuffer, TempShader& vertexShader, TempShader& fragmentShader);
+	bool CheckForErrors(std::string& glslBuffer, TempShader& vertexShader, TempShader& fragmentShader, TempShader& geometryShaderPair);
 
 	int GetTypeMacro(ShaderType type);
-	ShaderType GetAssetsObjType(const char* assetsPath, std::string& pairString);
 
 	void CreateBaseShaderFile(const char* path);
 

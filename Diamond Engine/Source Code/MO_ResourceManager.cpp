@@ -53,7 +53,7 @@ bool M_ResourceManager::Start()
 
 update_status M_ResourceManager::PreUpdate(float dt)
 {
-	if(DETime::state == GameState::PLAY)
+	if(DETime::state == GameState::PLAY || DETime::state == GameState::PAUSE)
 		return update_status::UPDATE_CONTINUE;
 
 	fileCheckTime += dt;

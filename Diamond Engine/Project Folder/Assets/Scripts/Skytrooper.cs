@@ -79,8 +79,7 @@ public class Skytrooper : Enemy
     public float explosionDistance = 2.0f;
 
     //push
-    public float pushHorizontalForce = 100;
-    public float pushVerticalForce = 10;
+    public float forcePushMod = 1f;
     public float PushStun = 2;
 
     //Shoot
@@ -557,8 +556,7 @@ public class Skytrooper : Enemy
 
         //Animator.Play(gameObject, "ST_Die", 1.0f);
 
-        Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
-        Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
+        Audio.PlayAudio(gameObject, "Play_Skytrooper_Death");
 
         EnemyManager.RemoveEnemy(gameObject);
 
@@ -621,10 +619,17 @@ public class Skytrooper : Enemy
 
     private void StartPush()
     {
-        Vector3 force = gameObject.transform.globalPosition - Core.instance.gameObject.transform.globalPosition;
-        force.y = pushVerticalForce;
-        gameObject.AddForce(force * pushHorizontalForce);
-        pushTimer = 0.0f;
+        Vector3 force = pushDir.normalized;
+        if (BabyYoda.instance != null)
+        {
+            force.y = 0f;
+            force.x *= BabyYoda.instance.pushHorizontalForce;
+            force.z *= BabyYoda.instance.pushHorizontalForce;
+            gameObject.AddForce(force * forcePushMod);
+
+            pushTimer = 0.0f;
+        }
+
     }
     private void UpdatePush()
     {
@@ -678,10 +683,7 @@ public class Skytrooper : Enemy
 
             if (bullet != null)
             {
-                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
-                // healthPoints -= bullet.damage;
-
-                TakeDamage(bullet.GetDamage());
+             
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -711,9 +713,25 @@ public class Skytrooper : Enemy
                                 BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
                             }
                         }
+                        if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
+                        {
+                            float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
+                            Random rand = new Random();
+                            float result = rand.Next(1, 101);
+                            if (result <= mod)
+                                Core.instance.RefillSniper();
+
+                            Core.instance.luckyMod = 1 + mod / 100;
+                        }
                     }
 
                 }
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
+                // healthPoints -= bullet.damage;
+
+                TakeDamage(bullet.GetDamage());
+                if (healthPoints <= 0.0f && Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
+                    Core.instance.RefillSniper();
             }
         }
     }
@@ -724,6 +742,19 @@ public class Skytrooper : Enemy
         {
             if (Core.instance.gameObject != null)
             {
+                pushDir = triggeredGameObject.transform.GetForward();
+                inputsList.Add(INPUT.IN_PUSHED);
+            }
+        }
+    }
+
+    public void OnTriggerExit(GameObject triggeredGameObject)
+    {
+        if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
+        {
+            if (Core.instance != null)
+            {
+                pushDir = triggeredGameObject.transform.GetForward();
                 inputsList.Add(INPUT.IN_PUSHED);
             }
         }
@@ -731,6 +762,7 @@ public class Skytrooper : Enemy
 
     public override void TakeDamage(float damage)
     {
+        Audio.PlayAudio(gameObject, "Play_Skytrooper_Hit");
         healthPoints -= damage;
         if (Core.instance != null)
         {

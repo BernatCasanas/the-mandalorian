@@ -257,15 +257,23 @@ public class EndScreen : DiamondComponent
 
             if (boonDisplay != null)
             {
-                for (int i = 0; i < PlayerResources.GetBoonsAmount(); i++)
+                int boonDisplayIndex = 0;
+
+                for (int i = 0; i < (int)BOONS.BOON_MAX; i++)
                 {
-                    //Boon image
-                    int boonTextureId = BoonDataHolder.boonType[i].libraryTextureID;
+                    if (PlayerResources.CheckBoon((BOONS)i))
+                    {
+                        //Boon image
+                        int boonTextureId = BoonDataHolder.boonType[i].libraryTextureID;
 
-                    //Boon count for text
-                    int boonCount = PlayerResources.GetResourceCount(RewardType.REWARD_BOON, BoonDataHolder.boonType[i].GetType());
+                        //Boon count for text
+                        int boonCount = PlayerResources.GetResourceCount(RewardType.REWARD_BOON);
 
-                    boonDisplay.SetBoon(i, boonTextureId, boonCount);
+                        boonDisplay.SetBoon(boonDisplayIndex, boonTextureId, boonCount);
+
+                        boonDisplayIndex++;
+                    }
+
                 }
             }
             else

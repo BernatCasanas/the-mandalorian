@@ -96,22 +96,17 @@ public class SHOP : DiamondComponent
     {
         bool ret = false;
 
-        Debug.Log("Buy 1");
-
         if (shopOpen)
         {
             int currency = PlayerResources.GetRunCoins();
-            Debug.Log("Buy 2");
 
             if (currency >= (int)item.price_type)
             {
                 if (item.itemType == ShopItems.SHOP_ITEM_BOON)
                 {
-                    Debug.Log("Buy 3");
                     if (item.resource != null)
                     {
                         item.resource.Use();
-                        Debug.Log("Buy 4");
                     }
                     else
                         Debug.Log("Null resource");

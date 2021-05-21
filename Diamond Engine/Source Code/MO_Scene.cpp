@@ -31,7 +31,7 @@
 #include"RE_Material.h"
 
 #include "COMM_DeleteGO.h"
-
+#include "mmgr/mmgr.h"
 
 extern bool LOADING_SCENE = false;
 M_Scene::M_Scene(Application* app, bool start_enabled) : Module(app, start_enabled), root(nullptr),
@@ -211,6 +211,14 @@ bool M_Scene::CleanUp()
 		EngineExternal->moduleResources->UnloadResource(defaultMaterial->GetUID());
 
 	delete root;
+
+	std::map<uint, JSON_Value*>::iterator it = loadedPrefabs.begin();
+	for (it; it != loadedPrefabs.end(); ++it)
+	{
+		json_value_free(it->second);
+	}
+	loadedPrefabs.clear();
+
 	return true;
 }
 
@@ -751,6 +759,13 @@ void M_Scene::CleanScene()
 #endif
 
 	root = CreateGameObject("Scene root", nullptr);
+
+	std::map<uint, JSON_Value*>::iterator it = loadedPrefabs.begin();
+	for (it; it != loadedPrefabs.end(); ++it)
+	{
+		json_value_free(it->second);
+	}
+	loadedPrefabs.clear();
 }
 
 GameObject* M_Scene::LoadGOData(JSON_Object* goJsonObj, GameObject* parent)
@@ -776,4 +791,38 @@ GameObject* M_Scene::LoadGOData(JSON_Object* goJsonObj, GameObject* parent)
 	}
 
 	return parent;
+}
+
+JSON_Value* M_Scene::GetPrefab(uint prefabID)
+{
+	std::map<uint, JSON_Value*>::iterator it = loadedPrefabs.find(prefabID);
+
+	if (it != loadedPrefabs.end())
+		return it->second;
+
+	return nullptr;
+}
+
+void M_Scene::AddLoadedPrefab(uint prefabID, JSON_Value* value)
+{
+	if (value == nullptr)
+		return;
+
+	loadedPrefabs[prefabID] = value;
+}
+
+bool M_Scene::ReleasePrefabValue(uint prefabID)
+{
+	std::map<uint, JSON_Value*>::iterator it = loadedPrefabs.find(prefabID);
+
+	if (it != loadedPrefabs.end())
+	{
+		json_value_free(it->second);
+		loadedPrefabs.erase(it);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }

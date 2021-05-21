@@ -819,6 +819,7 @@ public class MoffGideon : Entity
         changingStateTimer = changingStateTime;
 
         healthPoints = maxHealthPoints_fase2;
+        Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Lightsaber_Turn_On");
 
         if (cam_comp != null)
         {
@@ -854,7 +855,7 @@ public class MoffGideon : Entity
     {
         Animator.Play(gameObject, "MG_Run", speedMult);
         UpdateAnimationSpd(speedMult);
-
+        Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Footsteps");
         neutralTimer = neutralTime;
         wander = false;
 
@@ -885,6 +886,7 @@ public class MoffGideon : Entity
     private void EndNeutral()
     {
         soloDash = false;
+        Audio.StopOneAudio(gameObject, "Play_Moff_Gideon_Footsteps");
     }
 
     #endregion
@@ -1159,6 +1161,8 @@ public class MoffGideon : Entity
         dieTimer = dieTime;
         Animator.Play(gameObject, "MG_Death", speedMult);
         UpdateAnimationSpd(speedMult);
+        Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Lightsaber_Turn_Off");
+        Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Death");
         if (cam_comp != null)
             cam_comp.target = this.gameObject;
         if (visualFeedback != null)
@@ -1293,6 +1297,16 @@ public class MoffGideon : Entity
             {
                 damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
             }*/
+            if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
+            {
+                float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
+                Random rand = new Random();
+                float result = rand.Next(1, 101);
+                if (result <= mod)
+                    Core.instance.RefillSniper();
+
+                Core.instance.luckyMod = 1 + mod / 100;
+            }
 
             TakeDamage(damageToBoss);
             Debug.Log("Rancor HP: " + healthPoints.ToString());
@@ -1353,7 +1367,14 @@ public class MoffGideon : Entity
     {
         if (!DebugOptionsHolder.bossDmg)
         {
-          
+            if (currentPhase == MOFFGIDEON_PHASE.PHASE1)
+            {
+                Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Hit_Phase_1");
+            }
+            else if (currentPhase == MOFFGIDEON_PHASE.PHASE2)
+            {
+                Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Hit_Phase_2");
+            }
             Debug.Log("Moff damage" + damage.ToString());
             if (currentState != MOFFGIDEON_STATE.DEAD)
             {

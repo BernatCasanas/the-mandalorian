@@ -4,6 +4,9 @@
 #include "Component.h"
 
 #include"MathGeoLib/include/Math/float4x4.h"
+#include"MathGeoLib/include/Geometry/Frustum.h"
+
+#define ALIGHT_FAR_PLANE_DISTANCE 500.0f
 
 class ResourceShader;
 class ResourceMaterial;
@@ -13,6 +16,8 @@ class C_AreaLight : public Component
 public:
 	C_AreaLight(GameObject* gameObject);
 	~C_AreaLight() override;
+
+	void Update() override;
 
 #ifndef STANDALONE
 	bool OnEditor() override;
@@ -33,13 +38,25 @@ public:
 
 	float3 GetPosition() const;
 
-	void ActivateLight();
-	void DeactivateLight();
+	float GetLightIntensity() const;
+	void SetLightIntensity(float lIntensity);
+
+	float GetFadeDistance() const;
+	void SetFadeDistance(float fDistance);
+
+	float GetMaxDistance() const;
+	void SetMaxDistance(float mDistance);
 
 public:
-	float4x4 spaceMatrixOpenGL;
+	Frustum shadowTransforms[6];
+	ResourceShader* depthShader = nullptr;
 
+	bool calculateShadows = true;
+
+	unsigned int depthCubemap = 0;
 private:
+	unsigned int depthCubemapFBO = 0;
+
 	float3 lightColor;
 	float3 ambientLightColor;
 	float lightIntensity;

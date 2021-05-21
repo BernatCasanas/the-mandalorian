@@ -23,6 +23,8 @@
 
 #pragma comment( lib, "PhysFS/libx86/physfs.lib" )
 
+#include "mmgr/mmgr.h"
+
 /*Convert global path to local path*/
 std::string StringLogic::GlobalToLocalPath(const char* _globalPath)
 {

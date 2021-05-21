@@ -123,6 +123,8 @@ public enum STATUS_TYPE
     BOSSK_AMMO,
     WINDU_FORCE,
     YODA_FORCE,
+    CROSS_HAIR_LUCKY_SHOT,
+    AHSOKA_DET,
 }
 
 public enum STATUS_APPLY_TYPE

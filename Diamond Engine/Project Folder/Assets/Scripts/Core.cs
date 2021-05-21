@@ -7,6 +7,7 @@ public class Core : Entity
     public static Core instance;
     private static Dictionary<STATUS_TYPE, StatusData> PlayerStatuses = new Dictionary<STATUS_TYPE, StatusData>();
     public static List<STATUS_TYPE> boons = new List<STATUS_TYPE>();
+
     public enum STATE : int
     {
         NONE = -1,
@@ -39,7 +40,8 @@ public class Core : Entity
         IN_SEC_SHOOT,
         IN_SEC_SHOOT_END,
         IN_SEC_SHOOT_ANIM_END,
-        IN_DEAD
+        IN_DEAD,
+        IN_DEAD_END
     }
 
     enum PARTICLES : int
@@ -73,6 +75,7 @@ public class Core : Entity
     }
 
     public GameObject shootPoint = null;
+    public GameObject sniperShootPoint = null;
     public GameObject hud = null;
 
     public GameObject rifle = null;
@@ -178,9 +181,16 @@ public class Core : Entity
     private float snipPrepareAnimTime = 0f;
     private float snipPrepareAnimTimer = 0f;
     private bool canShootSniper = false;
+    public float sniperStartAngleRays = 35f;
+
+    //Die
+    private float dieTimer = 0.0f;
+    public float dieTime = 0.0f; //Setted in Awake
+
     //Animations
     private float shootAnimationTotalTime = 0.0f;
     public float sniperAimAnimMult = 1.5f;
+    public float luckyMod = 1f;
 
     //Controller Variables
     int verticalInput = 0;
@@ -293,6 +303,12 @@ public class Core : Entity
         if (blaster != null)
             blaster.Enable(false);
 
+        dieTime = Animator.GetAnimationDuration(gameObject, "Die") - 0.016f;
+
+        #endregion
+
+        #region EVENTS
+        PlayerHealth.onPlayerDeath += DeadInput;
         #endregion
 
         #region STATUS_SYSTEM
@@ -300,6 +316,7 @@ public class Core : Entity
         InitEntity(ENTITY_TYPE.PLAYER);
 
         #endregion
+
     }
 
     public void Update()
@@ -520,6 +537,7 @@ public class Core : Entity
             if (snipPrepareAnimTimer <= 0.0f)
             {
                 canShootSniper = true;
+                PlayParticles(PARTICLES.SNIPER_CHARGE);
             }
         }
 
@@ -533,6 +551,14 @@ public class Core : Entity
         if (HasStatus(STATUS_TYPE.GRENADE_ON_DASH))
             grenade_onDash += myDeltaTime;
 
+        if(dieTimer > 0.0f)
+        {
+            dieTimer -= myDeltaTime;
+            if(dieTimer <= 0.0f)
+            {
+                inputsList.Add(INPUT.IN_DEAD_END);
+            }
+        }
     }
 
     public void refreshCooldowns()
@@ -698,6 +724,8 @@ public class Core : Entity
                             break;
 
                         case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDead();
                             break;
                     }
                     break;
@@ -739,6 +767,8 @@ public class Core : Entity
 
                         case INPUT.IN_DEAD:
                             MoveEnd();
+                            currentState = STATE.DEAD;
+                            StartDead();
                             break;
                     }
                     break;
@@ -754,6 +784,8 @@ public class Core : Entity
                             break;
 
                         case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDead();
                             break;
                     }
                     break;
@@ -791,6 +823,8 @@ public class Core : Entity
                             break;
 
                         case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDead();
                             break;
                     }
                     break;
@@ -804,6 +838,8 @@ public class Core : Entity
                             break;
 
                         case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDead();
                             break;
                     }
                     break;
@@ -830,6 +866,8 @@ public class Core : Entity
                             break;
 
                         case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDead();
                             break;
                     }
                     break;
@@ -842,6 +880,8 @@ public class Core : Entity
                             break;
 
                         case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDead();
                             break;
                     }
                     break;
@@ -884,6 +924,8 @@ public class Core : Entity
                             break;
 
                         case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDead();
                             break;
                     }
                     break;
@@ -898,10 +940,19 @@ public class Core : Entity
                             break;
 
                         case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDead();
                             break;
                     }
                     break;
-
+                case STATE.DEAD:
+                    switch (input)
+                    {
+                        case INPUT.IN_DEAD_END:
+                            EndDead();
+                            break;
+                    }
+                    break;
                 default:
                     Debug.Log("NEED TO ADD STATE TO CORE SWITCH");
                     break;
@@ -941,6 +992,7 @@ public class Core : Entity
                 break;
             case STATE.CHARGING_SEC_SHOOT:
                 UpdateSecondaryShootCharge();
+                ReducePrimaryWeaponHeat();
                 break;
             case STATE.SECONDARY_SHOOT:
                 ReducePrimaryWeaponHeat();
@@ -952,8 +1004,10 @@ public class Core : Entity
                 break;
             case STATE.SECONDARY_SHOOT_END:
                 ReducePrimaryWeaponHeat();
+                ReducePrimaryWeaponHeat();
                 break;
             case STATE.DEAD:
+                UpdateDead();
                 break;
             default:
                 Debug.Log("NEED TO ADD STATE TO CORE");
@@ -1084,7 +1138,6 @@ public class Core : Entity
 
         if (HasStatus(STATUS_TYPE.REX_SEC_BLASTER) && GetStatusData(STATUS_TYPE.REX_SEC_BLASTER_SUBSKILL).severity < 20)
         {
-
             AddStatus(STATUS_TYPE.REX_SEC_BLASTER_SUBSKILL, STATUS_APPLY_TYPE.ADDITIVE, GetStatusData(STATUS_TYPE.REX_SEC_BLASTER).severity, 5);
         }
 
@@ -1168,7 +1221,6 @@ public class Core : Entity
             Animator.Play(rifle, "SniperShotP1", speedMult * sniperAimAnimMult);
         }
 
-        PlayParticles(PARTICLES.SNIPER_CHARGE);
     }
 
     private void EndShootCharge()
@@ -1201,6 +1253,7 @@ public class Core : Entity
         {
             changeColorSniperTimer += myDeltaTime;
 
+
             if (changeColorSniperTimer > 0f && changeColorSniperTimer < overheatTimeBeeping)
             {
                 currSniperLaserColor = defaultSniperLaserColor;
@@ -1215,23 +1268,37 @@ public class Core : Entity
 
         }
 
-        if (shootPoint != null && myAimbot != null)
+        if (sniperShootPoint != null && myAimbot != null && canShootSniper == true)
         {
-            float hitDistance = myAimbot.maxRange;
-            GameObject hit = InternalCalls.RayCast(shootPoint.transform.globalPosition + (shootPoint.transform.GetForward() * 1.5f), shootPoint.transform.GetForward(), myAimbot.maxRange, ref hitDistance);
-            hitDistance = Math.Min(hitDistance, Mathf.Lerp(0, myAimbot.maxRange, chargeTimer / timeToPerfectCharge));
+            float currAngle = Mathf.LerpAngle(sniperStartAngleRays, 0f, chargeTimer / timeToPerfectCharge) * Mathf.Deg2RRad;
+            float rayWidth = Mathf.Lerp(7f, 3f, Math.Min(chargeTimer / timeToPerfectCharge, 1f));
 
-            InternalCalls.DrawRay(shootPoint.transform.globalPosition, shootPoint.transform.globalPosition + (shootPoint.transform.GetForward() * hitDistance), currSniperLaserColor);
+            float hitDistanceRay1 = myAimbot.maxRange;
+            float hitDistanceRay2 = myAimbot.maxRange;
+
+            Vector3 sniperDir1 = Vector3.RotateAroundQuaternion(Quaternion.RotateAroundAxis(Vector3.up, currAngle), sniperShootPoint.transform.GetForward());
+            Vector3 sniperDir2 = Vector3.RotateAroundQuaternion(Quaternion.RotateAroundAxis(Vector3.up, -currAngle), sniperShootPoint.transform.GetForward());
+
+            InternalCalls.RayCast(sniperShootPoint.transform.globalPosition + (sniperShootPoint.transform.GetForward() * 1.5f), sniperDir1, myAimbot.maxRange, ref hitDistanceRay1);
+            InternalCalls.RayCast(sniperShootPoint.transform.globalPosition + (sniperShootPoint.transform.GetForward() * 1.5f), sniperDir2, myAimbot.maxRange, ref hitDistanceRay2);
+            //hitDistance = Math.Min(hitDistance, Mathf.Lerp(0, myAimbot.maxRange, chargeTimer / timeToPerfectCharge));
+
+            InternalCalls.DrawRay(sniperShootPoint.transform.globalPosition, sniperShootPoint.transform.globalPosition + (sniperDir1 * hitDistanceRay1), currSniperLaserColor, rayWidth);
+            InternalCalls.DrawRay(sniperShootPoint.transform.globalPosition, sniperShootPoint.transform.globalPosition + (sniperDir2 * hitDistanceRay2), currSniperLaserColor, rayWidth);
         }
 
-        if (HasStatus(STATUS_TYPE.SP_NONCHARGED))
+        if (canShootSniper == true)
         {
-            float modifier = 1 + GetStatusData(STATUS_TYPE.SP_CHARGE_TIME).severity / 100;
-            chargeTimer += myDeltaTime * modifier;
-        }
-        else
-        {
-            chargeTimer += myDeltaTime;
+            if (HasStatus(STATUS_TYPE.SP_NONCHARGED))
+            {
+                float modifier = 1 + GetStatusData(STATUS_TYPE.SP_CHARGE_TIME).severity / 100;
+                chargeTimer += myDeltaTime * modifier;
+            }
+            else
+            {
+                chargeTimer += myDeltaTime;
+            }
+
         }
 
     }
@@ -1330,6 +1397,12 @@ public class Core : Entity
         }
     }
 
+    public void RefillSniper()
+    {
+        sniperRechargeTimer -= bulletRechargeTime;
+        if (sniperRechargeTimer <= 0f)
+            sniperRechargeTimer = 0f;
+    }
     #endregion
 
     #region DASH
@@ -1413,6 +1486,34 @@ public class Core : Entity
         PlayParticles(PARTICLES.JETPACK, true);
     }
 
+    #endregion
+
+    #region DIE
+    private void StartDead()
+    {
+        dieTimer = dieTime;
+        Animator.Play(gameObject, "Die");
+        Debug.Log("Start Dead");
+        Audio.PlayAudio(gameObject, "Play_Mando_Death");
+        hud.GetComponent<HUD>().gameObject.Enable(false);
+    }
+    private void UpdateDead()
+    {
+        
+       Debug.Log("Update Dead");
+    }
+
+    private void EndDead()
+    {
+        PlayerHealth.onPlayerDeathEnd?.Invoke();
+        Debug.Log("EEEEEEEEEEEEEEEEENDDDDDDDDDDDDDD DEEAAAD");
+    }
+
+    private void DeadInput()
+    {
+        inputsList.Add(INPUT.IN_DEAD);
+        Debug.Log("DEAAAAAAAAAAAAAD INPUUUUUUUUUUUUUUUUUT");
+    }
     #endregion
 
     #region MOVE AND ROTATE PLAYER
@@ -1631,7 +1732,7 @@ public class Core : Entity
 
     private void UpdateSecondaryShotAmmo()
     {
-        if (sniperRechargeTimer >= 0f)
+        if (sniperRechargeTimer >= 0f || currentBullets < numberOfBullets)
         {
             sniperRechargeTimer -= myDeltaTime;
 
@@ -1662,6 +1763,8 @@ public class Core : Entity
 
                 Audio.PlayAudio(secSound, "Play_Sniper_Cooldown_Finish");
             }
+
+
         }
 
     }
@@ -1775,6 +1878,7 @@ public class Core : Entity
         if (triggeredGameObject.CompareTag("Coin"))
         {
             PlayerResources.AddRunCoins(10);
+            Audio.PlayAudio(gameObject, "Play_UI_Credit_Pickup");
 
             if (hud != null)
             {
@@ -2082,8 +2186,8 @@ public class Core : Entity
 
         }
 
-        float Damage = SniperDamageMult * SniperDamagePerHpMult * DamagePerHeatMult * RawDamageMult * ChadBaneModifier;
-
+        float Damage = SniperDamageMult * SniperDamagePerHpMult * DamagePerHeatMult * RawDamageMult * ChadBaneModifier * luckyMod;
+        luckyMod = 1;
         return Damage;
     }
     public float GetGrenadeDamageMod()
@@ -2302,13 +2406,7 @@ public class Core : Entity
                 break;
             case STATUS_TYPE.MANDO_CODE:
                 {
-                    PlayerHealth myHealth = gameObject.GetComponent<PlayerHealth>();
-                    if (myHealth != null)
-                    {
-                        statusToInit.statChange -= 20 * PlayerHealth.currMaxHealth / 100;
-                        myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth + statusToInit.statChange), false);
-
-                    }
+                   
                     this.RawDamageMult += statusToInit.severity / 100;
 
                 }
@@ -2589,8 +2687,8 @@ public class Core : Entity
                 break;
             case STATUS_TYPE.MANDO_CODE:
                 {
-                    PlayerHealth myHealth = gameObject.GetComponent<PlayerHealth>();
-                    myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth - statusToDelete.statChange));
+                    //PlayerHealth myHealth = gameObject.GetComponent<PlayerHealth>();
+                    //myHealth.SetMaxHPValue((int)(PlayerHealth.currMaxHealth - statusToDelete.statChange));
 
 
                     this.RawDamageMult -= statusToDelete.severity / 100;
@@ -2691,4 +2789,6 @@ public class Core : Entity
                 break;
         }
     }
+
+
 }

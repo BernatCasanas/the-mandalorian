@@ -11,6 +11,24 @@ namespace DiamondEngine
         {
             type = ComponentType.AREA_LIGHT;
         }
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern float GetIntensity();
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern void SetIntensity(float lIntensity);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern float GetFadeDistance();
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern void SetFadeDistance(float fDistance);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern float GetMaxDistance();
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern void SetMaxDistance(float mDistance);
     }
 
 

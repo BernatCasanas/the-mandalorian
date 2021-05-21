@@ -355,7 +355,7 @@
    {
     "Id": "913881297",
     "Language": "SFX",
-    "Hash": "2616027376",
+    "Hash": "1414557561",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Wampa_Skell",
     "ShortName": "Wampa_Skell",
     "Path": "Wampa_Skell.bnk",
@@ -367,26 +367,6 @@
       "DurationType": "OneShot",
       "DurationMin": "0.000000",
       "DurationMax": "0.000000"
-     },
-     {
-      "Id": "393948735",
-      "Name": "Play_Rancor_Footsteps",
-      "ObjectPath": "\\Events\\Default Work Unit\\Rancor\\Play_Rancor_Footsteps",
-      "DurationType": "Infinite",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "92596664",
-        "Language": "SFX",
-        "ShortName": "Rancor chain step 2.wav",
-        "Path": "SFX\\Rancor chain step 2_FC2D3A10.wem"
-       },
-       {
-        "Id": "208519487",
-        "Language": "SFX",
-        "ShortName": "Rancor chain step 1.wav",
-        "Path": "SFX\\Rancor chain step 1_FC2D3A10.wem"
-       }
-      ]
      },
      {
       "Id": "3135328612",
@@ -1063,9 +1043,367 @@
     ]
    },
    {
+    "Id": "1063759122",
+    "Language": "SFX",
+    "Hash": "3680511556",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Moff_Gideon",
+    "ShortName": "Moff_Gideon",
+    "Path": "Moff_Gideon.bnk",
+    "IncludedEvents": [
+     {
+      "Id": "192623117",
+      "Name": "Pause_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Pause_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "3387490186",
+      "Name": "Play_Moff_Gideon_Dash",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Gideon_Dash",
+      "DurationType": "OneShot",
+      "DurationMin": "0.423923",
+      "DurationMax": "0.423923",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "388356698",
+        "Language": "SFX",
+        "ShortName": "moff gideon dash.wav",
+        "Path": "SFX\\moff gideon dash_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "3345293244",
+      "Name": "Play_Moff_Gideon_Death",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Gideon_Death",
+      "DurationType": "OneShot",
+      "DurationMin": "2.841066",
+      "DurationMax": "2.841066",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "636417655",
+        "Language": "SFX",
+        "ShortName": "moff gideon death.wav",
+        "Path": "SFX\\moff gideon death_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1832947079",
+      "Name": "Play_Moff_Gideon_Footsteps",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Gideon_Footsteps",
+      "DurationType": "Infinite",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "351242191",
+        "Language": "SFX",
+        "ShortName": "heavytrooper footstep run 1.wav",
+        "Path": "SFX\\heavytrooper footstep run 1_FC2D3A10.wem"
+       },
+       {
+        "Id": "387898307",
+        "Language": "SFX",
+        "ShortName": "heavytrooper footstep run 2.wav",
+        "Path": "SFX\\heavytrooper footstep run 2_FC2D3A10.wem"
+       },
+       {
+        "Id": "765061511",
+        "Language": "SFX",
+        "ShortName": "heavytrooper footstep run 4.wav",
+        "Path": "SFX\\heavytrooper footstep run 4_FC2D3A10.wem"
+       },
+       {
+        "Id": "1023494932",
+        "Language": "SFX",
+        "ShortName": "heavytrooper footstep run 3.wav",
+        "Path": "SFX\\heavytrooper footstep run 3_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "500607873",
+      "Name": "Play_Moff_Gideon_Hit_Phase_1",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Gideon_Hit_Phase_1",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.512086",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "466307658",
+        "Language": "SFX",
+        "ShortName": "moff gideon armor hit 1.wav",
+        "Path": "SFX\\moff gideon armor hit 1_FC2D3A10.wem"
+       },
+       {
+        "Id": "509161827",
+        "Language": "SFX",
+        "ShortName": "moff gideon hit 1rst phase 2.wav",
+        "Path": "SFX\\moff gideon hit 1rst phase 2_FC2D3A10.wem"
+       },
+       {
+        "Id": "589526714",
+        "Language": "SFX",
+        "ShortName": "moff gideon armor hit 2.wav",
+        "Path": "SFX\\moff gideon armor hit 2_FC2D3A10.wem"
+       },
+       {
+        "Id": "626643442",
+        "Language": "SFX",
+        "ShortName": "moff gideon hit 1rst phase 1.wav",
+        "Path": "SFX\\moff gideon hit 1rst phase 1_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "500607874",
+      "Name": "Play_Moff_Gideon_Hit_Phase_2",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Gideon_Hit_Phase_2",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.512086",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "134030243",
+        "Language": "SFX",
+        "ShortName": "moff gideon hit 2nd phase 1.wav",
+        "Path": "SFX\\moff gideon hit 2nd phase 1_FC2D3A10.wem"
+       },
+       {
+        "Id": "466307658",
+        "Language": "SFX",
+        "ShortName": "moff gideon armor hit 1.wav",
+        "Path": "SFX\\moff gideon armor hit 1_FC2D3A10.wem"
+       },
+       {
+        "Id": "509161827",
+        "Language": "SFX",
+        "ShortName": "moff gideon hit 1rst phase 2.wav",
+        "Path": "SFX\\moff gideon hit 1rst phase 2_FC2D3A10.wem"
+       },
+       {
+        "Id": "578940370",
+        "Language": "SFX",
+        "ShortName": "moff gideon hit 2nd phase 2.wav",
+        "Path": "SFX\\moff gideon hit 2nd phase 2_FC2D3A10.wem"
+       },
+       {
+        "Id": "589526714",
+        "Language": "SFX",
+        "ShortName": "moff gideon armor hit 2.wav",
+        "Path": "SFX\\moff gideon armor hit 2_FC2D3A10.wem"
+       },
+       {
+        "Id": "626643442",
+        "Language": "SFX",
+        "ShortName": "moff gideon hit 1rst phase 1.wav",
+        "Path": "SFX\\moff gideon hit 1rst phase 1_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "2484240183",
+      "Name": "Play_Moff_Gideon_Intimidation_Phase_1",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Gideon_Intimidation_Phase_1",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "1.180454",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "336560564",
+        "Language": "SFX",
+        "ShortName": "moff guideon intimidate 1rst phase 2.wav",
+        "Path": "SFX\\moff guideon intimidate 1rst phase 2_FC2D3A10.wem"
+       },
+       {
+        "Id": "827580043",
+        "Language": "SFX",
+        "ShortName": "moff guideon intimidate 1rst phase 1.wav",
+        "Path": "SFX\\moff guideon intimidate 1rst phase 1_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "2484240180",
+      "Name": "Play_Moff_Gideon_Intimidation_Phase_2",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Gideon_Intimidation_Phase_2",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "1.028594",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "132413711",
+        "Language": "SFX",
+        "ShortName": "moff guideon intimidate 2nd phase 2.wav",
+        "Path": "SFX\\moff guideon intimidate 2nd phase 2_FC2D3A10.wem"
+       },
+       {
+        "Id": "200020784",
+        "Language": "SFX",
+        "ShortName": "moff guideon intimidate 2nd phase 1.wav",
+        "Path": "SFX\\moff guideon intimidate 2nd phase 1_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "3966465840",
+      "Name": "Play_Moff_Gideon_Lightsaber_Attack",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Gideon_Lightsaber_Attack",
+      "DurationType": "OneShot",
+      "DurationMin": "0.803084",
+      "DurationMax": "0.982358",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "608559747",
+        "Language": "SFX",
+        "ShortName": "moff guideon lightsaber attack 1.wav",
+        "Path": "SFX\\moff guideon lightsaber attack 1_FC2D3A10.wem"
+       },
+       {
+        "Id": "703060658",
+        "Language": "SFX",
+        "ShortName": "moff guideon lightsaber attack 2.wav",
+        "Path": "SFX\\moff guideon lightsaber attack 2_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "955348132",
+      "Name": "Play_Moff_Gideon_Lightsaber_Throw",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Gideon_Lightsaber_Throw",
+      "DurationType": "OneShot",
+      "DurationMin": "0.863583",
+      "DurationMax": "0.863583",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "747483108",
+        "Language": "SFX",
+        "ShortName": "moff guideon lightsaber throw.wav",
+        "Path": "SFX\\moff guideon lightsaber throw_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "2138643915",
+      "Name": "Play_Moff_Gideon_Lightsaber_Turn_Off",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Gideon_Lightsaber_Turn_Off",
+      "DurationType": "OneShot",
+      "DurationMin": "0.732104",
+      "DurationMax": "0.732104",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "1050035490",
+        "Language": "SFX",
+        "ShortName": "moff guideon lightsaber turn off.wav",
+        "Path": "SFX\\moff guideon lightsaber turn off_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1084418999",
+      "Name": "Play_Moff_Gideon_Lightsaber_Turn_On",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Gideon_Lightsaber_Turn_On",
+      "DurationType": "OneShot",
+      "DurationMin": "1.417868",
+      "DurationMax": "1.417868",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "354392164",
+        "Language": "SFX",
+        "ShortName": "moff guideon lightsaber turn on.wav",
+        "Path": "SFX\\moff guideon lightsaber turn on_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1357021886",
+      "Name": "Play_Moff_Gideon_Lightsaber_Whoosh",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Gideon_Lightsaber_Whoosh",
+      "DurationType": "OneShot",
+      "DurationMin": "0.720658",
+      "DurationMax": "0.771769",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "270470728",
+        "Language": "SFX",
+        "ShortName": "moff guideon lightsaber whoosh 1.wav",
+        "Path": "SFX\\moff guideon lightsaber whoosh 1_FC2D3A10.wem"
+       },
+       {
+        "Id": "720678292",
+        "Language": "SFX",
+        "ShortName": "moff guideon lightsaber whoosh 2.wav",
+        "Path": "SFX\\moff guideon lightsaber whoosh 2_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "3507913642",
+      "Name": "Play_Moff_Gideon_Shot",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Gideon_Shot",
+      "DurationType": "OneShot",
+      "DurationMin": "1.437732",
+      "DurationMax": "1.437732",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "274347457",
+        "Language": "SFX",
+        "ShortName": "moff guideon blaster shoot.wav",
+        "Path": "SFX\\moff guideon blaster shoot_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "2464774886",
+      "Name": "Play_Moff_Gideon_Spawn_Enemies",
+      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Gideon_Spawn_Enemies",
+      "DurationType": "OneShot",
+      "DurationMin": "0.556100",
+      "DurationMax": "0.556100",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "972146429",
+        "Language": "SFX",
+        "ShortName": "moff gideon snap fingers.wav",
+        "Path": "SFX\\moff gideon snap fingers_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1931338186",
+      "Name": "Resume_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Resume_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     },
+     {
+      "Id": "3318621861",
+      "Name": "Stop_Object",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Object",
+      "DurationType": "OneShot",
+      "DurationMin": "0.000000",
+      "DurationMax": "0.000000"
+     }
+    ],
+    "GameParameters": [
+     {
+      "Id": "467158820",
+      "Name": "SourceVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
+     },
+     {
+      "Id": "2704707011",
+      "Name": "BusVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\BusVolume"
+     }
+    ]
+   },
+   {
     "Id": "1093318992",
     "Language": "SFX",
-    "Hash": "2470408793",
+    "Hash": "3238856086",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Mando",
     "ShortName": "Mando",
     "Path": "Mando.bnk",
@@ -1367,52 +1705,14 @@
       "Name": "Play_Mando_Death",
       "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Death",
       "DurationType": "OneShot",
-      "DurationMin": "1.155828",
-      "DurationMax": "1.162630",
+      "DurationMin": "3.699342",
+      "DurationMax": "3.699342",
       "IncludedMemoryFiles": [
        {
-        "Id": "565054485",
+        "Id": "645236332",
         "Language": "SFX",
-        "ShortName": "Mando death 1.wav",
-        "Path": "SFX\\Mando death 1_FC2D3A10.wem"
-       },
-       {
-        "Id": "680645700",
-        "Language": "SFX",
-        "ShortName": "Mando death 2.wav",
-        "Path": "SFX\\Mando death 2_FC2D3A10.wem"
-       }
-      ]
-     },
-     {
-      "Id": "3454536245",
-      "Name": "Play_Mando_Grenade_Charge_1",
-      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Grenade_Charge_1",
-      "DurationType": "OneShot",
-      "DurationMin": "0.163991",
-      "DurationMax": "0.163991",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "371786017",
-        "Language": "SFX",
-        "ShortName": "Grenade charge 1.wav",
-        "Path": "SFX\\Grenade charge 1_FC2D3A10.wem"
-       }
-      ]
-     },
-     {
-      "Id": "3454536246",
-      "Name": "Play_Mando_Grenade_Charge_2",
-      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Grenade_Charge_2",
-      "DurationType": "OneShot",
-      "DurationMin": "0.693152",
-      "DurationMax": "0.693152",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "445754893",
-        "Language": "SFX",
-        "ShortName": "Grenade charge 2.wav",
-        "Path": "SFX\\Grenade charge 2_FC2D3A10.wem"
+        "ShortName": "mando death.wav",
+        "Path": "SFX\\mando death_FC2D3A10.wem"
        }
       ]
      },
@@ -1461,6 +1761,52 @@
         "Language": "SFX",
         "ShortName": "Grenade nail 1.wav",
         "Path": "SFX\\Grenade nail 1_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "4174078032",
+      "Name": "Play_Mando_Grenade_Pulse_Wave",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Grenade_Pulse_Wave",
+      "DurationType": "Infinite",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "690661244",
+        "Language": "SFX",
+        "ShortName": "Grenade pulse wave.wav",
+        "Path": "SFX\\Grenade pulse wave_B182BB5A.wem"
+       }
+      ]
+     },
+     {
+      "Id": "22263181",
+      "Name": "Play_Mando_Grenade_Set_Up",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Grenade_Set_Up",
+      "DurationType": "OneShot",
+      "DurationMin": "0.163991",
+      "DurationMax": "0.163991",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "371786017",
+        "Language": "SFX",
+        "ShortName": "Grenade charge 1.wav",
+        "Path": "SFX\\Grenade charge 1_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "2122429847",
+      "Name": "Play_Mando_Grenade_Throw",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Grenade_Throw",
+      "DurationType": "OneShot",
+      "DurationMin": "1.248934",
+      "DurationMax": "1.248934",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "251114599",
+        "Language": "SFX",
+        "ShortName": "Grenade throw.wav",
+        "Path": "SFX\\Grenade throw_FC2D3A10.wem"
        }
       ]
      },
@@ -2759,332 +3105,6 @@
         "Language": "SFX",
         "ShortName": "Cantine plates and glasses 3.wav",
         "Path": "SFX\\Cantine plates and glasses 3_FC2D3A10.wem"
-       }
-      ]
-     },
-     {
-      "Id": "1931338186",
-      "Name": "Resume_Object",
-      "ObjectPath": "\\Events\\Default Work Unit\\Resume_Object",
-      "DurationType": "OneShot",
-      "DurationMin": "0.000000",
-      "DurationMax": "0.000000"
-     },
-     {
-      "Id": "3318621861",
-      "Name": "Stop_Object",
-      "ObjectPath": "\\Events\\Default Work Unit\\Stop_Object",
-      "DurationType": "OneShot",
-      "DurationMin": "0.000000",
-      "DurationMax": "0.000000"
-     }
-    ],
-    "GameParameters": [
-     {
-      "Id": "467158820",
-      "Name": "SourceVolume",
-      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
-     },
-     {
-      "Id": "2704707011",
-      "Name": "BusVolume",
-      "ObjectPath": "\\Game Parameters\\Default Work Unit\\BusVolume"
-     }
-    ]
-   },
-   {
-    "Id": "3721236575",
-    "Language": "SFX",
-    "Hash": "809836013",
-    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Moff_Guideon",
-    "ShortName": "Moff_Guideon",
-    "Path": "Moff_Guideon.bnk",
-    "IncludedEvents": [
-     {
-      "Id": "192623117",
-      "Name": "Pause_Object",
-      "ObjectPath": "\\Events\\Default Work Unit\\Pause_Object",
-      "DurationType": "OneShot",
-      "DurationMin": "0.000000",
-      "DurationMax": "0.000000"
-     },
-     {
-      "Id": "3075869675",
-      "Name": "Play_Moff_Guideon_Dash",
-      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Dash",
-      "DurationType": "OneShot",
-      "DurationMin": "0.423923",
-      "DurationMax": "0.423923",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "388356698",
-        "Language": "SFX",
-        "ShortName": "moff gideon dash.wav",
-        "Path": "SFX\\moff gideon dash_FC2D3A10.wem"
-       }
-      ]
-     },
-     {
-      "Id": "3675815387",
-      "Name": "Play_Moff_Guideon_Death",
-      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Death",
-      "DurationType": "OneShot",
-      "DurationMin": "2.841066",
-      "DurationMax": "2.841066",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "636417655",
-        "Language": "SFX",
-        "ShortName": "moff gideon death.wav",
-        "Path": "SFX\\moff gideon death_FC2D3A10.wem"
-       }
-      ]
-     },
-     {
-      "Id": "2058592530",
-      "Name": "Play_Moff_Guideon_Hit_Phase_1",
-      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Hit_Phase_1",
-      "DurationType": "OneShot",
-      "DurationMin": "0.000000",
-      "DurationMax": "0.512086",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "466307658",
-        "Language": "SFX",
-        "ShortName": "moff gideon armor hit 1.wav",
-        "Path": "SFX\\moff gideon armor hit 1_FC2D3A10.wem"
-       },
-       {
-        "Id": "509161827",
-        "Language": "SFX",
-        "ShortName": "moff gideon hit 1rst phase 2.wav",
-        "Path": "SFX\\moff gideon hit 1rst phase 2_FC2D3A10.wem"
-       },
-       {
-        "Id": "589526714",
-        "Language": "SFX",
-        "ShortName": "moff gideon armor hit 2.wav",
-        "Path": "SFX\\moff gideon armor hit 2_FC2D3A10.wem"
-       },
-       {
-        "Id": "626643442",
-        "Language": "SFX",
-        "ShortName": "moff gideon hit 1rst phase 1.wav",
-        "Path": "SFX\\moff gideon hit 1rst phase 1_FC2D3A10.wem"
-       }
-      ]
-     },
-     {
-      "Id": "2058592529",
-      "Name": "Play_Moff_Guideon_Hit_Phase_2",
-      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Hit_Phase_2",
-      "DurationType": "OneShot",
-      "DurationMin": "0.000000",
-      "DurationMax": "0.512086",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "134030243",
-        "Language": "SFX",
-        "ShortName": "moff gideon hit 2nd phase 1.wav",
-        "Path": "SFX\\moff gideon hit 2nd phase 1_FC2D3A10.wem"
-       },
-       {
-        "Id": "466307658",
-        "Language": "SFX",
-        "ShortName": "moff gideon armor hit 1.wav",
-        "Path": "SFX\\moff gideon armor hit 1_FC2D3A10.wem"
-       },
-       {
-        "Id": "509161827",
-        "Language": "SFX",
-        "ShortName": "moff gideon hit 1rst phase 2.wav",
-        "Path": "SFX\\moff gideon hit 1rst phase 2_FC2D3A10.wem"
-       },
-       {
-        "Id": "578940370",
-        "Language": "SFX",
-        "ShortName": "moff gideon hit 2nd phase 2.wav",
-        "Path": "SFX\\moff gideon hit 2nd phase 2_FC2D3A10.wem"
-       },
-       {
-        "Id": "589526714",
-        "Language": "SFX",
-        "ShortName": "moff gideon armor hit 2.wav",
-        "Path": "SFX\\moff gideon armor hit 2_FC2D3A10.wem"
-       },
-       {
-        "Id": "626643442",
-        "Language": "SFX",
-        "ShortName": "moff gideon hit 1rst phase 1.wav",
-        "Path": "SFX\\moff gideon hit 1rst phase 1_FC2D3A10.wem"
-       }
-      ]
-     },
-     {
-      "Id": "670133470",
-      "Name": "Play_Moff_Guideon_Intimidation_Phase_1",
-      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Intimidation_Phase_1",
-      "DurationType": "OneShot",
-      "DurationMin": "0.000000",
-      "DurationMax": "1.180454",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "336560564",
-        "Language": "SFX",
-        "ShortName": "moff guideon intimidate 1rst phase 2.wav",
-        "Path": "SFX\\moff guideon intimidate 1rst phase 2_FC2D3A10.wem"
-       },
-       {
-        "Id": "827580043",
-        "Language": "SFX",
-        "ShortName": "moff guideon intimidate 1rst phase 1.wav",
-        "Path": "SFX\\moff guideon intimidate 1rst phase 1_FC2D3A10.wem"
-       }
-      ]
-     },
-     {
-      "Id": "670133469",
-      "Name": "Play_Moff_Guideon_Intimidation_Phase_2",
-      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Intimidation_Phase_2",
-      "DurationType": "OneShot",
-      "DurationMin": "0.000000",
-      "DurationMax": "1.028594",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "132413711",
-        "Language": "SFX",
-        "ShortName": "moff guideon intimidate 2nd phase 2.wav",
-        "Path": "SFX\\moff guideon intimidate 2nd phase 2_FC2D3A10.wem"
-       },
-       {
-        "Id": "200020784",
-        "Language": "SFX",
-        "ShortName": "moff guideon intimidate 2nd phase 1.wav",
-        "Path": "SFX\\moff guideon intimidate 2nd phase 1_FC2D3A10.wem"
-       }
-      ]
-     },
-     {
-      "Id": "3275430871",
-      "Name": "Play_Moff_Guideon_Lightsaber_Attack",
-      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Lightsaber_Attack",
-      "DurationType": "OneShot",
-      "DurationMin": "0.803084",
-      "DurationMax": "0.982358",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "608559747",
-        "Language": "SFX",
-        "ShortName": "moff guideon lightsaber attack 1.wav",
-        "Path": "SFX\\moff guideon lightsaber attack 1_FC2D3A10.wem"
-       },
-       {
-        "Id": "703060658",
-        "Language": "SFX",
-        "ShortName": "moff guideon lightsaber attack 2.wav",
-        "Path": "SFX\\moff guideon lightsaber attack 2_FC2D3A10.wem"
-       }
-      ]
-     },
-     {
-      "Id": "4120291933",
-      "Name": "Play_Moff_Guideon_Lightsaber_Throw",
-      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Lightsaber_Throw",
-      "DurationType": "OneShot",
-      "DurationMin": "0.863583",
-      "DurationMax": "0.863583",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "747483108",
-        "Language": "SFX",
-        "ShortName": "moff guideon lightsaber throw.wav",
-        "Path": "SFX\\moff guideon lightsaber throw_FC2D3A10.wem"
-       }
-      ]
-     },
-     {
-      "Id": "314845868",
-      "Name": "Play_Moff_Guideon_Lightsaber_Turn_Off",
-      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Lightsaber_Turn_Off",
-      "DurationType": "OneShot",
-      "DurationMin": "0.732104",
-      "DurationMax": "0.732104",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "1050035490",
-        "Language": "SFX",
-        "ShortName": "moff guideon lightsaber turn off.wav",
-        "Path": "SFX\\moff guideon lightsaber turn off_FC2D3A10.wem"
-       }
-      ]
-     },
-     {
-      "Id": "1564184646",
-      "Name": "Play_Moff_Guideon_Lightsaber_Turn_On",
-      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Lightsaber_Turn_On",
-      "DurationType": "OneShot",
-      "DurationMin": "1.417868",
-      "DurationMax": "1.417868",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "354392164",
-        "Language": "SFX",
-        "ShortName": "moff guideon lightsaber turn on.wav",
-        "Path": "SFX\\moff guideon lightsaber turn on_FC2D3A10.wem"
-       }
-      ]
-     },
-     {
-      "Id": "1818257593",
-      "Name": "Play_Moff_Guideon_Lightsaber_Whoosh",
-      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Lightsaber_Whoosh",
-      "DurationType": "OneShot",
-      "DurationMin": "0.720658",
-      "DurationMax": "0.771769",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "270470728",
-        "Language": "SFX",
-        "ShortName": "moff guideon lightsaber whoosh 1.wav",
-        "Path": "SFX\\moff guideon lightsaber whoosh 1_FC2D3A10.wem"
-       },
-       {
-        "Id": "720678292",
-        "Language": "SFX",
-        "ShortName": "moff guideon lightsaber whoosh 2.wav",
-        "Path": "SFX\\moff guideon lightsaber whoosh 2_FC2D3A10.wem"
-       }
-      ]
-     },
-     {
-      "Id": "1526398419",
-      "Name": "Play_Moff_Guideon_Shot",
-      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Shot",
-      "DurationType": "OneShot",
-      "DurationMin": "1.437732",
-      "DurationMax": "1.437732",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "274347457",
-        "Language": "SFX",
-        "ShortName": "moff guideon blaster shoot.wav",
-        "Path": "SFX\\moff guideon blaster shoot_FC2D3A10.wem"
-       }
-      ]
-     },
-     {
-      "Id": "2615772781",
-      "Name": "Play_Moff_Guideon_Spawn_Enemies",
-      "ObjectPath": "\\Events\\Default Work Unit\\Moff Guideon\\Play_Moff_Guideon_Spawn_Enemies",
-      "DurationType": "OneShot",
-      "DurationMin": "0.556100",
-      "DurationMax": "0.556100",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "972146429",
-        "Language": "SFX",
-        "ShortName": "moff gideon snap fingers.wav",
-        "Path": "SFX\\moff gideon snap fingers_FC2D3A10.wem"
        }
       ]
      },

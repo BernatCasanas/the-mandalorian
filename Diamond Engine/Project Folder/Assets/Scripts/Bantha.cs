@@ -7,7 +7,7 @@ using DiamondEngine;
 
 public class Bantha : Enemy
 {
-   enum STATE : int
+    enum STATE : int
     {
         NONE = -1,
         IDLE,
@@ -82,6 +82,7 @@ public class Bantha : Enemy
 
     //force
     public float forcePushMod = 1;
+    public float pushTime = 0f;
 
     //Particles
     public GameObject stunParticle = null;
@@ -274,6 +275,7 @@ public class Bantha : Enemy
                             break;
                         case INPUT.IN_PUSHED:
                             currentState = STATE.PUSHED;
+                            WanderEnd();
                             StartPush();
                             break;
                     }
@@ -307,6 +309,7 @@ public class Bantha : Enemy
                             break;
                         case INPUT.IN_PUSHED:
                             currentState = STATE.PUSHED;
+                            RunEnd();
                             StartPush();
                             break;
                     }
@@ -500,7 +503,7 @@ public class Bantha : Enemy
         LookAt(agent.GetDestination());
         //if (skill_slowDownActive)
         //    agent.MoveToCalculatedPos(runningSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-        
+
         agent.MoveToCalculatedPos(runningSpeed * speedMult);
 
         StraightPath();
@@ -599,7 +602,7 @@ public class Bantha : Enemy
     {
         //if (skill_slowDownActive)
         //    agent.MoveToCalculatedPos(chargeSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-       
+
         if (!straightPath)
             agent.MoveToCalculatedPos(chargeSpeed * chargeSpeedReduction * speedMult);
         else
@@ -664,11 +667,20 @@ public class Bantha : Enemy
     #region PUSH
     private void StartPush()
     {
-        Vector3 force = gameObject.transform.globalPosition - Core.instance.gameObject.transform.globalPosition;
+        if (visualFeedback != null)
+        {
+            InternalCalls.Destroy(visualFeedback);
+            visualFeedback = null;
+        }
+
+        Vector3 force = pushDir.normalized;
         if (BabyYoda.instance != null)
         {
-            force.y = BabyYoda.instance.pushVerticalForce * forcePushMod;
-            gameObject.AddForce(force * BabyYoda.instance.pushHorizontalForce * forcePushMod);
+            force.y = BabyYoda.instance.pushVerticalForce;
+            force.x *= BabyYoda.instance.pushHorizontalForce;
+            force.z *= BabyYoda.instance.pushHorizontalForce;
+            gameObject.AddForce(force * forcePushMod);
+
             pushTimer = 0.0f;
         }
 
@@ -676,15 +688,8 @@ public class Bantha : Enemy
     private void UpdatePush()
     {
         pushTimer += myDeltaTime;
-        if (BabyYoda.instance != null)
-        {
-            if (pushTimer >= BabyYoda.instance.PushStun)
-                inputsList.Add(INPUT.IN_IDLE);
-        }
-        else
-        {
+        if (pushTimer >= pushTime)
             inputsList.Add(INPUT.IN_IDLE);
-        }
 
     }
     #endregion
@@ -723,23 +728,14 @@ public class Bantha : Enemy
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))
         {
+            Debug.Log("Bantha charged bullet detection");
+
             ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
             if (bullet != null)
             {
-                healthPoints -= bullet.GetDamage();
-                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
+                Debug.Log("Bantha charged bullet scripts detect");
 
-                Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
-
-                if (Core.instance.hud != null)
-                {
-                    HUD hud = Core.instance.hud.GetComponent<HUD>();
-
-                    if (hud != null)
-                        hud.AddToCombo(55, 0.2f);
-                }
-
-                if (currentState != STATE.DIE && healthPoints <= 0.0f)
+                if (currentState != STATE.DIE && healthPoints > 0.0f)
                 {
                     inputsList.Add(INPUT.IN_DIE);
                     if (Core.instance != null)
@@ -760,9 +756,34 @@ public class Bantha : Enemy
                                 BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
                             }
                         }
-                    }
+                        if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
+                        {
+                            float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
+                            Random rand = new Random();
+                            float result = rand.Next(1, 101);
+                            if (result <= mod)
+                                Core.instance.RefillSniper();
 
+                            Core.instance.luckyMod = 1 + mod / 100;
+                        }
+                    }
+                    healthPoints -= bullet.GetDamage();
+                    if (healthPoints <= 0.0f && Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
+                        Core.instance.RefillSniper();
+
+                    this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
+
+                    Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
+
+                    if (Core.instance.hud != null)
+                    {
+                        HUD hud = Core.instance.hud.GetComponent<HUD>();
+
+                        if (hud != null)
+                            hud.AddToCombo(55, 0.2f);
+                    }
                 }
+
 
             }
         }
@@ -803,8 +824,22 @@ public class Bantha : Enemy
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-        //if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
-        //    inputsList.Add(INPUT.IN_PUSHED);
+        if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
+        {
+            pushDir = triggeredGameObject.transform.GetForward();
+            inputsList.Add(INPUT.IN_PUSHED);
+        }
+    }
+    public void OnTriggerExit(GameObject triggeredGameObject)
+    {
+        if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
+        {
+            if (Core.instance != null)
+            {
+                pushDir = triggeredGameObject.transform.GetForward();
+                inputsList.Add(INPUT.IN_PUSHED);
+            }
+        }
     }
 
     public override void TakeDamage(float damage)

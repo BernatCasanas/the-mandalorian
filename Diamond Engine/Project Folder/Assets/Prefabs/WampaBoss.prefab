@@ -79,6 +79,7 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "Wampa",
+                    "camera": 1189863237,
                     "slerpSpeed": 5,
                     "probFollow": 60,
                     "probWander": 40,
@@ -109,13 +110,15 @@
                     "restingTimer": 0,
                     "bounceRushTime": 0,
                     "bounceRushTimer": 0,
+                    "presentationTimer": 0,
                     "projectileAngle": 30,
                     "projectileRange": 6,
                     "projectileDamage": 10,
                     "rushDamage": 15,
                     "damageBounceRush": 0,
                     "totalJumpSlamTimer": 0,
-                    "totalJumpSlamTime": 0
+                    "totalJumpSlamTime": 0,
+                    "firstSorrowRoar": true
                 },
                 {
                     "Type": 16,
@@ -224,7 +227,8 @@
                         0
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": false
+                    "doNotDrawStencil": false,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -465,10 +469,10 @@
                 -0.01217986736446619
             ],
             "Rotation": [
-                -0.023844076320528984,
-                0.013343618251383305,
-                0.87417614459991455,
-                0.48483982682228088
+                -0.023844072595238686,
+                0.013343616388738155,
+                0.874176025390625,
+                0.48483976721763611
             ],
             "Scale": [
                 1,
@@ -839,10 +843,10 @@
                 -1.1102230246251565e-15
             ],
             "Rotation": [
-                -0.00094224727945402265,
-                0.0038661262951791286,
-                0.028922664001584053,
-                0.99957382678985596
+                -0.00094224716303870082,
+                0.0038661258295178413,
+                0.028922660276293755,
+                0.99957370758056641
             ],
             "Scale": [
                 1,
@@ -1551,7 +1555,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -1590,9 +1595,10 @@
                 },
                 {
                     "Type": 5,
-                    "Active": true,
+                    "Active": false,
                     "ScriptName": "AtackBosslv2",
-                    "damage": 15
+                    "damage": 15,
+                    "camera": 1189863237
                 }
             ]
         },
@@ -1645,7 +1651,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 14,
@@ -1686,7 +1693,7 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "AtackBosslv2",
-                    "damage": 20
+                    "damage": 0
                 }
             ]
         }

@@ -19,6 +19,7 @@ public class Wampa : Bosseslv2
         PROJECTILE,
         JUMP_SLAM,
         BOUNCE_RUSH,
+        PRESENTATION,
         DEAD
     }
 
@@ -39,11 +40,15 @@ public class Wampa : Bosseslv2
         IN_JUMPSLAM_END,
         IN_BOUNCERUSH,
         IN_BOUNCERUSH_END,
+        IN_PRESENTATION,
+        IN_PRESENTATION_END,
         IN_DEAD
     }
 
-    private STATE currentState = STATE.SEARCH_STATE;
+    private STATE currentState = STATE.PRESENTATION;
     private List<INPUT> inputsList = new List<INPUT>();
+    public bool firstSorrowRoar = false;
+    private bool firstFrame = true;
 
     public override void Awake()
     {
@@ -65,6 +70,12 @@ public class Wampa : Bosseslv2
 
     public void Update()
     {
+        if (firstFrame)
+        {
+            companion = InternalCalls.FindObjectWithName("Skel");
+            firstFrame = false;
+            StartPresentation();
+        }
         myDeltaTime = Time.deltaTime * speedMult;
         UpdateStatuses();
 
@@ -74,6 +85,12 @@ public class Wampa : Bosseslv2
 
         UpdateState();
         //Debug.Log(healthPoints.ToString());
+
+        if (firstSorrowRoar)
+        {
+            firstSorrowRoar = false;
+            Audio.PlayAudio(gameObject, "Play_Wampa_When_Skel_Dies");
+        }
     }
 
     private void ProcessInternalInput()
@@ -98,6 +115,16 @@ public class Wampa : Bosseslv2
             if (fastChasingTimer <= 0)
             {
                 inputsList.Add(INPUT.IN_FAST_RUSH_END);
+            }
+        }
+
+        if (presentationTimer > 0.0f)
+        {
+            presentationTimer -= myDeltaTime;
+
+            if (presentationTimer <= 0.0f)
+            {
+                inputsList.Add(INPUT.IN_PRESENTATION_END);
             }
         }
 
@@ -144,6 +171,16 @@ public class Wampa : Bosseslv2
             {
                 case STATE.NONE:
                     Debug.Log("WAMPA ERROR STATE");
+                    break;
+
+                case STATE.PRESENTATION:
+                    switch (input)
+                    {
+                        case INPUT.IN_PRESENTATION_END:
+                            currentState = STATE.SEARCH_STATE;
+                            EndPresentation();
+                            break;
+                    }
                     break;
 
                 case STATE.SEARCH_STATE:
@@ -308,6 +345,9 @@ public class Wampa : Bosseslv2
             case STATE.WANDER:
                 UpdateWander();
                 break;
+            case STATE.PRESENTATION:
+                UpdatePresentation();
+                break;
             case STATE.SEARCH_STATE:
                 SelectAction();
                 break;
@@ -380,6 +420,16 @@ public class Wampa : Bosseslv2
                 if (Core.instance != null)
                     damageToBoss *= Core.instance.DamageToBosses;
 
+                if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
+                {
+                    float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
+                    Random rand = new Random();
+                    float result = rand.Next(1, 101);
+                    if (result <= mod)
+                        Core.instance.RefillSniper();
+
+                    Core.instance.luckyMod = 1 + mod / 100;
+                }
                 TakeDamage(damageToBoss);
             }
 
@@ -407,6 +457,8 @@ public class Wampa : Bosseslv2
             if (currentState == STATE.FAST_RUSH || currentState == STATE.SLOW_RUSH)
             {
                 inputsList.Add(INPUT.IN_SLOW_RUSH_END);
+                Input.PlayHaptic(0.5f, 400);
+
             }
         }
     }
@@ -419,6 +471,7 @@ public class Wampa : Bosseslv2
 
             if (currentState != STATE.DEAD)
             {
+                Audio.PlayAudio(gameObject, "Play_Wampa_Hit");
                 healthPoints -= damage;
                 if (Core.instance != null)
                 {

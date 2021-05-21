@@ -81,8 +81,7 @@ public class Deathtrooper : Enemy
 
 
     //push
-    public float pushHorizontalForce = 100;
-    public float pushVerticalForce = 10;
+    public float forcePushMod = 1f;
     public float PushStun = 2;
 
     //hit particles
@@ -605,10 +604,19 @@ public class Deathtrooper : Enemy
 
     private void StartPush()
     {
-        Vector3 force = gameObject.transform.globalPosition - Core.instance.gameObject.transform.globalPosition;
-        force.y = pushVerticalForce;
-        gameObject.AddForce(force * pushHorizontalForce);
-        pushTimer = 0.0f;
+        Vector3 force = pushDir.normalized;
+
+        if (BabyYoda.instance != null)
+        {
+            force.y = BabyYoda.instance.pushVerticalForce;
+            force.x *= BabyYoda.instance.pushHorizontalForce;
+            force.z *= BabyYoda.instance.pushHorizontalForce;
+            gameObject.AddForce(force * forcePushMod);
+
+            pushTimer = 0.0f;
+        }
+
+
     }
     private void UpdatePush()
     {
@@ -656,10 +664,7 @@ public class Deathtrooper : Enemy
 
             if (bullet != null)
             {
-                healthPoints -= bullet.damage;
-                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
-
-                TakeDamage(bullet.damage);
+               
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -689,9 +694,25 @@ public class Deathtrooper : Enemy
                                 BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
                             }
                         }
+                        if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
+                        {
+                            float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
+                            Random rand = new Random();
+                            float result = rand.Next(1, 101);
+                            if (result <= mod)
+                                Core.instance.RefillSniper();
+
+                            Core.instance.luckyMod = 1 + mod / 100;
+                        }
                     }
 
                 }
+             //   healthPoints -= bullet.damage;
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
+
+                TakeDamage(bullet.damage);
+                if (healthPoints <= 0.0f && Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
+                    Core.instance.RefillSniper();
             }
         }
         else if (collidedGameObject.CompareTag("ExplosiveBarrel") && collidedGameObject.GetComponent<SphereCollider>().active)
@@ -716,6 +737,19 @@ public class Deathtrooper : Enemy
         {
             if (Core.instance.gameObject != null)
             {
+                pushDir = triggeredGameObject.transform.GetForward();
+                inputsList.Add(INPUT.IN_PUSHED);
+            }
+        }
+    }
+
+    public void OnTriggerExit(GameObject triggeredGameObject)
+    {
+        if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
+        {
+            if (Core.instance != null)
+            {
+                pushDir = triggeredGameObject.transform.GetForward();
                 inputsList.Add(INPUT.IN_PUSHED);
             }
         }
@@ -723,8 +757,8 @@ public class Deathtrooper : Enemy
 
     public override void TakeDamage(float damage)
     {
-        
 
+        Audio.PlayAudio(gameObject, "Play_Deathtrooper_Hit");
         healthPoints -= damage;
         if (Core.instance != null)
         {

@@ -21,6 +21,8 @@ public class Enemy : Entity
 
 	protected NavMeshAgent agent;
 
+	protected Vector3 pushDir = Vector3.zero;
+
 	protected override void InitEntity(ENTITY_TYPE myType)
 	{
 		eType = myType;
@@ -207,5 +209,6 @@ public class Enemy : Entity
 				break;
 		}
 	}
+
 
 }
