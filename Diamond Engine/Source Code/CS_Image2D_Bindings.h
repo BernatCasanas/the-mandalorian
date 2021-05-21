@@ -28,9 +28,10 @@ void SwapTwoImages(MonoObject* obj, MonoObject* other_image)
 
 void AssignLibrary2DTexture(MonoObject* obj, int _id)
 {
-
 	C_Image2D* workImag = DECS_CompToComp<C_Image2D*>(obj);
-	workImag->SetTexture(_id, Resource::Type::TEXTURE);
+
+	if (workImag != nullptr)
+		workImag->SetTexture(_id, Resource::Type::TEXTURE);
 }
 
 void ChangeImageForAnotherOne(MonoObject* obj, MonoObject* other_image)
@@ -49,4 +50,12 @@ void ChangeImageForAnotherOne(MonoObject* obj, MonoObject* other_image)
 		return;
 
 	workImag->SetTexture(other_image_module->GetTexture());
+}
+
+void SetUIFadeValue(MonoObject* obj, float fadeValue)
+{
+	C_Image2D* workImag = DECS_CompToComp<C_Image2D*>(obj);
+
+	if (workImag != nullptr)
+		workImag->SetFadeValue(fadeValue);
 }

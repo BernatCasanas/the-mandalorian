@@ -11,7 +11,8 @@
 #include "OpenGL.h"
 
 C_Image2D::C_Image2D(GameObject* gameObject) : Component(gameObject),
-	texture(nullptr)
+	texture(nullptr),
+	fadeValue(1.0f)
 {
 	name = "Image 2D";
 }
@@ -66,6 +67,8 @@ bool C_Image2D::OnEditor()
 				texture = nullptr;
 			}
 		}
+
+		ImGui::DragFloat("Ui fade value", &fadeValue, 0.05, 0.0f, 1.0f);
 	}
 
 	return true;
@@ -83,6 +86,9 @@ void C_Image2D::RenderImage(float* transform, ResourceMaterial* material, unsign
 
 	GLint modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "model_matrix");
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, transform);
+
+	modelLoc = glGetUniformLocation(material->shader->shaderProgramID, "uiFadeValue");
+	glUniform1f(modelLoc, fadeValue);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VAO);
 	//glVertexPointer(2, GL_FLOAT, 0, NULL);
@@ -142,6 +148,12 @@ void C_Image2D::SetTexture(int UID, Resource::Type _type)
 }
 
 
+void C_Image2D::SetFadeValue(float fValue)
+{
+	fadeValue = fValue;
+}
+
+
 void C_Image2D::SaveData(JSON_Object* nObj)
 {
 	Component::SaveData(nObj);
@@ -152,6 +164,8 @@ void C_Image2D::SaveData(JSON_Object* nObj)
 		DEJson::WriteString(nObj, "LibraryPath", texture->GetLibraryPath());
 		DEJson::WriteInt(nObj, "UID", texture->GetUID());
 	}
+
+	DEJson::WriteFloat(nObj, "fadeValue", fadeValue);
 }
 
 
@@ -164,4 +178,6 @@ void C_Image2D::LoadData(DEConfig& nObj)
 
 	if (texName != "")
 		texture = dynamic_cast<ResourceTexture*>(EngineExternal->moduleResources->RequestResource(nObj.ReadInt("UID"), texName.c_str()));
+
+	fadeValue = nObj.ReadFloat("fadeValue");
 }
