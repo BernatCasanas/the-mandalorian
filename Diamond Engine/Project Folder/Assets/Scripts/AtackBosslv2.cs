@@ -22,6 +22,7 @@ public class AtackBosslv2 : DiamondComponent
                     if (shake != null)
                     {
                         shake.StartShaking(0.8f, 0.1f);
+                        Input.PlayHaptic(0.5f, 400);
                     }
                 }
             }
