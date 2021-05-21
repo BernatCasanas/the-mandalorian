@@ -819,6 +819,7 @@ public class MoffGideon : Entity
         changingStateTimer = changingStateTime;
 
         healthPoints = maxHealthPoints_fase2;
+        Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Lightsaber_Turn_On");
 
         if (cam_comp != null)
         {
@@ -1160,6 +1161,7 @@ public class MoffGideon : Entity
         dieTimer = dieTime;
         Animator.Play(gameObject, "MG_Death", speedMult);
         UpdateAnimationSpd(speedMult);
+        Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Lightsaber_Turn_Off");
         Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Death");
         if (cam_comp != null)
             cam_comp.target = this.gameObject;
