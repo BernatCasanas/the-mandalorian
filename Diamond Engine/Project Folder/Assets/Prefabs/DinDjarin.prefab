@@ -13,9 +13,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -11.047249794006348,
-                8.8548679351806641,
-                -11.11531925201416
+                -10.317687034606934,
+                7.0813097953796387,
+                -12.770061492919922
             ],
             "Rotation": [
                 0,
@@ -69,6 +69,7 @@
                     "mouseSens": 1,
                     "afterShootDelay": 0.096000000834465027,
                     "afterShootMult": 1.75,
+                    "skill_SoloHeal": 0,
                     "dashCD": 0.47499999403953552,
                     "dashDuration": 0.21500000357627869,
                     "dashDistance": 5.1500000953674316,
@@ -535,7 +536,7 @@
                 0,
                 0,
                 -0.0073059904389083385,
-                0.99997329711914063
+                0.99997329711914062
             ],
             "Scale": [
                 1,
@@ -1649,7 +1650,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0.49832534790039063,
+                0.49832534790039062,
                 2.0816681711721685e-17,
                 1.3898392876873153e-17
             ],
@@ -2127,7 +2128,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -1.8636245727539063,
+                -1.8636245727539062,
                 0.046333789825439453,
                 -0.77125072479248047
             ],
@@ -2161,7 +2162,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -1.8636245727539063,
+                -1.8636245727539062,
                 0.046333789825439453,
                 0.86050128936767578
             ],
@@ -2195,7 +2196,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0.76593399047851563,
+                0.76593399047851562,
                 0.046333789825439453,
                 0.86050128936767578
             ],
@@ -2264,7 +2265,7 @@
             "Static": false,
             "Position": [
                 -0.0040745735168457031,
-                -0.0062532424926757813,
+                -0.0062532424926757812,
                 -0.058134078979492188
             ],
             "Rotation": [
@@ -4161,40 +4162,6 @@
             ]
         },
         {
-            "name": "SniperShootPoint",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 415492028,
-            "ParentUID": 47750865,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -0.25,
-                1.0399999618530273,
-                1.2999999523162842
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
             "name": "SniperParticles",
             "tag": "Untagged",
             "layer": "Default",
@@ -4635,7 +4602,7 @@
                     "Active": true,
                     "systemActive": false,
                     "looping": false,
-                    "maxDuration": 0.041000001132488251,
+                    "maxDuration": 0.10499999672174454,
                     "ParticleEmitters": [
                         {
                             "AssetPath": "Empty",
@@ -4690,6 +4657,11 @@
                                             "paColorOLTposition": 0.9942362904548645
                                         }
                                     ]
+                                },
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0.10000000149011612,
+                                    "paSizeOLTEndSize": 0.30000001192092896
                                 },
                                 {
                                     "paEffectType": 5,
@@ -4763,12 +4735,17 @@
                                     ]
                                 },
                                 {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0.10000000149011612,
+                                    "paSizeOLTEndSize": 0.34999999403953552
+                                },
+                                {
                                     "paEffectType": 5,
                                     "paShapeHasInitSpeed": true,
                                     "paShapePartSpeed": 0.5,
                                     "paShapeRandSpeed": 2,
-                                    "PaShapeConeRadius": 0.30000001192092896,
-                                    "PaShapeConeHeight": 0.5,
+                                    "PaShapeConeRadius": 0.5,
+                                    "PaShapeConeHeight": 0.80000001192092896,
                                     "PaShapeSphereDirection": true,
                                     "PaShapeSphereAngle": 0,
                                     "paShapeType": 2,
@@ -4787,6 +4764,40 @@
                     "Active": true,
                     "billboardAlignment": 0,
                     "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "SniperShootPoint",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 415492028,
+            "ParentUID": 47750865,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.25,
+                1.0399999618530273,
+                1.2999999523162842
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
                 }
             ]
         }
