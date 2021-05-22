@@ -91,6 +91,11 @@ public enum STATUS_TYPE
     GRENADE_ON_DASH,
     SEC_RANGE,
     COMBO_UP_ACCEL,
+    SNIPER_STACK_ENABLE,
+    SNIPER_STACK_DMG_UP,
+    SNIPER_STACK_WORK_SNIPER,
+    SNIPER_STACK_BLEED,
+
 
     // Enemies
     ENEMY_DAMAGE_DOWN,
@@ -128,6 +133,7 @@ public enum STATUS_TYPE
     BOBBA_STUN_AMMO,
     SOLO_QUICK_DRAW,
     SOLO_HEAL,
+    GEOTERMAL_MARKER,
 }
 
 public enum STATUS_APPLY_TYPE
@@ -136,7 +142,8 @@ public enum STATUS_APPLY_TYPE
     BIGGER_PERCENTAGE,
     BIGGER_TIME,
     SUBSTITUTE,
-    ADDITIVE
+    ADDITIVE,
+    ADD_SEV
 }
 
 #region StatusData
@@ -351,6 +358,16 @@ public class Entity : DiamondComponent
                 {
                     if (statuses.ContainsKey(statusType) == true)
                     {
+                        DeleteStatus(statusType);
+                    }
+                }
+                break;
+            case STATUS_APPLY_TYPE.ADD_SEV:
+                {
+                    if (statuses.ContainsKey(statusType) == true)
+                    {
+                        percentage += statuses[statusType].severity;
+
                         DeleteStatus(statusType);
                     }
                 }

@@ -662,57 +662,77 @@ public class Deathtrooper : Enemy
         {
             ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
 
-            if (bullet != null)
+            if (bullet != null && currentState != STATE.DIE)
             {
-
-
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
                 if (Core.instance.hud != null)
                 {
                     Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
                 }
+                
+                float vulerableSev = 0.2f;
+                float vulerableTime = 4.5f;
+                STATUS_APPLY_TYPE applyType = STATUS_APPLY_TYPE.BIGGER_PERCENTAGE;
+                float damageMult = 1f;
 
-                if (currentState != STATE.DIE && healthPoints <= 0.0f)
+                if (Core.instance != null)
                 {
-                    inputsList.Add(INPUT.IN_DIE);
-                    if (Core.instance != null)
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_DMG_UP))
                     {
-                        if (Core.instance.HasStatus(STATUS_TYPE.SP_HEAL))
-                        {
-                            if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
-                            {
-                                float healing = Core.instance.GetStatusData(STATUS_TYPE.SP_HEAL).severity;
-                                Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
-                            }
-                        }
-                        if (Core.instance.HasStatus(STATUS_TYPE.SP_FORCE_REGEN))
-                        {
-                            if (Core.instance.gameObject != null && BabyYoda.instance != null)
-                            {
-                                float force = Core.instance.GetStatusData(STATUS_TYPE.SP_FORCE_REGEN).severity;
-                                BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
-                            }
-                        }
-                        if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
-                        {
-                            float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
-                            Random rand = new Random();
-                            float result = rand.Next(1, 101);
-                            if (result <= mod)
-                                Core.instance.RefillSniper();
+                        vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_DMG_UP).severity;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_ENABLE))
+                    {
+                        vulerableTime += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_ENABLE).severity;
+                        applyType = STATUS_APPLY_TYPE.ADD_SEV;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER))
+                    {
+                        vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER).severity;
+                        damageMult = damageRecieveMult;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
+                    {
+                        float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
+                        Random rand = new Random();
+                        float result = rand.Next(1, 101);
+                        if (result <= mod)
+                            Core.instance.RefillSniper();
 
-                            Core.instance.luckyMod = 1 + mod / 100;
+                        Core.instance.luckyMod = 1 + mod / 100;
+                    }
+                }
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, applyType, vulerableSev, vulerableTime);
+
+                TakeDamage(bullet.GetDamage() * damageMult);
+
+                if (Core.instance != null && healthPoints <= 0.0f)
+                {
+                    if (Core.instance.HasStatus(STATUS_TYPE.SP_HEAL))
+                    {
+                        if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
+                        {
+                            float healing = Core.instance.GetStatusData(STATUS_TYPE.SP_HEAL).severity;
+                            Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
                         }
                     }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SP_FORCE_REGEN))
+                    {
+                        if (Core.instance.gameObject != null && BabyYoda.instance != null)
+                        {
+                            float force = Core.instance.GetStatusData(STATUS_TYPE.SP_FORCE_REGEN).severity;
+                            BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
+                        }
+                    }
+                    
+                    if (Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
+                    {
+                        Core.instance.RefillSniper();
 
+                    }
                 }
-                //   healthPoints -= bullet.damage;
-                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
 
-                TakeDamage(bullet.damage);
-                if (healthPoints <= 0.0f && Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
-                    Core.instance.RefillSniper();
             }
         }
         else if (collidedGameObject.CompareTag("ExplosiveBarrel") && collidedGameObject.GetComponent<SphereCollider>().active)

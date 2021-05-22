@@ -735,10 +735,45 @@ public class Bantha : Enemy
             {
                 Debug.Log("Bantha charged bullet scripts detect");
 
-                if (currentState != STATE.DIE && healthPoints > 0.0f)
+                if (currentState != STATE.DIE)
                 {
-                    inputsList.Add(INPUT.IN_DIE);
+                    float vulerableSev = 0.2f;
+                    float vulerableTime = 4.5f;
+                    STATUS_APPLY_TYPE applyType = STATUS_APPLY_TYPE.BIGGER_PERCENTAGE;
+                    float damageMult = 1f;
+
                     if (Core.instance != null)
+                    {
+                        if(Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_DMG_UP))
+                        {
+                            vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_DMG_UP).severity;
+                        }
+                        if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_ENABLE))
+                        {
+                            vulerableTime += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_ENABLE).severity;
+                            applyType = STATUS_APPLY_TYPE.ADD_SEV;
+                        }
+                        if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER))
+                        {
+                            vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER).severity;
+                            damageMult = damageRecieveMult;
+                        }
+                        if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
+                        {
+                            float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
+                            Random rand = new Random();
+                            float result = rand.Next(1, 101);
+                            if (result <= mod)
+                                Core.instance.RefillSniper();
+
+                            Core.instance.luckyMod = 1 + mod / 100;
+                        }
+                    }
+                    this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, applyType, vulerableSev, vulerableTime);
+
+                    TakeDamage(bullet.GetDamage() * damageMult);
+
+                    if (Core.instance != null & healthPoints <= 0f)
                     {
                         if (Core.instance.HasStatus(STATUS_TYPE.SP_HEAL))
                         {
@@ -756,22 +791,13 @@ public class Bantha : Enemy
                                 BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
                             }
                         }
-                        if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
-                        {
-                            float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
-                            Random rand = new Random();
-                            float result = rand.Next(1, 101);
-                            if (result <= mod)
-                                Core.instance.RefillSniper();
+                      
 
-                            Core.instance.luckyMod = 1 + mod / 100;
+                        if (Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
+                        {
+                            Core.instance.RefillSniper();
                         }
                     }
-                    healthPoints -= bullet.GetDamage();
-                    if (healthPoints <= 0.0f && Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
-                        Core.instance.RefillSniper();
-
-                    this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
 
                     Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
 
@@ -856,7 +882,6 @@ public class Bantha : Enemy
 
     public override void TakeDamage(float damage)
     {
-
         healthPoints -= damage;
 
         if (Core.instance != null)
