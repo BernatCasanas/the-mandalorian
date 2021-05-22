@@ -2037,6 +2037,30 @@ public class Core : Entity
                     damageTaken += damageFromBullet;
                 }
             }
+            if (collidedGameObject.CompareTag("DeathTrooperBullet"))
+            {
+                //InternalCalls.Destroy(gameObject);
+                PlayParticles(PARTICLES.IMPACT);
+                DeathTrooperBullet bulletScript = collidedGameObject.GetComponent<DeathTrooperBullet>();
+                Audio.PlayAudio(gameObject, "Play_Mando_Hit");
+
+                if (bulletScript != null)
+                {
+                    int damageFromBullet = 0;
+
+                    if (skill_damageReductionDashActive)
+                        damageFromBullet = (int)(bulletScript.damage * (1.0f/* - Skill_Tree_Data.GetMandoSkillTree().U4_damageReduction*/));
+                    else
+                        damageFromBullet = (int)bulletScript.damage;
+
+                    PlayerHealth healthScript = gameObject.GetComponent<PlayerHealth>();
+
+                    if (healthScript != null)
+                        healthScript.TakeDamage(damageFromBullet);
+
+                    damageTaken += damageFromBullet;
+                }
+            }
             if (collidedGameObject.CompareTag("Bantha"))
             {
                 //InternalCalls.Destroy(gameObject);
