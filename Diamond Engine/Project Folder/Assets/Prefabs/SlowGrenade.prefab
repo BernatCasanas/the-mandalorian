@@ -77,6 +77,7 @@
                     "granadeAreaObj": 990157267,
                     "lifeTime": 2,
                     "explosionTime": 5,
+                    "areaRadius": 3.1999990940093994,
                     "damage": 5,
                     "procTime": 0.25
                 },
@@ -107,11 +108,22 @@
                     "granadeAreaObj": 990157267,
                     "lifeTime": 2,
                     "explosionTime": 5,
+                    "areaRadius": 1.7999999523162842,
                     "damage": 6,
                     "procTime": 0.25
                 },
                 {
-                    "Type": 22,
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "Mando",
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false,
+                    "isMusic": false
+                },
+                {
+                    "Type": 18,
                     "Active": true,
                     "isTrigger": true,
                     "Position": [
@@ -125,17 +137,11 @@
                         0,
                         1
                     ],
-                    "Radius": 3.6500000953674316
-                },
-                {
-                    "Type": 13,
-                    "Active": true,
-                    "evName": "Empty",
-                    "audBankReference": "Mando",
-                    "pitch": 50,
-                    "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
+                    "Scale": [
+                        10.699999809265137,
+                        2.7000000476837158,
+                        10.199999809265137
+                    ]
                 }
             ]
         },
