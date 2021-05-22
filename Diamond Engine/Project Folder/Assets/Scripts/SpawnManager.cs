@@ -7,6 +7,8 @@ public class SpawnManager : DiamondComponent
     public static SpawnManager instance = null;
     public List<GameObject> availableSpawnPoints = null;
 
+    public bool spawningWaves = true;
+
     private int enemiesToSpawn = 0;
     private int enemiesLeftInWave = 0;
     public int maxEnemiesPerWave = 0;
@@ -46,6 +48,9 @@ public class SpawnManager : DiamondComponent
 
     public void Update()
     {
+        if (spawningWaves == false)
+            return;
+
         waveTimer -= Time.deltaTime;
 
         if (((waveTimer <= 0.0f && (EnemyManager.EnemiesLeft() <= enemiesLeftToNextWave || enemiesLeftInWave > 0)) || EnemyManager.EnemiesLeft() == 0)

@@ -48,11 +48,11 @@ namespace DiamondEngine
         //X Must be between 1 and 0 and will return values between 1 and 0
         public static float EaseInSine(float x)
         {
-            return (float)(1 - Math.Cos((x * (float)Math.PI) / 2));
+            return Convert.ToSingle(1 - Math.Cos((x * Math.PI) / 2.0f));
         }
 
         //X Must be between 1 and 0 and will return values between 1 and 0
-        public static float EaseOutCuad(float x)
+        public static float EaseOutQuad(float x)
         {
             return 1 - (1 - x) * (1 - x);
         }
@@ -67,7 +67,7 @@ namespace DiamondEngine
         //X Must be between 1 and 0 and will return values between 1 and 0
         public static float EaseOutCubic(float x)
         {
-            return (float)(1 - Math.Pow(1 - x, 3));
+            return Convert.ToSingle(1 - Math.Pow(1 - x, 3));
         }
 
 
@@ -88,7 +88,7 @@ namespace DiamondEngine
         //X Must be between 1 and 0 and will return values between 1 and 0
         public static float EaseOutQuint(float x)
         {
-            return (float)(1 - Math.Pow(1 - 5, 5));
+            return Convert.ToSingle(1 - Math.Pow(1 - 5, 5));
         }
 
         public static float Clamp01(float value)
