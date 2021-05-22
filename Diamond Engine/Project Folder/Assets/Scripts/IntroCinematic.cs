@@ -72,7 +72,7 @@ public class IntroCinematic : DiamondComponent
         if (newDeltaTime > 0.016f) {
             newDeltaTime = 0.016f;
         }
-
+        Audio.SetState("Game_State", "Cinematic");
         Core.instance.LockInputs(true); // Yeah. Not pretty. But calling Core in Awake is not happening, and a boolean checked every frame seems redundant for what the function does
 
         if (toGoPosition != null && WeHaveToMove())
