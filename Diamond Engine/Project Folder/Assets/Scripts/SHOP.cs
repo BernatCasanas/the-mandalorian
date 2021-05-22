@@ -40,13 +40,14 @@ public class SHOP : DiamondComponent
     public GameObject defaultButton = null;
 
     bool shopOpen = false;
+    private bool start = true;
 
     public void Awake()
     {
         DebugOptionsHolder.goToNextLevel = false;
         shopOpen = false;
         opening = false;
-
+        start = true;
         if (currencyObject != null)
         {
             currencyText = currencyObject.GetComponent<Text>();
@@ -71,8 +72,39 @@ public class SHOP : DiamondComponent
             RandomiseItems();
     }
 
+    private void Start()
+    {
+        start = false;
+        if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
+        {
+            Audio.SetState("Game_State", "Run");
+            Audio.SetState("Player_State", "Alive");
+            if (MusicSourceLocate.instance != null)
+                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+        }
+        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
+        {
+            Audio.SetState("Game_State", "Run_2");
+            Audio.SetState("Player_State", "Alive");
+            if (MusicSourceLocate.instance != null)
+                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+        }
+        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
+        {
+            Audio.SetState("Game_State", "Run_3");
+            Audio.SetState("Player_State", "Alive");
+            if (MusicSourceLocate.instance != null)
+                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+        }
+    }
+
     public void Update()
     {
+        if (start)
+        {
+            Start();
+            start = false;
+        }
         if (shopOpen)
         {
             if (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_DOWN)
