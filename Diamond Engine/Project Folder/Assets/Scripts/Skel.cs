@@ -164,6 +164,7 @@ public class Skel : Bosseslv2
             Debug.Log("skel angry");
             inputsList.Add(INPUT.IN_PRESENTATION);
             presentationTimer = presentationTime;
+            SkelAngry();
             angry = true;
         }
     }
@@ -505,6 +506,11 @@ public class Skel : Bosseslv2
                 }
             }
         }
+    }
+
+    private void SkelAngry()
+    {
+        
     }
 
 }
