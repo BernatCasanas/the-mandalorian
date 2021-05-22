@@ -44,6 +44,53 @@ namespace DiamondEngine
             return from + delta * Clamp01(t);
         }
 
+
+        //X Must be between 1 and 0 and will return values between 1 and 0
+        public static float EaseInSine(float x)
+        {
+            return (float)(1 - Math.Cos((x * (float)Math.PI) / 2));
+        }
+
+        //X Must be between 1 and 0 and will return values between 1 and 0
+        public static float EaseOutCuad(float x)
+        {
+            return 1 - (1 - x) * (1 - x);
+        }
+
+
+        //X Must be between 1 and 0 and will return values between 1 and 0
+        public static float EaseInCubic(float x)
+        {
+            return x * x * x;
+        }
+
+        //X Must be between 1 and 0 and will return values between 1 and 0
+        public static float EaseOutCubic(float x)
+        {
+            return (float)(1 - Math.Pow(1 - x, 3));
+        }
+
+
+        //X Must be between 1 and 0 and will return values between 1 and 0
+        public static float EaseInQuart(float x)
+        {
+            return x * x * x * x;
+        }
+
+
+        //X Must be between 1 and 0 and will return values between 1 and 0
+        public static float EaseInQuint(float x)
+        {
+            return x * x * x * x * x;
+        }
+
+
+        //X Must be between 1 and 0 and will return values between 1 and 0
+        public static float EaseOutQuint(float x)
+        {
+            return (float)(1 - Math.Pow(1 - 5, 5));
+        }
+
         public static float Clamp01(float value)
         {
             if (value < 0f)

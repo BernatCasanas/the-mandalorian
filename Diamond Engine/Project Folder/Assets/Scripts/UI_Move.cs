@@ -57,13 +57,7 @@ public class UI_Move : DiamondComponent
 			}
 			else if (started == true && timer <= duration)
 			{
-				float xPosition = Mathf.Lerp(initialPosX, finalPosX, timer / duration);
-				float yPosition = Mathf.Lerp(initialPosY, finalPosY, timer / duration);
-
-				float xScale = Mathf.Lerp(initialScaleX, finalScaleX, timer / duration);
-				float yScale = Mathf.Lerp(initialScaleY, finalScaleY, timer / duration);
-
-				trans.SetLocalTransform(new Vector3(xPosition, yPosition, 1.0f), trans.lRot, new Vector3(xScale, yScale, 1.0f));
+				UpdateValues();
 			}
 
 			else if (started == true && timer > duration)
@@ -77,7 +71,25 @@ public class UI_Move : DiamondComponent
 	public void Activate()
     {
 		if (trans != null)
+        {
 			ended = false;
+			started = false;
+			timer = 0.0f;
+
+			trans.SetLocalTransform(new Vector3(initialPosX, initialPosY, 1.0f), trans.lRot, new Vector3(initialScaleX, initialScaleY, 1.0f));
+		}
     }
+
+
+	private void UpdateValues()
+	{
+		float xPosition = Mathf.Lerp(initialPosX, finalPosX, timer / duration);
+		float yPosition = Mathf.Lerp(initialPosY, finalPosY, timer / duration);
+
+		float xScale = Mathf.Lerp(initialScaleX, finalScaleX, timer / duration);
+		float yScale = Mathf.Lerp(initialScaleY, finalScaleY, timer / duration);
+
+		trans.SetLocalTransform(new Vector3(xPosition, yPosition, 1.0f), trans.lRot, new Vector3(xScale, yScale, 1.0f));
+	}
 
 }
