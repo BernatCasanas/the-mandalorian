@@ -2,6 +2,34 @@
     box-sizing: border-box;
   }
   
+  .column-four  {
+    float: left;
+    width: 25%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  @media only screen and (max-width: 900px) {
+    .column-four {
+      width: 33.33%;
+    }
+  }
+
+  @media only screen and (max-width: 766px) {
+    .column-four {
+      width: 50%;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .column-four {
+      width: 100%;
+    }
+  }
+
+  
+
+
   /* Create three equal columns that floats next to each other */
   .column-three  {
     float: left;
@@ -11,7 +39,7 @@
   }
   
   /* Clear floats after the columns */
-  .row:after-three {
+  .row:after {
     content: "";
     display: table;
     clear: both;
