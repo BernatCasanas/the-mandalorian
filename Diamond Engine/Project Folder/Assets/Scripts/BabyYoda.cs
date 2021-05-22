@@ -482,9 +482,17 @@ public class BabyYoda : DiamondComponent
         skillPushTimer += INIT_TIMER;
 
         Transform mandoTransform = Core.instance.gameObject.transform;
-        InternalCalls.CreatePrefab("Library/Prefabs/541990364.prefab", new Vector3(mandoTransform.globalPosition.x, mandoTransform.globalPosition.y + 1, mandoTransform.globalPosition.z), mandoTransform.globalRotation, new Vector3(1, 1, 1));
+
+        GameObject aimHelpTarget = Core.instance.GetAimbotObjective(10f);
+
+        GameObject pushWall = InternalCalls.CreatePrefab("Library/Prefabs/541990364.prefab", new Vector3(mandoTransform.globalPosition.x, mandoTransform.globalPosition.y + 1, mandoTransform.globalPosition.z), mandoTransform.globalRotation, new Vector3(1, 1, 1));
         Audio.PlayAudio(gameObject, "Play_Force_Push");
         
+        if(aimHelpTarget != null)
+        {
+            Mathf.LookAt(ref pushWall.transform, aimHelpTarget.transform.globalPosition);
+        }
+
         //Talent Trees
         //if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.UTILITY_HEAL_WHEN_GROGU_SKILL))        
         //    Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-Skill_Tree_Data.GetMandoSkillTree().U7_healAmount);

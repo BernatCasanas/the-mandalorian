@@ -844,7 +844,7 @@ public class Bosseslv2 : Entity
         }
     }
 
-    protected virtual void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     { }
 
 

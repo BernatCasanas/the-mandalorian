@@ -516,7 +516,7 @@ public class Wampa : Bosseslv2
         }
     }
 
-    protected override void TakeDamage(float damage)
+    public override void TakeDamage(float damage)
     {
         if (!DebugOptionsHolder.bossDmg)
         {

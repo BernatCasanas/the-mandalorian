@@ -108,6 +108,8 @@ public class BH_Bullet : DiamondComponent
 
     public void OnCollisionEnter(GameObject triggeredGameObject)
     {
+        int uidToAvoid = goToAvoid != null ? goToAvoid.GetUid() : -1;
+
 
         if (triggeredGameObject.CompareTag("PushSkill") && !this.gameObject.CompareTag("Bullet"))
         {
@@ -115,6 +117,20 @@ public class BH_Bullet : DiamondComponent
 
             this.gameObject.tag = "Bullet";
         }
+        else if (triggered == false && uidToAvoid != triggeredGameObject.GetUid() &&
+    !triggeredGameObject.CompareTag("PushSkill") && !triggeredGameObject.CompareTag("Bullet") && !triggeredGameObject.CompareTag("StormTrooperBullet"))
+        {
+            triggered = true;
+
+            if (destroyOBJ != null)
+            {
+                destroyPar = destroyOBJ.GetComponent<ParticleSystem>();
+
+                if (destroyPar != null)
+                    destroyPar.Play();
+            }
+        }
+
 
     }
 
