@@ -1997,7 +1997,7 @@ public class Core : Entity
         return chargedBulletDmg;
     }
 
-    public void ReduceComboOnHit(int hitDamage, float comboSubstractionMult = 1f)
+    public void ReduceComboOnHit(int hitDamage, float comboSubstractionMult = 1.5f)
     {
         if (hud != null)
         {

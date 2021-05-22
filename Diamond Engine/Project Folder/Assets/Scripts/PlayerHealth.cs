@@ -14,12 +14,12 @@ public class PlayerHealth : DiamondComponent
     public static int healWhenKillingAnEnemy { get; private set; }
     public GameObject character_mesh = null;
 
-    private bool  die = false;
+    private bool die = false;
     private float damaged = 0.0f;
 
     public void Awake()
     {
-        if(currHealth <= 0 && currMaxHealth <= 0)
+        if (currHealth <= 0 && currMaxHealth <= 0)
             ResetMaxAndCurrentHPToDefault();
 
         BlackFade.onFadeInCompleted += Die;
@@ -44,7 +44,7 @@ public class PlayerHealth : DiamondComponent
                 //Die();
 
             }
-         
+
         }
         if (damaged > 0.01f)
         {
@@ -202,7 +202,7 @@ public class PlayerHealth : DiamondComponent
     {
         if (DebugOptionsHolder.godModeActive)
             return currHealth;
-        
+
 
 
         if (Core.instance != null)
@@ -215,7 +215,7 @@ public class PlayerHealth : DiamondComponent
                     return currHealth;
             }
 
-            if(Core.instance.HasStatus(STATUS_TYPE.REFILL_CHANCE))
+            if (Core.instance.HasStatus(STATUS_TYPE.REFILL_CHANCE))
             {
                 Random rand = new Random();
                 float result = rand.Next(1, 101);
@@ -231,11 +231,11 @@ public class PlayerHealth : DiamondComponent
 
         if (Core.instance != null && damage > 0 && ignoreDashInv == false)
         {
-    
+
             if (Core.instance.IsDashing())
                 return currHealth;
         }
-        
+
         //if(Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.DEFENSE_CHANCE_AVOID_DAMAGE))
         //{
         //    if (ChanceToAvoidDamage(Skill_Tree_Data.GetMandoSkillTree().D8_changeToAvoidDamage))
@@ -244,8 +244,8 @@ public class PlayerHealth : DiamondComponent
         //        return currHealth; //We have avoided damage with a skill
         //    }
         //}        
-        
-        if(Core.instance != null)
+
+        if (Core.instance != null)
         {
             if (PlayerResources.CheckBoon(BOONS.BOON_BOSSK_STRENGTH))
             {
@@ -266,10 +266,11 @@ public class PlayerHealth : DiamondComponent
         {
             HUD playerHud = Core.instance.hud.GetComponent<HUD>();
 
-            if(playerHud != null && !die)
+            if (playerHud != null && !die)
                 playerHud.UpdateHP(currHealth, currMaxHealth);
 
-            Core.instance.ReduceComboOnHit(damage);
+            if (damage > 0)
+                Core.instance.ReduceComboOnHit(damage);
         }
 
         if (currHealth < 75 && currHealth >= 50 && MusicSourceLocate.instance != null)
@@ -292,7 +293,7 @@ public class PlayerHealth : DiamondComponent
         //TODO die
         // Set as defeat:
         RoomSwitch.OnPlayerDeath();
-    
+
     }
     public static void ResetMaxAndCurrentHPToDefault()
     {
