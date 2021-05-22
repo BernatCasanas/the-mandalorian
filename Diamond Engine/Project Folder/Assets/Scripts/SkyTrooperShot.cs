@@ -46,6 +46,7 @@ public class SkyTrooperShot : DiamondComponent
 			if(deleteTimer <= 0.0f)
             {
 				InternalCalls.Destroy(gameObject);
+				Debug.Log("Destroyed Bullet");
 			}
         }
 
@@ -174,7 +175,12 @@ public class SkyTrooperShot : DiamondComponent
 			InternalCalls.Destroy(hitCollider.gameObject);
 
 		hitCollider = null;
-		InternalCalls.Destroy(gameObject);
+		//InternalCalls.Destroy(gameObject);
+		Audio.PlayAudio(gameObject, "Play_Skytrooper_Grenade_Explosion");
+
+		MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
+		if (meshRenderer != null)
+			meshRenderer.active = false;
 
 		InternalCalls.CreatePrefab("Library/Prefabs/828188331.prefab", gameObject.transform.globalPosition, Quaternion.identity, new Vector3(1, 1, 1));
 	}
