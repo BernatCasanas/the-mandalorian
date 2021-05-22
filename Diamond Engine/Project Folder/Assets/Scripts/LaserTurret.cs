@@ -354,8 +354,6 @@ public class LaserTurret : Enemy
         //Debug.Log("TURRET DIE");
         dieTimer = dieTime;
 
-        Audio.PlayAudio(gameObject, "Play_Turrer_Destruction");
-
         EnemyManager.RemoveEnemy(gameObject);
 
         //Combo
@@ -384,7 +382,8 @@ public class LaserTurret : Enemy
         DropCoins();
 
         Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
-        InternalCalls.CreatePrefab("Library/Prefabs/828188331.prefab", gameObject.transform.globalPosition, Quaternion.identity, new Vector3(1, 1, 1));
+        GameObject obj = InternalCalls.CreatePrefab("Library/Prefabs/828188331.prefab", gameObject.transform.globalPosition, Quaternion.identity, new Vector3(1, 1, 1));
+        Audio.PlayAudio(obj, "Play_Turret_Destruction");
         InternalCalls.Destroy(gameObject);
     }
 
