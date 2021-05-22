@@ -60,13 +60,8 @@ public class LaserTurret : Enemy
     public float laserOffser;
 
     //Explosion effect
-    public GameObject explosion = null;
-    public GameObject wave = null;
-    public GameObject mesh = null;
     public GameObject hit = null;
 
-    private ParticleSystem partExp = null;
-    private ParticleSystem partWave = null;
     private ParticleSystem hitParticle = null;
 
     public void Awake()
@@ -359,22 +354,6 @@ public class LaserTurret : Enemy
         //Debug.Log("TURRET DIE");
         dieTimer = dieTime;
 
-        if (explosion != null && wave != null)
-        {
-            //Debug.Log("Want to play particles");
-            partExp = explosion.GetComponent<ParticleSystem>();
-            partWave = wave.GetComponent<ParticleSystem>();
-        }
-
-        if (partExp != null)
-            partExp.Play();
-
-        if (partWave != null)
-            partWave.Play();
-
-        if (mesh != null)
-            InternalCalls.Destroy(mesh);
-
         Audio.PlayAudio(gameObject, "Play_Turrer_Destruction");
 
         EnemyManager.RemoveEnemy(gameObject);
@@ -405,6 +384,7 @@ public class LaserTurret : Enemy
         DropCoins();
 
         Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+        InternalCalls.CreatePrefab("Library/Prefabs/828188331.prefab", gameObject.transform.globalPosition, Quaternion.identity, new Vector3(1, 1, 1));
         InternalCalls.Destroy(gameObject);
     }
 

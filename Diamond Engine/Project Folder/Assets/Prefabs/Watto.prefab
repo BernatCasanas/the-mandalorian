@@ -9,24 +9,24 @@
             "UID": 1985782605,
             "ParentUID": 0,
             "PrefabReference": 0,
-            "PrefabID": 0,
+            "PrefabID": 1284590419,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -2.6175851821899414,
-                0,
+                12.899511337280273,
+                1.5387707948684692,
                 4.0124497413635254
             ],
             "Rotation": [
                 0,
+                0.46205410361289978,
                 0,
-                0,
-                1
+                0.8868517279624939
             ],
             "Scale": [
+                0.9999997615814209,
                 1,
-                1,
-                1
+                0.9999997615814209
             ],
             "Components": [
                 {
@@ -39,9 +39,44 @@
                     "RootBone UID": 13163296,
                     "MeshRendererUID": 1743979688,
                     "Animations": [
-                        198368060,
-                        348940977
+                        348940977,
+                        198368060
                     ]
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0.82499998807907104,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1.75,
+                        1
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
                 }
             ]
         },
@@ -232,10 +267,10 @@
                 -7.4505823732806675e-09
             ],
             "Rotation": [
-                0.076105415821075439,
+                0.076105408370494843,
                 0,
                 0,
-                0.99709987640380859
+                0.99709975719451904
             ],
             "Scale": [
                 1,
@@ -1148,7 +1183,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
