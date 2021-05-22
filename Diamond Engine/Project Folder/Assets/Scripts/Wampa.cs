@@ -359,6 +359,22 @@ public class Wampa : Bosseslv2
                 SelectAction();
                 break;
         }
+
+        limboHealth = Mathf.Lerp(limboHealth, healthPoints, 0.01f);
+        if (bossHealth != null)
+        {
+            Material bossBarMat = bossHealth.GetComponent<Material>();
+            Debug.Log("We enter the material");
+            if (bossBarMat != null)
+            {
+                Debug.Log("We update the healthbar??");
+                bossBarMat.SetFloatUniform("length_used", healthPoints / maxHealthPoints);
+                bossBarMat.SetFloatUniform("limbo", limboHealth / maxHealthPoints);
+            }
+            else
+                Debug.Log("Boss Bar component was null!!");
+
+        }
     }
 
     private void SelectAction()
