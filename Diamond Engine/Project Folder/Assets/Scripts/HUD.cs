@@ -77,7 +77,6 @@ public class HUD : DiamondComponent
     public GameObject primary_weapon = null;
     public GameObject weapon_gauge = null;
     public GameObject life_gauge = null;
-    public GameObject currency_number_gameobject = null;
     public GameObject combo_bar = null;
     public GameObject combo_text = null;
     public GameObject combo_gameobject = null;
@@ -185,8 +184,6 @@ public class HUD : DiamondComponent
                 shooting_blink.GetComponent<Material>().SetFloatUniform("heat", 1f);
 
             UpdateCombo();
-            UpdateCurrency(PlayerResources.GetRunCoins());
-
 
             start = false;
         }
@@ -745,13 +742,6 @@ public class HUD : DiamondComponent
         float bullets_float = num_bullets;
         bullets_float /= max_bullets;
         weapon_bar.GetComponent<Material>().SetFloatUniform("length_used", bullets_float);
-    }
-
-    public void UpdateCurrency(int total_currency)
-    {
-        if (currency_number_gameobject == null)
-            return;
-        currency_number_gameobject.GetComponent<Text>().text = total_currency.ToString();
     }
 
     #region PRIMARY_HEAT

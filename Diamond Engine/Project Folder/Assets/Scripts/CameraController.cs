@@ -22,6 +22,17 @@ public class CameraController : DiamondComponent
     public float cornerBotRightX = 100.0f;
     public float cornerBotRightY = 100.0f;
 
+    //Die Zoom variables
+    public float deadZoom = 20f;
+    public float deadEasingSec = 0.5f;
+    public void Awake()
+    {
+        //PlayerHealth.onPlayerDeath += DeadZoom;
+        //onZoom += Zoom;
+        PlayerHealth.onPlayerDeath += DeadZoom;
+        pointA_zoom = CameraManager.GetOrthSize(this.gameObject);
+    }
+
     public void Update()
     {
         if (target == null)        
@@ -66,5 +77,15 @@ public class CameraController : DiamondComponent
         timer_easing_sec = timeInSec;
     }
 
+    public void DeadZoom()
+    {
+        if (deadZoom == 0 || deadEasingSec == 0)
+            return; 
 
+        zooming = true;
+
+        timer = 0;
+        zoomDesired = deadZoom;
+        timer_easing_sec = deadEasingSec;
+    }
 }
