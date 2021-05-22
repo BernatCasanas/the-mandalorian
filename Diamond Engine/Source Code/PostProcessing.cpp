@@ -12,7 +12,6 @@
 PostProcessing::PostProcessing() :
 	quadVAO(0), quadVBO(0),
 	bloomEffect(nullptr),
-	depthTest(nullptr),
 	aoEffect(nullptr),
 	toneMappingEffect(nullptr),
 	vignetteEffect(nullptr),
@@ -44,7 +43,6 @@ void PostProcessing::Init()
 
 	//init effects
 	bloomEffect = new PostProcessEffectBloom();
-	depthTest = new PostProcessEffectDepthTest();
 	renderFilter = new PostProcessEffectRender();
 	aoEffect = new PostProcessEffectAO();
 	toneMappingEffect = new PostProcessEffectToneMapping();
@@ -60,11 +58,6 @@ void PostProcessing::DoPostProcessing(int width, int height, DE_Advanced_FrameBu
 	ResourcePostProcess* camProfile = sceneCam->postProcessProfile;
 	bool isHDR = sceneCam->GetIsHDR();
 	//do post processing here
-
-	/*if (false)
-	{
-		currentColTexIndex = depthTest->Render(width, height, currentColTexIndex, depthTexture);
-	}*/
 
 	PostProcessDataAO* aoVars = dynamic_cast<PostProcessDataAO*>(camProfile->GetDataOfType(POSTPROCESS_DATA_TYPE::AO));
 	if (aoVars->active)
@@ -120,12 +113,6 @@ void PostProcessing::CleanUp()
 	{
 		delete(bloomEffect);
 		bloomEffect = nullptr;
-	}
-
-	if (depthTest != nullptr)
-	{
-		delete(depthTest);
-		depthTest = nullptr;
 	}
 
 	if (renderFilter != nullptr)

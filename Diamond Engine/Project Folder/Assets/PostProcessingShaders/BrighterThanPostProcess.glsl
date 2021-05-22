@@ -23,7 +23,8 @@ uniform bool useSmoothMask;
 void main()
 {
 	vec4 myColor = texture(colourTexture,textureCoords);
-	float brightness = (myColor.r * 0.2126)+(myColor.g * 0.7152)+(myColor.b * 0.0722); //Luma conversion to make the average
+	//float brightness = (myColor.r * 0.2126)+(myColor.g * 0.7152)+(myColor.b * 0.0722); //Luma conversion to make the average
+	float brightness = (myColor.r + myColor.g + myColor.b)/3.0;
 
 	if(useSmoothMask)
 	{

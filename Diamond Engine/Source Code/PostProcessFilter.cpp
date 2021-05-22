@@ -40,7 +40,7 @@ void PostProcessFilter::CleanUp()
 
 	if (myShader != nullptr)
 	{
-		EngineExternal->moduleResources->UnloadResource(myShader->GetUID());	//TODO post process shader uid here once we have it into lib
+		EngineExternal->moduleResources->UnloadResource(myShader->GetUID());
 		myShader = nullptr;
 	}
 }
@@ -91,111 +91,7 @@ bool PostProcessFilter::TryLoadShader()
 	}
 }
 
-PostProcessFilterContrastTest::PostProcessFilterContrastTest() : PostProcessFilter(1381112348, true)//this bool tells the filter whether it needs to create an fbo (but we have to pass that fbo to the render) //TODO only for testing, after testing only 1 approach will be chosen
-{
-
-}
-
-PostProcessFilterContrastTest::~PostProcessFilterContrastTest()
-{
-
-}
-
-void PostProcessFilterContrastTest::Render(bool isHDR, int width, int height, unsigned int colorTexture)
-{
-	if (TryLoadShader())
-	{
-		quadRenderer->RegenerateFBO(width, height, isHDR);
-		myShader->Bind();
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, colorTexture);
-		quadRenderer->RenderQuad();
-
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, 0);
-		myShader->Unbind();
-	}
-}
-
-void PostProcessFilterContrastTest::Render(DE_Advanced_FrameBuffer* outputFBO, unsigned int colorTexture)
-{
-	if (TryLoadShader())
-	{
-		myShader->Bind();
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, colorTexture);
-
-		outputFBO->BindFrameBuffer();
-		quadRenderer->RenderQuad();
-		outputFBO->UnbindFrameBuffer();
-
-
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, 0);
-		myShader->Unbind();
-	}
-}
-
-PostProcessFilterDepthTest::PostProcessFilterDepthTest() : PostProcessFilter(454495126, true) //this bool tells the filter whether it needs to create an fbo (but we have to pass that fbo to the render) //TODO only for testing, after testing only 1 approach will be chosen
-{
-
-}
-
-PostProcessFilterDepthTest::~PostProcessFilterDepthTest()
-{
-
-}
-
-
-void PostProcessFilterDepthTest::Render(bool isHDR, int width, int height, unsigned int colorTexture, unsigned int depthTexture)
-{
-	if (TryLoadShader())
-	{
-		quadRenderer->RegenerateFBO(width, height, isHDR);
-		myShader->Bind();
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, colorTexture);
-		glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "colourTexture"), 0);
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, depthTexture);
-		glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "depthTexture"), 1);
-
-		quadRenderer->RenderQuad();
-
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, 0);
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, 0);
-		myShader->Unbind();
-	}
-}
-
-void PostProcessFilterDepthTest::Render(DE_Advanced_FrameBuffer* outputFBO, unsigned int colorTexture, unsigned int depthTexture)
-{
-	if (TryLoadShader())
-	{
-		myShader->Bind();
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, colorTexture);
-		glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "colourTexture"), 0);
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, depthTexture);
-		glUniform1i(glGetUniformLocation(myShader->shaderProgramID, "depthTexture"), 1);
-
-		outputFBO->BindFrameBuffer();
-		quadRenderer->RenderQuad();
-		outputFBO->UnbindFrameBuffer();
-
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, 0);
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, 0);
-
-		myShader->Unbind();
-	}
-}
-
-PostProcessFilterRender::PostProcessFilterRender() : PostProcessFilter(2143344219, true) //this bool tells the filter whether it needs to create an fbo (but we have to pass that fbo to the render) //TODO only for testing, after testing only 1 approach will be chosen
+PostProcessFilterRender::PostProcessFilterRender() : PostProcessFilter(2143344219, true) //this bool tells the filter whether it needs to create an fbo (but we have to pass that fbo to the render)
 {
 
 }
@@ -311,7 +207,7 @@ void PostProcessFilterAO::PopulateKernel()
 {
 	//Hemisphere with z+ being the normal
 	LCG randomizer;
-	for (int i = 0; i < 64; ++i)//TODO this number is hardcoded for the moment
+	for (int i = 0; i < kernelSamples; ++i)
 	{
 		float3 rNum = float3::RandomSphere(randomizer, float3::zero, 1);
 
@@ -322,7 +218,7 @@ void PostProcessFilterAO::PopulateKernel()
 		//rNum.z = rNum.z * abs(rNum.z);
 
 		//Accelerating interpolation function (more samples next to the center, use this if not using ^2 fallof)
-		float scale = (float)i / 64.0;
+		float scale = (float)i / kernelSamples;
 		scale = MaykMath::Lerp(0.1f, 1.0f, scale * scale);
 		rNum *= scale;
 

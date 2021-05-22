@@ -5,7 +5,6 @@
 class DE_Advanced_FrameBuffer;
 
 class PostProcessEffectBloom;
-class PostProcessEffectDepthTest;
 class PostProcessEffectAO;
 class PostProcessEffectRender;
 class PostProcessEffectToneMapping;
@@ -29,7 +28,6 @@ private:
 	void End();
 
 	PostProcessEffectBloom* bloomEffect;
-	PostProcessEffectDepthTest* depthTest;
 	PostProcessEffectAO* aoEffect;
 	PostProcessEffectRender* renderFilter;
 	PostProcessEffectToneMapping* toneMappingEffect;
