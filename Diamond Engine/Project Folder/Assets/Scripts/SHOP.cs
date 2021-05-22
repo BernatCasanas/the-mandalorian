@@ -23,10 +23,13 @@ public class SHOP : DiamondComponent
     public GameObject textPopUp;
 
     //Buttons
-    public GameObject item1;
-    public GameObject item2;
-    public GameObject item3;
-    public GameObject item4;
+    public GameObject item1 = null;
+    public GameObject item2 = null;
+    public GameObject item3 = null;
+    public GameObject item4 = null;
+    private GameObject[] items = null;
+
+    private ShopButtons[] shopButtons = null;
 
     public GameObject currencyObject = null;
     private Text currencyText = null;
@@ -43,8 +46,6 @@ public class SHOP : DiamondComponent
         DebugOptionsHolder.goToNextLevel = false;
         shopOpen = false;
         opening = false;
-        if (autoGenerateItems)
-            RandomiseItems();
 
         if (currencyObject != null)
         {
@@ -52,7 +53,22 @@ public class SHOP : DiamondComponent
             UpdateCurrency(PlayerResources.GetRunCoins());
         }
 
-        //Audio.PlayAudio(gameObject, "Play_Post_Boss_Room_1_Ambience");
+        Debug.Log("Shop 1");
+
+        items = new GameObject[] { item1, item2, item3, item4 };
+
+        Debug.Log("Shop 2");
+
+        shopButtons = new ShopButtons[items.Length];
+        for(int i = 0; i < items.Length; i++)
+        {
+            if (items[i] != null)
+                shopButtons[i] = items[i].GetComponent<ShopButtons>();
+        }
+        Debug.Log("Shop 3");
+
+        if (autoGenerateItems)
+            RandomiseItems();
     }
 
     public void Update()
@@ -106,14 +122,18 @@ public class SHOP : DiamondComponent
             if (Core.instance.ShopDiscount > 0)
             {
                 Core.instance.ShopDiscount--;
-                float price = (float)item.price_type;
-                discount = price * 75 / 100;
+                float price = (float)item.price;
+                discount = price * 0.75f;
                 Debug.Log("discount" + discount.ToString());
+
                 if (Core.instance.ShopDiscount == 0)
+                {
                     Core.instance.RemoveStatus(STATUS_TYPE.GREEF_PAYCHECK);
+                    ResetShopPrices();
+                }
             }
 
-            if (currency >= (int)item.price_type - discount)
+            if (currency >= (int)item.price - discount)
             {
                 if (item.itemType == ShopItems.SHOP_ITEM_BOON)
                 {
@@ -129,7 +149,7 @@ public class SHOP : DiamondComponent
                     Core.instance.gameObject.GetComponent<PlayerHealth>().HealPercentMax(0.25f);
                 }
 
-                currency -= (int)item.price_type - (int)discount;
+                currency -= (int)item.price - (int)discount;
                 ret = true;
             }
 
@@ -152,6 +172,8 @@ public class SHOP : DiamondComponent
 
     public void RandomiseItems()
     {
+        Debug.Log("Random");
+
         List<BOONS> available = new List<BOONS>();
         for (int i = 0; i < BoonDataHolder.boonType.Length; ++i)  //Number of boons
         {
@@ -162,59 +184,22 @@ public class SHOP : DiamondComponent
         Random rand = new Random();
         int item;
 
-        if (item1 != null)
+        for(int i = 0; i < shopButtons.Length; i++)
         {
-            if (available.Count > 0)
+            if(shopButtons[i] != null)
             {
-                item = rand.Next(0, available.Count);
-                SetShopItem(item1.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_BOON, available[item]);
-                available.RemoveAt(item);
-            }
-            else
-            {
-                SetShopItem(item1.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_HEALTHREPLENISHMENT, BOONS.BOON_MAX);
-            }
-        }
+                shopButtons[i].Init();
 
-        if (item2 != null)
-        {
-            if (available.Count > 0)
-            {
-                item = rand.Next(0, available.Count);
-                SetShopItem(item2.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_BOON, available[item]);
-                available.RemoveAt(item);
-            }
-            else
-            {
-                SetShopItem(item2.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_HEALTHREPLENISHMENT, BOONS.BOON_MAX);
-            }
-        }
-
-        if (item3 != null)
-        {
-            if (available.Count > 0)
-            {
-                item = rand.Next(0, available.Count);
-                SetShopItem(item3.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_BOON, available[item]);
-                available.RemoveAt(item);
-            }
-            else
-            {
-                SetShopItem(item3.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_HEALTHREPLENISHMENT, BOONS.BOON_MAX);
-            }
-        }
-
-        if (item4 != null)
-        {
-            if (available.Count > 0)
-            {
-                item = rand.Next(0, available.Count);
-                SetShopItem(item4.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_BOON, available[item]);
-                available.RemoveAt(item);
-            }
-            else
-            {
-                SetShopItem(item4.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_HEALTHREPLENISHMENT, BOONS.BOON_MAX);
+                if (available.Count > 0)
+                {
+                    item = rand.Next(0, available.Count);
+                    SetShopItem(shopButtons[i], ShopItems.SHOP_ITEM_BOON, available[item]);
+                    available.RemoveAt(item);
+                }
+                else
+                {
+                    SetShopItem(item1.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_HEALTHREPLENISHMENT, BOONS.BOON_MAX);
+                }
             }
         }
     }
@@ -225,7 +210,7 @@ public class SHOP : DiamondComponent
         if (Core.instance.ShopDiscount > 0)
         {
             float price = (float)BoonDataHolder.boonType[(int)boon].price;
-            discount = price * 75 / 100;
+            discount = price * 0.75f;
             Debug.Log("Shop discount " + discount.ToString());
         }
  
@@ -243,6 +228,17 @@ public class SHOP : DiamondComponent
         else
         {
             item.SetItem(type, ShopPrice.SHOP_CHEAP -(int)discount, "Health Replenishment", "Heal for 25% of your max life");
+        }
+    }
+
+    private void ResetShopPrices()
+    {
+       for(int i = 0; i < items.Length; i++)
+        {
+            if(shopButtons[i] != null)
+            {
+                shopButtons[i].SetDefaultPrice();
+            }
         }
     }
 
