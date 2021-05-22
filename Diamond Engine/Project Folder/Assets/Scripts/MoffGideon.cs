@@ -185,9 +185,9 @@ public class MoffGideon : Entity
             Debug.Log("Null agent, add a NavMeshAgent Component");
 
 
-        comboTime = Animator.GetAnimationDuration(gameObject, "MG_Slash") - 0.016f;
-        presentationTime = Animator.GetAnimationDuration(gameObject, "MG_Presentation") - 0.016f;
-        changingStateTime = Animator.GetAnimationDuration(gameObject, "MG_Presentation2") - 0.016f;
+        //comboTime = Animator.GetAnimationDuration(gameObject, "MG_Slash") - 0.016f;
+        presentationTime = Animator.GetAnimationDuration(gameObject, "MG_CapeOff") - 0.016f;
+        changingStateTime = Animator.GetAnimationDuration(gameObject, "MG_PowerPose") - 0.016f;
         dieTime = Animator.GetAnimationDuration(gameObject, "MG_Death") - 0.016f;
 
 
@@ -202,6 +202,7 @@ public class MoffGideon : Entity
 
        
         StartPresentation();
+
 
     }
 
@@ -253,6 +254,7 @@ public class MoffGideon : Entity
         {
             presentationTimer -= myDeltaTime;
             healthPoints = (1 - (presentationTimer / presentationTime)) * maxHealthPoints_fase1;
+            Debug.Log(presentationTimer.ToString());
             if (presentationTimer <= 0)
             {
                 inputsList.Add(MOFFGIDEON_INPUT.IN_PRESENTATION_END);
@@ -831,7 +833,7 @@ public class MoffGideon : Entity
 
     private void StartPresentation()
     {
-        Animator.Play(gameObject, "MG_Presentation", speedMult);
+        Animator.Play(gameObject, "MG_CapeOff", speedMult);
         UpdateAnimationSpd(speedMult);
 
         //Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Lightsaber_Turn_On");
@@ -868,7 +870,7 @@ public class MoffGideon : Entity
 
     private void StartChangeState()
     {
-        Animator.Play(gameObject, "MG_Presentation2", speedMult);
+        Animator.Play(gameObject, "MG_Rising", speedMult);
         UpdateAnimationSpd(speedMult);
 
         //Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Lightsaber_Turn_On");
@@ -911,7 +913,8 @@ public class MoffGideon : Entity
 
     private void StartNeutral()
     {
-        Animator.Play(gameObject, "MG_Run", speedMult);
+        if(currentPhase == MOFFGIDEON_PHASE.PHASE1) Animator.Play(gameObject, "MG_RunPh1", speedMult);
+        else if(currentPhase == MOFFGIDEON_PHASE.PHASE2) Animator.Play(gameObject, "MG_RunPh2", speedMult);
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Footsteps");
         neutralTimer = neutralTime;
@@ -1000,7 +1003,7 @@ public class MoffGideon : Entity
     private void StartDashBackward()
     {
         beginDash = gameObject.transform.globalPosition;
-        Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Dash");
+        Audio.PlayAudio(gameObject, "MG_Dash");
     }
 
     private void UpdateDashBackward()
@@ -1079,7 +1082,8 @@ public class MoffGideon : Entity
     private void StartSpawnEnemies()
     {
         invencible = true;
-        Animator.Play(gameObject, "MG_Spawn", speedMult);
+        if (currentPhase == MOFFGIDEON_PHASE.PHASE1) Animator.Play(gameObject, "MG_EnemySpawnPh1", speedMult);
+        else if (currentPhase == MOFFGIDEON_PHASE.PHASE2) Animator.Play(gameObject, "MG_EnemySpawnPh2", speedMult);
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Spawn_Enemies");
         if (cam_comp != null)
@@ -1152,7 +1156,7 @@ public class MoffGideon : Entity
 
     private void StartThrowSaber()
     {
-        Animator.Play(gameObject, "MG_Throw", speedMult);
+        Animator.Play(gameObject, "MG_ThrowSaber");
         UpdateAnimationSpd(speedMult);
 
         Quaternion rot = new Quaternion(0, 0, 90);
@@ -1189,7 +1193,8 @@ public class MoffGideon : Entity
 
     private void StartRetrieveSaber()
     {
-        Animator.Play(gameObject, "MG_Run", speedMult);
+        if (currentPhase == MOFFGIDEON_PHASE.PHASE1) Animator.Play(gameObject, "MG_RunPh1", speedMult);
+        else if (currentPhase == MOFFGIDEON_PHASE.PHASE2) Animator.Play(gameObject, "MG_RunPh2", speedMult);
         UpdateAnimationSpd(speedMult);
     }
 
@@ -1205,6 +1210,7 @@ public class MoffGideon : Entity
 
     private void EndRetrieveSaber()
     {
+        Animator.Play(gameObject, "MG_Recovery");
         InternalCalls.Destroy(saber);
         saber = null;
         sword.transform.localScale = new Vector3(1, 1, 1);
