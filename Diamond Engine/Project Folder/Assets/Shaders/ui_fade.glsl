@@ -19,11 +19,12 @@ in vec2 textureCoords;
 out vec4 fragmentColor;
 
 uniform sampler2D ourTexture;
-uniform float fadeValue;
+uniform float uiFadeValue;
 
 void main() {
 	fragmentColor = texture(ourTexture,textureCoords);
-	fragmentColor.a *= fadeValue;
+	fragmentColor.a *= uiFadeValue;
 }
 
 #endif
+

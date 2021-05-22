@@ -497,26 +497,43 @@ public class DummyStormtrooper : Enemy
         {
             ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
 
-            if (bullet != null)
+            if (bullet != null && currentState != STATE.DIE)
             {
-                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
-                TakeDamage(bullet.GetDamage());
+                float vulerableSev = 0.2f;
+                float vulerableTime = 4.5f;
+                STATUS_APPLY_TYPE applyType = STATUS_APPLY_TYPE.BIGGER_PERCENTAGE;
+                float damageMult = 1f;
 
-            }
-
-            Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
-
-            if (Core.instance.hud != null)
-            {
-                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
-
-                if (hudComponent != null)
-                    hudComponent.AddToCombo(55, 0.25f);
-            }
-            if (currentState != STATE.DIE && healthPoints <= 0.0f)
-            {
-                inputsList.Add(INPUT.IN_DIE);
                 if (Core.instance != null)
+                {
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_DMG_UP))
+                    {
+                        vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_DMG_UP).severity;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_ENABLE))
+                    {
+                        vulerableTime += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_ENABLE).severity;
+                        applyType = STATUS_APPLY_TYPE.ADD_SEV;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_BLEED))
+                    {
+                        StatusData bleedData = Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_BLEED);
+                        float chargedBulletMaxDamage = Core.instance.GetSniperMaxDamage();
+
+                        damageMult *= bleedData.remainingTime;
+                        this.AddStatus(STATUS_TYPE.ENEMY_BLEED, STATUS_APPLY_TYPE.ADD_SEV, (chargedBulletMaxDamage * bleedData.severity) / vulerableTime, vulerableTime);
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER))
+                    {
+                        vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER).severity;
+                        damageMult = damageRecieveMult;
+                    }
+                }
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, applyType, vulerableSev, vulerableTime);
+
+                TakeDamage(bullet.GetDamage() * damageMult);
+
+                if (Core.instance != null && healthPoints <= 0.0f)
                 {
                     if (Core.instance.HasStatus(STATUS_TYPE.SP_HEAL))
                     {
@@ -534,8 +551,32 @@ public class DummyStormtrooper : Enemy
                             BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
                         }
                     }
+                    if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
+                    {
+                        float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
+                        Random rand = new Random();
+                        float result = rand.Next(1, 101);
+                        if (result <= mod)
+                            Core.instance.RefillSniper();
+
+                        Core.instance.luckyMod = 1 + mod / 100;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
+                    {
+                        Core.instance.RefillSniper();
+
+                    }
                 }
 
+                Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
+
+                if (Core.instance.hud != null)
+                {
+                    HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                    if (hudComponent != null)
+                        hudComponent.AddToCombo(55, 0.25f);
+                }
             }
 
         }
@@ -566,10 +607,15 @@ public class DummyStormtrooper : Enemy
     {
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         {
+            pushDir = triggeredGameObject.transform.GetForward();
+            inputsList.Add(INPUT.IN_PUSHED);
+
             if (Core.instance != null)
             {
-                pushDir = triggeredGameObject.transform.GetForward();
-                inputsList.Add(INPUT.IN_PUSHED);
+                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                    hudComponent.AddToCombo(10, 0.35f);
             }
         }
     }
@@ -578,10 +624,15 @@ public class DummyStormtrooper : Enemy
     {
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         {
+            pushDir = triggeredGameObject.transform.GetForward();
+            inputsList.Add(INPUT.IN_PUSHED);
+
             if (Core.instance != null)
             {
-                pushDir = triggeredGameObject.transform.GetForward();
-                inputsList.Add(INPUT.IN_PUSHED);
+                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                    hudComponent.AddToCombo(10, 0.35f);
             }
         }
     }

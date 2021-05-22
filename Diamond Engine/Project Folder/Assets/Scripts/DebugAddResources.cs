@@ -18,8 +18,10 @@ public class DebugAddResources : DiamondComponent
         Debug.Log("Add scrap");
         if (Core.instance.hud != null)
         {
-            Core.instance.hud.GetComponent<HUD>().UpdateCurrency(PlayerResources.GetRunCoins());
             Debug.Log("Update run coins");
+            Core.instance.hud.GetComponent<HUD>().UpdateCurrency(PlayerResources.GetRunCoins());
+
         }
+
     }
 }

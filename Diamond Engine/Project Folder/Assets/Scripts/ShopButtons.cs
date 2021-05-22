@@ -5,38 +5,49 @@ using System.Collections.Generic;
 public class ShopButtons : DiamondComponent
 {
     public GameObject shopController;
-    public GameObject nameTxt;
-    public GameObject descTxt;
-    public GameObject priceTxt;
+    public GameObject nameObj;
+    public GameObject descriptionObj;
+    public GameObject priceObj;
+
+    private Text nameText;
+    private Text descriptionText;
+    private Text priceText;
+
     public ShopItems itemType;
-    public ShopPrice price_type;    
+    public ShopPrice price;
     public GameResources resource;
     public bool closeBtn;
 
     bool bought = false;
     SHOP shopScript;
 
-    public void Awake()
+    public void Init()
     {
+        Debug.Log("Shop Button 1");
         shopScript = shopController.GetComponent<SHOP>();
+
+        if(nameObj != null)
+            nameText = nameObj.GetComponent<Text>();
+
+        if(descriptionObj != null)
+            descriptionText = descriptionObj.GetComponent<Text>();
+        
+        if(priceObj != null)
+            priceText = priceObj.GetComponent<Text>();
     }
 
-    public void SetItem(ShopItems type, ShopPrice price, string name, string description)
+    public void SetItem(ShopItems type, ShopPrice shop_price, string name, string description)
     {
         itemType = type;
-        price_type = price;
-        if (nameTxt != null) nameTxt.GetComponent<Text>().text = name;
-        if (descTxt != null) descTxt.GetComponent<Text>().text = description;
-        if (priceTxt != null) priceTxt.GetComponent<Text>().text = ((int)price).ToString();
+        price = shop_price;
+        if (nameText != null) nameText.text = name;
+        if (descriptionText != null) descriptionText.text = description;
+        if (priceText != null) priceText.text = ((int)price).ToString();
     }
 
     public void OnExecuteButton()
     {
-        /*if (shopScript.opening)
-        {
-            shopScript.opening = false;
-        }
-        else */if(!bought)
+        if (!bought)
         {
             if (closeBtn)
             {
@@ -47,12 +58,18 @@ public class ShopButtons : DiamondComponent
                 if (shopScript.Buy(this))
                 {
                     bought = true;
-                    if (nameTxt != null) nameTxt.GetComponent<Text>().text = "-";
-                    if (descTxt != null) descTxt.GetComponent<Text>().text = "-";
-                    if (priceTxt != null) priceTxt.GetComponent<Text>().text = "-";
+                    if (nameText != null) nameText.text = "-";
+                    if (descriptionText != null) descriptionText.text = "-";
+                    if (priceText != null) priceText.text = "-";
                     //gameObject.Enable(false);
                 }
             }
         }
+    }
+
+    public void SetDefaultPrice()
+    {
+        if (descriptionText != null)
+            descriptionText.text = ((int)price).ToString();
     }
 }

@@ -142,4 +142,26 @@ public class BoonDisplay : DiamondComponent
         }
     }
 
+    public void ShowBoons()
+    {
+        int boonDisplayIndex = 0;
+
+        for (int i = 0; i < (int)BOONS.BOON_MAX; i++)
+        {
+            if (PlayerResources.CheckBoon((BOONS)i))
+            {
+                //Boon image
+                int boonTextureId = BoonDataHolder.boonType[i].libraryTextureID;
+
+                //Boon count for text
+                int boonCount = PlayerResources.GetBoonAmount((BOONS)i);
+
+                SetBoon(boonDisplayIndex, boonTextureId, boonCount);
+
+                boonDisplayIndex++;
+            }
+
+        }
+    }
+
 }

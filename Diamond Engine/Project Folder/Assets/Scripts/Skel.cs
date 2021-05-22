@@ -328,6 +328,21 @@ public class Skel : Bosseslv2
                 SelectAction();
                 break;
         }
+
+        limboHealth = Mathf.Lerp(limboHealth, healthPoints, 0.01f);
+        if (bossHealth != null)
+        {
+            Material bossBarMat = bossHealth.GetComponent<Material>();
+
+            if (bossBarMat != null)
+            {
+                bossBarMat.SetFloatUniform("length_used", healthPoints / maxHealthPoints);
+                bossBarMat.SetFloatUniform("limbo", limboHealth / maxHealthPoints);
+            }
+            else
+                Debug.Log("Boss Bar component was null!!");
+
+        }
     }
 
     private void SelectAction()
@@ -403,9 +418,39 @@ public class Skel : Bosseslv2
 
             if (bulletComp != null)
             {
-                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
+                float vulerableSev = 0.2f;
+                float vulerableTime = 4.5f;
+                STATUS_APPLY_TYPE applyType = STATUS_APPLY_TYPE.BIGGER_PERCENTAGE;
+                float damageMult = 1f;
 
-                float damageToBoss = bulletComp.GetDamage();
+                if (Core.instance != null)
+                {
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_DMG_UP))
+                    {
+                        vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_DMG_UP).severity;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_ENABLE))
+                    {
+                        vulerableTime += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_ENABLE).severity;
+                        applyType = STATUS_APPLY_TYPE.ADD_SEV;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER))
+                    {
+                        vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER).severity;
+                        damageMult = damageRecieveMult;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_BLEED))
+                    {
+                        StatusData bleedData = Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_BLEED);
+                        float chargedBulletMaxDamage = Core.instance.GetSniperMaxDamage();
+
+                        damageMult *= bleedData.remainingTime;
+                        this.AddStatus(STATUS_TYPE.ENEMY_BLEED, STATUS_APPLY_TYPE.ADD_SEV, (chargedBulletMaxDamage * bleedData.severity) / vulerableTime, vulerableTime);
+                    }
+                }
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, applyType, vulerableSev, vulerableTime);
+
+                float damageToBoss = bulletComp.GetDamage() * damageMult;
                 if (Core.instance != null)
                     damageToBoss *= Core.instance.DamageToBosses;
                 if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
@@ -465,7 +510,7 @@ public class Skel : Bosseslv2
         }
     }
 
-    public void TakeDamage(float damage)
+    public override void TakeDamage(float damage)
     {
         if (!DebugOptionsHolder.bossDmg)
         {
@@ -474,7 +519,15 @@ public class Skel : Bosseslv2
             if (currentState != STATE.DEAD)
             {
                 Audio.PlayAudio(gameObject, "Play_Skel_Hit");
-                healthPoints -= damage;
+                float mod = 1;
+                if (Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.GEOTERMAL_MARKER))
+                {
+                    if (HasNegativeStatus())
+                    {
+                        mod = 1 + GetStatusData(STATUS_TYPE.GEOTERMAL_MARKER).severity / 100;
+                    }
+                }
+                healthPoints -= damage * mod; 
                 if (Core.instance != null)
                 {
                     if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))

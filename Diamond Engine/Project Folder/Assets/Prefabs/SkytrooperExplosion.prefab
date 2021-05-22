@@ -38,8 +38,17 @@
                     "Active": true,
                     "ScriptName": "Explosion",
                     "primaryParticlesGO": 623246643,
-                    "secondaryParticlesGO": 1147444668,
-                    "duration": 3.5
+                    "secondaryParticlesGO": 1147444668
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "Turret",
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false,
+                    "isMusic": false
                 }
             ]
         },
@@ -110,6 +119,7 @@
                                 1
                             ],
                             "paPerSec": 2500,
+                            "paRelative": true,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 1,
@@ -204,6 +214,7 @@
                                 1
                             ],
                             "paPerSec": 100,
+                            "paRelative": true,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 0,
@@ -315,6 +326,7 @@
                                 1
                             ],
                             "paPerSec": 200,
+                            "paRelative": true,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 0,
@@ -423,6 +435,7 @@
                                 1
                             ],
                             "paPerSec": 500,
+                            "paRelative": true,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 0,
@@ -580,6 +593,7 @@
                                 1
                             ],
                             "paPerSec": 2,
+                            "paRelative": true,
                             "ParticleEffects": [
                                 {
                                     "paEffectType": 2,

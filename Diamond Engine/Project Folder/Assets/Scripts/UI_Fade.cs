@@ -6,26 +6,25 @@ public class UI_Fade : DiamondComponent
 	public float delay = 0.5f;
 	public float duration = 1.0f;
 
+	public bool playOnAwake = true;
+
 	private float timer = 0.0f;
 
-	private Material material = null;
+	private Image2D img = null;
 	private bool firstFramePassed = false;  //first frame when charging a scene has a large dt, so we ignore it
 	private bool started = false;
 	private bool ended = false;
 
 	public void Awake()
     {
-		material = gameObject.GetComponent<Material>();
+		img = gameObject.GetComponent<Image2D>();
 
-		if (material == null)
-		{
-			Debug.Log("Need to add material to gameObject: " + gameObject.Name);
+
+		img.SetFadeValue(0.0f);
+		
+
+		if (playOnAwake == false)
 			ended = true;
-		}
-        else
-        {
-			material.SetFloatUniform("fadeValue", 0.0f);
-		}
 	}
 
 	public void Update()
@@ -43,7 +42,7 @@ public class UI_Fade : DiamondComponent
 			else if (started == true && timer < duration)
 			{
 				float value = Mathf.Lerp(0.0f, 1.0f, timer / duration);
-				material.SetFloatUniform("fadeValue", value);
+				img.SetFadeValue(value);
 			}
 
 			else if (started == true && timer >= duration)
@@ -52,5 +51,11 @@ public class UI_Fade : DiamondComponent
 
 		else
 			firstFramePassed = true;
+	}
+
+	public void Activate()
+	{
+		if (img != null)
+			ended = false;
 	}
 }

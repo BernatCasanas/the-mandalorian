@@ -91,11 +91,16 @@ public enum STATUS_TYPE
     GRENADE_ON_DASH,
     SEC_RANGE,
     COMBO_UP_ACCEL,
+    SNIPER_STACK_ENABLE,
+    SNIPER_STACK_DMG_UP,
+    SNIPER_STACK_WORK_SNIPER,
+    SNIPER_STACK_BLEED,
 
     // Enemies
     ENEMY_DAMAGE_DOWN,
     ENEMY_VULNERABLE,
     ENEMY_DAMAGE_UP,
+    ENEMY_BLEED,
 
     // Boons
     CAD_BANE_SOH,
@@ -128,6 +133,8 @@ public enum STATUS_TYPE
     BOBBA_STUN_AMMO,
     SOLO_QUICK_DRAW,
     SOLO_HEAL,
+    GEOTERMAL_MARKER,
+    GREEF_PAYCHECK,
 }
 
 public enum STATUS_APPLY_TYPE
@@ -136,7 +143,8 @@ public enum STATUS_APPLY_TYPE
     BIGGER_PERCENTAGE,
     BIGGER_TIME,
     SUBSTITUTE,
-    ADDITIVE
+    ADDITIVE,
+    ADD_SEV
 }
 
 #region StatusData
@@ -283,7 +291,20 @@ public class Entity : DiamondComponent
     {
         return statuses.Count > 0;
     }
+    public bool HasNegativeStatus()
+    {
+        int counter = 0;
+        if (HasStatus(STATUS_TYPE.ACCELERATED))
+            counter++;
+        if (HasStatus(STATUS_TYPE.ENEMY_DAMAGE_UP))
+            counter++;
 
+        return statuses.Count > counter;
+    }
+    public int StatusCount()
+    {
+        return statuses.Count;
+    }
     public float GetStatusRemainingTime(STATUS_TYPE stat)
     {
         float ret = 0f;
@@ -351,6 +372,16 @@ public class Entity : DiamondComponent
                 {
                     if (statuses.ContainsKey(statusType) == true)
                     {
+                        DeleteStatus(statusType);
+                    }
+                }
+                break;
+            case STATUS_APPLY_TYPE.ADD_SEV:
+                {
+                    if (statuses.ContainsKey(statusType) == true)
+                    {
+                        percentage += statuses[statusType].severity;
+
                         DeleteStatus(statusType);
                     }
                 }

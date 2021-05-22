@@ -13,20 +13,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                9.9116678237915039,
-                10.275588989257813,
-                0
+                7.7199997901916504,
+                16.870000839233398,
+                -4.119999885559082
             ],
             "Rotation": [
-                0,
-                -0.7071068286895752,
-                0,
-                0.7071068286895752
+                1.1184464439935749e-15,
+                -0.35632801055908203,
+                1.1184426323453123e-15,
+                0.93436092138290405
             ],
             "Scale": [
-                0.12999999523162842,
-                0.070000000298023224,
-                1.2000000476837158
+                0.049999907612800598,
+                0.05000000074505806,
+                0.59999889135360718
             ],
             "Components": [
                 {
@@ -50,16 +50,17 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "BH_Bullet",
-                    "speed": 20,
-                    "maxLifeTime": 10,
+                    "speed": 25,
+                    "maxLifeTime": 0.94999998807907104,
                     "range_squared": 20,
-                    "use_range_instead_of_time": true,
+                    "use_range_instead_of_time": false,
                     "yVel": 0,
                     "damage": 5
                 },
@@ -71,10 +72,10 @@
                     "LockLinearX": false,
                     "LockLinearY": false,
                     "LockLinearZ": false,
-                    "LockAngularX": false,
-                    "LockAngularY": false,
-                    "LockAngularZ": false,
-                    "Mass": 10,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
+                    "Mass": 0.10000000149011612,
                     "Density": 1
                 },
                 {
@@ -105,6 +106,27 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/571028171.mat",
                     "MaterialUID": 571028171
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        -0.44999998807907104
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        0.60000002384185791,
+                        0.30000004172325134,
+                        0.20000000298023224
+                    ]
                 }
             ]
         },
@@ -120,20 +142,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                0,
+                3.0517578125e-05,
+                -3.0517578125e-05,
                 0
             ],
             "Rotation": [
-                0,
-                0,
-                0,
+                3.6637359812630166e-15,
+                -1.7974528532249678e-07,
+                9.3258742538842622e-15,
                 1
             ],
             "Scale": [
                 1,
                 1,
-                1
+                0.99999988079071045
             ],
             "Components": [
                 {
@@ -157,7 +179,8 @@
                         0
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": false
+                    "doNotDrawStencil": false,
+                    "drawShadows": true
                 },
                 {
                     "Type": 26,

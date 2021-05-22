@@ -45,26 +45,26 @@ public class HeavyTrooper : Enemy
 
     private List<INPUT> inputsList = new List<INPUT>();
 
-    public  GameObject  spear = null;
+    public GameObject spear = null;
     private BoxCollider spearCollider = null;
 
     private bool straightPath = false;
 
     //Action times
-    public  float  idleTime = 5.0f;
-    private float  dieTime = 3.0f;
-    private float  sweepTime = 0.0f;
-    public  float  tiredTime = 2.0f;
-    public  float  loadingTime = 2.0f;
-    public  float  directionDecisionTime = 0.8f;
-    public  float  directionSweepDecisionTime = 0.8f;
+    public float idleTime = 5.0f;
+    private float dieTime = 3.0f;
+    private float sweepTime = 0.0f;
+    public float tiredTime = 2.0f;
+    public float loadingTime = 2.0f;
+    public float directionDecisionTime = 0.8f;
+    public float directionSweepDecisionTime = 0.8f;
 
     //Speeds
-    public  float wanderSpeed = 3.5f;
-    public  float runningSpeed = 7.5f;
-    public  float dashSpeed = 60.0f;
-    public  float dashSpeedReduction = 0.3f;
-    private bool  skill_slowDownActive = false;
+    public float wanderSpeed = 3.5f;
+    public float runningSpeed = 7.5f;
+    public float dashSpeed = 60.0f;
+    public float dashSpeedReduction = 0.3f;
+    private bool skill_slowDownActive = false;
 
     //Ranges
     public float wanderRange = 7.5f;
@@ -105,7 +105,7 @@ public class HeavyTrooper : Enemy
 
         currentState = STATE.IDLE;
 
-        if(spear != null)
+        if (spear != null)
         {
             HeavyTrooperSpear heavyTrooperSpear = spear.GetComponent<HeavyTrooperSpear>();
 
@@ -115,8 +115,8 @@ public class HeavyTrooper : Enemy
         }
 
         loadingTime = Animator.GetAnimationDuration(gameObject, "HVY_Dash_P1");
-        sweepTime   = Animator.GetAnimationDuration(gameObject, "HVY_Sweep");
-        dieTime     = Animator.GetAnimationDuration(gameObject, "HVY_Die");
+        sweepTime = Animator.GetAnimationDuration(gameObject, "HVY_Sweep");
+        dieTime = Animator.GetAnimationDuration(gameObject, "HVY_Die");
 
         particles = gameObject.GetComponent<HeavyTrooperParticles>();
     }
@@ -221,7 +221,7 @@ public class HeavyTrooper : Enemy
     {
         if (currentState != STATE.DIE && currentState != STATE.DASH)
         {
-            if(InRange(Core.instance.gameObject.transform.globalPosition, sweepRange) && tiredTimer <= 0.0f)
+            if (InRange(Core.instance.gameObject.transform.globalPosition, sweepRange) && tiredTimer <= 0.0f)
             {
                 inputsList.Add(INPUT.IN_SWEEP);
             }
@@ -229,7 +229,7 @@ public class HeavyTrooper : Enemy
             {
                 inputsList.Add(INPUT.IN_DASH_RANGE);
             }
-            
+
             if (InRange(Core.instance.gameObject.transform.globalPosition, detectionRange)
                 && agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition))
             {
@@ -238,8 +238,8 @@ public class HeavyTrooper : Enemy
         }
 
         if (currentState == STATE.RUN)
-        {            
-            if(InRange(Core.instance.gameObject.transform.globalPosition, sweepRange))
+        {
+            if (InRange(Core.instance.gameObject.transform.globalPosition, sweepRange))
             {
                 inputsList.Add(INPUT.IN_SWEEP);
             }
@@ -552,7 +552,7 @@ public class HeavyTrooper : Enemy
         idleTimer = idleTime;
         Animator.Play(gameObject, "HVY_Idle", speedMult);
 
-        if(spear != null)
+        if (spear != null)
             Animator.Play(spear, "HVY_Idle", speedMult);
 
         UpdateAnimationSpd(speedMult);
@@ -572,18 +572,18 @@ public class HeavyTrooper : Enemy
         Animator.Play(gameObject, "HVY_Run", speedMult);
         if (spear != null)
             Animator.Play(spear, "HVY_Run", speedMult);
-        
+
         Audio.PlayAudio(gameObject, "Play_Heavytrooper_Run");
 
         UpdateAnimationSpd(speedMult);
     }
     private void UpdateRun()
     {
-        if (!agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition)) 
+        if (!agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition))
         {
             //inputsList.Add(INPUT.IN_IDLE);
             //return;
-        }   
+        }
 
         LookAt(agent.GetDestination());
         //if (skill_slowDownActive)
@@ -635,11 +635,11 @@ public class HeavyTrooper : Enemy
     {
         //Debug.Log("HEAVYTROOPER LOADING");
         loadingTimer = loadingTime * (doneDashes > 0 ? 0.5f : 1.0f);
-       // Debug.Log("Loading timer: " + loadingTimer.ToString());
+        // Debug.Log("Loading timer: " + loadingTimer.ToString());
         directionDecisionTimer = directionDecisionTime;
 
         Animator.Play(gameObject, "HVY_Dash_P1", speedMult);
-        if(spear != null)
+        if (spear != null)
             Animator.Play(spear, "HVY_Dash_P1", speedMult);
 
         UpdateAnimationSpd(speedMult);
@@ -671,7 +671,7 @@ public class HeavyTrooper : Enemy
         //Debug.Log("HEAVYTROOPER DASH");
         if (!straightPath)
             dashTimer = (dashLength / (dashSpeed * dashSpeedReduction * speedMult));
-        else 
+        else
             dashTimer = (dashLength / (dashSpeed * speedMult));
 
         StraightPath();
@@ -706,8 +706,8 @@ public class HeavyTrooper : Enemy
         sweepTimer = sweepTime;
         particles.Stop(HeavyTrooperParticles.HEAVYROOPER_PARTICLES.DASH);
         Animator.Play(gameObject, "HVY_Sweep", speedMult);
-        
-        if(spear != null)
+
+        if (spear != null)
             Animator.Play(spear, "HVY_Sweep", speedMult);
 
         Audio.PlayAudio(gameObject, "Play_Heavytrooper_Attack");
@@ -724,17 +724,17 @@ public class HeavyTrooper : Enemy
             LookAt(Core.instance.gameObject.transform.globalPosition);
         }
 
-        if(spearCollider != null)
+        if (spearCollider != null)
         {
-            if(sweepTimer < sweepTime * 0.33f && spearCollider.active) // Stop doing damage at the last third of the animation
+            if (sweepTimer < sweepTime * 0.33f && spearCollider.active) // Stop doing damage at the last third of the animation
             {
                 //Debug.Log("Stop doing damage");
                 spearCollider.active = false;
 
-                if(particles != null)
-                   particles.Stop(HeavyTrooperParticles.HEAVYROOPER_PARTICLES.SPEAR);
+                if (particles != null)
+                    particles.Stop(HeavyTrooperParticles.HEAVYROOPER_PARTICLES.SPEAR);
             }
-            else if(sweepTimer <= sweepTime * 0.75f && !spearCollider.active && canSweep) //Start doing damage at the first fourth of the animation
+            else if (sweepTimer <= sweepTime * 0.75f && !spearCollider.active && canSweep) //Start doing damage at the first fourth of the animation
             {
                 //Debug.Log("Start doing damage");
                 spearCollider.active = true;
@@ -767,9 +767,9 @@ public class HeavyTrooper : Enemy
 
     private void UpdateTired()
     {
-        if(tiredTimer < tiredTime * 0.5f)
+        if (tiredTimer < tiredTime * 0.5f)
         {
-           LookAt(Core.instance.gameObject.transform.globalPosition);
+            LookAt(Core.instance.gameObject.transform.globalPosition);
             if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) < sweepRange * 2.0f)
             {
                 //Debug.Log("Going Back");
@@ -899,9 +899,8 @@ public class HeavyTrooper : Enemy
         {
             ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
 
-            if (bullet != null)
+            if (bullet != null && currentState != STATE.DIE)
             {
-               
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -909,46 +908,77 @@ public class HeavyTrooper : Enemy
                 {
                     Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
                 }
-
-                if (currentState != STATE.DIE && healthPoints <= 0.0f)
-                {
-                    inputsList.Add(INPUT.IN_DIE);
-                    if (Core.instance != null)
-                    {
-                        if (Core.instance.HasStatus(STATUS_TYPE.SP_HEAL))
-                        {
-                            if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
-                            {
-                                float healing = Core.instance.GetStatusData(STATUS_TYPE.SP_HEAL).severity;
-                                Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
-                            }
-                        }
-                        if (Core.instance.HasStatus(STATUS_TYPE.SP_FORCE_REGEN))
-                        {
-                            if (Core.instance.gameObject != null && BabyYoda.instance != null)
-                            {
-                                float force = Core.instance.GetStatusData(STATUS_TYPE.SP_FORCE_REGEN).severity;
-                                BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
-                            }
-                        }
-                        if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
-                        {
-                            float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
-                            Random rand = new Random();
-                            float result = rand.Next(1, 101);
-                            if (result <= mod)
-                                Core.instance.RefillSniper();
-
-                            Core.instance.luckyMod = 1 + mod / 100;
-                        }
-
-                    }
-                    
-                }
                 //healthPoints -= bullet.GetDamage();
-                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
+                float vulerableSev = 0.2f;
+                float vulerableTime = 4.5f;
+                STATUS_APPLY_TYPE applyType = STATUS_APPLY_TYPE.BIGGER_PERCENTAGE;
+                float damageMult = 1f;
 
-                TakeDamage(bullet.GetDamage());
+                if (Core.instance != null)
+                {
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_DMG_UP))
+                    {
+                        vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_DMG_UP).severity;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_ENABLE))
+                    {
+                        vulerableTime += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_ENABLE).severity;
+                        applyType = STATUS_APPLY_TYPE.ADD_SEV;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER))
+                    {
+                        vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER).severity;
+                        damageMult = damageRecieveMult;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_BLEED))
+                    {
+                        StatusData bleedData = Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_BLEED);
+                        float chargedBulletMaxDamage = Core.instance.GetSniperMaxDamage();
+
+                        damageMult *= bleedData.remainingTime;
+                        this.AddStatus(STATUS_TYPE.ENEMY_BLEED, STATUS_APPLY_TYPE.ADD_SEV, (chargedBulletMaxDamage * bleedData.severity) / vulerableTime, vulerableTime);
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
+                    {
+                        float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
+                        Random rand = new Random();
+                        float result = rand.Next(1, 101);
+                        if (result <= mod)
+                            Core.instance.RefillSniper();
+
+                        Core.instance.luckyMod = 1 + mod / 100;
+                    }
+                }
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, applyType, vulerableSev, vulerableTime);
+
+                TakeDamage(bullet.GetDamage() * damageMult);
+
+                if (Core.instance != null && healthPoints <= 0f)
+                {
+                    if (Core.instance.HasStatus(STATUS_TYPE.SP_HEAL))
+                    {
+                        if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
+                        {
+                            float healing = Core.instance.GetStatusData(STATUS_TYPE.SP_HEAL).severity;
+                            Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
+                        }
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SP_FORCE_REGEN))
+                    {
+                        if (Core.instance.gameObject != null && BabyYoda.instance != null)
+                        {
+                            float force = Core.instance.GetStatusData(STATUS_TYPE.SP_FORCE_REGEN).severity;
+                            BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
+                        }
+                    }
+                 
+
+                    if (Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
+                    {
+                        Core.instance.RefillSniper();
+                    }
+                }
+
             }
         }
         else if (collidedGameObject.CompareTag("ExplosiveBarrel") && collidedGameObject.GetComponent<SphereCollider>().active)
@@ -969,10 +999,15 @@ public class HeavyTrooper : Enemy
     {
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         {
-            if (Core.instance.gameObject != null)
+            pushDir = triggeredGameObject.transform.GetForward();
+            inputsList.Add(INPUT.IN_PUSHED);
+
+            if (Core.instance != null)
             {
-                pushDir = triggeredGameObject.transform.GetForward();
-                inputsList.Add(INPUT.IN_PUSHED);
+                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                    hudComponent.AddToCombo(10, 0.35f);
             }
         }
     }
@@ -980,10 +1015,16 @@ public class HeavyTrooper : Enemy
     {
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         {
+
+            pushDir = triggeredGameObject.transform.GetForward();
+            inputsList.Add(INPUT.IN_PUSHED);
+
             if (Core.instance != null)
             {
-                pushDir = triggeredGameObject.transform.GetForward();
-                inputsList.Add(INPUT.IN_PUSHED);
+                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                    hudComponent.AddToCombo(10, 0.35f);
             }
         }
     }
@@ -993,7 +1034,15 @@ public class HeavyTrooper : Enemy
     {
 
         Audio.PlayAudio(gameObject, "Play_Heavytrooper_Hit");
-        healthPoints -= damage;
+        float mod = 1;
+        if (Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.GEOTERMAL_MARKER))
+        {
+            if (HasNegativeStatus())
+            {
+                mod = 1 + GetStatusData(STATUS_TYPE.GEOTERMAL_MARKER).severity / 100;
+            }
+        }
+        healthPoints -= damage * mod; 
         if (Core.instance != null)
         {
             if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))

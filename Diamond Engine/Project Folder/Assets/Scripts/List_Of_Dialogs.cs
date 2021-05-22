@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public enum DialogImages
 {
+    IMG_NONE = -1,
     IMG_MANDO_SERIOUS = 0,
     IMG_MANDO_ASHAMED,
     IMG_MANDO_ANGRY,
@@ -39,56 +40,56 @@ public enum DialogImages
 public class List_Of_Dialogs : DiamondComponent
 {
 
-	private List<string> Final_Cutscene = new List<string>()
-	{
-		"Look who we got here. I honestly didn't know if you were going to make it.",
-		"Wow, thanks for the trust you put in me. Also, pretty bold to say that for the woman that was too scared to  do it herself. Anyways, I did it, so could you please tell me...",
-		"Don't you dare say I was scared of a simple beast again! I am a true Mandalorian warrior, you'd know what that means if you were really one of us, and not  one of those fools from your cult. If I asked you to do  it it's just because I wanted to test you.",
-		"Test me? Test me for what?",
-		"Well, as you already know, I'm trying to retake Mandalore. I just wanted to see if you were a worthy warrior, strong enough to help us bring our home world back to its glory days. And you have proven yourself indeed, so I want you to accompany us in this important mission.",
-		"Look, everyone knows Mandalore is cursed, i wouldn't go there if I were you. Besides that I already have a mission, I have to protect this kid. And to do that I need the information you promised me, so if you are  kind enough...",
-		"I see... Let's make another deal. I'll give you the information you need if, in exchange, you help me retake Mandalore once you are done with your 'far more important' mission. I think your abilities would    really help us, and it's your duty if you truly are a Mandalorian.",
-		"Wait, this doesn't seem fair. We already made a deal, remember?",
-		"Come on, was this even an inconvenience to you, killing that Rancor? Because if that's the case maybe I got the wrong person for the job. Maybe you are not atrue Mandalorian warrior after all...",
-		"Alright, alright.. I'll help you retake Mandalore, but only after I'm done with my mission. No matter how long it takes.",
-		"Ok Mando, as you wish. I'll be waiting for you to finishwhatever it is you're doing, gathering as many warriors I can to help us. Now to the information you  wanted; our fellow friend Ahsoka Tano. Can I ask whyyou want to know where she is?",
-		"No, you cannot. I need her help with the kid, that's what you need to know.",
-		"Fair enough, I guess it's none of my business. She is at Dathomir, last thing I heard she was investigating something about the Force in a Nightsisters temple. But you know what they say about that planet; if you   think Mandalore is cursed you won't like Dathomir.",
-		"Stories of dead people walking, deadly creatures... and not to mention the Nightbrothers. I still vividly remember the only two I've known... and how they overthrew Mandalore's government once.",
-		"*Snaps out* Look I don't want to bore you with old stories. The important thing is that you should be careful there.",
-		"It's ok, I'll be fine. Thanks for everything, Bo-Katan.",
-		"You're welcome. Can I ask for one last thing before you go?",
-		"I hope it's not another one of your deals.",
-		"Nothing of that. When you find Ahsoka, could you askher if she'd like to help us with our mission?",
-		"No problem. See you soon, Bo-Katan.",
-		"May the force be with you, friend.",
-	};
+    private List<string> Final_Cutscene = new List<string>()
+    {
+        "Look who we got here. I honestly didn't know if you were going to make it.",
+        "Wow, thanks for the trust you put in me. Also, pretty bold to say that for the woman that was too scared to  do it herself. Anyways, I did it, so could you please tell me...",
+        "Don't you dare say I was scared of a simple beast again! I am a true Mandalorian warrior, you'd know what that means if you were really one of us, and not  one of those fools from your cult. If I asked you to do  it it's just because I wanted to test you.",
+        "Test me? Test me for what?",
+        "Well, as you already know, I'm trying to retake Mandalore. I just wanted to see if you were a worthy warrior, strong enough to help us bring our home world back to its glory days. And you have proven yourself indeed, so I want you to accompany us in this important mission.",
+        "Look, everyone knows Mandalore is cursed, i wouldn't go there if I were you. Besides that I already have a mission, I have to protect this kid. And to do that I need the information you promised me, so if you are  kind enough...",
+        "I see... Let's make another deal. I'll give you the information you need if, in exchange, you help me retake Mandalore once you are done with your 'far more important' mission. I think your abilities would    really help us, and it's your duty if you truly are a Mandalorian.",
+        "Wait, this doesn't seem fair. We already made a deal, remember?",
+        "Come on, was this even an inconvenience to you, killing that Rancor? Because if that's the case maybe I got the wrong person for the job. Maybe you are not atrue Mandalorian warrior after all...",
+        "Alright, alright.. I'll help you retake Mandalore, but only after I'm done with my mission. No matter how long it takes.",
+        "Ok Mando, as you wish. I'll be waiting for you to finishwhatever it is you're doing, gathering as many warriors I can to help us. Now to the information you  wanted; our fellow friend Ahsoka Tano. Can I ask whyyou want to know where she is?",
+        "No, you cannot. I need her help with the kid, that's what you need to know.",
+        "Fair enough, I guess it's none of my business. She is at Dathomir, last thing I heard she was investigating something about the Force in a Nightsisters temple. But you know what they say about that planet; if you   think Mandalore is cursed you won't like Dathomir.",
+        "Stories of dead people walking, deadly creatures... and not to mention the Nightbrothers. I still vividly remember the only two I've known... and how they overthrew Mandalore's government once.",
+        "*Snaps out* Look I don't want to bore you with old stories. The important thing is that you should be careful there.",
+        "It's ok, I'll be fine. Thanks for everything, Bo-Katan.",
+        "You're welcome. Can I ask for one last thing before you go?",
+        "I hope it's not another one of your deals.",
+        "Nothing of that. When you find Ahsoka, could you askher if she'd like to help us with our mission?",
+        "No problem. See you soon, Bo-Katan.",
+        "May the force be with you, friend.",
+    };
 
-	private List<bool> Final_Cutscene_bool = new List<bool>()
-	{
+    private List<bool> Final_Cutscene_bool = new List<bool>()
+    {
 		// Mando true, other false
 		false,
-		true,
-		false,
-		true,
-		false,
-		true,
-		false,
-		true,
-		false,
-		true,
-		false,
-		true,
-		false,
-		false,
-		false,
-		true,
-		false,
-		true,
-		false,
-		true,
-		false,
-	};
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
 
     private List<DialogImages> Final_Cutscene_images = new List<DialogImages>()
     {
@@ -136,27 +137,27 @@ public class List_Of_Dialogs : DiamondComponent
     };
 
     private List<string> Initial_Cutscene = new List<string>()
-	{
-		"Well kid, we should get going if we want to kill that Rancor before nightfall.",
-		"(Looks at him, without any light of understandment shining in his eyes)",
-		"You don't remember? We agreed with that woman that if we defeated the Rancor that escaped from Jabba's palace she would help us find the Jedi.",
-		"(Closes his eyes, as if just hearing that name scared him)",
-		"It's ok kid, don't worry, he's not here now, he cannot harm you. But we have to defeat him so he leaves us   alone, you know he won't rest until we stop him.",
-		"(Slowly calms and opens his eyes, still scared, and looks at MANDO)",
-		"Let's go now, kid. I smell trouble.",
-	};
+    {
+        "Well kid, we should get going if we want to kill that Rancor before nightfall.",
+        "(Looks at him, without any light of understandment shining in his eyes)",
+        "You don't remember? We agreed with that woman that if we defeated the Rancor that escaped from Jabba's palace she would help us find the Jedi.",
+        "(Closes his eyes, as if just hearing that name scared him)",
+        "It's ok kid, don't worry, he's not here now, he cannot harm you. But we have to defeat him so he leaves us   alone, you know he won't rest until we stop him.",
+        "(Slowly calms and opens his eyes, still scared, and looks at MANDO)",
+        "Let's go now, kid. I smell trouble.",
+    };
 
-	private List<bool> Initial_Cutscene_bool = new List<bool>()
-	{
+    private List<bool> Initial_Cutscene_bool = new List<bool>()
+    {
 		// Mando true, other false
 		true,
-		false,
-		true,
-		false,
-		true,
-		false,
-		true,
-	};
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+    };
 
     private List<DialogImages> Initial_Cutscene_images = new List<DialogImages>()
     {
@@ -173,25 +174,25 @@ public class List_Of_Dialogs : DiamondComponent
 
     //////////////////////////////////////////////////////////////////////////////////////// BO KATAN ////////////////////////////////////////////////////////////////////////////////////////
     private List<string> Bo_Katan_0_1 = new List<string>()
-	{
-		"What a coincidence. Taking a break from your reclaiming of Mandalore?",
-		"Don't you even dare to utter that name, bounty hunter.",
-		"It is nice to see you too.",
-		"Tss...",
-		"I wonder why do you care so much for that pile of rubble.",
-		"You wouldn't understand, you weren't there... You just wait and see, bounty hunter",
-	};
+    {
+        "What a coincidence. Taking a break from your reclaiming of Mandalore?",
+        "Don't you even dare to utter that name, bounty hunter.",
+        "It is nice to see you too.",
+        "Tss...",
+        "I wonder why do you care so much for that pile of rubble.",
+        "You wouldn't understand, you weren't there... You just wait and see, bounty hunter",
+    };
 
-	private List<bool> Bo_Katan_0_1_bool = new List<bool>()
-	{
+    private List<bool> Bo_Katan_0_1_bool = new List<bool>()
+    {
 		// Mando true, other false
 		true,
-		false,
-		true,
-		false,
-		true,
-		false,
-	};
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
 
     private List<DialogImages> Bo_Katan_0_1_images = new List<DialogImages>()
     {
@@ -205,23 +206,23 @@ public class List_Of_Dialogs : DiamondComponent
     };
 
     private List<string> Bo_Katan_0_2 = new List<string>()
-	{
-		"Why did you really come here? Was it to convince me to help you in your campaign?",
-		"Maybe. You made a promise, remember? I helped you find Moff Gideon.",
-		"You pointed a certain direction and called it a day. Is that what you call help?",
-		"A deal is a deal. Are you backing out from your word?",
-		"No, a deal is a deal. I always honour my word.",
-	};
+    {
+        "Why did you really come here? Was it to convince me to help you in your campaign?",
+        "Maybe. You made a promise, remember? I helped you find Moff Gideon.",
+        "You pointed a certain direction and called it a day. Is that what you call help?",
+        "A deal is a deal. Are you backing out from your word?",
+        "No, a deal is a deal. I always honour my word.",
+    };
 
-	private List<bool> Bo_Katan_0_2_bool = new List<bool>()
-	{
+    private List<bool> Bo_Katan_0_2_bool = new List<bool>()
+    {
 		// Mando true, other false
 		true,
-		false,
-		true,
-		false,
-		true,
-	};
+        false,
+        true,
+        false,
+        true,
+    };
 
     private List<DialogImages> Bo_Katan_0_2_images = new List<DialogImages>()
     {
@@ -234,25 +235,25 @@ public class List_Of_Dialogs : DiamondComponent
     };
 
     private List<string> Bo_Katan_0_3 = new List<string>()
-	{
-		"Isn't there some other way I could help you?",
-		"If you're not going to fight like a Mandalorian, give us your armor. A true warrior will use it in your stead.",
-		"You know that's never going to happen.",
-		"Then this means you will fight with us, right?",
-		"You are ruthless, woman. Do I really have no other option?",
-		"If you consider yourself to be a Mandalorian, no you don't.",
-	};
+    {
+        "Isn't there some other way I could help you?",
+        "If you're not going to fight like a Mandalorian, give us your armor. A true warrior will use it in your stead.",
+        "You know that's never going to happen.",
+        "Then this means you will fight with us, right?",
+        "You are ruthless, woman. Do I really have no other option?",
+        "If you consider yourself to be a Mandalorian, no you don't.",
+    };
 
-	private List<bool> Bo_Katan_0_3_bool = new List<bool>()
-	{
+    private List<bool> Bo_Katan_0_3_bool = new List<bool>()
+    {
 		// Mando true, other false
 		true,
-		false,
-		true,
-		false,
-		true,
-		false,
-	};
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
 
     private List<DialogImages> Bo_Katan_0_3_images = new List<DialogImages>()
     {
@@ -266,30 +267,30 @@ public class List_Of_Dialogs : DiamondComponent
     };
 
     private List<string> Bo_Katan_1_1 = new List<string>()
-	{
-		"Am I supposed to drink this? It is unapologetically disgusting.",
-		"Oh, excuse me your highness. Is this not worthy enough of royal stomach?",
-		"Very funny... And yet, not entirely wrong. I am actually of clan Kryze, one of the ruling houses. ",
+    {
+        "Am I supposed to drink this? It is unapologetically disgusting.",
+        "Oh, excuse me your highness. Is this not worthy enough of royal stomach?",
+        "Very funny... And yet, not entirely wrong. I am actually of clan Kryze, one of the ruling houses. ",
         "Once upon a time, my people used to call me Mand'alor... the title of a Queen",
-		"Once upon a time? What happened?",
-		"Well, the Empire happened. And I... We lost everything. For them it was 'The Great Purge'. For us? It was a massacre",
-		"I've heard rumors about it. My tribe described it as a genocide...",
-		"Yes, it was... It truly was...",
+        "Once upon a time? What happened?",
+        "Well, the Empire happened. And I... We lost everything. For them it was 'The Great Purge'. For us? It was a massacre",
+        "I've heard rumors about it. My tribe described it as a genocide...",
+        "Yes, it was... It truly was...",
 
-	};
+    };
 
-	private List<bool> Bo_Katan_1_1_bool = new List<bool>()
-	{
+    private List<bool> Bo_Katan_1_1_bool = new List<bool>()
+    {
 		// Mando true, other false
 		false,
-		true,
-		false,
+        true,
         false,
-		true,
-		false,
-		true,
-		false,
-	};
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
 
     private List<DialogImages> Bo_Katan_1_1_images = new List<DialogImages>()
     {
@@ -305,21 +306,21 @@ public class List_Of_Dialogs : DiamondComponent
     };
 
     private List<string> Bo_Katan_1_2 = new List<string>()
-	{
-		"Say Bo-Katan, now that the Empire is defeated, why can't you reclaim your title?",
-		"I'm afraid it is not that easy. There are some political implications to that, and even worse... the Empire is not truly gone.",
-		"No... I guess not. I wouldn't have had half the trouble protecting Grogu if it were.",
-		"They are still lurking in the shadows, unnoticed, unseen. I fear for the future to come, bounty hunter",
-	};
+    {
+        "Say Bo-Katan, now that the Empire is defeated, why can't you reclaim your title?",
+        "I'm afraid it is not that easy. There are some political implications to that, and even worse... the Empire is not truly gone.",
+        "No... I guess not. I wouldn't have had half the trouble protecting Grogu if it were.",
+        "They are still lurking in the shadows, unnoticed, unseen. I fear for the future to come, bounty hunter",
+    };
 
-	private List<bool> Bo_Katan_1_2_bool = new List<bool>()
-	{
+    private List<bool> Bo_Katan_1_2_bool = new List<bool>()
+    {
 		// Mando true, other false
 		true,
-		false,
-		true,
-		false,
-	};
+        false,
+        true,
+        false,
+    };
 
     private List<DialogImages> Bo_Katan_1_2_images = new List<DialogImages>()
     {
@@ -331,23 +332,23 @@ public class List_Of_Dialogs : DiamondComponent
     };
 
     private List<string> Bo_Katan_1_3 = new List<string>()
-	{
-		"Hye, I've been thinking about our last chat. Why did you say that it's not that easy to bring all the mandalorians together?",
-		"The title of Mand'alor is not given, it is earned, and in the same way as it is earned, it can be lost.", 
+    {
+        "Hye, I've been thinking about our last chat. Why did you say that it's not that easy to bring all the mandalorians together?",
+        "The title of Mand'alor is not given, it is earned, and in the same way as it is earned, it can be lost.",
         "There's a sacred weapon, the Darksabre: It's owner has the right to rule. Moff Gideon took it from me the day we lost our home.",
-		"The Darksaber?",
-		"It is a powerful ancient weapon that belongs to the mandalorians. I must get it back, Mando. I must take what's mine",
-	};
+        "The Darksaber?",
+        "It is a powerful ancient weapon that belongs to the mandalorians. I must get it back, Mando. I must take what's mine",
+    };
 
-	private List<bool> Bo_Katan_1_3_bool = new List<bool>()
-	{
+    private List<bool> Bo_Katan_1_3_bool = new List<bool>()
+    {
 		// Mando true, other false
 		true,
-		false,
         false,
-		true,
-		false,
-	};
+        false,
+        true,
+        false,
+    };
 
     private List<DialogImages> Bo_Katan_1_3_images = new List<DialogImages>()
     {
@@ -360,31 +361,31 @@ public class List_Of_Dialogs : DiamondComponent
     };
 
     private List<string> Bo_Katan_2_1 = new List<string>()
-	{
-		"Another one? I already told you I cannot drink this, just looking at it is unpleasant.",
-		"You are welcome. By the way, what happened the last time you acquired the Darksaber?",
-		"I was blinded, young and stupid. That's what happened. ",
+    {
+        "Another one? I already told you I cannot drink this, just looking at it is unpleasant.",
+        "You are welcome. By the way, what happened the last time you acquired the Darksaber?",
+        "I was blinded, young and stupid. That's what happened. ",
         "I accepted the Darksaber from Sabine Wren, a fellow Mandalorian and rightful owner of the blade. ",
-		"I see nothing wrong with that. If everyone agreed, you did the right thing.",
-		"They surely agreed at that time. However, when the great purge occurred and I lost Mandalore, they changed their mind. ",
+        "I see nothing wrong with that. If everyone agreed, you did the right thing.",
+        "They surely agreed at that time. However, when the great purge occurred and I lost Mandalore, they changed their mind. ",
         "Given that I had not really earned the weapon, they thought I had been an illegitimate ruler and we had lost because of my weakness.",
-		"It was not your fault. The moment the Empire put its gaze on Mandalore, your fate was sealed.",
-		"I do not need your pity, bounty hunter... I need your help.",
-	};
+        "It was not your fault. The moment the Empire put its gaze on Mandalore, your fate was sealed.",
+        "I do not need your pity, bounty hunter... I need your help.",
+    };
 
-	private List<bool> Bo_Katan_2_1_bool = new List<bool>()
-	{
+    private List<bool> Bo_Katan_2_1_bool = new List<bool>()
+    {
 		// Mando true, other false
 		false,
-		true,
-		false,
+        true,
         false,
-		true,
-		false,
         false,
-		true,
-		false,
-	};
+        true,
+        false,
+        false,
+        true,
+        false,
+    };
 
     private List<DialogImages> Bo_Katan_2_1_images = new List<DialogImages>()
     {
@@ -401,27 +402,27 @@ public class List_Of_Dialogs : DiamondComponent
     };
 
     private List<string> Bo_Katan_2_2 = new List<string>()
-	{
-		"How did you gain the people's approval to become their new leader? I'm guessing not thanks to your charming skills...",
-		"Like you are one to talk. Stop trying to develop a sense of humour, thanks. That is a long story.",
-		"I have time.",
-		"*Sigh*, Then, long story short: my sister had been the leader of Mandalore for a long time and after her death, I was next in line.",
+    {
+        "How did you gain the people's approval to become their new leader? I'm guessing not thanks to your charming skills...",
+        "Like you are one to talk. Stop trying to develop a sense of humour, thanks. That is a long story.",
+        "I have time.",
+        "*Sigh*, Then, long story short: my sister had been the leader of Mandalore for a long time and after her death, I was next in line.",
         "I had already been appointed regent for a small period of time. I also helped reclaim Mandalore from the hands of a clan that had bowed to the empire and ruled Mandalore under their supervision. And there were other things...",
-		"You really didn't make that up right now did you? And here I thought I had lived an exciting life...",
-		"I already told you; you know nothing of Mandalore.",
-	};
+        "You really didn't make that up right now did you? And here I thought I had lived an exciting life...",
+        "I already told you; you know nothing of Mandalore.",
+    };
 
-	private List<bool> Bo_Katan_2_2_bool = new List<bool>()
-	{
+    private List<bool> Bo_Katan_2_2_bool = new List<bool>()
+    {
 		// Mando true, other false
 		true,
-		false,
-		true,
-		false,
         false,
-		true,
-		false,
-	};
+        true,
+        false,
+        false,
+        true,
+        false,
+    };
 
     private List<DialogImages> Bo_Katan_2_2_images = new List<DialogImages>()
     {
@@ -436,33 +437,33 @@ public class List_Of_Dialogs : DiamondComponent
     };
 
     private List<string> Bo_Katan_2_3 = new List<string>()
-	{
-		"Hold on a second, to have lived through so much... How old are you?",
-		"Well, that is rude. But coming from you, should I be surprised? I assume they do not teach manners in your cult.",
-		"*Tsch* The Tribe is not a cult. If not for them I would be dead, you know?! I owe them everything. They are good people... But seriously, when were you born?",
-		"You are hopeless. I will not tell you.",
-		"Ohh pleaseee.",
-		"Stop being annoying.",
-		"Ok, I'll guess then. You must be... in your mid-forties... No, early fifties?",
-		"You impertinent cheeky...",
-		"Aha, so I did get it right. It's incredible what cosmetic surgery can do these days...",
-		"If I ever meet you alone, you are dead.",
-	};
+    {
+        "Hold on a second, to have lived through so much... How old are you?",
+        "Well, that is rude. But coming from you, should I be surprised? I assume they do not teach manners in your cult.",
+        "*Tsch* The Tribe is not a cult. If not for them I would be dead, you know?! I owe them everything. They are good people... But seriously, when were you born?",
+        "You are hopeless. I will not tell you.",
+        "Ohh pleaseee.",
+        "Stop being annoying.",
+        "Ok, I'll guess then. You must be... in your mid-forties... No, early fifties?",
+        "You impertinent cheeky...",
+        "Aha, so I did get it right. It's incredible what cosmetic surgery can do these days...",
+        "If I ever meet you alone, you are dead.",
+    };
 
-	private List<bool> Bo_Katan_2_3_bool = new List<bool>()
-	{
+    private List<bool> Bo_Katan_2_3_bool = new List<bool>()
+    {
 		// Mando true, other false
 		true,
-		false,
-		true,
-		false,
-		true,
-		false,
-		true,
-		false,
-		true,
-		false,
-	};
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+    };
 
     private List<DialogImages> Bo_Katan_2_3_images = new List<DialogImages>()
     {
@@ -542,7 +543,7 @@ public class List_Of_Dialogs : DiamondComponent
         false,
         true,
         false,
-        false, 
+        false,
         true,
         false,
     };
@@ -809,21 +810,21 @@ public class List_Of_Dialogs : DiamondComponent
 
     //////////////////////////////////////////////////////////////////////////////////////// GROGU ////////////////////////////////////////////////////////////////////////////////////////
     private List<string> Grogu_0_1 = new List<string>()
-	{
-		"Hey kid, how are you doing? We've been quite busy lately, haven't we? Almost no time to slow down and have a chat.",
-		"(Little Grogu looks at Mando perplexed, for he has yet to entangle the mysteries of the spoken language.)",
-		"Of course... For some reason I tend to forget you can't talk.",
-		"(An innocent and pure smile is outlined in the thin, green, almost non-existent lips of the child.)",
-	};
+    {
+        "Hey kid, how are you doing? We've been quite busy lately, haven't we? Almost no time to slow down and have a chat.",
+        "(Little Grogu looks at Mando perplexed, for he has yet to entangle the mysteries of the spoken language.)",
+        "Of course... For some reason I tend to forget you can't talk.",
+        "(An innocent and pure smile is outlined in the thin, green, almost non-existent lips of the child.)",
+    };
 
-	private List<bool> Grogu_0_1_bool = new List<bool>()
-	{
+    private List<bool> Grogu_0_1_bool = new List<bool>()
+    {
 		// Mando true, other false
 		true,
-		false,
-		true,
-		false,
-	};
+        false,
+        true,
+        false,
+    };
 
     private List<DialogImages> Grogu_0_1_images = new List<DialogImages>()
     {
@@ -835,33 +836,33 @@ public class List_Of_Dialogs : DiamondComponent
     };
 
     private List<string> Grogu_0_2 = new List<string>()
-	{
-		"Anything new you want to tell me about?",
-		"(The adorable creature extends his arm while opening and closing his three short fingers, he definitely wants something, but his hand can only grasp thin air.)",
-		"Sorry kid, I don't have your ball on me right now. It's in the ship. And before you ask me, the answer is no; I'm not going back there to get it for you.",
-		"(The long and pointy ears of the child start lowering down, a small cry of sadness escapes his little mouse.)",
-		"I told you I'm not going back for a stupid little ball. Next time, remind me about it before we leave the ship. If you are so sad, you can go and get it yourself.",
-		"(The kid starts sitting up. It seems like, surprisingly he has understood what Din just said.)",
-		"Argh... Ok you win.Here you go... Yes, I know I lied to you.",
+    {
+        "Anything new you want to tell me about?",
+        "(The adorable creature extends his arm while opening and closing his three short fingers, he definitely wants something, but his hand can only grasp thin air.)",
+        "Sorry kid, I don't have your ball on me right now. It's in the ship. And before you ask me, the answer is no; I'm not going back there to get it for you.",
+        "(The long and pointy ears of the child start lowering down, a small cry of sadness escapes his little mouse.)",
+        "I told you I'm not going back for a stupid little ball. Next time, remind me about it before we leave the ship. If you are so sad, you can go and get it yourself.",
+        "(The kid starts sitting up. It seems like, surprisingly he has understood what Din just said.)",
+        "Argh... Ok you win.Here you go... Yes, I know I lied to you.",
         " I just didn't want you dropping it somewhere, because then it is me who has to go looking around everywhere for the darn ball. So, don't drop it, or next time there will be no ball.",
-		"(Little Grogu, who appeared to be listening carefully to what Mando was saying, in reality has not understood a single thing).",
+        "(Little Grogu, who appeared to be listening carefully to what Mando was saying, in reality has not understood a single thing).",
         "(Therefore, he gives his big silver friend an adorable smile to whom no one in the galaxy could say no, and joyfully takes the ball in his hands.)",
-	};
+    };
 
-	private List<bool> Grogu_0_2_bool = new List<bool>()
-	{
+    private List<bool> Grogu_0_2_bool = new List<bool>()
+    {
 		// Mando true, other false
 		true,
-		false,
-		true,
-		false,
-		true,
-		false,
-		true,
-        true,
-		false,
         false,
-	};
+        true,
+        false,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+    };
 
     private List<DialogImages> Grogu_0_2_images = new List<DialogImages>()
     {
@@ -1233,31 +1234,31 @@ public class List_Of_Dialogs : DiamondComponent
     //////////////////////////////////////////////////////////////////////////////////////// GREEF KARGA ////////////////////////////////////////////////////////////////////////////////////////
 
     private List<string> Greef_0_1 = new List<string>()
-	{
-		"Ahh, if it isn't the great Mando himself. How is my best bounty hunter doing these days?",
-		"I no longer work for you Greef. I'm doing fine, thanks.",
-		"Isn't this nice? All of us, together again, here sharing old memories... I've been rather busy these past months, but now, I'm feeling much better.",
-		"What have you been up to? Don't tell me you've got meddled up in business with another nasty client.",
-		"On the contrary my friend. I've been trying to make Nevarro a better place. I find your lack of trust in me quite painful. ",
+    {
+        "Ahh, if it isn't the great Mando himself. How is my best bounty hunter doing these days?",
+        "I no longer work for you Greef. I'm doing fine, thanks.",
+        "Isn't this nice? All of us, together again, here sharing old memories... I've been rather busy these past months, but now, I'm feeling much better.",
+        "What have you been up to? Don't tell me you've got meddled up in business with another nasty client.",
+        "On the contrary my friend. I've been trying to make Nevarro a better place. I find your lack of trust in me quite painful. ",
         "Now that I'm the magistrate once again, and with Cara's help, we are going to turn that hole into something decent.",
-		"Ah yes, I remember you were trying to do something like that. And since you turned your canteen into a school, now you have to go to other planets to get boozed-up.",
-		"One can still enjoy a drink in Nevarro, but places like this one are often a den for ruffians. We've just made it safer for kids and stuff. " ,
+        "Ah yes, I remember you were trying to do something like that. And since you turned your canteen into a school, now you have to go to other planets to get boozed-up.",
+        "One can still enjoy a drink in Nevarro, but places like this one are often a den for ruffians. We've just made it safer for kids and stuff. " ,
         "Pay us a visit next time you fly close to the planet. You'll be surprised to see how it is changed.",
-	};
+    };
 
-	private List<bool> Greef_0_1_bool = new List<bool>()
-	{
+    private List<bool> Greef_0_1_bool = new List<bool>()
+    {
 		// Mando true, other false
 		false,
-		true,
-		false,
-		true,
+        true,
         false,
-		false,
-		true,
-		false,
+        true,
         false,
-	};
+        false,
+        true,
+        false,
+        false,
+    };
 
     private List<DialogImages> Greef_0_1_images = new List<DialogImages>()
     {
@@ -1274,31 +1275,31 @@ public class List_Of_Dialogs : DiamondComponent
     };
 
     private List<string> Greef_0_2 = new List<string>()
-	{
-		"I bet you are enjoying your new position as magistrate Greef. You've always liked to order people around.",
-		"You're right, I like this job, but I prefer to think I got back what was mine. " ,
+    {
+        "I bet you are enjoying your new position as magistrate Greef. You've always liked to order people around.",
+        "You're right, I like this job, but I prefer to think I got back what was mine. " ,
         "You know I'd already been the magistrate for a long time before those nerf herders from the New Republic came to power and unfairly fired me.",
-		"Sure, sure... Because you wouldn't happen to be running some underground business of questionable ethicality, which included illegal trafficking, assassination contracts...",
-		"Hey, as far as I can remember, you and your Mandalorian friends greatly benefited from such contracts.",
-		"I didn't kill anyone who didn't deserve it. And I usually brought my targets alive.",
+        "Sure, sure... Because you wouldn't happen to be running some underground business of questionable ethicality, which included illegal trafficking, assassination contracts...",
+        "Hey, as far as I can remember, you and your Mandalorian friends greatly benefited from such contracts.",
+        "I didn't kill anyone who didn't deserve it. And I usually brought my targets alive.",
         "Tell yourself that if it makes you sleep any better. We did what we had to do to survive, and if it hadn't been me, someone else would have taken my place. ",
         "It is just how it is. Under the rule of the Empire, this was the way. ",
         "But well, as you can see, this has changed now.",
-	};
+    };
 
-	private List<bool> Greef_0_2_bool = new List<bool>()
-	{
+    private List<bool> Greef_0_2_bool = new List<bool>()
+    {
 		// Mando true, other false
 		true,
-		false,
-        false,
-		true,
-		false,
-		true,
-		false,
         false,
         false,
-	};
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+    };
 
     private List<DialogImages> Greef_0_2_images = new List<DialogImages>()
     {
@@ -1315,31 +1316,31 @@ public class List_Of_Dialogs : DiamondComponent
     };
 
     private List<string> Greef_0_3 = new List<string>()
-	{
-		"There's one thing that still doesn't convince me. What you are doing in Nevarro... do you really believe in it? Or are you just doing it to keep your new job?",
-		"You genuinely think that low of me... Look, I could have just cleaned the place up a bit and buried all the bad stuff, because it doesn't matter. ",
+    {
+        "There's one thing that still doesn't convince me. What you are doing in Nevarro... do you really believe in it? Or are you just doing it to keep your new job?",
+        "You genuinely think that low of me... Look, I could have just cleaned the place up a bit and buried all the bad stuff, because it doesn't matter. ",
         "Nobody is going to look twice to a planet like Nevarro.",
         "But I'm honestly trying. I'm really making an effort to change things. I want people to know that they can safely grow their kids there, and live comfortable lives.",
-		"Alright, I believe you. Now that Cara is helping you, I think you might actually be able to achieve what you're saying. It's not that I don't trust you, but I know you're only loyal to yourself.",
-		"My days of messing around with wrongdoers are over. It is painful to admit it, but one has already a certain age here. What I want now is peace and tranquillity.",
-		"It is quite amusing to imagine the infamous Greef Karga as an old gramps, in a park, seated on a bench while watching the children play.",
-		"Very funny. Be careful with what you say. I might not be in my golden years, but I still have a lot in me. I'm still an agent of the Guild and he who underestimates me will find himself in a bad spot. ",
+        "Alright, I believe you. Now that Cara is helping you, I think you might actually be able to achieve what you're saying. It's not that I don't trust you, but I know you're only loyal to yourself.",
+        "My days of messing around with wrongdoers are over. It is painful to admit it, but one has already a certain age here. What I want now is peace and tranquillity.",
+        "It is quite amusing to imagine the infamous Greef Karga as an old gramps, in a park, seated on a bench while watching the children play.",
+        "Very funny. Be careful with what you say. I might not be in my golden years, but I still have a lot in me. I'm still an agent of the Guild and he who underestimates me will find himself in a bad spot. ",
         "But well, you just watch Mando, next time you come to Nevarro you won't be able to recognize it.",
-	};
+    };
 
-	private List<bool> Greef_0_3_bool = new List<bool>()
-	{
+    private List<bool> Greef_0_3_bool = new List<bool>()
+    {
 		// Mando true, other false
 		true,
-		false,
         false,
         false,
-		true,
-		false,
-		true,
         false,
-		false,
-	};
+        true,
+        false,
+        true,
+        false,
+        false,
+    };
 
     private List<DialogImages> Greef_0_3_images = new List<DialogImages>()
     {
@@ -3331,29 +3332,29 @@ public class List_Of_Dialogs : DiamondComponent
     };
 
     public List<String> GetListOfDialog(uint index)
-	{
+    {
         switch (index)
         {
-			case 0:
-				return Initial_Cutscene;
-			case 1:
-				return Bo_Katan_0_1;
-			case 2:
-				return Bo_Katan_0_2;
-			case 3:
-				return Bo_Katan_0_3;
-			case 4:
-				return Bo_Katan_1_1;
-			case 5:
-				return Bo_Katan_1_2;
-			case 6:
-				return Bo_Katan_1_3;
-			case 7:
-				return Bo_Katan_2_1;
-			case 8:
-				return Bo_Katan_2_2;
-			case 9:
-				return Bo_Katan_2_3;
+            case 0:
+                return Initial_Cutscene;
+            case 1:
+                return Bo_Katan_0_1;
+            case 2:
+                return Bo_Katan_0_2;
+            case 3:
+                return Bo_Katan_0_3;
+            case 4:
+                return Bo_Katan_1_1;
+            case 5:
+                return Bo_Katan_1_2;
+            case 6:
+                return Bo_Katan_1_3;
+            case 7:
+                return Bo_Katan_2_1;
+            case 8:
+                return Bo_Katan_2_2;
+            case 9:
+                return Bo_Katan_2_3;
             case 10:
                 return Bo_Katan_3_1;
             case 11:
@@ -3373,11 +3374,11 @@ public class List_Of_Dialogs : DiamondComponent
             case 18:
                 return Bo_Katan_5_3;
             case 19:
-				return Greef_0_1;
-			case 20:
-				return Greef_0_2;
-			case 21:
-				return Greef_0_3;
+                return Greef_0_1;
+            case 20:
+                return Greef_0_2;
+            case 21:
+                return Greef_0_3;
             case 22:
                 return Greef_1_1;
             case 23:
@@ -3409,11 +3410,11 @@ public class List_Of_Dialogs : DiamondComponent
             case 36:
                 return Greef_5_3;
             case 37:
-				return Ahsoka_0_1;
-			case 38:
-				return Ahsoka_0_2;
-			case 39:
-				return Ahsoka_0_3;
+                return Ahsoka_0_1;
+            case 38:
+                return Ahsoka_0_2;
+            case 39:
+                return Ahsoka_0_3;
             case 40:
                 return Ahsoka_1_1;
             case 41:
@@ -3445,11 +3446,11 @@ public class List_Of_Dialogs : DiamondComponent
             case 54:
                 return Ahsoka_5_3;
             case 55:
-				return Cara_0_1;
-			case 56:
-				return Cara_0_2;
+                return Cara_0_1;
+            case 56:
+                return Cara_0_2;
             case 57:
-				return Cara_0_3;
+                return Cara_0_3;
             case 58:
                 return Cara_1_1;
             case 59:
@@ -3509,34 +3510,34 @@ public class List_Of_Dialogs : DiamondComponent
             case 86:
                 return Post_Initial_Cutscene_Dialogue;
         }
-		return Initial_Cutscene;
+        return Initial_Cutscene;
 
-	}
+    }
 
-	public List<bool> GetListOfOrder(uint index)
-	{
-		switch (index)
-		{
-			case 0:
-				return Initial_Cutscene_bool;
-			case 1:
-				return Bo_Katan_0_1_bool;
-			case 2:
-				return Bo_Katan_0_2_bool;
-			case 3:
-				return Bo_Katan_0_3_bool;
-			case 4:
-				return Bo_Katan_1_1_bool;
-			case 5:
-				return Bo_Katan_1_2_bool;
-			case 6:
-				return Bo_Katan_1_3_bool;
-			case 7:
-				return Bo_Katan_2_1_bool;
-			case 8:
-				return Bo_Katan_2_2_bool;
-			case 9:
-				return Bo_Katan_2_3_bool;
+    public List<bool> GetListOfOrder(uint index)
+    {
+        switch (index)
+        {
+            case 0:
+                return Initial_Cutscene_bool;
+            case 1:
+                return Bo_Katan_0_1_bool;
+            case 2:
+                return Bo_Katan_0_2_bool;
+            case 3:
+                return Bo_Katan_0_3_bool;
+            case 4:
+                return Bo_Katan_1_1_bool;
+            case 5:
+                return Bo_Katan_1_2_bool;
+            case 6:
+                return Bo_Katan_1_3_bool;
+            case 7:
+                return Bo_Katan_2_1_bool;
+            case 8:
+                return Bo_Katan_2_2_bool;
+            case 9:
+                return Bo_Katan_2_3_bool;
             case 10:
                 return Bo_Katan_3_1_bool;
             case 11:
@@ -3692,8 +3693,8 @@ public class List_Of_Dialogs : DiamondComponent
             case 86:
                 return Post_Initial_Cutscene_Dialogue_bool;
         }
-		return Initial_Cutscene_bool;
-	}
+        return Initial_Cutscene_bool;
+    }
 
     public List<DialogImages> GetListOfImages(uint index)
     {
@@ -3703,171 +3704,171 @@ public class List_Of_Dialogs : DiamondComponent
                 return Initial_Cutscene_images;
             case 1:
                 return Bo_Katan_0_1_images;
-            case 2:                 
+            case 2:
                 return Bo_Katan_0_2_images;
-            case 3:                 
+            case 3:
                 return Bo_Katan_0_3_images;
-            case 4:                 
+            case 4:
                 return Bo_Katan_1_1_images;
-            case 5:                 
+            case 5:
                 return Bo_Katan_1_2_images;
-            case 6:                 
+            case 6:
                 return Bo_Katan_1_3_images;
-            case 7:                 
+            case 7:
                 return Bo_Katan_2_1_images;
-            case 8:                 
+            case 8:
                 return Bo_Katan_2_2_images;
-            case 9:                 
+            case 9:
                 return Bo_Katan_2_3_images;
-            case 10:                
+            case 10:
                 return Bo_Katan_3_1_images;
-            case 11:                
+            case 11:
                 return Bo_Katan_3_2_images;
             case 12:
                 return Bo_Katan_3_3_images;
-            case 13:                
+            case 13:
                 return Bo_Katan_4_1_images;
-            case 14:                
+            case 14:
                 return Bo_Katan_4_2_images;
-            case 15:                
+            case 15:
                 return Bo_Katan_4_3_images;
-            case 16:                
+            case 16:
                 return Bo_Katan_5_1_images;
-            case 17:                
+            case 17:
                 return Bo_Katan_5_2_images;
-            case 18:                
+            case 18:
                 return Bo_Katan_5_3_images;
             case 19:
                 return Greef_0_1_images;
-            case 20:             
+            case 20:
                 return Greef_0_2_images;
-            case 21:             
+            case 21:
                 return Greef_0_3_images;
-            case 22:             
+            case 22:
                 return Greef_1_1_images;
-            case 23:             
+            case 23:
                 return Greef_1_2_images;
             case 24:
                 return Greef_1_3_images;
-            case 25:             
+            case 25:
                 return Greef_2_1_images;
-            case 26:             
+            case 26:
                 return Greef_2_2_images;
-            case 27:             
+            case 27:
                 return Greef_2_3_images;
-            case 28:             
+            case 28:
                 return Greef_3_1_images;
-            case 29:             
+            case 29:
                 return Greef_3_2_images;
-            case 30:             
+            case 30:
                 return Greef_3_3_images;
-            case 31:             
+            case 31:
                 return Greef_4_1_images;
-            case 32:             
+            case 32:
                 return Greef_4_2_images;
-            case 33:             
+            case 33:
                 return Greef_4_3_images;
-            case 34:             
+            case 34:
                 return Greef_5_1_images;
-            case 35:             
+            case 35:
                 return Greef_5_2_images;
-            case 36:             
+            case 36:
                 return Greef_5_3_images;
             case 37:
                 return Ahsoka_0_1_images;
-            case 38:              
+            case 38:
                 return Ahsoka_0_2_images;
-            case 39:              
+            case 39:
                 return Ahsoka_0_3_images;
-            case 40:              
+            case 40:
                 return Ahsoka_1_1_images;
-            case 41:              
+            case 41:
                 return Ahsoka_1_2_images;
-            case 42:              
+            case 42:
                 return Ahsoka_1_3_images;
-            case 43:              
+            case 43:
                 return Ahsoka_2_1_images;
             case 44:
                 return Ahsoka_2_2_images;
-            case 45:              
+            case 45:
                 return Ahsoka_2_3_images;
-            case 46:              
+            case 46:
                 return Ahsoka_3_1_images;
-            case 47:              
+            case 47:
                 return Ahsoka_3_2_images;
-            case 48:              
+            case 48:
                 return Ahsoka_3_3_images;
-            case 49:              
+            case 49:
                 return Ahsoka_4_1_images;
-            case 50:              
+            case 50:
                 return Ahsoka_4_2_images;
-            case 51:              
+            case 51:
                 return Ahsoka_4_3_images;
-            case 52:              
+            case 52:
                 return Ahsoka_5_1_images;
-            case 53:              
+            case 53:
                 return Ahsoka_5_2_images;
-            case 54:              
+            case 54:
                 return Ahsoka_5_3_images;
             case 55:
                 return Cara_0_1_images;
-            case 56:            
+            case 56:
                 return Cara_0_2_images;
-            case 57:            
+            case 57:
                 return Cara_0_3_images;
             case 58:
                 return Cara_1_1_images;
-            case 59:            
+            case 59:
                 return Cara_1_2_images;
-            case 60:            
+            case 60:
                 return Cara_1_3_images;
-            case 61:            
+            case 61:
                 return Cara_2_1_images;
-            case 62:            
+            case 62:
                 return Cara_2_2_images;
-            case 63:            
+            case 63:
                 return Cara_2_3_images;
-            case 64:            
+            case 64:
                 return Cara_3_1_images;
-            case 65:            
+            case 65:
                 return Cara_3_2_images;
-            case 66:            
+            case 66:
                 return Cara_3_3_images;
-            case 67:            
+            case 67:
                 return Cara_4_1_images;
-            case 68:            
+            case 68:
                 return Cara_4_2_images;
-            case 69:            
+            case 69:
                 return Cara_4_3_images;
-            case 70:            
+            case 70:
                 return Cara_5_1_images;
-            case 71:            
+            case 71:
                 return Cara_5_2_images;
-            case 72:            
+            case 72:
                 return Cara_5_3_images;
             case 73:
                 return Grogu_0_1_images;
-            case 74:             
+            case 74:
                 return Grogu_0_2_images;
-            case 75:             
+            case 75:
                 return Grogu_1_1_images;
-            case 76:             
+            case 76:
                 return Grogu_1_2_images;
-            case 77:             
+            case 77:
                 return Grogu_2_1_images;
-            case 78:             
+            case 78:
                 return Grogu_2_2_images;
-            case 79:             
+            case 79:
                 return Grogu_3_1_images;
-            case 80:             
+            case 80:
                 return Grogu_3_2_images;
-            case 81:             
+            case 81:
                 return Grogu_4_1_images;
-            case 82:             
+            case 82:
                 return Grogu_4_2_images;
-            case 83:             
+            case 83:
                 return Grogu_5_1_images;
-            case 84:             
+            case 84:
                 return Grogu_5_2_images;
             case 85:
                 return Final_Cutscene_images;
@@ -3885,13 +3886,13 @@ public class List_Of_Dialogs : DiamondComponent
                 return "Grogu";
             case 1:
                 return "Bo-Katan";
-            case 2:       
+            case 2:
                 return "Bo-Katan";
-            case 3:       
+            case 3:
                 return "Bo-Katan";
-            case 4:       
+            case 4:
                 return "Bo-Katan";
-            case 5:       
+            case 5:
                 return "Bo-Katan";
             case 6:
                 return "Bo-Katan";
@@ -3905,19 +3906,19 @@ public class List_Of_Dialogs : DiamondComponent
                 return "Bo-Katan";
             case 11:
                 return "Bo-Katan";
-            case 12:      
+            case 12:
                 return "Bo-Katan";
-            case 13:      
+            case 13:
                 return "Bo-Katan";
-            case 14:      
+            case 14:
                 return "Bo-Katan";
-            case 15:      
+            case 15:
                 return "Bo-Katan";
-            case 16:      
+            case 16:
                 return "Bo-Katan";
-            case 17:      
+            case 17:
                 return "Bo-Katan";
-            case 18:      
+            case 18:
                 return "Bo-Katan";
             case 19:
                 return "Greef";

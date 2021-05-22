@@ -28,7 +28,7 @@ public class BH_Bullet : DiamondComponent
 
     public ParticleSystem destroyPar = null;
     private string tagToAvoid = "None";
-
+    private GameObject goToAvoid = null;
 
     public void Update()
     {
@@ -44,12 +44,12 @@ public class BH_Bullet : DiamondComponent
         if (!use_range_instead_of_time)
             currentLifeTime += Time.deltaTime;
         else
-            actual_range_squared = (gameObject.transform.globalPosition -initial_pos).magnitude;
+            actual_range_squared = (gameObject.transform.globalPosition - initial_pos).magnitude;
 
         // gameObject.transform.localPosition += gameObject.transform.GetForward() * (speed * Time.deltaTime);
         if (!triggered)
         {
-            if(entity != null && entity.HasStatus(STATUS_TYPE.PRIM_SPEED))
+            if (entity != null && entity.HasStatus(STATUS_TYPE.PRIM_SPEED))
             {
                 gameObject.SetVelocity(gameObject.transform.GetForward() * speed * (1 + entity.GetStatusData(STATUS_TYPE.PRIM_SPEED).severity / 100));
             }
@@ -88,7 +88,10 @@ public class BH_Bullet : DiamondComponent
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-        if (triggered == false && !triggeredGameObject.CompareTag(tagToAvoid))
+        int uidToAvoid = goToAvoid != null ? goToAvoid.GetUid() : -1;
+
+        if (triggered == false && uidToAvoid != triggeredGameObject.GetUid() &&
+            !triggeredGameObject.CompareTag("PushSkill") && !triggeredGameObject.CompareTag("Bullet") && !triggeredGameObject.CompareTag("StormTrooperBullet"))
         {
             triggered = true;
 
@@ -103,9 +106,37 @@ public class BH_Bullet : DiamondComponent
 
     }
 
+    public void OnCollisionEnter(GameObject triggeredGameObject)
+    {
+        int uidToAvoid = goToAvoid != null ? goToAvoid.GetUid() : -1;
+
+
+        if (triggeredGameObject.CompareTag("PushSkill") && !this.gameObject.CompareTag("Bullet"))
+        {
+            speed *= -1.25f;
+
+            this.gameObject.tag = "Bullet";
+        }
+        else if (triggered == false && uidToAvoid != triggeredGameObject.GetUid() &&
+    !triggeredGameObject.CompareTag("PushSkill") && !triggeredGameObject.CompareTag("Bullet") && !triggeredGameObject.CompareTag("StormTrooperBullet"))
+        {
+            triggered = true;
+
+            if (destroyOBJ != null)
+            {
+                destroyPar = destroyOBJ.GetComponent<ParticleSystem>();
+
+                if (destroyPar != null)
+                    destroyPar.Play();
+            }
+        }
+
+
+    }
+
     public float GetDamage()
     {
-       
+
         return damage;
     }
 
@@ -113,12 +144,17 @@ public class BH_Bullet : DiamondComponent
     {
         entity = myEntity;
 
-        if(entity.HasStatus(STATUS_TYPE.PRIM_RANGE))
-        range_squared *= (1 + entity.GetStatusData(STATUS_TYPE.PRIM_RANGE).severity / 100);
+        if (entity.HasStatus(STATUS_TYPE.PRIM_RANGE))
+            range_squared *= (1 + entity.GetStatusData(STATUS_TYPE.PRIM_RANGE).severity / 100);
     }
 
     public void SetTagToAvoid(string _tagToAvoid)
     {
         tagToAvoid = _tagToAvoid;
+    }
+
+    public void SetGameObjectToAvoid(GameObject _goToAvoid)
+    {
+        goToAvoid = _goToAvoid;
     }
 }

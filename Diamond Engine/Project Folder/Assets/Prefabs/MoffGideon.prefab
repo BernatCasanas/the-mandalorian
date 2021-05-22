@@ -18,10 +18,10 @@
                 2.3599998950958252
             ],
             "Rotation": [
-                5.4267701443677652e-09,
-                -0.76645177602767944,
-                5.4267701443677652e-09,
-                0.64230179786682129
+                5.426770588456975e-09,
+                -0.76645189523696899,
+                5.426770588456975e-09,
+                0.64230185747146606
             ],
             "Scale": [
                 1.0000098943710327,
@@ -121,24 +121,24 @@
                     "hitParticles": 1889709846,
                     "slerpSpeed": 5,
                     "healthPoints": 40,
-                    "maxHealthPoints_fase1": 20,
-                    "maxHealthPoints_fase2": 20,
-                    "followSpeed": 7,
+                    "maxHealthPoints_fase1": 100,
+                    "maxHealthPoints_fase2": 100,
+                    "followSpeed": 4,
                     "touchDamage": 10,
                     "distance2Melee": 10,
-                    "probWanderP2": 40,
-                    "probWander": 60,
-                    "radiusWander": 5,
+                    "probWanderP2": 30,
+                    "probWander": 40,
+                    "radiusWander": 2,
                     "distanceProjectile": 17,
                     "dashSpeed": 16,
                     "dashBackWardDistance": 3,
-                    "dashForwardDistance": 20,
+                    "dashForwardDistance": 5,
                     "closerDistance": 10,
                     "farDistance": 15,
                     "velocityRotationShooting": 20,
                     "zoomTimeEasing": 0.5,
                     "baseZoom": 45,
-                    "zoomInValue": 40,
+                    "zoomInValue": 35,
                     "swordRange": 14,
                     "spawner1": 1797586545,
                     "spawner2": 1167400653,
@@ -150,7 +150,9 @@
                     "neutralTime": 5,
                     "enemiesTime": 20,
                     "cadencyTime": 0.20000000298023224,
-                    "cadencyTimer": 0
+                    "cadencyTimer": 0,
+                    "boss_bar": 528943371,
+                    "moff_mesh": 538688846
                 },
                 {
                     "Type": 13,
@@ -1235,10 +1237,10 @@
                 -6.0736510931747034e-08
             ],
             "Rotation": [
-                0.0081982165575027466,
-                -0.023347696289420128,
-                -0.10966072976589203,
-                0.99366110563278198
+                0.008198215626180172,
+                -0.023347694426774979,
+                -0.10966071486473083,
+                0.99366098642349243
             ],
             "Scale": [
                 1,
@@ -1845,7 +1847,8 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -2617,20 +2620,29 @@
                         1
                     ],
                     "alternColorStencil": [
-                        1,
-                        1,
-                        1
+                        0.7807692289352417,
+                        0.76275146007537842,
+                        0.76275146007537842
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": false,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
                     "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
-                    "MaterialUID": 1948688504
+                    "MaterialLibraryPath": "Library\/Materials\/2059344958.mat",
+                    "MaterialUID": 2059344958
+                },
+                {
+                    "Type": 26,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/1540644281.mat",
+                    "MaterialUID": 1540644281
                 }
             ]
         },

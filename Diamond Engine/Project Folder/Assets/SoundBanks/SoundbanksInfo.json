@@ -18,7 +18,7 @@
    {
     "Id": "225682233",
     "Language": "SFX",
-    "Hash": "618575260",
+    "Hash": "2735237641",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Skytrooper",
     "ShortName": "Skytrooper",
     "Path": "Skytrooper.bnk",
@@ -355,7 +355,7 @@
    {
     "Id": "913881297",
     "Language": "SFX",
-    "Hash": "1414557561",
+    "Hash": "3872241367",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Wampa_Skell",
     "ShortName": "Wampa_Skell",
     "Path": "Wampa_Skell.bnk",
@@ -819,7 +819,7 @@
    {
     "Id": "1019160887",
     "Language": "SFX",
-    "Hash": "2321700344",
+    "Hash": "106327431",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Heavytrooper",
     "ShortName": "Heavytrooper",
     "Path": "Heavytrooper.bnk",
@@ -1045,7 +1045,7 @@
    {
     "Id": "1063759122",
     "Language": "SFX",
-    "Hash": "3680511556",
+    "Hash": "1372765773",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Moff_Gideon",
     "ShortName": "Moff_Gideon",
     "Path": "Moff_Gideon.bnk",
@@ -1403,7 +1403,7 @@
    {
     "Id": "1093318992",
     "Language": "SFX",
-    "Hash": "3238856086",
+    "Hash": "430967443",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Mando",
     "ShortName": "Mando",
     "Path": "Mando.bnk",
@@ -1589,6 +1589,38 @@
       ]
      },
      {
+      "Id": "326072179",
+      "Name": "Play_Footsteps_Stone_Mando",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Footsteps_Stone_Mando",
+      "DurationType": "Infinite",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "119721926",
+        "Language": "SFX",
+        "ShortName": "Footstep stone 2.wav",
+        "Path": "SFX\\Footstep stone 2_FC2D3A10.wem"
+       },
+       {
+        "Id": "470698696",
+        "Language": "SFX",
+        "ShortName": "Footstep stone 1.wav",
+        "Path": "SFX\\Footstep stone 1_FC2D3A10.wem"
+       },
+       {
+        "Id": "546938401",
+        "Language": "SFX",
+        "ShortName": "Footstep stone 4.wav",
+        "Path": "SFX\\Footstep stone 4_FC2D3A10.wem"
+       },
+       {
+        "Id": "967739381",
+        "Language": "SFX",
+        "ShortName": "Footstep stone 3.wav",
+        "Path": "SFX\\Footstep stone 3_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
       "Id": "1398027825",
       "Name": "Play_Footsteps_Water_Mando",
       "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Footsteps_Water_Mando",
@@ -1713,38 +1745,6 @@
         "Language": "SFX",
         "ShortName": "mando death.wav",
         "Path": "SFX\\mando death_FC2D3A10.wem"
-       }
-      ]
-     },
-     {
-      "Id": "3924203422",
-      "Name": "Play_Mando_Grenade_Explosion_1",
-      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Grenade_Explosion_1",
-      "DurationType": "OneShot",
-      "DurationMin": "0.862404",
-      "DurationMax": "0.862404",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "626340448",
-        "Language": "SFX",
-        "ShortName": "Grenade explosion 1.wav",
-        "Path": "SFX\\Grenade explosion 1_FC2D3A10.wem"
-       }
-      ]
-     },
-     {
-      "Id": "3924203421",
-      "Name": "Play_Mando_Grenade_Explosion_2",
-      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Grenade_Explosion_2",
-      "DurationType": "OneShot",
-      "DurationMin": "1.058163",
-      "DurationMax": "1.058163",
-      "IncludedMemoryFiles": [
-       {
-        "Id": "287122511",
-        "Language": "SFX",
-        "ShortName": "Grenade explosion 2.wav",
-        "Path": "SFX\\Grenade explosion 2_FC2D3A10.wem"
        }
       ]
      },
@@ -1879,6 +1879,38 @@
       ]
      },
      {
+      "Id": "3091473523",
+      "Name": "Play_Mando_Pull_Command",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Pull_Command",
+      "DurationType": "OneShot",
+      "DurationMin": "0.364172",
+      "DurationMax": "0.364172",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "326072626",
+        "Language": "SFX",
+        "ShortName": "Mando pull command.wav",
+        "Path": "SFX\\Mando pull command_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1886759354",
+      "Name": "Play_Mando_Push_Command",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Push_Command",
+      "DurationType": "OneShot",
+      "DurationMin": "0.557868",
+      "DurationMax": "0.557868",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "635438933",
+        "Language": "SFX",
+        "ShortName": "Mando push command.wav",
+        "Path": "SFX\\Mando push command_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
       "Id": "3935346668",
       "Name": "Play_Mando_Respawn",
       "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Respawn",
@@ -1891,6 +1923,38 @@
         "Language": "SFX",
         "ShortName": "Spawn Mando.wav",
         "Path": "SFX\\Spawn Mando_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "3658764362",
+      "Name": "Play_Mando_Wall_Command",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Mando_Wall_Command",
+      "DurationType": "OneShot",
+      "DurationMin": "0.696145",
+      "DurationMax": "0.696145",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "631159903",
+        "Language": "SFX",
+        "ShortName": "Mando wall command.wav",
+        "Path": "SFX\\Mando wall command_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "3129350930",
+      "Name": "Play_Sniper_Charge",
+      "ObjectPath": "\\Events\\Default Work Unit\\Mando\\Play_Sniper_Charge",
+      "DurationType": "OneShot",
+      "DurationMin": "0.592630",
+      "DurationMax": "0.592630",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "194102914",
+        "Language": "SFX",
+        "ShortName": "Mando sniper charge.wav",
+        "Path": "SFX\\Mando sniper charge_FC2D3A10.wem"
        }
       ]
      },
@@ -2180,7 +2244,7 @@
    {
     "Id": "1551306167",
     "Language": "SFX",
-    "Hash": "1851649402",
+    "Hash": "3528797385",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\UI",
     "ShortName": "UI",
     "Path": "UI.bnk",
@@ -2274,6 +2338,22 @@
       ]
      },
      {
+      "Id": "3548595190",
+      "Name": "Play_UI_Combo_Increase",
+      "ObjectPath": "\\Events\\Default Work Unit\\UI\\Play_UI_Combo_Increase",
+      "DurationType": "OneShot",
+      "DurationMin": "0.664263",
+      "DurationMax": "0.664263",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "178388527",
+        "Language": "SFX",
+        "ShortName": "UI combo increase.wav",
+        "Path": "SFX\\UI combo increase_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
       "Id": "3589147915",
       "Name": "Play_UI_Credit_Pickup",
       "ObjectPath": "\\Events\\Default Work Unit\\UI\\Play_UI_Credit_Pickup",
@@ -2338,6 +2418,22 @@
       ]
      },
      {
+      "Id": "2141970788",
+      "Name": "Play_Victory_Music",
+      "ObjectPath": "\\Events\\Default Work Unit\\UI\\Play_Victory_Music",
+      "DurationType": "OneShot",
+      "DurationMin": "5.734445",
+      "DurationMax": "5.734445",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "26559065",
+        "Language": "SFX",
+        "ShortName": "Victory music.wav",
+        "Path": "SFX\\Victory music_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
       "Id": "1931338186",
       "Name": "Resume_Object",
       "ObjectPath": "\\Events\\Default Work Unit\\Resume_Object",
@@ -2359,6 +2455,11 @@
       "Id": "467158820",
       "Name": "SourceVolume",
       "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourceVolume"
+     },
+     {
+      "Id": "1547598200",
+      "Name": "SourcePitch",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SourcePitch"
      },
      {
       "Id": "2704707011",
@@ -3057,7 +3158,7 @@
    {
     "Id": "3434002875",
     "Language": "SFX",
-    "Hash": "1570504211",
+    "Hash": "4118761397",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Cantine",
     "ShortName": "Cantine",
     "Path": "Cantine.bnk",
@@ -3141,7 +3242,7 @@
    {
     "Id": "3795682265",
     "Language": "SFX",
-    "Hash": "938603909",
+    "Hash": "1248434596",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Bantha",
     "ShortName": "Bantha",
     "Path": "Bantha.bnk",
@@ -3358,7 +3459,7 @@
    {
     "Id": "3991942870",
     "Language": "SFX",
-    "Hash": "2823452028",
+    "Hash": "1166700713",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Music",
     "ShortName": "Music",
     "Path": "Music.bnk",
@@ -3402,10 +3503,22 @@
         "Path": "SFX\\Combat Music A\\OST 8- Percussion_03682274.wem"
        },
        {
+        "Id": "127745438",
+        "Language": "SFX",
+        "ShortName": "Explore Music B\\108790-Orchestral_bass_loop_staccato_C_minor_160_bpm-AOS03030.wav",
+        "Path": "SFX\\Explore Music B\\108790-Orchestral_bass_loop_staccato_C_minor_160_bpm-AOS03030_03682274.wem"
+       },
+       {
         "Id": "157860956",
         "Language": "SFX",
         "ShortName": "Combat Music B\\56086-dramatic-orchestra-02-until-they-came-L2.wav",
         "Path": "SFX\\Combat Music B\\56086-dramatic-orchestra-02-until-they-came-L2_03682274.wem"
+       },
+       {
+        "Id": "272222586",
+        "Language": "SFX",
+        "ShortName": "Combat Music B\\127342-GSAFK02.wav",
+        "Path": "SFX\\Combat Music B\\127342-GSAFK02_03682274.wem"
        },
        {
         "Id": "359960869",
@@ -3420,10 +3533,22 @@
         "Path": "SFX\\Hud_03682274.wem"
        },
        {
+        "Id": "378795747",
+        "Language": "SFX",
+        "ShortName": "Moff Gideon\\53211-MUSICAL_ORCHESTRAL_HITS_MINOR_THIRD_01.wav",
+        "Path": "SFX\\Moff Gideon\\53211-MUSICAL_ORCHESTRAL_HITS_MINOR_THIRD_01_03682274.wem"
+       },
+       {
         "Id": "422689495",
         "Language": "SFX",
         "ShortName": "EXP STRINGS 2.wav",
         "Path": "SFX\\EXP STRINGS 2_03682274.wem"
+       },
+       {
+        "Id": "433108000",
+        "Language": "SFX",
+        "ShortName": "Moff Gideon\\106516-Choir_loop_C_minor_160_bpm-AOS03035.wav",
+        "Path": "SFX\\Moff Gideon\\106516-Choir_loop_C_minor_160_bpm-AOS03035_03682274.wem"
        },
        {
         "Id": "435793512",
@@ -3436,6 +3561,24 @@
         "Language": "SFX",
         "ShortName": "OST 15-19-Strings.wav",
         "Path": "SFX\\OST 15-19-Strings_03682274.wem"
+       },
+       {
+        "Id": "438189867",
+        "Language": "SFX",
+        "ShortName": "Moff Gideon\\107447-Choir_loop_C_minor_160_bpm-AOS03036.wav",
+        "Path": "SFX\\Moff Gideon\\107447-Choir_loop_C_minor_160_bpm-AOS03036_03682274.wem"
+       },
+       {
+        "Id": "458163574",
+        "Language": "SFX",
+        "ShortName": "Moff Gideon\\56336-dramatic-orchestra-09-sudden-interception-L2.wav",
+        "Path": "SFX\\Moff Gideon\\56336-dramatic-orchestra-09-sudden-interception-L2_03682274.wem"
+       },
+       {
+        "Id": "463460953",
+        "Language": "SFX",
+        "ShortName": "Cinematic Music\\106162-Violins_loop_D_minor_160_bpm-AOS03055.wav",
+        "Path": "SFX\\Cinematic Music\\106162-Violins_loop_D_minor_160_bpm-AOS03055_03682274.wem"
        },
        {
         "Id": "560818724",
@@ -3510,6 +3653,12 @@
         "Path": "SFX\\OST 11-16-Strings and Brass 1_03682274.wem"
        },
        {
+        "Id": "928239865",
+        "Language": "SFX",
+        "ShortName": "Death Music\\53024-MUSICAL_STRINGS_ACCENT_SWELLS_MYSTERIOUS_SAD_01.wav",
+        "Path": "SFX\\Death Music\\53024-MUSICAL_STRINGS_ACCENT_SWELLS_MYSTERIOUS_SAD_01_03682274.wem"
+       },
+       {
         "Id": "929528731",
         "Language": "SFX",
         "ShortName": "Explore Music A\\EXPLORER THEME A-Reverb.wav",
@@ -3528,10 +3677,10 @@
         "Path": "SFX\\EXP STRINGS 1_03682274.wem"
        },
        {
-        "Id": "967017406",
+        "Id": "986358008",
         "Language": "SFX",
-        "ShortName": "Combat Music B\\57235-Dubstep_Factory_Drums.wav",
-        "Path": "SFX\\Combat Music B\\57235-Dubstep_Factory_Drums_03682274.wem"
+        "ShortName": "Moff Gideon\\107318-Violins_fadeout_loop_D_minor_160_bpm-AOS03051.wav",
+        "Path": "SFX\\Moff Gideon\\107318-Violins_fadeout_loop_D_minor_160_bpm-AOS03051_03682274.wem"
        },
        {
         "Id": "1027776590",
@@ -3701,24 +3850,6 @@
         "SwitchValue": "{D651359C-1684-4E02-8D22-5225AA612899}",
         "Children": [
          {
-          "SwitchValue": "{7B56CD26-D41D-4E95-B202-EEE0956FC8CB}",
-          "Children": [
-           {
-            "SwitchValue": "{979A83A1-5FD3-4444-AB96-1ABEDBCBCCEC}",
-            "Media": [
-             {
-              "Id": "858066275"
-             }
-            ]
-           }
-          ]
-         }
-        ]
-       },
-       {
-        "SwitchValue": "{D651359C-1684-4E02-8D22-5225AA612899}",
-        "Children": [
-         {
           "SwitchValue": "{C826D092-9E88-4F28-AD9B-BB26DAA56935}",
           "Children": [
            {
@@ -3749,10 +3880,28 @@
               "Id": "157860956"
              },
              {
-              "Id": "846567291"
+              "Id": "272222586"
              },
              {
-              "Id": "967017406"
+              "Id": "846567291"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{D651359C-1684-4E02-8D22-5225AA612899}",
+        "Children": [
+         {
+          "SwitchValue": "{1995C1DC-FFFD-40FD-8DC0-3949D9E51BA5}",
+          "Children": [
+           {
+            "SwitchValue": "{14FF8C72-F46D-4D5D-90BD-E12CD2053E44}",
+            "Media": [
+             {
+              "Id": "127745438"
              }
             ]
            }
@@ -3774,6 +3923,90 @@
              },
              {
               "Id": "935081151"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{D651359C-1684-4E02-8D22-5225AA612899}",
+        "Children": [
+         {
+          "SwitchValue": "{8F3E7D98-9D8B-49BE-9D8B-11A5E51D215C}",
+          "Children": [
+           {
+            "SwitchValue": "{979A83A1-5FD3-4444-AB96-1ABEDBCBCCEC}",
+            "Media": [
+             {
+              "Id": "463460953"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{D651359C-1684-4E02-8D22-5225AA612899}",
+        "Children": [
+         {
+          "SwitchValue": "{4ABB07D6-A711-4090-8BD1-C097E5B31A97}",
+          "Children": [
+           {
+            "SwitchValue": "{979A83A1-5FD3-4444-AB96-1ABEDBCBCCEC}",
+            "Media": [
+             {
+              "Id": "378795747"
+             },
+             {
+              "Id": "433108000"
+             },
+             {
+              "Id": "438189867"
+             },
+             {
+              "Id": "458163574"
+             },
+             {
+              "Id": "986358008"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{D651359C-1684-4E02-8D22-5225AA612899}",
+        "Children": [
+         {
+          "SwitchValue": "{E256D6D5-00AD-47AF-8EFA-3B5BEC0864C6}",
+          "Children": [
+           {
+            "SwitchValue": "{14FF8C72-F46D-4D5D-90BD-E12CD2053E44}",
+            "Media": [
+             {
+              "Id": "858066275"
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{3CD06F62-EFC8-4105-92E8-B8AFE607AE27}",
+        "Children": [
+         {
+          "SwitchValue": "{9FB3B783-6554-4159-8ED7-7CBE608ADBBC}",
+          "Children": [
+           {
+            "SwitchValue": "{979A83A1-5FD3-4444-AB96-1ABEDBCBCCEC}",
+            "Media": [
+             {
+              "Id": "928239865"
              }
             ]
            }
@@ -3869,19 +4102,14 @@
         "ObjectPath": "\\States\\Default Work Unit\\Game_State\\Run_3"
        },
        {
-        "Id": "1323330439",
-        "Name": "WampaSkel_WampaDeath",
-        "ObjectPath": "\\States\\Default Work Unit\\Game_State\\WampaSkel_WampaDeath"
-       },
-       {
-        "Id": "1343209842",
-        "Name": "WampaSkel_SkelDeath",
-        "ObjectPath": "\\States\\Default Work Unit\\Game_State\\WampaSkel_SkelDeath"
-       },
-       {
         "Id": "554925945",
         "Name": "Moff_Gideon_Phase_2",
         "ObjectPath": "\\States\\Default Work Unit\\Game_State\\Moff_Gideon_Phase_2"
+       },
+       {
+        "Id": "1838596016",
+        "Name": "Cinematic",
+        "ObjectPath": "\\States\\Default Work Unit\\Game_State\\Cinematic"
        }
       ]
      },
@@ -3953,7 +4181,7 @@
    {
     "Id": "4179269225",
     "Language": "SFX",
-    "Hash": "3077940727",
+    "Hash": "3975830651",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Grogu",
     "ShortName": "Grogu",
     "Path": "Grogu.bnk",
@@ -3995,6 +4223,56 @@
         "Language": "SFX",
         "ShortName": "Force push.wav",
         "Path": "SFX\\Force push_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "3400331702",
+      "Name": "Play_Grogu_Cheering",
+      "ObjectPath": "\\Events\\Default Work Unit\\Grogu\\Play_Grogu_Cheering",
+      "DurationType": "OneShot",
+      "DurationMin": "0.921950",
+      "DurationMax": "0.960181",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "69887237",
+        "Language": "SFX",
+        "ShortName": "Grogu cheering 3.wav",
+        "Path": "SFX\\Grogu cheering 3_FC2D3A10.wem"
+       },
+       {
+        "Id": "424537616",
+        "Language": "SFX",
+        "ShortName": "Grogu cheering 2.wav",
+        "Path": "SFX\\Grogu cheering 2_FC2D3A10.wem"
+       },
+       {
+        "Id": "1026140889",
+        "Language": "SFX",
+        "ShortName": "Grogu cheering 1.wav",
+        "Path": "SFX\\Grogu cheering 1_FC2D3A10.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1796781893",
+      "Name": "Play_Grogu_Cry",
+      "ObjectPath": "\\Events\\Default Work Unit\\Grogu\\Play_Grogu_Cry",
+      "DurationType": "OneShot",
+      "DurationMin": "1.859116",
+      "DurationMax": "2.125011",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "273699381",
+        "Language": "SFX",
+        "ShortName": "Grogu crying 1.wav",
+        "Path": "SFX\\Grogu crying 1_FC2D3A10.wem"
+       },
+       {
+        "Id": "767617738",
+        "Language": "SFX",
+        "ShortName": "Grogu crying 2.wav",
+        "Path": "SFX\\Grogu crying 2_FC2D3A10.wem"
        }
       ]
      },

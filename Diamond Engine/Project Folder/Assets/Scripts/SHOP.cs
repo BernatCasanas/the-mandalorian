@@ -20,39 +20,91 @@ public enum ShopPrice
 public class SHOP : DiamondComponent
 {
     public GameObject shopUI;
-    public GameObject hud;
     public GameObject textPopUp;
 
     //Buttons
-    public GameObject item1;
-    public GameObject item2;
-    public GameObject item3;
-    public GameObject item4;
+    public GameObject item1 = null;
+    public GameObject item2 = null;
+    public GameObject item3 = null;
+    public GameObject item4 = null;
+    private GameObject[] items = null;
 
-    public GameObject currency = null;
+    private ShopButtons[] shopButtons = null;
+
+    public GameObject currencyObject = null;
+    private Text currencyText = null;
+
     public float interactionRange = 2.0f;
     public bool autoGenerateItems = true;
     public bool opening;
     public GameObject defaultButton = null;
 
     bool shopOpen = false;
+    private bool start = true;
 
     public void Awake()
     {
         DebugOptionsHolder.goToNextLevel = false;
         shopOpen = false;
         opening = false;
+        start = true;
+        if (currencyObject != null)
+        {
+            currencyText = currencyObject.GetComponent<Text>();
+            UpdateCurrency(PlayerResources.GetRunCoins());
+        }
+
+        Debug.Log("Shop 1");
+
+        items = new GameObject[] { item1, item2, item3, item4 };
+
+        Debug.Log("Shop 2");
+
+        shopButtons = new ShopButtons[items.Length];
+        for(int i = 0; i < items.Length; i++)
+        {
+            if (items[i] != null)
+                shopButtons[i] = items[i].GetComponent<ShopButtons>();
+        }
+        Debug.Log("Shop 3");
+
         if (autoGenerateItems)
             RandomiseItems();
+    }
 
-        if (hud == null)
-            hud = InternalCalls.FindObjectWithName("HUD");
-
-        //Audio.PlayAudio(gameObject, "Play_Post_Boss_Room_1_Ambience");
+    private void Start()
+    {
+        start = false;
+        if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
+        {
+            Audio.SetState("Game_State", "Run");
+            Audio.SetState("Player_State", "Alive");
+            if (MusicSourceLocate.instance != null)
+                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+        }
+        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
+        {
+            Audio.SetState("Game_State", "Run_2");
+            Audio.SetState("Player_State", "Alive");
+            if (MusicSourceLocate.instance != null)
+                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+        }
+        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
+        {
+            Audio.SetState("Game_State", "Run_3");
+            Audio.SetState("Player_State", "Alive");
+            if (MusicSourceLocate.instance != null)
+                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+        }
     }
 
     public void Update()
     {
+        if (start)
+        {
+            Start();
+            start = false;
+        }
         if (shopOpen)
         {
             if (Input.GetGamepadButton(DEControllerButton.B) == KeyState.KEY_DOWN)
@@ -63,7 +115,7 @@ public class SHOP : DiamondComponent
             if (Input.GetKey(DEKeyCode.M) == KeyState.KEY_DOWN)
             {
                 PlayerResources.AddRunCoins(100);
-                hud.GetComponent<HUD>().UpdateCurrency(PlayerResources.GetRunCoins());
+                UpdateCurrency(PlayerResources.GetRunCoins());
             }
         }
         else
@@ -75,7 +127,6 @@ public class SHOP : DiamondComponent
                 if (Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN)
                 {
                     OpenShop();
-                    currency.SetParent(shopUI.parent);
                     shopUI.SetParent(shopUI.parent);
                 }
             }
@@ -99,8 +150,22 @@ public class SHOP : DiamondComponent
         if (shopOpen)
         {
             int currency = PlayerResources.GetRunCoins();
+            float discount = 0;
+            if (Core.instance.ShopDiscount > 0)
+            {
+                Core.instance.ShopDiscount--;
+                float price = (float)item.price;
+                discount = price * 0.75f;
+                Debug.Log("discount" + discount.ToString());
 
-            if (currency >= (int)item.price_type)
+                if (Core.instance.ShopDiscount == 0)
+                {
+                    Core.instance.RemoveStatus(STATUS_TYPE.GREEF_PAYCHECK);
+                    ResetShopPrices();
+                }
+            }
+
+            if (currency >= (int)item.price - discount)
             {
                 if (item.itemType == ShopItems.SHOP_ITEM_BOON)
                 {
@@ -116,7 +181,7 @@ public class SHOP : DiamondComponent
                     Core.instance.gameObject.GetComponent<PlayerHealth>().HealPercentMax(0.25f);
                 }
 
-                currency -= (int)item.price_type;
+                currency -= (int)item.price - (int)discount;
                 ret = true;
             }
 
@@ -125,16 +190,22 @@ public class SHOP : DiamondComponent
         return ret;
     }
 
-    private void UpdateCurrency(int val)
+    public void UpdateCurrency(int value)
     {
-        PlayerResources.SetRunCoins(val);
+        PlayerResources.SetRunCoins(value);
 
-        if(hud != null)
-            hud.GetComponent<HUD>().UpdateCurrency(val);
+        Debug.Log("Current currency: " + PlayerResources.GetRunCoins().ToString());
+
+        if (currencyText != null)
+            currencyText.text = PlayerResources.GetRunCoins().ToString();
+        else
+            Debug.Log("Null currency text");
     }
 
     public void RandomiseItems()
     {
+        Debug.Log("Random");
+
         List<BOONS> available = new List<BOONS>();
         for (int i = 0; i < BoonDataHolder.boonType.Length; ++i)  //Number of boons
         {
@@ -145,70 +216,42 @@ public class SHOP : DiamondComponent
         Random rand = new Random();
         int item;
 
-        if (item1 != null)
+        for(int i = 0; i < shopButtons.Length; i++)
         {
-            if (available.Count > 0)
+            if(shopButtons[i] != null)
             {
-                item = rand.Next(0, available.Count);
-                SetShopItem(item1.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_BOON, available[item]);
-                available.RemoveAt(item);
-            }
-            else
-            {
-                SetShopItem(item1.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_HEALTHREPLENISHMENT, BOONS.BOON_MAX);
-            }
-        }
+                shopButtons[i].Init();
 
-        if (item2 != null)
-        {
-            if (available.Count > 0)
-            {
-                item = rand.Next(0, available.Count);
-                SetShopItem(item2.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_BOON, available[item]);
-                available.RemoveAt(item);
-            }
-            else
-            {
-                SetShopItem(item2.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_HEALTHREPLENISHMENT, BOONS.BOON_MAX);
-            }
-        }
-
-        if (item3 != null)
-        {
-            if (available.Count > 0)
-            {
-                item = rand.Next(0, available.Count);
-                SetShopItem(item3.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_BOON, available[item]);
-                available.RemoveAt(item);
-            }
-            else
-            {
-                SetShopItem(item3.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_HEALTHREPLENISHMENT, BOONS.BOON_MAX);
-            }
-        }
-
-        if (item4 != null)
-        {
-            if (available.Count > 0)
-            {
-                item = rand.Next(0, available.Count);
-                SetShopItem(item4.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_BOON, available[item]);
-                available.RemoveAt(item);
-            }
-            else
-            {
-                SetShopItem(item4.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_HEALTHREPLENISHMENT, BOONS.BOON_MAX);
+                if (available.Count > 0)
+                {
+                    item = rand.Next(0, available.Count);
+                    SetShopItem(shopButtons[i], ShopItems.SHOP_ITEM_BOON, available[item]);
+                    available.RemoveAt(item);
+                }
+                else
+                {
+                    SetShopItem(item1.GetComponent<ShopButtons>(), ShopItems.SHOP_ITEM_HEALTHREPLENISHMENT, BOONS.BOON_MAX);
+                }
             }
         }
     }
 
     private void SetShopItem(ShopButtons item, ShopItems type, BOONS boon)
     {
+        float discount = 0;
+        if (Core.instance.ShopDiscount > 0)
+        {
+            float price = (float)BoonDataHolder.boonType[(int)boon].price;
+            discount = price * 0.75f;
+            Debug.Log("Shop discount " + discount.ToString());
+        }
+ 
+
         if (type == ShopItems.SHOP_ITEM_BOON)
         {
             if (BoonDataHolder.boonType[(int)boon] != null)
             {
-                item.SetItem(type, BoonDataHolder.boonType[(int)boon].price, BoonDataHolder.boonType[(int)boon].name, BoonDataHolder.boonType[(int)boon].rewardDescription);
+                item.SetItem(type, BoonDataHolder.boonType[(int)boon].price - (int)discount, BoonDataHolder.boonType[(int)boon].name, BoonDataHolder.boonType[(int)boon].rewardDescription);
                 item.resource = BoonDataHolder.boonType[(int)boon];
             }
             else
@@ -216,7 +259,18 @@ public class SHOP : DiamondComponent
         }
         else
         {
-            item.SetItem(type, ShopPrice.SHOP_CHEAP, "Health Replenishment", "Heal for 25% of your max life");
+            item.SetItem(type, ShopPrice.SHOP_CHEAP -(int)discount, "Health Replenishment", "Heal for 25% of your max life");
+        }
+    }
+
+    private void ResetShopPrices()
+    {
+       for(int i = 0; i < items.Length; i++)
+        {
+            if(shopButtons[i] != null)
+            {
+                shopButtons[i].SetDefaultPrice();
+            }
         }
     }
 
@@ -226,7 +280,7 @@ public class SHOP : DiamondComponent
         opening = true;
         shopUI.EnableNav(true);
         textPopUp.Enable(false);
-        Core.instance.LockInputs(true); ;
+        Core.instance.LockInputs(true); 
         if (defaultButton != null)
             defaultButton.GetComponent<Navigation>().Select();
     }
@@ -237,7 +291,5 @@ public class SHOP : DiamondComponent
         shopUI.EnableNav(false);
         Core.instance.LockInputs(false); ;
         textPopUp.Enable(true);
-        if (currency != null)
-            currency.SetParent(hud);
     }
 }

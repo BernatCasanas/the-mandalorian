@@ -110,7 +110,7 @@ public class Skytrooper : Enemy
         if (hitParticlesObj != null)
             hitParticles = hitParticlesObj.GetComponent<ParticleSystem>();
         //else
-            //Debug.Log("Hit particles gameobject not found!");
+        //Debug.Log("Hit particles gameobject not found!");
 
         shootTime = Animator.GetAnimationDuration(gameObject, "SK_Shoot") * 0.5f;
         shootAnimationTime = Animator.GetAnimationDuration(gameObject, "SK_Shoot");
@@ -683,19 +683,54 @@ public class Skytrooper : Enemy
 
             if (bullet != null)
             {
-             
 
-                Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
+
+                if (currentState != STATE.DIE)
+
+                    Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
                 if (Core.instance.hud != null)
                 {
                     Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
                 }
-
-                if (currentState != STATE.DIE && healthPoints <= 0.0f)
                 {
-                    inputsList.Add(INPUT.IN_DIE);
+
+
+                    float vulerableSev = 0.2f;
+                    float vulerableTime = 4.5f;
+                    STATUS_APPLY_TYPE applyType = STATUS_APPLY_TYPE.BIGGER_PERCENTAGE;
+                    float damageMult = 1f;
+
                     if (Core.instance != null)
+                    {
+                        if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_DMG_UP))
+                        {
+                            vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_DMG_UP).severity;
+                        }
+                        if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_ENABLE))
+                        {
+                            vulerableTime += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_ENABLE).severity;
+                            applyType = STATUS_APPLY_TYPE.ADD_SEV;
+                        }
+                        if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER))
+                        {
+                            vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER).severity;
+                            damageMult = damageRecieveMult;
+                        }
+                        if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_BLEED))
+                        {
+                            StatusData bleedData = Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_BLEED);
+                            float chargedBulletMaxDamage = Core.instance.GetSniperMaxDamage();
+
+                            damageMult *= bleedData.remainingTime;
+                            this.AddStatus(STATUS_TYPE.ENEMY_BLEED, STATUS_APPLY_TYPE.ADD_SEV, (chargedBulletMaxDamage * bleedData.severity) / vulerableTime, vulerableTime);
+                        }
+                    }
+                    this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, applyType, vulerableSev, vulerableTime);
+
+                    TakeDamage(bullet.GetDamage() * damageMult);
+
+                    if (Core.instance != null && healthPoints <= 0f)
                     {
                         if (Core.instance.HasStatus(STATUS_TYPE.SP_HEAL))
                         {
@@ -723,15 +758,13 @@ public class Skytrooper : Enemy
 
                             Core.instance.luckyMod = 1 + mod / 100;
                         }
+
+                        if (Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
+                        {
+                            Core.instance.RefillSniper();
+                        }
                     }
-
                 }
-                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
-                // healthPoints -= bullet.damage;
-
-                TakeDamage(bullet.GetDamage());
-                if (healthPoints <= 0.0f && Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
-                    Core.instance.RefillSniper();
             }
         }
     }
@@ -740,11 +773,17 @@ public class Skytrooper : Enemy
     {
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         {
-            if (Core.instance.gameObject != null)
+            pushDir = triggeredGameObject.transform.GetForward();
+            inputsList.Add(INPUT.IN_PUSHED);
+
+            if (Core.instance != null)
             {
-                pushDir = triggeredGameObject.transform.GetForward();
-                inputsList.Add(INPUT.IN_PUSHED);
+                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                    hudComponent.AddToCombo(10, 0.35f);
             }
+
         }
     }
 
@@ -763,7 +802,15 @@ public class Skytrooper : Enemy
     public override void TakeDamage(float damage)
     {
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Hit");
-        healthPoints -= damage;
+        float mod = 1;
+        if (Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.GEOTERMAL_MARKER))
+        {
+            if (HasNegativeStatus())
+            {
+                mod = 1 + GetStatusData(STATUS_TYPE.GEOTERMAL_MARKER).severity / 100;
+            }
+        }
+        healthPoints -= damage * mod; 
         if (Core.instance != null)
         {
             if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))
@@ -799,7 +846,7 @@ public class Skytrooper : Enemy
                         BabyYoda.instance.SetCurrentForce(BabyYoda.instance.GetCurrentForce() + (int)(Core.instance.GetStatusData(STATUS_TYPE.WINDU_FORCE).severity));
                 }
             }
-                
+
         }
     }
 

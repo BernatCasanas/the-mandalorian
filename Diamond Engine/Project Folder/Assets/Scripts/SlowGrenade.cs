@@ -72,6 +72,7 @@ public class SlowGrenade : DiamondComponent
             if (procTimer > procTime)
             {
                 procActivation = true;
+                Audio.PlayAudio(gameObject, "Play_Mando_Grenade_Pulse_Wave");
                 procTimer = 0f;
             }
 
@@ -193,6 +194,7 @@ public class SlowGrenade : DiamondComponent
                     granadeArea.Play();
             }
             detonate = true;
+            Audio.PlayAudio(gameObject, "Play_Mando_Grenade_Set_Up");
             lifeTimer = 0;
 
         }

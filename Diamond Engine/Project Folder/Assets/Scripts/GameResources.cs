@@ -567,9 +567,9 @@ public class YodaForceControl : GameResources
     }
 }
 
-public class CossHairLuckyShot : GameResources
+public class CrossHairLuckyShot : GameResources
 {
-    public CossHairLuckyShot() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "After impacting a sniper shot, you have a 33% chance to recover ammo, and next shot deals +33% more damage.")
+    public CrossHairLuckyShot() : base(218162333, RewardType.REWARD_BOON, 1.0f, "After impacting a sniper shot, you have a 33% chance to recover ammo, and next shot deals +33% more damage.")
     {
         name = "Cad Bane’s rocket boots";
         price = ShopPrice.SHOP_EXPENSIVE;
@@ -583,13 +583,13 @@ public class CossHairLuckyShot : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
                 Core.boons.Add(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.CROSSHAIR_LUCKY_SHOT);
         }
     }
 }
 public class AhsokaDetermination : GameResources
 {
-    public AhsokaDetermination() : base(1240646973, RewardType.REWARD_BOON, 1.0f, " Killing an enemy with a sniper shot refills the bullet")
+    public AhsokaDetermination() : base(724681876, RewardType.REWARD_BOON, 1.0f, " Killing an enemy with a sniper shot refills the bullet")
     {
         name = "Cad Bane’s rocket boots";
         price = ShopPrice.SHOP_EXPENSIVE;
@@ -603,14 +603,14 @@ public class AhsokaDetermination : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.AHSOKA_DET))
                 Core.boons.Add(STATUS_TYPE.AHSOKA_DET);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_AHSOKA_DETERMINATION);
         }
     }
 }
 
 public class BobbaStunAmmo : GameResources
 {
-    public BobbaStunAmmo() : base(1240646973, RewardType.REWARD_BOON, 1.0f, " Proc ratio and area on grenade boosted by 50%")
+    public BobbaStunAmmo() : base(535810690, RewardType.REWARD_BOON, 1.0f, " Proc ratio and area on grenade boosted by 50%")
     {
         name = "Cad Bane’s rocket boots";
         price = ShopPrice.SHOP_EXPENSIVE;
@@ -624,13 +624,13 @@ public class BobbaStunAmmo : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.BOBBA_STUN_AMMO))
                 Core.boons.Add(STATUS_TYPE.BOBBA_STUN_AMMO);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_BOBBA_FETT_STUN_AMM);
         }
     }
 }
 public class SoloQuickDraw : GameResources
 {
-    public SoloQuickDraw() : base(1240646973, RewardType.REWARD_BOON, 1.0f, "when hit, heal 25% of the damage received if an enemy is hit back in less than 4 seconds.")
+    public SoloQuickDraw() : base(65111559, RewardType.REWARD_BOON, 1.0f, "when hit, heal 25% of the damage received if an enemy is hit back in less than 4 seconds.")
     {
         name = "Cad Bane’s rocket boots";
         price = ShopPrice.SHOP_EXPENSIVE;
@@ -644,7 +644,47 @@ public class SoloQuickDraw : GameResources
             if (!Core.boons.Contains(STATUS_TYPE.SOLO_QUICK_DRAW))
                 Core.boons.Add(STATUS_TYPE.SOLO_QUICK_DRAW);
 
-            PlayerResources.AddResourceBy1(RewardType.REWARD_BOON, GetType());
+            PlayerResources.AddBoon(BOONS.BOON_SOLO_QUICK_DRAW);
+        }
+    }
+}
+public class GeotermalMarker : GameResources
+{
+    public GeotermalMarker() : base(65111559, RewardType.REWARD_BOON, 1.0f, "any enemy affected by any kind of negative status takes +33% damage")
+    {
+        name = "Cad Bane’s rocket boots";
+        price = ShopPrice.SHOP_EXPENSIVE;
+    }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.GEOTERMAL_MARKER, STATUS_APPLY_TYPE.ADDITIVE, 33f, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.GEOTERMAL_MARKER))
+                Core.boons.Add(STATUS_TYPE.GEOTERMAL_MARKER);
+
+            PlayerResources.AddBoon(BOONS.BOON_GEOTERMAL_MARKER);
+        }
+    }
+}
+public class GreefPaycheck : GameResources
+{
+    public GreefPaycheck() : base(65111559, RewardType.REWARD_BOON, 1.0f, "75% Discount on the next item bought in the shop")
+    {
+        name = "Cad Bane’s rocket boots";
+        price = ShopPrice.SHOP_EXPENSIVE;
+    }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.GREEF_PAYCHECK, STATUS_APPLY_TYPE.ADDITIVE, 1, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.GREEF_PAYCHECK))
+                Core.boons.Add(STATUS_TYPE.GREEF_PAYCHECK);
+
+            PlayerResources.AddBoon(BOONS.BOON_GREEF_PAYCHECK);
         }
     }
 }
@@ -660,7 +700,7 @@ static class BoonDataHolder
         boonType[(int)BOONS.BOON_CADBANE_ROCKET_BOOTS] =       new CadBaneBoots();
         boonType[(int)BOONS.BOON_CADBANE_SLEIGHT] =            new CadBaneSoH();
         boonType[(int)BOONS.BOON_ECHO_QUICK_RECOVERY] =        new EchoRecovery();
-        boonType[(int)BOONS.BOON_GREEF_PAYCHECK] =             new EchoRecovery();     //Add this when done = new GreefPaycheck();
+        boonType[(int)BOONS.BOON_GREEF_PAYCHECK] =             new GreefPaycheck();     
         boonType[(int)BOONS.BOON_ITS_A_TRAP] =                 new ItsATrap();
         boonType[(int)BOONS.BOON_MANDALORIAN_QUICK_DRAW] =     new MandoQuickDraw();
         boonType[(int)BOONS.BOON_REX_SECOND_BLASTER] =         new RexSecBlaster();
@@ -674,12 +714,12 @@ static class BoonDataHolder
         boonType[(int)BOONS.BOON_FENNEC_SNIPER_RIFLE] =        new FennecSniper();
         boonType[(int)BOONS.BOON_BOBBA_FETT_STUN_AMM] =        new BobbaStunAmmo();    
         boonType[(int)BOONS.BOON_BOSSK_SPECIAL_AMMO] =         new BosskSpecialAmmo();
-        boonType[(int)BOONS.BOON_GEOTERMAL_MARKER] =           new BosskSpecialAmmo(); //Add this when done= new GeotermalMarker();
+        boonType[(int)BOONS.BOON_GEOTERMAL_MARKER] =           new GeotermalMarker(); 
         boonType[(int)BOONS.BOON_MASTER_LUMINARA_FORCE] =      new LuminaraForce();
         boonType[(int)BOONS.BOON_MASTER_WINDU_FORCE] =         new WinduForceControl();
         boonType[(int)BOONS.BOON_MASTER_YODA_FORCE] =          new YodaForceControl();
         boonType[(int)BOONS.BOON_MANDALORIAN_CODE] =           new MandoCode();
-        boonType[(int)BOONS.CROSSHAIR_LUCKY_SHOT] =            new CossHairLuckyShot();
+        boonType[(int)BOONS.CROSSHAIR_LUCKY_SHOT] =            new CrossHairLuckyShot();
         boonType[(int)BOONS.BOON_AHSOKA_DETERMINATION] =       new AhsokaDetermination();
 
         for (int i = 0; i < boonType.Length; i++)

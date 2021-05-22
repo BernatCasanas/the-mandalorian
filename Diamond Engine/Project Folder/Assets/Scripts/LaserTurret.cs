@@ -60,13 +60,8 @@ public class LaserTurret : Enemy
     public float laserOffser;
 
     //Explosion effect
-    public GameObject explosion = null;
-    public GameObject wave = null;
-    public GameObject mesh = null;
     public GameObject hit = null;
 
-    private ParticleSystem partExp = null;
-    private ParticleSystem partWave = null;
     private ParticleSystem hitParticle = null;
 
     public void Awake()
@@ -359,24 +354,6 @@ public class LaserTurret : Enemy
         //Debug.Log("TURRET DIE");
         dieTimer = dieTime;
 
-        if (explosion != null && wave != null)
-        {
-            //Debug.Log("Want to play particles");
-            partExp = explosion.GetComponent<ParticleSystem>();
-            partWave = wave.GetComponent<ParticleSystem>();
-        }
-
-        if (partExp != null)
-            partExp.Play();
-
-        if (partWave != null)
-            partWave.Play();
-
-        if (mesh != null)
-            InternalCalls.Destroy(mesh);
-
-        Audio.PlayAudio(gameObject, "Play_Turrer_Destruction");
-
         EnemyManager.RemoveEnemy(gameObject);
 
         //Combo
@@ -405,6 +382,8 @@ public class LaserTurret : Enemy
         DropCoins();
 
         Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+        GameObject obj = InternalCalls.CreatePrefab("Library/Prefabs/828188331.prefab", gameObject.transform.globalPosition, Quaternion.identity, new Vector3(1, 1, 1));
+        Audio.PlayAudio(obj, "Play_Turret_Destruction");
         InternalCalls.Destroy(gameObject);
     }
 
@@ -447,18 +426,63 @@ public class LaserTurret : Enemy
         {
             ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
 
-         
-
-            Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
-
-            if (Core.instance.hud != null)
+            if (bullet != null && currentState != STATE.DIE)
             {
-                Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
-            }
 
-            if (currentState != STATE.DIE && healthPoints <= 0.0f)
-            {
-                inputsList.Add(INPUT.IN_DIE);
+                Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
+
+                if (Core.instance.hud != null)
+                {
+                    Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
+                }
+
+                if (healthPoints <= 0.0f && Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
+                    Core.instance.RefillSniper();
+                //healthPoints -= bullet.damage;
+                float vulerableSev = 0.2f;
+                float vulerableTime = 4.5f;
+                STATUS_APPLY_TYPE applyType = STATUS_APPLY_TYPE.BIGGER_PERCENTAGE;
+                float damageMult = 1f;
+
+                if (Core.instance != null)
+                {
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_DMG_UP))
+                    {
+                        vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_DMG_UP).severity;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_ENABLE))
+                    {
+                        vulerableTime += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_ENABLE).severity;
+                        applyType = STATUS_APPLY_TYPE.ADD_SEV;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER))
+                    {
+                        vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER).severity;
+                        damageMult = damageRecieveMult;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_BLEED))
+                    {
+                        StatusData bleedData = Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_BLEED);
+                        float chargedBulletMaxDamage = Core.instance.GetSniperMaxDamage();
+
+                        damageMult *= bleedData.remainingTime;
+                        this.AddStatus(STATUS_TYPE.ENEMY_BLEED, STATUS_APPLY_TYPE.ADD_SEV, (chargedBulletMaxDamage * bleedData.severity) / vulerableTime, vulerableTime);
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
+                    {
+                        float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
+                        Random rand = new Random();
+                        float result = rand.Next(1, 101);
+                        if (result <= mod)
+                            Core.instance.RefillSniper();
+
+                        Core.instance.luckyMod = 1 + mod / 100;
+                    }
+                }
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, applyType, vulerableSev, vulerableTime);
+
+                TakeDamage(bullet.GetDamage() * damageMult);
+
                 if (Core.instance != null)
                 {
                     if (Core.instance.HasStatus(STATUS_TYPE.SP_HEAL))
@@ -477,26 +501,13 @@ public class LaserTurret : Enemy
                             BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
                         }
                     }
-                    if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
-                    {
-                        float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
-                        Random rand = new Random();
-                        float result = rand.Next(1, 101);
-                        if (result <= mod)
-                            Core.instance.RefillSniper();
+          
 
-                        Core.instance.luckyMod = 1 + mod / 100;
+                    if (Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
+                    {
+                        Core.instance.RefillSniper();
                     }
                 }
-
-            }
-            if (bullet != null)
-            {
-                TakeDamage(bullet.GetDamage());
-                if (healthPoints <= 0.0f && Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
-                    Core.instance.RefillSniper();
-                //healthPoints -= bullet.damage;
-                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
             }
 
         }
@@ -506,7 +517,15 @@ public class LaserTurret : Enemy
     public override void TakeDamage(float damage)
     {
         Debug.Log("Turret Takes damage");
-        healthPoints -= damage;
+        float mod = 1;
+        if (Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.GEOTERMAL_MARKER))
+        {
+            if (HasNegativeStatus())
+            {
+                mod = 1 + GetStatusData(STATUS_TYPE.GEOTERMAL_MARKER).severity / 100;
+            }
+        }
+        healthPoints -= damage * mod;
         if (Core.instance != null)
         {
             if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))

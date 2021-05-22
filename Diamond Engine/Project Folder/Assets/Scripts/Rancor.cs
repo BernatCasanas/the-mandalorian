@@ -214,7 +214,6 @@ public class Rancor : Entity
 
         dieTime = Animator.GetAnimationDuration(gameObject, "RN_Die") - 0.016f;
 
-        Counter.SumToCounterType(Counter.CounterTypes.RANCOR);
         damaged = 0.0f;
         runTime = (Animator.GetAnimationDuration(gameObject, "RN_Walk")) / 2.0f;
         dustTime = (Animator.GetAnimationDuration(gameObject, "RN_Walk")) / 4.0f;
@@ -1422,8 +1421,40 @@ public class Rancor : Entity
 
             if (bulletScript != null)
             {
-                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
-                damageToBoss += bulletScript.GetDamage();
+                float vulerableSev = 0.2f;
+                float vulerableTime = 4.5f;
+                STATUS_APPLY_TYPE applyType = STATUS_APPLY_TYPE.BIGGER_PERCENTAGE;
+                float damageMult = 1f;
+
+                if (Core.instance != null)
+                {
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_DMG_UP))
+                    {
+                        vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_DMG_UP).severity;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_ENABLE))
+                    {
+                        vulerableTime += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_ENABLE).severity;
+                        applyType = STATUS_APPLY_TYPE.ADD_SEV;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER))
+                    {
+                        vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER).severity;
+                        damageMult = damageRecieveMult;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_BLEED))
+                    {
+                        StatusData bleedData = Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_BLEED);
+                        float chargedBulletMaxDamage = Core.instance.GetSniperMaxDamage();
+
+                        damageMult *= bleedData.remainingTime;
+                        this.AddStatus(STATUS_TYPE.ENEMY_BLEED, STATUS_APPLY_TYPE.ADD_SEV, (chargedBulletMaxDamage * bleedData.severity) / vulerableTime, vulerableTime);
+                    }
+
+                }
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, applyType, vulerableSev, vulerableTime);
+
+                damageToBoss += bulletScript.GetDamage() * damageMult;
             }
             else
             {
@@ -1586,7 +1617,15 @@ public class Rancor : Entity
             Debug.Log("Rancor damage" + damage.ToString());
             if (currentState != RANCOR_STATE.DEAD)
             {
-                healthPoints -= damage;
+                float mod = 1;
+                if (Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.GEOTERMAL_MARKER))
+                {
+                    if (HasNegativeStatus())
+                    {
+                        mod = 1 + GetStatusData(STATUS_TYPE.GEOTERMAL_MARKER).severity / 100;
+                    }
+                }
+                healthPoints -= damage * mod;
                 if (Core.instance != null)
                 {
                     if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))
@@ -1615,6 +1654,23 @@ public class Rancor : Entity
                     inputsList.Add(RANCOR_INPUT.IN_DEAD);
                 }
             }
+        }
+    }
+
+    protected override void OnUpdateStatus(StatusData statusToUpdate)
+    {
+        switch (statusToUpdate.statusType)
+        {
+            case STATUS_TYPE.ENEMY_BLEED:
+                {
+                    float damageToTake = statusToUpdate.severity * Time.deltaTime;
+
+                    TakeDamage(damageToTake);
+                }
+                break;
+
+            default:
+                break;
         }
     }
 

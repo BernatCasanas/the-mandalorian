@@ -75,10 +75,9 @@ public class Deathtrooper : Enemy
 
     //Action variables
     private int shotsShooted = 0;
-    public int maxShots = 4;
-    public float dispersionAngleDeg = 0.0f;
+    //public int maxShots = 4;
+    //public float dispersionAngleDeg = 0.0f;
     private bool canShoot = true;
-
 
     //push
     public float forcePushMod = 1f;
@@ -111,7 +110,7 @@ public class Deathtrooper : Enemy
         if (hitParticlesObj != null)
             hitParticle = hitParticlesObj.GetComponent<ParticleSystem>();
         //else
-            //Debug.Log("Hit particles gameobject not found!");
+        //Debug.Log("Hit particles gameobject not found!");
 
         if (shotgunParticlesObj != null)
             shotgunParticle = shotgunParticlesObj.GetComponent<ParticleSystem>();
@@ -403,7 +402,7 @@ public class Deathtrooper : Enemy
         agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
         Animator.Play(gameObject, "DTH_Wander", speedMult);
-        if(shotgun != null)
+        if (shotgun != null)
             Animator.Play(shotgun, "DTH_Wander", speedMult);
 
         UpdateAnimationSpd(speedMult);
@@ -434,7 +433,7 @@ public class Deathtrooper : Enemy
             Animator.Play(shotgun, "DTH_Run", speedMult);
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Deathtrooper_Run");
-        
+
     }
     private void UpdateRun()
     {
@@ -454,7 +453,7 @@ public class Deathtrooper : Enemy
     {
         //Debug.Log("DEATHTROOPER SHOOT");
         Animator.Play(gameObject, "DTH_Idle", speedMult);
-        if(shotgun != null)
+        if (shotgun != null)
             Animator.Play(shotgun, "DTH_Idle", speedMult);
         UpdateAnimationSpd(speedMult);
         betweenStatesTimer = betweenStatesTime;
@@ -469,10 +468,10 @@ public class Deathtrooper : Enemy
             betweenStatesTimer -= myDeltaTime;
             if (betweenStatesTimer <= 0.0f)
             {
-                ShotgunShoot(maxShots);
+                ShotgunShoot();
                 betweenBurstsTimer = timeBewteenBursts;
 
-                if(shotgunParticle != null)
+                if (shotgunParticle != null)
                     shotgunParticle.Play();
             }
 
@@ -500,47 +499,31 @@ public class Deathtrooper : Enemy
 
             if (betweenBurstsTimer <= 0.0f)
             {
-                ShotgunShoot(maxShots - 1);
+                ShotgunShoot();
             }
         }
 
         UpdateAnimationSpd(speedMult);
     }
 
-    private void ShotgunShoot(int numShots)
+    private void ShotgunShoot()
     {
-        float angleIncrement = dispersionAngleDeg / (numShots - 1);
-        float currentAngle = -(dispersionAngleDeg * 0.5f);
+       
+        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/550070139.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, null);
+        bullet.GetComponent<DeathTrooperBullet>().damage = damage;
+        bullet.GetComponent<DeathTrooperBullet>().SetTagToAvoid("Deathtrooper");
+        bullet.GetComponent<DeathTrooperBullet>().SetGameObjectToAvoid(this.gameObject);
 
-        for (int i = 0; i < numShots; i++)
-        {
-            GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1234372269.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
-
-            if (bullet != null)
-            {
-                bullet.GetComponent<BH_Bullet>().damage = damage;
-                bullet.transform.localRotation *= Quaternion.RotateAroundAxis(Vector3.up, currentAngle * Mathf.Deg2RRad);
-                bullet.transform.localPosition += bullet.transform.GetForward().normalized * 1.25f;
-                currentAngle += angleIncrement;
-            }
-        }
-
-        recoilTimer = recoilTime * ((float)numShots / (float)maxShots);
+        recoilTimer = recoilTime;
         shotsShooted++;
 
-        if (numShots == maxShots) //First Shot
-        {
-            Animator.Play(gameObject, "DTH_ShootRecoil", speedMult * 2.0f);
-            if(shotgun != null)
-                Animator.Play(shotgun, "DTH_ShootRecoil", speedMult * 2.0f);
-            Audio.PlayAudio(gameObject, "Play_Deathtrooper_Recoil");
-        }
-        else //Second Shot
-        {
-            Animator.Play(gameObject, "DTH_ShootNoRecoil", speedMult * 2.0f);
-            if (shotgun != null)
-                Animator.Play(shotgun, "DTH_ShootNoRecoil", speedMult * 2.0f);
-        }
+
+
+        Animator.Play(gameObject, "DTH_ShootRecoil", speedMult * 2.0f);
+        if(shotgun != null)
+            Animator.Play(shotgun, "DTH_ShootRecoil", speedMult * 2.0f);
+        Audio.PlayAudio(gameObject, "Play_Deathtrooper_Recoil");
+        
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Deathtrooper_Shot");
     }
@@ -592,9 +575,9 @@ public class Deathtrooper : Enemy
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_DEATHTROOPER);
         DropCoins();
 
-        if(moffGideon != null)
+        if (moffGideon != null)
             moffGideon.RemoveDeathrooperFromList(gameObject);
-        
+
         InternalCalls.Destroy(gameObject);
     }
 
@@ -662,57 +645,85 @@ public class Deathtrooper : Enemy
         {
             ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
 
-            if (bullet != null)
+            if (bullet != null && currentState != STATE.DIE)
             {
-               
-
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
                 if (Core.instance.hud != null)
                 {
                     Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
                 }
+                
+                float vulerableSev = 0.2f;
+                float vulerableTime = 4.5f;
+                STATUS_APPLY_TYPE applyType = STATUS_APPLY_TYPE.BIGGER_PERCENTAGE;
+                float damageMult = 1f;
 
-                if (currentState != STATE.DIE && healthPoints <= 0.0f)
+                if (Core.instance != null)
                 {
-                    inputsList.Add(INPUT.IN_DIE);
-                    if (Core.instance != null)
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_DMG_UP))
                     {
-                        if (Core.instance.HasStatus(STATUS_TYPE.SP_HEAL))
-                        {
-                            if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
-                            {
-                                float healing = Core.instance.GetStatusData(STATUS_TYPE.SP_HEAL).severity;
-                                Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
-                            }
-                        }
-                        if (Core.instance.HasStatus(STATUS_TYPE.SP_FORCE_REGEN))
-                        {
-                            if (Core.instance.gameObject != null && BabyYoda.instance != null)
-                            {
-                                float force = Core.instance.GetStatusData(STATUS_TYPE.SP_FORCE_REGEN).severity;
-                                BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
-                            }
-                        }
-                        if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
-                        {
-                            float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
-                            Random rand = new Random();
-                            float result = rand.Next(1, 101);
-                            if (result <= mod)
-                                Core.instance.RefillSniper();
+                        vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_DMG_UP).severity;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_ENABLE))
+                    {
+                        vulerableTime += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_ENABLE).severity;
+                        applyType = STATUS_APPLY_TYPE.ADD_SEV;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER))
+                    {
+                        vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER).severity;
+                        damageMult = damageRecieveMult;
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_BLEED))
+                    {
+                        StatusData bleedData = Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_BLEED);
+                        float chargedBulletMaxDamage = Core.instance.GetSniperMaxDamage();
 
-                            Core.instance.luckyMod = 1 + mod / 100;
+                        damageMult *= bleedData.remainingTime;
+                        this.AddStatus(STATUS_TYPE.ENEMY_BLEED, STATUS_APPLY_TYPE.ADD_SEV, (chargedBulletMaxDamage * bleedData.severity) / vulerableTime, vulerableTime);
+                    }
+                    if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
+                    {
+                        float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
+                        Random rand = new Random();
+                        float result = rand.Next(1, 101);
+                        if (result <= mod)
+                            Core.instance.RefillSniper();
+
+                        Core.instance.luckyMod = 1 + mod / 100;
+                    }
+                }
+                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, applyType, vulerableSev, vulerableTime);
+
+                TakeDamage(bullet.GetDamage() * damageMult);
+
+                if (Core.instance != null && healthPoints <= 0.0f)
+                {
+                    if (Core.instance.HasStatus(STATUS_TYPE.SP_HEAL))
+                    {
+                        if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
+                        {
+                            float healing = Core.instance.GetStatusData(STATUS_TYPE.SP_HEAL).severity;
+                            Core.instance.gameObject.GetComponent<PlayerHealth>().SetCurrentHP(PlayerHealth.currHealth + (int)(healing));
                         }
                     }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SP_FORCE_REGEN))
+                    {
+                        if (Core.instance.gameObject != null && BabyYoda.instance != null)
+                        {
+                            float force = Core.instance.GetStatusData(STATUS_TYPE.SP_FORCE_REGEN).severity;
+                            BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
+                        }
+                    }
+                    
+                    if (Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
+                    {
+                        Core.instance.RefillSniper();
 
+                    }
                 }
-             //   healthPoints -= bullet.damage;
-                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, 0.2f, 4.5f);
 
-                TakeDamage(bullet.damage);
-                if (healthPoints <= 0.0f && Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
-                    Core.instance.RefillSniper();
             }
         }
         else if (collidedGameObject.CompareTag("ExplosiveBarrel") && collidedGameObject.GetComponent<SphereCollider>().active)
@@ -735,10 +746,15 @@ public class Deathtrooper : Enemy
     {
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         {
-            if (Core.instance.gameObject != null)
+            pushDir = triggeredGameObject.transform.GetForward();
+            inputsList.Add(INPUT.IN_PUSHED);
+
+            if (Core.instance != null)
             {
-                pushDir = triggeredGameObject.transform.GetForward();
-                inputsList.Add(INPUT.IN_PUSHED);
+                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                    hudComponent.AddToCombo(10, 0.35f);
             }
         }
     }
@@ -747,10 +763,16 @@ public class Deathtrooper : Enemy
     {
         if (triggeredGameObject.CompareTag("PushSkill") && currentState != STATE.PUSHED && currentState != STATE.DIE)
         {
+
+            pushDir = triggeredGameObject.transform.GetForward();
+            inputsList.Add(INPUT.IN_PUSHED);
+
             if (Core.instance != null)
             {
-                pushDir = triggeredGameObject.transform.GetForward();
-                inputsList.Add(INPUT.IN_PUSHED);
+                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                    hudComponent.AddToCombo(10, 0.35f);
             }
         }
     }
@@ -759,7 +781,15 @@ public class Deathtrooper : Enemy
     {
 
         Audio.PlayAudio(gameObject, "Play_Deathtrooper_Hit");
-        healthPoints -= damage;
+        float mod = 1;
+        if(Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.GEOTERMAL_MARKER))
+        {
+            if(HasNegativeStatus())
+            {
+                mod = 1 + GetStatusData(STATUS_TYPE.GEOTERMAL_MARKER).severity / 100;
+            }
+        }
+        healthPoints -= damage * mod;
         if (Core.instance != null)
         {
             if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))
@@ -784,7 +814,7 @@ public class Deathtrooper : Enemy
             }
         }
 
-        if(hitParticle != null)
+        if (hitParticle != null)
             hitParticle.Play();
 
         if (currentState != STATE.DIE)

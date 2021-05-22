@@ -23,6 +23,9 @@ public class Bosseslv2 : Entity
     public GameObject colliderJumpSlam = null;
     public GameObject colliderBounceRush = null;
     public GameObject jumpPositionIndicator = null;
+    public GameObject bossHealth = null;
+    public float limboHealth = 0.0f;
+    public float maxHealthPoints = 0.0f;
 
     //Private Variables
     public bool resting = false;
@@ -104,6 +107,8 @@ public class Bosseslv2 : Entity
 
     public virtual void Awake()
     {
+        maxHealthPoints = healthPoints;
+
         if (gameObject.CompareTag("Skel"))
         {
             //presentationTime = Animator.GetAnimationDuration(gameObject, "Skel_Presentation") - 0.016f;
@@ -608,6 +613,7 @@ public class Bosseslv2 : Entity
             Animator.Play(gameObject, "Skel_Die", speedMult);
             UpdateAnimationSpd(speedMult);
             Audio.PlayAudio(gameObject, "Play_Skel_Death");
+            Counter.SumToCounterType(Counter.CounterTypes.SKEL);
             Debug.Log("BOOLEAN IS TRUE");
         }
         else if (gameObject.CompareTag("Wampa"))
@@ -615,6 +621,7 @@ public class Bosseslv2 : Entity
             Animator.Play(gameObject, "WP_Die", speedMult);
             UpdateAnimationSpd(speedMult);
             Audio.PlayAudio(gameObject, "Play_Wampa_Death");
+            Counter.SumToCounterType(Counter.CounterTypes.WAMPA);
         }
         Debug.Log("Dying");
     }
@@ -669,7 +676,7 @@ public class Bosseslv2 : Entity
         {
             Animator.Play(gameObject, "WP_Presentation", speedMult);
             UpdateAnimationSpd(speedMult);
-            //Audio.PlayAudio(gameObject, "Play_Wampa_Death");
+            Audio.PlayAudio(gameObject, "Play_Wampa_Roar_Presentation");
         }
 
         if (camera != null)
@@ -787,6 +794,23 @@ public class Bosseslv2 : Entity
         }
     }
 
+    protected override void OnUpdateStatus(StatusData statusToUpdate)
+    {
+        switch (statusToUpdate.statusType)
+        {
+            case STATUS_TYPE.ENEMY_BLEED:
+                {
+                    float damageToTake = statusToUpdate.severity * Time.deltaTime;
+
+                    TakeDamage(damageToTake);
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+
     protected override void OnDeleteStatus(StatusData statusToDelete)
     {
         switch (statusToDelete.statusType)
@@ -819,6 +843,9 @@ public class Bosseslv2 : Entity
                 break;
         }
     }
+
+    public virtual void TakeDamage(float damage)
+    { }
 
 
 }
