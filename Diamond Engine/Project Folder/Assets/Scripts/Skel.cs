@@ -51,6 +51,7 @@ public class Skel : Bosseslv2
     private List<INPUT> inputsList = new List<INPUT>();
     private bool firstFrame = true;
     private bool angry = false;
+    float roarTime = 0.0f;
 
     public override void Awake()
     {
@@ -59,6 +60,7 @@ public class Skel : Bosseslv2
 
         InitEntity(ENTITY_TYPE.SKEL);
         EnemyManager.AddEnemy(gameObject);
+        //roarTime = Animator.GetAnimationDuration(gameObject, "RN_Roar") - 0.016f;
 
         agent = gameObject.GetComponent<NavMeshAgent>();
         if (agent == null)
@@ -114,10 +116,13 @@ public class Skel : Bosseslv2
         if (presentationTimer > 0.0f)
         {
             presentationTimer -= myDeltaTime;
+            healthPoints = (1 - (presentationTimer / roarTime)) * maxHealthPoints;
 
             if (presentationTimer <= 0.0f)
             {
                 inputsList.Add(INPUT.IN_PRESENTATION_END);
+                healthPoints = maxHealthPoints;
+                limboHealth = healthPoints;
             }
         }
 
@@ -164,6 +169,7 @@ public class Skel : Bosseslv2
             Debug.Log("skel angry");
             inputsList.Add(INPUT.IN_PRESENTATION);
             presentationTimer = presentationTime;
+            SkelAngry();
             angry = true;
         }
     }
@@ -509,7 +515,7 @@ public class Skel : Bosseslv2
         }
     }
 
-    protected override void TakeDamage(float damage)
+    public override void TakeDamage(float damage)
     {
         if (!DebugOptionsHolder.bossDmg)
         {
@@ -560,5 +566,9 @@ public class Skel : Bosseslv2
         }
     }
 
+    private void SkelAngry()
+    {
+        
+    }
 
 }

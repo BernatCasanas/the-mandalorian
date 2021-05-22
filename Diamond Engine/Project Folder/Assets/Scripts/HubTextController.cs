@@ -10,6 +10,7 @@ public class HubTextController : DiamondComponent
         BO_KATAN,
         GREEF,
         ASHOKA,
+        CARA_DUNE,
         GROGU
     }
 
@@ -19,6 +20,7 @@ public class HubTextController : DiamondComponent
     public GameObject bo_katan = null;
     public GameObject greef = null;
     public GameObject ashoka = null;
+    public GameObject cara_dune = null;
     public GameObject grogu = null;
 
     /*public int bo_katan_portrait_uid = 0;
@@ -57,16 +59,19 @@ public class HubTextController : DiamondComponent
     private static int boKatanStage = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("boKatanStage") : 1;
     private static int greefStage = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("greefStage") : 1;
     private static int ashokaStage = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("ashokaStage") : 1;
+    private static int caraStage = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("caraStage") : 1;
     private static int groguStage = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("groguStage") : 1;
 
     private static int boKatanInteractionNum = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("boKatanInteractionNum") : 1;
     private static int greefInteractionNum = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("greefInteractionNum") : 1;
     private static int ashokaInteractionNum = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("ashokaInteractionNum") : 1;
+    private static int caraInteractionNum = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("caraInteractionNum") : 1;
     private static int groguInteractionNum = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("groguInteractionNum") : 1;
 
     private bool boKatanHasInteracted = false;
     private bool greefHasInteracted = false;
     private bool ashokaHasInteracted = false;
+    private bool caraHasInteracted = false;
     private bool groguHasInteracted = false;
 
     private int total_interactions_and_stages = 0;
@@ -119,6 +124,14 @@ public class HubTextController : DiamondComponent
             if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(ashoka.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
             {
                 interaction = Interaction.ASHOKA;
+            }
+        }
+
+        if (interaction == Interaction.NONE && cara_dune != null && !caraHasInteracted)
+        {
+            if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(cara_dune.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
+            {
+                interaction = Interaction.CARA_DUNE;
             }
         }
 
@@ -189,6 +202,23 @@ public class HubTextController : DiamondComponent
                 ashokaHasInteracted = true;
 
                 break;
+            case Interaction.CARA_DUNE:
+                /*if (ashoka_portrait_uid != 0)
+                {
+                    textController.GetComponent<TextController>().otherimage.GetComponent<Image2D>().AssignLibrary2DTexture(ashoka_portrait_uid);
+                    textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().lPos = new Vector3(ashoka_portrait_pos_x, ashoka_portrait_pos_y, 0);
+                    textController.GetComponent<TextController>().otherimage.GetComponent<Transform2D>().size = new Vector3(ashoka_portrait_size_x, ashoka_portrait_size_y, 0);
+                }*/
+                textController.GetComponent<TextController>().dialog_index = (total_interactions_and_stages * 3) + caraInteractionNum;
+                if (caraInteractionNum % 3 != 0)
+                {
+                    caraInteractionNum++;
+                    DiamondPrefs.Write("caraInteractionNum", caraInteractionNum);
+                }
+
+                caraHasInteracted = true;
+
+                break;
             case Interaction.GROGU:
                 /*if (grogu_portrait_uid != 0)
                 {
@@ -242,6 +272,15 @@ public class HubTextController : DiamondComponent
                     ++ashokaStage;
                     DiamondPrefs.Write("ashokaStage", ashokaStage);
                 }
+                break; 
+            case Interaction.CARA_DUNE:
+                if (caraStage <= total_stages)
+                {
+                    caraInteractionNum = (caraStage * total_interactions) + 1;
+                    DiamondPrefs.Write("caraInteractionNum", caraInteractionNum);
+                    ++caraStage;
+                    DiamondPrefs.Write("caraStage", caraStage);
+                }
                 break;
             case Interaction.GROGU:
                 if (groguStage <= total_stages)
@@ -260,11 +299,13 @@ public class HubTextController : DiamondComponent
         boKatanStage = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("boKatanStage") : 1;
         greefStage = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("greefStage") : 1;
         ashokaStage = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("ashokaStage") : 1;
+        caraStage = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("caraStage") : 1;
         groguStage = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("groguStage") : 1;
 
         boKatanInteractionNum = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("boKatanInteractionNum") : 1;
         greefInteractionNum = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("greefInteractionNum") : 1;
         ashokaInteractionNum = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("ashokaInteractionNum") : 1;
+        caraInteractionNum = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("caraInteractionNum") : 1;
         groguInteractionNum = DiamondPrefs.ReadBool("loadData") ? DiamondPrefs.ReadInt("groguInteractionNum") : 1;
 
 
@@ -277,10 +318,12 @@ public class HubTextController : DiamondComponent
         DiamondPrefs.Write("boKatanStage", boKatanStage);
         DiamondPrefs.Write("greefStage", greefStage);
         DiamondPrefs.Write("ashokaStage", ashokaStage);
+        DiamondPrefs.Write("ashokaStage", caraStage);
         DiamondPrefs.Write("groguStage", groguStage);
         DiamondPrefs.Write("boKatanInteractionNum", boKatanInteractionNum);
         DiamondPrefs.Write("greefInteractionNum", greefInteractionNum);
         DiamondPrefs.Write("ashokaInteractionNum", ashokaInteractionNum);
+        DiamondPrefs.Write("ashokaInteractionNum", caraInteractionNum);
         DiamondPrefs.Write("groguInteractionNum", groguInteractionNum);
     }
 
@@ -289,6 +332,7 @@ public class HubTextController : DiamondComponent
         boKatanHasInteracted = false;
         greefHasInteracted = false;
         ashokaHasInteracted = false;
+        caraHasInteracted = false;
         groguHasInteracted = false;
     }
 }

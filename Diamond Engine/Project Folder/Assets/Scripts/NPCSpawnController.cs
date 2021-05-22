@@ -16,7 +16,7 @@ public class NPCSpawnController : DiamondComponent
     private const int GroguUID = 1075538485;
     private const int BoKatanUID = 653387112;
     private const int AhsokaUID = 1082641369;
-    private const int CaraDuneUID = 2028292522;
+    private const int CaraDuneUID = 81471191;
     private List<int> charactersUID = new List<int>();
 
     public GameObject spawnPoint1 = null;
@@ -127,9 +127,13 @@ public class NPCSpawnController : DiamondComponent
 
                 break;
             case CaraDuneUID:
-                if (animation == 0) Animator.Play(unit, "Idle");
-                else if (animation == 1) Animator.Play(unit, "Sit");
-                else if (animation == 2) Animator.Play(unit, "Bar");
+                if (animation == 0) Animator.Play(unit, "CD_Lean");
+                else if (animation == 1) Animator.Play(unit, "CD_Sit");
+                else if (animation == 2) Animator.Play(unit, "CD_Lean");
+                if (HubTextController != null)
+                {
+                    HubTextController.GetComponent<HubTextController>().cara_dune = unit;
+                }
                 break;
             default:
                 break;

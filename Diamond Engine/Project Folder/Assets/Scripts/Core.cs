@@ -401,16 +401,6 @@ public class Core : Entity
 
         myDeltaTime = Time.deltaTime * speedMult;
 
-        if (Input.GetKey(DEKeyCode.C) == KeyState.KEY_DOWN)
-        {
-            Audio.SetState("Game_State", "Run");
-            if (MusicSourceLocate.instance != null)
-            {
-                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Combat");
-                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Healthy");
-            }
-        }
-
         UpdateControllerInputs();
 
         UpdateStatuses();
@@ -421,6 +411,7 @@ public class Core : Entity
 
         ProcessInternalInput();
         ProcessExternalInput();
+
         ProcessState();
 
         UpdateState();
@@ -1552,7 +1543,7 @@ public class Core : Entity
         Audio.PlayAudio(shootPoint, "Play_Sniper_Shoot_Mando");
         Input.PlayHaptic(.5f, 10);
 
-        GameObject aimHelpTarget = myAimbot.SearchForNewObjRaw(15, myAimbot.maxRange);
+        GameObject aimHelpTarget = GetAimbotObjective(15f);
         PlayParticles(PARTICLES.SNIPER_CHARGE, true);
         PlayParticles(PARTICLES.SNIPER_MUZZEL);
         snipercharge = true;
@@ -1709,6 +1700,7 @@ public class Core : Entity
         dieTimer = dieTime;
         Animator.Play(gameObject, "Die");
         Audio.PlayAudio(gameObject, "Play_Mando_Death");
+        Audio.SetState("Player_State", "Dead");
         hud.GetComponent<HUD>().gameObject.Enable(false);
     }
     private void UpdateDead()
@@ -1995,6 +1987,21 @@ public class Core : Entity
     public float GetSniperMaxDamage()
     {
         return chargedBulletDmg;
+    }
+
+    //Angles in deg, returns null if nothing is found
+    public GameObject GetAimbotObjective(float angle, float range = 0f)
+    {
+        GameObject ret = null;
+
+        if(myAimbot != null)
+        {
+            float searchRange = range == 0f ? myAimbot.maxRange : range;
+
+            ret= myAimbot.SearchForNewObjRaw(angle, searchRange);
+        }
+
+        return ret;
     }
 
     public void ReduceComboOnHit(int hitDamage, float comboSubstractionMult = 1.5f)

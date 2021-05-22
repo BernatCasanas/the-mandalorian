@@ -1,19 +1,19 @@
 {
     "NavMesh": 942369955,
     "EditorCameraPosition": [
-        -27.874267578125,
-        27.287092208862305,
-        -7.2121114730834961
+        -79.406654357910156,
+        51.846000671386719,
+        -40.113002777099609
     ],
     "EditorCameraZ": [
-        0.73854118585586548,
-        -0.57692492008209229,
-        0.34887635707855225
+        0.77117550373077393,
+        -0.50351405143737793,
+        0.38956642150878906
     ],
     "EditorCameraY": [
-        0.52176117897033691,
-        0.81679713726043701,
-        0.24618637561798096
+        0.44942536950111389,
+        0.86398708820343018,
+        0.22703136503696442
     ],
     "SkyboxPath0": "",
     "SkyboxPath1": "",
@@ -31,7 +31,8 @@
         "Skel",
         "Wampa",
         "WaterFloor",
-        "SnowFloor"
+        "SnowFloor",
+        "WorldLimit"
     ],
     "layers": [],
     "Game Objects": [
@@ -107,12 +108,11 @@
                     "fSize": 35,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 16.657142639160156,
-                    "hFOV": 24.628570556640625,
-                    "culling": false,
+                    "vFOV": 16.485713958740234,
+                    "hFOV": 34.514286041259766,
+                    "culling": true,
                     "HDR": true,
-                    "drawSkybox": true,
-                    "ProfileUID": 226240271
+                    "drawSkybox": true
                 },
                 {
                     "Type": 12,
@@ -145,7 +145,7 @@
         },
         {
             "name": "SpawnWorld",
-            "tag": "Untagged",
+            "tag": "WorldLimit",
             "layer": "Default",
             "Active": true,
             "UID": 849548421,
@@ -167,8 +167,8 @@
             ],
             "Scale": [
                 116.94670867919922,
-                145.72767639160156,
-                0.99987637996673584
+                145.7276611328125,
+                0.99987632036209106
             ],
             "Components": [
                 {
@@ -2041,412 +2041,6 @@
             ]
         },
         {
-            "name": "Columns",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1000980347,
-            "ParentUID": 1941018245,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "IceColumn",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1260909690,
-            "ParentUID": 1000980347,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/1035014033.mmh",
-                    "UID": 1035014033,
-                    "bumpDepth": 0,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "stencilEmission": 0,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
-                }
-            ]
-        },
-        {
-            "name": "IceColumn1",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 957005424,
-            "ParentUID": 1000980347,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/2045700055.mmh",
-                    "UID": 2045700055,
-                    "bumpDepth": 0,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "stencilEmission": 0,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
-                }
-            ]
-        },
-        {
-            "name": "IceColumn2",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1994476129,
-            "ParentUID": 1000980347,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/420576468.mmh",
-                    "UID": 420576468,
-                    "bumpDepth": 0,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "stencilEmission": 0,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
-                }
-            ]
-        },
-        {
-            "name": "IceColumn3",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1129962089,
-            "ParentUID": 1000980347,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/14751783.mmh",
-                    "UID": 14751783,
-                    "bumpDepth": 0,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "stencilEmission": 0,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
-                }
-            ]
-        },
-        {
-            "name": "IceColumn4",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 322157718,
-            "ParentUID": 1000980347,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/536700977.mmh",
-                    "UID": 536700977,
-                    "bumpDepth": 0,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "stencilEmission": 0,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
-                }
-            ]
-        },
-        {
-            "name": "IceColumn5",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 623275610,
-            "ParentUID": 1000980347,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": true,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/1590745564.mmh",
-                    "UID": 1590745564,
-                    "bumpDepth": 0,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "stencilEmission": 0,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
-                }
-            ]
-        },
-        {
             "name": "Borders",
             "tag": "Untagged",
             "layer": "Default",
@@ -3075,6 +2669,412 @@
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Columns",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 497917720,
+            "ParentUID": 1941018245,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "IceColumn",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 848554246,
+            "ParentUID": 497917720,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": true,
+            "Position": [
+                -9.7974891662597656,
+                21.669284820556641,
+                16.577358245849609
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/607918509.mmh",
+                    "UID": 607918509,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "IceColumn1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 2067515443,
+            "ParentUID": 497917720,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": true,
+            "Position": [
+                -8.4742507934570313,
+                21.669284820556641,
+                6.5039825439453125
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1286800013.mmh",
+                    "UID": 1286800013,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "IceColumn2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 958765987,
+            "ParentUID": 497917720,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": true,
+            "Position": [
+                -7.3600425720214844,
+                21.669284820556641,
+                -3.2066049575805664
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1728403174.mmh",
+                    "UID": 1728403174,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "IceColumn3",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 12581226,
+            "ParentUID": 497917720,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": true,
+            "Position": [
+                9.5249176025390625,
+                21.669284820556641,
+                16.425397872924805
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1058701056.mmh",
+                    "UID": 1058701056,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "IceColumn4",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1891691017,
+            "ParentUID": 497917720,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": true,
+            "Position": [
+                10.199911117553711,
+                21.694156646728516,
+                6.5312047004699707
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1892487442.mmh",
+                    "UID": 1892487442,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "IceColumn5",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 543191341,
+            "ParentUID": 497917720,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": true,
+            "Position": [
+                10.458454132080078,
+                21.669284820556641,
+                -3.5574076175689697
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/156521444.mmh",
+                    "UID": 156521444,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
                 }
             ]
         },
@@ -4755,10 +4755,10 @@
                 -6.1790533065795898
             ],
             "Rotation": [
-                -3.1812341205750272e-08,
-                -0.97017741203308105,
-                -3.1812341205750272e-08,
-                0.24239592254161835
+                -3.1812344758463951e-08,
+                -0.97017753124237061,
+                -3.1812344758463951e-08,
+                0.24239595234394073
             ],
             "Scale": [
                 1.0000087022781372,
@@ -5119,10 +5119,10 @@
                         3.3614924177527428e-09
                     ],
                     "Rotation": [
-                        -9.4805798767083616e-09,
-                        -0.00168001395650208,
-                        4.6926875256758649e-06,
-                        0.99999856948852539
+                        -9.4805807648867813e-09,
+                        -0.0016800141893327236,
+                        4.6926879804232158e-06,
+                        0.99999868869781494
                     ],
                     "Scale": [
                         1.0000001192092896,
@@ -5147,10 +5147,10 @@
                         1.1496013030409813e-09
                     ],
                     "Rotation": [
-                        -0.00020733184646815062,
-                        -0.0011754682054743171,
-                        0.059284225106239319,
-                        0.99824041128158569
+                        -0.00020733187557198107,
+                        -0.0011754683218896389,
+                        0.059284232556819916,
+                        0.99824053049087524
                     ],
                     "Scale": [
                         1,
@@ -5315,10 +5315,10 @@
                         -0.028598792850971222
                     ],
                     "Rotation": [
-                        0.096541404724121094,
-                        -0.5010417103767395,
-                        0.18819840252399445,
-                        0.83917713165283203
+                        0.096541419625282288,
+                        -0.50104176998138428,
+                        0.18819843232631683,
+                        0.83917725086212158
                     ],
                     "Scale": [
                         0.99999994039535522,
@@ -5567,10 +5567,10 @@
                         0.028598770499229431
                     ],
                     "Rotation": [
-                        -0.062612093985080719,
-                        0.39902025461196899,
-                        0.16395238041877747,
-                        0.89999008178710938
+                        -0.062612101435661316,
+                        0.39902031421661377,
+                        0.16395239531993866,
+                        0.89999020099639893
                     ],
                     "Scale": [
                         1.0000001192092896,
@@ -8515,10 +8515,10 @@
                         -0.19471836090087891
                     ],
                     "Rotation": [
-                        0.19392229616641998,
-                        -2.7353405651631135e-10,
-                        1.3877789462175682e-17,
-                        0.98101699352264404
+                        0.1939222663640976,
+                        -2.7353402876073574e-10,
+                        1.3877787807814457e-17,
+                        0.98101687431335449
                     ],
                     "Scale": [
                         1,

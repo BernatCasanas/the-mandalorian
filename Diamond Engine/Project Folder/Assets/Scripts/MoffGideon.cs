@@ -877,6 +877,7 @@ public class MoffGideon : Entity
 
         healthPoints = maxHealthPoints_fase2;
         Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Lightsaber_Turn_On");
+        Audio.SetState("Game_State", "Moff_Gideon_Phase_2");
 
         if (cam_comp != null)
         {

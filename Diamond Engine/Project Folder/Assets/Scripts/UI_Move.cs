@@ -18,6 +18,20 @@ public class UI_Move : DiamondComponent
 
 	public bool playOnAwake = true;
 
+	enum INTERPOLATION_TYPE
+    {
+		LINEAR = 0,
+		EASE_IN = 1,
+		EASE_OUT_QUAD = 2,
+		EASE_IN_CUBIC = 3,
+		EASE_OUT_CUBIC = 4,
+		EASE_IN_QUART = 5,
+		EASE_IN_QUINT = 6,
+		EASE_OUT_QUINT = 7
+    }
+
+	public int interpolationType = 0;
+
 	private float timer = 0.0f;
 
 	private Transform2D trans = null;
@@ -57,13 +71,7 @@ public class UI_Move : DiamondComponent
 			}
 			else if (started == true && timer <= duration)
 			{
-				float xPosition = Mathf.Lerp(initialPosX, finalPosX, timer / duration);
-				float yPosition = Mathf.Lerp(initialPosY, finalPosY, timer / duration);
-
-				float xScale = Mathf.Lerp(initialScaleX, finalScaleX, timer / duration);
-				float yScale = Mathf.Lerp(initialScaleY, finalScaleY, timer / duration);
-
-				trans.SetLocalTransform(new Vector3(xPosition, yPosition, 1.0f), trans.lRot, new Vector3(xScale, yScale, 1.0f));
+				UpdateValues();
 			}
 
 			else if (started == true && timer > duration)
@@ -77,7 +85,61 @@ public class UI_Move : DiamondComponent
 	public void Activate()
     {
 		if (trans != null)
+        {
 			ended = false;
+			started = false;
+			timer = 0.0f;
+
+			trans.SetLocalTransform(new Vector3(initialPosX, initialPosY, 1.0f), trans.lRot, new Vector3(initialScaleX, initialScaleY, 1.0f));
+		}
     }
+
+
+	private void UpdateValues()
+	{
+		float interpolationValue = timer / duration;
+
+		switch ((INTERPOLATION_TYPE)interpolationType)
+        {
+            case INTERPOLATION_TYPE.EASE_IN:
+				interpolationValue = Mathf.EaseInSine(interpolationValue);
+                break;
+
+            case INTERPOLATION_TYPE.EASE_OUT_QUAD:
+				interpolationValue = Mathf.EaseOutQuad(interpolationValue);
+				break;
+
+            case INTERPOLATION_TYPE.EASE_IN_CUBIC:
+				interpolationValue = Mathf.EaseInCubic(interpolationValue);
+				break;
+
+            case INTERPOLATION_TYPE.EASE_OUT_CUBIC:
+				interpolationValue = Mathf.EaseOutCubic(interpolationValue);
+				break;
+
+            case INTERPOLATION_TYPE.EASE_IN_QUART:
+				interpolationValue = Mathf.EaseInQuart(interpolationValue);
+				break;
+
+            case INTERPOLATION_TYPE.EASE_IN_QUINT:
+				interpolationValue = Mathf.EaseInQuint(interpolationValue);
+				break;
+
+            case INTERPOLATION_TYPE.EASE_OUT_QUINT:
+				interpolationValue = Mathf.EaseOutQuint(interpolationValue);
+				break;
+
+            default:
+                break;
+        }
+
+		float xPosition = Mathf.Lerp(initialPosX, finalPosX, interpolationValue);
+		float yPosition = Mathf.Lerp(initialPosY, finalPosY, interpolationValue);
+
+		float xScale = Mathf.Lerp(initialScaleX, finalScaleX, interpolationValue);
+		float yScale = Mathf.Lerp(initialScaleY, finalScaleY, interpolationValue);
+
+		trans.SetLocalTransform(new Vector3(xPosition, yPosition, 1.0f), trans.lRot, new Vector3(xScale, yScale, 1.0f));
+	}
 
 }

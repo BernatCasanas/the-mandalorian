@@ -50,6 +50,7 @@ public class Wampa : Bosseslv2
     public bool firstSorrowRoar = false;
     private bool firstFrame = true;
     private bool angry = false;
+    float roarTime = 0.0f;
 
     public override void Awake()
     {
@@ -58,7 +59,9 @@ public class Wampa : Bosseslv2
         InitEntity(ENTITY_TYPE.WAMPA);
         EnemyManager.AddEnemy(gameObject);
 
+        maxHealthPoints = healthPoints;
         agent = gameObject.GetComponent<NavMeshAgent>();
+        //roarTime = Animator.GetAnimationDuration(gameObject, "RN_Roar") - 0.016f;
         if (agent == null)
             Debug.Log("Null agent, add a NavMeshAgent Component");
         else
@@ -123,10 +126,13 @@ public class Wampa : Bosseslv2
         if (presentationTimer > 0.0f)
         {
             presentationTimer -= myDeltaTime;
+            healthPoints = (1 - (presentationTimer / roarTime)) * maxHealthPoints;
 
             if (presentationTimer <= 0.0f)
             {
                 inputsList.Add(INPUT.IN_PRESENTATION_END);
+                healthPoints = maxHealthPoints;
+                limboHealth = healthPoints;
             }
         }
 
@@ -169,6 +175,7 @@ public class Wampa : Bosseslv2
             Debug.Log("wampa angry");
             inputsList.Add(INPUT.IN_PRESENTATION);
             presentationTimer = presentationTime;
+            WampaAngry();
             angry = true;
         }
     }
@@ -364,10 +371,11 @@ public class Wampa : Bosseslv2
         if (bossHealth != null)
         {
             Material bossBarMat = bossHealth.GetComponent<Material>();
-            Debug.Log("We enter the material");
             if (bossBarMat != null)
             {
-                Debug.Log("We update the healthbar??");
+                Debug.Log("Wampa max " + maxHealthPoints.ToString());
+                Debug.Log("Wampa health " + healthPoints.ToString());
+                Debug.Log("Wampa limbo " + limboHealth.ToString());
                 bossBarMat.SetFloatUniform("length_used", healthPoints / maxHealthPoints);
                 bossBarMat.SetFloatUniform("limbo", limboHealth / maxHealthPoints);
             }
@@ -516,7 +524,7 @@ public class Wampa : Bosseslv2
         }
     }
 
-    protected override void TakeDamage(float damage)
+    public override void TakeDamage(float damage)
     {
         if (!DebugOptionsHolder.bossDmg)
         {
@@ -536,9 +544,9 @@ public class Wampa : Bosseslv2
                 {
                     if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))
                         AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.WRECK_HEAVY_SHOT).severity / 100, 5);
-                    
-                    
-                   
+
+
+
                     if (Core.instance.HasStatus(STATUS_TYPE.LIFESTEAL))
                     {
                         Random rand = new Random();
@@ -565,6 +573,11 @@ public class Wampa : Bosseslv2
                 }
             }
         }
+    }
+
+    private void WampaAngry()
+    {
+
     }
 
 }

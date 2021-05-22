@@ -107,6 +107,7 @@ public class Bosseslv2 : Entity
 
     public virtual void Awake()
     {
+        Debug.Log("Health 2 Wampa " + healthPoints.ToString());
         maxHealthPoints = healthPoints;
 
         if (gameObject.CompareTag("Skel"))
@@ -644,7 +645,7 @@ public class Bosseslv2 : Entity
     public void EndDie()
     {
         Debug.Log("DEAD");
-
+        limboHealth = 0.0f;
 
         EnemyManager.RemoveEnemy(gameObject);
         if (gameObject.CompareTag("Wampa") && companion != null)
@@ -844,7 +845,7 @@ public class Bosseslv2 : Entity
         }
     }
 
-    protected virtual void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     { }
 
 
