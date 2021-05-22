@@ -104,8 +104,8 @@
                     "fSize": 45,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 14.777777671813965,
-                    "hFOV": 27.955554962158203,
+                    "vFOV": 12.95555591583252,
+                    "hFOV": 19.155555725097656,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -129,7 +129,9 @@
                     "cornerTopLeftX": -100,
                     "cornerTopLeftY": -100,
                     "cornerBotRightX": 100,
-                    "cornerBotRightY": 100
+                    "cornerBotRightY": 100,
+                    "deadZoom": 80,
+                    "deadEasingSec": 5
                 }
             ]
         },
@@ -12823,7 +12825,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1273247391.dds",
-                    "UID": 1273247391
+                    "UID": 1273247391,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -12885,7 +12888,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/926627945.dds",
-                    "UID": 926627945
+                    "UID": 926627945,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -17566,6 +17570,35 @@
                     ]
                 }
             ]
+        },
+        {
+            "name": "BlackFade",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 719896452,
+            "ParentUID": 1185977285,
+            "PrefabReference": 1852207575,
+            "PrefabID": 1368828559,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "PrefabObjects": []
         },
         {
             "name": "Saber_Throw",
