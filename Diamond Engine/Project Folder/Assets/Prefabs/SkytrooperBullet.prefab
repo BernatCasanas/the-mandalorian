@@ -50,7 +50,8 @@
                         0
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": false
+                    "doNotDrawStencil": false,
+                    "drawShadows": true
                 },
                 {
                     "Type": 5,
@@ -60,7 +61,7 @@
                     "speed": 30,
                     "gravity": -30,
                     "damageRange": 3.5,
-                    "lifeTime": 6
+                    "lifeTime": 3
                 },
                 {
                     "Type": 18,
@@ -104,6 +105,16 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/1540644281.mat",
                     "MaterialUID": 1540644281
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Play_Skytrooper_Grenade_Explosion",
+                    "audBankReference": "Skytrooper",
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false,
+                    "isMusic": false
                 }
             ]
         }
