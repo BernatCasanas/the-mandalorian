@@ -181,15 +181,20 @@ public static class RoomSwitch
         switch(currentLevelIndicator)
         {
             case LEVELS.ONE:
-                Audio.StopAudio(EnvironmentSourceLocate.instance.gameObject);
+                Audio.SetState("Game_State", "Run");
+                Audio.SetState("Player_State", "Alive");
+                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Combat");
                 break;
             case LEVELS.TWO:
-                Audio.StopAudio(EnvironmentSourceLocate.instance.gameObject);
+                Audio.SetState("Game_State", "Run_2");
+                Audio.SetState("Player_State", "Alive");
+                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Combat");
                 break;
             case LEVELS.THREE:
                 Audio.PlayAudio(EnvironmentSourceLocate.instance.gameObject, "Play_Spaceship_Interior_Ambience");
                 Audio.SetState("Player_State", "Alive");
-                Audio.SetState("Game_State", "Cruiser_Explore");
+                Audio.SetState("Game_State", "Run_3");
+                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Combat");
                 break;
         }
     }
@@ -199,8 +204,12 @@ public static class RoomSwitch
         switch (index)
         {
             case LEVELS.ONE:
+                Audio.SetState("Player_State", "Alive");
+                Audio.SetState("Game_State", "Rancor_Room");
                 break;
             case LEVELS.TWO:
+                Audio.SetState("Player_State", "Alive");
+                Audio.SetState("Game_State", "Wampa_Skel_Room");
                 break;
             case LEVELS.THREE:
                 Audio.SetState("Player_State", "Alive");

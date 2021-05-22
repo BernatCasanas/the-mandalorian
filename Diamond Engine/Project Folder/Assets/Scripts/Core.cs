@@ -1700,6 +1700,7 @@ public class Core : Entity
         dieTimer = dieTime;
         Animator.Play(gameObject, "Die");
         Audio.PlayAudio(gameObject, "Play_Mando_Death");
+        Audio.SetState("Player_State", "Dead");
         hud.GetComponent<HUD>().gameObject.Enable(false);
     }
     private void UpdateDead()
