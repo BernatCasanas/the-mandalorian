@@ -316,7 +316,7 @@ public class Core : Entity
         if (blaster != null)
             blaster.Enable(false);
 
-        dieTime = Animator.GetAnimationDuration(gameObject, "Die") - 0.016f;
+        dieTime = Animator.GetAnimationDuration(gameObject, "Die") - 0.016f -1f;
 
         #endregion
 
@@ -1707,26 +1707,21 @@ public class Core : Entity
     {
         dieTimer = dieTime;
         Animator.Play(gameObject, "Die");
-        Debug.Log("Start Dead");
         Audio.PlayAudio(gameObject, "Play_Mando_Death");
         hud.GetComponent<HUD>().gameObject.Enable(false);
     }
     private void UpdateDead()
     {
-
-        Debug.Log("Update Dead");
     }
 
     private void EndDead()
     {
         PlayerHealth.onPlayerDeathEnd?.Invoke();
-        Debug.Log("EEEEEEEEEEEEEEEEENDDDDDDDDDDDDDD DEEAAAD");
     }
 
     private void DeadInput()
     {
         inputsList.Add(INPUT.IN_DEAD);
-        Debug.Log("DEAAAAAAAAAAAAAD INPUUUUUUUUUUUUUUUUUT");
     }
     #endregion
 
@@ -2106,14 +2101,6 @@ public class Core : Entity
         {
             PlayerResources.AddRunCoins(10);
             Audio.PlayAudio(gameObject, "Play_UI_Credit_Pickup");
-
-            if (hud != null)
-            {
-                HUD hudComponent = hud.GetComponent<HUD>();
-
-                if (hudComponent != null)
-                    hudComponent.UpdateCurrency(PlayerResources.GetRunCoins());
-            }
 
             InternalCalls.Destroy(triggeredGameObject);
         }
