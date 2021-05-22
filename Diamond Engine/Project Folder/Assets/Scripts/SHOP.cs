@@ -20,7 +20,6 @@ public enum ShopPrice
 public class SHOP : DiamondComponent
 {
     public GameObject shopUI;
-    public GameObject hud;
     public GameObject textPopUp;
 
     //Buttons
@@ -29,7 +28,9 @@ public class SHOP : DiamondComponent
     public GameObject item3;
     public GameObject item4;
 
-    public GameObject currency = null;
+    public GameObject currencyObject = null;
+    private Text currencyText = null;
+
     public float interactionRange = 2.0f;
     public bool autoGenerateItems = true;
     public bool opening;
@@ -45,8 +46,11 @@ public class SHOP : DiamondComponent
         if (autoGenerateItems)
             RandomiseItems();
 
-        if (hud == null)
-            hud = InternalCalls.FindObjectWithName("HUD");
+        if (currencyObject != null)
+        {
+            currencyText = currencyObject.GetComponent<Text>();
+            UpdateCurrency(PlayerResources.GetRunCoins());
+        }
 
         //Audio.PlayAudio(gameObject, "Play_Post_Boss_Room_1_Ambience");
     }
@@ -63,7 +67,7 @@ public class SHOP : DiamondComponent
             if (Input.GetKey(DEKeyCode.M) == KeyState.KEY_DOWN)
             {
                 PlayerResources.AddRunCoins(100);
-                hud.GetComponent<HUD>().UpdateCurrency(PlayerResources.GetRunCoins());
+                UpdateCurrency(PlayerResources.GetRunCoins());
             }
         }
         else
@@ -75,7 +79,6 @@ public class SHOP : DiamondComponent
                 if (Input.GetGamepadButton(DEControllerButton.A) == KeyState.KEY_DOWN)
                 {
                     OpenShop();
-                    currency.SetParent(shopUI.parent);
                     shopUI.SetParent(shopUI.parent);
                 }
             }
@@ -125,12 +128,16 @@ public class SHOP : DiamondComponent
         return ret;
     }
 
-    private void UpdateCurrency(int val)
+    public void UpdateCurrency(int value)
     {
-        PlayerResources.SetRunCoins(val);
+        PlayerResources.SetRunCoins(value);
 
-        if(hud != null)
-            hud.GetComponent<HUD>().UpdateCurrency(val);
+        Debug.Log("Current currency: " + PlayerResources.GetRunCoins().ToString());
+
+        if (currencyText != null)
+            currencyText.text = PlayerResources.GetRunCoins().ToString();
+        else
+            Debug.Log("Null currency text");
     }
 
     public void RandomiseItems()
@@ -226,7 +233,7 @@ public class SHOP : DiamondComponent
         opening = true;
         shopUI.EnableNav(true);
         textPopUp.Enable(false);
-        Core.instance.LockInputs(true); ;
+        Core.instance.LockInputs(true); 
         if (defaultButton != null)
             defaultButton.GetComponent<Navigation>().Select();
     }
@@ -237,7 +244,5 @@ public class SHOP : DiamondComponent
         shopUI.EnableNav(false);
         Core.instance.LockInputs(false); ;
         textPopUp.Enable(true);
-        if (currency != null)
-            currency.SetParent(hud);
     }
 }
