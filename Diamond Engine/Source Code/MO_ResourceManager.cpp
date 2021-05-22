@@ -26,7 +26,7 @@
 #include "DETime.h"
 
 M_ResourceManager::M_ResourceManager(Application* app, bool start_enabled) : Module(app, start_enabled), assetsRoot("Assets", "Assets", 0, true),
-fileCheckTime(0.f), fileUpdateDelay(2.f), meshesLibraryRoot("Meshes", "Library/Meshes", 0, true), animationsLibraryRoot("Animations", "Library/Animations", 0, true), recompileCS(false)
+fileCheckTime(0.f), fileUpdateDelay(FILE_UPDATE_TIME), meshesLibraryRoot("Meshes", "Library/Meshes", 0, true), animationsLibraryRoot("Animations", "Library/Animations", 0, true), recompileCS(false)
 {
 }
 
