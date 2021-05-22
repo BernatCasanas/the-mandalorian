@@ -203,6 +203,8 @@ public class PlayerHealth : DiamondComponent
         if (DebugOptionsHolder.godModeActive)
             return currHealth;
         
+
+
         if (Core.instance != null)
         {
             if (Core.instance.HasStatus(STATUS_TYPE.BLOCK))
