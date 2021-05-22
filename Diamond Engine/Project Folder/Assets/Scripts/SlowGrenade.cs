@@ -20,29 +20,31 @@ public class SlowGrenade : DiamondComponent
     public float explosionTime = 4.0f;
     private float explosionTimer = 0.0f;
 
+    public float areaRadius = 1.85f;
     public float damage = 5.0f;
     public float procTime = 0.25f;
     private float procTimer = 0f;
     private bool procActivation = false;
     List<GameObject> enemies = new List<GameObject>();
 
-    //public void Awake()
-    //   {
-    //	Vector3 myForce = gameObject.transform.GetForward() * force;
-    //	gameObject.AddForce(myForce);
-    //   }
     public void Update()
     {
         if (start == true)
         {
             start = false;
             float modifier = 1;
-            if(Core.instance != null)
-            if (Core.instance.HasStatus(STATUS_TYPE.SEC_RANGE))
-                modifier = 1 + Core.instance.GetStatusData(STATUS_TYPE.SEC_RANGE).severity /100;
+            if (Core.instance != null)
+                if (Core.instance.HasStatus(STATUS_TYPE.SEC_RANGE))
+                    modifier = 1 + Core.instance.GetStatusData(STATUS_TYPE.SEC_RANGE).severity / 100;
             Vector3 myForce = gameObject.transform.GetForward() * forwardForce * modifier;
 
             myForce.y = upForce;
+
+            BoxCollider myBoxColl = this.gameObject.GetComponent<BoxCollider>();
+
+            if (myBoxColl != null)
+                myBoxColl.active = false;
+
 
             gameObject.AddForce(myForce);
         }
@@ -60,18 +62,19 @@ public class SlowGrenade : DiamondComponent
                 if (Core.instance.HasStatus(STATUS_TYPE.BOSSK_AMMO) && enemies.Count > 1)
                     grenadeDamage *= 2;
             }
-      
+
 
 
             explosionTimer += Time.deltaTime;
             float mult = 1;
             if (Core.instance.HasStatus(STATUS_TYPE.BOBBA_STUN_AMMO))
-                mult += Core.instance.GetStatusData(STATUS_TYPE.BOBBA_STUN_AMMO).severity/100;
+                mult += Core.instance.GetStatusData(STATUS_TYPE.BOBBA_STUN_AMMO).severity / 100;
             procTimer += Time.deltaTime * mult;
 
             if (procTimer > procTime)
             {
                 procActivation = true;
+                Audio.StopAudio(gameObject);
                 Audio.PlayAudio(gameObject, "Play_Mando_Grenade_Pulse_Wave");
                 procTimer = 0f;
             }
@@ -181,24 +184,10 @@ public class SlowGrenade : DiamondComponent
 
         if (lifeTimer >= lifeTime & !detonate)
         {
-            if (grenadeActiveObj != null)
-            {
-                grenadeActivePar = grenadeActiveObj.GetComponent<ParticleSystem>();
-                if (grenadeActivePar != null)
-                    grenadeActivePar.Play();
-            }
-            if (granadeAreaObj != null)
-            {
-                granadeArea = granadeAreaObj.GetComponent<ParticleSystem>();
-                if (granadeArea != null)
-                    granadeArea.Play();
-            }
-            detonate = true;
-            Audio.PlayAudio(gameObject, "Play_Mando_Grenade_Set_Up");
-            lifeTimer = 0;
+            Detonate();
 
         }
-        if(Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.SEC_DURATION))
+        if (Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.SEC_DURATION))
         {
             if (explosionTimer >= explosionTime * (1 + Core.instance.GetStatusData(STATUS_TYPE.SEC_DURATION).severity / 100))
                 Explode();
@@ -208,9 +197,23 @@ public class SlowGrenade : DiamondComponent
             if (explosionTimer >= explosionTime)
                 Explode();
         }
-      
+
     }
 
+    public void OnCollisionEnter(GameObject collidedGameObject)
+    {
+        if (!collidedGameObject.CompareTag("Player") && !collidedGameObject.CompareTag("StormTrooperBullet"))
+        {
+            Detonate();
+            this.gameObject.SetVelocity(new Vector3(0, 0, 0));
+
+            BoxCollider myBoxColl = this.gameObject.GetComponent<BoxCollider>();
+
+            if (myBoxColl != null)
+                myBoxColl.active = true;
+        }
+
+    }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
@@ -241,6 +244,42 @@ public class SlowGrenade : DiamondComponent
                     break;
                 }
             }
+        }
+    }
+
+    private void Detonate()
+    {
+        if (detonate == true)
+            return;
+
+        if (grenadeActiveObj != null)
+        {
+            grenadeActivePar = grenadeActiveObj.GetComponent<ParticleSystem>();
+            if (grenadeActivePar != null)
+                grenadeActivePar.Play();
+        }
+        if (granadeAreaObj != null)
+        {
+            granadeArea = granadeAreaObj.GetComponent<ParticleSystem>();
+            if (granadeArea != null)
+                granadeArea.Play();
+        }
+        detonate = true;
+        Audio.PlayAudio(gameObject, "Play_Mando_Grenade_Set_Up");
+        lifeTimer = 0;
+
+
+        if (EnemyManager.currentEnemies != null)
+        {
+            for (int i = 0; i < EnemyManager.currentEnemies.Count; i++)
+            {
+                float distance = EnemyManager.currentEnemies[i].transform.globalPosition.Distance(this.gameObject.transform.globalPosition);
+
+                if (distance <= areaRadius)
+                    enemies.Add(EnemyManager.currentEnemies[i]);
+
+            }
+
         }
     }
 
