@@ -660,11 +660,31 @@ public class GeotermalMarker : GameResources
     {
         if (Core.instance != null)
         {
-            Core.instance.AddStatus(STATUS_TYPE.GEOTERMAL_MARKER, STATUS_APPLY_TYPE.ADDITIVE, 50, 0, true);
+            Core.instance.AddStatus(STATUS_TYPE.GEOTERMAL_MARKER, STATUS_APPLY_TYPE.ADDITIVE, 33f, 0, true);
             if (!Core.boons.Contains(STATUS_TYPE.GEOTERMAL_MARKER))
                 Core.boons.Add(STATUS_TYPE.GEOTERMAL_MARKER);
 
             PlayerResources.AddBoon(BOONS.BOON_GEOTERMAL_MARKER);
+        }
+    }
+}
+public class GreefPaycheck : GameResources
+{
+    public GreefPaycheck() : base(65111559, RewardType.REWARD_BOON, 1.0f, "75% Discount on the next item bought in the shop")
+    {
+        name = "Cad Bane’s rocket boots";
+        price = ShopPrice.SHOP_EXPENSIVE;
+    }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.GREEF_PAYCHECK, STATUS_APPLY_TYPE.ADDITIVE, 1, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.GREEF_PAYCHECK))
+                Core.boons.Add(STATUS_TYPE.GREEF_PAYCHECK);
+
+            PlayerResources.AddBoon(BOONS.BOON_GREEF_PAYCHECK);
         }
     }
 }
@@ -680,7 +700,7 @@ static class BoonDataHolder
         boonType[(int)BOONS.BOON_CADBANE_ROCKET_BOOTS] =       new CadBaneBoots();
         boonType[(int)BOONS.BOON_CADBANE_SLEIGHT] =            new CadBaneSoH();
         boonType[(int)BOONS.BOON_ECHO_QUICK_RECOVERY] =        new EchoRecovery();
-        boonType[(int)BOONS.BOON_GREEF_PAYCHECK] =             new EchoRecovery();     //Add this when done = new GreefPaycheck();
+        boonType[(int)BOONS.BOON_GREEF_PAYCHECK] =             new GreefPaycheck();     
         boonType[(int)BOONS.BOON_ITS_A_TRAP] =                 new ItsATrap();
         boonType[(int)BOONS.BOON_MANDALORIAN_QUICK_DRAW] =     new MandoQuickDraw();
         boonType[(int)BOONS.BOON_REX_SECOND_BLASTER] =         new RexSecBlaster();
