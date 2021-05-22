@@ -461,6 +461,16 @@ public class LaserTurret : Enemy
                         vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER).severity;
                         damageMult = damageRecieveMult;
                     }
+                    if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
+                    {
+                        float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
+                        Random rand = new Random();
+                        float result = rand.Next(1, 101);
+                        if (result <= mod)
+                            Core.instance.RefillSniper();
+
+                        Core.instance.luckyMod = 1 + mod / 100;
+                    }
                 }
                 this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, applyType, vulerableSev, vulerableTime);
 
@@ -484,16 +494,7 @@ public class LaserTurret : Enemy
                             BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
                         }
                     }
-                    if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
-                    {
-                        float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
-                        Random rand = new Random();
-                        float result = rand.Next(1, 101);
-                        if (result <= mod)
-                            Core.instance.RefillSniper();
-
-                        Core.instance.luckyMod = 1 + mod / 100;
-                    }
+          
 
                     if (Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
                     {

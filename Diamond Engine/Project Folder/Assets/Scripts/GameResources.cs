@@ -648,6 +648,26 @@ public class SoloQuickDraw : GameResources
         }
     }
 }
+public class GeotermalMarker : GameResources
+{
+    public GeotermalMarker() : base(65111559, RewardType.REWARD_BOON, 1.0f, "any enemy affected by any kind of negative status takes +33% damage")
+    {
+        name = "Cad Bane’s rocket boots";
+        price = ShopPrice.SHOP_EXPENSIVE;
+    }
+
+    public override void Use()
+    {
+        if (Core.instance != null)
+        {
+            Core.instance.AddStatus(STATUS_TYPE.GEOTERMAL_MARKER, STATUS_APPLY_TYPE.ADDITIVE, 50, 0, true);
+            if (!Core.boons.Contains(STATUS_TYPE.GEOTERMAL_MARKER))
+                Core.boons.Add(STATUS_TYPE.GEOTERMAL_MARKER);
+
+            PlayerResources.AddBoon(BOONS.BOON_GEOTERMAL_MARKER);
+        }
+    }
+}
 #endregion
 static class BoonDataHolder
 {
@@ -674,7 +694,7 @@ static class BoonDataHolder
         boonType[(int)BOONS.BOON_FENNEC_SNIPER_RIFLE] =        new FennecSniper();
         boonType[(int)BOONS.BOON_BOBBA_FETT_STUN_AMM] =        new BobbaStunAmmo();    
         boonType[(int)BOONS.BOON_BOSSK_SPECIAL_AMMO] =         new BosskSpecialAmmo();
-        boonType[(int)BOONS.BOON_GEOTERMAL_MARKER] =           new BosskSpecialAmmo(); //Add this when done= new GeotermalMarker();
+        boonType[(int)BOONS.BOON_GEOTERMAL_MARKER] =           new GeotermalMarker(); 
         boonType[(int)BOONS.BOON_MASTER_LUMINARA_FORCE] =      new LuminaraForce();
         boonType[(int)BOONS.BOON_MASTER_WINDU_FORCE] =         new WinduForceControl();
         boonType[(int)BOONS.BOON_MASTER_YODA_FORCE] =          new YodaForceControl();
