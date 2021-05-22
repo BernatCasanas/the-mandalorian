@@ -132,7 +132,7 @@ public class NPCSpawnController : DiamondComponent
                 else if (animation == 2) Animator.Play(unit, "CD_Lean");
                 if (HubTextController != null)
                 {
-                    HubTextController.GetComponent<HubTextController>().ashoka = unit;
+                    HubTextController.GetComponent<HubTextController>().cara_dune = unit;
                 }
                 break;
             default:
