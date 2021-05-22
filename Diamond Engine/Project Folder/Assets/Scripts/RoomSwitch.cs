@@ -8,13 +8,16 @@ public class RoomDataHolder
     public int bossScene = 0;
     public int preBossScene = 0;
 
-    public RoomDataHolder(List<int> initList, int final, int preBoss = 0)
+    public int shopRoom = 0;
+
+    public RoomDataHolder(List<int> initList, int final, int preBoss = 0, int shop = 0)
     {
         //visited.Clear();
         visited = new List<int>(initList);
         bossScene = final;
 
         preBossScene = preBoss;
+        shopRoom = shop;
     }
 
     public void ClearData(List<int> initList)
@@ -50,8 +53,7 @@ public static class RoomSwitch
             614298780,
             2043151660,
             1984495527,
-            1172505392,
-            352974858,
+            1992514962,
         },
 
         new List<int>()
@@ -64,12 +66,12 @@ public static class RoomSwitch
 
     public readonly static List<RoomDataHolder> levelLists = new List<RoomDataHolder>()
     {
-        new RoomDataHolder(originalLevelPools[0], 308281119),
-        new RoomDataHolder(originalLevelPools[1], 880545183),
+        new RoomDataHolder(originalLevelPools[0], 308281119, 0, 466646284),
+        new RoomDataHolder(originalLevelPools[1], 880545183, 0, 1812779980),
         new RoomDataHolder(originalLevelPools[2], 2069575406, 518439386),
     };
 
-    private readonly static int shopRoom = 466646284;
+    private readonly static int defaultErrorShop = 466646284;
 
     private static int roomID = 0;
     public static int currentroom = 0;
@@ -110,9 +112,11 @@ public static class RoomSwitch
         //Load Post Boss Room
         if (index > 0 && currentLevelIndicator <= LEVELS.MAX && levelLists[index - 1].bossScene == currentroom  /*&& currentLevelIndicator == LEVELS.TWO*/)
         {
+            int shopToLoad = (levelLists[index - 1].shopRoom == 0) ? levelLists[index - 1].shopRoom : defaultErrorShop;
+
             Debug.Log("PostBoss loaded");
-            SceneManager.LoadScene(shopRoom);
-            currentroom = shopRoom;
+            SceneManager.LoadScene(shopToLoad);
+            currentroom = shopToLoad;
             return;
         }
 
