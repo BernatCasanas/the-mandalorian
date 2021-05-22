@@ -330,8 +330,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 12.140000343322754,
-                    "hFOV": 22.200000762939453,
+                    "vFOV": 11.659999847412109,
+                    "hFOV": 17.239999771118164,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -355,7 +355,9 @@
                     "cornerTopLeftX": -100,
                     "cornerTopLeftY": -100,
                     "cornerBotRightX": 100,
-                    "cornerBotRightY": 100
+                    "cornerBotRightY": 100,
+                    "deadZoom": 80,
+                    "deadEasingSec": 5
                 }
             ]
         },
@@ -1421,10 +1423,10 @@
                 -0.99058294296264648
             ],
             "Rotation": [
-                -3.8170949068216942e-08,
-                -0.0059253545477986336,
-                -1.7109304195628283e-08,
-                0.99998253583908081
+                -3.8170945515503263e-08,
+                -0.005925353616476059,
+                -1.7109302419271444e-08,
+                0.99998241662979126
             ],
             "Scale": [
                 0.99999988079071045,
@@ -3661,10 +3663,10 @@
                 -21.285999298095703
             ],
             "Rotation": [
-                -0.50261986255645752,
-                0.50261116027832031,
-                0.4973752498626709,
-                0.49736642837524414
+                -0.50261980295181274,
+                0.50261110067367554,
+                0.49737519025802612,
+                0.49736636877059937
             ],
             "Scale": [
                 1.4969998598098755,
@@ -4284,10 +4286,10 @@
                 -14.760412216186523
             ],
             "Rotation": [
-                -0.50261980295181274,
-                0.50261110067367554,
-                0.49737519025802612,
-                0.49736636877059937
+                -0.50261986255645752,
+                0.50261116027832031,
+                0.4973752498626709,
+                0.49736642837524414
             ],
             "Scale": [
                 1.4969998598098755,
@@ -7291,7 +7293,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1848582122.dds",
-                    "UID": 1848582122
+                    "UID": 1848582122,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -7371,7 +7374,8 @@
                     "Active": true,
                     "AssetPath": "Assets\/UI\/MENU\/arrow_right.png",
                     "LibraryPath": "Library\/Textures\/1346482548.dds",
-                    "UID": 1346482548
+                    "UID": 1346482548,
+                    "fadeValue": 0
                 },
                 {
                     "Type": 17,
@@ -7590,7 +7594,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1049570191.dds",
-                    "UID": 1049570191
+                    "UID": 1049570191,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -7652,7 +7657,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/634104598.dds",
-                    "UID": 634104598
+                    "UID": 634104598,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -7714,7 +7720,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/138834254.dds",
-                    "UID": 138834254
+                    "UID": 138834254,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -7776,7 +7783,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1903810266.dds",
-                    "UID": 1903810266
+                    "UID": 1903810266,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -7838,7 +7846,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1626908782.dds",
-                    "UID": 1626908782
+                    "UID": 1626908782,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -7900,7 +7909,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/2103186234.dds",
-                    "UID": 2103186234
+                    "UID": 2103186234,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -7962,7 +7972,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/336352699.dds",
-                    "UID": 336352699
+                    "UID": 336352699,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -8024,7 +8035,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/118609453.dds",
-                    "UID": 118609453
+                    "UID": 118609453,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -8086,7 +8098,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1120674717.dds",
-                    "UID": 1120674717
+                    "UID": 1120674717,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -8148,7 +8161,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1777355624.dds",
-                    "UID": 1777355624
+                    "UID": 1777355624,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -8210,7 +8224,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/970842383.dds",
-                    "UID": 970842383
+                    "UID": 970842383,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -8272,7 +8287,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1900272165.dds",
-                    "UID": 1900272165
+                    "UID": 1900272165,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -8334,7 +8350,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/624980869.dds",
-                    "UID": 624980869
+                    "UID": 624980869,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -8396,7 +8413,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1589454125.dds",
-                    "UID": 1589454125
+                    "UID": 1589454125,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -8458,7 +8476,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1700790362.dds",
-                    "UID": 1700790362
+                    "UID": 1700790362,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -8520,7 +8539,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1117241165.dds",
-                    "UID": 1117241165
+                    "UID": 1117241165,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -8582,7 +8602,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1586930187.dds",
-                    "UID": 1586930187
+                    "UID": 1586930187,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -8644,7 +8665,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/2075361918.dds",
-                    "UID": 2075361918
+                    "UID": 2075361918,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -8706,7 +8728,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1940966022.dds",
-                    "UID": 1940966022
+                    "UID": 1940966022,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -8768,7 +8791,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1847694789.dds",
-                    "UID": 1847694789
+                    "UID": 1847694789,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -8830,7 +8854,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1376500740.dds",
-                    "UID": 1376500740
+                    "UID": 1376500740,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -8892,7 +8917,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/397554556.dds",
-                    "UID": 397554556
+                    "UID": 397554556,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -8954,7 +8980,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/43466799.dds",
-                    "UID": 43466799
+                    "UID": 43466799,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -9016,7 +9043,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1387034318.dds",
-                    "UID": 1387034318
+                    "UID": 1387034318,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -9078,7 +9106,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/819098829.dds",
-                    "UID": 819098829
+                    "UID": 819098829,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -9140,7 +9169,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/819098829.dds",
-                    "UID": 819098829
+                    "UID": 819098829,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -9202,7 +9232,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1174885979.dds",
-                    "UID": 1174885979
+                    "UID": 1174885979,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -9264,7 +9295,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/1232113376.dds",
-                    "UID": 1232113376
+                    "UID": 1232113376,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -9326,7 +9358,8 @@
                     "Active": true,
                     "AssetPath": "Empty",
                     "LibraryPath": "Library\/Textures\/809648494.dds",
-                    "UID": 809648494
+                    "UID": 809648494,
+                    "fadeValue": 0
                 }
             ]
         },
@@ -14007,6 +14040,35 @@
                     ]
                 }
             ]
+        },
+        {
+            "name": "BlackFade",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1435822827,
+            "ParentUID": 569296851,
+            "PrefabReference": 1852207575,
+            "PrefabID": 1368828559,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "PrefabObjects": []
         },
         {
             "name": "DinDjarin",

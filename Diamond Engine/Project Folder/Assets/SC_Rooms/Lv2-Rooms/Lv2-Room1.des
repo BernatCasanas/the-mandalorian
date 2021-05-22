@@ -106,8 +106,8 @@
                     "fSize": 25,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 26.600000381469727,
-                    "hFOV": 50.319999694824219,
+                    "vFOV": 23.319999694824219,
+                    "hFOV": 34.479999542236328,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -130,7 +130,9 @@
                     "cornerTopLeftX": -100,
                     "cornerTopLeftY": -100,
                     "cornerBotRightX": 100,
-                    "cornerBotRightY": 100
+                    "cornerBotRightY": 100,
+                    "deadZoom": 80,
+                    "deadEasingSec": 5
                 }
             ]
         },
@@ -16261,6 +16263,35 @@
                     ]
                 }
             ]
+        },
+        {
+            "name": "BlackFade",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1690836297,
+            "ParentUID": 710220646,
+            "PrefabReference": 1852207575,
+            "PrefabID": 1368828559,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "PrefabObjects": []
         },
         {
             "name": "Traps",

@@ -302,8 +302,8 @@
                     "fSize": 30.239999771118164,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 20.072751998901367,
-                    "hFOV": 36.706348419189453,
+                    "vFOV": 19.27910041809082,
+                    "hFOV": 28.505290985107422,
                     "culling": true,
                     "HDR": true,
                     "drawSkybox": true
@@ -327,7 +327,9 @@
                     "cornerTopLeftX": -100,
                     "cornerTopLeftY": -100,
                     "cornerBotRightX": 100,
-                    "cornerBotRightY": 100
+                    "cornerBotRightY": 100,
+                    "deadZoom": 80,
+                    "deadEasingSec": 5
                 }
             ]
         },
@@ -15918,6 +15920,35 @@
                     ]
                 }
             ]
+        },
+        {
+            "name": "BlackFade",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 490289871,
+            "ParentUID": 817790117,
+            "PrefabReference": 1852207575,
+            "PrefabID": 1368828559,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "PrefabObjects": []
         },
         {
             "name": "SpawnManager",

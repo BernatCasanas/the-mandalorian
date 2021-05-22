@@ -1645,10 +1645,10 @@
                 11.487642288208008
             ],
             "Rotation": [
-                -0.49781492352485657,
-                0.50217866897583008,
-                0.50217604637145996,
-                0.49781152606010437
+                -0.49781486392021179,
+                0.5021786093711853,
+                0.50217598676681519,
+                0.49781146645545959
             ],
             "Scale": [
                 2.6026985645294189,
@@ -4711,8 +4711,8 @@
                     "fSize": 30,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 20.233333587646484,
-                    "hFOV": 37,
+                    "vFOV": 19.433332443237305,
+                    "hFOV": 28.733333587646484,
                     "culling": true,
                     "HDR": true,
                     "drawSkybox": true,
@@ -4732,7 +4732,9 @@
                     "cornerTopLeftX": -100,
                     "cornerTopLeftY": -100,
                     "cornerBotRightX": 100,
-                    "cornerBotRightY": 100
+                    "cornerBotRightY": 100,
+                    "deadZoom": 80,
+                    "deadEasingSec": 5
                 },
                 {
                     "Type": 12,
@@ -10593,6 +10595,35 @@
                     ]
                 }
             ]
+        },
+        {
+            "name": "BlackFade",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 35807480,
+            "ParentUID": 272055130,
+            "PrefabReference": 1852207575,
+            "PrefabID": 1368828559,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "PrefabObjects": []
         },
         {
             "name": "Gap",
