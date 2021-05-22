@@ -169,6 +169,7 @@ public class Wampa : Bosseslv2
             Debug.Log("wampa angry");
             inputsList.Add(INPUT.IN_PRESENTATION);
             presentationTimer = presentationTime;
+            WampaAngry();
             angry = true;
         }
     }
@@ -565,6 +566,11 @@ public class Wampa : Bosseslv2
                 }
             }
         }
+    }
+
+    private void WampaAngry()
+    {
+
     }
 
 }

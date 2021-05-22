@@ -13,6 +13,8 @@ public class HUBAudio : DiamondComponent
 		{
 			Audio.PlayAudio(gameObject, "Play_Cantine_Ambience");
 			Audio.SetState("Game_State", "HUB");
+			if (MusicSourceLocate.instance != null)
+				Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Healthy");
 		}
 		start = true;
 		once = true;
@@ -31,6 +33,8 @@ public class HUBAudio : DiamondComponent
         {
 			Audio.PlayAudio(gameObject, "Play_Cantine_Ambience");
 			Audio.SetState("Game_State", "HUB");
+			if (MusicSourceLocate.instance != null)
+				Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Healthy");
 			once = false;
 		}
 	}

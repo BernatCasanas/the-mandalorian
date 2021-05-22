@@ -5,6 +5,28 @@ public class TriggerSwitch : DiamondComponent
 {
 
     public int roomUidToLoad = -1;
+    public bool start = true;
+
+    private void Start()
+    {
+        Audio.SetState("Game_State", "Run");
+        Audio.SetState("Player_State", "Alive");
+        Debug.Log("Before music instance");
+        if (MusicSourceLocate.instance != null)
+        {
+            Audio.SetSwitch(MusicSourceLocate.instance.gameObject,"Player_Health", "Healthy");
+            Audio.SetSwitch(MusicSourceLocate.instance.gameObject,"Player_Action", "Exploring");
+        }
+        Debug.Log("After music instance");
+    }
+    public void Update()
+    {
+        if (start)
+        {
+            Start();
+            start = false;
+        }
+    }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {

@@ -159,6 +159,8 @@ public class EndLevelRewards
         secondText.GetComponent<Text>().text = RewardText(secondReward);
         thirdText.GetComponent<Text>().text  = RewardText(thirdReward);
 
+        ChangeMusic();
+
         return;
     }
 
@@ -286,4 +288,28 @@ public class EndLevelRewards
         InternalCalls.Destroy(InternalCalls.FindObjectWithName("EndLevelReward"));
     }
 
+    private void ChangeMusic()
+    {
+        if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
+        {
+            Audio.SetState("Game_State", "Run");
+            Audio.SetState("Player_State", "Alive");
+            if (MusicSourceLocate.instance != null)
+                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+        }
+        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
+        {
+            Audio.SetState("Game_State", "Run_2");
+            Audio.SetState("Player_State", "Alive");
+            if (MusicSourceLocate.instance != null)
+                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+        }
+        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
+        {
+            Audio.SetState("Game_State", "Run_3");
+            Audio.SetState("Player_State", "Alive");
+            if (MusicSourceLocate.instance != null)
+                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+        }
+    }
 }
