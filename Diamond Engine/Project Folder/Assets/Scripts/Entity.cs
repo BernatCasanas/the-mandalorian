@@ -290,7 +290,20 @@ public class Entity : DiamondComponent
     {
         return statuses.Count > 0;
     }
+    public bool HasNegativeStatus()
+    {
+        int counter = 0;
+        if (HasStatus(STATUS_TYPE.ACCELERATED))
+            counter++;
+        if (HasStatus(STATUS_TYPE.ENEMY_DAMAGE_UP))
+            counter++;
 
+        return statuses.Count > counter;
+    }
+    public int StatusCount()
+    {
+        return statuses.Count;
+    }
     public float GetStatusRemainingTime(STATUS_TYPE stat)
     {
         float ret = 0f;
