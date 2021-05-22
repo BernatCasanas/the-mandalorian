@@ -43,8 +43,14 @@ public class IntroCinematic : DiamondComponent
     float[] timerArray = null;    // Why am I using timer approach? Basically, the triggers of each camera switch are animation ends, positions reached and timers. Everything is convertable to time, but the other two can't be converted universally
     int arrayCount = -1;
 
+    public bool beyondDark = false;
+    private bool once = false;
+
     public void Awake()
     {
+        beyondDark = false;
+        if (Counter.firstRun)
+            once = true;
         if (Counter.firstRun)
         {
             nonCinematicCameraPos = cameraObject.transform.localPosition;
@@ -68,11 +74,15 @@ public class IntroCinematic : DiamondComponent
     public void Update()
     {
         float newDeltaTime = Time.deltaTime;
+        if (once)
+        {
+            once = false;
+            Audio.SetState("Game_State", "Cinematic");
+        }
 
         if (newDeltaTime > 0.016f) {
             newDeltaTime = 0.016f;
         }
-        Audio.SetState("Game_State", "Cinematic");
         Core.instance.LockInputs(true); // Yeah. Not pretty. But calling Core in Awake is not happening, and a boolean checked every frame seems redundant for what the function does
 
         if (toGoPosition != null && WeHaveToMove())
@@ -129,6 +139,8 @@ public class IntroCinematic : DiamondComponent
             EndCinematic();
             return;
         }
+        if (arrayCount * 1.8f >= 3)
+            beyondDark = true;
 
         currentTimer = 0;
         currentTimeLimit = timerArray[arrayCount];
@@ -167,6 +179,7 @@ public class IntroCinematic : DiamondComponent
     public void EndCinematic()
     {
         gameObject.Enable(false);
+        beyondDark = true;
 
         if (Counter.firstRun)
         {
