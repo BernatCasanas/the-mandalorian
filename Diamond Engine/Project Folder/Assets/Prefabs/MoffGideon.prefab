@@ -121,8 +121,8 @@
                     "hitParticles": 1889709846,
                     "slerpSpeed": 5,
                     "healthPoints": 40,
-                    "maxHealthPoints_fase1": 400,
-                    "maxHealthPoints_fase2": 20,
+                    "maxHealthPoints_fase1": 100,
+                    "maxHealthPoints_fase2": 100,
                     "followSpeed": 4,
                     "touchDamage": 10,
                     "distance2Melee": 10,
@@ -2620,21 +2620,29 @@
                         1
                     ],
                     "alternColorStencil": [
-                        1,
-                        1,
-                        1
+                        0.7807692289352417,
+                        0.76275146007537842,
+                        0.76275146007537842
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
+                    "doNotDrawStencil": false,
                     "drawShadows": true
                 },
                 {
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/BossMat.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/2059344958.mat",
                     "MaterialUID": 2059344958
+                },
+                {
+                    "Type": 26,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/1540644281.mat",
+                    "MaterialUID": 1540644281
                 }
             ]
         },
