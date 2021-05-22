@@ -118,6 +118,7 @@ public class Core : Entity
     private bool skill_groguIncreaseDamageActive = false;
     private float skill_groguIncreaseDamageTimer = 0.0f;
     public float skill_SoloHeal = 0.0f;
+    public int ShopDiscount = 1;
     // Dash
     public float dashCD = 0.33f;
     public float dashDuration = 0.2f;
@@ -2766,6 +2767,11 @@ public class Core : Entity
                     skill_SoloHeal = statusToInit.statChange;
                 }
                 break;
+            case STATUS_TYPE.GREEF_PAYCHECK:
+                {
+                    ShopDiscount = (int)statusToInit.severity;
+                }
+                break;
             default:
                 break;
         }
@@ -3053,6 +3059,11 @@ public class Core : Entity
                 {
 
                     skill_SoloHeal = 0;
+                }
+                break;
+            case STATUS_TYPE.GREEF_PAYCHECK:
+                {
+                    ShopDiscount = 0;
                 }
                 break;
             default:

@@ -19,6 +19,9 @@ public class DebugAddResources : DiamondComponent
         if (Core.instance.hud != null)
         {
             Debug.Log("Update run coins");
+            Core.instance.hud.GetComponent<HUD>().UpdateCurrency(PlayerResources.GetRunCoins());
+
         }
+
     }
 }
