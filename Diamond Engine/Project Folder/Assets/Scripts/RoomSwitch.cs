@@ -66,12 +66,12 @@ public static class RoomSwitch
 
     public readonly static List<RoomDataHolder> levelLists = new List<RoomDataHolder>()
     {
-        new RoomDataHolder(originalLevelPools[0], 308281119, 0, 466646284),
+        new RoomDataHolder(originalLevelPools[0], 308281119, 0, 605149455),
         new RoomDataHolder(originalLevelPools[1], 880545183, 0, 1812779980),
         new RoomDataHolder(originalLevelPools[2], 2069575406, 518439386),
     };
 
-    private readonly static int defaultErrorShop = 466646284;
+    private readonly static int defaultErrorShop = 605149455;
 
     private static int roomID = 0;
     public static int currentroom = 0;
