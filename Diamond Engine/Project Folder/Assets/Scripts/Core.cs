@@ -1991,6 +1991,11 @@ public class Core : Entity
         return currentState == STATE.DASH;
     }
 
+    public float GetSniperMaxDamage()
+    {
+        return chargedBulletDmg;
+    }
+
     public void ReduceComboOnHit(int hitDamage, float comboSubstractionMult = 1f)
     {
         if (hud != null)
