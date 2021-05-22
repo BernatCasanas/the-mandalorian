@@ -23,6 +23,9 @@ public class Bosseslv2 : Entity
     public GameObject colliderJumpSlam = null;
     public GameObject colliderBounceRush = null;
     public GameObject jumpPositionIndicator = null;
+    public GameObject bossHealth = null;
+    public float limboHealth = 0.0f;
+    public float maxHealthPoints = 0.0f;
 
     //Private Variables
     public bool resting = false;
@@ -104,6 +107,8 @@ public class Bosseslv2 : Entity
 
     public virtual void Awake()
     {
+        maxHealthPoints = healthPoints;
+
         if (gameObject.CompareTag("Skel"))
         {
             //presentationTime = Animator.GetAnimationDuration(gameObject, "Skel_Presentation") - 0.016f;
