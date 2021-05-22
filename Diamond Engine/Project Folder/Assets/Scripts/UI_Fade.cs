@@ -56,6 +56,12 @@ public class UI_Fade : DiamondComponent
 	public void Activate()
 	{
 		if (img != null)
+		{
 			ended = false;
+			started = false;
+			timer = 0.0f;
+
+			img.SetFadeValue(0.0f);
+		}
 	}
 }
