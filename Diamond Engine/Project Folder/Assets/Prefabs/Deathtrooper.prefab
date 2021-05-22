@@ -13,9 +13,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -11.554314613342285,
-                11.047881126403809,
-                -4.8771543502807617
+                -9.8341617584228516,
+                0,
+                -10.564579010009766
             ],
             "Rotation": [
                 9.0453156076364394e-09,
@@ -59,7 +59,7 @@
                     "shootPoint": 179710061,
                     "shotgun": 373372710,
                     "idleTime": 3,
-                    "timeBewteenBursts": 0.30000001192092896,
+                    "timeBewteenBursts": 1,
                     "betweenStatesTime": 1.5,
                     "wanderSpeed": 3.5,
                     "runningSpeed": 7.5,
@@ -67,8 +67,10 @@
                     "wanderRange": 7.5,
                     "shotRange": 15,
                     "recoilDistance": 3,
-                    "maxShots": 4,
-                    "dispersionAngleDeg": 15,
+                    "numBullets1": 3,
+                    "numBullets2": 5,
+                    "bulletsSeparation1": 0.5,
+                    "bulletsSeparation2": 0.69999998807907104,
                     "forcePushMod": 1.1499999761581421,
                     "PushStun": 2,
                     "hitParticlesObj": 1938952528,
@@ -121,10 +123,10 @@
                     "Active": true,
                     "evName": "Empty",
                     "audBankReference": "Deathtrooper",
+                    "volume": 0,
                     "pitch": 50,
                     "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
+                    "isMuted": false
                 }
             ]
         },
@@ -2003,9 +2005,9 @@
                 1
             ],
             "Scale": [
-                0.05000000074505806,
-                0.05000000074505806,
-                0.40000000596046448
+                0.12999999523162842,
+                0.070000000298023224,
+                1.2000000476837158
             ],
             "Components": [
                 {
