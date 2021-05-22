@@ -134,6 +134,7 @@ public enum STATUS_TYPE
     SOLO_QUICK_DRAW,
     SOLO_HEAL,
     GEOTERMAL_MARKER,
+    GREEF_PAYCHECK,
 }
 
 public enum STATUS_APPLY_TYPE
@@ -290,7 +291,20 @@ public class Entity : DiamondComponent
     {
         return statuses.Count > 0;
     }
+    public bool HasNegativeStatus()
+    {
+        int counter = 0;
+        if (HasStatus(STATUS_TYPE.ACCELERATED))
+            counter++;
+        if (HasStatus(STATUS_TYPE.ENEMY_DAMAGE_UP))
+            counter++;
 
+        return statuses.Count > counter;
+    }
+    public int StatusCount()
+    {
+        return statuses.Count;
+    }
     public float GetStatusRemainingTime(STATUS_TYPE stat)
     {
         float ret = 0f;

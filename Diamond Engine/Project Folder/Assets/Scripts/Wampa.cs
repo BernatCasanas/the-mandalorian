@@ -508,8 +508,15 @@ public class Wampa : Bosseslv2
             if (currentState != STATE.DEAD)
             {
                 Audio.PlayAudio(gameObject, "Play_Wampa_Hit");
-                healthPoints -= damage;
-                if (Core.instance != null)
+                float mod = 1;
+                if (Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.GEOTERMAL_MARKER))
+                {
+                    if (HasNegativeStatus())
+                    {
+                        mod = 1 + GetStatusData(STATUS_TYPE.GEOTERMAL_MARKER).severity / 100;
+                    }
+                }
+                healthPoints -= damage * mod; if (Core.instance != null)
                 {
                     if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))
                         AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.WRECK_HEAVY_SHOT).severity / 100, 5);

@@ -1455,7 +1455,15 @@ public class MoffGideon : Entity
     {
         if (!DebugOptionsHolder.bossDmg)
         {
-            damaged = 1.0f;
+            float mod = 1;
+            if (Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.GEOTERMAL_MARKER))
+            {
+                if (HasNegativeStatus())
+                {
+                    mod = 1 + GetStatusData(STATUS_TYPE.GEOTERMAL_MARKER).severity / 100;
+                }
+            }
+            healthPoints -= damage * mod; 
             if (currentPhase == MOFFGIDEON_PHASE.PHASE1)
             {
                 Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Hit_Phase_1");

@@ -75,10 +75,9 @@ public class Deathtrooper : Enemy
 
     //Action variables
     private int shotsShooted = 0;
-    public int maxShots = 4;
-    public float dispersionAngleDeg = 0.0f;
+    //public int maxShots = 4;
+    //public float dispersionAngleDeg = 0.0f;
     private bool canShoot = true;
-
 
     //push
     public float forcePushMod = 1f;
@@ -469,7 +468,7 @@ public class Deathtrooper : Enemy
             betweenStatesTimer -= myDeltaTime;
             if (betweenStatesTimer <= 0.0f)
             {
-                ShotgunShoot(maxShots);
+                ShotgunShoot();
                 betweenBurstsTimer = timeBewteenBursts;
 
                 if (shotgunParticle != null)
@@ -500,47 +499,31 @@ public class Deathtrooper : Enemy
 
             if (betweenBurstsTimer <= 0.0f)
             {
-                ShotgunShoot(maxShots - 1);
+                ShotgunShoot();
             }
         }
 
         UpdateAnimationSpd(speedMult);
     }
 
-    private void ShotgunShoot(int numShots)
+    private void ShotgunShoot()
     {
-        float angleIncrement = dispersionAngleDeg / (numShots - 1);
-        float currentAngle = -(dispersionAngleDeg * 0.5f);
+       
+        GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/550070139.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, null);
+        bullet.GetComponent<DeathTrooperBullet>().damage = damage;
+        bullet.GetComponent<DeathTrooperBullet>().SetTagToAvoid("Deathtrooper");
+        bullet.GetComponent<DeathTrooperBullet>().SetGameObjectToAvoid(this.gameObject);
 
-        for (int i = 0; i < numShots; i++)
-        {
-            GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1234372269.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
-
-            if (bullet != null)
-            {
-                bullet.GetComponent<BH_Bullet>().damage = damage;
-                bullet.transform.localRotation *= Quaternion.RotateAroundAxis(Vector3.up, currentAngle * Mathf.Deg2RRad);
-                bullet.transform.localPosition += bullet.transform.GetForward().normalized * 1.25f;
-                currentAngle += angleIncrement;
-            }
-        }
-
-        recoilTimer = recoilTime * ((float)numShots / (float)maxShots);
+        recoilTimer = recoilTime;
         shotsShooted++;
 
-        if (numShots == maxShots) //First Shot
-        {
-            Animator.Play(gameObject, "DTH_ShootRecoil", speedMult * 2.0f);
-            if (shotgun != null)
-                Animator.Play(shotgun, "DTH_ShootRecoil", speedMult * 2.0f);
-            Audio.PlayAudio(gameObject, "Play_Deathtrooper_Recoil");
-        }
-        else //Second Shot
-        {
-            Animator.Play(gameObject, "DTH_ShootNoRecoil", speedMult * 2.0f);
-            if (shotgun != null)
-                Animator.Play(shotgun, "DTH_ShootNoRecoil", speedMult * 2.0f);
-        }
+
+
+        Animator.Play(gameObject, "DTH_ShootRecoil", speedMult * 2.0f);
+        if(shotgun != null)
+            Animator.Play(shotgun, "DTH_ShootRecoil", speedMult * 2.0f);
+        Audio.PlayAudio(gameObject, "Play_Deathtrooper_Recoil");
+        
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Deathtrooper_Shot");
     }
@@ -798,7 +781,15 @@ public class Deathtrooper : Enemy
     {
 
         Audio.PlayAudio(gameObject, "Play_Deathtrooper_Hit");
-        healthPoints -= damage;
+        float mod = 1;
+        if(Core.instance != null && Core.instance.HasStatus(STATUS_TYPE.GEOTERMAL_MARKER))
+        {
+            if(HasNegativeStatus())
+            {
+                mod = 1 + GetStatusData(STATUS_TYPE.GEOTERMAL_MARKER).severity / 100;
+            }
+        }
+        healthPoints -= damage * mod;
         if (Core.instance != null)
         {
             if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))

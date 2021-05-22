@@ -118,6 +118,7 @@ public class Core : Entity
     private bool skill_groguIncreaseDamageActive = false;
     private float skill_groguIncreaseDamageTimer = 0.0f;
     public float skill_SoloHeal = 0.0f;
+    public int ShopDiscount = 1;
     // Dash
     public float dashCD = 0.33f;
     public float dashDuration = 0.2f;
@@ -2042,6 +2043,30 @@ public class Core : Entity
                     damageTaken += damageFromBullet;
                 }
             }
+            if (collidedGameObject.CompareTag("DeathTrooperBullet"))
+            {
+                //InternalCalls.Destroy(gameObject);
+                PlayParticles(PARTICLES.IMPACT);
+                DeathTrooperBullet bulletScript = collidedGameObject.GetComponent<DeathTrooperBullet>();
+                Audio.PlayAudio(gameObject, "Play_Mando_Hit");
+
+                if (bulletScript != null)
+                {
+                    int damageFromBullet = 0;
+
+                    if (skill_damageReductionDashActive)
+                        damageFromBullet = (int)(bulletScript.damage * (1.0f/* - Skill_Tree_Data.GetMandoSkillTree().U4_damageReduction*/));
+                    else
+                        damageFromBullet = (int)bulletScript.damage;
+
+                    PlayerHealth healthScript = gameObject.GetComponent<PlayerHealth>();
+
+                    if (healthScript != null)
+                        healthScript.TakeDamage(damageFromBullet);
+
+                    damageTaken += damageFromBullet;
+                }
+            }
             if (collidedGameObject.CompareTag("Bantha"))
             {
                 //InternalCalls.Destroy(gameObject);
@@ -2106,6 +2131,14 @@ public class Core : Entity
         {
             PlayerResources.AddRunCoins(10);
             Audio.PlayAudio(gameObject, "Play_UI_Credit_Pickup");
+
+            if (hud != null)
+            {
+                HUD hudComponent = hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                    hudComponent.UpdateCurrency(PlayerResources.GetRunCoins());
+            }
 
             InternalCalls.Destroy(triggeredGameObject);
         }
@@ -2763,6 +2796,11 @@ public class Core : Entity
                     skill_SoloHeal = statusToInit.statChange;
                 }
                 break;
+            case STATUS_TYPE.GREEF_PAYCHECK:
+                {
+                    ShopDiscount = (int)statusToInit.severity;
+                }
+                break;
             default:
                 break;
         }
@@ -3050,6 +3088,11 @@ public class Core : Entity
                 {
 
                     skill_SoloHeal = 0;
+                }
+                break;
+            case STATUS_TYPE.GREEF_PAYCHECK:
+                {
+                    ShopDiscount = 0;
                 }
                 break;
             default:

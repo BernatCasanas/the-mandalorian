@@ -79,12 +79,15 @@ public class CameraController : DiamondComponent
 
     public void DeadZoom()
     {
+        if(zooming == false)
+        {
+            timer = 0;
+        }
         if (deadZoom == 0 || deadEasingSec == 0)
             return; 
 
         zooming = true;
 
-        timer = 0;
         zoomDesired = deadZoom;
         timer_easing_sec = deadEasingSec;
     }

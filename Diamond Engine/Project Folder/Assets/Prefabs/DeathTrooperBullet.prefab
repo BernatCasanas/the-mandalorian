@@ -1,0 +1,460 @@
+{
+    "assets_path": "Assets\/Prefabs\/DeathTrooperBullet.prefab",
+    "Game Objects": [
+        {
+            "name": "DeathTrooperBullet",
+            "tag": "DeathTrooperBullet",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1297832856,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 550070139,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.10000000149011612,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                0.60000002384185791,
+                0.40000000596046448,
+                1.2000000476837158
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 0,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": true,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "DeathTrooperBullet",
+                    "speed": 30,
+                    "maxLifeTime": 5,
+                    "range_squared": 18,
+                    "use_range_instead_of_time": true,
+                    "yVel": 0,
+                    "damage": 10,
+                    "numBullets": 2,
+                    "bulletsSeparation": 0.5
+                }
+            ]
+        },
+        {
+            "name": "BulletDeathTrooper",
+            "tag": "StormTrooperBullet",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1046820051,
+            "ParentUID": 1297832856,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0.60000002384185791,
+                3.7203962133247614e-11,
+                -1.0216857049272221e-07
+            ],
+            "Rotation": [
+                -1.7098503168888612e-10,
+                6.3329942179279897e-08,
+                7.2759563131408189e-12,
+                1
+            ],
+            "Scale": [
+                0.20000000298023224,
+                0.20000001788139343,
+                0.99999994039535522
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/965117995.mmh",
+                    "UID": 965117995,
+                    "bumpDepth": 0,
+                    "alternColor": [
+                        1,
+                        0,
+                        0
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        0,
+                        0
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": false
+                },
+                {
+                    "Type": 26,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/1540644281.mat",
+                    "MaterialUID": 1540644281
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/571028171.mat",
+                    "MaterialUID": 571028171
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "bulletmesh",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1506242432,
+            "ParentUID": 1046820051,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                8.9406967163085938e-08,
+                2.5465851649641991e-11,
+                0
+            ],
+            "Rotation": [
+                -1.7098503168888612e-10,
+                6.3329942179279897e-08,
+                7.2759571805025569e-12,
+                1
+            ],
+            "Scale": [
+                1.0000001192092896,
+                1,
+                0.99999988079071045
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Standard Impact",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 182907968,
+            "ParentUID": 1046820051,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.49125668406486511,
+                0,
+                -0.92171961069107056
+            ],
+            "Rotation": [
+                0.00040883934707380831,
+                0.93168950080871582,
+                -6.1044935137033463e-05,
+                0.36325532197952271
+            ],
+            "Scale": [
+                8.5000104904174805,
+                20.000001907348633,
+                36.998004913330078
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "STimpact Particle",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1805097065,
+            "ParentUID": 182907968,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                8.9406967163085938e-08,
+                2.5465851649641991e-11,
+                0
+            ],
+            "Rotation": [
+                -1.7098503168888612e-10,
+                6.3329942179279897e-08,
+                7.2759571805025569e-12,
+                1
+            ],
+            "Scale": [
+                1.0000001192092896,
+                1,
+                0.99999988079071045
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "BulletDeathTrooper",
+            "tag": "StormTrooperBullet",
+            "layer": "Default",
+            "Active": true,
+            "UID": 140463545,
+            "ParentUID": 1297832856,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.60000002384185791,
+                3.7203962133247614e-11,
+                -1.0216857049272221e-07
+            ],
+            "Rotation": [
+                -1.7098503168888612e-10,
+                6.3329942179279897e-08,
+                7.2759563131408189e-12,
+                1
+            ],
+            "Scale": [
+                0.20000000298023224,
+                0.20000001788139343,
+                0.99999994039535522
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/965117995.mmh",
+                    "UID": 965117995,
+                    "bumpDepth": 0,
+                    "alternColor": [
+                        1,
+                        0,
+                        0
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        0,
+                        0
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": false
+                },
+                {
+                    "Type": 26,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/1540644281.mat",
+                    "MaterialUID": 1540644281
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/571028171.mat",
+                    "MaterialUID": 571028171
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "bulletmesh",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1719421654,
+            "ParentUID": 140463545,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                8.9406967163085938e-08,
+                2.5465851649641991e-11,
+                0
+            ],
+            "Rotation": [
+                -1.7098503168888612e-10,
+                6.3329942179279897e-08,
+                7.2759571805025569e-12,
+                1
+            ],
+            "Scale": [
+                1.0000001192092896,
+                1,
+                0.99999988079071045
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Standard Impact",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 674038413,
+            "ParentUID": 140463545,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.49125668406486511,
+                0,
+                -0.92171961069107056
+            ],
+            "Rotation": [
+                0.00040883940528146923,
+                0.93168962001800537,
+                -6.1044942412991077e-05,
+                0.36325535178184509
+            ],
+            "Scale": [
+                8.5000104904174805,
+                20.000001907348633,
+                36.998004913330078
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "STimpact Particle",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 415697229,
+            "ParentUID": 674038413,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                8.9406967163085938e-08,
+                2.5465851649641991e-11,
+                0
+            ],
+            "Rotation": [
+                -1.7098503168888612e-10,
+                6.3329942179279897e-08,
+                7.2759571805025569e-12,
+                1
+            ],
+            "Scale": [
+                1.0000001192092896,
+                1,
+                0.99999988079071045
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        }
+    ]
+}

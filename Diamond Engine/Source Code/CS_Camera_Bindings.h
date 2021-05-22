@@ -28,7 +28,7 @@ float GetOrthSize(MonoObject* go) {
 	GameObject* GO = EngineExternal->moduleMono->GameObject_From_CSGO(go);
 
 	C_Camera* cam = dynamic_cast<C_Camera*>(GO->GetComponent(Component::TYPE::CAMERA));
-	if (cam != nullptr || cam->camFrustrum.type != FrustumType::OrthographicFrustum)
+	if (cam != nullptr && cam->camFrustrum.type != FrustumType::PerspectiveFrustum)
 	{
 		return cam->GetOrthSize();
 	}
