@@ -401,16 +401,6 @@ public class Core : Entity
 
         myDeltaTime = Time.deltaTime * speedMult;
 
-        if (Input.GetKey(DEKeyCode.C) == KeyState.KEY_DOWN)
-        {
-            Audio.SetState("Game_State", "Run");
-            if (MusicSourceLocate.instance != null)
-            {
-                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Combat");
-                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Health", "Healthy");
-            }
-        }
-
         UpdateControllerInputs();
 
         UpdateStatuses();
