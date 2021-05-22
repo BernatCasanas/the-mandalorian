@@ -1846,7 +1846,7 @@ public class Core : Entity
         {
             if (floorType == FLOOR_TYPE.STONE)
             {
-                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
+                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Stone_Mando");
             }
             else
             {
