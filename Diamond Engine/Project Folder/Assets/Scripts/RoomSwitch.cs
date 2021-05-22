@@ -112,7 +112,7 @@ public static class RoomSwitch
         //Load Post Boss Room
         if (index > 0 && currentLevelIndicator <= LEVELS.MAX && levelLists[index - 1].bossScene == currentroom  /*&& currentLevelIndicator == LEVELS.TWO*/)
         {
-            int shopToLoad = (levelLists[index - 1].shopRoom == 0) ? levelLists[index - 1].shopRoom : defaultErrorShop;
+            int shopToLoad = (levelLists[index - 1].shopRoom != 0) ? levelLists[index - 1].shopRoom : defaultErrorShop;
 
             Debug.Log("PostBoss loaded");
             SceneManager.LoadScene(shopToLoad);
