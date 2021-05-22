@@ -150,7 +150,7 @@ public class SlowGrenade : DiamondComponent
                             else if (procActivation == true)
                             {
                                 Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.45f);
-                                //skelScript.TakeDamage(grenadeDamage * skelScript.damageRecieveMult);
+                                skelScript.TakeDamage(grenadeDamage * skelScript.damageRecieveMult);
                                 skelScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow, 0.175f);
                             }
                         }
@@ -164,7 +164,7 @@ public class SlowGrenade : DiamondComponent
                             else if (procActivation == true)
                             {
                                 Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.45f);
-                                //wampaScript.TakeDamage(grenadeDamage * wampaScript.damageRecieveMult);
+                                wampaScript.TakeDamage(grenadeDamage * wampaScript.damageRecieveMult);
                                 wampaScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow, 0.175f);
                             }
                         }
