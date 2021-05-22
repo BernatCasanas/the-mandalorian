@@ -1,31 +1,31 @@
 {
     "Game Objects": [
         {
-            "name": "RancorLifeBar",
+            "name": "Door Area Light",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1007388580,
-            "ParentUID": 1737144297,
+            "UID": 131540698,
+            "ParentUID": 1676501951,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                0,
-                0
+                2.2877609353599837e-06,
+                11.001001358032227,
+                33.811138153076172
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                -6.9725402340736764e-08,
+                -0.87993758916854858,
+                0.47508931159973145,
+                3.713535079441499e-08
             ],
             "Scale": [
-                1,
-                1,
-                1
+                0.99994790554046631,
+                0.99999994039535522,
+                0.99999713897705078
             ],
             "Components": [
                 {
@@ -33,94 +33,23 @@
                     "Active": true
                 },
                 {
-                    "Type": 6,
+                    "Type": 27,
                     "Active": true,
-                    "Position": [
-                        0,
-                        78
-                    ],
-                    "Rotation": 0,
-                    "Size": [
-                        39.400001525878906,
-                        18.799999237060547
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/29802472.mat",
-                    "MaterialUID": 29802472
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/1531928267.dds",
-                    "UID": 1531928267
-                }
-            ]
-        },
-        {
-            "name": "RancorLifeGauge",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 731900807,
-            "ParentUID": 1007388580,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 6,
-                    "Active": true,
-                    "Position": [
+                    "lightColor": [
+                        1,
                         0,
                         0
                     ],
-                    "Rotation": 0,
-                    "Size": [
-                        50,
-                        18.799999237060547
-                    ]
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
-                    "MaterialUID": 457052853
-                },
-                {
-                    "Type": 11,
-                    "Active": true,
-                    "AssetPath": "Empty",
-                    "LibraryPath": "Library\/Textures\/1750032199.dds",
-                    "UID": 1750032199
+                    "ambientLightColor": [
+                        1,
+                        0.023569047451019287,
+                        0.023569047451019287
+                    ],
+                    "lightIntensity": 2,
+                    "specularValue": 1,
+                    "fadeDistance": 10,
+                    "maxDistance": 800,
+                    "calculateShadows": true
                 }
             ]
         }
