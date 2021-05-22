@@ -23,6 +23,7 @@ public:
 	void SetTexture(ResourceTexture* tex);
 	void SetTexture(int UID, const char* library_path);
 	void SetTexture(int UID, Resource::Type _type);
+	void SetFadeValue(float fadeValue);
 
 
 	void SaveData(JSON_Object* nObj) override;
@@ -30,6 +31,8 @@ public:
 
 private:
 	ResourceTexture* texture = nullptr;
+
+	float fadeValue = 1.0f;
 };
 
 #endif // !__CO_IMAGE2D_H__
