@@ -327,6 +327,21 @@ public class Skel : Bosseslv2
                 SelectAction();
                 break;
         }
+
+        limboHealth = Mathf.Lerp(limboHealth, healthPoints, 0.01f);
+        if (bossHealth != null)
+        {
+            Material bossBarMat = bossHealth.GetComponent<Material>();
+
+            if (bossBarMat != null)
+            {
+                bossBarMat.SetFloatUniform("length_used", healthPoints / maxHealthPoints);
+                bossBarMat.SetFloatUniform("limbo", limboHealth / maxHealthPoints);
+            }
+            else
+                Debug.Log("Boss Bar component was null!!");
+
+        }
     }
 
     private void SelectAction()
@@ -423,6 +438,14 @@ public class Skel : Bosseslv2
                         vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER).severity;
                         damageMult = damageRecieveMult;
                     }
+                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_BLEED))
+                    {
+                        StatusData bleedData = Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_BLEED);
+                        float chargedBulletMaxDamage = Core.instance.GetSniperMaxDamage();
+
+                        damageMult *= bleedData.remainingTime;
+                        this.AddStatus(STATUS_TYPE.ENEMY_BLEED, STATUS_APPLY_TYPE.ADD_SEV, (chargedBulletMaxDamage * bleedData.severity) / vulerableTime, vulerableTime);
+                    }
                 }
                 this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, applyType, vulerableSev, vulerableTime);
 
@@ -486,7 +509,7 @@ public class Skel : Bosseslv2
         }
     }
 
-    public void TakeDamage(float damage)
+    protected override void TakeDamage(float damage)
     {
         if (!DebugOptionsHolder.bossDmg)
         {
@@ -536,5 +559,6 @@ public class Skel : Bosseslv2
             }
         }
     }
+
 
 }

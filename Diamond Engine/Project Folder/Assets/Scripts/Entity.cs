@@ -96,11 +96,11 @@ public enum STATUS_TYPE
     SNIPER_STACK_WORK_SNIPER,
     SNIPER_STACK_BLEED,
 
-
     // Enemies
     ENEMY_DAMAGE_DOWN,
     ENEMY_VULNERABLE,
     ENEMY_DAMAGE_UP,
+    ENEMY_BLEED,
 
     // Boons
     CAD_BANE_SOH,

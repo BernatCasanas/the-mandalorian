@@ -172,6 +172,23 @@ public class Enemy : Entity
 		}
 	}
 
+	protected override void OnUpdateStatus(StatusData statusToUpdate)
+	{
+		switch (statusToUpdate.statusType)
+		{
+			case STATUS_TYPE.ENEMY_BLEED:
+				{
+					float damageToTake = statusToUpdate.severity * Time.deltaTime;
+
+					TakeDamage(damageToTake);
+				}
+				break;
+
+			default:
+				break;
+		}
+	}
+
 	protected override void OnDeleteStatus(StatusData statusToDelete)
 	{
 		switch (statusToDelete.statusType)
