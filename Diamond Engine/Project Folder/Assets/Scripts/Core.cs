@@ -2102,6 +2102,14 @@ public class Core : Entity
             PlayerResources.AddRunCoins(10);
             Audio.PlayAudio(gameObject, "Play_UI_Credit_Pickup");
 
+            if (hud != null)
+            {
+                HUD hudComponent = hud.GetComponent<HUD>();
+
+                if (hudComponent != null)
+                    hudComponent.UpdateCurrency(PlayerResources.GetRunCoins());
+            }
+
             InternalCalls.Destroy(triggeredGameObject);
         }
 
