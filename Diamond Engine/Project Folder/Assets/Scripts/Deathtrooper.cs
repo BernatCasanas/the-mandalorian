@@ -740,6 +740,13 @@ public class Deathtrooper : Enemy
             }
 
         }
+        else if (collidedGameObject.CompareTag("WorldLimit"))
+        {
+            if (currentState != STATE.DIE)
+            {
+                inputsList.Add(INPUT.IN_DIE);
+            }
+        }
     }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
