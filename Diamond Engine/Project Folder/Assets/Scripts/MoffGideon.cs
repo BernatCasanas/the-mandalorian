@@ -141,6 +141,7 @@ public class MoffGideon : Entity
     private List<AtackMoff> atacks = new List<AtackMoff>();
     private int nAtacks = 0;
     private int nSequences = 3;
+    private bool powerPos = false;
 
 
     //Timers
@@ -286,8 +287,17 @@ public class MoffGideon : Entity
             Debug.Log(presentationTimer.ToString());
             if (presentationTimer <= 0)
             {
-                inputsList.Add(MOFFGIDEON_INPUT.IN_PRESENTATION_END);
-                healthPoints = limbo_health = maxHealthPoints_fase1;
+                if (!powerPos)
+                {
+                    powerPos = true;
+                    presentationTimer = Animator.GetAnimationDuration(gameObject, "MG_PowerPose") - 0.016f;
+                    Animator.Play(gameObject, "MG_PowerPose");
+                }
+                else
+                {
+                    inputsList.Add(MOFFGIDEON_INPUT.IN_PRESENTATION_END);
+                    healthPoints = limbo_health = maxHealthPoints_fase1;
+                }
                 
             }
 
