@@ -1,6 +1,5 @@
-using System;
 using DiamondEngine;
-
+using System;
 using System.Collections.Generic;
 
 public class MoffGideon : Entity
@@ -58,12 +57,12 @@ public class MoffGideon : Entity
         IN_DEAD
     }
 
-    struct AtackMoff
+    public struct AtackMoff
     {
-        AtackMoff(string animation, float duration)
+        public AtackMoff(string animation, GameObject go)
         {
             this.animation = animation;
-            this.duration = duration;
+            this.duration = Animator.GetAnimationDuration(go, animation) - 0.016f;
             this.last = false;
         }
 
@@ -190,6 +189,12 @@ public class MoffGideon : Entity
         changingStateTime = Animator.GetAnimationDuration(gameObject, "MG_PowerPose") - 0.016f;
         dieTime = Animator.GetAnimationDuration(gameObject, "MG_Death") - 0.016f;
 
+        //atacks.Add(new AtackMoff("MG_MeleeCombo1", gameObject));
+        //atacks.Add(new AtackMoff("MG_MeleeCombo2", gameObject));
+        //atacks.Add(new AtackMoff("MG_MeleeCombo3", gameObject));
+        //atacks.Add(new AtackMoff("MG_MeleeCombo4", gameObject));
+        //atacks.Add(new AtackMoff("MG_MeleeCombo5", gameObject));
+        //atacks.Add(new AtackMoff("MG_MeleeCombo6", gameObject));
 
         enemiesTimer = enemiesTime;
 
@@ -246,6 +251,9 @@ public class MoffGideon : Entity
             comboTimer -= myDeltaTime;
 
             if (comboTimer <= 0)
+            {
+
+            }
                 inputsList.Add(MOFFGIDEON_INPUT.IN_MELEE_COMBO_END);
 
         }
@@ -905,6 +913,9 @@ public class MoffGideon : Entity
         if (cam_comp != null)
             cam_comp.target = Core.instance.gameObject;
         invencible = false;
+
+
+
     }
 
     #endregion
