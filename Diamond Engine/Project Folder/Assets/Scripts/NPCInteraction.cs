@@ -19,23 +19,24 @@ public class NPCInteraction : DiamondComponent
     
     public void Awake()
     {
-        HubTextController hubScript = hubTextController.GetComponent<HubTextController>();
+        if(hubTextController==null)
+            return;
         switch (npc)
         {
             case Interaction.BO_KATAN:
-                canInteract = hubScript.BoKatanHasInteractions();
+                canInteract = hubTextController.GetComponent<HubTextController>().BoKatanHasInteractions();
                 break;
             case Interaction.GREEF:
-                canInteract = hubScript.GreefHasInteractions();
+                canInteract = hubTextController.GetComponent<HubTextController>().GreefHasInteractions();
                 break;
             case Interaction.ASHOKA:
-                canInteract = hubScript.AshokaHasInteractions();
+                canInteract = hubTextController.GetComponent<HubTextController>().AshokaHasInteractions();
                 break;
             case Interaction.CARA_DUNE:
-                canInteract = hubScript.CaraDuneHasInteractions();
+                canInteract = hubTextController.GetComponent<HubTextController>().CaraDuneHasInteractions();
                 break;
             case Interaction.GROGU:
-                canInteract = hubScript.GroguHasInteractions();
+                canInteract = hubTextController.GetComponent<HubTextController>().GroguHasInteractions();
                 break;
         }
 
