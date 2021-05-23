@@ -6,6 +6,8 @@
 #include"MO_FileSystem.h"
 #include"DEResource.h"
 
+#define FILE_UPDATE_TIME 180.0f
+
 class M_ResourceManager : public Module
 {
 

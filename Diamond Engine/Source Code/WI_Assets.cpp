@@ -38,6 +38,9 @@ void W_Assets::Draw()
 	{
 		selected = ImGui::IsWindowFocused();
 
+		if (ImGui::Button("UPDATE ASSETS FOLDER"))
+			EngineExternal->moduleResources->NeedsDirsUpdate(EngineExternal->moduleResources->assetsRoot);
+
 		ImGuiWindowFlags window_flags = ImGuiWindowFlags_AlwaysVerticalScrollbar;
 		ImGui::BeginChild("Tree", ImVec2(ImGui::GetWindowContentRegionWidth() * tree_window_width, ImGui::GetContentRegionAvail().y), false, window_flags);
 
