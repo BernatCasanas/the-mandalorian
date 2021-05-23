@@ -37,7 +37,7 @@ public class NPCSpawnController : DiamondComponent
     public int animation8 = 0;
 
     private List<Tuple<Vector3, Quaternion, int>> spawnPoints = new List<Tuple<Vector3, Quaternion, int>>();
- 
+
     enum State
     {
         IDLE = 0,
@@ -57,7 +57,7 @@ public class NPCSpawnController : DiamondComponent
     {
         //Get coordinates from a random spawnPoint
         //Generate a prefab on those coordinates
-        if(charactersUID.Count > spawnPoints.Count)
+        if (charactersUID.Count > spawnPoints.Count)
         {
             Debug.Log("Error. There are more NPCs than spawn points available");
             return;
@@ -90,19 +90,21 @@ public class NPCSpawnController : DiamondComponent
         prefabPath += prefabUID;
         prefabPath += ".prefab";
 
-        if(prefabUID==GroguUID) { pos.y += 1.3f; }
+        if (prefabUID == GroguUID) { pos.y += 1.3f; }
 
         GameObject unit = InternalCalls.CreatePrefab(prefabPath, pos, rot, new Vector3(1, 1, 1));
         //Animator animatorComponent = unit.GetComponent<Animator>();
         Debug.Log("Character: " + prefabUID + " , Animation: " + animation);
-        switch(prefabUID)
+        switch (prefabUID)
         {
             case GroguUID:
                 Animator.Play(unit, "Grogu_Idle");
 
-                if(HubTextController != null) {
+                if (HubTextController != null)
+                {
                     HubTextController.GetComponent<HubTextController>().grogu = unit;
-                }             
+                    HubTextController.GetComponent<HubTextController>().groguNotification = unit.GetChild("NPC notification");
+                }
 
                 break;
             case BoKatanUID:
@@ -110,8 +112,10 @@ public class NPCSpawnController : DiamondComponent
                 else if (animation == 1) Animator.Play(unit, "Bo-Katan_Sit");
                 else if (animation == 2) Animator.Play(unit, "Bo-Katan_Lean");
 
-                if (HubTextController != null) { 
+                if (HubTextController != null)
+                {
                     HubTextController.GetComponent<HubTextController>().bo_katan = unit;
+                    HubTextController.GetComponent<HubTextController>().boKatanNotification = unit.GetChild("NPC notification");
                 }
 
                 break;
@@ -123,6 +127,7 @@ public class NPCSpawnController : DiamondComponent
                 if (HubTextController != null)
                 {
                     HubTextController.GetComponent<HubTextController>().ashoka = unit;
+                    HubTextController.GetComponent<HubTextController>().ashokaNotification = unit.GetChild("NPC notification");
                 }
 
                 break;
@@ -133,6 +138,7 @@ public class NPCSpawnController : DiamondComponent
                 if (HubTextController != null)
                 {
                     HubTextController.GetComponent<HubTextController>().cara_dune = unit;
+                    HubTextController.GetComponent<HubTextController>().caraDuneNotification = unit.GetChild("NPC notification");
                 }
                 break;
             default:
@@ -145,7 +151,7 @@ public class NPCSpawnController : DiamondComponent
         if (spawnPoints[index] != null)
             return spawnPoints[index].Item1;
 
-        Vector3 defaultVal = new Vector3(0,1,0);
+        Vector3 defaultVal = new Vector3(0, 1, 0);
         return defaultVal;
     }
 
@@ -161,8 +167,8 @@ public class NPCSpawnController : DiamondComponent
     private void GenerateSpawnPointsList()
     {
         //Load spawnPoints position into a List or other data structure to handle information more efficiently
-        Vector3 positionAux = new Vector3(1,1,1);
-        Quaternion rotationAux = new Quaternion(0,0,0,1);
+        Vector3 positionAux = new Vector3(1, 1, 1);
+        Quaternion rotationAux = new Quaternion(0, 0, 0, 1);
         Tuple<Vector3, Quaternion, int> TupleAux = new Tuple<Vector3, Quaternion, int>(positionAux, rotationAux, 1);
 
         if (spawnPoint1 != null)
@@ -170,7 +176,7 @@ public class NPCSpawnController : DiamondComponent
             positionAux = spawnPoint1.transform.globalPosition;
             rotationAux = spawnPoint1.transform.globalRotation;
             TupleAux = Tuple.Create(positionAux, rotationAux, animation1);
-            spawnPoints.Add(TupleAux); 
+            spawnPoints.Add(TupleAux);
         }
         if (spawnPoint2 != null)
         {

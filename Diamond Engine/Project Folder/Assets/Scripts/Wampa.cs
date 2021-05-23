@@ -49,7 +49,7 @@ public class Wampa : Bosseslv2
     private List<INPUT> inputsList = new List<INPUT>();
     public bool firstSorrowRoar = false;
     private bool firstFrame = true;
-    private bool angry = false;
+    public bool angry = false;
 
     public override void Awake()
     {
@@ -58,6 +58,7 @@ public class Wampa : Bosseslv2
 
         InitEntity(ENTITY_TYPE.WAMPA);
         EnemyManager.AddEnemy(gameObject);
+        angry = false;
 
         agent = gameObject.GetComponent<NavMeshAgent>();
         if (agent == null)
@@ -569,7 +570,10 @@ public class Wampa : Bosseslv2
 
     private void WampaAngry()
     {
-
+        speed = 6.0f;
+        fastRushSpeed = 15.0f;
+        slowRushSpeed = 10.0f;
+        restingTime = 1.0f;
     }
 
 }

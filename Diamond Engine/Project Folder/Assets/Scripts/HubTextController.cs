@@ -23,6 +23,12 @@ public class HubTextController : DiamondComponent
     public GameObject cara_dune = null;
     public GameObject grogu = null;
 
+    public GameObject boKatanNotification = null;
+    public GameObject greefNotification = null;
+    public GameObject ashokaNotification = null;
+    public GameObject caraDuneNotification = null;
+    public GameObject groguNotification = null;
+
     /*public int bo_katan_portrait_uid = 0;
     public int greef_portrait_uid = 0;
     public int ashoka_portrait_uid = 0;
@@ -91,7 +97,7 @@ public class HubTextController : DiamondComponent
     }
     public void Update()
     {
-        if (mando == null || Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN || textController == null || dialog == null || textController.IsEnabled() == false || insideColliderTextActive == true)
+        if (mando == null || Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN || textController == null || dialog == null || textController.IsEnabled() == false || insideColliderTextActive == false)
         {
             return;
         }
@@ -166,6 +172,9 @@ public class HubTextController : DiamondComponent
                 }
 
                 boKatanHasInteracted = true;
+                bo_katan.GetComponent<InsideCollider>().maxDistance = 0;
+                if (boKatanNotification != null)
+                    boKatanNotification.Enable(false);
 
                 break;
             case Interaction.GREEF:
@@ -183,6 +192,9 @@ public class HubTextController : DiamondComponent
                 }
 
                 greefHasInteracted = true;
+                greef.GetComponent<InsideCollider>().maxDistance = 0;
+                if (greefNotification != null)
+                    greefNotification.Enable(false);
 
                 break;
             case Interaction.ASHOKA:
@@ -200,6 +212,9 @@ public class HubTextController : DiamondComponent
                 }
 
                 ashokaHasInteracted = true;
+                ashoka.GetComponent<InsideCollider>().maxDistance = 0;
+                if (ashokaNotification != null)
+                    ashokaNotification.Enable(false);
 
                 break;
             case Interaction.CARA_DUNE:
@@ -217,6 +232,9 @@ public class HubTextController : DiamondComponent
                 }
 
                 caraHasInteracted = true;
+                cara_dune.GetComponent<InsideCollider>().maxDistance = 0;
+                if (caraDuneNotification != null)
+                    caraDuneNotification.Enable(false);
 
                 break;
             case Interaction.GROGU:
@@ -234,6 +252,9 @@ public class HubTextController : DiamondComponent
                 }
 
                 groguHasInteracted = true;
+                grogu.GetComponent<InsideCollider>().maxDistance = 0;
+                if (groguNotification != null)
+                    groguNotification.Enable(false);
 
                 break;
         }
@@ -334,5 +355,14 @@ public class HubTextController : DiamondComponent
         ashokaHasInteracted = false;
         caraHasInteracted = false;
         groguHasInteracted = false;
+    }
+
+    public bool GreefHasInteractions()
+    {
+        return greefInteractionNum % 3 != 0;
+    }
+    public void GreefSet3()
+    {
+        greefInteractionNum = 3;
     }
 }

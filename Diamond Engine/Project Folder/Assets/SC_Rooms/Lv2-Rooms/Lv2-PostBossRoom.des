@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -14.930463790893555,
-        28.951658248901367,
-        14.127490997314453
+        4.0480613708496094,
+        11.773846626281738,
+        3.4851136207580566
     ],
     "EditorCameraZ": [
-        0.41987961530685425,
-        -0.75360864400863647,
-        -0.50574219226837158
+        -0.31310191750526428,
+        -0.91066157817840576,
+        -0.2695600688457489
     ],
     "EditorCameraY": [
-        0.48138308525085449,
-        0.65732336044311523,
-        -0.57982438802719116
+        -0.69013142585754395,
+        0.41315305233001709,
+        -0.59415751695632935
     ],
     "SkyboxPath0": "",
     "SkyboxPath1": "",
@@ -23,8 +23,8 @@
     "SkyboxPath5": "",
     "skyboxColor": [
         1,
-        1,
-        1,
+        0.99998998641967773,
+        0.99998998641967773,
         1
     ],
     "tags": [
@@ -117,9 +117,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0.429107666015625,
-                0.22200000286102295,
-                5.254000186920166
+                -0.62956106662750244,
+                0.22200049459934235,
+                3.8117599487304688
             ],
             "Rotation": [
                 0,
@@ -337,8 +337,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 14.5,
-                    "hFOV": 23.479999542236328,
+                    "vFOV": 12.239999771118164,
+                    "hFOV": 23.540000915527344,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -3364,7 +3364,7 @@
                 {
                     "Type": 9,
                     "Active": true,
-                    "text": "Empty",
+                    "text": " ",
                     "maxTextLenght": 1764,
                     "fontName": "Library\/Fonts\/renner-medium.ttf",
                     "textColor": [
@@ -7122,9 +7122,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                7.1570000648498535,
+                9.4051761627197266,
                 0.22200000286102295,
-                -4.3720002174377441
+                -8.6713476181030273
             ],
             "Rotation": [
                 0,
@@ -7152,6 +7152,7 @@
                     "item2": 703005603,
                     "item3": 985827193,
                     "item4": 1155932994,
+                    "currencyObject": 1829741767,
                     "interactionRange": 1,
                     "autoGenerateItems": true,
                     "opening": false,
@@ -9420,6 +9421,136 @@
                     "LibraryPath": "Library\/Textures\/843661754.dds",
                     "UID": 843661754,
                     "fadeValue": 0
+                }
+            ]
+        },
+        {
+            "name": "Currency",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 568166660,
+            "ParentUID": 1993131308,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -7.1570000648498535,
+                -0.22200000286102295,
+                4.3720002174377441
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -90,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4,
+                        6
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/864701205.dds",
+                    "UID": 864701205,
+                    "fadeValue": 0
+                }
+            ]
+        },
+        {
+            "name": "Currency Value",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1829741767,
+            "ParentUID": 568166660,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        4.5,
+                        -2.2999999523162842
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        6,
+                        10
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "0",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
