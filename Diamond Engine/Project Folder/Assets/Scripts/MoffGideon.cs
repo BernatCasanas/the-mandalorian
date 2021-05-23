@@ -57,7 +57,7 @@ public class MoffGideon : Entity
         IN_DEAD
     }
 
-    public struct AtackMoff
+    public class AtackMoff
     {
         public AtackMoff(string animation, GameObject go)
         {
@@ -65,10 +65,9 @@ public class MoffGideon : Entity
             this.duration = Animator.GetAnimationDuration(go, animation) - 0.016f;
             this.last = false;
         }
-
-        bool last;
-        string animation;
-        float duration;
+        public bool last;
+        public string animation;
+        public float duration;
     }
 
     private NavMeshAgent agent = null;
@@ -136,7 +135,7 @@ public class MoffGideon : Entity
     private int maxProjectiles = 7;
     private int projectiles = 0;
     private bool aiming = false;
-    private List<AtackMoff> atacks;
+    private List<AtackMoff> atacks = new List<AtackMoff>();
     //private float damaged = 0.0f;
 
 
@@ -189,12 +188,12 @@ public class MoffGideon : Entity
         changingStateTime = Animator.GetAnimationDuration(gameObject, "MG_PowerPose") - 0.016f;
         dieTime = Animator.GetAnimationDuration(gameObject, "MG_Death") - 0.016f;
 
-        //atacks.Add(new AtackMoff("MG_MeleeCombo1", gameObject));
-        //atacks.Add(new AtackMoff("MG_MeleeCombo2", gameObject));
-        //atacks.Add(new AtackMoff("MG_MeleeCombo3", gameObject));
-        //atacks.Add(new AtackMoff("MG_MeleeCombo4", gameObject));
-        //atacks.Add(new AtackMoff("MG_MeleeCombo5", gameObject));
-        //atacks.Add(new AtackMoff("MG_MeleeCombo6", gameObject));
+        atacks.Add(new AtackMoff("MG_MeleeCombo1", gameObject));
+        atacks.Add(new AtackMoff("MG_MeleeCombo2", gameObject));
+        atacks.Add(new AtackMoff("MG_MeleeCombo3", gameObject));
+        atacks.Add(new AtackMoff("MG_MeleeCombo4", gameObject));
+        atacks.Add(new AtackMoff("MG_MeleeCombo5", gameObject));
+        atacks.Add(new AtackMoff("MG_MeleeCombo6", gameObject));
 
         enemiesTimer = enemiesTime;
 
@@ -207,8 +206,6 @@ public class MoffGideon : Entity
 
        
         StartPresentation();
-
-
     }
 
     public void Update()
@@ -252,9 +249,8 @@ public class MoffGideon : Entity
 
             if (comboTimer <= 0)
             {
-
-            }
                 inputsList.Add(MOFFGIDEON_INPUT.IN_MELEE_COMBO_END);
+            }
 
         }
 
@@ -991,10 +987,11 @@ public class MoffGideon : Entity
     private void StartMeleeCombo()
     {
         sword.EnableCollider();
-        Animator.Play(gameObject, "MG_Slash", speedMult);
+        Animator.Play(gameObject, atacks[0].animation, speedMult);
         UpdateAnimationSpd(speedMult);
-        comboTimer = comboTime;
+        comboTimer = atacks[0].duration;
         Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Lightsaber_Whoosh");
+
     }
 
     private void UpdateMeleeCombo()
