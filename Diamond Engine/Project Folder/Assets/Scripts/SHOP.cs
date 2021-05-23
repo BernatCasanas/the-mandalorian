@@ -70,14 +70,14 @@ public class SHOP : DiamondComponent
             RandomiseItems();
 
         start = false;
-        if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
+        if (RoomSwitch.currentLevelIndicator-1 == RoomSwitch.LEVELS.ONE)
         {
             Audio.SetState("Game_State", "Run");
             Audio.SetState("Player_State", "Alive");
             if (MusicSourceLocate.instance != null)
                 Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
         }
-        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
+        else if (RoomSwitch.currentLevelIndicator-1 == RoomSwitch.LEVELS.TWO)
         {
             Audio.SetState("Game_State", "Run_2");
             Audio.SetState("Player_State", "Alive");
