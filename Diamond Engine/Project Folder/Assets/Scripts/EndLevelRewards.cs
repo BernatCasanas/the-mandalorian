@@ -290,26 +290,53 @@ public class EndLevelRewards
 
     private void ChangeMusic()
     {
-        if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
+        if (RoomSwitch.currentroom != RoomSwitch.levelLists[(int)RoomSwitch.currentLevelIndicator - 1].bossScene)
         {
-            Audio.SetState("Game_State", "Run");
-            Audio.SetState("Player_State", "Alive");
-            if (MusicSourceLocate.instance != null)
-                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+            if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
+            {
+                Audio.SetState("Game_State", "Run");
+                Audio.SetState("Player_State", "Alive");
+                if (MusicSourceLocate.instance != null)
+                    Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+            }
+            else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
+            {
+                Audio.SetState("Game_State", "Run_2");
+                Audio.SetState("Player_State", "Alive");
+                if (MusicSourceLocate.instance != null)
+                    Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+            }
+            else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
+            {
+                Audio.SetState("Game_State", "Run_3");
+                Audio.SetState("Player_State", "Alive");
+                if (MusicSourceLocate.instance != null)
+                    Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+            }
         }
-        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
+        else
         {
-            Audio.SetState("Game_State", "Run_2");
-            Audio.SetState("Player_State", "Alive");
-            if (MusicSourceLocate.instance != null)
-                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
-        }
-        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
-        {
-            Audio.SetState("Game_State", "Run_3");
-            Audio.SetState("Player_State", "Alive");
-            if (MusicSourceLocate.instance != null)
-                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+            if (RoomSwitch.currentLevelIndicator - 1 == RoomSwitch.LEVELS.ONE)
+            {
+                Audio.SetState("Game_State", "Run");
+                Audio.SetState("Player_State", "Alive");
+                if (MusicSourceLocate.instance != null)
+                    Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+            }
+            else if (RoomSwitch.currentLevelIndicator - 1 == RoomSwitch.LEVELS.TWO)
+            {
+                Audio.SetState("Game_State", "Run_2");
+                Audio.SetState("Player_State", "Alive");
+                if (MusicSourceLocate.instance != null)
+                    Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+            }
+            else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
+            {
+                Audio.SetState("Game_State", "Run_3");
+                Audio.SetState("Player_State", "Alive");
+                if (MusicSourceLocate.instance != null)
+                    Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+            }
         }
     }
 }
