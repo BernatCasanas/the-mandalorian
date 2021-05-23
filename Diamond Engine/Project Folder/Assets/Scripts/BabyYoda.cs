@@ -472,6 +472,7 @@ public class BabyYoda : DiamondComponent
 
                 }
             }
+            Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Wall_Command");
 
         }
 
@@ -522,7 +523,7 @@ public class BabyYoda : DiamondComponent
                 if (playerHealth != null)
                     playerHealth.SetCurrentHP((int)(PlayerHealth.currHealth + Core.instance.GetStatusData(STATUS_TYPE.SKILL_HEAL).severity));
             }
-
+            Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Pull_Command");
 
         }
         skillWallTimer += INIT_TIMER;

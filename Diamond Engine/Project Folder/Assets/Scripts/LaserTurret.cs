@@ -511,7 +511,14 @@ public class LaserTurret : Enemy
             }
 
         }
-       
+        else if (collidedGameObject.CompareTag("WorldLimit"))
+        {
+            if (currentState != STATE.DIE)
+            {
+                inputsList.Add(INPUT.IN_DIE);
+            }
+        }
+
     }
 
     public override void TakeDamage(float damage)

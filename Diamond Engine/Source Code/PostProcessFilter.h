@@ -26,26 +26,6 @@ protected:
 	ImageRenderer* quadRenderer;
 };
 
-class PostProcessFilterContrastTest : public PostProcessFilter
-{
-public:
-	PostProcessFilterContrastTest();
-	~PostProcessFilterContrastTest();
-	void Render(bool isHDR,int width, int height, unsigned int colorTexture);//ony one render will be needed for real PostProcessFilters
-	void Render(DE_Advanced_FrameBuffer* outputFBO, unsigned int colorTexture);
-
-};
-
-class PostProcessFilterDepthTest : public PostProcessFilter
-{
-public:
-	PostProcessFilterDepthTest();
-	~PostProcessFilterDepthTest();
-	void Render(bool isHDR,int width, int height, unsigned int colorTexture, unsigned int depthTexture);//ony one render will be needed for real PostProcessFilters
-	void Render(DE_Advanced_FrameBuffer* outputFBO, unsigned int colorTexture, unsigned int depthTexture);
-
-};
-
 class PostProcessFilterAO : public PostProcessFilter
 {
 public:
@@ -56,6 +36,7 @@ public:
 	void GenerateNoiseTexture();
 	private:
 	std::vector<float3> kernelAO;
+	const int kernelSamples = 64;
 	unsigned int noiseTexture; //random rotation vectors for the kernel
 };
 

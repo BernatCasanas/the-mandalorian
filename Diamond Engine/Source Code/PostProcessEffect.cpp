@@ -84,39 +84,8 @@ int PostProcessEffectBloom::Render(bool isHDR, int width, int height, int colorT
 		downscaleFactor *=bloomVars->downscaleFactorMultiplier;
 	}
 	
-	combineFilter->Render(isHDR, width, height, colorTexture, currTexture, bloomVars->brightnessIntensity);//TODO change the value for the actual value once we have the resource
+	combineFilter->Render(isHDR, width, height, colorTexture, currTexture, bloomVars->brightnessIntensity);
 	return combineFilter->GetOutputTexture();
-}
-
-PostProcessEffectDepthTest::PostProcessEffectDepthTest() : PostProcessEffect(),
-depthFilter(nullptr)
-{
-	Init();
-}
-
-PostProcessEffectDepthTest::~PostProcessEffectDepthTest()
-{
-	CleanUp();
-}
-
-void PostProcessEffectDepthTest::Init()
-{
-	depthFilter = new PostProcessFilterDepthTest();
-}
-
-void PostProcessEffectDepthTest::CleanUp()
-{
-	if (depthFilter != nullptr)
-	{
-		delete(depthFilter);
-		depthFilter = nullptr;
-	}
-}
-
-int PostProcessEffectDepthTest::Render(bool isHDR, int width, int height, int colorTexture, int depthTexture)
-{
-	depthFilter->Render(isHDR, width, height, colorTexture, depthTexture);
-	return depthFilter->GetOutputTexture();
 }
 
 PostProcessEffectRender::PostProcessEffectRender() : PostProcessEffect(),

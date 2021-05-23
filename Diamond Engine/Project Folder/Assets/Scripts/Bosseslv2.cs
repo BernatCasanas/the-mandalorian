@@ -122,10 +122,11 @@ public class Bosseslv2 : Entity
             chargeTime = Animator.GetAnimationDuration(gameObject, "Skel_Jump_P1") - 0.05f;
             Debug.Log("Rush Start: " + startBounceRushTime.ToString());
             companion = InternalCalls.FindObjectWithName("WampaBoss");
+            presentationTime = 2 * (Animator.GetAnimationDuration(gameObject, "Skel_Roar") - 0.016f);
         }
         else if (gameObject.CompareTag("Wampa"))
         {
-            //presentationTime = Animator.GetAnimationDuration(gameObject, "Wampa_Presentation") - 0.016f;
+            presentationTime = Animator.GetAnimationDuration(gameObject, "WP_Roar") - 0.016f;
         }
     }
 
@@ -707,7 +708,7 @@ public class Bosseslv2 : Entity
         }
         else if (gameObject.CompareTag("Wampa"))
         {
-            Animator.Play(gameObject, "WP_Presentation", speedMult);
+            Animator.Play(gameObject, "WP_Roar", speedMult);
             UpdateAnimationSpd(speedMult);
             Audio.PlayAudio(gameObject, "Play_Wampa_Roar_Presentation");
         }
@@ -726,9 +727,8 @@ public class Bosseslv2 : Entity
     }
     public void UpdatePresentation()
     {
-
         Debug.Log("Presentation");
-
+        LookAt(Core.instance.gameObject.transform.globalPosition);
         UpdateAnimationSpd(speedMult);
     }
 

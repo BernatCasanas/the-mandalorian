@@ -50,19 +50,16 @@ public class Wampa : Bosseslv2
     public bool firstSorrowRoar = false;
     private bool firstFrame = true;
     private bool angry = false;
-    float roarTime = 0.0f;
-
 
     public override void Awake()
     {
+        base.Awake();
         Debug.Log("Wampa Awake");
 
         InitEntity(ENTITY_TYPE.WAMPA);
         EnemyManager.AddEnemy(gameObject);
 
-        maxHealthPoints = healthPoints;
         agent = gameObject.GetComponent<NavMeshAgent>();
-        //roarTime = Animator.GetAnimationDuration(gameObject, "RN_Roar") - 0.016f;
         if (agent == null)
             Debug.Log("Null agent, add a NavMeshAgent Component");
         else
@@ -127,7 +124,7 @@ public class Wampa : Bosseslv2
         if (presentationTimer > 0.0f)
         {
             presentationTimer -= myDeltaTime;
-            healthPoints = (1 - (presentationTimer / roarTime)) * maxHealthPoints;
+            healthPoints = (1 - (presentationTimer / presentationTime)) * maxHealthPoints;
 
             if (presentationTimer <= 0.0f)
             {
@@ -374,9 +371,6 @@ public class Wampa : Bosseslv2
             Material bossBarMat = bossHealth.GetComponent<Material>();
             if (bossBarMat != null)
             {
-                Debug.Log("Wampa max " + maxHealthPoints.ToString());
-                Debug.Log("Wampa health " + healthPoints.ToString());
-                Debug.Log("Wampa limbo " + limboHealth.ToString());
                 bossBarMat.SetFloatUniform("length_used", healthPoints / maxHealthPoints);
                 bossBarMat.SetFloatUniform("limbo", limboHealth / maxHealthPoints);
             }
