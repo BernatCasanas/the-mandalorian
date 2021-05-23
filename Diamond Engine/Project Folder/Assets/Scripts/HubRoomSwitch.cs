@@ -12,9 +12,7 @@ public class HubRoomSwitch : DiamondComponent
 	{
 		RoomDataHolder.isTutorial = isTutorialScene;
 
-		if(isHubScene == true)
-			RoomSwitch.ClearStaticData();
-
+	
 		if (isHubScene == true)
         {
 			PlayerResources.ResetRunBoons();
