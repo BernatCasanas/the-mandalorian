@@ -1,0 +1,2524 @@
+{
+    "assets_path": "Assets\/Prefabs\/ShopUI.prefab",
+    "Game Objects": [
+        {
+            "name": "ShopUI",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1827275921,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                7.1570000648498535,
+                0.22200000286102295,
+                -4.3720002174377441
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SHOP",
+                    "shopUI": 1528787933,
+                    "textPopUp": 316970805,
+                    "item1": 1324189369,
+                    "item2": 703005603,
+                    "item3": 985827193,
+                    "item4": 1155932994,
+                    "currencyObject": 923328982,
+                    "interactionRange": 1,
+                    "autoGenerateItems": true,
+                    "opening": false,
+                    "defaultButton": 1324189369
+                }
+            ]
+        },
+        {
+            "name": "Shop",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 1528787933,
+            "ParentUID": 1827275921,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -7.7241191864013672,
+                -1.0262577533721924,
+                5.2182931900024414
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "PanelBG",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1993131308,
+            "ParentUID": 1528787933,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                7.7241191864013672,
+                1.0262577533721924,
+                -5.2182931900024414
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        -6.4000000953674316
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        75,
+                        72.599998474121094
+                    ]
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1569526676.dds",
+                    "UID": 1569526676,
+                    "fadeValue": 0
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                }
+            ]
+        },
+        {
+            "name": "Button1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1324189369,
+            "ParentUID": 1993131308,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        53.200000762939453
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        64,
+                        16
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SHOP\/shop_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/1568898815.dds",
+                    "Pressed_UID": 1568898815,
+                    "Hovered_AssetsPath": "Assets\/UI\/SHOP\/shop_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1550587098.dds",
+                    "Hovered_UID": 1550587098,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SHOP\/shop_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1455891631.dds",
+                    "Unhovered_UID": 1455891631,
+                    "Script_Name": "ShopButtons",
+                    "ButtonState": 2,
+                    "Is Selected": false,
+                    "HoverSFX": "Play_UI_Button_Hover",
+                    "PressedSFX": "Play_UI_Button_Select"
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SHOP\/shop_button.png",
+                    "LibraryPath": "Library\/Textures\/1455891631.dds",
+                    "UID": 1455891631,
+                    "fadeValue": 0
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1324189369,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 1285068717,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 703005603,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "ShopButtons",
+                    "shopController": 1827275921,
+                    "nameObj": 938207836,
+                    "descriptionObj": 105615925,
+                    "priceObj": 951693218,
+                    "itemType": 0,
+                    "price": 0,
+                    "closeBtn": false
+                }
+            ]
+        },
+        {
+            "name": "Name",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 938207836,
+            "ParentUID": 1324189369,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -40,
+                        9.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        6,
+                        9
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Cad Bane’s rocket boots",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Description1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 105615925,
+            "ParentUID": 1324189369,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -56,
+                        1
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        5,
+                        7
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Grogu’s push pushes double the range.",
+                    "maxTextLenght": 1900,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Price",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1716897746,
+            "ParentUID": 1324189369,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                -1.0262577533721924,
+                5.2182931900024414
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Image",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1050698599,
+            "ParentUID": 1716897746,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        48,
+                        35
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        1.7000000476837158,
+                        2.5999999046325684
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1822661035.dds",
+                    "UID": 1822661035,
+                    "fadeValue": 0
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 951693218,
+            "ParentUID": 1716897746,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        50,
+                        32.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7,
+                        11
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "310",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Image",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 222603987,
+            "ParentUID": 1716897746,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        52.5,
+                        35
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        8,
+                        5.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1050496860.dds",
+                    "UID": 1050496860,
+                    "fadeValue": 0
+                }
+            ]
+        },
+        {
+            "name": "Button2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 703005603,
+            "ParentUID": 1993131308,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        18.799999237060547
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        64,
+                        16
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SHOP\/shop_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/1568898815.dds",
+                    "Pressed_UID": 1568898815,
+                    "Hovered_AssetsPath": "Assets\/UI\/SHOP\/shop_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1550587098.dds",
+                    "Hovered_UID": 1550587098,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SHOP\/shop_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1455891631.dds",
+                    "Unhovered_UID": 1455891631,
+                    "Script_Name": "ShopButtons",
+                    "ButtonState": 2,
+                    "Is Selected": false,
+                    "HoverSFX": "Play_UI_Button_Hover",
+                    "PressedSFX": "Play_UI_Button_Select"
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SHOP\/shop_button.png",
+                    "LibraryPath": "Library\/Textures\/1455891631.dds",
+                    "UID": 1455891631,
+                    "fadeValue": 0
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 703005603,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 1324189369,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 985827193,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "ShopButtons",
+                    "shopController": 1827275921,
+                    "nameObj": 1105143004,
+                    "descriptionObj": 1666626785,
+                    "priceObj": 748331825,
+                    "itemType": 0,
+                    "price": 0,
+                    "closeBtn": false
+                }
+            ]
+        },
+        {
+            "name": "Image",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1773537292,
+            "ParentUID": 703005603,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -7.7241191864013672,
+                -1.0262577533721924,
+                5.2182931900024414
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        29,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        5,
+                        7.5
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/715565838.mat",
+                    "MaterialUID": 715565838
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "fadeValue": 0
+                }
+            ]
+        },
+        {
+            "name": "Name",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1105143004,
+            "ParentUID": 703005603,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -40,
+                        9.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        6,
+                        9
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Mandalorian Quick Combo",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Description2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1666626785,
+            "ParentUID": 703005603,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -56,
+                        1
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        5,
+                        7
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Hitting an enemy with the primary weapon makes them take +5 % more damage from the primary weapon for 5 seconds. % stacks up to 100%",
+                    "maxTextLenght": 1900,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Price",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1520569487,
+            "ParentUID": 703005603,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -8.824000358581543,
+                -1.0262577533721924,
+                5.2182931900024414
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Image",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1214391915,
+            "ParentUID": 1520569487,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        48,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        1.7000000476837158,
+                        2.5999999046325684
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1822661035.dds",
+                    "UID": 1822661035,
+                    "fadeValue": 0
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 748331825,
+            "ParentUID": 1520569487,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        50,
+                        -2.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7,
+                        11
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "230",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Image",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1670182175,
+            "ParentUID": 1520569487,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        52.5,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        8,
+                        5.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1050496860.dds",
+                    "UID": 1050496860,
+                    "fadeValue": 0
+                }
+            ]
+        },
+        {
+            "name": "Button3",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 985827193,
+            "ParentUID": 1993131308,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        -15.600000381469727
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        64,
+                        16
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SHOP\/shop_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/1568898815.dds",
+                    "Pressed_UID": 1568898815,
+                    "Hovered_AssetsPath": "Assets\/UI\/SHOP\/shop_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1550587098.dds",
+                    "Hovered_UID": 1550587098,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SHOP\/shop_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1455891631.dds",
+                    "Unhovered_UID": 1455891631,
+                    "Script_Name": "ShopButtons",
+                    "ButtonState": 2,
+                    "Is Selected": false,
+                    "HoverSFX": "Play_UI_Button_Hover",
+                    "PressedSFX": "Play_UI_Button_Select"
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SHOP\/shop_button.png",
+                    "LibraryPath": "Library\/Textures\/1455891631.dds",
+                    "UID": 1455891631,
+                    "fadeValue": 0
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 985827193,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 703005603,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 1155932994,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "ShopButtons",
+                    "shopController": 1827275921,
+                    "nameObj": 1116976768,
+                    "descriptionObj": 1534467428,
+                    "priceObj": 1072312767,
+                    "itemType": 0,
+                    "price": 0,
+                    "closeBtn": false
+                }
+            ]
+        },
+        {
+            "name": "Name",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1116976768,
+            "ParentUID": 985827193,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -40,
+                        9.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        6,
+                        9
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Bo-Katan's Resilence",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Description3",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1534467428,
+            "ParentUID": 985827193,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -56,
+                        1
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        5,
+                        7
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Each enemy kill heals 1 HP",
+                    "maxTextLenght": 1900,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Price",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1198825565,
+            "ParentUID": 985827193,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -7.7241191864013672,
+                -1.0262577533721924,
+                5.2182931900024414
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Image",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1482720210,
+            "ParentUID": 1198825565,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        48,
+                        -34
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        1.7000000476837158,
+                        2.5999999046325684
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1822661035.dds",
+                    "UID": 1822661035,
+                    "fadeValue": 0
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1072312767,
+            "ParentUID": 1198825565,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        50,
+                        -37
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7,
+                        11
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "310",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Image",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 2103655213,
+            "ParentUID": 1198825565,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        52.5,
+                        -34
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        8,
+                        5.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1050496860.dds",
+                    "UID": 1050496860,
+                    "fadeValue": 0
+                }
+            ]
+        },
+        {
+            "name": "Button4",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1155932994,
+            "ParentUID": 1993131308,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        -49.599998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        64,
+                        16
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SHOP\/shop_button_pressed.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/1568898815.dds",
+                    "Pressed_UID": 1568898815,
+                    "Hovered_AssetsPath": "Assets\/UI\/SHOP\/shop_button_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/1550587098.dds",
+                    "Hovered_UID": 1550587098,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SHOP\/shop_button.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1455891631.dds",
+                    "Unhovered_UID": 1455891631,
+                    "Script_Name": "ShopButtons",
+                    "ButtonState": 2,
+                    "Is Selected": false,
+                    "HoverSFX": "Play_UI_Button_Hover",
+                    "PressedSFX": "Play_UI_Button_Select"
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SHOP\/shop_button.png",
+                    "LibraryPath": "Library\/Textures\/1455891631.dds",
+                    "UID": 1455891631,
+                    "fadeValue": 0
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1155932994,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 985827193,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 1285068717,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "ShopButtons",
+                    "shopController": 1827275921,
+                    "nameObj": 361739764,
+                    "descriptionObj": 287817479,
+                    "priceObj": 469923215,
+                    "itemType": 0,
+                    "price": 0,
+                    "closeBtn": false
+                }
+            ]
+        },
+        {
+            "name": "Name",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 361739764,
+            "ParentUID": 1155932994,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -40,
+                        9.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        6,
+                        9
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "Cad Bane’s rocket boots",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Description4",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 287817479,
+            "ParentUID": 1155932994,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -56,
+                        1
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        5,
+                        7
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": " Proc ratio and area on grenade boosted by 50%",
+                    "maxTextLenght": 1900,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Price",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 365646999,
+            "ParentUID": 1155932994,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -7.7241191864013672,
+                -1.0262577533721924,
+                5.2182931900024414
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Image",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 438565841,
+            "ParentUID": 365646999,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        48,
+                        -68
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        1.7000000476837158,
+                        2.5999999046325684
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1822661035.dds",
+                    "UID": 1822661035,
+                    "fadeValue": 0
+                }
+            ]
+        },
+        {
+            "name": "Text",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 469923215,
+            "ParentUID": 365646999,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        50,
+                        -71.099998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        7,
+                        11
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "310",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Image",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 194858873,
+            "ParentUID": 365646999,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        52.5,
+                        -68.599998474121094
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        8,
+                        5.8000001907348633
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1050496860.dds",
+                    "UID": 1050496860,
+                    "fadeValue": 0
+                }
+            ]
+        },
+        {
+            "name": "ButtonBack",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1285068717,
+            "ParentUID": 1993131308,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        47.200000762939453,
+                        -74.900001525878906
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4.5,
+                        7.4000000953674316
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 7,
+                    "Active": true,
+                    "Pressed_AssetsPath": "Assets\/UI\/SHOP\/button_return_press.png",
+                    "Pressed_LibraryPath": "Library\/Textures\/991138649.dds",
+                    "Pressed_UID": 991138649,
+                    "Hovered_AssetsPath": "Assets\/UI\/SHOP\/button_return_hover.png",
+                    "Hovered_LibraryPath": "Library\/Textures\/276450203.dds",
+                    "Hovered_UID": 276450203,
+                    "Unhovered_AssetsPath": "Assets\/UI\/SHOP\/button_return.png",
+                    "Unhovered_LibraryPath": "Library\/Textures\/1606299495.dds",
+                    "Unhovered_UID": 1606299495,
+                    "Script_Name": "ShopButtons",
+                    "ButtonState": 2,
+                    "Is Selected": false,
+                    "HoverSFX": "Play_UI_Button_Hover",
+                    "PressedSFX": "Play_UI_Button_Select"
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Assets\/UI\/SHOP\/button_return.png",
+                    "LibraryPath": "Library\/Textures\/1606299495.dds",
+                    "UID": 1606299495,
+                    "fadeValue": 0
+                },
+                {
+                    "Type": 17,
+                    "Active": true,
+                    "Map": [
+                        {
+                            "Index": 0,
+                            "UID": 1285068717,
+                            "Action": 2,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 11,
+                            "UID": 1155932994,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        },
+                        {
+                            "Index": 12,
+                            "UID": 1324189369,
+                            "Action": 1,
+                            "Is Key Down": false,
+                            "Is Key Up": true
+                        }
+                    ],
+                    "Button Being Used": -1,
+                    "Type Of UI": 7,
+                    "Is Selected": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "ShopButtons",
+                    "shopController": 1827275921,
+                    "itemType": 0,
+                    "price": 0,
+                    "closeBtn": true
+                }
+            ]
+        },
+        {
+            "name": "Image",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 111891149,
+            "ParentUID": 1993131308,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -7.7241191864013672,
+                -1.0262577533721924,
+                5.2182931900024414
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        86.5
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        88.099998474121094,
+                        12.399999618530273
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/843661754.dds",
+                    "UID": 843661754,
+                    "fadeValue": 0
+                }
+            ]
+        },
+        {
+            "name": "Currency",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1909926075,
+            "ParentUID": 1993131308,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -7.1570000648498535,
+                -0.22200000286102295,
+                4.3720002174377441
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        -90,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        4,
+                        6
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/864701205.dds",
+                    "UID": 864701205,
+                    "fadeValue": 0
+                }
+            ]
+        },
+        {
+            "name": "Currency Value",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 923328982,
+            "ParentUID": 1909926075,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        4.5,
+                        -2.2999999523162842
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        6,
+                        10
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/744544911.mat",
+                    "MaterialUID": 744544911
+                },
+                {
+                    "Type": 9,
+                    "Active": true,
+                    "text": "0",
+                    "maxTextLenght": 0,
+                    "fontName": "Library\/Fonts\/renner-medium.ttf",
+                    "textColor": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Background",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1938807828,
+            "ParentUID": 1528787933,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                7.7241191864013672,
+                1.0262577533721924,
+                -5.2182931900024414
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 6,
+                    "Active": true,
+                    "Position": [
+                        0,
+                        0
+                    ],
+                    "Rotation": 0,
+                    "Size": [
+                        150,
+                        111.40000152587891
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/457052853.mat",
+                    "MaterialUID": 457052853
+                },
+                {
+                    "Type": 11,
+                    "Active": true,
+                    "AssetPath": "Empty",
+                    "LibraryPath": "Library\/Textures\/1515287946.dds",
+                    "UID": 1515287946,
+                    "fadeValue": 0
+                }
+            ]
+        }
+    ]
+}
