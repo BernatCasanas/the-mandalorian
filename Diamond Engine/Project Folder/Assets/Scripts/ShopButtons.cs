@@ -70,6 +70,6 @@ public class ShopButtons : DiamondComponent
     public void SetDefaultPrice()
     {
         if (descriptionText != null)
-            descriptionText.text = ((int)price).ToString();
+            priceText.text = ((int)price).ToString();
     }
 }

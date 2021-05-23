@@ -12,7 +12,7 @@ public enum Interaction
 
 public class HubTextController : DiamondComponent
 {
-
+    public Action onUpgrade;
 
     public GameObject textController = null;
     public GameObject dialog = null;
@@ -84,7 +84,6 @@ public class HubTextController : DiamondComponent
     private bool dialog_finished = false;
 
 
-
     Interaction interaction = Interaction.NONE;
     NPCInteraction npcInteraction = null;
     public void Awake()
@@ -116,6 +115,11 @@ public class HubTextController : DiamondComponent
             {
                 interaction = Interaction.BO_KATAN;
                 npcInteraction = bo_katan.GetComponent<NPCInteraction>();
+                if (npcInteraction.canUpgrade)
+                {
+                    PlayerResources.SubstractResource(RewardType.REWARD_MILK, 1);
+                    IncreaseStage(Interaction.BO_KATAN);
+                }
             }
         }
 
@@ -125,6 +129,11 @@ public class HubTextController : DiamondComponent
             {
                 interaction = Interaction.GREEF;
                 npcInteraction = greef.GetComponent<NPCInteraction>();
+                if (npcInteraction.canUpgrade)
+                {
+                    PlayerResources.SubstractResource(RewardType.REWARD_MILK, 1);
+                    IncreaseStage(Interaction.GREEF);
+                }
             }
         }
 
@@ -134,6 +143,11 @@ public class HubTextController : DiamondComponent
             {
                 interaction = Interaction.ASHOKA;
                 npcInteraction = ashoka.GetComponent<NPCInteraction>();
+                if (npcInteraction.canUpgrade)
+                {
+                    PlayerResources.SubstractResource(RewardType.REWARD_MILK, 1);
+                    IncreaseStage(Interaction.ASHOKA);
+                }
             }
         }
 
@@ -143,6 +157,11 @@ public class HubTextController : DiamondComponent
             {
                 interaction = Interaction.CARA_DUNE;
                 npcInteraction = cara_dune.GetComponent<NPCInteraction>();
+                if (npcInteraction.canUpgrade)
+                {
+                    PlayerResources.SubstractResource(RewardType.REWARD_MILK, 1);
+                    IncreaseStage(Interaction.CARA_DUNE);
+                }
             }
         }
 
@@ -152,6 +171,11 @@ public class HubTextController : DiamondComponent
             {
                 interaction = Interaction.GROGU;
                 npcInteraction = grogu.GetComponent<NPCInteraction>();
+                if (npcInteraction.canUpgrade)
+                {
+                    PlayerResources.SubstractResource(RewardType.REWARD_MILK, 1);
+                    IncreaseStage(Interaction.GROGU);
+                }
             }
         }
 
@@ -325,6 +349,8 @@ public class HubTextController : DiamondComponent
                 }
                 break;
         }
+
+        onUpgrade?.Invoke();
     }
 
     public void Reset()
@@ -388,5 +414,26 @@ public class HubTextController : DiamondComponent
     public bool CaraDuneHasInteractions()
     {
         return caraInteractionNum % 3 != 0 && !caraHasInteracted;
+    }
+
+    public bool GreefCanUpgrade()
+    {
+        return greefInteractionNum % 3 == 0 && PlayerResources.GetResourceCount(RewardType.REWARD_MILK) > 0;
+    }  
+    public bool AshokaCanUpgrade()
+    {
+        return ashokaInteractionNum % 3 == 0 && PlayerResources.GetResourceCount(RewardType.REWARD_MILK) > 0;
+    }  
+    public bool GroguCanUpgrade()
+    {
+        return groguInteractionNum % 3 == 0 && PlayerResources.GetResourceCount(RewardType.REWARD_MILK) > 0;
+    }  
+    public bool BoKatanCanUpgrade()
+    {
+        return boKatanInteractionNum % 3 == 0 && PlayerResources.GetResourceCount(RewardType.REWARD_MILK) > 0;
+    }  
+    public bool CaraDuneCanUpgrade()
+    {
+        return caraInteractionNum % 3 == 0 && PlayerResources.GetResourceCount(RewardType.REWARD_MILK) > 0;
     }
 }
