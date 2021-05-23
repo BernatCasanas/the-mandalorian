@@ -4,11 +4,11 @@ using DiamondEngine;
 public class DPSDamage : DiamondComponent
 {
     public bool onTriggerStay = false;
-    public int base_damage = 1;
+    public int base_damage = 4;
     public int damage = 0;
     public float ticksPerSecond = 1f;
 
-    public float damageTimer = 0.0f;
+    public float damageTimer = 1.0f;
 
 
 
@@ -61,7 +61,7 @@ public class DPSDamage : DiamondComponent
         if (other.CompareTag("Player"))
         {
             onTriggerStay = false;
-            damageTimer = 0;
+            damageTimer = 1;
             damage = base_damage;
         }
     }
@@ -70,7 +70,7 @@ public class DPSDamage : DiamondComponent
     {
         if (damage < 10)
         {
-            damage *= 2;
+            damage += 2;
             if (damage > 10)
             {
                 damage = 10;
