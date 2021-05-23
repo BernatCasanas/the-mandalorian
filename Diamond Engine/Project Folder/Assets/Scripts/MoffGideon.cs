@@ -1102,7 +1102,7 @@ public class MoffGideon : Entity
             return;
         }
 
-        gameObject.transform.localRotation.z += velocityRotationShooting * myDeltaTime * speedMult;
+        gameObject.transform.localRotation = Quaternion.Slerp(gameObject.transform.localRotation, Quaternion.RotateAroundAxis(Vector3.up, 50), 1f * myDeltaTime * speedMult);
 
         if (cadencyTimer > 0)
         {
