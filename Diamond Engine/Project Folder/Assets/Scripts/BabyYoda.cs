@@ -484,7 +484,7 @@ public class BabyYoda : DiamondComponent
 
         Transform mandoTransform = Core.instance.gameObject.transform;
 
-        GameObject aimHelpTarget = Core.instance.GetAimbotObjective(10f);
+        GameObject aimHelpTarget = Core.instance.GetAimbotObjective(15f);
 
         GameObject pushWall = InternalCalls.CreatePrefab("Library/Prefabs/541990364.prefab", new Vector3(mandoTransform.globalPosition.x, mandoTransform.globalPosition.y + 1, mandoTransform.globalPosition.z), mandoTransform.globalRotation, new Vector3(1, 1, 1));
         Audio.PlayAudio(gameObject, "Play_Force_Push");
