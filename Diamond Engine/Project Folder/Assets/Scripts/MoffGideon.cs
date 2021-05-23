@@ -1127,8 +1127,11 @@ public class MoffGideon : Entity
 
     private void StartSpawnEnemies()
     {
-        invencible = true;
-        if (currentPhase == MOFFGIDEON_PHASE.PHASE1) Animator.Play(gameObject, "MG_EnemySpawnPh1", speedMult);
+        if (currentPhase == MOFFGIDEON_PHASE.PHASE1)
+        {
+            invencible = true;
+            Animator.Play(gameObject, "MG_EnemySpawnerPh1", speedMult);
+        }
         else if (currentPhase == MOFFGIDEON_PHASE.PHASE2) Animator.Play(gameObject, "MG_EnemySpawnPh2", speedMult);
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Spawn_Enemies");
