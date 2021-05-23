@@ -4,11 +4,10 @@ using DiamondEngine;
 public class WampaProjectile : DiamondComponent
 {
 	public float speed = 30.0f;
-	public float lifeTime = 20.0f;
+	public float lifeTime = 0.8f;
 	public int damage = 10;
 
-	public Vector3 targetPos = new Vector3(0, 0, 0);
-	private Vector3 targetDirection = Vector3.zero;
+	public Vector3 targetDirection = Vector3.zero;
 
 	private bool to_destroy = false;
 	private float timer = 1.10f;
@@ -17,12 +16,14 @@ public class WampaProjectile : DiamondComponent
 	{
 		if (!to_destroy)
 		{
-			if (targetDirection == Vector3.zero)
-				targetDirection = targetPos - gameObject.transform.globalPosition;
+			//if (targetDirection == Vector3.zero)
+			//	targetDirection = targetPos - gameObject.transform.globalPosition;
+
+			Debug.Log(targetDirection.ToString());
 
 			gameObject.transform.localPosition += targetDirection.normalized * speed * Time.deltaTime;
 
-			gameObject.transform.LookAt(targetDirection.normalized);
+			gameObject.transform.LookAt(targetDirection);
 		}
 
 		lifeTime -= Time.deltaTime;

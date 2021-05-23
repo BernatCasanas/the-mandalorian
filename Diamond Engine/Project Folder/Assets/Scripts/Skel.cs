@@ -87,7 +87,6 @@ public class Skel : Bosseslv2
 
 
         UpdateState();
-        //Debug.Log(healthPoints.ToString());
 
         if (firstSorrowRoar)
         {
@@ -169,6 +168,7 @@ public class Skel : Bosseslv2
             presentationTimer = presentationTime;
             SkelAngry();
             angry = true;
+            firstSorrowRoar = true;
         }
     }
 

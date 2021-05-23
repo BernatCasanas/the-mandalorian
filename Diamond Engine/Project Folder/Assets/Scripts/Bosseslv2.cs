@@ -68,6 +68,9 @@ public class Bosseslv2 : Entity
     public float projectileAngle = 30.0f;
     public float projectileRange = 6.0f;
     public float projectileDamage = 10.0f;
+    public float rushDamage = 15.0f;
+    public float damageBounceRush = 20f;
+    List<WampaProjectile> projectiles = new List<WampaProjectile>();
 
     //Jump Slam
     private JUMPSLAM jumpslam = JUMPSLAM.NONE;
@@ -171,18 +174,26 @@ public class Bosseslv2 : Entity
                 if (projectilePoint != null)
                 {
                     Vector3 pos = projectilePoint.transform.globalPosition;
-                    Quaternion rot = new Quaternion(0, projectilePoint.transform.GetForward().y, 0);
                     if (firstThrow)
                         Audio.PlayAudio(gameObject, "Play_Wampa_Projectile_Throw_1");
                     else
                         Audio.PlayAudio(gameObject, "Play_Wampa_Projectile_Throw_2");
                     firstThrow = false;
-                    WampaProjectile projectile = InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, rot, null).GetComponent<WampaProjectile>();
-                    Debug.Log(rot.ToString());
-                    if (projectile != null)
+                    projectiles.Clear();
+                    Vector3 targetPos = (Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition);
+                    projectiles.Add(InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, new Quaternion(0, 0, 0), null).GetComponent<WampaProjectile>());
+                    projectiles.Add(InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, new Quaternion(0, 0, 0), null).GetComponent<WampaProjectile>());
+                    projectiles.Add(InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, new Quaternion(0, 0, 0), null).GetComponent<WampaProjectile>());
+
+                    if (projectiles.Count!=0)
                     {
-                        projectile.targetPos = Core.instance.gameObject.transform.globalPosition;
-                        projectile.damage = (int)(projectile.damage * damageMult);
+                        for(int i = 0;i<projectiles.Count;++i)
+                        {
+                            projectiles[i].damage = (int)(projectiles[i].damage * damageMult);
+                        }
+                        projectiles[0].targetDirection = new Vector3(targetPos.x, targetPos.y, targetPos.z);
+                        projectiles[1].targetDirection = new Vector3(targetPos.x, targetPos.y - 5, targetPos.z);
+                        projectiles[2].targetDirection = new Vector3(targetPos.x, targetPos.y + 5, targetPos.z);
                     }
 
                     //Debug.Log("Throwing projectile");
@@ -707,7 +718,7 @@ public class Bosseslv2 : Entity
 
         if (gameObject.CompareTag("Skel"))
         {
-            Animator.Play(gameObject, "Skel_Presentation", speedMult);
+            Animator.Play(gameObject, "Skel_Roar", speedMult);
             UpdateAnimationSpd(speedMult);
             //Audio.PlayAudio(gameObject, "Play_Skel_Death");
         }

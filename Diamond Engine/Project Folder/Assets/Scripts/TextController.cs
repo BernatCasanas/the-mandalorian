@@ -165,7 +165,8 @@ public class TextController : DiamondComponent
 			texts = list_of_dialogs.GetComponent<List_Of_Dialogs>().GetListOfDialog((uint)dialog_index);
 			charName = list_of_dialogs.GetComponent<List_Of_Dialogs>().GetDialogName((uint)dialog_index);
 			images = list_of_dialogs.GetComponent<List_Of_Dialogs>().GetListOfOrder((uint)dialog_index);
-			dialogImages = list_of_dialogs.GetComponent<List_Of_Dialogs>().GetListOfImages((uint)dialog_index);			
+			dialogImages = list_of_dialogs.GetComponent<List_Of_Dialogs>().GetListOfImages((uint)dialog_index);
+			OnExecuteButton();
 		}
 		else if (finished == true)
 		{
