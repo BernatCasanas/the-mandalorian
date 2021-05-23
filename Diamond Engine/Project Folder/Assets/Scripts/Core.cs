@@ -1569,11 +1569,14 @@ public class Core : Entity
         if (HasStatus(STATUS_TYPE.BOBBA_STUN_AMMO))
             scale *= 1 + GetStatusData(STATUS_TYPE.BOBBA_STUN_AMMO).severity / 100;
 
+        float buttonPressedTimeNorm = 1f - (grenadeMaxLaunchTimer / grenadeLaunchMaxTime);
+        buttonPressedTimeNorm *= buttonPressedTimeNorm;
+
         GameObject thrownGrenade = null;
         Vector3 forceDir = shootPoint.transform.GetForward();
         Quaternion grenadeRotation = shootPoint.transform.globalRotation;
 
-        GameObject aimHelpTarget = GetAimbotObjective(10f);
+        GameObject aimHelpTarget = GetAimbotObjective(10f, myAimbot.maxRange * buttonPressedTimeNorm);
 
         if (aimHelpTarget != null)
         {
@@ -1586,12 +1589,8 @@ public class Core : Entity
             grenadeRotation = Quaternion.Slerp(grenadeRotation, Quaternion.RotateAroundAxis(Vector3.up, angle), 1f);
         }
 
-
-        float forceMult = 1f - (grenadeMaxLaunchTimer / grenadeLaunchMaxTime);
-        forceMult *= forceMult;
-
-        Vector3 myForce = forceDir * Mathf.Lerp(minGrenadeForwardForceMult, maxGrenadeForwardForceMult, forceMult);
-        myForce.y = Mathf.Lerp(minGrenadeUpForce, maxGrenadeUpForce, forceMult);
+        Vector3 myForce = forceDir * Mathf.Lerp(minGrenadeForwardForceMult, maxGrenadeForwardForceMult, buttonPressedTimeNorm);
+        myForce.y = Mathf.Lerp(minGrenadeUpForce, maxGrenadeUpForce, buttonPressedTimeNorm);
 
         grenadeMaxLaunchTimer = 0f;
         grenadeLaunchMinTimer = 0f;
