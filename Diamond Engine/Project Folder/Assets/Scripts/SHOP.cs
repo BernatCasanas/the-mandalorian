@@ -32,7 +32,9 @@ public class SHOP : DiamondComponent
     private ShopButtons[] shopButtons = null;
 
     public GameObject currencyObject = null;
+    public GameObject currencyObject1 = null;
     private Text currencyText = null;
+    private Text currencyText1 = null;
 
     public float interactionRange = 2.0f;
     public bool autoGenerateItems = true;
@@ -51,6 +53,7 @@ public class SHOP : DiamondComponent
         if (currencyObject != null)
         {
             currencyText = currencyObject.GetComponent<Text>();
+            currencyText1 = currencyObject1.GetComponent<Text>();
             UpdateCurrency(PlayerResources.GetRunCoins());
         }
 
@@ -200,6 +203,11 @@ public class SHOP : DiamondComponent
             currencyText.text = PlayerResources.GetRunCoins().ToString();
         else
             Debug.Log("Null currency text");
+
+        if (currencyText1 != null)
+            currencyText1.text = PlayerResources.GetRunCoins().ToString();
+        else
+            Debug.Log("Null currency text");
     }
 
     public void RandomiseItems()
@@ -289,5 +297,6 @@ public class SHOP : DiamondComponent
         shopUI.EnableNav(false);
         Core.instance.LockInputs(false); 
         textPopUp.Enable(true);
+        UpdateCurrency(PlayerResources.GetRunCoins());
     }
 }
