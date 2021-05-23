@@ -13,8 +13,8 @@ public class HubRoomSwitch : DiamondComponent
 		if (isHubScene == true)
         {
 			PlayerResources.ResetRunBoons();
+			RoomSwitch.ClearStaticData();
 		}
-		RoomSwitch.ClearStaticData();
 
 		//PlayerResources.ResetRunBoons(); //TODO: This has a bug when starting the run at the HUB
 		if (Core.instance != null)
