@@ -6,9 +6,12 @@ public class HubRoomSwitch : DiamondComponent
 {
 	public int nextRoomUID = -1;
 	public bool isHubScene = false;
+	public bool isTutorialScene = false;
 
 	public void OnExecuteButton()
 	{
+		RoomDataHolder.isTutorial = isTutorialScene;
+
 		if(isHubScene == true)
 			RoomSwitch.ClearStaticData();
 

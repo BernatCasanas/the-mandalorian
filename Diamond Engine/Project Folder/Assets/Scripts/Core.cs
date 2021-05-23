@@ -3348,4 +3348,13 @@ public class Core : Entity
         return (currentState == STATE.DEAD);
     }
 
+    public void SetMySpawnPosition(Vector3 newPos)
+    {
+        mySpawnPos = newPos;
+    }
+    public Vector3 GetMySpawnPosition()
+    {
+        return mySpawnPos;
+    }
+
 }
