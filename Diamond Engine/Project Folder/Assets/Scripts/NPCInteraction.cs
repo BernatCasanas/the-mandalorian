@@ -22,7 +22,6 @@ public class NPCInteraction : DiamondComponent
         SetNPC();
 
         HubTextController hubScript = hubTextController.GetComponent<HubTextController>();
-        hubScript.GreefSet3();
         switch (npc)
         {
             case NPC.GREEF:

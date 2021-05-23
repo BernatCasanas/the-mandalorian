@@ -172,9 +172,6 @@ public class HubTextController : DiamondComponent
                 }
 
                 boKatanHasInteracted = true;
-                bo_katan.GetComponent<InsideCollider>().maxDistance = 0;
-                if (boKatanNotification != null)
-                    boKatanNotification.Enable(false);
 
                 break;
             case Interaction.GREEF:
@@ -192,9 +189,6 @@ public class HubTextController : DiamondComponent
                 }
 
                 greefHasInteracted = true;
-                greef.GetComponent<InsideCollider>().maxDistance = 0;
-                if (greefNotification != null)
-                    greefNotification.Enable(false);
 
                 break;
             case Interaction.ASHOKA:
@@ -212,9 +206,6 @@ public class HubTextController : DiamondComponent
                 }
 
                 ashokaHasInteracted = true;
-                ashoka.GetComponent<InsideCollider>().maxDistance = 0;
-                if (ashokaNotification != null)
-                    ashokaNotification.Enable(false);
 
                 break;
             case Interaction.CARA_DUNE:
@@ -232,9 +223,6 @@ public class HubTextController : DiamondComponent
                 }
 
                 caraHasInteracted = true;
-                cara_dune.GetComponent<InsideCollider>().maxDistance = 0;
-                if (caraDuneNotification != null)
-                    caraDuneNotification.Enable(false);
 
                 break;
             case Interaction.GROGU:
@@ -252,9 +240,6 @@ public class HubTextController : DiamondComponent
                 }
 
                 groguHasInteracted = true;
-                grogu.GetComponent<InsideCollider>().maxDistance = 0;
-                if (groguNotification != null)
-                    groguNotification.Enable(false);
 
                 break;
         }
