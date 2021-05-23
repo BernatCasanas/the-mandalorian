@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -2.1714382171630859,
-        2.5715339183807373,
-        10.04442310333252
+        -10.673344612121582,
+        6.2295875549316406,
+        -4.966064453125
     ],
     "EditorCameraZ": [
-        0.75794750452041626,
-        -0.22306244075298309,
-        0.61299169063568115
+        0.63570994138717651,
+        -0.34020376205444336,
+        0.6929171085357666
     ],
     "EditorCameraY": [
-        0.1734415590763092,
-        0.97480416297912598,
-        0.14026717841625214
+        0.22999715805053711,
+        0.94035172462463379,
+        0.2506788969039917
     ],
     "SkyboxPath0": "",
     "SkyboxPath1": "",
@@ -105,8 +105,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 14.979999542236328,
-                    "hFOV": 21.200000762939453,
+                    "vFOV": 13.300000190734863,
+                    "hFOV": 21.020000457763672,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -28700,10 +28700,10 @@
                         -0.19471836090087891
                     ],
                     "Rotation": [
-                        0.19392229616641998,
-                        -2.7353405651631135e-10,
-                        1.3877789462175682e-17,
-                        0.98101699352264404
+                        0.1939222663640976,
+                        -2.7353402876073574e-10,
+                        1.3877787807814457e-17,
+                        0.98101687431335449
                     ],
                     "Scale": [
                         1,
@@ -34831,6 +34831,14 @@
                     "Active": true,
                     "billboardAlignment": 3,
                     "horizantalAligned": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "InsideCollider",
+                    "maxDistance": 20,
+                    "colliderPosition": 995958797,
+                    "displayText": 449929065
                 }
             ]
         },
@@ -35261,6 +35269,14 @@
                     "Active": true,
                     "billboardAlignment": 3,
                     "horizantalAligned": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "InsideCollider",
+                    "maxDistance": 1.75,
+                    "colliderPosition": 1852624365,
+                    "displayText": 1844389581
                 }
             ]
         },
@@ -36275,6 +36291,14 @@
                     "Active": true,
                     "billboardAlignment": 3,
                     "horizantalAligned": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "InsideCollider",
+                    "maxDistance": 20,
+                    "colliderPosition": 1673613479,
+                    "displayText": 1110625248
                 }
             ]
         },
@@ -38248,45 +38272,6 @@
                     "Active": true,
                     "billboardAlignment": 3,
                     "horizantalAligned": true
-                }
-            ]
-        },
-        {
-            "name": "NPCInteractionController",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1026810876,
-            "ParentUID": 1481651339,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "NPCInteractionController"
                 }
             ]
         }
