@@ -21,12 +21,10 @@ public class MoffGideonSword : DiamondComponent
 
 	public void Update()
 	{
-		Debug.Log(throwTimer.ToString());
 		if(throwTimer > 0.0f)
         {
 			throwTimer -= Time.deltaTime;
 			gameObject.transform.localPosition += gameObject.transform.GetForward() * throwSpeed * Time.deltaTime;
-			Quaternion.RotateAroundAxis(Vector3.up, 10);
         }
 	}
 

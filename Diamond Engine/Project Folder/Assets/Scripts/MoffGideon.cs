@@ -141,7 +141,6 @@ public class MoffGideon : Entity
     private List<AtackMoff> atacks = new List<AtackMoff>();
     private int nAtacks = 0;
     private int nSequences = 3;
-    private bool powerPos = false;
 
 
     //Timers
@@ -287,18 +286,8 @@ public class MoffGideon : Entity
             Debug.Log(presentationTimer.ToString());
             if (presentationTimer <= 0)
             {
-                if (!powerPos)
-                {
-                    powerPos = true;
-                    presentationTimer = Animator.GetAnimationDuration(gameObject, "MG_PowerPose") - 0.016f;
-                    Animator.Play(gameObject, "MG_PowerPose");
-                }
-                else
-                {
-                    inputsList.Add(MOFFGIDEON_INPUT.IN_PRESENTATION_END);
-                    healthPoints = limbo_health = maxHealthPoints_fase1;
-                }
-                
+                inputsList.Add(MOFFGIDEON_INPUT.IN_PRESENTATION_END);
+                healthPoints = limbo_health = maxHealthPoints_fase1;
             }
 
         }
@@ -878,7 +867,7 @@ public class MoffGideon : Entity
 
     private void StartPresentation()
     {
-        Animator.Play(gameObject, "MG_CapeOff", speedMult);
+        Animator.Play(gameObject, "MG_PowerPose", speedMult);
         UpdateAnimationSpd(speedMult);
 
         //Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Lightsaber_Turn_On");
@@ -1223,9 +1212,7 @@ public class MoffGideon : Entity
         Animator.Play(gameObject, "MG_SaberThrow");
         UpdateAnimationSpd(speedMult);
 
-        Quaternion rot = new Quaternion(0, 0, 90);
-
-        saber = InternalCalls.CreatePrefab("Library/Prefabs/1894242407.prefab", shootPoint.transform.globalPosition, rot, new Vector3(1.0f, 1.0f, 1.0f));
+        saber = InternalCalls.CreatePrefab("Library/Prefabs/1894242407.prefab", shootPoint.transform.globalPosition, new Quaternion(0,0,0), new Vector3(1.0f, 1.0f, 1.0f));
 
         if (saber != null)
         {
@@ -1236,6 +1223,7 @@ public class MoffGideon : Entity
                 moffGideonSword.ThrowSword((Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition).normalized, swordRange);
                 saber.Enable(true);
                 sword.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+                sword.transform.localRotation = new Quaternion(-90, 0, 90);
                 inputsList.Add(MOFFGIDEON_INPUT.IN_THROW_SABER_END);
             }
         }
