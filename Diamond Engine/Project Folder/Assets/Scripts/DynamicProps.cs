@@ -6,6 +6,7 @@ public class DynamicProps : DiamondComponent
     public enum STATE : int
     {
         NONE = -1,
+        IDLE,
         WAIT,
         MOVE,
         ROTATE,
@@ -38,19 +39,21 @@ public class DynamicProps : DiamondComponent
 
     public bool reset;
     public bool start_Idle = false;
-    public bool isScreaming = false;
 
 
-    public int waitSeconds = 2;
+    public float waitSeconds = 2.0f;
 
     public int STATUS;
     public void Awake()
     {
 
-        currentState = STATE.WAIT;
-
         if (gameObject.tag == "LittleMen")
-            isScreaming = true;
+        {
+            StartIdle();
+            currentState = STATE.IDLE;
+        }
+        else
+            currentState = STATE.WAIT;
 
         if (!start_Idle)
             SwitchState(STATE.MOVE);
@@ -64,7 +67,7 @@ public class DynamicProps : DiamondComponent
         screamTime = Animator.GetAnimationDuration(gameObject, "PD_Scream");
 
         //IDLE
-        idleTime = Animator.GetAnimationDuration(gameObject, "PD_Idle");
+        idleTime = waitSeconds;
 
         //ROTATE
         rotateTime = RotateAngle * Mathf.Deg2RRad / rotateSpeed;
@@ -77,7 +80,6 @@ public class DynamicProps : DiamondComponent
 
     public void Update()
     {
-        LittleMen();
         UpdateState();
         DebugState();
     }
@@ -86,6 +88,10 @@ public class DynamicProps : DiamondComponent
     {
         switch (currentState)
         {
+            case STATE.IDLE:
+                UpdateIdle();
+                break;
+
             case STATE.WAIT:
                 UpdateWait(waitSeconds);
                 break;
@@ -99,6 +105,7 @@ public class DynamicProps : DiamondComponent
                 break;
 
             case STATE.SCREAM:
+                UpdateScream();
                 break;
 
             default:
@@ -110,6 +117,16 @@ public class DynamicProps : DiamondComponent
     {
         switch (currentState)
         {
+            case STATE.IDLE:
+                switch (nextState)
+                {
+                    case STATE.SCREAM:
+                        currentState = STATE.SCREAM;
+                        StartScream();
+                        break;
+                }
+                break;
+
             case STATE.WAIT:
                 switch (nextState)
                 {
@@ -161,6 +178,11 @@ public class DynamicProps : DiamondComponent
             case STATE.SCREAM:
                 switch (nextState)
                 {
+                    case STATE.IDLE:
+                        currentState = STATE.IDLE;
+                        StartIdle();
+                        break;
+
                     case STATE.WAIT:
                         currentState = STATE.WAIT;
                         StartWait();
@@ -212,6 +234,14 @@ public class DynamicProps : DiamondComponent
                 Debug.Log("Entra");
                 Reset();
                 break;
+            case "Top":
+                SwitchState(STATE.WAIT);
+                moveSpeed = -Math.Abs(moveSpeed);
+                break;
+            case "Bottom":
+                //SwitchState(STATE.MOVE);
+                moveSpeed = Math.Abs(moveSpeed);
+                break;
 
             default:
                 break;
@@ -220,7 +250,7 @@ public class DynamicProps : DiamondComponent
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-        Debug.Log("TRIGGER ENTER");
+        //Debug.Log("TRIGGER ENTER");
 
         TriggerAction(triggeredGameObject.tag);
     }
@@ -230,6 +260,33 @@ public class DynamicProps : DiamondComponent
 
     }
 
+    #region IDLE
+    public void StartIdle()
+    {
+        idleTimer = waitSeconds;
+        Animator.Play(gameObject, "PD_Idle");
+    }
+
+    public void UpdateIdle()
+    {
+        Debug.Log("Idle timer: " + idleTimer.ToString());
+        if (idleTimer > 0.0f)
+        {
+            idleTimer -= Time.deltaTime;
+
+            if (idleTimer <= 0.0f)
+            {
+                if (reset == true)
+                    Reset();
+
+                Debug.Log("Scream!");
+                SwitchState(STATE.SCREAM);
+            }
+        }
+    }
+
+    #endregion
+
     #region WAIT
     public void StartWait()
     {
@@ -237,7 +294,7 @@ public class DynamicProps : DiamondComponent
         Animator.Play(gameObject, "PD_Idle");
     }
 
-    public void UpdateWait(int seconds)
+    public void UpdateWait(float seconds)
     {
         if (waitTimer > 0.0f)
         {
@@ -245,10 +302,7 @@ public class DynamicProps : DiamondComponent
 
             if (waitTimer <= 0.0f)
             {
-                isScreaming = true;
-
-                if (reset == true)
-                    Reset();
+                SwitchState(STATE.MOVE);
             }
         }
     }
@@ -333,7 +387,18 @@ public class DynamicProps : DiamondComponent
 
     public void UpdateScream()
     {
+        if (gameObject.tag == "LittleMen")
+        {
+            if (screamTimer > 0.0f)
+            {
+                screamTimer -= Time.deltaTime;
 
+                if (screamTimer <= 0.0f)
+                {
+                    SwitchState(STATE.IDLE);
+                }
+            }
+        }
     }
     #endregion
 
@@ -344,29 +409,5 @@ public class DynamicProps : DiamondComponent
         gameObject.transform.localRotation = initialRot;
 
         Debug.Log("RESET");
-    }
-
-    public void LittleMen()
-    {
-        if (gameObject.tag == "LittleMen")
-        {
-            if (isScreaming)
-                SwitchState(STATE.SCREAM);
-
-            Debug.Log(screamTimer.ToString());
-
-            if (screamTimer > 0.0f)
-            {
-                screamTimer -= Time.deltaTime;
-
-                if (screamTimer <= 0.0f)
-                {
-                    SwitchState(STATE.WAIT);
-                    isScreaming = false;
-                }
-
-            }
-
-        }
     }
 }
