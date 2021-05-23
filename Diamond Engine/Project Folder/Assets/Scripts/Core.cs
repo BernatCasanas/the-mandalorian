@@ -169,6 +169,10 @@ public class Core : Entity
     private Material grenadeCooldownIcon = null;
     private Material sniperBullet1 = null;
     private Material sniperBullet2 = null;
+    private GameObject myGrenade1 = null;
+    private GameObject myGrenade2 = null;
+    public float grenadeForwardForceMult = 1f;
+    public float grenadeUpForce = 1f;
 
     // Secondary Shoot (sniper)
     public float timeToPerfectCharge = 0.424f;
@@ -317,7 +321,7 @@ public class Core : Entity
         if (blaster != null)
             blaster.Enable(false);
 
-        dieTime = Animator.GetAnimationDuration(gameObject, "Die") - 0.016f -1f;
+        dieTime = Animator.GetAnimationDuration(gameObject, "Die") - 0.016f - 1f;
 
         #endregion
 
@@ -1396,11 +1400,48 @@ public class Core : Entity
         //}
         Input.PlayHaptic(2f, 30);
 
-        Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
+        Vector3 baseScale = new Vector3(0.2f, 0.2f, 0.2f);
+
+        Vector3 scale = baseScale;
         if (HasStatus(STATUS_TYPE.BOBBA_STUN_AMMO))
             scale *= 1 + GetStatusData(STATUS_TYPE.BOBBA_STUN_AMMO).severity / 100;
 
-        InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation, scale);
+        GameObject thrownGrenade = null;
+
+        Vector3 myForce = shootPoint.transform.GetForward() * grenadeForwardForceMult;
+
+        myForce.y = grenadeUpForce;
+
+        if (myGrenade1 == null)
+        {
+            thrownGrenade = myGrenade1 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation, null);
+        }
+        else if (myGrenade1 != null && myGrenade1.IsEnabled() == false)
+        {
+            thrownGrenade = myGrenade1;
+            myGrenade1.Enable(true);
+        }
+        else if (myGrenade1 != null && myGrenade1.IsEnabled() == true && myGrenade2 == null)
+        {
+            thrownGrenade = myGrenade2 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation, null);
+        }
+        else if (myGrenade1 != null && myGrenade1.IsEnabled() == true && myGrenade2 != null && myGrenade2.IsEnabled() == false)
+        {
+            thrownGrenade = myGrenade1;
+            myGrenade2.Enable(true);
+
+        }
+        else
+            Debug.Log("Mando needs more grenades!");
+
+        SlowGrenade grenadeComp = thrownGrenade.GetComponent<SlowGrenade>();
+
+        if (grenadeComp != null)
+        {
+            grenadeComp.GrenadeInit(shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized, shootPoint.transform.globalRotation, myForce);
+        }
+
+        thrownGrenade.transform.localScale = scale;
 
     }
 
@@ -1994,11 +2035,11 @@ public class Core : Entity
     {
         GameObject ret = null;
 
-        if(myAimbot != null)
+        if (myAimbot != null)
         {
             float searchRange = range == 0f ? myAimbot.maxRange : range;
 
-            ret= myAimbot.SearchForNewObjRaw(angle, searchRange);
+            ret = myAimbot.SearchForNewObjRaw(angle, searchRange);
         }
 
         return ret;
@@ -2488,6 +2529,7 @@ public class Core : Entity
     public float GetGrenadeDamageMod()
     {
         //We apply modifications to the damage based on the skill actives in the talent tree
+
         float Damage = DamagePerHeatMult * GrenadeDamageMult * RawDamageMult + SecTickDamage;
 
         return Damage;

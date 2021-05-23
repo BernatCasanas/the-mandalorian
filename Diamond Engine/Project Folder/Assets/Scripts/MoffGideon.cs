@@ -89,7 +89,7 @@ public class MoffGideon : Entity
     public float slerpSpeed = 5.0f;
 
     private float damageMult = 1.0f;
-    private float damageRecieveMult = 1f;
+    public float damageRecieveMult = 1f;
 
     //Stats
     public float healthPoints = 8500.0f;
