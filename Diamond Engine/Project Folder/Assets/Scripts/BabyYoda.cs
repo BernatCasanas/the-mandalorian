@@ -472,7 +472,7 @@ public class BabyYoda : DiamondComponent
 
                 }
             }
-            Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Wall_Command");
+            Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Push_Command");
 
         }
 
@@ -484,7 +484,7 @@ public class BabyYoda : DiamondComponent
 
         Transform mandoTransform = Core.instance.gameObject.transform;
 
-        GameObject aimHelpTarget = Core.instance.GetAimbotObjective(10f);
+        GameObject aimHelpTarget = Core.instance.GetAimbotObjective(15f);
 
         GameObject pushWall = InternalCalls.CreatePrefab("Library/Prefabs/541990364.prefab", new Vector3(mandoTransform.globalPosition.x, mandoTransform.globalPosition.y + 1, mandoTransform.globalPosition.z), mandoTransform.globalRotation, new Vector3(1, 1, 1));
         Audio.PlayAudio(gameObject, "Play_Force_Push");
@@ -523,8 +523,7 @@ public class BabyYoda : DiamondComponent
                 if (playerHealth != null)
                     playerHealth.SetCurrentHP((int)(PlayerHealth.currHealth + Core.instance.GetStatusData(STATUS_TYPE.SKILL_HEAL).severity));
             }
-            Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Pull_Command");
-
+            Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Wall_Command");
         }
         skillWallTimer += INIT_TIMER;
         Transform mandoTransform = Core.instance.gameObject.transform;

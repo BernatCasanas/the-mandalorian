@@ -96,6 +96,8 @@ public class SlowGrenade : DiamondComponent
                     case ENTITY_TYPE.STROMTROOPER:
                         {
                             eneScript = myEntComp.gameObject.GetComponent<StormTrooper>();
+                            if (eneScript == null)
+                                eneScript = myEntComp.gameObject.GetComponent<DummyStormtrooper>();
                         }
                         break;
                     case ENTITY_TYPE.BANTHA:

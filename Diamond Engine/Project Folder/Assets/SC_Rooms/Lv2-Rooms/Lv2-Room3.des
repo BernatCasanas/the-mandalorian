@@ -1,19 +1,19 @@
 {
     "NavMesh": 789920900,
     "EditorCameraPosition": [
-        -14.900115013122559,
-        28.832645416259766,
-        0.57171940803527832
+        43.232292175292969,
+        -7.9217138290405273,
+        -13.441862106323242
     ],
     "EditorCameraZ": [
-        0.32559293508529663,
-        -0.86000090837478638,
-        -0.392922043800354
+        0.21067863702774048,
+        -0.17053015530109406,
+        0.96256673336029053
     ],
     "EditorCameraY": [
-        0.5487249493598938,
-        0.51029258966445923,
-        -0.66219532489776611
+        0.036543861031532288,
+        0.98535245656967163,
+        0.1665685623884201
     ],
     "SkyboxPath0": "",
     "SkyboxPath1": "",
@@ -31,7 +31,9 @@
         "WaterFloor",
         "SnowFloor",
         "MetalFloor",
-        "WorldLimit"
+        "WorldLimit",
+        "Top",
+        "Bottom"
     ],
     "layers": [],
     "Game Objects": [
@@ -107,8 +109,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 14.5,
-                    "hFOV": 23.479999542236328,
+                    "vFOV": 11.739999771118164,
+                    "hFOV": 21.280000686645508,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -8879,10 +8881,10 @@
                 0.0049104690551757813
             ],
             "Rotation": [
-                -0.4999135434627533,
-                0.50010108947753906,
-                0.500072181224823,
-                0.49991333484649658
+                -0.49991348385810852,
+                0.50010102987289429,
+                0.50007212162017822,
+                0.49991327524185181
             ],
             "Scale": [
                 1.1896101236343384,
@@ -9155,12 +9157,12 @@
             "Static": false,
             "Position": [
                 18.054330825805664,
-                9.7298307418823242,
-                -27.099323272705078
+                9.7298297882080078,
+                -27.099325180053711
             ],
             "Rotation": [
-                0,
-                0,
+                -3.5527136788005009e-15,
+                -7.2759576141834259e-12,
                 0,
                 1
             ],
@@ -17491,68 +17493,6 @@
             ]
         },
         {
-            "name": "Spaceship",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 987957096,
-            "ParentUID": 557728843,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                52.956008911132813,
-                12.700668334960938,
-                -65.11505126953125
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/1457192655.mmh",
-                    "UID": 1457192655,
-                    "bumpDepth": 1,
-                    "alternColor": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
-                    "MaterialUID": 82053990
-                }
-            ]
-        },
-        {
             "name": "Elevator",
             "tag": "Untagged",
             "layer": "Default",
@@ -17565,12 +17505,12 @@
             "Static": false,
             "Position": [
                 39.426483154296875,
-                4.8785022954689339e-07,
+                1.9073486328125e-06,
                 -4.944976806640625
             ],
             "Rotation": [
-                0,
-                0,
+                -3.5527136788005009e-15,
+                -7.2759576141834259e-12,
                 0,
                 1
             ],
@@ -17661,12 +17601,12 @@
             "Static": false,
             "Position": [
                 0,
-                21.175323486328125,
+                21.175327301025391,
                 -1.1444091796875e-05
             ],
             "Rotation": [
-                0,
-                0,
+                -5.3290705182007514e-15,
+                -7.2759576141834259e-12,
                 0,
                 1
             ],
@@ -17679,6 +17619,55 @@
                 {
                     "Type": 1,
                     "Active": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0.31434553861618042,
+                        0,
+                        0.94930869340896606
+                    ],
+                    "Scale": [
+                        1.8000011444091797,
+                        2.5999999046325684,
+                        1.9999972581863403
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "DynamicProps",
+                    "RotateAxis": 0,
+                    "MoveAxis": 1,
+                    "RotateAngle": 0,
+                    "moveSpeed": -2,
+                    "rotateSpeed": 0,
+                    "reset": false,
+                    "start_Idle": false,
+                    "waitSeconds": 2,
+                    "STATUS": 0
                 }
             ]
         },
@@ -17757,12 +17746,12 @@
             "Static": false,
             "Position": [
                 -1.4098310470581055,
-                -0.49198660254478455,
-                0.83710479736328125
+                -0.49198651313781738,
+                0.83710670471191406
             ],
             "Rotation": [
-                0,
-                0,
+                -3.5527136788005009e-15,
+                -7.2759576141834259e-12,
                 0,
                 1
             ],
@@ -17778,7 +17767,7 @@
                 },
                 {
                     "Type": 2,
-                    "Active": true,
+                    "Active": false,
                     "Path": "Library\/Meshes\/1963281285.mmh",
                     "UID": 1963281285,
                     "bumpDepth": 1,
@@ -17865,6 +17854,257 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "XWingRepairing",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 403561653,
+            "ParentUID": 557728843,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                53.035270690917969,
+                12.427061080932617,
+                -65.100074768066406
+            ],
+            "Rotation": [
+                -0.018035251647233963,
+                -0.53797429800033569,
+                -0.011513341218233109,
+                0.8426896333694458
+            ],
+            "Scale": [
+                1.0185062885284424,
+                1.0185002088546753,
+                1.0185074806213379
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/996929350.mmh",
+                    "UID": 996929350,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FloatingVehicles"
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "Sparks",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1625333663,
+            "ParentUID": 403561653,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -1.0869998931884766,
+                -0.024151802062988281,
+                -1.5458545684814453
+            ],
+            "Rotation": [
+                -0.0046408888883888721,
+                -0.97631722688674927,
+                -0.020746028050780296,
+                -0.21529711782932281
+            ],
+            "Scale": [
+                0.70130717754364014,
+                0.70131129026412964,
+                0.70130670070648193
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Sparks 1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 2146623999,
+            "ParentUID": 1625333663,
+            "PrefabReference": 250853681,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.65642547607421875,
+                -1.1896896362304688,
+                1.6210296154022217
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                1.5771587594942682e-12,
+                -5.2556830415495526e-13,
+                0.70710670948028564
+            ],
+            "Scale": [
+                1,
+                0.99988746643066406,
+                0.99988746643066406
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": true,
+                    "looping": true,
+                    "maxDuration": 0.625,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/39569920.dds",
+                            "texUID": 39569920,
+                            "paEmitterName": "White sparks",
+                            "paLifeTime": [
+                                0.30000001192092896,
+                                0.69999998807907104
+                            ],
+                            "paSize": [
+                                0.05000000074505806,
+                                0.070000000298023224
+                            ],
+                            "paColor": [
+                                1,
+                                0.99999845027923584,
+                                0.99998998641967773,
+                                1
+                            ],
+                            "paPerSec": 70,
+                            "paRelative": true,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 0,
+                                    "paFOLT_direction": [
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    "paFOLT_magnitude": 0,
+                                    "paFOLT_gravityMod": 1,
+                                    "paFOLT_gravity": -9.8000001907348633,
+                                    "paFOLT_forceType": 0
+                                },
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                0.61924684047698975,
+                                                0.30917355418205261,
+                                                0.29278197884559631,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0.26361030340194702
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0.85534650087356567,
+                                                0.26359832286834717,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0.67048740386962891
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0.91534650325775146,
+                                                0.56903767585754395,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 1,
+                                    "paShapeRandSpeed": 0,
+                                    "PaShapeConeRadius": 0.20000000298023224,
+                                    "PaShapeConeHeight": 0.10000000149011612,
+                                    "PaShapeSphereDirection": false,
+                                    "PaShapeSphereAngle": 0,
+                                    "paShapeType": 2,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
                 }
             ]
         },
@@ -21568,31 +21808,31 @@
             ]
         },
         {
-            "name": "Sparks",
+            "name": "Positions",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1625333663,
+            "UID": 1473741635,
             "ParentUID": 568224617,
-            "PrefabReference": 755591133,
+            "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                46.040088653564453,
-                -8.577911376953125,
-                3.4285378456115723
+                -40.900135040283203,
+                3.0418272018432617,
+                -17.86370849609375
             ],
             "Rotation": [
-                -1.1734662308526822e-07,
-                -1.4901154088420299e-08,
-                -2.23517560016262e-08,
+                0,
+                0,
+                0,
                 1
             ],
             "Scale": [
-                1.0000001192092896,
                 1,
-                1.0000002384185791
+                1,
+                1
             ],
             "Components": [
                 {
@@ -21602,31 +21842,31 @@
             ]
         },
         {
-            "name": "Sparks 1",
-            "tag": "Untagged",
+            "name": "FirstPos",
+            "tag": "Top",
             "layer": "Default",
             "Active": true,
-            "UID": 2146623999,
-            "ParentUID": 1625333663,
-            "PrefabReference": 250853681,
+            "UID": 1416133723,
+            "ParentUID": 1473741635,
+            "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -0.65642547607421875,
-                -1.1896896362304688,
-                1.6210296154022217
+                0.24484634399414063,
+                4.0776524543762207,
+                0.76985359191894531
             ],
             "Rotation": [
-                -0.7071068286895752,
-                1.5771587594942682e-12,
-                -5.2556830415495526e-13,
-                0.70710670948028564
+                0,
+                0.25556772947311401,
+                0,
+                0.96679115295410156
             ],
             "Scale": [
+                1.0000001192092896,
                 1,
-                0.99988746643066406,
-                0.99988746643066406
+                1.0000001192092896
             ],
             "Components": [
                 {
@@ -21634,120 +21874,108 @@
                     "Active": true
                 },
                 {
-                    "Type": 3,
+                    "Type": 14,
                     "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
-                    "MaterialUID": 355756108
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
                 },
                 {
-                    "Type": 20,
+                    "Type": 18,
                     "Active": true,
-                    "systemActive": true,
-                    "looping": true,
-                    "maxDuration": 0.625,
-                    "ParticleEmitters": [
-                        {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/39569920.dds",
-                            "texUID": 39569920,
-                            "paEmitterName": "White sparks",
-                            "paLifeTime": [
-                                0.30000001192092896,
-                                0.69999998807907104
-                            ],
-                            "paSize": [
-                                0.05000000074505806,
-                                0.070000000298023224
-                            ],
-                            "paColor": [
-                                1,
-                                0.99999845027923584,
-                                0.99998998641967773,
-                                1
-                            ],
-                            "paPerSec": 70,
-                            "paRelative": true,
-                            "ParticleEffects": [
-                                {
-                                    "paEffectType": 0,
-                                    "paFOLT_direction": [
-                                        0,
-                                        0,
-                                        0
-                                    ],
-                                    "paFOLT_magnitude": 0,
-                                    "paFOLT_gravityMod": 1,
-                                    "paFOLT_gravity": -9.8000001907348633,
-                                    "paFOLT_forceType": 0
-                                },
-                                {
-                                    "paEffectType": 2,
-                                    "Gradients": [
-                                        {
-                                            "paColorOLTcolor": [
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ],
-                                            "paColorOLTposition": 0
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                0.61924684047698975,
-                                                0.30917355418205261,
-                                                0.29278197884559631,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 0.26361030340194702
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0.85534650087356567,
-                                                0.26359832286834717,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 0.67048740386962891
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0.91534650325775146,
-                                                0.56903767585754395,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 1
-                                        }
-                                    ]
-                                },
-                                {
-                                    "paEffectType": 5,
-                                    "paShapeHasInitSpeed": true,
-                                    "paShapePartSpeed": 1,
-                                    "paShapeRandSpeed": 0,
-                                    "PaShapeConeRadius": 0.20000000298023224,
-                                    "PaShapeConeHeight": 0.10000000149011612,
-                                    "PaShapeSphereDirection": false,
-                                    "PaShapeSphereAngle": 0,
-                                    "paShapeType": 2,
-                                    "PaShapeOffset": [
-                                        0,
-                                        0,
-                                        0
-                                    ]
-                                }
-                            ]
-                        }
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        2,
+                        1.6000000238418579,
+                        2
                     ]
+                }
+            ]
+        },
+        {
+            "name": "SecondPos",
+            "tag": "Bottom",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1419074084,
+            "ParentUID": 1473741635,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0.36865234375,
+                -27.384178161621094,
+                0.49985694885253906
+            ],
+            "Rotation": [
+                0,
+                0.31239703297615051,
+                0,
+                0.9499516487121582
+            ],
+            "Scale": [
+                0.99999988079071045,
+                1,
+                0.99999988079071045
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
                 },
                 {
-                    "Type": 21,
+                    "Type": 14,
                     "Active": true,
-                    "billboardAlignment": 0,
-                    "horizantalAligned": true
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        2,
+                        1,
+                        2
+                    ]
                 }
             ]
         }

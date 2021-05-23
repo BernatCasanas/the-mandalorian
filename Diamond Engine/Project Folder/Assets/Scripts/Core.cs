@@ -259,6 +259,7 @@ public class Core : Entity
     private FLOOR_TYPE floorType = FLOOR_TYPE.NONE;
 
     private TUTO_STATES tuto_state = TUTO_STATES.NONE;
+    public float fallDamage = 15f;
 
     public void Awake()
     {
@@ -393,37 +394,19 @@ public class Core : Entity
 
             if (myGrenade1 == null)
             {
-                myGrenade1 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + 0.5f, shootPoint.transform.globalRotation, null);
+                myGrenade1 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized *0.5f, shootPoint.transform.globalRotation, null);
                 if (myGrenade1 != null)
                 {
                     SlowGrenade grenadeComp = myGrenade1.GetComponent<SlowGrenade>();
 
                     if (grenadeComp != null)
                     {
-                        grenadeComp.GrenadeInit(shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized, shootPoint.transform.globalRotation, Vector3.zero);
+                        grenadeComp.GrenadeInit(shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized * 0.5f, shootPoint.transform.globalRotation, Vector3.zero);
                         grenadeComp.GrenadeFinish();
                     }
 
                     myGrenade1.Enable(false);
                 }
-            }
-
-            if (myGrenade2 == null)
-            {
-                myGrenade2 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + 0.5f, shootPoint.transform.globalRotation, null);
-                if (myGrenade2 != null)
-                {
-                    SlowGrenade grenadeComp = myGrenade2.GetComponent<SlowGrenade>();
-
-                    if (grenadeComp != null)
-                    {
-                        grenadeComp.GrenadeInit(shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized, shootPoint.transform.globalRotation, Vector3.zero);
-                        grenadeComp.GrenadeFinish();
-                    }
-
-                    myGrenade2.Enable(false);
-                }
-
             }
 
             if (secSound == null)
@@ -1135,6 +1118,7 @@ public class Core : Entity
 
                         case INPUT.IN_DEAD:
                             currentState = STATE.DEAD;
+                            EndShootCharge();
                             StartDead();
                             break;
                     }
@@ -1295,7 +1279,6 @@ public class Core : Entity
 
     private void UpdateState()
     {
-        Debug.Log("Current state: " + currentState.ToString());
 
         switch (currentState)
         {
@@ -1455,7 +1438,7 @@ public class Core : Entity
             return;
         }
 
-        Audio.StopAudio(gameObject);
+        //Audio.StopAudio(gameObject);
         Audio.PlayAudio(shootPoint, "Play_Blaster_Shoot_Mando");
         Input.PlayHaptic(.3f, 10);
         if (hud != null)
@@ -1496,28 +1479,22 @@ public class Core : Entity
     {
         PlayGrenadeThrowSound();
 
-
         UpdateAnimationSpd(grenadeThrowAnimMult * speedMult);
     }
 
     private void EndGadgetCharge()
     {
-        if (blaster != null)
-        {
-            blaster.Enable(true);
-        }
+        //if(grenadeMaxLaunchTimer > 0f)
+        //{
+        //    float animTimeElapsed = grenadeThrowAnimTime - grenadeThrowAnimTimer;
 
-        if(grenadeMaxLaunchTimer > 0f)
-        {
-            float animTimeElapsed = grenadeThrowAnimTime - grenadeThrowAnimTimer;
+        //    grenadeThrowAnimMult = 1f;
 
-            grenadeThrowAnimMult = 1f;
+        //    grenadeThrowAnimTimer = (grenadeThrowAnimTime - animTimeElapsed) / (grenadeThrowAnimMult * speedMult);
 
-            grenadeThrowAnimTimer = (grenadeThrowAnimTime - animTimeElapsed) / (grenadeThrowAnimMult * speedMult);
-
-            UpdateAnimationSpd(grenadeThrowAnimMult * speedMult);
-            PlayGrenadeThrowSound();
-        }
+        //    UpdateAnimationSpd(grenadeThrowAnimMult * speedMult);
+        //    PlayGrenadeThrowSound();
+        //}
 
     }
 
@@ -1561,6 +1538,7 @@ public class Core : Entity
 
         if (blaster != null)
             blaster.Enable(false);
+
         Input.PlayHaptic(2f, 30);
 
         Vector3 baseScale = new Vector3(0.2f, 0.2f, 0.2f);
@@ -1576,7 +1554,7 @@ public class Core : Entity
         Vector3 forceDir = shootPoint.transform.GetForward();
         Quaternion grenadeRotation = shootPoint.transform.globalRotation;
 
-        GameObject aimHelpTarget = GetAimbotObjective(10f, myAimbot.maxRange * buttonPressedTimeNorm);
+        GameObject aimHelpTarget = GetAimbotObjective(5f, myAimbot.maxRange * buttonPressedTimeNorm);
 
         if (aimHelpTarget != null)
         {
@@ -1597,7 +1575,7 @@ public class Core : Entity
 
         if (myGrenade1 == null)
         {
-            thrownGrenade = myGrenade1 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation, null);
+            thrownGrenade = myGrenade1 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + shootPoint.transform.GetForward()  * 0.5f, shootPoint.transform.globalRotation, null);
         }
         else if (myGrenade1 != null && myGrenade1.IsEnabled() == false)
         {
@@ -1606,7 +1584,7 @@ public class Core : Entity
         }
         else if (myGrenade1 != null && myGrenade1.IsEnabled() == true && myGrenade2 == null)
         {
-            thrownGrenade = myGrenade2 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation, null);
+            thrownGrenade = myGrenade2 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + shootPoint.transform.GetForward() * 0.5f, shootPoint.transform.globalRotation, null);
         }
         else if (myGrenade1 != null && myGrenade1.IsEnabled() == true && myGrenade2 != null && myGrenade2.IsEnabled() == false)
         {
@@ -1620,14 +1598,18 @@ public class Core : Entity
             return;
         }
 
-        SlowGrenade grenadeComp = thrownGrenade.GetComponent<SlowGrenade>();
-
-        if (grenadeComp != null)
+        if(thrownGrenade != null)
         {
-            grenadeComp.GrenadeInit(shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized, grenadeRotation, myForce);
+            SlowGrenade grenadeComp = thrownGrenade.GetComponent<SlowGrenade>();
+
+            if (grenadeComp != null)
+            {
+                grenadeComp.GrenadeInit(shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized * 1.5f, grenadeRotation, myForce);
+            }
+
+            thrownGrenade.transform.localScale = scale;
         }
 
-        thrownGrenade.transform.localScale = scale;
 
     }
 
@@ -1712,8 +1694,8 @@ public class Core : Entity
             Vector3 sniperDir1 = Vector3.RotateAroundQuaternion(Quaternion.RotateAroundAxis(Vector3.up, currAngle), sniperShootPoint.transform.GetForward());
             Vector3 sniperDir2 = Vector3.RotateAroundQuaternion(Quaternion.RotateAroundAxis(Vector3.up, -currAngle), sniperShootPoint.transform.GetForward());
 
-            InternalCalls.RayCast(sniperShootPoint.transform.globalPosition + (sniperShootPoint.transform.GetForward() * 1.5f), sniperDir1, myAimbot.maxRange, ref hitDistanceRay1);
-            InternalCalls.RayCast(sniperShootPoint.transform.globalPosition + (sniperShootPoint.transform.GetForward() * 1.5f), sniperDir2, myAimbot.maxRange, ref hitDistanceRay2);
+            InternalCalls.RayCast(sniperShootPoint.transform.globalPosition + (sniperShootPoint.transform.GetForward() * 1.5f), sniperDir1, myAimbot.maxRange * 2, ref hitDistanceRay1);
+            InternalCalls.RayCast(sniperShootPoint.transform.globalPosition + (sniperShootPoint.transform.GetForward() * 1.5f), sniperDir2, myAimbot.maxRange * 2, ref hitDistanceRay2);
             //hitDistance = Math.Min(hitDistance, Mathf.Lerp(0, myAimbot.maxRange, chargeTimer / timeToPerfectCharge));
 
             InternalCalls.DrawRay(sniperShootPoint.transform.globalPosition, sniperShootPoint.transform.globalPosition + (sniperDir1 * hitDistanceRay1), currSniperLaserColor, rayWidth);
@@ -1766,7 +1748,7 @@ public class Core : Entity
             return;
         }
 
-        Audio.StopAudio(gameObject);
+        //Audio.StopAudio(gameObject);
         Audio.PlayAudio(shootPoint, "Play_Sniper_Shoot_Mando");
         Input.PlayHaptic(.5f, 10);
 
@@ -1841,7 +1823,7 @@ public class Core : Entity
     #region DASH
     private void StartDash()
     {
-        Audio.StopAudio(gameObject);
+        //Audio.StopAudio(gameObject);
         Audio.PlayAudio(gameObject, "Play_Dash");
         Animator.Play(gameObject, "Dash", speedMult);
         hasDashed = true;
@@ -1929,10 +1911,15 @@ public class Core : Entity
         Audio.PlayAudio(gameObject, "Play_Mando_Death");
         Audio.SetState("Player_State", "Dead");
         hud.GetComponent<HUD>().gameObject.Enable(false);
+
+        if (rifle != null)
+            rifle.Enable(false);
+
+        if (blaster != null)
+            blaster.Enable(false);
     }
     private void UpdateDead()
-    {
-    }
+    {}
 
     private void EndDead()
     {
@@ -1962,7 +1949,7 @@ public class Core : Entity
 
         if (footStepTimer > 0.33f)
         {
-            Audio.StopAudio(gameObject);
+            //Audio.StopAudio(gameObject);
 
             PlayFootstepsAudio();
 
@@ -1984,7 +1971,7 @@ public class Core : Entity
     }
     private void MoveEnd()
     {
-        Audio.StopAudio(gameObject);
+        //Audio.StopAudio(gameObject);
     }
 
     private void StopPlayer()
@@ -2081,11 +2068,23 @@ public class Core : Entity
             else if (floorType == FLOOR_TYPE.WATER)
             {
                 Audio.PlayAudio(this.gameObject, "Play_Footsteps_Water_Mando");
+                Audio.PlayAudio(gameObject, "Play_Mando_Damaging_Water");
             }
         }
         else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
         {
-            Audio.PlayAudio(this.gameObject, "Play_Footsteps_Metal_Platform_Mando");
+            if (floorType == FLOOR_TYPE.SNOW)
+            {
+                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
+            }
+            else if (floorType == FLOOR_TYPE.WATER)
+            {
+                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Water_Mando");
+            }
+            else
+            {
+                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Metal_Platform_Mando");
+            }
         }
 
     }
@@ -2358,7 +2357,6 @@ public class Core : Entity
             else if (collidedGameObject.CompareTag("WaterFloor"))
             {
                 floorType = FLOOR_TYPE.WATER;
-                Audio.PlayAudio(gameObject, "Play_Mando_Damaging_Water");
             }
             else if (collidedGameObject.CompareTag("StoneFloor"))
             {
@@ -2434,10 +2432,10 @@ public class Core : Entity
             int finalHealthSubstract = 0;
             if (HasStatus(STATUS_TYPE.FALL))
             {
-                finalHealthSubstract = (int)(PlayerHealth.currMaxHealth * 0.25f / 2);
+                finalHealthSubstract = (int)(fallDamage / 2);
             }
             else
-                finalHealthSubstract = (int)(PlayerHealth.currMaxHealth * 0.25f);
+                finalHealthSubstract = (int)(fallDamage);
 
             if (PlayerHealth.currHealth - finalHealthSubstract <= 0)
             {
@@ -3357,4 +3355,11 @@ public class Core : Entity
         return mySpawnPos;
     }
 
+    public void BlockInIdle()
+    {
+        lockInputs = true;
+        currentState = STATE.IDLE;
+        DisableBlaster();
+        StartIdle();
+    }
 }

@@ -254,11 +254,16 @@ public class PlayerHealth : DiamondComponent
 
         if (Core.instance != null)
         {
+            int damageTaken = (int)(damage * Core.instance.DamageRed);
+
             if (PlayerResources.CheckBoon(BOONS.BOON_BOSSK_STRENGTH))
             {
-                currHealth -= (int)(damage * Core.instance.DamageRed) - (int)(damage * 0.1f);
+                float damageReduced = (damage * (Core.instance.GetStatusData(STATUS_TYPE.BOSSK_STR).severity / 100f));
+
+                damageTaken = (int)(damage * Core.instance.DamageRed) - (int)(Math.Max(damageReduced, 1f));
             }
-            else currHealth -= (int)(damage * Core.instance.DamageRed);
+
+            currHealth -= damageTaken;
         }
 
 

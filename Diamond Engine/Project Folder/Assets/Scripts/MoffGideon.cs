@@ -1,6 +1,5 @@
-using System;
 using DiamondEngine;
-
+using System;
 using System.Collections.Generic;
 
 public class MoffGideon : Entity
@@ -58,18 +57,17 @@ public class MoffGideon : Entity
         IN_DEAD
     }
 
-    struct AtackMoff
+    public class AtackMoff
     {
-        AtackMoff(string animation, float duration)
+        public AtackMoff(string animation, GameObject go)
         {
             this.animation = animation;
-            this.duration = duration;
+            this.duration = Animator.GetAnimationDuration(go, animation) - 0.016f;
             this.last = false;
         }
-
-        bool last;
-        string animation;
-        float duration;
+        public bool last;
+        public string animation;
+        public float duration;
     }
 
     private NavMeshAgent agent = null;
@@ -120,6 +118,9 @@ public class MoffGideon : Entity
     public GameObject spawner4 = null;
     public GameObject sword = null;
     public GameObject shootPoint = null;
+    public int numSequencesPh2 = 3;
+    public int numAtacksPh1 = 2;
+    public int numAtacksPh2 = 1;
 
     private List<GameObject> deathtroopers = null;
 
@@ -137,8 +138,9 @@ public class MoffGideon : Entity
     private int maxProjectiles = 7;
     private int projectiles = 0;
     private bool aiming = false;
-    private List<AtackMoff> atacks;
-    //private float damaged = 0.0f;
+    private List<AtackMoff> atacks = new List<AtackMoff>();
+    private int nAtacks = 0;
+    private int nSequences = 3;
 
 
     //Timers
@@ -190,6 +192,12 @@ public class MoffGideon : Entity
         changingStateTime = Animator.GetAnimationDuration(gameObject, "MG_PowerPose") - 0.016f;
         dieTime = Animator.GetAnimationDuration(gameObject, "MG_Death") - 0.016f;
 
+        atacks.Add(new AtackMoff("MG_MeleeCombo1", gameObject));
+        atacks.Add(new AtackMoff("MG_MeleeCombo2", gameObject));
+        atacks.Add(new AtackMoff("MG_MeleeCombo3", gameObject));
+        atacks.Add(new AtackMoff("MG_MeleeCombo4", gameObject));
+        atacks.Add(new AtackMoff("MG_MeleeCombo5", gameObject));
+        atacks.Add(new AtackMoff("MG_MeleeCombo6", gameObject));
 
         enemiesTimer = enemiesTime;
 
@@ -202,8 +210,6 @@ public class MoffGideon : Entity
 
        
         StartPresentation();
-
-
     }
 
     public void Update()
@@ -246,7 +252,30 @@ public class MoffGideon : Entity
             comboTimer -= myDeltaTime;
 
             if (comboTimer <= 0)
-                inputsList.Add(MOFFGIDEON_INPUT.IN_MELEE_COMBO_END);
+            {
+                if (nAtacks > 0)
+                {
+                    int rand = randomNum.Next(1, 6);
+                    comboTimer = atacks[rand].duration;
+                    Animator.Play(gameObject, atacks[rand].animation);
+                    UpdateAnimationSpd(speedMult);
+                    nAtacks--;
+                }
+                else
+                {
+                    if (currentPhase == MOFFGIDEON_PHASE.PHASE1) inputsList.Add(MOFFGIDEON_INPUT.IN_MELEE_COMBO_END);
+                    else
+                    {
+                        if (nSequences > 0)
+                        {
+                            nSequences--;
+                            inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD);
+                        }
+                        else
+                            inputsList.Add(MOFFGIDEON_INPUT.IN_MELEE_COMBO_END);
+                    }
+                }
+            }
 
         }
 
@@ -651,8 +680,14 @@ public class MoffGideon : Entity
                         {
                             case MOFFGIDEON_INPUT.IN_MELEE_COMBO_END:
                                 currentState = MOFFGIDEON_STATE.DASH_BACKWARDS;
-                                EndDashBackward();
+                                EndMeleeCombo();
                                 StartDashBackward();
+                                break;
+
+                            case MOFFGIDEON_INPUT.IN_DASH_FORWARD:
+                                currentState = MOFFGIDEON_STATE.DASH_FORWARD;
+                                EndMeleeCombo();
+                                StartDashForward();
                                 break;
 
                             case MOFFGIDEON_INPUT.IN_DEAD:
@@ -905,6 +940,9 @@ public class MoffGideon : Entity
         if (cam_comp != null)
             cam_comp.target = Core.instance.gameObject;
         invencible = false;
+
+
+
     }
 
     #endregion
@@ -979,11 +1017,18 @@ public class MoffGideon : Entity
     #region MELEE_COMBO
     private void StartMeleeCombo()
     {
+        if (currentPhase == MOFFGIDEON_PHASE.PHASE1) nAtacks = numAtacksPh1;
+        else
+        {
+            nAtacks = numAtacksPh2; 
+        }
+        int rand = randomNum.Next(1, 6);
         sword.EnableCollider();
-        Animator.Play(gameObject, "MG_Slash", speedMult);
+        Animator.Play(gameObject, atacks[rand].animation, speedMult);
         UpdateAnimationSpd(speedMult);
-        comboTimer = comboTime;
+        comboTimer = atacks[rand].duration;
         Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Lightsaber_Whoosh");
+        nAtacks--;
     }
 
     private void UpdateMeleeCombo()
@@ -1002,6 +1047,7 @@ public class MoffGideon : Entity
     #region DASH_BACKWARD
     private void StartDashBackward()
     {
+        nSequences = numSequencesPh2;
         beginDash = gameObject.transform.globalPosition;
         Audio.PlayAudio(gameObject, "MG_Dash");
     }
@@ -1081,8 +1127,11 @@ public class MoffGideon : Entity
 
     private void StartSpawnEnemies()
     {
-        invencible = true;
-        if (currentPhase == MOFFGIDEON_PHASE.PHASE1) Animator.Play(gameObject, "MG_EnemySpawnPh1", speedMult);
+        if (currentPhase == MOFFGIDEON_PHASE.PHASE1)
+        {
+            invencible = true;
+            Animator.Play(gameObject, "MG_EnemySpawnerPh1", speedMult);
+        }
         else if (currentPhase == MOFFGIDEON_PHASE.PHASE2) Animator.Play(gameObject, "MG_EnemySpawnPh2", speedMult);
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Spawn_Enemies");

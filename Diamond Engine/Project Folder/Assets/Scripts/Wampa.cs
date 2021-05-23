@@ -50,6 +50,7 @@ public class Wampa : Bosseslv2
     public bool firstSorrowRoar = false;
     private bool firstFrame = true;
     public bool angry = false;
+    float healthPointsAux = 0.0f;
 
     public override void Awake()
     {
@@ -80,6 +81,10 @@ public class Wampa : Bosseslv2
             StartPresentation();
         }
         myDeltaTime = Time.deltaTime * speedMult;
+        if (angry == false)
+        {
+            healthPointsAux = healthPoints;
+        }
         UpdateStatuses();
 
         ProcessInternalInput();
@@ -122,14 +127,33 @@ public class Wampa : Bosseslv2
 
         if (presentationTimer > 0.0f)
         {
-            presentationTimer -= myDeltaTime;
-            healthPoints = (1 - (presentationTimer / presentationTime)) * maxHealthPoints;
-
-            if (presentationTimer <= 0.0f)
+            if (angry == false)
             {
-                inputsList.Add(INPUT.IN_PRESENTATION_END);
-                healthPoints = maxHealthPoints;
-                limboHealth = healthPoints;
+                presentationTimer -= myDeltaTime;
+                healthPoints = (1 - (presentationTimer / presentationTime)) * maxHealthPoints;
+
+                if (presentationTimer <= 0.0f)
+                {
+                    inputsList.Add(INPUT.IN_PRESENTATION_END);
+                    healthPoints = maxHealthPoints;
+                    limboHealth = healthPoints;
+                }
+            }
+            else
+            {
+                presentationTimer -= myDeltaTime;
+                healthPoints = healthPointsAux + (1 - (presentationTimer / presentationTime)) * (maxHealthPoints * 0.25f);
+
+                if (presentationTimer <= 0.0f)
+                {
+                    inputsList.Add(INPUT.IN_PRESENTATION_END);
+                    healthPoints = healthPointsAux + (maxHealthPoints * 0.25f);
+                    limboHealth = healthPoints;
+                    if (healthPoints > maxHealthPoints)
+                    {
+                        healthPoints = maxHealthPoints;
+                    }
+                }
             }
         }
 
@@ -575,6 +599,12 @@ public class Wampa : Bosseslv2
         fastRushSpeed = 15.0f;
         slowRushSpeed = 10.0f;
         restingTime = 1.0f;
+    }
+
+
+    public void OnDestroy()
+    {
+        EnemyManager.RemoveEnemy(this.gameObject);
     }
 
 }

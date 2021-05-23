@@ -86,12 +86,12 @@ public class Bosseslv2 : Entity
     public float totalJumpSlamTime = 3.03f;
 
     //Bounce Rush
-    private GameObject initTarget;
+    public GameObject initTarget;
     private GameObject finalTarget;
     private GameObject currentTarget;
     private bool returnToInitTarget = false;
     private float startBounceRushTime = 0.0f;
-    private bool finalBounce = false;
+    public bool finalBounce = false;
     //private float startBounceRushTimer = 0.0f;
 
     private bool firstThrow = true;
@@ -122,6 +122,7 @@ public class Bosseslv2 : Entity
         Debug.Log("Health 2 Wampa " + healthPoints.ToString());
         maxHealthPoints = healthPoints;
         jumpOnce = true;
+
         if (gameObject.CompareTag("Skel"))
         {
             //presentationTime = Animator.GetAnimationDuration(gameObject, "Skel_Presentation") - 0.016f;
@@ -381,28 +382,12 @@ public class Bosseslv2 : Entity
 
             }
         }
-        else
-        {
-            if(bounceRushTimer >= 1f)
-            {
-                angle += 1;
-
-                Quaternion dir = Quaternion.RotateAroundAxis(new Vector3(1, 0, 0), angle);
-
-                float rotationSpeed = myDeltaTime * 25f;
-
-                Quaternion desiredRotation = Quaternion.Slerp(gameObject.transform.localRotation, dir, rotationSpeed);
-
-                gameObject.transform.localRotation = desiredRotation;
-            }
-        }
-
 
         float distance = Mathf.Distance(gameObject.transform.globalPosition, currentTarget.transform.globalPosition);
         if (distance > 2f)
         {
             MoveToPosition(currentTarget.transform.globalPosition, 12f);
-            //LookAt(currentTarget.transform.globalPosition);
+            LookAt(currentTarget.transform.globalPosition);
             if (currentTarget == finalTarget)
             {
                 returnToInitTarget = true;
@@ -415,13 +400,10 @@ public class Bosseslv2 : Entity
         else if (currentTarget == finalTarget && returnToInitTarget)
         {
             currentTarget = initTarget;
-        }
-        else if(bounceRushTimer<=2f && !finalBounce)
-        {
-            Animator.Play(gameObject, "Skel_Rush_Recover");
-            UpdateAnimationSpd(speedMult);
             finalBounce = true;
+
         }
+
         //Debug.Log("Bounce Rush");
 
         UpdateAnimationSpd(speedMult);
@@ -438,6 +420,8 @@ public class Bosseslv2 : Entity
         resting = true;
         restingTimer = restingTime;
 
+        Animator.Play(gameObject, "Skel_Rush_Recover");
+        UpdateAnimationSpd(speedMult);
 
         if (colliderBounceRush != null)
         {
@@ -928,5 +912,13 @@ public class Bosseslv2 : Entity
     public virtual void TakeDamage(float damage)
     { }
 
+/*    public void SetJumpValues(float charge, float up, float down, float recovery)
+    {
+        chargeTime = charge;
+        upTime = up;
+        fallingTime = down;
+        recoveryTime = recovery;
+        totalJumpSlamTime = chargeTime + upTime + fallingTime + recoveryTime;
+    }*/
 
 }

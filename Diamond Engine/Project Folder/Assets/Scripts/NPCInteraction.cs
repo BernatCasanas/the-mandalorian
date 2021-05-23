@@ -1,87 +1,109 @@
 using System;
 using DiamondEngine;
 
+
+
 public class NPCInteraction : DiamondComponent
 {
-    public enum NPC
-    {
-        GREEF,
-        BOKATAN,
-    }
+
 
     public float maxDistance = 5;
     public GameObject interactionImage = null;
     public GameObject notificationImage = null;
     public GameObject hubTextController = null;
 
-    private NPC npc;
+    private Interaction npc = Interaction.GREEF;
     public bool canInteract = false;
+    public bool canUpgrade = false;
+
 
     public void Awake()
     {
-        SetNPC();
+        canUpgrade = false;
+        if (hubTextController == null)
+        {
+            return;
+        }
+        HubTextController hubScript = hubTextController.GetComponent<HubTextController>();
+        if (hubScript == null)
+        {
+            return;
+        }
+
+        hubScript.onUpgrade += UpdateUpgrade;
 
         switch (npc)
         {
-            case NPC.GREEF:
-
-            if (hubTextController != null)
-                canInteract = hubTextController.GetComponent<HubTextController>().GreefHasInteractions();
+            case Interaction.BO_KATAN:
+                canInteract = hubScript.BoKatanHasInteractions();
+                canUpgrade = hubScript.BoKatanCanUpgrade();
+                break;
+            case Interaction.GREEF:
+                canInteract = hubScript.GreefHasInteractions();
+                canUpgrade = hubScript.GreefCanUpgrade();
+                break;
+            case Interaction.ASHOKA:
+                canInteract = hubScript.AshokaHasInteractions();
+                canUpgrade = hubScript.AshokaCanUpgrade();
+                break;
+            case Interaction.CARA_DUNE:
+                canInteract = hubScript.CaraDuneHasInteractions();
+                canUpgrade = hubScript.CaraDuneCanUpgrade();
+                break;
+            case Interaction.GROGU:
+                canInteract = hubScript.GroguHasInteractions();
+                canUpgrade = hubScript.GroguCanUpgrade();
                 break;
         }
+
     }
 
     public void Update()
     {
         InteractionImage();
+        NotificationImage();
     }
 
     private void InteractionImage()
     {
-        if (interactionImage == null || !canInteract)
+        if (interactionImage == null)
             return;
 
-        if (IsInside() && interactionImage.IsEnabled() == false)
+        if (IsInside())
         {
-            interactionImage.Enable(true);
-
-            if (hubTextController != null)
-                hubTextController.GetComponent<HubTextController>().insideColliderTextActive = true;
-
+            if (canInteract || canUpgrade)
+            {
+                interactionImage.Enable(true);
+            }
+            else
+            {
+                interactionImage.Enable(false);
+            }
         }
         else if (!IsInside() && interactionImage.IsEnabled())
         {
             interactionImage.Enable(false);
-            if (hubTextController != null)
-                hubTextController.GetComponent<HubTextController>().insideColliderTextActive = false;
         }
-    }  
+    }
     private void NotificationImage()
     {
         if (notificationImage == null)
             return;
 
-        if (IsInside() && notificationImage.IsEnabled() == false)
+        if (canUpgrade && !notificationImage.IsEnabled())
         {
             notificationImage.Enable(true);
-
-            if (hubTextController != null)
-                hubTextController.GetComponent<HubTextController>().insideColliderTextActive = true;
-
         }
-        else if (!IsInside() && notificationImage.IsEnabled())
+        if (!canUpgrade && notificationImage.IsEnabled())
         {
             notificationImage.Enable(false);
-            if (hubTextController != null)
-                hubTextController.GetComponent<HubTextController>().insideColliderTextActive = false;
         }
     }
 
     public bool IsInside()
     {
-        if (Core.instance == null)
+        if (Core.instance == null || (hubTextController != null && hubTextController.GetComponent<HubTextController>().insideColliderTextActive))
             return false;
-
         Vector3 playerPos = Core.instance.gameObject.transform.globalPosition;
         Vector3 colliderPos = gameObject.transform.globalPosition;
         double distance = playerPos.DistanceNoSqrt(colliderPos);
@@ -92,15 +114,35 @@ public class NPCInteraction : DiamondComponent
             return false;
     }
 
-    private void SetNPC()
+    public void SetEnum(Interaction interaction)
     {
-        if (gameObject.CompareTag("Greef"))
+        npc = interaction;
+    }
+    public void UpdateUpgrade()
+    {
+        HubTextController hubScript = hubTextController.GetComponent<HubTextController>();
+        if (hubScript == null)
         {
-            npc = NPC.GREEF;
+            return;
         }
-        else if (gameObject.CompareTag("BoKatan"))
+
+        switch (npc)
         {
-            npc = NPC.BOKATAN;
+            case Interaction.BO_KATAN:
+                canUpgrade = hubScript.BoKatanCanUpgrade();
+                break;
+            case Interaction.GREEF:
+                canUpgrade = hubScript.GreefCanUpgrade();
+                break;
+            case Interaction.ASHOKA:
+                canUpgrade = hubScript.AshokaCanUpgrade();
+                break;
+            case Interaction.CARA_DUNE:
+                canUpgrade = hubScript.CaraDuneCanUpgrade();
+                break;
+            case Interaction.GROGU:
+                canUpgrade = hubScript.GroguCanUpgrade();
+                break;
         }
     }
 }

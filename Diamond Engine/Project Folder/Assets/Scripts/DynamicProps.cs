@@ -6,6 +6,7 @@ public class DynamicProps : DiamondComponent
     public enum STATE : int
     {
         NONE = -1,
+        IDLE,
         WAIT,
         MOVE,
         ROTATE,
@@ -21,28 +22,41 @@ public class DynamicProps : DiamondComponent
     public float RotateAngle = 90;
     public float moveSpeed = 2.0f;
     public float rotateSpeed = 0.200f;
-    private float currentRotation;
 
     //Timers
     private float idleTimer = 0.0f;
     private float screamTimer = 0.0f;
     private float waitTimer = 0.0f;
+    private float rotateTimer = 0.0f;
 
     //Action times
     private float idleTime = 0.0f;
     private float screamTime = 0.0f;
+    private float rotateTime = 0.0f;
 
     private Vector3 initialPos;
     private Quaternion initialRot;
 
     public bool reset;
-    public int waitSeconds = 2;
+    public bool start_Idle = false;
+
+
+    public float waitSeconds = 2.0f;
 
     public int STATUS;
     public void Awake()
     {
 
-        currentState = STATE.WAIT;
+        if (gameObject.tag == "LittleMen")
+        {
+            StartIdle();
+            currentState = STATE.IDLE;
+        }
+        else
+            currentState = STATE.WAIT;
+
+        if (!start_Idle)
+            SwitchState(STATE.MOVE);
 
         initialPos = new Vector3(gameObject.transform.localPosition);
         initialRot = gameObject.transform.localRotation;
@@ -53,7 +67,10 @@ public class DynamicProps : DiamondComponent
         screamTime = Animator.GetAnimationDuration(gameObject, "PD_Scream");
 
         //IDLE
-        idleTime = Animator.GetAnimationDuration(gameObject, "PD_Idle");
+        idleTime = waitSeconds;
+
+        //ROTATE
+        rotateTime = RotateAngle * Mathf.Deg2RRad / rotateSpeed;
     }
 
     public void DebugState()
@@ -71,6 +88,10 @@ public class DynamicProps : DiamondComponent
     {
         switch (currentState)
         {
+            case STATE.IDLE:
+                UpdateIdle();
+                break;
+
             case STATE.WAIT:
                 UpdateWait(waitSeconds);
                 break;
@@ -84,6 +105,7 @@ public class DynamicProps : DiamondComponent
                 break;
 
             case STATE.SCREAM:
+                UpdateScream();
                 break;
 
             default:
@@ -95,6 +117,16 @@ public class DynamicProps : DiamondComponent
     {
         switch (currentState)
         {
+            case STATE.IDLE:
+                switch (nextState)
+                {
+                    case STATE.SCREAM:
+                        currentState = STATE.SCREAM;
+                        StartScream();
+                        break;
+                }
+                break;
+
             case STATE.WAIT:
                 switch (nextState)
                 {
@@ -106,6 +138,10 @@ public class DynamicProps : DiamondComponent
                     case STATE.MOVE:
                         currentState = STATE.MOVE;
                         StartMove();
+                        break;
+                    case STATE.SCREAM:
+                        currentState = STATE.SCREAM;
+                        StartScream();
                         break;
                 }
                 break;
@@ -140,10 +176,18 @@ public class DynamicProps : DiamondComponent
                 break;
 
             case STATE.SCREAM:
-                //switch (nextState)
-                //{
+                switch (nextState)
+                {
+                    case STATE.IDLE:
+                        currentState = STATE.IDLE;
+                        StartIdle();
+                        break;
 
-                //}
+                    case STATE.WAIT:
+                        currentState = STATE.WAIT;
+                        StartWait();
+                        break;
+                }
                 break;
 
             default:
@@ -153,6 +197,7 @@ public class DynamicProps : DiamondComponent
 
     public void TriggerAction(string tag)
     {
+        //Debug.Log(tag);
         switch (tag)
         {
             case "Rotate90":
@@ -175,6 +220,29 @@ public class DynamicProps : DiamondComponent
                 reset = true;
                 SwitchState(STATE.WAIT);
                 break;
+            case "First_Pos":
+                SwitchState(STATE.ROTATE);
+                break;
+            case "Second_Pos":
+                SwitchState(STATE.ROTATE);
+                break;
+            case "LVL2_3_1":
+                Debug.Log("Entra");
+                SwitchState(STATE.ROTATE);
+                break;
+            case "LVL2_3_2":
+                Debug.Log("Entra");
+                Reset();
+                break;
+            case "Top":
+                SwitchState(STATE.WAIT);
+                moveSpeed = -Math.Abs(moveSpeed);
+                break;
+            case "Bottom":
+                //SwitchState(STATE.MOVE);
+                moveSpeed = Math.Abs(moveSpeed);
+                break;
+
             default:
                 break;
         }
@@ -182,7 +250,7 @@ public class DynamicProps : DiamondComponent
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-        Debug.Log("TRIGGER ENTER");
+        //Debug.Log("TRIGGER ENTER");
 
         TriggerAction(triggeredGameObject.tag);
     }
@@ -192,6 +260,33 @@ public class DynamicProps : DiamondComponent
 
     }
 
+    #region IDLE
+    public void StartIdle()
+    {
+        idleTimer = waitSeconds;
+        Animator.Play(gameObject, "PD_Idle");
+    }
+
+    public void UpdateIdle()
+    {
+        //Debug.Log("Idle timer: " + idleTimer.ToString());
+        if (idleTimer > 0.0f)
+        {
+            idleTimer -= Time.deltaTime;
+
+            if (idleTimer <= 0.0f)
+            {
+                if (reset == true)
+                    Reset();
+
+                //Debug.Log("Scream!");
+                SwitchState(STATE.SCREAM);
+            }
+        }
+    }
+
+    #endregion
+
     #region WAIT
     public void StartWait()
     {
@@ -199,7 +294,7 @@ public class DynamicProps : DiamondComponent
         Animator.Play(gameObject, "PD_Idle");
     }
 
-    public void UpdateWait(int seconds)
+    public void UpdateWait(float seconds)
     {
         if (waitTimer > 0.0f)
         {
@@ -207,9 +302,7 @@ public class DynamicProps : DiamondComponent
 
             if (waitTimer <= 0.0f)
             {
-
-                if(reset == true)
-                    Reset();
+                SwitchState(STATE.MOVE);
             }
         }
     }
@@ -225,21 +318,21 @@ public class DynamicProps : DiamondComponent
     {
         if (axis == 0)
         {
-            Vector3 newPos = new Vector3(gameObject.transform.localPosition.x + moveSpeed * Time.deltaTime, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z);
-            
-            gameObject.transform.localPosition = newPos;
+            //Vector3 newPos = new Vector3(gameObject.transform.localPosition.x + moveSpeed * Time.deltaTime, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z);
+
+            gameObject.transform.localPosition += gameObject.transform.GetRight().normalized * moveSpeed * Time.deltaTime;
         }
         else if (axis == 1)
         {
             Vector3 newPos = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y + moveSpeed * Time.deltaTime, gameObject.transform.localPosition.z);
-            
+
             gameObject.transform.localPosition = newPos;
         }
         else
         {
-            Vector3 newPos = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z + moveSpeed * Time.deltaTime);
+            //Vector3 newPos = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z + moveSpeed * Time.deltaTime);
 
-            gameObject.transform.localPosition = newPos;
+            gameObject.transform.localPosition += gameObject.transform.GetForward().normalized * moveSpeed * Time.deltaTime;
         }
 
     }
@@ -249,56 +342,38 @@ public class DynamicProps : DiamondComponent
     public void StartRotate()
     {
         Animator.Play(gameObject, "PD_Rotate");
+
+        if (rotateTime != 0.0f)
+            rotateTimer = rotateTime;
+        else
+            rotateTimer = 1.0f;
+
     }
 
     public void UpdateRotate(int axis, float angle)
     {
+
+        if (rotateTimer > 0.0f)
+        {
+            rotateTimer -= Time.deltaTime;
+
+            if (rotateTimer <= 0.0f)
+            {
+                SwitchState(STATE.MOVE);
+                return;
+            }
+        }
+
         if (axis == 0)
-        {
-            currentRotation += rotateSpeed;
+            gameObject.transform.localRotation *= Quaternion.RotateAroundAxis(Vector3.right, rotateSpeed * Time.deltaTime);
 
-            if (currentRotation >= angle)
-            {
-                currentRotation = 0;
-
-                SwitchState(STATE.MOVE);
-            }
-            else
-            {
-                gameObject.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.right, currentRotation * Mathf.Deg2RRad);
-            }
-
-        }
         else if (axis == 1)
-        {
-            currentRotation += rotateSpeed;
+            gameObject.transform.localRotation *= Quaternion.RotateAroundAxis(Vector3.up, rotateSpeed * Time.deltaTime);
 
-            if (currentRotation >= angle)
-            {
-                currentRotation = 0;
-                SwitchState(STATE.MOVE);
-            }
-            else
-            {
-                gameObject.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.up, currentRotation * Mathf.Deg2RRad);
-            }
-        }
         else
-        {
-            currentRotation += rotateSpeed;
+            gameObject.transform.localRotation *= Quaternion.RotateAroundAxis(Vector3.forward, rotateSpeed * Time.deltaTime);
 
-            if (currentRotation >= angle)
-            {
-                currentRotation = 0;
 
-                SwitchState(STATE.MOVE);
-            }
-            else
-            {
-                gameObject.transform.localRotation = Quaternion.RotateAroundAxis(Vector3.forward, currentRotation * Mathf.Deg2RRad);
-            }
-
-        }
     }
 
     #endregion
@@ -306,21 +381,33 @@ public class DynamicProps : DiamondComponent
     #region SCREAM
     public void StartScream()
     {
+        screamTimer = screamTime;
         Animator.Play(gameObject, "PD_Scream");
     }
 
     public void UpdateScream()
     {
+        if (gameObject.tag == "LittleMen")
+        {
+            if (screamTimer > 0.0f)
+            {
+                screamTimer -= Time.deltaTime;
 
+                if (screamTimer <= 0.0f)
+                {
+                    SwitchState(STATE.IDLE);
+                }
+            }
+        }
     }
     #endregion
 
     public void Reset()
     {
-        
+
         gameObject.transform.localPosition = initialPos;
         gameObject.transform.localRotation = initialRot;
 
-        Debug.Log("RESET");
+        //Debug.Log("RESET");
     }
 }

@@ -95,10 +95,21 @@ public class FloatingVehicles : DiamondComponent
                 verticalSpeed = 0.15f;
                 maxRotation = 0.05f;
                 break;
+            case "XWing":
+                maxHeight = 2.0f;
+                verticalSpeed = 0.1f;
+                maxRotation = 0.05f;
+                break;
+            case "XWingRepairing": //Lvl 2 - Room 3
+                maxHeight = 1.2f;
+                verticalSpeed = 0.2f;
+                maxRotation = 0.05f;
+                break;
             default:
                 Debug.Log("Vehicle properties have not been setup correctly");
                 break;            
         }
+        
     }
 
     private void SetRandomInitialValues()

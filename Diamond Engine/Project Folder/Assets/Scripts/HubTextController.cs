@@ -1,18 +1,18 @@
 using System;
 using DiamondEngine;
-
+public enum Interaction
+{
+    NONE,
+    BO_KATAN,
+    GREEF,
+    ASHOKA,
+    CARA_DUNE,
+    GROGU
+}
 
 public class HubTextController : DiamondComponent
 {
-    public enum Interaction
-    {
-        NONE,
-        BO_KATAN,
-        GREEF,
-        ASHOKA,
-        CARA_DUNE,
-        GROGU
-    }
+    public Action onUpgrade;
 
     public GameObject textController = null;
     public GameObject dialog = null;
@@ -85,7 +85,7 @@ public class HubTextController : DiamondComponent
 
 
     Interaction interaction = Interaction.NONE;
-
+    NPCInteraction npcInteraction = null;
     public void Awake()
     {
         ResetInteractionBools();
@@ -97,7 +97,7 @@ public class HubTextController : DiamondComponent
     }
     public void Update()
     {
-        if (mando == null || Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN || textController == null || dialog == null || textController.IsEnabled() == false || insideColliderTextActive == false)
+        if (mando == null || Input.GetGamepadButton(DEControllerButton.A) != KeyState.KEY_DOWN || textController == null || dialog == null || textController.IsEnabled() == false || insideColliderTextActive)
         {
             return;
         }
@@ -114,6 +114,12 @@ public class HubTextController : DiamondComponent
             if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(bo_katan.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
             {
                 interaction = Interaction.BO_KATAN;
+                npcInteraction = bo_katan.GetComponent<NPCInteraction>();
+                if (npcInteraction.canUpgrade)
+                {
+                    PlayerResources.SubstractResource(RewardType.REWARD_MILK, 1);
+                    IncreaseStage(Interaction.BO_KATAN);
+                }
             }
         }
 
@@ -122,6 +128,12 @@ public class HubTextController : DiamondComponent
             if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(greef.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
             {
                 interaction = Interaction.GREEF;
+                npcInteraction = greef.GetComponent<NPCInteraction>();
+                if (npcInteraction.canUpgrade)
+                {
+                    PlayerResources.SubstractResource(RewardType.REWARD_MILK, 1);
+                    IncreaseStage(Interaction.GREEF);
+                }
             }
         }
 
@@ -130,6 +142,12 @@ public class HubTextController : DiamondComponent
             if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(ashoka.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
             {
                 interaction = Interaction.ASHOKA;
+                npcInteraction = ashoka.GetComponent<NPCInteraction>();
+                if (npcInteraction.canUpgrade)
+                {
+                    PlayerResources.SubstractResource(RewardType.REWARD_MILK, 1);
+                    IncreaseStage(Interaction.ASHOKA);
+                }
             }
         }
 
@@ -138,6 +156,12 @@ public class HubTextController : DiamondComponent
             if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(cara_dune.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
             {
                 interaction = Interaction.CARA_DUNE;
+                npcInteraction = cara_dune.GetComponent<NPCInteraction>();
+                if (npcInteraction.canUpgrade)
+                {
+                    PlayerResources.SubstractResource(RewardType.REWARD_MILK, 1);
+                    IncreaseStage(Interaction.CARA_DUNE);
+                }
             }
         }
 
@@ -146,6 +170,12 @@ public class HubTextController : DiamondComponent
             if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(grogu.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
             {
                 interaction = Interaction.GROGU;
+                npcInteraction = grogu.GetComponent<NPCInteraction>();
+                if (npcInteraction.canUpgrade)
+                {
+                    PlayerResources.SubstractResource(RewardType.REWARD_MILK, 1);
+                    IncreaseStage(Interaction.GROGU);
+                }
             }
         }
 
@@ -153,6 +183,7 @@ public class HubTextController : DiamondComponent
         {
             return;
         }
+
 
 
         switch (interaction)
@@ -172,6 +203,10 @@ public class HubTextController : DiamondComponent
                 }
 
                 boKatanHasInteracted = true;
+                if (npcInteraction != null)
+                {
+                    npcInteraction.canInteract = BoKatanHasInteractions();
+                }
 
                 break;
             case Interaction.GREEF:
@@ -190,6 +225,11 @@ public class HubTextController : DiamondComponent
 
                 greefHasInteracted = true;
 
+                if (npcInteraction != null)
+                {
+                    npcInteraction.canInteract = GreefHasInteractions();
+                }
+
                 break;
             case Interaction.ASHOKA:
                 /*if (ashoka_portrait_uid != 0)
@@ -207,6 +247,11 @@ public class HubTextController : DiamondComponent
 
                 ashokaHasInteracted = true;
 
+                if (npcInteraction != null)
+                {
+                    npcInteraction.canInteract = AshokaHasInteractions();
+                }
+
                 break;
             case Interaction.CARA_DUNE:
                 /*if (ashoka_portrait_uid != 0)
@@ -223,7 +268,10 @@ public class HubTextController : DiamondComponent
                 }
 
                 caraHasInteracted = true;
-
+                if (npcInteraction != null)
+                {
+                    npcInteraction.canInteract = CaraDuneHasInteractions();
+                }
                 break;
             case Interaction.GROGU:
                 /*if (grogu_portrait_uid != 0)
@@ -240,7 +288,10 @@ public class HubTextController : DiamondComponent
                 }
 
                 groguHasInteracted = true;
-
+                if (npcInteraction != null)
+                {
+                    npcInteraction.canInteract = GroguHasInteractions();
+                }
                 break;
         }
         dialog_finished = true;
@@ -278,7 +329,7 @@ public class HubTextController : DiamondComponent
                     ++ashokaStage;
                     DiamondPrefs.Write("ashokaStage", ashokaStage);
                 }
-                break; 
+                break;
             case Interaction.CARA_DUNE:
                 if (caraStage <= total_stages)
                 {
@@ -298,6 +349,8 @@ public class HubTextController : DiamondComponent
                 }
                 break;
         }
+
+        onUpgrade?.Invoke();
     }
 
     public void Reset()
@@ -344,10 +397,43 @@ public class HubTextController : DiamondComponent
 
     public bool GreefHasInteractions()
     {
-        return greefInteractionNum % 3 != 0;
+        return greefInteractionNum % 3 != 0 && !greefHasInteracted;
     }
-    public void GreefSet3()
+    public bool AshokaHasInteractions()
     {
-        greefInteractionNum = 3;
+        return ashokaInteractionNum % 3 != 0 && !ashokaHasInteracted;
+    }
+    public bool GroguHasInteractions()
+    {
+        return groguInteractionNum % 3 != 0 && !groguHasInteracted;
+    }
+    public bool BoKatanHasInteractions()
+    {
+        return boKatanInteractionNum % 3 != 0 && !boKatanHasInteracted;
+    }
+    public bool CaraDuneHasInteractions()
+    {
+        return caraInteractionNum % 3 != 0 && !caraHasInteracted;
+    }
+
+    public bool GreefCanUpgrade()
+    {
+        return greefInteractionNum % 3 == 0 && PlayerResources.GetResourceCount(RewardType.REWARD_MILK) > 0;
+    }
+    public bool AshokaCanUpgrade()
+    {
+        return ashokaInteractionNum % 3 == 0 && PlayerResources.GetResourceCount(RewardType.REWARD_MILK) > 0;
+    }
+    public bool GroguCanUpgrade()
+    {
+        return groguInteractionNum % 3 == 0 && PlayerResources.GetResourceCount(RewardType.REWARD_MILK) > 0;
+    }
+    public bool BoKatanCanUpgrade()
+    {
+        return boKatanInteractionNum % 3 == 0 && PlayerResources.GetResourceCount(RewardType.REWARD_MILK) > 0;
+    }
+    public bool CaraDuneCanUpgrade()
+    {
+        return caraInteractionNum % 3 == 0 && PlayerResources.GetResourceCount(RewardType.REWARD_MILK) > 0;
     }
 }

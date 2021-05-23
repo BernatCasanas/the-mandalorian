@@ -76,7 +76,7 @@ public class ChargedBullet : DiamondComponent
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-        if(triggeredGameObject.CompareTag("Enemy") == false && triggeredGameObject.CompareTag("Player") == false
+        if(triggeredGameObject.CompareTag("Enemy") == false && triggeredGameObject.CompareTag("Player") == false && triggeredGameObject.CompareTag("Wampa") == false && triggeredGameObject.CompareTag("Skel") == false
              && triggeredGameObject.CompareTag("Bullet") == false && triggeredGameObject.CompareTag("StormTrooperBullet") == false)
         {
             if (triggered == false)

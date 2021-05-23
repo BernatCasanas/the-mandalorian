@@ -51,6 +51,7 @@ public class Skel : Bosseslv2
     private List<INPUT> inputsList = new List<INPUT>();
     private bool firstFrame = true;
     public bool angry = false;
+    float healthPointsAux = 0.0f;
 
     public override void Awake()
     {
@@ -79,6 +80,10 @@ public class Skel : Bosseslv2
             StartPresentation();
         }
         myDeltaTime = Time.deltaTime * speedMult;
+        if (angry == false)
+        {
+            healthPointsAux = healthPoints;
+        }
         UpdateStatuses();
 
         ProcessInternalInput();
@@ -112,14 +117,33 @@ public class Skel : Bosseslv2
 
         if (presentationTimer > 0.0f)
         {
-            presentationTimer -= myDeltaTime;
-            healthPoints = (1 - (presentationTimer / presentationTime)) * maxHealthPoints;
-
-            if (presentationTimer <= 0.0f)
+            if (angry == false)
             {
-                inputsList.Add(INPUT.IN_PRESENTATION_END);
-                healthPoints = maxHealthPoints;
-                limboHealth = healthPoints;
+                presentationTimer -= myDeltaTime;
+                healthPoints = (1 - (presentationTimer / presentationTime)) * maxHealthPoints;
+
+                if (presentationTimer <= 0.0f)
+                {
+                    inputsList.Add(INPUT.IN_PRESENTATION_END);
+                    healthPoints = maxHealthPoints;
+                    limboHealth = healthPoints;
+                }
+            }
+            else
+            {
+                presentationTimer -= myDeltaTime;
+                healthPoints = healthPointsAux + (1 - (presentationTimer / presentationTime)) * (maxHealthPoints * 0.25f);
+
+                if (presentationTimer <= 0.0f)
+                {
+                    inputsList.Add(INPUT.IN_PRESENTATION_END);
+                    healthPoints = healthPointsAux + (maxHealthPoints * 0.25f);
+                    limboHealth = healthPoints;
+                    if (healthPoints > maxHealthPoints)
+                    {
+                        healthPoints = maxHealthPoints;
+                    }
+                }
             }
         }
 
@@ -142,15 +166,15 @@ public class Skel : Bosseslv2
                 inputsList.Add(INPUT.IN_JUMPSLAM_END);
             }
         }
-        if (bounceRushTimer > 0)
-        {
-            bounceRushTimer -= myDeltaTime;
+        //if (bounceRushTimer > 0)
+        //{
+        //    bounceRushTimer -= myDeltaTime;
 
-            if (bounceRushTimer <= 0)
-            {
-                inputsList.Add(INPUT.IN_BOUNCERUSH_END);
-            }
-        }
+        //    if (bounceRushTimer <= 0)
+        //    {
+        //        inputsList.Add(INPUT.IN_BOUNCERUSH_END);
+        //    }
+        //}
 
     }
 
@@ -169,6 +193,12 @@ public class Skel : Bosseslv2
             SkelAngry();
             angry = true;
             firstSorrowRoar = true;
+        }
+
+        if (Mathf.Distance(gameObject.transform.globalPosition, initTarget.transform.globalPosition) <= 2f && finalBounce)
+        {
+            inputsList.Add(INPUT.IN_BOUNCERUSH_END);
+            finalBounce = false;
         }
     }
 
@@ -369,7 +399,7 @@ public class Skel : Bosseslv2
         else
         {
             int decision = randomNum.Next(1, 100);
-            if (decision <= 1)
+            if (decision <= 75)
                 inputsList.Add(INPUT.IN_JUMPSLAM);
             else
                 inputsList.Add(INPUT.IN_BOUNCERUSH);
@@ -567,11 +597,12 @@ public class Skel : Bosseslv2
     private void SkelAngry()
     {
         speed = 8.0f;
-        /*chargeTime = 0.5f;
-        upTime = 0.3f;
-        fallingTime = 1.0f;
-        recoveryTime = 0.4f;*/
-        //totalJumpSlamTime = chargeTime + upTime + fallingTime + recoveryTime;
+        //SetJumpValues(0.5f, 0.3f, 1.0f, 0.4f);
+    }
+
+    public void OnDestroy()
+    {
+        EnemyManager.RemoveEnemy(this.gameObject);
     }
 
 }

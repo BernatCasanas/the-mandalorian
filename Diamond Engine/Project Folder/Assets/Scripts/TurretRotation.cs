@@ -3,7 +3,6 @@ using DiamondEngine;
 
 public class TurretRotation : DiamondComponent
 {
-	public GameObject turret;
 	public float startingRotationDeg = 0;
 	public float finishRotationDeg = 90;
 	public float speedMult = 1.0f;
@@ -34,6 +33,6 @@ public class TurretRotation : DiamondComponent
 
 	private void Rotate(float newAngle)
 	{
-		turret.transform.localRotation = Quaternion.RotateAroundAxis(new Vector3(0, 1, 0), newAngle);
+		gameObject.transform.localRotation = Quaternion.RotateAroundAxis(new Vector3(0, 1, 0), newAngle);
 	}
 }

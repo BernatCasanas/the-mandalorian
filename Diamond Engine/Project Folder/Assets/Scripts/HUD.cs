@@ -533,8 +533,6 @@ public class HUD : DiamondComponent
     {
         if (applyRewards)
         {
-            if (BabyYoda.instance != null)
-                Audio.PlayAudio(BabyYoda.instance.gameObject, "Play_Grogu_Cheering");
             ComboResetEffects endOfComboData = new ComboResetEffects();
             bool lastEffect = false;
             int key = 0;
@@ -599,7 +597,6 @@ public class HUD : DiamondComponent
         lastWeaponDecrementMultiplier = 1.0f;
         fullComboTime = 100.0f;
         currComboTime = 0.0f;
-
         OnLvlUpComboChange();
 
         if(Core.instance != null)
