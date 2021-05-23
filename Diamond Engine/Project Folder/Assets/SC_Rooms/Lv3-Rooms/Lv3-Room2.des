@@ -1,9 +1,9 @@
 {
     "NavMesh": 759541763,
     "EditorCameraPosition": [
-        -36.541557312011719,
-        33.171485900878906,
-        -27.922073364257813
+        -23.667232513427734,
+        22.856700897216797,
+        -23.066238403320313
     ],
     "EditorCameraZ": [
         0.58947241306304932,
@@ -14,18 +14,6 @@
         0.41805773973464966,
         0.8156883716583252,
         0.3998502790927887
-    ],
-    "SkyboxPath0": "",
-    "SkyboxPath1": "",
-    "SkyboxPath2": "",
-    "SkyboxPath3": "",
-    "SkyboxPath4": "",
-    "SkyboxPath5": "",
-    "skyboxColor": [
-        1,
-        1,
-        1,
-        1
     ],
     "tags": [],
     "layers": [],
@@ -141,8 +129,7 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -479,11 +466,12 @@
                     "Active": true,
                     "ScriptName": "SpawnManager",
                     "availableSpawnPoints": 0,
-                    "maxEnemiesPerWave": 6,
-                    "enemyIncreasePerWave": 2,
-                    "maxWaves": 5,
+                    "spawningWaves": true,
+                    "maxEnemiesPerWave": 4,
+                    "enemyIncreasePerWave": 1,
+                    "maxWaves": 4,
                     "delayInWaveSpawn": 5,
-                    "enemiesLeftToNextWave": 3,
+                    "enemiesLeftToNextWave": 1,
                     "timeBetweenWaves": 20,
                     "maxDelayTime": 0.75
                 }
@@ -565,10 +553,10 @@
                     "Active": true,
                     "evName": "Play_Enemy_Respawn",
                     "audBankReference": "UI",
+                    "volume": 0,
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
+                    "isMuted": false
                 },
                 {
                     "Type": 5,
@@ -761,7 +749,7 @@
             "name": "Cube",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 1147382499,
             "ParentUID": 589809059,
             "PrefabReference": 0,
@@ -806,8 +794,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 }
             ]
         },
@@ -853,10 +840,10 @@
                     "Active": true,
                     "evName": "Play_Enemy_Respawn",
                     "audBankReference": "UI",
+                    "volume": 0,
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
+                    "isMuted": false
                 },
                 {
                     "Type": 5,
@@ -1049,7 +1036,7 @@
             "name": "Cube",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 1644402550,
             "ParentUID": 862458833,
             "PrefabReference": 0,
@@ -1094,8 +1081,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 }
             ]
         },
@@ -1136,10 +1122,10 @@
                     "Active": true,
                     "evName": "Play_Enemy_Respawn",
                     "audBankReference": "UI",
+                    "volume": 0,
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
+                    "isMuted": false
                 },
                 {
                     "Type": 5,
@@ -1332,7 +1318,7 @@
             "name": "Cube",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 1232986757,
             "ParentUID": 167519448,
             "PrefabReference": 0,
@@ -1377,8 +1363,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 }
             ]
         },
@@ -1458,10 +1443,10 @@
                     "Active": true,
                     "evName": "Play_Enemy_Respawn",
                     "audBankReference": "UI",
+                    "volume": 0,
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
+                    "isMuted": false
                 },
                 {
                     "Type": 5,
@@ -1654,7 +1639,7 @@
             "name": "Cube",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 1902624015,
             "ParentUID": 868427860,
             "PrefabReference": 0,
@@ -1699,8 +1684,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 }
             ]
         },
@@ -1746,10 +1730,10 @@
                     "Active": true,
                     "evName": "Play_Enemy_Respawn",
                     "audBankReference": "UI",
+                    "volume": 0,
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
+                    "isMuted": false
                 },
                 {
                     "Type": 5,
@@ -1942,7 +1926,7 @@
             "name": "Cube",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 1627701284,
             "ParentUID": 878408637,
             "PrefabReference": 0,
@@ -1987,8 +1971,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 }
             ]
         },
@@ -2068,10 +2051,10 @@
                     "Active": true,
                     "evName": "Play_Enemy_Respawn",
                     "audBankReference": "UI",
+                    "volume": 0,
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
+                    "isMuted": false
                 },
                 {
                     "Type": 5,
@@ -2264,7 +2247,7 @@
             "name": "Cube",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 1927763846,
             "ParentUID": 1209979082,
             "PrefabReference": 0,
@@ -2309,8 +2292,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 }
             ]
         },
@@ -2356,10 +2338,10 @@
                     "Active": true,
                     "evName": "Play_Enemy_Respawn",
                     "audBankReference": "UI",
+                    "volume": 0,
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
+                    "isMuted": false
                 },
                 {
                     "Type": 5,
@@ -2552,7 +2534,7 @@
             "name": "Cube",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 996972875,
             "ParentUID": 115342352,
             "PrefabReference": 0,
@@ -2597,8 +2579,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 }
             ]
         },
@@ -2644,10 +2625,10 @@
                     "Active": true,
                     "evName": "Play_Enemy_Respawn",
                     "audBankReference": "UI",
+                    "volume": 0,
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
+                    "isMuted": false
                 },
                 {
                     "Type": 5,
@@ -2840,7 +2821,7 @@
             "name": "Cube",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 549373418,
             "ParentUID": 1290620370,
             "PrefabReference": 0,
@@ -2885,8 +2866,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 }
             ]
         },
@@ -2932,10 +2912,10 @@
                     "Active": true,
                     "evName": "Play_Enemy_Respawn",
                     "audBankReference": "UI",
+                    "volume": 0,
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
+                    "isMuted": false
                 },
                 {
                     "Type": 5,
@@ -3128,7 +3108,7 @@
             "name": "Cube",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 1643920470,
             "ParentUID": 1111558662,
             "PrefabReference": 0,
@@ -3173,8 +3153,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 }
             ]
         },
@@ -3220,10 +3199,10 @@
                     "Active": true,
                     "evName": "Play_Enemy_Respawn",
                     "audBankReference": "UI",
+                    "volume": 0,
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
+                    "isMuted": false
                 },
                 {
                     "Type": 5,
@@ -3416,7 +3395,7 @@
             "name": "Cube",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 2122444389,
             "ParentUID": 320783729,
             "PrefabReference": 0,
@@ -3461,8 +3440,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 }
             ]
         },
@@ -3508,10 +3486,10 @@
                     "Active": true,
                     "evName": "Play_Enemy_Respawn",
                     "audBankReference": "UI",
+                    "volume": 0,
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
+                    "isMuted": false
                 },
                 {
                     "Type": 5,
@@ -3704,7 +3682,7 @@
             "name": "Cube",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 886922891,
             "ParentUID": 418818443,
             "PrefabReference": 0,
@@ -3749,8 +3727,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 }
             ]
         },
@@ -3796,10 +3773,10 @@
                     "Active": true,
                     "evName": "Play_Enemy_Respawn",
                     "audBankReference": "UI",
+                    "volume": 0,
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
+                    "isMuted": false
                 },
                 {
                     "Type": 5,
@@ -3992,7 +3969,7 @@
             "name": "Cube",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 214996855,
             "ParentUID": 1682947683,
             "PrefabReference": 0,
@@ -4037,8 +4014,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 }
             ]
         },
@@ -4084,10 +4060,10 @@
                     "Active": true,
                     "evName": "Play_Enemy_Respawn",
                     "audBankReference": "UI",
+                    "volume": 0,
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
+                    "isMuted": false
                 },
                 {
                     "Type": 5,
@@ -4280,7 +4256,7 @@
             "name": "Cube",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 276345081,
             "ParentUID": 88657360,
             "PrefabReference": 0,
@@ -4325,8 +4301,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 }
             ]
         },
@@ -4372,10 +4347,10 @@
                     "Active": true,
                     "evName": "Play_Enemy_Respawn",
                     "audBankReference": "UI",
+                    "volume": 0,
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
+                    "isMuted": false
                 },
                 {
                     "Type": 5,
@@ -4568,7 +4543,7 @@
             "name": "Cube",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 2011689508,
             "ParentUID": 2155689,
             "PrefabReference": 0,
@@ -4613,296 +4588,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
-                }
-            ]
-        },
-        {
-            "name": "DefaultSpawnPoint",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 591117969,
-            "ParentUID": 1626524821,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                7.9723138809204102,
-                1.3847548961639404,
-                -16.043937683105469
-            ],
-            "Rotation": [
-                -2.6043768616040072e-15,
-                0.00017255546117667109,
-                1.7349381293457646e-18,
-                1
-            ],
-            "Scale": [
-                0.99999994039535522,
-                1,
-                0.99999994039535522
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "Missing script reference"
-                },
-                {
-                    "Type": 13,
-                    "Active": true,
-                    "evName": "Play_Enemy_Respawn",
-                    "audBankReference": "UI",
-                    "pitch": 40.078998565673828,
-                    "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "SpawnPoint",
-                    "spawnStormtrooper": true,
-                    "spawnBantha": false,
-                    "spawnSkytrooper": true,
-                    "spawnLaserTurret": false,
-                    "spawnDeathrooper": true,
-                    "spawnHeavyTrooper": true,
-                    "spawnEnemyAt": 1.6000000238418579,
-                    "spawnParticleObj": 558245829
-                }
-            ]
-        },
-        {
-            "name": "StormtrooperSpawn",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1994992288,
-            "ParentUID": 591117969,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Particle System",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 558245829,
-            "ParentUID": 1994992288,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                1.1920928955078125e-07,
-                0,
-                0
-            ],
-            "Rotation": [
-                1.0587911840678754e-22,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
-                    "MaterialUID": 355756108
-                },
-                {
-                    "Type": 20,
-                    "Active": true,
-                    "systemActive": false,
-                    "looping": false,
-                    "maxDuration": 0.10000000149011612,
-                    "ParticleEmitters": [
-                        {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/989165713.dds",
-                            "texUID": 989165713,
-                            "paEmitterName": "Symbol",
-                            "paLifeTime": [
-                                2.5,
-                                2.5
-                            ],
-                            "paSize": [
-                                1,
-                                1
-                            ],
-                            "paColor": [
-                                1,
-                                0,
-                                0,
-                                1
-                            ],
-                            "paPerSec": 1,
-                            "paRelative": true,
-                            "ParticleEffects": [
-                                {
-                                    "paEffectType": 1,
-                                    "paROLT_rotation": [
-                                        1,
-                                        1
-                                    ],
-                                    "paROLT_rotationSpeed": [
-                                        3,
-                                        3
-                                    ]
-                                },
-                                {
-                                    "paEffectType": 2,
-                                    "Gradients": [
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0,
-                                                0,
-                                                0
-                                            ],
-                                            "paColorOLTposition": 0.0093380436301231384
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0,
-                                                0,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 0.22240296006202698
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0,
-                                                0,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 0.67948669195175171
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0,
-                                                0,
-                                                0
-                                            ],
-                                            "paColorOLTposition": 0.91057300567626953
-                                        }
-                                    ]
-                                },
-                                {
-                                    "paEffectType": 3,
-                                    "paSizeOLTStartSize": 0.40000000596046448,
-                                    "paSizeOLTEndSize": 1.2000000476837158
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "Type": 21,
-                    "Active": true,
-                    "billboardAlignment": 3,
-                    "horizantalAligned": true
-                }
-            ]
-        },
-        {
-            "name": "Cube",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 473817403,
-            "ParentUID": 1994992288,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                2.384185791015625e-07,
-                0,
-                0
-            ],
-            "Rotation": [
-                1.0587911840678754e-22,
-                0,
-                7.7548182426846345e-26,
-                1
-            ],
-            "Scale": [
-                0.5,
-                0.10000000149011612,
-                0.5
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 2,
-                    "Active": true,
-                    "Path": "Library\/Meshes\/1313575480.mmh",
-                    "UID": 1313575480,
-                    "bumpDepth": 0,
-                    "alternColor": [
-                        1,
-                        0,
-                        0
-                    ],
-                    "alternColorStencil": [
-                        1,
-                        1,
-                        1
-                    ],
-                    "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 }
             ]
         },
@@ -4948,10 +4634,10 @@
                     "Active": true,
                     "evName": "Play_Enemy_Respawn",
                     "audBankReference": "UI",
+                    "volume": 0,
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
+                    "isMuted": false
                 },
                 {
                     "Type": 5,
@@ -5144,7 +4830,7 @@
             "name": "Cube",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 70916227,
             "ParentUID": 769936239,
             "PrefabReference": 0,
@@ -5189,8 +4875,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 }
             ]
         },
@@ -5236,10 +4921,10 @@
                     "Active": true,
                     "evName": "Play_Enemy_Respawn",
                     "audBankReference": "UI",
+                    "volume": 0,
                     "pitch": 40.078998565673828,
                     "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": false
+                    "isMuted": false
                 },
                 {
                     "Type": 5,
@@ -5432,7 +5117,7 @@
             "name": "Cube",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 1570185217,
             "ParentUID": 871963549,
             "PrefabReference": 0,
@@ -5477,8 +5162,294 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
+                }
+            ]
+        },
+        {
+            "name": "DefaultSpawnPoint",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 591117969,
+            "ParentUID": 1626524821,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                7.9723148345947266,
+                1.3847548961639404,
+                -16.043937683105469
+            ],
+            "Rotation": [
+                -2.6043768616040072e-15,
+                0.00017255546117667109,
+                1.7349381293457646e-18,
+                1
+            ],
+            "Scale": [
+                0.99999994039535522,
+                1,
+                0.99999994039535522
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "Missing script reference"
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Play_Enemy_Respawn",
+                    "audBankReference": "UI",
+                    "volume": 0,
+                    "pitch": 40.078998565673828,
+                    "playOnAwake": false,
+                    "isMuted": false
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "SpawnPoint",
+                    "spawnStormtrooper": true,
+                    "spawnBantha": false,
+                    "spawnSkytrooper": true,
+                    "spawnLaserTurret": false,
+                    "spawnDeathrooper": true,
+                    "spawnHeavyTrooper": true,
+                    "spawnEnemyAt": 1.6000000238418579,
+                    "spawnParticleObj": 558245829
+                }
+            ]
+        },
+        {
+            "name": "StormtrooperSpawn",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1994992288,
+            "ParentUID": 591117969,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Particle System",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 558245829,
+            "ParentUID": 1994992288,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                1.1920928955078125e-07,
+                0,
+                0
+            ],
+            "Rotation": [
+                1.0587911840678754e-22,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 0.10000000149011612,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/989165713.dds",
+                            "texUID": 989165713,
+                            "paEmitterName": "Symbol",
+                            "paLifeTime": [
+                                2.5,
+                                2.5
+                            ],
+                            "paSize": [
+                                1,
+                                1
+                            ],
+                            "paColor": [
+                                1,
+                                0,
+                                0,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "paRelative": true,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 1,
+                                    "paROLT_rotation": [
+                                        1,
+                                        1
+                                    ],
+                                    "paROLT_rotationSpeed": [
+                                        3,
+                                        3
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0.0093380436301231384
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0,
+                                                0,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0.22240296006202698
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0,
+                                                0,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0.67948669195175171
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0.91057300567626953
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0.40000000596046448,
+                                    "paSizeOLTEndSize": 1.2000000476837158
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 3,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "Cube",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 473817403,
+            "ParentUID": 1994992288,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                2.384185791015625e-07,
+                0,
+                0
+            ],
+            "Rotation": [
+                1.0587911840678754e-22,
+                0,
+                7.7548182426846345e-26,
+                1
+            ],
+            "Scale": [
+                0.5,
+                0.10000000149011612,
+                0.5
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 0,
+                    "alternColor": [
+                        1,
+                        0,
+                        0
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true
                 }
             ]
         },
@@ -5633,8 +5604,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -5695,8 +5665,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -5757,8 +5726,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -5819,8 +5787,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -5881,8 +5848,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -5943,8 +5909,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -6005,8 +5970,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -6067,8 +6031,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -7193,8 +7156,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -7289,8 +7251,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -7351,8 +7312,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -7413,8 +7373,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -7509,8 +7468,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 }
             ]
         },
@@ -7563,8 +7521,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -7659,8 +7616,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -7721,8 +7677,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 3,
@@ -7817,8 +7772,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -7906,8 +7860,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -7995,8 +7948,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -8084,8 +8036,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -8173,8 +8124,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -8262,8 +8212,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -8351,8 +8300,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -8440,8 +8388,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -8529,8 +8476,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -8618,8 +8564,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -8707,8 +8652,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -8796,8 +8740,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -8885,8 +8828,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -8974,8 +8916,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -9063,8 +9004,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -9152,8 +9092,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -9241,8 +9180,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -9330,8 +9268,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -9419,8 +9356,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -9508,8 +9444,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -9597,8 +9532,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -9686,8 +9620,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -9775,8 +9708,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -9864,8 +9796,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -9953,8 +9884,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -10042,8 +9972,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -10131,8 +10060,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -10220,8 +10148,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -10309,8 +10236,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -10398,8 +10324,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -10487,8 +10412,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -10576,8 +10500,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -10665,8 +10588,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -10754,8 +10676,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -10843,8 +10764,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -10932,8 +10852,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -11021,8 +10940,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -11110,8 +11028,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -11199,8 +11116,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -11288,8 +11204,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -11377,8 +11292,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -11466,8 +11380,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -11555,8 +11468,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -11644,8 +11556,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -11732,8 +11643,7 @@
                     "lightIntensity": 4.4499998092651367,
                     "specularValue": 1,
                     "fadeDistance": 50,
-                    "maxDistance": 600,
-                    "calculateShadows": true
+                    "maxDistance": 600
                 }
             ]
         },
@@ -11785,8 +11695,7 @@
                     "lightIntensity": 4.4499998092651367,
                     "specularValue": 1,
                     "fadeDistance": 50,
-                    "maxDistance": 600,
-                    "calculateShadows": true
+                    "maxDistance": 600
                 }
             ]
         },
@@ -11838,8 +11747,7 @@
                     "lightIntensity": 4,
                     "specularValue": 1,
                     "fadeDistance": 10,
-                    "maxDistance": 200,
-                    "calculateShadows": true
+                    "maxDistance": 200
                 }
             ]
         },
@@ -13652,10 +13560,10 @@
                         -0.19471836090087891
                     ],
                     "Rotation": [
-                        0.19392229616641998,
-                        -2.7353405651631135e-10,
-                        1.3877789462175682e-17,
-                        0.98101699352264404
+                        0.1939222663640976,
+                        -2.7353402876073574e-10,
+                        1.3877787807814457e-17,
+                        0.98101687431335449
                     ],
                     "Scale": [
                         1,
@@ -19896,8 +19804,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -19985,8 +19892,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -20074,8 +19980,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -20163,8 +20068,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -20252,8 +20156,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -20341,8 +20244,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -20430,8 +20332,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -20519,8 +20420,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -20608,8 +20508,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -20697,8 +20596,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -20786,8 +20684,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -20875,8 +20772,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -20964,8 +20860,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -21053,8 +20948,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -21142,8 +21036,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -21231,8 +21124,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
@@ -21320,8 +21212,7 @@
                         1
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": true,
-                    "drawShadows": true
+                    "doNotDrawStencil": true
                 },
                 {
                     "Type": 14,
