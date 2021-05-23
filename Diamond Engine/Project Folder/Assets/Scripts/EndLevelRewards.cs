@@ -159,7 +159,7 @@ public class EndLevelRewards
         secondText.GetComponent<Text>().text = RewardText(secondReward);
         thirdText.GetComponent<Text>().text  = RewardText(thirdReward);
 
-        //ChangeMusic();
+        ChangeMusic();
 
         return;
     }
@@ -290,7 +290,9 @@ public class EndLevelRewards
 
     private void ChangeMusic()
     {
-        if (RoomSwitch.currentroom != RoomSwitch.levelLists[(int)RoomSwitch.currentLevelIndicator - 1].bossScene)
+        int pos = 0;
+        pos = (((int)RoomSwitch.currentLevelIndicator) - 1 < 0) ? 0 : ((int)RoomSwitch.currentLevelIndicator) - 1; 
+        if (RoomSwitch.currentroom != RoomSwitch.levelLists[pos].bossScene)
         {
             if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
             {
@@ -316,21 +318,21 @@ public class EndLevelRewards
         }
         else
         {
-            if (RoomSwitch.currentLevelIndicator - 1 == RoomSwitch.LEVELS.ONE)
+            if (pos == (int)RoomSwitch.LEVELS.ONE)
             {
                 Audio.SetState("Game_State", "Run");
                 Audio.SetState("Player_State", "Alive");
                 if (MusicSourceLocate.instance != null)
                     Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
             }
-            else if (RoomSwitch.currentLevelIndicator - 1 == RoomSwitch.LEVELS.TWO)
+            else if (pos == (int)RoomSwitch.LEVELS.TWO)
             {
                 Audio.SetState("Game_State", "Run_2");
                 Audio.SetState("Player_State", "Alive");
                 if (MusicSourceLocate.instance != null)
                     Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
             }
-            else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
+            else if (pos == (int)RoomSwitch.LEVELS.THREE)
             {
                 Audio.SetState("Game_State", "Run_3");
                 Audio.SetState("Player_State", "Alive");
