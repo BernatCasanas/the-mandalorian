@@ -197,7 +197,7 @@ public class DynamicProps : DiamondComponent
 
     public void TriggerAction(string tag)
     {
-        Debug.Log(tag);
+        //Debug.Log(tag);
         switch (tag)
         {
             case "Rotate90":
@@ -269,7 +269,7 @@ public class DynamicProps : DiamondComponent
 
     public void UpdateIdle()
     {
-        Debug.Log("Idle timer: " + idleTimer.ToString());
+        //Debug.Log("Idle timer: " + idleTimer.ToString());
         if (idleTimer > 0.0f)
         {
             idleTimer -= Time.deltaTime;
@@ -279,7 +279,7 @@ public class DynamicProps : DiamondComponent
                 if (reset == true)
                     Reset();
 
-                Debug.Log("Scream!");
+                //Debug.Log("Scream!");
                 SwitchState(STATE.SCREAM);
             }
         }
@@ -408,6 +408,6 @@ public class DynamicProps : DiamondComponent
         gameObject.transform.localPosition = initialPos;
         gameObject.transform.localRotation = initialRot;
 
-        Debug.Log("RESET");
+        //Debug.Log("RESET");
     }
 }
