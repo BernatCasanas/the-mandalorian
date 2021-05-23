@@ -408,24 +408,6 @@ public class Core : Entity
                 }
             }
 
-            if (myGrenade2 == null)
-            {
-                myGrenade2 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + 0.5f, shootPoint.transform.globalRotation, null);
-                if (myGrenade2 != null)
-                {
-                    SlowGrenade grenadeComp = myGrenade2.GetComponent<SlowGrenade>();
-
-                    if (grenadeComp != null)
-                    {
-                        grenadeComp.GrenadeInit(shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized, shootPoint.transform.globalRotation, Vector3.zero);
-                        grenadeComp.GrenadeFinish();
-                    }
-
-                    myGrenade2.Enable(false);
-                }
-
-            }
-
             if (secSound == null)
             {
                 secSound = InternalCalls.FindObjectWithName("SecSound");
@@ -1295,7 +1277,6 @@ public class Core : Entity
 
     private void UpdateState()
     {
-        Debug.Log("Current state: " + currentState.ToString());
 
         switch (currentState)
         {
@@ -1496,7 +1477,6 @@ public class Core : Entity
     {
         PlayGrenadeThrowSound();
 
-
         UpdateAnimationSpd(grenadeThrowAnimMult * speedMult);
     }
 
@@ -1507,17 +1487,17 @@ public class Core : Entity
             blaster.Enable(true);
         }
 
-        if(grenadeMaxLaunchTimer > 0f)
-        {
-            float animTimeElapsed = grenadeThrowAnimTime - grenadeThrowAnimTimer;
+        //if(grenadeMaxLaunchTimer > 0f)
+        //{
+        //    float animTimeElapsed = grenadeThrowAnimTime - grenadeThrowAnimTimer;
 
-            grenadeThrowAnimMult = 1f;
+        //    grenadeThrowAnimMult = 1f;
 
-            grenadeThrowAnimTimer = (grenadeThrowAnimTime - animTimeElapsed) / (grenadeThrowAnimMult * speedMult);
+        //    grenadeThrowAnimTimer = (grenadeThrowAnimTime - animTimeElapsed) / (grenadeThrowAnimMult * speedMult);
 
-            UpdateAnimationSpd(grenadeThrowAnimMult * speedMult);
-            PlayGrenadeThrowSound();
-        }
+        //    UpdateAnimationSpd(grenadeThrowAnimMult * speedMult);
+        //    PlayGrenadeThrowSound();
+        //}
 
     }
 
@@ -1576,7 +1556,7 @@ public class Core : Entity
         Vector3 forceDir = shootPoint.transform.GetForward();
         Quaternion grenadeRotation = shootPoint.transform.globalRotation;
 
-        GameObject aimHelpTarget = GetAimbotObjective(10f, myAimbot.maxRange * buttonPressedTimeNorm);
+        GameObject aimHelpTarget = GetAimbotObjective(5f, myAimbot.maxRange * buttonPressedTimeNorm);
 
         if (aimHelpTarget != null)
         {
@@ -1620,14 +1600,18 @@ public class Core : Entity
             return;
         }
 
-        SlowGrenade grenadeComp = thrownGrenade.GetComponent<SlowGrenade>();
-
-        if (grenadeComp != null)
+        if(thrownGrenade != null)
         {
-            grenadeComp.GrenadeInit(shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized, grenadeRotation, myForce);
+            SlowGrenade grenadeComp = thrownGrenade.GetComponent<SlowGrenade>();
+
+            if (grenadeComp != null)
+            {
+                grenadeComp.GrenadeInit(shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized * 2f, grenadeRotation, myForce);
+            }
+
+            thrownGrenade.transform.localScale = scale;
         }
 
-        thrownGrenade.transform.localScale = scale;
 
     }
 
@@ -1931,8 +1915,7 @@ public class Core : Entity
         hud.GetComponent<HUD>().gameObject.Enable(false);
     }
     private void UpdateDead()
-    {
-    }
+    {}
 
     private void EndDead()
     {

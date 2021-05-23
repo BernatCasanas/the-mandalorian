@@ -35,6 +35,7 @@ public class Bosseslv2 : Entity
     public bool firstShot = true;
     public bool secondShot = false;
     private bool catchingProjectile = false;
+    private float angle = 10f;
 
     //Stats
     public float healthPoints = 1920.0f;
@@ -63,6 +64,8 @@ public class Bosseslv2 : Entity
     public float presentationTimer = 0f;
     public float presentationTime = 1f;
     private float catchProjectileTimer = 0f;
+    private float ballTimer = 0f;
+    private float ballTime = 0.5f;
 
     //Atacks
     public float projectileAngle = 30.0f;
@@ -88,6 +91,7 @@ public class Bosseslv2 : Entity
     private GameObject currentTarget;
     private bool returnToInitTarget = false;
     private float startBounceRushTime = 0.0f;
+    private bool finalBounce = false;
     //private float startBounceRushTimer = 0.0f;
 
     private bool firstThrow = true;
@@ -334,12 +338,9 @@ public class Bosseslv2 : Entity
 
     public void StartBounceRush()
     {
-        if (gameObject.CompareTag("Skel"))
-        {
-            Audio.PlayAudio(gameObject, "Play_Skel_Preparation");
-            Animator.Play(gameObject, "Skel_Rush", speedMult);
-            UpdateAnimationSpd(speedMult);
-        }
+        Audio.PlayAudio(gameObject, "Play_Skel_Preparation");
+        Animator.Play(gameObject, "Skel_Rush_Start", speedMult);
+        UpdateAnimationSpd(speedMult);
         bounceRushTimer = bounceRushTime;
         GameObject nearestColumn = Level2BossRoom.columns[0];
         float nerestDistance = 10000f;
@@ -365,17 +366,43 @@ public class Bosseslv2 : Entity
         {
             colliderBounceRush.GetComponent<AtackBosslv2>().active = true;
         }
+        ballTimer = ballTime;
     }
 
     public void UpdateBounceRush()
     {
+        if (ballTimer > 0f)
+        {
+            ballTimer -= myDeltaTime;
+            if (ballTimer <= 0f)
+            {
+                Animator.Play(gameObject, "Skel_Rush");
+                UpdateAnimationSpd(speedMult);
+
+            }
+        }
+        else
+        {
+            if(bounceRushTimer >= 1f)
+            {
+                angle += 1;
+
+                Quaternion dir = Quaternion.RotateAroundAxis(new Vector3(1, 0, 0), angle);
+
+                float rotationSpeed = myDeltaTime * 25f;
+
+                Quaternion desiredRotation = Quaternion.Slerp(gameObject.transform.localRotation, dir, rotationSpeed);
+
+                gameObject.transform.localRotation = desiredRotation;
+            }
+        }
 
 
         float distance = Mathf.Distance(gameObject.transform.globalPosition, currentTarget.transform.globalPosition);
         if (distance > 2f)
         {
             MoveToPosition(currentTarget.transform.globalPosition, 12f);
-            LookAt(currentTarget.transform.globalPosition);
+            //LookAt(currentTarget.transform.globalPosition);
             if (currentTarget == finalTarget)
             {
                 returnToInitTarget = true;
@@ -388,6 +415,12 @@ public class Bosseslv2 : Entity
         else if (currentTarget == finalTarget && returnToInitTarget)
         {
             currentTarget = initTarget;
+        }
+        else if(bounceRushTimer<=2f && !finalBounce)
+        {
+            Animator.Play(gameObject, "Skel_Rush_Recover");
+            UpdateAnimationSpd(speedMult);
+            finalBounce = true;
         }
         //Debug.Log("Bounce Rush");
 
@@ -405,23 +438,13 @@ public class Bosseslv2 : Entity
         resting = true;
         restingTimer = restingTime;
 
-        if (gameObject.CompareTag("Skel"))
-        {
-            Animator.Play(gameObject, "Skel_Rush_Recover", speedMult);
-            UpdateAnimationSpd(speedMult);
-        }
 
         if (colliderBounceRush != null)
         {
             colliderBounceRush.GetComponent<AtackBosslv2>().active = false;
         }
-        if (gameObject.CompareTag("Wampa"))
-            Audio.StopOneAudio(gameObject, "Play_Wampa_Rush");
-        else if (gameObject.CompareTag("Skel"))
-        {
-            Audio.StopAudio(gameObject);
-            Audio.PlayAudio(gameObject, "Play_Skel_Rush_Recovery");
-        }
+        Audio.StopAudio(gameObject);
+        Audio.PlayAudio(gameObject, "Play_Skel_Rush_Recovery");
         rushOnce = true;
     }
 
@@ -673,7 +696,7 @@ public class Bosseslv2 : Entity
         }
         else if (gameObject.CompareTag("Wampa"))
         {
-            Animator.Play(gameObject, "WP_Die", speedMult);
+            Animator.Play(gameObject, "WP_Dead", speedMult);
             UpdateAnimationSpd(speedMult);
             Audio.PlayAudio(gameObject, "Play_Wampa_Death");
             Counter.SumToCounterType(Counter.CounterTypes.WAMPA);
