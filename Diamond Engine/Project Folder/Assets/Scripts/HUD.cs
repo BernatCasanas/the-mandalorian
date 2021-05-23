@@ -101,6 +101,7 @@ public class HUD : DiamondComponent
     public GameObject shooting_blink = null;
     private float shoot_time = 0.0f;
     private bool heat_descending = false;
+    private bool notFirst = false;
 
     bool comboHUDneedsUpdate = false;
     Vector3 comboColor = Vector3.one;
@@ -128,6 +129,7 @@ public class HUD : DiamondComponent
     public void Awake()
     {
         damageScreen1 = InternalCalls.FindObjectWithName("DamageScreen1");
+        notFirst = false;
         if (damageScreen1 != null)
         {
             damageScreen1.GetComponent<Material>().SetFloatUniform("alpha", 1.0f);
@@ -533,7 +535,7 @@ public class HUD : DiamondComponent
     {
         if (applyRewards)
         {
-            if (BabyYoda.instance != null)
+            if (BabyYoda.instance != null && notFirst)
                 Audio.PlayAudio(BabyYoda.instance.gameObject, "Play_Grogu_Cheering");
             ComboResetEffects endOfComboData = new ComboResetEffects();
             bool lastEffect = false;
@@ -599,7 +601,7 @@ public class HUD : DiamondComponent
         lastWeaponDecrementMultiplier = 1.0f;
         fullComboTime = 100.0f;
         currComboTime = 0.0f;
-
+        notFirst = true;
         OnLvlUpComboChange();
 
         if(Core.instance != null)
