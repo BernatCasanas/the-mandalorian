@@ -394,14 +394,14 @@ public class Core : Entity
 
             if (myGrenade1 == null)
             {
-                myGrenade1 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + 0.5f, shootPoint.transform.globalRotation, null);
+                myGrenade1 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized *0.5f, shootPoint.transform.globalRotation, null);
                 if (myGrenade1 != null)
                 {
                     SlowGrenade grenadeComp = myGrenade1.GetComponent<SlowGrenade>();
 
                     if (grenadeComp != null)
                     {
-                        grenadeComp.GrenadeInit(shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized, shootPoint.transform.globalRotation, Vector3.zero);
+                        grenadeComp.GrenadeInit(shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized * 0.5f, shootPoint.transform.globalRotation, Vector3.zero);
                         grenadeComp.GrenadeFinish();
                     }
 
@@ -1575,7 +1575,7 @@ public class Core : Entity
 
         if (myGrenade1 == null)
         {
-            thrownGrenade = myGrenade1 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation, null);
+            thrownGrenade = myGrenade1 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + shootPoint.transform.GetForward()  * 0.5f, shootPoint.transform.globalRotation, null);
         }
         else if (myGrenade1 != null && myGrenade1.IsEnabled() == false)
         {
@@ -1584,7 +1584,7 @@ public class Core : Entity
         }
         else if (myGrenade1 != null && myGrenade1.IsEnabled() == true && myGrenade2 == null)
         {
-            thrownGrenade = myGrenade2 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation, null);
+            thrownGrenade = myGrenade2 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + shootPoint.transform.GetForward() * 0.5f, shootPoint.transform.globalRotation, null);
         }
         else if (myGrenade1 != null && myGrenade1.IsEnabled() == true && myGrenade2 != null && myGrenade2.IsEnabled() == false)
         {
@@ -1604,7 +1604,7 @@ public class Core : Entity
 
             if (grenadeComp != null)
             {
-                grenadeComp.GrenadeInit(shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized * 2f, grenadeRotation, myForce);
+                grenadeComp.GrenadeInit(shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized * 1.5f, grenadeRotation, myForce);
             }
 
             thrownGrenade.transform.localScale = scale;
