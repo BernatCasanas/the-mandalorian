@@ -118,6 +118,9 @@ public class MoffGideon : Entity
     public GameObject spawner4 = null;
     public GameObject sword = null;
     public GameObject shootPoint = null;
+    public int numSequencesPh2 = 3;
+    public int numAtacksPh1 = 2;
+    public int numAtacksPh2 = 1;
 
     private List<GameObject> deathtroopers = null;
 
@@ -136,7 +139,8 @@ public class MoffGideon : Entity
     private int projectiles = 0;
     private bool aiming = false;
     private List<AtackMoff> atacks = new List<AtackMoff>();
-    //private float damaged = 0.0f;
+    private int nAtacks = 0;
+    private int nSequences = 3;
 
 
     //Timers
@@ -249,7 +253,28 @@ public class MoffGideon : Entity
 
             if (comboTimer <= 0)
             {
-                inputsList.Add(MOFFGIDEON_INPUT.IN_MELEE_COMBO_END);
+                if (nAtacks > 0)
+                {
+                    int rand = randomNum.Next(1, 6);
+                    comboTimer = atacks[rand].duration;
+                    Animator.Play(gameObject, atacks[rand].animation);
+                    UpdateAnimationSpd(speedMult);
+                    nAtacks--;
+                }
+                else
+                {
+                    if (currentPhase == MOFFGIDEON_PHASE.PHASE1) inputsList.Add(MOFFGIDEON_INPUT.IN_MELEE_COMBO_END);
+                    else
+                    {
+                        if (nSequences > 0)
+                        {
+                            nSequences--;
+                            inputsList.Add(MOFFGIDEON_INPUT.IN_DASH_FORWARD);
+                        }
+                        else
+                            inputsList.Add(MOFFGIDEON_INPUT.IN_MELEE_COMBO_END);
+                    }
+                }
             }
 
         }
@@ -655,8 +680,14 @@ public class MoffGideon : Entity
                         {
                             case MOFFGIDEON_INPUT.IN_MELEE_COMBO_END:
                                 currentState = MOFFGIDEON_STATE.DASH_BACKWARDS;
-                                EndDashBackward();
+                                EndMeleeCombo();
                                 StartDashBackward();
+                                break;
+
+                            case MOFFGIDEON_INPUT.IN_DASH_FORWARD:
+                                currentState = MOFFGIDEON_STATE.DASH_FORWARD;
+                                EndMeleeCombo();
+                                StartDashForward();
                                 break;
 
                             case MOFFGIDEON_INPUT.IN_DEAD:
@@ -986,12 +1017,18 @@ public class MoffGideon : Entity
     #region MELEE_COMBO
     private void StartMeleeCombo()
     {
+        if (currentPhase == MOFFGIDEON_PHASE.PHASE1) nAtacks = numAtacksPh1;
+        else
+        {
+            nAtacks = numAtacksPh2; 
+        }
+        int rand = randomNum.Next(1, 6);
         sword.EnableCollider();
-        Animator.Play(gameObject, atacks[0].animation, speedMult);
+        Animator.Play(gameObject, atacks[rand].animation, speedMult);
         UpdateAnimationSpd(speedMult);
-        comboTimer = atacks[0].duration;
+        comboTimer = atacks[rand].duration;
         Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Lightsaber_Whoosh");
-
+        nAtacks--;
     }
 
     private void UpdateMeleeCombo()
@@ -1010,6 +1047,7 @@ public class MoffGideon : Entity
     #region DASH_BACKWARD
     private void StartDashBackward()
     {
+        nSequences = numSequencesPh2;
         beginDash = gameObject.transform.globalPosition;
         Audio.PlayAudio(gameObject, "MG_Dash");
     }
