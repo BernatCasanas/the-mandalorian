@@ -4,6 +4,12 @@ using System.Collections.Generic;
 
 public class AimBot : DiamondComponent
 {
+    enum ObjectiveType
+    {
+        IS_PROP,
+        IS_ENEMY,
+        NONE
+    }
     public float startAimConeAngle = 90.0f;//this will only be used on the inspector, to change the actual angle use the method
     public float maxRange = 50.0f; //maximum distance at wich it will
     public float angleWeight = 0.5f;
@@ -16,8 +22,10 @@ public class AimBot : DiamondComponent
     GameObject myCurrentObjective = null;
     public bool isShooting = false;
 
+    ObjectiveType objectiveType = ObjectiveType.NONE;
     public void Awake()
     {
+        objectiveType = ObjectiveType.NONE;
         dotMin = 0;
         lastFrameEnemyCount = 0;
         lastFramePropCount = 0;
@@ -30,42 +38,90 @@ public class AimBot : DiamondComponent
     {
 
         if (!isShooting && myCurrentObjective != null)
-            myCurrentObjective = null;
-
-        if (EnemyManager.currentEnemies != null)
         {
-            if (isShooting)
-            {
-                if (myCurrentObjective == null)
-                {
-                    SearchForNewObjective();
-                }
-                else if (lastFrameEnemyCount != EnemyManager.currentEnemies.Count || (EnemyManager.currentDestructibleProps != null && lastFramePropCount != EnemyManager.currentDestructibleProps.Count)) //change in enemies! if targeting an enemy make sure it hasn't died
-                {
-                    if (!EnemyManager.currentEnemies.Contains(myCurrentObjective))
-                    {
-                        SearchForNewObjective();
-                    }
-                    else if (EnemyManager.currentDestructibleProps != null && !EnemyManager.currentDestructibleProps.Contains(myCurrentObjective)) //if the target is not in the list anymore search for a new objective
-                    {
-                        SearchForNewObjective();
-                    }
-                }
-            }
-
-            lastFrameEnemyCount = EnemyManager.currentEnemies.Count;
-
-            if (EnemyManager.currentDestructibleProps != null)
-            {
-                lastFramePropCount = EnemyManager.currentDestructibleProps.Count;
-            }
-            else
-            {
-                lastFramePropCount = 0;
-            }
-
+            myCurrentObjective = null;
+            objectiveType = ObjectiveType.NONE;
         }
 
+        if (isShooting)
+        {
+            if (myCurrentObjective == null)
+            {
+                SearchForNewObjective();
+            }
+            else if (EnemyManager.currentEnemies != null)
+            {
+                //if((EnemyManager.currentEnemies != null && lastFrameEnemyCount != EnemyManager.currentEnemies.Count) || 
+                //    (EnemyManager.currentDestructibleProps != null && lastFramePropCount != EnemyManager.currentDestructibleProps.Count)) //at least one of the lists has changed
+                if (lastFrameEnemyCount != EnemyManager.currentEnemies.Count && objectiveType == ObjectiveType.IS_ENEMY)
+                {
+                    bool containsObj = false;
+                    foreach (GameObject enemy in EnemyManager.currentEnemies)
+                    {
+                        if (enemy.GetUid() == myCurrentObjective.GetUid())
+                        {
+                            containsObj = true;
+                            break;
+                        }
+                    }
+
+                    if (!containsObj)
+                    {
+                        SearchForNewObjective();
+                    }
+                }
+                else if (objectiveType == ObjectiveType.IS_PROP)
+                {
+
+                    if (EnemyManager.currentDestructibleProps != null)
+                    {
+                        if (lastFramePropCount != EnemyManager.currentDestructibleProps.Count)
+                        {
+
+                            bool containsObj = false;
+                            foreach (GameObject prop in EnemyManager.currentDestructibleProps)
+                            {
+                                if (prop.GetUid() == myCurrentObjective.GetUid())
+                                {
+                                    containsObj = true;
+                                    break;
+                                }
+                            }
+
+                            if (!containsObj)
+                            {
+                                SearchForNewObjective();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        SearchForNewObjective();
+                    }
+                }
+
+            }
+        }
+
+
+        //Update enemy number on last frame
+        if (EnemyManager.currentEnemies != null)
+        {
+            lastFrameEnemyCount = EnemyManager.currentEnemies.Count;
+        }
+        else
+        {
+            lastFrameEnemyCount = 0;
+        }
+        //Update prop number on last frame
+        if (EnemyManager.currentDestructibleProps != null)
+        {
+            lastFramePropCount = EnemyManager.currentDestructibleProps.Count;
+        }
+        else
+        {
+            lastFramePropCount = 0;
+        }
     }
 
     //takes the overall cone angle as an input (an angle of 90 means 45 degrees to each side of the player forward)
@@ -82,6 +138,7 @@ public class AimBot : DiamondComponent
         if (EnemyManager.currentEnemies == null)
         {
             myCurrentObjective = null;
+            objectiveType = ObjectiveType.NONE;
             return;
         }
 
@@ -106,7 +163,8 @@ public class AimBot : DiamondComponent
                 //       (EnemyManager.currentEnemies[i].transform.globalPosition - shootPoint.transform.globalPosition).normalized, maxRange, ref hitDistance);
                 //if (hit.GetUid() == EnemyManager.currentEnemies[i].GetUid())
                 //{
-                    weightedObj = new KeyValuePair<float, GameObject>(targetWeight, EnemyManager.currentEnemies[i]);
+                weightedObj = new KeyValuePair<float, GameObject>(targetWeight, EnemyManager.currentEnemies[i]);
+                objectiveType = ObjectiveType.IS_ENEMY;
                 //}
             }
         }
@@ -124,7 +182,8 @@ public class AimBot : DiamondComponent
                     //    (EnemyManager.currentDestructibleProps[i].transform.globalPosition- shootPoint.transform.globalPosition).normalized, maxRange, ref hitDistance);
                     //if (hit.GetUid() == EnemyManager.currentEnemies[i].GetUid())
                     //{
-                        weightedObj = new KeyValuePair<float, GameObject>(targetWeight, EnemyManager.currentDestructibleProps[i]);
+                    weightedObj = new KeyValuePair<float, GameObject>(targetWeight, EnemyManager.currentDestructibleProps[i]);
+                    objectiveType = ObjectiveType.IS_PROP;
                     //}
                 }
             }
@@ -140,6 +199,7 @@ public class AimBot : DiamondComponent
         {
             //  Debug.Log("No Objective found!!");
             myCurrentObjective = null;
+            objectiveType = ObjectiveType.NONE;
             //Debug.Log("No suitable objective found!");
         }
     }
