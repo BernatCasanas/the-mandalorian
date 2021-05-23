@@ -394,7 +394,7 @@ public class Core : Entity
 
             if (myGrenade1 == null)
             {
-                myGrenade1 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized *0.5f, shootPoint.transform.globalRotation, null);
+                myGrenade1 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized * 0.5f, shootPoint.transform.globalRotation, null);
                 if (myGrenade1 != null)
                 {
                     SlowGrenade grenadeComp = myGrenade1.GetComponent<SlowGrenade>();
@@ -1575,7 +1575,7 @@ public class Core : Entity
 
         if (myGrenade1 == null)
         {
-            thrownGrenade = myGrenade1 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + shootPoint.transform.GetForward()  * 0.5f, shootPoint.transform.globalRotation, null);
+            thrownGrenade = myGrenade1 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + shootPoint.transform.GetForward() * 0.5f, shootPoint.transform.globalRotation, null);
         }
         else if (myGrenade1 != null && myGrenade1.IsEnabled() == false)
         {
@@ -1598,7 +1598,7 @@ public class Core : Entity
             return;
         }
 
-        if(thrownGrenade != null)
+        if (thrownGrenade != null)
         {
             SlowGrenade grenadeComp = thrownGrenade.GetComponent<SlowGrenade>();
 
@@ -1860,7 +1860,19 @@ public class Core : Entity
             Input.PlayHaptic(2f, 30);
             Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
             Vector3 pos = new Vector3(shootPoint.transform.globalPosition.x, shootPoint.transform.globalPosition.y - 1f, shootPoint.transform.globalPosition.z - 0.8f);
-            InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", pos, shootPoint.transform.globalRotation * rotation, scale);
+            GameObject thrownGrenade = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", pos, shootPoint.transform.globalRotation * rotation, scale);
+
+
+            if (thrownGrenade != null)
+            {
+                SlowGrenade grenadeComp = thrownGrenade.GetComponent<SlowGrenade>();
+
+                if (grenadeComp != null)
+                {
+                    grenadeComp.GrenadeInit(pos, shootPoint.transform.globalRotation * rotation, Vector3.zero, true);
+                }
+
+            }
 
         }
 
@@ -1919,7 +1931,7 @@ public class Core : Entity
             blaster.Enable(false);
     }
     private void UpdateDead()
-    {}
+    { }
 
     private void EndDead()
     {

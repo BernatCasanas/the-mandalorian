@@ -26,6 +26,7 @@ public class SlowGrenade : DiamondComponent
     private bool procActivation = false;
     private bool addedForce = false;
     List<Entity> enemies = new List<Entity>();
+    private bool destroy = false;
 
     public void Update()
     {
@@ -314,7 +315,10 @@ public class SlowGrenade : DiamondComponent
     {
         //InternalCalls.CreatePrefab("Library/Prefabs/2084632366.prefab", gameObject.transform.globalPosition, new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
 
-        GrenadeFinish();
+        if (destroy == false)
+            GrenadeFinish();
+        else
+            InternalCalls.Destroy(this.gameObject);
     }
 
     private bool AddEnemyTolist(GameObject enemy)
@@ -403,7 +407,7 @@ public class SlowGrenade : DiamondComponent
         return ret;
     }
 
-    public void GrenadeInit(Vector3 position, Quaternion rotation, Vector3 force)
+    public void GrenadeInit(Vector3 position, Quaternion rotation, Vector3 force, bool destroy = false)
     {
         //This doesn't work if the grenade is child of anything
         this.gameObject.transform.localPosition = position;
@@ -415,6 +419,12 @@ public class SlowGrenade : DiamondComponent
                 modifier = 1 + Core.instance.GetStatusData(STATUS_TYPE.SEC_RANGE).severity / 100;
 
         forceToAdd = force * modifier;
+
+        forceToAdd.x = Math.Min(forceToAdd.x, 2000f);
+        forceToAdd.y = Math.Min(forceToAdd.y, 100f);
+        forceToAdd.z = Math.Min(forceToAdd.z, 2000f);
+
+        this.destroy = destroy;
 
         BoxCollider myBoxColl = this.gameObject.GetComponent<BoxCollider>();
 
