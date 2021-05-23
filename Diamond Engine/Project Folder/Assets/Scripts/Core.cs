@@ -260,7 +260,7 @@ public class Core : Entity
 
     private TUTO_STATES tuto_state = TUTO_STATES.NONE;
     public float fallDamage = 15f;
-
+    private string lastFootsteps = "";
     public void Awake()
     {
         #region VARIABLES WITH DEPENDENCIES
@@ -274,6 +274,7 @@ public class Core : Entity
         //Dash - if scene doesnt have its values
         //dashDuration = 0.2f;
         //dashDistance = 4.5f;
+        lastFootsteps = "Play_Footsteps_Stone_Mando";
         #endregion
 
         #region SHOOT
@@ -394,7 +395,7 @@ public class Core : Entity
 
             if (myGrenade1 == null)
             {
-                myGrenade1 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized *0.5f, shootPoint.transform.globalRotation, null);
+                myGrenade1 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized * 0.5f, shootPoint.transform.globalRotation, null);
                 if (myGrenade1 != null)
                 {
                     SlowGrenade grenadeComp = myGrenade1.GetComponent<SlowGrenade>();
@@ -1575,7 +1576,7 @@ public class Core : Entity
 
         if (myGrenade1 == null)
         {
-            thrownGrenade = myGrenade1 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + shootPoint.transform.GetForward()  * 0.5f, shootPoint.transform.globalRotation, null);
+            thrownGrenade = myGrenade1 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + shootPoint.transform.GetForward() * 0.5f, shootPoint.transform.globalRotation, null);
         }
         else if (myGrenade1 != null && myGrenade1.IsEnabled() == false)
         {
@@ -1598,7 +1599,7 @@ public class Core : Entity
             return;
         }
 
-        if(thrownGrenade != null)
+        if (thrownGrenade != null)
         {
             SlowGrenade grenadeComp = thrownGrenade.GetComponent<SlowGrenade>();
 
@@ -1860,7 +1861,19 @@ public class Core : Entity
             Input.PlayHaptic(2f, 30);
             Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
             Vector3 pos = new Vector3(shootPoint.transform.globalPosition.x, shootPoint.transform.globalPosition.y - 1f, shootPoint.transform.globalPosition.z - 0.8f);
-            InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", pos, shootPoint.transform.globalRotation * rotation, scale);
+            GameObject thrownGrenade = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", pos, shootPoint.transform.globalRotation * rotation, scale);
+
+
+            if (thrownGrenade != null)
+            {
+                SlowGrenade grenadeComp = thrownGrenade.GetComponent<SlowGrenade>();
+
+                if (grenadeComp != null)
+                {
+                    grenadeComp.GrenadeInit(pos, shootPoint.transform.globalRotation * rotation, Vector3.zero, true);
+                }
+
+            }
 
         }
 
@@ -1919,7 +1932,7 @@ public class Core : Entity
             blaster.Enable(false);
     }
     private void UpdateDead()
-    {}
+    { }
 
     private void EndDead()
     {
@@ -2043,16 +2056,18 @@ public class Core : Entity
 
     private void PlayFootstepsAudio()
     {
-
+        Audio.StopOneAudio(this.gameObject, lastFootsteps);
         if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
         {
             if (floorType == FLOOR_TYPE.STONE)
             {
                 Audio.PlayAudio(this.gameObject, "Play_Footsteps_Stone_Mando");
+                lastFootsteps = "Play_Footsteps_Stone_Mando";
             }
             else
             {
                 Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
+                lastFootsteps = "Play_Footsteps_Sand_Mando";
             }
         }
         else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
@@ -2060,15 +2075,19 @@ public class Core : Entity
             if (floorType == FLOOR_TYPE.METAL)
             {
                 Audio.PlayAudio(this.gameObject, "Play_Footsteps_Metal_Platform_Mando");
+                lastFootsteps = "Play_Footsteps_Metal_Platform_Mando";
             }
             else if (floorType == FLOOR_TYPE.SNOW)
             {
                 Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
+                lastFootsteps = "Play_Footsteps_Snow_Mando";
             }
             else if (floorType == FLOOR_TYPE.WATER)
             {
+                //Audio.StopOneAudio(this.gameObject, "Play_Mando_Damaging_Water");
                 Audio.PlayAudio(this.gameObject, "Play_Footsteps_Water_Mando");
-                Audio.PlayAudio(gameObject, "Play_Mando_Damaging_Water");
+                //Audio.PlayAudio(this.gameObject, "Play_Mando_Damaging_Water");
+                lastFootsteps = "Play_Footsteps_Water_Mando";
             }
         }
         else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
@@ -2076,14 +2095,19 @@ public class Core : Entity
             if (floorType == FLOOR_TYPE.SNOW)
             {
                 Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
+                lastFootsteps = "Play_Footsteps_Snow_Mando";
             }
             else if (floorType == FLOOR_TYPE.WATER)
             {
+                //Audio.StopOneAudio(this.gameObject, "Play_Mando_Damaging_Water");
                 Audio.PlayAudio(this.gameObject, "Play_Footsteps_Water_Mando");
+                //Audio.PlayAudio(this.gameObject, "Play_Mando_Damaging_Water");
+                lastFootsteps = "Play_Footsteps_Water_Mando";
             }
             else
             {
                 Audio.PlayAudio(this.gameObject, "Play_Footsteps_Metal_Platform_Mando");
+                lastFootsteps = "Play_Footsteps_Metal_Platform_Mando";
             }
         }
 
