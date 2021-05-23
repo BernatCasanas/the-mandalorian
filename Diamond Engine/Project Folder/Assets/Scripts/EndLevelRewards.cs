@@ -159,7 +159,7 @@ public class EndLevelRewards
         secondText.GetComponent<Text>().text = RewardText(secondReward);
         thirdText.GetComponent<Text>().text  = RewardText(thirdReward);
 
-        ChangeMusic();
+        //ChangeMusic();
 
         return;
     }
