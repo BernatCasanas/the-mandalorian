@@ -31,6 +31,7 @@ public class WampaProjectile : DiamondComponent
 			InternalCalls.Destroy(gameObject);
 		else if (to_destroy)
         {
+			gameObject.GetChild("Wampa_Spike").GetComponent<MeshRenderer>().active = false;
 			timer -= Time.deltaTime;
 			if (timer <= 0.0f)
 				InternalCalls.Destroy(gameObject);
