@@ -1,19 +1,19 @@
 {
     "NavMesh": 93202564,
     "EditorCameraPosition": [
-        1.0173938274383545,
-        23.014570236206055,
-        -66.694503784179688
+        -15.426254272460938,
+        39.513076782226563,
+        2.3337740898132324
     ],
     "EditorCameraZ": [
-        0.54635238647460938,
-        -0.59702205657958984,
-        0.58742117881774902
+        0.52869170904159546,
+        -0.50990539789199829,
+        0.67858791351318359
     ],
     "EditorCameraY": [
-        0.4066694974899292,
-        0.80222481489181519,
-        0.43709865212440491
+        0.31348636746406555,
+        0.86023044586181641,
+        0.40215650200843811
     ],
     "SkyboxPath0": "",
     "SkyboxPath1": "",
@@ -31,7 +31,9 @@
         "WaterFloor",
         "MetalFloor",
         "SnowFloor",
-        "WorldLimit"
+        "WorldLimit",
+        "Top2",
+        "Bottom2"
     ],
     "layers": [],
     "Game Objects": [
@@ -107,8 +109,8 @@
                     "fSize": 20,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 29.350000381469727,
-                    "hFOV": 53.200000762939453,
+                    "vFOV": 33.650001525878906,
+                    "hFOV": 58.75,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -11071,6 +11073,56 @@
                 {
                     "Type": 1,
                     "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "DynamicProps",
+                    "RotateAxis": 0,
+                    "MoveAxis": 1,
+                    "RotateAngle": 90,
+                    "moveSpeed": 2,
+                    "rotateSpeed": 0.20000000298023224,
+                    "reset": false,
+                    "start_Idle": false,
+                    "is_atat": false,
+                    "waitSeconds": 2,
+                    "STATUS": 0
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        37,
+                        3.5,
+                        -7.5
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        3.2000000476837158,
+                        1,
+                        1.7999999523162842
+                    ]
                 }
             ]
         },
@@ -27485,6 +27537,178 @@
                         1,
                         1
                     ]
+                }
+            ]
+        },
+        {
+            "name": "Points",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1984147509,
+            "ParentUID": 8413079,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Point1",
+            "tag": "Top2",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1086699939,
+            "ParentUID": 1984147509,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                7.4619998931884766,
+                21.819000244140625,
+                36.692001342773438
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        2.2000000476837158,
+                        1.5,
+                        3.0999999046325684
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Point2",
+            "tag": "Bottom2",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1909629511,
+            "ParentUID": 1984147509,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                7.4619998931884766,
+                2.5480000972747803,
+                36.692001342773438
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        2.2000000476837158,
+                        1.5,
+                        3.0999999046325684
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
                 }
             ]
         }
