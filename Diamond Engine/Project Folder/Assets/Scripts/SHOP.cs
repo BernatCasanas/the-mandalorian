@@ -54,11 +54,7 @@ public class SHOP : DiamondComponent
             UpdateCurrency(PlayerResources.GetRunCoins());
         }
 
-        Debug.Log("Shop 1");
-
         items = new GameObject[] { item1, item2, item3, item4 };
-
-        Debug.Log("Shop 2");
 
         shopButtons = new ShopButtons[items.Length];
         for(int i = 0; i < items.Length; i++)
@@ -66,14 +62,13 @@ public class SHOP : DiamondComponent
             if (items[i] != null)
                 shopButtons[i] = items[i].GetComponent<ShopButtons>();
         }
-        Debug.Log("Shop 3");
-
-        if (autoGenerateItems)
-            RandomiseItems();
     }
 
     private void Start()
     {
+        if (autoGenerateItems)
+            RandomiseItems();
+
         start = false;
         if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
         {
@@ -220,8 +215,6 @@ public class SHOP : DiamondComponent
         {
             if(shopButtons[i] != null)
             {
-                shopButtons[i].Init();
-
                 if (available.Count > 0)
                 {
                     item = rand.Next(0, available.Count);
@@ -289,7 +282,7 @@ public class SHOP : DiamondComponent
     {
         shopOpen = false;
         shopUI.EnableNav(false);
-        Core.instance.LockInputs(false); ;
+        Core.instance.LockInputs(false); 
         textPopUp.Enable(true);
     }
 }

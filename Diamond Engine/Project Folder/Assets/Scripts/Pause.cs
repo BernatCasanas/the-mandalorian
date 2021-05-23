@@ -54,16 +54,6 @@ public class Pause : DiamondComponent
 		}
 	}
 
-	public void Awake()
-	{
-
-	}
-
-	public void Update()
-	{
-		
-	}
-
 	public void DisplayBoons()
     {
 		if (gameObject.Name == "PauseMenu")

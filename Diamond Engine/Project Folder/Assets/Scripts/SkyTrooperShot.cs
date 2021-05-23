@@ -127,21 +127,7 @@ public class SkyTrooperShot : DiamondComponent
 
 		if (hitColliderObject != null)
 			hitCollider = hitColliderObject.GetComponent<SkytrooperHitCollider>();
-
-		//CalculateRotationSpeed();
-		//rotationSpeed = 2.2f;
 	}
-
-	//private void CalculateRotationSpeed()
- //   {
-	//	float distance = Mathf.Distance(targetPosition, gameObject.transform.globalPosition);
-
-	//	float timeToPosition = distance / (float)Math.Sqrt(velocity.x * velocity.x + velocity.z * velocity.z);
-	//	Debug.Log("Time: " + timeToPosition.ToString());
-
-	//	rotationSpeed = 180.0f / timeToPosition;
-	//	Debug.Log("Rotation Speed: " + rotationSpeed.ToString());
-	//}
 
 	public void OnCollisionEnter(GameObject collidedGameObject)
 	{
@@ -175,7 +161,6 @@ public class SkyTrooperShot : DiamondComponent
 			InternalCalls.Destroy(hitCollider.gameObject);
 
 		hitCollider = null;
-		//InternalCalls.Destroy(gameObject);
 		Audio.PlayAudio(gameObject, "Play_Skytrooper_Grenade_Explosion");
 
 		MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
