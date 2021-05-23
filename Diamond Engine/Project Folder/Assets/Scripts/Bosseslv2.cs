@@ -680,6 +680,7 @@ public class Bosseslv2 : Entity
     #region DIE
     public void StartDie()
     {
+        Audio.StopAudio(gameObject);
         dieTimer = dieTime;
         if (gameObject.CompareTag("Skel"))
         {
@@ -687,6 +688,10 @@ public class Bosseslv2 : Entity
             UpdateAnimationSpd(speedMult);
             Audio.PlayAudio(gameObject, "Play_Skel_Death");
             Counter.SumToCounterType(Counter.CounterTypes.SKEL);
+            if (companion.GetComponent<Wampa>().healthPoints <= 0.0f)
+            {
+                Audio.PlayAudio(gameObject, "Play_Victory_Music");
+            }
             Debug.Log("BOOLEAN IS TRUE");
         }
         else if (gameObject.CompareTag("Wampa"))
@@ -695,7 +700,10 @@ public class Bosseslv2 : Entity
             UpdateAnimationSpd(speedMult);
             Audio.PlayAudio(gameObject, "Play_Wampa_Death");
             Counter.SumToCounterType(Counter.CounterTypes.WAMPA);
-            Debug.Log("asdfnjkghsdfkljghsdfkg");
+            if (companion.GetComponent<Skel>().healthPoints <= 0.0f)
+            {
+                Audio.PlayAudio(gameObject, "Play_Victory_Music");
+            }
         }
         Debug.Log("Dying");
     }

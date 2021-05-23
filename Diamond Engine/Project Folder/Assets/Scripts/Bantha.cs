@@ -626,7 +626,8 @@ public class Bantha : Enemy
         UpdateAnimationSpd(speedMult);
 
         Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Death");
-        Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
+        if (Core.instance != null)
+            Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Kill_Voice");
 
         if (hitParticles != null)
             hitParticles.GetComponent<ParticleSystem>().Play();
