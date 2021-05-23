@@ -472,7 +472,7 @@ public class BabyYoda : DiamondComponent
 
                 }
             }
-            Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Pull_Command");
+            Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Push_Command");
 
         }
 
