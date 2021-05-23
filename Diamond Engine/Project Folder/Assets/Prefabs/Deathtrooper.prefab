@@ -13,20 +13,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -9.8341617584228516,
-                0,
-                -10.564579010009766
+                1.4467067718505859,
+                0.34885573387145996,
+                0.73048609495162964
             ],
             "Rotation": [
-                9.0453156076364394e-09,
-                -0.80296236276626587,
-                9.0453156076364394e-09,
-                0.59602969884872437
+                -2.8150489939093859e-08,
+                -0.9515383243560791,
+                -2.8150489939093859e-08,
+                0.30753019452095032
             ],
             "Scale": [
-                0.9999992847442627,
+                0.99999970197677612,
                 1,
-                0.9999992847442627
+                0.99999970197677612
             ],
             "Components": [
                 {
@@ -67,10 +67,6 @@
                     "wanderRange": 7.5,
                     "shotRange": 15,
                     "recoilDistance": 3,
-                    "numBullets1": 3,
-                    "numBullets2": 5,
-                    "bulletsSeparation1": 0.5,
-                    "bulletsSeparation2": 0.69999998807907104,
                     "forcePushMod": 1.1499999761581421,
                     "PushStun": 2,
                     "hitParticlesObj": 1938952528,
@@ -123,10 +119,10 @@
                     "Active": true,
                     "evName": "Empty",
                     "audBankReference": "Deathtrooper",
-                    "volume": 0,
                     "pitch": 50,
                     "playOnAwake": false,
-                    "isMuted": false
+                    "isMuted": false,
+                    "isMusic": true
                 }
             ]
         },
@@ -179,7 +175,8 @@
                         0
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": false
+                    "doNotDrawStencil": false,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -457,7 +454,7 @@
                 0,
                 0,
                 -0.0073059904389083385,
-                0.99997329711914063
+                0.99997329711914062
             ],
             "Scale": [
                 1,
@@ -1571,7 +1568,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0.49832534790039063,
+                0.49832534790039062,
                 2.0816681711721685e-17,
                 1.3898392876873153e-17
             ],
@@ -1962,7 +1959,8 @@
                         0
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": false
+                    "doNotDrawStencil": false,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -2288,7 +2286,7 @@
             "Position": [
                 -1.2270965576171875,
                 1.344346284866333,
-                0.66952896118164063
+                0.66952896118164062
             ],
             "Rotation": [
                 -4.163336607042133e-16,
@@ -2578,6 +2576,35 @@
                     "horizantalAligned": true
                 }
             ]
+        },
+        {
+            "name": "Sniper Impact",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 149225084,
+            "ParentUID": 258529861,
+            "PrefabReference": 0,
+            "PrefabID": 1298559028,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0.0076279044151306152,
+                1.2670669555664062,
+                0.10014450550079346
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                -9.5892096396710258e-07,
+                1.496293975833396e-06,
+                0.70710670948028564
+            ],
+            "Scale": [
+                1,
+                0.99999797344207764,
+                0.99998444318771362
+            ],
+            "PrefabObjects": []
         }
     ]
 }

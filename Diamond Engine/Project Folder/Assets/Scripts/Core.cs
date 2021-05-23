@@ -2072,7 +2072,18 @@ public class Core : Entity
         }
         else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
         {
-            Audio.PlayAudio(this.gameObject, "Play_Footsteps_Metal_Platform_Mando");
+            if (floorType == FLOOR_TYPE.SNOW)
+            {
+                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
+            }
+            else if (floorType == FLOOR_TYPE.WATER)
+            {
+                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Water_Mando");
+            }
+            else
+            {
+                Audio.PlayAudio(this.gameObject, "Play_Footsteps_Metal_Platform_Mando");
+            }
         }
 
     }

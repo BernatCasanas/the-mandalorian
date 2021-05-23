@@ -1,18 +1,18 @@
 using System;
 using DiamondEngine;
-
+public enum Interaction
+{
+    NONE,
+    BO_KATAN,
+    GREEF,
+    ASHOKA,
+    CARA_DUNE,
+    GROGU
+}
 
 public class HubTextController : DiamondComponent
 {
-    public enum Interaction
-    {
-        NONE,
-        BO_KATAN,
-        GREEF,
-        ASHOKA,
-        CARA_DUNE,
-        GROGU
-    }
+
 
     public GameObject textController = null;
     public GameObject dialog = null;
@@ -84,8 +84,9 @@ public class HubTextController : DiamondComponent
     private bool dialog_finished = false;
 
 
-    Interaction interaction = Interaction.NONE;
 
+    Interaction interaction = Interaction.NONE;
+    NPCInteraction npcInteraction = null;
     public void Awake()
     {
         ResetInteractionBools();
@@ -114,6 +115,7 @@ public class HubTextController : DiamondComponent
             if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(bo_katan.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
             {
                 interaction = Interaction.BO_KATAN;
+                npcInteraction = bo_katan.GetComponent<NPCInteraction>();
             }
         }
 
@@ -122,6 +124,7 @@ public class HubTextController : DiamondComponent
             if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(greef.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
             {
                 interaction = Interaction.GREEF;
+                npcInteraction = greef.GetComponent<NPCInteraction>();
             }
         }
 
@@ -130,6 +133,7 @@ public class HubTextController : DiamondComponent
             if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(ashoka.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
             {
                 interaction = Interaction.ASHOKA;
+                npcInteraction = ashoka.GetComponent<NPCInteraction>();
             }
         }
 
@@ -138,6 +142,7 @@ public class HubTextController : DiamondComponent
             if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(cara_dune.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
             {
                 interaction = Interaction.CARA_DUNE;
+                npcInteraction = cara_dune.GetComponent<NPCInteraction>();
             }
         }
 
@@ -146,6 +151,7 @@ public class HubTextController : DiamondComponent
             if (mando.GetComponent<Transform>().globalPosition.DistanceNoSqrt(grogu.GetComponent<Transform>().globalPosition) < maximum_distance_to_interact_squared)
             {
                 interaction = Interaction.GROGU;
+                npcInteraction = grogu.GetComponent<NPCInteraction>();
             }
         }
 
@@ -153,6 +159,7 @@ public class HubTextController : DiamondComponent
         {
             return;
         }
+
 
 
         switch (interaction)
@@ -172,6 +179,10 @@ public class HubTextController : DiamondComponent
                 }
 
                 boKatanHasInteracted = true;
+                if (npcInteraction != null)
+                {
+                    npcInteraction.canInteract = BoKatanHasInteractions();
+                }
 
                 break;
             case Interaction.GREEF:
@@ -190,6 +201,11 @@ public class HubTextController : DiamondComponent
 
                 greefHasInteracted = true;
 
+                if (npcInteraction != null)
+                {
+                    npcInteraction.canInteract = GreefHasInteractions();
+                }
+
                 break;
             case Interaction.ASHOKA:
                 /*if (ashoka_portrait_uid != 0)
@@ -207,6 +223,11 @@ public class HubTextController : DiamondComponent
 
                 ashokaHasInteracted = true;
 
+                if (npcInteraction != null)
+                {
+                    npcInteraction.canInteract = AshokaHasInteractions();
+                }
+
                 break;
             case Interaction.CARA_DUNE:
                 /*if (ashoka_portrait_uid != 0)
@@ -223,7 +244,10 @@ public class HubTextController : DiamondComponent
                 }
 
                 caraHasInteracted = true;
-
+                if (npcInteraction != null)
+                {
+                    npcInteraction.canInteract = CaraDuneHasInteractions();
+                }
                 break;
             case Interaction.GROGU:
                 /*if (grogu_portrait_uid != 0)
@@ -240,7 +264,10 @@ public class HubTextController : DiamondComponent
                 }
 
                 groguHasInteracted = true;
-
+                if (npcInteraction != null)
+                {
+                    npcInteraction.canInteract = GroguHasInteractions();
+                }
                 break;
         }
         dialog_finished = true;
@@ -344,10 +371,22 @@ public class HubTextController : DiamondComponent
 
     public bool GreefHasInteractions()
     {
-        return greefInteractionNum % 3 != 0;
-    }
-    public void GreefSet3()
+        return greefInteractionNum % 3 != 0 && !greefHasInteracted;
+    }  
+    public bool AshokaHasInteractions()
     {
-        greefInteractionNum = 3;
+        return ashokaInteractionNum % 3 != 0 && !ashokaHasInteracted;
+    }  
+    public bool GroguHasInteractions()
+    {
+        return groguInteractionNum % 3 != 0 && !groguHasInteracted;
+    }  
+    public bool BoKatanHasInteractions()
+    {
+        return boKatanInteractionNum % 3 != 0 && !boKatanHasInteracted;
+    }  
+    public bool CaraDuneHasInteractions()
+    {
+        return caraInteractionNum % 3 != 0 && !caraHasInteracted;
     }
 }
