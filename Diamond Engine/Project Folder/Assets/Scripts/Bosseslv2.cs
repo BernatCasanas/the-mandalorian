@@ -86,12 +86,12 @@ public class Bosseslv2 : Entity
     public float totalJumpSlamTime = 3.03f;
 
     //Bounce Rush
-    private GameObject initTarget;
+    public GameObject initTarget;
     private GameObject finalTarget;
     private GameObject currentTarget;
     private bool returnToInitTarget = false;
     private float startBounceRushTime = 0.0f;
-    private bool finalBounce = false;
+    public bool finalBounce = false;
     //private float startBounceRushTimer = 0.0f;
 
     private bool firstThrow = true;
@@ -381,31 +381,16 @@ public class Bosseslv2 : Entity
 
             }
         }
-        else
-        {
-            if(bounceRushTimer >= 1f)
-            {
-                angle += 1;
-
-                Quaternion dir = Quaternion.RotateAroundAxis(new Vector3(1, 0, 0), angle);
-
-                float rotationSpeed = myDeltaTime * 25f;
-
-                Quaternion desiredRotation = Quaternion.Slerp(gameObject.transform.localRotation, dir, rotationSpeed);
-
-                gameObject.transform.localRotation = desiredRotation;
-            }
-        }
-
 
         float distance = Mathf.Distance(gameObject.transform.globalPosition, currentTarget.transform.globalPosition);
         if (distance > 2f)
         {
             MoveToPosition(currentTarget.transform.globalPosition, 12f);
-            //LookAt(currentTarget.transform.globalPosition);
+            LookAt(currentTarget.transform.globalPosition);
             if (currentTarget == finalTarget)
             {
                 returnToInitTarget = true;
+                finalBounce = true;
             }
         }
         else if (currentTarget != finalTarget && !returnToInitTarget)
@@ -416,11 +401,11 @@ public class Bosseslv2 : Entity
         {
             currentTarget = initTarget;
         }
-        else if(bounceRushTimer<=2f && !finalBounce)
+        else if(distance<=1f && finalBounce)
         {
+            finalBounce = false;
             Animator.Play(gameObject, "Skel_Rush_Recover");
             UpdateAnimationSpd(speedMult);
-            finalBounce = true;
         }
         //Debug.Log("Bounce Rush");
 

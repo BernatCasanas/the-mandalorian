@@ -170,6 +170,11 @@ public class Skel : Bosseslv2
             angry = true;
             firstSorrowRoar = true;
         }
+
+        //if (Mathf.Distance(gameObject.transform.globalPosition, initTarget.transform.globalPosition) <= 2f && finalBounce)
+        //{
+        //    inputsList.Add(INPUT.IN_BOUNCERUSH_END);
+        //}
     }
 
     private void ProcessState()
