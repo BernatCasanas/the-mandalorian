@@ -105,8 +105,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 11.979999542236328,
-                    "hFOV": 23.559999465942383,
+                    "vFOV": 13.100000381469727,
+                    "hFOV": 20.559999465942383,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -31520,6 +31520,16 @@
                         431070674,
                         854978645
                     ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "NPCInteraction",
+                    "maxDistance": 5,
+                    "interactionImage": 576026679,
+                    "hubTextController": 1070040184,
+                    "npc": 2,
+                    "canInteract": false
                 }
             ]
         },
@@ -32512,49 +32522,6 @@
                     "Active": true,
                     "billboardAlignment": 0,
                     "horizantalAligned": true
-                }
-            ]
-        },
-        {
-            "name": "InteractorController",
-            "tag": "Greef",
-            "layer": "Default",
-            "Active": true,
-            "UID": 961788871,
-            "ParentUID": 1079248432,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "NPCInteraction",
-                    "maxDistance": 5,
-                    "interactionImage": 576026679,
-                    "hubTextController": 1070040184,
-                    "canInteract": false
                 }
             ]
         },
