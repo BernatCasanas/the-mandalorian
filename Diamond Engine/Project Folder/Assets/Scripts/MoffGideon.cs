@@ -941,7 +941,7 @@ public class MoffGideon : Entity
             cam_comp.target = Core.instance.gameObject;
         invencible = false;
 
-
+        sword.Enable(true);
 
     }
 
@@ -1017,10 +1017,14 @@ public class MoffGideon : Entity
     #region MELEE_COMBO
     private void StartMeleeCombo()
     {
-        if (currentPhase == MOFFGIDEON_PHASE.PHASE1) nAtacks = numAtacksPh1;
+        if (currentPhase == MOFFGIDEON_PHASE.PHASE1)
+        {
+            nAtacks = numAtacksPh1;
+            sword.Enable(true);
+        }
         else
         {
-            nAtacks = numAtacksPh2; 
+            nAtacks = numAtacksPh2;
         }
         int rand = randomNum.Next(1, 6);
         sword.EnableCollider();
@@ -1048,6 +1052,7 @@ public class MoffGideon : Entity
     private void StartDashBackward()
     {
         nSequences = numSequencesPh2;
+        if (currentPhase == MOFFGIDEON_PHASE.PHASE1) sword.Enable(false);
         beginDash = gameObject.transform.globalPosition;
         Audio.PlayAudio(gameObject, "MG_Dash");
     }
