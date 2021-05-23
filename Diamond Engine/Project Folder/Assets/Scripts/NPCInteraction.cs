@@ -19,24 +19,36 @@ public class NPCInteraction : DiamondComponent
     
     public void Awake()
     {
-        if(hubTextController==null)
+        canUpgrade = false;
+        HubTextController hubScript = hubTextController.GetComponent<HubTextController>();
+        if (hubScript == null)
+        {
             return;
+        }
+
+        hubScript.onUpgrade += UpdateUpgrade;
+
         switch (npc)
         {
             case Interaction.BO_KATAN:
-                canInteract = hubTextController.GetComponent<HubTextController>().BoKatanHasInteractions();
+                canInteract = hubScript.BoKatanHasInteractions();
+                canUpgrade = hubScript.BoKatanCanUpgrade();
                 break;
             case Interaction.GREEF:
-                canInteract = hubTextController.GetComponent<HubTextController>().GreefHasInteractions();
+                canInteract = hubScript.GreefHasInteractions();
+                canUpgrade = hubScript.GreefCanUpgrade();
                 break;
             case Interaction.ASHOKA:
-                canInteract = hubTextController.GetComponent<HubTextController>().AshokaHasInteractions();
+                canInteract = hubScript.AshokaHasInteractions();
+                canUpgrade = hubScript.AshokaCanUpgrade();
                 break;
             case Interaction.CARA_DUNE:
-                canInteract = hubTextController.GetComponent<HubTextController>().CaraDuneHasInteractions();
+                canInteract = hubScript.CaraDuneHasInteractions();
+                canUpgrade = hubScript.CaraDuneCanUpgrade();
                 break;
             case Interaction.GROGU:
-                canInteract = hubTextController.GetComponent<HubTextController>().GroguHasInteractions();
+                canInteract = hubScript.GroguHasInteractions();
+                canUpgrade = hubScript.GroguCanUpgrade();
                 break;
         }
 
@@ -55,7 +67,7 @@ public class NPCInteraction : DiamondComponent
 
         if (IsInside())
         {
-            if (canInteract)
+            if (canInteract || canUpgrade)
             {
                 interactionImage.Enable(true);
 
@@ -84,17 +96,22 @@ public class NPCInteraction : DiamondComponent
         if (canUpgrade && !notificationImage.IsEnabled())
         {
             notificationImage.Enable(true);
-        }
 
-        if (IsInside())
-        {
-            if (hubTextController != null)
-                hubTextController.GetComponent<HubTextController>().insideColliderTextActive = true;
+
+            if (IsInside())
+            {
+                if (hubTextController != null)
+                    hubTextController.GetComponent<HubTextController>().insideColliderTextActive = true;
+            }
+            else
+            {
+                if (hubTextController != null)
+                    hubTextController.GetComponent<HubTextController>().insideColliderTextActive = false;
+            }
         }
-        else
+        if (!canUpgrade && notificationImage.IsEnabled())
         {
-            if (hubTextController != null)
-                hubTextController.GetComponent<HubTextController>().insideColliderTextActive = false;
+            notificationImage.Enable(false);
         }
     }
 
@@ -116,5 +133,32 @@ public class NPCInteraction : DiamondComponent
     public void SetEnum(Interaction interaction)
     {
         npc = interaction;
+    }
+    public void UpdateUpgrade()
+    {
+        HubTextController hubScript = hubTextController.GetComponent<HubTextController>();
+        if (hubScript == null)
+        {
+            return;
+        }
+
+        switch (npc)
+        {
+            case Interaction.BO_KATAN:
+                canUpgrade = hubScript.BoKatanCanUpgrade();
+                break;
+            case Interaction.GREEF:
+                canUpgrade = hubScript.GreefCanUpgrade();
+                break;
+            case Interaction.ASHOKA:
+                canUpgrade = hubScript.AshokaCanUpgrade();
+                break;
+            case Interaction.CARA_DUNE:
+                canUpgrade = hubScript.CaraDuneCanUpgrade();
+                break;
+            case Interaction.GROGU:
+                canUpgrade = hubScript.GroguCanUpgrade();
+                break;
+        }
     }
 }

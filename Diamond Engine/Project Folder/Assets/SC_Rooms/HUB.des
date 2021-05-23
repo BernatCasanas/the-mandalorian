@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -16.4998779296875,
-        13.801773071289063,
-        -13.910163879394531
+        -2.1714382171630859,
+        2.5715339183807373,
+        10.04442310333252
     ],
     "EditorCameraZ": [
-        0.65076994895935059,
-        -0.5282747745513916,
-        0.54536616802215576
+        0.75794750452041626,
+        -0.22306244075298309,
+        0.61299169063568115
     ],
     "EditorCameraY": [
-        0.40489464998245239,
-        0.84907341003417969,
-        0.33931475877761841
+        0.1734415590763092,
+        0.97480416297912598,
+        0.14026717841625214
     ],
     "SkyboxPath0": "",
     "SkyboxPath1": "",
@@ -105,8 +105,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 13.100000381469727,
-                    "hFOV": 20.559999465942383,
+                    "vFOV": 14.979999542236328,
+                    "hFOV": 21.200000762939453,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -31527,9 +31527,10 @@
                     "ScriptName": "NPCInteraction",
                     "maxDistance": 5,
                     "interactionImage": 576026679,
+                    "notificationImage": 186378143,
                     "hubTextController": 1070040184,
-                    "npc": 2,
-                    "canInteract": false
+                    "canInteract": true,
+                    "canUpgrade": true
                 }
             ]
         },
@@ -32509,6 +32510,86 @@
                                 1,
                                 1,
                                 1,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "paRelative": true,
+                            "ParticleEffects": []
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "Greef NPC notification",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 186378143,
+            "ParentUID": 1079248432,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.11807632446289063,
+                1.4247679710388184,
+                0.039534091949462891
+            ],
+            "Rotation": [
+                0.025505721569061279,
+                0.70676851272583008,
+                -0.025513768196105957,
+                0.70652449131011963
+            ],
+            "Scale": [
+                0.99999994039535522,
+                0.99998128414154053,
+                0.99999994039535522
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": true,
+                    "looping": true,
+                    "maxDuration": 10,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/1477516694.dds",
+                            "texUID": 1477516694,
+                            "paEmitterName": "Empty",
+                            "paLifeTime": [
+                                2,
+                                2
+                            ],
+                            "paSize": [
+                                0.15000000596046448,
+                                0.15000000596046448
+                            ],
+                            "paColor": [
+                                0.88627451658248901,
+                                0.7921568751335144,
+                                0.40000000596046448,
                                 1
                             ],
                             "paPerSec": 1,
@@ -36343,86 +36424,6 @@
                                     ]
                                 }
                             ]
-                        }
-                    ]
-                },
-                {
-                    "Type": 21,
-                    "Active": true,
-                    "billboardAlignment": 0,
-                    "horizantalAligned": true
-                }
-            ]
-        },
-        {
-            "name": "Greef NPC notification",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 186378143,
-            "ParentUID": 1685410679,
-            "PrefabReference": 1231312929,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                5.2026853561401367,
-                55.617599487304688,
-                20.583740234375
-            ],
-            "Rotation": [
-                0.03607703372836113,
-                2.5934171477004497e-11,
-                1.9463443010070414e-11,
-                0.99934899806976318
-            ],
-            "Scale": [
-                1,
-                0.99998128414154053,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 3,
-                    "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
-                    "MaterialUID": 355756108
-                },
-                {
-                    "Type": 20,
-                    "Active": true,
-                    "systemActive": true,
-                    "looping": true,
-                    "maxDuration": 10,
-                    "ParticleEmitters": [
-                        {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/1241448075.dds",
-                            "texUID": 1241448075,
-                            "paEmitterName": "Empty",
-                            "paLifeTime": [
-                                2,
-                                2
-                            ],
-                            "paSize": [
-                                0.15000000596046448,
-                                0.15000000596046448
-                            ],
-                            "paColor": [
-                                0.88627451658248901,
-                                0.7921568751335144,
-                                0.40000000596046448,
-                                1
-                            ],
-                            "paPerSec": 1,
-                            "paRelative": true,
-                            "ParticleEffects": []
                         }
                     ]
                 },

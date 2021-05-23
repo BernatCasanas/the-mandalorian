@@ -2068,6 +2068,7 @@ public class Core : Entity
             else if (floorType == FLOOR_TYPE.WATER)
             {
                 Audio.PlayAudio(this.gameObject, "Play_Footsteps_Water_Mando");
+                Audio.PlayAudio(gameObject, "Play_Mando_Damaging_Water");
             }
         }
         else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
@@ -2356,7 +2357,6 @@ public class Core : Entity
             else if (collidedGameObject.CompareTag("WaterFloor"))
             {
                 floorType = FLOOR_TYPE.WATER;
-                Audio.PlayAudio(gameObject, "Play_Mando_Damaging_Water");
             }
             else if (collidedGameObject.CompareTag("StoneFloor"))
             {
