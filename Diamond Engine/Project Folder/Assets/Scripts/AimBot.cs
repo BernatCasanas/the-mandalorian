@@ -101,13 +101,13 @@ public class AimBot : DiamondComponent
 
             if (targetWeight > weightedObj.Key)
             {
-                float hitDistance = 0.0f;
-                GameObject hit = InternalCalls.RayCast(shootPoint.transform.globalPosition + shootPoint.transform.GetRight() * 0.15f,
-                       (EnemyManager.currentEnemies[i].transform.globalPosition - shootPoint.transform.globalPosition).normalized, maxRange, ref hitDistance);
-                if (hit.GetUid() == EnemyManager.currentEnemies[i].GetUid())
-                {
+                //float hitDistance = 0.0f;
+                //GameObject hit = InternalCalls.RayCast(shootPoint.transform.globalPosition + shootPoint.transform.GetRight() * 0.15f,
+                //       (EnemyManager.currentEnemies[i].transform.globalPosition - shootPoint.transform.globalPosition).normalized, maxRange, ref hitDistance);
+                //if (hit.GetUid() == EnemyManager.currentEnemies[i].GetUid())
+                //{
                     weightedObj = new KeyValuePair<float, GameObject>(targetWeight, EnemyManager.currentEnemies[i]);
-                }
+                //}
             }
         }
         if (EnemyManager.currentDestructibleProps != null)
@@ -119,13 +119,13 @@ public class AimBot : DiamondComponent
 
                 if (targetWeight > weightedObj.Key)
                 {
-                    float hitDistance = 0.0f;
-                    GameObject hit = InternalCalls.RayCast(shootPoint.transform.globalPosition + shootPoint.transform.GetRight() * 0.15f, 
-                        (EnemyManager.currentDestructibleProps[i].transform.globalPosition- shootPoint.transform.globalPosition).normalized, maxRange, ref hitDistance);
-                    if (hit.GetUid() == EnemyManager.currentEnemies[i].GetUid())
-                    {
+                    //float hitDistance = 0.0f;
+                    //GameObject hit = InternalCalls.RayCast(shootPoint.transform.globalPosition + shootPoint.transform.GetRight() * 0.15f, 
+                    //    (EnemyManager.currentDestructibleProps[i].transform.globalPosition- shootPoint.transform.globalPosition).normalized, maxRange, ref hitDistance);
+                    //if (hit.GetUid() == EnemyManager.currentEnemies[i].GetUid())
+                    //{
                         weightedObj = new KeyValuePair<float, GameObject>(targetWeight, EnemyManager.currentDestructibleProps[i]);
-                    }
+                    //}
                 }
             }
         }
