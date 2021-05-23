@@ -85,7 +85,7 @@ bool C_AudioSource::OnEditor()
 		if (ImGui::Button("Stop"))
 		{
 			StopEvent(evName);
-		}	
+		}
 		ImGui::SameLine();
 		if (ImGui::Button("Stop All"))
 		{
@@ -99,7 +99,7 @@ bool C_AudioSource::OnEditor()
 				EngineExternal->moduleAudio->musicSource.push_back(this);
 			}
 			else {
-				for (std::vector<C_AudioSource*>::iterator it = EngineExternal->moduleAudio->musicSource.begin(); it!= EngineExternal->moduleAudio->musicSource.end(); ++it) {
+				for (std::vector<C_AudioSource*>::iterator it = EngineExternal->moduleAudio->musicSource.begin(); it != EngineExternal->moduleAudio->musicSource.end(); ++it) {
 					if ((*it) == this) {
 						EngineExternal->moduleAudio->musicSource.erase(it);
 						break;
@@ -159,6 +159,9 @@ void C_AudioSource::LoadData(DEConfig& nObj)
 	SetPitch(nObj.ReadFloat("pitch"));
 	this->playOnAwake = nObj.ReadBool("playOnAwake");
 	isMusic = nObj.ReadBool("isMusic");
+	if (isMusic) {
+		EngineExternal->moduleAudio->musicSource.push_back(this);
+	}
 
 	// Iterate and assign audio bank. If not loaded, load
 	std::vector<AudioBank*>::iterator it;
