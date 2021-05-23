@@ -43,6 +43,16 @@
                         1530020591,
                         2047958449
                     ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "NPCInteraction",
+                    "maxDistance": 10,
+                    "interactionImage": 246480180,
+                    "notificationImage": 1231312929,
+                    "hubTextController": 1070040184,
+                    "canInteract": false
                 }
             ]
         },
@@ -1778,7 +1788,7 @@
             "name": "NPC Interaction ",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 246480180,
             "ParentUID": 1157449561,
             "PrefabReference": 0,
@@ -1858,7 +1868,7 @@
             "name": "NPC notification",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 1231312929,
             "ParentUID": 1157449561,
             "PrefabReference": 0,
@@ -1931,50 +1941,6 @@
                     "Active": true,
                     "billboardAlignment": 0,
                     "horizantalAligned": true
-                }
-            ]
-        },
-        {
-            "name": "InteractionController",
-            "tag": "AshokaTano",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1520831018,
-            "ParentUID": 1157449561,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "NPCInteraction",
-                    "maxDistance": 5,
-                    "interactionImage": 246480180,
-                    "notificationImage": 1231312929,
-                    "hubTextController": 1070040184,
-                    "canInteract": false
                 }
             ]
         }

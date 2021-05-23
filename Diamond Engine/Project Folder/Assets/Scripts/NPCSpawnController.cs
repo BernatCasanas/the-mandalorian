@@ -103,9 +103,9 @@ public class NPCSpawnController : DiamondComponent
                 if (HubTextController != null)
                 {
                     HubTextController.GetComponent<HubTextController>().grogu = unit;
-                    HubTextController.GetComponent<HubTextController>().groguNotification = unit.GetChild("NPC notification");
                 }
 
+                SetInteractionEnum(unit, Interaction.GROGU);
                 break;
             case BoKatanUID:
                 if (animation == 0) Animator.Play(unit, "Bo-Katan_Idle");
@@ -115,9 +115,9 @@ public class NPCSpawnController : DiamondComponent
                 if (HubTextController != null)
                 {
                     HubTextController.GetComponent<HubTextController>().bo_katan = unit;
-                    HubTextController.GetComponent<HubTextController>().boKatanNotification = unit.GetChild("NPC notification");
                 }
 
+                SetInteractionEnum(unit, Interaction.BO_KATAN);
                 break;
             case AhsokaUID:
                 if (animation == 0) Animator.Play(unit, "Ahsoka_Idle");
@@ -127,9 +127,8 @@ public class NPCSpawnController : DiamondComponent
                 if (HubTextController != null)
                 {
                     HubTextController.GetComponent<HubTextController>().ashoka = unit;
-                    HubTextController.GetComponent<HubTextController>().ashokaNotification = unit.GetChild("NPC notification");
                 }
-
+                SetInteractionEnum(unit, Interaction.ASHOKA);
                 break;
             case CaraDuneUID:
                 if (animation == 0) Animator.Play(unit, "CD_Lean");
@@ -138,8 +137,8 @@ public class NPCSpawnController : DiamondComponent
                 if (HubTextController != null)
                 {
                     HubTextController.GetComponent<HubTextController>().cara_dune = unit;
-                    HubTextController.GetComponent<HubTextController>().caraDuneNotification = unit.GetChild("NPC notification");
                 }
+                SetInteractionEnum(unit, Interaction.CARA_DUNE);
                 break;
             default:
                 break;
@@ -235,5 +234,14 @@ public class NPCSpawnController : DiamondComponent
         if (BoKatan) charactersUID.Add(BoKatanUID); //BoKatan's UID
         if (Ahsoka) charactersUID.Add(AhsokaUID); //Ahsoka's UID
         if (CaraDune) charactersUID.Add(CaraDuneUID); //CaraDune's UID
+    }
+
+    private void SetInteractionEnum(GameObject unit, Interaction interaction)
+    {
+        NPCInteraction npcInteraction = unit.GetComponent<NPCInteraction>();
+        if (npcInteraction != null)
+        {
+            npcInteraction.SetEnum(interaction);
+        }
     }
 }

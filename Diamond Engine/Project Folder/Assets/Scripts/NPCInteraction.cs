@@ -1,53 +1,72 @@
 using System;
 using DiamondEngine;
 
+
+
 public class NPCInteraction : DiamondComponent
 {
-    public enum NPC
-    {
-        GREEF,
-        BOKATAN,
-    }
+
 
     public float maxDistance = 5;
     public GameObject interactionImage = null;
     public GameObject notificationImage = null;
     public GameObject hubTextController = null;
 
-    private NPC npc;
+    private Interaction npc = Interaction.GREEF;
     public bool canInteract = false;
+    public bool canUpgrade = false;
 
+    
     public void Awake()
     {
-        SetNPC();
-
+        HubTextController hubScript = hubTextController.GetComponent<HubTextController>();
         switch (npc)
         {
-            case NPC.GREEF:
-
-            if (hubTextController != null)
-                canInteract = hubTextController.GetComponent<HubTextController>().GreefHasInteractions();
+            case Interaction.BO_KATAN:
+                canInteract = hubScript.BoKatanHasInteractions();
+                break;
+            case Interaction.GREEF:
+                canInteract = hubScript.GreefHasInteractions();
+                break;
+            case Interaction.ASHOKA:
+                canInteract = hubScript.AshokaHasInteractions();
+                break;
+            case Interaction.CARA_DUNE:
+                canInteract = hubScript.CaraDuneHasInteractions();
+                break;
+            case Interaction.GROGU:
+                canInteract = hubScript.GroguHasInteractions();
                 break;
         }
+
     }
 
     public void Update()
     {
         InteractionImage();
+        NotificationImage();
     }
 
     private void InteractionImage()
     {
-        if (interactionImage == null || !canInteract)
+        if (interactionImage == null)
             return;
 
-        if (IsInside() && interactionImage.IsEnabled() == false)
+        if (IsInside())
         {
-            interactionImage.Enable(true);
+            if (canInteract)
+            {
+                interactionImage.Enable(true);
 
-            if (hubTextController != null)
-                hubTextController.GetComponent<HubTextController>().insideColliderTextActive = true;
-
+                if (hubTextController != null)
+                    hubTextController.GetComponent<HubTextController>().insideColliderTextActive = true;
+            }
+            else
+            {
+                interactionImage.Enable(false);
+                if (hubTextController != null)
+                    hubTextController.GetComponent<HubTextController>().insideColliderTextActive = false;
+            }
         }
         else if (!IsInside() && interactionImage.IsEnabled())
         {
@@ -61,17 +80,18 @@ public class NPCInteraction : DiamondComponent
         if (notificationImage == null)
             return;
 
-        if (IsInside() && notificationImage.IsEnabled() == false)
+        if (canUpgrade && !notificationImage.IsEnabled())
         {
             notificationImage.Enable(true);
+        }
 
+        if (IsInside())
+        {
             if (hubTextController != null)
                 hubTextController.GetComponent<HubTextController>().insideColliderTextActive = true;
-
         }
-        else if (!IsInside() && notificationImage.IsEnabled())
+        else
         {
-            notificationImage.Enable(false);
             if (hubTextController != null)
                 hubTextController.GetComponent<HubTextController>().insideColliderTextActive = false;
         }
@@ -92,15 +112,8 @@ public class NPCInteraction : DiamondComponent
             return false;
     }
 
-    private void SetNPC()
+    public void SetEnum(Interaction interaction)
     {
-        if (gameObject.CompareTag("Greef"))
-        {
-            npc = NPC.GREEF;
-        }
-        else if (gameObject.CompareTag("BoKatan"))
-        {
-            npc = NPC.BOKATAN;
-        }
+        npc = interaction;
     }
 }

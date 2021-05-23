@@ -47,10 +47,12 @@
                 {
                     "Type": 5,
                     "Active": true,
-                    "ScriptName": "InsideCollider",
+                    "ScriptName": "NPCInteraction",
                     "maxDistance": 10,
-                    "colliderPosition": 1003961422,
-                    "displayText": 625639751
+                    "interactionImage": 625639751,
+                    "notificationImage": 254292270,
+                    "hubTextController": 1070040184,
+                    "canInteract": false
                 }
             ]
         },
@@ -1182,7 +1184,7 @@
             "name": "NPC Interaction ",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 625639751,
             "ParentUID": 1003961422,
             "PrefabReference": 0,
@@ -1262,7 +1264,7 @@
             "name": "NPC notification",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 254292270,
             "ParentUID": 1003961422,
             "PrefabReference": 0,

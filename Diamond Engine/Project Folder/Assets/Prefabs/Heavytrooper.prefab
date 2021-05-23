@@ -13,15 +13,15 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -14.180000305175781,
-                -1.0499999523162842,
-                -13.859999656677246
+                -0.39748695492744446,
+                0.39005100727081299,
+                0.16739869117736816
             ],
             "Rotation": [
-                2.9169079596158554e-08,
-                -0.95709270238876343,
-                2.9169079596158554e-08,
-                0.28978192806243896
+                2.9169072490731196e-08,
+                -0.95709264278411865,
+                2.9169072490731196e-08,
+                0.28978204727172852
             ],
             "Scale": [
                 1.0000046491622925,
@@ -78,10 +78,10 @@
                     "Active": true,
                     "evName": "Empty",
                     "audBankReference": "Heavytrooper",
-                    "volume": 50,
                     "pitch": 50,
                     "playOnAwake": false,
-                    "isMuted": false
+                    "isMuted": false,
+                    "isMusic": true
                 },
                 {
                     "Type": 24,
@@ -184,7 +184,8 @@
                         0
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": false
+                    "doNotDrawStencil": false,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -1749,7 +1750,8 @@
                         0
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": false
+                    "doNotDrawStencil": false,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -2744,6 +2746,35 @@
                     "horizantalAligned": true
                 }
             ]
+        },
+        {
+            "name": "Sniper Impact",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 149225084,
+            "ParentUID": 1116614551,
+            "PrefabReference": 0,
+            "PrefabID": 1298559028,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.0087967813014984131,
+                1.0457420349121094,
+                0.094661131501197815
+            ],
+            "Rotation": [
+                -0.7071068286895752,
+                -9.3777526899430086e-07,
+                9.2723837497032946e-07,
+                0.70710670948028564
+            ],
+            "Scale": [
+                1,
+                0.99999845027923584,
+                0.9999883770942688
+            ],
+            "PrefabObjects": []
         }
     ]
 }
