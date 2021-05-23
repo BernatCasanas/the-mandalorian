@@ -6,6 +6,7 @@ public class Enable : DiamondComponent
 	public GameObject enable = null;
 	public GameObject disable = null;
 	public GameObject disable2 = null;
+	public GameObject disable3 = null;
 	public GameObject select = null;
 
 	public void OnExecuteButton()
@@ -22,6 +23,11 @@ public class Enable : DiamondComponent
 		{
 			disable2.EnableNav(false);
 			Debug.Log("Disable " + disable2.Name);
+		}
+		if (disable3 != null)
+		{
+			disable3.EnableNav(false);
+			Debug.Log("Disable " + disable3.Name);
 		}
 
 		if (enable != null)

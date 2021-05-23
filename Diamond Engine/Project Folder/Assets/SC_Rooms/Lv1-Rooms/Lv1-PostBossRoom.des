@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -4.6198039054870605,
-        2.9299254417419434,
-        1.2793115377426147
+        2.4609012603759766,
+        6.5428848266601563,
+        -8.3087120056152344
     ],
     "EditorCameraZ": [
-        -0.61991727352142334,
-        -0.56506896018981934,
-        0.54442596435546875
+        0.12055673450231552,
+        -0.76500141620635986,
+        0.63264429569244385
     ],
     "EditorCameraY": [
-        -0.42453187704086304,
-        0.82504367828369141,
-        0.37292847037315369
+        0.14328792691230774,
+        0.64402854442596436,
+        0.75146245956420898
     ],
     "SkyboxPath0": "",
     "SkyboxPath1": "",
@@ -1440,8 +1440,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 13.260000228881836,
-                    "hFOV": 25,
+                    "vFOV": 11.380000114440918,
+                    "hFOV": 22.159999847412109,
                     "culling": true,
                     "HDR": true,
                     "drawSkybox": true,
@@ -5345,6 +5345,86 @@
             ]
         },
         {
+            "name": "NPC Interaction ",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 76504332,
+            "ParentUID": 104343161,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.05129241943359375,
+                2.1137235164642334,
+                -0.058679789304733276
+            ],
+            "Rotation": [
+                -1.6763945609454822e-07,
+                -2.9802322387695313e-08,
+                3.3527722820281269e-08,
+                1
+            ],
+            "Scale": [
+                1,
+                0.99998599290847778,
+                0.99999642372131348
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": true,
+                    "looping": true,
+                    "maxDuration": 0.17499999701976776,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/47596514.dds",
+                            "texUID": 47596514,
+                            "paEmitterName": "Empty",
+                            "paLifeTime": [
+                                3,
+                                3
+                            ],
+                            "paSize": [
+                                0.25,
+                                0.25
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 1,
+                            "paRelative": true,
+                            "ParticleEffects": []
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
             "name": "Watto",
             "tag": "Untagged",
             "layer": "Default",
@@ -6433,6 +6513,14 @@
                     "Active": true,
                     "billboardAlignment": 3,
                     "horizantalAligned": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "InsideCollider",
+                    "maxDistance": 1,
+                    "colliderPosition": 1674152343,
+                    "displayText": 1149610765
                 }
             ]
         },
@@ -6449,13 +6537,13 @@
             "Static": false,
             "Position": [
                 7.1570000648498535,
-                0.22200000286102295,
+                0.36166417598724365,
                 -4.3720002174377441
             ],
             "Rotation": [
-                -6.1817253538265504e-08,
+                -6.1817246432838147e-08,
                 -0.7071068286895752,
-                6.1817253538265504e-08,
+                6.1817246432838147e-08,
                 0.7071068286895752
             ],
             "Scale": [
@@ -14832,6 +14920,7 @@
                     "enable": 995881843,
                     "disable": 555761027,
                     "disable2": 625428609,
+                    "disable3": 76504332,
                     "select": 464183913
                 }
             ]
@@ -15264,8 +15353,7 @@
                     "Active": true,
                     "ScriptName": "HubRoomSwitch",
                     "nextRoomUID": -1,
-                    "isHubScene": false,
-                    "isTutorialScene": false
+                    "isHubScene": false
                 }
             ]
         },
@@ -16153,7 +16241,8 @@
                     "item2": 703005603,
                     "item3": 985827193,
                     "item4": 1155932994,
-                    "currencyObject": 923328982,
+                    "currencyObject": 1133323042,
+                    "currencyObject1": 923328982,
                     "interactionRange": 1,
                     "autoGenerateItems": true,
                     "opening": false,

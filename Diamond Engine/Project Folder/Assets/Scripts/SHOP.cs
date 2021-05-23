@@ -50,7 +50,7 @@ public class SHOP : DiamondComponent
         shopOpen = false;
         opening = false;
         start = true;
-        if (currencyObject != null)
+        if (currencyObject != null && currencyObject1 != null)
         {
             currencyText = currencyObject.GetComponent<Text>();
             currencyText1 = currencyObject1.GetComponent<Text>();
