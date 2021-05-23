@@ -21,8 +21,15 @@ public class PlayerHealth : DiamondComponent
     {
         if (currHealth <= 0 && currMaxHealth <= 0)
             ResetMaxAndCurrentHPToDefault();
-
-        BlackFade.onFadeInCompleted += Die;
+        if (RoomDataHolder.isTutorial)
+        {
+            BlackFade.onFadeInCompleted = TutorialDie;
+            Debug.Log("Scene is tutorial");
+        }
+        else
+        {
+            BlackFade.onFadeInCompleted = Die;
+        }
     }
 
     public void Update()
@@ -299,6 +306,13 @@ public class PlayerHealth : DiamondComponent
         // Set as defeat:
         RoomSwitch.OnPlayerDeath();
 
+    }
+
+    public void TutorialDie()
+    {
+        ResetMaxAndCurrentHPToDefault();
+        //gameObject.transform.localPosition = Core.instance.GetMySpawnPosition();
+        SceneManager.LoadScene(200199708);
     }
     public static void ResetMaxAndCurrentHPToDefault()
     {

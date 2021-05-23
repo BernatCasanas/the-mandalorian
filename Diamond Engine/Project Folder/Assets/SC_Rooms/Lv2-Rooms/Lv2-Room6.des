@@ -1,19 +1,19 @@
 {
     "NavMesh": 93202564,
     "EditorCameraPosition": [
-        -3.3357963562011719,
-        8.3681859970092773,
-        3.4759507179260254
+        -15.426254272460938,
+        39.513076782226563,
+        2.3337740898132324
     ],
     "EditorCameraZ": [
-        0.84117722511291504,
-        -0.47185581922531128,
-        -0.26414597034454346
+        0.52869170904159546,
+        -0.50990539789199829,
+        0.67858791351318359
     ],
     "EditorCameraY": [
-        0.45018178224563599,
-        0.8816758394241333,
-        -0.14136581122875214
+        0.31348636746406555,
+        0.86023044586181641,
+        0.40215650200843811
     ],
     "SkyboxPath0": "",
     "SkyboxPath1": "",
@@ -31,7 +31,9 @@
         "WaterFloor",
         "MetalFloor",
         "SnowFloor",
-        "WorldLimit"
+        "WorldLimit",
+        "Top2",
+        "Bottom2"
     ],
     "layers": [],
     "Game Objects": [
@@ -85,10 +87,10 @@
                 -10.831999778747559
             ],
             "Rotation": [
-                0.24263928830623627,
-                0.39558207988739014,
-                -0.10866379737854004,
-                0.87910926342010498
+                0.24263931810855865,
+                0.39558213949203491,
+                -0.10866381227970123,
+                0.87910938262939453
             ],
             "Scale": [
                 1.0000088214874268,
@@ -107,8 +109,8 @@
                     "fSize": 20,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 30.600000381469727,
-                    "hFOV": 58.849998474121094,
+                    "vFOV": 33.650001525878906,
+                    "hFOV": 58.75,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -11071,6 +11073,56 @@
                 {
                     "Type": 1,
                     "Active": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "DynamicProps",
+                    "RotateAxis": 0,
+                    "MoveAxis": 1,
+                    "RotateAngle": 90,
+                    "moveSpeed": 2,
+                    "rotateSpeed": 0.20000000298023224,
+                    "reset": false,
+                    "start_Idle": false,
+                    "is_atat": false,
+                    "waitSeconds": 2,
+                    "STATUS": 0
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        37,
+                        3.5,
+                        -7.5
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        3.2000000476837158,
+                        1,
+                        1.7999999523162842
+                    ]
                 }
             ]
         },
@@ -11419,31 +11471,31 @@
             ]
         },
         {
-            "name": "SpeederBike3",
+            "name": "SpeederBike",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 784413551,
+            "UID": 1861000795,
             "ParentUID": 1408255416,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -51.180892944335938,
-                9.0837593078613281,
-                -14.394321441650391
+                -51.212360382080078,
+                9.0918455123901367,
+                -14.39519214630127
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                -6.5057442100169283e-08,
+                0.66812902688980103,
+                -5.8399240998596724e-08,
+                0.7440454363822937
             ],
             "Scale": [
+                0.99999940395355225,
                 1,
-                1,
-                1
+                0.99999940395355225
             ],
             "Components": [
                 {
@@ -11453,8 +11505,8 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/1888700807.mmh",
-                    "UID": 1888700807,
+                    "Path": "Library\/Meshes\/1851303732.mmh",
+                    "UID": 1851303732,
                     "bumpDepth": 1,
                     "alternColor": [
                         1,
@@ -11469,6 +11521,11 @@
                     "stencilEmission": 0.89999997615814209,
                     "doNotDrawStencil": true,
                     "drawShadows": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FloatingVehicles"
                 },
                 {
                     "Type": 3,
@@ -11481,31 +11538,31 @@
             ]
         },
         {
-            "name": "SpeederBike5",
+            "name": "SpeederBike",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1146690961,
+            "UID": 1640822978,
             "ParentUID": 1408255416,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -49.301078796386719,
-                -5.949923038482666,
-                -10.028329849243164
+                -49.300998687744141,
+                -5.9499998092651367,
+                -10.027999877929688
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                -2.4538894649595022e-07,
+                -0.85411965847015381,
+                -1.2592582265824603e-07,
+                -0.52007651329040527
             ],
             "Scale": [
+                0.99999988079071045,
                 1,
-                1,
-                1
+                0.99999988079071045
             ],
             "Components": [
                 {
@@ -11515,8 +11572,8 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/667694690.mmh",
-                    "UID": 667694690,
+                    "Path": "Library\/Meshes\/1851303732.mmh",
+                    "UID": 1851303732,
                     "bumpDepth": 1,
                     "alternColor": [
                         1,
@@ -11531,6 +11588,11 @@
                     "stencilEmission": 0.89999997615814209,
                     "doNotDrawStencil": true,
                     "drawShadows": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FloatingVehicles"
                 },
                 {
                     "Type": 3,
@@ -11543,31 +11605,31 @@
             ]
         },
         {
-            "name": "SpeederBike1",
+            "name": "SpeederBike",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1066818556,
+            "UID": 836706691,
             "ParentUID": 1408255416,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -41.3529052734375,
-                -5.949923038482666,
-                0.11271810531616211
+                -41.353000640869141,
+                -5.9499998092651367,
+                0.11299999803304672
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                2.4008835453059874e-07,
+                0.4030049741268158,
+                -1.7207977975886024e-07,
+                0.91519778966903687
             ],
             "Scale": [
+                0.9999997615814209,
                 1,
-                1,
-                1
+                0.9999997615814209
             ],
             "Components": [
                 {
@@ -11577,8 +11639,8 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/1140989528.mmh",
-                    "UID": 1140989528,
+                    "Path": "Library\/Meshes\/1851303732.mmh",
+                    "UID": 1851303732,
                     "bumpDepth": 1,
                     "alternColor": [
                         1,
@@ -11593,6 +11655,11 @@
                     "stencilEmission": 0.89999997615814209,
                     "doNotDrawStencil": true,
                     "drawShadows": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FloatingVehicles"
                 },
                 {
                     "Type": 3,
@@ -11605,31 +11672,31 @@
             ]
         },
         {
-            "name": "SpeederBike2",
+            "name": "SpeederBike",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 105272134,
+            "UID": 914308745,
             "ParentUID": 1408255416,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -40.075580596923828,
-                -5.949923038482666,
-                -2.89876389503479
+                -40.076000213623047,
+                -5.9499998092651367,
+                -2.8989999294281006
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                2.7343105557520175e-07,
+                0.60413700342178345,
+                -1.1175160352649982e-07,
+                0.79688048362731934
             ],
             "Scale": [
+                0.9999997615814209,
                 1,
-                1,
-                1
+                0.9999997615814209
             ],
             "Components": [
                 {
@@ -11639,8 +11706,8 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/1411826358.mmh",
-                    "UID": 1411826358,
+                    "Path": "Library\/Meshes\/1851303732.mmh",
+                    "UID": 1851303732,
                     "bumpDepth": 1,
                     "alternColor": [
                         1,
@@ -11655,6 +11722,11 @@
                     "stencilEmission": 0.89999997615814209,
                     "doNotDrawStencil": true,
                     "drawShadows": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FloatingVehicles"
                 },
                 {
                     "Type": 3,
@@ -11667,31 +11739,31 @@
             ]
         },
         {
-            "name": "SpeederBike4",
+            "name": "SpeederBike",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1937037650,
+            "UID": 1314786719,
             "ParentUID": 1408255416,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -27.963876724243164,
-                -9.0794410705566406,
-                22.566654205322266
+                -27.964000701904297,
+                -9.0790004730224609,
+                22.566999435424805
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                6.1820571772841504e-07,
+                0.7190890908241272,
+                -6.0667997558994102e-07,
+                -0.69491791725158691
             ],
             "Scale": [
+                0.99999994039535522,
                 1,
-                1,
-                1
+                0.99999994039535522
             ],
             "Components": [
                 {
@@ -11701,8 +11773,8 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/288863481.mmh",
-                    "UID": 288863481,
+                    "Path": "Library\/Meshes\/1851303732.mmh",
+                    "UID": 1851303732,
                     "bumpDepth": 1,
                     "alternColor": [
                         1,
@@ -11717,6 +11789,11 @@
                     "stencilEmission": 0.89999997615814209,
                     "doNotDrawStencil": true,
                     "drawShadows": true
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FloatingVehicles"
                 },
                 {
                     "Type": 3,
@@ -12323,6 +12400,14 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "TurretRotation",
+                    "startingRotationDeg": -30,
+                    "finishRotationDeg": 90,
+                    "speedMult": 1
                 }
             ]
         },
@@ -12365,27 +12450,27 @@
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 36672923,
+            "UID": 110729516,
             "ParentUID": 735137594,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -43.048713684082031,
-                -5.8908448219299316,
-                117.31410980224609
+                -41.996788024902344,
+                -5.6150670051574707,
+                117.82746124267578
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                1.2683327099693997e-07,
+                0.54262536764144897,
+                8.1933940521139448e-08,
+                0.83997482061386108
             ],
             "Scale": [
-                1,
-                1,
-                1
+                1.75,
+                1.75,
+                1.75
             ],
             "Components": [
                 {
@@ -12395,8 +12480,8 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/1181096253.mmh",
-                    "UID": 1181096253,
+                    "Path": "Library\/Meshes\/1916435184.mmh",
+                    "UID": 1916435184,
                     "bumpDepth": 1,
                     "alternColor": [
                         1,
@@ -12419,35 +12504,40 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FloatingVehicles"
                 }
             ]
         },
         {
-            "name": "SnowSpeeder1",
+            "name": "SnowSpeeder",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1994999547,
+            "UID": 935672012,
             "ParentUID": 735137594,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -21.310676574707031,
-                -8.9259195327758789,
-                155.39738464355469
+                -21.93023681640625,
+                -8.5839519500732422,
+                154.32997131347656
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                6.8896726588718593e-05,
+                -0.9632946252822876,
+                1.867917126219254e-05,
+                0.26844635605812073
             ],
             "Scale": [
-                1,
-                1,
-                1
+                1.7500026226043701,
+                1.75,
+                1.750003457069397
             ],
             "Components": [
                 {
@@ -12457,8 +12547,8 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/1054950103.mmh",
-                    "UID": 1054950103,
+                    "Path": "Library\/Meshes\/1916435184.mmh",
+                    "UID": 1916435184,
                     "bumpDepth": 1,
                     "alternColor": [
                         1,
@@ -12481,35 +12571,40 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FloatingVehicles"
                 }
             ]
         },
         {
-            "name": "SnowSpeeder2",
+            "name": "SnowSpeeder",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1063624668,
+            "UID": 1993181453,
             "ParentUID": 735137594,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -61.967681884765625,
-                9.2779264450073242,
-                107.49153137207031
+                -60.866806030273438,
+                9.5444583892822266,
+                107.98976898193359
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
+                -3.8994061469566077e-05,
+                0.54230338335037231,
+                6.0255333664827049e-05,
+                0.84018272161483765
             ],
             "Scale": [
-                1,
-                1,
-                1
+                1.7500032186508179,
+                1.75,
+                1.7500032186508179
             ],
             "Components": [
                 {
@@ -12519,8 +12614,8 @@
                 {
                     "Type": 2,
                     "Active": true,
-                    "Path": "Library\/Meshes\/1181096253.mmh",
-                    "UID": 1181096253,
+                    "Path": "Library\/Meshes\/1916435184.mmh",
+                    "UID": 1916435184,
                     "bumpDepth": 1,
                     "alternColor": [
                         1,
@@ -12543,6 +12638,11 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FloatingVehicles"
                 }
             ]
         },
@@ -19099,10 +19199,10 @@
                 5.7159647941589355
             ],
             "Rotation": [
-                -0.21659693121910095,
-                0.67316973209381104,
-                0.67307275533676147,
-                0.21656766533851624
+                -0.21659690141677856,
+                0.67316967248916626,
+                0.6730726957321167,
+                0.21656763553619385
             ],
             "Scale": [
                 0.38419029116630554,
@@ -19633,10 +19733,10 @@
                 16.465530395507813
             ],
             "Rotation": [
-                -0.29627582430839539,
-                0.64206546545028687,
-                0.64202958345413208,
-                0.29626131057739258
+                -0.296275794506073,
+                0.64206540584564209,
+                0.6420295238494873,
+                0.29626128077507019
             ],
             "Scale": [
                 0.52656263113021851,
@@ -23460,10 +23560,10 @@
                 12.791316986083984
             ],
             "Rotation": [
-                -0.6544497013092041,
-                -0.26780861616134644,
-                -0.26779493689537048,
-                0.65441572666168213
+                -0.65444976091384888,
+                -0.26780864596366882,
+                -0.26779496669769287,
+                0.6544157862663269
             ],
             "Scale": [
                 1.5819507837295532,
@@ -27437,6 +27537,178 @@
                         1,
                         1
                     ]
+                }
+            ]
+        },
+        {
+            "name": "Points",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1984147509,
+            "ParentUID": 8413079,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Point1",
+            "tag": "Top2",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1086699939,
+            "ParentUID": 1984147509,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                7.4619998931884766,
+                21.819000244140625,
+                36.692001342773438
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        2.2000000476837158,
+                        1.5,
+                        3.0999999046325684
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Point2",
+            "tag": "Bottom2",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1909629511,
+            "ParentUID": 1984147509,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                7.4619998931884766,
+                2.5480000972747803,
+                36.692001342773438
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        2.2000000476837158,
+                        1.5,
+                        3.0999999046325684
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
                 }
             ]
         }
