@@ -141,6 +141,7 @@ public class MoffGideon : Entity
     private List<AtackMoff> atacks = new List<AtackMoff>();
     private int nAtacks = 0;
     private int nSequences = 3;
+    private bool retrieveAnim = true;
 
 
     //Timers
@@ -156,7 +157,7 @@ public class MoffGideon : Entity
     private float presentationTimer = 0f;
     private float changingStateTime = 0f;
     private float changingStateTimer = 0f;
-    private float chargeThrowTime = 2f;
+    private float chargeThrowTime = 0f;
     private float chargeThrowTimer = 0f;
     public float cadencyTime = 0.2f;
     public float cadencyTimer = 0f;
@@ -191,6 +192,7 @@ public class MoffGideon : Entity
         presentationTime = Animator.GetAnimationDuration(gameObject, "MG_PowerPose") - 0.016f;
         changingStateTime = Animator.GetAnimationDuration(gameObject, "MG_Rising") - 0.016f;
         dieTime = Animator.GetAnimationDuration(gameObject, "MG_Death") - 0.016f;
+        chargeThrowTime = Animator.GetAnimationDuration(gameObject, "MG_SaberThrow") - 0.016f;
 
         atacks.Add(new AtackMoff("MG_MeleeCombo1", gameObject));
         atacks.Add(new AtackMoff("MG_MeleeCombo2", gameObject));
@@ -308,7 +310,7 @@ public class MoffGideon : Entity
         {
             chargeThrowTimer -= myDeltaTime;
 
-            if (chargeThrowTimer <= 0)
+            if (chargeThrowTimer <= 2.1f)
                 inputsList.Add(MOFFGIDEON_INPUT.IN_CHARGE_THROW_END);
 
         }
@@ -349,6 +351,13 @@ public class MoffGideon : Entity
         if(currentState==MOFFGIDEON_STATE.RETRIEVE_SABER && Mathf.Distance(gameObject.transform.globalPosition, saber.transform.globalPosition) <= 1f)
         {
             inputsList.Add(MOFFGIDEON_INPUT.IN_RETRIEVE_SABER_END);
+
+        }
+        if(currentState==MOFFGIDEON_STATE.RETRIEVE_SABER && Mathf.Distance(gameObject.transform.globalPosition, saber.transform.globalPosition) <= 3.5f && !retrieveAnim)
+        {
+            Animator.Play(gameObject, "MG_Recovery");
+            UpdateAnimationSpd(speedMult);
+            retrieveAnim = true;
         }
 
     }
@@ -1190,6 +1199,8 @@ public class MoffGideon : Entity
         chargeThrowTimer = chargeThrowTime;
         cam_comp.Zoom(zoomInValue, zoomTimeEasing);
         visualFeedback = InternalCalls.CreatePrefab("Library/Prefabs/1137197426.prefab", gameObject.transform.globalPosition, gameObject.transform.globalRotation, new Vector3(0.3f, 1f, 0.01f));
+        Animator.Play(gameObject, "MG_SaberThrow");
+        UpdateAnimationSpd(speedMult);
     }
 
 
@@ -1213,9 +1224,6 @@ public class MoffGideon : Entity
 
     private void StartThrowSaber()
     {
-        Animator.Play(gameObject, "MG_SaberThrow");
-        UpdateAnimationSpd(speedMult);
-
         saber = InternalCalls.CreatePrefab("Library/Prefabs/1894242407.prefab", shootPoint.transform.globalPosition, new Quaternion(0,0,0), new Vector3(1.0f, 1.0f, 1.0f));
 
         if (saber != null)
@@ -1252,6 +1260,7 @@ public class MoffGideon : Entity
         if (currentPhase == MOFFGIDEON_PHASE.PHASE1) Animator.Play(gameObject, "MG_RunPh1", speedMult);
         else if (currentPhase == MOFFGIDEON_PHASE.PHASE2) Animator.Play(gameObject, "MG_RunPh2", speedMult);
         UpdateAnimationSpd(speedMult);
+        privateTimer = 1f;
     }
 
 
@@ -1260,17 +1269,25 @@ public class MoffGideon : Entity
         agent.CalculatePath(gameObject.transform.globalPosition, saber.transform.globalPosition);
         agent.MoveToCalculatedPos(speedMult * followSpeed);
         LookAt(agent.GetDestination());
+        if (privateTimer > 0f)
+        {
+            privateTimer -= myDeltaTime;
+            if (privateTimer <= 0f)
+            {
+                retrieveAnim = false;
+            }
+        }
         Debug.Log("Retrieve Saber");
     }
 
 
     private void EndRetrieveSaber()
     {
-        Animator.Play(gameObject, "MG_Recovery");
         InternalCalls.Destroy(saber);
         saber = null;
         sword.transform.localScale = new Vector3(1, 1, 1);
         cam_comp.Zoom(baseZoom, zoomTimeEasing);
+        retrieveAnim = false;
     }
 
     #endregion
