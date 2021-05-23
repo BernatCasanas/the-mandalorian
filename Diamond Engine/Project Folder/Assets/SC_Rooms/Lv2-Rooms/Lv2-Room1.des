@@ -1,19 +1,19 @@
 {
     "NavMesh": 1404428461,
     "EditorCameraPosition": [
-        6.4078798294067383,
-        38.720024108886719,
-        -13.854160308837891
+        -4.2516312599182129,
+        12.111771583557129,
+        16.956207275390625
     ],
     "EditorCameraZ": [
-        0.41093093156814575,
-        -0.88543123006820679,
-        0.21713507175445557
+        -0.024291552603244781,
+        -0.54915505647659302,
+        -0.83536732196807861
     ],
     "EditorCameraY": [
-        0.78315651416778564,
-        0.46477049589157104,
-        0.41310328245162964
+        -0.016356460750102997,
+        0.83572041988372803,
+        -0.54891151189804077
     ],
     "SkyboxPath0": "",
     "SkyboxPath1": "",
@@ -107,8 +107,8 @@
                     "fSize": 25,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 23.079999923706055,
-                    "hFOV": 48.319999694824219,
+                    "vFOV": 26.600000381469727,
+                    "hFOV": 42.439998626708984,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
@@ -1924,8 +1924,8 @@
                 0
             ],
             "Rotation": [
-                1.0913928615019497e-11,
-                5.9604641222676946e-08,
+                1.0913927747657759e-11,
+                5.9604644775390625e-08,
                 0.00018310538143850863,
                 1
             ],
@@ -2324,7 +2324,7 @@
             "name": "SpawnPoints",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 1724115416,
             "ParentUID": 590099293,
             "PrefabReference": 0,
@@ -3513,8 +3513,8 @@
             ],
             "Scale": [
                 3.2295598983764648,
-                15.584248542785645,
-                3.1833162307739258
+                15.584247589111328,
+                3.1833159923553467
             ],
             "Components": [
                 {
@@ -5115,8 +5115,8 @@
             ],
             "Scale": [
                 2.6305902004241943,
-                1.3835355043411255,
-                0.99975019693374634
+                1.3835353851318359,
+                0.99975013732910156
             ],
             "Components": [
                 {
@@ -5147,7 +5147,7 @@
                     "Type": 14,
                     "Active": true,
                     "kinematic": true,
-                    "Gravity": true,
+                    "Gravity": false,
                     "LockLinearX": false,
                     "LockLinearY": false,
                     "LockLinearZ": false,
@@ -20805,6 +20805,105 @@
                         0.85974591970443726,
                         0.27513054013252258
                     ]
+                }
+            ]
+        },
+        {
+            "name": "Cube",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 674165557,
+            "ParentUID": 590099293,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -3.1505153179168701,
+                -0.99800002574920654,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                14.061994552612305,
+                1,
+                24.493074417114258
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "DPSDamage",
+                    "onTriggerStay": false,
+                    "base_damage": 4,
+                    "damage": 0,
+                    "ticksPerSecond": 1,
+                    "damageTimer": 1
                 }
             ]
         }
