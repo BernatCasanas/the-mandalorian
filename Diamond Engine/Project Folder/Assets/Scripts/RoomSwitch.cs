@@ -4,6 +4,8 @@ using DiamondEngine;
 
 public class RoomDataHolder
 {
+    public static bool isTutorial = false;
+
     public List<int> visited = new List<int>(); //I think this is a fucking pointer-type shit? i don't know, i don't think this is working, im out
     public int bossScene = 0;
     public int preBossScene = 0;

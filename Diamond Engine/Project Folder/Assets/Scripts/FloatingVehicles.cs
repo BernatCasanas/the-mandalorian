@@ -96,9 +96,9 @@ public class FloatingVehicles : DiamondComponent
                 maxRotation = 0.05f;
                 break;
             case "XWing":
-                maxHeight = 2.0f;
-                verticalSpeed = 0.1f;
-                maxRotation = 0.05f;
+                maxHeight = 3.0f;
+                verticalSpeed = 0.25f;
+                maxRotation = 0.07f;
                 break;
             case "XWingRepairing": //Lvl 2 - Room 3
                 maxHeight = 1.2f;

@@ -77,7 +77,8 @@ public class SHOP : DiamondComponent
             Audio.SetState("Player_State", "Alive");
             if (MusicSourceLocate.instance != null)
                 Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
-            Audio.PlayAudio(envObj, "Play_Post_Boss_Room_1_Ambience");
+            if (envObj !=null)
+                Audio.PlayAudio(envObj, "Play_Post_Boss_Room_1_Ambience");
         }
         else if (RoomSwitch.currentLevelIndicator-1 == RoomSwitch.LEVELS.TWO)
         {
@@ -85,7 +86,8 @@ public class SHOP : DiamondComponent
             Audio.SetState("Player_State", "Alive");
             if (MusicSourceLocate.instance != null)
                 Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
-            Audio.PlayAudio(envObj, "Play_Post_Boss_Room_2_Ambience");
+            if (envObj != null)
+                Audio.PlayAudio(envObj, "Play_Post_Boss_Room_2_Ambience");
         }
         else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
         {
