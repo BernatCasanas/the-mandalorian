@@ -37,6 +37,7 @@ public class SpikeTrap : DiamondComponent
             Animator.Play(this.gameObject, "SpikeTrap_Activate");
             timer = activateAnimationTime;
             triggered = true;
+            Audio.PlayAudio(gameObject, "Play_Spike_Trap");
         }
     }
 }

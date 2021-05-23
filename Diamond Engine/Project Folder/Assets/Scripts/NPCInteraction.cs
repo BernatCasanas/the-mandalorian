@@ -21,11 +21,12 @@ public class NPCInteraction : DiamondComponent
     {
         SetNPC();
 
-        HubTextController hubScript = hubTextController.GetComponent<HubTextController>();
         switch (npc)
         {
             case NPC.GREEF:
-                canInteract = hubScript.GreefHasInteractions();
+
+            if (hubTextController != null)
+                canInteract = hubTextController.GetComponent<HubTextController>().GreefHasInteractions();
                 break;
         }
     }
