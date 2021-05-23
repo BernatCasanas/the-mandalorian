@@ -50,7 +50,7 @@ public class Skel : Bosseslv2
     public bool firstSorrowRoar = false;
     private List<INPUT> inputsList = new List<INPUT>();
     private bool firstFrame = true;
-    private bool angry = false;
+    public bool angry = false;
 
     public override void Awake()
     {
@@ -59,7 +59,7 @@ public class Skel : Bosseslv2
 
         InitEntity(ENTITY_TYPE.SKEL);
         EnemyManager.AddEnemy(gameObject);
-
+        angry = false;
         agent = gameObject.GetComponent<NavMeshAgent>();
         if (agent == null)
             Debug.Log("Null agent, add a NavMeshAgent Component");
@@ -517,7 +517,7 @@ public class Skel : Bosseslv2
     {
         if (!DebugOptionsHolder.bossDmg)
         {
-            
+
 
             if (currentState != STATE.DEAD)
             {
@@ -530,7 +530,7 @@ public class Skel : Bosseslv2
                         mod = 1 + GetStatusData(STATUS_TYPE.GEOTERMAL_MARKER).severity / 100;
                     }
                 }
-                healthPoints -= damage * mod; 
+                healthPoints -= damage * mod;
                 if (Core.instance != null)
                 {
                     if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))
@@ -566,7 +566,12 @@ public class Skel : Bosseslv2
 
     private void SkelAngry()
     {
-        
+        speed = 8.0f;
+        /*chargeTime = 0.5f;
+        upTime = 0.3f;
+        fallingTime = 1.0f;
+        recoveryTime = 0.4f;*/
+        //totalJumpSlamTime = chargeTime + upTime + fallingTime + recoveryTime;
     }
 
 }
