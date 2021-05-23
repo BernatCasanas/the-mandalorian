@@ -29,7 +29,7 @@ Game developed by Virtual Ragnarok:
 
 * Design
 	- **LEAD**: [Adrià Serrano](https://www.linkedin.com/in/adri%C3%A0-serrano-l%C3%B3pez-7196a91a3/)
-	- [Jan Adell](https://www.linkedin.com/in/jan-adell-41a5341a3/)
+	- [Jan Adell](https://www.linkedin.com/in/jan-adell-mill-41a5341a3/)
 	- [Adrià Avila](https://www.linkedin.com/in/adria-avila-borrallo-427705209/)
 	- [Ferran-Roger Basart i Bosch](https://www.linkedin.com/in/ferran-roger-basart-i-bosch-606b5a195/)
 	- [Javier Belda](https://www.linkedin.com/in/javier-belda-gonz%C3%A1lez-59718112b/)
