@@ -1,19 +1,19 @@
 {
     "NavMesh": 942369955,
     "EditorCameraPosition": [
-        18.500215530395508,
-        9.6529216766357422,
-        3.0139789581298828
+        -25.964685440063477,
+        6.269446849822998,
+        6.3446745872497559
     ],
     "EditorCameraZ": [
-        -0.97967040538787842,
-        -0.16910931468009949,
-        -0.10792601108551025
+        0.46608120203018188,
+        -0.34591025114059448,
+        -0.81431841850280762
     ],
     "EditorCameraY": [
-        -0.16808322072029114,
-        0.98559731245040894,
-        -0.01860114187002182
+        0.17191949486732483,
+        0.93826758861541748,
+        -0.30016261339187622
     ],
     "SkyboxPath0": "",
     "SkyboxPath1": "",
@@ -108,8 +108,8 @@
                     "fSize": 35,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 20.571428298950195,
-                    "hFOV": 36.685714721679688,
+                    "vFOV": 19,
+                    "hFOV": 30.314285278320313,
                     "culling": true,
                     "HDR": true,
                     "drawSkybox": true
@@ -3004,7 +3004,7 @@
             "DontDestroy": false,
             "Static": true,
             "Position": [
-                -8.4742507934570312,
+                -8.4742507934570313,
                 21.669284820556641,
                 6.5039825439453125
             ],
@@ -3303,6 +3303,105 @@
             ]
         },
         {
+            "name": "WaterCollider",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 77875146,
+            "ParentUID": 1941018245,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0.16863009333610535,
+                2.5850000381469727,
+                5.8324794769287109
+            ],
+            "Rotation": [
+                0,
+                -1.2241643245966549e-12,
+                0,
+                1
+            ],
+            "Scale": [
+                13.766715049743652,
+                0.50823479890823364,
+                21.99329948425293
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "DPSDamage",
+                    "onTriggerStay": false,
+                    "base_damage": 4,
+                    "damage": 0,
+                    "ticksPerSecond": 1,
+                    "damageTimer": 1
+                }
+            ]
+        },
+        {
             "name": "Main Light",
             "tag": "Untagged",
             "layer": "Default",
@@ -3543,7 +3642,7 @@
             "Position": [
                 -8.0644025802612305,
                 10.779999732971191,
-                16.212783813476562
+                16.212783813476563
             ],
             "Rotation": [
                 1.3538352589092097e-16,
@@ -7230,7 +7329,7 @@
                         0,
                         0,
                         -0.0073059904389083385,
-                        0.99997329711914062
+                        0.99997329711914063
                     ],
                     "Scale": [
                         1,
@@ -8146,7 +8245,7 @@
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        0.49832534790039062,
+                        0.49832534790039063,
                         2.0816681711721685e-17,
                         1.3898392876873153e-17
                     ],
@@ -8510,7 +8609,7 @@
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        -1.8636245727539062,
+                        -1.8636245727539063,
                         0.046333789825439453,
                         -0.77125072479248047
                     ],
@@ -8538,7 +8637,7 @@
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        -1.8636245727539062,
+                        -1.8636245727539063,
                         0.046333789825439453,
                         0.86050128936767578
                     ],
@@ -8566,7 +8665,7 @@
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
-                        0.76593399047851562,
+                        0.76593399047851563,
                         0.046333789825439453,
                         0.86050128936767578
                     ],
@@ -8623,7 +8722,7 @@
                     "Static": false,
                     "Position": [
                         -0.0040745735168457031,
-                        -0.0062532424926757812,
+                        -0.0062532424926757813,
                         -0.058134078979492188
                     ],
                     "Rotation": [
