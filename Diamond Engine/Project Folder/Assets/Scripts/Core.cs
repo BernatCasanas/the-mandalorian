@@ -1438,7 +1438,7 @@ public class Core : Entity
             return;
         }
 
-        Audio.StopAudio(gameObject);
+        //Audio.StopAudio(gameObject);
         Audio.PlayAudio(shootPoint, "Play_Blaster_Shoot_Mando");
         Input.PlayHaptic(.3f, 10);
         if (hud != null)
@@ -1748,7 +1748,7 @@ public class Core : Entity
             return;
         }
 
-        Audio.StopAudio(gameObject);
+        //Audio.StopAudio(gameObject);
         Audio.PlayAudio(shootPoint, "Play_Sniper_Shoot_Mando");
         Input.PlayHaptic(.5f, 10);
 
@@ -1823,7 +1823,7 @@ public class Core : Entity
     #region DASH
     private void StartDash()
     {
-        Audio.StopAudio(gameObject);
+        //Audio.StopAudio(gameObject);
         Audio.PlayAudio(gameObject, "Play_Dash");
         Animator.Play(gameObject, "Dash", speedMult);
         hasDashed = true;
@@ -1949,7 +1949,7 @@ public class Core : Entity
 
         if (footStepTimer > 0.33f)
         {
-            Audio.StopAudio(gameObject);
+            //Audio.StopAudio(gameObject);
 
             PlayFootstepsAudio();
 
@@ -1971,7 +1971,7 @@ public class Core : Entity
     }
     private void MoveEnd()
     {
-        Audio.StopAudio(gameObject);
+        //Audio.StopAudio(gameObject);
     }
 
     private void StopPlayer()
