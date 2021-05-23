@@ -21,15 +21,9 @@ public class PlayerHealth : DiamondComponent
     {
         if (currHealth <= 0 && currMaxHealth <= 0)
             ResetMaxAndCurrentHPToDefault();
-        if (RoomDataHolder.isTutorial)
-        {
-            BlackFade.onFadeInCompleted = TutorialDie;
-            Debug.Log("Scene is tutorial");
-        }
-        else
-        {
-            BlackFade.onFadeInCompleted = Die;
-        }
+
+        BlackFade.onFadeInCompleted = Die;
+
     }
 
     public void Update()

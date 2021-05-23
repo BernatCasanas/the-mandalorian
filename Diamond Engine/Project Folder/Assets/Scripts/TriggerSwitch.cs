@@ -6,7 +6,6 @@ public class TriggerSwitch : DiamondComponent
 
     public int roomUidToLoad = -1;
     public bool start = true;
-    public bool isTutorialScene = false;
 
     private void Start()
     {
@@ -33,7 +32,6 @@ public class TriggerSwitch : DiamondComponent
     {
         if (roomUidToLoad != -1 && triggeredGameObject.CompareTag("Player"))
         {
-            RoomDataHolder.isTutorial = isTutorialScene;
             StaticVariablesInit.InitStaticVars();
             SceneManager.LoadScene(roomUidToLoad);
         }
