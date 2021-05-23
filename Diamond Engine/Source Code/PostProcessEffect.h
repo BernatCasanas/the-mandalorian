@@ -1,7 +1,5 @@
 #pragma once
 
-class PostProcessFilterContrastTest;
-class PostProcessFilterDepthTest;
 class PostProcessFilterAO;
 class PostProcessFilterBlurH;
 class PostProcessFilterBlurV;
@@ -51,20 +49,6 @@ private:
 	PostProcessFilterBlurH* blurHFilter;
 	PostProcessFilterBlurV* blurVFilter;
 	PostProcessFilterCombine* combineFilter;
-};
-
-class PostProcessEffectDepthTest : public PostProcessEffect
-{
-public:
-	PostProcessEffectDepthTest();
-	~PostProcessEffectDepthTest();
-
-	void Init() override;
-	void CleanUp() override;
-	//returns the index of the color texture that has been rendered
-	int Render(bool isHDR,int width, int height, int colorTexture, int depthTexture);
-private:
-	PostProcessFilterDepthTest* depthFilter;
 };
 
 class PostProcessEffectRender : public PostProcessEffect

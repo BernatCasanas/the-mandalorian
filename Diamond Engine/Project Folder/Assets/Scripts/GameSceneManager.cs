@@ -116,6 +116,8 @@ public class GameSceneManager : DiamondComponent
         {
             PlayerResources.AddRunCoins(2);
         }
+        if (Core.instance != null)
+            Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Clean_Room_Voice");
         Counter.SumToCounterType(Counter.CounterTypes.LEVELS);
         rewardMenu = new EndLevelRewards();
 

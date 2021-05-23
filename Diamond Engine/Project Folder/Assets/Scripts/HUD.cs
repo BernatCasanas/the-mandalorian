@@ -533,7 +533,8 @@ public class HUD : DiamondComponent
     {
         if (applyRewards)
         {
-
+            if (BabyYoda.instance != null)
+                Audio.PlayAudio(BabyYoda.instance.gameObject, "Play_Grogu_Cheering");
             ComboResetEffects endOfComboData = new ComboResetEffects();
             bool lastEffect = false;
             int key = 0;

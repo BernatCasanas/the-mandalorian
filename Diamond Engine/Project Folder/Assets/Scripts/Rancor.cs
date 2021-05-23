@@ -853,7 +853,7 @@ public class Rancor : Entity
                 if (jumpColl != null)
                 {
                     jumpColl.deltaTimeMult = speedMult;
-                    jumpColl.damage = (int)(jumpColl.damage  * damageMult);
+                    jumpColl.damage = (int)(jumpColl.damage * damageMult);
                 }
 
                 //gameObject.DisableCollider();
@@ -1021,7 +1021,7 @@ public class Rancor : Entity
                     {
                         projectileScript = projectile.GetComponent<RancorProjectile>();
 
-                        if(projectileScript != null)
+                        if (projectileScript != null)
                         {
                             projectileScript.damage = (int)(projectileScript.damage * damageMult);
                         }
@@ -1140,12 +1140,12 @@ public class Rancor : Entity
             if (activateWave)
             {
                 RancorHandSlamWave handSlamWave = InternalCalls.CreatePrefab("Library/Prefabs/1923485827.prefab", gameObject.transform.localPosition, gameObject.transform.localRotation, new Vector3(0.767f, 0.225f, 1.152f)).GetComponent<RancorHandSlamWave>();
-                
-                if(handSlamWave != null)
+
+                if (handSlamWave != null)
                 {
                     handSlamWave.damage = (int)(handSlamWave.damage * damageMult);
                 }
-                
+
                 Input.PlayHaptic(.8f, 350);
                 PlayParticles(PARTICLES.HANDSLAM);
                 activateWave = false;
@@ -1315,7 +1315,7 @@ public class Rancor : Entity
 
         }
 
-        //RemoveFromEnemyList();
+        EnemyManager.RemoveEnemy(gameObject);
     }
 
     private void UpdateDie()
@@ -1335,7 +1335,6 @@ public class Rancor : Entity
     {
         Debug.Log("RANCOR'S DEAD");
         Counter.SumToCounterType(Counter.CounterTypes.RANCOR);
-        EnemyManager.RemoveEnemy(gameObject);
 
         Animator.Pause(gameObject);
         Audio.StopAudio(gameObject);
@@ -1366,137 +1365,145 @@ public class Rancor : Entity
     {
         if (collidedGameObject.CompareTag("Bullet"))
         {
-            float damageToBoss = 0f;
-
-            if (Core.instance != null)
+            if (currentState != RANCOR_STATE.DEAD)
             {
-                if (Core.instance.HasStatus(STATUS_TYPE.MANDO_QUICK_DRAW))
-                    AddStatus(STATUS_TYPE.BLASTER_VULN, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.MANDO_QUICK_DRAW).severity / 100, 5);
-                if (Core.instance.HasStatus(STATUS_TYPE.PRIM_MOV_SPEED))
-                    Core.instance.AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_MOV_SPEED).severity / 100, 5, false);
-            }
-            BH_Bullet bulletScript = collidedGameObject.GetComponent<BH_Bullet>();
-
-            if (bulletScript != null)
-            {
-                damageToBoss += bulletScript.GetDamage();
-            }
-            else
-            {
-                Debug.Log("The collider with tag Bullet didn't have a bullet Script!!");
-            }
-            if (Core.instance != null)
-                damageToBoss *= Core.instance.DamageToBosses * BlasterVulnerability;
-            //if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
-            //{
-            //    damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
-            //}
-
-            TakeDamage(damageToBoss * damageRecieveMult);
-            Debug.Log("Rancor HP: " + healthPoints.ToString());
-            damaged = 1.0f;
-            //CHANGE FOR APPROPIATE RANCOR HIT
-            Audio.PlayAudio(gameObject, "Play_Rancor_Hit");
-
-            if (Core.instance.hud != null)
-            {
-                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
-
-                if (hudComponent != null)
-                {
-                    hudComponent.AddToCombo(25, 0.95f);
-                }
-            }
-
-            if (currentState != RANCOR_STATE.DEAD && healthPoints <= 0.0f)
-            {
-                inputsList.Add(RANCOR_INPUT.IN_DEAD);
-            }
-        }
-        else if (collidedGameObject.CompareTag("ChargeBullet"))
-        {
-            float damageToBoss = 0f;
-
-            ChargedBullet bulletScript = collidedGameObject.GetComponent<ChargedBullet>();
-
-            if (bulletScript != null)
-            {
-                float vulerableSev = 0.2f;
-                float vulerableTime = 4.5f;
-                STATUS_APPLY_TYPE applyType = STATUS_APPLY_TYPE.BIGGER_PERCENTAGE;
-                float damageMult = 1f;
+                float damageToBoss = 0f;
 
                 if (Core.instance != null)
                 {
-                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_DMG_UP))
-                    {
-                        vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_DMG_UP).severity;
-                    }
-                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_ENABLE))
-                    {
-                        vulerableTime += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_ENABLE).severity;
-                        applyType = STATUS_APPLY_TYPE.ADD_SEV;
-                    }
-                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER))
-                    {
-                        vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER).severity;
-                        damageMult = damageRecieveMult;
-                    }
-                    if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_BLEED))
-                    {
-                        StatusData bleedData = Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_BLEED);
-                        float chargedBulletMaxDamage = Core.instance.GetSniperMaxDamage();
-
-                        damageMult *= bleedData.remainingTime;
-                        this.AddStatus(STATUS_TYPE.ENEMY_BLEED, STATUS_APPLY_TYPE.ADD_SEV, (chargedBulletMaxDamage * bleedData.severity) / vulerableTime, vulerableTime);
-                    }
-
+                    if (Core.instance.HasStatus(STATUS_TYPE.MANDO_QUICK_DRAW))
+                        AddStatus(STATUS_TYPE.BLASTER_VULN, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.MANDO_QUICK_DRAW).severity / 100, 5);
+                    if (Core.instance.HasStatus(STATUS_TYPE.PRIM_MOV_SPEED))
+                        Core.instance.AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_MOV_SPEED).severity / 100, 5, false);
                 }
-                this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, applyType, vulerableSev, vulerableTime);
+                BH_Bullet bulletScript = collidedGameObject.GetComponent<BH_Bullet>();
 
-                damageToBoss += bulletScript.GetDamage() * damageMult;
-            }
-            else
-            {
-                Debug.Log("The collider with tag Bullet didn't have a bullet Script!!");
-            }
-
-            //if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
-            //{
-            //    damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
-            //}
-
-            if (Core.instance != null)
-                damageToBoss *= Core.instance.DamageToBosses;
-            if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
-            {
-                float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
-                Random rand = new Random();
-                float result = rand.Next(1, 101);
-                if (result <= mod)
-                    Core.instance.RefillSniper();
-
-                Core.instance.luckyMod = 1 + mod / 100;
-            }
-            TakeDamage(damageToBoss);
-            Debug.Log("Rancor HP: " + healthPoints.ToString());
-            damaged = 1.0f;
-            //CHANGE FOR APPROPIATE RANCOR HIT
-            Audio.PlayAudio(gameObject, "Play_Rancor_Hit");
-
-            if (Core.instance.hud != null)
-            {
-                HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
-
-                if (hudComponent != null)
+                if (bulletScript != null)
                 {
-                    hudComponent.AddToCombo(55, 0.25f);
+                    damageToBoss += bulletScript.GetDamage();
+                }
+                else
+                {
+                    Debug.Log("The collider with tag Bullet didn't have a bullet Script!!");
+                }
+                if (Core.instance != null)
+                    damageToBoss *= Core.instance.DamageToBosses * BlasterVulnerability;
+                //if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
+                //{
+                //    damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
+                //}
+
+                TakeDamage(damageToBoss * damageRecieveMult);
+                Debug.Log("Rancor HP: " + healthPoints.ToString());
+                damaged = 1.0f;
+                //CHANGE FOR APPROPIATE RANCOR HIT
+                Audio.PlayAudio(gameObject, "Play_Rancor_Hit");
+
+                if (Core.instance.hud != null)
+                {
+                    HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                    if (hudComponent != null)
+                    {
+                        hudComponent.AddToCombo(25, 0.95f);
+                    }
+                }
+
+                if (currentState != RANCOR_STATE.DEAD && healthPoints <= 0.0f)
+                {
+                    inputsList.Add(RANCOR_INPUT.IN_DEAD);
                 }
             }
 
-            if (currentState != RANCOR_STATE.DEAD && healthPoints <= 0.0f)
+        }
+        else if (collidedGameObject.CompareTag("ChargeBullet"))
+        {
+            if (currentState != RANCOR_STATE.DEAD)
             {
-                inputsList.Add(RANCOR_INPUT.IN_DEAD);
+                float damageToBoss = 0f;
+
+                ChargedBullet bulletScript = collidedGameObject.GetComponent<ChargedBullet>();
+
+                if (bulletScript != null)
+                {
+                    float vulerableSev = 0.2f;
+                    float vulerableTime = 4.5f;
+                    STATUS_APPLY_TYPE applyType = STATUS_APPLY_TYPE.BIGGER_PERCENTAGE;
+                    float damageMult = 1f;
+
+                    if (Core.instance != null)
+                    {
+                        if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_DMG_UP))
+                        {
+                            vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_DMG_UP).severity;
+                        }
+                        if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_ENABLE))
+                        {
+                            vulerableTime += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_ENABLE).severity;
+                            applyType = STATUS_APPLY_TYPE.ADD_SEV;
+                        }
+                        if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER))
+                        {
+                            vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_WORK_SNIPER).severity;
+                            damageMult = damageRecieveMult;
+                        }
+                        if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_BLEED))
+                        {
+                            StatusData bleedData = Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_BLEED);
+                            float chargedBulletMaxDamage = Core.instance.GetSniperMaxDamage();
+
+                            damageMult *= bleedData.remainingTime;
+                            this.AddStatus(STATUS_TYPE.ENEMY_BLEED, STATUS_APPLY_TYPE.ADD_SEV, (chargedBulletMaxDamage * bleedData.severity) / vulerableTime, vulerableTime);
+                        }
+
+                    }
+                    this.AddStatus(STATUS_TYPE.ENEMY_VULNERABLE, applyType, vulerableSev, vulerableTime);
+
+                    damageToBoss += bulletScript.GetDamage() * damageMult;
+
+                }
+                else
+                {
+                    Debug.Log("The collider with tag Bullet didn't have a bullet Script!!");
+                }
+
+                //if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
+                //{
+                //    damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
+                //}
+
+                if (Core.instance != null)
+                    damageToBoss *= Core.instance.DamageToBosses;
+                if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
+                {
+                    float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
+                    Random rand = new Random();
+                    float result = rand.Next(1, 101);
+                    if (result <= mod)
+                        Core.instance.RefillSniper();
+
+                    Core.instance.luckyMod = 1 + mod / 100;
+                }
+                TakeDamage(damageToBoss);
+                Debug.Log("Rancor HP: " + healthPoints.ToString());
+                damaged = 1.0f;
+                //CHANGE FOR APPROPIATE RANCOR HIT
+                Audio.PlayAudio(gameObject, "Play_Rancor_Hit");
+
+                if (Core.instance.hud != null)
+                {
+                    HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                    if (hudComponent != null)
+                    {
+                        hudComponent.AddToCombo(55, 0.25f);
+                    }
+                }
+
+                if (currentState != RANCOR_STATE.DEAD && healthPoints <= 0.0f)
+                {
+                    inputsList.Add(RANCOR_INPUT.IN_DEAD);
+                }
             }
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))
@@ -1612,7 +1619,7 @@ public class Rancor : Entity
     {
         if (!DebugOptionsHolder.bossDmg)
         {
-          
+
 
             Debug.Log("Rancor damage" + damage.ToString());
             if (currentState != RANCOR_STATE.DEAD)
