@@ -1220,12 +1220,12 @@ public class MoffGideon : Entity
 
     private void StartThrowSaber()
     {
-        Animator.Play(gameObject, "MG_ThrowSaber");
+        Animator.Play(gameObject, "MG_SaberThrow");
         UpdateAnimationSpd(speedMult);
 
         Quaternion rot = new Quaternion(0, 0, 90);
 
-        saber = InternalCalls.CreatePrefab("Library/Prefabs/1030044556.prefab", shootPoint.transform.globalPosition, rot, new Vector3(1.0f, 1.0f, 1.0f));
+        saber = InternalCalls.CreatePrefab("Library/Prefabs/1894242407.prefab", shootPoint.transform.globalPosition, rot, new Vector3(1.0f, 1.0f, 1.0f));
 
         if (saber != null)
         {
