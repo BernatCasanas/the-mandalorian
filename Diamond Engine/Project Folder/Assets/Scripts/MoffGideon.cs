@@ -188,8 +188,8 @@ public class MoffGideon : Entity
 
 
         //comboTime = Animator.GetAnimationDuration(gameObject, "MG_Slash") - 0.016f;
-        presentationTime = Animator.GetAnimationDuration(gameObject, "MG_CapeOff") - 0.016f;
-        changingStateTime = Animator.GetAnimationDuration(gameObject, "MG_PowerPose") - 0.016f;
+        presentationTime = Animator.GetAnimationDuration(gameObject, "MG_PowerPose") - 0.016f;
+        changingStateTime = Animator.GetAnimationDuration(gameObject, "MG_Rising") - 0.016f;
         dieTime = Animator.GetAnimationDuration(gameObject, "MG_Death") - 0.016f;
 
         atacks.Add(new AtackMoff("MG_MeleeCombo1", gameObject));
@@ -928,6 +928,11 @@ public class MoffGideon : Entity
     {
 
         Debug.Log("Changing State");
+
+        if (changingStateTimer <= 2.5f)
+        {
+            sword.Enable(true);
+        }
     }
 
 
@@ -940,7 +945,6 @@ public class MoffGideon : Entity
             cam_comp.target = Core.instance.gameObject;
         invencible = false;
 
-        sword.Enable(true);
 
     }
 
