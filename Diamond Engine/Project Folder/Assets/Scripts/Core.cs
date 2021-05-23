@@ -1694,8 +1694,8 @@ public class Core : Entity
             Vector3 sniperDir1 = Vector3.RotateAroundQuaternion(Quaternion.RotateAroundAxis(Vector3.up, currAngle), sniperShootPoint.transform.GetForward());
             Vector3 sniperDir2 = Vector3.RotateAroundQuaternion(Quaternion.RotateAroundAxis(Vector3.up, -currAngle), sniperShootPoint.transform.GetForward());
 
-            InternalCalls.RayCast(sniperShootPoint.transform.globalPosition + (sniperShootPoint.transform.GetForward() * 1.5f), sniperDir1, myAimbot.maxRange, ref hitDistanceRay1);
-            InternalCalls.RayCast(sniperShootPoint.transform.globalPosition + (sniperShootPoint.transform.GetForward() * 1.5f), sniperDir2, myAimbot.maxRange, ref hitDistanceRay2);
+            InternalCalls.RayCast(sniperShootPoint.transform.globalPosition + (sniperShootPoint.transform.GetForward() * 1.5f), sniperDir1, myAimbot.maxRange * 2, ref hitDistanceRay1);
+            InternalCalls.RayCast(sniperShootPoint.transform.globalPosition + (sniperShootPoint.transform.GetForward() * 1.5f), sniperDir2, myAimbot.maxRange * 2, ref hitDistanceRay2);
             //hitDistance = Math.Min(hitDistance, Mathf.Lerp(0, myAimbot.maxRange, chargeTimer / timeToPerfectCharge));
 
             InternalCalls.DrawRay(sniperShootPoint.transform.globalPosition, sniperShootPoint.transform.globalPosition + (sniperDir1 * hitDistanceRay1), currSniperLaserColor, rayWidth);
