@@ -259,6 +259,7 @@ public class Core : Entity
     private FLOOR_TYPE floorType = FLOOR_TYPE.NONE;
 
     private TUTO_STATES tuto_state = TUTO_STATES.NONE;
+    public float fallDamage = 15f;
 
     public void Awake()
     {
@@ -1117,6 +1118,7 @@ public class Core : Entity
 
                         case INPUT.IN_DEAD:
                             currentState = STATE.DEAD;
+                            EndShootCharge();
                             StartDead();
                             break;
                     }
@@ -1482,11 +1484,6 @@ public class Core : Entity
 
     private void EndGadgetCharge()
     {
-        if (blaster != null)
-        {
-            blaster.Enable(true);
-        }
-
         //if(grenadeMaxLaunchTimer > 0f)
         //{
         //    float animTimeElapsed = grenadeThrowAnimTime - grenadeThrowAnimTimer;
@@ -1541,6 +1538,7 @@ public class Core : Entity
 
         if (blaster != null)
             blaster.Enable(false);
+
         Input.PlayHaptic(2f, 30);
 
         Vector3 baseScale = new Vector3(0.2f, 0.2f, 0.2f);
@@ -2423,10 +2421,10 @@ public class Core : Entity
             int finalHealthSubstract = 0;
             if (HasStatus(STATUS_TYPE.FALL))
             {
-                finalHealthSubstract = (int)(PlayerHealth.currMaxHealth * 0.25f / 2);
+                finalHealthSubstract = (int)(fallDamage / 2);
             }
             else
-                finalHealthSubstract = (int)(PlayerHealth.currMaxHealth * 0.25f);
+                finalHealthSubstract = (int)(fallDamage);
 
             if (PlayerHealth.currHealth - finalHealthSubstract <= 0)
             {
