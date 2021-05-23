@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -1.8047648668289185,
-        7.6419796943664551,
-        -4.0030803680419922
+        4.1803855895996094,
+        7.32916259765625,
+        3.9320836067199707
     ],
     "EditorCameraZ": [
-        0.71933102607727051,
-        -0.57221376895904541,
-        0.39387106895446777
+        0.25234851241111755,
+        -0.96550047397613525,
+        -0.06425774097442627
     ],
     "EditorCameraY": [
-        0.50190848112106323,
-        0.82010447978973389,
-        0.27480268478393555
+        0.9356071949005127,
+        0.26040124893188477,
+        -0.23839128017425537
     ],
     "SkyboxPath0": "",
     "SkyboxPath1": "",
@@ -27,7 +27,11 @@
         1,
         1
     ],
-    "tags": [],
+    "tags": [
+        "First_Pos",
+        "Second_Pos",
+        "LittleMen"
+    ],
     "layers": [],
     "Game Objects": [
         {
@@ -1436,8 +1440,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 12.239999771118164,
-                    "hFOV": 23.540000915527344,
+                    "vFOV": 13.460000038146973,
+                    "hFOV": 23.5,
                     "culling": true,
                     "HDR": true,
                     "drawSkybox": true,
@@ -3269,10 +3273,10 @@
                         -0.19471836090087891
                     ],
                     "Rotation": [
-                        0.1939222663640976,
-                        -2.7353402876073574e-10,
-                        1.3877787807814457e-17,
-                        0.98101687431335449
+                        0.19392229616641998,
+                        -2.7353405651631135e-10,
+                        1.3877789462175682e-17,
+                        0.98101699352264404
                     ],
                     "Scale": [
                         1,
@@ -23396,6 +23400,766 @@
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "PowerDroid_Big",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 831973992,
+            "ParentUID": 3625608,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                7.9800000190734863,
+                0.15299999713897705,
+                2.1559998989105225
+            ],
+            "Rotation": [
+                0,
+                -0.42261835932731628,
+                0,
+                0.90630775690078735
+            ],
+            "Scale": [
+                0.99999970197677612,
+                1,
+                0.99999970197677612
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 16,
+                    "Active": true,
+                    "RootBone UID": 932370148,
+                    "MeshRendererUID": 2031590897,
+                    "Animations": [
+                        769499669,
+                        370614731,
+                        773977423,
+                        258705481
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0.75,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        0.89999997615814209,
+                        1.25,
+                        0.89999997615814209
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "DynamicProps",
+                    "RotateAxis": 1,
+                    "MoveAxis": 2,
+                    "RotateAngle": 180,
+                    "moveSpeed": 0.5,
+                    "rotateSpeed": 2,
+                    "reset": false,
+                    "start_Idle": false,
+                    "isScreaming": false,
+                    "waitSeconds": 2,
+                    "STATUS": 0
+                }
+            ]
+        },
+        {
+            "name": "Hip",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 932370148,
+            "ParentUID": 831973992,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.0043718027882277966,
+                0.60995793342590332,
+                -0.016224492341279984
+            ],
+            "Rotation": [
+                -0.13626706600189209,
+                -0.14036227762699127,
+                0.68310362100601196,
+                0.70363283157348633
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Head",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 553876039,
+            "ParentUID": 932370148,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0.36186176538467407,
+                7.2858385991025898e-17,
+                5.2041704279304213e-18
+            ],
+            "Rotation": [
+                -0.38667187094688416,
+                -0.39829245209693909,
+                -0.57938253879547119,
+                0.59679466485977173
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_Leg",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1187345687,
+            "ParentUID": 932370148,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.46307423710823059,
+                -0.12502516806125641,
+                -0.028660241514444351
+            ],
+            "Rotation": [
+                0.13626700639724731,
+                0.14036226272583008,
+                -0.68310362100601196,
+                0.70363283157348633
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_Leg",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1106050656,
+            "ParentUID": 932370148,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.46834075450897217,
+                0.073514357209205627,
+                0.053861282765865326
+            ],
+            "Rotation": [
+                0.13626700639724731,
+                0.14036226272583008,
+                -0.68310362100601196,
+                0.70363283157348633
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Mesh",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 2031590897,
+            "ParentUID": 831973992,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1926443207.mmh",
+                    "UID": 1926443207,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
+                    "MaterialUID": 1948688504
+                }
+            ]
+        },
+        {
+            "name": "Points",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 716851034,
+            "ParentUID": 3625608,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Point1",
+            "tag": "First_Pos",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1687909433,
+            "ParentUID": 716851034,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                8.3299999237060547,
+                0.85600000619888306,
+                1.8600000143051147
+            ],
+            "Rotation": [
+                0,
+                0.32878422737121582,
+                0,
+                0.94440507888793945
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        0.5,
+                        0.5,
+                        0.5
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Point2",
+            "tag": "Second_Pos",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1878783757,
+            "ParentUID": 716851034,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                4.499000072479248,
+                0.85600000619888306,
+                4.8949999809265137
+            ],
+            "Rotation": [
+                0,
+                0.32878419756889343,
+                0,
+                0.94440507888793945
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        0.5,
+                        0.5,
+                        0.5
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "PowerDroid_Little",
+            "tag": "LittleMen",
+            "layer": "Default",
+            "Active": true,
+            "UID": 262244156,
+            "ParentUID": 3625608,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                11.050000190734863,
+                0.98000001907348633,
+                -3.4649999141693115
+            ],
+            "Rotation": [
+                0,
+                -0.66515868902206421,
+                0,
+                0.74670201539993286
+            ],
+            "Scale": [
+                0.5,
+                0.5,
+                0.5
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 16,
+                    "Active": true,
+                    "RootBone UID": 1941901729,
+                    "MeshRendererUID": 1082658389,
+                    "Animations": [
+                        769499669,
+                        370614731,
+                        773977423,
+                        258705481
+                    ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": false,
+                    "Position": [
+                        0,
+                        0.44999998807907104,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        0.60000002384185791,
+                        1,
+                        0.60000002384185791
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "DynamicProps",
+                    "RotateAxis": 0,
+                    "MoveAxis": 0,
+                    "RotateAngle": 90,
+                    "moveSpeed": 2,
+                    "rotateSpeed": 0.20000000298023224,
+                    "reset": false,
+                    "start_Idle": true,
+                    "isScreaming": true,
+                    "waitSeconds": 4,
+                    "STATUS": 0
+                }
+            ]
+        },
+        {
+            "name": "Hip",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1941901729,
+            "ParentUID": 262244156,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.0043718027882277966,
+                0.60995793342590332,
+                -0.016224492341279984
+            ],
+            "Rotation": [
+                -0.13626706600189209,
+                -0.14036227762699127,
+                0.68310362100601196,
+                0.70363283157348633
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Head",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 159794177,
+            "ParentUID": 1941901729,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0.36186176538467407,
+                7.2858385991025898e-17,
+                5.2041704279304213e-18
+            ],
+            "Rotation": [
+                -0.38667187094688416,
+                -0.39829245209693909,
+                -0.57938253879547119,
+                0.59679466485977173
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "L_Leg",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1065105457,
+            "ParentUID": 1941901729,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.46307423710823059,
+                -0.12502516806125641,
+                -0.028660241514444351
+            ],
+            "Rotation": [
+                0.13626700639724731,
+                0.14036226272583008,
+                -0.68310362100601196,
+                0.70363283157348633
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "R_Leg",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1096690887,
+            "ParentUID": 1941901729,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.46834075450897217,
+                0.073514357209205627,
+                0.053861282765865326
+            ],
+            "Rotation": [
+                0.13626700639724731,
+                0.14036226272583008,
+                -0.68310362100601196,
+                0.70363283157348633
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Mesh",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1082658389,
+            "ParentUID": 262244156,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/1926443207.mmh",
+                    "UID": 1926443207,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/1948688504.mat",
+                    "MaterialUID": 1948688504
                 }
             ]
         }

@@ -13,9 +13,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                9.0959997177124023,
-                6.8600001335144043,
-                -9.1490001678466797
+                -2.2639999389648438,
+                7.4307394027709961,
+                6.1739997863769531
             ],
             "Rotation": [
                 0,
@@ -45,7 +45,7 @@
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
-            "Static": false,
+            "Static": true,
             "Position": [
                 0.0027942657470703125,
                 -0.0015521049499511719,
@@ -84,7 +84,8 @@
                         1
                     ],
                     "stencilEmission": 0,
-                    "doNotDrawStencil": true
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -150,6 +151,16 @@
                     "Type": 5,
                     "Active": true,
                     "ScriptName": "SpikeTrap"
+                },
+                {
+                    "Type": 13,
+                    "Active": true,
+                    "evName": "Empty",
+                    "audBankReference": "Environment",
+                    "pitch": 50,
+                    "playOnAwake": false,
+                    "isMuted": false,
+                    "isMusic": false
                 }
             ]
         },
