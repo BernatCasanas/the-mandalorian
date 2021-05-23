@@ -168,6 +168,7 @@ public class Skel : Bosseslv2
             presentationTimer = presentationTime;
             SkelAngry();
             angry = true;
+            firstSorrowRoar = true;
         }
     }
 

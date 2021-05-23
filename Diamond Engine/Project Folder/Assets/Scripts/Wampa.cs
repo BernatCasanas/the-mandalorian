@@ -174,6 +174,7 @@ public class Wampa : Bosseslv2
             presentationTimer = presentationTime;
             WampaAngry();
             angry = true;
+            firstSorrowRoar = true;
         }
     }
 

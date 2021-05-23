@@ -718,7 +718,7 @@ public class Bosseslv2 : Entity
 
         if (gameObject.CompareTag("Skel"))
         {
-            Animator.Play(gameObject, "Skel_Presentation", speedMult);
+            Animator.Play(gameObject, "Skel_Roar", speedMult);
             UpdateAnimationSpd(speedMult);
             //Audio.PlayAudio(gameObject, "Play_Skel_Death");
         }
