@@ -86,7 +86,6 @@ public class Wampa : Bosseslv2
         ProcessState();
 
         UpdateState();
-        //Debug.Log(healthPoints.ToString());
 
         if (firstSorrowRoar)
         {
@@ -119,7 +118,6 @@ public class Wampa : Bosseslv2
                 inputsList.Add(INPUT.IN_FAST_RUSH_END);
             }
         }
-        Debug.Log(presentationTimer.ToString());
 
         if (presentationTimer > 0.0f)
         {
@@ -397,7 +395,6 @@ public class Wampa : Bosseslv2
             else
                 inputsList.Add(INPUT.IN_FAST_RUSH);
         }
-        Debug.Log(resting.ToString());
     }
 
 

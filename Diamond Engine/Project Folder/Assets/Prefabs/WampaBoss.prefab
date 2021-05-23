@@ -91,8 +91,8 @@
                     "bossHealth": 1007388580,
                     "limboHealth": 0,
                     "maxHealthPoints": 0,
-                    "leftSpike": 847351176,
-                    "rightSpike": 2060441206,
+                    "leftSpike": 436560957,
+                    "rightSpike": 474331306,
                     "resting": false,
                     "firstShot": false,
                     "secondShot": true,
@@ -1008,7 +1008,7 @@
             "name": "Empty",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 436560957,
             "ParentUID": 1441938291,
             "PrefabReference": 0,
@@ -1016,20 +1016,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0.20293450355529785,
-                -6.3598628044128418,
-                -5.0651793479919434
+                0,
+                0,
+                0
             ],
             "Rotation": [
-                0.067809812724590302,
-                -0.50303941965103149,
-                0.11510266363620758,
-                0.85387617349624634
+                0,
+                0,
+                0,
+                1
             ],
             "Scale": [
-                0.99999696016311646,
-                1.0000002384185791,
-                0.99999749660491943
+                1,
+                1,
+                1
             ],
             "Components": [
                 {
@@ -1042,7 +1042,7 @@
             "name": "Left Spike",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": false,
+            "Active": true,
             "UID": 847351176,
             "ParentUID": 436560957,
             "PrefabReference": 0,
@@ -1050,20 +1050,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                5.674370288848877,
-                5.9925680160522461,
-                0.21036593616008759
+                1.0544273853302002,
+                -1.5735626220703125e-05,
+                3.337860107421875e-06
             ],
             "Rotation": [
-                -0.11510301381349564,
-                -0.85387629270553589,
-                0.067809246480464935,
-                0.50303930044174194
+                4.3711388286737929e-08,
+                -1,
+                4.3711388286737929e-08,
+                -9.3132239697979458e-09
             ],
             "Scale": [
-                0.10000023990869522,
-                0.10000001639127731,
-                0.10000029951334
+                0.099999994039535522,
+                0.10000000149011612,
+                0.10000001639127731
             ],
             "Components": [
                 {
@@ -1094,7 +1094,131 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
+                    "MaterialAssetPath": "Assets\/Materials\/vertex_color.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "Left Spike 2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1505698223,
+            "ParentUID": 436560957,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0.98608660697937012,
+                -0.13341712951660156,
+                0.11104297637939453
+            ],
+            "Rotation": [
+                -0.076658062636852264,
+                -0.016714159399271011,
+                0.9740336537361145,
+                0.21237380802631378
+            ],
+            "Scale": [
+                0.10000012814998627,
+                0.10000015050172806,
+                0.10000002384185791
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/944489387.mmh",
+                    "UID": 944489387,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/vertex_color.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "Left Spike 3",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 949238825,
+            "ParentUID": 436560957,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                1.0861778259277344,
+                0.28051424026489258,
+                0.0077252388000488281
+            ],
+            "Rotation": [
+                -0.049267008900642395,
+                0.0067047779448330402,
+                -0.98964041471481323,
+                0.13468381762504578
+            ],
+            "Scale": [
+                0.1000029593706131,
+                0.10000355541706085,
+                0.10000015795230865
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/944489387.mmh",
+                    "UID": 944489387,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/vertex_color.mat",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
                 }
@@ -1410,7 +1534,7 @@
             "name": "Empty",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": true,
+            "Active": false,
             "UID": 474331306,
             "ParentUID": 251000619,
             "PrefabReference": 0,
@@ -1418,20 +1542,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -5.430084228515625,
-                -7.906806468963623,
-                1.1328417062759399
+                0,
+                0,
+                0
             ],
             "Rotation": [
-                -0.057623445987701416,
-                0.42743530869483948,
-                0.12053769826889038,
-                0.8941192626953125
+                0,
+                0,
+                0,
+                1
             ],
             "Scale": [
-                0.99999696016311646,
                 1,
-                0.99999743700027466
+                1,
+                1
             ],
             "Components": [
                 {
@@ -1444,7 +1568,7 @@
             "name": "Right Spike",
             "tag": "Untagged",
             "layer": "Default",
-            "Active": false,
+            "Active": true,
             "UID": 2060441206,
             "ParentUID": 474331306,
             "PrefabReference": 0,
@@ -1452,20 +1576,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                6.2029147148132324,
-                5.9556422233581543,
-                5.8836393356323242
+                1.0390996932983398,
+                1.1920928955078125e-05,
+                -7.152557373046875e-06
             ],
             "Rotation": [
-                0.12053771317005157,
-                0.8941192626953125,
-                0.057623568922281265,
-                0.42743533849716187
+                -4.371138473402425e-08,
+                -1,
+                -4.371138473402425e-08,
+                4.6566132283487605e-08
             ],
             "Scale": [
-                0.10000026226043701,
                 0.099999994039535522,
-                0.1000002920627594
+                0.099999889731407166,
+                0.099999994039535522
             ],
             "Components": [
                 {
@@ -1496,7 +1620,131 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
+                    "MaterialAssetPath": "Assets\/Materials\/vertex_color.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "Right Spike 2",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 294482547,
+            "ParentUID": 474331306,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0.98731231689453125,
+                0.014892101287841797,
+                -0.23208427429199219
+            ],
+            "Rotation": [
+                -0.15723508596420288,
+                -0.98716640472412109,
+                0.0043920110911130905,
+                0.027574010193347931
+            ],
+            "Scale": [
+                0.099999643862247467,
+                0.099999897181987762,
+                0.099999979138374329
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/944489387.mmh",
+                    "UID": 944489387,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/vertex_color.mat",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                }
+            ]
+        },
+        {
+            "name": "Right Spike 3",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 143026778,
+            "ParentUID": 474331306,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                1.0152440071105957,
+                0.28010034561157227,
+                -0.016468524932861328
+            ],
+            "Rotation": [
+                0.17307665944099426,
+                -0.98156625032424927,
+                0.014077442698180676,
+                -0.0798373743891716
+            ],
+            "Scale": [
+                0.099999971687793732,
+                0.099999912083148956,
+                0.099999867379665375
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/944489387.mmh",
+                    "UID": 944489387,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Assets\/Materials\/vertex_color.mat",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
                 }

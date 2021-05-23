@@ -87,7 +87,6 @@ public class Skel : Bosseslv2
 
 
         UpdateState();
-        //Debug.Log(healthPoints.ToString());
 
         if (firstSorrowRoar)
         {
