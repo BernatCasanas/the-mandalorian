@@ -142,15 +142,15 @@ public class Skel : Bosseslv2
                 inputsList.Add(INPUT.IN_JUMPSLAM_END);
             }
         }
-        if (bounceRushTimer > 0)
-        {
-            bounceRushTimer -= myDeltaTime;
+        //if (bounceRushTimer > 0)
+        //{
+        //    bounceRushTimer -= myDeltaTime;
 
-            if (bounceRushTimer <= 0)
-            {
-                inputsList.Add(INPUT.IN_BOUNCERUSH_END);
-            }
-        }
+        //    if (bounceRushTimer <= 0)
+        //    {
+        //        inputsList.Add(INPUT.IN_BOUNCERUSH_END);
+        //    }
+        //}
 
     }
 
@@ -171,10 +171,11 @@ public class Skel : Bosseslv2
             firstSorrowRoar = true;
         }
 
-        //if (Mathf.Distance(gameObject.transform.globalPosition, initTarget.transform.globalPosition) <= 2f && finalBounce)
-        //{
-        //    inputsList.Add(INPUT.IN_BOUNCERUSH_END);
-        //}
+        if (Mathf.Distance(gameObject.transform.globalPosition, initTarget.transform.globalPosition) <= 2f && finalBounce)
+        {
+            inputsList.Add(INPUT.IN_BOUNCERUSH_END);
+            finalBounce = false;
+        }
     }
 
     private void ProcessState()
@@ -577,6 +578,11 @@ public class Skel : Bosseslv2
         fallingTime = 1.0f;
         recoveryTime = 0.4f;*/
         //totalJumpSlamTime = chargeTime + upTime + fallingTime + recoveryTime;
+    }
+
+    public void OnDestroy()
+    {
+        EnemyManager.RemoveEnemy(this.gameObject);
     }
 
 }
