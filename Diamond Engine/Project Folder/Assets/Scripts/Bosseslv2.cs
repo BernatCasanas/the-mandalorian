@@ -122,6 +122,7 @@ public class Bosseslv2 : Entity
         Debug.Log("Health 2 Wampa " + healthPoints.ToString());
         maxHealthPoints = healthPoints;
         jumpOnce = true;
+
         if (gameObject.CompareTag("Skel"))
         {
             //presentationTime = Animator.GetAnimationDuration(gameObject, "Skel_Presentation") - 0.016f;
@@ -911,5 +912,13 @@ public class Bosseslv2 : Entity
     public virtual void TakeDamage(float damage)
     { }
 
+/*    public void SetJumpValues(float charge, float up, float down, float recovery)
+    {
+        chargeTime = charge;
+        upTime = up;
+        fallingTime = down;
+        recoveryTime = recovery;
+        totalJumpSlamTime = chargeTime + upTime + fallingTime + recoveryTime;
+    }*/
 
 }
