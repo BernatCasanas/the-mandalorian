@@ -3346,4 +3346,11 @@ public class Core : Entity
         return (currentState == STATE.DEAD);
     }
 
+    public void BlockInIdle()
+    {
+        lockInputs = true;
+        currentState = STATE.IDLE;
+        DisableBlaster();
+        StartIdle();
+    }
 }

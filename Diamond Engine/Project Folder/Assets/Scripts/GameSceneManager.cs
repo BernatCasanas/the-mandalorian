@@ -123,7 +123,7 @@ public class GameSceneManager : DiamondComponent
             Audio.PlayAudio(BabyYoda.instance.gameObject, "Play_Grogu_Cheering");
         Counter.SumToCounterType(Counter.CounterTypes.LEVELS);
         rewardMenu = new EndLevelRewards();
-        Core.instance.lockInputs = true;
+        Core.instance.BlockInIdle();
         rewardMenu.GenerateRewardPipeline();
     }
 
