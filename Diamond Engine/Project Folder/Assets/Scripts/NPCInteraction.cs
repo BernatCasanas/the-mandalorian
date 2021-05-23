@@ -20,6 +20,10 @@ public class NPCInteraction : DiamondComponent
     public void Awake()
     {
         canUpgrade = false;
+        if (hubTextController == null)
+        {
+            return;
+        }
         HubTextController hubScript = hubTextController.GetComponent<HubTextController>();
         if (hubScript == null)
         {
