@@ -108,8 +108,8 @@
                     "fSize": 35,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 18.600000381469727,
-                    "hFOV": 32.428569793701172,
+                    "vFOV": 18.257143020629883,
+                    "hFOV": 34.771427154541016,
                     "culling": true,
                     "HDR": true,
                     "drawSkybox": true
@@ -741,10 +741,10 @@
                         -0.01217986736446619
                     ],
                     "Rotation": [
-                        -0.023844072595238686,
-                        0.013343616388738155,
-                        0.874176025390625,
-                        0.48483976721763611
+                        -0.023844076320528984,
+                        0.013343618251383305,
+                        0.87417614459991455,
+                        0.48483982682228088
                     ],
                     "Scale": [
                         1,
@@ -1049,10 +1049,10 @@
                         -1.1102230246251565e-15
                     ],
                     "Rotation": [
-                        -0.00094224716303870082,
-                        0.0038661258295178413,
-                        0.028922660276293755,
-                        0.99957370758056641
+                        -0.00094224727945402265,
+                        0.0038661262951791286,
+                        0.028922664001584053,
+                        0.99957382678985596
                     ],
                     "Scale": [
                         1,
@@ -4867,10 +4867,10 @@
                 -6.1790533065795898
             ],
             "Rotation": [
-                -3.1812341205750272e-08,
-                -0.97017741203308105,
-                -3.1812341205750272e-08,
-                0.24239592254161835
+                -3.1812344758463951e-08,
+                -0.97017753124237061,
+                -3.1812344758463951e-08,
+                0.24239595234394073
             ],
             "Scale": [
                 1.0000087022781372,
@@ -5231,10 +5231,10 @@
                         3.3614924177527428e-09
                     ],
                     "Rotation": [
-                        -9.4805798767083616e-09,
-                        -0.00168001395650208,
-                        4.6926875256758649e-06,
-                        0.99999856948852539
+                        -9.4805807648867813e-09,
+                        -0.0016800141893327236,
+                        4.6926879804232158e-06,
+                        0.99999868869781494
                     ],
                     "Scale": [
                         1.0000001192092896,
@@ -5259,10 +5259,10 @@
                         1.1496013030409813e-09
                     ],
                     "Rotation": [
-                        -0.00020733184646815062,
-                        -0.0011754682054743171,
-                        0.059284225106239319,
-                        0.99824041128158569
+                        -0.00020733187557198107,
+                        -0.0011754683218896389,
+                        0.059284232556819916,
+                        0.99824053049087524
                     ],
                     "Scale": [
                         1,
@@ -5427,10 +5427,10 @@
                         -0.028598792850971222
                     ],
                     "Rotation": [
-                        0.096541404724121094,
-                        -0.5010417103767395,
-                        0.18819840252399445,
-                        0.83917713165283203
+                        0.096541419625282288,
+                        -0.50104176998138428,
+                        0.18819843232631683,
+                        0.83917725086212158
                     ],
                     "Scale": [
                         0.99999994039535522,
@@ -5679,10 +5679,10 @@
                         0.028598770499229431
                     ],
                     "Rotation": [
-                        -0.062612093985080719,
-                        0.39902025461196899,
-                        0.16395238041877747,
-                        0.89999008178710938
+                        -0.062612101435661316,
+                        0.39902031421661377,
+                        0.16395239531993866,
+                        0.89999020099639893
                     ],
                     "Scale": [
                         1.0000001192092896,
@@ -10080,6 +10080,151 @@
                     ]
                 }
             ]
+        },
+        {
+            "name": "SkelLifeBar",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 174108131,
+            "ParentUID": 1096175103,
+            "PrefabReference": 174108131,
+            "PrefabID": 173229476,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "PrefabObjects": [
+                {
+                    "name": "SkelLifeGauge",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1184484683,
+                    "ParentUID": 174108131,
+                    "PrefabID": 0,
+                    "PrefabReference": 1184484683,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "WampaLifeBar",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1007388580,
+            "ParentUID": 1096175103,
+            "PrefabReference": 1007388580,
+            "PrefabID": 1636070343,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "PrefabObjects": [
+                {
+                    "name": "WampaLifeGauge",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 731900807,
+                    "ParentUID": 1007388580,
+                    "PrefabID": 0,
+                    "PrefabReference": 731900807,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "BlackFade",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1643930949,
+            "ParentUID": 1096175103,
+            "PrefabReference": 1852207575,
+            "PrefabID": 1368828559,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "PrefabObjects": []
         },
         {
             "name": "AllPause",
@@ -14758,151 +14903,6 @@
                     ]
                 }
             ]
-        },
-        {
-            "name": "SkelLifeBar",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 174108131,
-            "ParentUID": 1096175103,
-            "PrefabReference": 174108131,
-            "PrefabID": 173229476,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "PrefabObjects": [
-                {
-                    "name": "SkelLifeGauge",
-                    "tag": "Untagged",
-                    "layer": "Default",
-                    "Active": true,
-                    "UID": 1184484683,
-                    "ParentUID": 174108131,
-                    "PrefabID": 0,
-                    "PrefabReference": 1184484683,
-                    "DontDestroy": false,
-                    "Static": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "WampaLifeBar",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1007388580,
-            "ParentUID": 1096175103,
-            "PrefabReference": 1007388580,
-            "PrefabID": 1636070343,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "PrefabObjects": [
-                {
-                    "name": "WampaLifeGauge",
-                    "tag": "Untagged",
-                    "layer": "Default",
-                    "Active": true,
-                    "UID": 731900807,
-                    "ParentUID": 1007388580,
-                    "PrefabID": 0,
-                    "PrefabReference": 731900807,
-                    "DontDestroy": false,
-                    "Static": false,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "BlackFade",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1643930949,
-            "ParentUID": 1096175103,
-            "PrefabReference": 1852207575,
-            "PrefabID": 1368828559,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "PrefabObjects": []
         },
         {
             "name": "SkelJumpVisualFeedback",
