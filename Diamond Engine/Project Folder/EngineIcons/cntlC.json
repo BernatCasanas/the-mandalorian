@@ -1,25 +1,25 @@
 {
     "Game Objects": [
         {
-            "name": "Snow",
+            "name": "SnowSpeeder",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 654359387,
-            "ParentUID": 590099293,
+            "UID": 378698917,
+            "ParentUID": 2104461991,
             "PrefabReference": 0,
-            "PrefabID": 1291477056,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                30.521224975585938,
-                0
+                19.369743347167969,
+                1.565676212310791,
+                -29.901208877563477
             ],
             "Rotation": [
-                0,
-                0,
-                0,
+                8.6726712920584279e-19,
+                1.2223608791828156e-09,
+                3.2399010232476988e-20,
                 1
             ],
             "Scale": [
@@ -27,7 +27,45 @@
                 1,
                 1
             ],
-            "PrefabObjects": []
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/2054031693.mmh",
+                    "UID": 2054031693,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FloatingVehicles"
+                }
+            ]
         }
     ]
 }
