@@ -390,7 +390,6 @@ public class Bosseslv2 : Entity
             if (currentTarget == finalTarget)
             {
                 returnToInitTarget = true;
-                finalBounce = true;
             }
         }
         else if (currentTarget != finalTarget && !returnToInitTarget)
@@ -400,13 +399,10 @@ public class Bosseslv2 : Entity
         else if (currentTarget == finalTarget && returnToInitTarget)
         {
             currentTarget = initTarget;
+            finalBounce = true;
+
         }
-        else if(distance<=1f && finalBounce)
-        {
-            finalBounce = false;
-            Animator.Play(gameObject, "Skel_Rush_Recover");
-            UpdateAnimationSpd(speedMult);
-        }
+
         //Debug.Log("Bounce Rush");
 
         UpdateAnimationSpd(speedMult);
@@ -423,6 +419,8 @@ public class Bosseslv2 : Entity
         resting = true;
         restingTimer = restingTime;
 
+        Animator.Play(gameObject, "Skel_Rush_Recover");
+        UpdateAnimationSpd(speedMult);
 
         if (colliderBounceRush != null)
         {
