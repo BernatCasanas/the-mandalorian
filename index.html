@@ -29,6 +29,7 @@
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="assets/css/column_style.css" rel="stylesheet">
   <link href="assets/css/team_style.css" rel="stylesheet">
+  <link href="assets/css/team_modal_style.css" rel="stylesheet">
 
   <!-- Social Media Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -162,7 +163,7 @@
 
     <div class="row">
       <div class="column-four filterDiv producer">
-          <div class="our-team">
+          <div class="our-team submit-button" id="modal-button">
               <div class="pic">
                   <img src="assets/img/team/aaron_guerrero.png">
                   <ul class="social">
@@ -176,6 +177,19 @@
                   <span class="post">Producer</span>
               </div>
           </div>
+          <!-- The Modal -->
+          <div id="modal-form" class="modal-issue">
+            <!-- Modal content -->
+            <div class="modal-content">
+              <div class="modal-header">
+                <span class="close">&times;</span>
+              </div>
+              <div class="modal-body">
+                <iframe class="airtable-embed" src="https://citm-vgdd-2018-2022.github.io/Project-3_Diamond-Engine/inner-page" frameborder="0" onmousewheel="" width="200%" height="533" style="background: transparent; border: 6px solid #c1ddad; border-radius: 3px;"></iframe>
+              </div><!-- .modal-body -->
+            </div><!-- .modal-content -->
+          </div><!-- .modal-form -->
+
       </div>
       <div class="column-four filterDiv code">
           <div class="our-team">
@@ -960,7 +974,35 @@
         this.className += " active";
       });
     }
-    </script>
+  </script>
+
+  <script>
+    // Get the modal
+    var modal = document.getElementById('modal-form');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("modal-button");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+  </script>
 
 </body>
 
