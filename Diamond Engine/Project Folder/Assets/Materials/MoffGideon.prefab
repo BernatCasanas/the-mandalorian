@@ -13,20 +13,20 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                3.7937157154083252,
-                1.5800000429153442,
-                2.3599998950958252
+                5.2344965934753418,
+                1.658627986907959,
+                0
             ],
             "Rotation": [
-                5.426770588456975e-09,
-                -0.76645189523696899,
-                5.426770588456975e-09,
-                0.64230185747146606
+                0,
+                -0.69472193717956543,
+                0,
+                0.71927839517593384
             ],
             "Scale": [
-                1.0000098943710327,
+                1.0000001192092896,
                 1,
-                1.0000098943710327
+                1.0000001192092896
             ],
             "Components": [
                 {
@@ -139,7 +139,7 @@
                     "probWanderP2": 30,
                     "probWander": 40,
                     "radiusWander": 2,
-                    "distanceProjectile": 17,
+                    "distanceProjectile": 10,
                     "dashSpeed": 16,
                     "dashBackWardDistance": 3,
                     "dashForwardDistance": 5,
@@ -2775,31 +2775,65 @@
             ]
         },
         {
-            "name": "Saber",
+            "name": "Empty",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 133970082,
+            "UID": 2006506632,
             "ParentUID": 1096362368,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0.14091396331787109,
-                -0.026660442352294922,
-                0.005520939826965332
+                0.12965273857116699,
+                -0.006008148193359375,
+                -0.018677711486816406
             ],
             "Rotation": [
-                -0.77556014060974121,
-                3.4433696782798506e-06,
-                -4.3787285903817974e-06,
-                0.63127368688583374
+                -0.88765221834182739,
+                -0.096400529146194458,
+                0.24135226011276245,
+                0.38017049431800842
             ],
             "Scale": [
-                0.99999606609344482,
-                0.99999547004699707,
-                0.99999850988388062
+                1.0000088214874268,
+                1.0000048875808716,
+                1.0000084638595581
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Saber",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 133970082,
+            "ParentUID": 2006506632,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
             ],
             "Components": [
                 {
@@ -2826,6 +2860,26 @@
                         1,
                         0.40000000596046448
                     ]
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": false,
+                    "Gravity": true,
+                    "LockLinearX": true,
+                    "LockLinearY": true,
+                    "LockLinearZ": true,
+                    "LockAngularX": true,
+                    "LockAngularY": true,
+                    "LockAngularZ": true,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "HeavyTrooperSpear",
+                    "damage": 10
                 }
             ]
         },
