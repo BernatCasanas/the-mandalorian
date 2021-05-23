@@ -68,8 +68,6 @@ public class Bosseslv2 : Entity
     public float projectileAngle = 30.0f;
     public float projectileRange = 6.0f;
     public float projectileDamage = 10.0f;
-    public float rushDamage = 15.0f;
-    public float damageBounceRush = 20f;
 
     //Jump Slam
     private JUMPSLAM jumpslam = JUMPSLAM.NONE;
