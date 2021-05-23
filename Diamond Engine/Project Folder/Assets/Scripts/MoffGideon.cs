@@ -1287,7 +1287,7 @@ public class MoffGideon : Entity
         saber = null;
         sword.transform.localScale = new Vector3(1, 1, 1);
         cam_comp.Zoom(baseZoom, zoomTimeEasing);
-        retrieveAnim = false;
+        retrieveAnim = true;
     }
 
     #endregion
@@ -1305,6 +1305,13 @@ public class MoffGideon : Entity
             cam_comp.target = this.gameObject;
         if (visualFeedback != null)
             InternalCalls.Destroy(visualFeedback);
+
+        for(int i = 0; i < deathtroopers.Count; ++i)
+        {
+            if (deathtroopers[i] != null)
+                InternalCalls.Destroy(deathtroopers[i]);
+        }
+        deathtroopers.Clear();
     }
 
     private void UpdateDie()
