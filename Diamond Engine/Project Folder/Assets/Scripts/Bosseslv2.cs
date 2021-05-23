@@ -128,6 +128,7 @@ public class Bosseslv2 : Entity
         {
             presentationTime = Animator.GetAnimationDuration(gameObject, "WP_Roar") - 0.016f;
         }
+        rushOnce = true;
     }
 
     #region PROJECTILE
@@ -322,11 +323,8 @@ public class Bosseslv2 : Entity
     public void StartBounceRush()
     {
         if (gameObject.CompareTag("Skel"))
-            Audio.PlayAudio(gameObject, "Play_Skel_Preparation");
-        else if (gameObject.CompareTag("Wampa"))
-            Audio.PlayAudio(gameObject, "Play_Wampa_Rush");
-        if (gameObject.CompareTag("Skel"))
         {
+            Audio.PlayAudio(gameObject, "Play_Skel_Preparation");
             Animator.Play(gameObject, "Skel_Rush", speedMult);
             UpdateAnimationSpd(speedMult);
         }
@@ -384,7 +382,7 @@ public class Bosseslv2 : Entity
         UpdateAnimationSpd(speedMult);
         if (gameObject.CompareTag("Skel") && rushOnce)
         {
-            Audio.PlayAudio(gameObject, "Play_Skel_In_Progress");
+            Audio.PlayAudio(gameObject, "Play_Skel_Rush_In_Progress");
             rushOnce = false;
         }
     }
