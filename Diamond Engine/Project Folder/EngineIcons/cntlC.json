@@ -1,117 +1,26 @@
 {
     "Game Objects": [
         {
-            "name": "DefaultSpawnPoint",
+            "name": "Main Area Light",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1602689418,
-            "ParentUID": 81290253,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                73.647422790527344,
-                5.9510030746459961,
-                104.96562957763672
-            ],
-            "Rotation": [
-                -2.6043768616040072e-15,
-                0.00017255546117667109,
-                1.7349381293457646e-18,
-                1
-            ],
-            "Scale": [
-                0.99999994039535522,
-                1,
-                0.99999994039535522
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                },
-                {
-                    "Type": 5,
-                    "Active": true,
-                    "ScriptName": "SpawnPoint",
-                    "spawnStormtrooper": true,
-                    "spawnBantha": false,
-                    "spawnSkytrooper": false,
-                    "spawnLaserTurret": false,
-                    "spawnDeathrooper": false,
-                    "spawnHeavyTrooper": false,
-                    "spawnEnemyAt": 1.6000000238418579,
-                    "spawnParticleObj": 1400825939
-                },
-                {
-                    "Type": 13,
-                    "Active": true,
-                    "evName": "Play_Enemy_Respawn",
-                    "audBankReference": "UI",
-                    "pitch": 40.078998565673828,
-                    "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": true
-                }
-            ]
-        },
-        {
-            "name": "StormtrooperSpawn",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1884639752,
-            "ParentUID": 1602689418,
+            "UID": 1850704152,
+            "ParentUID": 1481651339,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
                 0,
-                0,
-                0
+                8.0930004119873047,
+                18.489999771118164
             ],
             "Rotation": [
+                0.85622650384902954,
                 0,
                 0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Particle System",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1400825939,
-            "ParentUID": 1884639752,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                1.1920928955078125e-07,
-                0,
-                0
-            ],
-            "Rotation": [
-                1.0587911840678754e-22,
-                0,
-                0,
-                1
+                0.51660060882568359
             ],
             "Scale": [
                 1,
@@ -124,108 +33,23 @@
                     "Active": true
                 },
                 {
-                    "Type": 3,
+                    "Type": 27,
                     "Active": true,
-                    "IsEmpty": true,
-                    "MaterialAssetPath": "Empty",
-                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
-                    "MaterialUID": 355756108
-                },
-                {
-                    "Type": 20,
-                    "Active": true,
-                    "systemActive": false,
-                    "looping": false,
-                    "maxDuration": 0.10000000149011612,
-                    "ParticleEmitters": [
-                        {
-                            "AssetPath": "Empty",
-                            "LibraryPath": "Library\/Textures\/989165713.dds",
-                            "texUID": 989165713,
-                            "paEmitterName": "Symbol",
-                            "paLifeTime": [
-                                2.5,
-                                2.5
-                            ],
-                            "paSize": [
-                                1,
-                                1
-                            ],
-                            "paColor": [
-                                1,
-                                0,
-                                0,
-                                1
-                            ],
-                            "paPerSec": 1,
-                            "paRelative": true,
-                            "ParticleEffects": [
-                                {
-                                    "paEffectType": 1,
-                                    "paROLT_rotation": [
-                                        1,
-                                        1
-                                    ],
-                                    "paROLT_rotationSpeed": [
-                                        3,
-                                        3
-                                    ]
-                                },
-                                {
-                                    "paEffectType": 2,
-                                    "Gradients": [
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0,
-                                                0,
-                                                0
-                                            ],
-                                            "paColorOLTposition": 0.0093380436301231384
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0,
-                                                0,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 0.22240296006202698
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0,
-                                                0,
-                                                1
-                                            ],
-                                            "paColorOLTposition": 0.67948669195175171
-                                        },
-                                        {
-                                            "paColorOLTcolor": [
-                                                1,
-                                                0,
-                                                0,
-                                                0
-                                            ],
-                                            "paColorOLTposition": 0.91057300567626953
-                                        }
-                                    ]
-                                },
-                                {
-                                    "paEffectType": 3,
-                                    "paSizeOLTStartSize": 0.40000000596046448,
-                                    "paSizeOLTEndSize": 1.2000000476837158
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "Type": 21,
-                    "Active": true,
-                    "billboardAlignment": 3,
-                    "horizantalAligned": true
+                    "lightColor": [
+                        0.80000001192092896,
+                        0.87058824300765991,
+                        0.21176470816135406
+                    ],
+                    "ambientLightColor": [
+                        1,
+                        0.34509804844856262,
+                        0.34509804844856262
+                    ],
+                    "lightIntensity": 1,
+                    "specularValue": 1,
+                    "fadeDistance": 50,
+                    "maxDistance": 600,
+                    "calculateShadows": true
                 }
             ]
         }
